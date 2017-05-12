@@ -1,0 +1,1283 @@
+{
+  "basePath": "/data/v1",
+  "consumes": [
+    "application/json"
+  ],
+  "definitions": {
+    "APIError": {
+      "description": "An APIError communicates both general and field-specific errors. General errors include issues with core API usage as well as conflicts that involve more than one field. Field-specific errors correspond to an individual query parameter or request body attribute. Errors referencing nested fields will be dot-delimited (e.g. user.groups.0.name).",
+      "properties": {
+        "field": {
+          "additionalProperties": {
+            "$ref": "#/definitions/Errors"
+          },
+          "type": "object"
+        },
+        "general": {
+          "$ref": "#/definitions/Errors"
+        }
+      },
+      "required": [
+        "general",
+        "field"
+      ],
+      "type": "object"
+    },
+    "AndFilter": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Filter"
+        },
+        {
+          "properties": {
+            "config": {
+              "items": {
+                "$ref": "#/definitions/Filter"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "config"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "Asset": {
+      "properties": {
+        "_links": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/SelfLink"
+            },
+            {
+              "properties": {
+                "activate": {
+                  "description": "If present, RFC 3986 URI indicating where an authenticated user may trigger activation of this Asset via a POST request. A 202 response indicates the activation request has been accepted. A 204 response indicates the Asset is already active. After successful activation, this Asset will have a non-empty location.",
+                  "type": "string"
+                },
+                "type": {
+                  "description": "The RFC 3986 URI describing the AssetType",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          ]
+        },
+        "_permissions": {
+          "items": {
+            "enum": [
+              "download"
+            ],
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "expires_at": {
+          "description": "If present, RFC 3339 timestamp indicating when this Asset will become inactive and will require reactivation.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "location": {
+          "description": "If present, RFC 3986 URI that indicates a location that will yield image data. Consult the documentation of the Asset type to understand how to use this URI.",
+          "type": "string"
+        },
+        "status": {
+          "description": "Current status of the Asset. \"inactive\" indicates that the Asset is not currently available for download, but may be after activation. \"activating\" indicates the Asset is currently undergoing activation, and may be available for download shortly. \"active\" indicates the Asset has been activated, and may currently be available for download if the authentication context permits.",
+          "enum": [
+            "inactive",
+            "activating",
+            "active"
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "Type identifier of this Asset.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "type",
+        "_links",
+        "_permissions"
+      ],
+      "type": "object"
+    },
+    "CreateQuickSearch": {
+      "properties": {
+        "filter": {
+          "$ref": "#/definitions/Filter"
+        },
+        "item_types": {
+          "description": "The ItemTypes to include in the search.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "The name of this saved search.",
+          "pattern": "^.{1,64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "filter",
+        "item_types"
+      ],
+      "type": "object"
+    },
+    "CreateSearch": {
+      "properties": {
+        "filter": {
+          "$ref": "#/definitions/Filter"
+        },
+        "item_types": {
+          "description": "The ItemTypes to include in the search.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "The name of this saved search.",
+          "pattern": "^.{1,64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "filter",
+        "item_types"
+      ],
+      "type": "object"
+    },
+    "CursorItemPage": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/GeoJSONFeatureCollection"
+        },
+        {
+          "properties": {
+            "_links": {
+              "$ref": "#/definitions/CursorPageLinks"
+            },
+            "features": {
+              "items": {
+                "$ref": "#/definitions/Item"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "features",
+            "_links"
+          ],
+          "type": "object"
+        }
+      ],
+      "type": "object"
+    },
+    "CursorPageLinks": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/SelfLink"
+        },
+        {
+          "properties": {
+            "_first": {
+              "description": "RFC 3986 URI representing the location of the first page of results.",
+              "type": "string"
+            },
+            "_next": {
+              "description": "RFC 3986 URI representing the location of the next page of results. Omitted when there are no results, or the current page is the last.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "DateRangeFilter": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldFilter"
+        },
+        {
+          "properties": {
+            "config": {
+              "properties": {
+                "gt": {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                "gte": {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                "lt": {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                "lte": {
+                  "format": "date-time",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "required": [
+            "config"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "Error": {
+      "properties": {
+        "message": {
+          "description": "A descriptive error message.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Errors": {
+      "items": {
+        "$ref": "#/definitions/Error"
+      },
+      "type": "array"
+    },
+    "FieldFilter": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Filter"
+        },
+        {
+          "properties": {
+            "field_name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "field_name"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "Filter": {
+      "discriminator": "type",
+      "properties": {
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    },
+    "GeoJSONFeature": {
+      "description": "A GeoJSON feature object",
+      "properties": {
+        "geometry": {
+          "$ref": "#/definitions/GeoJSONGeometry"
+        },
+        "properties": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "properties",
+        "geometry"
+      ],
+      "title": "Feature"
+    },
+    "GeoJSONFeatureCollection": {
+      "description": "A GeoJSON feature collection",
+      "properties": {
+        "features": {
+          "items": {
+            "$ref": "#/definitions/GeoJSONFeature"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "features"
+      ],
+      "title": "FeatureCollection"
+    },
+    "GeoJSONGeometry": {
+      "description": "One geometry as defined by GeoJSON",
+      "discriminator": "type",
+      "properties": {
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    },
+    "GeometryFilter": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Filter"
+        },
+        {
+          "properties": {
+            "config": {
+              "$ref": "#/definitions/GeoJSONGeometry"
+            },
+            "field_name": {
+              "enum": [
+                "geometry"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "config",
+            "field_name"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "Item": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/GeoJSONFeature"
+        },
+        {
+          "properties": {
+            "_links": {
+              "$ref": "#/definitions/ItemLinks"
+            },
+            "id": {
+              "description": "Identifier of this Item.",
+              "type": "string"
+            },
+            "properties": {
+              "$ref": "#/definitions/ItemProperties"
+            }
+          },
+          "required": [
+            "id",
+            "properties",
+            "_links"
+          ],
+          "type": "object"
+        }
+      ],
+      "type": "object"
+    },
+    "ItemLinks": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/SelfLink"
+        },
+        {
+          "properties": {
+            "assets": {
+              "description": "RFC 3986 URI representing the canonical location of the Assets subcollection.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "assets"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "ItemProperties": {
+      "type": "object"
+    },
+    "ItemType": {
+      "properties": {
+        "_links": {
+          "$ref": "#/definitions/ItemTypeLinks"
+        },
+        "display_description": {
+          "description": "Human-readable description of this ItemType.",
+          "type": "string"
+        },
+        "display_name": {
+          "description": "Human-readable name of this ItemType.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Identifier of this ItemType.",
+          "pattern": "^[a-zA-Z]+$",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ItemTypeLinks": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/SelfLink"
+        }
+      ]
+    },
+    "ItemTypePage": {
+      "properties": {
+        "item_types": {
+          "items": {
+            "$ref": "#/definitions/ItemType"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "LineString": {
+      "properties": {
+        "coordinates": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/PositionArray"
+            },
+            {
+              "minItems": 2
+            }
+          ]
+        }
+      },
+      "required": [
+        "coordinates"
+      ]
+    },
+    "LinearRing": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/PositionArray"
+        },
+        {
+          "minItems": 4
+        }
+      ],
+      "description": "An array of four positions where the first equals the last"
+    },
+    "MultiLineString": {
+      "properties": {
+        "coordinates": {
+          "items": {
+            "allOf": [
+              {
+                "$ref": "#/definitions/PositionArray"
+              },
+              {
+                "minItems": 2
+              }
+            ]
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "coordinates"
+      ]
+    },
+    "MultiPoint": {
+      "properties": {
+        "coordinates": {
+          "$ref": "#/definitions/PositionArray"
+        }
+      },
+      "required": [
+        "coordinates"
+      ]
+    },
+    "MultiPolygon": {
+      "properties": {
+        "coordinates": {
+          "items": {
+            "items": {
+              "$ref": "#/definitions/LinearRing"
+            },
+            "type": "array"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "coordinates"
+      ]
+    },
+    "NotFilter": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Filter"
+        },
+        {
+          "properties": {
+            "config": {
+              "$ref": "#/definitions/Filter"
+            }
+          },
+          "required": [
+            "config"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "NumberInFilter": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldFilter"
+        },
+        {
+          "properties": {
+            "config": {
+              "items": {
+                "format": "int64",
+                "type": "number"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "config"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "OrFilter": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Filter"
+        },
+        {
+          "properties": {
+            "config": {
+              "items": {
+                "$ref": "#/definitions/Filter"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "config"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "PageLinks": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/SelfLink"
+        },
+        {
+          "properties": {
+            "_first": {
+              "description": "RFC 3986 URI representing the location of the first page of results.",
+              "type": "string"
+            },
+            "_next": {
+              "description": "RFC 3986 URI representing the location of the next page of results. Omitted when there are no results, or the current page is the last.",
+              "type": "string"
+            },
+            "_prev": {
+              "description": "RFC 3986 URI representing the location of the previous page of results. Omitted from first page of results.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "PermissionFilter": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Filter"
+        },
+        {
+          "properties": {
+            "config": {
+              "items": {
+                "enum": [
+                  "assets:download",
+                  "assets.visual:download",
+                  "assets.analytic:download",
+                  "assets.analytic_dn:download",
+                  "assets.visual_xml:download",
+                  "assets.analytic_xml:download",
+                  "assets.udm:download"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "config"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "Point": {
+      "properties": {
+        "coordinates": {
+          "$ref": "#/definitions/Position"
+        }
+      },
+      "required": [
+        "coordinates"
+      ]
+    },
+    "Polygon": {
+      "properties": {
+        "coordinates": {
+          "items": {
+            "$ref": "#/definitions/LinearRing"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "coordinates"
+      ]
+    },
+    "Position": {
+      "description": "A single position",
+      "items": {
+        "type": "number"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array"
+    },
+    "PositionArray": {
+      "description": "An array of two or more positions",
+      "items": {
+        "$ref": "#/definitions/Position"
+      },
+      "type": "array"
+    },
+    "RangeFilter": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldFilter"
+        },
+        {
+          "properties": {
+            "config": {
+              "properties": {
+                "gt": {
+                  "format": "double",
+                  "type": "number"
+                },
+                "gte": {
+                  "format": "double",
+                  "type": "number"
+                },
+                "lt": {
+                  "format": "double",
+                  "type": "number"
+                },
+                "lte": {
+                  "format": "double",
+                  "type": "number"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "required": [
+            "config"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "Search": {
+      "properties": {
+        "created": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "filter": {
+          "$ref": "#/definitions/Filter"
+        },
+        "id": {
+          "pattern": "^.{32}$",
+          "type": "string"
+        },
+        "last_executed": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of this saved search.",
+          "pattern": "^.{1,64}$",
+          "type": "string"
+        },
+        "updated": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "filter",
+        "name",
+        "created",
+        "updated",
+        "last_executed",
+        "id"
+      ],
+      "type": "object"
+    },
+    "SearchPage": {
+      "properties": {
+        "_links": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/SelfLink"
+            },
+            {
+              "$ref": "#/definitions/PageLinks"
+            }
+          ]
+        },
+        "searches": {
+          "description": "A list of searches",
+          "items": {
+            "$ref": "#/definitions/Search"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "_links",
+        "searches"
+      ],
+      "type": "object"
+    },
+    "SelfLink": {
+      "properties": {
+        "_self": {
+          "description": "RFC 3986 URI representing the canonical location of this object.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "_self"
+      ],
+      "type": "object"
+    },
+    "StringInFilter": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/FieldFilter"
+        },
+        {
+          "properties": {
+            "config": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "config"
+          ],
+          "type": "object"
+        }
+      ]
+    }
+  },
+  "host": "api.planet.com",
+  "info": {
+    "description": "The Planet Data API serves all Planet Labs imagery to public clients. This is the general spec that governs the common API objects and operations.",
+    "title": "Planet Data API",
+    "version": "1.0.0"
+  },
+  "parameters": {
+    "pAssetTypeID": {
+      "description": "AssetType identifier.",
+      "in": "path",
+      "name": "AssetTypeID",
+      "required": true,
+      "type": "string"
+    },
+    "pItemID": {
+      "description": "ID of a given Item",
+      "in": "path",
+      "name": "ItemID",
+      "required": true,
+      "type": "string"
+    },
+    "pItemTypeID": {
+      "description": "ID of a given ItemType",
+      "in": "path",
+      "name": "ItemTypeID",
+      "required": true,
+      "type": "string"
+    },
+    "pSearchID": {
+      "description": "ID of the saved search",
+      "in": "path",
+      "name": "SearchID",
+      "required": true,
+      "type": "string"
+    },
+    "qPage": {
+      "description": "Token representing a specific page of results. This should never be constructed manually.",
+      "in": "query",
+      "name": "_page",
+      "type": "string"
+    },
+    "qPageSize": {
+      "default": 250,
+      "description": "Return at most this number of results. This may only be used at the start of pagination. This may not be provided along side the \"_page\" parameter.",
+      "format": "int64",
+      "in": "query",
+      "maximum": 250,
+      "minimum": 0,
+      "name": "_page_size",
+      "type": "integer"
+    },
+    "qSearchResultSort": {
+      "default": "published desc",
+      "description": "Order the results by the provided field, in a specific direction. This may not be provided alongside the \"_page\" parameter.",
+      "enum": [
+        "acquired asc",
+        "acquired desc",
+        "published asc",
+        "published desc"
+      ],
+      "in": "query",
+      "name": "_sort",
+      "type": "string"
+    },
+    "qSearchSort": {
+      "default": "created desc",
+      "description": "Order the results by the provided field, in a specific direction. This may not be provided alongside the \"_page\" parameter.",
+      "enum": [
+        "created desc",
+        "created asc"
+      ],
+      "in": "query",
+      "name": "_sort",
+      "type": "string"
+    },
+    "qSearchType": {
+      "default": "any",
+      "description": "Type of searches to list.",
+      "enum": [
+        "any",
+        "saved",
+        "quick"
+      ],
+      "in": "query",
+      "name": "search_type",
+      "type": "string"
+    }
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "description": "List top level API endpoints.",
+        "operationId": "Index",
+        "responses": {
+          "200": {
+            "description": "The list of top-level data API endpoints.",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/SelfLink"
+                },
+                {
+                  "properties": {
+                    "asset-types": {
+                      "description": "RFC 3986 URI describing available asset-types.",
+                      "type": "string"
+                    },
+                    "item-types": {
+                      "description": "RFC 3986 URI describing available item-types.",
+                      "type": "string"
+                    },
+                    "spec": {
+                      "description": "RFC 3986 URI describing this API.",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/item-types/": {
+      "get": {
+        "description": "Lists all the ItemTypes available to the authenticated user.",
+        "operationId": "ListItemTypes",
+        "responses": {
+          "200": {
+            "description": "The list of available ItemTypes.",
+            "schema": {
+              "$ref": "#/definitions/ItemTypePage"
+            }
+          }
+        },
+        "tags": [
+          "item-types"
+        ]
+      }
+    },
+    "/item-types/{ItemTypeID}": {
+      "get": {
+        "description": "Fetch a specific ItemType identified by ItemTypeID.",
+        "operationId": "GetItemType",
+        "parameters": [
+          {
+            "$ref": "#/parameters/pItemTypeID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful ItemType response.",
+            "schema": {
+              "$ref": "#/definitions/ItemType"
+            }
+          },
+          "404": {
+            "description": "The specified ItemTypeID does not exist.",
+            "schema": {
+              "$ref": "#/definitions/APIError"
+            }
+          }
+        },
+        "tags": [
+          "item-types"
+        ]
+      }
+    },
+    "/item-types/{ItemTypeID}/items/{ItemID}": {
+      "get": {
+        "description": "Fetch a specific Item for a given ItemType.",
+        "operationId": "GetItem",
+        "parameters": [
+          {
+            "$ref": "#/parameters/pItemTypeID"
+          },
+          {
+            "$ref": "#/parameters/pItemID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful Item response.",
+            "schema": {
+              "$ref": "#/definitions/Item"
+            }
+          },
+          "404": {
+            "description": "The specified Item does not exist, does not exist for the given ItemType, or the ItemType requested does not exist.",
+            "schema": {
+              "$ref": "#/definitions/APIError"
+            }
+          }
+        },
+        "tags": [
+          "item-types"
+        ]
+      }
+    },
+    "/item-types/{ItemTypeID}/items/{ItemID}/assets/": {
+      "get": {
+        "description": "List all available Assets belonging to an Item identified by ItemID and ItemTypeID.",
+        "operationId": "ListItemAssets",
+        "parameters": [
+          {
+            "$ref": "#/parameters/pItemID"
+          },
+          {
+            "$ref": "#/parameters/pItemTypeID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The list of available Assets.",
+            "schema": {
+              "additionalProperties": {
+                "$ref": "#/definitions/Asset"
+              },
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "The specified ItemID or CatalogID do not exist.",
+            "schema": {
+              "$ref": "#/definitions/APIError"
+            }
+          }
+        },
+        "tags": [
+          "item-types"
+        ]
+      }
+    },
+    "/quick-search": {
+      "post": {
+        "description": "Executes a structured search immediately without having to first save it.",
+        "operationId": "QuickSearch",
+        "parameters": [
+          {
+            "description": "The structured search to execute. We automatically generate a name and identifier for this search and redirec to it's results. Quick searches may be cleaned periodically.",
+            "in": "body",
+            "name": "search",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateQuickSearch"
+            }
+          },
+          {
+            "$ref": "#/parameters/qPageSize"
+          },
+          {
+            "$ref": "#/parameters/qSearchResultSort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A page of search results.",
+            "schema": {
+              "$ref": "#/definitions/CursorItemPage"
+            }
+          },
+          "400": {
+            "description": "There was an error executing the search or with your search syntax.",
+            "schema": {
+              "$ref": "#/definitions/APIError"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/searches/": {
+      "get": {
+        "description": "List saved searches available to the current user.",
+        "operationId": "ListSearches",
+        "parameters": [
+          {
+            "$ref": "#/parameters/qPage"
+          },
+          {
+            "$ref": "#/parameters/qPageSize"
+          },
+          {
+            "$ref": "#/parameters/qSearchSort"
+          },
+          {
+            "$ref": "#/parameters/qSearchType"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A paginated listing of your available searches.",
+            "schema": {
+              "$ref": "#/definitions/SearchPage"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      },
+      "post": {
+        "description": "Create a new search.",
+        "operationId": "CreateSearch",
+        "parameters": [
+          {
+            "description": "The search to save.",
+            "in": "body",
+            "name": "search",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateSearch"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The saved search just created.",
+            "headers": {
+              "Location": {
+                "description": "A URL for the newly created saved search.",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/Search"
+            }
+          },
+          "400": {
+            "description": "There was an error creating your saved search.",
+            "schema": {
+              "$ref": "#/definitions/APIError"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/searches/{SearchID}": {
+      "delete": {
+        "description": "Deletes an individual saved search.",
+        "operationId": "SearchDelete",
+        "parameters": [
+          {
+            "$ref": "#/parameters/pSearchID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful deletion."
+          },
+          "404": {
+            "description": "The specified SearchID does not exist.",
+            "schema": {
+              "$ref": "#/definitions/APIError"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      },
+      "get": {
+        "description": "Shows an individual saved search.",
+        "operationId": "SearchDetail",
+        "parameters": [
+          {
+            "$ref": "#/parameters/pSearchID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful Search response.",
+            "schema": {
+              "$ref": "#/definitions/Search"
+            }
+          },
+          "404": {
+            "description": "The specified SearchID does not exist.",
+            "schema": {
+              "$ref": "#/definitions/APIError"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      },
+      "put": {
+        "description": "Updates an existing saved search.",
+        "operationId": "SearchUpdate",
+        "parameters": [
+          {
+            "$ref": "#/parameters/pSearchID"
+          },
+          {
+            "description": "The search to save.",
+            "in": "body",
+            "name": "search",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateSearch"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The saved search just updated.",
+            "schema": {
+              "$ref": "#/definitions/Search"
+            }
+          },
+          "400": {
+            "description": "There was an error updating the chosen saved search.",
+            "schema": {
+              "$ref": "#/definitions/APIError"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/searches/{SearchID}/results": {
+      "get": {
+        "description": "Executes a saved search and returns results.",
+        "operationId": "SearchResults",
+        "parameters": [
+          {
+            "$ref": "#/parameters/qPage"
+          },
+          {
+            "$ref": "#/parameters/qPageSize"
+          },
+          {
+            "$ref": "#/parameters/qSearchResultSort"
+          },
+          {
+            "$ref": "#/parameters/pSearchID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The successfully executed search results.",
+            "schema": {
+              "$ref": "#/definitions/CursorItemPage"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      }
+    }
+  },
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "https"
+  ],
+  "security": [
+    {
+      "basic": []
+    }
+  ],
+  "securityDefinitions": {
+    "basic": {
+      "type": "basic"
+    }
+  },
+  "swagger": "2.0"
+}
