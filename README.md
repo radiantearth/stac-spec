@@ -11,4 +11,7 @@ A first meeting (ideally in person) among those with implementations who are int
 
 ## In this repo
 
-This repository contains the core [Principles](principles.md) that govern the collaboration....
+This repository contains the core [Principles](principles.md) that govern the collaboration. The [implementations/](implementations) folder is where existing catalog implementations are detailed, and is the center of the first part of 
+collaboration. There is also a [Design Discussion](design-discuss.md) on some of the bigger questions.
+
+Once a number of implementations are evaluated work will begin on draft specification. 
