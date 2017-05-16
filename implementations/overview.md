@@ -38,5 +38,4 @@ the interactive API. The [search endpoint](https://docs.astrodigital.com/v2.0/do
 
 ESRI's Image Server and web service API's would be great to collaborate with. But need to figure out which part of their 
 extensive ecosystem makes sense. GeoNode and GeoNetwork may be interesting, though neither is focused on cataloging imagery. 
-But they do catalog geospatial layers, so some collaboration could be good. Once a core is established with one or two 
-implementations it would be ideal to get clients testing on it - QGIS, ArcGIS, OpenLayers, GDAL, GeoTools, etc. 
+But they do catalog geospatial layers, so some collaboration could be good. Descartes Labs also has a platform that searches satellite imagery, but right now it appears to just be a python API, no documented REST API. Once a core is established with one or two implementations it would be ideal to get clients testing on it - QGIS, ArcGIS, OpenLayers, GDAL, GeoTools, etc. 
