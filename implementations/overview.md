@@ -12,6 +12,8 @@ below.
 [planet/](planet/) includes the swagger document for the current [Data API](https://www.planet.com/docs/reference/) as well as
 some information on previous catalog iterations.
 
+[oam/](oam/) includes the swagger document for the current [API](https://api.openaerialmap.org/).
+
 ### Top Potential Collaborators
 
 Azavea's [RasterFoundry](http://rasterfoundry.org) - They already have a swagger spec up at https://github.com/azavea/raster-foundry/blob/develop/docs/swagger/spec.yml
@@ -25,8 +27,6 @@ data.
 
 DigitalGlobe's GDBX [Catalog API V2)(https://gbdxdocs.digitalglobe.com/docs/catalog-v2-course) - A recent iteration of the DG
 catalog API, which is simplified compared to V1 and more in line with others mentioned.
-
-Open Aerial Maps' [OAM Catalog](https://github.com/hotosm/oam-catalog) - Provides an API for all imagery in the Open Imagery Network.
 
 Urthecast [API's](https://urthecast.github.io/urthecast-api-presentation/#/) - There have been few updates recently, but it 
 should be reviewed as new API's are considered.
