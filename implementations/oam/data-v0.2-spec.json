@@ -1,0 +1,1022 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "OAM API",
+    "version": "0.2.0",
+    "description": ""
+  },
+  "paths": {
+    "/analytics": {
+      "get": {
+        "tags": [
+          "Analytics"
+        ],
+        "summary": "Provides metadata about the catalog ",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "integer",
+              "items": {
+                "$ref": "#/definitions/GetAnalytics"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/meta": {
+      "get": {
+        "tags": [
+          "Meta"
+        ],
+        "summary": "Main endpoint to find data within the catalog ",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "bbox",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "description": "Bounding box to search within. Format ?bbox=[lon_min],[lat_min],[lon_max],[lat_max]. "
+          },
+          {
+            "name": "title",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "description": "Limit results by title. "
+          },
+          {
+            "name": "provider",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "description": "Limit results by provider. "
+          },
+          {
+            "name": "gsd_from",
+            "in": "path",
+            "required": false,
+            "type": "number",
+            "description": "Find results greater than a certain resolution. Can be used independently of gsd_to. "
+          },
+          {
+            "name": "gsd_to",
+            "in": "path",
+            "required": false,
+            "type": "number",
+            "description": "Find results with lower than a certain resolution. Can be used independently of gsd_from. "
+          },
+          {
+            "name": "acquisition_from",
+            "in": "path",
+            "required": false,
+            "type": "date",
+            "description": "Show results after a certain date. Can be used independently of acquisition_to. "
+          },
+          {
+            "name": "acquisition_to",
+            "in": "path",
+            "required": false,
+            "type": "date",
+            "description": "Show results before a certain date. Can be used independently of acquisition_from. "
+          },
+          {
+            "name": "has_tiled",
+            "in": "path",
+            "required": false,
+            "type": "boolean",
+            "description": "Return only images with associated tiled images. "
+          },
+          {
+            "name": "sort",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "description": "The sort order, asc or desc. Must be used with order_by. "
+          },
+          {
+            "name": "order_by",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "description": "&amp; date] Field to sort by. Must be used with sort. "
+          },
+          {
+            "name": "limit",
+            "in": "path",
+            "required": false,
+            "type": "number",
+            "description": "Change the number of results returned, max is 100. "
+          },
+          {
+            "name": "page",
+            "in": "path",
+            "required": false,
+            "type": "number",
+            "description": "Paginate through results. "
+          },
+          {
+            "name": "skip",
+            "in": "path",
+            "required": false,
+            "type": "number",
+            "description": "Number of records to skip. "
+          }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "successful operation",
+                    "schema": {
+                      "type": "string",
+                      "items": {
+                        "$ref": "#/definitions/GetMeta"
+                      }
+                    }
+                  }
+                }
+      },
+      "post": {
+        "tags": [
+          "Meta"
+        ],
+        "summary": "Add an image to the catalog. This is an authenticated endpoint. ",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Add an image to the catalog. This is an authenticated endpoint. ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PostMeta"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+                "$ref": "#/definitions/PostMeta"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/meta/{id}": {
+      "get": {
+        "tags": [
+          "Meta"
+        ],
+        "summary": "Display data for an individual image ",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "description": "The id of the image. "
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+                "$ref": "#/definitions/GetMetaId"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tms": {
+      "get": {
+        "tags": [
+          "TMS"
+        ],
+        "summary": "Main endpoint to list TMS endpoints ",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "uri",
+            "in": "path",
+            "required": false,
+            "type": "string",
+            "description": "search for a particular TMS URI "
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+                "$ref": "#/definitions/GetTms"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "TMS"
+        ],
+        "summary": "Add a TMS (Tiled Map Service) endpoint to the catalog. This is an authenticated endpoint. ",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Add a TMS (Tiled Map Service) endpoint to the catalog. This is an authenticated endpoint. ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PostTms"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "string",
+              "items": {
+                "$ref": "#/definitions/PostTms"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/uploads/url": {
+      "get": {
+        "tags": [
+          "_home_tombh_Workspace_hotosm_oam_catalog_routes_uploads_js"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "payload",
+            "in": "path",
+            "required": true,
+            "type": "object",
+            "description": "Parameters sent as object resolvable from request.payload "
+          },
+          {
+            "name": "payload.name",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The name of the file to be uploaded "
+          },
+          {
+            "name": "payload.type",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The content type of the file to be uploaded "
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "Object",
+              "items": {
+                "$ref": "#/definitions/uploader"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/uploads": {
+      "get": {
+        "tags": [
+          "uploads"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "Object[]",
+              "items": {
+                "$ref": "#/definitions/GetUploads"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "uploads"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/uploaderInfo"
+            }
+          }
+        ]
+      }
+    },
+    "/uploads/{id}": {
+      "get": {
+        "tags": [
+          "uploads"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The id of the upload "
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "Object",
+              "items": {
+                "$ref": "#/definitions/uploader"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "GetAnalytics": {
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Number of unique images in catalog "
+        },
+        "sensor_count": {
+          "type": "integer",
+          "description": "Number of unique sensors in catalog "
+        },
+        "provider_count": {
+          "type": "integer",
+          "description": "Number of unique providers in catalog "
+        },
+        "date": {
+          "type": "date",
+          "description": "Date and time of data point "
+        }
+      },
+      "required": [
+        "count",
+        "sensor_count",
+        "provider_count",
+        "date"
+      ]
+    },
+    "GetMeta": {
+      "properties": {
+        "bbox": {
+          "type": "string",
+          "description": "Bounding box of image "
+        },
+        "title": {
+          "type": "string",
+          "description": "Name of image "
+        },
+        "provider": {
+          "type": "string",
+          "description": "Imagery provider "
+        },
+        "gsd_from": {
+          "type": "number",
+          "description": "Find results greater than a certain resolution. Can be used independently of gsd_to. "
+        },
+        "gsd_to": {
+          "type": "number",
+          "description": "Find results with lower than a certain resolution. Can be used independently of gsd_from. "
+        },
+        "acquisition_from": {
+          "type": "date",
+          "description": "Show results after a certain date. Can be used independently of acquisition_to. "
+        },
+        "acquisition_to": {
+          "type": "date",
+          "description": "Show results before a certain date. Can be used independently of acquisition_from. "
+        },
+        "has_tiled": {
+          "type": "boolean",
+          "description": "Return only images with associated tiled images. "
+        },
+        "sort": {
+          "type": "string",
+          "description": "The sort order, asc or desc. Must be used with order_by. "
+        },
+        "order_by": {
+          "type": "string",
+          "description": "&amp; date] Field to sort by. Must be used with sort. "
+        },
+        "limit": {
+          "type": "number",
+          "description": "Change the number of results returned, max is 100. "
+        },
+        "page": {
+          "type": "number",
+          "description": "Paginate through results. "
+        },
+        "skip": {
+          "type": "number",
+          "description": "Number of records to skip. "
+        },
+        "_id": {
+          "type": "string",
+          "description": "Unique internal ID "
+        },
+        "uuid": {
+          "type": "url",
+          "description": "Image source "
+        },
+        "projection": {
+          "type": "string",
+          "description": "Image projection information "
+        },
+        "footprint": {
+          "type": "string",
+          "description": "Image footprint "
+        },
+        "gsd": {
+          "type": "number",
+          "description": "Spatial resolution of image (in meters) "
+        },
+        "file_size": {
+          "type": "number",
+          "description": "File size of image (in bytes) "
+        },
+        "acquisition_start": {
+          "type": "date",
+          "description": "Start of image capture "
+        },
+        "acquisition_end": {
+          "type": "date",
+          "description": "End of image capture "
+        },
+        "platform": {
+          "type": "string",
+          "description": "Recording platform of image (UAV, satellite, etc) "
+        },
+        "contact": {
+          "type": "string",
+          "description": "Imagery contact point "
+        },
+        "properties": {
+          "type": "object",
+          "description": "Optional metadata about the image "
+        },
+        "meta_uri": {
+          "type": "url",
+          "description": "URL of metadata information "
+        },
+        "geojson": {
+          "type": "string",
+          "description": "GeoJSON information for image "
+        }
+      },
+      "required": [
+        "_id",
+        "uuid",
+        "title",
+        "projection",
+        "footprint",
+        "gsd",
+        "file_size",
+        "acquisition_start",
+        "acquisition_end",
+        "platform",
+        "provider",
+        "contact",
+        "properties",
+        "meta_uri",
+        "geojson",
+        "bbox"
+      ]
+    },
+    "PostMeta": {
+      "properties": {
+        "uuid": {
+          "type": "url",
+          "description": "Image source "
+        },
+        "footpring": {
+          "type": "string",
+          "description": "GeoJSON footpring of image. "
+        },
+        "bbox": {
+          "type": "string",
+          "description": "Bounding box of image "
+        },
+        "_id": {
+          "type": "string",
+          "description": "Unique internal ID "
+        },
+        "title": {
+          "type": "string",
+          "description": "Name of image "
+        },
+        "projection": {
+          "type": "string",
+          "description": "Image projection information "
+        },
+        "footprint": {
+          "type": "string",
+          "description": "Image footprint "
+        },
+        "gsd": {
+          "type": "number",
+          "description": "Spatial resolution of image (in meters) "
+        },
+        "file_size": {
+          "type": "number",
+          "description": "File size of image (in bytes) "
+        },
+        "acquisition_start": {
+          "type": "date",
+          "description": "Start of image capture "
+        },
+        "acquisition_end": {
+          "type": "date",
+          "description": "End of image capture "
+        },
+        "platform": {
+          "type": "string",
+          "description": "Recording platform of image (UAV, satellite, etc) "
+        },
+        "provider": {
+          "type": "string",
+          "description": "Imagery provider "
+        },
+        "contact": {
+          "type": "string",
+          "description": "Imagery contact point "
+        },
+        "properties": {
+          "type": "object",
+          "description": "Optional metadata about the image "
+        },
+        "meta_uri": {
+          "type": "url",
+          "description": "URL of metadata information "
+        },
+        "geojson": {
+          "type": "string",
+          "description": "GeoJSON information for image "
+        }
+      },
+      "required": [
+        "_id",
+        "uuid",
+        "title",
+        "projection",
+        "footprint",
+        "gsd",
+        "file_size",
+        "acquisition_start",
+        "acquisition_end",
+        "platform",
+        "provider",
+        "contact",
+        "properties",
+        "meta_uri",
+        "geojson",
+        "bbox"
+      ]
+    },
+    "GetMetaId": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The id of the image. "
+        },
+        "_id": {
+          "type": "string",
+          "description": "Unique internal ID "
+        },
+        "uuid": {
+          "type": "url",
+          "description": "Image source "
+        },
+        "title": {
+          "type": "string",
+          "description": "Name of image "
+        },
+        "projection": {
+          "type": "string",
+          "description": "Image projection information "
+        },
+        "footprint": {
+          "type": "string",
+          "description": "Image footprint "
+        },
+        "gsd": {
+          "type": "number",
+          "description": "Spatial resolution of image (in meters) "
+        },
+        "file_size": {
+          "type": "number",
+          "description": "File size of image (in bytes) "
+        },
+        "acquisition_start": {
+          "type": "date",
+          "description": "Start of image capture "
+        },
+        "acquisition_end": {
+          "type": "date",
+          "description": "End of image capture "
+        },
+        "platform": {
+          "type": "string",
+          "description": "Recording platform of image (UAV, satellite, etc) "
+        },
+        "provider": {
+          "type": "string",
+          "description": "Imagery provider "
+        },
+        "contact": {
+          "type": "string",
+          "description": "Imagery contact point "
+        },
+        "properties": {
+          "type": "object",
+          "description": "Optional metadata about the image "
+        },
+        "meta_uri": {
+          "type": "url",
+          "description": "URL of metadata information "
+        },
+        "geojson": {
+          "type": "string",
+          "description": "GeoJSON information for image "
+        },
+        "bbox": {
+          "type": "string",
+          "description": "Bounding box of image "
+        }
+      },
+      "required": [
+        "_id",
+        "uuid",
+        "title",
+        "projection",
+        "footprint",
+        "gsd",
+        "file_size",
+        "acquisition_start",
+        "acquisition_end",
+        "platform",
+        "provider",
+        "contact",
+        "properties",
+        "meta_uri",
+        "geojson",
+        "bbox"
+      ]
+    },
+    "GetTms": {
+      "properties": {
+        "uri": {
+          "type": "uuid",
+          "description": "TMS URI "
+        },
+        "_id": {
+          "type": "string",
+          "description": "Unique internal ID "
+        },
+        "images": {
+          "type": "object",
+          "description": "An array of images related to this TMS. Each item in the array includes _id and image uuid "
+        }
+      },
+      "required": [
+        "_id",
+        "uri",
+        "images"
+      ]
+    },
+    "PostTms": {
+      "properties": {
+        "uri": {
+          "type": "uuid",
+          "description": "TMS URI "
+        },
+        "images": {
+          "type": "object",
+          "description": "An array of images related to this TMS. Each item in the array includes _id and image uuid "
+        },
+        "_id": {
+          "type": "string",
+          "description": "Unique internal ID "
+        }
+      },
+      "required": [
+        "_id",
+        "uri",
+        "images"
+      ]
+    },
+    "payload": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the file to be uploaded "
+        },
+        "type": {
+          "type": "string",
+          "description": "The content type of the file to be uploaded "
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ]
+    },
+    "uploader": {
+      "properties": {},
+      "required": []
+    },
+    "results.uploader": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": ""
+        },
+        "email": {
+          "type": "string",
+          "description": ""
+        }
+      },
+      "required": [
+        "name",
+        "email"
+      ]
+    },
+    "results": {
+      "properties": {
+        "scenes": {
+          "type": "array",
+          "description": "",
+          "items": {
+            "type": "Object"
+          }
+        },
+        "uploader": {
+          "type": "object",
+          "description": "Uploader contact info ",
+          "$ref": "#/definitions/results.uploader"
+        }
+      },
+      "required": [
+        "scenes",
+        "uploader"
+      ]
+    },
+    "results.scenes": {
+      "properties": {
+        "contact": {
+          "type": "object",
+          "description": "Contact person for this scene ",
+          "$ref": "#/definitions/results.scenes.contact"
+        },
+        "title": {
+          "type": "string",
+          "description": "Scene title "
+        },
+        "platform": {
+          "type": "string",
+          "description": ""
+        },
+        "provider": {
+          "type": "string",
+          "description": "Imagery provider "
+        },
+        "sensor": {
+          "type": "string",
+          "description": "Sensor/device "
+        },
+        "acquisition_start": {
+          "type": "string",
+          "description": "Date and time of imagery acquisition "
+        },
+        "acquisition_end": {
+          "type": "string",
+          "description": "Date and time of imagery acquisition "
+        },
+        "images": {
+          "type": "array",
+          "description": "Array of images in this scene ",
+          "items": {
+            "type": "Object"
+          }
+        }
+      },
+      "required": [
+        "contact",
+        "title",
+        "platform",
+        "provider",
+        "sensor",
+        "acquisition_start",
+        "acquisition_end",
+        "images"
+      ]
+    },
+    "results.scenes.contact": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": ""
+        },
+        "email": {
+          "type": "string",
+          "description": ""
+        }
+      },
+      "required": [
+        "name",
+        "email"
+      ]
+    },
+    "results.scenes.images": {
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": ""
+        },
+        "status": {
+          "type": "string",
+          "description": ""
+        },
+        "error": {
+          "type": "string",
+          "description": ""
+        },
+        "messages": {
+          "type": "array",
+          "description": "",
+          "items": {
+            "type": "String"
+          }
+        },
+        "startedAt": {
+          "type": "string",
+          "description": "Date and time the processing started "
+        },
+        "stoppedAt": {
+          "type": "string",
+          "description": "Date and time the processing stopped "
+        }
+      },
+      "required": [
+        "url",
+        "status",
+        "error",
+        "messages",
+        "startedAt",
+        "stoppedAt"
+      ]
+    },
+    "GetUploads": {
+      "properties": {
+        "results": {
+          "type": "array",
+          "description": "",
+          "items": {
+            "type": "Object"
+          }
+        }
+      },
+      "required": [
+        "results"
+      ]
+    },
+    "uploaderInfo": {
+      "properties": {},
+      "required": []
+    },
+    "PostUploads": {
+      "properties": {
+        "contactInfo": {
+          "type": "object",
+          "description": "",
+          "$ref": "#/definitions/contactInfo"
+        },
+        "scenes": {
+          "type": "array",
+          "description": "",
+          "items": {
+            "type": "Object"
+          }
+        }
+      },
+      "required": [
+        "contactInfo",
+        "scenes"
+      ]
+    },
+    "scenes": {
+      "properties": {
+        "metadata": {
+          "type": "object",
+          "description": "The OAM metadata ",
+          "$ref": "#/definitions/scenes.metadata"
+        },
+        "urls": {
+          "type": "array",
+          "description": "The image URLs ",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "metadata",
+        "urls"
+      ]
+    },
+    "GetUploadsId": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The id of the upload "
+        }
+      },
+      "required": [
+        "id"
+      ]
+    }
+  }
+}
