@@ -1,6 +1,6 @@
 # Caveat
 
-This introduction is from the perspective of someone not involved with creating the various DigitalGlobe catalogs, but who has gotten to look behind the curtain during the last several months.  It is also from the viewpoint of DigitalGlobe's platform division which is somewhat distinct from that of the imagery division.
+This introduction is from the perspective of someone not involved with creating the various DigitalGlobe catalogs, but who has gotten to look behind the curtain during.  It is also from the viewpoint of DigitalGlobe's platform division which is somewhat distinct from that of the imagery division.
 
 # Interface Experiences
 
