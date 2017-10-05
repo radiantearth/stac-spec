@@ -84,3 +84,9 @@ Then there are a number of potentially interesting extensions - bulk export (don
 statistics (give counts or totals of metadata fields) against queries, geometry simplification (on input for better query 
 responses, or on output for display online), alternate formats (Geopackage or Shapefile output instead of GeoJSON), 
 notifications, offline caching / updating, web tiles, etc.
+
+### Caching / Updating
+
+Just a quick selective dump on one of the extension topics. The main geo catalog paradigm that has never really worked seems to be that you'd send out requests to a number of different catalogs and then try to parse responses from all of them. It seems time to flip that model around, where there are catalogs that also crawl and cache other catalogs. Indeed the simplest catalog profile could not even offer up 'search' - it'd work as crawlable links and flat files hosted on a cloud storage bucket. 
+
+But a more advanced catalog should offer up a way for other catalogs to subscribe to updates they care about and get notifications. An agriculture company might pull satellite imagery from 5 catalogs, but they only pull the corn belt in the US, where they do their analytics. So they could just have a 'caching catalog', that knows the canonical record is somewhere else (and refers to it). But it stays up to date, and is able to offer sub-second responses to searches on the cached catalogs. And indeed ideally ranks the searches across all the 5 catalogs.
