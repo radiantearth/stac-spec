@@ -324,7 +324,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "type": "Object",
+              "type": "object",
               "items": {
                 "$ref": "#/definitions/uploader"
               }
@@ -349,7 +349,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "type": "Object[]",
+              "type": "object",
               "items": {
                 "$ref": "#/definitions/GetUploads"
               }
@@ -403,7 +403,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "type": "Object",
+              "type": "object",
               "items": {
                 "$ref": "#/definitions/uploader"
               }
@@ -830,7 +830,7 @@
           "type": "array",
           "description": "",
           "items": {
-            "type": "Object"
+            "type": "object"
           }
         },
         "uploader": {
@@ -879,7 +879,7 @@
           "type": "array",
           "description": "Array of images in this scene ",
           "items": {
-            "type": "Object"
+            "type": "object"
           }
         }
       },
@@ -928,7 +928,7 @@
           "type": "array",
           "description": "",
           "items": {
-            "type": "String"
+            "type": "string"
           }
         },
         "startedAt": {
@@ -955,7 +955,7 @@
           "type": "array",
           "description": "",
           "items": {
-            "type": "Object"
+            "type": "object"
           }
         }
       },
@@ -978,7 +978,7 @@
           "type": "array",
           "description": "",
           "items": {
-            "type": "Object"
+            "type": "object"
           }
         }
       },
