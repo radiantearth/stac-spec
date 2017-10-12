@@ -3323,6 +3323,7 @@
         }
       ]
     },
+
     "ScenePaginated": {
       "allOf": [
         {
@@ -3414,11 +3415,9 @@
             "tags": {
               "type": "array",
               "description": "Tags associated with image",
-              "items": [
-                {
+              "items": {
                   "type": "string"
                 }
-              ]
             },
             "images": {
               "type": "array",
@@ -3454,11 +3453,9 @@
             "metadataFiles": {
               "type": "array",
               "description": "Metadata files that should be present for processing all\nimages in a scene (e.g. relevant .mtl files or .xml)\n",
-              "items": [
-                {
+              "items": {
                   "type": "string"
                 }
-              ]
             },
             "filterFields": {
               "$ref": "#/definitions/FilterFields"
@@ -3534,15 +3531,18 @@
       }
     },
     "SceneGrid": {
-      "type": "array",
-      "items": [
-        {
-          "type": "number",
-          "format": "integer"
+      "type": "object",
+      "properties": {
+        "coordinates": {
+          "type": "array",
+          "items": {
+              "type": "integer"
+            }
         }
-      ],
+      },
       "readOnly": true
     },
+
     "Project": {
       "allOf": [
         {
@@ -3587,11 +3587,9 @@
             },
             "tags": {
               "type": "array",
-              "items": [
-                {
-                  "type": "string"
-                }
-              ]
+              "items": {
+                "type": "string"
+              }
             },
             "extent": {
               "type": "object",
