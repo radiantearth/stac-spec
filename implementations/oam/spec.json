@@ -662,9 +662,9 @@
           "type": "string",
           "description": "The id of the image. "
         },
-        "_id": {
+        "internalId": {
           "type": "string",
-          "description": "Unique internal ID "
+          "description": "Unique internal ID (note swagger strips underscores for code generation using camelCase so '_id' results in duplicate id properties)."
         },
         "uuid": {
           "type": "url",
@@ -963,8 +963,13 @@
         "results"
       ]
     },
-    "uploaderInfo": {
-      "properties": {},
+    "UploaderInfo": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
       "required": []
     },
     "PostUploads": {
@@ -987,6 +992,15 @@
         "scenes"
       ]
     },
+    "ContactInfo": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Contact name"
+        }
+      }
+    },
     "scenes": {
       "properties": {
         "metadata": {
@@ -1006,6 +1020,9 @@
         "metadata",
         "urls"
       ]
+    },
+    "scenes.metadata": {
+      "type": "object"
     },
     "GetUploadsId": {
       "properties": {
