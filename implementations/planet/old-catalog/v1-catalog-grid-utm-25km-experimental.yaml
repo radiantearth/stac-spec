@@ -1,0 +1,1086 @@
+basePath: /v1
+consumes:
+- application/json
+definitions:
+  APIError:
+    description: An APIError communicates both general and field-specific errors.
+      General errors include issues with core API usage as well as conflicts that
+      involve more than one field. Field-specific errors correspond to an individual
+      query parameter or request body attribute. Errors referencing nested fields
+      will be dot-delimited (e.g. user.groups.0.name).
+    properties:
+      field:
+        additionalProperties:
+          $ref: '#/definitions/Errors'
+        type: object
+      general:
+        $ref: '#/definitions/Errors'
+    required:
+    - general
+    - field
+    type: object
+  AndFilter:
+    allOf:
+    - $ref: '#/definitions/Filter'
+    - properties:
+        config:
+          items:
+            $ref: '#/definitions/Filter'
+          type: array
+      required:
+      - config
+      type: object
+  Asset:
+    properties:
+      _links:
+        $ref: '#/definitions/SelfLink'
+      _permissions:
+        items:
+          enum:
+          - download
+          type: string
+        type: array
+        uniqueItems: true
+      files:
+        additionalProperties:
+          $ref: '#/definitions/AssetFile'
+        description: Various AssetFiles indicating how a user may download the image
+          data associated with this Asset. The keys of this object reflect the type
+          of each available AssetFile.
+        type: object
+      type:
+        description: Type identifier of this Asset.
+        type: string
+    required:
+    - type
+    - files
+    - _links
+    - _permissions
+    type: object
+  AssetFile:
+    description: An AssetFile describes the means of downloading the image data associated
+      with a specific Asset
+    properties:
+      _links:
+        properties:
+          activate:
+            description: If present, RFC 3986 URI indicating where an authenticated
+              user may trigger activation of this AssetFile via a POST request. A
+              202 response indicates the activation request has been accepted. A 204
+              response indicates the AssetFile is already active. After successful
+              activation, this AssetFile will have a non-empty location.
+            type: string
+        type: object
+      expires_at:
+        description: If present, RFC 3339 timestamp indicating when this AssetFile
+          will become inactive and will require reactivation.
+        format: date-time
+        type: string
+      location:
+        description: If present, RFC 3986 URI that indicates a location that will
+          yield image data. Consult the documentation of the AssetFile type to understand
+          how to use this URI.
+        type: string
+      status:
+        description: Current status of the AssetFile. "inactive" indicates that the
+          AssetFile is not currently available for download, but may be after activation.
+          "activating" indicates the AssetFile is currently undergoing activation,
+          and may be available for download shortly. "active" indicates the AssetFile
+          has been activated, and may currently be available for download if the authentication
+          context permits.
+        enum:
+        - inactive
+        - activating
+        - active
+        type: string
+      type:
+        description: An identifier of the methodology that must be used to download
+          the image data from the indicated location. In the case of "http", the user
+          must make an HTTP GET request against the provided URL.
+        enum:
+        - http
+        type: string
+    required:
+    - type
+    - status
+    - _links
+    type: object
+  Catalog:
+    properties:
+      _links:
+        $ref: '#/definitions/CatalogLinks'
+      display_description:
+        description: Human-readable description of this Catalog.
+        type: string
+      display_name:
+        description: Human-readable name of this Catalog.
+        type: string
+      id:
+        description: Identifier of this Catalog.
+        pattern: ^[a-z\-_]+$
+        type: string
+      item_count:
+        description: Total number of Items available within this Catalog.
+        format: int64
+        type: integer
+    required:
+    - id
+    - item_count
+    - _links
+    type: object
+  CatalogLinks:
+    allOf:
+    - $ref: '#/definitions/SelfLink'
+    - properties:
+        items:
+          description: RFC 3986 URI representing the location of the Items contained
+            within this Catalog.
+          type: string
+        spec:
+          description: RFC 3986 URI representing the location of the Swagger spec
+            specific to this Catalog.
+          type: string
+      required:
+      - items
+      - spec
+      type: object
+  CatalogSpec:
+    description: Swagger spec rendered for a specific Catalog to include extra Item
+      properties and query parameters defined by that Catalog.
+    type: string
+  CoreItemProperties:
+    description: These properties are shared amongst all Items in across all Catalogs.
+    properties:
+      published:
+        description: The RFC 3339 timestamp at which this Item was added to the Catalog.
+        format: date-time
+        type: string
+    required:
+    - published
+    type: object
+  CreateQuickSearch:
+    properties:
+      filter:
+        $ref: '#/definitions/Filter'
+      name:
+        description: The name of this saved search.
+        pattern: ^.{1,64}$
+        type: string
+    required:
+    - filter
+    type: object
+  CreateSearch:
+    properties:
+      filter:
+        $ref: '#/definitions/Filter'
+      name:
+        description: The name of this saved search.
+        pattern: ^.{1,64}$
+        type: string
+    required:
+    - name
+    - filter
+    type: object
+  CursorPageLinks:
+    allOf:
+    - $ref: '#/definitions/SelfLink'
+    - properties:
+        _first:
+          description: RFC 3986 URI representing the location of the first page of
+            results.
+          type: string
+        _next:
+          description: RFC 3986 URI representing the location of the next page of
+            results. Omitted when there are no results, or the current page is the
+            last.
+          type: string
+      type: object
+  DateRangeFilter:
+    allOf:
+    - $ref: '#/definitions/FieldFilter'
+    - properties:
+        config:
+          properties:
+            gt:
+              format: date-time
+              type: string
+            gte:
+              format: date-time
+              type: string
+            lt:
+              format: date-time
+              type: string
+            lte:
+              format: date-time
+              type: string
+          type: object
+      required:
+      - config
+      type: object
+  Error:
+    properties:
+      message:
+        description: A descriptive error message.
+        type: string
+    type: object
+  Errors:
+    items:
+      $ref: '#/definitions/Error'
+    type: array
+  ExtraItemProperties:
+    properties:
+      catalog::acquired:
+        description: The RFC 3339 acquisition time of underlying image.
+        format: date-time
+        type: string
+      catalog::black_fill:
+        description: Ratio of image containing artificial black fill due to clipping
+          to actual data.
+        format: float
+        maximum: 1.0
+        minimum: 0.0
+        type: number
+      catalog::cloud_cover:
+        description: Ratio of the image covered by clouds to that which is uncovered.
+        format: float
+        maximum: 1.0
+        minimum: 0.0
+        type: number
+      catalog::grid_cell:
+        description: The grid cell identifier of the gridded Item.
+        type: string
+      catalog::provider:
+        description: Name of the imagery provider.
+        enum:
+        - planetscope
+        - rapideye
+        type: string
+      catalog::resolution:
+        description: Pixel resolution of the Item image(s) in meters.
+        format: float
+        minimum: 0.0
+        type: number
+      catalog::satellite_id:
+        description: Globally unique identifier of the satellite that acquired the
+          underlying image.
+        type: string
+      catalog::strip_id:
+        description: Identifier of the Item's parent strip.
+        type: string
+      catalog::sun_azimuth:
+        description: Angle from the True North to the Sun Vector projected on the
+          horizontal plane in degrees.
+        format: float
+        maximum: 360.0
+        minimum: 0.0
+        type: number
+      catalog::sun_elevation:
+        description: Elevation angle of the sun in degrees.
+        format: float
+        maximum: 90.0
+        minimum: 0.0
+        type: number
+      catalog::usable_data:
+        description: Ratio of the usable to unusable portion of the image due to cloud
+          cover or black fill.
+        format: float
+        maximum: 1.0
+        minimum: 0.0
+        type: number
+      catalog::view_angle:
+        description: Spacecraft across-track off-nadir viewing angle used for imaging,
+          in degrees with "+" being East and "-" being West.
+        format: float
+        maximum: 25.0
+        minimum: -25.0
+        type: number
+    required:
+    - catalog::acquired
+    - catalog::black_fill
+    - catalog::cloud_cover
+    - catalog::grid_cell
+    - catalog::provider
+    - catalog::resolution
+    - catalog::satellite_id
+    - catalog::strip_id
+    - catalog::sun_azimuth
+    - catalog::sun_elevation
+    - catalog::usable_data
+    - catalog::view_angle
+    type: object
+  FieldFilter:
+    allOf:
+    - $ref: '#/definitions/Filter'
+    - properties:
+        field_name:
+          type: string
+      required:
+      - field_name
+      type: object
+  Filter:
+    discriminator: type
+    properties:
+      type:
+        type: string
+    required:
+    - type
+    type: object
+  GeoJSONFeature:
+    description: A GeoJSON feature object
+    properties:
+      geometry:
+        $ref: '#/definitions/GeoJSONGeometry'
+      properties:
+        type: object
+    required:
+    - properties
+    - geometry
+    title: Feature
+  GeoJSONFeatureCollection:
+    description: A GeoJSON feature collection
+    properties:
+      features:
+        items:
+          $ref: '#/definitions/GeoJSONFeature'
+        type: array
+    required:
+    - features
+    title: FeatureCollection
+  GeoJSONGeometry:
+    description: One geometry as defined by GeoJSON
+    discriminator: type
+    properties:
+      type:
+        type: string
+    required:
+    - type
+    type: object
+  GeometryFilter:
+    allOf:
+    - $ref: '#/definitions/Filter'
+    - properties:
+        config:
+          $ref: '#/definitions/GeoJSONGeometry'
+        field_name:
+          enum:
+          - geometry
+          type: string
+      required:
+      - config
+      - field_name
+      type: object
+  Item:
+    allOf:
+    - $ref: '#/definitions/GeoJSONFeature'
+    - properties:
+        _links:
+          $ref: '#/definitions/ItemLinks'
+        id:
+          description: Identifier of this Item.
+          type: string
+        properties:
+          $ref: '#/definitions/ItemProperties'
+      required:
+      - id
+      - properties
+      - _links
+      type: object
+    type: object
+  ItemLinks:
+    allOf:
+    - $ref: '#/definitions/SelfLink'
+    - properties:
+        assets:
+          description: RFC 3986 URI representing the canonical location of the Assets
+            subcollection.
+          type: string
+      required:
+      - assets
+      type: object
+  ItemPage:
+    allOf:
+    - $ref: '#/definitions/GeoJSONFeatureCollection'
+    - properties:
+        _links:
+          $ref: '#/definitions/PageLinks'
+        features:
+          items:
+            $ref: '#/definitions/Item'
+          type: array
+      required:
+      - features
+      - _links
+      type: object
+    type: object
+  ItemProperties:
+    allOf:
+    - $ref: '#/definitions/CoreItemProperties'
+    - $ref: '#/definitions/ExtraItemProperties'
+  LineString:
+    properties:
+      coordinates:
+        allOf:
+        - $ref: '#/definitions/PositionArray'
+        - minItems: 2
+    required:
+    - coordinates
+  LinearRing:
+    allOf:
+    - $ref: '#/definitions/PositionArray'
+    - minItems: 4
+    description: An array of four positions where the first equals the last
+  MultiLineString:
+    properties:
+      coordinates:
+        items:
+          allOf:
+          - $ref: '#/definitions/PositionArray'
+          - minItems: 2
+        type: array
+    required:
+    - coordinates
+  MultiPoint:
+    properties:
+      coordinates:
+        $ref: '#/definitions/PositionArray'
+    required:
+    - coordinates
+  MultiPolygon:
+    properties:
+      coordinates:
+        items:
+          items:
+            $ref: '#/definitions/LinearRing'
+          type: array
+        type: array
+    required:
+    - coordinates
+  NotFilter:
+    allOf:
+    - $ref: '#/definitions/Filter'
+    - properties:
+        config:
+          $ref: '#/definitions/Filter'
+      required:
+      - config
+      type: object
+  NumberInFilter:
+    allOf:
+    - $ref: '#/definitions/FieldFilter'
+    - properties:
+        config:
+          items:
+            format: int64
+            type: number
+          type: array
+      required:
+      - config
+      type: object
+  OrFilter:
+    allOf:
+    - $ref: '#/definitions/Filter'
+    - properties:
+        config:
+          items:
+            $ref: '#/definitions/Filter'
+          type: array
+      required:
+      - config
+      type: object
+  PageLinks:
+    allOf:
+    - $ref: '#/definitions/SelfLink'
+    - properties:
+        _first:
+          description: RFC 3986 URI representing the location of the first page of
+            results.
+          type: string
+        _next:
+          description: RFC 3986 URI representing the location of the next page of
+            results. Omitted when there are no results, or the current page is the
+            last.
+          type: string
+        _prev:
+          description: RFC 3986 URI representing the location of the previous page
+            of results. Omitted from first page of results.
+          type: string
+      type: object
+  PermissionFilter:
+    allOf:
+    - $ref: '#/definitions/Filter'
+    - properties:
+        config:
+          items:
+            enum:
+            - assets:download
+            - assets.visual:download
+            - assets.analytic:download
+            - assets.analytic_dn:download
+            - assets.visual_xml:download
+            - assets.analytic_xml:download
+            - assets.udm:download
+            type: string
+          type: array
+      required:
+      - config
+      type: object
+  Point:
+    properties:
+      coordinates:
+        $ref: '#/definitions/Position'
+    required:
+    - coordinates
+  Polygon:
+    properties:
+      coordinates:
+        items:
+          $ref: '#/definitions/LinearRing'
+        type: array
+    required:
+    - coordinates
+  Position:
+    description: A single position
+    items:
+      type: number
+    maxItems: 2
+    minItems: 2
+    type: array
+  PositionArray:
+    description: An array of two or more positions
+    items:
+      $ref: '#/definitions/Position'
+    type: array
+  RangeFilter:
+    allOf:
+    - $ref: '#/definitions/FieldFilter'
+    - properties:
+        config:
+          properties:
+            gt:
+              format: double
+              type: number
+            gte:
+              format: double
+              type: number
+            lt:
+              format: double
+              type: number
+            lte:
+              format: double
+              type: number
+          type: object
+      required:
+      - config
+      type: object
+  Search:
+    properties:
+      created:
+        format: date-time
+        type: string
+      filter:
+        $ref: '#/definitions/Filter'
+      id:
+        pattern: ^.{32}$
+        type: string
+      last_executed:
+        format: date-time
+        type: string
+      name:
+        description: The name of this saved search.
+        pattern: ^.{1,64}$
+        type: string
+      updated:
+        format: date-time
+        type: string
+    required:
+    - filter
+    - name
+    - created
+    - updated
+    - last_executed
+    - id
+    type: object
+  SearchPage:
+    properties:
+      _links:
+        allOf:
+        - $ref: '#/definitions/SelfLink'
+        - $ref: '#/definitions/PageLinks'
+      searches:
+        description: A list of searches
+        items:
+          $ref: '#/definitions/Search'
+        type: array
+    required:
+    - _links
+    - searches
+    type: object
+  SelfLink:
+    properties:
+      _self:
+        description: RFC 3986 URI representing the canonical location of this object.
+        type: string
+    required:
+    - _self
+    type: object
+  StringInFilter:
+    allOf:
+    - $ref: '#/definitions/FieldFilter'
+    - properties:
+        config:
+          items:
+            type: string
+          type: array
+      required:
+      - config
+      type: object
+host: api.planet.com
+info:
+  description: The Planet Data API serves all Planet Labs imagery to public clients.
+    This is the general spec that governs the common API objects and operations. Each
+    Catalog defines some additional functionality, which is communicated via a spec
+    available on each Catalog object.
+  title: Planet Data API
+  version: 1.0.0
+parameters:
+  pAssetFileType:
+    description: AssetFile type.
+    in: path
+    name: AssetFileType
+    required: true
+    type: string
+  pAssetTypeID:
+    description: AssetType identifier.
+    in: path
+    name: AssetTypeID
+    required: true
+    type: string
+  pItemID:
+    description: Item identifier.
+    in: path
+    name: ItemID
+    required: true
+    type: string
+  pSearchID:
+    description: ID of the saved search
+    in: path
+    name: SearchID
+    required: true
+    type: string
+  qAcquired:
+    description: The RFC 3339 acquired date-time or date-time range. E.g. `2015-05-05T00:00:00Z`
+      or `[2015-01-01T00:00:00Z:]` representing a range with no upper bound.
+    in: query
+    name: catalog::acquired
+    pattern: ^\[(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d(?:\.\d{0,12})?(?:[+-][0-2]\d:[0-5]\d|Z))?:(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d(?:\.\d{0,12})?(?:[+-][0-2]\d:[0-5]\d|Z))?\]|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d(?:\.\d{0,12})?(?:[+-][0-2]\d:[0-5]\d|Z))$
+    type: string
+  qBlackFill:
+    description: The black fill ratio of the image. E.g. `[0:0.005]`.
+    in: query
+    name: catalog::black_fill
+    pattern: ^(0|1)?(\.\d*)?|\[((0|1)?(\.\d*)?)?:((0|1)?(\.\d*)?)?\]$
+    type: string
+  qCloudCover:
+    description: The cloud cover ratio of the image. E.g. `[0:0.001]`.
+    in: query
+    name: catalog::cloud_cover
+    pattern: ^(0|1)?(\.\d*)?|\[((0|1)?(\.\d*)?)?:((0|1)?(\.\d*)?)?\]$
+    type: string
+  qGeometry:
+    description: The JSON-encoded GeoJSON Geometry for an intersection query, or Well-Known
+      Text (WKT).
+    in: query
+    name: geometry
+    type: string
+  qGridCell:
+    description: The grid cell identifier of the gridded item.
+    in: query
+    name: catalog::grid_cell
+    type: string
+  qItemSort:
+    default: published desc
+    description: Order the results by the provided field, in a specific direction.
+      This may not be provided alongside the "_page" parameter.
+    enum:
+    - catalog::acquired desc
+    - catalog::acquired asc
+    - published desc
+    - published asc
+    in: query
+    name: _sort
+    type: string
+  qPage:
+    description: Token representing a specific page of results. This should never
+      be constructed manually.
+    in: query
+    name: _page
+    type: string
+  qPageSize:
+    default: 250
+    description: Return at most this number of results. This may only be used at the
+      start of pagination. This may not be provided along side the "_page" parameter.
+    format: int64
+    in: query
+    maximum: 250
+    minimum: 0
+    name: _page_size
+    type: integer
+  qProvider:
+    description: Limit returned items to those from a specific imagery provider.
+    enum:
+    - planetscope
+    - rapideye
+    in: query
+    name: catalog::provider
+    type: string
+  qPublished:
+    description: The RFC 3339 published date-time or date-time range. E.g. `2015-05-05T00:00:00Z`
+      or `[2015-01-01T00:00:00Z:]` representing a range with no upper bound.
+    in: query
+    name: published
+    pattern: ^\[(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d(?:\.\d{0,12})?(?:[+-][0-2]\d:[0-5]\d|Z))?:(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d(?:\.\d{0,12})?(?:[+-][0-2]\d:[0-5]\d|Z))?\]|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d(?:\.\d{0,12})?(?:[+-][0-2]\d:[0-5]\d|Z))$
+    type: string
+  qResolution:
+    description: The resolution of the image in meters per pixel. E.g. `5.0` or `[3.3:4.9]`.
+    in: query
+    name: catalog::resolution
+    pattern: ^\-?\d{0,3}(\.\d*)?|\[(\-?\d{0,3}(\.\d*)?)?:(\-?\d{0,3}(\.\d*)?)?\]$
+    type: string
+  qSatelliteID:
+    description: The satellite id or list of satellite ids.
+    in: query
+    name: catalog::satellite_id
+    type: string
+  qSearchResultSort:
+    default: published desc
+    description: Order the results by the provided field, in a specific direction.
+      This may not be provided alongside the "_page" parameter.
+    enum:
+    - published asc
+    - published desc
+    in: query
+    name: _sort
+    type: string
+  qSearchSort:
+    default: created desc
+    description: Order the results by the provided field, in a specific direction.
+      This may not be provided alongside the "_page" parameter.
+    enum:
+    - created desc
+    - created asc
+    in: query
+    name: _sort
+    type: string
+  qSearchType:
+    default: any
+    description: Type of searches to list.
+    enum:
+    - any
+    - saved
+    - quick
+    in: query
+    name: search_type
+    type: string
+  qStripID:
+    description: Identifier of the Item's parent strip.
+    in: query
+    name: catalog::strip_id
+    type: string
+  qSunAzimuth:
+    description: The view angle from nadir in degrees. E.g. `35.0` or `[0:360.0]`.
+    in: query
+    name: catalog::sun_azimuth
+    pattern: ^\-?\d{0,3}(\.\d*)?|\[(\-?\d{0,3}(\.\d*)?)?:(\-?\d{0,3}(\.\d*)?)?\]$
+    type: string
+  qSunElevation:
+    description: Elevation angle of the sun in degrees. E.g. `35.0` or `[0:90.0]`.
+    in: query
+    name: catalog::sun_elevation
+    pattern: ^\-?\d{0,3}(\.\d*)?|\[(\-?\d{0,3}(\.\d*)?)?:(\-?\d{0,3}(\.\d*)?)?\]$
+    type: string
+  qUsableData:
+    description: The usable data ratio of the image. E.g. `[0.96:1.0]`.
+    in: query
+    name: catalog::usable_data
+    pattern: ^(0|1)?(\.\d*)?|\[((0|1)?(\.\d*)?)?:((0|1)?(\.\d*)?)?\]$
+    type: string
+  qViewAngle:
+    description: Spacecraft across-track off-nadir viewing angle used for imaging,
+      in degrees with "+" being East and "-" being West. E.g. `20.0` or `[-15.0:22.0]`.
+    in: query
+    name: catalog::view_angle
+    pattern: ^\-?\d{0,3}(\.\d*)?|\[(\-?\d{0,3}(\.\d*)?)?:(\-?\d{0,3}(\.\d*)?)?\]$
+    type: string
+paths:
+  /catalogs/grid-utm-25km-experimental:
+    get:
+      description: Fetch a specific Catalog identified by CatalogID.
+      operationId: GetCatalog
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Catalog'
+      tags:
+      - catalog
+  /catalogs/grid-utm-25km-experimental/items/:
+    get:
+      description: List all items available in a Catalog identified by CatalogID.
+      operationId: ListItems
+      parameters:
+      - $ref: '#/parameters/qAcquired'
+      - $ref: '#/parameters/qProvider'
+      - $ref: '#/parameters/qBlackFill'
+      - $ref: '#/parameters/qCloudCover'
+      - $ref: '#/parameters/qGridCell'
+      - $ref: '#/parameters/qResolution'
+      - $ref: '#/parameters/qSatelliteID'
+      - $ref: '#/parameters/qStripID'
+      - $ref: '#/parameters/qSunAzimuth'
+      - $ref: '#/parameters/qSunElevation'
+      - $ref: '#/parameters/qUsableData'
+      - $ref: '#/parameters/qViewAngle'
+      - description: Limit the results to those where the user has a certain permission.
+        in: query
+        name: _permissions
+        pattern: ^assets(\.[a-z\-_]+)?:download$
+        type: string
+      - $ref: '#/parameters/qPage'
+      - $ref: '#/parameters/qPageSize'
+      - $ref: '#/parameters/qItemSort'
+      - $ref: '#/parameters/qPublished'
+      - $ref: '#/parameters/qGeometry'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ItemPage'
+        '400':
+          description: There was an error with the request.
+          schema:
+            $ref: '#/definitions/APIError'
+      tags:
+      - catalog
+  /catalogs/grid-utm-25km-experimental/items/{ItemID}:
+    get:
+      description: Fetch the metadata associated with a specific Item identified by
+        ItemID in the "grid-utm-25km-experimental" Catalog.
+      operationId: GetItem
+      parameters:
+      - $ref: '#/parameters/pItemID'
+      responses:
+        '200':
+          description: Metadata specific to this Item.
+          schema:
+            $ref: '#/definitions/Item'
+        '404':
+          description: The specified ItemID does not exist.
+          schema:
+            $ref: '#/definitions/APIError'
+      tags:
+      - catalog
+  /catalogs/grid-utm-25km-experimental/items/{ItemID}/assets/:
+    get:
+      description: List all available Assets belonging to an Item identified by ItemID
+        and CatalogID.
+      operationId: ListAssets
+      parameters:
+      - $ref: '#/parameters/pItemID'
+      - description: Limit the results to those where the user has a certain permission.
+        enum:
+        - download
+        in: query
+        name: _permissions
+        type: string
+      responses:
+        '200':
+          description: The list of available Assets.
+          schema:
+            additionalProperties:
+              $ref: '#/definitions/Asset'
+            type: object
+        '404':
+          description: The specified ItemID or CatalogID do not exist.
+          schema:
+            $ref: '#/definitions/APIError'
+      tags:
+      - catalog
+  /catalogs/grid-utm-25km-experimental/items/{ItemID}/assets/{AssetTypeID}:
+    get:
+      description: Fetch a single Asset identified by AssetTypeID, ItemID and CatalogID.
+      operationId: GetAsset
+      parameters:
+      - $ref: '#/parameters/pItemID'
+      - $ref: '#/parameters/pAssetTypeID'
+      responses:
+        '200':
+          description: A successful Asset response.
+          schema:
+            $ref: '#/definitions/Asset'
+        '404':
+          description: The specified AssetTypeID, ItemID or CatalogID do not exist.
+          schema:
+            $ref: '#/definitions/APIError'
+      tags:
+      - catalog
+  /catalogs/grid-utm-25km-experimental/quick-search:
+    post:
+      description: Executes a structured search immediately without having to first
+        save it.
+      operationId: QuickSearch
+      parameters:
+      - description: The structured search to execute. We automatically generate a
+          name and identifier for this search and redirec to it's results. Quick searches
+          may be cleaned periodically.
+        in: body
+        name: search
+        required: true
+        schema:
+          $ref: '#/definitions/CreateQuickSearch'
+      - $ref: '#/parameters/qPageSize'
+      - $ref: '#/parameters/qSearchResultSort'
+      responses:
+        '200':
+          description: A page of search results.
+          schema:
+            $ref: '#/definitions/ItemPage'
+        '400':
+          description: There was an error executing the search or with your search
+            syntax.
+          schema:
+            $ref: '#/definitions/APIError'
+      tags:
+      - search
+  /catalogs/grid-utm-25km-experimental/searches/:
+    get:
+      description: List saved searches available to the current user.
+      operationId: ListSearches
+      parameters:
+      - $ref: '#/parameters/qPage'
+      - $ref: '#/parameters/qPageSize'
+      - $ref: '#/parameters/qSearchSort'
+      - $ref: '#/parameters/qSearchType'
+      responses:
+        '200':
+          description: A paginated listing of your available searches.
+          schema:
+            $ref: '#/definitions/SearchPage'
+      tags:
+      - search
+    post:
+      description: Create a new search.
+      operationId: CreateSearch
+      parameters:
+      - description: The search to save.
+        in: body
+        name: search
+        required: true
+        schema:
+          $ref: '#/definitions/CreateSearch'
+      responses:
+        '201':
+          description: The saved search just created.
+          headers:
+            Location:
+              description: A URL for the newly created saved search.
+              type: string
+          schema:
+            $ref: '#/definitions/Search'
+        '400':
+          description: There was an error creating your saved search.
+          schema:
+            $ref: '#/definitions/APIError'
+      tags:
+      - search
+  /catalogs/grid-utm-25km-experimental/searches/{SearchID}:
+    delete:
+      description: Deletes an individual saved search.
+      operationId: SearchDelete
+      parameters:
+      - $ref: '#/parameters/pSearchID'
+      responses:
+        '204':
+          description: Successful deletion.
+        '404':
+          description: The specified SearchID does not exist.
+          schema:
+            $ref: '#/definitions/APIError'
+      tags:
+      - search
+    get:
+      description: Shows an individual saved search.
+      operationId: SearchDetail
+      parameters:
+      - $ref: '#/parameters/pSearchID'
+      responses:
+        '200':
+          description: A successful Search response.
+          schema:
+            $ref: '#/definitions/Search'
+        '404':
+          description: The specified SearchID does not exist.
+          schema:
+            $ref: '#/definitions/APIError'
+      tags:
+      - search
+    put:
+      description: Updates an existing saved search.
+      operationId: SearchUpdate
+      parameters:
+      - $ref: '#/parameters/pSearchID'
+      - description: The search to save.
+        in: body
+        name: search
+        required: true
+        schema:
+          $ref: '#/definitions/CreateSearch'
+      responses:
+        '200':
+          description: The saved search just updated.
+          schema:
+            $ref: '#/definitions/Search'
+        '400':
+          description: There was an error updating the chosen saved search.
+          schema:
+            $ref: '#/definitions/APIError'
+      tags:
+      - search
+  /catalogs/grid-utm-25km-experimental/searches/{SearchID}/results:
+    get:
+      description: Executes a saved search and returns results.
+      operationId: SearchResults
+      parameters:
+      - $ref: '#/parameters/qPage'
+      - $ref: '#/parameters/qPageSize'
+      - $ref: '#/parameters/qSearchResultSort'
+      - $ref: '#/parameters/pSearchID'
+      responses:
+        '200':
+          description: The successfully executed search results.
+          schema:
+            $ref: '#/definitions/ItemPage'
+      tags:
+      - search
+  /catalogs/grid-utm-25km-experimental/spec:
+    get:
+      description: Fetch the Swagger spec for the Catalog identified by CatalogID.
+      operationId: GetCatalogSpec
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/CatalogSpec'
+      tags:
+      - catalog
+produces:
+- application/json
+schemes:
+- https
+security:
+- basic: []
+securityDefinitions:
+  basic:
+    type: basic
+swagger: '2.0'
