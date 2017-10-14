@@ -45,6 +45,19 @@
       ]
     },
     "Asset": {
+      "example": {
+        "_links": {
+          "_self": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcwOTIxXzEyMzkwN18wZTJmIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWNfZG4iLCAiY3QiOiAiaXRlbS10eXBlIn0",
+          "activate": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcwOTIxXzEyMzkwN18wZTJmIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWNfZG4iLCAiY3QiOiAiaXRlbS10eXBlIn0/activate",
+          "type": "https://api.planet.com/data/v1/asset-types/analytic_dn"
+        },
+        "_permissions": [
+          "download"
+        ],
+        "md5_digest": null,
+        "status": "inactive",
+        "type": "analytic_dn"
+      },
       "properties": {
         "_links": {
           "allOf": [
@@ -107,7 +120,106 @@
       ],
       "type": "object"
     },
+    "AssetMap": {
+      "additionalProperties": {
+        "$ref": "#/definitions/Asset"
+      },
+      "description": "An object mapping asset names to Asset objects",
+      "example": {
+        "analytic_dn": {
+          "_links": {
+            "_self": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcwOTIxXzEyMzkwN18wZTJmIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWNfZG4iLCAiY3QiOiAiaXRlbS10eXBlIn0",
+            "activate": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcwOTIxXzEyMzkwN18wZTJmIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWNfZG4iLCAiY3QiOiAiaXRlbS10eXBlIn0/activate",
+            "type": "https://api.planet.com/data/v1/asset-types/analytic_dn"
+          },
+          "_permissions": [
+            "download"
+          ],
+          "md5_digest": null,
+          "status": "inactive",
+          "type": "analytic_dn"
+        }
+      },
+      "type": "object"
+    },
+    "AssetType": {
+      "example": {
+        "_links": {
+          "_self": "https://api.planet.com/data/v1/asset-types/analytic_dn"
+        },
+        "display_description": "Non-radiometrically-calibrated analytic image stored as 12-bit digital numbers",
+        "display_name": "Analytic digital number image",
+        "id": "analytic_dn",
+        "md5_digest": null
+      },
+      "properties": {
+        "_links": {
+          "$ref": "#/definitions/SelfLink"
+        },
+        "display_description": {
+          "description": "Human-readable description of this AssetType.",
+          "type": "string"
+        },
+        "display_name": {
+          "description": "Human-readable name of this AssetType.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Identifier of this AssetType.",
+          "type": "string"
+        },
+        "md5_digest": {
+          "description": "md5 digest of asset type used to determine if the asset has changed",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AssetTypePage": {
+      "properties": {
+        "_links": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/SelfLink"
+            }
+          ]
+        },
+        "asset_types": {
+          "items": {
+            "$ref": "#/definitions/AssetType"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "CreateQuickSearch": {
+      "example": {
+        "filter": {
+          "config": [
+            {
+              "config": {
+                "gte": "2017-09-01T00:00:00Z",
+                "lte": "2017-09-01T00:10:00Z"
+              },
+              "field_name": "acquired",
+              "type": "DateRangeFilter"
+            },
+            {
+              "config": {
+                "lte": 0.2
+              },
+              "field_name": "cloud_cover",
+              "type": "RangeFilter"
+            }
+          ],
+          "type": "AndFilter"
+        },
+        "item_types": [
+          "PSScene4Band",
+          "SkySatScene"
+        ]
+      },
       "properties": {
         "filter": {
           "$ref": "#/definitions/Filter"
@@ -132,6 +244,32 @@
       "type": "object"
     },
     "CreateSearch": {
+      "example": {
+        "filter": {
+          "config": [
+            {
+              "config": {
+                "gte": "2017-09-01T00:00:00Z",
+                "lte": "2017-09-01T00:10:00Z"
+              },
+              "field_name": "acquired",
+              "type": "DateRangeFilter"
+            },
+            {
+              "config": {
+                "lte": 0.2
+              },
+              "field_name": "cloud_cover",
+              "type": "RangeFilter"
+            }
+          ],
+          "type": "AndFilter"
+        },
+        "item_types": [
+          "PSScene4Band"
+        ],
+        "name": "My saved search"
+      },
       "properties": {
         "filter": {
           "$ref": "#/definitions/Filter"
@@ -153,6 +291,53 @@
         "name",
         "filter",
         "item_types"
+      ],
+      "type": "object"
+    },
+    "CreateStats": {
+      "example": {
+        "filter": {
+          "config": {
+            "gte": "2017-09-01T00:00:00Z",
+            "lte": "2017-09-02T00:00:00Z"
+          },
+          "field_name": "acquired",
+          "type": "DateRangeFilter"
+        },
+        "interval": "hour",
+        "item_types": [
+          "SkySatScene"
+        ]
+      },
+      "properties": {
+        "filter": {
+          "$ref": "#/definitions/Filter"
+        },
+        "interval": {
+          "description": "This describes the size of the histogram date buckets.",
+          "enum": [
+            "hour",
+            "day",
+            "week",
+            "month",
+            "year"
+          ],
+          "type": "string"
+        },
+        "item_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "utc_offset": {
+          "description": "A \"ISO 8601 UTC offset\" (e.g. +01:00 or -08:00) that can be used to adjust the buckets to a users time zone. It is optional.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "filter",
+        "interval"
       ],
       "type": "object"
     },
@@ -188,6 +373,11 @@
           "$ref": "#/definitions/SelfLink"
         },
         {
+          "example": {
+            "_first": "/v1/resource_url?_page={firstPageID}",
+            "_next": "/v1/resource_url?_page={nextPageID}",
+            "_self": "/v1/resource_url?_page={pageId}"
+          },
           "properties": {
             "_first": {
               "description": "RFC 3986 URI representing the location of the first page of results.",
@@ -378,6 +568,95 @@
           "type": "object"
         }
       ],
+      "example": {
+        "_links": {
+          "_self": "https://api.planet.com/data/v1/item-types/PSScene4Band/items/20170921_123907_0e2f",
+          "assets": "https://api.planet.com/data/v1/item-types/PSScene4Band/items/20170921_123907_0e2f/assets/",
+          "thumbnail": "https://api.planet.com/data/v1/item-types/PSScene4Band/items/20170921_123907_0e2f/thumb"
+        },
+        "_permissions": [
+          "assets.basic_analytic_rpc_nitf:download",
+          "assets.analytic_xml:download",
+          "assets.basic_analytic_dn:download",
+          "assets.basic_analytic_dn_xml_nitf:download",
+          "assets.basic_analytic_dn_nitf:download",
+          "assets.basic_analytic_xml:download",
+          "assets.basic_analytic_nitf:download",
+          "assets.basic_analytic_rpc:download",
+          "assets.analytic_dn:download",
+          "assets.basic_udm:download",
+          "assets.basic_analytic_dn_rpc_nitf:download",
+          "assets.analytic:download",
+          "assets.analytic_dn_xml:download",
+          "assets.basic_analytic_dn_xml:download",
+          "assets.basic_analytic_dn_rpc:download",
+          "assets.basic_analytic_xml_nitf:download",
+          "assets.basic_analytic:download",
+          "assets.udm:download"
+        ],
+        "geometry": {
+          "coordinates": [
+            [
+              [
+                -43.55989016591645,
+                -2.433318778189789
+              ],
+              [
+                -43.786025906923115,
+                -2.387397164934404
+              ],
+              [
+                -43.77089563204482,
+                -2.313485592362364
+              ],
+              [
+                -43.55247814694568,
+                -2.357509799864284
+              ],
+              [
+                -43.556112397595214,
+                -2.375467015676699
+              ],
+              [
+                -43.54839561585643,
+                -2.377029427111328
+              ],
+              [
+                -43.55989016591645,
+                -2.433318778189789
+              ]
+            ]
+          ],
+          "type": "Polygon"
+        },
+        "id": "20170921_123907_0e2f",
+        "properties": {
+          "acquired": "2017-09-21T12:39:07.565336Z",
+          "anomalous_pixels": 0.02,
+          "cloud_cover": 0.08,
+          "columns": 8810,
+          "epsg_code": 32723,
+          "ground_control": true,
+          "gsd": 4,
+          "instrument": "PS2",
+          "item_type": "PSScene4Band",
+          "origin_x": 634977,
+          "origin_y": 9744231,
+          "pixel_resolution": 3,
+          "provider": "planetscope",
+          "published": "2017-09-22T08:50:15Z",
+          "quality_category": "standard",
+          "rows": 4425,
+          "satellite_id": "0e2f",
+          "strip_id": "774930",
+          "sun_azimuth": 85.3,
+          "sun_elevation": 57.4,
+          "updated": "2017-09-22T08:50:15Z",
+          "usable_data": 0,
+          "view_angle": 3.9
+        },
+        "type": "Feature"
+      },
       "type": "object"
     },
     "ItemLinks": {
@@ -403,6 +682,14 @@
       "type": "object"
     },
     "ItemType": {
+      "example": {
+        "_links": {
+          "_self": "https://api.planet.com/data/v1/item-types/PSScene4Band"
+        },
+        "display_description": "4-band PlanetScope imagery that is framed as captured.",
+        "display_name": "4-band PlanetScope Scene",
+        "id": "PSScene4Band"
+      },
       "properties": {
         "_links": {
           "$ref": "#/definitions/ItemTypeLinks"
@@ -417,7 +704,6 @@
         },
         "id": {
           "description": "Identifier of this ItemType.",
-          "pattern": "^[a-zA-Z]+$",
           "type": "string"
         }
       },
@@ -432,6 +718,9 @@
     },
     "ItemTypePage": {
       "properties": {
+        "_links": {
+          "$ref": "#/definitions/SelfLink"
+        },
         "item_types": {
           "items": {
             "$ref": "#/definitions/ItemType"
@@ -582,6 +871,12 @@
           "$ref": "#/definitions/SelfLink"
         },
         {
+          "example": {
+            "_first": "/v1/resource_url?_page={firstPageID}",
+            "_next": "/v1/resource_url?_page={nextPageID}",
+            "_prev": "/v1/resource_url?_page={prevPageID}",
+            "_self": "/v1/resource_url?_page={pageId}"
+          },
           "properties": {
             "_first": {
               "description": "RFC 3986 URI representing the location of the first page of results.",
@@ -611,12 +906,67 @@
               "items": {
                 "enum": [
                   "assets:download",
-                  "assets.visual:download",
                   "assets.analytic:download",
                   "assets.analytic_dn:download",
-                  "assets.visual_xml:download",
+                  "assets.analytic_dn_xml:download",
                   "assets.analytic_xml:download",
-                  "assets.udm:download"
+                  "assets.basic_analytic:download",
+                  "assets.basic_analytic_dn:download",
+                  "assets.basic_analytic_dn_nitf:download",
+                  "assets.basic_analytic_dn_rpc:download",
+                  "assets.basic_analytic_dn_rpc_nitf:download",
+                  "assets.basic_analytic_dn_xml:download",
+                  "assets.basic_analytic_dn_xml_nitf:download",
+                  "assets.basic_analytic_nitf:download",
+                  "assets.basic_analytic_rpc:download",
+                  "assets.basic_analytic_rpc_nitf:download",
+                  "assets.basic_analytic_xml:download",
+                  "assets.basic_analytic_xml_nitf:download",
+                  "assets.basic_rpc:download",
+                  "assets.basic_udm:download",
+                  "assets.udm:download",
+                  "assets.unrectified:download",
+                  "assets.visual:download",
+                  "assets.visual_xml:download",
+                  "assets.basic_analytic_b1:download",
+                  "assets.basic_analytic_b2:download",
+                  "assets.basic_analytic_b3:download",
+                  "assets.basic_analytic_b4:download",
+                  "assets.basic_analytic_b5:download",
+                  "assets.basic_analytic_b1_nitf:download",
+                  "assets.basic_analytic_b2_nitf:download",
+                  "assets.basic_analytic_b3_nitf:download",
+                  "assets.basic_analytic_b4_nitf:download",
+                  "assets.basic_analytic_b5_nitf:download",
+                  "assets.basic_analytic_sci:download",
+                  "assets.browse:download",
+                  "assets.analytic_b1:download",
+                  "assets.analytic_b2:download",
+                  "assets.analytic_b3:download",
+                  "assets.analytic_b4:download",
+                  "assets.analytic_b5:download",
+                  "assets.analytic_b6:download",
+                  "assets.analytic_b7:download",
+                  "assets.analytic_b8:download",
+                  "assets.analytic_b8a:download",
+                  "assets.analytic_b9:download",
+                  "assets.analytic_b10:download",
+                  "assets.analytic_b11:download",
+                  "assets.analytic_b12:download",
+                  "assets.analytic_bqa:download",
+                  "assets.analytic_ms:download",
+                  "assets.metadata_txt:download",
+                  "assets.metadata_aux:download",
+                  "assets.basic_panchromatic_dn:download",
+                  "assets.basic_panchromatic_dn_rpc:download",
+                  "assets.ortho_analytic_dn:download",
+                  "assets.ortho_analytic_udm:download",
+                  "assets.ortho_panchromatic_dn:download",
+                  "assets.ortho_panchromatic_udm:download",
+                  "assets.ortho_pansharpened:download",
+                  "assets.ortho_pansharpened_udm:download",
+                  "assets.ortho_visual:download",
+                  "assets.atmcorrected:download"
                 ],
                 "type": "string"
               },
@@ -706,7 +1056,58 @@
       ]
     },
     "Search": {
+      "example": {
+        "__daily_email_enabled": false,
+        "_links": {
+          "_self": "https://api.planet.com/data/v1/searches/f41a9762ff4141f7bac3b4f769bda481",
+          "results": "https://api.planet.com/data/v1/searches/f41a9762ff4141f7bac3b4f769bda481/results"
+        },
+        "created": "2017-09-26T18:44:53.517189Z",
+        "filter": {
+          "config": [
+            {
+              "config": {
+                "gte": "2017-09-01T00:00:00Z",
+                "lte": "2017-09-01T00:10:00Z"
+              },
+              "field_name": "acquired",
+              "type": "DateRangeFilter"
+            },
+            {
+              "config": {
+                "lte": 0.2
+              },
+              "field_name": "cloud_cover",
+              "type": "RangeFilter"
+            }
+          ],
+          "type": "AndFilter"
+        },
+        "id": "f41a9762ff4141f7bac3b4f769bda481",
+        "item_types": [
+          "PSScene4Band",
+          "SkySatScene"
+        ],
+        "last_executed": "2017-09-26T18:44:53.535986Z",
+        "name": "f41a9762ff4141f7bac3b4f769bda481",
+        "search_type": "quick",
+        "updated": "2017-09-26T18:44:53.536178Z"
+      },
       "properties": {
+        "__daily_email_enabled": {
+          "type": "boolean"
+        },
+        "_links": {
+          "properties": {
+            "_self": {
+              "type": "string"
+            },
+            "results": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
         "created": {
           "format": "date-time",
           "type": "string"
@@ -772,11 +1173,62 @@
       "properties": {
         "_self": {
           "description": "RFC 3986 URI representing the canonical location of this object.",
+          "example": "/v1/resource_url",
           "type": "string"
         }
       },
       "required": [
         "_self"
+      ],
+      "type": "object"
+    },
+    "StatsBucketResults": {
+      "properties": {
+        "count": {
+          "description": "Count of items in the bucket.",
+          "type": "number"
+        },
+        "start_time": {
+          "description": "Start time of the bucket aggregated.",
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "count",
+        "start_time"
+      ],
+      "type": "object"
+    },
+    "StatsResults": {
+      "properties": {
+        "buckets": {
+          "description": "List of buckets for agregration.",
+          "items": {
+            "$ref": "#/definitions/StatsBucketResults"
+          },
+          "type": "array"
+        },
+        "interval": {
+          "description": "This describes the size of the histogram date buckets.",
+          "enum": [
+            "hour",
+            "day",
+            "week",
+            "month",
+            "year"
+          ],
+          "type": "string"
+        },
+        "utc_offset": {
+          "description": "A \"ISO 8601 UTC offset\" (e.g. +01:00 or -08:00) that can be used to adjust the buckets to a users time zone. It is optional.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "utc_offset",
+        "interval",
+        "buckets"
       ],
       "type": "object"
     },
@@ -888,42 +1340,68 @@
       "in": "query",
       "name": "search_type",
       "type": "string"
+    },
+    "qStrict": {
+      "description": "Set strict=True to filter out geometry that does not intersect with aoi",
+      "in": "query",
+      "name": "strict",
+      "type": "string"
     }
   },
   "paths": {
-    "/": {
+    "/asset-types/": {
       "get": {
-        "description": "List top level API endpoints.",
-        "operationId": "Index",
+        "description": "Lists all the AssetTypes available to the authenticated user.",
+        "operationId": "ListAssetTypes",
         "responses": {
           "200": {
-            "description": "The list of top-level data API endpoints.",
+            "description": "The list of available AssetTypes.",
             "schema": {
-              "allOf": [
-                {
-                  "$ref": "#/definitions/SelfLink"
-                },
-                {
-                  "properties": {
-                    "asset-types": {
-                      "description": "RFC 3986 URI describing available asset-types.",
-                      "type": "string"
-                    },
-                    "item-types": {
-                      "description": "RFC 3986 URI describing available item-types.",
-                      "type": "string"
-                    },
-                    "spec": {
-                      "description": "RFC 3986 URI describing this API.",
-                      "type": "string"
-                    }
-                  },
-                  "type": "object"
-                }
-              ]
+              "$ref": "#/definitions/AssetTypePage"
             }
           }
-        }
+        },
+        "tags": [
+          "asset-types"
+        ]
+      }
+    },
+    "/asset-types/{AssetTypeID}": {
+      "get": {
+        "description": "Fetch a specific AssetType identified by AssetTypeID.",
+        "operationId": "GetAssetType",
+        "parameters": [
+          {
+            "$ref": "#/parameters/pAssetTypeID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful AssetType response.",
+            "schema": {
+              "$ref": "#/definitions/AssetType"
+            }
+          },
+          "404": {
+            "description": "The requested AssetTypeID does not exist.",
+            "examples": {
+              "text/json": {
+                "field": {},
+                "general": [
+                  {
+                    "message": "The requested asset type does not exist"
+                  }
+                ]
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/APIError"
+            }
+          }
+        },
+        "tags": [
+          "asset-types"
+        ]
       }
     },
     "/item-types/": {
@@ -960,7 +1438,17 @@
             }
           },
           "404": {
-            "description": "The specified ItemTypeID does not exist.",
+            "description": "The requested ItemTypeID does not exist.",
+            "examples": {
+              "text/json": {
+                "field": {},
+                "general": [
+                  {
+                    "message": "The requested item type does not exist."
+                  }
+                ]
+              }
+            },
             "schema": {
               "$ref": "#/definitions/APIError"
             }
@@ -992,6 +1480,16 @@
           },
           "404": {
             "description": "The specified Item does not exist, does not exist for the given ItemType, or the ItemType requested does not exist.",
+            "examples": {
+              "application/json": {
+                "field": {},
+                "general": [
+                  {
+                    "message": "Could not find the requested item."
+                  }
+                ]
+              }
+            },
             "schema": {
               "$ref": "#/definitions/APIError"
             }
@@ -1008,24 +1506,32 @@
         "operationId": "ListItemAssets",
         "parameters": [
           {
-            "$ref": "#/parameters/pItemID"
+            "$ref": "#/parameters/pItemTypeID"
           },
           {
-            "$ref": "#/parameters/pItemTypeID"
+            "$ref": "#/parameters/pItemID"
           }
         ],
         "responses": {
           "200": {
             "description": "The list of available Assets.",
             "schema": {
-              "additionalProperties": {
-                "$ref": "#/definitions/Asset"
-              },
+              "$ref": "#/definitions/AssetMap",
               "type": "object"
             }
           },
           "404": {
             "description": "The specified ItemID or CatalogID do not exist.",
+            "examples": {
+              "text/json": {
+                "field": {},
+                "general": [
+                  {
+                    "message": "Could not find the requested item."
+                  }
+                ]
+              }
+            },
             "schema": {
               "$ref": "#/definitions/APIError"
             }
@@ -1042,7 +1548,7 @@
         "operationId": "QuickSearch",
         "parameters": [
           {
-            "description": "The structured search to execute. We automatically generate a name and identifier for this search and redirec to it's results. Quick searches may be cleaned periodically.",
+            "description": "The structured search to execute. We automatically generate a name and identifier for this search and redirect to its results. Quick searches may be cleaned periodically.",
             "in": "body",
             "name": "search",
             "required": true,
@@ -1055,6 +1561,9 @@
           },
           {
             "$ref": "#/parameters/qSearchResultSort"
+          },
+          {
+            "$ref": "#/parameters/qStrict"
           }
         ],
         "responses": {
@@ -1066,6 +1575,18 @@
           },
           "400": {
             "description": "There was an error executing the search or with your search syntax.",
+            "examples": {
+              "text/json": {
+                "field": {
+                  "filter.config.1.type": [
+                    {
+                      "message": "NotARealFilterType is not a valid type for discriminator"
+                    }
+                  ]
+                },
+                "general": []
+              }
+            },
             "schema": {
               "$ref": "#/definitions/APIError"
             }
@@ -1118,6 +1639,9 @@
             "schema": {
               "$ref": "#/definitions/CreateSearch"
             }
+          },
+          {
+            "$ref": "#/parameters/qStrict"
           }
         ],
         "responses": {
@@ -1160,6 +1684,16 @@
           },
           "404": {
             "description": "The specified SearchID does not exist.",
+            "examples": {
+              "text/json": {
+                "field": {},
+                "general": [
+                  {
+                    "message": "The requested search id does not exist"
+                  }
+                ]
+              }
+            },
             "schema": {
               "$ref": "#/definitions/APIError"
             }
@@ -1186,6 +1720,16 @@
           },
           "404": {
             "description": "The specified SearchID does not exist.",
+            "examples": {
+              "text/json": {
+                "field": {},
+                "general": [
+                  {
+                    "message": "The requested search id does not exist"
+                  }
+                ]
+              }
+            },
             "schema": {
               "$ref": "#/definitions/APIError"
             }
@@ -1247,6 +1791,9 @@
           },
           {
             "$ref": "#/parameters/pSearchID"
+          },
+          {
+            "$ref": "#/parameters/qStrict"
           }
         ],
         "responses": {
@@ -1254,6 +1801,54 @@
             "description": "The successfully executed search results.",
             "schema": {
               "$ref": "#/definitions/CursorItemPage"
+            }
+          },
+          "404": {
+            "description": "The requested search id does not exist",
+            "examples": {
+              "text/json": {
+                "field": {},
+                "general": [
+                  "The requested search id does not exist"
+                ]
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/APIError"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/stats": {
+      "post": {
+        "description": "Gives an aggregated count for the search filters given in an interval.",
+        "operationId": "Stats",
+        "parameters": [
+          {
+            "description": "The structured search to execute with an interval and optional utc offset.",
+            "in": "body",
+            "name": "stats",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateStats"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of stats aggregated over the interval given.",
+            "schema": {
+              "$ref": "#/definitions/StatsResults"
+            }
+          },
+          "400": {
+            "description": "There was an error executing the stats or with your stats syntax.",
+            "schema": {
+              "$ref": "#/definitions/APIError"
             }
           }
         },
