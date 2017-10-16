@@ -1,0 +1,419 @@
+swagger: '2.0'
+info:
+  title: A sample API conforming to the OGC Web Feature Service standard
+  version: 0.0.1
+  description: >-
+    WARNING - THIS IS WORK IN PROGRESS\
+
+    WARNING - This is a Swagger / OpenAPI 2.0 variant. WFS 3.0 is expected to
+    use OAS 3.0, not 2.0.\
+
+    TODO - Add a description of the sample service.\
+
+    TODO - Add security elements in a separate example.\
+
+    TODO - Connect to a live service.
+  contact:
+    name: Acme Corporation
+    email: info@example.org
+    url: 'http://example.org/'
+  license:
+    name: CC-BY 4.0 license
+    url: 'https://creativecommons.org/licenses/by/4.0/'
+schemes:
+  - http
+host: data.example.org
+basePath: /
+paths:
+  /:
+    get:
+      summary: describe the feature collections in the dataset
+      operationId: describeCollections
+      tags:
+        - Capabilities
+      parameters:
+        - $ref: '#/parameters/f'
+      produces:
+        - application/json
+        - text/html
+      responses:
+        '200':
+          description: The feature collections shared by this API.
+          schema:
+            $ref: '#/definitions/content'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/definitions/exception'
+  /api:
+    get:
+      summary: the API description - this document
+      operationId: getApiDescription
+      tags:
+        - Capabilities
+      parameters:
+        - $ref: '#/parameters/f'
+      produces:
+        - application/openapi+json;version=2.0
+        - text/html
+      responses:
+        '200':
+          description: >-
+            The formal documentation of this API according to the OpenAPI
+            specification, version 3.0. I.e., this document.
+          schema:
+            type: object
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/definitions/exception'
+  /imagery:
+    get:
+      summary: retrieve images
+      description: Retrieve imagery.
+      operationId: getImagery
+      parameters:
+        - $ref: '#/parameters/f'
+        - $ref: '#/parameters/bbox'
+        - $ref: '#/parameters/count'
+        - $ref: '#/parameters/resultType'
+        - $ref: '#/parameters/startIndex'
+      produces:
+        - application/geo+json
+        - text/html
+      responses:
+        '200':
+          description: Collection of features
+          schema:
+            $ref: '#/definitions/featureCollection'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/definitions/exception'
+  '/imagery/{id}':
+    get:
+      summary: retrieve an image
+      description: Retrieve an image.
+      operationId: getImage
+      parameters:
+        - $ref: '#/parameters/f'
+        - $ref: '#/parameters/id'
+      produces:
+        - application/geo+json
+        - text/html
+      responses:
+        '200':
+          description: A feature.
+          schema:
+            $ref: '#/definitions/image'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/definitions/exception'
+parameters:
+  f:
+    name: f
+    in: query
+    description: >-
+      The format of the response. If no value is provided, the standard http
+      rules apply, i.e., the accept header shall be used to determine the
+      format.\
+
+      Pre-defined values are "json" and "html". The response to other  values is
+      determined by the server.
+    type: string
+    enum:
+      - json
+      - html
+  startIndex:
+    name: startIndex
+    in: query
+    description: >-
+      The optional startIndex parameter indicates the index within the result
+      set from which the server shall begin presenting results in the response
+      document. The first element has an index of 0.\
+
+      Minimum = 0.\
+
+      Default = 0.
+    type: integer
+    minimum: 0
+    default: 0
+  count:
+    name: count
+    in: query
+    description: >-
+      The optional count parameter limits the number of items that are presented
+      in the response document.\
+
+      Only items are counted that are on the first level of the collection in
+      the response document.  Nested objects contained within the explicitly
+      requested items shall not be counted.\
+
+      Minimum = 1.\
+
+      Maximum = 10000.\
+
+      Default = 10.
+    type: integer
+    minimum: 1
+    maximum: 10000
+    default: 10
+  bbox:
+    name: bbox
+    in: query
+    description: >-
+      Only features that have a geometry that intersects the bounding box are
+      selected. The bounding box is provided as four numbers:
+
+      * Lower corner, coordinate axis 1 (minimum longitude) * Lower corner,
+      coordinate axis 2 (minimum latitude) * Upper corner, coordinate axis 1
+      (maximum longitude) * Upper corner, coordinate axis 2 (maximum latitude)
+    type: array
+    items:
+      type: number
+      minItems: 4
+      maxItems: 4
+      minimum: -180
+      maximum: 180
+    collectionFormat: csv
+  resultType:
+    name: resultType
+    in: query
+    description: >-
+      This service will respond to a query in one of two ways (excluding an
+      exception response). It may either generate a complete response document
+      containing resources that satisfy the operation or it may simply generate
+      an empty response container that indicates the count of the total number
+      of resources that the operation would return. Which of these two responses
+      is generated is determined by the value of the optional resultType
+      parameter.\
+
+      The allowed values for this parameter are "results" and "hits".\
+
+      If the value of the resultType parameter is set to "results", the server
+      will generate a complete response document containing resources that
+      satisfy the operation.\
+
+      If the value of the resultType attribute is set to "hits", the server will
+      generate an empty response document containing no resource instances.\
+
+      Default = "results".
+    type: string
+    enum:
+      - hits
+      - results
+    default: results
+  id:
+    name: id
+    in: path
+    description: The id of a feature
+    required: true
+    type: string
+definitions:
+  exception:
+    type: object
+    required:
+      - code
+    properties:
+      code:
+        type: string
+      description:
+        type: string
+  bbox:
+    type: object
+    required:
+      - bbox
+    properties:
+      crs:
+        type: string
+        enum:
+          - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+        default: 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+      bbox:
+        description: >-
+          minimum longitude, minimum latitude, maximum longitude, maximum
+          latitude
+        type: array
+        items:
+          minItems: 4
+          maxItems: 4
+          type: number
+          minimum: -180
+          maximum: 180
+        example:
+          - -180
+          - -90
+          - 180
+          - 90
+  content:
+    type: object
+    required:
+      - collections
+    properties:
+      collections:
+        type: array
+        items:
+          $ref: '#/definitions/collectionInfo'
+  collectionInfo:
+    type: object
+    required:
+      - name
+      - links
+    properties:
+      name:
+        type: string
+        example: address
+      title:
+        type: string
+        example: address
+      description:
+        type: string
+        example: An address.
+      links:
+        type: array
+        items:
+          $ref: '#/definitions/link'
+        example:
+          - href: 'http://data.example.com/buildings'
+            rel: item
+          - href: 'http://example.com/concepts/buildings.html'
+            rel: describedBy
+            type: text/html
+      extent:
+        $ref: '#/definitions/bbox'
+      crs:
+        description: TODO - add description ... first crs is the default crs
+        type: array
+        items:
+          type: string
+        default:
+          - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+        example:
+          - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+          - 'http://www.opengis.net/def/crs/EPSG/0/4326'
+  link:
+    type: object
+    required:
+      - href
+    properties:
+      href:
+        type: string
+      rel:
+        type: string
+        example: prev
+      type:
+        type: string
+        example: application/geo+json
+      hreflang:
+        type: string
+        example: en
+  featureCollection:
+    type: object
+    required:
+      - features
+    properties:
+      features:
+        type: array
+        items:
+          $ref: '#/definitions/image'
+  Polygon:
+    type: object
+    required:
+      - type
+    properties:
+      type:
+        type: string
+        enum:
+          - Polygon
+      coordinates:
+        type: array
+        items:
+          type: array
+          items:
+            type: array
+            minItems: 4
+            items:
+              type: number
+              minItems: 2
+  image:
+    type: object
+    required:
+      - uuid
+      - footprint
+    properties:
+      uuid:
+        type: string
+        example: path/to/example.tif
+        description: 'unique ID, potentially link to file'
+      projection:
+        type: string
+        example: 'PROJCS[\"NAD83 / Massachusetts Mainland\", ...'
+        description: >-
+          CRS of the datasource in full WKT format. Should be a projection in
+          the EPSG database, so all software can read it.
+      bbox:
+        $ref: '#/definitions/bbox'
+        description: >-
+          Pair of min and max coordinates in CRS units, (min_x, min_y, max_x,
+          max_y)
+        example: '[-180,-90,180,90]'
+      footprint:
+        $ref: '#/definitions/Polygon'
+        description: Describing the actual footprint of the imagery
+        example: 'POLYGON((-180 -90, -180 90, 180 90, 180 -90, -180 -90))'
+      gsd:
+        type: number
+        example: 0.35
+        description: >-
+          Average ground sample distance (resolution) of the datasource imagery,
+          expressed in meters. Is the distance between the centers of pixels on
+          the ground.
+      file_size:
+        type: number
+        example: 1024
+      acquisition_start:
+        type: string
+        example: 2015-05-03T13:00:00.000Z
+        description: First acquisition in UTC (Combined date and time representation)
+      acquisition_end:
+        type: string
+        example: 2015-05-04T13:00:00.500Z
+        description: >-
+          Last acquisition in UTC (Combined date and time representation)
+          (optional)
+      title:
+        type: string
+        example: A scene from some satellite
+        description: >-
+          scene title from provider of image. Can be the ID of the image
+          provider
+      platform:
+        type: string
+        example: satellite
+        description: >-
+          sensor information and sensor class e.g. List of possible platform
+          sources limited to satellite, aircraft, UAV, balloon, kite, helikite,
+          pole, and rover
+      provider:
+        type: string
+        example: NASA
+        description: Provider/owner of the data
+      contact:
+        type: string
+        example: someone@nasa.gov
+      license:
+        type: string
+        example: CC-BY
+        description: 'Data license name, must be one of the accepted licenses (TBD)'
+      version:
+        type: string
+        example: 0.1.
+        description: 'The version of the imagery metadata fields, for testing/validation'
+tags:
+  - name: Capabilities
+    description: >-
+      Essential characteristics of this API including information about the
+      data.
+  - name: Features
+    description: Access to data (features).
