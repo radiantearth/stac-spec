@@ -1,18 +1,12 @@
 swagger: '2.0'
 info:
-  title: A sample API conforming to the OGC Web Feature Service standard
-  version: 0.0.1
+  title: An Imagery Catalog API using the OGC WFS 3.0 standard as a starting point
+  version: 0.0.2
   description: >-
     WARNING - THIS IS WORK IN PROGRESS\
 
-    WARNING - This is a Swagger / OpenAPI 2.0 variant. WFS 3.0 is expected to
-    use OAS 3.0, not 2.0.\
+    WARNING - This is a Swagger / OpenAPI 2.0 variant. A final spec should be in OpenAPI 3.0, but this is used for quick code generation purposes.
 
-    TODO - Add a description of the sample service.\
-
-    TODO - Add security elements in a separate example.\
-
-    TODO - Connect to a live service.
   contact:
     name: Acme Corporation
     email: info@example.org
@@ -83,7 +77,7 @@ paths:
         - text/html
       responses:
         '200':
-          description: Collection of features
+          description: A GeoJSON collection of imagery catalog items
           schema:
             $ref: '#/definitions/featureCollection'
         default:
@@ -92,8 +86,8 @@ paths:
             $ref: '#/definitions/exception'
   '/imagery/{id}':
     get:
-      summary: retrieve an image
-      description: Retrieve an image.
+      summary: Retrieve an imagery record by ID
+      description: Retrieve an Imagery Record
       operationId: getImage
       parameters:
         - $ref: '#/parameters/f'
@@ -369,9 +363,6 @@ definitions:
           Average ground sample distance (resolution) of the datasource imagery,
           expressed in meters. Is the distance between the centers of pixels on
           the ground.
-      file_size:
-        type: number
-        example: 1024
       acquisition_start:
         type: string
         example: 2015-05-03T13:00:00.000Z
