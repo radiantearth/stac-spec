@@ -269,15 +269,15 @@ definitions:
         items:
           $ref: '#/definitions/link'
         example:
-          - href: 'http://data.example.com/buildings'
+          - href: 'http://data.example.com/imagery'
             rel: item
-          - href: 'http://example.com/concepts/buildings.html'
+          - href: 'http://example.com/concepts/imagery.html'
             rel: describedBy
             type: text/html
       extent:
         $ref: '#/definitions/bbox'
       crs:
-        description: TODO - add description ... first crs is the default crs
+        description: The coordinate reference system. This is set to be LongLat (CRS84).
         type: array
         items:
           type: string
@@ -285,7 +285,6 @@ definitions:
           - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
         example:
           - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
-          - 'http://www.opengis.net/def/crs/EPSG/0/4326'
   link:
     type: object
     required:
