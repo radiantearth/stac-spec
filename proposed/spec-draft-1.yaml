@@ -1,10 +1,16 @@
 swagger: '2.0'
 info:
-  title: An Imagery Catalog API using the OGC WFS 3.0 standard as a starting point
+  title: A Proposed Imagery Catalog API using the OGC WFS 3.0 standard as a starting point
   version: 0.0.2
   description: >-
-    WARNING - THIS IS WORK IN PROGRESS\
-
+    This document is a proposal draft. Though it is the first one in this folder it is by no means the only one. If others are
+    contributed they will all be considered equally on Day 1 of the Imagery Catalog API Sprint. This is simply the first one proposed.
+    If you have additional ideas feel free to either fork this and propose Pull Requests, or create your own new spec-draft and add to this folder.
+    
+    
+    WARNING - THIS IS WORK IN PROGRESS.
+    
+    
     WARNING - This is a Swagger / OpenAPI 2.0 variant. A final spec should be in OpenAPI 3.0, but this is used for quick code generation purposes.
 
   contact:
