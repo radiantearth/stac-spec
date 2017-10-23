@@ -97,6 +97,22 @@ paths:
           description: An error occured.
           schema:
             $ref: '#/definitions/exception'
+    post:
+      summary: Retrieve items matching filters
+      operationId: getItemsPost
+      tags:
+        - Items
+      produces:
+        - application/geo+json
+      responses:
+        '200':
+          description: Description here
+          schema:
+            $ref: '#/definitions/itemCollection'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/definitions/exception'
   '/items/{id}':
     get:
       summary: Retreive item by id
@@ -272,10 +288,6 @@ parameters:
     name: type
     in: query
     type: string
-    enum:
-      - image
-      - something
-    default: image
   resultType:
     name: resultType
     in: query
@@ -521,12 +533,12 @@ definitions:
   type:
     type: string
     enum:
-      - TypeA
-      - TypeB
+      - image
+      - related-images
 tags:
   - name: Capabilities
     description: >-
       Essential characteristics of this API including information about the
       data.
-  - name: Features
+  - name: Items
     description: Access to data (features).
