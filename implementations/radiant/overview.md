@@ -12,4 +12,4 @@ additional information on the full API functionality.
 
 ## Background
 
-Please refer to the [Raster Foundry Implementation](implementations/raster-foundry)
+Please refer to the [Raster Foundry Implementation](/implementations/raster-foundry)
