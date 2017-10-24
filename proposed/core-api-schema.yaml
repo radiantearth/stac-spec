@@ -1,0 +1,313 @@
+swagger: '2.0'
+basePath: /
+info:
+  version: 0.0.1
+  title: Core catalog api schema
+  description: description
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /schemas:
+    get:
+      summary: Get list of schemas
+      operationId: getSchemas
+      responses:
+        '200':
+          description: Successful schema
+          schema:
+            type: object
+            additionalProperties:
+              $ref: '#/definitions/Schema'
+  '/schemas/{schemaId}':
+    get:
+      summary: Get schemas
+      operationId: getSchemaById
+      parameters:
+        - name: schemaId
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful resposne
+          schema:
+            $ref: '#/definitions/Schema'
+definitions:
+  Schema:
+    additionalProperties:
+      $ref: '#/definitions/SchemaItem'
+  SchemaItem:
+    required:
+      - type
+    properties:
+      description:
+        $ref: '#/definitions/SchemaDescription'
+      constraint:
+        $ref: '#/definitions/SchemaPropertyConstraints'
+      type:
+        $ref: '#/definitions/SchemaPropertyType'
+  SchemaDescription:
+    required:
+      - title
+    properties:
+      title:
+        type: string
+        description: 'Title of this dimension, normally used for display to a human'
+      uom:
+        type: string
+        description: Units of Measure
+      unitsSymbol:
+        type: string
+        description: Symbol of the units
+      keywords:
+        type: array
+        description: >-
+          Unordered list of one or more commonly used or formalised word(s) or
+          phrase(s) used to describe this type
+        items:
+          type: string
+  SchemaPropertyConstraints:
+    type: object
+    externalDocs:
+      url: >-
+        https://tools.ietf.org/html/draft-fge-json-schema-validation-00#section-5
+      description: Derived from Json/Swagger schema
+    properties:
+      maximum:
+        type: number
+      exclusiveMaximum:
+        type: boolean
+      minimum:
+        type: number
+      exclusiveMinimum:
+        type: boolean
+      maxLength:
+        type: integer
+      minLength:
+        type: integer
+      pattern:
+        type: string
+      maxItems:
+        type: integer
+      minItems:
+        type: integer
+      uniqueItems:
+        type: boolean
+      multipleOf:
+        type: number
+  SchemaPropertyType:
+    type: string
+    enum:
+      - String
+      - Text
+      - Int32
+      - Int64
+      - Double
+      - Time
+      - StringSet
+      - Int64Set
+      - TimeRange
+      - Int64Range
+      - DoubleRange
+      - Doc
+      - Geo
+    description: |
+      * `String` -  A text string
+      * `Text` - A text string with text-search index
+      * `Int32` - 32-bit integer
+      * `Int64` - 64-bit integer
+      * `Double` -  IEEE double-precision floating-point Number
+      * `Time` - A timestamp with millisecond precision
+      * `StringSet` -  A set made of text entities
+      * `Int64Set` - A set made of 64-bit integer
+      * `TimeRange` - A time range with begin and end
+      * `Int64Range` - A integer range with begin and end
+      * `DoubleRange` - A floating-point range with begin and end
+      * `Doc` - Arbitrary Document
+      * `Geo` - Geojson geometry
+  Time:
+    type: integer
+    format: int64
+    description: UTC Timestamp with millisecond precision
+    minimum: 0
+  StringSet:
+    type: array
+    items:
+      type: string
+  Int64Set:
+    type: array
+    items:
+      type: integer
+      format: int64
+  TimeRange:
+    description: begin and end UTC timestamps with millisecond precision
+    properties:
+      begin:
+        type: integer
+        format: int64
+        minimum: 0
+      end:
+        type: integer
+        format: int64
+        minimum: 0
+  Int64Range:
+    description: An integer range with begin and end
+    properties:
+      begin:
+        type: integer
+        format: int64
+      end:
+        type: integer
+        format: int64
+  DoubleRange:
+    description: A double range with begin and end
+    properties:
+      begin:
+        type: number
+        format: double
+      end:
+        type: number
+        format: double
+  Doc:
+    description: Arbitrary json document
+    additionalProperties:
+      type: object
+  GeoJson:
+    description: root geojson object
+    properties:
+      type:
+        $ref: '#/definitions/FeatureType'
+    required:
+      - type
+    discriminator: type
+  FeatureType:
+    type: string
+    enum:
+      - Point
+      - MultiPoint
+      - LineString
+      - MultiLineString
+      - Polygon
+      - MultiPolygon
+      - GeometryCollection
+      - Feature
+      - FeatureCollection
+  GeometryCollection:
+    allOf:
+      - $ref: '#/definitions/GeoJson'
+      - type: object
+        properties:
+          geometries:
+            $ref: '#/definitions/GeometryCollection2D'
+        required:
+          - geometries
+  MultiPolygon:
+    allOf:
+      - $ref: '#/definitions/GeoJson'
+      - type: object
+        properties:
+          coordinates:
+            $ref: '#/definitions/MultiPolygon2D'
+        required:
+          - coordinates
+  MultiLineString:
+    allOf:
+      - $ref: '#/definitions/GeoJson'
+      - type: object
+        properties:
+          coordinates:
+            $ref: '#/definitions/MultiLineString2D'
+        required:
+          - coordinates
+  MultiPoint:
+    allOf:
+      - $ref: '#/definitions/GeoJson'
+      - type: object
+        properties:
+          coordinates:
+            $ref: '#/definitions/MultiPoint2D'
+        required:
+          - coordinates
+  Polygon:
+    allOf:
+      - $ref: '#/definitions/GeoJson'
+      - type: object
+        properties:
+          coordinates:
+            $ref: '#/definitions/Polygon2D'
+        required:
+          - coordinates
+  LineString:
+    allOf:
+      - $ref: '#/definitions/GeoJson'
+      - type: object
+        properties:
+          coordinates:
+            $ref: '#/definitions/LineString2D'
+        required:
+          - coordinates
+  Point:
+    allOf:
+      - $ref: '#/definitions/GeoJson'
+      - type: object
+        properties:
+          coordinates:
+            $ref: '#/definitions/Point2D'
+        required:
+          - coordinates
+  GeoPolygon2D:
+    description: A geojson 2d polygon
+    type: object
+    properties:
+      type:
+        description: Type of geometry
+        type: string
+        enum:
+          - Polygon
+      coordinates:
+        $ref: '#/definitions/Polygon2D'
+    required:
+      - type
+      - coordinates
+  GeometryCollection2D:
+    type: array
+    items:
+      $ref: '#/definitions/GeoJson'
+  MultiPolygon2D:
+    type: array
+    items:
+      $ref: '#/definitions/Polygon2D'
+  Polygon2D:
+    type: array
+    minItems: 1
+    items:
+      $ref: '#/definitions/LinearRing2D'
+  MultiLineString2D:
+    type: array
+    items:
+      $ref: '#/definitions/LineString2D'
+  LinearRing2D:
+    type: array
+    minItems: 4
+    items:
+      $ref: '#/definitions/Point2D'
+  LineString2D:
+    type: array
+    minItems: 2
+    items:
+      $ref: '#/definitions/Point2D'
+  MultiPoint2D:
+    type: array
+    minItems: 2
+    items:
+      $ref: '#/definitions/Point2D'
+  Point2D:
+    description: A 2d geojson point
+    type: array
+    minimum: 2
+    maximum: 2
+    items:
+      type: number
+      format: double
