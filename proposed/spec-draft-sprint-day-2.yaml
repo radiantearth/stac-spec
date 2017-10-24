@@ -354,8 +354,46 @@ definitions:
         type: string
         description: the id of the schema
       properties:
-        type: object
-        description: The geojson properties
+        $ref: '#/definitions/properties'
+  properties:
+    type: object
+    description: >-
+      provides the core metatdata fields plus extensions
+      properties:
+        id:
+          type: string
+          description: Provider ID for that item
+        title:
+          type: string
+          description: human readable name of the item
+        bbox:
+          $ref: '#/definitions/bbox'
+          description: >-
+            Pair of min and max coordinates in CRS units, (min_x, min_y, max_x,
+            max_y)
+          example: '[-180,-90,180,90]'
+        start_date:
+          type: string
+          description: First date/time in UTC (Combined date and time representation)
+        end_date:
+          type: string
+          description:  Last date/time in UTC (Combined date and time representation)
+        product_type:
+          type: string
+          description: Product types - [eo, sar, model, point-cloud, video]
+        provider:
+          type: string
+          description: Information about the provider
+        license:
+          type: string
+          description: Data license name based on SPDX License List
+        links:
+          type: array
+          items:
+            type: string
+        version:
+          type: string
+          description: The version of the imagery metadata fields, for testing/validation
   type:
     type: string
     enum:
