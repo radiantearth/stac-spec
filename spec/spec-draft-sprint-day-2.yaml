@@ -246,9 +246,11 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Feature'
-      next:
+      nextPageToken:
         type: string
         description: A token to obtain the next paginated data set
+      links:
+        $ref: '#/definitions/FeatureCollectionLinks'
   Feature:
     type: object
     required:
@@ -256,6 +258,7 @@ definitions:
       - type
       - schema
       - geometry
+      - links
       - properties
     properties:
       id:
@@ -276,11 +279,12 @@ definitions:
         type: string
         description: the id of the schema
       properties:
-        $ref: '#/definitions/properties'
-  properties:
+        $ref: '#/definitions/FeatureProperties'
+      links:
+        $ref: '#/definitions/FeatureLinks'
+  FeatureProperties:
     type: object
     required:
-      - id
       - start_date
       - end_date
     description: >-
@@ -296,11 +300,9 @@ definitions:
       license:
         type: string
         description: Data license name based on SPDX License List
-      links:
-        $ref: '#/definitions/links'
     additionalProperties:
       type: object
-  links:
+  FeatureLinks:
     type: object
     required:
       - self
@@ -310,6 +312,13 @@ definitions:
         type: string
       thumbnail:
         type: string
+  FeatureCollectionLinks:
+    type: object
+    properties:
+      next:
+        type: string
+        format: url
+        description: A URL to obtain the next paginated data set. If not present, the client should utilize the `nextPageToken`.
   Schema:
     additionalProperties:
       $ref: '#/definitions/SchemaItem'
