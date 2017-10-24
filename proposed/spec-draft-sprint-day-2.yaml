@@ -72,7 +72,7 @@ paths:
             $ref: '#/definitions/exception'
     post:
       summary: Retrieve items matching filters
-      operationId: getItemsPost
+      operationId: getFeaturesPost
       tags:
         - Features
       produces:
@@ -90,7 +90,7 @@ paths:
   '/features/{id}':
     get:
       summary: Retreive item by id
-      operationId: getItem
+      operationId: getFeature
       tags:
         - Features
       parameters:
