@@ -731,16 +731,14 @@
       "type": "object"
     },
     "LineString": {
+      "type": "object",
       "properties": {
         "coordinates": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/PositionArray"
-            },
-            {
-              "minItems": 2
-            }
-          ]
+          "items": {
+            "$ref": "#/definitions/PositionArray"
+          },
+          "type": "array",
+          "minItems": 2
         }
       },
       "required": [
@@ -748,29 +746,26 @@
       ]
     },
     "LinearRing": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/PositionArray"
-        },
-        {
+      "type": "object",
+      "properties": {
+        "coordinates": {
+          "items": {
+            "$ref": "#/definitions/PositionArray"
+          },
+          "type": "array",
           "minItems": 4
         }
-      ],
+      },
       "description": "An array of four positions where the first equals the last"
     },
     "MultiLineString": {
       "properties": {
         "coordinates": {
           "items": {
-            "allOf": [
-              {
-                "$ref": "#/definitions/PositionArray"
-              },
-              {
-                "minItems": 2
-              }
-            ]
+            "type": "object",
+            "$ref": "#/definitions/LineString"
           },
+          "minItems": 2,
           "type": "array"
         }
       },
@@ -796,8 +791,7 @@
               "$ref": "#/definitions/LinearRing"
             },
             "type": "array"
-          },
-          "type": "array"
+          }
         }
       },
       "required": [
