@@ -286,9 +286,6 @@ definitions:
     description: >-
       provides the core metatdata fields plus extensions
     properties:
-      id:
-        type: string
-        description: Provider ID for that item
       start_date:
         $ref: '#/definitions/Time'
       end_date:
@@ -301,6 +298,8 @@ definitions:
         description: Data license name based on SPDX License List
       links:
         $ref: '#/definitions/links'
+    additionalProperties:
+      type: object
   links:
     type: object
     required:
