@@ -73,6 +73,7 @@ paths:
         - $ref: '#/parameters/bbox'
         - $ref: '#/parameters/schema' 
         - $ref: '#/parameters/time'
+        - $ref: '#/parameters/filter'
       produces:
         - application/geo+json
       responses:
@@ -178,6 +179,11 @@ parameters:
       minimum: -180
       maximum: 180
     collectionFormat: csv
+  filter:
+    name: filter
+    in: query
+    type: string
+    description: A placeholder for a future filter implementation
   schema:
     name: type
     in: query
@@ -352,6 +358,7 @@ definitions:
           provider
       type:
         type: string
+        description: The GeoJSON type
         enum:
           - Feature
       schema:
