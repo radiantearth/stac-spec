@@ -1,0 +1,390 @@
+swagger: '2.0'
+info:
+  title: >-
+    A Proposed Imagery Catalog API using the OGC WFS 3.0 standard as a starting
+    point
+  version: 0.0.2
+  description: >-
+    This document is a proposal draft. Though it is the first one in this folder
+    it is by no means the only one. If others are contributed they will all be
+    considered equally on Day 1 of the Imagery Catalog API Sprint. This is
+    simply the first one proposed. If you have additional ideas feel free to
+    either fork this and propose Pull Requests, or create your own new
+    spec-draft and add to this folder.
+
+
+    WARNING - THIS IS WORK IN PROGRESS.
+
+
+    WARNING - This is a Swagger / OpenAPI 2.0 variant. A final spec should be in
+    OpenAPI 3.0, but this is used for quick code generation purposes.
+  contact:
+    name: Acme Corporation
+    email: info@example.org
+    url: 'http://example.org/'
+  license:
+    name: CC-BY 4.0 license
+    url: 'https://creativecommons.org/licenses/by/4.0/'
+schemes:
+  - http
+host: data.example.org
+basePath: /
+paths:
+  /:
+    get:
+      summary: describe the feature collections in the dataset
+      operationId: describeCollections
+      tags:
+        - Capabilities
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The feature collections shared by this API.
+          schema:
+            $ref: '#/definitions/content'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/definitions/exception'
+  /api:
+    get:
+      summary: the API description - this document
+      operationId: getApiDescription
+      tags:
+        - Capabilities
+      produces:
+        - application/openapi+json;version=2.0
+      responses:
+        '200':
+          description: >-
+            The formal documentation of this API according to the OpenAPI
+            specification, version 3.0. I.e., this document.
+          schema:
+            type: object
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/definitions/exception'
+  /features:
+    get:
+      summary: Retrieve features matching filters
+      description: Description goes here
+      operationId: getFeatures
+      tags:
+        - Items
+      parameters:
+        - $ref: '#/parameters/bbox'
+        - $ref: '#/parameters/schema'
+        - $ref: '#/parameters/time'
+      produces:
+        - application/geo+json
+      responses:
+        '200':
+          description: Description here
+          schema:
+            $ref: '#/definitions/FeatureCollection'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/definitions/exception'
+    post:
+      summary: Retrieve items matching filters
+      operationId: getItemsPost
+      tags:
+        - Items
+      produces:
+        - application/geo+json
+      responses:
+        '200':
+          description: Description here
+          schema:
+            $ref: '#/definitions/FeatureCollection'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/definitions/exception'
+  '/features/{id}':
+    get:
+      summary: Retreive item by id
+      operationId: getItem
+      tags:
+        - Items
+      parameters:
+        - $ref: '#/parameters/id'
+      produces:
+        - application/geo+json
+      responses:
+        '200':
+          description: A feature.
+          schema:
+            $ref: '#/definitions/Feature'
+        '404':
+          description: 'The feature with id {id} does not exist.'
+          schema:
+            $ref: '#/definitions/exception'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/definitions/exception'
+  /schema:
+    get:
+      summary: Retreive types
+      description: List all possible item types.
+      operationId: getTypes
+      tags:
+        - Types
+      produces:
+        - application/geo+json
+      responses:
+        '200':
+          description: >-
+            Information about the feature collection plus the first features
+            matching the selection parameters.
+          schema:
+            $ref: '#/definitions/typeCollection'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/definitions/exception'
+  '/schmea/{id}':
+    get:
+      summary: Retreive a type
+      description: Return the description of a type given its id.
+      operationId: getType
+      tags:
+        - Types
+      parameters:
+        - $ref: '#/parameters/id'
+      produces:
+        - application/geo+json
+      responses:
+        '200':
+          description: A type.
+          schema:
+            $ref: '#/definitions/type'
+        '404':
+          description: 'The feature with id {id} does not exist.'
+          schema:
+            $ref: '#/definitions/exception'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/definitions/exception'
+parameters:
+  time:
+    name: time
+    type: array
+    description: Adheres to RFC3339
+    items:
+      type: string
+    in: query
+  bbox:
+    name: bbox
+    in: query
+    description: >-
+      Only features that have a geometry that intersects the bounding box are
+      selected. The bounding box is provided as four numbers:
+
+      * West, South, East, North
+    type: array
+    items:
+      type: number
+      minItems: 4
+      maxItems: 4
+      minimum: -180
+      maximum: 180
+    collectionFormat: csv
+  schema:
+    name: type
+    in: query
+    type: string
+  id:
+    name: id
+    in: path
+    description: The id of a feature
+    required: true
+    type: string
+definitions:
+  exception:
+    type: object
+    required:
+      - code
+    properties:
+      code:
+        type: string
+      description:
+        type: string
+  bbox:
+    type: object
+    required:
+      - bbox
+    properties:
+      crs:
+        type: string
+        enum:
+          - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+        default: 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+      bbox:
+        description: 'West, South, East, North'
+        type: array
+        items:
+          minItems: 4
+          maxItems: 4
+          type: number
+          minimum: -180
+          maximum: 180
+        example:
+          - -180
+          - -90
+          - 180
+          - 90
+  content:
+    type: object
+    required:
+      - collections
+    properties:
+      collections:
+        type: array
+        items:
+          $ref: '#/definitions/collectionInfo'
+  collectionInfo:
+    type: object
+    required:
+      - name
+      - links
+    properties:
+      name:
+        type: string
+        example: address
+      title:
+        type: string
+        example: address
+      description:
+        type: string
+        example: An address.
+      links:
+        type: array
+        items:
+          $ref: '#/definitions/link'
+        example:
+          - href: 'http://data.example.com/imagery'
+            rel: item
+          - href: 'http://example.com/concepts/imagery.html'
+            rel: describedBy
+            type: text/html
+      extent:
+        $ref: '#/definitions/bbox'
+      crs:
+        description: The coordinate reference system. This is set to be LongLat (CRS84).
+        type: array
+        items:
+          type: string
+        default:
+          - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+        example:
+          - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+  link:
+    type: object
+    required:
+      - href
+    properties:
+      href:
+        type: string
+      rel:
+        type: string
+        example: prev
+      type:
+        type: string
+        example: application/geo+json
+      hreflang:
+        type: string
+        example: en
+  FeatureCollection:
+    type: object
+    required:
+      - items
+    properties:
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/Feature'
+  typeCollection:
+    type: object
+    required:
+      - items
+    properties:
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/type'
+  geometry:
+    type: object
+    required:
+      - type
+    properties:
+      type:
+        type: string
+        enum:
+          - Polygon
+      coordinates:
+        type: array
+        items:
+          type: array
+          items:
+            type: array
+            minItems: 4
+            items:
+              type: number
+              minItems: 2
+  Feature:
+    type: object
+    required:
+      - id
+      - type
+      - schema
+      - geometry
+      - properties
+    properties:
+      id:
+        type: string
+        example: path/to/example.tif
+        description: 'unique ID, potentially link to file'
+      bbox:
+        $ref: '#/definitions/bbox'
+        description: >-
+          Pair of min and max coordinates in CRS units, (min_x, min_y, max_x,
+          max_y)
+        example: '[-180,-90,180,90]'
+      geometry:
+        $ref: '#/definitions/geometry'
+        description: Describing the actual footprint of the imagery
+        example: 'POLYGON((-180 -90, -180 90, 180 90, 180 -90, -180 -90))'
+      title:
+        type: string
+        example: A scene from some satellite
+        description: >-
+          scene title from provider of image. Can be the ID of the image
+          provider
+      type:
+        type: string
+        enum:
+          - Feature
+      schema:
+        type: string
+        description: the id of the schema
+      properties:
+        type: object
+        description: The geojson properties
+  type:
+    type: string
+    enum:
+      - image
+      - related-images
+tags:
+  - name: Capabilities
+    description: >-
+      Essential characteristics of this API including information about the
+      data.
+  - name: Features
+    description: Access to data (features).
