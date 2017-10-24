@@ -58,6 +58,7 @@ paths:
         - $ref: '#/parameters/time'
         - $ref: '#/parameters/filter'
         - $ref: '#/parameters/limit'
+        - $ref: '#/parameters/next'
       produces:
         - application/geo+json
       responses:
@@ -140,6 +141,11 @@ paths:
           schema:
             $ref: '#/definitions/Schema'
 parameters:
+  next:
+    name: next
+    in: query
+    type: string
+    description: Token for the next set of paginated data.
   limit:
     name: limit
     in: query
@@ -276,6 +282,9 @@ definitions:
       schema:
         type: string
         description: the id of the schema
+      next:
+        type: string
+        description: A token to obtain the next paginated data set
       properties:
         $ref: '#/definitions/properties'
   properties:
