@@ -68,7 +68,7 @@ paths:
         Description goes here
       operationId: getFeatures
       tags:
-        - Items
+        - Features
       parameters:
         - $ref: '#/parameters/bbox'
         - $ref: '#/parameters/schema' 
@@ -89,7 +89,7 @@ paths:
       summary: Retrieve items matching filters
       operationId: getItemsPost
       tags:
-        - Items
+        - Features
       produces:
         - application/geo+json
       responses:
@@ -107,7 +107,7 @@ paths:
       summary: Retreive item by id
       operationId: getItem
       tags:
-        - Items
+        - Features
       parameters:
         - $ref: '#/parameters/id'
       produces:
@@ -129,6 +129,8 @@ paths:
     get:
       summary: Get list of schemas
       operationId: getSchemas
+      tags:
+        - Schemas
       responses:
         '200':
           description: Successful schema
@@ -140,6 +142,8 @@ paths:
     get:
       summary: Get schemas
       operationId: getSchemaById
+      tags:
+        - Schemas
       parameters:
         - name: schemaId
           in: path
