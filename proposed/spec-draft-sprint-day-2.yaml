@@ -25,23 +25,6 @@ schemes:
 host: data.example.org
 basePath: /
 paths:
-  /:
-    get:
-      summary: describe the feature collections in the dataset
-      operationId: describeCollections
-      tags:
-        - Capabilities
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: The feature collections shared by this API.
-          schema:
-            $ref: '#/definitions/content'
-        default:
-          description: An error occured.
-          schema:
-            $ref: '#/definitions/exception'
   /api:
     get:
       summary: the API description - this document
@@ -185,7 +168,8 @@ parameters:
     type: string
     description: A placeholder for a future filter implementation
   schema:
-    name: type
+    name: schema
+    description: Identifies the feature type
     in: query
     type: string
   id:
@@ -293,9 +277,14 @@ definitions:
   FeatureCollection:
     type: object
     required:
-      - items
+      - features
+      - type
     properties:
-      items:
+      type:
+        type: string
+        enum:
+          - FeatureCollection
+      features:
         type: array
         items:
           $ref: '#/definitions/Feature'
