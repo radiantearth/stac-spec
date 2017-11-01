@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "id": "feature.json#",
+  "title": "STAC static catalog Feature",
+  "type": "object",
+  "description":
+    "This object represents the metadata associated with a feature.",
+  "additionalProperties": true,
+  "allOf": [
+    {
+      "$ref": "#/definitions/core"
+    },
+    {
+      "properties": {
+        "properties": {
+          "required": ["startTime", "endTime", "links"]
+        }
+      },
+      "required": ["id", "type", "geometry"]
+    }
+  ],
+  "definitions": {
+    "core": {
+      "allOf": [
+        {
+          "oneOf": [
+            { "$ref": "geojson.json#/definitions/feature" }
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "geometry": {
+              "properties": {
+                "type": {
+                  "enum": ["Polygon", "MultiPolygon"]
+                }
+              }
+            },
+            "id": {
+              "title": "Provider ID",
+              "description": "Provider item ID",
+              "type": "string"
+            },
+            "properties": {
+              "type": "object",
+              "properties": {
+                "startTime": {
+                  "title": "Date Start",
+                  "description": "First date/time",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "endTime": {
+                  "title": "Date End",
+                  "description": "Last date/time",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "provider": {
+                  "title": "Provider",
+                  "description": "Provider name and contact",
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "$ref": "#/definitions/entity"
+                    }
+                  ]
+                },
+                "license": {
+                  "title": "Data license",
+                  "description": "Data license name based on SPDX License List"
+                },
+                "links": {
+                  "title": "Resource links",
+                  "description":
+                    "Links to resources, could be download or other URLs",
+                  "type": "array"
+
+
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "entity": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    }
+  }
+}
