@@ -1,6 +1,6 @@
 # Implementations
 
-This document lists the various implementations of the Spatio-Temporal Asset Catalog specification. Contributions 
+This document lists the various implementations of the SpatioTemporal Asset Catalog specification. Contributions 
 to the spec should be based on experience building API's for imagery and other geo-asset catalogs, so suggested
 changes / improvements to the spec should be based on some software listed here. All listed implementations 
 should have a link to a live server or static catalog that indexes real data, though they do not have to 

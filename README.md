@@ -1,11 +1,11 @@
 ## About
 
-The Spatio-Temporal Asset Catalog (STAC) specification aims to standardize the way geospatial assets are exposed online and queried. A 'spatio-temporal asset' is any file that represents information about the earth captured in a certain space and 
+The SpatioTemporal Asset Catalog (STAC) specification aims to standardize the way geospatial assets are exposed online and queried. A 'spatiotemporal asset' is any file that represents information about the earth captured in a certain space and 
 time. The initial focus is primarily remotely-sensed imagery (from satellites, but also planes, drones, balloons, etc), but 
 the core is designed to be extensible to SAR, full motion video, point clouds, hyperspectral, LiDAR and derived data like
 NDVI, Digital Elevation Models, mosaics, etc. 
 
-The goal is for all major providers of imagery and other earth data to expose their data as spatio-temporal asset catalogs,
+The goal is for all major providers of imagery and other earth data to expose their data as spatiotemporal asset catalogs,
 so that new code doesn't need to be written whenever a new JSON-based REST API comes out that makes its data available in a slightly different way. This will enable standard library components in many languages.
 
 ## WARNING
@@ -55,7 +55,7 @@ tooling is stronger there. An active catalog will often be populated by a static
 
 #### Core Metadata and Profiles
 
-The Spatio-Temporal Asset Metadata specification defines the core fields that all assets must make available for searching
+The SpatioTemporal Asset Metadata specification defines the core fields that all assets must make available for searching
 in a catalog. Vendors can extend those core fields for the metadata they want to make available, and the community is 
 starting to define shared profiles, with 'earth observation' (satellite imagery) being the first one. This repo has the
 json profile of STAM, so it can evolve with the rest of the STAC spec more easily.
