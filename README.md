@@ -16,14 +16,13 @@ specifications moved over, updated and synchronized.
 
 The top things to be done are:
 
-* Move static catalog work from [boulder sprint repo](https://github.com/radiantearth/boulder-sprint/tree/master/specs/flat_file) to this repo. - #26
+* Move static catalog work from [boulder sprint repo](https://github.com/radiantearth/boulder-sprint/tree/master/specs/flat_file) to this repo. - [#26](https://github.com/radiantearth/stac-spec/issues/26)
 * Compare [core-api-examples](https://github.com/radiantearth/boulder-sprint/tree/master/specs/core-api) with each other 
-to get to a final decision on Item & Asset JSON - #24
-* Finalize link structure between assets & items - #22
-* Decide how to describe "Product" level information for Assets and Items - #23
-* Update json examples for link structure, asset metadata and product level information - .
-* Update specs to the 'Items'/'Item'/'Asset', as well as updates from previous items - #27
-* Align catalog API swagger spec with static catalog / stam JSON and return types. - #29
+to get to a final decision on Item & Asset JSON - [#24](https://github.com/radiantearth/stac-spec/issues/24)
+* Finalize link structure between assets & items - [#22](https://github.com/radiantearth/stac-spec/issues/22)
+* Decide how to describe "Product" level information for Assets and Items - [#23](https://github.com/radiantearth/stac-spec/issues/23)
+* Update specs & json examples to the 'Items'/'Item'/'Asset', as well as updates from previous items - [#27](https://github.com/radiantearth/stac-spec/issues/27)
+* Align catalog API swagger spec with static catalog / stam JSON and return types. - [#29](https://github.com/radiantearth/stac-spec/issues/29)
 
 Once the core things are done we can release a named version and then aim to get many more people to implement. 
 
