@@ -8,6 +8,28 @@ NDVI, Digital Elevation Models, mosaics, etc.
 The goal is for all major providers of imagery and other earth data to expose their data as spatio-temporal asset catalogs,
 so that new code doesn't need to be written whenever a new JSON-based REST API comes out that makes its data available in a slightly different way. This will enable standard library components in many languages.
 
+## WARNING
+
+The specification is currently in a fairly incomplete state, as there were a few open questions from the 
+[boulder sprint](https://github.com/radiantearth/boulder-sprint) that need to be resolved, with the various related
+specifications moved over, updated and synchronized. 
+
+The top things to be done are:
+
+* Move static catalog work from [boulder sprint repo](https://github.com/radiantearth/boulder-sprint/tree/master/specs/flat_file) to this repo.
+* Align [core-api-examples](https://github.com/radiantearth/boulder-sprint/tree/master/specs/core-api) with each other 
+to get to a final example.
+* Update static catalog with latest thinking in [core-api examples](https://github.com/radiantearth/boulder-sprint/tree/master/specs/core-api) for linking and asset metadata.
+* Update names throughout specs to the 'Items'/'Item'/'Asset'
+* Align swagger spec with static catalog return types
+
+Once the core things are done we can release a named version and then aim to get many more people to implement. 
+
+If you did not participate in the boulder sprint but want to help out with the above tasks then join us 
+on [our gitter](https://gitter.im/Imagery-Catalog-API-Team/Lobby)
+
+
+
 ## Design Overview
 
 An important core principle of the STAC design is to embrace best practices of making data available on the web (like 
@@ -23,9 +45,9 @@ no moving parts, no clusters or databases to maintain. The goal of STAC is to ex
 possible, so the static catalog offers a very lower barrier to entry for anyone with geospatial assets to make their data 
 searchable.
 
-#### Active Catalog
+#### Catalog API
 
-An active catalog is a RESTful API that responds to queries (like give me all imagery in Oahu gathered on January 15, 2017). 
+A catalog API is a RESTful API that responds to queries (like give me all imagery in Oahu gathered on January 15, 2017). 
 But its structure and responses are designed to mirror the static catalog, so the same client and crawler tools can consume
 it. It generally indexes data for efficient responses, and aims to be easy for existing API's to implement as a more standard
 interface for clients to consume. It is specified in OpenAPI 2.0 (swagger), and will move to OpenAPI 3.0 once the codegen
