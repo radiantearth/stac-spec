@@ -1,10 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-06/schema#",
-  "id": "feature.json#",
+  "id": "spatiotemporal_feature.json#",
   "title": "STAC static catalog Feature",
   "type": "object",
-  "description":
-    "This object represents the metadata associated with a feature.",
+  "description": "This object represents the metadata associated with a feature.",
   "additionalProperties": true,
   "allOf": [
     {
@@ -13,10 +12,18 @@
     {
       "properties": {
         "properties": {
-          "required": ["startTime", "endTime", "links"]
+          "required": [
+            "startTime",
+            "endTime",
+            "links"
+          ]
         }
       },
-      "required": ["id", "type", "geometry"]
+      "required": [
+        "id",
+        "type",
+        "geometry"
+      ]
     }
   ],
   "definitions": {
@@ -24,7 +31,9 @@
       "allOf": [
         {
           "oneOf": [
-            { "$ref": "geojson.json#/definitions/feature" }
+            {
+              "$ref": "geojson.json#/definitions/feature"
+            }
           ]
         },
         {
@@ -33,7 +42,10 @@
             "geometry": {
               "properties": {
                 "type": {
-                  "enum": ["Polygon", "MultiPolygon"]
+                  "enum": [
+                    "Polygon",
+                    "MultiPolygon"
+                  ]
                 }
               }
             },
@@ -75,11 +87,8 @@
                 },
                 "links": {
                   "title": "Resource links",
-                  "description":
-                    "Links to resources, could be download or other URLs",
+                  "description": "Links to resources, could be download or other URLs",
                   "type": "array"
-
-
                 }
               }
             }

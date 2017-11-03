@@ -1,192 +1,197 @@
 {
-	"id": "103001004B316600_P002_MUL",
-	"type": "Feature",
-	"geometry": {
-		"type": "MultiPolygon",
-		"coordinates": [
-			[
-				[
-					[-105.160846396,
-						39.1656009422
-					],
-					[-104.947574355,
-						39.1750024943
-					],
-					[-104.949890373,
-						39.0512153242
-					],
-					[-105.161151214,
-						39.0436821016
-					],
-					[-105.160846396,
-						39.1656009422
-					]
-				]
-			]
-		]
-	},
-	"bands": [{
-			"common_name": "COASTAL",
-			"gsd": 2.047,
-			"center_wavelength": 427.0,
-			"effective_wavelength": 62.0,
-			"image_band_index": 0
-		},
-		{
-			"common_name": "Blue",
-			"gsd": 2.047,
-			"center_wavelength": 478.0,
-			"effective_wavelength": 73.0,
-			"image_band_index": 1
-		},
-		{
-			"common_name": "Green",
-			"gsd": 2.047,
-			"center_wavelength": 546.0,
-			"effective_wavelength": 80.0,
-			"image_band_index": 2
-		},
-		{
-			"common_name": "Yellow",
-			"gsd": 2.047,
-			"center_wavelength": 608.0,
-			"effective_wavelength": 48.0,
-			"image_band_index": 3
-		},
-		{
-			"common_name": "Red",
-			"gsd": 2.047,
-			"center_wavelength": 659.0,
-			"effective_wavelength": 70.0,
-			"image_band_index": 4
-		},
-		{
-			"common_name": "RedEdge",
-			"gsd": 2.047,
-			"center_wavelength": 724.0,
-			"effective_wavelength": 50.0,
-			"image_band_index": 5
-		},
-		{
-			"common_name": "NIR",
-			"gsd": 2.047,
-			"center_wavelength": 833.0,
-			"effective_wavelength": 136.0,
-			"image_band_index": 6
-		},
-		{
-			"common_name": "NIR",
-			"gsd": 2.047,
-			"center_wavelength": 949.0,
-			"effective_wavelength": 187.0,
-			"image_band_index": 7
-		}
-	],
-	"assets": [{
-			"uri": "https://15NOV09180446-M1BS-056823192010_01_P002.TIF",
-			"metadata": {
-				"filetype": "geotif",
-				"content": "image",
-				"processing": {
-					"RadiometricallyCorrected": true
-				}
-			}
-		},
-		{
-			"uri": "https://15NOV09180446-M1BS-056823192010_01_P002.IMD",
-			"metadata": {
-				"filetype": "imd",
-				"content": "image metadata"
-			}
-		},
-		{
-			"uri": "https://15NOV09180446-M1BS-056823192010_01_P002.XML",
-			"metadata": {
-				"filetype": "xml",
-				"content": "image metadata"
-			}
-		},
-		{
-			"uri": "https://15NOV09180446-M1BS-056823192010_01_P002.TIL",
-			"metadata": {
-				"filetype": "til",
-				"content": "virtual raster image"
-			}
-		},
-		{
-			"uri": "https://15NOV09180446-M1BS-056823192010_01_P002.ATT",
-			"metadata": {
-				"filetype": "att",
-				"content": "attitude metadata"
-			}
-		},
-		{
-			"uri": "https://15NOV09180446-M1BS-056823192010_01_P002.EPH",
-			"metadata": {
-				"filetype": "eph",
-				"content": "ephemeral metadata"
-			}
-		},
-		{
-			"uri": "https://15NOV09180446-M1BS-056823192010_01_P002.GEO",
-			"metadata": {
-				"filetype": "geo",
-				"content": "geospatial metadata"
-			}
-		},
-		{
-			"uri": "https://15NOV09180446-M1BS-056823192010_01_P002.RPB",
-			"metadata": {
-				"filetype": "rpb",
-				"content": "rational polynomial metadata"
-			}
-		},
-		{
-			"uri": "https://15NOV09180446-M1BS-056823192010_01_P002.JPG",
-			"metadata": {
-				"filetype": "jpeg",
-				"content": "thumbnail"
-			}
-		}
-	],
-	"properties": {
-		"feature_type": [
-			"GBDXCatalogRecord",
-			"WV02",
-			"DigitalGlobeProduct",
-			"1BProduct"
-		],
-		"sunAzimuth": 168.7,
-		"cloudCover": 0,
-		"catalogID": "103001004B316600",
-		"offNadirAngle": 18.4,
-		"platformName": "WORLDVIEW02",
-		"sunElevation": 33.4,
-		"vendor": "DigitalGlobe",
-		"soli": "056823192",
-		"bands": "Multi",
-		"part": 2,
-		"resolution": 2.047,
-		"footprintWkt": "MULTIPOLYGON(((-105.160846396 39.1656009422, -104.947574355 39.1750024943, -104.949890373 39.0512153242, -105.161151214 39.0436821016, -105.160846396 39.1656009422)))",
-		"sensorPlatformName": "WORLDVIEW02",
-		"productLevel": "LV1B",
-		"bandsList": "BAND_C,BAND_B,BAND_G,BAND_Y,BAND_R,BAND_RE,BAND_N,BAND_N2",
-        "product": "WORLDVIEW02_LV1B",
-		"startTime": "2015-11-09T18:04:46.000Z",
-		"endTime": "2015-11-09T18:04:46.000Z",
-		"links": [{
-				"name": "self",
-				"uri": "my url"
-			},
-			{
-				"name": "thumbnail",
-				"uri": "https://15NOV09180446-M1BS-056823192010_01_P002.JPG"
-			},
-			{
-				"name": "acquisition",
-				"uri": "uri of acquisition"
-			}
-
-		]
-	}
+  "id": "103001004B316600_P002_MUL",
+  "type": "Feature",
+  "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+      [
+        [
+          [
+            -105.160846396,
+            39.1656009422
+          ],
+          [
+            -104.947574355,
+            39.1750024943
+          ],
+          [
+            -104.949890373,
+            39.0512153242
+          ],
+          [
+            -105.161151214,
+            39.0436821016
+          ],
+          [
+            -105.160846396,
+            39.1656009422
+          ]
+        ]
+      ]
+    ]
+  },
+  "assets": [
+    {
+      "uri": "https://15NOV09180446-M1BS-056823192010_01_P002.TIF",
+      "metadata": {
+        "filetype": "geotif",
+        "content": "image",
+        "processing": {
+          "RadiometricallyCorrected": true
+        }
+      }
+    },
+    {
+      "uri": "https://15NOV09180446-M1BS-056823192010_01_P002.IMD",
+      "metadata": {
+        "filetype": "imd",
+        "content": "image metadata"
+      }
+    },
+    {
+      "uri": "https://15NOV09180446-M1BS-056823192010_01_P002.XML",
+      "metadata": {
+        "filetype": "xml",
+        "content": "image metadata"
+      }
+    },
+    {
+      "uri": "https://15NOV09180446-M1BS-056823192010_01_P002.TIL",
+      "metadata": {
+        "filetype": "til",
+        "content": "virtual raster image"
+      }
+    },
+    {
+      "uri": "https://15NOV09180446-M1BS-056823192010_01_P002.ATT",
+      "metadata": {
+        "filetype": "att",
+        "content": "attitude metadata"
+      }
+    },
+    {
+      "uri": "https://15NOV09180446-M1BS-056823192010_01_P002.EPH",
+      "metadata": {
+        "filetype": "eph",
+        "content": "ephemeral metadata"
+      }
+    },
+    {
+      "uri": "https://15NOV09180446-M1BS-056823192010_01_P002.GEO",
+      "metadata": {
+        "filetype": "geo",
+        "content": "geospatial metadata"
+      }
+    },
+    {
+      "uri": "https://15NOV09180446-M1BS-056823192010_01_P002.RPB",
+      "metadata": {
+        "filetype": "rpb",
+        "content": "rational polynomial metadata"
+      }
+    },
+    {
+      "uri": "https://15NOV09180446-M1BS-056823192010_01_P002.JPG",
+      "metadata": {
+        "filetype": "jpeg",
+        "content": "thumbnail"
+      }
+    }
+  ],
+  "properties": {
+    "bands": [
+      {
+        "common_name": "COASTAL",
+        "gsd": 2.047,
+        "center_wavelength": 427.0,
+        "effective_wavelength": 62.0,
+        "image_band_index": 0
+      },
+      {
+        "common_name": "Blue",
+        "gsd": 2.047,
+        "center_wavelength": 478.0,
+        "effective_wavelength": 73.0,
+        "image_band_index": 1
+      },
+      {
+        "common_name": "Green",
+        "gsd": 2.047,
+        "center_wavelength": 546.0,
+        "effective_wavelength": 80.0,
+        "image_band_index": 2
+      },
+      {
+        "common_name": "Yellow",
+        "gsd": 2.047,
+        "center_wavelength": 608.0,
+        "effective_wavelength": 48.0,
+        "image_band_index": 3
+      },
+      {
+        "common_name": "Red",
+        "gsd": 2.047,
+        "center_wavelength": 659.0,
+        "effective_wavelength": 70.0,
+        "image_band_index": 4
+      },
+      {
+        "common_name": "RedEdge",
+        "gsd": 2.047,
+        "center_wavelength": 724.0,
+        "effective_wavelength": 50.0,
+        "image_band_index": 5
+      },
+      {
+        "common_name": "NIR",
+        "gsd": 2.047,
+        "center_wavelength": 833.0,
+        "effective_wavelength": 136.0,
+        "image_band_index": 6
+      },
+      {
+        "common_name": "NIR",
+        "gsd": 2.047,
+        "center_wavelength": 949.0,
+        "effective_wavelength": 187.0,
+        "image_band_index": 7
+      }
+    ],
+    "feature_type": [
+      "GBDXCatalogRecord",
+      "WV02",
+      "DigitalGlobeProduct",
+      "1BProduct"
+    ],
+    "sunAzimuth": 168.7,
+    "cloudCover": 0,
+    "catalogID": "103001004B316600",
+    "offNadirAngle": 18.4,
+    "platformName": "WORLDVIEW02",
+    "sunElevation": 33.4,
+    "vendor": "DigitalGlobe",
+    "soli": "056823192",
+    "part": 2,
+    "resolution": 2.047,
+    "footprintWkt": "MULTIPOLYGON(((-105.160846396 39.1656009422, -104.947574355 39.1750024943, -104.949890373 39.0512153242, -105.161151214 39.0436821016, -105.160846396 39.1656009422)))",
+    "sensorPlatformName": "WORLDVIEW02",
+    "productLevel": "LV1B",
+    "product": "WORLDVIEW02_LV1B",
+    "startTime": "2015-11-09T18:04:46.000Z",
+    "endTime": "2015-11-09T18:04:46.000Z",
+    "links": [
+      {
+        "name": "self",
+        "uri": "my url"
+      },
+      {
+        "name": "thumbnail",
+        "uri": "https://15NOV09180446-M1BS-056823192010_01_P002.JPG"
+      },
+      {
+        "name": "acquisition",
+        "uri": "uri of acquisition"
+      }
+    ]
+  }
 }

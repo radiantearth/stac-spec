@@ -3,7 +3,7 @@ import json
 from jsonschema import validate, RefResolver
 
 # load the json schema for a feature
-with open(os.path.join(os.path.dirname(__file__), '..', 'json-schema', 'feature.json')) as schema_file:
+with open(os.path.join(os.path.dirname(__file__), '..', 'json-schema', 'spatiotemporal_feature.json')) as schema_file:
     schema = json.load(schema_file)
 
 # setup the json schema resolver
