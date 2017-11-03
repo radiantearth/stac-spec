@@ -104,7 +104,7 @@
         "common_name": "PAN",
         "gsd": 0.512,
         "center_wavelength": 627.0,
-        "effective_wavelength": 361.0,
+        "effective_bandwidth": 361.0,
         "image_band_index": 0
       }
     ],

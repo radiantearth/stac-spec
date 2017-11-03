@@ -104,56 +104,56 @@
         "common_name": "COASTAL",
         "gsd": 2.047,
         "center_wavelength": 427.0,
-        "effective_wavelength": 62.0,
+        "effective_bandwidth": 62.0,
         "image_band_index": 0
       },
       {
         "common_name": "Blue",
         "gsd": 2.047,
         "center_wavelength": 478.0,
-        "effective_wavelength": 73.0,
+        "effective_bandwidth": 73.0,
         "image_band_index": 1
       },
       {
         "common_name": "Green",
         "gsd": 2.047,
         "center_wavelength": 546.0,
-        "effective_wavelength": 80.0,
+        "effective_bandwidth": 80.0,
         "image_band_index": 2
       },
       {
         "common_name": "Yellow",
         "gsd": 2.047,
         "center_wavelength": 608.0,
-        "effective_wavelength": 48.0,
+        "effective_bandwidth": 48.0,
         "image_band_index": 3
       },
       {
         "common_name": "Red",
         "gsd": 2.047,
         "center_wavelength": 659.0,
-        "effective_wavelength": 70.0,
+        "effective_bandwidth": 70.0,
         "image_band_index": 4
       },
       {
         "common_name": "RedEdge",
         "gsd": 2.047,
         "center_wavelength": 724.0,
-        "effective_wavelength": 50.0,
+        "effective_bandwidth": 50.0,
         "image_band_index": 5
       },
       {
         "common_name": "NIR",
         "gsd": 2.047,
         "center_wavelength": 833.0,
-        "effective_wavelength": 136.0,
+        "effective_bandwidth": 136.0,
         "image_band_index": 6
       },
       {
         "common_name": "NIR",
         "gsd": 2.047,
         "center_wavelength": 949.0,
-        "effective_wavelength": 187.0,
+        "effective_bandwidth": 187.0,
         "image_band_index": 7
       }
     ],
