@@ -169,7 +169,6 @@
     "offNadirAngle": 18.4,
     "platformName": "WORLDVIEW02",
     "sunElevation": 33.4,
-    "vendor": "DigitalGlobe",
     "soli": "056823192",
     "part": 2,
     "resolution": 2.047,
@@ -177,21 +176,23 @@
     "sensorPlatformName": "WORLDVIEW02",
     "productLevel": "LV1B",
     "product": "WORLDVIEW02_LV1B",
-    "startTime": "2015-11-09T18:04:46.000Z",
-    "endTime": "2015-11-09T18:04:46.000Z",
+    "startDateTime": "2015-11-09T18:04:46.000Z",
+    "endDateTime": "2015-11-09T18:04:46.000Z",
     "links": [
       {
-        "name": "self",
-        "uri": "my url"
+        "rel": "self",
+        "href": "my url"
       },
       {
-        "name": "thumbnail",
-        "uri": "https://15NOV09180446-M1BS-056823192010_01_P002.JPG"
+        "rel": "thumbnail",
+        "href": "https://15NOV09180446-M1BS-056823192010_01_P002.JPG"
       },
       {
-        "name": "acquisition",
-        "uri": "uri of acquisition"
+        "rel": "acquisition",
+        "href": "uri of acquisition"
       }
-    ]
+    ],
+    "provider": "DigitalGlobe",
+    "license": "(C) COPYRIGHT 2016 DigitalGlobe, Inc., Longmont CO USA 80503"
   }
 }

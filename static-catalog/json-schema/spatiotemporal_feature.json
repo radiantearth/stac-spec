@@ -13,9 +13,11 @@
       "properties": {
         "properties": {
           "required": [
-            "startTime",
-            "endTime",
-            "links"
+            "startDateTime",
+            "endDateTime",
+            "links",
+            "provider",
+            "license"
           ]
         }
       },
@@ -57,13 +59,13 @@
             "properties": {
               "type": "object",
               "properties": {
-                "startTime": {
+                "startDateTime": {
                   "title": "Date Start",
                   "description": "First date/time",
                   "type": "string",
                   "format": "date-time"
                 },
-                "endTime": {
+                "endDateTime": {
                   "title": "Date End",
                   "description": "Last date/time",
                   "type": "string",

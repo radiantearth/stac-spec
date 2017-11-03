@@ -264,13 +264,12 @@
         "effective_wavelength": 361.0
       }
     ],
-    "startTime": "2015-11-09T18:04:44.203Z",
-    "endTime": "2015-11-09T18:04:44.203Z",
-    "provider": "DigitalGlobe",
+    "startDateTime": "2015-11-09T18:04:44.203Z",
+    "endDateTime": "2015-11-09T18:04:44.203Z",
     "links": [
       {
         "rel": "self",
-        "uri": "uri of self"
+        "href": "uri of self"
       }
     ],
     "feature_type": [
@@ -314,6 +313,8 @@
     "targetAzimuth_start": 68.5699844360352,
     "sensorPlatformName": "WORLDVIEW02",
     "plaform": "WV02",
-    "instrument": "VNIR"
+    "instrument": "VNIR",
+    "provider": "DigitalGlobe",
+    "license": "(C) COPYRIGHT 2016 DigitalGlobe, Inc., Longmont CO USA 80503"
   }
 }

@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "id": "spatiotemporal_acquisition.json#",
+  "title": "STAC static catalog acquisition",
+  "type": "object",
+  "description":
+    "This object represents the metadata associated with an image acquired by a satellite or other platform.",
+  "additionalProperties": true,
+  "allOf": [{ "$ref": "spatiotemporal_feature.json#" },
+      {
+      "properties": {
+        "properties": {
+          "required": [
+            "bands"
+          ]
+        }
+      }
+    }
+    ]
+}

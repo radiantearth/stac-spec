@@ -123,29 +123,29 @@
     "sunElevation": 33.4,
     "vendor": "DigitalGlobe",
     "soli": "056823192",
-    "bands": "P",
     "part": 2,
     "resolution": 0.512,
     "footprintWkt": "MULTIPOLYGON(((-105.160592519 39.1656280221, -104.947914192 39.175001527, -104.950215937 39.0512085534, -105.16088661 39.0436989637, -105.160592519 39.1656280221)))",
     "sensorPlatformName": "WORLDVIEW02",
     "productLevel": "LV1B",
-    "bandsList": "BAND_P",
     "product": "WORLDVIEW02_LV1B",
-    "startTime": "2015-11-09T18:04:46.000Z",
-    "endTime": "2015-11-09T18:04:46.000Z",
+    "startDateTime": "2015-11-09T18:04:46.000Z",
+    "endDateTime": "2015-11-09T18:04:46.000Z",
     "links": [
       {
-        "name": "self",
-        "uri": "my url"
+        "rel": "self",
+        "href": "my url"
       },
       {
-        "name": "thumbnail",
-        "uri": "https://15NOV09180446-P1BS-056823192010_01_P002.JPG"
+        "rel": "thumbnail",
+        "href": "https://15NOV09180446-P1BS-056823192010_01_P002.JPG"
       },
       {
-        "name": "acquisition",
-        "uri": "uri of acquisition"
+        "rel": "acquisition",
+        "href": "uri of acquisition"
       }
-    ]
+    ],
+    "provider": "DigitalGlobe",
+    "license": "(C) COPYRIGHT 2016 DigitalGlobe, Inc., Longmont CO USA 80503"
   }
 }
