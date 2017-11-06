@@ -69,7 +69,7 @@ of key decisions.
 
 The best way to contribute is to try to implement the specification and give feedback on what worked well and what could be
 improved. Currently there are a few major things to still work out, so if you are interested in implementing you should
-jump on our [gitter channel](https://gitter.im/Imagery-Catalog-API-Team/Lobby#) (TODO: update this link?) and check in 
+jump on our [gitter channel](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby) (TODO: update this link?) and check in 
 on how ready the spec is and how you can support it. For the next bit of time you'll probably be encouraged to just do what
 feels best in some areas, so we can capture best practices and standardize.
 
