@@ -1,0 +1,17 @@
+{
+  "type": "Feature",
+  "id": "LC80308402843",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[[0, 0], [0, 1], [1, 1], [1, 0]]]
+  },
+
+  "properties": {
+    "license": "PDDL-1.0",
+    "startDate": "2007-03-01T13:00:00Z",
+    "endDate": "2008-05-11T15:30:00Z",
+    "links": {
+      "metadata": "file://./landsat-node.json"
+    }
+  }
+}
