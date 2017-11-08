@@ -1,22 +1,31 @@
 swagger: '2.0'
 info:
-  title: A Proposed Imagery Catalog API using the OGC WFS 3.0 standard as a starting point
+  title: An API for SpatioTemporal Asset Catalogs
   version: 0.0.3
   description: >-
-    This document is a proposal draft. Though it is the first one in this folder it is by no means the only one. If others are
-    contributed they will all be considered equally on Day 1 of the Imagery Catalog API Sprint. This is simply the first one proposed.
-    If you have additional ideas feel free to either fork this and propose Pull Requests, or create your own new spec-draft and add to this folder.
+    The SpatioTemporal Asset Catalog specification aims to standardize the way geospatial assets are exposed online and queried. 
+    A 'spatiotemporal asset' is any file that represents information about the earth captured in a certain space and time. Most of the initial 
+    use cases are related to imagery, but the api is designed to enable search of any spatiotemporal data items. SpatioTemporal Asset Catalogs 
+    can be completely static, implemented as flat files on the web that can be crawled. This API has the same
+    responses as a static catalog, but also offers querying capabilities in addition to exposing data online. This API was inspired by 
+    WFS 3.0, and the goal is to make it compatible with that specification.
 
 
-    WARNING - THIS IS WORK IN PROGRESS.
+    WARNING - THIS IS WORK IN PROGRESS. Implementations are encouraged, but please give feedback on github.
 
-
-    WARNING - This is a Swagger / OpenAPI 2.0 variant. A final spec should be in OpenAPI 3.0, but this is used for quick code generation purposes.
+    TODO - Update responses to be in line with static catalogs, give example
+    
+    TODO - Add in schema responses
+    
+    TODO - Explain extensibility, how to return different content & operations
+   
+    TODO - Add the querying capabilities
+    
 
   contact:
-    name: Acme Corporation
-    email: info@example.org
-    url: 'http://example.org/'
+    name: 'STAC Spec Contributors'
+    email: stac-spec@googlegroups.com
+    url: 'https://github.com/radiantearth/stac-spec/'
   license:
     name: CC-BY 4.0 license
     url: 'https://creativecommons.org/licenses/by/4.0/'
@@ -48,7 +57,7 @@ paths:
     get:
       summary: Retrieve items matching filters
       description: >-
-        Description goes here
+         Returns a pageable GeoJSON feature collection of the items matching the query
       operationId: getItems
       tags:
         - Items
@@ -71,7 +80,9 @@ paths:
           schema:
             $ref: '#/definitions/exception'
     post:
-      summary: Retrieve items matching filters
+      summary: >-
+        Retrieve items matching filters. The request is a string that matches the GET query exactly. POST is primarily to be used when
+        the request length exceeds GET maximums (which is not uncommon with geospatial queries)
       operationId: getItemsPost
       tags:
         - Items
@@ -80,7 +91,7 @@ paths:
       responses:
         '200':
           description: >-
-            Description here
+            Returns a pageable GeoJSON feature collection of the items matching the query
           schema:
             $ref: '#/definitions/ItemCollection'
         default:
