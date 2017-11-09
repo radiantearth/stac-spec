@@ -2,72 +2,208 @@
 
 ## Purpose
 
-This folder defines the JSON specifications for return values of a STAC, and the flat JSON files
-that will be found in a Static STAC.
+The STAC JSON specifications for the JSON representation of elements returned by a  STAC.
+It also defines the JSON files that will be found in a Static Catalog.
 
-Static STACs define a network of linked assets for the purpose of automated
-crawling. It is defined by a network of linked metadata in a standardized
-format.
+## Static Catalog
 
-## Description
+Static Catalogs define a network of linked assets for the purpose of automated
+crawling. The top level element of a Static Catalog is one or more linked `Catalog`s.
 
-A Static STAC defines a tree graph structure, with a single global entry
-point from which the entire network can be crawled. The nodes in this network
-are defined by Node metadata, which can point downstream to other Nodes as well
-as directly describe Assets.
+There are four element types of a STAC Static Catalog: `Catalog`s, `Item`s, `Asset`s, and `Product`s.
 
 ### Catalog
 
-A Node in the network contains top level metadata to describe the node, a list of assets,
-and a list of links to other nodes. The node metadata may only have assets, or only have links,
-or both. There are both required and optional fields for metadata.
+A `Catalog` contains links out to `Item`s. Each of the `Catalog`s can link to `Item`s and other downstream `Catalog`s.
 
-Nodes may embed asset or link data to any degree.
-There may be no embedded data, a partial set of data for an asset or linked node, or fully
-embed all information of the network. If the full asset or linked node is embedded into the
-upstream node, the upstream node may or may not contain the URI to the downstream node or asset.
+For example, a catalog of [NAIP imagery](https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/) might look something like this:
 
-Properties that are defined for an upstream node get inhereted to downstream nodes and assets.
-Downstream nodes or assets can override upstream node metadata if it is defined downstream.
+_Root catalog_
+```json
+{
+  "name": "NAIP",
+  "description": "Catalog of NAIP Imagery",
 
-Nodes can contain optional data that has semantic meaning according to the context of the node.
-Examples:
-- Specification of semantic meaning of URI pattern (e.g. z/x/y) that the crawler can recognize and take advantage of.
-- SEO tags
-- Generic "user data"
+  "license": "PDDL-1.0",
 
-### Items
+  "links": [
+    { "rel": "self", "href": "naip.json" },
+    { "rel": "child", "href": "naip/30087.json" },
+    ...
+  ],
 
-TODO
+  "contact": {
+    "name": "Supervisor Customer Services Section",
+    "email": "apfo.sales@slc.usda.gov",
+    "phone": "801-844-2922",
+    "url": "https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/"
+  },
 
-### Assets
+  "formats": ["geotiff", "cog"],
+
+  "keywords": ["aerial"],
+  "homepage": "http://wherever",
+
+  "provider": {
+      "scheme": "s3",
+      "region": "us-east-1",
+      "requesterPays": "true"
+  }
+}
+```
+
+_Linked Catalog_
+```json
+{
+  "name": "NAIP",
+  "description": "Catalog of NAIP Imagery - 30087",
+
+  "links": [
+    { "rel": "self", "href": "naip/30087.json" },
+    { "rel": "item", "href": "30087/m_3008718_sw_16_1_20130805.json" },
+    { "rel": "item", "href": "30087/m_3008718_sw_16_1_20130806.json" },
+    ...
+  ]
+}
+```
+
+### Item
+
+An `Item` is a group of zero or more `Asset`s that represent data pertaining to a location
+for some time. `Item`s can also link to other related `Item`s; it's possible to have an `Item` which
+only links to other `Item`s. `Item`s are represented by GeoJSON elements,
+and so represent [SimpleFeature](https://en.wikipedia.org/wiki/Simple_Features)s (specifically
+Polygons and MultiPolygons). They are also tagged with temporal component, and so fix
+a location at a specific time or time range.
+
+To continue with the NAIP example, an `Item` could represent one "scene", with two assets
+that live in the [AWS public dataset bucket](https://aws.amazon.com/public-datasets/naip/): an
+RGB [COG](http://www.cogeo.org/) and an RGBIR GeoTiff.
+In this example, one of the assets is linked, another is embedded:
+
+```json
+    "id": "30087/m_3008718_sw_16_1_20130805",
+    "type": "Feature",
+    "geometry": {
+        "coordinates": [
+            [
+                [
+                    -87.875,
+                    30.625
+                ],
+                [
+                    -87.875,
+                    30.6875
+                ],
+                [
+                    -87.8125,
+                    30.6875
+                ],
+                [
+                    -87.8125,
+                    30.625
+                ],
+                [
+                    -87.875,
+                    30.625
+                ]
+            ]
+        ],
+        "type": "Polygon"
+    },
+    "links": [
+        { "rel": "self", "href": "30087/m_3008718_sw_16_1_20130805.json" },
+        { "rel": "asset", "href": "30087/m_3008718_sw_16_1_20130805/rgb.json" },
+        { "rel": "asset",
+          "href": "s3://aws-naip/al/2013/1m/rgbir/30087/m_3008718_sw_16_1_20130805.tif",
+          "product": "naip/rgbir.json",
+          "format": "geotiff" }
+    ],
+
+    "properties": {
+        "startDate": "2013-08-05T00:00:00+00:00",
+        "endDate": "2013-08-05T00:00:00+00:00",
+        "sourceMetadata": { ... }
+    }
+}
+```
+
+### Asset
+
+An `Asset` represents the lowest level element in a STAC. As an example, for satellite imagery,
+an `Asset` could be the GeoTiff file that makes up a specific band of the `Item` representing the
+"scene".
+
+An `Asset` must have a "product" field that specifies a uri to a JSON file that represents the `Product`.
 
 Assets contain the metadata that is specific to the format of the asset. The
 asset must state it's format. The Static Catalog does not have specific
 requirements for participation in the network; the spec of the formats is a
-downstream concern of the definition of the Static Catalog.
+downstream concern of the definition of the Static Catalog. e.g. the formats (e.g. "jpg2000", "cog", "laz")
+is the key into knowing what metadata to expect inside the `Asset`.
 
-_The formats (e.g. "scenes", "cogs") can be written against the ideal information to be determined by the core metadata team_
+Example:
 
-### Note about URI's
+```json
+{ "rel": "asset",
+  "href": "s3://aws-naip/al/2013/1m/rgb/30087/m_3008718_sw_16_1_20130805.tif",
+  "product": "naip/rgb.json",
+  "format": "cog".
+  ...
+}
+```
 
-URIs may be HTTP, but can also be URIs from other providers (e.g. S3). There will be metadata from the node
-that will describe the provider, to allow for details on how to connect to that URI.
 
-### What this is not
+### Product
 
-- A network that focuses on being up to date - no guarantees around when new data will be made available.
+A `Product` describes general metadata about the `Asset`, which can apply to a broad set of `Asset`s.
 
-## Resources
+For the NAIP example, at a minimal level we could have:
 
-- Workstream description: https://github.com/radiantearth/boulder-sprint/blob/master/workstreams/flat-file-catalog.md
-- Notes: https://board.net/p/flat-catalog
+```json
+{
+    "bands": [
+        "Red",
+        "Green",
+        "Blue"
+    ]
+}
+```
 
-## TODO:
+## Concepts
 
-- figure out time - we have to argue with other groups. 8601-and-done
+STAC elements exhibit the following general characteristics:
 
-# Schema Validation
+### Rel Links
+
+The `Catalog`s link to `Item`s and other `Catalog`s, and `Item`s link to `Asset`s and other `Item`s,
+via a rel-link style json object. These objects specify a `rel`, which represents
+[link relations](https://spdx.org/licenses/), as well as an `href` to the linked element.
+
+### Forwarding of properties
+
+The properties of an element that can apply to the child links *will* apply,
+unless overridden by the child element.
+
+
+### Embedding of linked elements
+
+Any link inside of an element to a JSON file of another element may
+have the JSON directly embedded, either partially or fully, into the link object's body.
+Embedding is optional and there  may be no embedded data,
+a partial set of data for an asset or linked node, or fully
+embed all information contained in the element that is linked to.
+
+__TODO__: Enumerate potential "rel" values.
+
+### URI's
+
+URIs may be HTTP, but can also be URIs from other providers (e.g. S3). There will be metadata from
+the `Catalog`, `Item` or `Asset` that will describe the provider,
+to allow for details on how to connect to that URI.
+
+
+# Schema Validation [TODO - fix up]
 
 ## Initialization
 
