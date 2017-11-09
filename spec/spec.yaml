@@ -1,22 +1,31 @@
 swagger: '2.0'
 info:
-  title: A Proposed Imagery Catalog API using the OGC WFS 3.0 standard as a starting point
-  version: 0.0.2
+  title: An API for SpatioTemporal Asset Catalogs
+  version: 0.0.3
   description: >-
-    This document is a proposal draft. Though it is the first one in this folder it is by no means the only one. If others are
-    contributed they will all be considered equally on Day 1 of the Imagery Catalog API Sprint. This is simply the first one proposed.
-    If you have additional ideas feel free to either fork this and propose Pull Requests, or create your own new spec-draft and add to this folder.
+    The SpatioTemporal Asset Catalog specification aims to standardize the way geospatial assets are exposed online and queried. 
+    A 'spatiotemporal asset' is any file that represents information about the earth captured in a certain space and time. Most of the initial 
+    use cases are related to imagery, but the api is designed to enable search of any spatiotemporal data items. SpatioTemporal Asset Catalogs 
+    can be completely static, implemented as flat files on the web that can be crawled. This API has the same
+    responses as a static catalog, but also offers querying capabilities in addition to exposing data online. This API was inspired by 
+    WFS 3.0, and the goal is to make it compatible with that specification.
 
 
-    WARNING - THIS IS WORK IN PROGRESS.
+    WARNING - THIS IS WORK IN PROGRESS. Implementations are encouraged, but please give feedback on github.
 
-
-    WARNING - This is a Swagger / OpenAPI 2.0 variant. A final spec should be in OpenAPI 3.0, but this is used for quick code generation purposes.
+    TODO - Update responses to be in line with static catalogs, give example
+    
+    TODO - Add in schema responses
+    
+    TODO - Explain extensibility, how to return different content & operations
+   
+    TODO - Add the querying capabilities
+    
 
   contact:
-    name: Acme Corporation
-    email: info@example.org
-    url: 'http://example.org/'
+    name: 'STAC Spec Contributors'
+    email: stac-spec@googlegroups.com
+    url: 'https://github.com/radiantearth/stac-spec/'
   license:
     name: CC-BY 4.0 license
     url: 'https://creativecommons.org/licenses/by/4.0/'
@@ -44,14 +53,14 @@ paths:
           description: An error occured.
           schema:
             $ref: '#/definitions/exception'
-  /features:
+  /items:
     get:
-      summary: Retrieve features matching filters
+      summary: Retrieve items matching filters
       description: >-
-        Description goes here
-      operationId: getFeatures
+         Returns a pageable GeoJSON feature collection of the items matching the query
+      operationId: getItems
       tags:
-        - Features
+        - Items
       parameters:
         - $ref: '#/parameters/bbox'
         - $ref: '#/parameters/time'
@@ -65,45 +74,47 @@ paths:
           description: >-
             Description here
           schema:
-            $ref: '#/definitions/FeatureCollection'
+            $ref: '#/definitions/ItemCollection'
         default:
           description: An error occured.
           schema:
             $ref: '#/definitions/exception'
     post:
-      summary: Retrieve items matching filters
-      operationId: getFeaturesPost
+      summary: >-
+        Retrieve items matching filters. The request is a string that matches the GET query exactly. POST is primarily to be used when
+        the request length exceeds GET maximums (which is not uncommon with geospatial queries)
+      operationId: getItemsPost
       tags:
-        - Features
+        - Items
       produces:
         - application/geo+json
       responses:
         '200':
           description: >-
-            Description here
+            Returns a pageable GeoJSON feature collection of the items matching the query
           schema:
-            $ref: '#/definitions/FeatureCollection'
+            $ref: '#/definitions/ItemCollection'
         default:
           description: An error occured.
           schema:
             $ref: '#/definitions/exception'
-  '/features/{id}':
+  '/items/{id}':
     get:
       summary: Retreive item by id
-      operationId: getFeature
+      operationId: getItem
       tags:
-        - Features
+        - Items
       parameters:
         - $ref: '#/parameters/id'
       produces:
         - application/geo+json
       responses:
         '200':
-          description: A feature.
+          description: An item.
           schema:
-            $ref: '#/definitions/Feature'
+            $ref: '#/definitions/Item'
         '404':
-          description: 'The feature with id {id} does not exist.'
+          description: 'The item with id {id} does not exist.'
           schema:
             $ref: '#/definitions/exception'
         default:
@@ -133,7 +144,7 @@ parameters:
     name: bbox
     in: query
     description: >-
-      Only features that have a geometry that intersects the bounding box are
+      Only items that have a geometry that intersects the bounding box are
       selected. The bounding box is provided as four numbers:
 
       * West, South, East, North
@@ -153,7 +164,7 @@ parameters:
   id:
     name: id
     in: path
-    description: The id of a feature
+    description: The id of an item
     required: true
     type: string
 definitions:
@@ -197,26 +208,26 @@ definitions:
       hreflang:
         type: string
         example: en
-  FeatureCollection:
+  ItemCollection:
     type: object
     required:
-      - features
+      - items
       - type
     properties:
       type:
         type: string
         enum:
-          - FeatureCollection
-      features:
+          - ItemCollection
+      items:
         type: array
         items:
-          $ref: '#/definitions/Feature'
+          $ref: '#/definitions/Item'
       nextPageToken:
         type: string
         description: A token to obtain the next paginated data set
       links:
-        $ref: '#/definitions/FeatureCollectionLinks'
-  Feature:
+        $ref: '#/definitions/ItemCollectionLinks'
+  Item:
     type: object
     required:
       - id
@@ -233,17 +244,17 @@ definitions:
         $ref: '#/definitions/bbox'
       geometry:
         type: object
-        description: footprint of the feature
+        description: footprint of the item
       type:
         type: string
         description: The GeoJSON type
         enum:
-          - Feature
+          - Item
       properties:
-        $ref: '#/definitions/FeatureProperties'
+        $ref: '#/definitions/ItemProperties'
       links:
-        $ref: '#/definitions/FeatureLinks'
-  FeatureProperties:
+        $ref: '#/definitions/ItemLinks'
+  ItemProperties:
     type: object
     required:
       - start_date
@@ -263,7 +274,7 @@ definitions:
         description: Data license name based on SPDX License List
     additionalProperties:
       type: object
-  FeatureLinks:
+  ItemLinks:
     type: object
     required:
       - self
@@ -273,7 +284,7 @@ definitions:
         type: string
       thumbnail:
         type: string
-  FeatureCollectionLinks:
+  ItemCollectionLinks:
     type: object
     properties:
       next:
@@ -325,11 +336,11 @@ definitions:
     description: root geojson object
     properties:
       type:
-        $ref: '#/definitions/FeatureType'
+        $ref: '#/definitions/ItemType'
     required:
       - type
     discriminator: type
-  FeatureType:
+  ItemType:
     type: string
     enum:
       - Point
@@ -339,8 +350,8 @@ definitions:
       - Polygon
       - MultiPolygon
       - GeometryCollection
-      - Feature
-      - FeatureCollection
+      - Item
+      - ItemCollection
   GeometryCollection:
     allOf:
       - $ref: '#/definitions/GeoJson'
@@ -463,5 +474,5 @@ tags:
     description: >-
       Essential characteristics of this API including information about the
       data.
-  - name: Features
-    description: Access to data (features).
+  - name: Items
+    description: Access to data (items).
