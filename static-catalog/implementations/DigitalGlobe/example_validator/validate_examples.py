@@ -3,10 +3,11 @@ import json
 from jsonschema import validate, RefResolver
 
 # find our schema root folder
-schema_root_url = "file:///{}/".format(os.path.abspath('{}/../json-schema/'.format(os.path.dirname(__file__))).replace('\\', '/'))
+schema_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "json-schema"))
+schema_root_url = "file:///{}/".format(schema_folder.replace('\\', '/'))
 
 # get the schema and the reference resolver
-with open(os.path.join(os.path.dirname(__file__), '..', 'json-schema', 'spatiotemporal_acquisition.json')) as schema_file:
+with open(os.path.join(schema_folder, 'spatiotemporal_feature.json')) as schema_file:
     schema = json.load(schema_file)
     resolver = RefResolver(schema_root_url, schema)
 
