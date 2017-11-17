@@ -1,0 +1,19 @@
+{
+  "type": "Feature",
+  "bbox": [-10.0, -10.0, 10.0, 10.0],
+  "geometry": {
+    "type": "polygon",
+    "coordinates": [125.6, 10.1, 124.5, 134.4]
+  },
+  "properties": {
+    "id" : "Provider-ID-of-Item",
+    "start_date": "2015-05-03T13:00:00.000Z",
+    "end_date": "2015-05-03T14:00:00.000Z",
+    "provider": "http://www.digitalglobe.com",
+    "license": "CC-BY-4.0"
+  },
+  "links": {
+    "metadata": "path/to/metadata_file.json",
+    "thumbnail": "path/to/thumbnail.png"
+  }
+}
