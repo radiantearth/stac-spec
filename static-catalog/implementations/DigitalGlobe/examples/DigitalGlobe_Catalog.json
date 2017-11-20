@@ -1,0 +1,41 @@
+{
+  "name": "DigitalGlobe Demonstration",
+  "description": "Catalog of DigitalGlobe Demonstration Imagery",
+
+  "license": {
+    "name": "DigitalGlobe Demonstration License",
+    "short_name" : "DG Demo",
+    "link" : "http://digitalglobe.com/static-catalog/demonstration/license/demonstration.txt",
+    "copyright": "(C) COPYRIGHT 2016 DigitalGlobe, Inc., Longmont CO USA 80503"
+  },
+
+  "links": [
+    { "rel": "self", "href": "http://digitalglobe.com/static-catalog/demonstration/DigitalGlobe_Catalog.json" },
+    { "rel": "child", "href": "http://digitalglobe.com/static-catalog/demonstration/2017/" },
+    { "rel": "child", "href": "http://digitalglobe.com/static-catalog/demonstration/2016/" },
+    { "rel": "child", "href": "http://digitalglobe.com/static-catalog/demonstration/2015/" },
+    { "rel": "child", "href": "http://digitalglobe.com/static-catalog/demonstration/2014/" },
+  ],
+
+  "contact": {
+    "TODO" : "change to open data catalog contact format",
+    "name": "Supervisor Customer Services Section",
+    "email": "sales@digitalglobe.com",
+    "phone": "555-244-2922",
+    "url": "http://digitalglobe.com/contact/"
+  },
+
+  "formats": ["geotiff", "cog"],
+  "products": ["http://digitalglobe.com/static-catalog/demonstration/dg_worldview02_LV1B_PAN",
+  "http://digitalglobe.com/static-catalog/demonstration/dg_worldview02_LV1B_MULTI"
+  ],
+
+  "keywords": ["aerial"],
+  "homepage": "hhttp://digitalglobe.com/static-catalog/demonstration.html",
+
+  "provider": {
+      "scheme": "s3",
+      "region": "us-east-1",
+      "requesterPays": "false"
+  }
+}

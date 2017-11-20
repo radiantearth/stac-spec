@@ -1,6 +1,8 @@
 {
   "id": "103001004B316600_P002_MUL",
   "type": "Feature",
+  "bbox": [ -105,39,-104,40
+        ],
   "geometry": {
     "type": "MultiPolygon",
     "coordinates": [
@@ -30,7 +32,42 @@
       ]
     ]
   },
-  "assets": [
+ 
+  "properties": {
+    "start_datetime": "2015-11-09T18:04:46.000Z",
+    "end_datetime": "2015-11-09T18:04:46.000Z",
+    "provider": "DigitalGlobe",
+    "license": "(C) COPYRIGHT 2016 DigitalGlobe, Inc., Longmont CO USA 80503",
+    "product": "http://../dg_worldview02_LV1B_MUL",
+    "dg:schema": "DigitalGlobeProduct",
+    "eo:sun_azimuth": 168.7,
+    "eo:cloud_cover": 0,
+    "dg:catalogID": "103001004B316600",
+    "eo:off_nadir_angle": 18.4,
+    "eo:platform_name": "WORLDVIEW02",
+    "eo:sun_elevation": 33.4,
+    "dg:vendor": "DigitalGlobe",
+    "dg:soli": "056823192",
+    "dg:part": 2,
+    "eo:resolution": 0.512,
+    "dg:footprintWkt": "MULTIPOLYGON(((-105.160592519 39.1656280221, -104.947914192 39.175001527, -104.950215937 39.0512085534, -105.16088661 39.0436989637, -105.160592519 39.1656280221)))",
+
+    },
+  "links": [
+      {
+        "rel": "self",
+        "href": "my url"
+      },
+      {
+        "rel": "thumbnail",
+        "href": "https://15NOV09180446-P1BS-056823192010_01_P002.JPG"
+      },
+      {
+        "rel": "acquisition",
+        "href": "uri of acquisition"
+      }
+    ],
+    "assets": [
     {
       "uri": "https://15NOV09180446-M1BS-056823192010_01_P002.TIF",
       "metadata": {
@@ -97,55 +134,6 @@
         "content": "thumbnail"
       }
     }
-  ],
-  "properties": {
-    "bands": [
-      {
-        "common_name": "PAN",
-        "gsd": 0.512,
-        "center_wavelength": 627.0,
-        "effective_bandwidth": 361.0,
-        "image_band_index": 0
-      }
-    ],
-    "schema": "DigitalGlobeProduct",
-    "type": [
-      "GBDXCatalogRecord",
-      "WV02",
-      "DigitalGlobeProduct",
-      "1BProduct"
-    ],
-    "sunAzimuth": 168.7,
-    "cloudCover": 0,
-    "catalogID": "103001004B316600",
-    "offNadirAngle": 18.4,
-    "platformName": "WORLDVIEW02",
-    "sunElevation": 33.4,
-    "vendor": "DigitalGlobe",
-    "soli": "056823192",
-    "part": 2,
-    "resolution": 0.512,
-    "footprintWkt": "MULTIPOLYGON(((-105.160592519 39.1656280221, -104.947914192 39.175001527, -104.950215937 39.0512085534, -105.16088661 39.0436989637, -105.160592519 39.1656280221)))",
-    "sensorPlatformName": "WORLDVIEW02",
-    "productLevel": "LV1B",
-    "product": "WORLDVIEW02_LV1B",
-    "startDateTime": "2015-11-09T18:04:46.000Z",
-    "endDateTime": "2015-11-09T18:04:46.000Z",
-    "links": [
-      {
-        "rel": "self",
-        "href": "my url"
-      },
-      {
-        "rel": "thumbnail",
-        "href": "https://15NOV09180446-P1BS-056823192010_01_P002.JPG"
-      },
-      {
-        "rel": "acquisition",
-        "href": "uri of acquisition"
-      }
-    ],
-    "provider": "DigitalGlobe",
-    "license": "(C) COPYRIGHT 2016 DigitalGlobe, Inc., Longmont CO USA 80503"
+  ]
   }
 }
