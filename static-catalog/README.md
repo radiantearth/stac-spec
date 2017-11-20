@@ -1,16 +1,29 @@
-# JSON Spec
+# STAC Static Catalog Spec
 
-## Purpose
+## Overview
+
+A STAC Static Catalog is the simplest possible catalog of spatiotemporal items. It is designed
+to work as a set of flat files on an http web server or an object store like S3 or Google Cloud Storage.
+
+As such the catalog can not be queried - it is simply a set of interconnected links that can be crawled.
+A static catalog is designed to be as reliable as possible, and can serve as the canonical source for
+more dynamic Catalog API's.
+
+The core `Item`s listed in a static catalog are the exact same form as those returned by a Catalog API.
+So both forms of STAC can be crawled in the same way.
 
 The STAC JSON specifications for the JSON representation of elements returned by a  STAC.
 It also defines the JSON files that will be found in a Static Catalog.
 
-## Static Catalog
+## Static Catalog Definitions
 
 Static Catalogs define a network of linked assets for the purpose of automated
 crawling. The top level element of a Static Catalog is one or more linked `Catalog`s.
 
 There are four element types of a STAC Static Catalog: `Catalog`s, `Item`s, `Asset`s, and `Product`s.
+
+The core STAC `Item` is defined in the [JSON Spec](../json-spec/), and is of the same form as those
+returned from a Catalog API, but the following will explain it in context, as well as the other element types.
 
 ### Catalog
 
@@ -52,6 +65,10 @@ _Root catalog_
 }
 ```
 
+A 'Root Catalog' should contains all the metadata that applies to all items in its catalog. It is typically where
+the contact information goes, as well as links to the products contained. It links to one or more other catalogs,
+who inherit its catalog level metadata.
+
 _Linked Catalog_
 ```json
 {
@@ -67,14 +84,32 @@ _Linked Catalog_
 }
 ```
 
+A 'Linked Catalog' is generally used to breakup massive numbers of catalog items in to some logical grouping, so
+that each page of links is not huge. Most commonly data is split up by date (month and day) or geography (country,
+  state). But any scheme of splitting can be used. It is a general best practice to keep the size of each linked
+  catalog under a a megabyte.
+
+
 ### Item
 
-An `Item` is a group of zero or more `Asset`s that represent data pertaining to a location
+An `Item` represents a single record in the catalog, and it must have a geometry, a time,
+a thumbnail and links to 'assets' - these must represent data pertaining to a location
 for some time. `Item`s can also link to other related `Item`s; it's possible to have an `Item` which
 only links to other `Item`s. `Item`s are represented by GeoJSON elements,
 and so represent [SimpleFeature](https://en.wikipedia.org/wiki/Simple_Features)s (specifically
 Polygons and MultiPolygons). They are also tagged with temporal component, and so fix
 a location at a specific time or time range.
+
+The [rel](https://www.w3schools.com/tags/att_link_rel.asp) attribute of HTML links is used
+liberally to describe the relationships of various items and catalogs. Every `Item` must
+define a `thumb` link, as well as a `self` link. It is recommended that the self link is an
+absolute URL, so that copies of catalogs that are downloaded continue to link to their source
+(though a later version of the spec should include a rel link to indicate that an Item is
+  a copy of an online location).
+
+`Item`s are defined very flexible, and a naive catalog crawler would enable search of every single
+`Item` defined in a catalog. Some domains may choose to use `rel` links to describe more complex
+relationships between catalog items, and crawlers aware of those domains may
 
 To continue with the NAIP example, an `Item` could represent one "scene", with two assets
 that live in the [AWS public dataset bucket](https://aws.amazon.com/public-datasets/naip/): an
@@ -137,10 +172,14 @@ an `Asset` could be the GeoTiff file that makes up a specific band of the `Item`
 An `Asset` must have a "product" field that specifies a uri to a JSON file that represents the `Product`.
 
 Assets contain the metadata that is specific to the format of the asset. The
-asset must state it's format. The Static Catalog does not have specific
+asset must state its format. The Static Catalog does not have specific
 requirements for participation in the network; the spec of the formats is a
 downstream concern of the definition of the Static Catalog. e.g. the formats (e.g. "jpg2000", "cog", "laz")
 is the key into knowing what metadata to expect inside the `Asset`.
+
+While assets in Catalog APIs can easily represent files that are generated on demand, a static
+catalog should only list assets that already exist online. This increases the reliability and speed
+of the catalog and makes it easier to fully duplicate or back-up a static catalog.
 
 Example:
 
