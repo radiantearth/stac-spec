@@ -1,6 +1,9 @@
 {
-    "id": "30087/m_3008718_sw_16_1_20130805",
+    "id": "m_3008718_sw_16_1_20130805",
     "type": "Feature",
+    "bbox": [ -87.875, 30.624,
+          -87.8125, 30.6875
+        ],
     "geometry": {
         "coordinates": [
             [
@@ -28,232 +31,54 @@
         ],
         "type": "Polygon"
     },
-    "links": [
-        { "rel": "self", "href": "30087/m_3008718_sw_16_1_20130805.json" },
-        { "rel": "child",  "href": "30087/m_3008718_sw_16_1_20130805/rgb.json" },
-        { "rel": "child",  "href": "30087/m_3008718_sw_16_1_20130805/rgbir.json" }
-    ],
 
     "properties": {
-        "startDate": "2013-08-05T00:00:00+00:00",
-        "endDate": "2013-08-05T00:00:00+00:00",
-        "sourceMetadata": {
-            "data_quality_information": {
-                "completeness_report": "None",
-                "lineage": {
-                    "process_step": {
-                        "process_description": "DOQQ Production Process Description  USDA FSA APFO NAIP Program 2013  DOQQ Production Process Description  USDA FSA APFO NAIP Program 2013  State  The imagery was collected using ADS40-SH51 digital sensors. Collection was performed using a combination of twin-engine aircraft flying at 17,500 ft above mean terrain with 25% sidelap, giving the collected data nominal ground sampling distance of 0.7 meters. Based-upon the CCD Array configuration present in the ADS40 digital sensor, imagery for each flight line is 12,000-pixels in width.  Red, Green, Blue, Near-Infrared and Panchromatic image bands were collected.  Collected data was downloaded to portable hard drives and shipped to the processing facility daily.  Raw flight data was extracted from external data drives using GPro software. Airborne GPS / IMU data was post-processed using IALS, PosPac and/or TerraPos software and reviewed to ensure sufficient accuracy for project requirements.  Using Pictovera software, planar rectified images were generated from the collected data for use in image quality review.  The planar rectified images were generated at five meter resolution using a two standard deviation histogram stretch.  Factors considered during this review included but were not limited to the presence of smoke and/or cloud cover, contrails, light conditions, sun glint and any sensor or hardware-related issues that potentially could result in faulty data.  When necessary, image strips identified as not meeting image quality specifications were re-flown to obtain suitable imagery.  Aero triangulation blocks were defined primarily by order of acquisition and consisted of four to seventeen strips. Image tie points providing the observations for the least squares bundle adjustment were selected from the images using an auto correlation algorithm. Photogrammetric control points consisted of photo identifiable control points, collected using GPS field survey techniques.  The control points were loaded in to a softcopy workstation and measured in the acquired image strips.  A least squares bundle adjustment of image pass points, control points and the ABGPS was performed to develop an aero triangulation solution for each block using Pictovera software.  Upon final bundle adjustment, the triangulated strips were ortho-rectified to the digital elevation model (DEM) The most recent USGS 10 meter DEMs were used in the rectification process.  Positional accuracy was reviewed in the rectified imagery by visually verifying the horizontal positioning of the known photo-identifiable survey locations using ArcGIS software.  The red, green, and blue bands were combined to generate a final ortho-rectified image strip. The ADS40 sensor collects twelve bit image data which requires radiometric adjustment for output in standard eight bit image channels.  The ortho- rectified image strips were produced with the full 12 bit data range, allowing radiometric adjustment to 8 bit range to be performed on a strip by strip basis during the final mosaicking steps.  The imagery was mosaicked using manual seam line generation in Orthovista Seam Editor (OVSE). The 12 bit data range was adjusted for display in standard eight bit image channels by defining a piecewise histogram stretch using OrthoVista software.  A constant stretch was defined for each image collection period, and then strip by strip adjustments were made as needed to account for changes in sun angle and azimuth during the collection period.  Strip adjustments were also made to match the strips histograms as closely as possible to APFO specified histogram metrics and color balance requirements. Automated balancing algorithms were applied to account for bi- directional reflectance as a final step before the conversion to 8 bit data range DOQQ Production Process Description  USDA FSA APFO NAIP Program 2013  DOQQ Production Process Description  USDA FSA APFO NAIP Program 2013  State  The imagery was collected using ADS40-SH51 digital sensors. Collection was performed using a combination of twin-engine aircraft flying at 17,500 ft above mean terrain with 25% sidelap, giving the collected data nominal ground sampling distance of 0.7 meters. Based-upon the CCD Array configuration present in the ADS40 digital sensor, imagery for each flight line is 12,000-pixels in width.  Red, Green, Blue, Near-Infrared and Panchromatic image bands were collected.  Collected data was downloaded to portable hard drives and shipped to the processing facility daily.  Raw flight data was extracted from external data drives using GPro software. Airborne GPS / IMU data was post-processed using IALS, PosPac and/or TerraPos software and reviewed to ensure sufficient accuracy for project requirements.  Using Pictovera software, planar rectified images were generated from the collected data for use in image quality review.  The planar rectified images were generated at five meter resolution using a two standard deviation histogram stretch.  Factors considered during this review included but were not limited to the presence of smoke and/or cloud cover, contrails, light conditions, sun glint and any sensor or hardware-related issues that potentially could result in faulty data.  When necessary, image strips identified as not meeting image quality specifications were re-flown to obtain suitable imagery.  Aero triangulation blocks were defined primarily by order of acquisition and consisted of four to seventeen strips. Image tie points providing the observations for the least squares bundle adjustment were selected from the images using an auto correlation algorithm. Photogrammetric control points consisted of photo identifiable control points, collected using GPS field survey techniques.  The control points were loaded in to a softcopy workstation and measured in the acquired image strips.  A least squares bundle adjustment of image pass points, control points and the ABGPS was performed to develop an aero triangulation solution for each block using Pictovera software.  Upon final bundle adjustment, the triangulated strips were ortho-rectified to the digital elevation model (DEM) The most recent USGS 10 meter DEMs were used in the rectification process.  Positional accuracy was reviewed in the rectified imagery by visually verifying the horizontal positioning of the known photo-identifiable survey locations using ArcGIS software.  The red, green, and blue bands were combined to generate a final ortho-rectified image strip. The ADS40 sensor collects twelve bit image data which requires radiometric adjustment for output in standard eight bit image channels.  The ortho- rectified image strips were produced with the full 12 bit data range, allowing radiometric adjustment to 8 bit range to be performed on a strip by strip basis during the final mosaicking steps.  The imagery was mosaicked using manual seam line generation in Orthovista Seam Editor (OVSE). The 12 bit data range was adjusted for display in standard eight bit image channels by defining a piecewise histogram stretch using OrthoVista software.  A constant stretch was defined for each image collection period, and then strip by strip adjustments were made as needed to account for changes in sun angle and azimuth during the collection period.  Strip adjustments were also made to match the strips histograms as closely as possible to APFO specified histogram metrics and color balance requirements. Automated balancing algorithms were applied to account for bi- directional reflectance as a final step before the conversion to 8 bit data range Process_Date"
-                    },
-                    "source_information": {
-                        "source_citation": {
-                            "citation_information": {
-                                "geospatial_data_presentation_form": "remote-sensing image",
-                                "originator": "USDA-FSA-APFO Aerial Photography Field Office",
-                                "publication_date": "20131220",
-                                "title": "STAPLETON, SW"
-                            }
-                        },
-                        "source_citation_abbreviation": "Georectifed Image",
-                        "source_contribution": "Digital Georectifed Image.",
-                        "source_time_period_of_content": {
-                            "source_currentness_reference": "Aerial Photography Date for aerial photo source.",
-                            "time_period_information": {
-                                "single_date/time": {
-                                    "calendar_date": "20130805"
-                                }
-                            }
-                        },
-                        "type_of_source_media": "UnKnown"
-                    }
-                },
-                "logical_consistency_report": "NAIP 3.75 minute tile file names are based on the USGS quadrangle naming convention.",
-                "positional_accuracy": {
-                    "horizontal_positional_accuracy": {
-                        "horizontal_positional_accuracy_report": "NAIP horizontal accuracy specifications have evolved over the life of the program.  From 2003 to 2004 the NAIP horizontal accuracy specifications have evolved over the life of the program.  From 2003 to 2004 the specifications were as follows to match within 3-meters, and 2-meter GSD to match within 10 meters of reference imagery.  For 2005 the 1-meter GSD specification was changed to 5 meters matching the reference imagery.  In 2006 a pilot project was performed using true ground specifications rather than reference imagery.  All states used the same specifications as 2005 except Utah, which required a match of +/- 6 meters to true ground. In 2007 all specifications were the same as 2006 except Arizona used true ground specifications and all other states used reference imagery.  In 2008 and subsequent years no 2-meter GSD imagery was acquired and all specifications were the same as 2007 except approximately half of the states acquired used true ground specifications and the other half used reference imagery.  The 2008 states that used absolute ground control where; Indiana, Minnesota, New Hampshire, North Carolina, Texas, Vermont, and Virginia. From 2009 to present all NAIP imagery acquisitions used the +/- 6 meters to ground specification."
-                    }
-                }
+        "start_date_time": "2013-08-01T00:00:00+00:00",
+        "end_date_time": "2013-08-31T00:00:00+00:00",
+        "provider": "NAIP",
+        "license": "PDDL-1.0",
+        "eo:resolution": "0.7",
+        "naip:title" : "STAPLETON, SW",
+        "naip:keywords": {
+            "place": {
+                "place_keyword": "STAPLETON",
+                "place_keyword_thesaurus": "Geographic Names Information System"
             },
-            "distribution_information": {
-                "distribution_liability": "In no event shall the creators, custodians, or distributors of this information be liable for any damages arising out of its use (or the inability to use it).",
-                "distributor": {
-                    "contact_information": {
-                        "contact_address": {
-                            "address": "2222 West 2300 South",
-                            "address_type": "mailing and physical address",
-                            "city": "Salt Lake City",
-                            "country": "USA",
-                            "postal_code": "84119-2020",
-                            "state_or_province": "Utah"
-                        },
-                        "contact_electronic_mail_address": "apfo.sales@slc.usda.gov",
-                        "contact_facsimile_telephone": "801-956-3653",
-                        "contact_person_primary": {
-                            "contact_organization": "USDA-FSA-APFO Aerial Photography Field Office",
-                            "contact_person": "Supervisor Customer Services Section"
-                        },
-                        "contact_voice_telephone": "801-844-2922"
-                    }
-                },
-                "resource_description": "m_3008718_sw_16_1_20130805_20131202.tif",
-                "standard_order_process": {
-                    "digital_form": {
-                        "digital_transfer_information": {
-                            "format_information_content": "Multispectral 4-band",
-                            "format_name": ""
-                        },
-                        "digital_transfer_option": {
-                            "offline_option": {
-                                "offline_media": "FireWire Hard Disk",
-                                "recording_format": "NTFS"
-                            }
-                        }
-                    },
-                    "fees": "Contact the Aerial Photography Field Office for more information"
-                }
-            },
-            "entity_and_attribute_information": {
-                "overview_description": {
-                    "entity_and_attribute_detail_citation": "None",
-                    "entity_and_attribute_overview": "32-bit pixels, 4 band color(RGBIR) values 0 - 255"
-                }
-            },
-            "identification_information": {
-                "access_constraints": "There are no limitations for access.",
-                "browse_graphic": {
-                    "browse_graphic_file_description": "None",
-                    "browse_graphic_file_name": "None",
-                    "browse_graphic_file_type": "None"
-                },
-                "citation": {
-                    "citation_information": {
-                        "geospatial_data_presentation_form": "remote-sensing image",
-                        "originator": "USDA-FSA-APFO Aerial Photography Field Office",
-                        "publication_date": "20131220",
-                        "publication_information": {
-                            "publication_place": "Salt Lake City, Utah",
-                            "publisher": "USDA-FSA-APFO Aerial Photography Field Office"
-                        },
-                        "title": "NAIP Digital Ortho Photo Image"
-                    }
-                },
-                "description": {
-                    "abstract": "This data set contains imagery from the National Agriculture Imagery Program (NAIP).  The NAIP program is administered by USDA FSA and has been established to support two main FSA strategic goals centered on agricultural production. These are, increase stewardship of America's natural resources while enhancing the environment, and to ensure commodities are procured and distributed effectively and efficiently to increase food security.  The NAIP program supports these goals by acquiring and providing ortho imagery that has been collected during the agricultural growing season in the U.S. The NAIP ortho imagery is tailored to meet FSA requirements and is a fundamental tool used to support FSA farm and conservation programs.  Ortho imagery provides an effective, intuitive means of communication about farm program administration between FSA and stakeholders.   New technology and innovation is identified by fostering and maintaining a relationship with vendors and government partners, and by keeping pace with the broader geospatial community.  As a result of these efforts the NAIP program This data set contains imagery from the National Agriculture Imagery Program (NAIP).  The NAIP program is administered by USDA FSA and has been established to support two main FSA strategic goals centered on agricultural production. These are, increase stewardship of America's natural resources while enhancing the environment, and to ensure commodities are procured and distributed effectively and efficiently to increase food security.  The NAIP program supports these goals by acquiring and providing ortho imagery that has been collected during the agricultural growing season in the U.S. The NAIP ortho imagery is tailored to meet FSA requirements and is a fundamental tool used to support FSA farm and conservation programs.  Ortho imagery provides an effective, intuitive means of communication about farm program administration between FSA and stakeholders.   New technology and innovation is identified by fostering and maintaining a relationship with vendors and government partners, and by keeping pace with the broader geospatial community.  As a result of these efforts the NAIP program provides three main products Compressed County Mosaics (CCM), and Seamline shape files The Contract specifications for NAIP imagery have changed over time reflecting agency requirements and improving technologies.  These changes include image resolution, horizontal accuracy, coverage area, and number of bands. In general, flying seasons are established by FSA and are targeted for peak crop growing conditions.  The NAIP acquisition cycle is based on a minimum 3 year refresh of base ortho imagery.  The tiling format of the NAIP imagery is based on a 3.75' x 3.75' quarter quadrangle with a 300 pixel buffer on all four sides.  NAIP quarter quads are formatted to the UTM coordinate system using the North American Datum of 1983. NAIP imagery may contain as much as 10% cloud cover per tile.",
-                    "purpose": "NAIP imagery is available for distribution within 60 days of the end of a flying season and is intended to provide current information of agricultural conditions in support of USDA farm programs. For USDA Farm Service Agency, the 1 meter and 1/2 meter GSD product provides an ortho image base for Common Land Unit boundaries and other data sets.  The 1 meter and 1/2 meter NAIP imagery is generally acquired in projects covering full states in cooperation with state government and other federal agencies that use the imagery for a variety of purposes including land use planning and natural resource assessment.  The NAIP is also used  for disaster response.  While suitable for a variety of uses, prior to 2007 the 2 meter GSD NAIP imagery was primarily intended to assess \"crop condition and compliance\" to USDA farm program conditions. The 2 meter imagery was generally acquired only for agricultural areas within state projects."
-                },
-                "keywords": {
-                    "place": {
-                        "place_keyword": "STAPLETON",
-                        "place_keyword_thesaurus": "Geographic Names Information System"
-                    },
-                    "theme": {
-                        "theme_keyword": "Compliance",
-                        "theme_keyword_thesaurus": "None"
-                    }
-                },
-                "native_data_set_environment": "",
-                "point_of_contact": {
-                    "contact_information": {
-                        "contact_address": {
-                            "address": "2222 West 2300 South",
-                            "address_type": "mailing and physical address",
-                            "city": "Salt Lake City",
-                            "country": "USA",
-                            "postal_code": "84119-2020",
-                            "state_or_province": "Utah"
-                        },
-                        "contact_electronic_mail_address": "apfo.sales@slc.usda.gov",
-                        "contact_facsimile_telephone": "801-956-3653",
-                        "contact_organization_primary": {
-                            "contact_organization": "Aerial Photography Field Office (APFO)"
-                        },
-                        "contact_voice_telephone": "801-844-2922"
-                    }
-                },
-                "spatial_domain": {
-                    "bounding_coordinates": {
-                        "east_bounding_coordinate": "-87.8125",
-                        "north_bounding_coordinate": "30.6875",
-                        "south_bounding_coordinate": "30.6250",
-                        "west_bounding_coordinate": "-87.8750"
-                    }
-                },
-                "status": {
-                    "maintenance_and_update_frequency": "Irregular",
-                    "progress": "Complete"
-                },
-                "time_period_of_content": {
-                    "currentness_reference": "Ground Condition",
-                    "time_period_information": {
-                        "single_date/time": {
-                            "calendar_date": "20130805"
-                        }
-                    }
-                },
-                "use_constraints": "None.  The USDA-FSA Aerial Photography Field office asks to be credited in derived products."
-            },
-            "metadata_reference_information": {
-                "metadata_contact": {
-                    "contact_information": {
-                        "contact_address": {
-                            "address": "2222 West 2300 South",
-                            "address_type": "mailing and physical address",
-                            "city": "Salt Lake City",
-                            "country": "USA",
-                            "postal_code": "84119-2020",
-                            "state_or_province": "Utah"
-                        },
-                        "contact_organization_primary": {
-                            "contact_organization": "USDA-FSA-APFO Aerial Photography Field Office"
-                        },
-                        "contact_voice_telephone": "801-844-2922"
-                    }
-                },
-                "metadata_date": "20131220",
-                "metadata_standard_name": "Content Standard for Digital Geospatial Metadata",
-                "metadata_standard_version": "FGDC-STD-001-1998"
-            },
-            "spatial_data_organization_information": {
-                "direct_spatial_reference_method": "Raster",
-                "indirect_spatial_reference": "Baldwin County, AL",
-                "raster_object_information": {
-                    "column_count": "1",
-                    "raster_object_type": "Pixel",
-                    "row_count": "1"
-                }
-            },
-            "spatial_reference_information": {
-                "horizontal_coordinate_system_definition": {
-                    "geodetic_model": {
-                        "denominator_of_flattening_ratio": "298.257",
-                        "ellipsoid_name": "Geodetic Reference System 80 (GRS 80)",
-                        "horizontal_datum_name": "North American Datum of 1983",
-                        "semi-major_axis": "6378137"
-                    },
-                    "planar": {
-                        "grid_coordinate_system": {
-                            "grid_coordinate_system_name": "Universal Transverse Mercator",
-                            "universal_transverse_mercator": {
-                                "transverse_mercator": {
-                                    "false_easting": "500000",
-                                    "false_northing": "0.0",
-                                    "latitude_of_projection_origin": "0.0",
-                                    "longitude_of_central_meridian": "-87.0",
-                                    "scale_factor_at_central_meridian": "0.9996"
-                                },
-                                "utm_zone_number": "16"
-                            }
-                        },
-                        "planar_coordinate_information": {
-                            "coordinate_representation": {
-                                "abscissa_resolution": "1",
-                                "ordinate_resolution": "1"
-                            },
-                            "planar_coordinate_encoding_method": "row and column",
-                            "planar_distance_units": "meters"
-                        }
-                    }
-                }
-            }
-        }
+
+    },
+
+    "links": [
+        { "rel": "self", "href": "../30087/m_3008718_sw_16_1_20130805.json" },
+        { "rel": "thumb",  "href": "../30087/m_3008718_sw_16_1_20130805.jpg" },
+
+    ],
+
+    "assets": [
+    {
+      "href": "s3://aws-naip/al/2013/1m/rgb/30087/30087/m_3008718_sw_16_1_20130805-metadata.json",
+      "metadata": {
+        "filetype": "json",
+        "content": "image metadata",
+      }
+    },
+    {
+      "href": "s3://aws-naip/al/2013/1m/rgb/30087/m_3008718_sw_16_1_20130805.tif",
+      "metadata": {  
+          "product": "naip/rgb.json",
+          "format": "cog",
+          "formet": "tif",
+          "content": "Visual RGB Image"
+      }
+    },
+    {
+      "href": "s3://aws-naip/al/2013/1m/rgbir/30087/m_3008718_sw_16_1_20130805.tif",
+      "metadata": {  
+          "product": "naip/rgbir.json",
+          "formet": "tif",
+          "content": "Analytic 4-band Image"
+      }
+    }]
+
     }
+    
 }
