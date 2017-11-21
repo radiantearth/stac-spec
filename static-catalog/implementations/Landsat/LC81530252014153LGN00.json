@@ -75,17 +75,50 @@
       "product" : "http://landsat-pds.s3.amazonaws.com/L8/landsat8_product-band-1.json",
     },
     {
-      "href": "LC81530252014153LGN00_B1.TIF",
-      "product" : "http://landsat-pds.s3.amazonaws.com/L8/landsat8_product-band-1.json",
+      "href": "LC81530252014153LGN00_B2.TIF",
+      "product" : "http://landsat-pds.s3.amazonaws.com/L8/landsat8_product-band-2.json",
+    },
+    {
+      "href": "LC81530252014153LGN00_B3.TIF",
+      "product" : "http://landsat-pds.s3.amazonaws.com/L8/landsat8_product-band-3.json",
+    },
+    {
+      "href": "LC81530252014153LGN00_B4.TIF",
+      "product" : "http://landsat-pds.s3.amazonaws.com/L8/landsat8_product-band-4.json",
+    },
+    {
+      "href": "LC81530252014153LGN00_B5.TIF",
+      "product" : "http://landsat-pds.s3.amazonaws.com/L8/landsat8_product-band-5.json",
+    },
+    {
+      "href": "LC81530252014153LGN00_B6.TIF",
+      "product" : "http://landsat-pds.s3.amazonaws.com/L8/landsat8_product-band-6.json",
+    },
+    {
+      "href": "LC81530252014153LGN00_B7.TIF",
+      "product" : "http://landsat-pds.s3.amazonaws.com/L8/landsat8_product-band-7.json",
+    },
+    {
+      "href": "LC81530252014153LGN00_B8.TIF",
+      "product" : "http://landsat-pds.s3.amazonaws.com/L8/landsat8_product-band-8.json",
+    },
+    {
+      "href": "LC81530252014153LGN00_B9.TIF",
+      "product" : "http://landsat-pds.s3.amazonaws.com/L8/landsat8_product-band-9.json",
+    },
+    {
+      "href": "LC81530252014153LGN00_B10.TIF",
+      "product" : "http://landsat-pds.s3.amazonaws.com/L8/landsat8_product-band-10.json",
+    },
+    {
+      "href": "LC81530252014153LGN00_B11.TIF",
+      "product" : "http://landsat-pds.s3.amazonaws.com/L8/landsat8_product-band-11.json",
     },
     {
       "href": "LC81530252014153LGN00_MTL.txt",
-      "metadata": {
-        "filetype": "txt",
-        "content": "image metadata"
-      }
-    },
+      "product" : "http://landsat-pds.s3.amazonaws.com/L8/landsat8_product_metadata.json"
+    }
 
   ]
 
- 
+ }
