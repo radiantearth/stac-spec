@@ -1,0 +1,20 @@
+{
+	"id":"landsat8-product-band-10",    
+    "bands": [
+      {
+        "common_name": "Thermal",
+        "gsd": 100,
+        "resampled_resolution": 30,
+        "center_wavelength": 12000,
+        "effective_bandwidth": 1011,
+        "image_band_index": 1
+      }
+    ],
+    "filetype": "geotiff",
+    "ls:spacecraft_id" : "LANDSAT_8",
+    "ls:sensor_id": "OLI_TIRS",
+    "ls:elevation_source": "GLS2000",
+    "ls:origin": "Image courtesy of the U.S. Geological Survey",
+    "ls:processing_software_version": "LPGS_2.3.0",
+
+}

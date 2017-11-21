@@ -1,17 +1,91 @@
 {
+  "id": "LC81530252014153LGN00",
   "type": "Feature",
-  "id": "LC80308402843",
+  "bbox": [ 49.16354,72.27502,51.36812,75.67662
+        ],
   "geometry": {
-    "type": "Polygon",
-    "coordinates": [[[0, 0], [0, 1], [1, 1], [1, 0]]]
+    "type": "MultiPolygon",
+    "coordinates": [
+      [
+        [
+          [
+            51.33855,
+            72.27502
+          ],
+          [
+            51.36812,
+            75.70821
+          ],
+          [
+            49.16354,
+            72.39640
+          ],
+          [
+            49.19092,
+            75.67662
+          ],
+          [
+            51.33855,
+            72.27502
+          ]
+        ]
+      ]
+    ]
+  },
+ 
+  "properties": {
+    "start_datetime": "2014-06-02T2014-06-02",
+    "end_datetime": "2014-06-02T2014-06-02",
+    "provider": "LANDSAT_8",
+    "license": "PDDL-1.0",
+
+    "eo:off_nadir_angle" : -0.001,
+    "eo:cloud_cover" : 10.31,
+    "eo:sun_azimuth" : 149.01607154,
+    "eo:sun_elevation" : 59.21424700,
+    "eo:resolution" : 30,
+
+    "ls:data_type": "L1T",
+    "ls:wrs_path": 153,
+    "ls:wrs_row": 25,
+    "ls:earth_sun_distance": 1.0141560,
+    "ls:ground_control_points_verify": 114,
+    "ls:geometric_rmse_model": 7.562,
+    "ls:image_quality_tirs": 9,
+    "ls:ground_control_points_model": 313,
+    "ls:geometric_rmse_model_x": 5.96,
+    "ls:geometric_rmse_model_y": 4.654,
+    "ls:geometric_rmse_verify": 5.364,
+    "ls:image_quality_oli": 9
+
   },
 
-  "properties": {
-    "license": "PDDL-1.0",
-    "startDate": "2007-03-01T13:00:00Z",
-    "endDate": "2008-05-11T15:30:00Z",
-    "links": {
-      "metadata": "file://./landsat-node.json"
-    }
-  }
-}
+  "links": {
+    "self": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00.json",
+    "alternate": "https://landsatonaws.com/L8/153/025/LC81530252014153LGN00",
+    "source_metadata": "LC81530252014153LGN00_MTL.txt",
+    "catalog": "http://landsat-pds.s3.amazonaws.com/L8/catalog.json",
+    "thumbnail": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_thumb_large.jpg"
+  },
+
+  
+  "assets" :[
+    {
+      "href": "LC81530252014153LGN00_B1.TIF",
+      "product" : "http://landsat-pds.s3.amazonaws.com/L8/landsat8_product-band-1.json",
+    },
+    {
+      "href": "LC81530252014153LGN00_B1.TIF",
+      "product" : "http://landsat-pds.s3.amazonaws.com/L8/landsat8_product-band-1.json",
+    },
+    {
+      "href": "LC81530252014153LGN00_MTL.txt",
+      "metadata": {
+        "filetype": "txt",
+        "content": "image metadata"
+      }
+    },
+
+  ]
+
+ 

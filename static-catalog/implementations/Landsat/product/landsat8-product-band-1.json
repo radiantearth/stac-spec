@@ -1,0 +1,19 @@
+{
+	"id":"landsat8-product-band-1",    
+    "bands": [
+      {
+        "common_name": "Ultra Blue",
+        "gsd": 30,
+        "center_wavelength": 442.96,
+        "effective_bandwidth": 15.98,
+        "image_band_index": 1
+      }
+    ],
+    "filetype": "geotiff",
+    "ls:spacecraft_id" : "LANDSAT_8",
+    "ls:sensor_id": "OLI_TIRS",
+    "ls:elevation_source": "GLS2000",
+    "ls:origin": "Image courtesy of the U.S. Geological Survey",
+    "ls:processing_software_version": "LPGS_2.3.0",
+
+}
