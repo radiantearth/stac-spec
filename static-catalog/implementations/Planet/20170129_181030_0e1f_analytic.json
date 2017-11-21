@@ -23,7 +23,7 @@
     "provider": "Planet",
     "license": "CC-BY-SA",
     "product": "http://planet.com/static-catalog/production/sats/2k-analytic.json",
-    "eo:cloud_cover": 0.13,
+    "eo:cloud_cover": 13,
     "eo:epsg_code": 32610,
     "eo:resolution": 4,
     "eo:sun_azimuth": 144.4,
@@ -42,11 +42,11 @@
     "pl:updated": "2017-05-09T03:33:56Z",
     "pl:usable_data": 0
   },
-    "links": {
+  "links": {
     "self": "http://planet.com/static-catalog/PSScene4Band/items/2017/01/29/20170129_181030_0e1f.json",
     "thumbnail": "http://planet.com/static-catalog/PSScene4Band/items/2017/01/29/20170129_181030_0e1f.jpg",
     "acquisition": "http://api.planet.com/data/v1/strips/388565.json",
-    "catalog": "http://planet.com/static-catalog/PSScene4Band/catalog.json"
+    "catalog": "http://planet.com/static-catalog/PSScene4Band/catalog.json",
   },
   "assets": [
     {"metadata":"assets.analytic_xml:download"},
