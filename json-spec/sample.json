@@ -23,8 +23,8 @@
     "license": "CC-BY-4.0"
   },
   "links": [
-    { "rel": "self", "href": "http://cool-sat.com/path/to/self.json"},
-    { "rel": "thumbnail", "href":"relative-path/to/thumbnail.png"}
+    { "rel": "self", "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json"},
+    { "rel": "thumbnail", "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png"}
   ],
   "assets": [
   {
