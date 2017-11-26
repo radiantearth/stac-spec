@@ -1,6 +1,6 @@
 {
   "type": "Feature",
-  "id" : "Provider-ID-of-Item",
+  "id" : "CS3-20160503_132130_04",
   "bbox": [ -122.59750209, 37.48803556,
           -122.2880486, 37.613537207
         ],
@@ -17,16 +17,20 @@
         ]
   },
   "properties": {
-    "start_date": "2015-05-03T13:00:00.000Z",
-    "end_date": "2015-05-03T13:00:00.000Z",
-    "provider": "http://www.digitalglobe.com",
+    "start": "2016-05-03T13:21:30.040Z",
+    "end": "2016-05-03T13:21:30.410Z",
+    "provider": "http://www.cool-sat.com",
     "license": "CC-BY-4.0"
   },
-  "assets": {
-    "analytic": "path/to/analytic.tif"  
-    },
-  "links": {
-    "self": "http://full-url.json",
-    "thumbnail": "path/to/thumbnail.png"
+  "links": [
+    { "rel": "self", "href": "http://cool-sat.com/path/to/self.json"},
+    { "rel": "thumbnail", "href":"relative-path/to/thumbnail.png"}
+  ],
+  "assets": [
+  {
+    "href": "relative-path/to/analytic.tif",
+    "name": "4-Band Analytic"
   }
+  ]
+
 }
