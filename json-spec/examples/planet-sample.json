@@ -4,6 +4,12 @@
     { "rel":"thumbnail", "href": "https://api.planet.com/data/v1/item-types/PSScene4Band/items/20171110_121030_1013/thumb"},
     { "rel":"full-assets", "href": "https://api.planet.com/data/v1/item-types/PSScene4Band/items/20171110_121030_1013/assets/"}
   ],
+  "bbox": [
+      -38.9237469532665,
+      -13.169235186077524,
+      -38.671635567195025,
+      -13.048292073058748
+    ],
   "geometry": {
     "coordinates": [
       [

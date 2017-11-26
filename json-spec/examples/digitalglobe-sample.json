@@ -1,6 +1,12 @@
 {
   "id": "103001004B316600_P002_MUL",
   "type": "Feature",
+  "bbox": [
+      -105.161151214,
+      39.0436821016,
+      -104.947574355,
+      39.1750024943
+    ],
   "geometry": {
     "type": "MultiPolygon",
     "coordinates": [
