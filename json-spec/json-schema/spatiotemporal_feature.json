@@ -14,9 +14,7 @@
         "properties": {
           "required": [
             "start",
-            "end",
-            "provider",
-            "license"
+            "end"
           ]
         }
       },
@@ -72,8 +70,7 @@
                         "pattern": "^thumbnail$"
                       },
                       "href": {
-                        "type": "string",
-                        "format": "uri"
+                        "type": "string"
                       }
                     }
                   }
@@ -137,25 +134,19 @@
           "type": "string"
         },
         "href": {
-          "type": "string",
-          "format": "uri"
+          "type": "string"
         }
       }
     },
     "asset": {
       "type": "object",
-      "required": ["links"],
+      "required": ["href"],
       "properties": {
-        "name": {
+        "href": {
           "type": "string"
         },
-      "links": {
-        "title": " links",
-        "description": "Links to item relations, including thumbnail",
-        "type": "array",
-        "items": { "$ref": "#/definitions/link" },
-        "minItems": 1
-                
+        "name": {
+          "type": "string"
         }
       }
     },
