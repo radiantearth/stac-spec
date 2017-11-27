@@ -93,7 +93,7 @@
         "download"
       ],
       "md5_digest": null,
-      "status": "inactive",
+      "status": "inactive"
     },
     {
       "href": "https://api.planet.com/data/v1/assets/NTY2VuZTReyJpIjogIjIwMTcxMTEwXzEyMTAxMF8xMDEzIiQiOiAiaXRlbS10ewgImMiOiAiUFbHl0aWMiLCAiY3XBlIn0",
@@ -104,7 +104,7 @@
         "download"
       ],
       "md5_digest": null,
-      "status": "activating",
+      "status": "activating"
     },
     {
       "href": "https://api.planet.com/data/v1/assets/NTY2VuZTReyJpIzEyMTAxMF8xMDEzIiQiOiAiaXRlbTcxMTEwXAiUFbHl0S10ewgImMiOijogIjIwMaWMiLCAiY3XBlIn0",
@@ -117,7 +117,7 @@
       "expires_at": "2017-11-26T06:41:41.467106",
       "location": "https://api.planet.com/data/v1/download?token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOd01QTVVnMVQzaGFWTzBNdFBtb0pQamiJ6K3haZmsrNVZ4ZG415WeHExUEh6VkpNSFRGNVZUMVRpQ1pKcmdhcU5HeTBOR1JVS3dmWWFpZ255eExDTnRWUT09IiwiaXRlbV90eXBlX2lkIjoiUFNTY2VuZTRCYW5kIiwidG9rZW5fdHlwZSI6InR5cGVkLWl0ZW0iLCJleHAiOjE1MTE2Nzg1MDEsIml0ZW1faWQiOiIyMDE3MTEyMl8xMjExMjJfMTAzOSIsImFzc2V0X3R5cGUiOiJhbmFseXRpY19kbiJ9.HJAskK7QIeBIT_7fCumZ73vpECjN9J6rdAaKd9QBu2Z8gVixK2V_tIxg2mXBqJGJQxuVmAJw-SYoYeGmevWilA",
       "md5_digest": "d860370a9468e39f97b2044bc5fd4bfe",
-      "status": "active",
+      "status": "active"
     }
 
   ]
