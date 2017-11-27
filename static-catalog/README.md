@@ -101,13 +101,16 @@ additional metadata fields that contains common metadata fields that do not make
 The links section must include a `self` url, and at least one `item` or `child`. Non-root catalogs should include
 a link to their `parent`.
 
-
+**TODO: Define Catalog Schema for validation, and create Catalog examples**.
 
 ### Item
 
 An `Item` represents a single record in the catalog, and it must have a geometry, start and end datetimes,
 a thumbnail, links to its relationships and links to its 'assets' - these must represent data pertaining to a location
-for some time. `Item`s can also link to other related `Item`s; it's possible to have an `Item` which
+for some time. They are fully defined in the [JSON spec](../json-spec/json-spec.md), see the json-spec folder's
+[README](../json-spec/README.md) for links to samples and validation code.
+
+`Item`s can also link to other related `Item`s; it's possible to have an `Item` which
 only links to other `Item`s. `Item`s are represented by GeoJSON elements,
 and so represent [SimpleFeature](https://en.wikipedia.org/wiki/Simple_Features)s (specifically
 Polygons and MultiPolygons). They are also tagged with temporal component, and so fix
@@ -121,7 +124,7 @@ define a `thumb` link, as well as a `self` link. It is recommended that the self
 absolute URL, so that copies of catalogs that are downloaded continue to link to their source
 (though a later version of the spec should include a rel link to indicate that an Item is
 a copy of an online location). Items should link back to their root catalog, but that is
-not required, and an Item could theoretically have multiple parents.
+not required, and an `Item` could theoretically have multiple parents.
 
 `Item`s are defined very flexible, and a naive catalog crawler would enable search of every single
 `Item` defined in a catalog. Some domains may choose to use `rel` links to describe more complex
@@ -151,8 +154,8 @@ defined on the fly by processing engines.
 
 To continue with the NAIP example, an `Item` could represent one "scene", with two assets
 that live in the [AWS public dataset bucket](https://aws.amazon.com/public-datasets/naip/): an
-RGB [COG](http://www.cogeo.org/) and an RGBIR GeoTiff.
-In this example, one of the assets is linked, another is embedded:
+RGB [COG](http://www.cogeo.org/) and an RGBIR GeoTiff. 
+
 
 ```json
     "id": "30087/m_3008718_sw_16_1_20130805",
@@ -187,16 +190,19 @@ In this example, one of the assets is linked, another is embedded:
     "links": [
         { "rel": "self", "href": "30087/m_3008718_sw_16_1_20130805.json" },
         { "rel": "catalog", "href": "naip-root.json"}
-        { "rel": "asset", "href": "30087/m_3008718_sw_16_1_20130805/rgb.json" },
-        { "rel": "asset", "href": "s3://aws-naip/al/2013/1m/rgbir/30087/m_3008718_sw_16_1_20130805.tif" }
     ],
 
     "properties": {
         "startDate": "2013-08-05T00:00:00+00:00",
         "endDate": "2013-08-06T00:00:00+00:00",
-        "sourceMetadata": { ... }
+        ...
     }
 }
+```
+
+There are additional examples, fully 
+validated, in the [examples](examples/) folder, as well as in the [json spec examples](../json-spec/examples/)
+folder.
 
 ### Static Catalog Flexibility
 
@@ -217,20 +223,10 @@ This section will link to those.
 
 
 
-### Schema Validation [TODO - fix up]
+### Schema Validation 
 
-#### Initialization
-
-```bash
-npm install
-```
-
-#### Validation
-
-```bash
-node_modules/.bin/ajv test -s asset.json -r geojson.json -d landsat-scene.json --valid --verbose
-node_modules/.bin/ajv test -s catalog.json -r asset.json -r geojson.json -d node.json --valid --verbose
-```
+**TODO:** This needs to be implemented. The stac-item.json can be reused from the core json, but this
+should also include a `Catalog` schema.
 
 
 
@@ -262,22 +258,6 @@ evolve to be requirements, or at least documented specification options and exte
 
 
 
-```
-
-### Assets and Links
-
-
-
-Example:
-
-```json
-{ "rel": "asset",
-  "href": "s3://aws-naip/al/2013/1m/rgb/30087/m_3008718_sw_16_1_20130805.tif",
-  "product": "naip/rgb.json",
-  "format": "cog".
-  ...
-}
-```
 
 
 
