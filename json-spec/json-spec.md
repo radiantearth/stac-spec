@@ -64,7 +64,8 @@ composites over several hours, and mosaics can use data from months or even year
 attribute on links to describe relationships. Implementors are advised to be liberal with the links section, to describe things like
 the catalog an item is in, related items, parent or child items (modeled in different ways, like an 'acquisition' or derived data).
 The 'self' link is required, to represent the location that the `Item` can be found online. This is particularly useful when in a 
-download package that includes `Item` metadata, so that the downstream user can know where the data has come from.
+download package that includes `Item` metadata, so that the downstream user can know where the data has come from. Relative and
+absolute links are both allowed in the 'href' field.
 
 **thumbnail** is a special required `link` that is a downsampled image of the core asset, for direct display online in a web page or
 interactive search application. Even assets that are less easily translated in to a visual image should provide some visual representation, 
@@ -75,6 +76,7 @@ as any 'sidecar' files that are related and help a client make sense of the data
 JSON, etc), unusable data masks, satellite ephemeris data, etc. Some assets (like Landsat data) are represented by multiple files - 
 all should be linked to. It is generally recommended that different processing levels or formats are not exhaustively listed in an
 `Item`, but instead are represented by related `Items` that are linked to, but the best practices around this are still emerging.
+Relative and absolute links are both allowed in the 'href' field.
 
 **provider** is an optional field that lists the name of the provider. This field will likely evolve a bit to be useful for 
 querying and filtering, but for now is just the name.
@@ -89,6 +91,12 @@ Currently the JSON schema for links does not require a URI formatting, to give t
 links. In general Catalog API's should aim for absolute links whenever possible. But Static Catalogs are potentially more
 portable if they can be implemented with relative links, so that every link doesn't need to be rewritten when the data
 is copied.
+
+## Examples
+
+See the [sample.json](sample.json) for a minimal example, as well as [sample-full.json](sample-full.json) for a more fleshed
+example that contains a number of current best practices. There are also a few more real world inspired samples in the 
+[examples/](examples/) folder. 
 
 ## Schema Validation
 
