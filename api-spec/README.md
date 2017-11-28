@@ -13,3 +13,7 @@ The easiest way to explore the specification in a more human readable way is to 
 This will display the documentation and examples for the specification. You can also generate code for
 clients and servers in a variety of languages from the editor as well, so you can get a sense of how it 
 will work.
+
+You can also use the yaml spec for code generation in a variety of tools.
+
+Once OpenAPI 3.0 has more tooling support this spec will be migrated to that version of OpenAPI.
