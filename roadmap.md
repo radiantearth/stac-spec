@@ -33,6 +33,15 @@ probably benefit from being pulled out to a standard instead of just in the GeoT
 complicated to fully implement (though a subset could be good). Another source of inspiration is 
 [Backand queries](http://backand-docs.readthedocs.io/en/latest/apidocs/nosql_query_language/index.html).
 
+### Catalog Definition
+
+The JSON that defines a 'Catalog' is not really specified right now. There needs to be thought on the required
+and optional fields. And some decisions on the philosophy of what type of metadata should live in a Catalog
+resource, as well as fleshing out more linked catalogs vs root catalogs, and things like inheritance of metadata. But
+it is potentially a good place to put data that applies to all the Items in the catalog, things like in depth
+contact information and license data. The individual items could then just reference the catalog they come 
+from instead of repeating each field.
+
 ### Domain and Vendor profiles
 
 Ideally there is a way for domains (like Earth Observation / satellite imagery) or specific vendors to publish
@@ -89,7 +98,7 @@ to use links generously, which should easily populate a good HTML page. And a ni
 thumbnail and potentially even a [cloud optimized geotiff](http://cogeo.org) asset with a dynamic tile
 server to render a zoomable map on every STAC Item webpage. This may just be a set of best practices 
 instead of hard requirements, though it is likely worth specifying a few core things that each HTML
-page should have, and recommendations on how to format links and implement microformats.
+page should have, and recommendations on how to format links and implement microformats. [Issue #32](https://github.com/radiantearth/stac-spec/issues/32)
 
 ### Granular components
 
