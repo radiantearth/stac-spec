@@ -1,5 +1,5 @@
 
-## STAC Roadmap
+# STAC Roadmap
 
 This document lays out a rough prioritization for the evolution of the STAC specification and related extensions.
 A small number initial priorities will likely be reflected in the core specs, but in the spirit of making small
@@ -103,6 +103,21 @@ thumbnail and potentially even a [cloud optimized geotiff](http://cogeo.org) ass
 server to render a zoomable map on every STAC Item webpage. This may just be a set of best practices 
 instead of hard requirements, though it is likely worth specifying a few core things that each HTML
 page should have, and recommendations on how to format links and implement microformats. [Issue #32](https://github.com/radiantearth/stac-spec/issues/32)
+
+### Align with microformats / linked data
+
+Following on from HTML versions of STAC we aim to align with the best practices of the 'linked data' community.
+This will take more research on what exactly we should do. But likely candidates include defining [JSON-LD](https://json-ld.org/)
+versions of the spec, leveraging http://schema.org or defining a similar canonical location for geospatial schemas,
+and defining microformats to go in the html versions.
+
+### Additional Profiles
+
+This item will hopefully continously happen, as real world implementations come online. But we should evolve the
+schemas people define to become best practices and defined extensions. We may also need some 'type'
+definitions to help clients more easily recognize known schemas. Candidates for additional profiles include
+derived data (like NDVI), including even specific types of derived data that might add more information, mosiacs,
+DEMs / DSMs, LiDAR, SAR, hyperspectral imagery, and many more.
 
 ### Granular components
 
