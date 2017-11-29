@@ -22,6 +22,7 @@ describe more of what they're doing. Another idea is to require a link to a 'pro
 implement, which would provide the needed fields. This would increase the burden on the client, to follow or cache
 the definitions, but would also decrease the repetition of the same fields over and over again. There is additional
 discussion on this topic in the [static catalog recommendations](static-catalog/static-recommendations.md#asset-definition).
+Part of this is also tracked in [Issue 23](https://github.com/radiantearth/stac-spec/issues/23)
 
 ### Querying and Filtering
 
@@ -31,7 +32,8 @@ in line with [WFS 3.0](https://github.com/opengeospatial/WFS_FES), but they have
 Another idea is to use [ECQL](http://docs.geoserver.org/latest/en/user/filter/ecql_reference.html) - but it could
 probably benefit from being pulled out to a standard instead of just in the GeoTools documentation, and it is pretty
 complicated to fully implement (though a subset could be good). Another source of inspiration is 
-[Backand queries](http://backand-docs.readthedocs.io/en/latest/apidocs/nosql_query_language/index.html).
+[Backand queries](http://backand-docs.readthedocs.io/en/latest/apidocs/nosql_query_language/index.html). 
+[Issue #31](https://github.com/radiantearth/stac-spec/issues/31).
 
 ### Catalog Definition
 
@@ -52,6 +54,8 @@ response against several schemas. This could be some additional mechanics in Cat
 not make a basic implementation too complicated), and also ways for static catalogs to link to schemas. It is
 likely worth exploring things like linked data, http://schema.org and JSON-LD to see if they can be used to
 leverage web best practices to share core schema definitions across different STAC implementations.
+
+The schema definition mechanism part of this is defined in [Issue 30](https://github.com/radiantearth/stac-spec/issues/30).
 
 ### Earth Observation Profile
 
