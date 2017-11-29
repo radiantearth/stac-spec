@@ -1,9 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-06/schema#",
-  "id": "spatiotemporal_feature.json#",
-  "title": "STAC static catalog Feature",
+  "id": "stac-item.json#",
+  "title": "STAC Item",
   "type": "object",
-  "description": "This object represents the metadata associated with a feature.",
+  "description": "This object represents the metadata for an item in a SpatioTemporal Asset Catalog.",
   "additionalProperties": true,
   "allOf": [
     {
