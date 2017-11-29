@@ -216,14 +216,14 @@ definitions:
   ItemCollection:
     type: object
     required:
-      - items
+      - features
       - type
     properties:
       type:
         type: string
         enum:
-          - ItemCollection
-      items:
+          - FeatureCollection
+      features:
         type: array
         items:
           $ref: '#/definitions/Item'
