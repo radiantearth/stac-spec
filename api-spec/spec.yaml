@@ -141,7 +141,7 @@ parameters:
   time:
     name: time
     type: array
-    description: An array of date-time strings that adheres to RFC3339 (for example 1985-04-12T23:20:50.52Z). One date-time in the array is the time to match. Two date-times represent a range. Any additional items in the array will be ignored. 
+    description: An array of date-time strings that adheres to RFC3339 (for example 1985-04-12T23:20:50.52Z). One date-time in the array is the time to match. Two date-times represent a range. Any additional items in the array will be ignored.
     items:
       type: string
     in: query
@@ -255,7 +255,7 @@ definitions:
         type: string
         description: The GeoJSON type
         enum:
-          - Item
+          - Feature
       properties:
         $ref: '#/definitions/ItemProperties'
       links:
@@ -297,13 +297,13 @@ definitions:
   ItemProperties:
     type: object
     required:
-      - start_date
-      - end_date
+      - start
+      - end
     description: provides the core metatdata fields plus extensions
     properties:
-      start_date:
+      start:
         $ref: '#/definitions/Time'
-      end_date:
+      end:
         $ref: '#/definitions/Time'
       provider:
         type: string
