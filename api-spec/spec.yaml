@@ -297,13 +297,13 @@ definitions:
   ItemProperties:
     type: object
     required:
-      - start_date
-      - end_date
+      - start
+      - end
     description: provides the core metatdata fields plus extensions
     properties:
-      start_date:
+      start:
         $ref: '#/definitions/Time'
-      end_date:
+      end:
         $ref: '#/definitions/Time'
       provider:
         type: string
