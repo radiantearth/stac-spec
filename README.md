@@ -36,7 +36,8 @@ other tools.
 **[api-spec/](api-spec/)** defines a dynamic API, specified as a [yaml](api-spec/spec.yaml) file in [OpenAPI](http://openapis.org) 
 2.0 (swagger). 
 
-**Additional documents** include the current [roadmap](roadmap.md), a [list of implementations](implementations.md), 
+**Additional documents** include the current [roadmap](roadmap.md) and a complementary [how to help](how-to-help.md)
+document, a [list of implementations](implementations.md), 
 and a discussion of the collaboration [principles](principles.md) and specification approach.
 
 ## Design Overview
