@@ -63,28 +63,28 @@ well as a nice command line tool.
 
 ### Tier 2
 
-**API -> Static catalog tool** Building on top of core client and server tooling in tier one can introduce some cool value add tools.
+**API -> Static catalog tool** - Building on top of core client and server tooling in tier one can introduce some cool value add tools.
 A client library that crawls a STAC API and can create a static STAC can be used as a 'backup' tool for an API, making a copy
 of the catalog that can't go down (ideally this would extend the spec to have a link 'rel' type that refers back to the source
 data as a [spec extension](https://github.com/radiantearth/stac-spec/blob/dev/roadmap.md#provenance--duplication-tracking). 
 
-**Static catalog -> API tool** The flip of the previous tool,  a STAC API could crawl a static catalog and serve as a 
+**Static catalog -> API tool** - The flip of the previous tool,  a STAC API could crawl a static catalog and serve as a 
 dynamic query service on top of the core.
 
-**Javascript Search Tools** A javascript library that can search a STAC API and enable online querying of results. Hopefully
+**Javascript Search Tools** - A javascript library that can search a STAC API and enable online querying of results. Hopefully
 a core library, and then a full online implementation integrated with OpenLayers/Leaflet. Cool extensions would be integration
-with a tiled server to display COG's (or javascript reading COG's directly), and the ability to read static catalogs (potentially
-storing data in local storage). 
+with a tiled server to display COG's (or javascript reading COG's directly), and the ability to read static catalogs 
+(potentially storing data in local storage). 
 
-**HTML STAC Implementations** Though little work has been done yet the HTML versions of STAC are super important so the catalogs
+**HTML STAC Implementations** - Though little work has been done yet the HTML versions of STAC are super important so the catalogs
 are useful to people, not just machines. Ideally the static catalogs all have accompanying html files with interactive maps that
 lets you zoom in to cloud-optimized geotiff's (or potentially even with html files generated on the file with javascript). And
 there are also STAC API's that have html as an output in addition to json. Aiming for at least 5 html implementations.
 
-**GDAL Implementation** As the most used geospatial library it is important that GDAL be a tool that can query STAC catalogs,
+**GDAL Implementation** - As the most used geospatial library it is important that GDAL be a tool that can query STAC catalogs,
 both dynamic and static ones. Ideally GDAL could also create static catalogs as an output format. 
 
-**STAC Profile Implementations** It is important that implementations start to create extensions to the core STAC fields,
+**STAC Profile Implementations** - It is important that implementations start to create extensions to the core STAC fields,
 for things like earth observation metadata fields, derived data, mosaics, point clouds, DEM/DSM, etc. 
 
 ## Tier 3
