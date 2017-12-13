@@ -10,7 +10,8 @@ Soon the top priority items in this document will be migrated to the [issue trac
 and scheduled against 'releases'. Also included here are some more future design discussions. Nothing listed her is set in stone, and
 the overall priority will likely shift as real world implementations come along and need additional functionality. The main
 way the items on this roadmap will evolve and become part of the spec will be starting as software implementations with 
-spec changes discusses on a pull request, merging once there is community consensus.
+spec changes discusses on a pull request, merging once there is community consensus. See also the 
+[how to help](how-to-help.md) document for the implementation plan that complements this roadmap.
 
 ## Roadmap
 
