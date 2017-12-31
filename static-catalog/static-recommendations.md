@@ -176,7 +176,7 @@ This could also extend to product level metadata:
     "l8:processing_software_version": "LPGS_2.3.0",
 
 }
-
+```
 
 ### Rel Links
 
@@ -191,19 +191,4 @@ __TODO__: Enumerate potential "rel" values.
 The properties of an element that can apply to the child links *will* apply,
 unless overridden by the child element.
 
-
-### Embedding of linked elements
-
-Any link inside of an element to a JSON file of another element may
-have the JSON directly embedded, either partially or fully, into the link object's body.
-Embedding is optional and there  may be no embedded data,
-a partial set of data for an asset or linked node, or fully
-embed all information contained in the element that is linked to.
-
-
-### URI's
-
-URIs may be HTTP, but can also be URIs from other providers (e.g. S3). There will be metadata from
-the `Catalog`, `Item` or `Asset` that will describe the provider,
-to allow for details on how to connect to that URI.
 
