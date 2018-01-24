@@ -213,6 +213,16 @@ definitions:
       hreflang:
         type: string
         example: en
+  asset:
+    type: object
+    required:
+      - href
+    properties:
+      href:
+        type: string
+      name:
+        type: string
+        example: prev
   ItemCollection:
     type: object
     required:
@@ -259,7 +269,13 @@ definitions:
       properties:
         $ref: '#/definitions/ItemProperties'
       links:
-        $ref: '#/definitions/ItemLinks'
+        type: array
+        items:
+          $ref: '#/definitions/link'
+      assets:
+        type: array
+        items:
+          $ref: '#/definitions/asset'
     example:
       type: Feature
       id: CS3-20160503_132130_04
@@ -313,16 +329,6 @@ definitions:
         description: Data license name based on SPDX License List
     additionalProperties:
       type: object
-  ItemLinks:
-    type: object
-    required:
-      - self
-      - thumbnail
-    properties:
-      self:
-        type: string
-      thumbnail:
-        type: string
   ItemCollectionLinks:
     type: object
     properties:
