@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   title: An API for SpatioTemporal Asset Catalogs
   version: 0.0.4
-  description: 
+  description:
     The SpatioTemporal Asset Catalog specification aims to standardize the way
     geospatial assets are exposed online and queried.  A 'spatiotemporal asset'
     is any file that represents information about the earth captured in a
@@ -47,7 +47,7 @@ paths:
         - application/json
       responses:
         '200':
-          description: 
+          description:
             The formal documentation of this API according to the OpenAPI
             specification, version 3.0. I.e., this document.
           schema:
@@ -59,7 +59,7 @@ paths:
   /items:
     get:
       summary: Retrieve STAC compliant Items matching filters
-      description: 
+      description:
         Returns a pageable GeoJSON feature collection of the Items matching the
         query
       operationId: getItems
@@ -119,7 +119,11 @@ parameters:
   time:
     name: time
     type: array
-    description: An array of date-time strings that adheres to RFC3339 (for example 1985-04-12T23:20:50.52Z). One date-time in the array is the time to match. Two date-times represent a range. Any additional items in the array will be ignored.
+    description:
+      An array of date-time strings that adheres to RFC3339 (for example
+      1985-04-12T23:20:50.52Z). One date-time in the array is the time to match.
+      Two date-times represent a range. Any additional items in the array will
+      be ignored.
     items:
       type: string
     in: query
@@ -127,9 +131,10 @@ parameters:
   bbox:
     name: bbox
     in: query
-    description: 
+    description:
       Only items that have a geometry that intersects the bounding box are
-      selected. The bounding box is provided as four numbers, in longitude & latitude West, South, East, North
+      selected. The bounding box is provided as four numbers, in longitude &
+      latitude North, West, South, East
     type: array
     items:
       type: number
@@ -142,7 +147,9 @@ parameters:
     name: filter
     in: query
     type: string
-    description: A placeholder for a future filter implementation. The queryl language is still to be determined.
+    description:
+      A placeholder for a future filter implementation. The queryl language is
+      still to be determined.
   id:
     name: id
     in: path
@@ -280,22 +287,47 @@ definitions:
         license: CC-BY-4.0
       links:
         - rel: self
-          href: 'http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json'
+          href:
+            http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json
         - rel: thumbnail
           href: 'http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png'
       assets:
         - href: relative-path/to/analytic.tif
           name: 4-Band Analytic
+  ItemProperties:
+    type: object
+    required:
+      - start
+      - end
+    description: provides the core metatdata fields plus extensions
+    properties:
+      start:
+        $ref: '#/definitions/Time'
+      end:
+        $ref: '#/definitions/Time'
+      provider:
+        type: string
+        description: Information about the provider
+      license:
+        type: string
+        description: Data license name based on SPDX License List
+    additionalProperties:
+      type: object
   ItemCollectionLinks:
     type: object
     properties:
       next:
         type: string
-        format: url
-        description: 
+        description:
           A URL to obtain the next paginated data set. If not present, the
           client should utilize the `nextPageToken`.
-        example: http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
+        example:
+          http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
+  Time:
+    type: string
+    description:
+      A single date-time string that adheres to RFC3339, for example
+      1985-04-12T23:20:50.52Z
 tags:
   - name: Capabilities
     description:
