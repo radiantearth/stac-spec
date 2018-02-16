@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   title: An API for SpatioTemporal Asset Catalogs
   version: 0.0.3
-  description: >-
+  description:
     The SpatioTemporal Asset Catalog specification aims to standardize the way
     geospatial assets are exposed online and queried.  A 'spatiotemporal asset'
     is any file that represents information about the earth captured in a
@@ -47,7 +47,7 @@ paths:
         - application/json
       responses:
         '200':
-          description: >-
+          description:
             The formal documentation of this API according to the OpenAPI
             specification, version 3.0. I.e., this document.
           schema:
@@ -59,7 +59,7 @@ paths:
   /items:
     get:
       summary: Retrieve STAC compliant Items matching filters
-      description: >-
+      description:
         Returns a pageable GeoJSON feature collection of the Items matching the
         query
       operationId: getItems
@@ -83,7 +83,7 @@ paths:
           schema:
             $ref: '#/definitions/exception'
     post:
-      summary: >-
+      summary:
         Retrieve items matching filters. The request is a string that matches
         the GET query exactly. POST is primarily to be used when the request
         length exceeds GET maximums (which is not uncommon with geospatial
@@ -104,7 +104,7 @@ paths:
           description: An error occured.
           schema:
             $ref: '#/definitions/exception'
-  '/items/{id}':
+  /items/{id}:
     get:
       summary: Retreive item by id
       operationId: getItem
@@ -141,7 +141,11 @@ parameters:
   time:
     name: time
     type: array
-    description: An array of date-time strings that adheres to RFC3339 (for example 1985-04-12T23:20:50.52Z). One date-time in the array is the time to match. Two date-times represent a range. Any additional items in the array will be ignored.
+    description:
+      An array of date-time strings that adheres to RFC3339 (for example
+      1985-04-12T23:20:50.52Z). One date-time in the array is the time to match.
+      Two date-times represent a range. Any additional items in the array will
+      be ignored.
     items:
       type: string
     in: query
@@ -149,11 +153,10 @@ parameters:
   bbox:
     name: bbox
     in: query
-    description: >-
+    description:
       Only items that have a geometry that intersects the bounding box are
-      selected. The bounding box is provided as four numbers, in longitude & latitude:
-
-      * West, South, East, North
+      selected. The bounding box is provided as four numbers, in longitude &
+      latitude North, West, South, East
     type: array
     items:
       type: number
@@ -166,7 +169,9 @@ parameters:
     name: filter
     in: query
     type: string
-    description: A placeholder for a future filter implementation. The queryl language is still to be determined.
+    description:
+      A placeholder for a future filter implementation. The queryl language is
+      still to be determined.
   id:
     name: id
     in: path
@@ -304,7 +309,8 @@ definitions:
         license: CC-BY-4.0
       links:
         - rel: self
-          href: 'http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json'
+          href:
+            http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json
         - rel: thumbnail
           href: 'http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png'
       assets:
@@ -334,192 +340,19 @@ definitions:
     properties:
       next:
         type: string
-        format: url
-        description: >-
+        description:
           A URL to obtain the next paginated data set. If not present, the
           client should utilize the `nextPageToken`.
-        example: http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
+        example:
+          http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
   Time:
     type: string
-    description: A single date-time string that adheres to RFC3339, for example 1985-04-12T23:20:50.52Z
-  StringSet:
-    type: array
-    items:
-      type: string
-  Int64Set:
-    type: array
-    items:
-      type: integer
-      format: int64
-  TimeRange:
-    description: begin and end timestamps adhering to RFC3339
-    properties:
-      begin:
-        type: string
-      end:
-        type: string
-  Int64Range:
-    description: An integer range with begin and end
-    properties:
-      begin:
-        type: integer
-        format: int64
-      end:
-        type: integer
-        format: int64
-  DoubleRange:
-    description: A double range with begin and end
-    properties:
-      begin:
-        type: number
-        format: double
-      end:
-        type: number
-        format: double
-  Doc:
-    description: Arbitrary json document
-    additionalProperties:
-      type: object
-  GeoJson:
-    description: root geojson object
-    properties:
-      type:
-        $ref: '#/definitions/ItemType'
-    required:
-      - type
-    discriminator: type
-  ItemType:
-    type: string
-    enum:
-      - Point
-      - MultiPoint
-      - LineString
-      - MultiLineString
-      - Polygon
-      - MultiPolygon
-      - GeometryCollection
-      - Item
-      - ItemCollection
-  GeometryCollection:
-    allOf:
-      - $ref: '#/definitions/GeoJson'
-      - type: object
-        properties:
-          geometries:
-            $ref: '#/definitions/GeometryCollection2D'
-        required:
-          - geometries
-  MultiPolygon:
-    allOf:
-      - $ref: '#/definitions/GeoJson'
-      - type: object
-        properties:
-          coordinates:
-            $ref: '#/definitions/MultiPolygon2D'
-        required:
-          - coordinates
-  MultiLineString:
-    allOf:
-      - $ref: '#/definitions/GeoJson'
-      - type: object
-        properties:
-          coordinates:
-            $ref: '#/definitions/MultiLineString2D'
-        required:
-          - coordinates
-  MultiPoint:
-    allOf:
-      - $ref: '#/definitions/GeoJson'
-      - type: object
-        properties:
-          coordinates:
-            $ref: '#/definitions/MultiPoint2D'
-        required:
-          - coordinates
-  Polygon:
-    allOf:
-      - $ref: '#/definitions/GeoJson'
-      - type: object
-        properties:
-          coordinates:
-            $ref: '#/definitions/Polygon2D'
-        required:
-          - coordinates
-  LineString:
-    allOf:
-      - $ref: '#/definitions/GeoJson'
-      - type: object
-        properties:
-          coordinates:
-            $ref: '#/definitions/LineString2D'
-        required:
-          - coordinates
-  Point:
-    allOf:
-      - $ref: '#/definitions/GeoJson'
-      - type: object
-        properties:
-          coordinates:
-            $ref: '#/definitions/Point2D'
-        required:
-          - coordinates
-  GeoPolygon2D:
-    description: A geojson 2d polygon
-    type: object
-    properties:
-      type:
-        description: Type of geometry
-        type: string
-        enum:
-          - Polygon
-      coordinates:
-        $ref: '#/definitions/Polygon2D'
-    required:
-      - type
-      - coordinates
-  GeometryCollection2D:
-    type: array
-    items:
-      $ref: '#/definitions/GeoJson'
-  MultiPolygon2D:
-    type: array
-    items:
-      $ref: '#/definitions/Polygon2D'
-  Polygon2D:
-    type: array
-    minItems: 1
-    items:
-      $ref: '#/definitions/LinearRing2D'
-  MultiLineString2D:
-    type: array
-    items:
-      $ref: '#/definitions/LineString2D'
-  LinearRing2D:
-    type: array
-    minItems: 4
-    items:
-      $ref: '#/definitions/Point2D'
-  LineString2D:
-    type: array
-    minItems: 2
-    items:
-      $ref: '#/definitions/Point2D'
-  MultiPoint2D:
-    type: array
-    minItems: 2
-    items:
-      $ref: '#/definitions/Point2D'
-  Point2D:
-    description: A 2d geojson point
-    type: array
-    minimum: 2
-    maximum: 2
-    items:
-      type: number
-      format: double
+    description:
+      A single date-time string that adheres to RFC3339, for example
+      1985-04-12T23:20:50.52Z
 tags:
   - name: Capabilities
-    description: >-
+    description:
       Essential characteristics of this API including information about the
       data.
   - name: Items
