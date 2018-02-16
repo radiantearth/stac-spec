@@ -82,7 +82,29 @@ paths:
           description: An error occured.
           schema:
             $ref: '#/definitions/exception'
-  '/items/{id}':
+    post:
+      summary:
+        Retrieve items matching filters. The request is a string that matches
+        the GET query exactly. POST is primarily to be used when the request
+        length exceeds GET maximums (which is not uncommon with geospatial
+        queries)
+      operationId: getItemsPost
+      tags:
+        - Items
+      produces:
+        - application/geo+json
+      responses:
+        '200':
+          description: >-
+            Returns a pageable GeoJSON feature collection of the items matching
+            the query
+          schema:
+            $ref: '#/definitions/ItemCollection'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/definitions/exception'
+  /items/{id}:
     get:
       summary: Retreive item by id
       operationId: getItem
