@@ -1,0 +1,82 @@
+{
+    "id": "m_3008718_sw_16_1_20130805",
+    "type": "Feature",
+    "bbox": [ -87.875, 30.624,
+          -87.8125, 30.6875
+        ],
+    "geometry": {
+        "coordinates": [
+            [
+                [
+                    -87.875,
+                    30.625
+                ],
+                [
+                    -87.875,
+                    30.6875
+                ],
+                [
+                    -87.8125,
+                    30.6875
+                ],
+                [
+                    -87.8125,
+                    30.625
+                ],
+                [
+                    -87.875,
+                    30.625
+                ]
+            ]
+        ],
+        "type": "Polygon"
+    },
+
+    "properties": {
+        "start": "2013-08-05T00:00:00Z",
+        "end": "2013-08-06T00:00:00Z",
+        "provider": "NAIP",
+        "license": "PDDL-1.0",
+        "eo:resolution": "0.7",
+        "naip:title" : "STAPLETON, SW",
+        "naip:keywords": {
+            "place": {
+                "place_keyword": "STAPLETON",
+                "place_keyword_thesaurus": "Geographic Names Information System"
+            }
+        }
+
+    },
+
+    "links": [
+        { "rel": "self", "href": "../30087/m_3008718_sw_16_1_20130805.json" },
+        { "rel": "thumbnail",  "href": "../30087/m_3008718_sw_16_1_20130805.jpg" }
+
+    ],
+
+    "assets": [
+      {
+          "href": "s3://aws-naip/al/2013/1m/rgb/30087/30087/m_3008718_sw_16_1_20130805-metadata.json",
+          "name": "Full Metadata in JSON",
+          "filetype": "json"
+        
+      },
+      {
+          "href": "s3://aws-naip/al/2013/1m/rgb/30087/m_3008718_sw_16_1_20130805.tif",
+          "product": "naip/rgb.json",
+          "format": "geotiff",
+          "name": "Visual RGB Image"
+        
+      },
+      {
+          "href": "s3://aws-naip/al/2013/1m/rgbir/30087/m_3008718_sw_16_1_20130805.tif", 
+          "product": "naip/rgbir.json",
+          "format": "cog",
+          "name": "Analytic 4-band Image"
+        
+      }
+    ]
+
+    
+    
+}

@@ -3,27 +3,30 @@ info:
   title: An API for SpatioTemporal Asset Catalogs
   version: 0.0.3
   description: >-
-    The SpatioTemporal Asset Catalog specification aims to standardize the way geospatial assets are exposed online and queried. 
-    A 'spatiotemporal asset' is any file that represents information about the earth captured in a certain space and time. Most of the initial 
-    use cases are related to imagery, but the api is designed to enable search of any spatiotemporal data items. SpatioTemporal Asset Catalogs 
-    can be completely static, implemented as flat files on the web that can be crawled. This API has the same
-    responses as a static catalog, but also offers querying capabilities in addition to exposing data online. This API was inspired by 
-    WFS 3.0, and the goal is to make it compatible with that specification.
+    The SpatioTemporal Asset Catalog specification aims to standardize the way
+    geospatial assets are exposed online and queried.  A 'spatiotemporal asset'
+    is any file that represents information about the earth captured in a
+    certain space and time. Most of the initial  use cases are related to
+    imagery, but the api is designed to enable search of any spatiotemporal data
+    items. SpatioTemporal Asset Catalogs  can be completely static, implemented
+    as flat files on the web that can be crawled. This API has the same
+    responses as a static catalog, but also offers querying capabilities in
+    addition to exposing data online. This API was inspired by  WFS 3.0, and the
+    goal is to make it compatible with that specification.
 
 
-    WARNING - THIS IS WORK IN PROGRESS. Implementations are encouraged, but please give feedback on github.
+    WARNING - THIS IS WORK IN PROGRESS. Implementations are encouraged, but
+    please give feedback on github.
 
     TODO - Update responses to be in line with static catalogs, give example
-    
-    TODO - Add in schema responses
-    
-    TODO - Explain extensibility, how to return different content & operations
-   
-    TODO - Add the querying capabilities
-    
 
+    TODO - Add in schema responses
+
+    TODO - Explain extensibility, how to return different content & operations
+
+    TODO - Add the querying capabilities
   contact:
-    name: 'STAC Spec Contributors'
+    name: STAC Spec Contributors
     email: stac-spec@googlegroups.com
     url: 'https://github.com/radiantearth/stac-spec/'
   license:
@@ -55,9 +58,10 @@ paths:
             $ref: '#/definitions/exception'
   /items:
     get:
-      summary: Retrieve items matching filters
+      summary: Retrieve STAC compliant Items matching filters
       description: >-
-         Returns a pageable GeoJSON feature collection of the items matching the query
+        Returns a pageable GeoJSON feature collection of the Items matching the
+        query
       operationId: getItems
       tags:
         - Items
@@ -71,8 +75,7 @@ paths:
         - application/geo+json
       responses:
         '200':
-          description: >-
-            Description here
+          description: Description here
           schema:
             $ref: '#/definitions/ItemCollection'
         default:
@@ -81,8 +84,10 @@ paths:
             $ref: '#/definitions/exception'
     post:
       summary: >-
-        Retrieve items matching filters. The request is a string that matches the GET query exactly. POST is primarily to be used when
-        the request length exceeds GET maximums (which is not uncommon with geospatial queries)
+        Retrieve items matching filters. The request is a string that matches
+        the GET query exactly. POST is primarily to be used when the request
+        length exceeds GET maximums (which is not uncommon with geospatial
+        queries)
       operationId: getItemsPost
       tags:
         - Items
@@ -91,7 +96,8 @@ paths:
       responses:
         '200':
           description: >-
-            Returns a pageable GeoJSON feature collection of the items matching the query
+            Returns a pageable GeoJSON feature collection of the items matching
+            the query
           schema:
             $ref: '#/definitions/ItemCollection'
         default:
@@ -135,7 +141,7 @@ parameters:
   time:
     name: time
     type: array
-    description: Adheres to RFC3339
+    description: An array of date-time strings that adheres to RFC3339 (for example 1985-04-12T23:20:50.52Z). One date-time in the array is the time to match. Two date-times represent a range. Any additional items in the array will be ignored.
     items:
       type: string
     in: query
@@ -145,7 +151,7 @@ parameters:
     in: query
     description: >-
       Only items that have a geometry that intersects the bounding box are
-      selected. The bounding box is provided as four numbers:
+      selected. The bounding box is provided as four numbers, in longitude & latitude:
 
       * West, South, East, North
     type: array
@@ -160,7 +166,7 @@ parameters:
     name: filter
     in: query
     type: string
-    description: A placeholder for a future filter implementation
+    description: A placeholder for a future filter implementation. The queryl language is still to be determined.
   id:
     name: id
     in: path
@@ -178,8 +184,7 @@ definitions:
       description:
         type: string
   bbox:
-    description: >-
-      West, South, East, North
+    description: 'West, South, East, North'
     type: array
     items:
       minItems: 4
@@ -208,23 +213,34 @@ definitions:
       hreflang:
         type: string
         example: en
+  asset:
+    type: object
+    required:
+      - href
+    properties:
+      href:
+        type: string
+      name:
+        type: string
+        example: prev
   ItemCollection:
     type: object
     required:
-      - items
+      - features
       - type
     properties:
       type:
         type: string
         enum:
-          - ItemCollection
-      items:
+          - FeatureCollection
+      features:
         type: array
         items:
           $ref: '#/definitions/Item'
       nextPageToken:
         type: string
         description: A token to obtain the next paginated data set
+        example: ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
       links:
         $ref: '#/definitions/ItemCollectionLinks'
   Item:
@@ -249,22 +265,61 @@ definitions:
         type: string
         description: The GeoJSON type
         enum:
-          - Item
+          - Feature
       properties:
         $ref: '#/definitions/ItemProperties'
       links:
-        $ref: '#/definitions/ItemLinks'
+        type: array
+        items:
+          $ref: '#/definitions/link'
+      assets:
+        type: array
+        items:
+          $ref: '#/definitions/asset'
+    example:
+      type: Feature
+      id: CS3-20160503_132130_04
+      bbox:
+        - -122.59750209
+        - 37.48803556
+        - -122.2880486
+        - 37.613537207
+      geometry:
+        type: Polygon
+        coordinates:
+          - - - -122.308150179
+              - 37.488035566
+            - - -122.597502109
+              - 37.538869539
+            - - -122.576687533
+              - 37.613537207
+            - - -122.2880486
+              - 37.562818007
+            - - -122.308150179
+              - 37.488035566
+      properties:
+        start: '2016-05-03T13:21:30.040Z'
+        end: '2016-05-03T13:21:30.410Z'
+        provider: 'http://www.cool-sat.com'
+        license: CC-BY-4.0
+      links:
+        - rel: self
+          href: 'http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json'
+        - rel: thumbnail
+          href: 'http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png'
+      assets:
+        - href: relative-path/to/analytic.tif
+          name: 4-Band Analytic
   ItemProperties:
     type: object
     required:
-      - start_date
-      - end_date
-    description: >-
-      provides the core metatdata fields plus extensions
+      - start
+      - end
+    description: provides the core metatdata fields plus extensions
     properties:
-      start_date:
+      start:
         $ref: '#/definitions/Time'
-      end_date:
+      end:
         $ref: '#/definitions/Time'
       provider:
         type: string
@@ -274,26 +329,19 @@ definitions:
         description: Data license name based on SPDX License List
     additionalProperties:
       type: object
-  ItemLinks:
-    type: object
-    required:
-      - self
-      - thumbnail
-    properties:
-      self:
-        type: string
-      thumbnail:
-        type: string
   ItemCollectionLinks:
     type: object
     properties:
       next:
         type: string
         format: url
-        description: A URL to obtain the next paginated data set. If not present, the client should utilize the `nextPageToken`.
+        description: >-
+          A URL to obtain the next paginated data set. If not present, the
+          client should utilize the `nextPageToken`.
+        example: http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
   Time:
     type: string
-    description: Adheres to RFC3339
+    description: A single date-time string that adheres to RFC3339, for example 1985-04-12T23:20:50.52Z
   StringSet:
     type: array
     items:

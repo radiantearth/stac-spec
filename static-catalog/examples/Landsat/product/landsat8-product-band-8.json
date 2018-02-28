@@ -1,0 +1,19 @@
+{
+	"id":"landsat8-product-band-8",    
+    "bands": [
+      {
+        "common_name": "PAN",
+        "gsd": 15,
+        "center_wavelength": 589.50,
+        "effective_bandwidth": 172.40,
+        "image_band_index": 1
+      }
+    ],
+    "filetype": "geotiff",
+    "ls:spacecraft_id" : "LANDSAT_8",
+    "ls:sensor_id": "OLI_TIRS",
+    "ls:elevation_source": "GLS2000",
+    "ls:origin": "Image courtesy of the U.S. Geological Survey",
+    "ls:processing_software_version": "LPGS_2.3.0",
+
+}

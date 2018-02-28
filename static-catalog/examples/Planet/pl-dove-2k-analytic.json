@@ -1,0 +1,37 @@
+{
+	"id":"pl-2k-analytic",    
+    "bands": [
+      {
+        "common_name": "Blue",
+        "gsd": 2.047,
+        "center_wavelength": 478.0,
+        "effective_bandwidth": 73.0,
+        "image_band_index": 1
+      },
+      {
+        "common_name": "Green",
+        "gsd": 2.047,
+        "center_wavelength": 546.0,
+        "effective_bandwidth": 80.0,
+        "image_band_index": 2
+      },
+      {
+        "common_name": "Red",
+        "gsd": 2.047,
+        "center_wavelength": 659.0,
+        "effective_bandwidth": 70.0,
+        "image_band_index": 4
+      },
+      {
+        "common_name": "NIR",
+        "gsd": 2.047,
+        "center_wavelength": 833.0,
+        "effective_bandwidth": 136.0,
+        "image_band_index": 6
+      }
+    ],
+    "pl:instrument": "PS2",
+    "pl:item_type": "PSScene4Band",
+    "pl:provider": "planetscope",
+
+}

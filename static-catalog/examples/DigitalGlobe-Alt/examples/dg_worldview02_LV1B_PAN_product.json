@@ -1,0 +1,16 @@
+{
+	"id":"DG_WORLDVIEW02_LV1B_PAN",    
+	"bands": [
+      {
+        "common_name": "PAN",
+        "gsd": 0.512,
+        "center_wavelength": 627.0,
+        "effective_bandwidth": 361.0,
+        "image_band_index": 0
+      }
+    ],
+    "dg:sensorPlatformName": "WORLDVIEW02",
+    "dg:productLevel": "LV1B",
+    "dg:product": "WORLDVIEW02_LV1B",
+
+}
