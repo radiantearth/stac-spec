@@ -44,7 +44,7 @@ _Root catalog_
   "license": "PDDL-1.0",
 
   "links": [
-    { "rel": "self", "href": "naip.json" },
+    { "rel": "self", "href": "naip-root.json" },
     { "rel": "child", "href": "naip/30087.json" },
     ...
   ],
@@ -81,8 +81,8 @@ _Linked Catalog_
   "description": "Catalog of NAIP Imagery - 30087",
 
   "links": [
-    { "rel": "self", "href": "naip-root.json" },
-    { "rel": "parent", "href": "naip/30087.json"}
+    { "rel": "self", "href": "naip/30087.json" },
+    { "rel": "parent", "href": "naip-root.json"}
     { "rel": "item", "href": "30087/m_3008718_sw_16_1_20130805.json" },
     { "rel": "item", "href": "30087/m_3008718_sw_16_1_20130806.json" },
     ...
