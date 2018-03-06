@@ -120,7 +120,7 @@ a location at a specific time or time range.
 
 The [rel](https://www.w3schools.com/tags/att_link_rel.asp) attribute of HTML links is used
 liberally to describe the relationships of various items and catalogs. Every `Item` must
-define a `thumb` link, as well as a `self` link. It is recommended that the self link is an
+define a `thumbnail` link, as well as a `self` link. It is recommended that the self link is an
 absolute URL, so that copies of catalogs that are downloaded continue to link to their source
 (though a later version of the spec should include a rel link to indicate that an Item is
 a copy of an online location). Items should link back to their root catalog, but that is
