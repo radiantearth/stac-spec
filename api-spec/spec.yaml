@@ -213,16 +213,13 @@ definitions:
       hreflang:
         type: string
         example: en
-  asset:
+  thumbnail: 
     type: object
     required:
       - href
     properties:
       href:
         type: string
-      name:
-        type: string
-        example: prev
   ItemCollection:
     type: object
     required:
@@ -251,6 +248,7 @@ definitions:
       - geometry
       - links
       - properties
+      - assets
     properties:
       id:
         type: string
@@ -273,9 +271,12 @@ definitions:
         items:
           $ref: '#/definitions/link'
       assets:
-        type: array
-        items:
-          $ref: '#/definitions/asset'
+        type: object
+        required:
+          - thumbnail
+        properties:
+          thumbnail:
+            $ref: '#/definitions/thumbnail'
     example:
       type: Feature
       id: CS3-20160503_132130_04
@@ -305,11 +306,9 @@ definitions:
       links:
         - rel: self
           href: 'http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json'
-        - rel: thumbnail
-          href: 'http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png'
       assets:
-        - href: relative-path/to/analytic.tif
-          name: 4-Band Analytic
+        thumbnail:
+          href: relative-path/to/analytic.tif
   ItemProperties:
     type: object
     required:
