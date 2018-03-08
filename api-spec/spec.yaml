@@ -307,8 +307,10 @@ definitions:
         - rel: self
           href: 'http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json'
       assets:
-        - name: thumbnail
+        - name: 4-Band Analytic
           href: relative-path/to/analytic.tif
+        - name: thumbnail
+          href: http://thumbnails.com/1.png
   ItemProperties:
     type: object
     required:
