@@ -19,15 +19,15 @@ A `Catalog` points to `Item`s, or to other `Catalog`s. The top-most parent `Cata
 A simple Catalog structure might look like this:
 
 catalog (root)
-    - catalog
-        -catalog
-            -item
-                -asset
-        -item
-            -asset
-    - item
-        -asset
-        -asset
+    * catalog
+        ..*catalog
+            ....*item
+            ....*asset
+        ..*item
+            ....*asset
+    ..* item
+        ....*asset
+        ....*asset
 
 This example might be considered a somewhat "typical" structure. However, `catalog`s and `item`s can describe a number of different relationships. The following shows various relationships between `catalog`s and `item`s:
 
