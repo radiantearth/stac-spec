@@ -17,18 +17,18 @@ An `item` contains one or more `assets` which are artifacts defining some kind o
 A `Catalog` points to `Item`s, or to other `Catalog`s. The top-most parent `Catalog` is called the "root" catalog. The root catalog generally defines information about the catalog as a whole, such as name, description, licensing, contact information and so forth. Catalogs below the root generally have less information and serve to create a directory structure for categorizing and grouping `item` data. The contents of a `catalog` are flexible and STAC makes no assumptions for where or how catalog metadata is defined within a `catalog`. For example, a non-root catalog could redefine or add different licensing or copyright terms.
 
 A simple Catalog structure might look like this:
-
+```
 catalog (root)
-  * catalog
-    *catalog
-      *item
-        *asset
-      *item
-        *asset
-    * item
-      *asset
-      *asset
-
+  - catalog
+    - catalog
+      - item
+        - asset
+      - item
+        - asset
+    - item
+      - asset
+      - asset
+```
 This example might be considered a somewhat "typical" structure. However, `catalog`s and `item`s can describe a number of different relationships. The following shows various relationships between `catalog`s and `item`s:
 
 - `Catalog` -> `Item` (this is a common structure for a `catalog` to list links to `items`)
