@@ -4,7 +4,7 @@
 ## Overview
 
 A STAC Static Catalog is the simplest possible catalog of spatiotemporal items. It is designed
-to work as a set of flat files on an http web server or object store like S3 or Google Cloud Storage.
+to work as a set of flat files on an http web server or an object store like Amazon S3 or Google Cloud Storage.
 
 Static Catalogs define a network of linked items for the purpose of automated crawling.
 A static catalog is not intended to be queried.
@@ -47,9 +47,7 @@ The following shows various relationships between `catalog`s and `item`s:
 The core `Item`s listed in a static catalog are the exact same form as those returned by a Catalog API.
 Ideally, STAC enables both a static and dynamic API to be crawled in the same way.
 
-An `Item` in STAC is defined as a WFS 3.0 `Item`.
-
-The core STAC `Item` is defined in the [JSON Spec](../json-spec/), and is of the same form as those returned from a Catalog API, but the following will explain it in context, as well as the other element types.
+An `Item` in STAC is compatible with a WFS 3.0 `Item`.
 
 Catalogs make liberal use of the [rel](https://www.w3schools.com/tags/att_link_rel.asp) attribute on links to describe relationships, so that `Catalog`s and `Item`s always link to where they fit in and what else they are related to.
 
@@ -68,8 +66,9 @@ _"Root" Catalog_
     "license": "PDDL-1.0",
 
     "links": [
-        { "rel": "self", "href": "naip.json" },
-        { "rel": "child", "href": "naip/30087.json" },
+        { "rel": "self", "href": "catalog.json" },
+        { "rel": "child", "href": "naip/30087/catalog.json" },
+        { "rel": "root", "href": "https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/catalog.json"},
         ...
     ],
 
@@ -104,8 +103,9 @@ _"Child" Catalog_
     "description": "Catalog of NAIP Imagery - 30087",
 
     "links": [
-        { "rel": "self", "href": "https://www.fsa.usda.gov/my-real-home/naip/30087.json" },
-        { "rel": "parent", "href": "naip/30187.json"}
+        { "rel": "self", "href": "https://www.fsa.usda.gov/my-real-home/naip/30087/catalog.json" },
+        { "rel": "parent", "href": "catalog.json"},
+        { "rel": "root", "href": "https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/catalog.json"},
         { "rel": "item", "href": "30087/m_3008718_sw_16_1_20130805.json" },
         { "rel": "item", "href": "30087/m_3008718_sw_16_1_20130806.json" },
         ...
@@ -241,7 +241,7 @@ an RGB [COG](http://www.cogeo.org/) and an RGBIR GeoTiff.
     },
     "links": [
         { "rel": "self", "href": "https://www.fsa.usda.gov/my-real-home/naip/30087/m_3008718_sw_16_1_20130805.json" },
-        { "rel": "catalog", "href": "https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/catalog.json"}
+        { "rel": "root", "href": "https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/catalog.json"}
     ],
 
     "properties": {
