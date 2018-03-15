@@ -182,13 +182,14 @@ should include a `rel` link to indicate that an `Item` is a copy of an online lo
 
 Items should link back to their root catalog, but this is not required.
 
-A `thumb` `link` is strongly recommended to provide previews of the data.
+A `thumbnail` `link` is strongly recommended to provide previews of the data.
 
 Note: `Item`s are defined to be flexible, allowing a naive crawler to walk the structure to discover every item defined
 in the catalog.
 The primary use case for crawling is to enable search by populating an index.
 
 Some domains may choose to use `rel` links to describe more complex relationships between catalog items, and crawlers aware of those domains may customize their search results using knowledge of the relationships.
+
 
 
 #### Assets
