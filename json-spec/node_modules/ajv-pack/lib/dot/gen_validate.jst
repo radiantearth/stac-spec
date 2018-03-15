@@ -1,0 +1,43 @@
+/*
+'root',
+'refVal',
+'customRules'
+*/
+var {{=it.funcName}} = (function() {
+  {{~ it.validate.source.patterns:p:i }}
+    var pattern{{=i}} = new RegExp('{{=it.util.escapeQuotes(p)}}');
+  {{~}}
+
+  {{~ it.validate.source.defaults:d:i }}
+    var default{{=i}} = {{=JSON.stringify(d)}};
+  {{~}}
+
+  {{? it.refVals[it.refVals.length - 1] != it.validate.refVal }}
+    {{ it.refVals.push(it.validate.refVal); }}
+    var refVal = [];
+    {{~ it.validate.refVal:r:i }}
+      {{? i > 0 }}
+        {{? typeof r == 'function' }}
+          {{
+            var $it = it.util.copy(it);
+            $it.validate = r;
+            $it.funcName = 'refVal' + i;
+          }}
+          {{= it.gen_validate($it) }}
+        {{?? typeof r == 'object' }}
+          var refVal{{=i}} = {{=JSON.stringify(r)}};
+        {{?}}
+        refVal[{{=i}}] = refVal{{=i}};
+      {{?}}
+    {{~}}
+  {{?}}
+
+  {{
+    var code = it.validate.toString();
+    code = code.replace(/^function\s*\(/, 'function validate(');
+  }}
+  return {{= code }};
+})();
+
+{{=it.funcName}}.schema = {{= JSON.stringify(it.validate.schema )}};
+{{=it.funcName}}.errors = null;

@@ -1,0 +1,37 @@
+{
+  "$id": "my-schema",
+  "contains": {
+    "properties": {
+      "exclusiveLimits": {
+        "exclusiveMinimum": 1,
+        "exclusiveMaximum": 3
+      },
+      "nonExclusiveLimits": {
+        "minimum": 1,
+        "maximum": 3
+      },
+      "singleValue": { "const": "foo" },
+      "alwaysValid": true,
+      "alwaysInvalid": false
+    },
+    "patternGroups": {
+      "^f": {
+        "schema": {
+          "const": "foo",
+          "enum": ["foo"],
+          "not": true
+        },
+        "min": 1
+      }
+    },
+    "switch": [
+      {
+        "if": { "const": "foo" },
+        "then": { "const": "bar" }
+      },
+      {
+        "then": false
+      }
+    ]
+  }
+}

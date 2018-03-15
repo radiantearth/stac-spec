@@ -1,0 +1,10 @@
+{
+    "$schema": "http://example.com/my_meta_schema#",
+    "type": "object",
+    "properties": {
+        "foo": {
+            "my_keyword": 1,
+            "type": "integer"
+        }
+    }
+}

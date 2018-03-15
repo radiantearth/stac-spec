@@ -1,0 +1,26 @@
+{
+  "$id": "my-schema",
+  "$schema": "http://json-schema.org/draft-06/hyper-schema#",
+  "links": [
+    {
+      "href": "http://example.com",
+      "rel": "self",
+      "targetSchema": {
+        "properties": {
+          "exclusiveLimits": {
+            "exclusiveMinimum": 1,
+            "exclusiveMaximum": 3
+          }
+        }
+      },
+      "schema": {
+        "properties": {
+          "exclusiveLimits": {
+            "minimum": 1,
+            "maximum": 3
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "$id": "migrateSchema",
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "definitions": {
+    "schemaArray": {
+      "type": "array",
+      "items": { "$ref": "#" }
+    },
+    "schemaMap": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#" }
+    },
+    "booleanOrSchema":  {
+      "anyOf": [
+        { "type": "boolean" },
+        { "$ref": "#" }
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "additionalItems": { "$ref": "#/definitions/booleanOrSchema" },
+    "additionalProperties": { "$ref": "#/definitions/booleanOrSchema" },
+    "dependencies": {
+      "additionalProperties": {
+        "anyOf": [
+          { "type": "array" },
+          { "$ref": "#" }
+        ]
+      }
+    },
+    "items": {
+      "anyOf": [
+        { "$ref": "#/definitions/schemaArray" },
+        { "$ref": "#" }
+      ]
+    },
+    "definitions": { "$ref": "#/definitions/schemaMap" },
+    "patternProperties": { "$ref": "#/definitions/schemaMap" },
+    "properties": { "$ref": "#/definitions/schemaMap" },
+    "allOf": { "$ref": "#/definitions/schemaArray" },
+    "anyOf": { "$ref": "#/definitions/schemaArray" },
+    "oneOf": { "$ref": "#/definitions/schemaArray" },
+    "not": { "$ref": "#" }
+  },
+
+  "migrateSchemaToDraft6": true
+}
