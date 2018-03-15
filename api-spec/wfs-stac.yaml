@@ -309,40 +309,7 @@ paths:
           description: An error occured.
           schema:
             $ref: '#/components/schemas/exception'
-  
-  /search:
-    get:
-      summary: 'tbd'
-      tags:
-        - Search
-      produces: 
-        - application/json
-      responses:
-        '200':
-          description: tbd
-          schema:
-            $ref: '#/components/schemas/HttpResponse'
-        default:
-          description: An error occured.
-          schema:
-            $ref: '#/components/schemas/exception'
-            
   /search/stac:
-    get:
-      summary: Returns a pageable GeoJSON feature collection of the Items matching the query
-      tags: 
-        - Search
-      produces: 
-        - application/geo+json
-      responses:
-        '200':
-          description: Successfully created feature collection
-          schema:
-            $ref: '#/definitions/ItemCollection'
-        default:
-          description: An error occured.
-          schema:
-            $ref: '#/components/schemas/exception'
     post:
       summary: >-
         Retrieve items matching filters. The request is a string that matches
@@ -354,6 +321,13 @@ paths:
         - Search
       produces:
         - application/geo+json
+      consumes:
+        - application/json
+      parameters:
+        - name: filters
+          in: body
+          schema:
+            $ref: '#/definitions/searchBody'
       responses:
         '200':
           description: Successfully created feature collection
@@ -362,8 +336,8 @@ paths:
         default:
           description: An error occured.
           schema:
-            $ref: '#/components/schemas/exception'
-            
+            $ref: '#/definitions/exception'
+
 definitions:
   exception:
     type: object
@@ -374,8 +348,17 @@ definitions:
         type: string
       description:
         type: string
+  searchBody:
+    description: The search criteria
+    type: object
+    properties:
+      bbox:
+        $ref: '#/definitions/bbox'
+      time:
+        $ref: '#/definitions/TimeFilter'
   bbox:
-    description: 'West, South, East, North'
+    description: >-
+      The resulting bbox will be used in an intersect query matching against Item geometries.
     type: array
     items:
       minItems: 4
@@ -388,6 +371,19 @@ definitions:
       - -90
       - 180
       - 90
+  TimeFilter:
+    description: >-
+      An object representing a time based filter.
+    type: object
+    properties:
+      gt:
+        $ref: '#/definitions/Time'
+      lt:
+        $ref: '#/definitions/Time'
+      gte:
+        $ref: '#/definitions/Time'
+      lte:
+        $ref: '#/definitions/Time'
   link:
     type: object
     required:
@@ -707,10 +703,9 @@ definitions:
     items:
       type: number
       format: double
+  
 tags:
   - name: Capabilities
     description: >-
       Essential characteristics of this API including information about the
       data.
-  - name: Items
-    description: Access to data (items).
