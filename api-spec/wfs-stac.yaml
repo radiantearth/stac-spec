@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  title: An API for SpatioTemporal Asset Catalogs
+  title: An API for WFS3 SpatioTemporal Asset Catalogs
   version: 0.0.3
   description: >-
     The SpatioTemporal Asset Catalog specification aims to standardize the way
@@ -37,6 +37,24 @@ schemes:
 host: data.example.org
 basePath: /
 paths:
+  /:
+    get:
+      summary: describe the feature collections in the dataset
+      operationId: describeCollections
+      tags:
+        - Capabilities
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: describe the feature collections in the dataset
+          schema:
+            $ref: '#/components/schemas/content'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/components/schemas/exception'
+            
   /api:
     get:
       summary: the API description - this document
@@ -56,32 +74,275 @@ paths:
           description: An error occured.
           schema:
             $ref: '#/definitions/exception'
-  /items:
-    get:
-      summary: Retrieve STAC compliant Items matching filters
-      description: >-
-        Returns a pageable GeoJSON feature collection of the Items matching the
-        query
-      operationId: getItems
+ 
+  /api/conformance:
+    get: 
+      summary: list all requirements classes specified in a standard (e.g., WFS 3.0) that the server conforms to
+      operationId: getRequirementsClasses
       tags:
-        - Items
-      parameters:
-        - $ref: '#/parameters/bbox'
-        - $ref: '#/parameters/time'
-        - $ref: '#/parameters/filter'
-        - $ref: '#/parameters/limit'
-        - $ref: '#/parameters/next'
+        - Capabilities
       produces:
+        - application/json
+      responses:
+        '200':
+          description: the URIs of all requirements classes supported by the server
+          schema:
+            $ref: '#/components/schemas/req-classes'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/components/schemas/exception'
+  /collections:
+    get:
+      summary: list all available feature collections
+      tags:
+        - Collections
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: the list of available feature collections
+          schema:
+            $ref: '#/components/schemas/collections'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/components/schemas/exception'
+  
+  /collections/{collectionId}:
+    get:
+      summary: tbd
+      parameters:
+        - name: collectionId
+          in: path
+          type: string
+          required: true
+          description: The id of the collection
+      tags:
+        - Collections
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: tbd
+          schema:
+            $ref: '#/components/schemas/collectionDefinition'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/components/schemas/exception'
+            
+  /collections/{collectionId}/schema:
+    get:
+      summary: The schema of the collection
+      parameters:
+        - name: collectionId
+          in: path
+          type: string
+          required: true
+          description: The id of the collection
+      tags:
+        - Collections
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The collection schema
+          schema:
+            $ref: '#/components/schemas/collectionSchema'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/components/schemas/exception'
+            
+  /collections/{collectionId}/items:
+    get:
+      summary:  Endpoint to search for features
+      parameters:
+        - name: collectionId
+          in: path
+          type: string
+          required: true
+          description: The id of the collection
+      tags:
+        - Collections
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The feature collection
+          schema:
+            $ref: '#/components/schemas/FeatureCollection'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/components/schemas/exception'
+    post:
+      summary: Endpoint to add features
+      parameters:
+        - name: collectionId
+          in: path
+          type: string
+          required: true
+          description: The id of the collection
+        - in: body
+          name: feature
+          required: true
+          schema:
+            type: string 
+      tags:
+        - Collections
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns a JSON response with the success status
+          schema:
+            $ref: '#/components/schemas/HttpResponse'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/components/schemas/exception'
+    put:
+      summary: Update a feature
+      parameters:
+        - name: collectionId
+          in: path
+          type: string
+          required: true
+          description: The id of the collection
+        - in: body
+          name: feature
+          required: true
+          schema:
+            $ref: "#/components/schemas/Item"
+      tags:
+        - Collections
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns a JSON response with the success status
+          schema:
+            $ref: '#/components/schemas/HttpResponse'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/components/schemas/exception'
+    patch:
+      summary: Apply partial update to a feature
+      parameters:
+        - name: collectionId
+          in: path
+          type: string
+          required: true
+          description: The id of the collection
+        - in: body
+          name: feature
+          required: true
+          schema:
+            $ref: "#/components/schemas/Item"
+      tags:
+        - Collections
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Returns a JSON response with the success status
+          schema:
+            $ref: '#/components/schemas/HttpResponse'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/components/schemas/exception'
+    
+  /collections/{collectionId}/items/{id}:
+    get:
+      summary:  Returns a feature by ID
+      parameters:
+        - name: collectionId
+          in: path
+          type: string
+          required: true
+          description: The id of the collection
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: The id of the feature
+      tags:
+        - Collections
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The feature collection
+          schema:
+            $ref: '#/components/schemas/Item'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/components/schemas/exception'
+    delete:
+      summary:  Deletes a feature by ID
+      parameters:
+        - name: collectionId
+          in: path
+          type: string
+          required: true
+          description: The id of the collection
+        - name: id
+          in: path
+          type: string
+          required: true
+          description: The id of the feature
+      tags:
+        - Collections
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: The feature collection
+          schema:
+            $ref: '#/components/schemas/HttpResponse'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/components/schemas/exception'
+  
+  /search:
+    get:
+      summary: 'tbd'
+      tags:
+        - Search
+      produces: 
+        - application/json
+      responses:
+        '200':
+          description: tbd
+          schema:
+            $ref: '#/components/schemas/HttpResponse'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/components/schemas/exception'
+            
+  /search/stac:
+    get:
+      summary: Returns a pageable GeoJSON feature collection of the Items matching the query
+      tags: 
+        - Search
+      produces: 
         - application/geo+json
       responses:
         '200':
-          description: Description here
+          description: Successfully created feature collection
           schema:
             $ref: '#/definitions/ItemCollection'
         default:
           description: An error occured.
           schema:
-            $ref: '#/definitions/exception'
+            $ref: '#/components/schemas/exception'
     post:
       summary: >-
         Retrieve items matching filters. The request is a string that matches
@@ -90,89 +351,19 @@ paths:
         queries)
       operationId: getItemsPost
       tags:
-        - Items
+        - Search
       produces:
         - application/geo+json
       responses:
         '200':
-          description: >-
-            Returns a pageable GeoJSON feature collection of the items matching
-            the query
+          description: Successfully created feature collection
           schema:
             $ref: '#/definitions/ItemCollection'
         default:
           description: An error occured.
           schema:
-            $ref: '#/definitions/exception'
-  '/items/{id}':
-    get:
-      summary: Retreive item by id
-      operationId: getItem
-      tags:
-        - Items
-      parameters:
-        - $ref: '#/parameters/id'
-      produces:
-        - application/geo+json
-      responses:
-        '200':
-          description: An item.
-          schema:
-            $ref: '#/definitions/Item'
-        '404':
-          description: 'The item with id {id} does not exist.'
-          schema:
-            $ref: '#/definitions/exception'
-        default:
-          description: An error occured.
-          schema:
-            $ref: '#/definitions/exception'
-parameters:
-  next:
-    name: next
-    in: query
-    type: string
-    description: Token for the next set of paginated data.
-  limit:
-    name: limit
-    in: query
-    type: integer
-    description: Defines the maximum number or results retruned by the API
-  time:
-    name: time
-    type: array
-    description: An array of date-time strings that adheres to RFC3339 (for example 1985-04-12T23:20:50.52Z). One date-time in the array is the time to match. Two date-times represent a range. Any additional items in the array will be ignored.
-    items:
-      type: string
-    in: query
-    collectionFormat: csv
-  bbox:
-    name: bbox
-    in: query
-    description: >-
-      Only items that have a geometry that intersects the bounding box are
-      selected. The bounding box is provided as four numbers, in longitude & latitude:
-
-      * West, South, East, North
-    type: array
-    items:
-      type: number
-      minItems: 4
-      maxItems: 4
-      minimum: -180
-      maximum: 180
-    collectionFormat: csv
-  filter:
-    name: filter
-    in: query
-    type: string
-    description: A placeholder for a future filter implementation. The queryl language is still to be determined.
-  id:
-    name: id
-    in: path
-    description: The id of an item
-    required: true
-    type: string
+            $ref: '#/components/schemas/exception'
+            
 definitions:
   exception:
     type: object
@@ -307,10 +498,8 @@ definitions:
         - rel: self
           href: 'http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json'
       assets:
-        - name: 4-Band Analytic
-          href: relative-path/to/analytic.tif
         - name: thumbnail
-          href: http://thumbnails.com/1.png
+          href: relative-path/to/analytic.tif
   ItemProperties:
     type: object
     required:
