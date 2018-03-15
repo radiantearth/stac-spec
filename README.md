@@ -27,7 +27,7 @@ few documents that provide more context and plans for the evolution of the speci
 **[json-spec/](json-spec/)** defines a SpatioTemporal Asset Catalog `Item`, which is a [GeoJSON](http://geojson.org) Feature
 with additional fields for the time range, links to related entities and resources, including thumbnails. The folder contains
 a [minimal](json-spec/sample.json) and [expanded](json-spec/sample-full.json) samples, validating [schemas](json-spec/json-schema), 
-an additional folder of [examples](json-spec/examples/) and of course the main [specification](json-spec/json-spec.org).
+an additional folder of [examples](json-spec/examples/) and of course the main [specification](json-spec/json-spec.md).
 
 **[static-catalog/](static-catalog)** specifies how to utilize `Items` as ordered files on a web server or object store
 like S3, without the need for any dynamic code. These static catalogs are designed to expose the data to be crawled by

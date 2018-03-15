@@ -37,7 +37,7 @@ your feedback will be directly incorporated.
 
 ## Specification Definition
 
-The `Item` is a JSON object, specifically a GeoJSON `Feature`, that validates against the [stac_item](json-schema/stac_item.json) 
+The `Item` is a JSON object, specifically a GeoJSON `Feature`, that validates against the [stac-item](json-schema/stac-item.json) 
 JSON Schema document. Listed below are a set of instructions to validate implementations, but any JSON Schema validation using the
 STAC Item schema works great.
 
