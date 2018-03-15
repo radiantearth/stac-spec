@@ -158,12 +158,24 @@ paths:
   /collections/{collectionId}/items:
     get:
       summary:  Endpoint to search for features
+      description: >-
+        To add filters to the get request, the query parameters should match the parameters from the POST search.
       parameters:
         - name: collectionId
           in: path
           type: string
           required: true
           description: The id of the collection
+        - name: bbox
+          in: query
+          type: string
+          description: >-
+            This should be an array matching the format from the /search/STAC POST defintion.
+            ex. ?bbox=[-180, -90, 180, 90]
+        - name: time
+          in: query
+          type: string
+          description: This should be an object matching the format from the /search/STAC POST defintion. ex. ?time={"gt":"Time","lt":"Time"}
       tags:
         - Collections
       produces:
@@ -172,11 +184,11 @@ paths:
         '200':
           description: The feature collection
           schema:
-            $ref: '#/components/schemas/FeatureCollection'
+            $ref: '#/definitions/ItemCollection'
         default:
           description: An error occured.
           schema:
-            $ref: '#/components/schemas/exception'
+            $ref: '#/definitions/exception'
     post:
       summary: Endpoint to add features
       parameters:
@@ -358,6 +370,7 @@ definitions:
         $ref: '#/definitions/TimeFilter'
   bbox:
     description: >-
+      An array of numbers representingWest, South, East, North.
       The resulting bbox will be used in an intersect query matching against Item geometries.
     type: array
     items:
