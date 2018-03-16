@@ -170,12 +170,12 @@ paths:
           in: query
           type: string
           description: >-
-            This should be an array matching the format from the /search/STAC POST defintion.
+            This should be an array matching the format from the /search/STAC POST definition.
             ex. ?bbox=[-180, -90, 180, 90]
         - name: time
           in: query
           type: string
-          description: This should be an object matching the format from the /search/STAC POST defintion. ex. ?time={"gt":"Time","lt":"Time"}
+          description: This should be an object matching the format from the /search/STAC POST definition. ex. ?time={"gt":"Time","lt":"Time"}
       tags:
         - Collections
       produces:
@@ -323,11 +323,10 @@ paths:
             $ref: '#/components/schemas/exception'
   /search/stac:
     post:
-      summary: >-
-        Retrieve items matching filters. The request is a string that matches
-        the GET query exactly. POST is primarily to be used when the request
-        length exceeds GET maximums (which is not uncommon with geospatial
-        queries)
+      summary: Search will return features from the item collection that match the provided filters.
+      description: >-
+        Searching using POST is preferred over using GET with query parameters on the collection.
+        Filters should be provided as a JSON document which can be difficult to URL encode. Some filters may require complex structures that are too long for some clients to provide in the URL.
       operationId: getItemsPost
       tags:
         - Search
