@@ -88,4 +88,20 @@ Example fragment:
       - 35
 ```
 
+It is likely that there are schemas that should be used in common for types of filters that target different fields. We should define a common set of filter types that can be used in defining filters for different fields.
+- NumberRange
+- TimeRange
+- Text
+- ArrayIncludes
+- Etc
 
+When defining a new filter fragment you would reference these common filter types.
+```
+CloudCover:
+    type: object
+    description: >-
+          Filter items by desired cloud coverage.
+    properties:
+      cloudcover:
+        $ref: '#/definitions/NumberRange'
+```
