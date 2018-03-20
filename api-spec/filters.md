@@ -109,8 +109,8 @@ CloudCover:
 Some additional extensions that have been discussed:
 
 CQL support for generic queries:  
-{"CQL": "CQL Select String"}
+`{"CQL": "CQL Select String"}`
 
 Time intervals:  
-{"time": "P1Y"} // Assume Duration/now if no time specified?
-{"time": "2018/P1M"} // Any time in january of 2018
+`{"time": "P1Y"}`  Assume Duration/now if no time specified?  
+`{"time": "2018/P1M"}` Any time in january of 2018  
