@@ -35,7 +35,8 @@ After is `{"time":{"gt":"2018-03-20T16:11:44.353Z"}}`
 Before with Equality is `{"time":{"lte":"2018-03-20T16:11:44.353Z"}}`  
 After with Equality is `{"time":{"gte":"2018-03-20T16:11:44.353Z"}}`  
 
-__Filter Extensions__
+Filter Extensions
+-----------------
 
 Spatial and Temporal filtering is not enough for many use cases. STAC is designed to be extensible, so we encourage additional filters to be provided as extensions.
 
@@ -116,7 +117,8 @@ Time intervals:
 `{"time": "2018/P1M"}` Any time in january of 2018  
 
 
-__Adding these filters to search__
+Adding filters to search
+------------------------
 
 I am hoping that we can agree to support openapi3 syntax going forward. It would allow a simple addition to the searchBody portion using allOf:
 ```
