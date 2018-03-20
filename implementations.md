@@ -71,6 +71,6 @@ https://github.com/radiantearth/catalog-implementor-survey
 [Open Imagery Network](https://openimagerynetwork.github.io/) was the first attempt at a static catalog. The OpenAerialMap 
 bucket is in active use. It is planned to evolve OIN and OAM architectures to use static catalogs.
 
-[AWS Public Datasets](aws.amazon.com/public-datasets/), particularly [Landsat](aws.amazon.com/public-datasets/landsat/), 
+[AWS Public Datasets](http://aws.amazon.com/public-datasets/), particularly [Landsat](http://aws.amazon.com/public-datasets/landsat/), 
 [NAIP](https://aws.amazon.com/public-datasets/naip/) and [Sentinel](http://sentinel-pds.s3-website.eu-central-1.amazonaws.com/) all
 get close to the ideas of STAC static catalogs, and hopefully will evolve to implement the standard.

@@ -19,6 +19,9 @@ on that feedback, which will mean changes are quite possible.
 But efforts will be made to maintain the core fields established in the central [JSON Spec](json-spec/). The minimal amount
 is specified right now, but best practices should emerge with implementation and more will likely be specified.
 
+The master branch (that you are looking at) is the 'stable' version of the spec. Right now the [dev](https://github.com/radiantearth/stac-spec/tree/dev) 
+branch is in flux, incorporating all the improvements from the [ft. collins sprint](https://github.com/radiantearth/community-sprints/tree/master/03072018-ft-collins-co). Once all the issues from [milestone 0.4](https://github.com/radiantearth/stac-spec/issues?q=is%3Aopen+is%3Aissue+milestone%3A0.4.0) are closed, with all examples up to date, then dev will merge to master.
+
 ## In this Repository
 
 This repository contains the core specifications, along with examples and JSON schemas for validation. Also included are a
