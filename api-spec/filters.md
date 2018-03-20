@@ -2,7 +2,7 @@ STAC Core is intending to provide a minimal set of features so that there is a l
 implementations. The core concepts in STAC are Spatial and Temporal data, so those are the only filters we want
 to support in Core.
 
-Filters should be a simple as possible for a client to construct. Since we are returning json, we want to also
+Filters should be as simple as possible for a client to construct. Since we are returning json, we want to also
 consume json. This allows clients to support filtering without additional tools. So the core filters will be 
 JSON based. The search enpoint will accept application/json format queries, and GET on the collection will 
 support URL encoded JSON. POST search the is recommended way to filter results to avoid the URL encoding 
@@ -39,7 +39,53 @@ __Filter Extensions__
 
 Spatial and Temporal filtering is not enough for many use cases. STAC is designed to be extensible, so we encourage additional filters to be provided as extensions.
 
-Filter extensions are intended to provide a place to specify additional filter types and behavior. Some filters may need to target vendor specific fields or use a more complex structure for defining the filter.
+Filter extensions are intended to provide a place to specify additional filter types and behavior. Some filters may need to target vendor specific fields or use a more complex structure when defining the filter. For example, a geospatial intersection filter that supports a polygon as input.
 
+Filter extensions should be specified as an openapi fragment. This is a section of YAML that can be incorporated into the larger api definition. These fragments can then be combined into an implementation specific api definition that describes the full api.
+
+Example fragment:
+```
+  IntersectsFilter:
+    type: object
+    description: >-
+          Only returns items that intersect with the provided polygon.
+    properties:
+      intersects:
+        $ref: '#/definitions/Polygon'
+  Polygon:
+    type: object
+    properties:
+      type:
+        type: string
+        enum:
+          - polygon
+      coordinates:
+        $ref: '#/definitions/Polygon2D'
+    required:
+      - type
+      - coordinates
+  Polygon2D:
+    type: array
+    minItems: 1
+    items:
+      $ref: '#/definitions/LinearRing2D'
+  LinearRing2D:
+    type: array
+    minItems: 4
+    items:
+      $ref: '#/definitions/Point2D'
+    example: [[-104,35],[-103,35],[-103,34],[-104,34],[-104,35]]
+  Point2D:
+    description: A 2d geojson point
+    type: array
+    minimum: 2
+    maximum: 2
+    items:
+      type: number
+      format: double
+    example:
+      - -104
+      - 35
+```
 
 
