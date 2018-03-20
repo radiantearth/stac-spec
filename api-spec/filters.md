@@ -114,3 +114,18 @@ CQL support for generic queries:
 Time intervals:  
 `{"time": "P1Y"}`  Assume Duration/now if no time specified?  
 `{"time": "2018/P1M"}` Any time in january of 2018  
+
+
+__Adding these filters to search__
+
+I am hoping that we can agree to support openapi3 syntax going forward. It would allow a simple addition to the searchBody portion using allOf:
+```
+  searchBody:
+    description: The search criteria
+    type: object
+    allOf:
+      - $ref: '#/definitions/bboxFilter'
+      - $ref: '#/definitions/TimeFilter'
+      - $ref: '#/definitions/IntersectsFilter'
+```
+
