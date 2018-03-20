@@ -29,11 +29,11 @@ example
 The temporal query will be based on ISO 8601 and should support time ranges as well as equality. To support range
 queries, we are using a simple JSON based language. Ranges will be specified as an object with keys indicating the 
 
-Equality is specified as `{"time": "2018-03-20T16:11:44.353Z"}`
-Before is `{"time":{"lt":"2018-03-20T16:11:44.353Z"}}`
-After is `{"time":{"gt":"2018-03-20T16:11:44.353Z"}}`
-Before with Equality is `{"time":{"lte":"2018-03-20T16:11:44.353Z"}}` 
-After with Equality is `{"time":{"gte":"2018-03-20T16:11:44.353Z"}}`
+Equality is specified as `{"time": "2018-03-20T16:11:44.353Z"}`  
+Before is `{"time":{"lt":"2018-03-20T16:11:44.353Z"}}`  
+After is `{"time":{"gt":"2018-03-20T16:11:44.353Z"}}`  
+Before with Equality is `{"time":{"lte":"2018-03-20T16:11:44.353Z"}}`  
+After with Equality is `{"time":{"gte":"2018-03-20T16:11:44.353Z"}}`  
 
 
 
