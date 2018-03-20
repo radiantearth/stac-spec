@@ -35,7 +35,11 @@ After is `{"time":{"gt":"2018-03-20T16:11:44.353Z"}}`
 Before with Equality is `{"time":{"lte":"2018-03-20T16:11:44.353Z"}}`  
 After with Equality is `{"time":{"gte":"2018-03-20T16:11:44.353Z"}}`  
 
+__Filter Extensions__
 
+Spatial and Temporal filtering is not enough for many use cases. STAC is designed to be extensible, so we encourage additional filters to be provided as extensions.
+
+Filter extensions are intended to provide a place to specify additional filter types and behavior. Some filters may need to target vendor specific fields or use a more complex structure for defining the filter.
 
 
 
