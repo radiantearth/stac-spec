@@ -30,16 +30,16 @@ your feedback will be directly incorporated.
 | geometry        | geojson         | Geometry                   | Bounding Box + Footprint of the item in lat/long (EPSG 4326)										|
 | start      	  | date and time   | Date & Time Start          | First date/time in UTC (Combined date and time representation)    								| 
 | end        	  | date and time   | Date & Time End            | Last date/time in UTC (Combined date and time representation)         							| 
-| links           | array            | Resource Links             | Array of link objects to resources and related URLs (self and thumbnail required) 					|
-| assets          | array            | Assets            	   	 | Array of asset objects that can be be download (at least one required)						|
+| links           | array           | Resource Links             | Array of link objects to resources and related URLs (self required) 								|
+| assets          | array           | Assets            	   	 | Dict of asset objects that can be be download (at least one required, thumbnail strong recommended)		|
 | provider        | string          | Provider     (optional)    | Provider name  																					|
 | license         | string          | Data License (optional)    | Item's license name based on SPDX License List or following guidelines for non-SPDX licenses 	|
 
 ## Specification Definition
 
 The `Item` is a JSON object, specifically a GeoJSON `Feature`, that validates against the [stac-item](json-schema/stac-item.json) 
-JSON Schema document. Listed below are a set of instructions to validate implementations, but any JSON Schema validation using the
-STAC Item schema works great.
+JSON Schema document. Listed below are a set of instructions for one way to validate implementations, but any JSON Schema validation using the
+[STAC Item schema](json-schema/stac-item.json) works great.
 
 ## Fields Explained
 
@@ -65,22 +65,24 @@ attribute on links to describe relationships. Link objects require an 'href' to 
 absolute links are both allowed. And they also require a 'rel' field, which describes the relationship of the link. 
 This can be filled with any string, and best practices are emerging and will be defined in the future. Implementors are
 advised to be liberal with the links section, to describe things like the catalog an item is in, related items, parent or 
-child items (modeled in different ways, like an 'acquisition' or derived data). The 'self' link is required, to represent the 
+child items (modeled in different ways, like an 'acquisition' or derived data). The `self` link is required, to represent the 
 location that the `Item` can be found online. This is particularly useful when in a download package that includes `Item` 
-metadata, so that the downstream user can know where the data has come from. 
+metadata, so that the downstream user can know where the data has come from. The `self` link *must* be an absolute url, not 
+relative, to communicate the canonical location of the `Item`. 
 
-**thumbnail** is a special required `link` that is a downsampled image of the core asset, for direct display online in a web page or
-interactive search application. Even assets that are less easily translated in to a visual image should provide some visual representation, 
-that users can browse. For example a SAR asset can render an elevation mask or hillshade for display. 
-
-**assets** consists of links to data associated with the `Item` that can be downloaded. This should include the main asset, as well
+**assets** is an array of keyed objects that contain of links to data associated with the `Item` that can be downloaded. This should include the main asset, as well
 as any 'sidecar' files that are related and help a client make sense of the data. Examples of this include extended metadata (in XML, 
 JSON, etc), unusable data masks, satellite ephemeris data, etc. Some assets (like Landsat data) are represented by multiple files - 
 all should be linked to. It is generally recommended that different processing levels or formats are not exhaustively listed in an
 `Item`, but instead are represented by related `Items` that are linked to, but the best practices around this are still emerging.
-An asset object currently just requires a href field, which can be a relative and absolute links, to provide a link to the
+An asset object currently just requires a href field, which can be a relative or absolute link, to provide a link to the
 asset for download or streaming access. The 'name' field is optional, and is generally the display name for clients & users.
 The asset definition will likely evolve soon to be able to explain itself more.
+
+**thumbnail** is a special *strongly recommended* `asset` that is a downsampled image of the core asset, for direct display online in a web page or
+interactive search application. Even assets that are less easily translated in to a visual image should provide some visual representation, 
+that users can browse. For example a SAR asset can render an elevation mask or hillshade for display. The field used to be required, and
+if at all possible it should be included for a better user experience in searching data.
 
 **provider** is an optional field that lists the name of the provider. This field will likely evolve a bit to be useful for 
 querying and filtering, but for now is just the name.
@@ -94,7 +96,7 @@ to link to the actual license text the data is available under.
 Currently the JSON schema for links does not require a URI formatting, to give the option for implementors to provide relative
 links. In general Catalog API's should aim for absolute links whenever possible. But Static Catalogs are potentially more
 portable if they can be implemented with relative links, so that every link doesn't need to be rewritten when the data
-is copied.
+is copied. The `self` link is required to be absolute.
 
 ## Examples
 
