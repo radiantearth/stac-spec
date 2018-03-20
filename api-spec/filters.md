@@ -27,7 +27,7 @@ example
 ```
 
 The temporal query will be based on ISO 8601 and should support time ranges as well as equality. To support range
-queries, we are using a simple JSON based language. Ranges will be specified as an object with keys indicating the 
+queries, we are using a simple JSON based language. Ranges will be specified as an object with keys indicating the comparison to use.
 
 Equality is specified as `{"time": "2018-03-20T16:11:44.353Z"}`  
 Before is `{"time":{"lt":"2018-03-20T16:11:44.353Z"}}`  
@@ -105,3 +105,12 @@ CloudCover:
       cloudcover:
         $ref: '#/definitions/NumberRange'
 ```
+
+Some additional extensions that have been discussed:
+
+CQL support for generic queries:  
+{"CQL": "CQL Select String"}
+
+Time intervals:  
+{"time": "P1Y"} // Assume Duration/now if no time specified?
+{"time": "2018/P1M"} // Any time in january of 2018
