@@ -65,7 +65,8 @@
                     "pattern": "^self$"
                   },
                   "href": {
-                    "type": "string"
+                    "type": "string",
+                    "pattern": "^http"
                   }
                 }
               }
