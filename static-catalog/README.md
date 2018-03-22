@@ -153,6 +153,7 @@ An `Item` represents a single record in the catalog. An `item` must define the f
 - id
 - type
 - geometry
+- datetime
 - links (0 or more links to items or catalogs)
 - assets (a link to at least one `asset` (data that pertains to a location and time))
 
@@ -165,7 +166,7 @@ See the json-spec folder's [README](../json-spec/README.md) for links to samples
 It's possible to have an `Item` which only links to other `Item`s.
 `Item`s are represented by GeoJSON elements, and so represent [SimpleFeature](https://en.wikipedia.org/wiki/Simple_Features)s (specifically
 Polygons and MultiPolygons).
-They are also tagged with temporal component, and so fix a location at a specific time or time range.
+They are also tagged with temporal component, and so fix a location at a specific time.
 
 
 #### Links
@@ -246,8 +247,7 @@ an RGB [COG](http://www.cogeo.org/) and an RGBIR GeoTiff.
     ],
 
     "properties": {
-        "start": "2013-08-05T00:00:00+00:00",
-        "end": "2013-08-06T00:00:00+00:00",
+        "datetime": "2013-08-05T00:00:00+00:00",
         ...
     }
 }

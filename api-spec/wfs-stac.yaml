@@ -490,8 +490,7 @@ definitions:
             - - -122.308150179
               - 37.488035566
       properties:
-        start: '2016-05-03T13:21:30.040Z'
-        end: '2016-05-03T13:21:30.410Z'
+        datetime: '2016-05-03T13:21:30.040Z'
         provider: 'http://www.cool-sat.com'
         license: CC-BY-4.0
       links:
@@ -503,13 +502,10 @@ definitions:
   ItemProperties:
     type: object
     required:
-      - start
-      - end
+      - datetime
     description: provides the core metatdata fields plus extensions
     properties:
-      start:
-        $ref: '#/definitions/Time'
-      end:
+      datetime:
         $ref: '#/definitions/Time'
       provider:
         type: string

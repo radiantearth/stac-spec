@@ -28,8 +28,7 @@ your feedback will be directly incorporated.
 |-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------| 
 | id              | string          | Provider ID                | Provider ID for the item                       													| 
 | geometry        | geojson         | Geometry                   | Bounding Box + Footprint of the item in lat/long (EPSG 4326)										|
-| start      	  | date and time   | Date & Time Start          | First date/time in UTC (Combined date and time representation)    								| 
-| end        	  | date and time   | Date & Time End            | Last date/time in UTC (Combined date and time representation)         							| 
+| datetime 		  | date and time   | Date and Time 	         | The searchable date/time of the assets, in UTC (Formatted in RFC 3339)    						| 
 | links           | array           | Resource Links             | Array of link objects to resources and related URLs (self required) 								|
 | assets          | array           | Assets            	   	 | Dict of asset objects that can be be download (at least one required, thumbnail strong recommended)		|
 | provider        | string          | Provider     (optional)    | Provider name  																					|
@@ -51,14 +50,15 @@ unique, including things like unique satellite id's.
 **geometry** defines the full footprint of the asset represented by this item, formatted according to [RFC7946](https://tools.ietf.org/html/rfc7946) - [GeoJSON](http://geojson.org). The footprint should be the default GeoJSON geometry, though additional geometries can be included. All geometries should 
 be either Polygons or MultiPolygons, as assets represent an area, not a line or point. Bounding Boxes are required, on the 'Feature' 
 level in GeoJSON, and most software can easily generate BBOX's for footprints. This is to enable more naive clients to easily index 
-and search geospatially. GeoJSON is specified in Long/Latitude - EPSG code 4326, and the 'geometry' element of all STAC `Items` 
+and search geospatially. GeoJSON is specified in Long/Latitude - EPSG code 4326, and the `geometry` element of all STAC `Items` 
 should be the same. 
 
-**start** and **end** are the date-times that represent the beginning and end times of the capture of the asset. They are formatted
-according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). It is acceptable to have `start` and `end` to
-be the same as one another, generally representing a single capture. Many satellites do record the beginning and end of their
-capture, down to milliseconds, so if those are available then it is recommended to use them. But things like drone captures are often
-composites over several hours, and mosaics can use data from months or even years to make a coherent capture. 
+**datetime** is the representative time and date for the asset, likely the acquisition (in the case of single camera type captures)
+or the 'nominal' or representative time in the case of assets that are combined together. It is formatted
+according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). Though time can be a complex thing to capture,
+for this purpose keep in mind the STAC spec is primarily searching for data, so use whatever single date and time is most useful for
+a user to search for. STAC content profiles may further specify the meaning of the main `datetime` field, and many will also add 
+more datetime fields.
 
 **links** are used primarily to represent relationships with other entities, relying on the [rel](https://www.w3schools.com/tags/att_link_rel.asp) 
 attribute on links to describe relationships. Link objects require an 'href' to provide the actual link - relative and

@@ -99,15 +99,9 @@
                 "end"
               ],
               "properties": {
-                "start": {
-                  "title": "Date Start",
-                  "description": "First date/time",
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "end": {
-                  "title": "Date End",
-                  "description": "Last date/time",
+                "datetime": {
+                  "title": "Date and Time",
+                  "description": "The searchable date/time of the assets, in UTC (Formatted in RFC 3339) ",
                   "type": "string",
                   "format": "date-time"
                 },
