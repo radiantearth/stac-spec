@@ -95,8 +95,7 @@
             "properties": {
               "type": "object",
               "required": [
-                "start",
-                "end"
+                "datetime"
               ],
               "properties": {
                 "datetime": {
