@@ -36,74 +36,74 @@
       ]
     ]
   },
-  "assets": [
-    {
+  "assets": {
+    "geotiff": {
       "href": "15NOV09180446-M1BS-056823192010_01_P002.TIF",
       "metadata": {
-        "filetype": "geotif",
+        "filetype": "geotiff",
         "content": "image",
         "processing": {
           "RadiometricallyCorrected": true
         }
       }
     },
-    {
+    "imd_metadata": {
       "href": "15NOV09180446-M1BS-056823192010_01_P002.IMD",
       "metadata": {
         "filetype": "imd",
         "content": "image metadata"
       }
     },
-    {
+    "xml_metadata": {
       "href": "15NOV09180446-M1BS-056823192010_01_P002.XML",
       "metadata": {
         "filetype": "xml",
         "content": "image metadata"
       }
     },
-    {
+    "til": {
       "href": "15NOV09180446-M1BS-056823192010_01_P002.TIL",
       "metadata": {
         "filetype": "til",
         "content": "virtual raster image"
       }
     },
-    {
+    "attitude_metadata": {
       "href": "15NOV09180446-M1BS-056823192010_01_P002.ATT",
       "metadata": {
         "filetype": "att",
         "content": "attitude metadata"
       }
     },
-    {
+    "ephemeris": {
       "href": "15NOV09180446-M1BS-056823192010_01_P002.EPH",
       "metadata": {
         "filetype": "eph",
         "content": "ephemeral metadata"
       }
     },
-    {
+    "geo_metadata": {
       "href": "15NOV09180446-M1BS-056823192010_01_P002.GEO",
       "metadata": {
         "filetype": "geo",
         "content": "geospatial metadata"
       }
     },
-    {
+    "rpb": {
       "href": "15NOV09180446-M1BS-056823192010_01_P002.RPB",
       "metadata": {
         "filetype": "rpb",
         "content": "rational polynomial metadata"
       }
     },
-    {
-      "href": "15NOV09180446-M1BS-056823192010_01_P002.JPG",
+    "thumbnail": {
+      "href": "https://geobigdata.io/thumbnails/v1/browse/103001004B316600.large.png",
       "metadata": {
         "filetype": "jpeg",
         "content": "thumbnail"
       }
     }
-  ],
+  },
   "properties": {
     "bands": [
       {
@@ -182,8 +182,7 @@
     "sensorPlatformName": "WORLDVIEW02",
     "productLevel": "LV1B",
     "product": "WORLDVIEW02_LV1B",
-    "start": "2015-11-09T18:04:46.000Z",
-    "end": "2015-11-09T18:04:46.000Z",
+    "datetime": "2015-11-09T18:04:46.000Z",
     "provider": "DigitalGlobe",
     "license": "(C) COPYRIGHT 2016 DigitalGlobe, Inc., Longmont CO USA 80503"
   },
@@ -191,10 +190,6 @@
       {
         "rel": "self",
         "href": "https://geobigdata.io/L1B/WV3/103001004B316600_P002_MUL.json"
-      },
-      {
-        "rel": "thumbnail",        
-        "href": "https://geobigdata.io/thumbnails/v1/browse/103001004B316600.large.png"
       },
       {
         "rel": "acquisition",
