@@ -18,8 +18,7 @@
   },
 
   "properties": {
-    "start": "2017-01-29T18:10:30.637146Z",
-    "end": "2017-01-29T18:10:30.637197Z",
+    "datetime": "2017-01-29T18:10:30.637146Z",
     "provider": "Planet",
     "license": "CC-BY-SA",
     "product": "http://planet.com/static-catalog/production/sats/2k-analytic.json",
@@ -45,29 +44,32 @@
 
   "links": [
     { "rel":"self", "href": "http://planet.com/static-catalog/PSScene4Band/items/2017/01/29/20171110_121030_1013"},
-    { "rel":"thumbnail", "href": "http://planet.com/static-catalog/PSScene4Band/items/2017/01/29/20171110_121030_1013/thumb"},
     { "rel":"acquisition", "href": "http://api.planet.com/data/v1/strips/388565.json"},
     { "rel":"catalog", "href": "http://planet.com/static-catalog/PSScene4Band/catalog.json"}
   ],
 
-  "assets": [
-    {
+  "assets": {
+    "thumbnail": {
+          "href": "http://planet.com/static-catalog/PSScene4Band/items/2017/01/29/20171110_121030_1013/thumb",
+          "name": "Thumbnail"
+    },
+    "analytic": {
       "href": "http://planet.com/static-catalog/PSScene4Band/items/2017/01/29/20171110_121030_1013/analytic.tif",
       "name": "PSScene4Band GeoTIFF (COG)",
       "type": "https://api.planet.com/data/v1/asset-types/analytic"
     },
-    {
+    "analytic_xml": {
       "href": "http://planet.com/static-catalog/PSScene4Band/items/2017/01/29/20171110_121030_1013/analytic.xml",
       "name": "PSScene4Band XML Metadata",
       "type": "https://api.planet.com/data/v1/asset-types/analytic_xml"
     },
-    {
+    "udm": {
       "href": "http://planet.com/static-catalog/PSScene4Band/items/2017/01/29/20171110_121030_1013/udm.tif",
       "name": "PSScene4Band Unusable Data Mask",
       "type": "https://api.planet.com/data/v1/asset-types/udm"
     }
 
-   ]
+   }
 
  
 }
