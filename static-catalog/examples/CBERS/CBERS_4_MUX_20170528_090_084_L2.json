@@ -39,6 +39,10 @@
   "properties": {
     "datetime": "2017-05-28T09:01:17Z", 
     "provider": "INPE", 
-    "license": "CC-BY-SA-3.0"
+    "license": "CC-BY-SA-3.0", 
+    "eo:sun_azimuth": 66.2923, 
+    "eo:sun_elevation": 70.3079, 
+    "eo:resolution": 20.0, 
+    "eo:off_nadir_angle": -0.00744884
   }
 }
