@@ -6,7 +6,9 @@ Filters should be as simple as possible for a client to construct. Since we are 
 consume json. This allows clients to support filtering without additional tools. So the core filters will be 
 JSON based. The search enpoint will accept application/json format queries, and GET on the collection will 
 support URL encoded JSON. POST search the is recommended way to filter results to avoid the URL encoding 
-issues that can happen with GET.
+issues that can happen with GET. POST on the /search endpoing is more RESTful than POST on the items collection. 
+POST on the items collection is reserved for adding new records to the collection. We don't treat /search as 
+a colletion, so returning results from a POST search is acceptable.
 
 Searching using POST will accept a JSON object where the top level keys are specifying which type of filter
 to apply. Those same top level key names can be used as query string parameters for the GET request. Items in the collection 
@@ -26,14 +28,25 @@ example
 }
 ```
 
-The temporal query will be based on ISO 8601 and should support time ranges as well as equality. To support range
+The temporal query will be based on [RFC 3339](https://tools.ietf.org/html/rfc3339) and should support time ranges as well as equality. To support range
 queries, we are using a simple JSON based language. Ranges will be specified as an object with keys indicating the comparison to use.
 
 Equality is specified as `{"time": "2018-03-20T16:11:44.353Z"}`  
 Before is `{"time":{"lt":"2018-03-20T16:11:44.353Z"}}`  
 After is `{"time":{"gt":"2018-03-20T16:11:44.353Z"}}`  
 Before with Equality is `{"time":{"lte":"2018-03-20T16:11:44.353Z"}}`  
-After with Equality is `{"time":{"gte":"2018-03-20T16:11:44.353Z"}}`  
+After with Equality is `{"time":{"gte":"2018-03-20T16:11:44.353Z"}}`
+
+These queries can be combined to specify a search range:
+
+```
+{
+  "time": {
+    "gt":"2018-03-15T00:00:00.000Z",
+    "lt":"2018-06-01T00:00:00.000Z",
+  }
+} 
+```
 
 Filter Extensions
 -----------------
@@ -120,14 +133,14 @@ Time intervals:
 Adding filters to search
 ------------------------
 
-I am hoping that we can agree to support openapi3 syntax going forward. It would allow a simple addition to the searchBody portion using allOf:
+Filters should be documented as properties in the searchBody:
 ```
   searchBody:
     description: The search criteria
     type: object
     allOf:
-      - $ref: '#/definitions/bboxFilter'
-      - $ref: '#/definitions/TimeFilter'
-      - $ref: '#/definitions/IntersectsFilter'
+      - $ref: '#/components/schema/bboxFilter'
+      - $ref: '#/components/schema/TimeFilter'
+      - $ref: '#/components/schema/IntersectsFilter'
 ```
 
