@@ -1,0 +1,48 @@
+{
+  "id": "CBERS_4_MUX_20170528_090_084_L2", 
+  "type": "Feature", 
+  "bbox": [
+    13.700498, 
+    23.465111, 
+    14.98818, 
+    24.812825
+  ], 
+  "geometry": {
+    "type": "MultiPolygon", 
+    "coordinates": [
+      [
+        [
+          [
+            13.891487, 
+            23.463987
+          ], 
+          [
+            13.723733, 
+            24.567134
+          ], 
+          [
+            14.786396, 
+            24.811268
+          ], 
+          [
+            14.95489, 
+            23.703021
+          ], 
+          [
+            13.891487, 
+            23.463987
+          ]
+        ]
+      ]
+    ]
+  }, 
+  "properties": {
+    "datetime": "2017-05-28T09:01:17Z", 
+    "provider": "INPE", 
+    "license": "CC-BY-SA-3.0", 
+    "eo:sun_azimuth": 66.2923, 
+    "eo:sun_elevation": 70.3079, 
+    "eo:resolution": 20.0, 
+    "eo:off_nadir_angle": -0.00744884
+  }
+}
