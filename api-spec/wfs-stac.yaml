@@ -168,7 +168,13 @@ paths:
           description: The id of the collection
         - name: bbox
           in: query
-          type: string
+          type: array
+          items:
+            minItems: 4
+            maxItems: 4
+            type: number
+            minimum: -180
+            maximum: 180
           description: >-
             This should be an array matching the format from the /search/STAC POST definition.
             ex. ?bbox=[-180, -90, 180, 90]
