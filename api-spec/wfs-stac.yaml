@@ -158,12 +158,30 @@ paths:
   /collections/{collectionId}/items:
     get:
       summary:  Endpoint to search for features
+      description: >-
+        To add filters to the get request, the query parameters should match the parameters from the POST search.
       parameters:
         - name: collectionId
           in: path
           type: string
           required: true
           description: The id of the collection
+        - name: bbox
+          in: query
+          type: array
+          items:
+            minItems: 4
+            maxItems: 4
+            type: number
+            minimum: -180
+            maximum: 180
+          description: >-
+            This should be an array matching the format from the /search/STAC POST definition.
+            ex. ?bbox=[-180, -90, 180, 90]
+        - name: time
+          in: query
+          type: string
+          description: This should be an object matching the format from the /search/STAC POST definition. ex. ?time={"gt":"Time","lt":"Time"}
       tags:
         - Collections
       produces:
@@ -172,11 +190,11 @@ paths:
         '200':
           description: The feature collection
           schema:
-            $ref: '#/components/schemas/FeatureCollection'
+            $ref: '#/definitions/ItemCollection'
         default:
           description: An error occured.
           schema:
-            $ref: '#/components/schemas/exception'
+            $ref: '#/definitions/exception'
     post:
       summary: Endpoint to add features
       parameters:
@@ -309,51 +327,24 @@ paths:
           description: An error occured.
           schema:
             $ref: '#/components/schemas/exception'
-  
-  /search:
-    get:
-      summary: 'tbd'
-      tags:
-        - Search
-      produces: 
-        - application/json
-      responses:
-        '200':
-          description: tbd
-          schema:
-            $ref: '#/components/schemas/HttpResponse'
-        default:
-          description: An error occured.
-          schema:
-            $ref: '#/components/schemas/exception'
-            
   /search/stac:
-    get:
-      summary: Returns a pageable GeoJSON feature collection of the Items matching the query
-      tags: 
-        - Search
-      produces: 
-        - application/geo+json
-      responses:
-        '200':
-          description: Successfully created feature collection
-          schema:
-            $ref: '#/definitions/ItemCollection'
-        default:
-          description: An error occured.
-          schema:
-            $ref: '#/components/schemas/exception'
     post:
-      summary: >-
-        Retrieve items matching filters. The request is a string that matches
-        the GET query exactly. POST is primarily to be used when the request
-        length exceeds GET maximums (which is not uncommon with geospatial
-        queries)
+      summary: Search will return features from the item collection that match the provided filters.
+      description: >-
+        Searching using POST is preferred over using GET with query parameters on the collection.
+        Filters should be provided as a JSON document which can be difficult to URL encode. Some filters may require complex structures that are too long for some clients to provide in the URL.
       operationId: getItemsPost
       tags:
         - Search
       produces:
         - application/geo+json
+      consumes:
+        - application/json
+      parameters:
+        - name: filters
+          in: body
+          schema:
+            $ref: '#/definitions/searchBody'
       responses:
         '200':
           description: Successfully created feature collection
@@ -362,8 +353,8 @@ paths:
         default:
           description: An error occured.
           schema:
-            $ref: '#/components/schemas/exception'
-            
+            $ref: '#/definitions/exception'
+
 definitions:
   exception:
     type: object
@@ -374,8 +365,18 @@ definitions:
         type: string
       description:
         type: string
+  searchBody:
+    description: The search criteria
+    type: object
+    properties:
+      bbox:
+        $ref: '#/definitions/bbox'
+      time:
+        $ref: '#/definitions/TimeFilter'
   bbox:
-    description: 'West, South, East, North'
+    description: >-
+      An array of numbers representingWest, South, East, North.
+      The resulting bbox will be used in an intersect query matching against Item geometries.
     type: array
     items:
       minItems: 4
@@ -388,6 +389,19 @@ definitions:
       - -90
       - 180
       - 90
+  TimeFilter:
+    description: >-
+      An object representing a time based filter.
+    type: object
+    properties:
+      gt:
+        $ref: '#/definitions/Time'
+      lt:
+        $ref: '#/definitions/Time'
+      gte:
+        $ref: '#/definitions/Time'
+      lte:
+        $ref: '#/definitions/Time'
   link:
     type: object
     required:
@@ -707,10 +721,9 @@ definitions:
     items:
       type: number
       format: double
+  
 tags:
   - name: Capabilities
     description: >-
       Essential characteristics of this API including information about the
       data.
-  - name: Items
-    description: Access to data (items).
