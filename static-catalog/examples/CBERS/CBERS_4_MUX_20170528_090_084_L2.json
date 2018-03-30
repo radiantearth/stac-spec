@@ -40,9 +40,66 @@
     "datetime": "2017-05-28T09:01:17Z", 
     "provider": "INPE", 
     "license": "CC-BY-SA-3.0", 
+    "eo:collection": "default", 
     "eo:sun_azimuth": 66.2923, 
     "eo:sun_elevation": 70.3079, 
-    "eo:resolution": 20.0, 
-    "eo:off_nadir_angle": -0.00744884
+    "eo:off_nadir": -0.00744884, 
+    "cbers:data_type": "L2", 
+    "cbers:path": 90, 
+    "cbers:row": 84
+  }, 
+  "links": [
+    {
+      "rel": "self", 
+      "href": "https://s3.amazonaws.com/cbers-meta-pds/CBERS4/MUX/090/084/CBERS_4_MUX_20170528_090_084_L2/CBERS_4_MUX_20170528_090_084_L2.json"
+    }, 
+    {
+      "rel": "catalog", 
+      "href": "https://s3.amazonaws.com/cbers-meta-pds/CBERS4/catalog.json"
+    }
+  ], 
+  "assets": {
+    "thumbnail": {
+      "href": "https://s3.amazonaws.com/cbers-meta-pds/CBERS4/MUX/090/084/CBERS_4_MUX_20170528_090_084_L2/CBERS_4_MUX_20170528_090_084.jpg", 
+      "required": true, 
+      "type": "jpeg"
+    }, 
+    "metadata": {
+      "href": "s3://cbers-pds/CBERS4/MUX/090/084/CBERS_4_MUX_20170528_090_084_L2/CBERS_4_MUX_20170528_090_084_L2_BAND6.xml", 
+      "required": true, 
+      "type": "xml"
+    }, 
+    "B5": {
+      "href": "s3://cbers-pds/CBERS4/MUX/090/084/CBERS_4_MUX_20170528_090_084_L2/CBERS_4_MUX_20170528_090_084_L2_BAND5.tif", 
+      "type": "GeoTIFF", 
+      "required": true, 
+      "eo_bands": [
+        "5"
+      ]
+    }, 
+    "B6": {
+      "href": "s3://cbers-pds/CBERS4/MUX/090/084/CBERS_4_MUX_20170528_090_084_L2/CBERS_4_MUX_20170528_090_084_L2_BAND6.tif", 
+      "type": "GeoTIFF", 
+      "required": true, 
+      "eo_bands": [
+        "6"
+      ]
+    }, 
+    "B7": {
+      "href": "s3://cbers-pds/CBERS4/MUX/090/084/CBERS_4_MUX_20170528_090_084_L2/CBERS_4_MUX_20170528_090_084_L2_BAND7.tif", 
+      "type": "GeoTIFF", 
+      "required": true, 
+      "eo_bands": [
+        "7"
+      ]
+    }, 
+    "B8": {
+      "href": "s3://cbers-pds/CBERS4/MUX/090/084/CBERS_4_MUX_20170528_090_084_L2/CBERS_4_MUX_20170528_090_084_L2_BAND8.tif", 
+      "type": "GeoTIFF", 
+      "required": true, 
+      "eo_bands": [
+        "8"
+      ]
+    }
   }
 }
