@@ -1,0 +1,112 @@
+paths:
+  /search/stac:
+    post:
+      summary: >-
+        retrieve items matching filters.
+      operationId: searchSTAC
+      tags:
+        - STAC
+      requestBody:
+        content:
+          'application/json':      
+            schema:
+              $ref: '#/components/schemas/searchBody'
+      responses:
+        '200':
+          description: A feature.
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/featureCollectionGeoJSON'
+            text/html:
+              schema:
+                type: string
+        default:
+          description: An error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
+components:
+    searchBody:
+      description: The search criteria
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/bboxFilter'
+        - $ref: '#/components/schemas/timeFilter'
+        - $ref: '#/components/schemas/intersectsFilter'
+    bboxFilter:
+      type: object
+      description: Only return items that intersect the provided bounding box.
+      properties:
+        bbox:
+          $ref: '#/components/parameters/bbox'
+    timeFilter:
+      description: >-
+        An object representing a time based filter.
+      type: object
+      properties:
+        time:
+          $ref: '#/components/schemas/timeRange'
+    intersectsFilter:
+      type: object
+      description: >-
+            Only returns items that intersect with the provided polygon.
+      properties:
+        intersects:
+          $ref: '#/components/schemas/polygon'
+    polygon:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - polygon
+        coordinates:
+          $ref: '#/components/schemas/polygon2D'
+      required:
+        - type
+        - coordinates
+    polygon2D:
+      type: array
+      minItems: 1
+      items:
+        $ref: '#/components/schemas/linearRing2D'
+    linearRing2D:
+      type: array
+      minItems: 4
+      items:
+        $ref: '#/components/schemas/point2D'
+      example: [[-104,35],[-103,35],[-103,34],[-104,34],[-104,35]]
+    point2D:
+      description: A 2d geojson point
+      type: array
+      minimum: 2
+      maximum: 2
+      items:
+        type: number
+        format: double
+      example:
+        - -104
+        - 35
+    time:
+      type: string
+      description: A single date-time string that adheres to RFC3339, for example 1985-04-12T23:20:50.52Z
+    timeRange:
+      type: object
+      properties:
+        gt:
+          $ref: '#/components/schemas/time'
+        lt:
+          $ref: '#/components/schemas/time'
+        gte:
+          $ref: '#/components/schemas/time'
+        lte:
+          $ref: '#/components/schemas/time'
+tags:
+  - name: STAC
+    description: >-
+      Extension to WFS3 Core to support STAC metadata model and search API
