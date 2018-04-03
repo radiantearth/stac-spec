@@ -3,9 +3,9 @@ info:
   title: STAC API conforming to the OGC Web Feature Service standard
   version: 0.0.1
   description: >-
-    This is a sample OpenAPI definition that conforms to the OGC Web Feature
-    Service specification (conformance classes: "Core", "GeoJSON", "HTML" and
-    "OpenAPI 3.0").
+    This is an example OpenAPI specification of a SpatioTemporal Asset Catalog API 
+    that conforms to the OGC Web Feature Service specification (conformance 
+    classes: "STAC", "Core", "GeoJSON", "HTML", "OpenAPI 3.0").
   contact:
     name: Acme Corporation
     email: info@example.org
@@ -178,17 +178,15 @@ paths:
             text/html:
               schema:
                 type: string
-# START STAC-specific operations                
   /search/stac:
     post:
-      summary: >-
-        retrieve items matching filters.
+      summary: retrieve items matching filters.
       operationId: searchSTAC
       tags:
         - STAC
       requestBody:
         content:
-          'application/json':      
+          application/json:
             schema:
               $ref: '#/components/schemas/searchBody'
       responses:
@@ -197,7 +195,7 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: '#/components/schemas/featureCollectionGeoJSON'
+                $ref: '#/components/schemas/itemCollection'
             text/html:
               schema:
                 type: string
@@ -210,7 +208,6 @@ paths:
             text/html:
               schema:
                 type: string
-# END STAC-specific operations
 components:
   parameters:
     limit:
@@ -542,7 +539,6 @@ components:
             - Polygon
             - MultiPolygon
             - GeometryCollection
-# START STAC-specific definitions
     searchBody:
       description: The search criteria
       type: object
@@ -550,6 +546,15 @@ components:
         - $ref: '#/components/schemas/bboxFilter'
         - $ref: '#/components/schemas/timeFilter'
         - $ref: '#/components/schemas/intersectsFilter'
+      example:
+        bbox:
+        - -110
+        - 39
+        - -105
+        - 41
+        time:
+          gt: "2018-03-15T00:00:00.000Z"
+          lt: "2018-06-01T00:00:00.000Z"
     bboxFilter:
       type: object
       description: Only return items that intersect the provided bounding box.
@@ -557,16 +562,14 @@ components:
         bbox:
           $ref: '#/components/parameters/bbox'
     timeFilter:
-      description: >-
-        An object representing a time based filter.
+      description: An object representing a time based filter.
       type: object
       properties:
         time:
           $ref: '#/components/schemas/timeRange'
     intersectsFilter:
       type: object
-      description: >-
-            Only returns items that intersect with the provided polygon.
+      description: Only returns items that intersect with the provided polygon.
       properties:
         intersects:
           $ref: '#/components/schemas/polygon'
@@ -592,7 +595,17 @@ components:
       minItems: 4
       items:
         $ref: '#/components/schemas/point2D'
-      example: [[-104,35],[-103,35],[-103,34],[-104,34],[-104,35]]
+      example:
+        - - -104
+          - 35
+        - - -103
+          - 35
+        - - -103
+          - 34
+        - - -104
+          - 34
+        - - -104
+          - 35
     point2D:
       description: A 2d geojson point
       type: array
@@ -606,7 +619,9 @@ components:
         - 35
     time:
       type: string
-      description: A single date-time string that adheres to RFC3339, for example 1985-04-12T23:20:50.52Z
+      description: >-
+        A single date-time string that adheres to RFC3339, for example
+        1985-04-12T23:20:50.52Z
     timeRange:
       type: object
       properties:
@@ -618,7 +633,131 @@ components:
           $ref: '#/components/schemas/time'
         lte:
           $ref: '#/components/schemas/time'
-# END STAC-specific definitions          
+    itemCollection:
+      type: object
+      required:
+        - features
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - FeatureCollection
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/item'
+        nextPageToken:
+          type: string
+          description: A token to obtain the next paginated data set
+          example: ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
+        links:
+          $ref: '#/components/schemas/itemCollectionLinks'
+    item:
+      type: object
+      required:
+        - id
+        - type
+        - geometry
+        - links
+        - properties
+        - assets
+      properties:
+        id:
+          type: string
+          example: path/to/example.tif
+          description: 'unique ID, potentially link to file'
+        bbox:
+          $ref: '#/components/parameters/bbox'
+        geometry:
+          type: object
+          description: footprint of the item
+        type:
+          type: string
+          description: The GeoJSON type
+          enum:
+            - Feature
+        properties:
+          $ref: '#/components/schemas/itemProperties'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/asset'
+      example:
+        type: Feature
+        id: CS3-20160503_132130_04
+        bbox:
+          - -122.59750209
+          - 37.48803556
+          - -122.2880486
+          - 37.613537207
+        geometry:
+          type: Polygon
+          coordinates:
+            - - - -122.308150179
+                - 37.488035566
+              - - -122.597502109
+                - 37.538869539
+              - - -122.576687533
+                - 37.613537207
+              - - -122.2880486
+                - 37.562818007
+              - - -122.308150179
+                - 37.488035566
+        properties:
+          start: '2016-05-03T13:21:30.040Z'
+          end: '2016-05-03T13:21:30.410Z'
+          provider: 'http://www.cool-sat.com'
+          license: CC-BY-4.0
+        links:
+          - rel: self
+            href: 'http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json'
+        assets:
+          - name: thumbnail
+            href: relative-path/to/analytic.tif
+    asset:
+      type: object
+      required:
+        - href
+      properties:
+        href:
+          type: string
+        name:
+          type: string
+          example: prev
+    itemProperties:
+      type: object
+      required:
+        - start
+        - end
+      description: provides the core metatdata fields plus extensions
+      properties:
+        start:
+          $ref: '#/components/schemas/time'
+        end:
+          $ref: '#/components/schemas/time'
+        provider:
+          type: string
+          description: Information about the provider
+        license:
+          type: string
+          description: Data license name based on SPDX License List
+      additionalProperties:
+        type: object
+    itemCollectionLinks:
+      type: object
+      properties:
+        next:
+          type: string
+          format: url
+          description: >-
+            A URL to obtain the next paginated data set. If not present, the
+            client should utilize the `nextPageToken`.
+          example: http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
 tags:
   - name: Capabilities
     description: >-
@@ -627,5 +766,4 @@ tags:
   - name: Features
     description: Access to data (features).
   - name: STAC
-    description: >-
-      Extension to WFS3 Core to support STAC metadata model and search API    
+    description: 'Extension to WFS3 Core to support STAC metadata model and search API'
