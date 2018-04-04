@@ -3,8 +3,8 @@
 This document explains the fields of the STAC Earth Observation (EO) Extension to a STAC `Item`. EO data is considered to be data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands in any part of the electromagnetic spectrum. Examples of EO data include sensors with visible, short-wave and mid-wave IR bands (e.g., the OLI instrument on Landsat-8), long-wave IR bands (e.g. TIRS aboard Landsat-8), as well as SAR instruments (e.g. Sentinel-1).
 
 ## EO Extension Description
-
-### `Item` additions
+These are fields that extend the `Item` object
+## `Item` additions
 
 | element             | type info                 | name                    | description                                                                                 | 
 |----------------------|---------------------------|-------------------------|---------------------------------------------------------------------------------------------| 
@@ -19,7 +19,7 @@ This document explains the fields of the STAC Earth Observation (EO) Extension t
 | eo:sun_azimuth    | float (optional)   | Sun Azimuth | Sun azimuth angle. 0-360 degrees, measured clockwise from north
 | eo:sun_elevation  | float (optional)   | Sun Elevation | Sun elevation angle. 0-90 degrees measured from horizon
 
-#### Fields
+## `Item` Field Descriptions
 
 **eo:gsd** is the nominal Ground Sample Distance for the data, as measured in meters on the ground. Since GSD can vary across a scene depending on projection, this should be the average GSD in the center of the image. If the data includes multiple bands with different GSD values, this should be the best GSD available.
 
@@ -41,7 +41,7 @@ This document explains the fields of the STAC Earth Observation (EO) Extension t
 
 **eo:sun_elevation**: This is the angle from the tangent of ths scene center point to the sun. Measured in degrees (0-90).
 
-### `Item:eo:bands`
+## `Item:eo:bands`
 The bands field of a `Item` is a dictionary where the index identifies a specific band. This is often a band number (e.g., 1, B1, B01), but could be any unique identifier.
 
 | element             | type info                 | name                    | description                                                                                 | 
@@ -52,7 +52,7 @@ The bands field of a `Item` is a dictionary where the index identifies a specifi
 | center_wavelength | float (optional) | Center wavelength | The center wavelength of the band, in microns
 | full_width_half_max | float (optional) | Full width at half maximum | The width of the band, as measured at half the maximum transmission, in microns
 
-#### Fields
+## `Item:eo:bands` Field Descriptions
 
 **common_name** is a name commonly used to refer to the band to make it easier to search for bands across instruments. See below for a list of accepted common names.
 
@@ -64,7 +64,7 @@ The bands field of a `Item` is a dictionary where the index identifies a specifi
 
 **full_width_half_max** (FWHM) is a common way to describe the size of a spectral band. It is the width, in microns, of the bandpass measured at a half of the maximum transmission. Thus, if the maximum transmission of the bandpass was 80%, the FWHM is measured as the width of the bandpass at 40% transmission.
 
-#### Common Band Names
+## Common Band Names
 The band's common_name is the name that is commonly used to refer to that band's spectral properties. The table below shows the common name based on the average band range for the band numbers of several popular instruments.
 
 | Common Name     | Band Range (μm) | Landsat 5 | Landsat 7 | Landsat 8 | Sentinel 2 | MODIS |
