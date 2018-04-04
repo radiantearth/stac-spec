@@ -1,10 +1,13 @@
 openapi: 3.0.1
 info:
-  title: STAC API without WFS3
-  version: 0.0.1
+  title: The SpatioTemporal Asset Catalog API (standalone)
+  version: 0.4.0
   description: >-
-    This is an example OpenAPI specification of a SpatioTemporal Asset Catalog API standalone
-    without WFS. (Conformance classes: "STAC").
+    This is an OpenAPI definition of the core SpatioTemporal Asset Catalog API
+    specification. Any service that implements this endpoint to allow search of
+    spatiotemporal assets can be considered a STAC API. The endpoint is also
+    available as an OpenAPI fragment that can be integrated with other OpenAPI
+    definitions, and is designed to slot seamless into a WFS 3 API definition.
   contact:
     name: Acme Corporation
     email: info@example.org
