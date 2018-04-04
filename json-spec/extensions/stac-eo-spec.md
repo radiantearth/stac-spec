@@ -12,7 +12,7 @@ This document explains the fields of the STAC Earth Observation (EO) Extension t
 | eo:platform            | string                      | Unique name of platform | Specific name of the platform (e.g., landsat-8, sentinel-2A, larrysdrone) | 
 | eo:instrument        | string                      | Instrument used     | Name of instrument or sensor (e.g., MODIS, ASTER, OLI, Canon F-1) |
 | eo:bands  | dictionary    | Band Info | Band specific metadata (see below)
-| eo:crs     | reference system    | ref system             | CRS of the datasource in full WKT format. null if no crs
+| eo:crs     | string    | ref system             | CRS of the datasource in full WKT format. null if no crs
 | eo:cloud_cover     | integer (optional)   | Cloud Cover Pct    | Percent of cloud cover (1-100) | 
 | eo:off_nadir      | float (optional)   | Off nadir    | Viewing angle. 0-90 degrees, measured from nadir
 | eo:azimuth      | float (optional)   | Azimuth    | Viewing azimuth angle. 0-360 degrees, measured clockwise from north
@@ -64,7 +64,7 @@ The bands field of a `Item` is a dictionary where the index identifies a specifi
 
 **full_width_half_max** (FWHM) is a common way to describe the size of a spectral band. It is the width, in microns, of the bandpass measured at a half of the maximum transmission. Thus, if the maximum transmission of the bandpass was 80%, the FWHM is measured as the width of the bandpass at 40% transmission.
 
-##### Common Band Names
+#### Common Band Names
 The band's common_name is the name that is commonly used to refer to that band's spectral properties. The table below shows the common name based on the average band range for the band numbers of several popular instruments.
 
 | Common Name     | Band Range (μm) | Landsat 5 | Landsat 7 | Landsat 8 | Sentinel 2 | MODIS |
