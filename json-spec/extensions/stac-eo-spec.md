@@ -5,6 +5,7 @@ This document explains the fields of the STAC Earth Observation (EO) Extension t
 ## EO Extension Description
 
 ### `Item` additions
+
 | element             | type info                 | name                    | description                                                                                 | 
 |----------------------|---------------------------|-------------------------|---------------------------------------------------------------------------------------------| 
 | eo:gsd | float | Ground Sample distance | The minimum distance between pixel centers available, in meters (across all bands) |
@@ -21,6 +22,7 @@ This document explains the fields of the STAC Earth Observation (EO) Extension t
 
 ### `Item:eo:bands`
 The bands field of a `Item` is a dictionary where the index identifies a specific band. This is often a band number (e.g., 1, B1, B01), but could be any unique identifier.
+
 | element             | type info                 | name                    | description                                                                                 | 
 |----------------------|---------------------------|-------------------------|---------------------------------------------------------------------------------------------| 
 | common_name | string (optional) | Common name | The name commonly used to refer to this specific band (see below)
