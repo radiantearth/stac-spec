@@ -31,7 +31,7 @@ paths:
         - STAC
       parameters:
       - $ref: '#/components/parameters/bbox'
-      - $ref: '#/components/parameters/timeRange'
+      - $ref: '#/components/parameters/time'
       - $ref: '#/components/parameters/limit'
       responses:
         '200':
@@ -147,7 +147,7 @@ components:
           type: number
       style: form
       explode: false
-    timeRange:
+    time:
       name: time
       in: query
       description: >-
@@ -161,7 +161,16 @@ components:
         extent or all relevant temporal properties.
       required: false
       schema:
-        $ref: '#/components/schemas/timeRange'
+        type: object
+        properties:
+          gt:
+            $ref: '#/components/schemas/time'
+          lt:
+            $ref: '#/components/schemas/time'
+          gte:
+            $ref: '#/components/schemas/time'
+          lte:
+            $ref: '#/components/schemas/time'
       explode: false
     collectionId:
       name: collectionId
@@ -230,7 +239,7 @@ components:
       type: object
       properties:
         time:
-          $ref: '#/components/schemas/timeRange'
+          $ref: '#/components/parameters/time'
     intersectsFilter:
       type: object
       description: Only returns items that intersect with the provided polygon.
@@ -286,17 +295,6 @@ components:
       description: >-
         A single date-time string that adheres to RFC3339, for example
         1985-04-12T23:20:50.52Z
-    timeRange:
-      type: object
-      properties:
-        gt:
-          $ref: '#/components/schemas/time'
-        lt:
-          $ref: '#/components/schemas/time'
-        gte:
-          $ref: '#/components/schemas/time'
-        lte:
-          $ref: '#/components/schemas/time'
     itemCollection:
       type: object
       required:
