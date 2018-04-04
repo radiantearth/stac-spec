@@ -22,9 +22,41 @@ servers:
     description: Production server
 paths:
   /search/stac:
+    get:
+      summary: >-
+        retrieve items matching filters. Intended as a shorthand API for simple queries.
+        This method is optional.
+      operationId: getSearchSTAC
+      tags:
+        - STAC
+      parameters:
+      - $ref: '#/components/parameters/bbox'
+      - $ref: '#/components/parameters/time'
+      - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A feature collection.
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/itemCollection'
+            text/html:
+              schema:
+                type: string
+        default:
+          description: An error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
     post:
-      summary: retrieve items matching filters.
-      operationId: searchSTAC
+      summary: >- 
+        retrieve items matching filters. Intended as the standard, full-featured
+        query API. This method is mandatory.
+      operationId: postSearchSTAC
       tags:
         - STAC
       requestBody:
@@ -34,7 +66,7 @@ paths:
               $ref: '#/components/schemas/searchBody'
       responses:
         '200':
-          description: A feature.
+          description: A feature collection.
           content:
             application/geo+json:
               schema:
@@ -183,13 +215,13 @@ components:
         - $ref: '#/components/schemas/intersectsFilter'
       example:
         bbox:
-        - -110
-        - 39
-        - -105
-        - 41
+          - -110
+          - 39
+          - -105
+          - 41
         time:
-          gt: "2018-03-15T00:00:00.000Z"
-          lt: "2018-06-01T00:00:00.000Z"
+          gt: '2018-03-15T00:00:00.000Z'
+          lt: '2018-06-01T00:00:00.000Z'
     bboxFilter:
       type: object
       description: Only return items that intersect the provided bounding box.
@@ -350,7 +382,8 @@ components:
           license: CC-BY-4.0
         links:
           - rel: self
-            href: 'http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json'
+            href: >-
+              http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json
         assets:
           - name: thumbnail
             href: relative-path/to/analytic.tif
@@ -392,7 +425,8 @@ components:
           description: >-
             A URL to obtain the next paginated data set. If not present, the
             client should utilize the `nextPageToken`.
-          example: http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
+          example: >-
+            http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
 tags:
   - name: STAC
     description: 'Extension to WFS3 Core to support STAC metadata model and search API    '

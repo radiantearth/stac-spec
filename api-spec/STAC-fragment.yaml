@@ -1,8 +1,40 @@
 paths:
   /search/stac:
+    get:
+      summary: >-
+        retrieve items matching filters. Intended as a shorthand API for simple queries.
+        This method is optional.
+      operationId: getSearchSTAC
+      tags:
+        - STAC
+      parameters:
+      - $ref: '#/components/parameters/bbox'
+      - $ref: '#/components/parameters/time'
+      - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A feature collection.
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/itemCollection'
+            text/html:
+              schema:
+                type: string
+        default:
+          description: An error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
     post:
-      summary: retrieve items matching filters.
-      operationId: searchSTAC
+      summary: >- 
+        retrieve items matching filters. Intended as the standard, full-featured
+        query API. This method is mandatory.
+      operationId: postSearchSTAC
       tags:
         - STAC
       requestBody:
@@ -12,7 +44,7 @@ paths:
               $ref: '#/components/schemas/searchBody'
       responses:
         '200':
-          description: A feature.
+          description: A feature collection.
           content:
             application/geo+json:
               schema:
