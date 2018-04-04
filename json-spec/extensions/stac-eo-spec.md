@@ -20,15 +20,25 @@ This document explains the fields of the STAC Earth Observation (EO) Extension t
 | eo:sun_elevation  | float (optional)   | Sun Elevation | Sun elevation angle. 0-90 degrees measured from horizon
 
 #### Fields
+
 **eo:gsd** is the nominal Ground Sample Distance for the data, as measured in meters on the ground. Since GSD can vary across a scene depending on projection, this should be the average GSD in the center of the image. If the data includes multiple bands with different GSD values, this should be the best GSD available.
+
 **eo:platform** is the name of the specific platform the instrument is attached to. For satellites this would be the name of the satellite (e.g., landsat-8, sentinel-2A), whereas for drones this would be a unique name for the drone.
+
 **eo:instrument** The instrument is the name of the sensor used, although for Items which contain data from multiple sensors this could also name multiple sensors. For example, data from the Landsat-8 platform is collected with the OLI sensor as well as the TIRS sensor, but the data is distributed together and commonly referred to as OLI_TIRS.
+
 **eo:bands** This is a dictionary of band information where each key in the dictionary is an identifier for the band (e.g., "B01", "B02", "B1", "B5", "QA"). See below for more information on band metadata.
+
 **eo:crs**: The Coordinate Reference System (CRS) is the native reference system (sometimes called a 'projection') used by the data, provided in [Well-Known Text (WKT) format](https://en.wikipedia.org/wiki/Well-known_text). This field is required. If the data does not have a CRS, such as in the case of non-rectified imagery with Ground Control Points, eo:crs should be set to null.
+
 **eo:cloud_cover**: An estimate of cloud cover as a percentage of the entire scene. If not available the field should not be provided.
+
 **eo:off_nadir**: The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90).
+
 **eo:azimuth**: The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise in degrees (0-360)
+
 **eo:sun_azimuth**: From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360).
+
 **eo:sun_elevation**: This is the angle from the tangent of ths scene center point to the sun. Measured in degrees (0-90).
 
 ### `Item:eo:bands`
@@ -43,10 +53,15 @@ The bands field of a `Item` is a dictionary where the index identifies a specifi
 | full_width_half_max | float (optional) | Full width at half maximum | The width of the band, as measured at half the maximum transmission, in microns
 
 #### Fields
+
 **common_name** is a name commonly used to refer to the band to make it easier to search for bands across instruments. See below for a list of accepted common names.
+
 **gsd** is the nominal Ground Sample Distance for this band, as measured in meters on the ground. Since GSD can vary across a scene depending on projection, this should be the average GSD in the center of the image.
+
 **accuracy** is the expected error between the measured location and the true location of a pixel, in meters on the ground.
+
 **center_wavelength** is the center wavelength of the band, measured in microns.
+
 **full_width_half_max** (FWHM) is a common way to describe the size of a spectral band. It is the width, in microns, of the bandpass measured at a half of the maximum transmission. Thus, if the maximum transmission of the bandpass was 80%, the FWHM is measured as the width of the bandpass at 40% transmission.
 
 ##### Common Band Names
