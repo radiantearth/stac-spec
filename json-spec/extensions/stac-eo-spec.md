@@ -3,42 +3,32 @@
 This document explains the fields of the STAC Earth Observation (EO) Extension to a STAC `Item`. EO data is considered to be data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands in any part of the electromagnetic spectrum. Examples of EO data include sensors with visible, short-wave and mid-wave IR bands (e.g., the OLI instrument on Landsat-8), long-wave IR bands (e.g. TIRS aboard Landsat-8), as well as SAR instruments (e.g. Sentinel-1).
 
 ## EO Extension Description
-These are the additional fields to appear under a STAC `Item`, as well as the items's assets field and `Collection` level metadata.
 
 ### `Item` additions
 | element             | type info                 | name                    | description                                                                                 | 
 |----------------------|---------------------------|-------------------------|---------------------------------------------------------------------------------------------| 
-| eo:collection             | string (optional)                    | Collection Name       | The name of the STAC `Collection` this `Item` belongs to |
-| eo:crs     | reference system    | ref system             | CRS of the datasource in full WKT format. null if no crs
-| eo:cloud_cover     | number (optional)   | Cloud Cover Pct    | Percent of cloud cover (integer, 1-100) | 
-| eo:off_nadir      | number (optional)   | Off nadir    | Viewing angle. 0-90 degrees, measured from nadir
-| eo:azimuth      | number (optional)   | Azimuth    | Viewing azimuth angle. 0-360 degrees, measured clockwise from north
-| eo:sun_azimuth    | number (optional)   | Sun Azimuth | Sun azimuth angle. 0-360 degrees, measured clockwise from north
-| eo:sun_elevation  | number (optional)   | Sun Elevation | Sun elevation angle. 0-90 degrees measured from horizon
-
-### `Item:assets` additions
-
-| element             | type info                 | name                    | description                                                                                 | 
-|----------------------|---------------------------|-------------------------|---------------------------------------------------------------------------------------------| 
-| bands | string array | Bands | An array of strings that index the `eo:bands` field in a `Collection`.
-
-### `Collection` additions
-In addition, the EO Extension defines additional fields under a STAC `Collection`.
-| element             | type info                 | name                    | description                                                                                 | 
-|----------------------|---------------------------|-------------------------|---------------------------------------------------------------------------------------------| 
+| eo:gsd | float | Ground Sample distance | The minimum distance between pixel centers available, in meters (across all bands) |
 | eo:platform            | string                      | Unique name of platform | Specific name of the platform (e.g., landsat-8, sentinel-2A, larrysdrone) | 
 | eo:instrument        | string                      | Instrument used     | Name of instrument or sensor (e.g., MODIS, ASTER, OLI, Canon F-1) |
-| eo:bands               |   dict                       | Bands                    | A dictionary of band properties |
+| eo:bands  | dictionary    | Band Info | Band specific metadata (see below)
+| eo:crs     | reference system    | ref system             | CRS of the datasource in full WKT format. null if no crs
+| eo:cloud_cover     | integer (optional)   | Cloud Cover Pct    | Percent of cloud cover (1-100) | 
+| eo:off_nadir      | float (optional)   | Off nadir    | Viewing angle. 0-90 degrees, measured from nadir
+| eo:azimuth      | float (optional)   | Azimuth    | Viewing azimuth angle. 0-360 degrees, measured clockwise from north
+| eo:sun_azimuth    | float (optional)   | Sun Azimuth | Sun azimuth angle. 0-360 degrees, measured clockwise from north
+| eo:sun_elevation  | float (optional)   | Sun Elevation | Sun elevation angle. 0-90 degrees measured from horizon
 
-#### `Collection:bands`
-The bands field of a `Collection` is a dictionary where the index identifies a specific band. This is often a band number (e.g., 1, B1, B01), but could be any unique identifier.
+
+### `Item:eo:bands`
+The bands field of a `Item` is a dictionary where the index identifies a specific band. This is often a band number (e.g., 1, B1, B01), but could be any unique identifier.
 | element             | type info                 | name                    | description                                                                                 | 
 |----------------------|---------------------------|-------------------------|---------------------------------------------------------------------------------------------| 
-| common_name | string (optional) | Common name | The name commonly used to refer to this specific band (e.g., red, blue, nir)
-| gsd | float (optional) | Ground sample distance | The average distance between pixel centers as measured in meters on the ground
+| common_name | string (optional) | Common name | The name commonly used to refer to this specific band (see below)
+| gsd | float (optional) | Ground sample distance | The average distance between pixel centers as measured in meters on the ground. Defaults to eo:gsd if not provided
 | accuracy | float (optional) | Geolocation Accuracy | The expected accuracy of the scene registration, in meters
-| wavelength | float (optional) | Center wavelength | The center wavelength of the band, in microns
-| fwhm | float (optional) | Full width at half maximum | The width of the band, as measured at half the maximum transmission, in microns
+| center_wavelength | float (optional) | Center wavelength | The center wavelength of the band, in microns
+| full_width_half_max | float (optional) | Full width at half maximum | The width of the band, as measured at half the maximum transmission, in microns
+
 
 ##### Common Band Names
 The band's common_name is the name that is commonly used to refer to that band's spectral properties. The table below shows the common name based on the average band range for the band numbers of several popular instruments.
