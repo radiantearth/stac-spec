@@ -1,10 +1,10 @@
 openapi: 3.0.1
 info:
-  title: STAC API conforming to the OGC Web Feature Service standard
-  version: 0.0.1
+  title: STAC API integrated with OGC Web Feature Service standard
+  version: 0.4.0
   description: >-
     This is an example OpenAPI specification of a SpatioTemporal Asset Catalog API 
-    that conforms to the OGC Web Feature Service specification (conformance 
+    that also implements the OGC Web Feature Service 3.0 specification (conformance 
     classes: "STAC", "Core", "GeoJSON", "HTML", "OpenAPI 3.0").
   contact:
     name: Acme Corporation
