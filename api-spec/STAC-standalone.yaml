@@ -22,7 +22,8 @@ paths:
     get:
       summary: >-
         retrieve items matching filters. Intended as a shorthand API for simple queries.
-      operationId: searchSTAC
+        This method is optional.
+      operationId: getSearchSTAC
       tags:
         - STAC
       parameters:
@@ -31,7 +32,7 @@ paths:
       - $ref: '#/components/parameters/limit'
       responses:
         '200':
-          description: A feature.
+          description: A feature collection.
           content:
             application/geo+json:
               schema:
@@ -51,8 +52,8 @@ paths:
     post:
       summary: >- 
         retrieve items matching filters. Intended as the standard, full-featured
-        query API.
-      operationId: searchSTAC
+        query API. This method is mandatory.
+      operationId: postSearchSTAC
       tags:
         - STAC
       requestBody:
@@ -62,7 +63,7 @@ paths:
               $ref: '#/components/schemas/searchBody'
       responses:
         '200':
-          description: A feature.
+          description: A feature collection.
           content:
             application/geo+json:
               schema:
