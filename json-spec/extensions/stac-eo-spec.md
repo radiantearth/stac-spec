@@ -8,14 +8,13 @@ These are the additional fields to appear under a STAC `Item`, as well as the it
 ### `Item` additions
 | element             | type info                 | name                    | description                                                                                 | 
 |----------------------|---------------------------|-------------------------|---------------------------------------------------------------------------------------------| 
-| eo:collection             | string                      | Collection Name       | The name of the STAC `Collection` this `Item` belongs to |
+| eo:collection             | string (optional)                    | Collection Name       | The name of the STAC `Collection` this `Item` belongs to |
 | eo:crs     | reference system    | ref system             | CRS of the datasource in full WKT format. null if no crs
-| eo:cloud_cover     | number (optional)   | Cloud Cover Pct    | Percent of cloud cover | 
-| eo:off_nadir      | number (optional)   | Off nadir    | The viewing angle measured from nadir, in degrees
-| eo:azimuth      | number (optional)   | Azimuth    | The viewing azimuth angle, in degrees
-| eo:sun_azimuth    | number (optional)   | Sun Azimuth | The sun azimuth angle, in degrees
-| eo:sun_elevation  | number (optional)   | Sun Elevation | The sun elevation angle, in degrees
-| eo:supported_assets | array of asset names | Supported Assets | A list of the key names for the asset types that are available now.
+| eo:cloud_cover     | number (optional)   | Cloud Cover Pct    | Percent of cloud cover (integer, 1-100) | 
+| eo:off_nadir      | number (optional)   | Off nadir    | Viewing angle. 0-90 degrees, measured from nadir
+| eo:azimuth      | number (optional)   | Azimuth    | Viewing azimuth angle. 0-360 degrees, measured clockwise from north
+| eo:sun_azimuth    | number (optional)   | Sun Azimuth | Sun azimuth angle. 0-360 degrees, measured clockwise from north
+| eo:sun_elevation  | number (optional)   | Sun Elevation | Sun elevation angle. 0-90 degrees measured from horizon
 
 ### `Item:assets` additions
 
