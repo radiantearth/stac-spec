@@ -45,6 +45,12 @@ This will display the documentation and examples for the specification. You can 
 clients and servers in a variety of languages from the editor as well, so you can get a sense of how it 
 will work.
 
+##### Warning
+
+**The latest spec has not yet been fully validated by actual implementations. This will come soon, but if you
+are new to STAC and are trying to use the spec we recommend you jump on the [stac gitter](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby)
+to get help**
+
 ### WFS 3.0 Integration
 
 At the [Ft Collins Sprint](https://github.com/radiantearth/community-sprints/tree/master/03072018-ft-collins-co) the
