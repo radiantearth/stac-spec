@@ -28,8 +28,9 @@ It takes a JSON object that can filter on date and time:
 This tells the server to return all the catalog items it has that are from the second half of March, 2018 and 
 that fall within this area:
 
-![swiss_bbox](https://user-images.githubusercontent.com/407017/38281083-bd77d01c-375d-11e8-96ed-69a5403ff288.png)
+![swiss_bbox](https://user-images.githubusercontent.com/407017/38382405-b5e69344-38be-11e8-90dc-35738678356d.png)
 
+*map © OpenStreetMap contributors*
 
 ## Specification
 
