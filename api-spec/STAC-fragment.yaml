@@ -304,16 +304,19 @@ components:
               - - -122.308150179
                 - 37.488035566
         properties:
-          start: '2016-05-03T13:21:30.040Z'
-          end: '2016-05-03T13:21:30.410Z'
+          datetime: '2016-05-03T13:21:30.040Z'
           provider: 'http://www.cool-sat.com'
           license: CC-BY-4.0
         links:
           - rel: self
-            href: 'http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json'
+            href: http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04.json
         assets:
-          - name: thumbnail
-            href: relative-path/to/analytic.tif
+          analytic:
+            name: 4-Band Analytic
+            href: http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/analytic.tif
+          thumbnail: 
+            name: thumbnail
+            href: 'http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/thumb.png'
     asset:
       type: object
       required:
