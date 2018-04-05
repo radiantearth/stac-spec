@@ -110,16 +110,18 @@ components:
     bbox:
       name: bbox
       in: query
-      description: >
+      description: |
         Only features that have a geometry that intersects the bounding box are
-        selected. The bounding box is provided as four or six numbers, depending
-        on whether the coordinate reference system includes a vertical axis
-        (elevation or depth):
+        selected. The bounding box is provided as four or six numbers,
+        depending on whether the coordinate reference system includes a
+        vertical axis (elevation or depth):
 
-        * Lower left corner, coordinate axis 1 * Lower left corner, coordinate
-        axis 2 * Lower left corner, coordinate axis 3 (optional) * Upper right
-        corner, coordinate axis 1 * Upper right corner, coordinate axis 2 *
-        Upper right corner, coordinate axis 3 (optional)
+        * Lower left corner, coordinate axis 1
+        * Lower left corner, coordinate axis 2  
+        * Lower left corner, coordinate axis 3 (optional) 
+        * Upper right corner, coordinate axis 1 
+        * Upper right corner, coordinate axis 2 
+        * Upper right corner, coordinate axis 3 (optional)
 
         The coordinate reference system of the values is WGS84
         longitude/latitude (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless
@@ -131,6 +133,7 @@ components:
         latitude. However, in cases where the box spans the antimeridian the
         first value (west-most box edge) is larger than the third value
         (east-most box edge).
+
 
         If a feature has multiple spatial geometry properties, it is the
         decision of the server whether only a single spatial geometry property
@@ -148,13 +151,8 @@ components:
       name: time
       in: query
       description: >-
-        Either a date-time or a period string that adheres to RFC 3339.
-        Examples:
-
-        * A date-time: "2018-02-12T23:20:50Z" * A period:
-        "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or
-        "2018-02-12T00:00:00Z/P1M6DT12H31M12S"
-
+        A time range search that accepts a JSON search object.
+        
         Only features that have a temporal property that intersects the value of
         `time` are selected.
 
@@ -163,8 +161,16 @@ components:
         extent or all relevant temporal properties.
       required: false
       schema:
-        type: string
-      style: form
+        type: object
+        properties:
+          gt:
+            $ref: '#/components/schemas/time'
+          lt:
+            $ref: '#/components/schemas/time'
+          gte:
+            $ref: '#/components/schemas/time'
+          lte:
+            $ref: '#/components/schemas/time'
       explode: false
     collectionId:
       name: collectionId
@@ -233,7 +239,7 @@ components:
       type: object
       properties:
         time:
-          $ref: '#/components/schemas/timeRange'
+          $ref: '#/components/parameters/time'
     intersectsFilter:
       type: object
       description: Only returns items that intersect with the provided polygon.
@@ -289,17 +295,6 @@ components:
       description: >-
         A single date-time string that adheres to RFC3339, for example
         1985-04-12T23:20:50.52Z
-    timeRange:
-      type: object
-      properties:
-        gt:
-          $ref: '#/components/schemas/time'
-        lt:
-          $ref: '#/components/schemas/time'
-        gte:
-          $ref: '#/components/schemas/time'
-        lte:
-          $ref: '#/components/schemas/time'
     itemCollection:
       type: object
       required:
@@ -429,4 +424,4 @@ components:
             http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
 tags:
   - name: STAC
-    description: 'Extension to WFS3 Core to support STAC metadata model and search API    '
+    description: 'Extension to WFS3 Core to support STAC metadata model and search API'
