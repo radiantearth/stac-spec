@@ -32,11 +32,15 @@ that fall within this area:
 
 *map © OpenStreetMap contributors*
 
+The return format is a [GeoJSON](http://geojson.org) feature collection with features compliant with the 
+[json spec]((../json-spec/json-spec.md) for STAC. It returns to a limit optionally requested by the client, and includes 
+pageable links to iterate through any results past that limit.
+
 ## Specification
 
 The definitive specification for STAC is the [OpenAPI](http://openapis.org) 3.0 yaml document. This is available
 in several forms. The most straightforward for an implementor new to STAC is the [STAC-standalone.yaml](STAC-standalone.yaml).
-This gives a complete service with the main STAC endpoint. See the [online documentation](https://app.swaggerhub.com/apis/cholmesgeo/STAC-standalone/0.4.0) for the yaml rendered as interactive html.
+This gives a complete service with the main STAC endpoint. See the [online documentation](https://app.swaggerhub.com/apis/cholmesgeo/STAC-standalone/0.4.0) for the api rendered interactively.
 
 An OpenAPI 2.0 (swagger) version will be available soon, which can be useful for autogenerating client and server code.
 
