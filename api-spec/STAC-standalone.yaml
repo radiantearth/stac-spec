@@ -9,16 +9,16 @@ info:
     available as an OpenAPI fragment that can be integrated with other OpenAPI
     definitions, and is designed to slot seamless into a WFS 3 API definition.
   contact:
-    name: Acme Corporation
-    email: info@example.org
-    url: 'http://example.org/'
+    name: Cool Sat Corp
+    email: info@cool-sat.com
+    url: 'http://cool-sat.com/contact/'
   license:
     name: CC-BY 4.0 license
     url: 'https://creativecommons.org/licenses/by/4.0/'
 servers:
-  - url: 'https://dev.example.org/'
+  - url: 'http://dev.cool-sat.com/'
     description: Development server
-  - url: 'https://data.example.org/'
+  - url: 'http://www.cool-sat.com'
     description: Production server
 paths:
   /search/stac:
