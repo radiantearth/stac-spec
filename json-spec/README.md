@@ -25,9 +25,6 @@ schema definition, which is a dependency.
 **Schema Validation:** The *[package.json](package.json)* file defines packaging for node.js NPM module installation to do
 actual schema valiadtion. The instructions are below.
 
-**Extensions:** The *[extensions/](extensions/)* folder is where profiles and extensions live. These are recommendations for
-adding fields for specific domains (like Earth Observation), and for useful constructus.
-
 ## Sample Discussion
 
 The first sample, **[sample.json](sample.json)** is the most minimal possible compliant `Item` record. Most all data will
