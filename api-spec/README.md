@@ -35,21 +35,23 @@ that fall within this area:
 
 The definitive specification for STAC is the [OpenAPI](http://openapis.org) 3.0 yaml document. This is available
 in several forms. The most straightforward for an implementor new to STAC is the [STAC-standalone.yaml](STAC-standalone.yaml).
-This gives a complete service with the main STAC endpoint.
+This gives a complete service with the main STAC endpoint. See the [online documentation](https://app.swaggerhub.com/apis/cholmesgeo/STAC-standalone/0.4.0) for the yaml rendered as interactive html.
 
-The easiest way to explore the specification in a more human readable way is to load the file up in to the 
-[online swagger editor](http://editor.swagger.io). You can import the spec by just selectiong 'file' -> 
-'import url' and enter <https://raw.githubusercontent.com/radiantearth/stac-spec/dev/api-spec/STAC-standalone.yaml>. 
-
-This will display the documentation and examples for the specification. You can also generate code for
-clients and servers in a variety of languages from the editor as well, so you can get a sense of how it 
-will work.
+An OpenAPI 2.0 (swagger) version will be available soon, which can be useful for autogenerating client and server code.
 
 ##### Warning
 
 **The latest spec has not yet been fully validated by actual implementations. This will come soon, but if you
 are new to STAC and are trying to use the spec we recommend you jump on the [stac gitter](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby)
 to get help**
+
+### Filtering
+
+The core STAC API includes two filters - Bounding Box and time. All STAC Items require space and time, and thus any STAC
+client can expect to be able to filter on them. Most data will include additional data that users would like to query on,
+so there is a mechanism to also specify more filters. See the [Filtering](filters.md) document for additional information
+on the core filters as well as how to extend them. It is anticipated that 'profiles' for domains (like earth observation
+imagery) will require additional fields to query their common fields.
 
 ### WFS 3.0 Integration
 
@@ -58,7 +60,7 @@ decision was made to integrate STAC with the [WFS 3 specification](https://githu
 they are quite similar in spirit and intention. It is anticipated that most STAC implementations will also implement 
 WFS, and indeed most additional functionality that extends STAC will be done as WFS extensions. 
 
-This folder thus also provides an [openapi fragment](STAC-fragment.yaml), as well as an [example service](WFS3core+STAC.yaml) 
+This folder thus also provides an [openapi fragment](STAC-fragment.yaml), as well as an [example service](https://app.swaggerhub.com/apis/cholmesgeo/STAC_WFS-example/0.4.0) ([yaml](WFS3core+STAC.yaml))
 for those interested in what a server that implements both STAC and WFS would look like. Those interested in learning more
 can read the [deeper discussion of WFS integration](wfs-stac.md).
 
@@ -66,6 +68,9 @@ can read the [deeper discussion of WFS integration](wfs-stac.md).
 ### GET requests
 
 The POST endpoint is required for all STAC API implementations. The fields of the JSON object can also be used
-for a GET endpoint, which will be specified in full soon.
+for a GET endpoint, which are included in the openapi specifications. The GET requests are designed to reflect the same
+fields as the POST fields, and are based on WFS 3 requests. It is recommended for implementations to implement both, but 
+only POST is required. 
+
 
 
