@@ -1,14 +1,13 @@
-STAC Core is intending to provide a minimal set of features so that there is a low bar to entry for catalog
-implementations. The core concepts in STAC are Spatial and Temporal data, so those are the only filters we want
-to support in Core.
+## Filters in SpatioTemporal Asset Catalogs
 
-Filters should be as simple as possible for a client to construct. Since we are returning json, we want to also
-consume json. This allows clients to support filtering without additional tools. So the core filters will be 
-JSON based. The search enpoint will accept application/json format queries, and GET on the collection will 
-support URL encoded JSON. POST search the is recommended way to filter results to avoid the URL encoding 
-issues that can happen with GET. POST on the /search endpoing is more RESTful than POST on the items collection. 
-POST on the items collection is reserved for adding new records to the collection. We don't treat /search as 
-a colletion, so returning results from a POST search is acceptable.
+The core of the STAC API is intending to provide a minimal set of features so that there is a low bar to entry for catalog
+implementations. The core concepts in STAC are Spatial and Temporal data, so those are the only filters that are in core
+and are required to be supported.
+
+The filters are designed to be simple as possible for a client to construct. To match the default JSON responses the 
+encoding of filters is done by default in JSON. This allows clients to support filtering without additional tools. The 
+search enpoint will accept application/json format queries, and GET on the collection will support URL encoded JSON. POST 
+search the is recommended way to filter results to avoid the URL encoding issues that can happen with GET. 
 
 Searching using POST will accept a JSON object where the top level keys are specifying which type of filter
 to apply. Those same top level key names can be used as query string parameters for the GET request. Items in the collection 
@@ -143,4 +142,13 @@ Filters should be documented as properties in the searchBody:
       - $ref: '#/components/schema/TimeFilter'
       - $ref: '#/components/schema/IntersectsFilter'
 ```
+
+### A note on the POST semantics
+
+Though POST in a pure REST sense is just for creating new objects, the semantics of this POST is on a `/search/` resource, so 
+it can be thought of us POSTing to create an implicit search object that is then read right away with a GET. It seemed
+onerous to require users to POST a new search object and then request it back in a GET.
+
+Note that the `items` returned in a search are not at their canonical location, and following the `self` links back to 
+its home location will be in the collection that can be `POST`ed to, following proper REST semantics.
 
