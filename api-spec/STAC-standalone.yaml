@@ -309,10 +309,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/item'
-        nextPageToken:
-          type: string
-          description: A token to obtain the next paginated data set
-          example: ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
         links:
           $ref: '#/components/schemas/itemCollectionLinks'
     item:
