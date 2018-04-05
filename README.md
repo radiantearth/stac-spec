@@ -39,6 +39,9 @@ other tools.
 **[api-spec/](api-spec/)** defines a dynamic API, specified as a [yaml](api-spec/spec.yaml) file in [OpenAPI](http://openapis.org) 
 2.0 (swagger). 
 
+**Extensions:** The *[extensions/](extensions/)* folder is where profiles and extensions live. Profiles are recommendations for
+adding fields for specific domains (like Earth Observation). Extensions bring additional functionality to the core specs.
+
 **Additional documents** include the current [roadmap](roadmap.md) and a complementary [how to help](how-to-help.md)
 document, a [list of implementations](implementations.md), 
 and a discussion of the collaboration [principles](principles.md) and specification approach.
