@@ -33,8 +33,7 @@
     },
 
     "properties": {
-        "start": "2013-08-05T00:00:00Z",
-        "end": "2013-08-06T00:00:00Z",
+        "datetime": "2013-08-05T00:00:00Z",
         "provider": "NAIP",
         "license": "PDDL-1.0",
         "eo:resolution": "0.7",
@@ -49,33 +48,35 @@
     },
 
     "links": [
-        { "rel": "self", "href": "../30087/m_3008718_sw_16_1_20130805.json" },
-        { "rel": "thumbnail",  "href": "../30087/m_3008718_sw_16_1_20130805.jpg" }
+        { "rel": "self", "href": "http://naip.org/catalog/al/2013/1m/30087/m_3008718_sw_16_1_20130805.json" }
 
     ],
 
-    "assets": [
-      {
+    "assets": {
+      "metadata": {
           "href": "s3://aws-naip/al/2013/1m/rgb/30087/30087/m_3008718_sw_16_1_20130805-metadata.json",
           "name": "Full Metadata in JSON",
           "filetype": "json"
         
       },
-      {
+      "visual": {
           "href": "s3://aws-naip/al/2013/1m/rgb/30087/m_3008718_sw_16_1_20130805.tif",
           "product": "naip/rgb.json",
           "format": "geotiff",
           "name": "Visual RGB Image"
         
       },
-      {
+      "analytic": {
           "href": "s3://aws-naip/al/2013/1m/rgbir/30087/m_3008718_sw_16_1_20130805.tif", 
           "product": "naip/rgbir.json",
           "format": "cog",
           "name": "Analytic 4-band Image"
         
+      },
+      "thumbnail": {
+        "href": "../30087/m_3008718_sw_16_1_20130805.jpg"
       }
-    ]
+    }
 
     
     

@@ -25,9 +25,19 @@ schema definition, which is a dependency.
 **Schema Validation:** The *[package.json](package.json)* file defines packaging for node.js NPM module installation to do
 actual schema valiadtion. The instructions are below.
 
+**Extensions:** The *[extensions/](extensions/)* folder is where profiles and extensions live. These are recommendations for
+adding fields for specific domains (like Earth Observation), and for useful constructus.
+
 ## Sample Discussion
 
-TODO: add some more info on the two samples.
+The first sample, **[sample.json](sample.json)** is the most minimal possible compliant `Item` record. Most all data will
+include additional fields, as STAC is designed to be a minimal common subset. But it is useful for showing exactly what is
+required.
+
+The second one, **[sample-full.json](sample-full.json)** is a more realistic example, for a hypothetical analytic image 
+acquisition from a satellite company called 'cool sat'. It includes additional fields, including some from the Earth 
+Observation profile, as well as some vendor specific additions. It also links to a variety of assets that is typical for
+satellite imagery, as most providers include a number of complementary files.
 
 ## Schema Validation
 

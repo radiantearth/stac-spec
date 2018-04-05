@@ -17,20 +17,23 @@
         ]
   },
   "properties": {
-    "start": "2016-05-03T13:21:30.040Z",
-    "end": "2016-05-03T13:21:30.410Z",
+    "datetime": "2016-05-03T13:21:30.040Z",
     "provider": "http://www.cool-sat.com",
     "license": "CC-BY-4.0"
   },
   "links": [
-    { "rel": "self", "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json"},
-    { "rel": "thumbnail", "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png"}
+    { "rel": "self", "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json"}
   ],
-  "assets": [
-  {
-    "href": "relative-path/to/analytic.tif",
-    "name": "4-Band Analytic"
+  "assets": {
+      "analytic": {
+        "href": "relative-path/to/analytic.tif",
+        "name": "4-Band Analytic"
+    },
+    "thumbnail": {
+        "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png",
+        "name": "Thumbnail"
+    }
   }
-  ]
+  
 
 }

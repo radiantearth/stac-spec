@@ -1,7 +1,6 @@
 {
   "links": [
     { "rel":"self", "href": "https://api.planet.com/data/v1/item-types/PSScene4Band/items/20171110_121030_1013"},
-    { "rel":"thumbnail", "href": "https://api.planet.com/data/v1/item-types/PSScene4Band/items/20171110_121030_1013/thumb"},
     { "rel":"full-assets", "href": "https://api.planet.com/data/v1/item-types/PSScene4Band/items/20171110_121030_1013/assets/"}
   ],
   "bbox": [
@@ -55,8 +54,7 @@
   },
   "id": "20171110_121030_1013",
   "properties": {
-    "start": "2017-11-10T12:10:30.535417Z",
-    "end": "2017-11-10T12:10:30.923452Z",
+    "datetime": "2017-11-10T12:10:30.535417Z",
     "provider": "Planet PlanetScope 1013",
     "acquired": "2017-11-10T12:10:30.535417Z",
     "anomalous_pixels": 0.14,
@@ -83,8 +81,13 @@
     "view_angle": 1
   },
   "type": "Feature",
-  "assets": [
-    {
+  "assets": {
+    "thumbnail": { 
+      "href": "https://api.planet.com/data/v1/item-types/PSScene4Band/items/20171110_121030_1013/thumb",
+      "name": "Thumbnail", 
+      "status": "active"
+    },
+    "analytic": {
       "href": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcxMTEwXzEyMTAxMF8xMDEzIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWMiLCAiY3QiOiAiaXRlbS10eXBlIn0",
       "name": "PSScene4Band GeoTIFF (COG)",
       "activate": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcxMTEwXzEtMTAzMF8xMDEzIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWMiLCAiY3QiOiAiaXRlbS10eXBlIn0/activate",
@@ -95,7 +98,7 @@
       "md5_digest": null,
       "status": "inactive"
     },
-    {
+    "analytic_xml": {
       "href": "https://api.planet.com/data/v1/assets/NTY2VuZTReyJpIjogIjIwMTcxMTEwXzEyMTAxMF8xMDEzIiQiOiAiaXRlbS10ewgImMiOiAiUFbHl0aWMiLCAiY3XBlIn0",
       "name": "PSScene4Band XML Metadata",
       "activate": "https://api.planet.com/data/v1/assets/tMTAzMF8xMDEzIiwInQiOiAeyJpIjogIjIwMTcxMTEwXzEiYW5hbHl0aWMiLCAiY3gImMiOiAiUFNTY2VuZTRCYW5kIiwgQiOiAiaXRlbS10eXBlIn0/activate",
@@ -106,7 +109,7 @@
       "md5_digest": null,
       "status": "activating"
     },
-    {
+    "udm": {
       "href": "https://api.planet.com/data/v1/assets/NTY2VuZTReyJpIzEyMTAxMF8xMDEzIiQiOiAiaXRlbTcxMTEwXAiUFbHl0S10ewgImMiOijogIjIwMaWMiLCAiY3XBlIn0",
       "name": "PSScene4Band Unusable Data Mask",
       "activate": "https://api.planet.com/data/v1/assets/tMTAzMF8xMDEzIiwInQiOiAeyJpIjogIjIgImMiOiAiUFwMTcxMTEwXzEiYW5hbHl0aWMiLCAiY3NTY2VuZTRCYW5kIiwgQiOiAiaXRlbS10eXBlIn0/activate",
@@ -120,5 +123,5 @@
       "status": "active"
     }
 
-  ]
+  }
 }
