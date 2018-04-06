@@ -1,0 +1,149 @@
+{
+  "id": "LC81530252014153LGN00",
+  "type": "Feature",
+  "bbox": [ 49.16354,72.27502,51.36812,75.67662
+        ],
+  "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+      [
+        [
+          [
+            51.33855,
+            72.27502
+          ],
+          [
+            51.36812,
+            75.70821
+          ],
+          [
+            49.16354,
+            72.39640
+          ],
+          [
+            49.19092,
+            75.67662
+          ],
+          [
+            51.33855,
+            72.27502
+          ]
+        ]
+      ]
+    ]
+  },
+ 
+  "properties": {
+    "datetime": "2014-06-02T09:22:02Z",
+    "provider": "USGS",
+    "license": "PDDL-1.0",
+    "eo:collection": "L1T",
+    "eo:gsd": 30.0,
+    "eo:cloud_cover" : 10,
+    "eo:off_nadir" : 0.000,
+    "eo:azimuth": 0.00,
+    "eo:sun_azimuth" : 149.01607154,
+    "eo:sun_elevation" : 59.21424700,
+    "landsat:wrs_path": 153,
+    "landsat:wrs_row": 25,
+    "landsat:earth_sun_distance": 1.0141560,
+    "landsat:ground_control_points_verify": 114,
+    "landsat:geometric_rmse_model": 7.562,
+    "landsat:image_quality_tirs": 9,
+    "landsat:ground_control_points_model": 313,
+    "landsat:geometric_rmse_model_x": 5.96,
+    "landsat:geometric_rmse_model_y": 4.654,
+    "landsat:geometric_rmse_verify": 5.364,
+    "landsat:image_quality_oli": 9
+  },
+
+  "links": [
+    { "rel":"self", "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00.json"},
+    { "rel":"alternate", "href": "https://landsatonaws.com/L8/153/025/LC81530252014153LGN00", "type": "html"},
+    { "rel":"catalog", "href":  "http://landsat-pds.s3.amazonaws.com/L8/catalog.json"}
+    { "rel":"collection", "href": "http://landsat-pds.s3.amazonaws.com/L8/L1T-collection.json"}
+  ],
+
+  "assets" :{
+    "thumbnail": {
+          "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_thumb_large.jpg",
+          "required": true,
+          "type": "jpeg"
+    },
+    "metadata": {
+      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_MTL.txt",
+      "required": true,
+      "type": "mtl"
+    },
+    "B1": {
+      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B1.TIF",
+      "type": "GeoTIFF",
+      "required": true,
+      "eo:bands": ["1"]
+    },
+    "B2": {
+
+      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B2.TIF",
+      "type": "GeoTIFF",
+      "required": true,
+      "eo:bands": ["2"]
+    },
+    "B3": {
+      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B3.TIF",
+      "type": "GeoTIFF",
+      "required": true,
+      "eo:bands": ["3"]
+    },
+    "B4": {
+      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B4.TIF",
+      "type": "GeoTIFF",
+      "required": true,
+      "eo:bands": ["4"]
+    },
+    "B5": {
+      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B5.TIF",
+      "type": "GeoTIFF",
+      "required": true,
+      "eo:bands": ["5"]
+    },
+    "B6": {
+      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B6.TIF",
+      "type": "GeoTIFF",
+      "required": true,
+      "eo:bands": ["6"]
+    },
+    "B7": {
+      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B7.TIF",
+      "type": "GeoTIFF",
+      "required": true,
+      "eo:bands": ["7"]
+    },
+    "B8": {
+      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B8.TIF",
+      "type": "GeoTIFF",
+      "required": true,
+      "eo:bands": ["8"]
+    },
+    "B9": {
+      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B9.TIF",
+      "type": "GeoTIFF",
+      "required": true,
+      "eo:bands": ["9"]
+    },
+    "B10": {
+      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B10.TIF",
+      "type": "GeoTIFF",
+      "required": true,
+      "eo:bands": ["10"]
+    },
+    "B11": {
+      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B11.TIF",
+      "type": "GeoTIFF",
+      "required": true,
+      "eo:bands": ["11"]
+    }
+
+
+  }
+
+ }

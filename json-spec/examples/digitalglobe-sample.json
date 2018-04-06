@@ -87,7 +87,7 @@
    "links": [
       {
         "rel": "self",
-        "href": "my url"
+        "href": "https://s3.amazonaws.com/digitalglobe-static-catalog/collections/dg_worldview02_LV1B/103001004B316600_P002_MUL"
       },
       {
         "rel": "collection",
