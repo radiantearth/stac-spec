@@ -151,9 +151,7 @@ components:
         - 39
         - -105
         - 41
-        time:
-          gt: "2018-03-15T00:00:00.000Z"
-          lt: "2018-06-01T00:00:00.000Z"
+        time: "2018-03-15T00:00:00.000Z"
     bboxFilter:
       type: object
       description: Only return items that intersect the provided bounding box.
@@ -165,7 +163,7 @@ components:
       type: object
       properties:
         time:
-          $ref: '#/components/schemas/timeRange'
+          $ref: '#/components/parameters/time'
     intersectsFilter:
       type: object
       description: Only returns items that intersect with the provided polygon.
@@ -221,17 +219,6 @@ components:
       description: >-
         A single date-time string that adheres to RFC3339, for example
         1985-04-12T23:20:50.52Z
-    timeRange:
-      type: object
-      properties:
-        gt:
-          $ref: '#/components/schemas/time'
-        lt:
-          $ref: '#/components/schemas/time'
-        gte:
-          $ref: '#/components/schemas/time'
-        lte:
-          $ref: '#/components/schemas/time'
     itemCollection:
       type: object
       required:

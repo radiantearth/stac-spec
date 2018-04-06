@@ -6,7 +6,7 @@ and are required to be supported.
 
 The filters are designed to be simple as possible for a client to construct. To match the default JSON responses the 
 encoding of filters is done by default in JSON. This allows clients to support filtering without additional tools. The 
-search enpoint will accept application/json format queries, and GET on the collection will support URL encoded JSON. POST 
+search endpoint will accept application/json format queries, and GET on the collection will support URL encoded JSON. POST 
 search the is recommended way to filter results to avoid the URL encoding issues that can happen with GET. 
 
 Searching using POST will accept a JSON object where the top level keys are specifying which type of filter
@@ -20,32 +20,59 @@ This query will perform an intersects operation on the geometry values of the it
 objects may provide a bbox property in addition to geometry, but it should not be used for the bbox filter since
 it is an optional field in GeoJSON.
 
-example
+###### examples: ######
+POST:
 ```
 {
   "bbox": [-180,-90,180,90]
 }
 ```
 
-The temporal query will be based on [RFC 3339](https://tools.ietf.org/html/rfc3339) and should support time ranges as well as equality. To support range
-queries, we are using a simple JSON based language. Ranges will be specified as an object with keys indicating the comparison to use.
+GET:
+```
+?bbox=[-180,-90,180,90]
+```
 
-Equality is specified as `{"time": "2018-03-20T16:11:44.353Z"}`  
-Before is `{"time":{"lt":"2018-03-20T16:11:44.353Z"}}`  
-After is `{"time":{"gt":"2018-03-20T16:11:44.353Z"}}`  
-Before with Equality is `{"time":{"lte":"2018-03-20T16:11:44.353Z"}}`  
-After with Equality is `{"time":{"gte":"2018-03-20T16:11:44.353Z"}}`
+The temporal query will be based on [RFC 3339](https://tools.ietf.org/html/rfc3339) and should support time ranges as well as equality. It will compare against the datetime property of the STAC Item.
 
-These queries can be combined to specify a search range:
+###### To find items with an exact date ######
 
+POST:
 ```
 {
-  "time": {
-    "gt":"2018-03-15T00:00:00.000Z",
-    "lt":"2018-06-01T00:00:00.000Z",
-  }
-} 
+  "time": "2007-03-01T13:00:00Z"
+}
 ```
+
+GET:
+```
+?time=2007-03-01T13:00:00Z
+```
+
+###### To specify a time range, use the interval syntax: ######
+
+POST:
+```
+{
+  "time": "2007-03-01T13:00:00Z/2008-05-11T15:30:00Z"
+}
+```
+
+GET: 
+```
+?time=2007-03-01T13:00:00Z/2008-05-11T15:30:00Z
+```
+
+###### Specify intervals using durations:  ######
+
+`2007-03-01T13:00:00Z/P1Y2M10DT2H30M`
+
+If time is a period with out a start or end date, the end date is assigned to now:
+
+`P1Y2M10DT2H30M` is the same as `"P1Y2M10DT2H30M/" + new Date().toISOString()`
+
+
+
 
 Filter Extensions
 -----------------
@@ -123,10 +150,6 @@ Some additional extensions that have been discussed:
 
 CQL support for generic queries:  
 `{"CQL": "CQL Select String"}`
-
-Time intervals:  
-`{"time": "P1Y"}`  Assume Duration/now if no time specified?  
-`{"time": "2018/P1M"}` Any time in january of 2018  
 
 
 Adding filters to search
