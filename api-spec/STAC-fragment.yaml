@@ -125,17 +125,18 @@ components:
       name: time
       in: query
       description: >-
-        A time range search that accepts a JSON search object.
-        
+        Either a date-time or a period string that adheres to RFC3339. Examples:
+        * A date-time: "2018-02-12T23:20:50Z"
+        * A period: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or "2018-02-12T00:00:00Z/P1M6DT12H31M12S"
         Only features that have a temporal property that intersects the value of
         `time` are selected.
-
         If a feature has multiple temporal properties, it is the decision of the
-        server whether only a single temporal property is used to determine the
-        extent or all relevant temporal properties.
+        server whether only a single temporal property is used to determine
+        the extent or all relevant temporal properties.
       required: false
       schema:
-        $ref: '#/components/schemas/timeRange'
+        type: string
+      style: form
       explode: false
   schemas:
     searchBody:
