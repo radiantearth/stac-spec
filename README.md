@@ -19,8 +19,14 @@ on that feedback, which will mean changes are quite possible.
 But efforts will be made to maintain the core fields established in the central [JSON Spec](json-spec/). The minimal amount
 is specified right now, but best practices should emerge with implementation and more will likely be specified.
 
-The master branch (that you are looking at) is the 'stable' version of the spec. Right now the [dev](https://github.com/radiantearth/stac-spec/tree/dev) 
-branch is in flux, incorporating all the improvements from the [ft. collins sprint](https://github.com/radiantearth/community-sprints/tree/master/03072018-ft-collins-co). Once all the issues from [milestone 0.4](https://github.com/radiantearth/stac-spec/issues?q=is%3Aopen+is%3Aissue+milestone%3A0.4.0) are closed, with all examples up to date, then dev will merge to master.
+## Current version and branches
+
+The master branch (that you are looking at) is the 'stable' version of the spec. It is currently version 
+[0.4.0](https://github.com/radiantearth/stac-spec/milestone/3) of the specification. The 
+[dev](https://github.com/radiantearth/stac-spec/tree/dev) branch is where active development takes place, and may have inconsistent examples. 
+Whenever dev stabilizes a release is cut and we merge dev in to master. So master should be stable at any given time.
+It is possible that there may be small releases in quick succession, especially if they are nice improvements that do 
+not require lots of updating. 
 
 ## In this Repository
 
@@ -91,7 +97,9 @@ jump on our [gitter channel](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobb
 on how ready the spec is and how you can support it. For the next bit of time you'll probably be encouraged to just do what
 feels best in some areas, so we can capture best practices and standardize.
 
-Any proposed changes to the specification should be done as pull requests. Ideally a proposed change would also update
+Any proposed changes to the specification should be done as pull requests. Please make these requests against the 
+[dev](https://github.com/radiantearth/stac-spec/tree/dev) branch (this will require you to switch from the default of 'master',
+which we keep so it displays first). Ideally a proposed change would also update
 all of the examples, but for now that is not required - the team can validate and update all examples before a release.
 But it is recommended to update at least a couple examples to reflect the change. 
 
