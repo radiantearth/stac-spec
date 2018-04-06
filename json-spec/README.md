@@ -71,7 +71,7 @@ too loose right now, it just checks for a string, see the 'relative vs absolute 
 
 STAC Items are still a work in progress, and feedback is very much appreciated. The core fields were designed to be 
 quite flexible, adapting to many different data organization schemes. Organizations are encouraged to adapt 
-the core fields to their needs, finding any limitations that would need the specification.
+the core fields to their needs, finding any limitations that would need to be addressed the specification.
 
 Implementors are encouraged to publish their implementations, ideally contributing to the examples folder.
 This will enable a spreading of best practices, and it is hoped that additional specification extensions can
@@ -79,16 +79,16 @@ become best practices or their own specifications.
 
 There is also interest in representing additional domain-specific information. The core STAC fields were
 made to be flexible to a variety of assets. But there is a lot of value in shared fields that may not apply
-to every STAC data type, but are shared by a certain domain. The most likely first domain will be "Earth
-Observation" - satellite imagery - as many of the initial participants in creating the specification were
-from that domain.
+to every STAC data type, but are shared by a certain domain. There is a just released 'profile' for
+Earth Observation, see the [extensions/](../extensions/) folder in the top directory for a set of recommended
+fields if you are providing earth observation data.
 
 ### Recommendations
 
 The evolution of the STAC JSON spec will take place in this repository, primarily informed by the 'examples' folder. 
 This will show how a variety of providers at least could represent their catalogs in STAC static catalogs 
 (and as things mature the examples will mirror their production catalogs). The various recommendations can 
-be viewed in the **TODO:** [recommendations](recommendations.md) document. Some of these will likely
+be viewed in the **TODO** [recommendations](recommendations.md) document. Some of these will likely
 evolve to be requirements, or at least documented specification options and extensions. 
 
 
