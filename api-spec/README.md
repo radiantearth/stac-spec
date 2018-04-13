@@ -18,10 +18,7 @@ It takes a JSON object that can filter on date and time:
 
 {
   "bbox": [ 5.5, 46, 8, 47.4 ],
-  "time": {
-    "gt": "2018-03-15T00:00:00.000Z",
-    "lt": "2018-04-01T00:00:00.000Z"
-  }
+  "time": "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
 }
 ```
 
@@ -42,7 +39,7 @@ The definitive specification for STAC is the [OpenAPI](http://openapis.org) 3.0 
 in several forms. The most straightforward for an implementor new to STAC is the [STAC-standalone.yaml](STAC-standalone.yaml).
 This gives a complete service with the main STAC endpoint. See the [online documentation](https://app.swaggerhub.com/apis/cholmesgeo/STAC-standalone/0.4.0) for the api rendered interactively.
 
-An OpenAPI 2.0 (swagger) version will be available soon, which can be useful for autogenerating client and server code.
+An OpenAPI 2.0 (swagger) version is also available ([WFS3core+STAC-swagger2.yaml](WFS3core+STAC-swagger2.yaml)), which can be useful for autogenerating client and server code.
 
 ##### Warning
 
@@ -76,6 +73,5 @@ The POST endpoint is required for all STAC API implementations. The fields of th
 for a GET endpoint, which are included in the openapi specifications. The GET requests are designed to reflect the same
 fields as the POST fields, and are based on WFS 3 requests. It is recommended for implementations to implement both, but 
 only POST is required. 
-
 
 
