@@ -1,0 +1,12 @@
+{
+    "name": "CBERS4 AWFI",
+    "description": "Catalog of CBERS4 AWFI camera imagery",
+
+    "links": [
+        { "rel": "self", "href": "catalog.json" },
+        { "rel": "parent",
+          "href": "https://s3.amazonaws.com/cbers-meta-pds/stac/CBERS4/catalog.json"},
+        { "rel": "parent",
+          "href": "https://s3.amazonaws.com/cbers-meta-pds/stac/CBERS4/catalog.json"}
+    ],
+}
