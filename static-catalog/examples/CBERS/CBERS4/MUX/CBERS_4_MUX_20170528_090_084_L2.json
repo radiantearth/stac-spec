@@ -39,7 +39,6 @@
   "properties": {
     "datetime": "2017-05-28T09:01:17Z", 
     "provider": "INPE", 
-    "license": "CC-BY-SA-3.0", 
     "eo:collection": "default", 
     "eo:sun_azimuth": 66.2923, 
     "eo:sun_elevation": 70.3079, 
@@ -51,11 +50,11 @@
   "links": [
     {
       "rel": "self", 
-      "href": "https://s3.amazonaws.com/cbers-meta-pds/CBERS4/MUX/090/084/CBERS_4_MUX_20170528_090_084_L2/CBERS_4_MUX_20170528_090_084_L2.json"
+      "href": "https://s3.amazonaws.com/cbers-meta-pds/stac/CBERS4/MUX/CBERS_4_MUX_20170528_090_084_L2.json"
     }, 
     {
       "rel": "catalog", 
-      "href": "https://s3.amazonaws.com/cbers-meta-pds/CBERS4/catalog.json"
+      "href": "https://s3.amazonaws.com/cbers-meta-pds/CBERS4/MUX/catalog.json"
     }
   ], 
   "assets": {

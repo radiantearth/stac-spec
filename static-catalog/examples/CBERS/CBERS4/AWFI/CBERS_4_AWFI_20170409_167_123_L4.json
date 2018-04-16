@@ -1,0 +1,104 @@
+{
+  "id": "CBERS_4_AWFI_20170409_167_123_L4", 
+  "type": "Feature", 
+  "bbox": [
+    -24.425554, 
+    -63.157102, 
+    -16.36423, 
+    -53.027684
+  ], 
+  "geometry": {
+    "type": "MultiPolygon", 
+    "coordinates": [
+      [
+        [
+          [
+            -23.152887, 
+            -63.086835
+          ], 
+          [
+            -24.479624, 
+            -54.430145
+          ], 
+          [
+            -17.693434, 
+            -53.007893
+          ], 
+          [
+            -16.425778, 
+            -61.277919
+          ], 
+          [
+            -23.152887, 
+            -63.086835
+          ]
+        ]
+      ]
+    ]
+  }, 
+  "properties": {
+    "datetime": "2017-04-09T14:09:23Z", 
+    "provider": "INPE", 
+    "eo:collection": "default", 
+    "eo:sun_azimuth": 43.9164, 
+    "eo:sun_elevation": 53.4479, 
+    "eo:off_nadir": -0.00828942, 
+    "cbers:data_type": "L4", 
+    "cbers:path": 167, 
+    "cbers:row": 123
+  }, 
+  "links": [
+    {
+      "rel": "self", 
+      "href": "https://s3.amazonaws.com/cbers-meta-pds/stac/CBERS4/AWFI/CBERS_4_AWFI_20170409_167_123_L4.json"
+    }, 
+    {
+      "rel": "catalog", 
+      "href": "https://s3.amazonaws.com/cbers-meta-pds/CBERS4/AWFI/catalog.json"
+    }
+  ], 
+  "assets": {
+    "thumbnail": {
+      "href": "https://s3.amazonaws.com/cbers-meta-pds/CBERS4/AWFI/167/123/CBERS_4_AWFI_20170409_167_123_L4/CBERS_4_AWFI_20170409_167_123.jpg", 
+      "required": true, 
+      "type": "jpeg"
+    }, 
+    "metadata": {
+      "href": "s3://cbers-pds/CBERS4/AWFI/167/123/CBERS_4_AWFI_20170409_167_123_L4/CBERS_4_AWFI_20170409_167_123_L4_BAND14.xml", 
+      "required": true, 
+      "type": "xml"
+    }, 
+    "B13": {
+      "href": "s3://cbers-pds/CBERS4/AWFI/167/123/CBERS_4_AWFI_20170409_167_123_L4/CBERS_4_AWFI_20170409_167_123_L4_BAND13.tif", 
+      "type": "GeoTIFF", 
+      "required": true, 
+      "eo_bands": [
+        "13"
+      ]
+    }, 
+    "B14": {
+      "href": "s3://cbers-pds/CBERS4/AWFI/167/123/CBERS_4_AWFI_20170409_167_123_L4/CBERS_4_AWFI_20170409_167_123_L4_BAND14.tif", 
+      "type": "GeoTIFF", 
+      "required": true, 
+      "eo_bands": [
+        "14"
+      ]
+    }, 
+    "B15": {
+      "href": "s3://cbers-pds/CBERS4/AWFI/167/123/CBERS_4_AWFI_20170409_167_123_L4/CBERS_4_AWFI_20170409_167_123_L4_BAND15.tif", 
+      "type": "GeoTIFF", 
+      "required": true, 
+      "eo_bands": [
+        "15"
+      ]
+    }, 
+    "B16": {
+      "href": "s3://cbers-pds/CBERS4/AWFI/167/123/CBERS_4_AWFI_20170409_167_123_L4/CBERS_4_AWFI_20170409_167_123_L4_BAND16.tif", 
+      "type": "GeoTIFF", 
+      "required": true, 
+      "eo_bands": [
+        "16"
+      ]
+    }
+  }
+}
