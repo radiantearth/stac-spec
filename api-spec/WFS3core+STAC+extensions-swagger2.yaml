@@ -120,6 +120,30 @@ paths:
           description: An error occured.
           schema:
             $ref: '#/definitions/exception'
+    post:
+      summary: add a feature to a collection
+      description: Use this method to create a new feature in a specific collection.
+      operationId: postFeature
+      tags:
+        - Extensions
+      parameters:
+        - $ref: '#/parameters/collectionId'
+        - name: item
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/item'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Status of the create request.
+          schema:
+            type: string
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/definitions/exception'
   '/collections/{collectionId}/items/{featureId}':
     get:
       summary: retrieve a feature; use content negotiation to request HTML or GeoJSON
@@ -137,6 +161,80 @@ paths:
           description: A feature.
           schema:
             $ref: '#/definitions/featureGeoJSON'
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/definitions/exception'
+    put:
+      summary: update a feature by Id
+      description: >-
+        Use this method to update an existing feature. Requires the entire
+        GeoJSON  description be submitted.
+      operationId: putFeature
+      tags:
+        - Extensions
+      parameters:
+        - $ref: '#/parameters/collectionId'
+        - $ref: '#/parameters/featureId'
+        - name: item
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/item'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Status of the update request.
+          schema:
+            type: string
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/definitions/exception'
+    patch:
+      summary: update a feature by Id
+      description: >-
+        Use this method to update an existing feature. Requires a GeoJSON 
+        fragement (containing the fields to be updated) be submitted.
+      operationId: patchFeature
+      tags:
+        - Extensions
+      parameters:
+        - $ref: '#/parameters/collectionId'
+        - $ref: '#/parameters/featureId'
+        - name: partialItem
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/partialItem'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Status of the update request.
+          schema:
+            type: string
+        default:
+          description: An error occured.
+          schema:
+            $ref: '#/definitions/exception'
+    delete:
+      summary: delete a feature by Id
+      description: Use this method to delete an existing feature.
+      operationId: deleteFeature
+      tags:
+        - Extensions
+      parameters:
+        - $ref: '#/parameters/collectionId'
+        - $ref: '#/parameters/featureId'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Status of the delete request.
+          schema:
+            type: string
         default:
           description: An error occured.
           schema:
@@ -653,6 +751,46 @@ definitions:
           $ref: '#/definitions/item'
       links:
         $ref: '#/definitions/itemCollectionLinks'
+  partialItem:
+    type: object
+    properties:
+      id:
+        type: string
+        example: path/to/example.tif
+        description: 'unique ID, potentially link to file'
+      bbox:
+        $ref: '#/definitions/bbox'
+      geometry:
+        type: object
+        description: footprint of the item
+      type:
+        type: string
+        description: The GeoJSON type
+        enum:
+          - Feature
+      properties:
+        $ref: '#/definitions/itemProperties'
+      links:
+        type: array
+        items:
+          $ref: '#/definitions/link'
+      assets:
+        type: object
+        additionalProperties:
+          type: object
+          required:
+            - href
+          properties:
+            href:
+              type: string
+            name:
+              type: string
+    example:
+      assets:
+        analytic:
+          name: 1-Band Analytic
+          href: >-
+            http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/analytic-1.tif
   item:
     type: object
     required:
