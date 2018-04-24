@@ -37,7 +37,7 @@ pageable links to iterate through any results past that limit.
 
 The definitive specification for STAC is the [OpenAPI](http://openapis.org) 3.0 yaml document. This is available
 in several forms. The most straightforward for an implementor new to STAC is the [STAC-standalone.yaml](STAC-standalone.yaml).
-This gives a complete service with the main STAC endpoint. See the [online documentation](https://app.swaggerhub.com/apis/cholmesgeo/STAC-standalone/0.4.0) for the api rendered interactively.
+This gives a complete service with the main STAC endpoint. See the [online documentation](https://app.swaggerhub.com/apis/cholmesgeo/STAC-standalone/0.4.1) for the api rendered interactively.
 
 An OpenAPI 2.0 (swagger) version is also available ([WFS3core+STAC-swagger2.yaml](WFS3core+STAC-swagger2.yaml)), which can be useful for autogenerating client and server code.
 
@@ -62,7 +62,7 @@ decision was made to integrate STAC with the [WFS 3 specification](https://githu
 they are quite similar in spirit and intention. It is anticipated that most STAC implementations will also implement 
 WFS, and indeed most additional functionality that extends STAC will be done as WFS extensions. 
 
-This folder thus also provides an [openapi fragment](STAC-fragment.yaml), as well as an [example service](https://app.swaggerhub.com/apis/cholmesgeo/STAC_WFS-example/0.4.0) ([yaml](WFS3core+STAC.yaml))
+This folder thus also provides an [openapi fragment](STAC-fragment.yaml), as well as an [example service](https://app.swaggerhub.com/apis/cholmesgeo/STAC_WFS-example/0.4.1) ([yaml](WFS3core+STAC.yaml))
 for those interested in what a server that implements both STAC and WFS would look like. Those interested in learning more
 can read the [deeper discussion of WFS integration](wfs-stac.md).
 
