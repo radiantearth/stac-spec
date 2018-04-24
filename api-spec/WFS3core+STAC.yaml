@@ -798,13 +798,10 @@ components:
     itemProperties:
       type: object
       required:
-        - start
-        - end
+        - datetime
       description: provides the core metatdata fields plus extensions
       properties:
-        start:
-          $ref: '#/components/schemas/time'
-        end:
+        datetime:
           $ref: '#/components/schemas/time'
         provider:
           type: string
