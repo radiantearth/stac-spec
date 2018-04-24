@@ -37,8 +37,6 @@
     "datetime": "2014-06-02T09:22:02Z",
     "provider": "USGS",
     "license": "PDDL-1.0",
-    "eo:platform": "landsat-8",
-    "eo:instrument": "OLI_TIRS",
     "eo:collection": "L1T",
     "eo:gsd": 30.0,
     "eo:cloud_cover" : 10,
@@ -63,6 +61,7 @@
     { "rel":"self", "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00.json"},
     { "rel":"alternate", "href": "https://landsatonaws.com/L8/153/025/LC81530252014153LGN00", "type": "html"},
     { "rel":"catalog", "href":  "http://landsat-pds.s3.amazonaws.com/L8/catalog.json"}
+    { "rel":"collection", "href": "http://landsat-pds.s3.amazonaws.com/L8/L1T-collection.json"}
   ],
 
   "assets" :{
@@ -142,86 +141,6 @@
       "type": "GeoTIFF",
       "required": true,
       "eo:bands": ["11"]
-    },
-
-    "eo:bands": {
-      "1": {
-        "common_name": "coastal",
-        "gsd": 30.0,
-        "accuracy": null,
-        "wavelength": 0.44,
-        "fwhm": 0.02
-      },
-      "2": {
-        "common_name": "blue",
-        "gsd": 30.0,
-        "accuracy": null,
-        "wavelength": 0.48,
-        "fwhm": 0.06
-      },
-      "3": {
-        "common_name": "green",
-        "gsd": 30.0,
-        "accuracy": null,
-        "wavelength": 0.56,
-        "fwhm": 0.06
-      },
-      "4": {
-        "common_name": "red",
-        "gsd": 30.0,
-        "accuracy": null,
-        "wavelength": 0.65,
-        "fwhm": 0.04
-      },
-      "5": {
-        "common_name": "nir",
-        "gsd": 30.0,
-        "accuracy": null,
-        "wavelength": 0.86,
-        "fwhm": 0.03
-      },
-      "6": {
-        "common_name": "swir16",
-        "gsd": 30.0,
-        "accuracy": null,
-        "wavelength": 1.6,
-        "fwhm": 0.08
-      },
-      "7": {
-        "common_name": "swir22",
-        "gsd": 30.0,
-        "accuracy": null,
-        "wavelength": 2.2,
-        "fwhm": 0.2
-      },
-      "8": {
-        "common_name": "pan",
-        "gsd": 15.0,
-        "accuracy": null,
-        "wavelength": 0.59,
-        "fwhm": 0.18
-      },
-      "9": {
-        "common_name": "cirrus",
-        "gsd": 30.0,
-        "accuracy": null,
-        "wavelength": 1.37,
-        "fwhm": 0.02
-      },
-      "10": {
-        "common_name": "lwir11",
-        "gsd": 100.0,
-        "accuracy": null,
-        "wavelength": 10.9,
-        "fwhm": 0.8
-      },
-      "11": {
-        "common_name": "lwir12",
-        "gsd": 100.0,
-        "accuracy": null,
-        "wavelength": 12.0,
-        "fwhm": 1.0
-      }
     }
 
 
