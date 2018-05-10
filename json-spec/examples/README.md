@@ -32,7 +32,7 @@ These examples demonstrate that there is a range of potential implementations of
 the current implementations as minimally as possible. The hope is that there will emerge more consensus and best practices
 on the things outside of the core fields, to increase interoperability. 
 
-### Static Catalogs vs Catalog API's
+### Static Catalogs vs Catalog APIs
 
 The Planet example is likely the least 'static' of the examples, as it was taken from Planet's Data API and just added on a
 few fields. DigitalGlobe's made a bit more changes to make it static, but still has that lineage. Landsat8 and NAIP are
