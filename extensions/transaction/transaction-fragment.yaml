@@ -1,0 +1,206 @@
+paths:
+  '/collections/{collectionId}/items':
+    post:
+      summary: add a new feature to a collection
+      description: create a new feature in a specific collection
+      operationId: postFeature
+      tags:
+        - Extensions
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/itemCollection'
+      responses:
+        '200':
+          description: Status of the create request.
+          content:
+            application/geo+json:
+              schema:
+                type: string
+            text/html:
+              schema:
+                type: string
+        default:
+          description: An error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
+  '/collections/{collectionId}/items/{featureId}':
+    put:
+      summary: update an existing feature by Id with a complete item definition
+      description: >-
+        Use this method to update an existing feature. Requires the entire
+        GeoJSON  description be submitted.
+      operationId: putFeature
+      tags:
+        - Extensions
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/featureId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/item'
+      responses:
+        '200':
+          description: Status of the update request.
+          content:
+            text/html:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+        default:
+          description: An error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
+    patch:
+      summary: update an existing feature by Id with a partial item definition
+      description: >-
+        Use this method to update an existing feature. Requires a GeoJSON 
+        fragement (containing the fields to be updated) be submitted.
+      operationId: patchFeature
+      tags:
+        - Extensions
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/featureId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/partialItem'
+      responses:
+        '200':
+          description: Status of the update request.
+          content:
+            text/html:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+        default:
+          description: An error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
+    delete:
+      summary: delete an existing feature by Id
+      description: Use this method to delete an existing feature.
+      operationId: deleteFeature
+      tags:
+        - Extensions
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/featureId'
+      responses:
+        '200':
+          description: Status of the update request.
+          content:
+            text/html:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+        default:
+          description: An error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
+components:
+  schemas:
+    partialItem:
+      type: object
+      properties:
+        id:
+          type: string
+          example: path/to/example.tif
+          description: 'unique ID, potentially link to file'
+        bbox:
+          $ref: '#/components/schemas/bbox'
+        geometry:
+          type: object
+          description: footprint of the item
+        type:
+          type: string
+          description: The GeoJSON type
+          enum:
+            - Feature
+        properties:
+          $ref: '#/components/schemas/partialItemProperties'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        assets:
+          type: object
+          additionalProperties:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+              name:
+                type: string
+      example:
+        assets:
+          analytic:
+            name: 1-Band Analytic
+            href: >-
+              http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/analytic-1.tif
+    itemProperties:
+      type: object
+      required:
+        - datetime
+      description: provides the core metatdata fields plus extensions
+      properties:
+        datetime:
+          $ref: '#/components/schemas/time'
+        provider:
+          type: string
+          description: Information about the provider
+        license:
+          type: string
+          description: Data license name based on SPDX License List
+    partialItemProperties:
+      type: object
+      description: allows for partial collections of metadata fields
+      properties:
+        datetime:
+          $ref: '#/components/schemas/time'
+        provider:
+          type: string
+          description: Information about the provider
+        license:
+          type: string
+          description: Data license name based on SPDX License List
+tags:
+  - name: Extensions
+    description: >-
+      STAC-specific operations to add, remove, and edit items within WFS3
+      collections.

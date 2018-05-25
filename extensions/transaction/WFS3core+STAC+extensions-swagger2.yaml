@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   title: STAC API integrated with OGC Web Feature Service standard
-  version: 0.4.1
+  version: 0.4.2
   description: >-
     This is an example OpenAPI specification of a SpatioTemporal Asset Catalog
     API  that also implements the OGC Web Feature Service 3.0 specification
@@ -34,6 +34,22 @@ paths:
           description: links to the API capabilities
           schema:
             $ref: '#/definitions/root'
+  /api:
+    get:
+      summary: API definition
+      description: >-
+        The API definition is a formal OpenAPI3 compliant document in JSON form,
+        describing the complete API implemented here.
+      operationId: getAPI
+      tags:
+        - Capabilities
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OpenAPI3 definition of this API
+          schema:
+            type: string
   /conformance:
     get:
       summary: information about standards that this API conforms to
@@ -132,7 +148,7 @@ paths:
           in: body
           required: true
           schema:
-            $ref: '#/definitions/item'
+            $ref: '#/definitions/itemCollection'
       produces:
         - application/json
       responses:
@@ -769,7 +785,7 @@ definitions:
         enum:
           - Feature
       properties:
-        $ref: '#/definitions/itemProperties'
+        $ref: '#/definitions/partialItemProperties'
       links:
         type: array
         items:
@@ -884,8 +900,18 @@ definitions:
       license:
         type: string
         description: Data license name based on SPDX License List
-    additionalProperties:
-      type: object
+  partialItemProperties:
+    type: object
+    description: allows for partial collections of metadata fields
+    properties:
+      datetime:
+        $ref: '#/definitions/time'
+      provider:
+        type: string
+        description: Information about the provider
+      license:
+        type: string
+        description: Data license name based on SPDX License List
   itemCollectionLinks:
     type: object
     properties:

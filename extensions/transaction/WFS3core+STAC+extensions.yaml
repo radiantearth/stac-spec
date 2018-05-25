@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: STAC API integrated with OGC Web Feature Service standard
-  version: 0.4.1
+  version: 0.4.2
   description: >-
     This is an example OpenAPI specification of a SpatioTemporal Asset Catalog
     API  that also implements the OGC Web Feature Service 3.0 specification
@@ -38,6 +38,22 @@ paths:
             text/html:
               schema:
                 type: string
+  /api:
+    get:
+      summary: API definition
+      description: >-
+        The API definition is a formal OpenAPI3 compliant document in JSON form,
+        describing the complete API implemented here.
+      operationId: getAPI
+      tags:
+        - Capabilities
+      responses:
+        '200':
+          description: OpenAPI3 definition of this API
+          content:
+            application/json:
+              schema:
+                type: string                
   /conformance:
     get:
       summary: information about standards that this API conforms to
@@ -162,14 +178,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/item'
+              $ref: '#/components/schemas/itemCollection'
       responses:
         '200':
           description: Status of the create request.
           content:
             application/geo+json:
               schema:
-                $ref: '#/components/schemas/itemCollection'
+                type: string
             text/html:
               schema:
                 type: string
@@ -437,15 +453,25 @@ components:
     time:
       name: time
       in: query
-      description: |
+      description: >
         Either a date-time or a period string that adheres to RFC3339. Examples:
+
         * A date-time: "2018-02-12T23:20:50Z" 
+
         * A period: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or
+
         "2018-02-12T00:00:00Z/P1M6DT12H31M12S" 
-        
-        Only features that have a temporal property that intersects the value of 
-        `time` are selected. If a feature has multiple temporal properties, it is
-        the decision of the server whether only a single temporal property is used to 
+
+
+        Only features that have a temporal property that intersects the value
+        of 
+
+        `time` are selected. If a feature has multiple temporal properties, it
+        is
+
+        the decision of the server whether only a single temporal property is
+        used to 
+
         determine the extent or all relevant temporal properties.
       required: false
       schema:
@@ -815,19 +841,29 @@ components:
         - 35
     time:
       type: string
-      description: |
-        Either a date-time or a period string that adheres to RFC 3339. Examples:
-  
+      description: >
+        Either a date-time or a period string that adheres to RFC 3339.
+        Examples:
+
+
         * A date-time: "2018-02-12T23:20:50Z"  
+
         * A period:
+
         "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or
+
         "2018-02-12T00:00:00Z/P1M6DT12H31M12S"
-  
+
+
         Only features that have a temporal property that intersects the value of
+
         `time` are selected.
-  
+
+
         If a feature has multiple temporal properties, it is the decision of the
+
         server whether only a single temporal property is used to determine the
+
         extent or all relevant temporal properties.
       example: '2018-02-12T00:00:00Z/2018-03-18T12:31:12Z'
     itemCollection:
@@ -943,7 +979,7 @@ components:
           enum:
             - Feature
         properties:
-          $ref: '#/components/schemas/itemProperties'
+          $ref: '#/components/schemas/partialItemProperties'
         links:
           type: array
           items:
@@ -968,13 +1004,10 @@ components:
     itemProperties:
       type: object
       required:
-        - start
-        - end
+        - datetime
       description: provides the core metatdata fields plus extensions
       properties:
-        start:
-          $ref: '#/components/schemas/time'
-        end:
+        datetime:
           $ref: '#/components/schemas/time'
         provider:
           type: string
@@ -982,8 +1015,18 @@ components:
         license:
           type: string
           description: Data license name based on SPDX License List
-      additionalProperties:
-        type: object
+    partialItemProperties:
+      type: object
+      description: allows for partial collections of metadata fields
+      properties:
+        datetime:
+          $ref: '#/components/schemas/time'
+        provider:
+          type: string
+          description: Information about the provider
+        license:
+          type: string
+          description: Data license name based on SPDX License List
     itemCollectionLinks:
       type: object
       properties:
@@ -1005,4 +1048,6 @@ tags:
   - name: STAC
     description: Extension to WFS3 Core to support STAC metadata model and search API
   - name: Extensions
-    description: STAC-specific operations to add, remove, and edit items within WFS3 collections.
+    description: >-
+      STAC-specific operations to add, remove, and edit items within WFS3
+      collections.
