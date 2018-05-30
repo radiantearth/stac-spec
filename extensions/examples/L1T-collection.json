@@ -3,8 +3,8 @@
 
 
     "properties": {
-        "collection_name": "L1T",
-        "collection_description": "Landat 8 imagery that is radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
+        "collection": "L1T",
+        "description": "Landat 8 imagery that is radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
         "provider": "USGS",
         "license": "PDDL-1.0",
         "eo:gsd" : 30,
