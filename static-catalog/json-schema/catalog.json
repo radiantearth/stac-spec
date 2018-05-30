@@ -20,15 +20,23 @@
     },
     "link": {
       "type": "object",
-      "properties": {
-        "uri": {
-          "type": "string",
-          "format": "uri"
+      "allOf": [
+        {
+          "$ref": "asset.json#/definitions/core"
         },
-        "properties": {
-          "$ref": "#/definitions/catalog"
+        {
+          "properties": {
+            "rel": {
+              "type": "string",
+              "format": "uri"
+            },
+            "href": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
         }
-      }
+      ]
     },
     "catalog": {
       "title": "Catalog",
