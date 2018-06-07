@@ -29,8 +29,8 @@ your feedback will be directly incorporated.
 | id              | string          | Provider ID                | Provider ID for the item                       													| 
 | geometry        | geojson         | Geometry                   | Bounding Box + Footprint of the item in lat/long (EPSG 4326)										|
 | datetime 		  | date and time   | Date and Time 	         | The searchable date/time of the assets, in UTC (Formatted in RFC 3339)    						| 
-| links           | array           | Resource Links             | Array of link objects to resources and related URLs (self required) 								|
-| assets          | array           | Assets            	   	 | Dict of asset objects that can be be download (at least one required, thumbnail strong recommended)		|
+| links           | dictionary           | Resource Links             | Dictionary of link objects to resources and related URLs (self required), each with a unique key								|
+| assets          | dictionary           | Assets            	   	 | Dict of asset objects that can be be download (at least one required, thumbnail strong recommended), each with a unique key |
 | provider        | string          | Provider     (optional)    | Provider name  																					|
 | license         | string          | Data License (optional)    | Item's license name based on SPDX License List or following guidelines for non-SPDX licenses 	|
 
@@ -60,14 +60,13 @@ for this purpose keep in mind the STAC spec is primarily searching for data, so 
 a user to search for. STAC content profiles may further specify the meaning of the main `datetime` field, and many will also add 
 more datetime fields.
 
-**links** are used primarily to represent relationships with other entities, relying on the [rel](https://www.w3schools.com/tags/att_link_rel.asp) 
-attribute on links to describe relationships. Link objects require an 'href' to provide the actual link - relative and
-absolute links are both allowed. And they also require a 'rel' field, which describes the relationship of the link. 
-This can be filled with any string, and best practices are emerging and will be defined in the future. Implementors are
+**links** are used primarily to represent relationships with other entities, relying on the key (equivalent to a ['rel' relation'](https://www.w3schools.com/tags/att_link_rel.asp) 
+attribute on links to describe relationships. A `link` dictionary item require an 'href' to provide the actual link - relative and
+absolute links are both allowed. Data providers are
 advised to be liberal with the links section, to describe things like the catalog an item is in, related items, parent or 
 child items (modeled in different ways, like an 'acquisition' or derived data). The `self` link is required, to represent the 
 location that the `Item` can be found online. This is particularly useful when in a download package that includes `Item` 
-metadata, so that the downstream user can know where the data has come from. The `self` link *must* be an absolute url, not 
+metadata, so that the downstream user can know where the data has come from. The `self` href field *must* be an absolute url, not 
 relative, to communicate the canonical location of the `Item`. 
 
 **assets** is an array of keyed objects that contain of links to data associated with the `Item` that can be downloaded. This should include the main asset, as well

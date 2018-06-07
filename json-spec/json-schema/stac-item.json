@@ -48,28 +48,22 @@
             "links": {
               "title": "Item links",
               "description": "Links to item relations",
-              "type": "array",
+              "type": "object",
               "items": {
                 "$ref": "#/definitions/link"
               },
               "minItems": 1,
-              "contains": {
-                "type": "object",
-                "required": [
-                  "rel",
-                  "href"
-                ],
-                "properties": {
-                  "rel": {
-                    "type": "string",
-                    "pattern": "^self$"
-                  },
-                  "href": {
-                    "type": "string",
-                    "format": "uri"
-                  }
+              "properties": {
+                "self": {
+                  "title": "self",
+                  "description": "Link to self",
+                  "type": "object",
+                  "oneOf": [
+                    {
+                      "$ref": "#/definitions/link"
+                    }
+                  ]
                 }
-              }
             },
             "assets": {
               "title": "Asset links",
