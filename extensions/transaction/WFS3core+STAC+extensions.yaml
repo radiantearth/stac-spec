@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: STAC API integrated with OGC Web Feature Service standard
-  version: 0.4.2
+  version: 0.4.5
   description: >-
     This is an example OpenAPI specification of a SpatioTemporal Asset Catalog
     API  that also implements the OGC Web Feature Service 3.0 specification
@@ -53,7 +53,7 @@ paths:
           content:
             application/json:
               schema:
-                type: string                
+                type: string
   /conformance:
     get:
       summary: information about standards that this API conforms to
@@ -176,9 +176,11 @@ paths:
         - $ref: '#/components/parameters/collectionId'
       requestBody:
         content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/itemCollection'
+            application/json:
+              schema:
+                oneOf:
+                 - $ref: '#/components/schemas/item'
+                 - $ref: '#/components/schemas/itemCollection'
       responses:
         '200':
           description: Status of the create request.

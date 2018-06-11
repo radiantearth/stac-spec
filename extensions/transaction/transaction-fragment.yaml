@@ -12,7 +12,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/itemCollection'
+                oneOf:
+                 - $ref: '#/components/schemas/item'
+                 - $ref: '#/components/schemas/itemCollection'
       responses:
         '200':
           description: Status of the create request.
