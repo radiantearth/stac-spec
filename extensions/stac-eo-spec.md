@@ -2,16 +2,20 @@
 
 This document explains the fields of the STAC Earth Observation (EO) Extension to a STAC `Item`. EO data is considered to be data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands in any part of the electromagnetic spectrum. Examples of EO data include sensors with visible, short-wave and mid-wave IR bands (e.g., the OLI instrument on Landsat-8), long-wave IR bands (e.g. TIRS aboard Landsat-8), as well as SAR instruments (e.g. Sentinel-1).
 
+## Using Collections
+
+A lot of EO data will have common metadata across many `Items`. It is not necessary, but recommended to use the [Collections extension](stac-collection-spec.md). While the exact metadata that would appear in a `Collection` record will vary depending on the dataset, the most common collection-level metadata fields are indicated with an * in the tables below.
+
 ## EO Extension Description
 These are fields that extend the `Item` object
 ## `Item` additions
 
 | element             | type info                 | name                    | description                                                                                 | 
 |----------------------|---------------------------|-------------------------|---------------------------------------------------------------------------------------------| 
-| eo:gsd | float | Ground Sample distance | The nominal distance between pixel centers available, in meters |
-| eo:platform            | string                      | Unique name of platform | Specific name of the platform (e.g., landsat-8, sentinel-2A, larrysdrone) | 
-| eo:instrument        | string                      | Instrument used     | Name of instrument or sensor (e.g., MODIS, ASTER, OLI, Canon F-1) |
-| eo:bands  | dictionary    | Band Info | Band specific metadata (see below)
+| eo:gsd* | float | Ground Sample distance | The nominal distance between pixel centers available, in meters |
+| eo:platform*            | string                      | Unique name of platform | Specific name of the platform (e.g., landsat-8, sentinel-2A, larrysdrone) | 
+| eo:instrument*        | string                      | Instrument used     | Name of instrument or sensor (e.g., MODIS, ASTER, OLI, Canon F-1) |
+| eo:bands*  | dictionary    | Band Info | Band specific metadata (see below)
 | eo:crs     | string    | ref system             | CRS of the datasource in full WKT format. null if no crs |
 | eo:cloud_cover     | integer (optional)   | Cloud Cover Pct    | Percent of cloud cover (1-100) | 
 | eo:off_nadir      | float (optional)   | Off nadir    | Viewing angle. 0-90 degrees, measured from nadir
@@ -80,15 +84,3 @@ The band's common_name is the name that is commonly used to refer to that band's
 |swir22     |2.1 - 2.3  |  7     |     7     |     7     |    12     |     7        
 |lwir11    | 10.5 - 11.5 |       |           |     10     |          |      31   
 |lwir12    | 11.5 - 12.5 |        |          |     11     |          |      32
-
-
-## Using Collections
-
-A lot of EO data will have common metadata across many `Items`. In this case it is best to use the [Collections extension](stac-collection-spec.md). While the exact metadata that would appear in a `Collection` record will vary depending on the dataset, these are the most common fields that would tie together a collection of `Items`:
-
-- provider
-- license
-- eo:gsd
-- eo:platform
-- eo:instrument
-- eo:bands
