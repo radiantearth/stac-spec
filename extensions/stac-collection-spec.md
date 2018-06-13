@@ -9,12 +9,17 @@ A group of STAC `Item` objects from a single source can share a lot of common me
 | collection | string | Collection Name | A name given to the Collection
 | description | string (optional) | Collection Description | A human readable description of the collection
 
-A `Collection` does not have many specific fields, as it may contain any fields that are in the core spec as well as any other extension. This provides maximum flexibility to data providers, as some the set of common metadata fields can vary between different types of data. For instance, Landsat and Sentinel data always has a eo:off_nadir value of 0, because those satellites are always pointed downward (i.e., nadir), while satellite that can be pointed will have varying eo:off_nadir values. Collections allows the data provider to define the common set of metadata themselves. Some metadata fields are more likely to be part of the common set, such as 'license', or 'eo:instrument', however depending on the data provider this could vary between `Items`.
+A `Collection` does not have many specific fields, as it may contain any fields that are in the core spec as well as any other extension. This provides maximum flexibility to data providers, as some the set of common metadata fields can vary between different types of data. For instance, Landsat and Sentinel data always has a eo:off_nadir value of 0, because those satellites are always pointed downward (i.e., nadir), while satellite that can be pointed will have varying eo:off_nadir values.
+
+Collections allows the data provider to define the common set of metadata themselves. Some metadata fields are more likely to be part of the common set, such as 'license', or 'eo:instrument', however depending on the data provider this could vary among `Item`s
 
 If a metadata field is specified in `Collection`, it will be ignored in any `Item` that links to that `Collection`. This is important because a `Collection` is the metadta that is common across all `Item` objects. If a field is variable at all, it should be part of the `Item` record.
 
+### Warning
+This extension is still in an early iteration, and is likely to change as it gets use. Collections should work generically and be combined with the static catalog 'catalog.json' file.  It is powerful and useful to be able to reference fields that don't need to repeat in every item, but the naming and fields may shift. Please try it out and give feedback on what works.
+
 #### Linking to a `Collection`
-An `Item` specifies the collection it belongs to in two places. One is a field called 'collection' which is a key to a `Collection` record (that also has a 'collection' keyword). This acts as a Foreign Key in the `Item` that links to a `Collection`. 
+An `Item` specifies the collection it belongs to in two places. One is a field called 'collection' which is a key to a `Collection` record, which also also has a 'collection' field. This acts as a way to provide a 2-way link between `Collection` and `Item` records through the 'collection' field. In database terms, the 'collection' field is like a Foreign Key in the `Item` that links to a `Collection`. 
 
 An `Item` also provides a link to a collection under the links dictionary:
 ```
@@ -40,7 +45,7 @@ The fields from the `Collection` record can be merged with an `Item` record to g
         "geometry": {...}
     },
     "links": {
-        "collection": { "href": "link/to/my_collection" }
+        "collection": {"rel": "collection", "href": "link/to/my_collection" }
         ...
     },
     "assets": {...}
@@ -60,6 +65,7 @@ The merged `Item` then looks like this:
     },
     "links": {
         "collection": {
+          "rel": "collection",
           "href": "link/to/my_collection"
         },
         ...
