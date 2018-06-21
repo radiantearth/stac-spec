@@ -28,6 +28,10 @@ Whenever dev stabilizes a release is cut and we merge dev in to master. So maste
 It is possible that there may be small releases in quick succession, especially if they are nice improvements that do 
 not require lots of updating. 
 
+## Communication
+
+For any questions feel free to jump on our [gitter channel](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby) or email our [google group](https://groups.google.com/forum/#!forum/stac-spec)
+
 ## In this Repository
 
 This repository contains the core specifications, along with examples and JSON schemas for validation. Also included are a

@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   title: The SpatioTemporal Asset Catalog API (standalone)
-  version: 0.4.0
+  version: 0.4.1
   description: >-
     This is an OpenAPI definition of the core SpatioTemporal Asset Catalog API
     specification. Any service that implements this endpoint to allow search of
@@ -36,7 +36,7 @@ paths:
         - application/geo+json
       responses:
         '200':
-          description: A feature collection.
+          description: A feature collection matching the search criteria.
           schema:
             $ref: '#/definitions/itemCollection'
         default:
@@ -60,11 +60,9 @@ paths:
         - application/geo+json
       responses:
         '200':
-          description: >-
-            Information about the feature collection plus the first features
-            matching the selection parameters.
+          description: A feature collection matching the search criteria.
           schema:
-            $ref: '#/definitions/featureCollectionGeoJSON'
+            $ref: '#/definitions/itemCollection'
         default:
           description: An error occured.
           schema:
@@ -184,47 +182,6 @@ definitions:
       hreflang:
         type: string
         example: en
-  featureCollectionGeoJSON:
-    type: object
-    required:
-      - features
-    properties:
-      features:
-        type: array
-        items:
-          $ref: '#/definitions/featureGeoJSON'
-  featureGeoJSON:
-    type: object
-    required:
-      - type
-      - geometry
-      - properties
-    properties:
-      type:
-        type: string
-        enum:
-          - Feature
-      geometry:
-        $ref: '#/definitions/geometryGeoJSON'
-      properties:
-        type: object
-      id:
-        type: string
-  geometryGeoJSON:
-    type: object
-    required:
-      - type
-    properties:
-      type:
-        type: string
-        enum:
-          - Point
-          - MultiPoint
-          - LineString
-          - MultiLineString
-          - Polygon
-          - MultiPolygon
-          - GeometryCollection
   searchBody:
     description: The search criteria
     allOf:
@@ -385,7 +342,7 @@ definitions:
         example: path/to/example.tif
         description: 'unique ID, potentially link to file'
       bbox:
-        $ref: '#/parameters/bbox'
+        $ref: '#/definitions/bbox'
       geometry:
         type: object
         description: footprint of the item
@@ -401,9 +358,16 @@ definitions:
         items:
           $ref: '#/definitions/link'
       assets:
-        type: array
-        items:
-          $ref: '#/definitions/asset'
+        type: object
+        additionalProperties:
+          type: object
+          required:
+            - href
+          properties:
+            href:
+              type: string
+            name:
+              type: string
     example:
       type: Feature
       id: CS3-20160503_132130_04
@@ -426,8 +390,7 @@ definitions:
             - - -122.308150179
               - 37.488035566
       properties:
-        start: '2016-05-03T13:21:30.040Z'
-        end: '2016-05-03T13:21:30.410Z'
+        datetime: '2016-05-03T13:21:30.040Z'
         provider: 'http://www.cool-sat.com'
         license: CC-BY-4.0
       links:
@@ -443,26 +406,13 @@ definitions:
           name: thumbnail
           href: >-
             http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/thumb.png
-  asset:
-    type: object
-    required:
-      - href
-    properties:
-      href:
-        type: string
-      name:
-        type: string
-        example: prev
   itemProperties:
     type: object
     required:
-      - start
-      - end
+      - datetime
     description: provides the core metatdata fields plus extensions
     properties:
-      start:
-        $ref: '#/definitions/time'
-      end:
+      datetime:
         $ref: '#/definitions/time'
       provider:
         type: string

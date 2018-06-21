@@ -15,7 +15,8 @@ This document also contains discussion of the various examples in this folder.
 stac-item specification.
 
 **Landsat8** The [Landsat8 sample](landsat8-sample.json) is meant to be an example of how an S3-based catalog like the 
-[Landsat on AWS](https://landsatonaws.com/) public data set could be a STAC static catalog.
+[Landsat on AWS](https://landsatonaws.com/) public data set could be a STAC static catalog. It includes the 'collection'
+concept, which is explained more in the [/extensions/examples/ folder](../extensions/examples/).
 
 **NAIP** The [NAIP sample](naip-sample.md) is a similar example to Landsat8, but focused on the NAIP dataset, which 
 is a bit different as it's aerial imagery instead of satellites. It demonstrates a few different patterns of how
@@ -31,7 +32,7 @@ These examples demonstrate that there is a range of potential implementations of
 the current implementations as minimally as possible. The hope is that there will emerge more consensus and best practices
 on the things outside of the core fields, to increase interoperability. 
 
-### Static Catalogs vs Catalog API's
+### Static Catalogs vs Catalog APIs
 
 The Planet example is likely the least 'static' of the examples, as it was taken from Planet's Data API and just added on a
 few fields. DigitalGlobe's made a bit more changes to make it static, but still has that lineage. Landsat8 and NAIP are
