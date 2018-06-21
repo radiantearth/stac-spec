@@ -42,6 +42,7 @@
     "eo:platform": "landsat-8",
     "eo:instrument": "OLI_TIRS",
     "eo:gsd": 30.0,
+    "eo:epsg": 32643,
     "eo:cloud_cover" : 10,
     "eo:off_nadir" : 0.000,
     "eo:azimuth": 0.00,

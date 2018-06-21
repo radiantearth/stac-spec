@@ -16,7 +16,7 @@ These are fields that extend the `Item` object
 | eo:platform*            | string                      | Unique name of platform | Specific name of the platform (e.g., landsat-8, sentinel-2A, larrysdrone) | 
 | eo:instrument*        | string                      | Instrument used     | Name of instrument or sensor (e.g., MODIS, ASTER, OLI, Canon F-1) |
 | eo:bands*  | dictionary    | Band Info | Band specific metadata (see below)
-| eo:crs     | string    | ref system             | CRS of the datasource in full WKT format. null if no crs |
+| eo:epsg     | unsigned int    | EPSG code             | EPSG code of the datasource, null if no EPSG code |
 | eo:cloud_cover     | integer (optional)   | Cloud Cover Pct    | Percent of cloud cover (1-100) | 
 | eo:off_nadir      | float (optional)   | Off nadir    | Viewing angle. 0-90 degrees, measured from nadir
 | eo:azimuth      | float (optional)   | Azimuth    | Viewing azimuth angle. 0-360 degrees, measured clockwise from north
@@ -33,7 +33,7 @@ These are fields that extend the `Item` object
 
 **eo:bands** This is a dictionary of band information where each key in the dictionary is an identifier for the band (e.g., "B01", "B02", "B1", "B5", "QA"). See below for more information on band metadata.
 
-**eo:crs**: The Coordinate Reference System (CRS) is the native reference system (sometimes called a 'projection') used by the data, provided in [Well-Known Text (WKT) format](https://en.wikipedia.org/wiki/Well-known_text). This field is required. If the data does not have a CRS, such as in the case of non-rectified imagery with Ground Control Points, eo:crs should be set to null.
+**eo:epsg**: A Coordinate Reference System (CRS) is the native reference system (sometimes called a 'projection') used by the data, and can usually be referenced using an [EPSG code](http://epsg.io). If the data does not have a CRS, such as in the case of non-rectified imagery with Ground Control Points, eo:epsg should be set to null. It should also be set to null if a CRS exists, but for which there is no valid EPSG code.
 
 **eo:cloud_cover**: An estimate of cloud cover as a percentage of the entire scene. If not available the field should not be provided.
 
