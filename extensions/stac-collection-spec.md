@@ -6,8 +6,9 @@ A group of STAC `Item` objects from a single source can share a lot of common me
 
 | element             | type info                 | name                    | description                                                                                 | 
 |----------------------|---------------------------|-------------------------|---------------------------------------------------------------------------------------------| 
-| collection | string | Collection Name | A name given to the Collection
-| description | string (optional) | Collection Description | A human readable description of the collection
+| cx:id | string | Collection ID | Machine readable ID for the collection
+| cx:name | string | Collection Name | A name given to the Collection
+| cx:description | string (optional) | Collection Description | A human readable description of the collection
 
 A `Collection` does not have many specific fields, as it may contain any fields that are in the core spec as well as any other extension. This provides maximum flexibility to data providers, as some the set of common metadata fields can vary between different types of data. For instance, Landsat and Sentinel data always has a eo:off_nadir value of 0, because those satellites are always pointed downward (i.e., nadir), while satellite that can be pointed will have varying eo:off_nadir values.
 
@@ -23,7 +24,7 @@ An `Item` specifies the collection it belongs to in two places. One is a field c
 
 An `Item` also provides a link to a collection under the links dictionary:
 ```
-{ "collection": { "href": "link/to/collection/record" }
+{ "cx:collection": { "href": "link/to/collection/record" }
 ```
 
 #### Using a `Collection`
@@ -32,7 +33,9 @@ The fields from the `Collection` record can be merged with an `Item` record to g
 # a collection
 {
     "properties": {
-        "collection": "my_collection",
+        "cx:name": "My Collection",
+        "cx:id": "my_collection",
+        "cx:description": "A description of my collection",
         "provider": "me",
         "license": "MIT"
     }
@@ -45,7 +48,7 @@ The fields from the `Collection` record can be merged with an `Item` record to g
         "geometry": {...}
     },
     "links": {
-        "collection": {"rel": "collection", "href": "link/to/my_collection" }
+        "cx:collection": {"rel": "cx:collection", "href": "link/to/my_collection" }
         ...
     },
     "assets": {...}
@@ -57,15 +60,17 @@ The merged `Item` then looks like this:
 {
     "id": "SCENE_001",
     "properties": {
-        "collection": "my_collection",
+        "cx:id": "my_collection",
+        "cx:name": "My Collection",
+        "cx.description": "A description of my collection",
         "provider": "me",
         "license": "MIT"    
         "datetime": "2017-01-01T00:00:00Z",
         "geometry": {...}
     },
     "links": {
-        "collection": {
-          "rel": "collection",
+        "cx:collection": {
+          "rel": "cx:collection",
           "href": "link/to/my_collection"
         },
         ...
@@ -79,6 +84,9 @@ This is an example `Collection` for Landsat-8 imagery and uses the [EO extension
 ```
 {
     "properties": {
+        "cx:name": "Landsat 8",
+        "cx:id": "landsat-8",
+        "cx:description": "Landat 8 imagery radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
         "provider": "LANDSAT_8",
         "license": "PDDL-1.0",
         "eo:gsd" : 30,
