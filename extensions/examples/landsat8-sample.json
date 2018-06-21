@@ -40,6 +40,7 @@
     "collection": "L1T",
     "description": "Landat 8 imagery that is radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
     "eo:gsd": 30.0,
+    "eo:epsg": 32643,
     "eo:cloud_cover" : 10,
     "eo:off_nadir" : 0.000,
     "eo:azimuth": 0.00,
