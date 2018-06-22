@@ -49,43 +49,41 @@
               "title": "Item links",
               "description": "Links to item relations",
               "type": "object",
-              "items": {
-                "$ref": "#/definitions/link"
-              },
-              "minItems": 1,
               "properties": {
                 "self": {
-                  "title": "self",
-                  "description": "Link to self",
-                  "type": "object",
-                  "oneOf": [
+                  "allOf": [
                     {
                       "$ref": "#/definitions/link"
+                    },
+                    {
+                      "properties": {
+                        "rel": {
+                          "type": "string",
+                          "pattern": "^self$"
+                        }
+                      }
                     }
                   ]
                 }
-              }
+              },
+              "patternProperties": {
+                ".+": {
+                  "$ref": "#/definitions/link"
+                }
+              },
+              "required": ["self"],
+              "additionalProperties": false
             },
             "assets": {
               "title": "Asset links",
               "description": "Links to assets",
               "type": "object",
-              "items": {
-                "$ref": "#/definitions/asset"
-              },
-              "minItems": 1,
-              "properties": {
-                "thumbnail": {
-                  "title": "thumbnail",
-                  "description": "Thumbnail representation of the image, generally consumed by browsers",
-                  "type": "object",
-                  "oneOf": [
-                    {
-                      "$ref": "#/definitions/asset"
-                    }
-                  ]
+              "patternProperties": {
+                ".+": {
+                  "$ref": "#/definitions/asset"
                 }
-              }
+              },
+              "additionalProperties": false
             },
             "properties": {
               "type": "object",
