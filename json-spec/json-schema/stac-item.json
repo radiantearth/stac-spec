@@ -48,42 +48,49 @@
             "links": {
               "title": "Item links",
               "description": "Links to item relations",
-              "type": "object",
-              "properties": {
-                "self": {
-                  "allOf": [
-                    {
-                      "$ref": "#/definitions/link"
-                    },
-                    {
-                      "properties": {
-                        "rel": {
-                          "type": "string",
-                          "pattern": "^self$"
-                        }
-                      }
-                    }
-                  ]
-                }
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/link"
               },
-              "patternProperties": {
-                ".+": {
-                  "$ref": "#/definitions/link"
+              "minItems": 1,
+              "contains": {
+                "type": "object",
+                "required": [
+                  "rel",
+                  "href"
+                ],
+                "properties": {
+                  "rel": {
+                    "type": "string",
+                    "pattern": "^self$"
+                  },
+                  "href": {
+                    "type": "string",
+                    "format": "uri"
+                  }
                 }
-              },
-              "required": ["self"],
-              "additionalProperties": false
+              }
             },
             "assets": {
               "title": "Asset links",
               "description": "Links to assets",
               "type": "object",
-              "patternProperties": {
-                ".+": {
-                  "$ref": "#/definitions/asset"
-                }
+              "items": {
+                "$ref": "#/definitions/asset"
               },
-              "additionalProperties": false
+              "minItems": 1,
+              "properties": {
+                "thumbnail": {
+                  "title": "thumbnail",
+                  "description": "Thumbnail representation of the image, generally consumed by browsers",
+                  "type": "object",
+                  "oneOf": [
+                    {
+                      "$ref": "#/definitions/asset"
+                    }
+                  ]
+                }
+              }
             },
             "properties": {
               "type": "object",
