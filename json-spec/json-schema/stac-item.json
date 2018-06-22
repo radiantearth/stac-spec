@@ -78,15 +78,6 @@
               "title": "Asset links",
               "description": "Links to assets",
               "type": "object",
-              "properties": {
-                "thumbnail": {
-                  "title": "thumbnail",
-                  "description": "Thumbnail representation of the image, generally consumed by browsers",
-                  "type": {
-                    "$ref": "#/definitions/asset"
-                  }
-                }
-              },
               "patternProperties": {
                 ".+": {
                   "$ref": "#/definitions/asset"
