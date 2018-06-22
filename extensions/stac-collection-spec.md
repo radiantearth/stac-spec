@@ -7,25 +7,42 @@ A group of STAC `Item` objects from a single source can share a lot of common me
 | element             | type info                 | name                    | description                                                                                 | 
 |----------------------|---------------------------|-------------------------|---------------------------------------------------------------------------------------------| 
 | cx:id | string | Collection ID | Machine readable ID for the collection
-| cx:name | string | Collection Name | A name given to the Collection
+| cx:name | string | Collection Name (optional) | A name given to the Collection, used for display
 | cx:description | string (optional) | Collection Description | A human readable description of the collection
 
 A `Collection` does not have many specific fields, as it may contain any fields that are in the core spec as well as any other extension. This provides maximum flexibility to data providers, as some the set of common metadata fields can vary between different types of data. For instance, Landsat and Sentinel data always has a eo:off_nadir value of 0, because those satellites are always pointed downward (i.e., nadir), while satellite that can be pointed will have varying eo:off_nadir values.
 
-Collections allows the data provider to define the common set of metadata themselves. Some metadata fields are more likely to be part of the common set, such as 'license', or 'eo:instrument', however depending on the data provider this could vary among `Item`s
+Collections allow the data provider to define the common set of metadata themselves. Some metadata fields are more likely to be part of the common set, such as 'license', or 'eo:instrument', however depending on the data provider this could vary among `Item`s.
+
+All `Items` that use the collection extension to designate additional fields must include the `cx:id` field,
+which enables a user to search STAC records by the collection. The optional `cx:name` and `cx:description`
+fields are used to display to human users. If no name is specified then the id will be used for display. 
+The other requirement to implement the collection extension is the `cx:collection` object in the links
+dictionary, as specified below. 
 
 If a metadata field is specified in `Collection`, it will be ignored in any `Item` that links to that `Collection`. This is important because a `Collection` is the metadta that is common across all `Item` objects. If a field is variable at all, it should be part of the `Item` record.
 
 ### Warning
 This extension is still in an early iteration, and is likely to change as it gets use. Collections should work generically and be combined with the static catalog 'catalog.json' file.  It is powerful and useful to be able to reference fields that don't need to repeat in every item, but the naming and fields may shift. Please try it out and give feedback on what works.
 
+
 #### Linking to a `Collection`
 An `Item` specifies the collection it belongs to in two places. One is a field called 'collection' which is a key to a `Collection` record, which also also has a 'collection' field. This acts as a way to provide a 2-way link between `Collection` and `Item` records through the 'collection' field. In database terms, the 'collection' field is like a Foreign Key in the `Item` that links to a `Collection`. 
 
 An `Item` also provides a link to a collection under the links dictionary:
 ```
-{ "cx:collection": { "href": "link/to/collection/record" }
+{ "cx:collection": { "href": "link/to/collection/record.json" }
 ```
+
+### The Collection JSON
+
+The `Collection` JSON that a set of `Item`s link to is a fragment of a full STAC `Item`, containing any 
+fields that are fixed for the set of `Item`s that link to it. Most fields will live under the `properties`
+object, and represent the fields that would be in each `Item` JSON. The `Collection` JSON may contain
+other JSON objects, which should be thought of as objects that would live in each `Item` and repeat. The
+`eo:bands` in the example below work this way. The `eo:bands` object lives parallel to the `properties` 
+object in the JSON.
+
 
 #### Using a `Collection`
 The fields from the `Collection` record can be merged with an `Item` record to get the complete metadata for the `Item`.
