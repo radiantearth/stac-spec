@@ -49,6 +49,26 @@
         }
       }
     },
+    "license": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "shortname": {
+          "type": "string",
+          "format": "email"
+        },
+        "copyright": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "required": ["name", "link"]
+    },
     "catalog": {
       "title": "Catalog",
       "type": "object",
@@ -65,8 +85,10 @@
           "type": "string"
         },
         "license": {
-          "description": "License (as an SPDX license string)",
-          "type": "string"
+          "oneOf": [
+            {"description": "License (as an SPDX license string)", "type": "string"},
+            {"$ref": "#/definitions/license"}
+          ]
         },
         "links": {
           "description": "Links to other catalogs or items",
@@ -136,7 +158,7 @@
       "$ref": "#/definitions/catalog"
     },
     {
-      "required": ["name", "description", "license", "links"]
+      "required": ["name", "description", "links"]
     }
   ]
 }
