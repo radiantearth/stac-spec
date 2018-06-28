@@ -6,9 +6,6 @@
       "type": "object",
       "allOf": [
         {
-          "$ref": "asset.json#/definitions/core"
-        },
-        {
           "properties": {
             "uri": {
               "type": "string",
@@ -22,21 +19,35 @@
       "type": "object",
       "allOf": [
         {
-          "$ref": "asset.json#/definitions/core"
-        },
-        {
           "properties": {
             "rel": {
-              "type": "string",
-              "format": "uri"
+              "type": "string"
             },
             "href": {
-              "type": "string",
-              "format": "uri"
+              "type": "string"
             }
           }
         }
       ]
+    },
+    "entity": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
     },
     "catalog": {
       "title": "Catalog",
@@ -57,22 +68,8 @@
           "description": "License (as an SPDX license string)",
           "type": "string"
         },
-        "features": {
-          "description": "Features",
-          "type": "array",
-          "items": {
-            "oneOf": [
-              {
-                "$ref": "#/definitions/asset"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
         "links": {
-          "description": "Links to other catalogs",
+          "description": "Links to other catalogs or items",
           "type": "array",
           "items": {
             "oneOf": [
@@ -86,7 +83,7 @@
           }
         },
         "contact": {
-          "$ref": "asset.json#/definitions/entity"
+          "$ref": "#/definitions/entity"
         },
         "formats": {
           "description": "Included asset formats",
@@ -139,7 +136,7 @@
       "$ref": "#/definitions/catalog"
     },
     {
-      "required": ["name", "description", "license", "features", "links"]
+      "required": ["name", "description", "license", "links"]
     }
   ]
 }
