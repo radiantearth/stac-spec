@@ -41,6 +41,7 @@ of the spec. It is currently at version 0.5.0.
 * Root catalog json is at https://storage.googleapis.com/pdd-stac/disasters/catalog.json
 * The raw catalog files can be browsed at https://console.cloud.google.com/storage/browser/pdd-stac/disasters/hurricane-harvey/0831/
 * Browsable online version, powered by [stac-browser](https://github.com/radiantearth/stac-browser/) at http://planet-stac.netlify.com/
+* Repo where the stac catalog is evolved is at https://github.com/cholmes/pdd-stac/tree/master/disasters/hurricane-harvey
 
 #### DigitalGlobe
 
