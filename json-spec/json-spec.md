@@ -1,13 +1,13 @@
 ## Intro
 
-This document explains the fields of a SpatioTemporal Asset Catalog (STAC) `Item`. Each is a GeoJSON feature, 
-plus a few required fields that identify the time range and assets of the item. An `Item` is the core
-granular entity in a STAC, containing the core metadata that enables any client to search or crawl online
-catalogs of spatial 'assets' - satellite imagery, derived data, DEM's, etc. 
+This document explains the fields of a SpatioTemporal Asset Catalog (STAC) `Item`. Each is a [GeoJSON](http://geojson.org/) 
+[feature](https://tools.ietf.org/html/rfc7946#section-3.2), plus a few required fields that identify the time range and 
+assets of the item. An `Item` is the core granular entity in a STAC, containing the core metadata that enables any 
+client to search or crawl online catalogs of spatial 'assets' - satellite imagery, derived data, DEM's, etc. 
 
-The same `Item` definition is used in both 'static catalogs' and 'catalog apis'. Static catalogs are simply
-sets of items that are linked online, generally served by simple web servers and used for crawling data. 
-Catalog API's enable dynamic queries, for example selecting all `Item`s in Hawaii on June 3, 2015, but the
+The same `Item` definition is used in both '[static catalogs](../static-catalog/)' and '[catalog apis](../api-spec/)'. 
+Static catalogs are simply sets of items that are linked online, generally served by simple web servers and used 
+for crawling data. Catalog API's enable dynamic queries, for example selecting all `Item`s in Hawaii on June 3, 2015, but the
 results they return are FeatureCollections of items.
 
 `Item`s are very flexible - any JSON object that contains all the required fields is a valid STAC `Item`. There
@@ -30,7 +30,7 @@ your feedback will be directly incorporated.
 | geometry        | geojson         | Geometry                   | Bounding Box + Footprint of the item in lat/long (EPSG 4326)										|
 | datetime 		  | date and time   | Date and Time 	         | The searchable date/time of the assets, in UTC (Formatted in RFC 3339)    						| 
 | links           | dictionary           | Resource Links             | Dictionary of link objects to resources and related URLs (self required), each with a unique key								|
-| assets          | dictionary           | Assets            	   	 | Dict of asset objects that can be be download (at least one required, thumbnail strong recommended), each with a unique key |
+| assets          | dictionary           | Assets            	   	 | Dict of asset objects that can be be download (at least one required, thumbnail strongly recommended), each with a unique key |
 | provider        | string          | Provider     (optional)    | Provider name  																					|
 | license         | string          | Data License (optional)    | Item's license name based on SPDX License List or following guidelines for non-SPDX licenses 	|
 
@@ -60,16 +60,18 @@ for this purpose keep in mind the STAC spec is primarily searching for data, so 
 a user to search for. STAC content profiles may further specify the meaning of the main `datetime` field, and many will also add 
 more datetime fields.
 
-**links** are used primarily to represent relationships with other entities, relying on the key (equivalent to a ['rel' relation'](https://www.w3schools.com/tags/att_link_rel.asp) 
-attribute on links to describe relationships. A `link` dictionary item require an 'href' to provide the actual link - relative and
-absolute links are both allowed. Data providers are
-advised to be liberal with the links section, to describe things like the catalog an item is in, related items, parent or 
-child items (modeled in different ways, like an 'acquisition' or derived data). The `self` link is required, to represent the 
-location that the `Item` can be found online. This is particularly useful when in a download package that includes `Item` 
-metadata, so that the downstream user can know where the data has come from. The `self` href field *must* be an absolute url, not 
-relative, to communicate the canonical location of the `Item`. 
+**links** are used primarily to represent relationships with other entities. The key of each object in `links` represents the 
+link 'type', a shorthand for the relationship described. In time different link types, along with the expected 'rel' values will
+be enumerated - for now the `self` type is the only one specified. A `link` dictionary item requires an 'href' to provide 
+the actual link - relative and absolute links are both allowed. The actual 
+['rel' relation'](https://www.w3schools.com/tags/att_link_rel.asp) is specified with a 'rel' attribute in the object, and is 
+also required. Data providers are advised to be liberal with the links section, to describe things like the catalog an item 
+is in, related items, parent or child items (modeled in different ways, like an 'acquisition' or derived data). The `self` link is 
+required, to represent the location that the `Item` can be found online. This is particularly useful when in a download package 
+that includes `Item` metadata, so that the downstream user can know where the data has come from. The `self` href field 
+*must* be an absolute url, not relative, to communicate the canonical location of the `Item`. 
 
-**assets** is an array of keyed objects that contain of links to data associated with the `Item` that can be downloaded. This should include the main asset, as well
+**assets** is an set of keyed objects that contain of links to data associated with the `Item` that can be downloaded. This should include the main asset, as well
 as any 'sidecar' files that are related and help a client make sense of the data. Examples of this include extended metadata (in XML, 
 JSON, etc), unusable data masks, satellite ephemeris data, etc. Some assets (like Landsat data) are represented by multiple files - 
 all should be linked to. It is generally recommended that different processing levels or formats are not exhaustively listed in an
@@ -110,5 +112,5 @@ include geojson.json schema in the testing.
 
 See the [README](README.md) for instructions on how to install and run a javascript validator.
 
-**Warning** - Not all validation is fully complete. The validator does not yet check for self links. The href checking is probably
+**Warning** - Not all validation is fully complete. For example the href checking is probably
 too loose right now, it just checks for a string, see the 'relative vs absolute links' section above for reasons why. 
