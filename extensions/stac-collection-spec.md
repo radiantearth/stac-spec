@@ -31,7 +31,7 @@ An `Item` specifies the collection it belongs to in two places. One is a field c
 
 An `Item` also provides a link to a collection under the links dictionary:
 ```
-{ "c:collection": { "href": "link/to/collection/record.json" }
+{ "collection": { "rel": "collection", href": "link/to/collection/record.json" }
 ```
 
 ### The Collection JSON
@@ -65,7 +65,7 @@ The fields from the `Collection` record can be merged with an `Item` record to g
         "geometry": {...}
     },
     "links": {
-        "c:collection": {"rel": "c:collection", "href": "link/to/my_collection" }
+        "collection": {"rel": "collection", "href": "link/to/my_collection" }
         ...
     },
     "assets": {...}
@@ -79,15 +79,15 @@ The merged `Item` then looks like this:
     "properties": {
         "c:id": "my_collection",
         "c:name": "My Collection",
-        "c.description": "A description of my collection",
+        "c:description": "A description of my collection",
         "provider": "me",
         "license": "MIT",
         "datetime": "2017-01-01T00:00:00Z",
         "geometry": {...}
     },
     "links": {
-        "c:collection": {
-          "rel": "c:collection",
+        "collection": {
+          "rel": "collection",
           "href": "link/to/my_collection"
         },
         ...
