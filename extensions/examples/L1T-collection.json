@@ -1,7 +1,7 @@
 {
   "properties": {
-      "cx:id": "L1T",
-      "cx:description": "Landat 8 imagery that is radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
+      "c:id": "L1T",
+      "c:description": "Landat 8 imagery that is radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
       "provider": "USGS",
       "license": "PDDL-1.0",
       "eo:gsd" : 30,
