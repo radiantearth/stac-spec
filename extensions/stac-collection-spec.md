@@ -6,18 +6,18 @@ A group of STAC `Item` objects from a single source can share a lot of common me
 
 | element             | type info                 | name                    | description                                                                                 | 
 |----------------------|---------------------------|-------------------------|---------------------------------------------------------------------------------------------| 
-| cx:id | string | Collection ID | Machine readable ID for the collection
-| cx:name | string | Collection Name (optional) | A name given to the Collection, used for display
-| cx:description | string (optional) | Collection Description | A human readable description of the collection
+| c:id | string | Collection ID | Machine readable ID for the collection
+| c:name | string | Collection Name (optional) | A name given to the Collection, used for display
+| c:description | string (optional) | Collection Description | A human readable description of the collection
 
 A `Collection` does not have many specific fields, as it may contain any fields that are in the core spec as well as any other extension. This provides maximum flexibility to data providers, as some the set of common metadata fields can vary between different types of data. For instance, Landsat and Sentinel data always has a eo:off_nadir value of 0, because those satellites are always pointed downward (i.e., nadir), while satellite that can be pointed will have varying eo:off_nadir values.
 
 Collections allow the data provider to define the common set of metadata themselves. Some metadata fields are more likely to be part of the common set, such as 'license', or 'eo:instrument', however depending on the data provider this could vary among `Item`s.
 
-All `Items` that use the collection extension to designate additional fields must include the `cx:id` field,
-which enables a user to search STAC records by the collection. The optional `cx:name` and `cx:description`
+All `Items` that use the collection extension to designate additional fields must include the `c:id` field,
+which enables a user to search STAC records by the collection. The optional `c:name` and `c:description`
 fields are used to display to human users. If no name is specified then the id will be used for display. 
-The other requirement to implement the collection extension is the `cx:collection` object in the links
+The other requirement to implement the collection extension is the `c:collection` object in the links
 dictionary, as specified below. 
 
 If a metadata field is specified in `Collection`, it will be ignored in any `Item` that links to that `Collection`. This is important because a `Collection` is the metadta that is common across all `Item` objects. If a field is variable at all, it should be part of the `Item` record.
@@ -31,7 +31,7 @@ An `Item` specifies the collection it belongs to in two places. One is a field c
 
 An `Item` also provides a link to a collection under the links dictionary:
 ```
-{ "cx:collection": { "href": "link/to/collection/record.json" }
+{ "c:collection": { "href": "link/to/collection/record.json" }
 ```
 
 ### The Collection JSON
@@ -50,9 +50,9 @@ The fields from the `Collection` record can be merged with an `Item` record to g
 # a collection
 {
     "properties": {
-        "cx:name": "My Collection",
-        "cx:id": "my_collection",
-        "cx:description": "A description of my collection",
+        "c:name": "My Collection",
+        "c:id": "my_collection",
+        "c:description": "A description of my collection",
         "provider": "me",
         "license": "MIT"
     }
@@ -65,7 +65,7 @@ The fields from the `Collection` record can be merged with an `Item` record to g
         "geometry": {...}
     },
     "links": {
-        "cx:collection": {"rel": "cx:collection", "href": "link/to/my_collection" }
+        "c:collection": {"rel": "c:collection", "href": "link/to/my_collection" }
         ...
     },
     "assets": {...}
@@ -77,17 +77,17 @@ The merged `Item` then looks like this:
 {
     "id": "SCENE_001",
     "properties": {
-        "cx:id": "my_collection",
-        "cx:name": "My Collection",
-        "cx.description": "A description of my collection",
+        "c:id": "my_collection",
+        "c:name": "My Collection",
+        "c.description": "A description of my collection",
         "provider": "me",
-        "license": "MIT"    
+        "license": "MIT",
         "datetime": "2017-01-01T00:00:00Z",
         "geometry": {...}
     },
     "links": {
-        "cx:collection": {
-          "rel": "cx:collection",
+        "c:collection": {
+          "rel": "c:collection",
           "href": "link/to/my_collection"
         },
         ...
@@ -101,9 +101,9 @@ This is an example `Collection` for Landsat-8 imagery and uses the [EO extension
 ```
 {
     "properties": {
-        "cx:name": "Landsat 8",
-        "cx:id": "landsat-8",
-        "cx:description": "Landat 8 imagery radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
+        "c:name": "Landsat 8",
+        "c:id": "landsat-8",
+        "c:description": "Landat 8 imagery radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
         "provider": "LANDSAT_8",
         "license": "PDDL-1.0",
         "eo:gsd" : 30,
