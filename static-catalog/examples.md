@@ -17,7 +17,7 @@ currently at version 0.5.0 of the spec.
 #### CBERS
 
 [CBERS](https://en.wikipedia.org/wiki/China%E2%80%93Brazil_Earth_Resources_Satellite_program) is maintaining 
-a full STAC Catalog, and keeping it up to date with the spec. It is currently at version 0.4.1.
+a full STAC Catalog, and keeping it up to date with the spec. It is currently at version 0.5.0.
 
 * Root Catalog.json at https://cbers-stac.s3.amazonaws.com/catalog.json
 * Browsable online version, powered by [stac-browser](https://github.com/radiantearth/stac-browser/) at http://cbers-stac.netlify.com/
