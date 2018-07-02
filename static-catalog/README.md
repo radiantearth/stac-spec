@@ -253,7 +253,7 @@ an RGB [COG](http://www.cogeo.org/) and an RGBIR GeoTiff.
 }
 ```
 
-There are additional examples, fully validated, in the [examples](examples/) folder, as well as in the [json spec examples](../json-spec/examples/) folder.
+There are additional examples, fully validated, in the [examples page](examples.md), as well as in the [json spec examples](../json-spec/examples/) folder.
 
 ### Static Catalog Flexibility
 
@@ -272,8 +272,8 @@ This section will link to those.
 
 ### Schema Validation
 
-**TODO:** This needs to be implemented.
-The stac-item.json can be reused from the core json, but this should also include a `Catalog` schema.
+The [catalog json schema](json-schema/catalog.json) can be used for some basic validation of catalog json files. It should work
+with most validators, and can be used with the validator installed in the [json item](../json-spec/README.md).
 
 
 ## Static Catalog Evolution

@@ -73,7 +73,7 @@
     "eo:platform": "WORLDVIEW02",
     "eo:sun_elevation": 33.4,
     "eo:gsd": 2.047,
-    "eo:crs": null,
+    "eo:epsg": null,
     "dg:catalog_id": "103001004B316600",
     "dg:soli": "056823192",
     "dg:part": 2,
@@ -84,14 +84,14 @@
     "provider": "DigitalGlobe",
     "license": "(C) COPYRIGHT 2016 DigitalGlobe, Inc., Longmont CO USA 80503"
   },
-   "links": [
-      {
+   "links": {
+      "self": {
         "rel": "self",
         "href": "https://s3.amazonaws.com/digitalglobe-static-catalog/collections/dg_worldview02_LV1B/103001004B316600_P002_MUL"
       },
-      {
+      "collection": {
         "rel": "collection",
         "href": "https://s3.amazonaws.com/digitalglobe-static-catalog/collections/dg_worldview02_LV1B.json"
       }
-    ]
+    }
 }

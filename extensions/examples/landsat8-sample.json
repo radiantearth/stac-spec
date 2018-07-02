@@ -37,8 +37,10 @@
     "datetime": "2014-06-02T09:22:02Z",
     "provider": "USGS",
     "license": "PDDL-1.0",
-    "eo:collection": "L1T",
+    "c:id": "L1T",
+    "c:description": "Landat 8 imagery that is radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
     "eo:gsd": 30.0,
+    "eo:epsg": 32643,
     "eo:cloud_cover" : 10,
     "eo:off_nadir" : 0.000,
     "eo:azimuth": 0.00,
@@ -57,12 +59,12 @@
     "landsat:image_quality_oli": 9
   },
 
-  "links": [
-    { "rel":"self", "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00.json"},
-    { "rel":"alternate", "href": "https://landsatonaws.com/L8/153/025/LC81530252014153LGN00", "type": "html"},
-    { "rel":"catalog", "href":  "http://landsat-pds.s3.amazonaws.com/L8/catalog.json"}
-    { "rel":"collection", "href": "http://landsat-pds.s3.amazonaws.com/L8/L1T-collection.json"}
-  ],
+  "links": {
+    "self": { "rel":"self", "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00.json"},
+    "alternate": { "rel":"alternate", "href": "https://landsatonaws.com/L8/153/025/LC81530252014153LGN00", "type": "html"},
+    "catalog": { "rel":"catalog", "href":  "http://landsat-pds.s3.amazonaws.com/L8/catalog.json"},
+    "collection": { "rel":"collection", "href": "http://landsat-pds.s3.amazonaws.com/L8/L1T-collection.json"}
+  },
 
   "assets" :{
     "thumbnail": {
