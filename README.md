@@ -22,7 +22,7 @@ is specified right now, but best practices should emerge with implementation and
 ## Current version and branches
 
 The master branch (that you are looking at) is the 'stable' version of the spec. It is currently version 
-[0.4.0](https://github.com/radiantearth/stac-spec/milestone/3) of the specification. The 
+[0.5.0](https://github.com/radiantearth/stac-spec/milestone/5) of the specification. The 
 [dev](https://github.com/radiantearth/stac-spec/tree/dev) branch is where active development takes place, and may have inconsistent examples. 
 Whenever dev stabilizes a release is cut and we merge dev in to master. So master should be stable at any given time.
 It is possible that there may be small releases in quick succession, especially if they are nice improvements that do 
