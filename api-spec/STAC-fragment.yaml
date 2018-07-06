@@ -263,13 +263,28 @@ components:
         properties:
           $ref: '#/components/schemas/itemProperties'
         links:
-          type: array
-          items:
-            $ref: '#/components/schemas/link'
+          type: object
+          additionalProperties:
+            type: object
+            required:
+              - href
+              - rel
+            properties:
+              href:
+                type: string
+              rel:
+                type: string
         assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/asset'
+          type: object
+          additionalProperties:
+            type: object
+            required:
+              - href
+            properties:
+              href:
+                type: string
+              name:
+                type: string
       example:
         type: Feature
         id: CS3-20160503_132130_04
@@ -296,25 +311,19 @@ components:
           provider: 'http://www.cool-sat.com'
           license: CC-BY-4.0
         links:
-          - rel: self
-            href: http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04.json
+          self:
+            rel: self
+            href: >-
+              http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04.json
         assets:
           analytic:
             name: 4-Band Analytic
-            href: http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/analytic.tif
-          thumbnail: 
+            href: >-
+              http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/analytic.tif
+          thumbnail:
             name: thumbnail
-            href: 'http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/thumb.png'
-    asset:
-      type: object
-      required:
-        - href
-      properties:
-        href:
-          type: string
-        name:
-          type: string
-          example: prev
+            href: >-
+              http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/thumb.png
     itemProperties:
       type: object
       required:

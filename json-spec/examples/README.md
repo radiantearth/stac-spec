@@ -18,13 +18,14 @@ stac-item specification.
 [Landsat on AWS](https://landsatonaws.com/) public data set could be a STAC static catalog. It includes the 'collection'
 concept, which is explained more in the [/extensions/examples/ folder](../extensions/examples/).
 
-**NAIP** The [NAIP sample](naip-sample.md) is a similar example to Landsat8, but focused on the NAIP dataset, which 
+**NAIP** The [NAIP sample](naip-sample.json) is a similar example to Landsat8, but focused on the NAIP dataset, which 
 is a bit different as it's aerial imagery instead of satellites. It demonstrates a few different patterns of how
 an implementation can be approached.
 
-**Planet** The [Planet sample](planet-sample.md) is an adaption of Planet's [Data API](https://www.planet.com/docs/reference/data-api/) 
+**Planet** The [Planet sample](planet-sample.json) is an adaption of Planet's [Data API](https://www.planet.com/docs/reference/data-api/) 
 returned JSON, with minor tweaks to have it fit in to a STAC Item.
 
+**CBERS** The [CBERS sample](CBERS_4_MUX_20170528_090_084_L2.json) is copied from [CBERS static STAC catalog](https://cbers-stac.s3.amazonaws.com/catalog.json).
 
 ## Example Discussion
 

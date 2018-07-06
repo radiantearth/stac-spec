@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: STAC API integrated with OGC Web Feature Service standard
-  version: 0.4.1
+  version: 0.5.1
   description: >-
     This is an example OpenAPI specification of a SpatioTemporal Asset Catalog
     API  that also implements the OGC Web Feature Service 3.0 specification
@@ -743,9 +743,17 @@ components:
         properties:
           $ref: '#/components/schemas/itemProperties'
         links:
-          type: array
-          items:
-            $ref: '#/components/schemas/link'
+          type: object
+          additionalProperties:
+            type: object
+            required:
+              - href
+              - rel
+            properties:
+              href:
+                type: string
+              rel:
+                type: string
         assets:
           type: object
           additionalProperties:
@@ -783,7 +791,8 @@ components:
           provider: 'http://www.cool-sat.com'
           license: CC-BY-4.0
         links:
-          - rel: self
+          self:
+            rel: self
             href: >-
               http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04.json
         assets:

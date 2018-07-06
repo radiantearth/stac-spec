@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   title: STAC API integrated with OGC Web Feature Service standard
-  version: 0.4.1
+  version: 0.5.1
   description: >-
     This is an example OpenAPI specification of a SpatioTemporal Asset Catalog
     API  that also implements the OGC Web Feature Service 3.0 specification
