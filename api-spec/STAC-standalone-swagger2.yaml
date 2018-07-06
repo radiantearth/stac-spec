@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   title: The SpatioTemporal Asset Catalog API (standalone)
-  version: 0.4.1
+  version: 0.5.1
   description: >-
     This is an OpenAPI definition of the core SpatioTemporal Asset Catalog API
     specification. Any service that implements this endpoint to allow search of
@@ -354,9 +354,17 @@ definitions:
       properties:
         $ref: '#/definitions/itemProperties'
       links:
-        type: array
-        items:
-          $ref: '#/definitions/link'
+        type: object
+        additionalProperties:
+          type: object
+          required:
+            - href
+            - rel
+          properties:
+            href:
+              type: string
+            rel:
+              type: string
       assets:
         type: object
         additionalProperties:
@@ -394,7 +402,8 @@ definitions:
         provider: 'http://www.cool-sat.com'
         license: CC-BY-4.0
       links:
-        - rel: self
+        self:
+          rel: self
           href: >-
             http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04.json
       assets:
