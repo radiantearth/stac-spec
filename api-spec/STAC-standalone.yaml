@@ -209,12 +209,6 @@ components:
         rel:
           type: string
           example: prev
-        type:
-          type: string
-          example: application/geo+json
-        hreflang:
-          type: string
-          example: en
     searchBody:
       description: The search criteria
       type: object
