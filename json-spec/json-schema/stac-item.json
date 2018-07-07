@@ -16,7 +16,7 @@
         {
           "oneOf": [
             {
-              "$ref": "geojson.json#/definitions/feature"
+              "$ref": "http://json.schemastore.org/geojson.json#/definitions/feature"
             }
           ]
         },
