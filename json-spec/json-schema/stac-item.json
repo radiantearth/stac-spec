@@ -48,7 +48,7 @@
             "links": {
               "title": "Item links",
               "description": "Links to item relations",
-              "type": "array",
+              "type": "object",
               "items": {
                 "$ref": "#/definitions/link"
               },
