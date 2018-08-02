@@ -1,20 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-06/schema#",
   "id": "catalog.json#",
+  "title": "STAC Catalog",
+  "type": "object",
+  "description": "This object represents the metadata for an catalog in a SpatioTemporal Asset Catalog.",
+  "additionalProperties": true,
   "definitions": {
-    "asset": {
-      "type": "object",
-      "allOf": [
-        {
-          "properties": {
-            "uri": {
-              "type": "string",
-              "format": "uri"
-            }
-          }
-        }
-      ]
-    },
     "link": {
       "type": "object",
       "allOf": [
@@ -29,6 +20,22 @@
           }
         }
       ]
+    },
+    "provider": {
+      "description": "Provider-specific properties",
+	  "type": "object",
+	  "additionalProperties": true,
+      "properties": {
+        "scheme": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "requesterPays": {
+          "type": "string"
+        }
+      }
     },
     "entity": {
       "type": "object",
@@ -49,59 +56,32 @@
         }
       }
     },
-    "license": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "shortname": {
-          "type": "string",
-          "format": "email"
-        },
-        "copyright": {
-          "type": "string"
-        },
-        "link": {
-          "type": "string",
-          "format": "uri"
-        }
-      },
-      "required": ["name", "link"]
-    },
     "catalog": {
       "title": "Catalog",
       "type": "object",
+      "required": [
+        "name",
+        "description",
+        "links"
+      ],
       "properties": {
-        "TODO": {
-          "TODO": "URL pattern info + frequency"
-        },
         "name": {
-          "description": "Name",
+          "description": "Name of the catalog",
           "type": "string"
         },
         "description": {
-          "description": "Description",
+          "description": "Description for the catalog",
           "type": "string"
         },
         "license": {
-          "oneOf": [
-            {"description": "License (as an SPDX license string)", "type": "string"},
-            {"$ref": "#/definitions/license"}
-          ]
+          "description": "Data license name based on SPDX License List",
+          "type": "string"
         },
         "links": {
           "description": "Links to other catalogs or items",
           "type": "array",
           "items": {
-            "oneOf": [
-              {
-                "$ref": "#/definitions/link"
-              },
-              {
-                "type": "null"
-              }
-            ]
+            "$ref": "#/definitions/link"
           }
         },
         "contact": {
@@ -122,21 +102,8 @@
           }
         },
         "homepage": {
-          "type": "string"
-        },
-        "geometry": {
-          "allOf": [
-            {
-              "$ref": "geojson.json#/definitions/geometry"
-            },
-            {
-              "properties": {
-                "type": {
-                  "enum": ["Polygon", "MultiPolygon"]
-                }
-              }
-            }
-          ]
+          "type": "string",
+          "format": "uri"
         },
         "startDate": {
           "type": "string",
@@ -147,8 +114,7 @@
           "format": "date-time"
         },
         "provider": {
-          "description": "Provider-specific properties",
-          "type": "object"
+          "$ref": "#/definitions/provider"
         }
       }
     }
@@ -156,9 +122,6 @@
   "allOf": [
     {
       "$ref": "#/definitions/catalog"
-    },
-    {
-      "required": ["name", "description", "links"]
     }
   ]
 }
