@@ -474,7 +474,7 @@ components:
       properties:
         next:
           type: string
-          format: url
+          format: uri
           description: >-
             A URL to obtain the next paginated data set. If not present, the
             client should utilize the `nextPageToken`.
