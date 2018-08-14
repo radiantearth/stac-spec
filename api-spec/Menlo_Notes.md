@@ -8,7 +8,7 @@ __Topics__
 Custom Query Example
 ```
 {
-"q": {
+"query": {
     "eo:cloud_cover": {
       "lt": 50
     },
