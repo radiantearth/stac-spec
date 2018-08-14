@@ -4,7 +4,7 @@ __Topics__
   * Sorting
   * Projections
 * STAC Browser
-/stac endpoint
+/stac endpoint to return catalog.json
 ```
 {
     "name": "NAIP",
