@@ -4,16 +4,18 @@ __Topics__
   	* GraphQL - too explicit on projections
 	* Custom - Follows industry trend of "Not Invented Here", but can by opinionated on simpifying query (no joins or aggregations). Low barrier to entry. Complicated Query language can be an additional extension
 		
-| eq         | compare value                                                              | object           |   |   |
-|------------|----------------------------------------------------------------------------|------------------|---|---|
-| gt         | Find items with a property value greater than the specified value          | number           |   |   |
-| lt         | Find items with a property value less than the specified value             | number           |   |   |
-| gte        | Find items with a property value greater than or equal the specified value | number           |   |   |
-| lte        | Find items with a property value greater than or equal the specified value | number           |   |   |
-| startsWith | Find items with a property that begins with the specified string           | string           |   |   |
-| endsWith   | Find items with a property that ends with the specified string             | string           |   |   |
-| contains   | Find items with a property that contains with the specified string         | string           |   |   |
-| date       | search for a date in the specified range                                   | ISO8601 Duration |   |   |
+| operator   | Description                                                                | type             |
+|------------|----------------------------------------------------------------------------|------------------|
+| eq         | compare value                                                              | object           |
+| neq        | Find items that don't matcht the value                                     | object           |
+| gt         | Find items with a property value greater than the specified value          | number           |
+| lt         | Find items with a property value less than the specified value             | number           |
+| gte        | Find items with a property value greater than or equal the specified value | number           |
+| lte        | Find items with a property value greater than or equal the specified value | number           |
+| startsWith | Find items with a property that begins with the specified string           | string           |
+| endsWith   | Find items with a property that ends with the specified string             | string           |
+| contains   | Find items with a property that contains with the specified string         | string           |
+| date       | search for a date in the specified range                                   | ISO8601 Duration |
 		
 Custom Query Example
 ```
@@ -36,12 +38,20 @@ Custom Query Example
   * Sorting ?
 ```
 {
-  "eo:cloud_cover": "asc", // ascending
-  "provider": "desc" //descending
+  "sort": {
+    "eo:cloud_cover": "asc", // ascending
+    "provider": "desc" //descending
+  }
 }
 ```
   * Projections  
   	include prop names and exclude prop names as separate lists
+```
+{
+  "include": [""],
+  "exclude": [""]
+}
+```
 	
 * STAC Browser
 Add a new /stac endpoint to return catalog.json
