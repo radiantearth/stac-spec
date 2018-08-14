@@ -1,9 +1,8 @@
 __Topics__
 * Query Language
   * Filters
-  	GraphQL - too explicit on projections
-	Custom -
-		Follows industry trend of "Not Invented Here", but can by opinionated on simpifying query (no joins or aggregations). Low barrier to entry. Complicated Query language can be an additional extension
+  	* GraphQL - too explicit on projections
+	* Custom - Follows industry trend of "Not Invented Here", but can by opinionated on simpifying query (no joins or aggregations). Low barrier to entry. Complicated Query language can be an additional extension
 		
 | eq         | compare value                                                              | object           |   |   |
 |------------|----------------------------------------------------------------------------|------------------|---|---|
