@@ -1,8 +1,19 @@
 __Topics__
 * Query Language
   * Filters
-  * Sorting	
-  * Projections
+  	GraphQL - too explicit on projections
+	Custom -
+		Follows industry trend of "Not Invented Here", but can by opinionated on simpifying query (no joins or aggregations). Low barrier to entry. Complicated Query language can be an additional extension
+		
+  * Sorting
+  ```
+  	{
+		"eo:cloud_cover": 1 // ascending
+	}
+  ```
+  * Projections  
+  	include prop names and exclude prop names as separate lists
+	
 * STAC Browser
 Add a new /stac endpoint to return catalog.json
 ```
