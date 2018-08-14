@@ -6,11 +6,11 @@ __Topics__
 		Follows industry trend of "Not Invented Here", but can by opinionated on simpifying query (no joins or aggregations). Low barrier to entry. Complicated Query language can be an additional extension
 		
   * Sorting
-  ```
-  	{
-		"eo:cloud_cover": 1 // ascending
-	}
-  ```
+```
+{
+  "eo:cloud_cover": 1 // ascending
+}
+```
   * Projections  
   	include prop names and exclude prop names as separate lists
 	
