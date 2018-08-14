@@ -46,6 +46,8 @@ Custom Query Example
 ```
   * Projections  
   	include prop names and exclude prop names as separate lists
+	
+	include should be applied before exclude
 ```
 {
   "include": [""],
