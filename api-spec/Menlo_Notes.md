@@ -5,10 +5,29 @@ __Topics__
 	Custom -
 		Follows industry trend of "Not Invented Here", but can by opinionated on simpifying query (no joins or aggregations). Low barrier to entry. Complicated Query language can be an additional extension
 		
-  * Sorting
+Custom Query Example
 ```
 {
-  "eo:cloud_cover": 1 // ascending
+"q": {
+    "eo:cloud_cover": {
+      "lt": 50
+    },
+    "provider": "Planet",
+    "published": {
+      "date": "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
+    },
+    "pl:item_type": {
+      "startsWith": "PSScene"
+    }
+  }
+}
+```
+		
+  * Sorting ?
+```
+{
+  "eo:cloud_cover": 1, // ascending
+  "provider": -1 //descending
 }
 ```
   * Projections  
