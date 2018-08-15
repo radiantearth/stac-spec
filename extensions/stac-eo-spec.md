@@ -14,6 +14,7 @@ These are fields that extend the `Item` object
 |----------------------|---------------------------|-------------------------|---------------------------------------------------------------------------------------------| 
 | eo:gsd* | float | Ground Sample distance | The nominal distance between pixel centers available, in meters |
 | eo:platform*            | string                      | Unique name of platform | Specific name of the platform (e.g., landsat-8, sentinel-2A, larrysdrone) | 
+| eo:constellation* | string        | constellation the platform belongs to | Name of the group or constellation the platform belongs to |
 | eo:instrument*        | string                      | Instrument used     | Name of instrument or sensor (e.g., MODIS, ASTER, OLI, Canon F-1) |
 | eo:bands*  | dictionary    | Band Info | Band specific metadata (see below)
 | eo:epsg     | unsigned int    | EPSG code             | EPSG code of the datasource, null if no EPSG code |
@@ -29,6 +30,7 @@ These are fields that extend the `Item` object
 
 **eo:platform** is the name of the specific platform the instrument is attached to. For satellites this would be the name of the satellite (e.g., landsat-8, sentinel-2A), whereas for drones this would be a unique name for the drone.
 
+**eo:constellation** is the name of the group or constellation that the platform belongs to.  Example: The Sentinel-2 group has S2A and S2B, this field allows users to search for Sentinel-2 data without needing to specify which specific platform the data came from.
 **eo:instrument** The instrument is the name of the sensor used, although for Items which contain data from multiple sensors this could also name multiple sensors. For example, data from the Landsat-8 platform is collected with the OLI sensor as well as the TIRS sensor, but the data is distributed together and commonly referred to as OLI_TIRS.
 
 **eo:bands** This is a dictionary of band information where each key in the dictionary is an identifier for the band (e.g., "B01", "B02", "B1", "B5", "QA"). See below for more information on band metadata.
