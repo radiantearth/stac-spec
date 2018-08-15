@@ -16,6 +16,8 @@ __Topics__
 | endsWith   | Find items with a property that ends with the specified string             | string           |
 | contains   | Find items with a property that contains with the specified string         | string           |
 | date       | search for a date in the specified range                                   | ISO8601 Duration |
+
+Implicit equals if no operators are present.
 		
 Custom Query Example
 ```
