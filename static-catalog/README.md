@@ -79,8 +79,6 @@ _"Root" Catalog_
         "url": "https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/"
     },
 
-    "formats": ["geotiff", "cog"],
-
     "keywords": ["aerial"],
     "homepage": "http://wherever",
 

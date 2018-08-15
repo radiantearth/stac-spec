@@ -126,13 +126,17 @@
     "asset": {
       "type": "object",
       "required": [
-        "href"
+        "href",
+        "mime_type"
       ],
       "properties": {
         "href": {
           "type": "string"
         },
         "name": {
+          "type": "string"
+        },
+        "mime_type": {
           "type": "string"
         }
       }
