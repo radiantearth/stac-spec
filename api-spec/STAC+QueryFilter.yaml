@@ -21,20 +21,7 @@ servers:
   - url: 'http://www.cool-sat.com'
     description: Production server
 paths:
-  /stac:
-    get:
-      summary: >-
-        Return a catalog definition json
-      tags:
-        - STAC
-      responses:
-        '200':
-          description: A catalog json definition. Used as an entry point for a crawler.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/catalogDefinition'
-  /stac/search:
+  /search/stac:
     get:
       summary: >-
         retrieve items matching filters. Intended as a shorthand API for simple
