@@ -19,20 +19,23 @@ components:
     sort:
       type: array
       description: |
-        An array of tuples containing a property name and 'asc' or 'desc' to indicate sort direction.
+        An array of objects containing a property name and sort direction.
       minItems: 1
       items:
-        type: array
-        items:
-          - type: string
-            description: property name
-          - type: string
-            description: direction
+        type: object
+        required:
+          - field
+        properties:
+          field:
+            type: string
+          direction:
+            type: string
+            default: asc
             enum:
               - asc
               - desc
+
       example:
-        - - 'eo:cloud_cover'
-          - 'asc'
-        - - 'provider'
-          - 'desc'
+        - field: eo:cloud_cover
+        - field: provider
+          direction: desc
