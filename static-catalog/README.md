@@ -268,6 +268,15 @@ example:
 ```
 Reference the [SPDX License](https://spdx.org/licenses/) list for a list of potenial names and URLs.
 
+#### STAC version
+We want to represent the STAC version that the catalog.  This implies that all catalogs and items under this catalog are of one version.
+
+example:
+```angular2html
+"STAC_version": "0.50"
+```
+There is another assumption that extensions are versioned with the core STAC version.
+
 ### Static Catalog Flexibility
 
 Static STAC Catalogs defined for flexibility.
