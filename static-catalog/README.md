@@ -255,6 +255,29 @@ an RGB [COG](http://www.cogeo.org/) and an RGBIR GeoTiff.
 
 There are additional examples, fully validated, in the [examples page](examples.md), as well as in the [json spec examples](../json-spec/examples/) folder.
 
+
+#### License
+Catalog should use the same license format and content as defined for STAC items.  We should define this and update this doc and the schema.
+
+example:
+```angular2html
+"license": {
+   "URL" : "https://.....",
+   "name": "custom"
+}
+```
+Reference the [SPDX License](https://spdx.org/licenses/) list for a list of potenial names and URLs.
+
+#### STAC version
+We want to represent the STAC version that the catalog.  This version should match with the API version as reported by the OpenAPI YAML.  
+This implies that all catalogs and items under this catalog are of one version.
+
+example:
+```
+"STAC_version": "0.50"
+```
+There is another assumption that extensions are versioned with the core STAC version.
+
 ### Static Catalog Flexibility
 
 Static STAC Catalogs defined for flexibility.

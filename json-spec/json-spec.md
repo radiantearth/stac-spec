@@ -36,9 +36,9 @@ your feedback will be directly incorporated.
 
 ## Specification Definition
 
-The `Item` is a JSON object, specifically a GeoJSON `Feature`, that validates against the [stac-item](json-schema/stac-item.json) 
+The `Item` is a JSON object, specifically a GeoJSON `FeatureCollection`, that validates against the [stac-item](json-schema/stac-item.json) 
 JSON Schema document. Listed below are a set of instructions for one way to validate implementations, but any JSON Schema validation using the
-[STAC Item schema](json-schema/stac-item.json) works great.
+[STAC Item schema](json-schema/stac-item.json) works great.  Note that the Item has been made to be a GeoJSON `FeatureCollection` in order to match the static catalog's item with the items returned by the dynamic STAC API.
 
 ## Fields Explained
 
@@ -47,8 +47,7 @@ it is recommended to simply use that ID. In time there may be a best practice re
 globally unique identifiers, but for now data providers are advised to include sufficient information to make their ID's globally 
 unique, including things like unique satellite id's.
 
-**geometry** defines the full footprint of the asset represented by this item, formatted according to [RFC7946](https://tools.ietf.org/html/rfc7946) - [GeoJSON](http://geojson.org). The footprint should be the default GeoJSON geometry, though additional geometries can be included. All geometries should 
-be either Polygons or MultiPolygons, as assets represent an area, not a line or point. Bounding Boxes are required, on the 'Feature' 
+**geometry** defines the full footprint of the asset represented by this item, formatted according to [RFC7946](https://tools.ietf.org/html/rfc7946) - [GeoJSON](http://geojson.org). The footprint should be the default GeoJSON geometry, though additional geometries can be included.  Bounding Boxes are required, on the 'Feature' 
 level in GeoJSON, and most software can easily generate BBOX's for footprints. This is to enable more naive clients to easily index 
 and search geospatially. GeoJSON is specified in Long/Latitude - EPSG code 4326, and the `geometry` element of all STAC `Items` 
 should be the same. 
@@ -71,14 +70,17 @@ required, to represent the location that the `Item` can be found online. This is
 that includes `Item` metadata, so that the downstream user can know where the data has come from. The `self` href field 
 *must* be an absolute url, not relative, to communicate the canonical location of the `Item`. 
 
-**assets** is an set of keyed objects that contain of links to data associated with the `Item` that can be downloaded. This should include the main asset, as well
+**assets** is an array of objects that contain of links to data associated with the `Item` that can be downloaded. This should include the main asset, as well
 as any 'sidecar' files that are related and help a client make sense of the data. Examples of this include extended metadata (in XML, 
 JSON, etc), unusable data masks, satellite ephemeris data, etc. Some assets (like Landsat data) are represented by multiple files - 
 all should be linked to. It is generally recommended that different processing levels or formats are not exhaustively listed in an
 `Item`, but instead are represented by related `Items` that are linked to, but the best practices around this are still emerging.
-An asset object currently just requires a href field, which can be a relative or absolute link, to provide a link to the
-asset for download or streaming access. The 'name' field is optional, and is generally the display name for clients & users.
-The asset definition will likely evolve soon to be able to explain itself more.
+***Assets required fields***
+* href - link to the asset object.  The link can be a relative or absolute link
+* name - the human readable name of the asset
+* type - the mime type of the object.  Prefered that standard mime types be used when possible.  Type can include; image/geotiff, image/geotiff+cog, or type with a vendor prefix, example: vnd.digitalglobe/til
+
+****We would like to register image/geotiff as a mime type with IANA****
 
 **thumbnail** is a special *strongly recommended* `asset` that is a downsampled image of the core asset, for direct display online in a web page or
 interactive search application. Even assets that are less easily translated in to a visual image should provide some visual representation, 
@@ -89,21 +91,45 @@ if at all possible it should be included for a better user experience in searchi
 querying and filtering, but for now is just the name.
 
 **license** specifies the license that the data is available under. For public data licenses this should be an identifier from
-the [SPDX License](https://spdx.org/licenses/) list. The practice for non-public data is still evolving, but it is recommended
-to link to the actual license text the data is available under.
+the [SPDX License](https://spdx.org/licenses/) list. 
+
+example:
+```
+"license": {
+   "URL" : "https://.....",
+   "name": "custom"
+}
+```
+
 
 ## Relative vs Absolute links
+
+[issue #160](https://github.com/radiantearth/stac-spec/issues/160)
+The STAC specification allows both types of links.  
+Absolute links are required in order to link to external resources.  And a very strong case was made to support relative links.
+There is a desire from our users to copy the whole "directory" and access the assets in this case relative links are very useful.
 
 Currently the JSON schema for links does not require a URI formatting, to give the option for implementors to provide relative
 links. In general Catalog API's should aim for absolute links whenever possible. But Static Catalogs are potentially more
 portable if they can be implemented with relative links, so that every link doesn't need to be rewritten when the data
 is copied. The `self` link is required to be absolute.
 
+## Dictionary vs. Array ()
+[issue #142](https://github.com/radiantearth/stac-spec/issues/142)
+
+
 ## Examples
 
 See the [sample.json](sample.json) for a minimal example, as well as [sample-full.json](sample-full.json) for a more fleshed
 example that contains a number of current best practices. There are also a few more real world inspired samples in the 
 [examples/](examples/) folder. 
+
+## Start/End datetimes and the need for multible timestamps
+[issue #154](https://github.com/radiantearth/stac-spec/issues/160)
+Start, end, and other timestamps are needed for different datatypes and it is recommended that extensions
+be added to the spec to support this.  A simple extension with start_datetime and end_datetime will be added.
+**Note**: The core STAC spec requires a singualar datatime member and use of this extension does not remove this requirement.
+
 
 ## Schema Validation
 
