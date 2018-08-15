@@ -25,21 +25,10 @@
           "required": [
             "id",
             "type",
-            "geometry",
             "links",
             "assets"
           ],
           "properties": {
-            "geometry": {
-              "properties": {
-                "type": {
-                  "enum": [
-                    "Polygon",
-                    "MultiPolygon"
-                  ]
-                }
-              }
-            },
             "id": {
               "title": "Provider ID",
               "description": "Provider item ID",

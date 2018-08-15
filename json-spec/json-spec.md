@@ -47,8 +47,7 @@ it is recommended to simply use that ID. In time there may be a best practice re
 globally unique identifiers, but for now data providers are advised to include sufficient information to make their ID's globally 
 unique, including things like unique satellite id's.
 
-**geometry** defines the full footprint of the asset represented by this item, formatted according to [RFC7946](https://tools.ietf.org/html/rfc7946) - [GeoJSON](http://geojson.org). The footprint should be the default GeoJSON geometry, though additional geometries can be included. All geometries should 
-be either Polygons or MultiPolygons, as assets represent an area, not a line or point. Bounding Boxes are required, on the 'Feature' 
+**geometry** defines the full footprint of the asset represented by this item, formatted according to [RFC7946](https://tools.ietf.org/html/rfc7946) - [GeoJSON](http://geojson.org). The footprint should be the default GeoJSON geometry, though additional geometries can be included. Bounding Boxes are required, on the 'Feature' 
 level in GeoJSON, and most software can easily generate BBOX's for footprints. This is to enable more naive clients to easily index 
 and search geospatially. GeoJSON is specified in Long/Latitude - EPSG code 4326, and the `geometry` element of all STAC `Items` 
 should be the same. 
