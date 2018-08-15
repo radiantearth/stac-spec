@@ -1,12 +1,6 @@
 paths:
   /stac/search:
     get:
-      summary: >-
-        retrieve items matching filters. Intended as a shorthand API for simple
-        queries. This method is optional.
-      operationId: getSearchSTAC
-      tags:
-        - STAC
       parameters:
         - $ref: '#/components/parameters/query'
 components:
