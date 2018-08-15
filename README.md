@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/radiantearth/stac-spec.svg?style=svg)](https://circleci.com/gh/radiantearth/stac-spec)
+
 ## About
 
 The SpatioTemporal Asset Catalog (STAC) specification aims to standardize the way geospatial assets are exposed online and queried. 
@@ -47,7 +49,7 @@ like S3, without the need for any dynamic code. These static catalogs are design
 other tools.
 
 **[api-spec/](api-spec/)** defines a dynamic API, specified as a [yaml](api-spec/spec.yaml) file in [OpenAPI](http://openapis.org) 
-2.0 (swagger). 
+3.0. 
 
 **Extensions:** The *[extensions/](extensions/)* folder is where profiles and extensions live. Profiles are recommendations for
 adding fields for specific domains (like Earth Observation). Extensions bring additional functionality to the core specs.
@@ -76,9 +78,8 @@ searchable.
 A catalog API is a RESTful API that responds to queries (like give me all imagery in Oahu gathered on January 15, 2017). 
 But its structure and responses are designed to mirror the static catalog, so the same client and crawler tools can consume
 it. It generally indexes data for efficient responses, and aims to be easy for existing API's to implement as a more standard
-interface for clients to consume. It is specified in OpenAPI 2.0 (swagger), and will move to OpenAPI 3.0 once the codegen
-tooling is stronger there. An active catalog will often be populated by a static catalog, or at least may have a 'backup' of
-its fields stored as a cached static catalog.
+interface for clients to consume. It is specified in OpenAPI 3.0. An active catalog will often be populated by a static catalog,
+or at least may have a 'backup' of its fields stored as a cached static catalog.
 
 #### Core Metadata and Profiles
 
