@@ -21,7 +21,20 @@ servers:
   - url: 'http://www.cool-sat.com'
     description: Production server
 paths:
-  /search/stac:
+  /stac:
+    get:
+      summary: >-
+        Return a catalog definition json
+      tags:
+        - STAC
+      responses:
+        '200':
+          description: A catalog json definition. Used as an entry point for a crawler.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/catalogDefinition'
+  /stac/search:
     get:
       summary: >-
         retrieve items matching filters. Intended as a shorthand API for simple
@@ -349,6 +362,51 @@ components:
 
         extent or all relevant temporal properties.
       example: '2018-02-12T00:00:00Z/2018-03-18T12:31:12Z'
+    catalogDefinition:
+      type: object
+      properties:
+        name:
+          type: string
+          example: NAIP
+        description:
+          type: string
+          example: Catalog of NAIP Imagery
+        license: 
+          type: string
+          example: PDDL-1.0
+        links: 
+          type: array
+          items:
+            type: object
+            properties:
+              rel:
+                type: string
+                example: child
+              href:
+                type: string
+        contact:
+          type: object
+          properties:
+            name:
+              type: string
+            email:
+              type: string
+            phone:
+              type: string
+            url:
+              type: string
+        formats:
+          type: array
+          items:
+            type: string
+        keywords:
+          type: array
+          items:
+            type: string
+        homepage:
+          type: string
+        provider:
+          type: object
     itemCollection:
       type: object
       required:
