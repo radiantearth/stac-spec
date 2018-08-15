@@ -39,8 +39,6 @@ The definitive specification for STAC is the [OpenAPI](http://openapis.org) 3.0 
 in several forms. The most straightforward for an implementor new to STAC is the [STAC-standalone.yaml](STAC-standalone.yaml).
 This gives a complete service with the main STAC endpoint. See the [online documentation](https://app.swaggerhub.com/apis/cholmesgeo/STAC-standalone/) for the api rendered interactively.
 
-An OpenAPI 2.0 (swagger) version is also available ([WFS3core+STAC-swagger2.yaml](WFS3core+STAC-swagger2.yaml)), which can be useful for autogenerating client and server code.
-
 ##### Warning
 
 **The latest spec has not yet been fully validated by actual implementations. This will come soon, but if you
