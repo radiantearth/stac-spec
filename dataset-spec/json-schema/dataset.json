@@ -1,0 +1,239 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "id": "dataset.json#",
+  "title": "Dataset Item",
+  "type": "object",
+  "description": "This object represents the dataset in a SpatioTemporal Asset Catalog.",
+  "additionalProperties": true,
+  "anyOf": [
+    {
+      "$ref": "#/definitions/core"
+    },
+    {
+      "$ref": "#/definitions/eo"
+    },
+    {
+      "$ref": "#/definitions/raster"
+    },
+    {
+      "$ref": "#/definitions/vector"
+    }
+  ],
+  "definitions": {
+    "core": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "id",
+            "title",
+            "description",
+            "version",
+            "license_name"
+          ],
+          "properties": {
+            "id": {
+              "title": "Provider ID",
+              "description": "Provider item ID",
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_\\-\/]+$"
+            },
+            "title": {
+              "title": "Title",
+              "description": "Title for the dataset",
+              "type": "string"
+            },
+            "description": {
+              "title": "Description",
+              "description": "Detailed multi-line descrtion to fully explain the entity. CommonMark 0.28 syntax may be used for rich text representation.",
+              "type": "string"
+            },
+            "keywords": {
+              "title": "Keywords",
+              "description": "List of keywords describing the dataset",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "license_name": {
+              "title": "License Name",
+              "description": "License name based on SPDX License Identifier",
+              "type": "string"
+            },
+            "license_url": {
+              "title": "License URL",
+              "description": "License url must be specified if license_name does not contain a SPDX License Identifier",
+              "type": "string"
+            },
+            "provider": {
+              "type": "array",
+              "description": "The organization the creates the content of the dataset",
+              "items": {
+                "$ref": "#/definitions/provider"
+              }
+            },
+            "host": {
+              "allOf": [
+                {
+                  "description": "The organization the hosts the content of the dataset"
+                },
+                {
+                  "$ref": "#/definitions/provider"
+                }
+              ]
+            },
+            "process_graph": {
+              "title": "Processing Graph",
+              "properties": {
+                "chain": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/process"
+                  }
+                }
+              }
+            },
+            "version": {
+              "title": "Version",
+              "description": "Version of the dataset",
+              "type": "string"
+            },
+            "datetime": {
+              "title": "Date and Time",
+              "description": "The searchable date/time of the assets, in UTC (Formatted in RFC 3339) ",
+              "type": "string",
+              "format": "date-time"
+            },
+            "geometry": {
+              "properties": {
+                "type": {
+                  "enum": [
+                    "Polygon",
+                    "MultiPolygon"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "sci": {
+      "properties": {
+        "doi": {
+          "title": "DOI",
+          "description": "Digital Object Identifier",
+          "type": "string"
+        },
+        "citation": {
+          "type": "string"
+        },
+        "publication_doi": {
+          "type": "string"
+        },
+        "publication_citation": {
+          "type": "string"
+        }
+      }
+    },
+    "raster": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/core"
+        }
+      ]
+    },
+    "vector": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/core"
+        }
+      ]
+    },
+    "eo": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/raster"
+        },
+        {
+          "properties": {
+            "periodicity": {
+              "type": "string"
+            },
+            "pyramid": {
+              "title": "Cadence",
+              "description": "Time interval of collection",
+              "type": "string"
+            },
+            "nodata": {
+              "title": "nodata",
+              "type": "number"
+            },
+            "asset_schema": {
+              "description": "",
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "provider": {
+      "properties": {
+        "provider:name": {
+          "title": "Organization Name",
+          "description": "Name of the provider"
+        },
+        "provider:url": {
+          "title": "URL",
+          "description": "url to provider homepage",
+          "type": "string"
+        }
+      }
+    },
+    "host": {
+      "required": [
+        "id",
+        "scheme"
+      ],
+      "properties": {
+        "id": {
+          "title": "Identifirer",
+          "description": "url to bucket or storage location",
+          "type": "string"
+        },
+        "scheme": {
+          "type": "string",
+          "enum": [
+            "S3",
+            "GCS",
+            "URL",
+            "OTHER"
+          ]
+        },
+        "description": {
+          "title": "Description",
+          "description": "Detailed multi-line descrtion to fully explain the entity. CommonMark 0.28 syntax may be used for rich text representation.",
+          "type": "string"
+        },
+        "region": {
+          "title": "Region",
+          "type": "string",
+          "description": "Provider specific region"
+        },
+        "requester_pays": {
+          "title": "Requester Pays",
+          "type": "boolean",
+          "description": "True if requester pays, false if host pays"
+        }
+      }
+    },
+    "process": {
+      "required": [],
+      "properties": {}
+    }
+  }
+}
