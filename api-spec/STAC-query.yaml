@@ -95,6 +95,16 @@ paths:
             text/html:
               schema:
                 type: string
+  /search/stac:
+    get:
+      summary: >-
+        retrieve items matching filters. Intended as a shorthand API for simple
+        queries. This method is optional.
+      operationId: getSearchSTAC
+      tags:
+        - STAC
+      parameters:
+        - $ref: '#/components/parameters/query'
 components:
   parameters:
     limit:
@@ -201,6 +211,15 @@ components:
       required: true
       schema:
         type: string
+    query:
+      name: query
+      in: query
+      description: >-
+        query for properties in items. Use the JSON for of the queryFilter used
+        in POST.
+      required: false
+      schema:
+        type: string
   schemas:
     exception:
       type: object
@@ -233,6 +252,7 @@ components:
             limit:
               type: number
               example: 5
+        - $ref: '#/components/schemas/queryFilter'
     bbox:
       description: |
         Only features that have a geometry that intersects the bounding box are
@@ -537,6 +557,72 @@ components:
             client should utilize the `nextPageToken`.
           example: >-
             http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
+    queryFilter:
+      type: object
+      description: Allows users to query properties for specific values
+      properties:
+        query:
+          $ref: '#/components/schemas/query'
+    query:
+      type: object
+      description: Define which properties to query and the operatations to apply
+      additionalProperties:
+        $ref: '#/components/schemas/queryProp'
+      example:
+        'eo:cloud_cover':
+          lt: 50
+        provider: Planet
+        published:
+          date: '2018-02-12T00:00:00Z/2018-03-18T12:31:12Z'
+        'pl:item_type':
+          startsWith: PSScene
+    queryProp:
+      description: Apply query operations to a specific property
+      anyOf:
+        - type: object
+          description: >-
+            if the object doesn't contain any of the operators, it is equivalent
+            to using the equals operator
+        - type: object
+          description: Match using an operator
+          properties:
+            eq:
+              type: object
+              description: Find items with a property that is equal to the specified value
+            neq:
+              type: object
+              description: Find items that *don't* contain the specified value
+            gt:
+              type: number
+              description: >-
+                Find items with a property value greater than the specified
+                value
+            lt:
+              type: number
+              description: Find items with a property value less than the specified value
+            gte:
+              type: number
+              description: >-
+                Find items with a property value greater than or equal the
+                specified value
+            lte:
+              type: number
+              description: >-
+                Find items with a property value greater than or equal the
+                specified value
+            startsWith:
+              type: string
+              description: Find items with a property that begins with the specified string
+            endsWith:
+              type: string
+              description: Find items with a property that ends with the specified string
+            contains:
+              type: string
+              description: >-
+                Find items with a property that contains with the specified
+                string
+            time:
+              $ref: '#/components/schemas/time'
 tags:
   - name: STAC
     description: Extension to WFS3 Core to support STAC metadata model and search API
