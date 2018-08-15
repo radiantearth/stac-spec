@@ -36,9 +36,9 @@ your feedback will be directly incorporated.
 
 ## Specification Definition
 
-The `Item` is a JSON object, specifically a GeoJSON `Feature`, that validates against the [stac-item](json-schema/stac-item.json) 
+The `Item` is a JSON object, specifically a GeoJSON `FeatureCollection`, that validates against the [stac-item](json-schema/stac-item.json) 
 JSON Schema document. Listed below are a set of instructions for one way to validate implementations, but any JSON Schema validation using the
-[STAC Item schema](json-schema/stac-item.json) works great.
+[STAC Item schema](json-schema/stac-item.json) works great.  Note that the Item has been made to be a GeoJSON `FeatureCollection` in order to match the static catalog's item with the items returned by the dynamic STAC API.
 
 ## Fields Explained
 
