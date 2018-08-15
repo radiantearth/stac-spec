@@ -78,9 +78,25 @@ all should be linked to. It is generally recommended that different processing l
 `Item`, but instead are represented by related `Items` that are linked to, but the best practices around this are still emerging.
 
 ***Assets required fields***
-asset for download or streaming access. The 'name' field is optional, and is generally the display name for clients & users.	
-* href - link to the asset object.  The link can be a relative or absolute link The asset definition will likely evolve soon to be able to explain itself more.	
-* mime_type - the mime type of the object.  Prefered that standard mime types be used when possible.  Type can include; image/geotiff, image/geotiff+cog, or type with a vendor prefix, example: vnd.digitalglobe/til
+asset for download or streaming access. The 'name' field is optional, and is generally the display name for clients & users.
+* href - link to the asset object.  The link can be a relative or absolute link The asset definition will likely evolve soon to be able to explain itself more.
+* mime_type - the mime type of the object. [Registered](https://www.iana.org/assignments/media-types/media-types.xhtml) mime types are preferred when possible. In cases where custom, vendor specific mime types are necessary they can be used with the `vnd.` prefix for the type. The mime type can be used by STAC browsers to better determine what is relevant to render and display to users searching and browsing the catalog. In some cases, selection of a mime type can be ambiguous. For instance, many STAC items have sidecar metadata files associated with the core asset (`.tfw`, Landsat 8 MTL files, etc) that should use mime types appropriate for the file -- for instance, if it is a plain text file then `text/plain` would be appropriate, `text/xml` would be appropriate for cases the metadata is in XML format.
+
+A set of commonly used mime types for STAC items include the following:
+
+| mime type            | usage                     |
+|----------------------|---------------------------|
+| image/geotiff        | georeferenced tiff        |
+| image/getoff+cog     | Cloud Optimized Geotiff   |
+| image/jp2            | JPEG 2000                 |
+| image/png            | Visual PNGs (e.g. thumbnails |
+| image/jpeg           | Visual (e.g. thumbnails, oblique) |
+| text/xml             | XML metadata              |
+| application/json     | JSON metadata              |
+| text/plain           | Plain text metadata       |
+| application/geo+json | GeoJSON                   |
+| application/geopackage+sqlite3 | Geopackage      |
+
 ****We would like to register image/geotiff as a mime type with IANA****
 
 **thumbnail** is a special *strongly recommended* `asset` that is a downsampled image of the core asset, for direct display online in a web page or
