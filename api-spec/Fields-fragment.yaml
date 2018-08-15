@@ -8,27 +8,10 @@ components:
     fields:
       name: fields
       in: query
-      description: |
-        The optional fields parameter defines the shape of the output features. 
-
-        The geometry member determines whether the geometry is populated or is null. The
-        include and exclude members specify an array of property names that are either 
-        included or excluded from the result, respectively. If both include and exclude 
-        are specified, include takes precedence.
+      description: Determines the shape of the features in the response
       required: false
       schema:
-        type: object
-      properties:
-        geometry:
-          type: boolean
-        include:
-          type: array
-          items:
-            type: string
-        exclude:
-          type: array
-          items:
-            type: string
+        $ref: '#/components/schemas/fields'
       style: form
       explode: false
   schemas:
@@ -43,8 +26,6 @@ components:
           $ref: '#/components/schemas/fields'
     fields:
       description: |
-        The optional fields parameter defines the shape of the output features. 
-
         The geometry member determines whether the geometry is populated or is null. The
         include and exclude members specify an array of property names that are either 
         included or excluded from the result, respectively. If both include and exclude 
