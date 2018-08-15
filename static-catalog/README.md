@@ -259,6 +259,15 @@ There are additional examples, fully validated, in the [examples page](examples.
 #### License
 Catalog should use the same license format and content as defined for STAC items.  We should define this and update this doc and the schema.
 
+example:
+```angular2html
+"license": {
+   "URL" : "https://.....",
+   "name": "custom"
+}
+```
+Reference the [SPDX License](https://spdx.org/licenses/) list for a list of potenial names and URLs.
+
 ### Static Catalog Flexibility
 
 Static STAC Catalogs defined for flexibility.
