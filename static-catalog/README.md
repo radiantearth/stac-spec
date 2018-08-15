@@ -255,6 +255,10 @@ an RGB [COG](http://www.cogeo.org/) and an RGBIR GeoTiff.
 
 There are additional examples, fully validated, in the [examples page](examples.md), as well as in the [json spec examples](../json-spec/examples/) folder.
 
+
+#### License
+Catalog should use the same license format and content as defined for STAC items.  We should define this and update this doc and the schema.
+
 ### Static Catalog Flexibility
 
 Static STAC Catalogs defined for flexibility.
