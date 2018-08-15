@@ -90,9 +90,17 @@ if at all possible it should be included for a better user experience in searchi
 **provider** is an optional field that lists the name of the provider. This field will likely evolve a bit to be useful for 
 querying and filtering, but for now is just the name.
 
-**license** specifies the URL to the license that the data is available under. For public data licenses this should be an identifier from
-the [SPDX License](https://spdx.org/licenses/) list. The practice for non-public data is still evolving, but it is recommended
-to link to the actual license text the data is available under.
+**license** specifies the license that the data is available under. For public data licenses this should be an identifier from
+the [SPDX License](https://spdx.org/licenses/) list. 
+
+example:
+```
+"license": {
+   "URL" : "https://.....",
+   "name": "custom"
+}
+```
+
 
 ## Relative vs Absolute links
 
