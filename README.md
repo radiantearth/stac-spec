@@ -107,6 +107,9 @@ which we keep so it displays first). Ideally a proposed change would also update
 all of the examples, but for now that is not required - the team can validate and update all examples before a release.
 But it is recommended to update at least a couple examples to reflect the change. 
 
+## Generating Main YML file
 
+     $ npm install -g yaml-files
+     $ yaml-merge spec.yml final-spec.yml
 
 
