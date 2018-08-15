@@ -4,6 +4,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ajv-cli": "^2.1.0"
+    "ajv-cli": "^3.0.0",
+    "swagger-cli": "^2.1.1"
   }
 }
