@@ -1,0 +1,25 @@
+
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:4
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run:
+          name: install
+          command: |
+            cd json-spec
+            npm install
+      
+      - run:
+          name: validate
+          command: |
+            cd json-spec
+            echo 'doing nothing'
+            # node_modules/.bin/ajv validate -s json-schema/stac-item.json -r json-schema/geojson.json -d sample.json --verbose
+            # node_modules/.bin/ajv validate -s json-schema/stac-item.json -r json-schema/geojson.json -d examples/landsat8-sample.json --verbose
