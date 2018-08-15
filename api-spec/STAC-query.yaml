@@ -41,10 +41,14 @@ paths:
       operationId: getSearchSTAC
       tags:
         - STAC
+        - STAC
       parameters:
         - $ref: '#/components/parameters/bbox'
         - $ref: '#/components/parameters/time'
         - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/query'
+        - $ref: '#/components/parameters/sort'
+        - $ref: '#/components/parameters/fields'
       responses:
         '200':
           description: A feature collection.
@@ -95,16 +99,6 @@ paths:
             text/html:
               schema:
                 type: string
-  /search/stac:
-    get:
-      summary: >-
-        retrieve items matching filters. Intended as a shorthand API for simple
-        queries. This method is optional.
-      operationId: getSearchSTAC
-      tags:
-        - STAC
-      parameters:
-        - $ref: '#/components/parameters/query'
 components:
   parameters:
     limit:
@@ -220,6 +214,22 @@ components:
       required: false
       schema:
         type: string
+    sort:
+      name: sort
+      in: query
+      description: Allows sorting results by the specified properties
+      required: false
+      schema:
+        $ref: '#/components/schemas/sort'
+    fields:
+      name: fields
+      in: query
+      description: Determines the shape of the features in the response
+      required: false
+      schema:
+        $ref: '#/components/schemas/fields'
+      style: form
+      explode: false
   schemas:
     exception:
       type: object
@@ -253,6 +263,8 @@ components:
               type: number
               example: 5
         - $ref: '#/components/schemas/queryFilter'
+        - $ref: '#/components/schemas/sort'
+        - $ref: '#/components/schemas/fieldsFilter'
     bbox:
       description: |
         Only features that have a geometry that intersects the bounding box are
@@ -623,6 +635,58 @@ components:
                 string
             time:
               $ref: '#/components/schemas/time'
+    sort:
+      type: array
+      description: |
+        An array of objects containing a property name and sort direction.
+      minItems: 1
+      items:
+        type: object
+        required:
+          - field
+        properties:
+          field:
+            type: string
+          direction:
+            type: string
+            default: asc
+            enum:
+              - asc
+              - desc
+      example:
+        - field: 'eo:cloud_cover'
+        - field: provider
+          direction: desc
+    fieldsFilter:
+      type: object
+      description: Determines the shape of the features in the response
+      properties:
+        fields:
+          $ref: '#/components/schemas/fields'
+    fields:
+      description: >
+        The geometry member determines whether the geometry is populated or is
+        null. The
+
+        include and exclude members specify an array of property names that are
+        either 
+
+        included or excluded from the result, respectively. If both include and
+        exclude 
+
+        are specified, include takes precedence.
+      type: object
+      properties:
+        geometry:
+          type: boolean
+        include:
+          type: array
+          items:
+            type: string
+        exclude:
+          type: array
+          items:
+            type: string
 tags:
   - name: STAC
     description: Extension to WFS3 Core to support STAC metadata model and search API
