@@ -11,10 +11,10 @@ jobs:
       - checkout
 
       - run:
-        name: install
-        command: |
-          cd json-spec
-          npm install
+          name: install
+          command: |
+            cd json-spec
+            npm install
       
       - run:
           name: validate
