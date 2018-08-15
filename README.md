@@ -110,6 +110,6 @@ But it is recommended to update at least a couple examples to reflect the change
 ## Generating Main YML file
 
      $ npm install -g yaml-files
-     $ yaml-merge spec.yml final-spec.yml
+     $ yaml-files spec.yml final-spec.yml
 
 
