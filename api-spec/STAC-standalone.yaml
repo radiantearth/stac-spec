@@ -34,7 +34,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/catalogDefinition'
-  /search/stac:
+  /stac/search:
     get:
       summary: >-
         retrieve items matching filters. Intended as a shorthand API for simple
