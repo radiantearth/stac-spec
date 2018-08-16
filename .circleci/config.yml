@@ -11,13 +11,26 @@ jobs:
       - checkout
 
       - run:
-          name: install
+          name: install json-spec
           command: |
             cd json-spec
             npm install
       
       - run:
-          name: validate
+          name: install api-spec
+          command: |
+            cd api-spec
+            npm install
+
+      - run:
+          name: validate api-spec
+          command: |
+            cd api-spec
+            npm run generate-all
+            if git diff-index HEAD -- | grep -q -e yaml; then echo "the main yaml files are not auto-generated"; exit 1; fi
+
+      - run:
+          name: validate json-spec
           command: |
             cd json-spec
             echo 'doing nothing'
