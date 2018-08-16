@@ -41,7 +41,6 @@ paths:
       operationId: getSearchSTAC
       tags:
         - STAC
-        - STAC
       parameters:
         - $ref: '#/components/parameters/bbox'
         - $ref: '#/components/parameters/time'
