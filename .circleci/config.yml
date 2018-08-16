@@ -27,6 +27,7 @@ jobs:
           command: |
             cd api-spec
             npm run generate-all
+            git diff-index HEAD --
             if git diff-index HEAD -- | grep -q -e yaml; then echo "the main yaml files are not auto-generated"; exit 1; fi
 
       - run:
