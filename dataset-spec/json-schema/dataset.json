@@ -83,17 +83,6 @@
                 }
               ]
             },
-            "process_graph": {
-              "title": "Processing Graph",
-              "properties": {
-                "chain": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/process"
-                  }
-                }
-              }
-            },
             "version": {
               "title": "Version",
               "description": "Version of the dataset",
@@ -109,7 +98,11 @@
               "properties": {
                 "type": {
                   "enum": [
+                    "Point",
+                    "LineString",
                     "Polygon",
+                    "MultiPoint",
+                    "MultiLineString",
                     "MultiPolygon"
                   ]
                 }
@@ -118,24 +111,6 @@
           }
         }
       ]
-    },
-    "sci": {
-      "properties": {
-        "doi": {
-          "title": "DOI",
-          "description": "Digital Object Identifier",
-          "type": "string"
-        },
-        "citation": {
-          "type": "string"
-        },
-        "publication_doi": {
-          "type": "string"
-        },
-        "publication_citation": {
-          "type": "string"
-        }
-      }
     },
     "raster": {
       "allOf": [
