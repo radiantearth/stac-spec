@@ -12,7 +12,7 @@ These are fields that extend the `Catalog` object:
 | Element                  | Type   | Name                      | Description                                                  |
 | ------------------------ | ------ | ------------------------- | ------------------------------------------------------------ |
 | sci:doi                  | string | Dataset DOI               | [DOI](https://www.doi.org/) of the dataset.                  |
-| sci:citiation            | string | Proposed Dataset Citation | The proposed citation for the dataset.                       |
+| sci:citation             | string | Proposed Dataset Citation | The proposed citation for the dataset.                       |
 | sci:publication_doi      | string | Publication DOI           | [DOI](https://www.doi.org/) of the publication referencing this dataset. |
 | sci:publication_citation | string | Publication Citation      | Citation of the publication referencing this dataset.        |
 
