@@ -16,6 +16,14 @@
     {
       "rel": "root",
       "href": "https://datadryad.org/resource/doi:10.5061/dryad.s2v81/catalog.json"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/0.5061/dryad.s2v81.2"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.1038/sdata.2017.78"
     }
   ],
   "sci:doi": "10.5061/dryad.s2v81.2",
