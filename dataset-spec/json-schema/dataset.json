@@ -29,84 +29,56 @@
             "title",
             "description",
             "version",
-            "license_name"
+            "license"
           ],
           "properties": {
             "id": {
               "title": "Provider ID",
-              "description": "Provider item ID",
               "type": "string",
               "pattern": "^[A-Za-z0-9_\\-\/]+$"
             },
             "title": {
               "title": "Title",
-              "description": "Title for the dataset",
               "type": "string"
             },
             "description": {
               "title": "Description",
-              "description": "Detailed multi-line descrtion to fully explain the entity. CommonMark 0.28 syntax may be used for rich text representation.",
               "type": "string"
             },
             "keywords": {
               "title": "Keywords",
-              "description": "List of keywords describing the dataset",
               "type": "array",
               "items": {
                 "type": "string"
               }
             },
-            "license_name": {
+            "license": {
               "title": "License Name",
-              "description": "License name based on SPDX License Identifier",
               "type": "string"
             },
             "license_url": {
               "title": "License URL",
-              "description": "License url must be specified if license_name does not contain a SPDX License Identifier",
               "type": "string"
             },
             "provider": {
               "type": "array",
-              "description": "The organization the creates the content of the dataset",
               "items": {
                 "$ref": "#/definitions/provider"
               }
             },
             "host": {
-              "allOf": [
-                {
-                  "description": "The organization the hosts the content of the dataset"
-                },
-                {
-                  "$ref": "#/definitions/provider"
-                }
-              ]
+              "$ref": "#/definitions/host"
             },
             "version": {
               "title": "Version",
-              "description": "Version of the dataset",
               "type": "string"
             },
-            "datetime": {
-              "title": "Date and Time",
-              "description": "The searchable date/time of the assets, in UTC (Formatted in RFC 3339) ",
-              "type": "string",
-              "format": "date-time"
+            "temporal_extent": {
+              "title": "Temporal extent",
+              "type": "string"
             },
-            "geometry": {
-              "properties": {
-                "type": {
-                  "enum": [
-                    "Point",
-                    "LineString",
-                    "Polygon",
-                    "MultiPoint",
-                    "MultiLineString",
-                    "MultiPolygon"
-                  ]
-                }
-              }
+            "spatial_extent": {
+              "type": "object"
             }
           }
         }
@@ -138,7 +110,6 @@
             },
             "pyramid": {
               "title": "Cadence",
-              "description": "Time interval of collection",
               "type": "string"
             },
             "nodata": {
@@ -146,7 +117,6 @@
               "type": "number"
             },
             "asset_schema": {
-              "description": "",
               "type": "array",
               "items": {
                 "type": "object"
@@ -158,13 +128,12 @@
     },
     "provider": {
       "properties": {
-        "provider:name": {
+        "name": {
           "title": "Organization Name",
-          "description": "Name of the provider"
+          "type": "string"
         },
-        "provider:url": {
-          "title": "URL",
-          "description": "url to provider homepage",
+        "url": {
+          "title": "Organization homepage",
           "type": "string"
         }
       }
@@ -205,10 +174,6 @@
           "description": "True if requester pays, false if host pays"
         }
       }
-    },
-    "process": {
-      "required": [],
-      "properties": {}
     }
   }
 }

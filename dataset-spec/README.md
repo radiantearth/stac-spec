@@ -8,29 +8,27 @@ One topic of interest has been the search of datasets*, instead of within a data
 
 ## Core
 
-| Element       | Type                                  | Name                            | Description                                                  |
-| ------------- | ------------------------------------- | ------------------------------- | ------------------------------------------------------------ |
-| id            | string                                | Dataset ID (required)           | Identifier for the dataset that is unique across the provider. MUST follow the pattern ` ^[A-Za-z0-9_\-\/]+$ `. TODO: Allow slash? |
-| title         | string                                | Title                           | A short descriptive one-line title for the dataset.          |
-| description   | string                                | Description (required)          | Detailed multi-line description to fully explain the entity. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| keywords      | [string]                              | Keywords                        | List of keywords describing the dataset.                     |
-| version       | string                                | Dataset Version                 | Version of the dataset. [Semantic Versioning (SemVer)](https://semver.org/) SHOULD be followed. |
-| license_name  | string                                | Dataset License Name (required) | Dataset's license name based on [SPDX License Identifier](https://spdx.org/licenses/) or `proprietary` (see `license_url`). TODO: How to handle non SPDX? internal, proprietary, ...? |
-| license_url   | string                                | Dataset License URL             | Dataset's license URL SHOULD be specified if `license_name`  does not contain a SPDX License Identifier. |
-| provider      | [Provider Object]                     | Data Provider                   | The organization that creates the content of the dataset.    |
-| host          | Host Object                           | Storage Provider                | The organization that hosts the dataset.                     |
-| geometry      | [GeoJSON Object](http://geojson.org/) | Spatial extent (required)       | The spatial extent covered by the dataset as [GeoJSON](http://geojson.org/) object. |
-| datetime      | string                                | Temporal extent (required)      | Temporal extent covered by the dataset. Date/time intervals MUST be formatted according to ISO 8601. Open date ranges are not supported by ISO 8601 and MUST be encoded as proposed by [Dublin Core Collection Description: Open Date Range Format](http://www.ukoln.ac.uk/metadata/dcmi/date-dccd-odrf/2005-08-13/). |
-| process_graph | Process Graph Object                  | Processing chain                | ...                                                          |
-| dimensions    | Dimension Object                      | Dimensions                      | ...                                                          |
-| links         | [Link Object]                         | Links (required)                | A list of references to other documents, see Link Object for further documentation. TODO: Remove if catalog is revised. |
+| Element         | Type                                  | Name                            | Description                                                  |
+| --------------- | ------------------------------------- | ------------------------------- | ------------------------------------------------------------ |
+| id              | string                                | Dataset ID (required)           | Identifier for the dataset that is unique across the provider. MUST follow the pattern ` ^[A-Za-z0-9_\-\/]+$ `. TODO: Allow slash? |
+| title           | string                                | Title                           | A short descriptive one-line title for the dataset.          |
+| description     | string                                | Description (required)          | Detailed multi-line description to fully explain the entity. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| keywords        | [string]                              | Keywords                        | List of keywords describing the dataset.                     |
+| version         | string                                | Dataset Version                 | Version of the dataset. [Semantic Versioning (SemVer)](https://semver.org/) SHOULD be followed. |
+| license         | string                                | Dataset License Name (required) | Dataset's license(s) as a [SPDX License identifier or expression](https://spdx.org/licenses/) or `proprietary` if the license is not on the SPDX license list. See `license_url` for more information. |
+| license_url     | string                                | Dataset License URL             | Dataset's license URL SHOULD be specified if `license` is set to `proprietary`. |
+| provider        | [Provider Object]                     | Data Provider                   | The organizations that created the content of the dataset.   |
+| host            | Host Object                           | Storage Provider                | The organization that hosts the dataset.                     |
+| spatial_extent  | [GeoJSON Object](http://geojson.org/) | Spatial extent (required)       | The spatial extent covered by the dataset as [GeoJSON](http://geojson.org/) object. |
+| temporal_extent | string                                | Temporal extent (required)      | Temporal extent covered by the dataset. Date/time intervals MUST be formatted according to ISO 8601. Open date ranges are not supported by ISO 8601 and MUST be encoded as proposed by [Dublin Core Collection Description: Open Date Range Format](http://www.ukoln.ac.uk/metadata/dcmi/date-dccd-odrf/2005-08-13/). |
+| links           | [Link Object]                         | Links (required)                | A list of references to other documents, see Link Object for further documentation. TODO: Remove if catalog is revised. |
 
 ### Provider Object
 
-| Element | Type   | Name                  | Description |
-| ------- | ------ | --------------------- | ----------- |
-| name    | string | Organization name     |             |
-| url     | string | Organization homepage |             |
+| Element | Type   | Name                  | Description                                     |
+| ------- | ------ | --------------------- | ----------------------------------------------- |
+| name    | string | Organization name     | The name of the organization or the individual. |
+| url     | string | Organization homepage | Homepage of the provider.                       |
 
 ###  Host Object
 
@@ -52,13 +50,6 @@ TODO: Should be compatible with STAC or remove if catalog is revised.
 | rel     | string | Relation (required)            |                                     |
 | type    | string | MIME-type                      | MIME-type of the referenced entity. |
 | title   | string | Title                          | Human-readable title for the link.  |
-
-## Process graph extension (pg) - Items and Datasets
-
-| Element     | Type   | Name          | Description                                                  |
-| ----------- | ------ | ------------- | ------------------------------------------------------------ |
-| description | string | Description   | Detailed multi-line description to fully explain the processing step. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| chain       | object | Process chain | TODO                                                         |
 
 ##  EO extension (eo) - Items and Datasets
 
@@ -87,6 +78,8 @@ We follow the STAC EO extension for bands, but propose additional fields:
 | offset    | number   | Offset        | offset to convert band values to the actual measurement scale |
 | scale     | number   | Scale         | scale to convert band values to the actual measurement scale. |
 
-## Dimensions extension (dim)
+Other related extensions developed for the dataset spec:
 
-Data can have different dimensions, e.g. in meteorology. The properties of these dimensions can be defined with several of the properties from core, EO extension etc. (TODO)
+* Dimension extension (TBD)
+* Scientific extension (currently in review)
+* Process graph extension (TBD)
