@@ -11,15 +11,24 @@
     "sci:citation": {
       "type": "string", 
       "title": "Proposed Dataset Citation"
-    }, 
-    "sci:publication_doi": {
-      "type": "string",
-      "title": "Publication DOI",
-      "pattern": "^(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![%\"#? ])\\S)+)$"
-    }, 
-    "sci:publication_citation": { 
-      "type": "string", 
-      "title": "Publication Citation"
+    },
+    "sci:publications": {
+      "type": "array",
+      "title": "Publications",
+      "items": {
+        "type": "object",
+        "properties": {
+          "doi": {
+            "type": "string",
+            "title": "Publication DOI",
+            "pattern": "^(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![%\"#? ])\\S)+)$"
+          }, 
+          "citation": { 
+            "type": "string", 
+            "title": "Publication Citation"
+          }
+        }
+      }
     }
   }
 }
