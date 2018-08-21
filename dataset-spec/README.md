@@ -40,6 +40,8 @@ One topic of interest has been the search of datasets*, instead of within a data
 | region         | string  | Region                | Provider specific region where the data is stored.           |
 | requester_pays | boolean | Requester pays        | `true` if requester pays, `false` if host pays.              |
 
+**Note:** The idea of storage profiles is currently [discussed](https://github.com/radiantearth/stac-spec/issues/148). Therefore, scheme, id and region may be removed from the final spec.
+
 ### Link Object
 
 TODO: Should be compatible with STAC or remove if catalog is revised.
@@ -53,33 +55,32 @@ TODO: Should be compatible with STAC or remove if catalog is revised.
 
 ##  EO extension (eo) - Items and Datasets
 
-TODO
-
-We follow the STAC EO extension, but propose additional fields:
+We follow the STAC EO extension where meaningful (see below), but propose additional fields:
 
 | Element      | Type     | Name               | Description           |
 | ------------ | -------- | ------------------ | --------------------- |
-| unit         | ?        |                    |                       |
-| asset_schema | object   |                    |                       |
+| asset_schema | object   | Asset Schema       | TODO                  |
 | nodata       | [number] | Nodata values      | The no data value(s). |
-| pyramid      | ?        | Pyramid parameters |                       |
+| pyramid      | object   | Pyramid parameters | TODO                  |
 | periodicity  | string   | Periodicity        | ISO8601               |
+
+Some fields such as `eo:sun_elevation ` or `eo:sun_azimuth` are only meaningful on the item level and SHOULD not be used in datasets.
 
 #### Bands
 
-TODO
-
 We follow the STAC EO extension for bands, but propose additional fields:
 
-| Element   | Type     | Name          | Description                                                  |
-| --------- | -------- | ------------- | ------------------------------------------------------------ |
-| nodata    | [number] | Nodata values | The no data value(s).                                        |
-| data_type | string   | Data Type     | Data type for band values including its bit size. Values: uint8, uint16, uint32, uint64, int8, int16, int32, int64, float16, float32, float64 |
-| offset    | number   | Offset        | offset to convert band values to the actual measurement scale |
-| scale     | number   | Scale         | scale to convert band values to the actual measurement scale. |
+| Element | Type     | Name          | Description                                                  |
+| ------- | -------- | ------------- | ------------------------------------------------------------ |
+| nodata  | [number] | Nodata values | The no data value(s).                                        |
+| offset  | number   | Offset        | Offset to convert band values to the actual measurement scale. |
+| scale   | number   | Scale         | Scale to convert band values to the actual measurement scale. |
+| unit    | string   | Unit          | The unit of measurement, preferably SI. TODO: Check what units are allowed, e.g. link to [UDUNITS](https://www.unidata.ucar.edu/software/udunits/) or [the dictionary of UoM](https://www.unc.edu/~rowlett/units/). |
+
+## Other extensions
 
 Other related extensions developed for the dataset spec:
 
-* Dimension extension (TBD)
-* Scientific extension (currently in review)
-* Process graph extension (TBD)
+* [Dimension extension](../extensions/dimension)  (WIP)
+* [Scientific extension](../extensions/scientific) (currently in review, see [PR #186](https://github.com/radiantearth/stac-spec/pull/186))
+* Process graph extension  (planned, see [issue #179](https://github.com/radiantearth/stac-spec/issues/179))
