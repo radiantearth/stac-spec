@@ -33,7 +33,7 @@ required.
 
 The second one, **[sample-full.json](sample-full.json)** is a more realistic example, for a hypothetical analytic image 
 acquisition from a satellite company called 'cool sat'. It includes additional fields, including some from the Earth 
-Observation profile, as well as some vendor specific additions. It also links to a variety of assets that is typical for
+Observation extension, as well as some vendor specific additions. It also links to a variety of assets that is typical for
 satellite imagery, as most providers include a number of complementary files.
 
 ## Schema Validation
@@ -79,7 +79,7 @@ become best practices or their own specifications.
 
 There is also interest in representing additional domain-specific information. The core STAC fields were
 made to be flexible to a variety of assets. But there is a lot of value in shared fields that may not apply
-to every STAC data type, but are shared by a certain domain. There is a just released 'profile' for
+to every STAC data type, but are shared by a certain domain. There is a just released 'extension' for
 Earth Observation, see the [extensions/](../extensions/) folder in the top directory for a set of recommended
 fields if you are providing earth observation data.
 
