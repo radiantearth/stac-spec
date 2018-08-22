@@ -4,11 +4,11 @@ A group of STAC `Item` objects from a single source can share a lot of common me
 
 ## Collection Extension Description
 
-| element             | type info                 | name                    | description                                                                                 | 
-|----------------------|---------------------------|-------------------------|---------------------------------------------------------------------------------------------| 
-| c:id | string | Collection ID | Machine readable ID for the collection
-| c:name | string (optional) | Collection Name | A name given to the Collection, used for display
-| c:description | string (optional) | Collection Description | A human readable description of the collection
+| element       | type info         | name                   | description                                      |
+| ------------- | ----------------- | ---------------------- | ------------------------------------------------ |
+| c:id          | string            | Collection ID          | Machine readable ID for the collection           |
+| c:name        | string (optional) | Collection Name        | A name given to the Collection, used for display |
+| c:description | string (optional) | Collection Description | A human readable description of the collection   |
 
 A `Collection` does not have many specific fields, as it may contain any fields that are in the core spec as well as any other extension. This provides maximum flexibility to data providers, as some the set of common metadata fields can vary between different types of data. For instance, Landsat and Sentinel data always has a eo:off_nadir value of 0, because those satellites are always pointed downward (i.e., nadir), while satellite that can be pointed will have varying eo:off_nadir values.
 

@@ -2,139 +2,59 @@
   "$schema": "http://json-schema.org/draft-06/schema#",
   "id": "dataset.json#",
   "title": "Dataset Item",
-  "type": "object",
   "description": "This object represents the dataset in a SpatioTemporal Asset Catalog.",
-  "additionalProperties": true,
-  "anyOf": [
-    {
-      "$ref": "#/definitions/core"
-    },
-    {
-      "$ref": "#/definitions/eo"
-    },
-    {
-      "$ref": "#/definitions/raster"
-    },
-    {
-      "$ref": "#/definitions/vector"
-    }
+  "type": "object",
+  "required": [
+    "id",
+    "description",
+    "license",
+    "spatial_extent",
+    "temporal_extent",
+    "links"
   ],
-  "definitions": {
-    "core": {
-      "allOf": [
-        {
-          "type": "object",
-          "required": [
-            "id",
-            "title",
-            "description",
-            "version",
-            "license"
-          ],
-          "properties": {
-            "id": {
-              "title": "Provider ID",
-              "type": "string",
-              "pattern": "^[A-Za-z0-9_\\-\/]+$"
-            },
-            "title": {
-              "title": "Title",
-              "type": "string"
-            },
-            "description": {
-              "title": "Description",
-              "type": "string"
-            },
-            "keywords": {
-              "title": "Keywords",
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "license": {
-              "title": "License Name",
-              "type": "string"
-            },
-            "license_url": {
-              "title": "License URL",
-              "type": "string"
-            },
-            "provider": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/provider"
-              }
-            },
-            "host": {
-              "$ref": "#/definitions/host"
-            },
-            "version": {
-              "title": "Version",
-              "type": "string"
-            },
-            "temporal_extent": {
-              "title": "Temporal extent",
-              "type": "string"
-            },
-            "spatial_extent": {
-              "type": "object"
-            }
-          }
-        }
-      ]
+  "properties": {
+    "id": {
+      "title": "Provider ID",
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_\\-\/]+$"
     },
-    "raster": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/core"
-        }
-      ]
+    "title": {
+      "title": "Title",
+      "type": "string"
     },
-    "vector": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/core"
-        }
-      ]
+    "description": {
+      "title": "Description",
+      "type": "string"
     },
-    "eo": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/raster"
-        },
-        {
-          "properties": {
-            "periodicity": {
-              "type": "string"
-            },
-            "pyramid": {
-              "title": "Cadence",
-              "type": "string"
-            },
-            "nodata": {
-              "title": "nodata",
-              "type": "number"
-            },
-            "asset_schema": {
-              "type": "array",
-              "items": {
-                "type": "object"
-              }
-            }
-          }
-        }
-      ]
+    "keywords": {
+      "title": "Keywords",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "license": {
+      "title": "License Name",
+      "type": "string"
+    },
+    "license_url": {
+      "title": "License URL",
+      "type": "string",
+      "format": "url"
     },
     "provider": {
-      "properties": {
-        "name": {
-          "title": "Organization Name",
-          "type": "string"
-        },
-        "url": {
-          "title": "Organization homepage",
-          "type": "string"
+      "type": "array",
+      "items": {
+        "properties": {
+          "name": {
+            "title": "Organization Name",
+            "type": "string"
+          },
+          "url": {
+            "title": "Organization homepage",
+            "type": "string",
+            "format": "url"
+          }
         }
       }
     },
@@ -146,10 +66,10 @@
       "properties": {
         "id": {
           "title": "Identifirer",
-          "description": "url to bucket or storage location",
           "type": "string"
         },
         "scheme": {
+          "title": "Scheme",
           "type": "string",
           "enum": [
             "S3",
@@ -160,18 +80,55 @@
         },
         "description": {
           "title": "Description",
-          "description": "Detailed multi-line descrtion to fully explain the entity. CommonMark 0.28 syntax may be used for rich text representation.",
           "type": "string"
         },
         "region": {
           "title": "Region",
-          "type": "string",
-          "description": "Provider specific region"
+          "type": "string"
         },
         "requester_pays": {
           "title": "Requester Pays",
           "type": "boolean",
-          "description": "True if requester pays, false if host pays"
+          "default": false
+        }
+      }
+    },
+    "version": {
+      "title": "Version",
+      "type": "string"
+    },
+    "temporal_extent": {
+      "title": "Temporal extent",
+      "type": "string"
+    },
+    "spatial_extent": {
+      "type": "object"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "href",
+          "rel"
+        ],
+        "properties": {
+          "href": {
+            "title": "Link",
+            "type": "string"
+          },
+          "rel": {
+            "title": "Relation",
+            "type": "string"
+          },
+          "type": {
+            "title": "type",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
         }
       }
     }

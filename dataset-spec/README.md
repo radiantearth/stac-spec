@@ -20,8 +20,8 @@ One topic of interest has been the search of datasets*, instead of within a data
 | provider        | [Provider Object]                     | Data Provider                   | The organizations that created the content of the dataset.   |
 | host            | Host Object                           | Storage Provider                | The organization that hosts the dataset.                     |
 | spatial_extent  | [GeoJSON Object](http://geojson.org/) | Spatial extent (required)       | The spatial extent covered by the dataset as [GeoJSON](http://geojson.org/) object. |
-| temporal_extent | string                                | Temporal extent (required)      | Temporal extent covered by the dataset. Date/time intervals MUST be formatted according to ISO 8601. Open date ranges are not supported by ISO 8601 and MUST be encoded as proposed by [Dublin Core Collection Description: Open Date Range Format](http://www.ukoln.ac.uk/metadata/dcmi/date-dccd-odrf/2005-08-13/). |
-| links           | [Link Object]                         | Links (required)                | A list of references to other documents, see Link Object for further documentation. TODO: Remove if catalog is revised. |
+| temporal_extent | string                                | Temporal extent (required)      | Temporal extent covered by the dataset. Date/time intervals MUST be formatted according to ISO 8601. ToDo: Support open date ranges |
+| links           | [Link Object]                         | Links (required)                | A list of references to other documents, see Link Object for further documentation. TODO: Remove if catalog is revised and links are specified on the catalog level. |
 
 ### Provider Object
 
@@ -38,49 +38,25 @@ One topic of interest has been the search of datasets*, instead of within a data
 | scheme         | string  | Scheme (required)     | Values: S3, GCS, URL, OTHER                                  |
 | id             | string  | Identifier (required) | Host-specific identifier such as an URL or asset id.         |
 | region         | string  | Region                | Provider specific region where the data is stored.           |
-| requester_pays | boolean | Requester pays        | `true` if requester pays, `false` if host pays.              |
+| requester_pays | boolean | Requester pays        | `true` if requester pays, `false` if host pays. Defaults to `false`. |
 
 **Note:** The idea of storage profiles is currently [discussed](https://github.com/radiantearth/stac-spec/issues/148). Therefore, scheme, id and region may be removed from the final spec.
 
 ### Link Object
 
-TODO: Should be compatible with STAC or remove if catalog is revised.
+| Element | Type   | Name                | Description                                                  |
+| ------- | ------ | ------------------- | ------------------------------------------------------------ |
+| href    | string | Link (required)     | The actual link in the format of an URL. Relative and absolute links are both allowed. |
+| rel     | string | Relation (required) | Relationship between the current document and the linked document. |
+| type    | string | MIME-type           | MIME-type of the referenced entity.                          |
+| title   | string | Title               | Human-readable title for the link.                           |
 
-| Element | Type   | Name                           | Description                         |
-| ------- | ------ | ------------------------------ | ----------------------------------- |
-| href    | string | Hyperlink reference (required) |                                     |
-| rel     | string | Relation (required)            |                                     |
-| type    | string | MIME-type                      | MIME-type of the referenced entity. |
-| title   | string | Title                          | Human-readable title for the link.  |
+## Extensions
 
-##  EO extension (eo) - Items and Datasets
+Related extensions to be used with the dataset spec:
 
-We follow the STAC EO extension where meaningful (see below), but propose additional fields:
-
-| Element      | Type     | Name               | Description           |
-| ------------ | -------- | ------------------ | --------------------- |
-| asset_schema | object   | Asset Schema       | TODO                  |
-| nodata       | [number] | Nodata values      | The no data value(s). |
-| pyramid      | object   | Pyramid parameters | TODO                  |
-| periodicity  | string   | Periodicity        | ISO8601               |
-
-Some fields such as `eo:sun_elevation ` or `eo:sun_azimuth` are only meaningful on the item level and SHOULD not be used in datasets.
-
-#### Bands
-
-We follow the STAC EO extension for bands, but propose additional fields:
-
-| Element | Type     | Name          | Description                                                  |
-| ------- | -------- | ------------- | ------------------------------------------------------------ |
-| nodata  | [number] | Nodata values | The no data value(s).                                        |
-| offset  | number   | Offset        | Offset to convert band values to the actual measurement scale. |
-| scale   | number   | Scale         | Scale to convert band values to the actual measurement scale. |
-| unit    | string   | Unit          | The unit of measurement, preferably SI. TODO: Check what units are allowed, e.g. link to [UDUNITS](https://www.unidata.ucar.edu/software/udunits/) or [the dictionary of UoM](https://www.unc.edu/~rowlett/units/). |
-
-## Other extensions
-
-Other related extensions developed for the dataset spec:
-
-* [Dimension extension](../extensions/dimension)  (WIP)
+* [EO extension](../extensions/stac-eo-spec.md)
+  Please note that some fields such as `eo:sun_elevation ` or `eo:sun_azimuth` are only meaningful on the item level and MUST not be used in datasets.
+* [Dimensions extension](../extensions/dimension) (currently in review, see [PR #164](https://github.com/radiantearth/stac-spec/pull/164))
 * [Scientific extension](../extensions/scientific) (currently in review, see [PR #186](https://github.com/radiantearth/stac-spec/pull/186))
-* Process graph extension  (planned, see [issue #179](https://github.com/radiantearth/stac-spec/issues/179))
+* Provenance extension  (planned, see [issue #179](https://github.com/radiantearth/stac-spec/issues/179))
