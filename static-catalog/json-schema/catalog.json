@@ -107,13 +107,6 @@
         "contact": {
           "$ref": "#/definitions/entity"
         },
-        "formats": {
-          "description": "Included asset formats",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
         "keywords": {
           "description": "Keywords",
           "type": "array",
