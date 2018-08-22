@@ -18,7 +18,7 @@ These are fields that extend the `Item` object
 | eo:instrument*        | string                      | Instrument used     | Name of instrument or sensor (e.g., MODIS, ASTER, OLI, Canon F-1) |
 | eo:bands*  | dictionary    | Band Info | Band specific metadata (see below)
 | eo:epsg     | unsigned int    | EPSG code             | EPSG code of the datasource, null if no EPSG code |
-| eo:cloud_cover     | integer (optional)   | Cloud Cover Pct    | Percent of cloud cover (1-100) | 
+| eo:cloud_cover     | integer (optional)   | Cloud Cover Pct    | Percent of cloud cover (0-100) | 
 | eo:off_nadir      | float (optional)   | Off nadir    | Viewing angle. 0-90 degrees, measured from nadir
 | eo:azimuth      | float (optional)   | Azimuth    | Viewing azimuth angle. 0-360 degrees, measured clockwise from north
 | eo:sun_azimuth    | float (optional)   | Sun Azimuth | Sun azimuth angle. 0-360 degrees, measured clockwise from north
