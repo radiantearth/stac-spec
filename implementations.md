@@ -12,8 +12,8 @@ This section is links to live catalogs (both static and active) that have data.
 
 #### Boundless STAC Server
 
-Items call: http://stac.boundlessgeo.io/stac/items?limit=10 
-OpenAPI Document: https://app.swaggerhub.com/apis/joshfix/STAC/1.0.0-RC5
+Items call: http://stac.boundlessgeo.io/stac/search/stac
+OpenAPI Document: https://app.swaggerhub.com/apis/joshfix/STAC/1.0.0-RC34
 
 #### Harris STAC Server
 
