@@ -87,9 +87,9 @@ A set of commonly used mime types for STAC items include the following:
 | mime type            | usage                     |
 |----------------------|---------------------------|
 | image/geotiff        | georeferenced tiff        |
-| image/getoff+cog     | Cloud Optimized Geotiff   |
+| image/geotiff+cog     | Cloud Optimized Geotiff   |
 | image/jp2            | JPEG 2000                 |
-| image/png            | Visual PNGs (e.g. thumbnails |
+| image/png            | Visual PNGs (e.g. thumbnails) |
 | image/jpeg           | Visual (e.g. thumbnails, oblique) |
 | text/xml             | XML metadata              |
 | application/json     | JSON metadata              |
