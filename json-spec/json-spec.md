@@ -57,7 +57,7 @@ should be the same.
 or the 'nominal' or representative time in the case of assets that are combined together. It is formatted
 according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). Though time can be a complex thing to capture,
 for this purpose keep in mind the STAC spec is primarily searching for data, so use whatever single date and time is most useful for
-a user to search for. STAC content profiles may further specify the meaning of the main `datetime` field, and many will also add 
+a user to search for. STAC content extensions may further specify the meaning of the main `datetime` field, and many will also add 
 more datetime fields.
 
 **links** are used primarily to represent relationships with other entities. The key of each object in `links` represents the 
@@ -76,9 +76,12 @@ as any 'sidecar' files that are related and help a client make sense of the data
 JSON, etc), unusable data masks, satellite ephemeris data, etc. Some assets (like Landsat data) are represented by multiple files - 
 all should be linked to. It is generally recommended that different processing levels or formats are not exhaustively listed in an
 `Item`, but instead are represented by related `Items` that are linked to, but the best practices around this are still emerging.
-An asset object currently just requires a href field, which can be a relative or absolute link, to provide a link to the
-asset for download or streaming access. The 'name' field is optional, and is generally the display name for clients & users.
-The asset definition will likely evolve soon to be able to explain itself more.
+
+***Assets required fields***
+asset for download or streaming access. The 'name' field is optional, and is generally the display name for clients & users.	
+* href - link to the asset object.  The link can be a relative or absolute link The asset definition will likely evolve soon to be able to explain itself more.	
+* mime_type - the mime type of the object.  Prefered that standard mime types be used when possible.  Type can include; image/geotiff, image/geotiff+cog, or type with a vendor prefix, example: vnd.digitalglobe/til
+****We would like to register image/geotiff as a mime type with IANA****
 
 **thumbnail** is a special *strongly recommended* `asset` that is a downsampled image of the core asset, for direct display online in a web page or
 interactive search application. Even assets that are less easily translated in to a visual image should provide some visual representation, 
