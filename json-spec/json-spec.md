@@ -56,7 +56,7 @@ should be the same.
 or the 'nominal' or representative time in the case of assets that are combined together. It is formatted
 according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). Though time can be a complex thing to capture,
 for this purpose keep in mind the STAC spec is primarily searching for data, so use whatever single date and time is most useful for
-a user to search for. STAC content profiles may further specify the meaning of the main `datetime` field, and many will also add 
+a user to search for. STAC content extensions may further specify the meaning of the main `datetime` field, and many will also add 
 more datetime fields.
 
 **links** are used primarily to represent relationships with other entities. The key of each object in `links` represents the 

@@ -112,7 +112,7 @@ is only of relevance to advanced processing algorithms, and while that is import
 ### Prefixes
 
 A spatiotemporal asset catalog item can combine schema information from several different sources - the core STAC item information, 
-an earth observation community profile, and a vendor specific provider. It can be difficult to distinguish exactly where each definition
+an earth observation community extension, and a vendor specific provider. It can be difficult to distinguish exactly where each definition
 came from, and to pull out the most relevant information, especially when vendors often will dump in all the metadata they have in to the
 STAC definition. 
 
