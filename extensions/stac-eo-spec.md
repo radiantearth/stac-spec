@@ -1,4 +1,4 @@
-# STAC EO Extension JSON Spec
+# STAC EO Extension Spec
 
 This document explains the fields of the STAC Earth Observation (EO) Extension to a STAC `Item`. EO data is considered to be data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands in any part of the electromagnetic spectrum. Examples of EO data include sensors with visible, short-wave and mid-wave IR bands (e.g., the OLI instrument on Landsat-8), long-wave IR bands (e.g. TIRS aboard Landsat-8), as well as SAR instruments (e.g. Sentinel-1).
 
@@ -14,10 +14,11 @@ These are fields that extend the `Item` object
 |----------------------|---------------------------|-------------------------|---------------------------------------------------------------------------------------------| 
 | eo:gsd* | float | Ground Sample distance | The nominal distance between pixel centers available, in meters |
 | eo:platform*            | string                      | Unique name of platform | Specific name of the platform (e.g., landsat-8, sentinel-2A, larrysdrone) | 
+| eo:constellation* | string        | constellation the platform belongs to | Name of the group or constellation the platform belongs to |
 | eo:instrument*        | string                      | Instrument used     | Name of instrument or sensor (e.g., MODIS, ASTER, OLI, Canon F-1) |
 | eo:bands*  | dictionary    | Band Info | Band specific metadata (see below)
 | eo:epsg     | unsigned int    | EPSG code             | EPSG code of the datasource, null if no EPSG code |
-| eo:cloud_cover     | integer (optional)   | Cloud Cover Pct    | Percent of cloud cover (1-100) | 
+| eo:cloud_cover     | integer (optional)   | Cloud Cover Pct    | Percent of cloud cover (0-100) | 
 | eo:off_nadir      | float (optional)   | Off nadir    | Viewing angle. 0-90 degrees, measured from nadir
 | eo:azimuth      | float (optional)   | Azimuth    | Viewing azimuth angle. 0-360 degrees, measured clockwise from north
 | eo:sun_azimuth    | float (optional)   | Sun Azimuth | Sun azimuth angle. 0-360 degrees, measured clockwise from north
@@ -28,6 +29,8 @@ These are fields that extend the `Item` object
 **eo:gsd** is the nominal Ground Sample Distance for the data, as measured in meters on the ground. Since GSD can vary across a scene depending on projection, this should be the average or most commonly used GSD in the center of the image. If the data includes multiple bands with different GSD values, this should be the value for the greatest number or most common bands. For instance, Landsat optical and short-wave IR bands are all 30 meters, but the panchromatic band is 15 meters. The eo:gsd should be 30 meters in this case since those are the bands most commonly used.
 
 **eo:platform** is the name of the specific platform the instrument is attached to. For satellites this would be the name of the satellite (e.g., landsat-8, sentinel-2A), whereas for drones this would be a unique name for the drone.
+
+**eo:constellation** is the name of the group or constellation that the platform belongs to.  Example: The Sentinel-2 group has S2A and S2B, this field allows users to search for Sentinel-2 data without needing to specify which specific platform the data came from.
 
 **eo:instrument** The instrument is the name of the sensor used, although for Items which contain data from multiple sensors this could also name multiple sensors. For example, data from the Landsat-8 platform is collected with the OLI sensor as well as the TIRS sensor, but the data is distributed together and commonly referred to as OLI_TIRS.
 

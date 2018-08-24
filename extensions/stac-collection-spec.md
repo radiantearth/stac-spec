@@ -8,7 +8,7 @@ A group of STAC `Item` objects from a single source can share a lot of common me
 |----------------------|---------------------------|-------------------------|---------------------------------------------------------------------------------------------| 
 | c:id | string | Collection ID | Machine readable ID for the collection
 | c:name | string (optional) | Collection Name | A name given to the Collection, used for display
-| c:description | string (optional) | Collection Description | A human readable description of the collection
+| c:description | string (optional) | Collection Description | A human readable description of the collection. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation.
 
 A `Collection` does not have many specific fields, as it may contain any fields that are in the core spec as well as any other extension. This provides maximum flexibility to data providers, as some the set of common metadata fields can vary between different types of data. For instance, Landsat and Sentinel data always has a eo:off_nadir value of 0, because those satellites are always pointed downward (i.e., nadir), while satellite that can be pointed will have varying eo:off_nadir values.
 
@@ -116,77 +116,77 @@ This is an example `Collection` for Landsat-8 imagery and uses the [EO extension
         "gsd": 30.0,
         "accuracy": null,
         "wavelength": 0.44,
-        "fwhm": 0.02
+        "full_width_half_max": 0.02
       },
       "2": {
         "common_name": "blue",
         "gsd": 30.0,
         "accuracy": null,
         "wavelength": 0.48,
-        "fwhm": 0.06
+        "full_width_half_max": 0.06
       },
       "3": {
         "common_name": "green",
         "gsd": 30.0,
         "accuracy": null,
         "wavelength": 0.56,
-        "fwhm": 0.06
+        "full_width_half_max": 0.06
       },
       "4": {
         "common_name": "red",
         "gsd": 30.0,
         "accuracy": null,
         "wavelength": 0.65,
-        "fwhm": 0.04
+        "full_width_half_max": 0.04
       },
       "5": {
         "common_name": "nir",
         "gsd": 30.0,
         "accuracy": null,
         "wavelength": 0.86,
-        "fwhm": 0.03
+        "full_width_half_max": 0.03
       },
       "6": {
         "common_name": "swir16",
         "gsd": 30.0,
         "accuracy": null,
         "wavelength": 1.6,
-        "fwhm": 0.08
+        "full_width_half_max": 0.08
       },
       "7": {
         "common_name": "swir22",
         "gsd": 30.0,
         "accuracy": null,
         "wavelength": 2.2,
-        "fwhm": 0.2
+        "full_width_half_max": 0.2
       },
       "8": {
         "common_name": "pan",
         "gsd": 15.0,
         "accuracy": null,
         "wavelength": 0.59,
-        "fwhm": 0.18
+        "full_width_half_max": 0.18
       },
       "9": {
         "common_name": "cirrus",
         "gsd": 30.0,
         "accuracy": null,
         "wavelength": 1.37,
-        "fwhm": 0.02
+        "full_width_half_max": 0.02
       },
       "10": {
         "common_name": "lwir11",
         "gsd": 100.0,
         "accuracy": null,
         "wavelength": 10.9,
-        "fwhm": 0.8
+        "full_width_half_max": 0.8
       },
       "11": {
         "common_name": "lwir12",
         "gsd": 100.0,
         "accuracy": null,
         "wavelength": 12.0,
-        "fwhm": 1.0
+        "full_width_half_max": 1.0
       }
     }
 ```

@@ -84,7 +84,7 @@ there are also STAC API's that have html as an output in addition to json. Aimin
 **GDAL Implementation** - As the most used geospatial library it is important that GDAL be a tool that can query STAC catalogs,
 both dynamic and static ones. Ideally GDAL could also create static catalogs as an output format. 
 
-**STAC Profile Implementations** - It is important that implementations start to create extensions to the core STAC fields,
+**STAC Extension Implementations** - It is important that implementations start to create extensions to the core STAC fields,
 for things like earth observation metadata fields, derived data, mosaics, point clouds, DEM/DSM, etc. 
 
 ## Tier 3

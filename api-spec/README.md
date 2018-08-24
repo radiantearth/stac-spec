@@ -39,8 +39,6 @@ The definitive specification for STAC is the [OpenAPI](http://openapis.org) 3.0 
 in several forms. The most straightforward for an implementor new to STAC is the [STAC-standalone.yaml](STAC-standalone.yaml).
 This gives a complete service with the main STAC endpoint. See the [online documentation](https://app.swaggerhub.com/apis/cholmesgeo/STAC-standalone/) for the api rendered interactively.
 
-An OpenAPI 2.0 (swagger) version is also available ([WFS3core+STAC-swagger2.yaml](WFS3core+STAC-swagger2.yaml)), which can be useful for autogenerating client and server code.
-
 ##### Warning
 
 **The latest spec has not yet been fully validated by actual implementations. This will come soon, but if you
@@ -52,7 +50,7 @@ to get help**
 The core STAC API includes two filters - Bounding Box and time. All STAC Items require space and time, and thus any STAC
 client can expect to be able to filter on them. Most data will include additional data that users would like to query on,
 so there is a mechanism to also specify more filters. See the [Filtering](filters.md) document for additional information
-on the core filters as well as how to extend them. It is anticipated that 'profiles' for domains (like earth observation
+on the core filters as well as how to extend them. It is anticipated that 'extensions' for domains (like earth observation
 imagery) will require additional fields to query their common fields.
 
 ### WFS 3.0 Integration
