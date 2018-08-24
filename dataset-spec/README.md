@@ -8,20 +8,26 @@ One topic of interest has been the search of datasets*, instead of within a data
 
 ## Core
 
-| Element         | Type                                  | Name                            | Description                                                  |
-| --------------- | ------------------------------------- | ------------------------------- | ------------------------------------------------------------ |
-| id              | string                                | Dataset ID (required)           | Identifier for the dataset that is unique across the provider. MUST follow the pattern ` ^[A-Za-z0-9_\-\/]+$ `. TODO: Allow slash? |
-| title           | string                                | Title                           | A short descriptive one-line title for the dataset.          |
-| description     | string                                | Description (required)          | Detailed multi-line description to fully explain the entity. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| keywords        | [string]                              | Keywords                        | List of keywords describing the dataset.                     |
-| version         | string                                | Dataset Version                 | Version of the dataset. [Semantic Versioning (SemVer)](https://semver.org/) SHOULD be followed. |
-| license         | string                                | Dataset License Name (required) | Dataset's license(s) as a [SPDX License identifier or expression](https://spdx.org/licenses/) or `proprietary` if the license is not on the SPDX license list. See `license_url` for more information. |
-| license_url     | string                                | Dataset License URL             | Dataset's license URL SHOULD be specified if `license` is set to `proprietary`. |
-| provider        | [Provider Object]                     | Data Provider                   | The organizations that created the content of the dataset.   |
-| host            | Host Object                           | Storage Provider                | The organization that hosts the dataset.                     |
-| spatial_extent  | [GeoJSON Object](http://geojson.org/) | Spatial extent (required)       | The spatial extent covered by the dataset as [GeoJSON](http://geojson.org/) object. |
-| temporal_extent | string                                | Temporal extent (required)      | Temporal extent covered by the dataset. Date/time intervals MUST be formatted according to ISO 8601. ToDo: Support open date ranges |
-| links           | [Link Object]                         | Links (required)                | A list of references to other documents, see Link Object for further documentation. TODO: Remove if catalog is revised and links are specified on the catalog level. |
+| Element     | Type              | Name                            | Description                                                  |
+| ----------- | ----------------- | ------------------------------- | ------------------------------------------------------------ |
+| name        | string            | Identifier (required)           | Identifier for the dataset that is unique across the provider. The identi |
+| title       | string            | Title                           | A short descriptive one-line title for the dataset.          |
+| description | string            | Description (required)          | Detailed multi-line description to fully explain the entity. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| keywords    | [string]          | Keywords                        | List of keywords describing the dataset.                     |
+| version     | string            | Dataset Version                 | Version of the dataset. [Semantic Versioning (SemVer)](https://semver.org/) SHOULD be followed. |
+| license     | string            | Dataset License Name (required) | Dataset's license(s) as a [SPDX License identifier or expression](https://spdx.org/licenses/) or `proprietary` if the license is not on the SPDX license list. See `license_url` for more information. |
+| license_url | string            | Dataset License URL             | Dataset's license URL SHOULD be specified if `license` is set to `proprietary`. |
+| provider    | [Provider Object] | Data Provider                   | The organizations that created the content of the dataset.   |
+| host        | Host Object       | Storage Provider                | The organization that hosts the dataset.                     |
+| extent      | [Extent Object]   | Extents (required)              | Spatial and temporal extents.                                |
+| links       | [Link Object]     | Links (required)                | A list of references to other documents, see Link Object for further documentation. |
+
+### Extent Object
+
+| Element  | Type     | Name                       | Description                                                  |
+| -------- | -------- | -------------------------- | ------------------------------------------------------------ |
+| spatial  | [number] | Spatial extent (required)  | Potential spatial extent covered by the dataset. West, north, east, south edges of the spatial extent. Only WGS84 longitude/latitude is supported. ToDo: The list of four numbers can be extended to six numbers to support a 3D spatial extent. |
+| temporal | string   | Temporal extent (required) | Potential temporal extent covered by the dataset. Date/time intervals MUST be formatted according to ISO 8601. ToDo: Support open date ranges |
 
 ### Provider Object
 

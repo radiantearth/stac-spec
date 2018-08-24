@@ -7,28 +7,28 @@ This document explains the fields of the STAC Earth Observation (EO) Extension t
 A lot of EO data will have common metadata across many `Items`. It is not necessary, but recommended to use the [Collections extension](stac-collection-spec.md). While the exact metadata that would appear in a `Collection` record will vary depending on the dataset, the most common collection-level metadata fields are indicated with an * in the tables below.
 
 ## EO Extension Description
-These are fields that extend the `Item` object
-## `Item` additions
+These are fields that extend the `Item` and `Dataset` object
+## `Item` and `Dataset` additions
 
-| element           | type info          | name                                  | description                                                  |
-| ----------------- | ------------------ | ------------------------------------- | ------------------------------------------------------------ |
-| eo:gsd*           | float              | Ground Sample distance                | The nominal distance between pixel centers available, in meters |
-| eo:platform*      | string             | Unique name of platform               | Specific name of the platform (e.g., landsat-8, sentinel-2A, larrysdrone) |
-| eo:constellation* | string             | constellation the platform belongs to | Name of the group or constellation the platform belongs to   |
-| eo:instrument*    | string             | Instrument used                       | Name of instrument or sensor (e.g., MODIS, ASTER, OLI, Canon F-1) |
-| eo:bands*         | dictionary         | Band Info                             | Band specific metadata (see below)                           |
-| eo:epsg           | unsigned int       | EPSG code                             | EPSG code of the datasource, null if no EPSG code            |
-| eo:cloud_cover    | integer (optional) | Cloud Cover Pct                       | Percent of cloud cover (0-100)                               |
-| eo:off_nadir      | float (optional)   | Off nadir                             | Viewing angle. 0-90 degrees, measured from nadir             |
-| eo:azimuth        | float (optional)   | Azimuth                               | Viewing azimuth angle. 0-360 degrees, measured clockwise from north |
-| eo:sun_azimuth    | float (optional)   | Sun Azimuth                           | Sun azimuth angle. 0-360 degrees, measured clockwise from north |
-| eo:sun_elevation  | float (optional)   | Sun Elevation                         | Sun elevation angle. 0-90 degrees measured from horizon      |
-| eo:asset_schema   | object             | Asset Schema                          | TODO                                                         |
-| eo:nodata         | [number]           | Nodata values                         | The no data value(s).                                        |
-| eo:pyramid        | object             | Pyramid parameters                    | TODO                                                         |
-| eo:periodicity    | string             | Periodicity                           | ISO8601                                                      |
+| element          | type info             | name                                             | description                                                  | scopes         |
+| ---------------- | --------------------- | ------------------------------------------------ | ------------------------------------------------------------ | -------------- |
+| eo:gsd           | number                | Ground Sample distance (required)                | The nominal distance between pixel centers available, in meters | Item           |
+| eo:platform      | string                | Unique name of platform (required)               | Specific name of the platform (e.g., landsat-8, sentinel-2A, larrysdrone) | Item + Dataset |
+| eo:constellation | string                | constellation the platform belongs to (required) | Name of the group or constellation the platform belongs to   | Item + Dataset |
+| eo:instrument    | string                | Instrument used (required)                       | Name of instrument or sensor (e.g., MODIS, ASTER, OLI, Canon F-1) | Item + Dataset |
+| eo:bands         | {Band Object}         | Band Info (required)                             | Band specific metadata (see below)                           | Item + Dataset |
+| eo:epsg          | number                | EPSG code                                        | EPSG code of the datasource, null if no EPSG code            | Item + Dataset |
+| eo:cloud_cover   | number                | Cloud Cover                                      | Percent of cloud cover (0-100)                               | Item           |
+| eo:off_nadir     | number                | Off nadir                                        | Viewing angle. 0-90 degrees, measured from nadir             | Item + Dataset |
+| eo:azimuth       | number                | Azimuth                                          | Viewing azimuth angle. 0-360 degrees, measured clockwise from north | Item + Dataset |
+| eo:sun_azimuth   | number                | Sun Azimuth                                      | Sun azimuth angle. 0-360 degrees, measured clockwise from north | Item           |
+| eo:sun_elevation | number                | Sun Elevation                                    | Sun elevation angle. 0-90 degrees measured from horizon      | Item           |
+| eo:asset_schema  | {Asset Schema Object} | Asset Schema                                     | TODO                                                         | Dataset        |
+| eo:nodata        | [number]              | Nodata values                                    | The no data value(s).                                        | Dataset        |
+| eo:pyramid       | {Pyramid Object}      | Pyramid parameters                               | TODO                                                         | Dataset        |
+| eo:periodicity   | string                | Periodicity                                      | ISO8601                                                      | Dataset        |
 
-## `Item` Field Descriptions
+## `Item` and `Dataset` Field Descriptions
 
 **eo:gsd** is the nominal Ground Sample Distance for the data, as measured in meters on the ground. Since GSD can vary across a scene depending on projection, this should be the average or most commonly used GSD in the center of the image. If the data includes multiple bands with different GSD values, this should be the value for the greatest number or most common bands. For instance, Landsat optical and short-wave IR bands are all 30 meters, but the panchromatic band is 15 meters. The eo:gsd should be 30 meters in this case since those are the bands most commonly used.
 
@@ -52,20 +52,20 @@ These are fields that extend the `Item` object
 
 **eo:sun_elevation**: This is the angle from the tangent of ths scene center point to the sun. Measured in degrees (0-90).
 
-## `Item:eo:bands`
+## `eo:bands`
 The bands field of a `Item` is a dictionary where the index identifies a specific band. This is often a band number (e.g., 1, B1, B01), but could be any unique identifier.
 
-| element             | type info         | name                       | description                                                  |
-| ------------------- | ----------------- | -------------------------- | ------------------------------------------------------------ |
-| common_name         | string (optional) | Common name                | The name commonly used to refer to this specific band (see below) |
-| gsd                 | float (optional)  | Ground sample distance     | The average distance between pixel centers as measured in meters on the ground. Defaults to eo:gsd if not provided |
-| accuracy            | float (optional)  | Geolocation Accuracy       | The expected accuracy of the scene registration, in meters   |
-| center_wavelength   | float (optional)  | Center wavelength          | The center wavelength of the band, in microns                |
-| full_width_half_max | float (optional)  | Full width at half maximum | The width of the band, as measured at half the maximum transmission, in microns |
-| nodata              | [number]          | Nodata values              | The no data value(s).                                        |
-| offset              | number            | Offset                     | Offset to convert band values to the actual measurement scale. |
-| scale               | number            | Scale                      | Scale to convert band values to the actual measurement scale. |
-| unit                | string            | Unit                       | The unit of measurement, preferably SI. TODO: Check what units are allowed, e.g. link to [UDUNITS](https://www.unidata.ucar.edu/software/udunits/) or [the dictionary of UoM](https://www.unc.edu/~rowlett/units/). |
+| element             | type info | name                       | description                                                  |
+| ------------------- | --------- | -------------------------- | ------------------------------------------------------------ |
+| common_name         | string    | Common name                | The name commonly used to refer to this specific band (see below) |
+| gsd                 | number    | Ground sample distance     | The average distance between pixel centers as measured in meters on the ground. Defaults to eo:gsd if not provided |
+| accuracy            | number    | Geolocation Accuracy       | The expected accuracy of the scene registration, in meters   |
+| center_wavelength   | number    | Center wavelength          | The center wavelength of the band, in microns                |
+| full_width_half_max | number    | Full width at half maximum | The width of the band, as measured at half the maximum transmission, in microns |
+| nodata              | [number]  | Nodata values              | The no data value(s).                                        |
+| offset              | number    | Offset                     | Offset to convert band values to the actual measurement scale. |
+| scale               | number    | Scale                      | Scale to convert band values to the actual measurement scale. |
+| unit                | string    | Unit                       | The unit of measurement, preferably SI. TODO: Check what units are allowed, e.g. link to [UDUNITS](https://www.unidata.ucar.edu/software/udunits/) or [the dictionary of UoM](https://www.unc.edu/~rowlett/units/). |
 
 ## `Item:eo:bands` Field Descriptions
 
