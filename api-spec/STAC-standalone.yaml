@@ -364,6 +364,11 @@ components:
       example: '2018-02-12T00:00:00Z/2018-03-18T12:31:12Z'
     catalogDefinition:
       type: object
+      required:
+        - name
+        - description
+        - links
+      additionalProperties: true
       properties:
         name:
           type: string
@@ -378,6 +383,7 @@ components:
           type: array
           items:
             type: object
+            additionalProperties: true
             properties:
               rel:
                 type: string
@@ -440,8 +446,7 @@ components:
         bbox:
           $ref: '#/components/schemas/bbox'
         geometry:
-          type: object
-          description: footprint of the item
+          $ref: "http://json.schemastore.org/geojson.json#/definitions/geometry"
         type:
           type: string
           description: The GeoJSON type
