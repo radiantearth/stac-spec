@@ -119,7 +119,7 @@ Any scheme may be used, but it's considered a best practice to keep the size of 
 
 The only required fields for a `Catalog` are the following:
 - `name`
-- `description`
+- `description` ([CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation.)
 - `links`
 
 However, it is strongly recommended that a "root" catalog define metadata fields that apply to the entire `catalog` (such that child catalogs and items simply inherit these field values).
