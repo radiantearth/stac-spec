@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: The SpatioTemporal Asset Catalog API (standalone)
-  version: 0.5.1
+  version: 0.6.0
   description: >-
     This is an OpenAPI definition of the core SpatioTemporal Asset Catalog API
     specification. Any service that implements this endpoint to allow search of
@@ -233,7 +233,7 @@ components:
           properties:
             limit:
               type: number
-              example: 5
+              example: 10
     bbox:
       description: |
         Only features that have a geometry that intersects the bounding box are

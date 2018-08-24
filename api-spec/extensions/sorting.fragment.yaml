@@ -16,7 +16,13 @@ components:
   schemas:
     searchBody:
       allOf:
-        - $ref: '#/components/schemas/sort'
+        - $ref: '#/components/schemas/sortFilter'
+    sortFilter:
+      type: object
+      description: Sort the results
+      properties:
+        sort:
+          $ref: '#/components/schemas/sort'
     sort:
       type: array
       description: |

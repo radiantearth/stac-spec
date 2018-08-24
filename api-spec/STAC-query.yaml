@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: The SpatioTemporal Asset Catalog API (standalone)
-  version: 0.5.1
+  version: 0.6.0
   description: >-
     This is an OpenAPI definition of the core SpatioTemporal Asset Catalog API
     specification. Any service that implements this endpoint to allow search of
@@ -40,7 +40,6 @@ paths:
         queries. This method is optional.
       operationId: getSearchSTAC
       tags:
-        - STAC
         - STAC
       parameters:
         - $ref: '#/components/parameters/bbox'
@@ -209,7 +208,7 @@ components:
       name: query
       in: query
       description: >-
-        query for properties in items. Use the JSON for of the queryFilter used
+        query for properties in items. Use the JSON form of the queryFilter used
         in POST.
       required: false
       schema:
@@ -261,9 +260,9 @@ components:
           properties:
             limit:
               type: number
-              example: 5
+              example: 10
         - $ref: '#/components/schemas/queryFilter'
-        - $ref: '#/components/schemas/sort'
+        - $ref: '#/components/schemas/sortFilter'
         - $ref: '#/components/schemas/fieldsFilter'
     bbox:
       description: |
@@ -591,18 +590,15 @@ components:
     queryProp:
       description: Apply query operations to a specific property
       anyOf:
-        - type: object
-          description: >-
+        - description: >-
             if the object doesn't contain any of the operators, it is equivalent
             to using the equals operator
         - type: object
           description: Match using an operator
           properties:
             eq:
-              type: object
               description: Find items with a property that is equal to the specified value
             neq:
-              type: object
               description: Find items that *don't* contain the specified value
             gt:
               type: number
@@ -635,6 +631,12 @@ components:
                 string
             time:
               $ref: '#/components/schemas/time'
+    sortFilter:
+      type: object
+      description: Sort the results
+      properties:
+        sort:
+          $ref: '#/components/schemas/sort'
     sort:
       type: array
       description: |

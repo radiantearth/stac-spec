@@ -8,7 +8,7 @@ components:
     query:
       name: query
       in: query
-      description: query for properties in items. Use the JSON for of the queryFilter used in POST.
+      description: query for properties in items. Use the JSON form of the queryFilter used in POST.
       required: false
       schema:
         type: string
@@ -38,16 +38,13 @@ components:
     queryProp:
       description: Apply query operations to a specific property
       anyOf:
-        - type: object
-          description: if the object doesn't contain any of the operators, it is equivalent to using the equals operator
+        - description: if the object doesn't contain any of the operators, it is equivalent to using the equals operator
         - type: object
           description: Match using an operator
           properties:
             eq:
-              type: object
               description: Find items with a property that is equal to the specified value
             neq:
-              type: object
               description: Find items that *don't* contain the specified value
             gt: 
               type: number

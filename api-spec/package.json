@@ -10,7 +10,6 @@
     "generate-all": "npm run generate-standalone && npm run generate-wfs && npm run generate-query-ext"
   },
   "author": "",
-  "license": "ISC",
   "dependencies": {
     "yaml-files": "^1.1.0"
   }
