@@ -50,7 +50,7 @@ to get help**
 The core STAC API includes two filters - Bounding Box and time. All STAC Items require space and time, and thus any STAC
 client can expect to be able to filter on them. Most data will include additional data that users would like to query on,
 so there is a mechanism to also specify more filters. See the [Filtering](filters.md) document for additional information
-on the core filters as well as how to extend them. It is anticipated that 'profiles' for domains (like earth observation
+on the core filters as well as how to extend them. It is anticipated that 'extensions' for domains (like earth observation
 imagery) will require additional fields to query their common fields.
 
 ### WFS 3.0 Integration

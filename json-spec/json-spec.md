@@ -47,8 +47,7 @@ it is recommended to simply use that ID. In time there may be a best practice re
 globally unique identifiers, but for now data providers are advised to include sufficient information to make their ID's globally 
 unique, including things like unique satellite id's.
 
-**geometry** defines the full footprint of the asset represented by this item, formatted according to [RFC7946](https://tools.ietf.org/html/rfc7946) - [GeoJSON](http://geojson.org). The footprint should be the default GeoJSON geometry, though additional geometries can be included. All geometries should 
-be either Polygons or MultiPolygons, as assets represent an area, not a line or point. Bounding Boxes are required, on the 'Feature' 
+**geometry** defines the full footprint of the asset represented by this item, formatted according to [RFC7946](https://tools.ietf.org/html/rfc7946) - [GeoJSON](http://geojson.org). The footprint should be the default GeoJSON geometry, though additional geometries can be included. Bounding Boxes are required, on the 'Feature' 
 level in GeoJSON, and most software can easily generate BBOX's for footprints. This is to enable more naive clients to easily index 
 and search geospatially. GeoJSON is specified in Long/Latitude - EPSG code 4326, and the `geometry` element of all STAC `Items` 
 should be the same. 
@@ -57,7 +56,7 @@ should be the same.
 or the 'nominal' or representative time in the case of assets that are combined together. It is formatted
 according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). Though time can be a complex thing to capture,
 for this purpose keep in mind the STAC spec is primarily searching for data, so use whatever single date and time is most useful for
-a user to search for. STAC content profiles may further specify the meaning of the main `datetime` field, and many will also add 
+a user to search for. STAC content extensions may further specify the meaning of the main `datetime` field, and many will also add 
 more datetime fields.
 
 **links** are used primarily to represent relationships with other entities. The key of each object in `links` represents the 
@@ -78,9 +77,25 @@ all should be linked to. It is generally recommended that different processing l
 `Item`, but instead are represented by related `Items` that are linked to, but the best practices around this are still emerging.
 
 ***Assets required fields***
-asset for download or streaming access. The 'name' field is optional, and is generally the display name for clients & users.	
-* href - link to the asset object.  The link can be a relative or absolute link The asset definition will likely evolve soon to be able to explain itself more.	
-* mime_type - the mime type of the object.  Prefered that standard mime types be used when possible.  Type can include; image/geotiff, image/geotiff+cog, or type with a vendor prefix, example: vnd.digitalglobe/til
+asset for download or streaming access. The 'name' field is optional, and is generally the display name for clients & users.
+* href - link to the asset object.  The link can be a relative or absolute link The asset definition will likely evolve soon to be able to explain itself more.
+* mime_type - the mime type of the object. [Registered](https://www.iana.org/assignments/media-types/media-types.xhtml) mime types are preferred when possible. In cases where custom, vendor specific mime types are necessary they can be used with the `vnd.` prefix for the type. The mime type can be used by STAC browsers to better determine what is relevant to render and display to users searching and browsing the catalog. In some cases, selection of a mime type can be ambiguous. For instance, many STAC items have sidecar metadata files associated with the core asset (`.tfw`, Landsat 8 MTL files, etc) that should use mime types appropriate for the file -- for instance, if it is a plain text file then `text/plain` would be appropriate, `text/xml` would be appropriate for cases the metadata is in XML format.
+
+A set of commonly used mime types for STAC items include the following:
+
+| mime type            | usage                     |
+|----------------------|---------------------------|
+| image/geotiff        | georeferenced tiff        |
+| image/geotiff+cog     | Cloud Optimized Geotiff   |
+| image/jp2            | JPEG 2000                 |
+| image/png            | Visual PNGs (e.g. thumbnails) |
+| image/jpeg           | Visual (e.g. thumbnails, oblique) |
+| text/xml             | XML metadata              |
+| application/json     | JSON metadata              |
+| text/plain           | Plain text metadata       |
+| application/geo+json | GeoJSON                   |
+| application/geopackage+sqlite3 | Geopackage      |
+
 ****We would like to register image/geotiff as a mime type with IANA****
 
 **thumbnail** is a special *strongly recommended* `asset` that is a downsampled image of the core asset, for direct display online in a web page or
