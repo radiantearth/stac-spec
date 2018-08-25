@@ -413,6 +413,7 @@ components:
           type: string
         provider:
           type: object
+          additionalProperties: true
     itemCollection:
       type: object
       required:
