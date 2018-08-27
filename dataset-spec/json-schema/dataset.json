@@ -5,18 +5,17 @@
   "description": "This object represents the dataset in a SpatioTemporal Asset Catalog.",
   "type": "object",
   "required": [
-    "id",
+    "name",
     "description",
     "license",
-    "spatial_extent",
-    "temporal_extent",
+    "extent",
     "links"
   ],
+  "additionalProperties": true,
   "properties": {
-    "id": {
-      "title": "Provider ID",
-      "type": "string",
-      "pattern": "^[A-Za-z0-9_\\-\/]+$"
+    "name": {
+      "title": "Identifier",
+      "type": "string"
     },
     "title": {
       "title": "Title",
@@ -33,14 +32,13 @@
         "type": "string"
       }
     },
-    "license": {
-      "title": "License Name",
+    "version": {
+      "title": "Dataset Version",
       "type": "string"
     },
-    "license_url": {
-      "title": "License URL",
-      "type": "string",
-      "format": "url"
+    "license": {
+      "title": "Dataset License Name",
+      "type": "string"
     },
     "provider": {
       "type": "array",
@@ -60,12 +58,17 @@
     },
     "host": {
       "required": [
-        "id",
-        "scheme"
+        "name",
+        "scheme",
+        "id"
       ],
       "properties": {
-        "id": {
-          "title": "Identifirer",
+        "name": {
+          "title": "Organization name",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
           "type": "string"
         },
         "scheme": {
@@ -78,8 +81,8 @@
             "OTHER"
           ]
         },
-        "description": {
-          "title": "Description",
+        "id": {
+          "title": "Identifirer",
           "type": "string"
         },
         "region": {
@@ -91,18 +94,30 @@
           "type": "boolean",
           "default": false
         }
-      }
+      },
+      "additionalProperties": true
     },
-    "version": {
-      "title": "Version",
-      "type": "string"
-    },
-    "temporal_extent": {
-      "title": "Temporal extent",
-      "type": "string"
-    },
-    "spatial_extent": {
-      "type": "object"
+    "extent": {
+      "title": "Extents",
+      "type": "object",
+      "required": [
+        "spatial",
+        "temporal"
+      ],
+      "properties": {
+        "spatial": {
+          "title": "Spatial extent",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "temporal": {
+          "title": "Temporal extent",
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
     },
     "links": {
       "type": "array",
@@ -124,12 +139,9 @@
           "type": {
             "title": "type",
             "type": "string"
-          },
-          "title": {
-            "title": "Title",
-            "type": "string"
           }
-        }
+        },
+        "additionalProperties": true
       }
     }
   }
