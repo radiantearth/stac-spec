@@ -72,4 +72,15 @@ for a GET endpoint, which are included in the openapi specifications. The GET re
 fields as the POST fields, and are based on WFS 3 requests. It is recommended for implementations to implement both, but 
 only POST is required. 
 
+## Development & Contribution
 
+The yaml files under `api-spec` directory are generated from yaml files under `defintions` and `extensions` folders. Do **NOT** edit them directly.
+
+All edits should be applied to files under `defintions` and `extensions` folder.
+
+To generate the main yaml files, run:
+
+     $ npm install
+     $ npm run generate-all
+
+There is CI check to make sure correct yaml files are generated. The CI build will fail if you forget to generate and commit and main yaml files.
