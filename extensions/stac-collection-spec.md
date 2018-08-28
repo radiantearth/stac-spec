@@ -71,10 +71,10 @@ The fields from the `Collection` record can be merged with an `Item` record to g
         "datetime": "2017-01-01T00:00:00Z",
         "geometry": {...}
     },
-    "links": {
-        "collection": {"rel": "collection", "href": "link/to/my_collection" }
+    "links": [
+        {"rel": "collection", "href": "link/to/my_collection" }
         ...
-    },
+    ],
     "assets": {...}
 }
 ```
@@ -92,13 +92,13 @@ The merged `Item` then looks like this:
         "datetime": "2017-01-01T00:00:00Z",
         "geometry": {...}
     },
-    "links": {
-        "collection": {
+    "links": [
+        {
           "rel": "collection",
           "href": "link/to/my_collection"
         },
         ...
-    },
+    ],
     "assets": {...}
 }
 ```
