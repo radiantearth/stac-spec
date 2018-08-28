@@ -6,11 +6,10 @@ This folder contains an API extension to support the creation, editing, and dele
 
 | Path             | Description               |
 |----------------------|---------------------------|
-| POST /collections/{collectionID}/items | adds a new item to a collection |
-| PUT /collections/{collectionId}/items/{featureId} | updates an existing item by ID using a complete item description |
-| PATCH /collections/{collectionId}/items/{featureId} | updates an existing item by ID using a partial item description, compliant with RFC 7386 |
-| DELETE /collections/{collectionID}/items | deletes an existing item by ID |
-| | |
+| `POST /collections/{collectionID}/items` | Adds a new item to a collection. |
+| `PUT /collections/{collectionId}/items/{featureId}` | Updates an existing item by ID using a complete item description. |
+| `PATCH /collections/{collectionId}/items/{featureId}` | Updates an existing item by ID using a partial item description, compliant with [RFC 7386](https://tools.ietf.org/html/rfc7386). |
+| `DELETE /collections/{collectionID}/items` | Deletes an existing item by ID. |
 
 ## Items
 

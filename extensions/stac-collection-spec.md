@@ -1,14 +1,23 @@
-# STAC Collection Extension Spec
+# STAC Collection Extension Spec (`c`)
 
 A group of STAC `Item` objects from a single source can share a lot of common metadata. This is especially true with satellite imagery that uses the STAC EO Extension. Rather than including these common metadata fields on every `Item`, they can be grouped into a `Collection`.
 
-## Collection Extension Description
+* [Examples](examples/)
+* JSON Schema (missing, [PRs welcome](https://github.com/radiantearth/stac-spec/issues/94))
 
-| element             | type info                 | name                    | description                                                                                 | 
-|----------------------|---------------------------|-------------------------|---------------------------------------------------------------------------------------------| 
-| c:id | string | Collection ID | Machine readable ID for the collection
-| c:name | string (optional) | Collection Name | A name given to the Collection, used for display
-| c:description | string (optional) | Collection Description | A human readable description of the collection. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation.
+## WARNING
+
+**This is still an early version of the STAC Collection Extension Spec, expect that there may be some changes before everything is finalized.**
+
+Implementations are encouraged, however, as good effort will be made to not change anything too drastically. Using the specification now will ensure that needed changes can be made before everything is locked in. So now is an ideal time to implement, as your feedback will be directly incorporated. 
+
+## Item and Collection fields
+
+| Field name    | Type   | description                                                  |
+| ------------- | ------ | ------------------------------------------------------------ |
+| c:id          | string | **REQUIRED.** Machine readable ID for the collection.        |
+| c:name        | string | A name given to the Collection, used for display.            |
+| c:description | string | A human readable description of the collection. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 
 A `Collection` does not have many specific fields, as it may contain any fields that are in the core spec as well as any other extension. This provides maximum flexibility to data providers, as some the set of common metadata fields can vary between different types of data. For instance, Landsat and Sentinel data always has a eo:off_nadir value of 0, because those satellites are always pointed downward (i.e., nadir), while satellite that can be pointed will have varying eo:off_nadir values.
 
@@ -22,11 +31,8 @@ dictionary, as specified below.
 
 If a metadata field is specified in `Collection`, it will be ignored in any `Item` that links to that `Collection`. This is important because a `Collection` is the metadta that is common across all `Item` objects. If a field is variable at all, it should be part of the `Item` record.
 
-### Warning
-This extension is still in an early iteration, and is likely to change as it gets use. Collections should work generically and be combined with the static catalog 'catalog.json' file.  It is powerful and useful to be able to reference fields that don't need to repeat in every item, but the naming and fields may shift. Please try it out and give feedback on what works.
 
-
-#### Linking to a `Collection`
+### Linking to a `Collection`
 An `Item` specifies the collection it belongs to in two places. One is a field called 'collection' which is a key to a `Collection` record, which also also has a 'collection' field. This acts as a way to provide a 2-way link between `Collection` and `Item` records through the 'collection' field. In database terms, the 'collection' field is like a Foreign Key in the `Item` that links to a `Collection`. 
 
 An `Item` also provides a link to a collection under the links dictionary:
@@ -36,15 +42,15 @@ An `Item` also provides a link to a collection under the links dictionary:
 
 ### The Collection JSON
 
-The `Collection` JSON that a set of `Item`s link to is a fragment of a full STAC `Item`, containing any 
-fields that are fixed for the set of `Item`s that link to it. Most fields will live under the `properties`
-object, and represent the fields that would be in each `Item` JSON. The `Collection` JSON may contain
-other JSON objects, which should be thought of as objects that would live in each `Item` and repeat. The
+The `Collection` JSON that a set of Items link to is a fragment of a full STAC Item, containing any 
+fields that are fixed for the set of Items that link to it. Most fields will live under the `properties`
+object, and represent the fields that would be in each Item JSON. The Collection JSON may contain
+other JSON objects, which should be thought of as objects that would live in each Item and repeat. The
 `eo:bands` in the example below work this way. The `eo:bands` object lives parallel to the `properties` 
 object in the JSON.
 
 
-#### Using a `Collection`
+### Using a `Collection`
 The fields from the `Collection` record can be merged with an `Item` record to get the complete metadata for the `Item`.
 ```
 # a collection
@@ -97,7 +103,7 @@ The merged `Item` then looks like this:
 }
 ```
 
-#### `Collection` Example
+### `Collection` Example
 This is an example `Collection` for Landsat-8 imagery and uses the [EO extension](stac-eo-spec.md).
 ```
 {
