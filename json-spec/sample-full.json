@@ -32,12 +32,12 @@
     "cs:sat_id": "CS3",
     "cs:product_level": "LV1B"
   },
-  "links": [
-    {"rel": "self", "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json"},
-    {"rel": "thumbnail", "href":"thumbnail.png"},
-    {"rel": "catalog", "href": "http://cool-sat.com/catalog/"},
-    {"rel": "acquisition", "href": "http://cool-sat.com/catalog/acquisitions/20160503_56"}
-  ],
+  "links": {
+    "self": {"rel": "self", "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json"},
+    "thumbnail": {"rel": "thumbnail", "href":"thumbnail.png"},
+    "catalog": {"rel": "catalog", "href": "http://cool-sat.com/catalog/"},
+    "acquisition": {"rel": "acquisition", "href": "http://cool-sat.com/catalog/acquisitions/20160503_56"}
+  },
   "assets": {
     "analytic": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/analytic.tif",

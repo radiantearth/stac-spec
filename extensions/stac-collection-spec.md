@@ -92,10 +92,10 @@ metadata for the `Item`.
         "datetime": "2017-01-01T00:00:00Z",
         "geometry": {...}
     },
-    "links": [
-        {"rel": "collection", "href": "link/to/my_collection" }
+    "links": {
+        "collection": {"rel": "collection", "href": "link/to/my_collection" }
         ...
-    ],
+    },
     "assets": {...}
 }
 ```
@@ -114,13 +114,13 @@ The merged `Item` then looks like this:
         "datetime": "2017-01-01T00:00:00Z",
         "geometry": {...}
     },
-    "links": [
-        {
+    "links": {
+        "collection": {
           "rel": "collection",
           "href": "link/to/my_collection"
         },
         ...
-    ],
+    },
     "assets": {...}
 }
 ```

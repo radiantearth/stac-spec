@@ -61,11 +61,11 @@
     "landsat:image_quality_oli": 9
   },
 
-  "links": [
-    { "rel":"self", "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00.json"},
-    { "rel":"alternate", "href": "https://landsatonaws.com/L8/153/025/LC81530252014153LGN00", "type": "html"},
-    { "rel":"catalog", "href":  "http://landsat-pds.s3.amazonaws.com/L8/catalog.json"}
-  ],
+  "links": {
+    "self": { "rel":"self", "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00.json"},
+    "alternate": { "rel":"alternate", "href": "https://landsatonaws.com/L8/153/025/LC81530252014153LGN00", "type": "html"},
+    "catalog": { "rel":"catalog", "href":  "http://landsat-pds.s3.amazonaws.com/L8/catalog.json"}
+  },
 
   "assets" :{
     "thumbnail": {
