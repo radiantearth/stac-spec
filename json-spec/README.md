@@ -62,7 +62,9 @@ node_modules/.bin/ajv validate -s json-schema/stac-item.json -r json-schema/geoj
 
 These should return as valid. The same validate command can be used for any other sample data.
 
-**Warning:** Not all validation is fully complete. The validator does not yet check for `self` links. The `href` checking is probably too loose right now, it just checks for a string, see the 'relative vs absolute links' section  in the [Item spec](json-spec.md) for reasons why. 
+**Warning:** Not all validation is fully complete. The validator does not yet check for `self` 
+links. The `href` checking is probably too loose right now, it just checks for a string, see the 
+'relative vs absolute links' section  in the [Item spec](json-spec.md) for reasons why. 
 
 
 ## Static Catalog Evolution 
