@@ -2,7 +2,7 @@
 
 [STAC Items](https://github.com/radiantearth/stac-spec/json-spec/) are focused on search within a dataset*. Another topic of interest is the search of datasets, instead of within a dataset.  The Dataset Spec is an independent spec that STAC Items are *strongly recommended* to provide a link to a dataset definition. Other parties can also independently use this spec to describe datasets in a lightweight way.
 
-The Datasets Spec extends the [Catalog Spec](../static-catalog/) with additional fields to describe the set of items in the catalog. It shares the same fields and therefore every Dataset is also a valid Catalog. Datasets can have both parent Catalogs and Datasets and child Items, Catalogs and Datasets. 
+The Datasets Spec extends the [Catalog Spec](../static-catalog/) with additional fields to describe the set of items in the catalog. It shares the same fields and therefore every Dataset is also a valid Catalog. Datasets can have both parent Catalogs and Datasets and child Items, Catalogs and Datasets. 
 
 A Dataset can be represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Dataset and Catalog.
 
@@ -26,7 +26,7 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | description | string            | **REQUIRED.** Detailed multi-line description to fully explain the entity. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | keywords    | [string]          | List of keywords describing the dataset.                     |
 | version     | string            | Version of the dataset. [Semantic Versioning (SemVer)](https://semver.org/) SHOULD be followed. |
-| license     | string            | **REQUIRED.** Dataset's license(s) as a [SPDX License identifier or expression](https://spdx.org/licenses/) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
+| license     | string            | **REQUIRED.** Dataset's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
 | provider    | [Provider Object] | A list of data providers, the organizations which influenced the content of the dataset. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | host        | Host Object       | Storage provider, the organization that hosts the dataset.   |
 | extent      | [Extent Object]   | **REQUIRED.** Spatial and temporal extents.                  |
