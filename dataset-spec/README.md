@@ -1,8 +1,8 @@
 # STAC Dataset Spec
 
-[STAC Items](https://github.com/radiantearth/stac-spec/json-spec/) are focused on search within a dataset*. Another topic of interest is the search of datasets, instead of within a dataset.  The Dataset Spec is an independent spec that STAC Items are *strongly recommended* to use. Other parties can also independently use this spec to describe datasets in a lightweight way.
+[STAC Items](https://github.com/radiantearth/stac-spec/json-spec/) are focused on search within a dataset*. Another topic of interest is the search of datasets, instead of within a dataset.  The Dataset Spec is an independent spec that STAC Items are *strongly recommended* to provide a link to a dataset definition. Other parties can also independently use this spec to describe datasets in a lightweight way.
 
-The Datasets Spec is a superset of the [Catalog Spec](../static-catalog/). I shares the same fields and therefore every Dataset is also a valid Catalog. Datasets can have both parent Catalogs and Datasets and child Items, Catalogs and Datasets. 
+The Datasets Spec extends the [Catalog Spec](../static-catalog/) with additional fields to describe the set of items in the catalog. It shares the same fields and therefore every Dataset is also a valid Catalog. Datasets can have both parent Catalogs and Datasets and child Items, Catalogs and Datasets. 
 
 A Dataset can be represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Dataset and Catalog.
 
@@ -23,11 +23,11 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | ----------- | ----------------- | ------------------------------------------------------------ |
 | name        | string            | **REQUIRED.** Identifier for the dataset that is unique across the provider. |
 | title       | string            | A short descriptive one-line title for the dataset.          |
-| description | string            | **REQUIRED.** Detailed multi-line description to fully explain the entity. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| description | string            | **REQUIRED.** Detailed multi-line description to fully explain the entity. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | keywords    | [string]          | List of keywords describing the dataset.                     |
 | version     | string            | Version of the dataset. [Semantic Versioning (SemVer)](https://semver.org/) SHOULD be followed. |
 | license     | string            | **REQUIRED.** Dataset's license(s) as a [SPDX License identifier or expression](https://spdx.org/licenses/) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
-| provider    | [Provider Object] | Data provider, the organizations which influenced the content of the dataset. |
+| provider    | [Provider Object] | A list of data providers, the organizations which influenced the content of the dataset. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | host        | Host Object       | Storage provider, the organization that hosts the dataset.   |
 | extent      | [Extent Object]   | **REQUIRED.** Spatial and temporal extents.                  |
 | links       | [Link Object]     | **REQUIRED.** A list of references to other documents.       |
@@ -56,12 +56,12 @@ The object provides information about a provider. A provider is any of the organ
 
 The objects provides information about the storage provider hosting the data. 
 
-**Note:** The idea of storage profiles is currently [discussed](https://github.com/radiantearth/stac-spec/issues/148). Therefore, scheme, id and region may be removed from the final spec once this concept id introduced to STAC.
+**Note:** The idea of storage profiles is currently [discussed](https://github.com/radiantearth/stac-spec/issues/148). Therefore, scheme, id and region may be removed from the final spec once this concept is introduced to STAC.
 
 | Field Name     | Type    | Description                                                  |
 | -------------- | ------- | ------------------------------------------------------------ |
 | name           | string  | **REQUIRED.** The name of the organization or the individual hosting the data. |
-| description    | string  | Detailed description to explain the hosting details. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| description    | string  | Detailed description to explain the hosting details. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | scheme         | string  | **REQUIRED.** The protocol/scheme used to access the data. Any of: `S3`, `GCS`, `URL`, `OTHER` |
 | id             | string  | **REQUIRED.** Host-specific identifier such as an URL or asset id. |
 | region         | string  | Provider specific region where the data is stored.           |
