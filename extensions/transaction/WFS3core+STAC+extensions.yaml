@@ -11,8 +11,8 @@ info:
     email: info@cool-sat.com
     url: 'http://cool-sat.com/contact/'
   license:
-    name: CC-BY 4.0 license
-    url: 'https://creativecommons.org/licenses/by/4.0/'
+    name: Apache License 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0'
 servers:
   - url: 'http://dev.cool-sat.com/'
     description: Development server
