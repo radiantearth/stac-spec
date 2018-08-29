@@ -114,7 +114,16 @@
         },
         "temporal": {
           "title": "Temporal extent",
-          "type": "string"
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          }
         }
       },
       "additionalProperties": true
