@@ -96,8 +96,8 @@ Important related extensions for the dataset spec:
 
 * [EO extension](../extensions/stac-eo-spec.md)
   Please note that some fields such as `eo:sun_elevation ` or `eo:sun_azimuth` are only meaningful on the item level and MUST not be used in datasets.
-* [Dimensions extension](../extensions/dimensions)
+* Dimensions extension  (proposed, see [PR #227](https://github.com/radiantearth/stac-spec/pull/227))
 * [Scientific extension](../extensions/scientific)
-* Provenance extension  (planned, see [issue #179](https://github.com/radiantearth/stac-spec/issues/179))
+* Provenance extension (planned, see [issue #179](https://github.com/radiantearth/stac-spec/issues/179))
 
 The [extensions page](../extensions/) gives a full overview about relevant extensions for STAC Datasets.
