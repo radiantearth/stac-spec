@@ -1,8 +1,7 @@
 {
   "id": "LC81530252014153LGN00",
   "type": "Feature",
-  "bbox": [ 49.16354,72.27502,51.36812,75.67662
-        ],
+  "bbox": [ 49.16354,72.27502,51.36812,75.67662 ],
   "geometry": {
     "type": "MultiPolygon",
     "coordinates": [
@@ -39,7 +38,7 @@
     "license": "PDDL-1.0",
     "c:id": "L1T",
     "c:name": "Landsat L1T",
-    "c:description": "Landat 8 imagery that is radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
+    "c:description": "Landat 8 imagery that is radiometrically calibrated and orthorectified using ground points and Digital Elevation Model (DEM) data to correct relief displacement.",
     "eo:gsd": 30.0,
     "eo:cloud_cover" : 10,
     "eo:off_nadir" : 0.000,
@@ -144,8 +143,5 @@
       "required": true,
       "eo:bands": ["11"]
     }
-
-
   }
-
  }
