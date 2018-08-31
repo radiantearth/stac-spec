@@ -66,7 +66,7 @@ custom fields.
 | ---------- | ------ | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | datetime   | string | Date and Time | **REQUIRED.** The searchable date and time of the assets, in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).                                                                                         |
 | provider   | string | Provider      | Provider name                                                                                                                                                                                                                                                    |
-| license    | string | Data License  | Dataset's license(s) as a [SPDX License identifier or expression](https://spdx.org/licenses/) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
+| license    | string | Data License  | Items' license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
 
 **datetime** is likely the acquisition (in the case of single camera type captures) or the 'nominal'
 or representative time in the case of assets that are combined together. Though time can be a
@@ -117,7 +117,7 @@ or streamed. It is allowed to add additional fields.
 | ---------- | ------ | ------------------------------------------------------------------------------------- |
 | href       | string | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
 | name       | string | The display name for clients and users.                                               |
-| mime_type  | string | MIME-type of the asset (see chapter on MIME types below).                             |
+| type       | string | MIME-type of the asset (see chapter on MIME types below).                             |
 
 #### Asset types
 
