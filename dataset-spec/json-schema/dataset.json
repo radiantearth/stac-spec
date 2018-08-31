@@ -1,0 +1,157 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "id": "dataset.json#",
+  "title": "Dataset Item",
+  "description": "This object represents the dataset in a SpatioTemporal Asset Catalog.",
+  "type": "object",
+  "required": [
+    "name",
+    "description",
+    "license",
+    "extent",
+    "links"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "name": {
+      "title": "Identifier",
+      "type": "string"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "description": {
+      "title": "Description",
+      "type": "string"
+    },
+    "keywords": {
+      "title": "Keywords",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "version": {
+      "title": "Dataset Version",
+      "type": "string"
+    },
+    "license": {
+      "title": "Dataset License Name",
+      "type": "string"
+    },
+    "provider": {
+      "type": "array",
+      "items": {
+        "properties": {
+          "name": {
+            "title": "Organization Name",
+            "type": "string"
+          },
+          "url": {
+            "title": "Organization homepage",
+            "type": "string",
+            "format": "url"
+          }
+        }
+      }
+    },
+    "host": {
+      "required": [
+        "name",
+        "scheme",
+        "id"
+      ],
+      "properties": {
+        "name": {
+          "title": "Organization name",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "scheme": {
+          "title": "Scheme",
+          "type": "string",
+          "enum": [
+            "S3",
+            "GCS",
+            "URL",
+            "OTHER"
+          ]
+        },
+        "id": {
+          "title": "Identifirer",
+          "type": "string"
+        },
+        "region": {
+          "title": "Region",
+          "type": "string"
+        },
+        "requester_pays": {
+          "title": "Requester Pays",
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "additionalProperties": true
+    },
+    "extent": {
+      "title": "Extents",
+      "type": "object",
+      "required": [
+        "spatial",
+        "temporal"
+      ],
+      "properties": {
+        "spatial": {
+          "title": "Spatial extent",
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "temporal": {
+          "title": "Temporal extent",
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "href",
+          "rel"
+        ],
+        "properties": {
+          "href": {
+            "title": "Link",
+            "type": "string"
+          },
+          "rel": {
+            "title": "Relation",
+            "type": "string"
+          },
+          "type": {
+            "title": "type",
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  }
+}
