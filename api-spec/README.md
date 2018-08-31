@@ -33,6 +33,34 @@ The return format is a [GeoJSON](http://geojson.org) feature collection with fea
 [json spec]((../json-spec/json-spec.md) for STAC. It returns to a limit optionally requested by the client, and includes 
 pageable links to iterate through any results past that limit.
 
+## API Fragments
+
+The STAC API should be simple to implement and extensible. To support that goal, we are breaking the extensions out into fragments.
+These fragments should allow an implementor to layer on additional functionality as needed.
+
+We have structured our OpenAPI yaml files so that that can be joined together with import statements to prevent copying the 
+extensions into every possibly combination. In the api-spec folder you can expect to find complete OpenAPI definitions that are
+useable as is. For developers who want to author your own extension or combine extensions into a new OpenAPI defintion file see below.
+
+### Definitions
+
+The definitions folder contains the yaml files that will import fragments and output a complete definition. These are not directly usable in OpenAPI as they have import directives that need to be resolved.
+
+See [yaml-files](https://www.npmjs.com/package/yaml-files) for the syntax to import yaml fragments.
+
+### Fragments
+
+The fragments folder contains valid yaml that is intended to be merged into an openapi document. It should be possible to import one or more fragments at the same time to create a new STAC+extensions definition. 
+
+### Building OpenAPI Definitions
+
+To rebuild all definitions run the included nodejs scripts.
+
+```
+npm install
+npm run generate-all
+```
+
 ## Specification
 
 The definitive specification for STAC is the [OpenAPI](http://openapis.org) 3.0 yaml document. This is available
