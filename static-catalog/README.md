@@ -83,9 +83,6 @@ type files. In order to support multiple "root" catalogs, the recommended practi
 - current/catalog.json
 - archive/catalog.json
 
-A `catalog.html` is recommended with each `catalog.json` to make the catalog crawl-compatible.
-(Search engines do not recognize JSON as a crawlable data type)
-
 ### Static Catalog Flexibility
 
 Static STAC Catalogs are defined for flexibility. They only require a handful of fields, and
