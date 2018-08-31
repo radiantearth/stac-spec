@@ -16,7 +16,7 @@
         {
           "oneOf": [
             {
-              "$ref": "http://json.schemastore.org/geojson.json#/definitions/feature"
+              "$ref": "geojson.json#/definitions/feature"
             }
           ]
         },
@@ -126,8 +126,7 @@
     "asset": {
       "type": "object",
       "required": [
-        "href",
-        "mime_type"
+        "href"
       ],
       "properties": {
         "href": {
