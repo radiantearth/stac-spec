@@ -135,7 +135,7 @@
         "name": {
           "type": "string"
         },
-        "mime_type": {
+        "type": {
           "type": "string"
         }
       }
