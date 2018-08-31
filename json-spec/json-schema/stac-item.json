@@ -106,7 +106,7 @@
       "type": "object",
       "required": [
         "href",
-        "mime_type"
+        "type"
       ],
       "properties": {
         "href": {
@@ -115,7 +115,7 @@
         "name": {
           "type": "string"
         },
-        "mime_type": {
+        "type": {
           "type": "string"
         }
       }
