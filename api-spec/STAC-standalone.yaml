@@ -23,8 +23,7 @@ servers:
 paths:
   /stac:
     get:
-      summary: >-
-        Return a catalog definition json
+      summary: Return a catalog definition json
       tags:
         - STAC
       responses:
@@ -376,10 +375,10 @@ components:
         description:
           type: string
           example: Catalog of NAIP Imagery
-        license: 
+        license:
           type: string
           example: PDDL-1.0
-        links: 
+        links:
           type: array
           items:
             type: object
@@ -447,7 +446,7 @@ components:
         bbox:
           $ref: '#/components/schemas/bbox'
         geometry:
-          $ref: "http://json.schemastore.org/geojson.json#/definitions/geometry"
+          $ref: 'http://json.schemastore.org/geojson.json#/definitions/geometry'
         type:
           type: string
           description: The GeoJSON type
