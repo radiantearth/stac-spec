@@ -78,7 +78,7 @@
       "type": "GeoTIFF",
       "format": "COG",
       "required": true,
-      "eo_bands": [
+      "eo:bands": [
         "5"
       ]
     },
@@ -87,7 +87,7 @@
       "type": "GeoTIFF",
       "format": "COG",
       "required": true,
-      "eo_bands": [
+      "eo:bands": [
         "6"
       ]
     },
@@ -96,7 +96,7 @@
       "type": "GeoTIFF",
       "format": "COG",
       "required": true,
-      "eo_bands": [
+      "eo:bands": [
         "7"
       ]
     },
@@ -105,7 +105,7 @@
       "type": "GeoTIFF",
       "format": "COG",
       "required": true,
-      "eo_bands": [
+      "eo:bands": [
         "8"
       ]
     }
