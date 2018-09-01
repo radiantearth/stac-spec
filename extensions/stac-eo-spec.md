@@ -82,6 +82,64 @@ numbers of several popular instruments.
 | lwir11      | 10.5 - 11.5     |           |           | 10        |            | 31    |
 | lwir12      | 11.5 - 12.5     |           |           | 11        |            | 32    |
 
+### Processing level fields
+
+We define **direct conversion** as a process that converts the input data to a physical measurement
+using only information available in the input data and its metadata. The process may be
+an identity function when data is already provided as the physical measurement.
+
+An Item is said to provide
+a processing level feature if there exists a direct conversion from data as presented to the
+physical measurement associated with the processing level.
+
+#### Radiometric processing features
+
+| Field Name                | Type                     | Description                                                                                                                                                                                                                                                |
+| ------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| eo:digital_number         | boolean                  | Data is a digital number that can not be converted to a physical quantity through a direct conversion                                                                                                                                                    |
+| eo:at_sensor_radiance     | boolean                  | At sensor radiance may be obtained by a direct conversion from original data.                                                                                                                                                     |
+| eo:at_sensor_reflectance  | boolean                  | At sensor reflectance may be obtained by a direct conversion from original data.                                                                                                                                                 |
+| eo:ground_reflectance     | boolean                  | Ground reflectance may be obtained by a direct conversion from original data.                                                                                                                                                     |
+
+#### Examples
+
+| Data                                     | eo:digital_number | eo:at_sensor_radiance | eo:at_sensor_reflectance | eo:ground_reflectance |
+| ---------------------------------------- | ----------------- | --------------------- | ------------------------ | --------------------- |
+| Landsat 8 Collection L1TP, L1GT, L1GS    |                   | True                  | True                     | False                 |  
+| Sentinel 2 2A                            |                   | False                 | False                    | True                  |  
+| Sentinel 2 1C                            |                   | False                 | True                     | False                 |  
+| Sentinel 2 1B                            |                   | True                  | False                    | False                 |  
+| Planetscope 1B                           |                   | True                  | False                    | False                 |  
+| Planetscope 3B                           |                   | True/False            | False                    | True/False            |  
+| CBERS-4 L2, L4                           |                   | True                  | False                    | False                 |
+
+##### References
+
+[Landsat Collection Definition Document](https://landsat.usgs.gov/sites/default/files/documents/LSDS-1656_Landsat_Level-1_Product_Collection_Definition.pdf)
+
+[Sentinel 2 Processing Levels](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi/processing-levels)
+
+[Planet Imagery Product Specifications](https://assets.planet.com/docs/Planet_Combined_Imagery_Product_Specs_letter_screen.pdf)
+
+#### Geometric processing features
+
+| Field Name                | Type                     | Description                                                                                                                                                                                                                                                |
+| ------------------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| eo:geo_systematic         | boolean                  | Geometric location obtained from satellite's auxiliary telemetry.                                                                                                                                                     |
+| eo:geo_ortho              | boolean                  | Orthorectified.                                                                                                                                                                                                       |
+| eo:geo_gcp                | boolean                  | Registered with ground control points.                                                                                                                                                                                |
+
+#### Examples
+
+| Data                                     | eo:geo_systematic | eo:geo_ortho          | eo:geo_gcp            |
+| -----------------------------------------| ----------------- | --------------------- | --------------------- |
+| Landsat Collection 1 L1TP                |                   | True                  | True                  |
+| Landsat Collection 1 L1GT                |                   | True                  | False                 |
+| Landsat Collection 1 L1GS                | True              | False                 | False                 |
+| Sentinel 2 1C, 1A                        |                   | True                  | True                  |
+| CBERS-4 L2                               | True              | False                 | False                 |
+| CBERS-4 L4                               |                   | True                  | True                  |
+
 ## Extensions
 
 The [extensions page](../extensions/) gives an overview about related extensions.
