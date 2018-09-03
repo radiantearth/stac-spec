@@ -1,9 +1,0 @@
-{
-  "name": "flat_file",
-  "version": "1.0.0",
-  "author": "",
-  "license": "Apache-2.0",
-  "dependencies": {
-    "ajv-cli": "^2.1.0"
-  }
-}
