@@ -48,20 +48,20 @@
     "cbers:path": 90,
     "cbers:row": 84
   },
-  "links": {
-    "self": {
+  "links": [
+    {
       "rel": "self",
       "href": "https://cbers-stac.s3.amazonaws.com/CBERS4/MUX/090/084/CBERS_4_MUX_20170528_090_084_L2.json"
     },
-    "catalog": {
+    {
       "rel": "catalog",
       "href": "https://cbers-stac.s3.amazonaws.com/CBERS4/MUX/090/catalog.json"
     },
-    "collection": {
+    {
       "rel": "collection",
       "href": "https://cbers-stac.s3.amazonaws.com/collections/CBERS_4_MUX_L2_collection.json"
     }
-  },
+  ],
   "assets": {
     "thumbnail": {
       "href": "https://s3.amazonaws.com/cbers-meta-pds/CBERS4/MUX/090/084/CBERS_4_MUX_20170528_090_084_L2/CBERS_4_MUX_20170528_090_084.jpg",

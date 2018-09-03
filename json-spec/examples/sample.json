@@ -21,9 +21,9 @@
     "provider": "http://www.cool-sat.com",
     "license": "CC-BY-4.0"
   },
-  "links": {
-    "self": { "rel": "self", "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json"}
-  },
+  "links": [
+    { "rel": "self", "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json"}
+  ],
   "assets": {
     "analytic": {
         "href": "relative-path/to/analytic.tif",
