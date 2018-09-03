@@ -18,8 +18,6 @@ a number of real world examples. See the [readme](examples/README.md) for additi
 The primary one is *[stac-item.json](json-schema/stac-item.json)*, and it also includes the necessary *[geojson.json](json-schema/geojson.json)*
 schema definition, which is a dependency.
 
-**Schema Validation:** The *[package.json](package.json)* file defines packaging for node.js NPM module installation to do
-actual schema valiadtion. The instructions are below.
 
 ## Schema Validation
 
