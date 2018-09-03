@@ -3,7 +3,8 @@
 ## Overview
 
 The core of a SpatioTemporal Asset Catalog (STAC) is set of JSON fields defined by the [STAC json spec](json-spec.md).
-These define an `Item` of a catalog, which can be served up in static or dynamic catalogs. 
+These define an `Item` of a catalog, which can stand as independent entities to be indexed and browsed or returned in 
+search results.
 
 ## In this directory
 
