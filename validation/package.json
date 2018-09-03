@@ -1,0 +1,17 @@
+{
+  "name": "stac_validation",
+  "description": "Package to validate STAC items, catalogs and datasets.",
+  "version": "0.6.0",
+  "author": "STAC Team",
+  "license": "Apache-2.0",
+  "repository": "https://github.com/radiantearth/stac-spec",
+  "dependencies": {
+    "ajv-cli": "^2.1.0"
+  },
+  "scripts": {
+    "validate_item": "node_modules/.bin/ajv validate -s ../json-spec/json-schema/stac-item.json -r ../json-spec/json-schema/geojson.json --verbose",
+    "validate_extension": "node_modules/.bin/ajv validate --verbose",
+    "validate_catalog": "node_modules/.bin/ajv validate -s ../static-catalog/json-schema/catalog.json -r ../json-spec/json-schema/geojson.json --verbose",
+    "validate_dataset": "node_modules/.bin/ajv validate -s ../dataset-spec/json-schema/dataset.json --verbose"
+  }
+}

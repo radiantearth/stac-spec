@@ -23,34 +23,7 @@ actual schema valiadtion. The instructions are below.
 
 ## Schema Validation
 
-Any JSON Schema validation tool can be used, just run the json data to test against the stac-item.json schema, and be sure to include geojson.json schema in the testing. 
-
-This directory includes installation instructions for a javascript validator, the following shows how to use it.
-
-### Initialization
-
-In this directory run:
-
-```bash
-npm install
-```
-This installs node.js validation modules, in a node_modules directory created in this directory.
-
-### Validation
-
-To run the validation call the ajv binary in the newly created folder:
-
-```bash
-node_modules/.bin/ajv validate -s json-schema/stac-item.json -r json-schema/geojson.json -d examples/sample.json --verbose
-node_modules/.bin/ajv validate -s json-schema/stac-item.json -r json-schema/geojson.json -d examples/landsat8-sample.json --verbose
-```
-
-These should return as valid. The same validate command can be used for any other sample data.
-
-**Warning:** Not all validation is fully complete. The validator does not yet check for `self` 
-links. The `href` checking is probably too loose right now, it just checks for a string, see the 
-'relative vs absolute links' section  in the [Item spec](json-spec.md) for reasons why. 
-
+Instruction on schema validation for STAC Items can be found in the [validation instructions](validation/README.md).
 
 ## Static Catalog Evolution 
 
