@@ -47,9 +47,9 @@
 
     },
 
-    "links": {
-        "self": { "rel": "self", "href": "http://naip.org/catalog/al/2013/1m/30087/m_3008718_sw_16_1_20130805.json" }
-    },
+    "links": [
+        { "rel": "self", "href": "http://naip.org/catalog/al/2013/1m/30087/m_3008718_sw_16_1_20130805.json" }
+    ],
 
     "assets": {
       "metadata": {

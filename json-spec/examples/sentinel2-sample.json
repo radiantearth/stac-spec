@@ -1,12 +1,12 @@
 {
   "type": "Feature",
   "id": "S2A_OPER_MSI_L2A_TL_SGS__20180524T190423_A015250_T26SKD_N02.08",
-  "links": {
-    "self": {
+  "links": [
+    {
       "rel": "self",
       "href": "s3://sentinel-s2-l2a-catalog/tiles/35/V/MK/2018/6/5/0/catalog.json"
     }
-  },
+  ],
   "bbox": [
     25.0815883093,
     62.1306897126,
