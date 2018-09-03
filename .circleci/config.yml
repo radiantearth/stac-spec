@@ -13,13 +13,15 @@ jobs:
       - run:
           name: install
           command: |
-            cd json-spec
+            cd validation
             npm install
       
       - run:
           name: validate
           command: |
-            cd json-spec
-            echo 'doing nothing'
-            # node_modules/.bin/ajv validate -s json-schema/stac-item.json -r json-schema/geojson.json -d sample.json --verbose
-            # node_modules/.bin/ajv validate -s json-schema/stac-item.json -r json-schema/geojson.json -d examples/landsat8-sample.json --verbose
+            cd validation
+            npm run validate_catalog -- -d ../static-catalog/examples/catalog.json
+            npm run validate_dataset -- -d ../dataset-spec/examples/sentinel2.json
+            npm run validate_extension -- -s ../extensions/scientific/schema.json -d ../extensions/scientific/example-merraclim.json
+            npm run validate_item -- -d ../json-spec/sample.json
+            # ToDo: More files should be validated

@@ -16,7 +16,7 @@
         {
           "oneOf": [
             {
-              "$ref": "http://json.schemastore.org/geojson.json#/definitions/feature"
+              "$ref": "geojson.json#/definitions/feature"
             }
           ]
         },
@@ -37,31 +37,10 @@
             "links": {
               "title": "Item links",
               "description": "Links to item relations",
-              "type": "object",
-              "properties": {
-                "self": {
-                  "allOf": [
-                    {
-                      "$ref": "#/definitions/link"
-                    },
-                    {
-                      "properties": {
-                        "rel": {
-                          "type": "string",
-                          "pattern": "^self$"
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "patternProperties": {
-                ".+": {
-                  "$ref": "#/definitions/link"
-                }
-              },
-              "required": ["self"],
-              "additionalProperties": false
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/link"
+              }
             },
             "assets": {
               "title": "Asset links",
@@ -126,8 +105,7 @@
     "asset": {
       "type": "object",
       "required": [
-        "href",
-        "type"
+        "href"
       ],
       "properties": {
         "href": {
