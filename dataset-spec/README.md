@@ -7,7 +7,7 @@ The Datasets Spec extends the [Catalog Spec](../static-catalog/) with additional
 A Dataset can be represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Dataset and Catalog.
 
 * [Example (Sentinel 2)](example-s2.json)
-* [JSON Schema](json-schema/dataset.json)
+* [JSON Schema](json-schema/dataset.json) - please see the [validation instructions](../validation/README.md)
 
 *\* There is no standardized name for the concept we are describing here. Others called it: dataset series (ISO 19115), collection (CNES, NASA), dataset (JAXA), dataset series (ESA), product (JAXA).*
 
