@@ -13,7 +13,7 @@ A Catalog can be represented in JSON format. Any JSON object that contains all t
 is a valid STAC Catalog.
 
 - [Examples](examples.md)
-- [JSON Schema](json-schema/catalog.json)
+- [JSON Schema](json-schema/catalog.json) - please see the [validation instructions](../validation/README.md)
 
 ## WARNING
 
