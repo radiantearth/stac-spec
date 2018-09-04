@@ -11,8 +11,8 @@ endpoints of a `/stac/search` endpoint.
 ## In this directory
 
 
-**The Specification:** The main definition of the STAC JSON specification is in 
-*[json-spec.md](json-spec.md)*. It includes an overview and in depth explanation of the fields.
+**The Specification:** The main definition of the STAC Item specification is in 
+*[item-spec.md](item-spec.md)*. It includes an overview and in depth explanation of the fields.
 
 **Examples:** For samples of how STAC Items can be implemented the *[examples/](examples/)* folder 
 contains a number of real world examples. See the [readme](examples/README.md) for additional 

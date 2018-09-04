@@ -1,8 +1,8 @@
 # STAC Dataset Spec
 
-[STAC Items](https://github.com/radiantearth/stac-spec/json-spec/) are focused on search within a dataset*. Another topic of interest is the search of datasets, instead of within a dataset.  The Dataset Spec is an independent spec that STAC Items are *strongly recommended* to provide a link to a dataset definition. Other parties can also independently use this spec to describe datasets in a lightweight way.
+[STAC Items](https://github.com/radiantearth/stac-spec/item-spec/) are focused on search within a dataset*. Another topic of interest is the search of datasets, instead of within a dataset.  The Dataset Spec is an independent spec that STAC Items are *strongly recommended* to provide a link to a dataset definition. Other parties can also independently use this spec to describe datasets in a lightweight way.
 
-The Datasets Spec extends the [Catalog Spec](../static-catalog/) with additional fields to describe the set of items in the catalog. It shares the same fields and therefore every Dataset is also a valid Catalog. Datasets can have both parent Catalogs and Datasets and child Items, Catalogs and Datasets. 
+The Datasets Spec extends the [Catalog Spec](../catalog-spec/) with additional fields to describe the set of items in the catalog. It shares the same fields and therefore every Dataset is also a valid Catalog. Datasets can have both parent Catalogs and Datasets and child Items, Catalogs and Datasets. 
 
 A Dataset can be represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Dataset and Catalog.
 
@@ -84,10 +84,10 @@ The following types are commonly used as `rel` types in the Link Object of a Dat
 | Type    | Description                                                  |
 | ------- | ------------------------------------------------------------ |
 | self    | **REQUIRED.** *Absolute* URL to the dataset file itself. This is required, to represent the location that the file can be found online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root    | URL to the root [STAC Catalog](../static-catalog/) or Dataset. |
-| parent  | URL to the parent [STAC Catalog](../static-catalog/) or Dataset. |
-| child   | URL to a child [STAC Catalog](../static-catalog/) or Dataset. |
-| item    | URL to a [STAC Item](../json-spec/).                         |
+| root    | URL to the root [STAC Catalog](../catalog-spec/) or Dataset. |
+| parent  | URL to the parent [STAC Catalog](../catalog-spec/) or Dataset. |
+| child   | URL to a child [STAC Catalog](../catalog-spec/) or Dataset. |
+| item    | URL to a [STAC Item](../item-spec/).                         |
 | license | The license URL for the dataset SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in separate file and link to this file. |
 
 ## Extensions

@@ -25,7 +25,7 @@ incorporated.
 ## Catalog Definitions
 
 There are two required element types of a Catalog: Catalog and Item. A STAC Catalog
-points to [STAC Items](../json-spec/), or to other STAC catalogs. The top-most parent catalog is
+points to [STAC Items](../item-spec/), or to other STAC catalogs. The top-most parent catalog is
 called the "root" catalog. The root catalog generally defines information about the catalog as a
 whole, such as name, description, licensing, contact information and so forth. However, it is
 strongly recommended that a "root" catalog define metadata fields that apply to the entire `catalog`
@@ -224,10 +224,10 @@ The following types are commonly used as `rel` types in the Link Object of a Dat
 | Type    | Description                                                                                                                                                                                                                                                                               |
 | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | self    | **REQUIRED.** _Absolute_ URL to the catalog file itself. This is required, to represent the location that the file can be found online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root    | **REQUIRED.** _Absolute_ URL to the root [STAC Catalog](../static-catalog/), even if it's the root and points to itself.                                                                                                                                                                  |
-| parent  | URL to the parent [STAC Catalog](../static-catalog/). Non-root catalogs should include a link to their parent.                                                                                                                                                                            |
-| child   | URL to a child [STAC Catalog](../static-catalog/).                                                                                                                                                                                                                                        |
-| item    | URL to a [STAC Item](../json-spec/).                                                                                                                                                                                                                                                      |
+| root    | **REQUIRED.** _Absolute_ URL to the root [STAC Catalog](../catalog-spec/), even if it's the root and points to itself.                                                                                                                                                                  |
+| parent  | URL to the parent [STAC Catalog](../catalog-spec/). Non-root catalogs should include a link to their parent.                                                                                                                                                                            |
+| child   | URL to a child [STAC Catalog](../catalog-spec/).                                                                                                                                                                                                                                        |
+| item    | URL to a [STAC Item](../item-spec/).                                                                                                                                                                                                                                                      |
 | license | The license URL for the catalog SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in separate file and link to this file.                           |
 
 **Note:** A link to at least one `item` or `child` catalog is _required_.
