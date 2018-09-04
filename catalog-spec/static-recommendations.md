@@ -26,7 +26,7 @@ definition for clients. See for example DigitalGlobe's definition:
 ```json
 
    {	
-      "href": "https://digitalglobe.com/static-catalog/L1B/15NOV09180446-M1BS-056823192010_01_P002.TIF",
+      "href": "https://digitalglobe.com/catalog-spec/L1B/15NOV09180446-M1BS-056823192010_01_P002.TIF",
       "metadata": {
         "filetype": "geotif",
         "content": "image",

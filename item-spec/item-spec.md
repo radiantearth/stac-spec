@@ -6,18 +6,18 @@ a few required fields that identify the time range and assets of the item. An It
 granular entity in a STAC, containing the core metadata that enables any client to search or crawl
 online catalogs of spatial 'assets' - satellite imagery, derived data, DEM's, etc.
 
-The same Item definition is used in both '[static catalogs](../static-catalog/)' and
-'[catalog apis](../api-spec/)'. Static catalogs are simply sets of items that are linked online,
-generally served by simple web servers and used for crawling data. Catalog API's enable dynamic
+The same Item definition is used in both '[catalogs](../catalog-spec/)' and
+the '[/stac/search](../api-spec/)' endpoint. Catalogs are simply sets of items that are linked online,
+generally served by simple web servers and used for crawling data. The search endpoint enables dynamic
 queries, for example selecting all Items in Hawaii on June 3, 2015, but the results they return are
 FeatureCollections of items.
 
-Items can be represented in JSON format and are very flexible. Any JSON object that contains all the
+Items are represented in JSON format and are very flexible. Any JSON object that contains all the
 required fields is a valid STAC Item.
 
 - Examples:
-  - See the [sample.json](sample.json) for a minimal example, as well as
-    [sample-full.json](sample-full.json) for a more fleshed example that contains a number of
+  - See the [examples/sample.json](sample.json) for a minimal example, as well as
+    [examples/sample-full.json](sample-full.json) for a more fleshed example that contains a number of
     current best practices.
   - There are also a few more real world inspired samples in the [examples/](examples/) folder.
 - [JSON Schema](json-schema/stac-item.json)
@@ -57,7 +57,7 @@ Items that are linked to, but the best practices around this are still emerging.
 ### Properties Object
 
 The Properties object adds additional metadata to the GeoJSON Object. Basically, each entry is a
-key-value pair. The values SHOULD never be an array or object to avoid GIS systems rendering them.
+key-value pair. The values SHOULD not be an array or object to avoid GIS systems mis-rendering them.
 Metadata that require an object or array SHOULD be placed a level up, directly in the GeoJSON/STAC
 Item object. Additional fields can be introduced through extensions. It is generally allowed to add
 custom fields.
@@ -81,13 +81,14 @@ This object describes a relationship with another entity. Data providers are adv
 with the links section, to describe things like the catalog an item is in, related items, parent or
 child items (modeled in different ways, like an 'acquisition' or derived data). The `self` link is
 required as an absolute URL, to represent the location that the `Item` can be found online. It is
-allowed to add additional fields such as a `title`.
+allowed to add additional fields such as a `title` and `type`.
 
 | Field Name | Type   | Description                                                                                                                         |
 | ---------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------- |
 | href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed.                                |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information. |
-| type       | string | MIME-type of the referenced entity.                                                                                                 |
+| type       | string | MIME-type of the referenced entity. 																								|
+| title      | string | A human readable title to be used in rendered displays of the link 																	|
 
 #### Relation types
 
@@ -96,8 +97,8 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | Type    | Description                                                                                                                                                                                                                                                                            |
 | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | self    | **REQUIRED.** _Absolute_ URL to the item file itself. This is required, to represent the location that the file can be found online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root    | URL to the root [STAC Catalog](../static-catalog/) or [Dataset](../dataset-spec/).                                                                                                                                                                                                     |
-| parent  | URL to the parent [STAC Catalog](../static-catalog/) or [Dataset](../dataset-spec/).                                                                                                                                                                                                   |
+| root    | URL to the root [STAC Catalog](../catalog-spec/) or [Dataset](../dataset-spec/).                                                                                                                                                                                                     |
+| parent  | URL to the parent [STAC Catalog](../catalog-spec/) or [Dataset](../dataset-spec/).                                                                                                                                                                                                   |
 | license | The license URL for the item SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in separate file and link to this file.                           |
 
 #### Relative vs Absolute links
