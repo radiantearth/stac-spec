@@ -1,16 +1,13 @@
 # STAC Catalog Spec
 
-A STAC Static Catalog is the simplest possible catalog of spatiotemporal items. It is designed to
-work as a set of flat files on an http web server or an object store like Amazon S3 or Google Cloud
-Storage.
+This document explains the structure and content of a STAC `Catalog`. A STAC Catalog is a 
+collection of SpatioTemporal `Item`s. These `Item`s can be linked to directly from a Catalog,
+or the Catalog can link to other Catalogs (often called sub-Catalogs) that contain links to Items.
+The division of sub-catalogs is up to the implementor, but is generally done to aid the ease of 
+online browsing by people.
 
-Static Catalogs define a network of linked items for the purpose of automated crawling. A static
-catalog is not intended to be queried. A static catalog is designed to be as reliable as possible,
-and can serve as the canonical source for dynamic Catalog API's. For example, a crawler could walk a
-static catalog to create a search index for queries.
-
-A Catalog can be represented in JSON format. Any JSON object that contains all the required fields
-is a valid STAC Catalog.
+Catalogs are not intended to be queried - their purpose is more to be browsed by people and crawled
+by machines to build a search index. A Catalog can be represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Catalog.
 
 - [Examples](examples.md)
 - [JSON Schema](json-schema/catalog.json) - please see the [validation instructions](../validation/README.md)
@@ -25,9 +22,9 @@ drastically. Using the specification now will ensure that needed changes can be 
 everything is locked in. So now is an ideal time to implement, as your feedback will be directly
 incorporated.
 
-## Static Catalog Definitions
+## Catalog Definitions
 
-There are two required element types of a STAC Static Catalog: Catalog and Item. A STAC Catalog
+There are two required element types of a Catalog: Catalog and Item. A STAC Catalog
 points to [STAC Items](../json-spec/), or to other STAC catalogs. The top-most parent catalog is
 called the "root" catalog. The root catalog generally defines information about the catalog as a
 whole, such as name, description, licensing, contact information and so forth. However, it is
@@ -83,9 +80,9 @@ type files. In order to support multiple "root" catalogs, the recommended practi
 - current/catalog.json
 - archive/catalog.json
 
-### Static Catalog Flexibility
+### Catalog Flexibility
 
-Static STAC Catalogs are defined for flexibility. They only require a handful of fields, and
+STAC Catalogs are defined for flexibility. They only require a handful of fields, and
 implementors are free to add most any json field or object that they want. This is a design goal, so
 that it is quite easy to implement a catalog and be able to adapt it to most any data model.
 
@@ -94,10 +91,10 @@ around asset definition, links, and catalog level metadata, so that clients will
 more meaningful information. In the meantime implementors are encouraged to do what makes sense for
 them, and to check out the examples and other implementations for emerging best practices.
 
-### Static Catalog Evolution
+### Catalog Evolution
 
 The core concept is to be able to flexibly represent full catalogs of assets. Many organizations
-have very complex data models, representing a number of real world variables. Static Catalogs are
+have very complex data models, representing a number of real world variables. Catalogs are
 focused on search of the data, and so items should contain the core metadata fields and downloadable
 assets. So things like satellite ephemeris and obscure metadata fields only relevant to
 ortho-rectification experts is less the primary goal. But organizations are encouraged to adapt the
