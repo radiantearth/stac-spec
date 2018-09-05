@@ -11,7 +11,7 @@ few best practices to evolve and [improvements](roadmap.md) to the spec that wil
 
 ## Implementations and Feedback
 
-The best way to help out with STAC is to try to implement the specification, either a [static catalog](static-catalog/), a 
+The best way to help out with STAC is to try to implement the specification, either a [static catalog](catalog-spec/), a 
 [catalog api](api-spec) or even both. This can be done by extending existing catalog software, creating new software, or 
 standing up a service end point that exposes data. Implementations using the specification as it stands will likely 
 have to make a number of decisions while building, as there is a lot that is left unspecified. The best thing to do 
