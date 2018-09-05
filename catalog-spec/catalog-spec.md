@@ -1,4 +1,4 @@
-# STAC Catalog Spec
+# STAC Catalog Specification
 
 This document explains the structure and content of a STAC `Catalog`. A STAC Catalog is a 
 collection of SpatioTemporal `Item`s. These `Item`s can be linked to directly from a Catalog,
@@ -80,58 +80,17 @@ type files. In order to support multiple "root" catalogs, the recommended practi
 - current/catalog.json
 - archive/catalog.json
 
-### Catalog Flexibility
-
-STAC Catalogs are defined for flexibility. They only require a handful of fields, and
-implementors are free to add most any json field or object that they want. This is a design goal, so
-that it is quite easy to implement a catalog and be able to adapt it to most any data model.
-
-But it is expected that some more firm recommendations and even requirements will emerge, especially
-around asset definition, links, and catalog level metadata, so that clients will be able to glean
-more meaningful information. In the meantime implementors are encouraged to do what makes sense for
-them, and to check out the examples and other implementations for emerging best practices.
-
-### Catalog Evolution
-
-The core concept is to be able to flexibly represent full catalogs of assets. Many organizations
-have very complex data models, representing a number of real world variables. Catalogs are
-focused on search of the data, and so items should contain the core metadata fields and downloadable
-assets. So things like satellite ephemeris and obscure metadata fields only relevant to
-ortho-rectification experts is less the primary goal. But organizations are encouraged to adapt the
-core concepts to more complex relationships, extending in a variety of ways. The hope is that naive
-clients can always garner the space and time of geospatial assets, while creating an open community
-of evolving shared practices and metadata fields to expose all geospatial asset information in a
-common way.
-
-Thus the 'core' static catalog spec will aim to remain relatively simple, but will always look to
-build in the right extension mechanisms for others to use the core in ways that are valuable for
-their domain or company.
-
-#### Recommendations
-
-The evolution of static catalogs will take place in this repository, primarily in the
-'example-implementations' folder. This will show how a variety of providers at least could represent
-their catalogs in STAC static catalogs (and as things mature the examples will mirror their
-production catalogs). The various recommendations can be viewed in the
-[Static Catalog Recommendations](static-recommendations.md) document. Some of these will likely
-evolve to be requirements, or at least documented specification options and extensions.
-
 ## Catalog fields
 
-| Element     | Type            | Description                                                                                                                                                                                                                           |
-| ----------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name        | string          | **REQUIRED.** Name for the catalog.                                                                                                                                                                                                   |
-| description | string          | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation.                                                                |
-| license     | string          | License as a [SPDX License identifier](https://spdx.org/licenses/) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
-| keywords    | [string]        | List of keywords describing the catalog.                                                                                                                                                                                              |
-| provider    | Provider Object | Storage information for the catalog.                                                                                                                                                                                                  |
-| contact     | Contact Object  | Contact information about the organization providing the catalog.                                                                                                                                                                     |
-| homepage    | string          | Homepage for the catalog.                                                                                                                                                                                                             |
-| links       | [Link Object]   | **REQUIRED.** A list of references to other documents.                                                                                                                                                                                |
+| Element     | Type          | Description                                                  |
+| ----------- | ------------- | ------------------------------------------------------------ |
+| name        | string        | **REQUIRED.** Name for the catalog.                          |
+| description | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| links       | [Link Object] | **REQUIRED.** A list of references to other documents.       |
 
 **Examples:**
 
-A _"root" catalog_ of
+A catalog of
 [NAIP imagery](https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/)
 might look something like this:
 
@@ -139,72 +98,34 @@ might look something like this:
 {
   "name": "NAIP",
   "description": "Catalog of NAIP Imagery",
-  "license": "PDDL-1.0",
-
   "links": [
-    { "rel": "self", "href": "catalog.json" },
-    { "rel": "child", "href": "naip/30087/catalog.json" },
-    {
-      "rel": "root",
-      "href": "https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/catalog.json"
+    { "rel": "self", "href": "https://www.fsa.usda.gov/naip/catalog.json" },
+    { "rel": "child", "href": "30087/catalog.json" },
+    { "rel": "root", "href": "https://www.fsa.usda.gov/catalog.json"
     }
-  ],
-
-  "contact": {
-    "name": "Supervisor Customer Services Section",
-    "email": "apfo.sales@slc.usda.gov",
-    "phone": "801-844-2922",
-    "url": "https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/"
-  },
-
-  "keywords": ["aerial"],
-  "homepage": "http://wherever",
-
-  "provider": {
-    "scheme": "s3",
-    "region": "us-east-1",
-    "requesterPays": "true"
-  }
+  ]
 }
 ```
 
-_Child catalog:_
+In addition, the catalog shown above is strongly recommended to also follow the [Dataset specification](../dataset-spec/dataset-spec.md) to add more information about the NAIP imagery such as the spatial and temporal extents, a license and more.
+
+A typical '_child_' catalog could look similar:
 
 ```json
 {
   "name": "NAIP",
   "description": "Catalog of NAIP Imagery - 30087",
   "links": [
-    { "rel": "self", "href": "https://www.fsa.usda.gov/my-real-home/naip/30087/catalog.json" },
-    { "rel": "parent", "href": "catalog.json" },
-    {
-      "rel": "root",
-      "href": "https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/catalog.json"
-    },
-    { "rel": "item", "href": "30087/m_3008718_sw_16_1_20130805.json" },
-    { "rel": "item", "href": "30087/m_3008718_sw_16_1_20130806.json" }
+    { "rel": "self", "href": "https://www.fsa.usda.gov/naip/30087/catalog.json" },
+    { "rel": "parent", "href": "../catalog.json" },
+    { "rel": "root", "href": "https://www.fsa.usda.gov/catalog.json" },
+    { "rel": "item", "href": "m_3008718_sw_16_1_20130805.json" },
+    { "rel": "item", "href": "m_3008718_sw_16_1_20130806.json" }
   ]
 }
 ```
 
-### Contact Object
-
-| Field Name | Type   | Description                                     |
-| ---------- | ------ | ----------------------------------------------- |
-| name       | string | The name of the organization or the individual. |
-| email      | string | Email of the catalog provider.                  |
-| phone      | string | Phone number of the catalog provider.           |
-| url        | string | Homepage of the catalog provider.               |
-
-### Provider Object
-
-The objects provides information about the storage provider hosting the data.
-
-| Field Name     | Type    | Description                                        |
-| -------------- | ------- | -------------------------------------------------- |
-| scheme         | string  | The protocol/scheme used to access the data.       |
-| region         | string  | Provider specific region where the data is stored. |
-| requester_pays | boolean | `true` if requester pays, `false` if host pays.    |
+The `root` catalog in this example could hold a set of catalogs with different datasets, e.g. data from other satellites or processed variants of the NAIP imagery.
 
 ### Link Object
 

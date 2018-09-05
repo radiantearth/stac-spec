@@ -1,6 +1,4 @@
-# STAC Item Spec
-
-## Overview
+# STAC Items
 
 The core of a SpatioTemporal Asset Catalog (STAC) is a set of JSON fields defined by the 
 [STAC Item spec](item-spec.md). These fields define an `Item` - the atomic units that contain 
@@ -29,7 +27,7 @@ which is a dependency.
 Instruction on schema validation for STAC Items can be found in the [validation instructions](validation/README.md).
 
 
-## Static Catalog Evolution 
+## Item Evolution 
 
 STAC Items are still a work in progress, and feedback is very much appreciated. The core fields 
 were designed to be quite flexible, adapting to many different data organization schemes. 
