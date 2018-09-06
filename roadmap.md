@@ -22,7 +22,7 @@ quite a bit more that can be standardized in a useful way - at the very least so
 describe more of what they're doing. Another idea is to require a link to a 'product definition' that an asset must
 implement, which would provide the needed fields. This would increase the burden on the client, to follow or cache
 the definitions, but would also decrease the repetition of the same fields over and over again. There is additional
-discussion on this topic in the [static catalog recommendations](static-catalog/static-recommendations.md#asset-definition).
+discussion on this topic in the [static catalog recommendations](catalog-spec/static-recommendations.md#asset-definition).
 Part of this is also tracked in [Issue 23](https://github.com/radiantearth/stac-spec/issues/23)
 
 ### Querying and Filtering

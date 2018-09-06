@@ -3,7 +3,7 @@
 
 ## Overview
 
-A STAC API is the dynamic version of a SpatioTemporal Asset Catalog. It returns [STAC Items](../json-spec/json-spec.md) 
+A STAC API is the dynamic version of a SpatioTemporal Asset Catalog. It returns [STAC Items](../item-spec/item-spec.md) 
 (GeoJSON objects with required links time stamp and links to assets) from search queries on a RESTful endpoint.
 
 The core of the spec is a single endpoint:
@@ -30,7 +30,7 @@ that fall within this area:
 *map © OpenStreetMap contributors*
 
 The return format is a [GeoJSON](http://geojson.org) feature collection with features compliant with the 
-[json spec]((../json-spec/json-spec.md) for STAC. It returns to a limit optionally requested by the client, and includes 
+[Item spec]((../item-spec/item-spec.md) for STAC. It returns to a limit optionally requested by the client, and includes 
 pageable links to iterate through any results past that limit.
 
 ## API Fragments
