@@ -49,19 +49,19 @@ there is no valid EPSG code.
 
 ### Band Object
 
-| element             | type info | description                                                  |
-| ------------------- | --------- | ------------------------------------------------------------ |
-| common_name         | string    | The name commonly used to refer to the band to make it easier to search for bands across instruments. See below for a list of accepted common names. |
-| description         | string    | Description to fully explain the band. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| gsd                 | number    | Ground Sample distance, the nominal distance between pixel centers available, in meters. See `eo:gsd` for more information. Defaults to `eo:gsd` if not provided. |
-| accuracy            | number    | The expected error between the measured location and the true location of a pixel, in meters on the ground. |
-| center_wavelength   | number    | The center wavelength of the band, in microns.               |
-| full_width_half_max | number    | Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in microns. |
-| resolution          | number    | Spatial resolution of the band, in meters.                   |
-| nodata              | [number]  | The no data value(s).                                        |
-| unit                | string    | Unit of measurements, preferably following the singular unit names in the [UDUNITS2 database](https://ncics.org/portfolio/other-resources/udunits2/). |
-| offset              | number    | Offset to convert band values to the actual measurement scale. Defaults to `0`. |
-| scale               | number    | Scale to convert band values to the actual measurement scale. Defaults to `1`. |
+| Field Name          | Type     | Description                                                  |
+| ------------------- | -------- | ------------------------------------------------------------ |
+| common_name         | string   | The name commonly used to refer to the band to make it easier to search for bands across instruments. See below for a list of accepted common names. |
+| description         | string   | Description to fully explain the band. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| gsd                 | number   | Ground Sample distance, the nominal distance between pixel centers available, in meters. See `eo:gsd` for more information. Defaults to `eo:gsd` if not provided. |
+| accuracy            | number   | The expected error between the measured location and the true location of a pixel, in meters on the ground. |
+| center_wavelength   | number   | The center wavelength of the band, in microns.               |
+| full_width_half_max | number   | Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in microns. |
+| resolution          | number   | Spatial resolution of the band, in meters.                   |
+| nodata              | [number] | The no data value(s).                                        |
+| unit                | string   | Unit of measurements, preferably following the singular unit names in the [UDUNITS2 database](https://ncics.org/portfolio/other-resources/udunits2/). |
+| offset              | number   | Offset to convert band values to the actual measurement scale. Defaults to `0`. |
+| scale               | number   | Scale to convert band values to the actual measurement scale. Defaults to `1`. |
 
 **full_width_half_max** (FWHM) is a common way to describe the size of a spectral band. It is the
 width, in microns, of the bandpass measured at a half of the maximum transmission. Thus, if the
@@ -87,6 +87,12 @@ numbers of several popular instruments.
 | swir22      | 2.1 - 2.3       | 7         | 7         | 7         | 12         | 7     |
 | lwir11      | 10.5 - 11.5     |           |           | 10        |            | 31    |
 | lwir12      | 11.5 - 12.5     |           |           | 11        |            | 32    |
+
+## Item `Asset Object` fields
+
+| Field Name | Type     | Description                                  |
+| ---------- | -------- | -------------------------------------------- |
+| eo:bands   | [string] | Lists the band names available in the asset. |
 
 ## Extensions
 
