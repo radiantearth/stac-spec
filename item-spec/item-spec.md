@@ -99,7 +99,7 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | self    | **REQUIRED.** _Absolute_ URL to the item file itself. This is required, to represent the location that the file can be found online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root    | URL to the root [STAC Catalog](../catalog-spec/) or [Dataset](../dataset-spec/). |
 | parent  | URL to the parent [STAC Catalog](../catalog-spec/) or [Dataset](../dataset-spec/). |
-| license | The license URL for the item SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in separate file and link to this file. |
+| license | The license URL for the item SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file. |
 
 #### Relative vs Absolute links
 
