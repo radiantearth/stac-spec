@@ -90,9 +90,48 @@ numbers of several popular instruments.
 
 ## Item `Asset Object` fields
 
-| Field Name | Type     | Description                                  |
-| ---------- | -------- | -------------------------------------------- |
-| eo:bands   | [string] | Lists the band names available in the asset. |
+| Field Name | Type                           | Description                                  |
+| ---------- | ------------------------------ | -------------------------------------------- |
+| eo:bands   | Map<string, Asset Band Object> | Lists the band names available in the asset. |
+
+### Asset Band Object
+
+| Field Name | Type   | Description                                                  |
+| ---------- | ------ | ------------------------------------------------------------ |
+| unit       | string | Unit of measurements, preferably following the singular unit names in the [UDUNITS2 database](https://ncics.org/portfolio/other-resources/udunits2/). |
+| offset     | number | Offset to convert band values to the actual measurement scale. Defaults to `0`. |
+| scale      | number | Scale to convert band values to the actual measurement scale. Defaults to `1`. |
+
+### Example
+
+```
+...
+  "assets": {
+    "thumbnail": {
+      "href": "https://eo-bucket.com/example/EXAMPLE_20180713_057_122.jpg",
+      "type": "image/jpeg"
+    },
+    "B5": {
+      "href": "s3://eo-bucket/example/EXAMPLE_20180713_057_122_L2_BAND5.tif",
+      "type": "GeoTIFF",
+      "format": "COG",
+      "eo:bands": {
+        "B5": {}
+      }
+    },
+    "B6": {
+      "href": "s3://eo-bucket/example/EXAMPLE_20180713_057_122_L2_BAND6.tif",
+      "type": "image/geotiff",
+      "eo:bands": {
+        "B6": {
+          "offset": 12345,
+          "scale": 0.001
+        }
+      }
+    }
+  }
+...
+```
 
 ## Extensions
 
