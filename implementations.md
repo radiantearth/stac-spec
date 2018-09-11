@@ -67,10 +67,15 @@ Contains a number of Landsat records:
 
 * [Geocatalogo](https://github.com/go-spatial/geocatalogo) is a Go implementation of STAC.
 
-## Early prototypes / proof of concept
+## Ecosystem
 
-Information about the software implementations that have been informing the evolution of the specification can be found at
-https://github.com/radiantearth/catalog-implementor-survey
+Other software related to STAC like validators, crawlers etc.
+
+ * [Serverless STAC Crawler](https://github.com/fredliporace/stac-crawler) is a static STAC crawler that runs on Lambda and SQS integration.
+
+## Early prototypes / outdated
+
+A list of software developed as early prototypes for the proof of concept or seem to be outdated (no activity in more than six months).
 
 * [Catalog Crawler](https://github.com/radiantearth/community-sprints/tree/master/10252017-boulder-co/catalog-crawler) was done during the [Boulder Sprint](https://github.com/radiantearth/community-sprints/tree/master/10252017-boulder-co), as an early proof of concept.
 * [py-stac](https://github.com/raster-foundry/pystac) was used to create the ISERV catalog. It is still pretty tied to that data type.
@@ -82,3 +87,6 @@ https://github.com/radiantearth/catalog-implementor-survey
   get close to the ideas of STAC static catalogs, and hopefully will evolve to implement the standard.
 * Josh Fix's [open-catalog](https://github.com/joshfix/open-catalog) demonstrates generating code from the core swagger spec.
 * Element84 made a [clojure implementation](https://github.com/Element84/catalog-api-spec/tree/dev/implementations/e84) of the spec that serves as a lightweight proxy to NASA's CMR, constrained to just data in USGS EROS. 
+
+Information about the software implementations that have been informing the evolution of the specification can be found at
+https://github.com/radiantearth/catalog-implementor-survey
