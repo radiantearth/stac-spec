@@ -72,6 +72,7 @@ Contains a number of Landsat records:
 Other software related to STAC like validators, crawlers etc.
 
  * [Serverless STAC Crawler](https://github.com/fredliporace/stac-crawler) is a static STAC crawler that runs on Lambda and SQS integration.
+ * [STAC Browser](https://github.com/radiantearth/stac-browser/) generates/renders browsable HTML versions of STAC catalogs.
 
 ## Early prototypes / outdated
 
