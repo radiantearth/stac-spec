@@ -113,8 +113,7 @@ numbers of several popular instruments.
     },
     "B5": {
       "href": "s3://eo-bucket/example/EXAMPLE_20180713_057_122_L2_BAND5.tif",
-      "type": "GeoTIFF",
-      "format": "COG",
+      "type": "image/geotiff",
       "eo:bands": {
         "B5": {}
       }
