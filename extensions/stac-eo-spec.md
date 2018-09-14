@@ -21,7 +21,7 @@ It is not necessary, but recommended to use the [Collections extension](stac-col
 | eo:platform      | string                   | **REQUIRED.** Unique name of the specific platform the instrument is attached to. For satellites this would be the name of the satellite (e.g., landsat-8, sentinel-2A), whereas for drones this would be a unique name for the drone.                     |
 | eo:constellation | string                   | **REQUIRED.** Name of the group or constellation that the platform belongs to. Example: The Sentinel-2 group has S2A and S2B, this field allows users to search for Sentinel-2 data without needing to specify which specific platform the data came from. |
 | eo:instrument    | string                   | **REQUIRED.** Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1).                                                                                                                                                                      |
-| eo:bands         | Map<string, Band Object> | **REQUIRED.** This is a dictionary of band information where each key in the dictionary is an identifier for the band (e.g., "B01", "B02", "B1", "B5", "QA").                                                                                              |
+| eo:bands         | List<Band Object>        | **REQUIRED.** This is a list of the available bands where each item is a Band Object.                                                                                                                                                                      |
 | eo:epsg          | integer                  | EPSG code of the datasource, null if no EPSG code.                                                                                                                                                                                                         |
 | eo:cloud_cover   | integer                  | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided.                                                                                                                                    |
 | eo:off_nadir     | number                   | Viewing angle. The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90).                                                                                                                                   |
@@ -51,11 +51,13 @@ there is no valid EPSG code.
 
 | element             | type info | description                                                                                                                                                   |
 | ------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name                | string    | The name of the band (e.g., "B01", "B02", "B1", "B5", "QA").                                                                                                  |
 | common_name         | string    | The name commonly used to refer to the band to make it easier to search for bands across instruments. See below for a list of accepted common names.          |
 | gsd                 | number    | Ground Sample distance, the nominal distance between pixel centers available, in meters. See eo:gsd for more information. Defaults to eo:gsd if not provided. |
 | accuracy            | number    | The expected error between the measured location and the true location of a pixel, in meters on the ground.                                                   |
 | center_wavelength   | number    | The center wavelength of the band, in microns.                                                                                                                |
 | full_width_half_max | number    | Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in microns.                                           |
+
 
 **full_width_half_max** (FWHM) is a common way to describe the size of a spectral band. It is the
 width, in microns, of the bandpass measured at a half of the maximum transmission. Thus, if the
@@ -86,9 +88,3 @@ numbers of several popular instruments.
 
 The [extensions page](../extensions/) gives an overview about related extensions.
 
-### Using collections
-
-A lot of EO data will have common metadata across many `Items`. It is not necessary, but recommended
-to use the [Collections extension](stac-collection-spec.md). While the exact metadata that would
-appear in a `Collection` record will vary depending on the dataset, the most common collection-level
-metadata fields are indicated with an \* in the tables below.
