@@ -84,6 +84,103 @@ numbers of several popular instruments.
 | lwir11      | 10.5 - 11.5     |           |           | 10        |            | 31    |
 | lwir12      | 11.5 - 12.5     |           |           | 11        |            | 32    |
 
+
+#### Associating assets with bands
+
+Asset definitions that contain band data should reference the band index. Each asset should provide a "eo:bands" property that is an array of 0 based indexes to the correct Band Objects.
+
+See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
+```
+{
+  "id": "LC81530252014153LGN00",
+  "type": "Feature",
+  ...
+  "properties": {
+    ...
+    "eo:bands": [
+      {
+        "name": "1",
+        "common_name": "coastal",
+        "gsd": 30.0,
+        "accuracy": null,
+        "wavelength": 0.44,
+        "full_width_half_max": 0.02
+      },
+      {
+        "name": "2",
+        "common_name": "blue",
+        "gsd": 30.0,
+        "accuracy": null,
+        "wavelength": 0.48,
+        "full_width_half_max": 0.06
+      },
+      ...
+    ]
+  },
+
+  "assets" :{
+    "B1": {
+      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B1.TIF",
+      "type": "GeoTIFF",
+      "required": true,
+      "eo:bands": [0]
+    },
+    "B2": {
+
+      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B2.TIF",
+      "type": "GeoTIFF",
+      "required": true,
+      "eo:bands": [1]
+    },
+    ...
+  }
+ }
+```
+Planet example:
+
+```
+{
+  "id": "20171110_121030_1013",
+  "type": "Feature",
+  "properties": {
+    ...
+    "eo:bands":[
+        {
+            "full_width_half_max": 0.08,
+            "center_wavelength": 0.63,
+            "common_name": "red"
+        },
+        {
+            "full_width_half_max": 0.09,
+            "center_wavelength": 0.545,
+            "common_name": "green"
+        },
+        {
+            "full_width_half_max": 0.06,
+            "center_wavelength": 0.485,
+            "common_name": "blue"
+        },
+        {
+            "full_width_half_max": 0.08,
+            "center_wavelength": 0.82,
+            "common_name": "nir"
+        }
+    ]
+  },
+  ...
+  "assets": {
+    "analytic": {
+      "href": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcxMTEwXzEyMTAxMF8xMDEzIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWMiLCAiY3QiOiAiaXRlbS10eXBlIn0",
+      "name": "PSScene4Band GeoTIFF (COG)",
+      "eo:bands":[0,1,2,3]
+      ...
+    }
+    ...
+
+  }
+}
+```
+
 ## Extensions
 
 The [extensions page](../extensions/) gives an overview about related extensions.
