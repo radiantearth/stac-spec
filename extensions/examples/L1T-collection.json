@@ -1,0 +1,101 @@
+{
+  "properties": {
+      "c:id": "L1T",
+      "c:description": "Landat 8 imagery that is radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
+      "provider": "USGS",
+      "license": "PDDL-1.0",
+      "eo:gsd" : 30,
+      "eo:platform": "landsat-8",
+      "eo:instrument": "OLI_TIRS"
+  },
+  "eo:bands": [
+    {
+      "name": "1",
+      "common_name": "coastal",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 0.44,
+      "full_width_half_max": 0.02
+    },
+    {
+      "name": "2",
+      "common_name": "blue",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 0.48,
+      "full_width_half_max": 0.06
+    },
+    {
+      "name": "3",
+      "common_name": "green",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 0.56,
+      "full_width_half_max": 0.06
+    },
+    {
+      "name": "4",
+      "common_name": "red",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 0.65,
+      "full_width_half_max": 0.04
+    },
+    {
+      "name": "5",
+      "common_name": "nir",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 0.86,
+      "full_width_half_max": 0.03
+    },
+    {
+      "name": "6",
+      "common_name": "swir16",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 1.6,
+      "full_width_half_max": 0.08
+    },
+    {
+      "name": "7",
+      "common_name": "swir22",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 2.2,
+      "full_width_half_max": 0.2
+    },
+    {
+      "name": "8",
+      "common_name": "pan",
+      "gsd": 15.0,
+      "accuracy": null,
+      "wavelength": 0.59,
+      "full_width_half_max": 0.18
+    },
+    {
+      "name": "9",
+      "common_name": "cirrus",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 1.37,
+      "full_width_half_max": 0.02
+    },
+    {
+      "name": "10",
+      "common_name": "lwir11",
+      "gsd": 100.0,
+      "accuracy": null,
+      "wavelength": 10.9,
+      "full_width_half_max": 0.8
+    },
+    {
+      "name": "11",
+      "common_name": "lwir12",
+      "gsd": 100.0,
+      "accuracy": null,
+      "wavelength": 12.0,
+      "full_width_half_max": 1.0
+    }
+  ]
+}

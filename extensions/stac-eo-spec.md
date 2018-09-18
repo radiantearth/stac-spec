@@ -21,7 +21,7 @@ It is not necessary, but recommended to use the [Collections extension](stac-col
 | eo:platform      | string                   | **REQUIRED.** Unique name of the specific platform the instrument is attached to. For satellites this would be the name of the satellite (e.g., landsat-8, sentinel-2A), whereas for drones this would be a unique name for the drone.                     |
 | eo:constellation | string                   | **REQUIRED.** Name of the group or constellation that the platform belongs to. Example: The Sentinel-2 group has S2A and S2B, this field allows users to search for Sentinel-2 data without needing to specify which specific platform the data came from. |
 | eo:instrument    | string                   | **REQUIRED.** Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1).                                                                                                                                                                      |
-| eo:bands         | List<Band Object>        | **REQUIRED.** This is a list of the available bands where each item is a Band Object.                                                                                                                                                                      |
+| eo:bands         | [Band Object]             | **REQUIRED.** This is a list of the available bands where each item is a Band Object.                                                                                                                                                                      |
 | eo:epsg          | integer                  | EPSG code of the datasource, null if no EPSG code.                                                                                                                                                                                                         |
 | eo:cloud_cover   | integer                  | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided.                                                                                                                                    |
 | eo:off_nadir     | number                   | Viewing angle. The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90).                                                                                                                                   |
@@ -84,10 +84,14 @@ numbers of several popular instruments.
 | lwir11      | 10.5 - 11.5     |           |           | 10        |            | 31    |
 | lwir12      | 11.5 - 12.5     |           |           | 11        |            | 32    |
 
-
-#### Associating assets with bands
+## Associating assets with bands
 
 Asset definitions that contain band data should reference the band index. Each asset should provide a "eo:bands" property that is an array of 0 based indexes to the correct Band Objects.
+
+### Item `Asset Object` fields
+| Field Name | Type     | Description                                  |
+| ---------- | -------- | -------------------------------------------- |
+| eo:bands   | [number] | Lists the band names available in the asset. |
 
 See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
 ```
