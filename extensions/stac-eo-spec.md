@@ -189,3 +189,8 @@ Planet example:
 
 The [extensions page](../extensions/) gives an overview about related extensions.
 
+### Using collections	
+ A lot of EO data will have common metadata across many `Items`. It is not necessary, but recommended	
+to use the [Collections extension](stac-collection-spec.md). While the exact metadata that would	
+appear in a `Collection` record will vary depending on the dataset, the most common collection-level	
+metadata fields are indicated with an \* in the tables below.
