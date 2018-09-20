@@ -101,25 +101,6 @@ See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
   ...
   "properties": {
     ...
-    "eo:bands": [
-      {
-        "name": "1",
-        "common_name": "coastal",
-        "gsd": 30.0,
-        "accuracy": null,
-        "wavelength": 0.44,
-        "full_width_half_max": 0.02
-      },
-      {
-        "name": "2",
-        "common_name": "blue",
-        "gsd": 30.0,
-        "accuracy": null,
-        "wavelength": 0.48,
-        "full_width_half_max": 0.06
-      },
-      ...
-    ]
   },
 
   "assets" :{
@@ -137,7 +118,26 @@ See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
       "eo:bands": [1]
     },
     ...
-  }
+  },
+  "eo:bands": [
+    {
+      "name": "1",
+      "common_name": "coastal",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 0.44,
+      "full_width_half_max": 0.02
+    },
+    {
+      "name": "2",
+      "common_name": "blue",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 0.48,
+      "full_width_half_max": 0.06
+    },
+    ...
+  ]
  }
 ```
 Planet example:
@@ -148,28 +148,6 @@ Planet example:
   "type": "Feature",
   "properties": {
     ...
-    "eo:bands":[
-        {
-            "full_width_half_max": 0.08,
-            "center_wavelength": 0.63,
-            "common_name": "red"
-        },
-        {
-            "full_width_half_max": 0.09,
-            "center_wavelength": 0.545,
-            "common_name": "green"
-        },
-        {
-            "full_width_half_max": 0.06,
-            "center_wavelength": 0.485,
-            "common_name": "blue"
-        },
-        {
-            "full_width_half_max": 0.08,
-            "center_wavelength": 0.82,
-            "common_name": "nir"
-        }
-    ]
   },
   ...
   "assets": {
@@ -181,7 +159,29 @@ Planet example:
     }
     ...
 
-  }
+  },
+  "eo:bands": [
+    {
+      "full_width_half_max": 0.08,
+      "center_wavelength": 0.63,
+      "common_name": "red"
+    },
+    {
+      "full_width_half_max": 0.09,
+      "center_wavelength": 0.545,
+      "common_name": "green"
+    },
+    {
+      "full_width_half_max": 0.06,
+      "center_wavelength": 0.485,
+      "common_name": "blue"
+    },
+    {
+      "full_width_half_max": 0.08,
+      "center_wavelength": 0.82,
+      "common_name": "nir"
+    }
+  ]
 }
 ```
 
