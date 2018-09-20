@@ -1,5 +1,5 @@
 
-# SpatioTemporal Asset Catalog API Specification
+# STAC API Specification
 
 ## Overview
 
