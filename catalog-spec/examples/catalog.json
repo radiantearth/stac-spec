@@ -3,16 +3,16 @@
   "description": "This is a very basic sample catalog.",
   "links": [
     {
-	  "href": "item.json",
-	  "rel": "item"
-	},
+      "href": "item.json",
+      "rel": "item"
+    },
     {
-	  "href": "http://www.example.com/sample-catalog/catalog.json",
-	  "rel": "root"
-	},
+      "href": "http://www.example.com/sample-catalog/catalog.json",
+      "rel": "root"
+    },
     {
-	  "href": "http://www.example.com/sample-catalog/catalog.json",
-	  "rel": "self"
-	}
+      "href": "http://www.example.com/sample-catalog/catalog.json",
+      "rel": "self"
+    }
   ]
 }
