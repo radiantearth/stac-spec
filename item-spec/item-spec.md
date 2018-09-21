@@ -87,7 +87,7 @@ allowed to add additional fields such as a `title` and `type`.
 | ---------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------- |
 | href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed.                                |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information. |
-| type       | string | MIME-type of the referenced entity. 																								|
+| type       | string | Media type of the referenced entity. 																								|
 | title      | string | A human readable title to be used in rendered displays of the link 																	|
 
 #### Relation types
@@ -122,7 +122,7 @@ or streamed. It is allowed to add additional fields.
 | ---------- | ------ | ------------------------------------------------------------------------------------- |
 | href       | string | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
 | name       | string | The display name for clients and users.                                               |
-| type       | string | MIME-type of the asset (see chapter on MIME types below).                             |
+| type       | string | Media type of the asset (see chapter on Media Types below).                             |
 
 #### Asset types
 
@@ -132,31 +132,38 @@ The following types are commonly for assets and are used as key for the Asset Ob
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | thumbnail | STRONGLY RECOMMENDED. A downsampled image of the core asset, for direct display online in a web page or interactive search application. Even assets that are less easily translated in to a visual image should provide some visual representation, that users can browse. For example a SAR asset can render an elevation mask or hillshade for display. If at all possible it should be included for a better user experience in searching data. |
 
-#### MIME types
+#### Media Types
 
-[Registered](https://www.iana.org/assignments/media-types/media-types.xhtml) MIME types are
-preferred when possible. In cases where custom, vendor specific MIME types are necessary they can be
-used with the `vnd.` prefix for the type. The MIME type can be used by STAC browsers to better
-determine what is relevant to render and display to users searching and browsing the catalog. In
-some cases, selection of a mime type can be ambiguous. For instance, many STAC items have sidecar
-metadata files associated with the core asset (`.tfw`, Landsat 8 MTL files, etc.) that should use
-mime types appropriate for the file - for instance, if it is a plain text file then `text/plain`
-would be appropriate, `text/xml` would be appropriate for cases the metadata is in XML format.
+The media type of an Item can be used by STAC browsers to better determine what to render and display 
+to users searching and browsing the catalog. 
 
-A set of commonly used MIME types for STAC items include the following:
+[Registered](https://www.iana.org/assignments/media-types/media-types.xhtml) Media Types are
+preferred. In cases where custom vendor-specific media types are necessary, they should
+use the `vnd.` prefix. 
 
-| MIME type                      | Description                                                                             |
+STAC Items that have sidecar metadata files associated with a data asset (e.g, `.tfw`, Landsat 8 MTL files) 
+should use media types appropriate for the the metadata file.  For example, if it is a plain text file, then `text/plain`
+would be appropriate; if it is an XML, then `text/xml` is appropriate.
+
+Common STAC Item Media Types:
+
+| Media Type                      | Description                                                                            |
 | ------------------------------ | --------------------------------------------------------------------------------------- |
-| image/geotiff                  | Georeferenced TIFF. _We would like to register image/geotiff as a mime type with IANA._ |
-| image/geotiff+cog              | Cloud Optimized GeoTIFF                                                                 |
-| image/jp2                      | JPEG 2000                                                                               |
-| image/png                      | Visual PNGs (e.g. thumbnails)                                                           |
-| image/jpeg                     | Visual JPEGs (e.g. thumbnails, oblique)                                                 |
-| text/xml                       | XML metadata                                                                            |
-| application/json               | JSON metadata                                                                           |
-| text/plain                     | Plain text metadata                                                                     |
-| application/geo+json           | GeoJSON                                                                                 |
-| application/geopackage+sqlite3 | GeoPackage                                                                              |
+| `image/tiff` or `image/x.geotiff`     | GeoTIFF TIFF file with standardized georeferencing metadata                             |
+| `image/tiff` or `image/x.cloud-optimized-geotiff` | Cloud Optimized GeoTIFF                                                                 |
+| `image/jp2`                      | JPEG 2000                                                                               |
+| `image/png`                      | Visual PNGs (e.g. thumbnails)                                                           |
+| `image/jpeg`                     | Visual JPEGs (e.g. thumbnails, oblique)                                                 |
+| `text/xml`                       | XML metadata                                                                            |
+| `application/json`               | JSON metadata                                                                           |
+| `text/plain`                     | Plain text metadata                                                                     |
+| `application/geo+json`           | GeoJSON                                                                                 |
+| `application/geopackage+sqlite3` | GeoPackage                                                                              |
+| `application/x-hdf5`             | Hierarchical Data Format version 5                                                      |
+| `application/x-hdf`              | Hierarchical Data Format versions 4 and earlier.                  |
+
+Note: should GeoTIFF become an IANA-registered type in the future (e.g., image/geotiff), this will be added as a recommended
+media type.
 
 ## Extensions
 
