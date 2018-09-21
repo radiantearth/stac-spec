@@ -21,7 +21,7 @@ It is not necessary, but recommended to use the [Collections extension](stac-col
 | eo:platform      | string                   | **REQUIRED.** Unique name of the specific platform the instrument is attached to. For satellites this would be the name of the satellite (e.g., landsat-8, sentinel-2A), whereas for drones this would be a unique name for the drone.                     |
 | eo:constellation | string                   | **REQUIRED.** Name of the group or constellation that the platform belongs to. Example: The Sentinel-2 group has S2A and S2B, this field allows users to search for Sentinel-2 data without needing to specify which specific platform the data came from. |
 | eo:instrument    | string                   | **REQUIRED.** Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1).                                                                                                                                                                      |
-| eo:bands         | Map<string, Band Object> | **REQUIRED.** This is a dictionary of band information where each key in the dictionary is an identifier for the band (e.g., "B01", "B02", "B1", "B5", "QA").                                                                                              |
+| eo:bands         | [Band Object]            | **REQUIRED.** This is a list of the available bands where each item is a Band Object.                                                                                                                                                                      |
 | eo:epsg          | integer                  | EPSG code of the datasource, null if no EPSG code.                                                                                                                                                                                                         |
 | eo:cloud_cover   | integer                  | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided.                                                                                                                                    |
 | eo:off_nadir     | number                   | Viewing angle. The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90).                                                                                                                                   |
@@ -51,6 +51,7 @@ there is no valid EPSG code.
 
 | Field Name          | Type     | Description                                                  |
 | ------------------- | -------- | ------------------------------------------------------------ |
+| name                | string   | The name of the band (e.g., "B01", "B02", "B1", "B5", "QA"). |
 | common_name         | string   | The name commonly used to refer to the band to make it easier to search for bands across instruments. See below for a list of accepted common names. |
 | description         | string   | Description to fully explain the band. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | gsd                 | number   | Ground Sample distance, the nominal distance between pixel centers available, in meters. See `eo:gsd` for more information. Defaults to `eo:gsd` if not provided. |
@@ -88,57 +89,147 @@ numbers of several popular instruments.
 | lwir11      | 10.5 - 11.5     |           |           | 10        |            | 31    |
 | lwir12      | 11.5 - 12.5     |           |           | 11        |            | 32    |
 
-## Item `Asset Object` fields
+## Associating assets with bands
 
-| Field Name | Type                           | Description                                  |
-| ---------- | ------------------------------ | -------------------------------------------- |
-| eo:bands   | Map<string, Asset Band Object> | Lists the band names available in the asset. |
+Asset definitions that contain band data should reference the band index and any additional asset specific band data.
+
+### Item `Asset Object` fields
+
+| Field Name | Type                | Description                                                             |
+| ---------- | ------------------- | ----------------------------------------------------------------------- |
+| eo:bands   | [Asset Band Object] | Lists the bands available in an asset and any asset specific band data. |
 
 ### Asset Band Object
 
 | Field Name | Type   | Description                                                  |
 | ---------- | ------ | ------------------------------------------------------------ |
+| index      | number | The band index as specified in the Band Object                |
 | unit       | string | Unit of measurements, preferably following the singular unit names in the [UDUNITS2 database](https://ncics.org/portfolio/other-resources/udunits2/). |
 | offset     | number | Offset to convert band values to the actual measurement scale. Defaults to `0`. |
 | scale      | number | Scale to convert band values to the actual measurement scale. Defaults to `1`. |
 
 ### Example
 
+See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
 ```
-...
-  "assets": {
-    "thumbnail": {
-      "href": "https://eo-bucket.com/example/EXAMPLE_20180713_057_122.jpg",
-      "type": "image/jpeg"
-    },
-    "B5": {
-      "href": "s3://eo-bucket/example/EXAMPLE_20180713_057_122_L2_BAND5.tif",
-      "type": "image/geotiff",
-      "eo:bands": {
-        "B5": {}
-      }
-    },
-    "B6": {
-      "href": "s3://eo-bucket/example/EXAMPLE_20180713_057_122_L2_BAND6.tif",
-      "type": "image/geotiff",
-      "eo:bands": {
-        "B6": {
+{
+  "id": "LC81530252014153LGN00",
+  "type": "Feature",
+  ...
+  "properties": {
+    ...
+  },
+  "assets" :{
+    "B1": {
+      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B1.TIF",
+      "type": "GeoTIFF",
+      "required": true,
+      "eo:bands": [
+        {
+          "index": 0,
           "offset": 12345,
           "scale": 0.001
         }
-      }
+      ]
+    },
+    "B2": {
+      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B2.TIF",
+      "type": "GeoTIFF",
+      "required": true,
+      "eo:bands": [
+        {
+          "index": 1,
+          "offset": 54321,
+          "scale": 0.1
+        }
+      ]
+    },
+    ...
+  },
+  "eo:bands": [
+    {
+      "name": "1",
+      "common_name": "coastal",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 0.44,
+      "full_width_half_max": 0.02
+    },
+    {
+      "name": "2",
+      "common_name": "blue",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 0.48,
+      "full_width_half_max": 0.06
+    },
+    ...
+  ]
+ }
+```
+
+Planet example:
+```
+{
+  "id": "20171110_121030_1013",
+  "type": "Feature",
+  "properties": {
+    ...
+  },
+  ...
+  "assets": {
+    "analytic": {
+      "href": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcxMTEwXzEyMTAxMF8xMDEzIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWMiLCAiY3QiOiAiaXRlbS10eXBlIn0",
+      "name": "PSScene4Band GeoTIFF (COG)",
+      "eo:bands":[
+        {
+          "index: 0
+        },
+        {
+          "index: 1
+        },
+        {
+          "index: 2
+        },
+        {
+          "index: 3
+        }
+      ]
+      ...
     }
-  }
-...
+    ...
+  },
+  "eo:bands": [
+    {
+      "full_width_half_max": 0.08,
+      "center_wavelength": 0.63,
+      "common_name": "red"
+    },
+    {
+      "full_width_half_max": 0.09,
+      "center_wavelength": 0.545,
+      "common_name": "green"
+    },
+    {
+      "full_width_half_max": 0.06,
+      "center_wavelength": 0.485,
+      "common_name": "blue"
+    },
+    {
+      "full_width_half_max": 0.08,
+      "center_wavelength": 0.82,
+      "common_name": "nir"
+    }
+  ]
+}
 ```
 
 ## Extensions
 
 The [extensions page](../extensions/) gives an overview about related extensions.
 
-### Using collections
-
-A lot of EO data will have common metadata across many `Items`. It is not necessary, but recommended
-to use the [Collections extension](stac-collection-spec.md). While the exact metadata that would
-appear in a `Collection` record will vary depending on the dataset, the most common collection-level
+### Using collections	
+ A lot of EO data will have common metadata across many `Items`. It is not necessary, but recommended	
+to use the [Collections extension](stac-collection-spec.md). While the exact metadata that would	
+appear in a `Collection` record will vary depending on the dataset, the most common collection-level	
 metadata fields are indicated with an \* in the tables below.
