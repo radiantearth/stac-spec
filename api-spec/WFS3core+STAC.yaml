@@ -213,7 +213,7 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: '#/components/schemas/featureCollectionGeoJSON'
+                $ref: 'http://geojson.org/schema/FeatureCollection.json'
             text/html:
               schema:
                 type: string
@@ -448,51 +448,7 @@ components:
       description: Only returns items that intersect with the provided polygon.
       properties:
         intersects:
-          $ref: '#/components/schemas/polygon'
-    polygon:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-            - polygon
-        coordinates:
-          $ref: '#/components/schemas/polygon2D'
-      required:
-        - type
-        - coordinates
-    polygon2D:
-      type: array
-      minItems: 1
-      items:
-        $ref: '#/components/schemas/linearRing2D'
-    linearRing2D:
-      type: array
-      minItems: 4
-      items:
-        $ref: '#/components/schemas/point2D'
-      example:
-        - - -104
-          - 35
-        - - -103
-          - 35
-        - - -103
-          - 34
-        - - -104
-          - 34
-        - - -104
-          - 35
-    point2D:
-      description: A 2d geojson point
-      type: array
-      minimum: 2
-      maximum: 2
-      items:
-        type: number
-        format: double
-      example:
-        - -104
-        - 35
+          $ref: 'http://json.schemastore.org/geojson.json#/definitions/geometry'
     time:
       type: string
       description: >
@@ -866,50 +822,6 @@ components:
           example:
             - '2011-11-11T12:22:11Z'
             - '2012-11-24T12:32:43Z'
-    featureCollectionGeoJSON:
-      type: object
-      required:
-        - features
-      properties:
-        features:
-          type: array
-          items:
-            $ref: '#/components/schemas/featureGeoJSON'
-    featureGeoJSON:
-      type: object
-      required:
-        - type
-        - geometry
-        - properties
-      properties:
-        type:
-          type: string
-          enum:
-            - Feature
-        geometry:
-          $ref: '#/components/schemas/geometryGeoJSON'
-        properties:
-          type: object
-          nullable: true
-        id:
-          oneOf:
-            - type: string
-            - type: integer
-    geometryGeoJSON:
-      type: object
-      required:
-        - type
-      properties:
-        type:
-          type: string
-          enum:
-            - Point
-            - MultiPoint
-            - LineString
-            - MultiLineString
-            - Polygon
-            - MultiPolygon
-            - GeometryCollection
 tags:
   - name: STAC
     description: Extension to WFS3 Core to support STAC metadata model and search API
