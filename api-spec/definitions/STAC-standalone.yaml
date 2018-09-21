@@ -290,7 +290,7 @@ components:
       description: Only returns items that intersect with the provided polygon.
       properties:
         intersects:
-          $ref: 'http://json.schemastore.org/geojson.json#/definitions/geometry'
+          $ref: 'http://geojson.org/schema/Geometry.json'
     time:
       type: string
       description: >
@@ -403,7 +403,7 @@ components:
         bbox:
           $ref: '#/components/schemas/bbox'
         geometry:
-          $ref: "http://json.schemastore.org/geojson.json#/definitions/geometry"
+          $ref: 'http://geojson.org/schema/Geometry.json'
         type:
           type: string
           description: The GeoJSON type
