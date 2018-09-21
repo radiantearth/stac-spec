@@ -241,7 +241,7 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: '#/components/schemas/featureGeoJSON'
+                $ref: 'http://geojson.org/schema/Feature.json'
             text/html:
               schema:
                 type: string
