@@ -135,7 +135,7 @@ The following types are commonly for assets and are used as key for the Asset Ob
 #### Media Types
 
 The media type of an Item can be used by STAC browsers to better determine what to render and display 
-to users searching and browsing the catalog. 
+to users searching and browsing the catalog.  Media types are often referred to by the now-deprecated term "MIME types".
 
 [Registered](https://www.iana.org/assignments/media-types/media-types.xhtml) Media Types are
 preferred. In cases where custom vendor-specific media types are necessary, they should
@@ -147,20 +147,20 @@ would be appropriate; if it is an XML, then `text/xml` is appropriate.
 
 Common STAC Item Media Types:
 
-| Media Type                      | Description                                                                            |
-| ------------------------------ | --------------------------------------------------------------------------------------- |
-| `image/tiff` or `image/x.geotiff`     | GeoTIFF TIFF file with standardized georeferencing metadata                             |
-| `image/tiff` or `image/x.cloud-optimized-geotiff` | Cloud Optimized GeoTIFF                                                                 |
+| Media Type                      | Description                                                                              |
+| ------------------------------ | ----------------------------------------------------------------------------------------- |
+| `image/tiff` or `image/x.geotiff`     | GeoTIFF TIFF file with standardized georeferencing metadata                        |
+| `image/tiff` or `image/x.cloud-optimized-geotiff` | Cloud Optimized GeoTIFF                                                |
 | `image/jp2`                      | JPEG 2000                                                                               |
 | `image/png`                      | Visual PNGs (e.g. thumbnails)                                                           |
 | `image/jpeg`                     | Visual JPEGs (e.g. thumbnails, oblique)                                                 |
-| `text/xml`                       | XML metadata                                                                            |
+| `text/xml` or `application/xml`  | XML metadata [RFC 7303](https://www.ietf.org/rfc/rfc7303.txt)                                                                          |
 | `application/json`               | JSON metadata                                                                           |
 | `text/plain`                     | Plain text metadata                                                                     |
 | `application/geo+json`           | GeoJSON                                                                                 |
 | `application/geopackage+sqlite3` | GeoPackage                                                                              |
 | `application/x-hdf5`             | Hierarchical Data Format version 5                                                      |
-| `application/x-hdf`              | Hierarchical Data Format versions 4 and earlier.                  |
+| `application/x-hdf`              | Hierarchical Data Format versions 4 and earlier.                                        |
 
 Note: should GeoTIFF become an IANA-registered type in the future (e.g., image/geotiff), this will be added as a recommended
 media type.
