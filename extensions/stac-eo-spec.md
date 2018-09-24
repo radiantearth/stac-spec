@@ -58,7 +58,6 @@ there is no valid EPSG code.
 | accuracy            | number   | The expected error between the measured location and the true location of a pixel, in meters on the ground. |
 | center_wavelength   | number   | The center wavelength of the band, in microns.               |
 | full_width_half_max | number   | Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in microns. |
-| resolution          | number   | Spatial resolution of the band, in meters.                   |
 | nodata              | [number] | The no data value(s).                                        |
 | unit                | string   | Unit of measurements, preferably following the singular unit names in the [UDUNITS2 database](https://ncics.org/portfolio/other-resources/udunits2/). |
 | offset              | number   | Offset to convert band values to the actual measurement scale. Defaults to `0`. |
@@ -183,16 +182,16 @@ Planet example:
       "name": "PSScene4Band GeoTIFF (COG)",
       "eo:bands":[
         {
-          "index: 0
+          "index": 0
         },
         {
-          "index: 1
+          "index": 1
         },
         {
-          "index: 2
+          "index": 2
         },
         {
-          "index: 3
+          "index": 3
         }
       ]
       ...
