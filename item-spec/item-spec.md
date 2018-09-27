@@ -16,10 +16,9 @@ Items are represented in JSON format and are very flexible. Any JSON object that
 required fields is a valid STAC Item.
 
 - Examples:
-  - See the [examples/sample.json](sample.json) for a minimal example, as well as
-    [examples/sample-full.json](sample-full.json) for a more fleshed example that contains a number of
-    current best practices.
-  - There are also a few more real world inspired samples in the [examples/](examples/) folder.
+  - See the [minimal example](examples/sample.json), as well as a [more fleshed example](examples/sample-full.json) that contains a number of
+    current best practices. There are more real world inspired samples in the [examples/](examples/) folder.
+  - Real world [implementations](../implementations.md) are also available.
 - [JSON Schema](json-schema/stac-item.json)
 
 ## WARNING
