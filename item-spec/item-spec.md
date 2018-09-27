@@ -1,4 +1,4 @@
-# STAC Item Spec
+# STAC Item Specification
 
 This document explains the structure and content of a SpatioTemporal Asset Catalog (STAC) Item. Each
 is a [GeoJSON](http://geojson.org/) [feature](https://tools.ietf.org/html/rfc7946#section-3.2), plus
@@ -93,12 +93,12 @@ allowed to add additional fields such as a `title` and `type`.
 
 The following types are commonly used as `rel` types in the Link Object of an Item:
 
-| Type    | Description                                                                                                                                                                                                                                                                            |
-| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Type    | Description                                                  |
+| ------- | ------------------------------------------------------------ |
 | self    | **REQUIRED.** _Absolute_ URL to the item file itself. This is required, to represent the location that the file can be found online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root    | URL to the root [STAC Catalog](../catalog-spec/) or [Dataset](../dataset-spec/).                                                                                                                                                                                                     |
-| parent  | URL to the parent [STAC Catalog](../catalog-spec/) or [Dataset](../dataset-spec/).                                                                                                                                                                                                   |
-| license | The license URL for the item SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in separate file and link to this file.                           |
+| root    | URL to the root [STAC Catalog](../catalog-spec/) or [Dataset](../dataset-spec/). |
+| parent  | URL to the parent [STAC Catalog](../catalog-spec/) or [Dataset](../dataset-spec/). |
+| license | The license URL for the item SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file. |
 
 #### Relative vs Absolute links
 
@@ -107,6 +107,10 @@ implementors to provide relative links. In general, Catalog API's should aim for
 whenever possible. But Static Catalogs are potentially more portable if they can be implemented with
 relative links, so that every link doesn't need to be rewritten when the data is copied. The `self`
 link is required to be absolute.
+
+#### Datasets
+
+Items are *strongly recommended* to provide a link to a dataset definition.
 
 ### Asset Object
 

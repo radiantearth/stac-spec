@@ -108,6 +108,8 @@
         "spatial": {
           "title": "Spatial extent",
           "type": "array",
+          "minItems": 4,
+          "maxItems": 6,
           "items": {
             "type": "number"
           }
