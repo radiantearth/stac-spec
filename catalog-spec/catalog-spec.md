@@ -9,7 +9,7 @@ online browsing by people.
 Catalogs are not intended to be queried - their purpose is more to be browsed by people and crawled
 by machines to build a search index. A Catalog can be represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Catalog.
 
-- [Examples](examples.md)
+- [Examples](examples/) and [Implementations](../implementations.md)
 - [JSON Schema](json-schema/catalog.json) - please see the [validation instructions](../validation/README.md)
 
 ## WARNING
