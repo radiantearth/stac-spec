@@ -61,11 +61,11 @@
     "landsat:image_quality_oli": 9
   },
 
-  "links": {
-    "self": { "rel":"self", "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00.json"},
-    "alternate": { "rel":"alternate", "href": "https://landsatonaws.com/L8/153/025/LC81530252014153LGN00", "type": "html"},
-    "catalog": { "rel":"catalog", "href":  "http://landsat-pds.s3.amazonaws.com/L8/catalog.json"}
-  },
+  "links": [
+    { "rel":"self", "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00.json"},
+    { "rel":"alternate", "href": "https://landsatonaws.com/L8/153/025/LC81530252014153LGN00", "type": "html"},
+    { "rel":"catalog", "href":  "http://landsat-pds.s3.amazonaws.com/L8/catalog.json"}
+  ],
 
   "assets" :{
     "thumbnail": {
@@ -82,151 +82,160 @@
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B1.TIF",
       "type": "GeoTIFF",
       "required": true,
-      "eo:bands": ["1"]
+      "eo:bands": [0]
     },
     "B2": {
 
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B2.TIF",
       "type": "GeoTIFF",
       "required": true,
-      "eo:bands": ["2"]
+      "eo:bands": [1]
     },
     "B3": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B3.TIF",
       "type": "GeoTIFF",
       "required": true,
-      "eo:bands": ["3"]
+      "eo:bands": [2]
     },
     "B4": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B4.TIF",
       "type": "GeoTIFF",
       "required": true,
-      "eo:bands": ["4"]
+      "eo:bands": [3]
     },
     "B5": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B5.TIF",
       "type": "GeoTIFF",
       "required": true,
-      "eo:bands": ["5"]
+      "eo:bands": [4]
     },
     "B6": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B6.TIF",
       "type": "GeoTIFF",
       "required": true,
-      "eo:bands": ["6"]
+      "eo:bands": [5]
     },
     "B7": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B7.TIF",
       "type": "GeoTIFF",
       "required": true,
-      "eo:bands": ["7"]
+      "eo:bands": [6]
     },
     "B8": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B8.TIF",
       "type": "GeoTIFF",
       "required": true,
-      "eo:bands": ["8"]
+      "eo:bands": [7]
     },
     "B9": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B9.TIF",
       "type": "GeoTIFF",
       "required": true,
-      "eo:bands": ["9"]
+      "eo:bands": [8]
     },
     "B10": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B10.TIF",
       "type": "GeoTIFF",
       "required": true,
-      "eo:bands": ["10"]
+      "eo:bands": [9]
     },
     "B11": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B11.TIF",
       "type": "GeoTIFF",
       "required": true,
-      "eo:bands": ["11"]
-    },
-
-    "eo:bands": {
-      "1": {
-        "common_name": "coastal",
-        "gsd": 30.0,
-        "accuracy": null,
-        "wavelength": 0.44,
-        "fwhm": 0.02
-      },
-      "2": {
-        "common_name": "blue",
-        "gsd": 30.0,
-        "accuracy": null,
-        "wavelength": 0.48,
-        "fwhm": 0.06
-      },
-      "3": {
-        "common_name": "green",
-        "gsd": 30.0,
-        "accuracy": null,
-        "wavelength": 0.56,
-        "fwhm": 0.06
-      },
-      "4": {
-        "common_name": "red",
-        "gsd": 30.0,
-        "accuracy": null,
-        "wavelength": 0.65,
-        "fwhm": 0.04
-      },
-      "5": {
-        "common_name": "nir",
-        "gsd": 30.0,
-        "accuracy": null,
-        "wavelength": 0.86,
-        "fwhm": 0.03
-      },
-      "6": {
-        "common_name": "swir16",
-        "gsd": 30.0,
-        "accuracy": null,
-        "wavelength": 1.6,
-        "fwhm": 0.08
-      },
-      "7": {
-        "common_name": "swir22",
-        "gsd": 30.0,
-        "accuracy": null,
-        "wavelength": 2.2,
-        "fwhm": 0.2
-      },
-      "8": {
-        "common_name": "pan",
-        "gsd": 15.0,
-        "accuracy": null,
-        "wavelength": 0.59,
-        "fwhm": 0.18
-      },
-      "9": {
-        "common_name": "cirrus",
-        "gsd": 30.0,
-        "accuracy": null,
-        "wavelength": 1.37,
-        "fwhm": 0.02
-      },
-      "10": {
-        "common_name": "lwir11",
-        "gsd": 100.0,
-        "accuracy": null,
-        "wavelength": 10.9,
-        "fwhm": 0.8
-      },
-      "11": {
-        "common_name": "lwir12",
-        "gsd": 100.0,
-        "accuracy": null,
-        "wavelength": 12.0,
-        "fwhm": 1.0
-      }
+      "eo:bands": [10]
     }
+  },
 
-
-  }
+  "eo:bands": [
+    {
+      "name": "1",
+      "common_name": "coastal",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 0.44,
+      "full_width_half_max": 0.02
+    },
+    {
+      "name": "2",
+      "common_name": "blue",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 0.48,
+      "full_width_half_max": 0.06
+    },
+    {
+      "name": "3",
+      "common_name": "green",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 0.56,
+      "full_width_half_max": 0.06
+    },
+    {
+      "name": "4",
+      "common_name": "red",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 0.65,
+      "full_width_half_max": 0.04
+    },
+    {
+      "name": "5",
+      "common_name": "nir",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 0.86,
+      "full_width_half_max": 0.03
+    },
+    {
+      "name": "6",
+      "common_name": "swir16",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 1.6,
+      "full_width_half_max": 0.08
+    },
+    {
+      "name": "7",
+      "common_name": "swir22",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 2.2,
+      "full_width_half_max": 0.2
+    },
+    {
+      "name": "8",
+      "common_name": "pan",
+      "gsd": 15.0,
+      "accuracy": null,
+      "wavelength": 0.59,
+      "full_width_half_max": 0.18
+    },
+    {
+      "name": "9",
+      "common_name": "cirrus",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 1.37,
+      "full_width_half_max": 0.02
+    },
+    {
+      "name": "10",
+      "common_name": "lwir11",
+      "gsd": 100.0,
+      "accuracy": null,
+      "wavelength": 10.9,
+      "full_width_half_max": 0.8
+    },
+    {
+      "name": "11",
+      "common_name": "lwir12",
+      "gsd": 100.0,
+      "accuracy": null,
+      "wavelength": 12.0,
+      "full_width_half_max": 1.0
+    }
+  ]
 
  }

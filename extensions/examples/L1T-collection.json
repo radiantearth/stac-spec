@@ -8,83 +8,94 @@
       "eo:platform": "landsat-8",
       "eo:instrument": "OLI_TIRS"
   },
-  "eo:bands": {
-    "1": {
+  "eo:bands": [
+    {
+      "name": "1",
       "common_name": "coastal",
       "gsd": 30.0,
       "accuracy": null,
       "wavelength": 0.44,
-      "fwhm": 0.02
+      "full_width_half_max": 0.02
     },
-    "2": {
+    {
+      "name": "2",
       "common_name": "blue",
       "gsd": 30.0,
       "accuracy": null,
       "wavelength": 0.48,
-      "fwhm": 0.06
+      "full_width_half_max": 0.06
     },
-    "3": {
+    {
+      "name": "3",
       "common_name": "green",
       "gsd": 30.0,
       "accuracy": null,
       "wavelength": 0.56,
-      "fwhm": 0.06
+      "full_width_half_max": 0.06
     },
-    "4": {
+    {
+      "name": "4",
       "common_name": "red",
       "gsd": 30.0,
       "accuracy": null,
       "wavelength": 0.65,
-      "fwhm": 0.04
+      "full_width_half_max": 0.04
     },
-    "5": {
+    {
+      "name": "5",
       "common_name": "nir",
       "gsd": 30.0,
       "accuracy": null,
       "wavelength": 0.86,
-      "fwhm": 0.03
+      "full_width_half_max": 0.03
     },
-    "6": {
+    {
+      "name": "6",
       "common_name": "swir16",
       "gsd": 30.0,
       "accuracy": null,
       "wavelength": 1.6,
-      "fwhm": 0.08
+      "full_width_half_max": 0.08
     },
-    "7": {
+    {
+      "name": "7",
       "common_name": "swir22",
       "gsd": 30.0,
       "accuracy": null,
       "wavelength": 2.2,
-      "fwhm": 0.2
+      "full_width_half_max": 0.2
     },
-    "8": {
+    {
+      "name": "8",
       "common_name": "pan",
       "gsd": 15.0,
       "accuracy": null,
       "wavelength": 0.59,
-      "fwhm": 0.18
+      "full_width_half_max": 0.18
     },
-    "9": {
+    {
+      "name": "9",
       "common_name": "cirrus",
       "gsd": 30.0,
       "accuracy": null,
       "wavelength": 1.37,
-      "fwhm": 0.02
+      "full_width_half_max": 0.02
     },
-    "10": {
+    {
+      "name": "10",
       "common_name": "lwir11",
       "gsd": 100.0,
       "accuracy": null,
       "wavelength": 10.9,
-      "fwhm": 0.8
+      "full_width_half_max": 0.8
     },
-    "11": {
+    {
+      "name": "11",
       "common_name": "lwir12",
       "gsd": 100.0,
       "accuracy": null,
       "wavelength": 12.0,
-      "fwhm": 1.0
+      "full_width_half_max": 1.0
     }
-  }
+  ]
 }

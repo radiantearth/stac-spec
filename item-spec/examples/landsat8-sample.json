@@ -1,8 +1,7 @@
 {
   "id": "LC81530252014153LGN00",
   "type": "Feature",
-  "bbox": [ 49.16354,72.27502,51.36812,75.67662
-        ],
+  "bbox": [ 49.16354,72.27502,51.36812,75.67662 ],
   "geometry": {
     "type": "MultiPolygon",
     "coordinates": [
@@ -38,9 +37,9 @@
     "provider": "USGS",
     "license": "PDDL-1.0",
     "c:id": "L1T",
-    "c:description": "Landat 8 imagery that is radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
+    "c:name": "Landsat L1T",
+    "c:description": "Landat 8 imagery that is radiometrically calibrated and orthorectified using ground points and Digital Elevation Model (DEM) data to correct relief displacement.",
     "eo:gsd": 30.0,
-    "eo:epsg": 32643,
     "eo:cloud_cover" : 10,
     "eo:off_nadir" : 0.000,
     "eo:azimuth": 0.00,
@@ -65,12 +64,12 @@
     { "rel":"catalog", "href":  "http://landsat-pds.s3.amazonaws.com/L8/catalog.json"},
     { "rel":"collection", "href": "http://landsat-pds.s3.amazonaws.com/L8/L1T-collection.json"}
   ],
-  
+
   "assets" :{
     "thumbnail": {
-          "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_thumb_large.jpg",
-          "required": true,
-          "type": "jpeg"
+      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_thumb_large.jpg",
+      "required": true,
+      "type": "jpeg"
     },
     "metadata": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_MTL.txt",
@@ -84,7 +83,6 @@
       "eo:bands": [0]
     },
     "B2": {
-
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B2.TIF",
       "type": "GeoTIFF",
       "required": true,
@@ -145,5 +143,4 @@
       "eo:bands": [10]
     }
   }
-
  }
