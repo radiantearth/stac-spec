@@ -6,11 +6,17 @@ or the Catalog can link to other Catalogs (often called sub-Catalogs) that conta
 The division of sub-catalogs is up to the implementor, but is generally done to aid the ease of 
 online browsing by people.
 
-Catalogs are not intended to be queried - their purpose is more to be browsed by people and crawled
-by machines to build a search index. A Catalog can be represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Catalog.
+Catalogs are not intended to be queried. Their purpose is discovery: to be browsed by people and crawled
+by machines to build a search index. A Catalog can be represented in JSON format. Any JSON object 
+that contains all the required fields is a valid STAC Catalog.
 
 - [Examples](examples/) and [Implementations](../implementations.md)
 - [JSON Schema](json-schema/catalog.json) - please see the [validation instructions](../validation/README.md)
+
+This Catalog specification primarily defines a structure for information to be discoverable. Any use 
+that is publishing a set of related spatiotemporal assets is strongly recommended to also use the 
+[Dataset specification](../dataset-spec/) to provide additional information about a set of `Item`s 
+contained in a catalog, to give contextual information to aid in discovery.
 
 ## WARNING
 
@@ -25,22 +31,9 @@ incorporated.
 ## Catalog Definitions
 
 There are two required element types of a Catalog: Catalog and Item. A STAC Catalog
-points to [STAC Items](../item-spec/), or to other STAC catalogs. The top-most parent catalog is
-called the "root" catalog. The root catalog generally defines information about the catalog as a
-whole, such as name, description, licensing, contact information and so forth. However, it is
-strongly recommended that a "root" catalog define metadata fields that apply to the entire `catalog`
-(such that child catalogs and items simply inherit these field values). Catalogs below the root
-generally have less information and serve to create a directory structure for categorizing and
-grouping item data. The contents of a catalog are flexible and STAC makes no assumptions for where
-or how catalog metadata is defined within a catalog. For example, a non-root catalog could redefine
-or add different licensing or copyright terms.
-
-STAC makes no formal distinction between a "root" catalog and the "child" catalogs. A root catalog
-is simply a top-most `catalog` (which has no parent). A nested `catalog` structure is useful (and
-recommended) for breaking up massive numbers of catalog items into logical groupings. For example,
-it might make sense to organize a `catalog` by date (year, month, day), or geography (continent,
-country, state/prov). Any scheme may be used, but it's considered a best practice to keep the size
-of each `catalog` under a a megabyte.
+points to [STAC Items](../item-spec/), or to other STAC catalogs. It provides a simple
+linking structure that can be used recursively so that many `Items` can be included in 
+a single Catalog, organized however the implementor desires. 
 
 A simple Catalog structure might look like this:
 
@@ -70,15 +63,71 @@ catalogs and items:
 - `Item` -> `Item` (example: this relationship may be used to describe a 1-1 parent-child
   relationship, such as a single derived item from one parent item)
 
-The core Items listed in a static catalog are the exact same form as those returned by a Catalog
-API. Ideally, STAC enables both a static and dynamic API to be crawled in the same way.
+These relationships are all described by a common `links` object structure, making use of
+the *rel* attribute to further describe the relationship. 
 
-Catalogs should be defined using the file name `catalog.json` to distinguish from item other JSON
-type files. In order to support multiple "root" catalogs, the recommended practice is to place the
+There are a few types of catalogs that implementors occasionally refer to. These get defined by the `links` structure.
+
+ * A **sub-catalog** is a Catalog that is linked to from another Catalog that is used to better organize data. For example a Landsat dataset might have sub-catalogs for each Path and Row, so as to create a nice tree structure for users to follow.
+ * A **root catalog** is a Catalog that only links to sub-catalogs. These are typically entry points for browsing data. Often
+ they will contain the [dataset](../dataset-spec) definition, but in implementations that publish diverse information it may
+ contain sub-catalogs that provide a variety of datasets.
+ * A **parent catalog** is the Catalog that sits directly above a sub-catalog. Following parent catalog links continuously
+ will naturally end up at a root catalog definition.
+ 
+It should be noted that a Catalog does not have to link back to all the other Catalogs that point to it. Thus a published 
+root catalog might be a sub-catalog of someone else's structure. The goal is for data providers to publish all the 
+information and links they want to, while also encouraging a natural web of information to arise as Catalogs and Items are
+linked to across the web.
+
+### Catalog Types
+
+The core `Item`s and `Catalog`s of a SpatioTemporal Asset Catalog are designed for ease of implementation. 
+With the same core JSON documents and link structures it can be implemented in a way that is just files available online,
+or easily implementable with modern REST service infrastructures. These represent two different types of catalogs, the 
+'static catalog' and the 'dynamic catalog', which can operate a bit differently though they can be treated the same by
+clients.
+
+
+ But any server can implement the same JSON and link structure, creating responses
+dynamically as REST calls. These are referred to as 'dynamic catalogs'.
+
+#### Static Catalogs
+
+A main target for STAC has been object storage services like [Amazon S3](https://aws.amazon.com/s3/), 
+[Google Cloud Storage](https://cloud.google.com/storage/) and [Azure Storage](https://azure.microsoft.com/en-us/services/storage/), 
+so that users can stand up a full STAC implementation with static files. Implementations created with just files online
+are referred to as 'static catalogs'. These include not just the cloud services, but any type of file server that is online.
+
+Static Catalogs tend to make extensive use of *sub-catalogs* to organize their `Item`s in to sensible browsing structures, 
+as they can only have a single representation of their catalog, as the static nature means the structure is baked in. 
+While it is up to the implementor to organize the catalog, it is recommended to arrange the in a way that would make sense 
+for a human to browse a set of STAC Items in an intuitive matter.
+
+Static catalogs a recommended to be defined using the file name `catalog.json` to distinguish from item other JSON
+type files. In order to support multiple catalogs, the recommended practice is to place the
 `catalog.json` in namespaces "directories". For example:
 
 - current/catalog.json
 - archive/catalog.json
+
+#### Dynamic Catalogs
+
+Dynamic STAC Catalogs are those that generate their JSON responses programmatically instead of relying on a set of
+already defined files. Typically a dynamic catalog implements the full [STAC API](../stac-api/) which enables 
+search of the Items indexed. But the `/stac/` endpoint returns the exact same `Catalog` and `Item` structures as a
+static catalog, enabling the same discovery from people browsing and search engines crawling. But dynamic API's that
+just seek to expose some data can also choose to only implement a Catalog the `/stac/` endpoint that returns dynamically.
+For example a Content Management Service like Drupal or an Open Data Catalog like CKAN could choose to expose its content
+as linked STAC Items by implementing a dynamic catalog. 
+
+One benefit of a dynamic catalog is that it can generate various 'views' of the catalog, exposing the same `Items` in 
+different sub-catalog organization structures. For example one catalog could divide sub-catalogs by date and another by
+providers, and users could browse down to both. The leaf `Item`s should just be linked to in a single canonical location (or at least use a *rel* link that indicates the location of the canonical one.
+
+The STAC API is also made to be compatible with WFS3, which has a set structure for the canonical location of its features.
+STAC `Item`s should use the WFS3 location as their canonical location, and then in the `/stac/` browse structure would just
+link to those locations. 
 
 ## Catalog fields
 
@@ -100,16 +149,16 @@ might look something like this:
   "description": "Catalog of NAIP Imagery",
   "links": [
     { "rel": "self", "href": "https://www.fsa.usda.gov/naip/catalog.json" },
-    { "rel": "child", "href": "30087/catalog.json" },
-    { "rel": "root", "href": "https://www.fsa.usda.gov/catalog.json"
-    }
+    { "rel": "child", "href": "https://www.fsa.usda.gov/naip/30087/catalog.json" },
+    { "rel": "root", "href": "https://www.fsa.usda.gov/catalog.json" }
   ]
 }
 ```
 
-In addition, the catalog shown above is strongly recommended to also follow the [Dataset specification](../dataset-spec/dataset-spec.md) to add more information about the NAIP imagery such as the spatial and temporal extents, a license and more.
+In addition, the catalog shown above is strongly recommended to also follow the [Dataset specification](../dataset-spec/dataset-spec.md) 
+to add more information about the NAIP imagery such as the spatial and temporal extents, a license and more.
 
-A typical '_child_' catalog could look similar:
+A typical '_child_' sub-catalog could look similar:
 
 ```json
 {
@@ -119,8 +168,8 @@ A typical '_child_' catalog could look similar:
     { "rel": "self", "href": "https://www.fsa.usda.gov/naip/30087/catalog.json" },
     { "rel": "parent", "href": "../catalog.json" },
     { "rel": "root", "href": "https://www.fsa.usda.gov/catalog.json" },
-    { "rel": "item", "href": "m_3008718_sw_16_1_20130805.json" },
-    { "rel": "item", "href": "m_3008718_sw_16_1_20130806.json" }
+    { "rel": "item", "href": "https://www.fsa.usda.gov/naip/30087/m_3008718_sw_16_1_20130805.json" },
+    { "rel": "item", "href": "https://www.fsa.usda.gov/naip/30087/m_3008718_sw_16_1_20130806.json" }
   ]
 }
 ```
