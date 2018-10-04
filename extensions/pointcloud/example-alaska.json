@@ -1,0 +1,261 @@
+{
+  "assets": {},
+  "bbox": {
+    "maxx": -149.2527639,
+    "maxy": 61.78936655,
+    "maxz": 1981.200833,
+    "minx": -149.3006585,
+    "miny": 61.76668361,
+    "minz": 11.48480563
+  },
+  "geometry": {
+    "coordinates": [
+      [
+        [
+          [
+            -149.30045496703195,
+            61.76682620765713
+          ],
+          [
+            -149.25327277445712,
+            61.76657763000873
+          ],
+          [
+            -149.25272374552367,
+            61.78921108684322
+          ],
+          [
+            -149.30023535632952,
+            61.7894132390075
+          ],
+          [
+            -149.30080489041393,
+            61.766924315502195
+          ],
+          [
+            -149.30045496703195,
+            61.76682620765713
+          ]
+        ]
+      ]
+    ],
+    "type": "MultiPolygon"
+  },
+  "id": "AK_MatanuskaSusitna-Lot2_2011_000227.laz",
+  "properties": {
+    "c:description": "USGS 3DEP LiDAR",
+    "c:id": "MODIFICATION                   ",
+    "datetime": "2013-05-14T00:00:00",
+    "license": "LICENSE",
+    "pc:avg_pt_per_sq_unit": 3.163692583,
+    "pc:count": 64473760,
+    "pc:density": 0.9482590115,
+    "pc:encoding": "LASzip",
+    "pc:schema": [
+      {
+        "name": "X",
+        "size": 8,
+        "type": "floating"
+      },
+      {
+        "name": "Y",
+        "size": 8,
+        "type": "floating"
+      },
+      {
+        "name": "Z",
+        "size": 8,
+        "type": "floating"
+      },
+      {
+        "name": "Intensity",
+        "size": 2,
+        "type": "unsigned"
+      },
+      {
+        "name": "ReturnNumber",
+        "size": 1,
+        "type": "unsigned"
+      },
+      {
+        "name": "NumberOfReturns",
+        "size": 1,
+        "type": "unsigned"
+      },
+      {
+        "name": "ScanDirectionFlag",
+        "size": 1,
+        "type": "unsigned"
+      },
+      {
+        "name": "EdgeOfFlightLine",
+        "size": 1,
+        "type": "unsigned"
+      },
+      {
+        "name": "Classification",
+        "size": 1,
+        "type": "unsigned"
+      },
+      {
+        "name": "ScanAngleRank",
+        "size": 4,
+        "type": "floating"
+      },
+      {
+        "name": "UserData",
+        "size": 1,
+        "type": "unsigned"
+      },
+      {
+        "name": "PointSourceId",
+        "size": 2,
+        "type": "unsigned"
+      },
+      {
+        "name": "GpsTime",
+        "size": 8,
+        "type": "floating"
+      }
+    ],
+    "pc:statistics": [
+      {
+        "average": 1765797.419,
+        "count": 64473760,
+        "maximum": 1769746,
+        "minimum": 1761544.01,
+        "name": "X",
+        "position": 0,
+        "stddev": 2340.346622,
+        "variance": 5477222.31
+      },
+      {
+        "average": 2842320.787,
+        "count": 64473760,
+        "maximum": 2846625,
+        "minimum": 2838423.01,
+        "name": "Y",
+        "position": 1,
+        "stddev": 2446.005498,
+        "variance": 5982942.898
+      },
+      {
+        "average": 3760.301515,
+        "count": 64473760,
+        "maximum": 6499.99,
+        "minimum": 37.68,
+        "name": "Z",
+        "position": 2,
+        "stddev": 953.5224496,
+        "variance": 909205.062
+      },
+      {
+        "average": 176.7857038,
+        "count": 64473760,
+        "maximum": 255,
+        "minimum": 0,
+        "name": "Intensity",
+        "position": 3,
+        "stddev": 92.00839536,
+        "variance": 8465.544817
+      },
+      {
+        "average": 1.214258343,
+        "count": 64473760,
+        "maximum": 5,
+        "minimum": 1,
+        "name": "ReturnNumber",
+        "position": 4,
+        "stddev": 0.7263398082,
+        "variance": 0.527569517
+      },
+      {
+        "average": 1.376616394,
+        "count": 64473760,
+        "maximum": 5,
+        "minimum": 1,
+        "name": "NumberOfReturns",
+        "position": 5,
+        "stddev": 1.070825579,
+        "variance": 1.146667421
+      },
+      {
+        "average": 0.5003097849,
+        "count": 64473760,
+        "maximum": 1,
+        "minimum": 0,
+        "name": "ScanDirectionFlag",
+        "position": 6,
+        "stddev": 0.4999999683,
+        "variance": 0.2499999683
+      },
+      {
+        "average": 0.000881211209,
+        "count": 64473760,
+        "maximum": 1,
+        "minimum": 0,
+        "name": "EdgeOfFlightLine",
+        "position": 7,
+        "stddev": 0.02967213003,
+        "variance": 0.0008804353008
+      },
+      {
+        "average": 17.21186159,
+        "count": 64473760,
+        "maximum": 129,
+        "minimum": 2,
+        "name": "Classification",
+        "position": 8,
+        "stddev": 31.34383656,
+        "variance": 982.4360901
+      },
+      {
+        "average": 0.3183486119,
+        "count": 64473760,
+        "maximum": 24,
+        "minimum": -22,
+        "name": "ScanAngleRank",
+        "position": 9,
+        "stddev": 9.934022398,
+        "variance": 98.684801
+      },
+      {
+        "average": 0,
+        "count": 64473760,
+        "maximum": 0,
+        "minimum": 0,
+        "name": "UserData",
+        "position": 10,
+        "stddev": 0,
+        "variance": 0
+      },
+      {
+        "average": 10733.9377,
+        "count": 64473760,
+        "maximum": 12042,
+        "minimum": 1084,
+        "name": "PointSourceId",
+        "position": 11,
+        "stddev": 3522.808499,
+        "variance": 12410179.72
+      },
+      {
+        "average": 26389458.29,
+        "count": 64473760,
+        "maximum": 30299322.58,
+        "minimum": -2450342.801,
+        "name": "GpsTime",
+        "position": 12,
+        "stddev": 10532949.21,
+        "variance": 110943019000000.0
+      }
+    ],
+    "pc:type": "lidar",
+    "pc:units": {
+      "horizontal": "US survey foot",
+      "vertical": "US survey foot"
+    },
+    "provider": "USGS"
+  },
+  "type": "Feature"
+}
