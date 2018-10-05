@@ -53,5 +53,5 @@ This example runs the validation for the scientific extension, please change the
 To run the validation for an item file:
 
 ```bash
-npm run validate_item -- -d ../item-spec/sample.json
+npm run validate_item -- -d ../item-spec/examples/sample.json
 ```

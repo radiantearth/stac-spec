@@ -14,6 +14,7 @@
   "provider": [
     {
       "name": "European Union/ESA/Copernicus",
+      "type": "producer",
       "url": "https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi"
     }
   ],

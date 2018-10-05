@@ -4,7 +4,11 @@
   "links": [
     {
       "rel": "self",
-      "href": "s3://sentinel-s2-l2a-catalog/tiles/35/V/MK/2018/6/5/0/catalog.json"
+      "href": "s3://sentinel-s2-l2a-catalog/tiles/35/V/MK/2018/6/5/0/sentinel2-sample.json"
+    },
+    {
+      "rel": "dataset",
+      "href": "s3://sentinel-s2-l2a-catalog/catalog.json"
     }
   ],
   "bbox": [

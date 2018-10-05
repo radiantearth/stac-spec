@@ -21,10 +21,9 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | title       | string            | A short descriptive one-line title for the dataset.          |
 | description | string            | **REQUIRED.** Detailed multi-line description to fully explain the entity. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | keywords    | [string]          | List of keywords describing the dataset.                     |
-| version     | string            | Version of the dataset. [Semantic Versioning (SemVer)](https://semver.org/) SHOULD be followed. |
+| version     | string            | Version of the dataset.                                      |
 | license     | string            | **REQUIRED.** Dataset's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
-| provider    | [Provider Object] | A list of data providers, the organizations which influenced the content of the dataset. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
-| host        | Host Object       | Storage provider, the organization that hosts the dataset.   |
+| provider    | [Provider Object] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | extent      | [Extent Object]   | **REQUIRED.** Spatial and temporal extents.                  |
 | links       | [Link Object]     | **REQUIRED.** A list of references to other documents.       |
 
@@ -52,27 +51,13 @@ The coordinate reference system of the values is WGS84 longitude/latitude.
 
 ### Provider Object
 
-The object provides information about a provider. A provider is any of the organizations that created or processed the content of the dataset and therefore influenced the data offered by this dataset.
+The object provides information about a provider. A provider is any of the organizations that captured or processed the content of the dataset and therefore influenced the data offered by this dataset. May also include information about the final storage provider hosting the data.
 
 | Field Name | Type   | Description                                                  |
 | ---------- | ------ | ------------------------------------------------------------ |
 | name       | string | **REQUIRED.** The name of the organization or the individual. |
+| type       | string | The type of provider. Any of `producer`, `processor` or `host`. |
 | url        | string | Homepage of the provider.                                    |
-
-###  Host Object
-
-The objects provides information about the storage provider hosting the data. 
-
-**Note:** The idea of storage profiles is currently [discussed](https://github.com/radiantearth/stac-spec/issues/148). Therefore, scheme, id and region may be removed from the final spec once this concept is introduced to STAC.
-
-| Field Name     | Type    | Description                                                  |
-| -------------- | ------- | ------------------------------------------------------------ |
-| name           | string  | **REQUIRED.** The name of the organization or the individual hosting the data. |
-| description    | string  | Detailed description to explain the hosting details. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| scheme         | string  | **REQUIRED.** The protocol/scheme used to access the data. Any of: `S3`, `GCS`, `URL`, `OTHER` |
-| id             | string  | **REQUIRED.** Host-specific identifier such as an URL or asset id. |
-| region         | string  | Provider specific region where the data is stored.           |
-| requester_pays | boolean | `true` if requester pays, `false` if host pays. Defaults to `false`. |
 
 ### Link Object
 
@@ -97,7 +82,7 @@ The following types are commonly used as `rel` types in the Link Object of a Dat
 | item    | URL to a [STAC Item](../item-spec/).                         |
 | license | The license URL for the dataset SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file. |
 
-**Note:** The [catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is _not_ a requirement for datasets, but _recommended_.
+**Note:** The [catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is _not_ a requirement for datasets, but _strongly recommended_.
 
 ## Extensions
 

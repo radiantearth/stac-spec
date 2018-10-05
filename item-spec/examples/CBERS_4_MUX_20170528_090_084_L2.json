@@ -38,8 +38,6 @@
   },
   "properties": {
     "datetime": "2017-05-28T09:01:17Z",
-    "provider": "INPE",
-    "eo:collection": "default",
     "eo:sun_azimuth": 66.2923,
     "eo:sun_elevation": 70.3079,
     "eo:off_nadir": -0.00744884,
@@ -54,11 +52,11 @@
       "href": "https://cbers-stac.s3.amazonaws.com/CBERS4/MUX/090/084/CBERS_4_MUX_20170528_090_084_L2.json"
     },
     {
-      "rel": "catalog",
+      "rel": "parent",
       "href": "https://cbers-stac.s3.amazonaws.com/CBERS4/MUX/090/catalog.json"
     },
     {
-      "rel": "collection",
+      "rel": "dataset",
       "href": "https://cbers-stac.s3.amazonaws.com/collections/CBERS_4_MUX_L2_collection.json"
     }
   ],

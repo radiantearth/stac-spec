@@ -149,6 +149,5 @@ The following types are commonly used as `rel` types in the Link Object of a Dat
 | parent  | URL to the parent [STAC Catalog](../catalog-spec/). Non-root catalogs should include a link to their parent.                                                                                                                                                                            |
 | child   | URL to a child [STAC Catalog](../catalog-spec/).                                                                                                                                                                                                                                        |
 | item    | URL to a [STAC Item](../item-spec/).                                                                                                                                                                                                                                                      |
-| license | The license URL for the catalog SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file.                           |
 
 **Note:** A link to at least one `item` or `child` catalog is _required_.
