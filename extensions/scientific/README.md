@@ -1,5 +1,7 @@
 # STAC Scientific Extension Spec (`sci`)
 
+**Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+
 This document explains the fields of the STAC Scientific Extension to a STAC Catalog. Scientific
 metadata is considered to be data that indicate from which publication a dataset originates and how
 the dataset itself should be cited or referenced. Overall, it helps to increase reproducibility and
