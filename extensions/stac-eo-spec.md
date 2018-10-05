@@ -57,12 +57,12 @@ there is no valid EPSG code.
 | common_name         | string    | The name commonly used to refer to the band to make it easier to search for bands across instruments. See below for a list of accepted common names.          |
 | gsd                 | number    | Ground Sample distance, the nominal distance between pixel centers available, in meters. See eo:gsd for more information. Defaults to eo:gsd if not provided. |
 | accuracy            | number    | The expected error between the measured location and the true location of a pixel, in meters on the ground.                                                   |
-| center_wavelength   | number    | The center wavelength of the band, in microns.                                                                                                                |
-| full_width_half_max | number    | Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in microns.                                           |
+| center_wavelength   | number    | The center wavelength of the band, in micrometres (μm).                                                                                                       |
+| full_width_half_max | number    | Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in micrometres (μm).                                  |
 
 
 **full_width_half_max** (FWHM) is a common way to describe the size of a spectral band. It is the
-width, in microns, of the bandpass measured at a half of the maximum transmission. Thus, if the
+width, in micrometres (μm), of the bandpass measured at a half of the maximum transmission. Thus, if the
 maximum transmission of the bandpass was 80%, the FWHM is measured as the width of the bandpass at
 40% transmission.
 
