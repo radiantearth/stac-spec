@@ -113,7 +113,7 @@ link is required to be absolute.
 
 #### Datasets
 
-Items are *required* to provide a link to a dataset definition.
+Items are *strongly recommended* to provide a link to a dataset definition. It is important as datasets provide additional information about a set of items, for example the license and provider information and optionally any common information shared across all items.
 
 ### Asset Object
 

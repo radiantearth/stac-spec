@@ -59,6 +59,12 @@ The object provides information about a provider. A provider is any of the organ
 | type       | string | The type of provider. Any of `producer`, `processor` or `host`. |
 | url        | string | Homepage of the provider.                                    |
 
+**type**: The type of the provider can be one of the following elements:
+
+* *producer*: The producer of the data is the provider that initially captured and processed the source data, e.g. ESA for Sentinel-2 data.
+* *processor*: A processor is any provider who processed data to a derived product.
+* *host*: The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list. 
+
 ### Link Object
 
 This object describes a relationship with another entity. Data providers are advised to be liberal with links.
@@ -79,12 +85,11 @@ The following types are commonly used as `rel` types in the Link Object of a Dat
 | root    | URL to the root [STAC Catalog](../catalog-spec/) or Dataset. |
 | parent  | URL to the parent [STAC Catalog](../catalog-spec/) or Dataset. |
 | child   | URL to a child [STAC Catalog](../catalog-spec/) or Dataset. |
-| item    | URL to a [STAC Item](../item-spec/).                         |
+| item    | URL to a [STAC Item](../item-spec/). All items linked from a dataset MUST refer back to its dataset with the `dataset` relation type. |
 | license | The license URL for the dataset SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file. |
 | derived_from | URL to a STAC `Dataset` that was used as input data in the creation of this `Dataset`. See the note in [STAC Item](../item-spec/item-spec.md) for more info. |
 
-
-**Note:** The [catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is _not_ a requirement for datasets, but _strongly recommended_.
+**Note:** The [catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is _not_ a requirement for datasets, but _recommended_. In contrast to catalogs, it is **required** that items linked from a dataset MUST refer back to its dataset with the `dataset` relation type.
 
 ## Extensions
 
