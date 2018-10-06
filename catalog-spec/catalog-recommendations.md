@@ -57,36 +57,13 @@ An example of this can be seen in a Landsat example:
 
 ```
 
-This could also extend to product level metadata:
-
-```json
-
-{
-	"id":"landsat8-product-band-4", 
-    "bands": [
-      {
-        "common_name": "Red",
-        "gsd": 30,
-        "center_wavelength": 654.59,
-        "effective_bandwidth": 37.47,
-        "image_band_index": 1
-      }
-    ],
-    "filetype": "geotiff",
-    "eo:spacecraft_id" : "LANDSAT_8",
-    "eo:sensor_id": "OLI_TIRS",
-    "l8:elevation_source": "GLS2000",
-    "l8:origin": "Image courtesy of the U.S. Geological Survey",
-    "l8:processing_software_version": "LPGS_2.3.0",
-
-}
-```
 
 
 ### Asset definition
 
 **Note: 0.6.0 defines Media types for assets, to provide more information about what is download, but there is likely
 more work to be done to fully define the asset, so this section is left in for discussion**
+
 
 It is of top priority to provide definitions of assets, so clients can know get some information as to 
 what is actually contained in the data they are downloading. Assets should contain the metadata that is 
@@ -120,9 +97,13 @@ definition for clients. See for example DigitalGlobe's definition:
 
  They then define the bands for the product directly within the 'properties'.
 
-#### Linking to Product metadata
+#### Linking to common definitions
 
-In this scenario, an `Asset` must have a "product" field that specifies a uri to a JSON file that represents the `Product`.
+In this scenario, an `Asset` must have some field that specifies a uri to a JSON file that has the additional metadata.
+
+This would make sense at a Catalog or Dataset level, though more work is needed to define exactly how it would look. It
+could be a generic Asset Definition JSON set of fields, that could be added at the dataset level or could be used 
+independently. Ideally each Asset would have a way to link directly to its definition.
 
 See for example a sample landsat definition:
 
@@ -141,52 +122,5 @@ clients would be able to cache and reuse product definitions, and hopefully ther
 of canonical product definitions online, that all static catalogs using a particular provider would be
 able to reference.
 
-
-### Product
-
-A `Product` describes general metadata about the `Asset`, which can apply to a broad set of `Asset`s. For the 
-linked asset metadata above the product definition in a separate file is essential. The idea would be that
-type information on assets would be more at the level of a catalog, not the individual file, and catalog
-items would be able to reference their product. Though nothing would prevent an item from referencing its
-own specially created `Product` metadata - there would be no rules on the granularity that the metadata applies 
-to, just that each of an `Item`'s assets would need to link to its asset definition.
-
-Even in the inline asset definition it still would be useful to standardize on the product level metadata in 
-some way, so that everything is not just totally custom metadata. At least a core set of fields that can 
-be standardized and published.
-
-For a Landsat example, at a minimal level we could have the following product for the above asset:
-
-```json
-
-{
-	"id":"landsat8-product-band-4", 
-    "bands": [
-      {
-        "common_name": "Red",
-        "gsd": 30,
-        "center_wavelength": 654.59,
-        "effective_bandwidth": 37.47,
-        "image_band_index": 1
-      }
-    ],
-    "filetype": "geotiff",
-    "spacecraft_id" : "LANDSAT_8",
-    "sensor_id": "OLI_TIRS",
-    "elevation_source": "GLS2000",
-    "origin": "Image courtesy of the U.S. Geological Survey",
-    "processing_software_version": "LPGS_2.3.0",
-
-}
-
-```
-
-
-
-
-### Forwarding of properties
-
-The properties of an element that can apply to the child links *will* apply,
-unless overridden by the child element.
 
 
