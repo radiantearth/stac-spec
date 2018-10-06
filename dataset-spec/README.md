@@ -36,3 +36,16 @@ them, and to check out the [examples](examples/) and [other implementations](../
 
 The Dataset specification is maturing, but it is still relatively early days. As real world
 implementations innovate in different ways, we will update the core fields to handle.
+
+The goal of the Dataset spec is not to reinvent the wheel by making yet another set of fields for metadata. The hope is to 
+align with the latest efforts of the Open Geospatial Consortium, particularly their work around WFS 3 and hopefully CSW 4. 
+Indeed the field names are chosen to fully align with WFS 3, so a WFS 3 `collections/{collectionId}` endpoint can return
+a valid STAC Dataset that is also valid for their response.
+
+Effort will also be made to align with Dublin Core and [DCAT](https://www.w3.org/TR/vocab-dcat/), though it is likely to
+start using it as a microformat in STAC Browser HTML output to start. But future iterations could align with a JSON-LD DCAT
+recommendation.
+
+The immediate goal is to just be a simple explanation of fields to describe a dataset, and as the spec evolves it will look to
+continually align with other efforts. Indeed it could make sense in the future to just 'use' another spec by subsetting it 
+and explaining it. But nothing was found that exactly matched the needs of STAC to keep things very approachable to developers.
