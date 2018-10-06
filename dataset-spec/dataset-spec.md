@@ -17,7 +17,7 @@ Implementations are encouraged, however, as good effort will be made to not chan
 
 | Element     | Type              | Description                                                  |
 | ----------- | ----------------- | ------------------------------------------------------------ |
-| name        | string            | **REQUIRED.** Identifier for the dataset that is unique across the provider. |
+| id          | string            | **REQUIRED.** Identifier for the dataset that is unique across the provider. |
 | title       | string            | A short descriptive one-line title for the dataset.          |
 | description | string            | **REQUIRED.** Detailed multi-line description to fully explain the entity. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | keywords    | [string]          | List of keywords describing the dataset.                     |
@@ -82,7 +82,7 @@ The following types are commonly used as `rel` types in the Link Object of a Dat
 | item    | URL to a [STAC Item](../item-spec/).                         |
 | license | The license URL for the dataset SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file. |
 | derived_from | URL to a STAC `Dataset` that was used as input data in the creation of this `Dataset`. See the note in [STAC Item](../item-spec/item-spec.md) for more info. |
- 
+
 
 **Note:** The [catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is _not_ a requirement for datasets, but _strongly recommended_.
 

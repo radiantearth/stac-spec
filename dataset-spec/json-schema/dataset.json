@@ -5,7 +5,7 @@
   "description": "This object represents the dataset in a SpatioTemporal Asset Catalog.",
   "type": "object",
   "required": [
-    "name",
+    "id",
     "description",
     "license",
     "extent",
@@ -13,7 +13,7 @@
   ],
   "additionalProperties": true,
   "properties": {
-    "name": {
+    "id": {
       "title": "Identifier",
       "type": "string"
     },

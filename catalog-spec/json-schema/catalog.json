@@ -24,13 +24,17 @@
       "title": "Catalog",
       "type": "object",
       "required": [
-        "name",
+        "id",
         "description",
         "links"
       ],
       "properties": {
-        "name": {
-          "title": "Name",
+        "id": {
+          "title": "Identifier",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
           "type": "string"
         },
         "description": {
