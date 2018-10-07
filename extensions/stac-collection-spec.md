@@ -1,5 +1,7 @@
 # STAC Collection Extension Spec (`c`)
 
+**Extension [Maturity Classification](./README.md#extension-maturity): Proposal**
+
 A group of STAC `Item` objects from a single source can share a lot of common metadata. This is
 especially true with satellite imagery that uses the STAC EO Extension. Rather than including these
 common metadata fields on every `Item`, they can be grouped into a `Collection`.
@@ -231,3 +233,9 @@ This is an example `Collection` for Landsat-8 imagery and uses the [EO extension
       }
     ]
 ```
+
+## Implementations
+
+[sat-api](https://github.com/sat-utils/sat-api/) has pioneered this functionality. You can see it in action at https://sat-api.developmentseed.org/search/stac 
+
+Note this is in flux for 0.6.0, figuring out how 'dataset' fits in, as well as a general metadata model.

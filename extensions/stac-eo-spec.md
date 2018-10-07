@@ -1,5 +1,7 @@
 # STAC EO Extension Spec (`eo`)
 
+**Extension [Maturity Classification](./README.md#extension-maturity): Pilot**
+
 This document explains the fields of the STAC Earth Observation (EO) Extension to a STAC `Item`. EO
 data is considered to be data that represents a snapshot of the earth for a single date and time. It
 could consist of multiple spectral bands in any part of the electromagnetic spectrum. Examples of EO
@@ -184,6 +186,12 @@ Planet example:
   ]
 }
 ```
+
+## Implementations
+
+A number of implementations listed on [STAC Implementations page](../implementations.md) are making use of the core EO 
+properties, including the SpaceNet, CBERS, sat-api and Planet implementations. This is not marked as more mature because
+the eo:bands portion is still being fleshed out, with changes coming in 0.6.0.
 
 ## Extensions
 

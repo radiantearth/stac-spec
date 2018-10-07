@@ -99,6 +99,11 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | root    | URL to the root [STAC Catalog](../catalog-spec/) or [Dataset](../dataset-spec/). |
 | parent  | URL to the parent [STAC Catalog](../catalog-spec/) or [Dataset](../dataset-spec/). |
 | license | The license URL for the item SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file. |
+| derived_from | URL to a STAC `Item` that was used as input data in the creation of this `Item` |
+
+*Note: A full provenance model is far beyond the scope of STAC, and the goal is to align with any good independent spec 
+that comes along for that. But the derived_from field is seen as a way to encourage fuller specs and at least start a linking
+structure that can be used as a jumping off point for more experiments in provenance tracking*
 
 #### Relative vs Absolute links
 
