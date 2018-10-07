@@ -21,9 +21,21 @@ a 'feature', where the geometry is basically the footprint of the asset. So the 
 represented as a WFS, with just some extensions for linking to the assets, and fixing the `datetime` field.
 
 So the decision was made to combine efforts. The key piece that STAC needs that WFS does not provide is the ability
-to search across 'collections', so the `/search/stac/` endpoint is made to be an 'extension' to WFS that provides
+to search across 'collections', so the `/stac/search` endpoint is made to be an 'extension' to WFS that provides
 that capability. So any WFS that is providing data that can be represented as STAC Items can choose to add the 
 STAC endpoint.
+
+In addition to the `/stac/search` endpoint, STAC API's provide the ability to 'browse' all the [Items](../item-spec/) that
+are available from a service. This is done using the `/stac/` endpoint, returning a full [STAC Catalog](../catalog-spec/). Ideally that Catalog makes extensive use of [STAC Datasets](../dataset-spec/) to further describe the holdings.
+
+The STAC Dataset spec is designed to be compatible with the WFS /collections/{collectionId} endpoint's response. This enables
+WFS + STAC implementations to just extend their collections with a bit more information to be STAC Compliant dataset 
+definitions.
+
+An additional best practice is to use the WFS items available in /collections/{collectionId}/items as the 'canonical' web
+location. Then the STAC Catalogs returned from `/stac/` can either link directly to those (from the appropriate sub-catalog - 
+for example /stac/landsat8/42/31/2017/ would be a catalog consisting of links to /collections/). Or it can return json
+in the link structure (like /stac/landsat8/42/31/2017/item203123.json), and have that returned json use a link with rel=canonical that goes back to the `Item` that is in the collection.
 
 ### WFS Structure
 
