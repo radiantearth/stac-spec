@@ -5,7 +5,7 @@
   "description": "This object represents the dataset in a SpatioTemporal Asset Catalog.",
   "type": "object",
   "required": [
-    "name",
+    "id",
     "description",
     "license",
     "extent",
@@ -13,7 +13,7 @@
   ],
   "additionalProperties": true,
   "properties": {
-    "name": {
+    "id": {
       "title": "Identifier",
       "type": "string"
     },
@@ -45,8 +45,17 @@
       "items": {
         "properties": {
           "name": {
-            "title": "Organization Name",
+            "title": "Organization name",
             "type": "string"
+          },
+          "type": {
+            "title": "Organization type",
+            "type": "string",
+            "enum": [
+              "producer",
+              "processor",
+              "host"
+            ]
           },
           "url": {
             "title": "Organization homepage",
@@ -55,47 +64,6 @@
           }
         }
       }
-    },
-    "host": {
-      "required": [
-        "name",
-        "scheme",
-        "id"
-      ],
-      "properties": {
-        "name": {
-          "title": "Organization name",
-          "type": "string"
-        },
-        "description": {
-          "title": "Description",
-          "type": "string"
-        },
-        "scheme": {
-          "title": "Scheme",
-          "type": "string",
-          "enum": [
-            "S3",
-            "GCS",
-            "URL",
-            "OTHER"
-          ]
-        },
-        "id": {
-          "title": "Identifirer",
-          "type": "string"
-        },
-        "region": {
-          "title": "Region",
-          "type": "string"
-        },
-        "requester_pays": {
-          "title": "Requester Pays",
-          "type": "boolean",
-          "default": false
-        }
-      },
-      "additionalProperties": true
     },
     "extent": {
       "title": "Extents",
@@ -108,6 +76,8 @@
         "spatial": {
           "title": "Spatial extent",
           "type": "array",
+          "minItems": 4,
+          "maxItems": 6,
           "items": {
             "type": "number"
           }

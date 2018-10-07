@@ -320,51 +320,7 @@ components:
       description: Only returns items that intersect with the provided polygon.
       properties:
         intersects:
-          $ref: '#/components/schemas/polygon'
-    polygon:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-            - polygon
-        coordinates:
-          $ref: '#/components/schemas/polygon2D'
-      required:
-        - type
-        - coordinates
-    polygon2D:
-      type: array
-      minItems: 1
-      items:
-        $ref: '#/components/schemas/linearRing2D'
-    linearRing2D:
-      type: array
-      minItems: 4
-      items:
-        $ref: '#/components/schemas/point2D'
-      example:
-        - - -104
-          - 35
-        - - -103
-          - 35
-        - - -103
-          - 34
-        - - -104
-          - 34
-        - - -104
-          - 35
-    point2D:
-      description: A 2d geojson point
-      type: array
-      minimum: 2
-      maximum: 2
-      items:
-        type: number
-        format: double
-      example:
-        - -104
-        - 35
+          $ref: 'http://geojson.org/schema/Geometry.json'
     time:
       type: string
       description: >
@@ -477,7 +433,7 @@ components:
         bbox:
           $ref: '#/components/schemas/bbox'
         geometry:
-          $ref: 'http://json.schemastore.org/geojson.json#/definitions/geometry'
+          $ref: 'http://geojson.org/schema/Geometry.json'
         type:
           type: string
           description: The GeoJSON type
@@ -603,38 +559,46 @@ components:
           description: Match using an operator
           properties:
             eq:
-              description: Find items with a property that is equal to the specified value
+              description: >-
+                Find items with a property that is equal to the specified value.
+                For strings, a case-insensitive comparison must be performed.
             neq:
-              description: Find items that *don't* contain the specified value
+              description: >-
+                Find items that *don't* contain the specified value. For
+                strings, a case-insensitive comparison must be performed.
             gt:
               type: number
               description: >-
                 Find items with a property value greater than the specified
-                value
+                value.
             lt:
               type: number
-              description: Find items with a property value less than the specified value
+              description: Find items with a property value less than the specified value.
             gte:
               type: number
               description: >-
                 Find items with a property value greater than or equal the
-                specified value
+                specified value.
             lte:
               type: number
               description: >-
                 Find items with a property value greater than or equal the
-                specified value
+                specified value.
             startsWith:
               type: string
-              description: Find items with a property that begins with the specified string
+              description: >-
+                Find items with a property that begins with the specified
+                string. A case-insensitive comparison must be performed.
             endsWith:
               type: string
-              description: Find items with a property that ends with the specified string
+              description: >-
+                Find items with a property that ends with the specified string.
+                A case-insensitive comparison must be performed.
             contains:
               type: string
               description: >-
                 Find items with a property that contains with the specified
-                string
+                string. A case-insensitive comparison must be performed.
             time:
               $ref: '#/components/schemas/time'
     sortFilter:

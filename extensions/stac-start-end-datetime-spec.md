@@ -1,5 +1,7 @@
 # STAC Start End Datetime Extension Spec (`set`)
 
+**Extension [Maturity Classification](./README.md#extension-maturity): Proposal**
+
 An extension to provide start and end datetime stamps in a consistent way.
 
 - Example (missing, PRs welcome)
@@ -14,3 +16,7 @@ An extension to provide start and end datetime stamps in a consistent way.
 
 **Note:** All STAC Items that use this extension MUST include both fields, which enables a user to
 search STAC records by the provided times.
+
+## Implementations
+
+None yet, still in proposal stage.

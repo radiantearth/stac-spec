@@ -117,7 +117,7 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: '#/components/schemas/featureCollectionGeoJSON'
+                $ref: 'http://geojson.org/schema/FeatureCollection.json'
             text/html:
               schema:
                 type: string
@@ -145,7 +145,7 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: '#/components/schemas/featureGeoJSON'
+                $ref: 'http://geojson.org/schema/Feature.json'
             text/html:
               schema:
                 type: string
@@ -339,47 +339,3 @@ components:
           example:
             - '2011-11-11T12:22:11Z'
             - '2012-11-24T12:32:43Z'
-    featureCollectionGeoJSON:
-      type: object
-      required:
-        - features
-      properties:
-        features:
-          type: array
-          items:
-            $ref: '#/components/schemas/featureGeoJSON'
-    featureGeoJSON:
-      type: object
-      required:
-        - type
-        - geometry
-        - properties
-      properties:
-        type:
-          type: string
-          enum:
-            - Feature
-        geometry:
-          $ref: '#/components/schemas/geometryGeoJSON'
-        properties:
-          type: object
-          nullable: true
-        id:
-          oneOf:
-            - type: string
-            - type: integer
-    geometryGeoJSON:
-      type: object
-      required:
-        - type
-      properties:
-        type:
-          type: string
-          enum:
-            - Point
-            - MultiPoint
-            - LineString
-            - MultiLineString
-            - Polygon
-            - MultiPolygon
-            - GeometryCollection

@@ -17,12 +17,11 @@
         ]
   },
   "properties": {
-    "datetime": "2016-05-03T13:21:30.040Z",
-    "provider": "http://www.cool-sat.com",
-    "license": "CC-BY-4.0"
+    "datetime": "2016-05-03T13:21:30.040Z"
   },
   "links": [
-    { "rel": "self", "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json"}
+    { "rel": "self", "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json"},
+    { "rel": "dataset", "href": "http://cool-sat.com/catalog.json"}
   ],
   "assets": {
     "analytic": {

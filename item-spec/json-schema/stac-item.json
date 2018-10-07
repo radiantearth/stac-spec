@@ -64,22 +64,6 @@
                   "description": "The searchable date/time of the assets, in UTC (Formatted in RFC 3339) ",
                   "type": "string",
                   "format": "date-time"
-                },
-                "provider": {
-                  "title": "Provider",
-                  "description": "Provider name and contact",
-                  "oneOf": [
-                    {
-                      "type": "string"
-                    },
-                    {
-                      "$ref": "#/definitions/entity"
-                    }
-                  ]
-                },
-                "license": {
-                  "title": "Data license",
-                  "description": "Data license name based on SPDX License List"
                 }
               }
             }
@@ -116,25 +100,6 @@
         },
         "type": {
           "type": "string"
-        }
-      }
-    },
-    "entity": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string",
-          "format": "email"
-        },
-        "phone": {
-          "type": "string"
-        },
-        "url": {
-          "type": "string",
-          "format": "uri"
         }
       }
     }

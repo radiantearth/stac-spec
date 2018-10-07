@@ -55,7 +55,6 @@
   "id": "20171110_121030_1013",
   "properties": {
     "datetime": "2017-11-10T12:10:30.535417Z",
-    "provider": "Planet",
     "eo:cloud_cover": 23,
     "eo:gsd": 4,
     "eo:sun_azimuth": 101.8,

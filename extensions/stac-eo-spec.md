@@ -1,5 +1,7 @@
 # STAC EO Extension Spec (`eo`)
 
+**Extension [Maturity Classification](./README.md#extension-maturity): Pilot**
+
 This document explains the fields of the STAC Earth Observation (EO) Extension to a STAC `Item`. EO
 data is considered to be data that represents a snapshot of the earth for a single date and time. It
 could consist of multiple spectral bands in any part of the electromagnetic spectrum. Examples of EO
@@ -21,7 +23,7 @@ It is not necessary, but recommended to use the [Collections extension](stac-col
 | eo:platform      | string                   | **REQUIRED.** Unique name of the specific platform the instrument is attached to. For satellites this would be the name of the satellite (e.g., landsat-8, sentinel-2A), whereas for drones this would be a unique name for the drone.                     |
 | eo:constellation | string                   | **REQUIRED.** Name of the group or constellation that the platform belongs to. Example: The Sentinel-2 group has S2A and S2B, this field allows users to search for Sentinel-2 data without needing to specify which specific platform the data came from. |
 | eo:instrument    | string                   | **REQUIRED.** Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1).                                                                                                                                                                      |
-| eo:bands         | Map<string, Band Object> | **REQUIRED.** This is a dictionary of band information where each key in the dictionary is an identifier for the band (e.g., "B01", "B02", "B1", "B5", "QA").                                                                                              |
+| eo:bands         | [Band Object]             | **REQUIRED.** This is a list of the available bands where each item is a Band Object.                                                                                                                                                                      |
 | eo:epsg          | integer                  | EPSG code of the datasource, null if no EPSG code.                                                                                                                                                                                                         |
 | eo:cloud_cover   | integer                  | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided.                                                                                                                                    |
 | eo:off_nadir     | number                   | Viewing angle. The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90).                                                                                                                                   |
@@ -51,14 +53,16 @@ there is no valid EPSG code.
 
 | element             | type info | description                                                                                                                                                   |
 | ------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name                | string    | The name of the band (e.g., "B01", "B02", "B1", "B5", "QA").                                                                                                  |
 | common_name         | string    | The name commonly used to refer to the band to make it easier to search for bands across instruments. See below for a list of accepted common names.          |
 | gsd                 | number    | Ground Sample distance, the nominal distance between pixel centers available, in meters. See eo:gsd for more information. Defaults to eo:gsd if not provided. |
 | accuracy            | number    | The expected error between the measured location and the true location of a pixel, in meters on the ground.                                                   |
-| center_wavelength   | number    | The center wavelength of the band, in microns.                                                                                                                |
-| full_width_half_max | number    | Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in microns.                                           |
+| center_wavelength   | number    | The center wavelength of the band, in micrometres (μm).                                                                                                       |
+| full_width_half_max | number    | Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in micrometres (μm).                                  |
+
 
 **full_width_half_max** (FWHM) is a common way to describe the size of a spectral band. It is the
-width, in microns, of the bandpass measured at a half of the maximum transmission. Thus, if the
+width, in micrometres (μm), of the bandpass measured at a half of the maximum transmission. Thus, if the
 maximum transmission of the bandpass was 80%, the FWHM is measured as the width of the bandpass at
 40% transmission.
 
@@ -82,13 +86,119 @@ numbers of several popular instruments.
 | lwir11      | 10.5 - 11.5     |           |           | 10        |            | 31    |
 | lwir12      | 11.5 - 12.5     |           |           | 11        |            | 32    |
 
+## Associating assets with bands
+
+Asset definitions that contain band data should reference the band index. Each asset should provide a "eo:bands" property that is an array of 0 based indexes to the correct Band Objects.
+
+### Item `Asset Object` fields
+| Field Name | Type     | Description                                  |
+| ---------- | -------- | -------------------------------------------- |
+| eo:bands   | [number] | Lists the band names available in the asset. |
+
+See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
+```
+{
+  "id": "LC81530252014153LGN00",
+  "type": "Feature",
+  ...
+  "properties": {
+    ...
+  },
+
+  "assets" :{
+    "B1": {
+      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B1.TIF",
+      "type": "GeoTIFF",
+      "required": true,
+      "eo:bands": [0]
+    },
+    "B2": {
+
+      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B2.TIF",
+      "type": "GeoTIFF",
+      "required": true,
+      "eo:bands": [1]
+    },
+    ...
+  },
+  "eo:bands": [
+    {
+      "name": "1",
+      "common_name": "coastal",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 0.44,
+      "full_width_half_max": 0.02
+    },
+    {
+      "name": "2",
+      "common_name": "blue",
+      "gsd": 30.0,
+      "accuracy": null,
+      "wavelength": 0.48,
+      "full_width_half_max": 0.06
+    },
+    ...
+  ]
+ }
+```
+Planet example:
+
+```
+{
+  "id": "20171110_121030_1013",
+  "type": "Feature",
+  "properties": {
+    ...
+  },
+  ...
+  "assets": {
+    "analytic": {
+      "href": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcxMTEwXzEyMTAxMF8xMDEzIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWMiLCAiY3QiOiAiaXRlbS10eXBlIn0",
+      "name": "PSScene4Band GeoTIFF (COG)",
+      "eo:bands":[0,1,2,3]
+      ...
+    }
+    ...
+
+  },
+  "eo:bands": [
+    {
+      "full_width_half_max": 0.08,
+      "center_wavelength": 0.63,
+      "common_name": "red"
+    },
+    {
+      "full_width_half_max": 0.09,
+      "center_wavelength": 0.545,
+      "common_name": "green"
+    },
+    {
+      "full_width_half_max": 0.06,
+      "center_wavelength": 0.485,
+      "common_name": "blue"
+    },
+    {
+      "full_width_half_max": 0.08,
+      "center_wavelength": 0.82,
+      "common_name": "nir"
+    }
+  ]
+}
+```
+
+## Implementations
+
+A number of implementations listed on [STAC Implementations page](../implementations.md) are making use of the core EO 
+properties, including the SpaceNet, CBERS, sat-api and Planet implementations. This is not marked as more mature because
+the eo:bands portion is still being fleshed out, with changes coming in 0.6.0.
+
 ## Extensions
 
 The [extensions page](../extensions/) gives an overview about related extensions.
 
-### Using collections
-
-A lot of EO data will have common metadata across many `Items`. It is not necessary, but recommended
-to use the [Collections extension](stac-collection-spec.md). While the exact metadata that would
-appear in a `Collection` record will vary depending on the dataset, the most common collection-level
+### Using collections	
+ A lot of EO data will have common metadata across many `Items`. It is not necessary, but recommended	
+to use the [Collections extension](stac-collection-spec.md). While the exact metadata that would	
+appear in a `Collection` record will vary depending on the dataset, the most common collection-level	
 metadata fields are indicated with an \* in the tables below.
