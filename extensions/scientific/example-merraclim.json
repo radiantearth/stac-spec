@@ -1,5 +1,5 @@
 {
-  "name": "MERRAclim",
+  "id": "MERRAclim",
   "description": "MERRAclim, a high-resolution global dataset of remotely sensed bioclimatic variables for ecological modelling.",
   "keywords": [
     "bioclimatic",
@@ -7,7 +7,6 @@
     "macroecology",
     "biogeography"
   ],
-  "homepage": "https://datadryad.org/resource/doi:10.5061/dryad.s2v81",
   "links": [
     {
       "rel": "self",

@@ -80,9 +80,7 @@
     "dg:platform": "WORLDVIEW02",
     "dg:product_level": "LV1B",
     "dg:product": "WORLDVIEW02_LV1B",
-    "datetime": "2015-11-09T18:04:46.000Z",
-    "provider": "DigitalGlobe",
-    "license": "(C) COPYRIGHT 2016 DigitalGlobe, Inc., Longmont CO USA 80503"
+    "datetime": "2015-11-09T18:04:46.000Z"
   },
    "links": [
       {
@@ -90,7 +88,7 @@
         "href": "https://s3.amazonaws.com/digitalglobe-catalog-spec/collections/dg_worldview02_LV1B/103001004B316600_P002_MUL"
       },
       {
-        "rel": "collection",
+        "rel": "dataset",
         "href": "https://s3.amazonaws.com/digitalglobe-catalog-spec/collections/dg_worldview02_LV1B.json"
       }
     ]

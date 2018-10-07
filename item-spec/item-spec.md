@@ -64,8 +64,6 @@ custom fields.
 | Field Name | Type   | Name          | Description                                                                                                                                                                                                                                                      |
 | ---------- | ------ | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | datetime   | string | Date and Time | **REQUIRED.** The searchable date and time of the assets, in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).                                                                                         |
-| provider   | string | Provider      | Provider name                                                                                                                                                                                                                                                    |
-| license    | string | Data License  | Items' license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
 
 **datetime** is likely the acquisition (in the case of single camera type captures) or the 'nominal'
 or representative time in the case of assets that are combined together. Though time can be a
@@ -98,10 +96,10 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | self    | **REQUIRED.** _Absolute_ URL to the item file itself. This is required, to represent the location that the file can be found online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root    | URL to the root [STAC Catalog](../catalog-spec/) or [Dataset](../dataset-spec/). |
 | parent  | URL to the parent [STAC Catalog](../catalog-spec/) or [Dataset](../dataset-spec/). |
-| license | The license URL for the item SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file. |
+| dataset | **REQUIRED.** URL to a [STAC Dataset](../dataset-spec/). |
 | derived_from | URL to a STAC `Item` that was used as input data in the creation of this `Item` |
 
-*Note: A full provenance model is far beyond the scope of STAC, and the goal is to align with any good independent spec 
+*Note regarding the type `derived_from`: A full provenance model is far beyond the scope of STAC, and the goal is to align with any good independent spec 
 that comes along for that. But the derived_from field is seen as a way to encourage fuller specs and at least start a linking
 structure that can be used as a jumping off point for more experiments in provenance tracking*
 
@@ -115,8 +113,11 @@ link is required to be absolute.
 
 #### Datasets
 
-Items are *strongly recommended* to provide a link to a [dataset definition](../dataset-spec/dataset-spec.md).
-This gives context on the overall set of data that an individual Item is a part of.
+Items are *strongly recommended* to provide a link to a dataset definition. It is important as datasets 
+provide additional information about a set of items, for example the license and provider information 
+and optionally any common information shared across all items, giving context on the overall set of
+data that an individual Item is a part of..
+
 
 ### Asset Object
 

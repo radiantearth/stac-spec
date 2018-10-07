@@ -1,5 +1,6 @@
 {
-  "name": "Sample catalog",
+  "id": "sample",
+  "title": "Sample catalog",
   "description": "This is a very basic sample catalog.",
   "links": [
     {

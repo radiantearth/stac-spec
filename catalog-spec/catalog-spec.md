@@ -30,10 +30,19 @@ incorporated.
 
 ## Catalog Definitions
 
+
 There are two required element types of a Catalog: Catalog and Item. A STAC Catalog
 points to [STAC Items](../item-spec/), or to other STAC catalogs. It provides a simple
 linking structure that can be used recursively so that many `Items` can be included in 
 a single Catalog, organized however the implementor desires. 
+
+STAC makes no formal distinction between a "root" catalog and the "child" catalogs. A root catalog
+is simply a top-most `catalog` (which has no parent). A nested `catalog` structure is useful (and
+recommended) for breaking up massive numbers of catalog items into logical groupings. For example,
+it might make sense to organize a `catalog` by date (year, month, day), or geography (continent,
+country, state/prov). Any scheme may be used, but it's considered a best practice to keep the size
+of each `catalog` under a a megabyte.
+
 
 A simple Catalog structure might look like this:
 
@@ -133,7 +142,8 @@ link to those locations.
 
 | Element     | Type          | Description                                                  |
 | ----------- | ------------- | ------------------------------------------------------------ |
-| name        | string        | **REQUIRED.** Name for the catalog.                          |
+| id          | string        | **REQUIRED.** Identifier for the catalog.                    |
+| title       | string        | A short descriptive one-line title for the catalog.          |
 | description | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | links       | [Link Object] | **REQUIRED.** A list of references to other documents.       |
 
@@ -145,7 +155,7 @@ might look something like this:
 
 ```json
 {
-  "name": "NAIP",
+  "id": "NAIP",
   "description": "Catalog of NAIP Imagery",
   "links": [
     { "rel": "self", "href": "https://www.fsa.usda.gov/naip/catalog.json" },
@@ -162,7 +172,7 @@ A typical '_child_' sub-catalog could look similar:
 
 ```json
 {
-  "name": "NAIP",
+  "id": "NAIP",
   "description": "Catalog of NAIP Imagery - 30087",
   "links": [
     { "rel": "self", "href": "https://www.fsa.usda.gov/naip/30087/catalog.json" },
@@ -198,6 +208,5 @@ The following types are commonly used as `rel` types in the Link Object of a Dat
 | parent  | URL to the parent [STAC Catalog](../catalog-spec/). Non-root catalogs should include a link to their parent.                                                                                                                                                                            |
 | child   | URL to a child [STAC Catalog](../catalog-spec/).                                                                                                                                                                                                                                        |
 | item    | URL to a [STAC Item](../item-spec/).                                                                                                                                                                                                                                                      |
-| license | The license URL for the catalog SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file.                           |
 
 **Note:** A link to at least one `item` or `child` catalog is _required_.
