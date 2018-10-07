@@ -1,11 +1,19 @@
 # STAC Datasets
 
-[Items](https://github.com/radiantearth/stac-spec/item-spec/) are focused on search within a dataset*. Another topic of interest is the search of datasets, instead of within a dataset. The Dataset Spec is independent of Items and [Catalogs](../catalog-spec/). STAC Items are *strongly recommended* to provide a link to a dataset definition. Other parties can also independently use this spec to describe datasets in a lightweight way. Datasets are defined in full in the 
+[Items](https://github.com/radiantearth/stac-spec/item-spec/) are focused on search within a dataset*. Another topic of 
+interest is the search of datasets, instead of within a dataset. The Dataset Spec is independent of Items and 
+[Catalogs](../catalog-spec/). STAC Items are *strongly recommended* to provide a link to a dataset definition. Other parties 
+can also  use this spec standalone, as a way to describe datasets in a lightweight way. Datasets are defined in full in the 
 Dataset Specification.
 
-The Datasets Spec extends the [Catalog Spec](../catalog-spec/) with additional fields to describe the set of items in the catalog. It shares the same fields and therefore every Dataset is also a valid Catalog. Datasets can have both parent Catalogs and Datasets and child Items, Catalogs and Datasets. 
+The Dataset Spec is a set of JSON fields to describe a set of `Item`s in a `Catalog`, to help enable discovery. It builds on 
+the [Catalog Spec](../catalog-spec/), using the flexible structure specified there to further define and explain logical 
+groups of `Item`s. It shares the same fields and therefore every Dataset is also a valid Catalog - the JSON structure extends
+the core Catalog definition. Datasets can have both parent Catalogs and Datasets and child Items, Catalogs and Datasets. 
 
-*\* There is no standardized name for the concept we are describing here. Others called it: dataset series (ISO 19115), collection (CNES, NASA), dataset (JAXA), dataset series (ESA), product (JAXA).*
+*\* There is no standardized name for the concept we are describing here, a set of assets that are defined with the same 
+properties and share higher level metadata. Others called it: dataset series (ISO 19115), collection (CNES, NASA), dataset 
+(JAXA), dataset series (ESA), product (JAXA).*
 
 ## In this directory
 
