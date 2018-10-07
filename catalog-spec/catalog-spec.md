@@ -24,17 +24,6 @@ incorporated.
 
 ## Catalog Definitions
 
-There are two required element types of a Catalog: Catalog and Item. A STAC Catalog
-points to [STAC Items](../item-spec/), or to other STAC catalogs. The top-most parent catalog is
-called the "root" catalog. The root catalog generally defines information about the catalog as a
-whole, such as name, description, licensing, contact information and so forth. However, it is
-strongly recommended that a "root" catalog define metadata fields that apply to the entire `catalog`
-(such that child catalogs and items simply inherit these field values). Catalogs below the root
-generally have less information and serve to create a directory structure for categorizing and
-grouping item data. The contents of a catalog are flexible and STAC makes no assumptions for where
-or how catalog metadata is defined within a catalog. For example, a non-root catalog could redefine
-or add different licensing or copyright terms.
-
 STAC makes no formal distinction between a "root" catalog and the "child" catalogs. A root catalog
 is simply a top-most `catalog` (which has no parent). A nested `catalog` structure is useful (and
 recommended) for breaking up massive numbers of catalog items into logical groupings. For example,
@@ -84,7 +73,8 @@ type files. In order to support multiple "root" catalogs, the recommended practi
 
 | Element     | Type          | Description                                                  |
 | ----------- | ------------- | ------------------------------------------------------------ |
-| name        | string        | **REQUIRED.** Name for the catalog.                          |
+| id          | string        | **REQUIRED.** Identifier for the catalog.                    |
+| title       | string        | A short descriptive one-line title for the catalog.          |
 | description | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | links       | [Link Object] | **REQUIRED.** A list of references to other documents.       |
 
@@ -96,7 +86,7 @@ might look something like this:
 
 ```json
 {
-  "name": "NAIP",
+  "id": "NAIP",
   "description": "Catalog of NAIP Imagery",
   "links": [
     { "rel": "self", "href": "https://www.fsa.usda.gov/naip/catalog.json" },
@@ -113,7 +103,7 @@ A typical '_child_' catalog could look similar:
 
 ```json
 {
-  "name": "NAIP",
+  "id": "NAIP",
   "description": "Catalog of NAIP Imagery - 30087",
   "links": [
     { "rel": "self", "href": "https://www.fsa.usda.gov/naip/30087/catalog.json" },
@@ -149,6 +139,5 @@ The following types are commonly used as `rel` types in the Link Object of a Dat
 | parent  | URL to the parent [STAC Catalog](../catalog-spec/). Non-root catalogs should include a link to their parent.                                                                                                                                                                            |
 | child   | URL to a child [STAC Catalog](../catalog-spec/).                                                                                                                                                                                                                                        |
 | item    | URL to a [STAC Item](../item-spec/).                                                                                                                                                                                                                                                      |
-| license | The license URL for the catalog SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file.                           |
 
 **Note:** A link to at least one `item` or `child` catalog is _required_.
