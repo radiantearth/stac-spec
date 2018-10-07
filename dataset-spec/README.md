@@ -12,8 +12,7 @@ groups of `Item`s. It shares the same fields and therefore every Dataset is also
 the core Catalog definition. Datasets can have both parent Catalogs and Datasets and child Items, Catalogs and Datasets. 
 
 *\* There is no standardized name for the concept we are describing here, a set of assets that are defined with the same 
-properties and share higher level metadata. Others called it: dataset series (ISO 19115), collection (CNES, NASA), dataset 
-(JAXA), dataset series (ESA), product (JAXA).*
+properties and share higher level metadata. Others called it: dataset series (ESA, ISO 19115), collection (CNES, NASA), dataset (JAXA), product (JAXA).*
 
 ## In this directory
 

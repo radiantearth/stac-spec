@@ -11,7 +11,7 @@ fields with Catalogs and therefore every Dataset is also a valid Catalog.
 
 Catalogs are designed so that a simple file server on the web or object store like Amazon S3 can store JSON that defines a 
 full Catalog. More dynamic services can also return a Catalog structure, and the [STAC API](../api-spec/) folder contains 
-an OpenAPI definition of the standard way to do this, at the ```/stac/``` endpoint. 
+an OpenAPI definition of the standard way to do this, at the `/stac/` endpoint. 
 
 ## In this directory
 
@@ -26,7 +26,7 @@ contains a full sample catalog.
 
 ## In the API directory
 
-**Dynamic Catalog OpenAPI Definition:** The [stac-api](../api-spec) directory contains OpenAPI definitions of the ```/stac/```
+**Dynamic Catalog OpenAPI Definition:** The [stac-api](../api-spec) directory contains OpenAPI definitions of the `/stac/`
 endpoint, that is the dynamic version of a Catalog. See [STAC-standalone.yaml](../api-spec/STAC-standalone.yaml), or you can
 browse it online on [swaggerhub's STAC-standalone](https://app.swaggerhub.com/apis/cholmesgeo/STAC-standalone/0.6.0-beta#/STAC/get_stac) definition.
 
