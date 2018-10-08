@@ -17,17 +17,20 @@ Implementations are encouraged, however, as good effort will be made to not chan
 
 ## Dataset fields
 
-| Element     | Type              | Description                                                  |
-| ----------- | ----------------- | ------------------------------------------------------------ |
-| id          | string            | **REQUIRED.** Identifier for the dataset that is unique across the provider. |
-| title       | string            | A short descriptive one-line title for the dataset.          |
-| description | string            | **REQUIRED.** Detailed multi-line description to fully explain the entity. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| keywords    | [string]          | List of keywords describing the dataset.                     |
-| version     | string            | Version of the dataset.                                      |
-| license     | string            | **REQUIRED.** Dataset's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
-| provider    | [Provider Object] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
-| extent      | [Extent Object]   | **REQUIRED.** Spatial and temporal extents.                  |
-| links       | [Link Object]     | **REQUIRED.** A list of references to other documents.       |
+| Element      | Type              | Description                                                  |
+| ------------ | ----------------- | ------------------------------------------------------------ |
+| stac_version | string            | **REQUIRED.** The STAC version the dataset implements.       |
+| id           | string            | **REQUIRED.** Identifier for the dataset that is unique across the provider. |
+| title        | string            | A short descriptive one-line title for the dataset.          |
+| description  | string            | **REQUIRED.** Detailed multi-line description to fully explain the entity. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| keywords     | [string]          | List of keywords describing the dataset.                     |
+| version      | string            | Version of the dataset.                                      |
+| license      | string            | **REQUIRED.** Dataset's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
+| provider     | [Provider Object] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
+| extent       | [Extent Object]   | **REQUIRED.** Spatial and temporal extents.                  |
+| links        | [Link Object]     | **REQUIRED.** A list of references to other documents.       |
+
+**stac_version**: It is not allowed to mix STAC versions. The root catalog/dataset MUST specify the implemented STAC versions and child catalogs/datasets MUST NOT specify a different STAC version.
 
 ### Extent Object
 

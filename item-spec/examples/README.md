@@ -51,10 +51,8 @@ has a better workflow - but it shows how the asset field can be adapted.
 
 ### Asset definition
 
-Currently the additional metadata on assets is quite minimal - only a link is required, and 'name' is the only other specified
-field. Some of the examples use the name, some just use their own convention. DigitalGlobe defines its bands in properties,
-while Landsat8 and Planet contain a demonstration of how they could reference a 'Product' definition that's more at the catalog
-level (though each Item could theoretically define its own product as well).
+Currently the additional metadata on assets is quite minimal - only a link is required. 'title' and 'type' are the only other specified
+fields.
 
 ### Permissions
 

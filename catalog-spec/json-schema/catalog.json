@@ -24,11 +24,16 @@
       "title": "Catalog",
       "type": "object",
       "required": [
+        "stac_version",
         "id",
         "description",
         "links"
       ],
       "properties": {
+        "stac_version": {
+          "title": "STAC version",
+          "type": "string"
+        },
         "id": {
           "title": "Identifier",
           "type": "string"
