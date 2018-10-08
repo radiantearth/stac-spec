@@ -1,9 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-06/schema#",
-  "id": "stac-eo-spec.json#",
-  "title": "EO Item",
+  "id": "stac-eo-extension.json#",
+  "title": "EO Extension",
   "type": "object",
-  "description": "STAC Earth Observation (EO) Extension to a STAC Item.  See https://github.com/radiantearth/stac-spec/blob/dev/extensions/stac-eo-spec.md",
+  "description": "STAC EO Extension to a STAC Item.",
   "additionalProperties": true,
   "allOf": [
     {
@@ -29,97 +29,88 @@
                 "eo:gsd",
                 "eo:platform",
                 "eo:constellation",
-                "eo:instrument"
+                "eo:instrument",
+                "eo:bands"
               ],
               "properties": {
                 "eo:gsd": {
                   "title": "Ground Sample Distance",
-                  "description": "Ground Sample distance. The nominal distance between pixel centers available, in meters.",
                   "type": "number"
                 },
                 "eo:platform": {
                   "title": "Platform",
-                  "description": "Unique name of the specific platform the instrument is attached to. For satellites this would be the name of the satellite (e.g., landsat-8, sentinel-2A), whereas for drones this would be a unique name for the drone.",
                   "type": "string"
                 },
                 "eo:constellation": {
                   "title": "Constellation",
-                  "description": "Name of the group or constellation that the platform belongs to.",
                   "type": "string"
                 },
                 "eo:instrument": {
                   "title": "Instrument",
-                  "description": "Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1).",
                   "type": "string"
                 },
                 "eo:bands": {
                   "title": "Bands",
-                  "type": "object",
-                  "description": "This is a dictionary of band information where each key in the dictionary is an identifier for the band (e.g., 'B01', 'B02', 'B1', 'B5', 'QA').",
-                  "properties": {
-                    "common_name": {
-                      "title": "Common Name",
-                      "type": "string",
-                      "description": "The name commonly used to refer to the band to make it easier to search for bands across instruments. See list of accepted common names at https://github.com/radiantearth/stac-spec/blob/dev/extensions/stac-eo-spec.md."
-                    },
-                    "gsd": {
-                      "title": "Ground Sample Distance",
-                      "description": "Ground Sample distance. The nominal distance between pixel centers available, in meters.",
-                      "type": "number"
-                    },
-                    "accuracy": {
-                      "title": "Accuracy",
-                      "description": "The expected error between the measured location and the true location of a pixel, in meters on the ground.",
-                      "type": "number"
-                    },
-                    "center_wavelength": {
-                      "title": "Center Wavelength",
-                      "description": "The center wavelength of the band, in microns.",
-                      "type": "number"
-                    },
-                    "full_width_half_max": {
-                      "title": "Full Width Half Max",
-                      "description": "Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in microns.",
-                      "type": "number"
+                  "type": "array",
+                  "items": {
+                    "properties": {
+                      "name": {
+                        "title": "Name of the band",
+                        "type": "string"
+                      },
+                      "common_name": {
+                        "title": "Common Name of the band",
+                        "type": "string"
+                      },
+                      "gsd": {
+                        "title": "Ground Sample Distance",
+                        "type": "number"
+                      },
+                      "accuracy": {
+                        "title": "Accuracy",
+                        "type": "number"
+                      },
+                      "center_wavelength": {
+                        "title": "Center Wavelength",
+                        "type": "number"
+                      },
+                      "full_width_half_max": {
+                        "title": "Full Width Half Max (FWHM)",
+                        "type": "number"
+                      }
                     }
                   }
                 },
                 "eo:epsg": {
-                  "title": "EPSG",
-                  "description": "EPSG code of the datasource's projection system.",
+                  "title": "EPSG code",
                   "type": "integer"
                 },
                 "eo:cloud_cover": {
                   "title": "Cloud Cover",
-                  "description": "Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided.",
                   "type": "integer",
                   "minimum": 0,
                   "maximum": 100
                 },
                 "eo:off_nadir": {
                   "title": "Off Nadir",
-                  "description": "Viewing angle. The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90).",
                   "type": "number",
                   "minimum": 0,
                   "maximum": 90
                 },
                 "eo:azimuth": {
                   "title": "Azimuth",
-                  "description": "Viewing azimuth angle. The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360).",
                   "type": "number",
                   "minimum": 0,
                   "maximum": 360
                 },
                 "eo:sun_azimuth": {
                   "title": "Sun Azimuth",
-                  "description": "Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360).",
                   "type": "number",
                   "minimum": 0,
                   "maximum": 360
                 },
                 "eo:sun_elevation": {
                   "title": "Sun Elevation",
-                  "description": "Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (0-90).",
                   "type": "number",
                   "minimum": 0,
                   "maximum": 90
