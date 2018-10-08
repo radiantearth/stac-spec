@@ -71,12 +71,13 @@ type files. In order to support multiple "root" catalogs, the recommended practi
 
 ## Catalog fields
 
-| Element     | Type          | Description                                                  |
-| ----------- | ------------- | ------------------------------------------------------------ |
-| id          | string        | **REQUIRED.** Identifier for the catalog.                    |
-| title       | string        | A short descriptive one-line title for the catalog.          |
-| description | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| links       | [Link Object] | **REQUIRED.** A list of references to other documents.       |
+| Element      | Type          | Description                                                  |
+| ------------ | ------------- | ------------------------------------------------------------ |
+| stac_version | string        | **REQUIRED.** The STAC version the catalog implements.       |
+| id           | string        | **REQUIRED.** Identifier for the catalog.                    |
+| title        | string        | A short descriptive one-line title for the catalog.          |
+| description  | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| links        | [Link Object] | **REQUIRED.** A list of references to other documents.       |
 
 **Examples:**
 
@@ -86,6 +87,7 @@ might look something like this:
 
 ```json
 {
+  "stac_version": "0.6.0",
   "id": "NAIP",
   "description": "Catalog of NAIP Imagery",
   "links": [
@@ -103,6 +105,7 @@ A typical '_child_' catalog could look similar:
 
 ```json
 {
+  "stac_version": "0.6.0",
   "id": "NAIP",
   "description": "Catalog of NAIP Imagery - 30087",
   "links": [
