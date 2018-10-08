@@ -28,6 +28,8 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | extent       | [Extent Object]   | **REQUIRED.** Spatial and temporal extents.                  |
 | links        | [Link Object]     | **REQUIRED.** A list of references to other documents.       |
 
+**stac_version**: It is not allowed to mix STAC versions. The root catalog/dataset MUST specify the implemented STAC versions and child catalogs/datasets MUST NOT specify a different STAC version.
+
 ### Extent Object
 
 The object describes the spatio-temporal extents of the dataset. Both spatial and temporal extents are required to be specified.

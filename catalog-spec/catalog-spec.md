@@ -79,6 +79,8 @@ type files. In order to support multiple "root" catalogs, the recommended practi
 | description  | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | links        | [Link Object] | **REQUIRED.** A list of references to other documents.       |
 
+**stac_version**: It is not allowed to mix STAC versions. The root catalog/dataset MUST specify the implemented STAC versions and child catalogs/datasets MUST NOT specify a different STAC version.
+
 **Examples:**
 
 A catalog of
@@ -118,7 +120,7 @@ A typical '_child_' catalog could look similar:
 }
 ```
 
-The `root` catalog in this example could hold a set of catalogs with different datasets, e.g. data from other satellites or processed variants of the NAIP imagery.
+The `root` catalog in this example could hold a set of catalogs with different datasets, e.g. data from other satellites or processed variants of the NAIP imagery.
 
 ### Link Object
 
