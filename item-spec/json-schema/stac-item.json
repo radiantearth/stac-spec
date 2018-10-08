@@ -79,9 +79,11 @@
       ],
       "properties": {
         "rel": {
+          "title": "Link Relation type",
           "type": "string"
         },
         "href": {
+          "title": "Link reference",
           "type": "string"
         }
       }
@@ -93,12 +95,15 @@
       ],
       "properties": {
         "href": {
+          "title": "Asset reference",
           "type": "string"
         },
-        "name": {
+        "title": {
+          "title": "Asset title",
           "type": "string"
         },
         "type": {
+          "title": "Asset type",
           "type": "string"
         }
       }

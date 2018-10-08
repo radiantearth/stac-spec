@@ -923,7 +923,7 @@ components:
             properties:
               href:
                 type: string
-              name:
+              title:
                 type: string
       example:
         type: Feature
@@ -956,11 +956,11 @@ components:
               http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04.json
         assets:
           analytic:
-            name: 4-Band Analytic
+            title: 4-Band Analytic
             href: >-
               http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/analytic.tif
           thumbnail:
-            name: thumbnail
+            title: Thumbnail
             href: >-
               http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/thumb.png
     partialItem:
@@ -995,12 +995,12 @@ components:
             properties:
               href:
                 type: string
-              name:
+              title:
                 type: string
       example:
         assets:
           analytic:
-            name: 1-Band Analytic
+            title: 1-Band Analytic
             href: >-
               http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/analytic-1.tif
     itemProperties:
