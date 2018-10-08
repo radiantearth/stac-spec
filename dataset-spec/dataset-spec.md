@@ -1,10 +1,12 @@
 # STAC Dataset Specification
 
-The Datasets Spec extends the [Catalog Spec](../catalog-spec/) with additional fields to describe the set of items in the catalog. It shares the same fields and therefore every Dataset is also a valid Catalog. Datasets can have both parent Catalogs and Datasets and child Items, Catalogs and Datasets. 
+The Dataset Spec defines a set of common fields to describe a group of `Item`s that share properties and metadata. The 
+Datasets Spec extends the [Catalog Spec](../catalog-spec/) with additional fields to describe the set of items in the catalog. 
+It shares the same fields and therefore every Dataset is also a valid Catalog. Datasets can have both parent Catalogs and Datasets and child Items, Catalogs and Datasets. 
 
 A Dataset can be represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Dataset and Catalog.
 
-* [Example (Sentinel 2)](example-s2.json)
+* [Example (Sentinel 2)](examples/sentinel2.json)
 * [JSON Schema](json-schema/dataset.json) - please see the [validation instructions](../validation/README.md)
 
 ## WARNING

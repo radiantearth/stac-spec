@@ -4,12 +4,13 @@
 ## Overview
 
 A STAC API is the dynamic version of a SpatioTemporal Asset Catalog. It returns [STAC Items](../item-spec/item-spec.md) 
-(GeoJSON objects with required links time stamp and links to assets) from search queries on a RESTful endpoint.
+(GeoJSON objects with required links time stamp and links to assets) from search queries on a RESTful endpoint, and also
+offers an endpoint to return STAC Items as a compliant [Catalog](../catalog-spec/) for discovery.
 
 The core of the spec is a single endpoint:
 
 ```
-/search/stac
+/stac/search
 ```
 
 It takes a JSON object that can filter on date and time:
@@ -32,6 +33,16 @@ that fall within this area:
 The return format is a [GeoJSON](http://geojson.org) feature collection with features compliant with the 
 [Item spec]((../item-spec/item-spec.md) for STAC. It returns to a limit optionally requested by the client, and includes 
 pageable links to iterate through any results past that limit.
+
+### Dynamic Catalog API
+
+The other endpoint that is included as an option in STAC API is `/stac/`, which implements the [Catalog Spec](../catalog-spec/). 
+See the [Dynamic Catalog](https://github.com/radiantearth/stac-spec/blob/structure_and_cleanup/catalog-spec/catalog-spec.md#dynamic-catalogs) 
+section of that spec for more information. Implementing this enables tools like 
+[STAC Browser](https://medium.com/@mojodna/a-stac-browser-348a60674061) to use the dynamic catalog, to enable better 
+discovery through people browsing and search engines crawling. 
+
+The OpenAPI spec in this directory documents the endpoint, and refer to the Catalog and [Dataset](../dataset-spec) for more information about the full content and link structure.
 
 ## API Fragments
 
@@ -66,12 +77,6 @@ npm run generate-all
 The definitive specification for STAC is the [OpenAPI](http://openapis.org) 3.0 yaml document. This is available
 in several forms. The most straightforward for an implementor new to STAC is the [STAC-standalone.yaml](STAC-standalone.yaml).
 This gives a complete service with the main STAC endpoint. See the [online documentation](https://app.swaggerhub.com/apis/cholmesgeo/STAC-standalone/) for the api rendered interactively.
-
-##### Warning
-
-**The latest spec has not yet been fully validated by actual implementations. This will come soon, but if you
-are new to STAC and are trying to use the spec we recommend you jump on the [stac gitter](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby)
-to get help**
 
 ### Filtering
 
