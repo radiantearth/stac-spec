@@ -18,7 +18,7 @@ required fields is a valid STAC Item.
 - Examples:
   - See the [minimal example](examples/sample.json), as well as a [more fleshed example](examples/sample-full.json) that contains a number of
     current best practices. There are more real world inspired samples in the [examples/](examples/) folder.
-  - Real world [implementations](../implementations.md) are also available.
+  - Real world [implementations](../implementations.md) are also available.
 - [JSON Schema](json-schema/stac-item.json)
 
 ## WARNING
@@ -61,9 +61,9 @@ Metadata that require an object or array SHOULD be placed a level up, directly i
 Item object. Additional fields can be introduced through extensions. It is generally allowed to add
 custom fields.
 
-| Field Name | Type   | Name          | Description                                                                                                                                                                                                                                                      |
-| ---------- | ------ | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| datetime   | string | Date and Time | **REQUIRED.** The searchable date and time of the assets, in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).                                                                                         |
+| Field Name | Type   | Description                                                  |
+| ---------- | ------ | ------------------------------------------------------------ |
+| datetime   | string | **REQUIRED.** The searchable date and time of the assets, in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
 
 **datetime** is likely the acquisition (in the case of single camera type captures) or the 'nominal'
 or representative time in the case of assets that are combined together. Though time can be a
@@ -127,8 +127,8 @@ or streamed. It is allowed to add additional fields.
 | Field Name | Type   | Description                                                                           |
 | ---------- | ------ | ------------------------------------------------------------------------------------- |
 | href       | string | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
-| name       | string | The display name for clients and users.                                               |
-| type       | string | Media type of the asset (see chapter on Media Types below).                             |
+| title      | string | The displayed title for clients and users.                                            |
+| type       | string | Media type of the asset (see chapter on Media Types below).                           |
 
 #### Asset types
 
