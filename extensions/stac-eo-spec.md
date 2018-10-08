@@ -55,6 +55,7 @@ there is no valid EPSG code.
 | ------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | name                | string    | The name of the band (e.g., "B01", "B02", "B1", "B5", "QA").                                                                                                  |
 | common_name         | string    | The name commonly used to refer to the band to make it easier to search for bands across instruments. See below for a list of accepted common names.          |
+| description         | string    | Description to fully explain the band. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | gsd                 | number    | Ground Sample distance, the nominal distance between pixel centers available, in meters. See eo:gsd for more information. Defaults to eo:gsd if not provided. |
 | accuracy            | number    | The expected error between the measured location and the true location of a pixel, in meters on the ground.                                                   |
 | center_wavelength   | number    | The center wavelength of the band, in micrometres (μm).                                                                                                       |
@@ -113,7 +114,6 @@ See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
       "eo:bands": [0]
     },
     "B2": {
-
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B2.TIF",
       "type": "GeoTIFF",
       "required": true,
