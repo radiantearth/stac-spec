@@ -5,7 +5,13 @@ the sets of Items. A Catalog consists of links to other Catalogs and Items, and 
 additional metadata to further describe its holdings. It is defined in full in the 
 [Catalog Specification](catalog-spec.md).
 
-A special type of Catalogs are [Datasets](../dataset-spec/), which extend Catalogs with additional fields to describe the set of Items in Catalogs. Datasets share the same fields with Catalogs and therefore every Dataset is also a valid Catalog.
+While Catalogs mostly describe a structure of links and Items, a key related specification is the [Datasets](../dataset-spec/) 
+spec, which extend Catalogs with additional fields to further describe the set of Items in a Catalog. Datasets share the same 
+fields with Catalogs and therefore every Dataset is also a valid Catalog.
+
+Catalogs are designed so that a simple file server on the web or object store like Amazon S3 can store JSON that defines a 
+full Catalog. More dynamic services can also return a Catalog structure, and the [STAC API](../api-spec/) folder contains 
+an OpenAPI definition of the standard way to do this, at the `/stac/` endpoint. 
 
 ## In this directory
 
@@ -18,6 +24,11 @@ contains a full sample catalog.
 
 **Schemas:** The schemas to validate the core `Catalog` definition are found in the *[json-schema/](json-schema/)* folder. The primary one is *[catalog.json](json-schema/catalog.json)*.
 
+## In the API directory
+
+**Dynamic Catalog OpenAPI Definition:** The [stac-api](../api-spec) directory contains OpenAPI definitions of the `/stac/`
+endpoint, that is the dynamic version of a Catalog. See [STAC-standalone.yaml](../api-spec/STAC-standalone.yaml), or you can
+browse it online on [swaggerhub's STAC-standalone](https://app.swaggerhub.com/apis/cholmesgeo/STAC-standalone/0.6.0-beta#/STAC/get_stac) definition.
 
 ## Schema Validation
 
@@ -26,16 +37,15 @@ Instruction on schema validation for STAC Catalog can be found in the [validatio
 
 ## Catalog Evolution 
 
-The Catalog specification is maturing, but it is still relatively early days. As real world implementations innovate in different ways, we will update the core fields to handle.
+The Catalog specification is maturing, but it is still relatively early days. The core of Catalog has been defined very
+narrowly, to just describe a structure that can be followed by people or machines, so most additional functionality will
+be defined in additional specifications and extensions. The only anticipated changes to the core of Catalog are to add in
+additional extension mechanisms for others to use.
 
-Thus the catalog spec will aim to remain relatively simple, but will always look to
-build in the right extension mechanisms for others to use the core in ways that are valuable for
-their domain or company.
 
 #### Recommendations
 
-The evolution of static catalogs will take place in this repository. This will show how a variety of providers at least could represent
-their catalogs in STAC static catalogs (and as things mature the examples will mirror their
-production catalogs). The various recommendations can be viewed in the
-[Static Catalog Recommendations](static-recommendations.md) document. Some of these will likely
+The evolution of static catalogs is driven by real implementations in the world. Many are adding in additional innovations
+that are not yet part of the specification, but other implementors are encouraged to make use of. The various recommendations 
+can be viewed in the [Catalog Recommendations](catalog-recommendations.md) document. Some of these will likely
 evolve to be requirements, or at least documented specification options and extensions.
