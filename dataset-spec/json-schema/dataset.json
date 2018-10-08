@@ -5,6 +5,7 @@
   "description": "This object represents the dataset in a SpatioTemporal Asset Catalog.",
   "type": "object",
   "required": [
+    "stac_version",
     "id",
     "description",
     "license",
@@ -13,6 +14,10 @@
   ],
   "additionalProperties": true,
   "properties": {
+    "stac_version": {
+      "title": "STAC version",
+      "type": "string"
+    },
     "id": {
       "title": "Identifier",
       "type": "string"
