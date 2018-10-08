@@ -113,7 +113,11 @@ link is required to be absolute.
 
 #### Datasets
 
-Items are *strongly recommended* to provide a link to a dataset definition. It is important as datasets provide additional information about a set of items, for example the license and provider information and optionally any common information shared across all items.
+Items are *strongly recommended* to provide a link to a dataset definition. It is important as datasets 
+provide additional information about a set of items, for example the license and provider information 
+and optionally any common information shared across all items, giving context on the overall set of
+data that an individual Item is a part of..
+
 
 ### Asset Object
 
@@ -136,7 +140,7 @@ The following types are commonly for assets and are used as key for the Asset Ob
 
 #### Media Types
 
-The media type of an Item can be used by STAC browsers to better determine what to render and display 
+The media type of an Asset can be used by STAC browsers to better determine what to render and display 
 to users searching and browsing the catalog.  Media types are often referred to by the now-deprecated term "MIME types".
 
 [Registered](https://www.iana.org/assignments/media-types/media-types.xhtml) Media Types are
