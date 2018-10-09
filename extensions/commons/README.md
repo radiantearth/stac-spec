@@ -1,4 +1,4 @@
-# Commons Extension Spec (`c`)
+# Commons Extension Spec
 
 **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
