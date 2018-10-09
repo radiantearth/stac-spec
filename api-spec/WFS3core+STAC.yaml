@@ -370,6 +370,27 @@ components:
           type: string
         description:
           type: string
+    links:
+      type: array
+      items:
+        $ref: '#/components/schemas/link'
+    link:
+      type: object
+      required:
+        - href
+        - rel
+      additionalProperties: true
+      properties:
+        href:
+          type: string
+          format: url
+          example: 'http://www.geoserver.example/stac/naip/child/catalog.json'
+        rel:
+          type: string
+          example: child
+        type:
+          type: string
+          example: application/json
     searchBody:
       description: The search criteria
       type: object
@@ -592,25 +613,6 @@ components:
           $ref: '#/components/schemas/time'
       additionalProperties:
         type: object
-    links:
-      type: array
-      items:
-        type: object
-        required:
-          - href
-          - rel
-        additionalProperties: true
-        properties:
-          href:
-            type: string
-            format: url
-            example: 'http://www.geoserver.example/stac/naip/child/catalog.json'
-          rel:
-            type: string
-            example: child
-          type:
-            type: string
-            example: application/json
     itemCollectionLinks:
       type: object
       properties:
@@ -694,6 +696,11 @@ components:
       required:
         - name
         - links
+        - stac_version
+        - id
+        - description
+        - license
+        - extent
       properties:
         name:
           description: 'identifier of the collection used, for example, in URIs'
@@ -735,6 +742,51 @@ components:
             type: string
           default:
             - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+        stac_version:
+          type: string
+          example: 0.6.0
+        id:
+          description: 'identifier of the collection used, for example, in URIs'
+          type: string
+          example: buildings
+        keywords:
+          title: Keywords
+          type: array
+          items:
+            type: string
+            example:
+              - buildings
+              - properties
+              - constructions
+        version:
+          title: Dataset Version
+          type: string
+          example: 1
+        license:
+          title: Dataset License Name
+          type: string
+          example: Apache-2.0
+        provider:
+          type: array
+          items:
+            properties:
+              name:
+                title: Organization name
+                type: string
+                example: Big Building Corp
+              type:
+                title: Organization type
+                type: string
+                enum:
+                  - producer
+                  - processor
+                  - host
+                example: producer
+              url:
+                title: Organization homepage
+                type: string
+                format: url
+                example: 'http://www.big-building.com'
     extent:
       type: object
       properties:

@@ -212,6 +212,27 @@ components:
           type: string
         description:
           type: string
+    links:
+      type: array
+      items:
+        $ref: '#/components/schemas/link'
+    link:
+        type: object
+        required:
+          - href
+          - rel
+        additionalProperties: true
+        properties:
+          href:
+            type: string
+            format: url
+            example: http://www.geoserver.example/stac/naip/child/catalog.json
+          rel:
+            type: string
+            example: child
+          type:
+            type: string
+            example: application/json
     searchBody:
       description: The search criteria
       type: object
@@ -434,25 +455,6 @@ components:
           $ref: '#/components/schemas/time'
       additionalProperties:
         type: object
-    links:
-      type: array
-      items:
-        type: object
-        required:
-          - href
-          - rel
-        additionalProperties: true
-        properties:
-          href:
-            type: string
-            format: url
-            example: http://www.geoserver.example/stac/naip/child/catalog.json
-          rel:
-            type: string
-            example: child
-          type:
-            type: string
-            example: application/json
     itemCollectionLinks:
       type: object
       properties:
