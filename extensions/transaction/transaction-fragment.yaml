@@ -139,68 +139,31 @@ components:
       type: object
       properties:
         id:
-          type: string
-          example: path/to/example.tif
-          description: 'unique ID, potentially link to file'
+          $ref: '#/components/schemas/itemId'
         bbox:
           $ref: '#/components/schemas/bbox'
         geometry:
-          type: object
-          description: footprint of the item
+          $ref: 'http://geojson.org/schema/Geometry.json'
         type:
-          type: string
-          description: The GeoJSON type
-          enum:
-            - Feature
+          $ref: '#/components/schemas/itemType'
         properties:
           $ref: '#/components/schemas/partialItemProperties'
         links:
-          type: array
-          items:
-            $ref: '#/components/schemas/link'
+          $ref: '#/components/schemas/links'
         assets:
-          type: object
-          additionalProperties:
-            type: object
-            required:
-              - href
-            properties:
-              href:
-                type: string
-              name:
-                type: string
+          $ref: '#/components/schemas/itemAssets'
       example:
         assets:
           analytic:
-            name: 1-Band Analytic
-            href: >-
-              http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/analytic-1.tif
-    itemProperties:
-      type: object
-      required:
-        - datetime
-      description: provides the core metatdata fields plus extensions
-      properties:
-        datetime:
-          $ref: '#/components/schemas/time'
-        provider:
-          type: string
-          description: Information about the provider
-        license:
-          type: string
-          description: Data license name based on SPDX License List
+            title: 1-Band Analytic
+            href: http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/analytic-1.tif
     partialItemProperties:
       type: object
       description: allows for partial collections of metadata fields
+      additionalProperties: true
       properties:
         datetime:
           $ref: '#/components/schemas/time'
-        provider:
-          type: string
-          description: Information about the provider
-        license:
-          type: string
-          description: Data license name based on SPDX License List
 tags:
   - name: Extensions
     description: >-
