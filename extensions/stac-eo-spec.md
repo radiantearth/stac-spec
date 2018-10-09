@@ -92,9 +92,19 @@ numbers of several popular instruments.
 Asset definitions that contain band data should reference the band index. Each asset should provide a "eo:bands" property that is an array of 0 based indexes to the correct Band Objects.
 
 ### Item `Asset Object` fields
-| Field Name | Type     | Description                                  |
-| ---------- | -------- | -------------------------------------------- |
-| eo:bands   | [number] | Lists the band names available in the asset. |
+| Field Name | Type                | Description |
+| ---------- | ------------------- | ----------- |
+| eo:bands   | [Asset Band Object] | Refers to the bands available in the asset and may hold additional asset specific band metadata. |
+
+### Asset Band Object
+
+The main purpose of this object is to refer back to a specific Band Object. It is designed to be extensible so that other extensions can add asset specific band metadata. For example, this could be asset specific offset and scale values.
+
+| Field Name | Type   | Description |
+| ---------- | ------ | ----------- |
+| index      | number | The zero-based band index as specified in the array of Band Objects. |
+
+### Example
 
 See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
 ```
@@ -111,13 +121,17 @@ See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B1.TIF",
       "type": "GeoTIFF",
       "required": true,
-      "eo:bands": [0]
+      "eo:bands": [
+        { "index": 0 }
+      ]
     },
     "B2": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B2.TIF",
       "type": "GeoTIFF",
       "required": true,
-      "eo:bands": [1]
+      "eo:bands": [
+        { "index": 1 }
+      ]
     },
     ...
   },
@@ -142,8 +156,8 @@ See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
   ]
  }
 ```
-Planet example:
 
+Planet example:
 ```
 {
   "id": "20171110_121030_1013",
@@ -156,7 +170,12 @@ Planet example:
     "analytic": {
       "href": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcxMTEwXzEyMTAxMF8xMDEzIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWMiLCAiY3QiOiAiaXRlbS10eXBlIn0",
       "name": "PSScene4Band GeoTIFF (COG)",
-      "eo:bands":[0,1,2,3]
+      "eo:bands": [
+        { "index": 0 },
+        { "index": 1 },
+        { "index": 2 },
+        { "index": 3 }
+      ]
       ...
     }
     ...
