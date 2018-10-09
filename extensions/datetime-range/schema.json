@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "id": "schema.json#",
+  "type": "object", 
+  "title": "STAC Datetime Range Extension Spec",
+  "properties": {
+    "properties": {
+      "type": "object",
+      "required": [
+        "dtr:start_datetime",
+        "dtr:end_datetime"
+      ],
+      "properties": {
+        "dtr:start_datetime": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Start datetime"
+        }, 
+        "dtr:end_datetime": {
+          "type": "string",
+          "format": "date-time",
+          "title": "End datetime"
+        }
+      }
+    }
+  }
+}
