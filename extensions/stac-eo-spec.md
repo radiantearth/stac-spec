@@ -23,7 +23,7 @@ It is not necessary, but recommended to use the [Collections extension](stac-col
 | eo:platform      | string                   | **REQUIRED.** Unique name of the specific platform the instrument is attached to. For satellites this would be the name of the satellite (e.g., landsat-8, sentinel-2A), whereas for drones this would be a unique name for the drone.                     |
 | eo:constellation | string                   | **REQUIRED.** Name of the group or constellation that the platform belongs to. Example: The Sentinel-2 group has S2A and S2B, this field allows users to search for Sentinel-2 data without needing to specify which specific platform the data came from. |
 | eo:instrument    | string                   | **REQUIRED.** Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1).                                                                                                                                                                      |
-| eo:bands         | [Band Object]             | **REQUIRED.** This is a list of the available bands where each item is a Band Object.                                                                                                                                                                      |
+| eo:bands         | [Band Object]            | **REQUIRED.** This is a list of the available bands where each item is a Band Object.                                                                                                                                                                      |
 | eo:epsg          | integer                  | EPSG code of the datasource, null if no EPSG code.                                                                                                                                                                                                         |
 | eo:cloud_cover   | integer                  | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided.                                                                                                                                    |
 | eo:off_nadir     | number                   | Viewing angle. The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90).                                                                                                                                   |
@@ -51,16 +51,19 @@ there is no valid EPSG code.
 
 ### Band Object
 
-| element             | type info | description                                                                                                                                                   |
-| ------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name                | string    | The name of the band (e.g., "B01", "B02", "B1", "B5", "QA").                                                                                                  |
-| common_name         | string    | The name commonly used to refer to the band to make it easier to search for bands across instruments. See below for a list of accepted common names.          |
-| description         | string    | Description to fully explain the band. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| gsd                 | number    | Ground Sample distance, the nominal distance between pixel centers available, in meters. See eo:gsd for more information. Defaults to eo:gsd if not provided. |
-| accuracy            | number    | The expected error between the measured location and the true location of a pixel, in meters on the ground.                                                   |
-| center_wavelength   | number    | The center wavelength of the band, in micrometres (μm).                                                                                                       |
-| full_width_half_max | number    | Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in micrometres (μm).                                  |
-
+| Field Name          | Type     | Description                                                  |
+| ------------------- | -------- | ------------------------------------------------------------ |
+| name                | string   | The name of the band (e.g., "B01", "B02", "B1", "B5", "QA"). |
+| common_name         | string   | The name commonly used to refer to the band to make it easier to search for bands across instruments. See below for a list of accepted common names. |
+| description         | string   | Description to fully explain the band. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| gsd                 | number   | Ground Sample distance, the nominal distance between pixel centers available, in meters. See `eo:gsd` for more information. Defaults to `eo:gsd` if not provided. |
+| accuracy            | number   | The expected error between the measured location and the true location of a pixel, in meters on the ground. |
+| center_wavelength   | number   | The center wavelength of the band, in microns.               |
+| full_width_half_max | number   | Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in microns. |
+| nodata              | [number] | The no data value(s).                                        |
+| unit                | string   | Unit of measurements, preferably following the singular unit names in the [UDUNITS2 database](https://ncics.org/portfolio/other-resources/udunits2/). |
+| offset              | number   | Offset to convert band values to the actual measurement scale. Defaults to `0`. |
+| scale               | number   | Scale to convert band values to the actual measurement scale. Defaults to `1`. |
 
 **full_width_half_max** (FWHM) is a common way to describe the size of a spectral band. It is the
 width, in micrometres (μm), of the bandpass measured at a half of the maximum transmission. Thus, if the
@@ -89,12 +92,24 @@ numbers of several popular instruments.
 
 ## Associating assets with bands
 
-Asset definitions that contain band data should reference the band index. Each asset should provide a "eo:bands" property that is an array of 0 based indexes to the correct Band Objects.
+Asset definitions that contain band data should reference the band index and any additional asset specific band data.
 
 ### Item `Asset Object` fields
-| Field Name | Type     | Description                                  |
-| ---------- | -------- | -------------------------------------------- |
-| eo:bands   | [number] | Lists the band names available in the asset. |
+
+| Field Name | Type                | Description                                                             |
+| ---------- | ------------------- | ----------------------------------------------------------------------- |
+| eo:bands   | [Asset Band Object] | Lists the bands available in an asset and any asset specific band data. |
+
+### Asset Band Object
+
+| Field Name | Type   | Description                                                  |
+| ---------- | ------ | ------------------------------------------------------------ |
+| index      | number | The band index as specified in the Band Object                |
+| unit       | string | Unit of measurements, preferably following the singular unit names in the [UDUNITS2 database](https://ncics.org/portfolio/other-resources/udunits2/). |
+| offset     | number | Offset to convert band values to the actual measurement scale. Defaults to `0`. |
+| scale      | number | Scale to convert band values to the actual measurement scale. Defaults to `1`. |
+
+### Example
 
 See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
 ```
@@ -105,19 +120,30 @@ See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
   "properties": {
     ...
   },
-
   "assets" :{
     "B1": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B1.TIF",
       "type": "GeoTIFF",
       "required": true,
-      "eo:bands": [0]
+      "eo:bands": [
+        {
+          "index": 0,
+          "offset": 12345,
+          "scale": 0.001
+        }
+      ]
     },
     "B2": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B2.TIF",
       "type": "GeoTIFF",
       "required": true,
-      "eo:bands": [1]
+      "eo:bands": [
+        {
+          "index": 1,
+          "offset": 54321,
+          "scale": 0.1
+        }
+      ]
     },
     ...
   },
@@ -142,8 +168,8 @@ See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
   ]
  }
 ```
-Planet example:
 
+Planet example:
 ```
 {
   "id": "20171110_121030_1013",
@@ -156,11 +182,23 @@ Planet example:
     "analytic": {
       "href": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcxMTEwXzEyMTAxMF8xMDEzIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWMiLCAiY3QiOiAiaXRlbS10eXBlIn0",
       "name": "PSScene4Band GeoTIFF (COG)",
-      "eo:bands":[0,1,2,3]
+      "eo:bands":[
+        {
+          "index": 0
+        },
+        {
+          "index": 1
+        },
+        {
+          "index": 2
+        },
+        {
+          "index": 3
+        }
+      ]
       ...
     }
     ...
-
   },
   "eo:bands": [
     {
