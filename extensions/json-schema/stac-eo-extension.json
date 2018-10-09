@@ -87,7 +87,7 @@
                 },
                 "eo:cloud_cover": {
                   "title": "Cloud Cover",
-                  "type": "integer",
+                  "type": "number",
                   "minimum": 0,
                   "maximum": 100
                 },
