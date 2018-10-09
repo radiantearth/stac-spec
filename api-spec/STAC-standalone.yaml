@@ -232,6 +232,9 @@ components:
         type:
           type: string
           example: application/json
+        title:
+          type: string
+          example: NAIP Child Catalog
     searchBody:
       description: The search criteria
       type: object
@@ -379,39 +382,19 @@ components:
         - assets
       properties:
         id:
-          type: string
-          example: path/to/example.tif
-          description: 'Provider identifier, a unique ID, potentially a link to a file.'
+          $ref: '#/components/schemas/itemId'
         bbox:
           $ref: '#/components/schemas/bbox'
         geometry:
           $ref: 'http://geojson.org/schema/Geometry.json'
         type:
-          type: string
-          description: The GeoJSON type
-          enum:
-            - Feature
+          $ref: '#/components/schemas/itemType'
         properties:
           $ref: '#/components/schemas/itemProperties'
         links:
           $ref: '#/components/schemas/links'
         assets:
-          type: object
-          additionalProperties:
-            type: object
-            required:
-              - href
-            properties:
-              href:
-                type: string
-                format: url
-                description: Link to the asset object
-              title:
-                type: string
-                description: Displayed title
-              type:
-                type: string
-                description: Media type of the asset
+          $ref: '#/components/schemas/itemAssets'
       example:
         type: Feature
         id: CS3-20160503_132130_04
@@ -449,6 +432,36 @@ components:
             href: >-
               http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/thumb.png
             type: image/png
+    itemId:
+      type: string
+      example: path/to/example.tif
+      description: 'Provider identifier, a unique ID, potentially a link to a file.'
+    itemType:
+      type: string
+      description: The GeoJSON type
+      enum:
+        - Feature
+    itemAssets:
+      type: object
+      additionalProperties:
+        type: object
+        required:
+          - href
+        properties:
+          href:
+            type: string
+            format: url
+            description: Link to the asset object
+            example: >-
+              http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/thumb.png
+          title:
+            type: string
+            description: Displayed title
+            example: Thumbnail
+          type:
+            type: string
+            description: Media type of the asset
+            example: image/png
     itemProperties:
       type: object
       required:
@@ -457,8 +470,7 @@ components:
       properties:
         datetime:
           $ref: '#/components/schemas/time'
-      additionalProperties:
-        type: object
+      additionalProperties: true
     itemCollectionLinks:
       type: object
       properties:
