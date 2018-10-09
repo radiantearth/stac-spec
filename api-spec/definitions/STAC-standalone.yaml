@@ -212,16 +212,6 @@ components:
           type: string
         description:
           type: string
-    link:
-      type: object
-      required:
-        - href
-      properties:
-        href:
-          type: string
-        rel:
-          type: string
-          example: prev
     searchBody:
       description: The search criteria
       type: object
@@ -321,55 +311,26 @@ components:
     catalogDefinition:
       type: object
       required:
-        - name
+        - stac_version
+        - id
         - description
         - links
       additionalProperties: true
       properties:
-        name:
+        stac_version:
           type: string
-          example: NAIP
+          example: 0.6.0
+        id:
+          type: string
+          example: naip
+        title:
+          type: string
+          example: NAIP Imagery
         description:
           type: string
-          example: Catalog of NAIP Imagery
-        license: 
-          type: string
-          example: PDDL-1.0
-        links: 
-          type: array
-          items:
-            type: object
-            additionalProperties: true
-            properties:
-              rel:
-                type: string
-                example: child
-              href:
-                type: string
-        contact:
-          type: object
-          properties:
-            name:
-              type: string
-            email:
-              type: string
-            phone:
-              type: string
-            url:
-              type: string
-        formats:
-          type: array
-          items:
-            type: string
-        keywords:
-          type: array
-          items:
-            type: string
-        homepage:
-          type: string
-        provider:
-          type: object
-          additionalProperties: true
+          example: Catalog of NAIP Imagery.
+        links:
+          $ref: '#/components/schemas/links'
     itemCollection:
       type: object
       required:
@@ -412,17 +373,7 @@ components:
         properties:
           $ref: '#/components/schemas/itemProperties'
         links:
-          type: object
-          additionalProperties:
-            type: object
-            required:
-              - href
-              - rel
-            properties:
-              href:
-                type: string
-              rel:
-                type: string
+          $ref: '#/components/schemas/links'
         assets:
           type: object
           additionalProperties:
@@ -481,14 +432,27 @@ components:
       properties:
         datetime:
           $ref: '#/components/schemas/time'
-        provider:
-          type: string
-          description: Information about the provider
-        license:
-          type: string
-          description: Data license name based on SPDX License List
       additionalProperties:
         type: object
+    links:
+      type: array
+      items:
+        type: object
+        required:
+          - href
+          - rel
+        additionalProperties: true
+        properties:
+          href:
+            type: string
+            format: url
+            example: http://www.geoserver.example/stac/naip/child/catalog.json
+          rel:
+            type: string
+            example: child
+          type:
+            type: string
+            example: application/json
     itemCollectionLinks:
       type: object
       properties:
