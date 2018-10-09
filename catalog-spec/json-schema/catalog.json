@@ -2,146 +2,56 @@
   "$schema": "http://json-schema.org/draft-06/schema#",
   "id": "catalog.json#",
   "definitions": {
-    "asset": {
-      "type": "object",
-      "allOf": [
-        {
-          "properties": {
-            "uri": {
-              "type": "string",
-              "format": "uri"
-            }
-          }
-        }
-      ]
-    },
     "link": {
       "type": "object",
-      "allOf": [
-        {
-          "properties": {
-            "rel": {
-              "type": "string"
-            },
-            "href": {
-              "type": "string"
-            }
-          }
-        }
-      ]
-    },
-    "entity": {
-      "type": "object",
+      "required": [
+        "rel",
+        "href"
+      ],
       "properties": {
-        "name": {
+        "rel": {
           "type": "string"
         },
-        "email": {
-          "type": "string",
-          "format": "email"
-        },
-        "phone": {
+        "href": {
           "type": "string"
         },
-        "url": {
-          "type": "string",
-          "format": "uri"
+        "type": {
+          "type": "string"
         }
       }
-    },
-    "license": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "shortname": {
-          "type": "string",
-          "format": "email"
-        },
-        "copyright": {
-          "type": "string"
-        },
-        "link": {
-          "type": "string",
-          "format": "uri"
-        }
-      },
-      "required": ["name", "link"]
     },
     "catalog": {
       "title": "Catalog",
       "type": "object",
+      "required": [
+        "stac_version",
+        "id",
+        "description",
+        "links"
+      ],
       "properties": {
-        "TODO": {
-          "TODO": "URL pattern info + frequency"
+        "stac_version": {
+          "title": "STAC version",
+          "type": "string"
         },
-        "name": {
-          "description": "Name",
+        "id": {
+          "title": "Identifier",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
           "type": "string"
         },
         "description": {
-          "description": "Description",
+          "title": "Description",
           "type": "string"
-        },
-        "license": {
-          "oneOf": [
-            {"description": "License (as an SPDX license string)", "type": "string"},
-            {"$ref": "#/definitions/license"}
-          ]
         },
         "links": {
-          "description": "Links to other catalogs or items",
+          "title": "Links",
           "type": "array",
           "items": {
-            "oneOf": [
-              {
-                "$ref": "#/definitions/link"
-              },
-              {
-                "type": "null"
-              }
-            ]
+            "$ref": "#/definitions/link"
           }
-        },
-        "contact": {
-          "$ref": "#/definitions/entity"
-        },
-        "keywords": {
-          "description": "Keywords",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "homepage": {
-          "type": "string"
-        },
-        "geometry": {
-          "allOf": [
-            {
-              "$ref": "geojson.json#/definitions/geometry"
-            },
-            {
-              "properties": {
-                "type": {
-                  "enum": ["Polygon", "MultiPolygon"]
-                }
-              }
-            }
-          ]
-        },
-        "startDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "endDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "provider": {
-          "description": "Provider-specific properties",
-          "type": "object"
         }
       }
     }
@@ -149,9 +59,6 @@
   "allOf": [
     {
       "$ref": "#/definitions/catalog"
-    },
-    {
-      "required": ["name", "description", "links"]
     }
   ]
 }

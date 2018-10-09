@@ -17,8 +17,8 @@ spec changes discusses on a pull request, merging once there is community consen
 
 ### Asset definitions
 
-Currently the 'Asset' items in the array only require a link to the asset, and contain an option 'name'. There is likely
-quite a bit more that can be standardized in a useful way - at the very least some optional fields to help providers
+Currently the 'Asset' items in the array only require a link to the asset, and contain an optional 'title' and media 'type'.
+There is likely quite a bit more that can be standardized in a useful way - at the very least some optional fields to help providers
 describe more of what they're doing. Another idea is to require a link to a 'product definition' that an asset must
 implement, which would provide the needed fields. This would increase the burden on the client, to follow or cache
 the definitions, but would also decrease the repetition of the same fields over and over again. There is additional

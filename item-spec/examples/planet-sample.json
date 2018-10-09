@@ -55,7 +55,6 @@
   "id": "20171110_121030_1013",
   "properties": {
     "datetime": "2017-11-10T12:10:30.535417Z",
-    "provider": "Planet",
     "eo:cloud_cover": 23,
     "eo:gsd": 4,
     "eo:sun_azimuth": 101.8,
@@ -85,12 +84,12 @@
   "assets": {
     "thumbnail": { 
       "href": "https://api.planet.com/data/v1/item-types/PSScene4Band/items/20171110_121030_1013/thumb",
-      "name": "Thumbnail", 
+      "title": "Thumbnail", 
       "status": "active"
     },
     "analytic": {
       "href": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcxMTEwXzEyMTAxMF8xMDEzIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWMiLCAiY3QiOiAiaXRlbS10eXBlIn0",
-      "name": "PSScene4Band GeoTIFF (COG)",
+      "title": "PSScene4Band GeoTIFF (COG)",
       "activate": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcxMTEwXzEtMTAzMF8xMDEzIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWMiLCAiY3QiOiAiaXRlbS10eXBlIn0/activate",
       "type": "https://api.planet.com/data/v1/asset-types/analytic",
       "_permissions": [
@@ -101,7 +100,7 @@
     },
     "analytic_xml": {
       "href": "https://api.planet.com/data/v1/assets/NTY2VuZTReyJpIjogIjIwMTcxMTEwXzEyMTAxMF8xMDEzIiQiOiAiaXRlbS10ewgImMiOiAiUFbHl0aWMiLCAiY3XBlIn0",
-      "name": "PSScene4Band XML Metadata",
+      "title": "PSScene4Band XML Metadata",
       "activate": "https://api.planet.com/data/v1/assets/tMTAzMF8xMDEzIiwInQiOiAeyJpIjogIjIwMTcxMTEwXzEiYW5hbHl0aWMiLCAiY3gImMiOiAiUFNTY2VuZTRCYW5kIiwgQiOiAiaXRlbS10eXBlIn0/activate",
       "type": "https://api.planet.com/data/v1/asset-types/analytic_xml",
       "_permissions": [
@@ -112,7 +111,7 @@
     },
     "udm": {
       "href": "https://api.planet.com/data/v1/assets/NTY2VuZTReyJpIzEyMTAxMF8xMDEzIiQiOiAiaXRlbTcxMTEwXAiUFbHl0S10ewgImMiOijogIjIwMaWMiLCAiY3XBlIn0",
-      "name": "PSScene4Band Unusable Data Mask",
+      "title": "PSScene4Band Unusable Data Mask",
       "activate": "https://api.planet.com/data/v1/assets/tMTAzMF8xMDEzIiwInQiOiAeyJpIjogIjIgImMiOiAiUFwMTcxMTEwXzEiYW5hbHl0aWMiLCAiY3NTY2VuZTRCYW5kIiwgQiOiAiaXRlbS10eXBlIn0/activate",
       "type": "https://api.planet.com/data/v1/asset-types/udm",
       "_permissions": [

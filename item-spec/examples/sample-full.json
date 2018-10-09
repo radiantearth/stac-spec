@@ -18,8 +18,6 @@
   },
   "properties": {
     "datetime": "2016-05-03T13:22:30.040Z",
-    "provider": "http://www.cool-sat.com",
-    "license": "CC-BY-4.0",
     "eo:sun_azimuth": 168.7,
     "eo:cloud_cover": 0.12,
     "eo:off_nadir": 1.4,
@@ -35,32 +33,32 @@
   "links": [
     {"rel": "self", "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json"},
     {"rel": "thumbnail", "href":"thumbnail.png"},
-    {"rel": "catalog", "href": "http://cool-sat.com/catalog/"},
+    {"rel": "dataset", "href": "http://cool-sat.com/catalog/"},
     {"rel": "acquisition", "href": "http://cool-sat.com/catalog/acquisitions/20160503_56"}
   ],
   "assets": {
     "analytic": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/analytic.tif",
-      "name": "4-Band Analytic",
+      "title": "4-Band Analytic",
       "product": "http://cool-sat.com/catalog/products/analytic.json"
     },
     "thumbnail": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png",
-      "name": "Thumbnail"
+      "title": "Thumbnail"
     },
     "udm": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/UDM.tif",
-      "name": "Unusable Data Mask",
+      "title": "Unusable Data Mask",
       "product": "http://cool-sat.com/catalog/products/udm.json"
     },
     "json-metadata": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/extended-metadata.json",
-      "name": "Extended Metadata",
+      "title": "Extended Metadata",
       "product": "http://cool-sat.com/catalog/products/extended-metadata.json"
     },
     "ephemeris": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/S3-20160503_132130_04.EPH",
-      "name": "Satellite Ephemeris Metadata",
+      "title": "Satellite Ephemeris Metadata",
       "product": "http://cool-sat.com/catalog/products/satellite-ephemeris.json"
     }
   }

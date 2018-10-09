@@ -16,10 +16,9 @@ Items are represented in JSON format and are very flexible. Any JSON object that
 required fields is a valid STAC Item.
 
 - Examples:
-  - See the [examples/sample.json](sample.json) for a minimal example, as well as
-    [examples/sample-full.json](sample-full.json) for a more fleshed example that contains a number of
-    current best practices.
-  - There are also a few more real world inspired samples in the [examples/](examples/) folder.
+  - See the [minimal example](examples/sample.json), as well as a [more fleshed example](examples/sample-full.json) that contains a number of
+    current best practices. There are more real world inspired samples in the [examples/](examples/) folder.
+  - Real world [implementations](../implementations.md) are also available.
 - [JSON Schema](json-schema/stac-item.json)
 
 ## WARNING
@@ -62,11 +61,9 @@ Metadata that require an object or array SHOULD be placed a level up, directly i
 Item object. Additional fields can be introduced through extensions. It is generally allowed to add
 custom fields.
 
-| Field Name | Type   | Name          | Description                                                                                                                                                                                                                                                      |
-| ---------- | ------ | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| datetime   | string | Date and Time | **REQUIRED.** The searchable date and time of the assets, in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).                                                                                         |
-| provider   | string | Provider      | Provider name                                                                                                                                                                                                                                                    |
-| license    | string | Data License  | Items' license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
+| Field Name | Type   | Description                                                  |
+| ---------- | ------ | ------------------------------------------------------------ |
+| datetime   | string | **REQUIRED.** The searchable date and time of the assets, in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
 
 **datetime** is likely the acquisition (in the case of single camera type captures) or the 'nominal'
 or representative time in the case of assets that are combined together. Though time can be a
@@ -87,7 +84,7 @@ allowed to add additional fields such as a `title` and `type`.
 | ---------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------- |
 | href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed.                                |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information. |
-| type       | string | MIME-type of the referenced entity. 																								|
+| type       | string | Media type of the referenced entity. 																								|
 | title      | string | A human readable title to be used in rendered displays of the link 																	|
 
 #### Relation types
@@ -99,7 +96,12 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | self    | **REQUIRED.** _Absolute_ URL to the item file itself. This is required, to represent the location that the file can be found online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root    | URL to the root [STAC Catalog](../catalog-spec/) or [Dataset](../dataset-spec/). |
 | parent  | URL to the parent [STAC Catalog](../catalog-spec/) or [Dataset](../dataset-spec/). |
-| license | The license URL for the item SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file. |
+| dataset | **REQUIRED.** URL to a [STAC Dataset](../dataset-spec/). |
+| derived_from | URL to a STAC `Item` that was used as input data in the creation of this `Item` |
+
+*Note regarding the type `derived_from`: A full provenance model is far beyond the scope of STAC, and the goal is to align with any good independent spec 
+that comes along for that. But the derived_from field is seen as a way to encourage fuller specs and at least start a linking
+structure that can be used as a jumping off point for more experiments in provenance tracking*
 
 #### Relative vs Absolute links
 
@@ -111,7 +113,11 @@ link is required to be absolute.
 
 #### Datasets
 
-Items are *strongly recommended* to provide a link to a dataset definition.
+Items are *strongly recommended* to provide a link to a dataset definition. It is important as datasets 
+provide additional information about a set of items, for example the license and provider information 
+and optionally any common information shared across all items, giving context on the overall set of
+data that an individual Item is a part of..
+
 
 ### Asset Object
 
@@ -121,8 +127,8 @@ or streamed. It is allowed to add additional fields.
 | Field Name | Type   | Description                                                                           |
 | ---------- | ------ | ------------------------------------------------------------------------------------- |
 | href       | string | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
-| name       | string | The display name for clients and users.                                               |
-| type       | string | MIME-type of the asset (see chapter on MIME types below).                             |
+| title      | string | The displayed title for clients and users.                                            |
+| type       | string | Media type of the asset (see chapter on Media Types below).                           |
 
 #### Asset types
 
@@ -132,31 +138,38 @@ The following types are commonly for assets and are used as key for the Asset Ob
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | thumbnail | STRONGLY RECOMMENDED. A downsampled image of the core asset, for direct display online in a web page or interactive search application. Even assets that are less easily translated in to a visual image should provide some visual representation, that users can browse. For example a SAR asset can render an elevation mask or hillshade for display. If at all possible it should be included for a better user experience in searching data. |
 
-#### MIME types
+#### Media Types
 
-[Registered](https://www.iana.org/assignments/media-types/media-types.xhtml) MIME types are
-preferred when possible. In cases where custom, vendor specific MIME types are necessary they can be
-used with the `vnd.` prefix for the type. The MIME type can be used by STAC browsers to better
-determine what is relevant to render and display to users searching and browsing the catalog. In
-some cases, selection of a mime type can be ambiguous. For instance, many STAC items have sidecar
-metadata files associated with the core asset (`.tfw`, Landsat 8 MTL files, etc.) that should use
-mime types appropriate for the file - for instance, if it is a plain text file then `text/plain`
-would be appropriate, `text/xml` would be appropriate for cases the metadata is in XML format.
+The media type of an Asset can be used by STAC browsers to better determine what to render and display 
+to users searching and browsing the catalog.  Media types are often referred to by the now-deprecated term "MIME types".
 
-A set of commonly used MIME types for STAC items include the following:
+[Registered](https://www.iana.org/assignments/media-types/media-types.xhtml) Media Types are
+preferred. In cases where custom vendor-specific media types are necessary, they should
+use the `vnd.` prefix. 
 
-| MIME type                      | Description                                                                             |
-| ------------------------------ | --------------------------------------------------------------------------------------- |
-| image/geotiff                  | Georeferenced TIFF. _We would like to register image/geotiff as a mime type with IANA._ |
-| image/geotiff+cog              | Cloud Optimized GeoTIFF                                                                 |
-| image/jp2                      | JPEG 2000                                                                               |
-| image/png                      | Visual PNGs (e.g. thumbnails)                                                           |
-| image/jpeg                     | Visual JPEGs (e.g. thumbnails, oblique)                                                 |
-| text/xml                       | XML metadata                                                                            |
-| application/json               | JSON metadata                                                                           |
-| text/plain                     | Plain text metadata                                                                     |
-| application/geo+json           | GeoJSON                                                                                 |
-| application/geopackage+sqlite3 | GeoPackage                                                                              |
+STAC Items that have sidecar metadata files associated with a data asset (e.g, `.tfw`, Landsat 8 MTL files) 
+should use media types appropriate for the the metadata file.  For example, if it is a plain text file, then `text/plain`
+would be appropriate; if it is an XML, then `text/xml` is appropriate.
+
+Common STAC Item Media Types:
+
+| Media Type                      | Description                                                                              |
+| ------------------------------ | ----------------------------------------------------------------------------------------- |
+| `image/tiff` or `image/x.geotiff`     | GeoTIFF TIFF file with standardized georeferencing metadata                        |
+| `image/tiff` or `image/x.cloud-optimized-geotiff` | Cloud Optimized GeoTIFF                                                |
+| `image/jp2`                      | JPEG 2000                                                                               |
+| `image/png`                      | Visual PNGs (e.g. thumbnails)                                                           |
+| `image/jpeg`                     | Visual JPEGs (e.g. thumbnails, oblique)                                                 |
+| `text/xml` or `application/xml`  | XML metadata [RFC 7303](https://www.ietf.org/rfc/rfc7303.txt)                                                                          |
+| `application/json`               | JSON metadata                                                                           |
+| `text/plain`                     | Plain text metadata                                                                     |
+| `application/geo+json`           | GeoJSON                                                                                 |
+| `application/geopackage+sqlite3` | GeoPackage                                                                              |
+| `application/x-hdf5`             | Hierarchical Data Format version 5                                                      |
+| `application/x-hdf`              | Hierarchical Data Format versions 4 and earlier.                                        |
+
+Note: should GeoTIFF become an IANA-registered type in the future (e.g., image/geotiff), this will be added as a recommended
+media type.
 
 ## Extensions
 

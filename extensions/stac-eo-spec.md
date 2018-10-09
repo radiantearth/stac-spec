@@ -1,5 +1,7 @@
 # STAC EO Extension Spec (`eo`)
 
+**Extension [Maturity Classification](./README.md#extension-maturity): Pilot**
+
 This document explains the fields of the STAC Earth Observation (EO) Extension to a STAC `Item`. EO
 data is considered to be data that represents a snapshot of the earth for a single date and time. It
 could consist of multiple spectral bands in any part of the electromagnetic spectrum. Examples of EO
@@ -64,7 +66,7 @@ there is no valid EPSG code.
 | scale               | number   | Scale to convert band values to the actual measurement scale. Defaults to `1`. |
 
 **full_width_half_max** (FWHM) is a common way to describe the size of a spectral band. It is the
-width, in microns, of the bandpass measured at a half of the maximum transmission. Thus, if the
+width, in micrometres (μm), of the bandpass measured at a half of the maximum transmission. Thus, if the
 maximum transmission of the bandpass was 80%, the FWHM is measured as the width of the bandpass at
 40% transmission.
 
@@ -222,6 +224,12 @@ Planet example:
   ]
 }
 ```
+
+## Implementations
+
+A number of implementations listed on [STAC Implementations page](../implementations.md) are making use of the core EO 
+properties, including the SpaceNet, CBERS, sat-api and Planet implementations. This is not marked as more mature because
+the eo:bands portion is still being fleshed out, with changes coming in 0.6.0.
 
 ## Extensions
 
