@@ -404,6 +404,7 @@ components:
         - id
         - type
         - geometry
+        - bbox
         - links
         - properties
         - assets
@@ -411,7 +412,7 @@ components:
         id:
           type: string
           example: path/to/example.tif
-          description: 'unique ID, potentially link to file'
+          description: 'Provider identifier, a unique ID, potentially a link to a file.'
         bbox:
           $ref: '#/components/schemas/bbox'
         geometry:
@@ -434,8 +435,14 @@ components:
             properties:
               href:
                 type: string
-              name:
+                format: url
+                description: Link to the asset object
+              title:
                 type: string
+                description: Displayed title
+              type:
+                type: string
+                description: Media type of the asset
       example:
         type: Feature
         id: CS3-20160503_132130_04
@@ -459,22 +466,20 @@ components:
                 - 37.488035566
         properties:
           datetime: '2016-05-03T13:21:30.040Z'
-          provider: 'http://www.cool-sat.com'
-          license: CC-BY-4.0
         links:
-          self:
-            rel: self
+          - rel: self
             href: >-
               http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04.json
         assets:
           analytic:
-            name: 4-Band Analytic
+            title: 4-Band Analytic
             href: >-
               http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/analytic.tif
           thumbnail:
-            name: thumbnail
+            title: Thumbnail
             href: >-
               http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/thumb.png
+            type: image/png
     itemProperties:
       type: object
       required:
