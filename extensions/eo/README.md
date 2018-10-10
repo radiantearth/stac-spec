@@ -17,7 +17,7 @@ to reuse the names and definitions here.*
 It is not necessary, but recommended to use the [Commons extension](../commons)
 (see chapter "Using collections").
 
-- [Examples](example-landsat8.json)
+- [Example (Landsat 8)](example-landsat8.json)
 - [JSON Schema](json-schema.json)
 
 ## Item fields

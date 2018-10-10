@@ -129,7 +129,7 @@ The merged `Item` then looks like this:
 
 ### `Collection` Example
 
-This is an example `Collection` for Landsat-8 imagery and uses the [EO extension](stac-eo-spec.md).
+This is an example `Collection` for Landsat-8 imagery and uses the [EO extension](eo/).
 
 ```
 {
