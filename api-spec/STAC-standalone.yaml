@@ -470,7 +470,8 @@ components:
       properties:
         datetime:
           $ref: '#/components/schemas/time'
-      additionalProperties: true
+      additionalProperties:
+        description: Any additional properties added in via extensions.
     itemCollectionLinks:
       type: object
       properties:
