@@ -58,7 +58,7 @@ leverage web best practices to share core schema definitions across different ST
 
 The schema definition mechanism part of this is defined in [Issue 30](https://github.com/radiantearth/stac-spec/issues/30).
 
-### Earth Observation Extension
+### EO Extension
 
 The top priority for many of the initial STAC implementors is to share more fields between data than just
 date and time. At the [boulder sprint](http://github.com/radiantearth/boulder-sprint) the metadata group

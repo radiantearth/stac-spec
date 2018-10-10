@@ -68,7 +68,7 @@ just the `Item`s a user requests in their query. It is specified as a couple [Op
 endpoint which is a way for a dynamic server to provide catalog and dataset browsing.
 
 **Extensions:** The *[extensions/](extensions/)* folder is where extensions (profiles) live. Extensions can extend the 
-functionality of the core spec or add fields for specific domains like Earth Observation.
+functionality of the core spec or add fields for specific domains.
 
 **Additional documents** include the current [roadmap](roadmap.md) and a complementary [how to help](how-to-help.md)
 document, a [list of implementations](implementations.md), 
@@ -101,7 +101,7 @@ or at least may have a 'backup' of its fields stored as a cached static catalog.
 
 The [SpatioTemporal Asset Metadata](https://github.com/radiantearth/stam-spec) specification defines the core fields that all 
 assets must make available for searching in a catalog. Vendors can extend those core fields for the metadata they want to 
-make available, and the community is starting to define shared extensions, with 'earth observation' (satellite imagery) being 
+make available, and the community is starting to define shared extensions, with 'electro-optical' being 
 the first one. This repo contains the [STAC Item](item-spec/item-spec.md) definition, which is the primary json extension of STAM, 
 so it can evolve with the rest of the STAC spec more easily. The STAM repo retains the abstract definition, and may evolve 
 to contain other extensions.
