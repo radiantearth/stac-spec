@@ -2,12 +2,17 @@
 
 **Extension [Maturity Classification](../README.md#extension-maturity): Pilot**
 
-This document explains the fields of the STAC Earth Observation (EO) Extension to a STAC `Item`. EO
+This document explains the fields of the STAC Electro-Optical (EO) Extension to a STAC `Item`. EO
 data is considered to be data that represents a snapshot of the earth for a single date and time. It
 could consist of multiple spectral bands in any part of the electromagnetic spectrum. Examples of EO
 data include sensors with visible, short-wave and mid-wave IR bands (e.g., the OLI instrument on
-Landsat-8), long-wave IR bands (e.g. TIRS aboard Landsat-8), as well as SAR instruments (e.g.
-Sentinel-1).
+Landsat-8), long-wave IR bands (e.g. TIRS aboard Landsat-8).
+
+*\* Note: This extension used to be called Earth Observation with a much broader scope (including
+Synthetic Aperture Radar (SAR), etc). The decision was made to limit this to what was already its 
+natural focus, and encourage other sensors to make their own extensions. Once that happens some of
+these fields will evolve to higher level extensions. In the meantime other implementations are welcome
+to reuse the names and definitions here.*
 
 It is not necessary, but recommended to use the [Commons extension](../commons)
 (see chapter "Using collections").
