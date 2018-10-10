@@ -21,6 +21,8 @@ This provides maximum flexibility to data providers, as the set of common metada
 
 If a metadata field is specified in the Collection properties, it will be ignored in any Item that links to that Collection. This is important because a Collection is the metadata that is common across all Item objects. If a field is variable at all, it should not be part of the Commons.
 
+A Collection may not link to any Items, it may just be a definition of a Collection, in which case the Commons extension could still be used by defining any properties that would be shared by any member Item.
+
 ### Linking to a STAC Collection
 
 All Items link to a Collection (this is part of the core STAC spec) and is specified in two places. One is a field under properties called `collection` which is the `id` of a STAC Collection record. The `collection` field provides an easy way for a user to search for any Items that belong in a specified Collection.
