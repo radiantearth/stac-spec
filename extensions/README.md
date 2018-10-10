@@ -46,8 +46,8 @@ stable for over a year and are used in twenty or more implementations.
 
 | Extension Name (Prefix)                                      | Scope            | Description                                                  | Maturity |
 | ------------------------------------------------------------ | ---------------- | ------------------------------------------------------------ | -------- |
-| [Commons](commons/) (-)                  | Item             | Provides a way to specify data fields in a collection that are common across the STAC Items in that collection, so that each does not need to repeat all the same information. | *Proposal* |
-| [EO](stac-eo-spec.md) (`eo`)                                 | Item             | Covers data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands in any part of the electromagnetic spectrum. Examples of EO data include sensors with visible bands, IR bands as well as SAR instruments. The extension provides common fields like bands, cloud cover, off nadir, sun angle + elevation, gsd and more. | *Pilot* |
+| [Commons](commons/) (-)                                      | Item             | Provides a way to specify data fields in a collection that are common across the STAC Items in that collection, so that each does not need to repeat all the same information. | *Proposal* |
+| [EO](stac-eo-spec.md) (`eo`)                                 | Item             | Covers electro-optical data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, off nadir, sun angle + elevation, gsd and more. | *Pilot* |
 | [Scientific](scientific/) (`sci`)                            | Catalog +Dataset | Scientific metadata is considered to be data that indicate from which publication a dataset originates and how the dataset itself should be cited or referenced. | *Proposal* |
 | [Start end datetime](stac-start-end-datetime-spec.md) (`set`) | Item             | An extension to provide start and end datetime stamps in a consistent way. | *Proposal* |
 | [Transaction](transaction/)                                  | API              | Provides an API extension to support the creation, editing, and deleting of items on a specific WFS3 collection. | *Pilot* |
@@ -74,5 +74,4 @@ extension, please get in touch through the referenced issues:
 - [Drone content Extension](https://github.com/radiantearth/stac-spec/issues/149)
 - [Full Motion Video Content Extension](https://github.com/radiantearth/stac-spec/issues/156)
 - [Point Cloud Extension](https://github.com/radiantearth/stac-spec/issues/157)
-- [Provenance Extension](https://github.com/radiantearth/stac-spec/issues/179)
 - [Storage Extensions](https://github.com/radiantearth/stac-spec/issues/148)
