@@ -1,6 +1,6 @@
 ## Landsat Example with EO and Collection extension
 
-The files in this directory contain a full example of Landsat data. It follows the Earth Observation
+The files in this directory contain a full example of Landsat data. It follows the EO
 extension, and uses the 'Collection' extension to be less duplicative of information
 
 * [landsat8-sample](landsat8-sample.json) is a core `Item` including the link to its collection information.
