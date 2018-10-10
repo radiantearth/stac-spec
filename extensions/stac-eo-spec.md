@@ -14,7 +14,7 @@ natural focus, and encourage other sensors to make their own extensions. Once th
 these fields will evolve to higher level extensions. In the meantime other implementations are welcome
 to reuse the names and definitions here.*
 
-It is not necessary, but recommended to use the [Collections extension](stac-collection-spec.md)
+It is not necessary, but recommended to use the [Collections extension](stac-dataset-spec.md)
 (see chapter "Using collections").
 
 - [Examples](examples/)

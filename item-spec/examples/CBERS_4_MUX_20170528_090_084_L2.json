@@ -56,7 +56,7 @@
       "href": "https://cbers-stac.s3.amazonaws.com/CBERS4/MUX/090/catalog.json"
     },
     {
-      "rel": "dataset",
+      "rel": "collection",
       "href": "https://cbers-stac.s3.amazonaws.com/collections/CBERS_4_MUX_L2_collection.json"
     }
   ],

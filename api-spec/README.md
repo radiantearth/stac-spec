@@ -36,13 +36,13 @@ pageable links to iterate through any results past that limit.
 
 ### Dynamic Catalog API
 
-The other endpoint that is included as an option in STAC API is `/stac/`, which implements the [Catalog Spec](../catalog-spec/). 
+The other endpoint that is included as an option in STAC API is `/stac/`, which implements the [STAC Catalog Spec](../catalog-spec/). 
 See the [Dynamic Catalog](https://github.com/radiantearth/stac-spec/blob/structure_and_cleanup/catalog-spec/catalog-spec.md#dynamic-catalogs) 
 section of that spec for more information. Implementing this enables tools like 
 [STAC Browser](https://medium.com/@mojodna/a-stac-browser-348a60674061) to use the dynamic catalog, to enable better 
 discovery through people browsing and search engines crawling. 
 
-The OpenAPI spec in this directory documents the endpoint, and refer to the Catalog and [Dataset](../dataset-spec) for more information about the full content and link structure.
+The OpenAPI spec in this directory documents the endpoint, and refer to the STAC Catalog and [STAC Collection](../dataset-spec) for more information about the full content and link structure.
 
 ## API Fragments
 

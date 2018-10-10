@@ -88,7 +88,7 @@
         "href": "https://s3.amazonaws.com/digitalglobe-catalog-spec/collections/dg_worldview02_LV1B/103001004B316600_P002_MUL"
       },
       {
-        "rel": "dataset",
+        "rel": "collection",
         "href": "https://s3.amazonaws.com/digitalglobe-catalog-spec/collections/dg_worldview02_LV1B.json"
       }
     ]

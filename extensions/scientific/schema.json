@@ -6,12 +6,12 @@
   "properties": {
     "sci:doi": {
       "type": "string",
-      "title": "Dataset DOI",
+      "title": "Collection DOI",
       "pattern": "^(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![%\"#? ])\\S)+)$"
     }, 
     "sci:citation": {
       "type": "string", 
-      "title": "Proposed Dataset Citation"
+      "title": "Proposed Collection Citation"
     },
     "sci:publications": {
       "type": "array",

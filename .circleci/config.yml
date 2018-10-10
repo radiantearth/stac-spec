@@ -21,7 +21,7 @@ jobs:
           command: |
             cd validation
             npm run validate_catalog -- -d ../catalog-spec/examples/catalog.json
-            npm run validate_dataset -- -d ../dataset-spec/examples/sentinel2.json
+            npm run validate_collection -- -d ../dataset-spec/examples/sentinel2.json
             npm run validate_extension -- -s ../extensions/scientific/schema.json -d ../extensions/scientific/example-merraclim.json
             npm run validate_item -- -d ../item-spec/examples/sample.json
             # ToDo: More files should be validated

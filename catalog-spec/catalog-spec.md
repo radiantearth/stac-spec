@@ -1,7 +1,7 @@
 # STAC Catalog Specification
 
-This document explains the structure and content of a STAC `Catalog`. A STAC Catalog is a 
-collection of SpatioTemporal `Item`s. These `Item`s can be linked to directly from a Catalog,
+This document explains the structure and content of a STAC Catalog. A STAC Catalog is a 
+collection of SpatioTemporal Items. These Items can be linked to directly from a Catalog,
 or the Catalog can link to other Catalogs (often called sub-Catalogs) that contain links to Items.
 The division of sub-catalogs is up to the implementor, but is generally done to aid the ease of 
 online browsing by people.
@@ -15,7 +15,7 @@ that contains all the required fields is a valid STAC Catalog.
 
 This Catalog specification primarily defines a structure for information to be discoverable. Any use 
 that is publishing a set of related spatiotemporal assets is strongly recommended to also use the 
-[Dataset specification](../dataset-spec/) to provide additional information about a set of `Item`s 
+[STAC Collection specification](../dataset-spec/) to provide additional information about a set of Items 
 contained in a catalog, to give contextual information to aid in discovery.
 
 ## WARNING
@@ -79,8 +79,8 @@ There are a few types of catalogs that implementors occasionally refer to. These
 
  * A **sub-catalog** is a Catalog that is linked to from another Catalog that is used to better organize data. For example a Landsat dataset might have sub-catalogs for each Path and Row, so as to create a nice tree structure for users to follow.
  * A **root catalog** is a Catalog that only links to sub-catalogs. These are typically entry points for browsing data. Often
- they will contain the [dataset](../dataset-spec) definition, but in implementations that publish diverse information it may
- contain sub-catalogs that provide a variety of datasets.
+ they will contain the [STAC Collection](../dataset-spec) definition, but in implementations that publish diverse information it may
+ contain sub-catalogs that provide a variety of collections.
  * A **parent catalog** is the Catalog that sits directly above a sub-catalog. Following parent catalog links continuously
  will naturally end up at a root catalog definition.
  
@@ -148,7 +148,7 @@ link to those locations.
 | description  | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | links        | [Link Object] | **REQUIRED.** A list of references to other documents.       |
 
-**stac_version**: It is not allowed to mix STAC versions. The root catalog/dataset MUST specify the implemented STAC versions and child catalogs/datasets MUST NOT specify a different STAC version.
+**stac_version**: It is not allowed to mix STAC versions. The root catalog or the root collection respectively MUST specify the implemented STAC version. Child Catalogs and child Collections MUST NOT specify a different STAC version.
 
 **Examples:**
 
@@ -169,7 +169,7 @@ might look something like this:
 }
 ```
 
-In addition, the catalog shown above is strongly recommended to also follow the [Dataset specification](../dataset-spec/dataset-spec.md) 
+In addition, the catalog shown above is strongly recommended to also follow the [STAC Collection specification](../dataset-spec/dataset-spec.md) 
 to add more information about the NAIP imagery such as the spatial and temporal extents, a license and more.
 
 A typical '_child_' sub-catalog could look similar:
@@ -189,7 +189,7 @@ A typical '_child_' sub-catalog could look similar:
 }
 ```
 
-The `root` catalog in this example could hold a set of catalogs with different datasets, e.g. data from other satellites or processed variants of the NAIP imagery.
+The `root` catalog in this example could hold a set of sub-catalogs with different STAC collections, e.g. data from other satellites or processed variants of the NAIP imagery.
 
 ### Link Object
 
@@ -204,7 +204,7 @@ with links.
 
 #### Relation types
 
-The following types are commonly used as `rel` types in the Link Object of a Dataset:
+The following types are commonly used as `rel` types in the Link Object of a STAC Collection:
 
 | Type    | Description                                                                                                                                                                                                                                                                               |
 | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

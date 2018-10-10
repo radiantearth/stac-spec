@@ -30,12 +30,12 @@ To run the validation for a catalog file:
 npm run validate_catalog -- -d ../catalog-spec/examples/catalog.json
 ```
 
-### Datasets
+### Collections
 
-To run the validation for a dataset file:
+To run the validation for a collection file:
 
 ```bash
-npm run validate_dataset -- -d ../dataset-spec/examples/sentinel2.json
+npm run validate_collection -- -d ../dataset-spec/examples/sentinel2.json
 ```
 
 ### Extensions

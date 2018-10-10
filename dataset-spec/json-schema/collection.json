@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-06/schema#",
-  "id": "dataset.json#",
-  "title": "Dataset Item",
-  "description": "This object represents the dataset in a SpatioTemporal Asset Catalog.",
+  "id": "collection.json#",
+  "title": "STAC Collection Specification",
+  "description": "This object represents Collections in a SpatioTemporal Asset Catalog.",
   "type": "object",
   "required": [
     "stac_version",
@@ -38,11 +38,11 @@
       }
     },
     "version": {
-      "title": "Dataset Version",
+      "title": "Collection Version",
       "type": "string"
     },
     "license": {
-      "title": "Dataset License Name",
+      "title": "Collection License Name",
       "type": "string"
     },
     "provider": {

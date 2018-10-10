@@ -57,7 +57,7 @@ atomic unit that describes the data to be discovered.
 **[catalog-spec/](catalog-spec/)** specifies a structure to link various `Items` together to be crawled or browsed. It is a
 simple, flexible JSON file of links to `Item`s or other `Catalogs` that can be used in a variety of ways.
 
-**[dataset-spec/](dataset-spec/)** provides additional information about a set of `Item`s that are made available by a 
+**[dataset-spec/](dataset-spec/)** provides additional information about a collection of STAC Items that are made available by a 
 data provider. It includes things like the spatial and temporal extent of the set of data, the license, keywords, etc. It 
 enables discovery at a higher level than individual items, providing a simple way to describe sets of data.
 
@@ -65,7 +65,7 @@ enables discovery at a higher level than individual items, providing a simple wa
 just the `Item`s a user requests in their query. It is specified as a couple [OpenAPI](http://openapis.org) documents, one
 [standalone](api-spec/STAC-standalone.yaml) and one that is [integrated with WFS3](api-spec/WFS3core%2BSTAC.yaml) 
 (see [wfs github](https://github.com/opengeospatial/wfs_fes) for info on it). The documents also include the `/stac/` 
-endpoint which is a way for a dynamic server to provide catalog and dataset browsing.
+endpoint which is a way for a dynamic server to provide catalog and collection browsing.
 
 **Extensions:** The *[extensions/](extensions/)* folder is where extensions (profiles) live. Extensions can extend the 
 functionality of the core spec or add fields for specific domains.
