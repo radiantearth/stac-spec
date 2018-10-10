@@ -1,0 +1,147 @@
+{
+    "id": "landsat-8-l1",
+    "title": "Landsat 8 L1",
+    "description": "Landat 8 imagery radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
+    "keywords": "landsat",
+    "version": "0.1.0",
+    "stac_version": "0.6.0",
+    "extent": {
+        "spatial": [
+            -180,
+            -90,
+            180,
+            90
+        ],
+        "temporal": [
+            "2013-06-01",
+            null
+        ]
+    },
+    "providers": [
+        {
+            "name": "USGS",
+            "url": "https://landsat.usgs.gov/",
+            "type": "producer"
+        },
+        {
+            "name": "Planet Labs",
+            "url": "https://github.com/landsat-pds/landsat_ingestor",
+            "type": "processor"
+        },
+        {
+            "name": "AWS",
+            "url": "https://landsatonaws.com/",
+            "type": "host"
+        },
+        {
+            "name": "Development Seed",
+            "url": "https://developmentseed.org/",
+            "type": "processor"
+        }
+    ],
+    "license": "PDDL-1.0",
+    "properties": {
+        "eo:gsd": 15,
+        "eo:platform": "landsat-8",
+        "eo:instrument": "OLI_TIRS",
+        "eo:constellation": "landsat",
+        "eo:off_nadir": 0,
+        "eo:bands": [
+            {
+                "id": "B1",
+                "common_name": "coastal",
+                "gsd": 30,
+                "center_wavelength": 0.44,
+                "full_width_half_max": 0.02
+            },
+            {
+                "id": "B2",
+                "common_name": "blue",
+                "gsd": 30,
+                "center_wavelength": 0.48,
+                "full_width_half_max": 0.06
+            },
+            {
+                "id": "B3",
+                "common_name": "green",
+                "gsd": 30,
+                "center_wavelength": 0.56,
+                "full_width_half_max": 0.06
+            },
+            {
+                "id": "B4",
+                "common_name": "red",
+                "gsd": 30,
+                "center_wavelength": 0.65,
+                "full_width_half_max": 0.04
+            },
+            {
+                "id": "B5",
+                "common_name": "nir",
+                "gsd": 30,
+                "center_wavelength": 0.86,
+                "full_width_half_max": 0.03
+            },
+            {
+                "id": "B6",
+                "common_name": "swir16",
+                "gsd": 30,
+                "center_wavelength": 1.6,
+                "full_width_half_max": 0.08
+            },
+            {
+                "id": "B7",
+                "common_name": "swir22",
+                "gsd": 30,
+                "center_wavelength": 2.2,
+                "full_width_half_max": 0.2
+            },
+            {
+                "id": "B8",
+                "common_name": "pan",
+                "gsd": 15,
+                "center_wavelength": 0.59,
+                "full_width_half_max": 0.18
+            },
+            {
+                "id": "B9",
+                "common_name": "cirrus",
+                "gsd": 30,
+                "center_wavelength": 1.37,
+                "full_width_half_max": 0.02
+            },
+            {
+                "id": "B10",
+                "common_name": "lwir11",
+                "gsd": 100,
+                "center_wavelength": 10.9,
+                "full_width_half_max": 0.8
+            },
+            {
+                "id": "B11",
+                "common_name": "lwir12",
+                "gsd": 100,
+                "center_wavelength": 12,
+                "full_width_half_max": 1
+            }
+        ]
+    },
+    "links": [
+        {
+            "rel": "self",
+            "href": "https://<endpoint>/stac/collections/landsat-8-l1"
+        },
+        {
+            "rel": "parent",
+            "href": "https://<endpoint>/stac"
+        },
+        {
+            "rel": "root",
+            "href": "https://<endpoint>/stac"
+        },
+        {
+            "rel": "child",
+            "href": "https://<endpoint>/stac/collections/landsat-8-l1/items"
+        }
+    ]
+}
