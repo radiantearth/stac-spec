@@ -23,8 +23,10 @@ servers:
 paths:
   /stac:
     get:
-      summary: >-
-        Return a catalog definition json
+      summary: Return the root catalog or collection.
+      description: >-
+        Returns the root STAC Catalog or STAC Collection that is the entry point for users to browse with STAC Browser or for search engines to crawl.
+        This can either return a single STAC Collection or more commonly a STAC catalog that usually lists sub-catalogs of STAC Collections, i.e. a simple catalog that lists all collections available through the API.
       tags:
         - STAC
       responses:
@@ -36,9 +38,10 @@ paths:
                 $ref: '#/components/schemas/catalogDefinition'
   /stac/search:
     get:
-      summary: >-
-        retrieve items matching filters. Intended as a shorthand API for simple
-        queries. This method is optional.
+      summary: Search STAC items by simple filtering.
+      description: >-
+        Retrieve Items matching filters.
+        Intended as a shorthand API for simple queries. This method is optional.
       operationId: getSearchSTAC
       tags:
         - STAC
@@ -66,9 +69,10 @@ paths:
               schema:
                 type: string
     post:
-      summary: >-
-        retrieve items matching filters. Intended as the standard, full-featured
-        query API. This method is mandatory.
+      summary: Search STAC items by full-featured filtering.
+      description: >-
+        retrieve items matching filters.
+        Intended as the standard, full-featured query API. This method is mandatory.
       operationId: postSearchSTAC
       tags:
         - STAC
