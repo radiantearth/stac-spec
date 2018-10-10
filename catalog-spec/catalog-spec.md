@@ -15,7 +15,7 @@ that contains all the required fields is a valid STAC Catalog.
 
 This Catalog specification primarily defines a structure for information to be discoverable. Any use 
 that is publishing a set of related spatiotemporal assets is strongly recommended to also use the 
-[STAC Collection specification](../dataset-spec/) to provide additional information about a set of Items 
+[STAC Collection specification](../collection-spec/) to provide additional information about a set of Items 
 contained in a catalog, to give contextual information to aid in discovery.
 
 ## WARNING
@@ -79,7 +79,7 @@ There are a few types of catalogs that implementors occasionally refer to. These
 
  * A **sub-catalog** is a Catalog that is linked to from another Catalog that is used to better organize data. For example a Landsat dataset might have sub-catalogs for each Path and Row, so as to create a nice tree structure for users to follow.
  * A **root catalog** is a Catalog that only links to sub-catalogs. These are typically entry points for browsing data. Often
- they will contain the [STAC Collection](../dataset-spec) definition, but in implementations that publish diverse information it may
+ they will contain the [STAC Collection](../collection-spec) definition, but in implementations that publish diverse information it may
  contain sub-catalogs that provide a variety of collections.
  * A **parent catalog** is the Catalog that sits directly above a sub-catalog. Following parent catalog links continuously
  will naturally end up at a root catalog definition.
@@ -169,7 +169,7 @@ might look something like this:
 }
 ```
 
-In addition, the catalog shown above is strongly recommended to also follow the [STAC Collection specification](../dataset-spec/dataset-spec.md) 
+In addition, the catalog shown above is strongly recommended to also follow the [STAC Collection specification](../collection-spec/collection-spec.md) 
 to add more information about the NAIP imagery such as the spatial and temporal extents, a license and more.
 
 A typical '_child_' sub-catalog could look similar:

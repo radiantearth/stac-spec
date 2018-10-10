@@ -94,9 +94,9 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | Type    | Description                                                  |
 | ------- | ------------------------------------------------------------ |
 | self    | **REQUIRED.** _Absolute_ URL to the item file itself. This is required, to represent the location that the file can be found online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root    | URL to the root [STAC Catalog](../catalog-spec/) or [Dataset](../dataset-spec/). |
-| parent  | URL to the parent [STAC Catalog](../catalog-spec/) or [Dataset](../dataset-spec/). |
-| dataset | **REQUIRED.** URL to a [STAC Dataset](../dataset-spec/). |
+| root    | URL to the root [STAC Catalog](../catalog-spec/) or [Dataset](../collection-spec/). |
+| parent  | URL to the parent [STAC Catalog](../catalog-spec/) or [Dataset](../collection-spec/). |
+| dataset | **REQUIRED.** URL to a [STAC Dataset](../collection-spec/). |
 | derived_from | URL to a STAC `Item` that was used as input data in the creation of this `Item` |
 
 *Note regarding the type `derived_from`: A full provenance model is far beyond the scope of STAC, and the goal is to align with any good independent spec 

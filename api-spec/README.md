@@ -42,7 +42,7 @@ section of that spec for more information. Implementing this enables tools like
 [STAC Browser](https://medium.com/@mojodna/a-stac-browser-348a60674061) to use the dynamic catalog, to enable better 
 discovery through people browsing and search engines crawling. 
 
-The OpenAPI spec in this directory documents the endpoint, and refer to the STAC Catalog and [STAC Collection](../dataset-spec) for more information about the full content and link structure.
+The OpenAPI spec in this directory documents the endpoint, and refer to the STAC Catalog and [STAC Collection](../collection-spec) for more information about the full content and link structure.
 
 ## API Fragments
 

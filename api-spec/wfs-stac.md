@@ -27,7 +27,7 @@ STAC endpoint.
 
 In addition to the `/stac/search` endpoint, STAC API's provide the ability to 'browse' all the [Items](../item-spec/) that
 are available from a service. This is done using the `/stac/` endpoint, returning a full [STAC Catalog](../catalog-spec/).
-Ideally that Catalog makes extensive use of [STAC Collections](../dataset-spec/) to further describe the holdings.
+Ideally that Catalog makes extensive use of [STAC Collections](../collection-spec/) to further describe the holdings.
 
 The STAC Collection spec is designed to be compatible with the WFS /collections/{collectionId} endpoint's response. This enables
 WFS + STAC implementations to just extend the WFS collections with a bit more information to be STAC compliant Collection 

@@ -57,7 +57,7 @@ atomic unit that describes the data to be discovered.
 **[catalog-spec/](catalog-spec/)** specifies a structure to link various `Items` together to be crawled or browsed. It is a
 simple, flexible JSON file of links to `Item`s or other `Catalogs` that can be used in a variety of ways.
 
-**[dataset-spec/](dataset-spec/)** provides additional information about a collection of STAC Items that are made available by a 
+**[collection-spec/](collection-spec/)** provides additional information about a collection of STAC Items that are made available by a 
 data provider. It includes things like the spatial and temporal extent of the set of data, the license, keywords, etc. It 
 enables discovery at a higher level than individual items, providing a simple way to describe sets of data.
 

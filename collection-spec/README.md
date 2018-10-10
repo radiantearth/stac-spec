@@ -15,7 +15,7 @@ properties and share higher level metadata. Others called it: dataset series (ES
 
 ## In this directory
 
-**The Specification:** The main STAC Collection specification is in *[dataset-spec.md](dataset-spec.md)*. It includes an overview and in depth explanation of the 
+**The Specification:** The main STAC Collection specification is in *[collection-spec.md](collection-spec.md)*. It includes an overview and in depth explanation of the 
 structures and fields.
 
 **Examples:** For samples of how Collections can be implemented the *[examples/](examples/)* folder contains a sample collection. 
