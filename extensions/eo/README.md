@@ -1,6 +1,6 @@
 # STAC EO Extension Spec (`eo`)
 
-**Extension [Maturity Classification](./README.md#extension-maturity): Pilot**
+**Extension [Maturity Classification](../README.md#extension-maturity): Pilot**
 
 This document explains the fields of the STAC Earth Observation (EO) Extension to a STAC `Item`. EO
 data is considered to be data that represents a snapshot of the earth for a single date and time. It
@@ -9,11 +9,11 @@ data include sensors with visible, short-wave and mid-wave IR bands (e.g., the O
 Landsat-8), long-wave IR bands (e.g. TIRS aboard Landsat-8), as well as SAR instruments (e.g.
 Sentinel-1).
 
-It is not necessary, but recommended to use the [Collections extension](stac-collection-spec.md)
+It is not necessary, but recommended to use the [Commons extension](../commons)
 (see chapter "Using collections").
 
-- [Examples](examples/)
-- JSON Schema (missing, [PRs welcome](https://github.com/radiantearth/stac-spec/issues/94))
+- [Examples](example-landsat8.json)
+- [JSON Schema](json-schema.json)
 
 ## Item fields
 
