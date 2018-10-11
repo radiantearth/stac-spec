@@ -1,4 +1,4 @@
-# Commons Extension Spec
+# Commons Extension Specification
 
 **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
@@ -91,7 +91,7 @@ An incomplete item:
 }
 ```
 
-The merged `Item` then looks like this:
+The merged Item then looks like this:
 
 ```json
 {

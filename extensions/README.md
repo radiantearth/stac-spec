@@ -1,9 +1,8 @@
 # Extensions
 
-This folder contains extensions to the core SpatioTemporal Asset Catalog specification. The core
-spec is designed for extension, defining just a minimal core. It is expected that most real world
+This folder contains extensions to the SpatioTemporal Asset Catalog specification. The specification
+is designed for extension, defining just a minimal core. It is expected that most real world
 implementations will use several extensions to fully describe their data and API. 
-
 
 Extensions can be changes in functionality or new fields. This can include new JSON files that are
 linked to from the core `links`, as well as new OpenAPI fragments. Extensions should include
@@ -48,7 +47,7 @@ stable for over a year and are used in twenty or more implementations.
 | ------------------------------------------------------------ | ---------------- | ------------------------------------------------------------ | -------- |
 | [Commons](commons/) (-)                                      | Item             | Provides a way to specify data fields in a collection that are common across the STAC Items in that collection, so that each does not need to repeat all the same information. | *Proposal* |
 | [Datetime Range](datetime-range/) (`dtr`)                    | Item             | An extension to provide datetime ranges with a start and an end datetime stamp in a consistent way. | *Proposal* |
-| [EO](eo/) (`eo`)                                 | Item             | Covers electro-optical data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, off nadir, sun angle + elevation, gsd and more. | *Pilot* |
+| [EO](eo/) (`eo`)                                             | Item             | Covers electro-optical data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, off nadir, sun angle + elevation, gsd and more. | *Pilot* |
 | [Scientific](scientific/) (`sci`)                            | Collection       | Scientific metadata is considered to be data that indicate from which publication a collection originates and how the collection itself should be cited or referenced. | *Proposal* |
 | [Transaction](transaction/)                                  | API              | Provides an API extension to support the creation, editing, and deleting of items on a specific WFS3 collection. | *Pilot* |
 
@@ -58,7 +57,7 @@ The following extensions are provided by third parties (vendors). They tackle ve
 use-cases and may be less stable than the official extensions. Once stable and adopted by multiple
 parties, extensions may be made official and incorporated in the STAC repository.
 
-Please contact a STAC maintainer to add your extension to this table.
+Please contact a STAC maintainer or open a Pull Request to add your extension to this table.
 
 | Name     | Scope | Description | Vendor |
 | -------- | ----- | ----------- | ------ |

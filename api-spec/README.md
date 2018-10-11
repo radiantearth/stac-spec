@@ -4,8 +4,8 @@
 ## Overview
 
 A STAC API is the dynamic version of a SpatioTemporal Asset Catalog. It returns [STAC Items](../item-spec/item-spec.md) 
-(GeoJSON objects with required links time stamp and links to assets) from search queries on a RESTful endpoint, and also
-offers an endpoint to return STAC Items as a compliant [Catalog](../catalog-spec/) for discovery.
+(GeoJSON objects with required links, time stamp and links to assets) from search queries on a RESTful endpoint, and also
+offers an endpoint to return STAC Items as a compliant [STAC Catalog](../catalog-spec/) for discovery.
 
 The core of the spec is a single endpoint:
 
@@ -16,7 +16,6 @@ The core of the spec is a single endpoint:
 It takes a JSON object that can filter on date and time:
 
 ```
-
 {
   "bbox": [ 5.5, 46, 8, 47.4 ],
   "time": "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"

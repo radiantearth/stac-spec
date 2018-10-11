@@ -1,8 +1,8 @@
-# STAC JSON Examples
+# STAC Item Examples
 
 ## Overview
 
-This directory contains a number of samples and more 'real world' examples of how a STAC `Item` could be implemented. As of right
+This directory contains a number of samples and more 'real world' examples of how a STAC Item could be implemented. As of right
 now none of these are actual production implementations - they are more adaptations of current catalogs to the STAC
 specifications. In time these will evolve to be examples of truly real world implementations.
 
@@ -10,7 +10,7 @@ This document also contains discussion of the various examples in this folder.
 
 ## In this directory
 
-**[sample.json](examples/sample.json)** is the most minimal possible compliant `Item` record. Most all data will
+**[sample.json](examples/sample.json)** is the most minimal possible compliant Item record. Most all data will
 include additional fields, as STAC is designed to be a minimal common subset. But it is useful for showing exactly what is
 required.
 
@@ -34,7 +34,7 @@ returned JSON, with minor tweaks to have it fit in to a STAC Item.
 
 ## Example Discussion
 
-These examples demonstrate that there is a range of potential implementations of STAC `Item`s. Most were made by adapting
+These examples demonstrate that there is a range of potential implementations of STAC Items. Most were made by adapting
 the current implementations as minimally as possible. The hope is that there will emerge more consensus and best practices
 on the things outside of the core fields, to increase interoperability. 
 

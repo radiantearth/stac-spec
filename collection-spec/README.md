@@ -7,7 +7,7 @@ can also use this specification standalone, as a way to describe collections in 
 
 The STAC Collection specification is a set of JSON fields to describe a set of Items in a STAC Catalog, to help enable discovery. It builds on 
 the [Catalog Spec](../catalog-spec/), using the flexible structure specified there to further define and explain logical 
-groups of `Item`s. It shares the same fields and therefore every Collection is also a valid Catalog - the JSON structure extends
+groups of Items. It shares the same fields and therefore every Collection is also a valid Catalog - the JSON structure extends
 the core Catalog definition. Collections can have both parent Catalogs and Collections and child Items, Catalogs and Collections. 
 
 *\* There is no standardized name for the concept we are describing here, a set of assets that are defined with the same 
@@ -23,6 +23,10 @@ structures and fields.
 **Schemas:** The schemas to validate the STAC Collection definition are found in the 
 *[json-schema/](json-schema/)* folder. The primary one is *[collection.json](json-schema/collection.json)*.
 
+## In the API directory
+
+**Dynamic Catalog OpenAPI Definition:** The [api-spec](../api-spec) directory contains OpenAPI definitions of the WFS3 `/collections` and `/collections/{collectionId}`
+endpoints in the file [WFS3core+STAC.yaml](../api-spec/WFS3core+STAC.yaml.yaml). These endpoints are the dynamic versions of a STAC and WFS3 Collection. See 
 
 ## Schema Validation
 
@@ -31,8 +35,11 @@ Instruction on schema validation for STAC Items can be found in the [validation 
 ## Collection Flexibility
 
 STAC Collections are defined for flexibility. They only require a handful of fields, and
-implementors are free to add most any JSON field or object that they want via extensions. This is a design goal, so
-that it is quite easy to implement a collection and be able to adapt it to most any data model.
+implementors are free to add most any JSON field or object that they want via extensions.
+Many fields originating from the [STAC Item spec](../item-spec/item-spec.md) can already be 
+reused using the [Commons extension](../extentsions/commons/).
+This flexibility and extensibility is a design goal, so that it is quite easy to implement a
+collection and be able to adapt it to most any data model.
 
 But it is expected that some more firm recommendations and even requirements will emerge, so that clients will be able to glean
 more meaningful information. In the meantime implementors are encouraged to do what makes sense for
@@ -50,7 +57,7 @@ a valid STAC Collection that is also a valid WFS Collection.
 
 Effort will also be made to align with Dublin Core and [DCAT](https://www.w3.org/TR/vocab-dcat/), though it is likely to
 start using it as a microformat in STAC Browser HTML output to start. But future iterations could align with a JSON-LD DCAT
-recommendation.
+and/or [GeoDCAT](https://github.com/SEMICeu/GeoDCAT-AP) recommendation.
 
 The immediate goal is to just be a simple explanation of fields to describe a collection, and as the spec evolves it will look to
 continually align with other efforts. Indeed it could make sense in the future to just 'use' another spec by subsetting it 

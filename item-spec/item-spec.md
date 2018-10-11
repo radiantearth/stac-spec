@@ -77,7 +77,7 @@ datetime fields.
 This object describes a relationship with another entity. Data providers are advised to be liberal
 with the links section, to describe things like the catalog an item is in, related items, parent or
 child items (modeled in different ways, like an 'acquisition' or derived data). The `self` link is
-required as an absolute URL, to represent the location that the `Item` can be found online. It is
+required as an absolute URL, to represent the location that the Item can be found online. It is
 allowed to add additional fields such as a `title` and `type`.
 
 | Field Name | Type   | Description                                                                                                                         |

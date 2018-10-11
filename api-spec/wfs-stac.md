@@ -36,7 +36,7 @@ definitions.
 An additional best practice is to use the WFS items available in /collections/{collectionId}/items as the 'canonical' web
 location. Then the STAC Catalogs returned from `/stac/` can either link directly to those (from the appropriate sub-catalog - 
 for example /stac/landsat8/42/31/2017/ would be a catalog consisting of links to /collections/). Or it can return json
-in the link structure (like /stac/landsat8/42/31/2017/item203123.json), and have that returned json use a link with rel=canonical that goes back to the `Item` that is in the collection.
+in the link structure (like /stac/landsat8/42/31/2017/item203123.json), and have that returned json use a link with rel=canonical that goes back to the Item that is in the collection.
 
 ### WFS Structure
 
@@ -48,8 +48,9 @@ GET /collections
 
 Lists the collections of data on the server that can be queried ([7.11](https://rawgit.com/opengeospatial/WFS_FES/master/docs/17-069.html#_feature_collections_metadata)), 
 and each describes basic information about the geospatial data collection, like its name and description, as well as the 
-spatial and temporal extents of all the data contained. A STAC search extension would only query those collections which
-have data that validates as STAC `Items` - with a datetime field and references to assets. But a STAC can live alongside
+spatial and temporal extents of all the data contained. The collections returned are compliant to both WFS Collections and 
+[STAC collections](../collections-spec/). A STAC search extension would only query those collections which
+have data that validates as STAC Items - with a datetime field and references to assets. But a STAC can live alongside
 other WFS collections, like an organization might choose to have their building and road data in WFS collections, alongside
 their STAC-compatible imagery data.
 

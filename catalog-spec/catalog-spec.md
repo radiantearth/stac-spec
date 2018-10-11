@@ -1,7 +1,7 @@
 # STAC Catalog Specification
 
 This document explains the structure and content of a STAC Catalog. A STAC Catalog is a 
-collection of SpatioTemporal Items. These Items can be linked to directly from a Catalog,
+collection of [STAC Items](../item-spec/). These Items can be linked to directly from a Catalog,
 or the Catalog can link to other Catalogs (often called sub-Catalogs) that contain links to Items.
 The division of sub-catalogs is up to the implementor, but is generally done to aid the ease of 
 online browsing by people.
@@ -16,7 +16,8 @@ that contains all the required fields is a valid STAC Catalog.
 This Catalog specification primarily defines a structure for information to be discoverable. Any use 
 that is publishing a set of related spatiotemporal assets is strongly recommended to also use the 
 [STAC Collection specification](../collection-spec/) to provide additional information about a set of Items 
-contained in a catalog, to give contextual information to aid in discovery.
+contained in a catalog, to give contextual information to aid in discovery. Every STAC Collection is 
+also a valid STAC Catalog.
 
 ## WARNING
 
@@ -30,19 +31,17 @@ incorporated.
 
 ## Catalog Definitions
 
-
 There are two required element types of a Catalog: Catalog and Item. A STAC Catalog
 points to [STAC Items](../item-spec/), or to other STAC catalogs. It provides a simple
-linking structure that can be used recursively so that many `Items` can be included in 
+linking structure that can be used recursively so that many Items can be included in 
 a single Catalog, organized however the implementor desires. 
 
 STAC makes no formal distinction between a "root" catalog and the "child" catalogs. A root catalog
-is simply a top-most `catalog` (which has no parent). A nested `catalog` structure is useful (and
+is simply a top-most catalog (which has no parent). A nested catalog structure is useful (and
 recommended) for breaking up massive numbers of catalog items into logical groupings. For example,
-it might make sense to organize a `catalog` by date (year, month, day), or geography (continent,
+it might make sense to organize a catalog by date (year, month, day), or geography (continent,
 country, state/prov). Any scheme may be used, but it's considered a best practice to keep the size
-of each `catalog` under a a megabyte.
-
+of each catalog under a megabyte.
 
 A simple Catalog structure might look like this:
 
@@ -72,8 +71,10 @@ catalogs and items:
 - `Item` -> `Item` (example: this relationship may be used to describe a 1-1 parent-child
   relationship, such as a single derived item from one parent item)
 
-These relationships are all described by a common `links` object structure, making use of
-the *rel* attribute to further describe the relationship. 
+As all STAC Collections are also valid STAC Catalogs, all Catalogs described here could also be Collections.
+
+The relationships are all described by a common `links` object structure, making use of
+the `rel` attribute to further describe the relationship. 
 
 There are a few types of catalogs that implementors occasionally refer to. These get defined by the `links` structure.
 
@@ -92,14 +93,13 @@ linked to across the web.
 
 ### Catalog Types
 
-The core `Item`s and `Catalog`s of a SpatioTemporal Asset Catalog are designed for ease of implementation. 
+The core Items and Catalogs of a SpatioTemporal Asset Catalog are designed for ease of implementation. 
 With the same core JSON documents and link structures it can be implemented in a way that is just files available online,
 or easily implementable with modern REST service infrastructures. These represent two different types of catalogs, the 
 'static catalog' and the 'dynamic catalog', which can operate a bit differently though they can be treated the same by
 clients.
 
-
- But any server can implement the same JSON and link structure, creating responses
+But any server can implement the same JSON and link structure, creating responses
 dynamically as REST calls. These are referred to as 'dynamic catalogs'.
 
 #### Static Catalogs
@@ -109,7 +109,7 @@ A main target for STAC has been object storage services like [Amazon S3](https:/
 so that users can stand up a full STAC implementation with static files. Implementations created with just files online
 are referred to as 'static catalogs'. These include not just the cloud services, but any type of file server that is online.
 
-Static Catalogs tend to make extensive use of *sub-catalogs* to organize their `Item`s in to sensible browsing structures, 
+Static Catalogs tend to make extensive use of *sub-catalogs* to organize their Items in to sensible browsing structures, 
 as they can only have a single representation of their catalog, as the static nature means the structure is baked in. 
 While it is up to the implementor to organize the catalog, it is recommended to arrange the in a way that would make sense 
 for a human to browse a set of STAC Items in an intuitive matter.
@@ -133,10 +133,11 @@ as linked STAC Items by implementing a dynamic catalog.
 
 One benefit of a dynamic catalog is that it can generate various 'views' of the catalog, exposing the same `Items` in 
 different sub-catalog organization structures. For example one catalog could divide sub-catalogs by date and another by
-providers, and users could browse down to both. The leaf `Item`s should just be linked to in a single canonical location (or at least use a *rel* link that indicates the location of the canonical one.
+providers, and users could browse down to both. The leaf Items should just be linked to in a single canonical location
+(or at least use a `rel` link that indicates the location of the canonical one.
 
 The STAC API is also made to be compatible with WFS3, which has a set structure for the canonical location of its features.
-STAC `Item`s should use the WFS3 location as their canonical location, and then in the `/stac/` browse structure would just
+STAC Items should use the WFS3 location as their canonical location, and then in the `/stac/` browse structure would just
 link to those locations. 
 
 ## Catalog fields
@@ -208,12 +209,19 @@ with links.
 
 The following types are commonly used as `rel` types in the Link Object of a STAC Collection:
 
-| Type    | Description                                                                                                                                                                                                                                                                               |
-| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Type    | Description |
+| ------- | ----------- |
 | self    | **REQUIRED.** _Absolute_ URL to the catalog file itself. This is required, to represent the location that the file can be found online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root    | **REQUIRED.** _Absolute_ URL to the root [STAC Catalog](../catalog-spec/), even if it's the root and points to itself.                                                                                                                                                                  |
-| parent  | URL to the parent [STAC Catalog](../catalog-spec/). Non-root catalogs should include a link to their parent.                                                                                                                                                                            |
-| child   | URL to a child [STAC Catalog](../catalog-spec/).                                                                                                                                                                                                                                        |
-| item    | URL to a [STAC Item](../item-spec/).                                                                                                                                                                                                                                                      |
+| root    | **REQUIRED.** _Absolute_ URL to the root [STAC Catalog](../catalog-spec/), even if it's the root and points to itself. |
+| parent  | URL to the parent [STAC Catalog](../catalog-spec/). Non-root catalogs should include a link to their parent. |
+| child   | URL to a child [STAC Catalog](../catalog-spec/). |
+| item    | URL to a [STAC Item](../item-spec/). |
 
 **Note:** A link to at least one `item` or `child` catalog is _required_.
+
+## Extensions
+
+There are emerging best practices, which in time will evolve in to specification extensions for
+particular domains or uses.
+
+The [extensions page](../extensions/) gives an overview about relevant extensions for STAC Catalogs.

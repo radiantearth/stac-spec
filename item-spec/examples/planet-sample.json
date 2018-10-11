@@ -91,7 +91,7 @@
       "href": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcxMTEwXzEyMTAxMF8xMDEzIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWMiLCAiY3QiOiAiaXRlbS10eXBlIn0",
       "title": "PSScene4Band GeoTIFF (COG)",
       "activate": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcxMTEwXzEtMTAzMF8xMDEzIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWMiLCAiY3QiOiAiaXRlbS10eXBlIn0/activate",
-      "type": "https://api.planet.com/data/v1/asset-types/analytic",
+      "asset_type": "https://api.planet.com/data/v1/asset-types/analytic",
       "_permissions": [
         "download"
       ],
@@ -102,7 +102,7 @@
       "href": "https://api.planet.com/data/v1/assets/NTY2VuZTReyJpIjogIjIwMTcxMTEwXzEyMTAxMF8xMDEzIiQiOiAiaXRlbS10ewgImMiOiAiUFbHl0aWMiLCAiY3XBlIn0",
       "title": "PSScene4Band XML Metadata",
       "activate": "https://api.planet.com/data/v1/assets/tMTAzMF8xMDEzIiwInQiOiAeyJpIjogIjIwMTcxMTEwXzEiYW5hbHl0aWMiLCAiY3gImMiOiAiUFNTY2VuZTRCYW5kIiwgQiOiAiaXRlbS10eXBlIn0/activate",
-      "type": "https://api.planet.com/data/v1/asset-types/analytic_xml",
+      "asset_type": "https://api.planet.com/data/v1/asset-types/analytic_xml",
       "_permissions": [
         "download"
       ],
@@ -113,7 +113,7 @@
       "href": "https://api.planet.com/data/v1/assets/NTY2VuZTReyJpIzEyMTAxMF8xMDEzIiQiOiAiaXRlbTcxMTEwXAiUFbHl0S10ewgImMiOijogIjIwMaWMiLCAiY3XBlIn0",
       "title": "PSScene4Band Unusable Data Mask",
       "activate": "https://api.planet.com/data/v1/assets/tMTAzMF8xMDEzIiwInQiOiAeyJpIjogIjIgImMiOiAiUFwMTcxMTEwXzEiYW5hbHl0aWMiLCAiY3NTY2VuZTRCYW5kIiwgQiOiAiaXRlbS10eXBlIn0/activate",
-      "type": "https://api.planet.com/data/v1/asset-types/udm",
+      "asset_type": "https://api.planet.com/data/v1/asset-types/udm",
       "_permissions": [
         "download"
       ],
