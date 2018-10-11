@@ -77,7 +77,8 @@ the *rel* attribute to further describe the relationship.
 
 There are a few types of catalogs that implementors occasionally refer to. These get defined by the `links` structure.
 
- * A **sub-catalog** is a Catalog that is linked to from another Catalog that is used to better organize data. For example a Landsat dataset might have sub-catalogs for each Path and Row, so as to create a nice tree structure for users to follow.
+ * A **sub-catalog** is a Catalog that is linked to from another Catalog that is used to better organize data. For example a Landsat collection
+ might have sub-catalogs for each Path and Row, so as to create a nice tree structure for users to follow.
  * A **root catalog** is a Catalog that only links to sub-catalogs. These are typically entry points for browsing data. Often
  they will contain the [STAC Collection](../collection-spec) definition, but in implementations that publish diverse information it may
  contain sub-catalogs that provide a variety of collections.

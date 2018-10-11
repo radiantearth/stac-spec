@@ -18,7 +18,7 @@ It is not necessary, but recommended to use the [Commons extension](../commons)
 (see chapter "Placing common fields in Collections").
 
 - [Example (Landsat 8)](example-landsat8.json)
-- [JSON Schema](json-schema.json)
+- [JSON Schema](schema.json)
 
 ## Item fields
 

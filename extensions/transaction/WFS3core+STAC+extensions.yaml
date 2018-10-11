@@ -917,11 +917,11 @@ components:
               - properties
               - constructions
         version:
-          title: Dataset Version
+          title: Collection Version
           type: string
           example: 1
         license:
-          title: Dataset License Name
+          title: Collection License Name
           type: string
           example: Apache-2.0
         provider:

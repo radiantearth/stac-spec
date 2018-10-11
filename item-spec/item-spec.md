@@ -91,13 +91,13 @@ allowed to add additional fields such as a `title` and `type`.
 
 The following types are commonly used as `rel` types in the Link Object of an Item:
 
-| Type    | Description                                                  |
-| ------- | ------------------------------------------------------------ |
-| self    | **REQUIRED.** _Absolute_ URL to the item file itself. This is required, to represent the location that the file can be found online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root    | URL to the root [STAC Catalog](../catalog-spec/) or [Dataset](../collection-spec/). |
-| parent  | URL to the parent [STAC Catalog](../catalog-spec/) or [Dataset](../collection-spec/). |
-| dataset | **REQUIRED.** URL to a [STAC Dataset](../collection-spec/). |
-| derived_from | URL to a STAC `Item` that was used as input data in the creation of this `Item` |
+| Type         | Description                                                  |
+| ------------ | ------------------------------------------------------------ |
+| self         | **REQUIRED.** _Absolute_ URL to the item file itself. This is required, to represent the location that the file can be found online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
+| root         | URL to the root STAC [Catalog](../catalog-spec/) or [Collection](../collection-spec/). |
+| parent       | URL to the parent STAC [Catalog](../catalog-spec/) or [Collection](../collection-spec/). |
+| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/), which may use the [Commons extension](../extensions/commons/) and holds common fields of this and other Items (see chapter 'Collections'). |
+| derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
 
 *Note regarding the type `derived_from`: A full provenance model is far beyond the scope of STAC, and the goal is to align with any good independent spec 
 that comes along for that. But the derived_from field is seen as a way to encourage fuller specs and at least start a linking
@@ -111,12 +111,12 @@ whenever possible. But Static Catalogs are potentially more portable if they can
 relative links, so that every link doesn't need to be rewritten when the data is copied. The `self`
 link is required to be absolute.
 
-#### Datasets
+#### Collections
 
-Items are *strongly recommended* to provide a link to a dataset definition. It is important as datasets 
-provide additional information about a set of items, for example the license and provider information 
-and optionally any common information shared across all items, giving context on the overall set of
-data that an individual Item is a part of..
+Items are *strongly recommended* to provide a link to a STAC Collection definition. It is important as Collections 
+provide additional information about a set of items, for example the license, provider information 
+and optionally any common information shared across all items using the [Commons extension](../extensions/commons/),
+giving context on the overall set of data that an individual Item is a part of.
 
 
 ### Asset Object
@@ -134,8 +134,8 @@ or streamed. It is allowed to add additional fields.
 
 The following types are commonly for assets and are used as key for the Asset Object:
 
-| Type      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Type      | Description |
+| --------- | ----------- |
 | thumbnail | STRONGLY RECOMMENDED. A downsampled image of the core asset, for direct display online in a web page or interactive search application. Even assets that are less easily translated in to a visual image should provide some visual representation, that users can browse. For example a SAR asset can render an elevation mask or hillshade for display. If at all possible it should be included for a better user experience in searching data. |
 
 #### Media Types
@@ -160,7 +160,7 @@ Common STAC Item Media Types:
 | `image/jp2`                      | JPEG 2000                                                                               |
 | `image/png`                      | Visual PNGs (e.g. thumbnails)                                                           |
 | `image/jpeg`                     | Visual JPEGs (e.g. thumbnails, oblique)                                                 |
-| `text/xml` or `application/xml`  | XML metadata [RFC 7303](https://www.ietf.org/rfc/rfc7303.txt)                                                                          |
+| `text/xml` or `application/xml`  | XML metadata [RFC 7303](https://www.ietf.org/rfc/rfc7303.txt)                           |
 | `application/json`               | JSON metadata                                                                           |
 | `text/plain`                     | Plain text metadata                                                                     |
 | `application/geo+json`           | GeoJSON                                                                                 |

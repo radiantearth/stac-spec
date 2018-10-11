@@ -101,8 +101,8 @@ definition for clients. See for example DigitalGlobe's definition:
 
 In this scenario, an `Asset` must have some field that specifies a uri to a JSON file that has the additional metadata.
 
-This would make sense at a Catalog or Dataset level, though more work is needed to define exactly how it would look. It
-could be a generic Asset Definition JSON set of fields, that could be added at the dataset level or could be used 
+This would make sense at a Catalog or Collection level, though more work is needed to define exactly how it would look. It
+could be a generic Asset Definition JSON set of fields, that could be added at the collection level or could be used 
 independently. Ideally each Asset would have a way to link directly to its definition.
 
 See for example a sample landsat definition:
