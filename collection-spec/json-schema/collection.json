@@ -113,15 +113,19 @@
         ],
         "properties": {
           "href": {
-            "title": "Link",
+            "title": "Link reference",
             "type": "string"
           },
           "rel": {
-            "title": "Relation",
+            "title": "Link relation type",
             "type": "string"
           },
           "type": {
-            "title": "type",
+            "title": "Link type",
+            "type": "string"
+          },
+          "title": {
+            "title": "Link title",
             "type": "string"
           }
         },

@@ -1,6 +1,6 @@
 # STAC EO Extension Spec (`eo`)
 
-**Extension [Maturity Classification](./README.md#extension-maturity): Pilot**
+**Extension [Maturity Classification](../README.md#extension-maturity): Pilot**
 
 This document explains the fields of the STAC Electro-Optical (EO) Extension to a STAC `Item`. EO
 data is considered to be data that represents a snapshot of the earth for a single date and time. It
@@ -14,11 +14,11 @@ natural focus, and encourage other sensors to make their own extensions. Once th
 these fields will evolve to higher level extensions. In the meantime other implementations are welcome
 to reuse the names and definitions here.*
 
-It is not necessary, but recommended to use the [Collections extension](stac-dataset-spec.md)
-(see chapter "Using collections").
+It is not necessary, but recommended to use the [Commons extension](../commons)
+(see chapter "Placing common fields in Collections").
 
-- [Examples](examples/)
-- JSON Schema (missing, [PRs welcome](https://github.com/radiantearth/stac-spec/issues/94))
+- [Example (Landsat 8)](example-landsat8.json)
+- [JSON Schema](json-schema.json)
 
 ## Item fields
 
@@ -202,7 +202,7 @@ the eo:bands portion is still being fleshed out, with changes coming in 0.6.0.
 
 The [extensions page](../extensions/) gives an overview about related extensions.
 
-### Collections and common fields
+### Placing common fields in Collections
 A lot of EO data will have common metadata across many Items. It is not necessary, but recommended	
 to use the [Commons extension](../commons) in combination with [STAC Collections](../collection-spec/).
-The exact metadata that would	appear in a STAC Collection record will vary depending on the dataset.
+The exact metadata that would appear in a STAC Collection record will vary depending on the dataset.
