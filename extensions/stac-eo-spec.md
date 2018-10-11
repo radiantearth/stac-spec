@@ -202,8 +202,7 @@ the eo:bands portion is still being fleshed out, with changes coming in 0.6.0.
 
 The [extensions page](../extensions/) gives an overview about related extensions.
 
-### Using collections	
- A lot of EO data will have common metadata across many `Items`. It is not necessary, but recommended	
-to use the [Collections extension](stac-collection-spec.md). While the exact metadata that would	
-appear in a `Collection` record will vary depending on the dataset, the most common collection-level	
-metadata fields are indicated with an \* in the tables below.
+### Collections and common fields
+A lot of EO data will have common metadata across many Items. It is not necessary, but recommended	
+to use the [Commons extension](../commons) in combination with [STAC Collections](../collection-spec/).
+The exact metadata that would	appear in a STAC Collection record will vary depending on the dataset.
