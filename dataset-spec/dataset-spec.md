@@ -78,7 +78,8 @@ This object describes a relationship with another entity. Data providers are adv
 | ---------- | ------ | ------------------------------------------------------------ |
 | href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information. |
-| type       | string | Media type of the referenced entity.                          |
+| type       | string | Media type of the referenced entity.                         |
+| title      | string | A human readable title to be used in rendered displays of the link. |
 
 #### Relation types
 
