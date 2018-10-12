@@ -6,8 +6,8 @@ a few required fields that identify the time range and assets of the item. An It
 granular entity in a STAC, containing the core metadata that enables any client to search or crawl
 online catalogs of spatial 'assets' - satellite imagery, derived data, DEM's, etc.
 
-The same Item definition is used in both '[catalogs](../catalog-spec/)' and
-the '[/stac/search](../api-spec/)' endpoint. Catalogs are simply sets of items that are linked online,
+The same Item definition is used in both '[catalogs](../catalog-spec/README.md)' and
+the '[/stac/search](../api-spec/README.md)' endpoint. Catalogs are simply sets of items that are linked online,
 generally served by simple web servers and used for crawling data. The search endpoint enables dynamic
 queries, for example selecting all Items in Hawaii on June 3, 2015, but the results they return are
 FeatureCollections of items.
@@ -94,9 +94,9 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | Type         | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
 | self         | **REQUIRED.** _Absolute_ URL to the item file itself. This is required, to represent the location that the file can be found online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root         | URL to the root STAC [Catalog](../catalog-spec/) or [Collection](../collection-spec/). |
-| parent       | URL to the parent STAC [Catalog](../catalog-spec/) or [Collection](../collection-spec/). |
-| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/), which may use the [Commons extension](../extensions/commons/) and holds common fields of this and other Items (see chapter 'Collections'). |
+| root         | URL to the root STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
+| parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
+| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may use the [Commons extension](../extensions/commons/README.md) and holds common fields of this and other Items (see chapter '[Collections](#Collections)' for more explanations). |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
 
 *Note regarding the type `derived_from`: A full provenance model is far beyond the scope of STAC, and the goal is to align with any good independent spec 
@@ -115,8 +115,9 @@ link is required to be absolute.
 
 Items are *strongly recommended* to provide a link to a STAC Collection definition. It is important as Collections 
 provide additional information about a set of items, for example the license, provider information 
-and optionally any common information shared across all items using the [Commons extension](../extensions/commons/),
-giving context on the overall set of data that an individual Item is a part of.
+and optionally any common information shared across all items using the [Commons extension](../extensions/commons/README.md),
+giving context on the overall set of data that an individual Item is a part of. If Items are part of a STAC Collection, 
+the [STAC Collection spec *requires* Items to link back to the Collection](collection-spec/collection-spec.md#relation-types).
 
 
 ### Asset Object
@@ -176,4 +177,4 @@ media type.
 There are emerging best practices, which in time will evolve in to specification extensions for
 particular domains or uses.
 
-The [extensions page](../extensions/) gives an overview about relevant extensions for STAC Items.
+The [extensions page](../extensions/README.md) gives an overview about relevant extensions for STAC Items.

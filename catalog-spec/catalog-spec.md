@@ -32,7 +32,7 @@ incorporated.
 ## Catalog Definitions
 
 There are two required element types of a Catalog: Catalog and Item. A STAC Catalog
-points to [STAC Items](../item-spec/), or to other STAC catalogs. It provides a simple
+points to [STAC Items](../item-spec/README.md), or to other STAC catalogs. It provides a simple
 linking structure that can be used recursively so that many Items can be included in 
 a single Catalog, organized however the implementor desires. 
 
@@ -204,6 +204,8 @@ with links.
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information. |
 | type       | string | Media type of the referenced entity.                                                                                                |
 | title      | string | A human readable title to be used in rendered displays of the link.                                                                 |
+
+Please see the chapter 'relative vs absolute links' in the [Item spec](../item-spec/item-spec.md#relative-vs-absolute-links) for a discussion on that topic. 
 
 #### Relation types
 

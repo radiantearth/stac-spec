@@ -1,11 +1,8 @@
-
 # STAC API Specification
 
-## Overview
-
-A STAC API is the dynamic version of a SpatioTemporal Asset Catalog. It returns [STAC Items](../item-spec/item-spec.md) 
+A STAC API is the dynamic version of a SpatioTemporal Asset Catalog. It returns [STAC Items](../item-spec/README.md) 
 (GeoJSON objects with required links, time stamp and links to assets) from search queries on a RESTful endpoint, and also
-offers an endpoint to return STAC Items as a compliant [STAC Catalog](../catalog-spec/) for discovery.
+offers an endpoint to return STAC Items as a compliant [STAC Catalog](../catalog-spec/README.md) for discovery.
 
 The core of the spec is a single endpoint:
 
@@ -30,18 +27,18 @@ that fall within this area:
 *map © OpenStreetMap contributors*
 
 The return format is a [GeoJSON](http://geojson.org) feature collection with features compliant with the 
-[Item spec]((../item-spec/item-spec.md) for STAC. It returns to a limit optionally requested by the client, and includes 
+[Item spec]((../item-spec/README.md) for STAC. It returns to a limit optionally requested by the client, and includes 
 pageable links to iterate through any results past that limit.
 
-### Dynamic Catalog API
+## Dynamic Catalog API
 
-The other endpoint that is included as an option in STAC API is `/stac/`, which implements the [STAC Catalog Spec](../catalog-spec/). 
+The other endpoint that is included as an option in STAC API is `/stac/`, which implements the [STAC Catalog Spec](../catalog-spec/README.md). 
 See the [Dynamic Catalog](https://github.com/radiantearth/stac-spec/blob/structure_and_cleanup/catalog-spec/catalog-spec.md#dynamic-catalogs) 
 section of that spec for more information. Implementing this enables tools like 
 [STAC Browser](https://medium.com/@mojodna/a-stac-browser-348a60674061) to use the dynamic catalog, to enable better 
 discovery through people browsing and search engines crawling. 
 
-The OpenAPI spec in this directory documents the endpoint, and refer to the STAC Catalog and [STAC Collection](../collection-spec) for more information about the full content and link structure.
+The OpenAPI spec in this directory documents the endpoint, and refer to the STAC Catalog and [STAC Collection](../collection-spec/README.md) for more information about the full content and link structure.
 
 ## API Fragments
 

@@ -3,7 +3,7 @@
 **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
 Scientific metadata is considered to be data that indicate from which publication a data originates and how
-the collection itself should be cited or referenced. Overall, it helps to increase reproducibility and citability.
+the data itself should be cited or referenced. Overall, it helps to increase reproducibility and citability.
 
 Human-readable references and [DOIs](https://www.doi.org/) can be used in this extension. DOIs are
 persistent digital interoperable identifier that uniquely identify for digital publications. They

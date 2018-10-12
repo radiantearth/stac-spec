@@ -8,13 +8,13 @@ could consist of multiple spectral bands in any part of the electromagnetic spec
 data include sensors with visible, short-wave and mid-wave IR bands (e.g., the OLI instrument on
 Landsat-8), long-wave IR bands (e.g. TIRS aboard Landsat-8).
 
-*\* Note: This extension used to be called Earth Observation with a much broader scope (including
+**Note:** This extension used to be called Earth Observation with a much broader scope (including
 Synthetic Aperture Radar (SAR), etc). The decision was made to limit this to what was already its 
 natural focus, and encourage other sensors to make their own extensions. Once that happens some of
 these fields will evolve to higher level extensions. In the meantime other implementations are welcome
-to reuse the names and definitions here.*
+to reuse the names and definitions here.
 
-It is not necessary, but recommended to use the [Commons extension](../commons)
+It is not necessary, but recommended to use the [Commons extension](../commons/README.md)
 (see chapter "Placing common fields in Collections").
 
 - [Example (Landsat 8)](example-landsat8.json)
@@ -194,15 +194,15 @@ Planet example:
 
 ## Implementations
 
-A number of implementations listed on [STAC Implementations page](../implementations.md) are making use of the core EO 
+A number of implementations listed on [STAC Implementations page](../../implementations.md) are making use of the core EO 
 properties, including the SpaceNet, CBERS, sat-api and Planet implementations. This is not marked as more mature because
 the eo:bands portion is still being fleshed out, with changes coming in 0.6.0.
 
 ## Extensions
 
-The [extensions page](../extensions/) gives an overview about related extensions.
+The [extensions page](../README.md) gives an overview about related extensions.
 
 ### Placing common fields in Collections
 A lot of EO data will have common metadata across many Items. It is not necessary, but recommended	
-to use the [Commons extension](../commons) in combination with [STAC Collections](../collection-spec/).
+to use the [Commons extension](../commons/README.md) in combination with [STAC Collections](../../collection-spec/README.md).
 The exact metadata that would appear in a STAC Collection record will vary depending on the dataset.

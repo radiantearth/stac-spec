@@ -1,12 +1,12 @@
 # STAC Collections
 
-[STAC Items](https://github.com/radiantearth/stac-spec/item-spec/) are focused on search within a collection*. Another topic of 
+[STAC Items](../item-spec/README.md) are focused on search within a collection*. Another topic of 
 interest is the search of collections, instead of within a collection. The Collection specification is independent of STAC Items and 
-[STAC Catalogs](../catalog-spec/). Items are required to provide a link back to their collection definition. Other parties 
+[STAC Catalogs](../catalog-spec/README.md). Items are required to provide a link back to their collection definition. Other parties 
 can also use this specification standalone, as a way to describe collections in a lightweight way.
 
 The STAC Collection specification is a set of JSON fields to describe a set of Items in a STAC Catalog, to help enable discovery. It builds on 
-the [Catalog Spec](../catalog-spec/), using the flexible structure specified there to further define and explain logical 
+the [Catalog Spec](../catalog-spec/README.md), using the flexible structure specified there to further define and explain logical 
 groups of Items. It shares the same fields and therefore every Collection is also a valid Catalog - the JSON structure extends
 the core Catalog definition. Collections can have both parent Catalogs and Collections and child Items, Catalogs and Collections. 
 
@@ -37,7 +37,7 @@ Instruction on schema validation for STAC Items can be found in the [validation 
 STAC Collections are defined for flexibility. They only require a handful of fields, and
 implementors are free to add most any JSON field or object that they want via extensions.
 Many fields originating from the [STAC Item spec](../item-spec/item-spec.md) can already be 
-reused using the [Commons extension](../extentsions/commons/).
+reused using the [Commons extension](../extensions/commons/README.md).
 This flexibility and extensibility is a design goal, so that it is quite easy to implement a
 collection and be able to adapt it to most any data model.
 

@@ -1,7 +1,7 @@
 # STAC Collection Specification
 
 The STAC Collection Specification defines a set of common fields to describe a group of Items that share properties and metadata. The 
-STAC Collections Specification extends the [STAC Catalog Spec](../catalog-spec/) with additional fields to describe the whole dataset and the included set of items.
+STAC Collections Specification extends the [STAC Catalog Spec](../catalog-spec/README.md) with additional fields to describe the whole dataset and the included set of items.
 It shares the same fields and therefore every Collection is also a valid Catalog. Collections can have both parent Catalogs and Collections and child Items, Catalogs and Collections. 
 
 A STAC ollection can be represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Collection and also a valid STAC Catalog.
@@ -84,6 +84,8 @@ This object describes a relationship with another entity. Data providers are adv
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information. |
 | type       | string | Media type of the referenced entity.                          |
 
+Please see the chapter 'relative vs absolute links' in the [Item spec](../item-spec/item-spec.md#relative-vs-absolute-links) for a discussion on that topic. 
+
 #### Relation types
 
 The following types are commonly used as `rel` types in the Link Object of a Collection:
@@ -91,12 +93,12 @@ The following types are commonly used as `rel` types in the Link Object of a Col
 | Type    | Description                                                  |
 | ------- | ------------------------------------------------------------ |
 | self    | **REQUIRED.** *Absolute* URL to the collection. This is required, to represent the location that the file can be found online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root    | URL to the root STAC [Catalog](../catalog-spec/) or Collection. |
-| parent  | URL to the parent STAC [Catalog](../catalog-spec/) or Collection. |
-| child   | URL to a child STAC [Catalog](../catalog-spec/) or Collection. |
-| item    | URL to a STAC [Item](../item-spec/). All items linked from a collection MUST refer back to its collection with the `collection` relation type. |
+| root    | URL to the root STAC [Catalog](../catalog-spec/README.md) or Collection. |
+| parent  | URL to the parent STAC [Catalog](../catalog-spec/README.md) or Collection. |
+| child   | URL to a child STAC [Catalog](../catalog-spec/README.md) or Collection. |
+| item    | URL to a STAC [Item](../item-spec/README.md). All items linked from a collection MUST refer back to its collection with the `collection` relation type. |
 | license | The license URL for the collection SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file. |
-| derived_from | URL to a STAC Collection that was used as input data in the creation of this collection. See the note in [STAC Item](../item-spec/item-spec.md) for more info. |
+| derived_from | URL to a STAC Collection that was used as input data in the creation of this collection. See the note in [STAC Item](../item-spec/item-spec.md#relation-types) for more info. |
 
 **Note:** The [STAC Catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is _not_ a requirement for collections, but _recommended_. In contrast to catalogs, it is **required** that items linked from a Collection MUST refer back to its Collection with the `collection` relation type.
 

@@ -49,7 +49,7 @@ GET /collections
 Lists the collections of data on the server that can be queried ([7.11](https://rawgit.com/opengeospatial/WFS_FES/master/docs/17-069.html#_feature_collections_metadata)), 
 and each describes basic information about the geospatial data collection, like its name and description, as well as the 
 spatial and temporal extents of all the data contained. The collections returned are compliant to both WFS Collections and 
-[STAC collections](../collections-spec/). A STAC search extension would only query those collections which
+[STAC collections](../collections-spec/README.md). A STAC search extension would only query those collections which
 have data that validates as STAC Items - with a datetime field and references to assets. But a STAC can live alongside
 other WFS collections, like an organization might choose to have their building and road data in WFS collections, alongside
 their STAC-compatible imagery data.
