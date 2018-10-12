@@ -28,7 +28,6 @@
               "required": [
                 "eo:gsd",
                 "eo:platform",
-                "eo:constellation",
                 "eo:instrument",
                 "eo:bands"
               ],
