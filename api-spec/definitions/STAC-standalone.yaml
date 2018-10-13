@@ -474,16 +474,14 @@ components:
       additionalProperties:
         description: Any additional properties added in via extensions.
     itemCollectionLinks:
-      type: object
-      properties:
-        next:
-          type: string
-          format: url
-          description: >-
-            A URL to obtain the next paginated data set. If not present, the
-            client should utilize the `nextPageToken`.
-          example: >-
-            http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
+      type: array
+      description: >-
+        An array of links. Can be used for pagination, e.g. by providing a link with the `next` relation type.
+      items:
+        $ref: '#/components/schemas/link'
+      example:
+        - rel: next
+          href: http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
 tags:
   - name: STAC
     description: Extension to WFS3 Core to support STAC metadata model and search API

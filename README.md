@@ -22,9 +22,9 @@ The specification is currently still an early version, with the potential for so
 fleshed out, so implementors are encouraged to try it out and give feedback. But the goal is to actually be able to act
 on that feedback, which will mean changes are quite possible. 
 
-But efforts will be made to maintain the core fields established in the central [Item spec](item-spec/) and 
-[Catalog spec](catalog-spec). The minimal amount is specified right now, but best practices should emerge with 
-implementation and more will likely be specified.
+But efforts will be made to maintain the core fields established in the central [Item spec](item-spec/), 
+[Catalog spec](catalog-spec/) and [Collection spec](collection-spec/).
+The minimal amount is specified right now, but best practices should emerge with implementation and more will likely be specified.
 
 ## Current version and branches
 
@@ -40,7 +40,7 @@ not require lots of updating.
 For any questions feel free to jump on our [gitter channel](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby) or email 
 our [google group](https://groups.google.com/forum/#!forum/stac-spec). The majority of communication about the evolution of 
 the specification takes place in the [issue tracker](https://github.com/radiantearth/stac-spec/issues) and in 
-[pull requests](https://github.com/radiantearth/stac-spec/pulls)
+[pull requests](https://github.com/radiantearth/stac-spec/pulls).
 
 ## In this Repository
 
@@ -50,24 +50,25 @@ README explaining the layout of the folder, the main specification document, exa
 documents (if relevant). The four specifications detailed are meant to be used together, but are designed so each piece
 is small, self-contained and reusable in other contexts.
 
-**[item-spec/](item-spec/)** defines a SpatioTemporal Asset Catalog `Item`, which is a [GeoJSON](http://geojson.org) Feature
+**[item-spec/](item-spec/)** defines a STAC Item, which is a [GeoJSON](http://geojson.org) Feature
 with additional fields for things like time, links to related entities and assets (including thumbnails). This is the 
 atomic unit that describes the data to be discovered.
 
-**[catalog-spec/](catalog-spec/)** specifies a structure to link various `Items` together to be crawled or browsed. It is a
-simple, flexible JSON file of links to `Item`s or other `Catalogs` that can be used in a variety of ways.
+**[catalog-spec/](catalog-spec/)** specifies a structure to link various STAC Items together to be crawled or browsed. It is a
+simple, flexible JSON file of links to Items, Catalogs or Collections that can be used in a variety of ways.
 
-**[dataset-spec/](dataset-spec/)** provides additional information about a set of `Item`s that are made available by a 
-data provider. It includes things like the spatial and temporal extent of the set of data, the license, keywords, etc. It 
-enables discovery at a higher level than individual items, providing a simple way to describe sets of data.
+**[collection-spec/](collection-spec/)** provides additional information about a spatio-temporal collection of data.
+In the context of STAC it is most likely a collection of STAC Items that is made available by a data provider.
+It includes things like the spatial and temporal extent of the data, the license, keywords, etc.
+It enables discovery at a higher level than individual items, providing a simple way to describe sets of data.
 
 **[api-spec/](api-spec/)** extends the core publishing capabilities of STAC with an active REST search endpoint that returns
-just the `Item`s a user requests in their query. It is specified as a couple [OpenAPI](http://openapis.org) documents, one
+just the Items a user requests in their query. It is specified as a couple [OpenAPI](http://openapis.org) documents, one
 [standalone](api-spec/STAC-standalone.yaml) and one that is [integrated with WFS3](api-spec/WFS3core%2BSTAC.yaml) 
-(see [wfs github](https://github.com/opengeospatial/wfs_fes) for info on it). The documents also include the `/stac/` 
-endpoint which is a way for a dynamic server to provide catalog and dataset browsing.
+(see [WFS3 on GitHub](https://github.com/opengeospatial/wfs_fes) for info on it). The documents also include the `/stac/` 
+endpoint which is a way for a dynamic server to provide catalog and collection browsing.
 
-**Extensions:** The *[extensions/](extensions/)* folder is where extensions (profiles) live. Extensions can extend the 
+**Extensions:** The *[extensions/](extensions/)* folder is where extensions live. Extensions can extend the 
 functionality of the core spec or add fields for specific domains.
 
 **Additional documents** include the current [roadmap](roadmap.md) and a complementary [how to help](how-to-help.md)
@@ -78,7 +79,8 @@ and a discussion of the collaboration [principles](principles.md) and specificat
 
 An important core principle of the STAC design is to embrace best practices of making data available on the web (like 
 [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS) and [W3C Spatial Data on the Web](https://www.w3.org/TR/sdw-bp/)), and 
-to leverage the reliability of flat files on object stores like [AWS S3](https://aws.amazon.com/s3/) and [Google Cloud Storage](https://cloud.google.com/storage/). This leads to putting the 'static catalog' at the core of the STAC spec.
+to leverage the reliability of flat files on object stores like [AWS S3](https://aws.amazon.com/s3/) and [Google Cloud Storage](https://cloud.google.com/storage/).
+This leaded to designing a static catalog at the core of the STAC spec.
 
 #### Static Catalog
 
@@ -99,17 +101,14 @@ or at least may have a 'backup' of its fields stored as a cached static catalog.
 
 #### Core Metadata and Extensions
 
-The [SpatioTemporal Asset Metadata](https://github.com/radiantearth/stam-spec) specification defines the core fields that all 
-assets must make available for searching in a catalog. Vendors can extend those core fields for the metadata they want to 
-make available, and the community is starting to define shared extensions, with 'electro-optical' being 
-the first one. This repo contains the [STAC Item](item-spec/item-spec.md) definition, which is the primary json extension of STAM, 
-so it can evolve with the rest of the STAC spec more easily. The STAM repo retains the abstract definition, and may evolve 
-to contain other extensions.
+The Item specification defines the core fields that all assets must make available for searching in a catalog.
+In addition there are some basic fields for describing collections of data.
+Vendors can extend those core fields for the metadata they want to make available, and the community has started to define shared extensions.
 
 ## Contributing
 
 Anyone building software that catalogs imagery or other geospatial assets is welcome to collaborate.
-Beforehand, please review our [guidelines for contributions](contribute.md).
+Beforehand, please review our [guidelines for contributions](CONTRIBUTING.md).
 
 
 

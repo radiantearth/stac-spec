@@ -1,6 +1,6 @@
-# STAC Datetime Range Extension Spec (`dtr`)
+# Datetime Range Extension Specification (`dtr`)
 
-**Extension [Maturity Classification](./README.md#extension-maturity): Proposal**
+**Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
 An extension to provide datetime ranges with a start and an end datetime stamp in a consistent way.
 

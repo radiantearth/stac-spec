@@ -48,7 +48,7 @@ from instead of repeating each field.
 ### Domain and Vendor extensions
 
 Ideally there is a way for domains (like Earth Observation / satellite imagery) or specific vendors to publish
-more meta information about the additional fields they use. The STAC mechanisms should enable a full `Item` with
+more meta information about the additional fields they use. The STAC mechanisms should enable a full Item with
 all the extra fields included to be self-describing, so clients could understand more than just the core fields.
 This likely would involve ways of defining additional schemas, and ways to share those schemas and validate a
 response against several schemas. This could be some additional mechanics in Catalog API (likely optional, to

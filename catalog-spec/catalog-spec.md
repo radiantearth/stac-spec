@@ -1,7 +1,7 @@
 # STAC Catalog Specification
 
-This document explains the structure and content of a STAC `Catalog`. A STAC Catalog is a 
-collection of SpatioTemporal `Item`s. These `Item`s can be linked to directly from a Catalog,
+This document explains the structure and content of a STAC Catalog. A STAC Catalog is a 
+collection of [STAC Items](../item-spec/). These Items can be linked to directly from a Catalog,
 or the Catalog can link to other Catalogs (often called sub-Catalogs) that contain links to Items.
 The division of sub-catalogs is up to the implementor, but is generally done to aid the ease of 
 online browsing by people.
@@ -15,8 +15,9 @@ that contains all the required fields is a valid STAC Catalog.
 
 This Catalog specification primarily defines a structure for information to be discoverable. Any use 
 that is publishing a set of related spatiotemporal assets is strongly recommended to also use the 
-[Dataset specification](../dataset-spec/) to provide additional information about a set of `Item`s 
-contained in a catalog, to give contextual information to aid in discovery.
+[STAC Collection specification](../collection-spec/) to provide additional information about a set of Items 
+contained in a catalog, to give contextual information to aid in discovery. Every STAC Collection is 
+also a valid STAC Catalog.
 
 ## WARNING
 
@@ -30,19 +31,17 @@ incorporated.
 
 ## Catalog Definitions
 
-
 There are two required element types of a Catalog: Catalog and Item. A STAC Catalog
-points to [STAC Items](../item-spec/), or to other STAC catalogs. It provides a simple
-linking structure that can be used recursively so that many `Items` can be included in 
+points to [STAC Items](../item-spec/README.md), or to other STAC catalogs. It provides a simple
+linking structure that can be used recursively so that many Items can be included in 
 a single Catalog, organized however the implementor desires. 
 
 STAC makes no formal distinction between a "root" catalog and the "child" catalogs. A root catalog
-is simply a top-most `catalog` (which has no parent). A nested `catalog` structure is useful (and
+is simply a top-most catalog (which has no parent). A nested catalog structure is useful (and
 recommended) for breaking up massive numbers of catalog items into logical groupings. For example,
-it might make sense to organize a `catalog` by date (year, month, day), or geography (continent,
+it might make sense to organize a catalog by date (year, month, day), or geography (continent,
 country, state/prov). Any scheme may be used, but it's considered a best practice to keep the size
-of each `catalog` under a a megabyte.
-
+of each catalog under a megabyte.
 
 A simple Catalog structure might look like this:
 
@@ -72,15 +71,18 @@ catalogs and items:
 - `Item` -> `Item` (example: this relationship may be used to describe a 1-1 parent-child
   relationship, such as a single derived item from one parent item)
 
-These relationships are all described by a common `links` object structure, making use of
-the *rel* attribute to further describe the relationship. 
+As all STAC Collections are also valid STAC Catalogs, all Catalogs described here could also be Collections.
+
+The relationships are all described by a common `links` object structure, making use of
+the `rel` attribute to further describe the relationship. 
 
 There are a few types of catalogs that implementors occasionally refer to. These get defined by the `links` structure.
 
- * A **sub-catalog** is a Catalog that is linked to from another Catalog that is used to better organize data. For example a Landsat dataset might have sub-catalogs for each Path and Row, so as to create a nice tree structure for users to follow.
+ * A **sub-catalog** is a Catalog that is linked to from another Catalog that is used to better organize data. For example a Landsat collection
+ might have sub-catalogs for each Path and Row, so as to create a nice tree structure for users to follow.
  * A **root catalog** is a Catalog that only links to sub-catalogs. These are typically entry points for browsing data. Often
- they will contain the [dataset](../dataset-spec) definition, but in implementations that publish diverse information it may
- contain sub-catalogs that provide a variety of datasets.
+ they will contain the [STAC Collection](../collection-spec) definition, but in implementations that publish diverse information it may
+ contain sub-catalogs that provide a variety of collections.
  * A **parent catalog** is the Catalog that sits directly above a sub-catalog. Following parent catalog links continuously
  will naturally end up at a root catalog definition.
  
@@ -91,14 +93,13 @@ linked to across the web.
 
 ### Catalog Types
 
-The core `Item`s and `Catalog`s of a SpatioTemporal Asset Catalog are designed for ease of implementation. 
+The core Items and Catalogs of a SpatioTemporal Asset Catalog are designed for ease of implementation. 
 With the same core JSON documents and link structures it can be implemented in a way that is just files available online,
 or easily implementable with modern REST service infrastructures. These represent two different types of catalogs, the 
 'static catalog' and the 'dynamic catalog', which can operate a bit differently though they can be treated the same by
 clients.
 
-
- But any server can implement the same JSON and link structure, creating responses
+But any server can implement the same JSON and link structure, creating responses
 dynamically as REST calls. These are referred to as 'dynamic catalogs'.
 
 #### Static Catalogs
@@ -108,7 +109,7 @@ A main target for STAC has been object storage services like [Amazon S3](https:/
 so that users can stand up a full STAC implementation with static files. Implementations created with just files online
 are referred to as 'static catalogs'. These include not just the cloud services, but any type of file server that is online.
 
-Static Catalogs tend to make extensive use of *sub-catalogs* to organize their `Item`s in to sensible browsing structures, 
+Static Catalogs tend to make extensive use of *sub-catalogs* to organize their Items in to sensible browsing structures, 
 as they can only have a single representation of their catalog, as the static nature means the structure is baked in. 
 While it is up to the implementor to organize the catalog, it is recommended to arrange the in a way that would make sense 
 for a human to browse a set of STAC Items in an intuitive matter.
@@ -132,10 +133,11 @@ as linked STAC Items by implementing a dynamic catalog.
 
 One benefit of a dynamic catalog is that it can generate various 'views' of the catalog, exposing the same `Items` in 
 different sub-catalog organization structures. For example one catalog could divide sub-catalogs by date and another by
-providers, and users could browse down to both. The leaf `Item`s should just be linked to in a single canonical location (or at least use a *rel* link that indicates the location of the canonical one.
+providers, and users could browse down to both. The leaf Items should just be linked to in a single canonical location
+(or at least use a `rel` link that indicates the location of the canonical one.
 
 The STAC API is also made to be compatible with WFS3, which has a set structure for the canonical location of its features.
-STAC `Item`s should use the WFS3 location as their canonical location, and then in the `/stac/` browse structure would just
+STAC Items should use the WFS3 location as their canonical location, and then in the `/stac/` browse structure would just
 link to those locations. 
 
 ## Catalog fields
@@ -148,7 +150,7 @@ link to those locations.
 | description  | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | links        | [Link Object] | **REQUIRED.** A list of references to other documents.       |
 
-**stac_version**: It is not allowed to mix STAC versions. The root catalog/dataset MUST specify the implemented STAC versions and child catalogs/datasets MUST NOT specify a different STAC version.
+**stac_version**: It is not allowed to mix STAC versions. The root catalog or the root collection respectively MUST specify the implemented STAC version. Child Catalogs and child Collections MUST NOT specify a different STAC version.
 
 **Examples:**
 
@@ -169,7 +171,7 @@ might look something like this:
 }
 ```
 
-In addition, the catalog shown above is strongly recommended to also follow the [Dataset specification](../dataset-spec/dataset-spec.md) 
+In addition, the catalog shown above is strongly recommended to also follow the [STAC Collection specification](../collection-spec/collection-spec.md) 
 to add more information about the NAIP imagery such as the spatial and temporal extents, a license and more.
 
 A typical '_child_' sub-catalog could look similar:
@@ -189,7 +191,7 @@ A typical '_child_' sub-catalog could look similar:
 }
 ```
 
-The `root` catalog in this example could hold a set of catalogs with different datasets, e.g. data from other satellites or processed variants of the NAIP imagery.
+The `root` catalog in this example could hold a set of sub-catalogs with different STAC collections, e.g. data from other satellites or processed variants of the NAIP imagery.
 
 ### Link Object
 
@@ -203,16 +205,25 @@ with links.
 | type       | string | Media type of the referenced entity.                                                                                                |
 | title      | string | A human readable title to be used in rendered displays of the link.                                                                 |
 
+Please see the chapter 'relative vs absolute links' in the [Item spec](../item-spec/item-spec.md#relative-vs-absolute-links) for a discussion on that topic. 
+
 #### Relation types
 
-The following types are commonly used as `rel` types in the Link Object of a Dataset:
+The following types are commonly used as `rel` types in the Link Object of a STAC Collection:
 
-| Type    | Description                                                                                                                                                                                                                                                                               |
-| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Type    | Description |
+| ------- | ----------- |
 | self    | **REQUIRED.** _Absolute_ URL to the catalog file itself. This is required, to represent the location that the file can be found online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root    | **REQUIRED.** _Absolute_ URL to the root [STAC Catalog](../catalog-spec/), even if it's the root and points to itself.                                                                                                                                                                  |
-| parent  | URL to the parent [STAC Catalog](../catalog-spec/). Non-root catalogs should include a link to their parent.                                                                                                                                                                            |
-| child   | URL to a child [STAC Catalog](../catalog-spec/).                                                                                                                                                                                                                                        |
-| item    | URL to a [STAC Item](../item-spec/).                                                                                                                                                                                                                                                      |
+| root    | **REQUIRED.** _Absolute_ URL to the root [STAC Catalog](../catalog-spec/), even if it's the root and points to itself. |
+| parent  | URL to the parent [STAC Catalog](../catalog-spec/). Non-root catalogs should include a link to their parent. |
+| child   | URL to a child [STAC Catalog](../catalog-spec/). |
+| item    | URL to a [STAC Item](../item-spec/). |
 
 **Note:** A link to at least one `item` or `child` catalog is _required_.
+
+## Extensions
+
+There are emerging best practices, which in time will evolve in to specification extensions for
+particular domains or uses.
+
+The [extensions page](../extensions/) gives an overview about relevant extensions for STAC Catalogs.

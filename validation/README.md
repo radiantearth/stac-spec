@@ -20,7 +20,7 @@ In the following chapter there are commands to run a validation of any STAC agai
 
 **Warning:** Not all validation is fully complete. For items, the validator does not yet check for `self` 
 links. The `href` checking is probably too loose right now, it just checks for a string, see the 
-'relative vs absolute links' section  in the [Item spec](../item-spec/item-spec.md) for reasons why. 
+'relative vs absolute links' section  in the [Item spec](../item-spec/item-spec.md#relative-vs-absolute-links) for reasons why. 
 
 ### Catalogs
 
@@ -30,12 +30,12 @@ To run the validation for a catalog file:
 npm run validate_catalog -- -d ../catalog-spec/examples/catalog.json
 ```
 
-### Datasets
+### Collections
 
-To run the validation for a dataset file:
+To run the validation for a collection file:
 
 ```bash
-npm run validate_dataset -- -d ../dataset-spec/examples/sentinel2.json
+npm run validate_collection -- -d ../collection-spec/examples/sentinel2.json
 ```
 
 ### Extensions

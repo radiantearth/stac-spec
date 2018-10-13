@@ -640,15 +640,15 @@ components:
       additionalProperties:
         description: Any additional properties added in via extensions.
     itemCollectionLinks:
-      type: object
-      properties:
-        next:
-          type: string
-          format: url
-          description: >-
-            A URL to obtain the next paginated data set. If not present, the
-            client should utilize the `nextPageToken`.
-          example: >-
+      type: array
+      description: >-
+        An array of links. Can be used for pagination, e.g. by providing a link
+        with the `next` relation type.
+      items:
+        $ref: '#/components/schemas/link'
+      example:
+        - rel: next
+          href: >-
             http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
     root:
       type: object
@@ -785,11 +785,11 @@ components:
               - properties
               - constructions
         version:
-          title: Dataset Version
+          title: Collection Version
           type: string
           example: 1
         license:
-          title: Dataset License Name
+          title: Collection License Name
           type: string
           example: Apache-2.0
         provider:
