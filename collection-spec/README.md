@@ -1,7 +1,8 @@
 # STAC Collections
 
 [STAC Items](../item-spec/README.md) are focused on search within a collection*. Another topic of 
-interest is the search of collections, instead of within a collection. The Collection specification is independent of STAC Items and 
+interest is the search of collections, instead of within a collection. The [STAC Collection specification](collection-spec.md)
+is independent of STAC Items and 
 [STAC Catalogs](../catalog-spec/README.md). Items are required to provide a link back to their collection definition. Other parties 
 can also use this specification standalone, as a way to describe collections in a lightweight way.
 
