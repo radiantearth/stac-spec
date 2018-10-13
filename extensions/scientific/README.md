@@ -10,6 +10,10 @@ persistent digital interoperable identifier that uniquely identify for digital p
 can be registered at registration agencies affiliated with the
 [International DOI Foundation](https://www.doi.org/).
 
+As these scientific information are often closely bound to the collection level and therefore are shared across all items,
+it is recommended to use the [Commons extension](../commons/README.md) to add the fields to a corresponding
+[STAC Collection](../../collection-spec/README.md).
+
 - [Example (Collection)](example-merraclim.json)
 - [JSON Schema](schema.json)
 
