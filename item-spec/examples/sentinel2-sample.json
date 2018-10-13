@@ -9,6 +9,10 @@
     {
       "rel": "root",
       "href": "s3://sentinel-s2-l2a-catalog/catalog.json"
+    },
+    {
+      "rel": "collection",
+      "href": "s3://sentinel-s2-l2a-catalog/catalog.json"
     }
   ],
   "bbox": [

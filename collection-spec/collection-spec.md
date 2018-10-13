@@ -106,8 +106,8 @@ The following types are commonly used as `rel` types in the Link Object of a Col
 
 Important related extensions for the STAC Collection Specification:
 
-* [Commons extension](../extensions/commons)
-* [EO extension](../extensions/eo)
-* [Scientific extension](../extensions/scientific)
+* [Commons extension](../extensions/commons/README.md), which primarily allows to add shared Item metadata to Collections,
+  but could also be used to describe Collections better that are not referring to Items by adding additional fields from Item extensions.
+  Please note that this extension is only in '[proposal](../extensions/README.md#extension-maturity)' stage.
 
-The [extensions page](../extensions/) gives a full overview about relevant extensions for STAC Collections.
+The [extensions page](../extensions/README.md) gives a full overview about relevant extensions for STAC Collections.

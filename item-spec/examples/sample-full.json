@@ -31,7 +31,9 @@
   "links": [
     {"rel": "self", "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json"},
     {"rel": "thumbnail", "href":"thumbnail.png"},
-    {"rel": "root", "href": "http://cool-sat.com/catalog/"},
+    {"rel": "root", "href": "http://cool-sat.com/catalog/catalog.json"},
+    {"rel": "parent", "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/catalog.json"},
+    {"rel": "collection", "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/catalog.json"},
     {"rel": "acquisition", "href": "http://cool-sat.com/catalog/acquisitions/20160503_56"}
   ],
   "assets": {

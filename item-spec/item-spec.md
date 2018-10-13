@@ -114,8 +114,7 @@ link is required to be absolute.
 #### Collections
 
 Items are *strongly recommended* to provide a link to a STAC Collection definition. It is important as Collections 
-provide additional information about a set of items, for example the license, provider information 
-and optionally any common information shared across all items using the [Commons extension](../extensions/commons/README.md),
+provide additional information about a set of items, for example the license, provider and other information (see section 'Extensions')
 giving context on the overall set of data that an individual Item is a part of. If Items are part of a STAC Collection, 
 the [STAC Collection spec *requires* Items to link back to the Collection](collection-spec/collection-spec.md#relation-types).
 
@@ -177,6 +176,10 @@ media type.
 There are emerging best practices, which in time will evolve in to specification extensions for
 particular domains or uses.
 
+Optionally, common information shared across items can be split up into STAC Collections using the
+[Commons extension](../extensions/commons/README.md). Please note that this extension is only in
+'[proposal](../extensions/README.md#extension-maturity)' stage.
+
 The [extensions page](../extensions/README.md) gives an overview about relevant extensions for STAC Items.
 
 ## Recommendations
@@ -188,26 +191,3 @@ The core is space and time, but there are often other metadata attributes that a
 providers can fill it with tens or even hundreds of fields of metadata that is not recommended. If providers have lots of metadata then 
 that should be linked to in the Asset Object or in a Link Object, or even a new Asset Object could be added that is potentially easier to parse.
 There is a lot of metadata that is only of relevance to advanced processing algorithms, and while that is important it should not be in the core STAC items.
-
-### Asset definition
-
-It is of top priority to provide definitions of assets, so clients can know get some information as to 
-what is actually contained in the data they are downloading. Assets should contain the metadata that is 
-specific to the format of the asset. The asset must have some way to state its format. 
-
-While assets in Catalog APIs can easily represent files that are generated on demand, a static
-catalog should only list assets that already exist online. This increases the reliability and speed
-of the catalog and makes it easier to fully duplicate or back-up a static catalog.
-
-**Note:** 0.6.0 defines Media types for assets, to provide more information about what is to download, but there is likely
-more work to be done to fully define the asset, so providers should feel free to experiment and give feedback on potential asset improvments.
-
-There are a couple of ideas on how to define metadata for assets. Providers could either
-
-* include a number of optional metadata fields directly in the asset that would provide additional definition for clients or
-* include a field that specifies a URI to a (JSON) file that has the additional metadata.
-
-When adding the data via a URI, all the needed metadata for a client would be in the product level definition,
-which would mean a lot less repeating of fields. But clients would have to be a bit smarter to actually follow the links.
-Though ideally clients would be able to cache and reuse product definitions, and hopefully there would be a small number
-of canonical product definitions online, that all static catalogs using a particular provider would be able to reference.
