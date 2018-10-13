@@ -44,9 +44,3 @@ be defined in additional specifications and extensions. The only anticipated cha
 additional extension mechanisms for others to use.
 
 
-#### Recommendations
-
-The evolution of static catalogs is driven by real implementations in the world. Many are adding in additional innovations
-that are not yet part of the specification, but other implementors are encouraged to make use of. The various recommendations 
-can be viewed in the [Catalog Recommendations](catalog-recommendations.md) document. Some of these will likely
-evolve to be requirements, or at least documented specification options and extensions.
