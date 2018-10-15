@@ -214,12 +214,12 @@ The following types are commonly used as `rel` types in the Link Object of a STA
 | Type    | Description |
 | ------- | ----------- |
 | self    | **REQUIRED.** _Absolute_ URL to the catalog file itself. This is required, to represent the location that the file can be found online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root    | **REQUIRED.** _Absolute_ URL to the root [STAC Catalog](../catalog-spec/), even if it's the root and points to itself. |
-| parent  | URL to the parent [STAC Catalog](../catalog-spec/). Non-root catalogs should include a link to their parent. |
-| child   | URL to a child [STAC Catalog](../catalog-spec/). |
-| item    | URL to a [STAC Item](../item-spec/). |
+| root    | URL to the root STAC Catalog or [Collection](../collection-spec/README.md). Catalogs should include a link to their root, even if it's the root and points to itself. |
+| parent  | URL to the parent STAC Catalog or [Collection](../collection-spec/README.md). Non-root catalogs should include a link to their parent. |
+| child   | URL to a child STAC Catalog or [Collection](../collection-spec/README.md). |
+| item    | URL to a STAC [Item](../item-spec/). |
 
-**Note:** A link to at least one `item` or `child` catalog is _required_.
+**Note:** A link to at least one `item` or `child` catalog is **REQUIRED**.
 
 ## Extensions
 
