@@ -50,10 +50,10 @@ be aware of their differences by reading both specifications.
 **temporal** - The bounding box is provided as four or six numbers, depending on whether the coordinate reference system includes a vertical axis (height or depth):
 
 - Lower left corner, coordinate axis 1 (west)
-- Lower left corner, coordinate axis 2 (north)
+- Lower left corner, coordinate axis 2 (south)
 - Lower left corner, coordinate axis 3 (base, optional)
 - Upper right corner, coordinate axis 1 (east)
-- Upper right corner, coordinate axis 2 (south)
+- Upper right corner, coordinate axis 2 (north)
 - Upper right corner, coordinate axis 3 (height, optional)
 
 The coordinate reference system of the values is WGS84 longitude/latitude.
