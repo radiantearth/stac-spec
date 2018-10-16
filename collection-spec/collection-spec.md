@@ -4,7 +4,7 @@ The STAC Collection Specification defines a set of common fields to describe a g
 STAC Collections Specification extends the [STAC Catalog Spec](../catalog-spec/README.md) with additional fields to describe the whole dataset and the included set of items.
 It shares the same fields and therefore every Collection is also a valid Catalog. Collections can have both parent Catalogs and Collections and child Items, Catalogs and Collections. 
 
-A STAC ollection can be represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Collection and also a valid STAC Catalog.
+A STAC collection can be represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Collection and also a valid STAC Catalog.
 
 * [Example (Sentinel 2)](examples/sentinel2.json)
 * [JSON Schema](json-schema/collection.json) - please see the [validation instructions](../validation/README.md)
