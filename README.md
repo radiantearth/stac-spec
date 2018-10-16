@@ -28,9 +28,9 @@ The minimal amount is specified right now, but best practices should emerge with
 
 ## Current version and branches
 
-The master branch is the 'stable' version of the spec. It is currently version 
-[0.5.2](https://github.com/radiantearth/stac-spec/milestone/8) of the specification. The 
-[dev](https://github.com/radiantearth/stac-spec/tree/dev) branch, which you are looking at right now, is where active development takes place, and may have inconsistent examples. 
+The [master branch](https://github.com/radiantearth/stac-spec/tree/master) is the 'stable' version of the spec. It is currently version 
+[0.6.0-rc1](https://github.com/radiantearth/stac-spec/milestone/7) of the specification. The 
+[dev](https://github.com/radiantearth/stac-spec/tree/dev) branch is where active development takes place, and may have inconsistent examples. 
 Whenever dev stabilizes a release is cut and we merge dev in to master. So master should be stable at any given time.
 It is possible that there may be small releases in quick succession, especially if they are nice improvements that do 
 not require lots of updating. 
