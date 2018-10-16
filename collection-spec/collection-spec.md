@@ -93,14 +93,14 @@ The following types are commonly used as `rel` types in the Link Object of a Col
 | Type    | Description                                                  |
 | ------- | ------------------------------------------------------------ |
 | self    | **REQUIRED.** *Absolute* URL to the collection. This is required, to represent the location that the file can be found online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root    | URL to the root STAC [Catalog](../catalog-spec/README.md) or Collection. |
-| parent  | URL to the parent STAC [Catalog](../catalog-spec/README.md) or Collection. |
-| child   | URL to a child STAC [Catalog](../catalog-spec/README.md) or Collection. |
+| root    | URL to the root STAC [Catalog](../catalog-spec/README.md) or Collection. Collections should include a link to their root, even if it's the root and points to itself. |
+| parent  | URL to the parent STAC [Catalog](../catalog-spec/README.md) or Collection. Non-root collections should include a link to their parent. |
+| child   | URL to a child STAC [Catalog](../catalog-spec/) or Collection. |
 | item    | URL to a STAC [Item](../item-spec/README.md). All items linked from a collection MUST refer back to its collection with the `collection` relation type. |
 | license | The license URL for the collection SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file. |
 | derived_from | URL to a STAC Collection that was used as input data in the creation of this collection. See the note in [STAC Item](../item-spec/item-spec.md#relation-types) for more info. |
 
-**Note:** The [STAC Catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is _not_ a requirement for collections, but _recommended_. In contrast to catalogs, it is **required** that items linked from a Collection MUST refer back to its Collection with the `collection` relation type.
+**Note:** The [STAC Catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is _not_ a requirement for collections, but _recommended_. In contrast to catalogs, it is **REQUIRED** that items linked from a Collection MUST refer back to its Collection with the `collection` relation type.
 
 ## Extensions
 
