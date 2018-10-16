@@ -30,6 +30,7 @@ always in a consistent state.
 * Agreement from core team that the release is ready.
 * Make sure all examples in the specification validate (after 0.6.0 this should hopefully be done automatically with CI).
 * Merge dev to master (be sure to update readmes on branches to be up to date)
+* swagger hub release
 * Draft new release on https://github.com/radiantearth/stac-spec/releases - use tag version with v prefix, like v0.5.2
 * Write up release notes, with overview of major changes / improvements and link to issue tracker
 * Write blog post and tweet it out.
