@@ -92,7 +92,7 @@ See the [milestone 0.4.0 in the issue tracker](https://github.com/radiantearth/s
 Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkamin, @hemphillda, @jeffnaus  and @fredliporace for contributing to the spec directly, and to [everyone](https://github.com/opengeospatial/wfs3hackathon/blob/master/notes/introductions.md#participants) who participated in the [Ft Collins sprint](https://github.com/radiantearth/community-sprints/tree/master/03072018-ft-collins-co) and brought great ideas.
 
 
-[Unreleased]: https://github.com/radiantearth/stac-spec/compare/v0.6.0-rc1...HEAD
+[Unreleased]: https://github.com/radiantearth/stac-spec/compare/master...dev
 [v0.6.0-rc1]: https://github.com/radiantearth/stac-spec/compare/v0.5.2...v0.6.0-rc1
 [v0.5.2]: https://github.com/radiantearth/stac-spec/compare/v0.5.1...v0.5.2
 [v0.5.1]: https://github.com/radiantearth/stac-spec/compare/v0.5.0...v0.5.1
