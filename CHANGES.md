@@ -94,8 +94,8 @@ Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkam
 
 [Unreleased]: https://github.com/radiantearth/stac-spec/compare/v0.6.0-rc1...HEAD
 [v0.6.0-rc1]: https://github.com/radiantearth/stac-spec/compare/v0.5.2...v0.6.0-rc1
-[v0.5.2]: https://github.com/radiantearth/stac-spec/compare/.v0.5.1...v0.5.2
-[v0.5.1]: https://github.com/radiantearth/stac-spec/compare/.v0.5.0...v0.5.1
-[v0.5.0]: https://github.com/radiantearth/stac-spec/compare/.v0.4.1...v0.5.0
-[v0.4.1]: https://github.com/radiantearth/stac-spec/compare/.v0.4.0...v0.4.1
+[v0.5.2]: https://github.com/radiantearth/stac-spec/compare/v0.5.1...v0.5.2
+[v0.5.1]: https://github.com/radiantearth/stac-spec/compare/v0.5.0...v0.5.1
+[v0.5.0]: https://github.com/radiantearth/stac-spec/compare/v0.4.1...v0.5.0
+[v0.4.1]: https://github.com/radiantearth/stac-spec/compare/v0.4.0...v0.4.1
 [v0.4.0]: https://github.com/radiantearth/stac-spec/tree/v0.4.0
