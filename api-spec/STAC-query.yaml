@@ -536,7 +536,7 @@ components:
       example:
         'eo:cloud_cover':
           lt: 50
-        provider: Planet
+        providers: Planet
         published:
           date: '2018-02-12T00:00:00Z/2018-03-18T12:31:12Z'
         'pl:item_type':
@@ -619,7 +619,7 @@ components:
               - desc
       example:
         - field: 'eo:cloud_cover'
-        - field: provider
+        - field: providers
           direction: desc
     fieldsFilter:
       type: object

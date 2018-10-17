@@ -12,7 +12,7 @@
     "radiance",
     "sentinel"
   ],
-  "provider": [
+  "providers": [
     {
       "name": "European Union/ESA/Copernicus",
       "type": "producer",
