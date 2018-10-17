@@ -1,0 +1,95 @@
+{
+  "id": "103001004B316600_P002_MUL",
+  "type": "Feature",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          [
+            -105.160846396,
+            39.1656009422
+          ],
+          [
+            -104.947574355,
+            39.1750024943
+          ],
+          [
+            -104.949890373,
+            39.0512153242
+          ],
+          [
+            -105.161151214,
+            39.0436821016
+          ],
+          [
+            -105.160846396,
+            39.1656009422
+          ]
+        ]
+      ]
+    ]
+  },
+  "assets": {
+    "multispectral_image": {
+      "href": "https://15NOV09180446-M1BS-056823192010_01_P002.TIF"
+    },
+    "imd": {
+      "href": "https://15NOV09180446-M1BS-056823192010_01_P002.IMD"
+    },
+    "imd_xml": {
+      "href": "https://15NOV09180446-M1BS-056823192010_01_P002.XML"
+    },
+    "til": {
+      "href": "https://15NOV09180446-M1BS-056823192010_01_P002.TIL"
+    },
+    "att": {
+      "href": "https://15NOV09180446-M1BS-056823192010_01_P002.ATT"
+    },
+    "eph": {
+      "href": "https://15NOV09180446-M1BS-056823192010_01_P002.EPH"
+    },
+    "geo": {
+      "href": "https://15NOV09180446-M1BS-056823192010_01_P002.GEO"
+    },
+    "rpb": {
+      "href": "https://15NOV09180446-M1BS-056823192010_01_P002.RPB"
+    },
+    "thumbnail": {
+      "href": "https://15NOV09180446-M1BS-056823192010_01_P002.JPG"
+    }
+  },
+  "properties": {
+    "dg:feature_type": [
+      "GBDXCatalogRecord",
+      "WV02",
+      "DigitalGlobeProduct",
+      "1BProduct"
+    ],
+    "eo:sun_azimuth": 168.7,
+    "eo:cloud_cover": 50,
+    "eo:off_nadir": 18.4,
+    "eo:azimuth": 34.5,
+    "eo:platform": "WORLDVIEW02",
+    "eo:sun_elevation": 33.4,
+    "eo:gsd": 2.047,
+    "eo:epsg": null,
+    "dg:catalog_id": "103001004B316600",
+    "dg:soli": "056823192",
+    "dg:part": 2,
+    "dg:platform": "WORLDVIEW02",
+    "dg:product_level": "LV1B",
+    "dg:product": "WORLDVIEW02_LV1B",
+    "datetime": "2015-11-09T18:04:46.000Z"
+  },
+   "links": [
+      {
+        "rel": "self",
+        "href": "https://s3.amazonaws.com/digitalglobe-catalog-spec/collections/dg_worldview02_LV1B/103001004B316600_P002_MUL"
+      },
+      {
+        "rel": "collection",
+        "href": "https://s3.amazonaws.com/digitalglobe-catalog-spec/collections/dg_worldview02_LV1B.json"
+      }
+    ]
+}

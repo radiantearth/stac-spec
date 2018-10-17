@@ -25,11 +25,8 @@ paths:
     get:
       summary: Return the root catalog or collection.
       description: >-
-        Returns the root STAC Catalog or STAC Collection that is the entry point
-        for users to browse with STAC Browser or for search engines to crawl.
-        This can either return a single STAC Collection or more commonly a STAC
-        catalog that usually lists sub-catalogs of STAC Collections, i.e. a
-        simple catalog that lists all collections available through the API.
+        Returns the root STAC Catalog or STAC Collection that is the entry point for users to browse with STAC Browser or for search engines to crawl.
+        This can either return a single STAC Collection or more commonly a STAC catalog that usually lists sub-catalogs of STAC Collections, i.e. a simple catalog that lists all collections available through the API.
       tags:
         - STAC
       responses:
@@ -43,8 +40,8 @@ paths:
     get:
       summary: Search STAC items by simple filtering.
       description: >-
-        Retrieve Items matching filters. Intended as a shorthand API for simple
-        queries. This method is optional.
+        Retrieve Items matching filters.
+        Intended as a shorthand API for simple queries. This method is optional.
       operationId: getSearchSTAC
       tags:
         - STAC
@@ -74,8 +71,8 @@ paths:
     post:
       summary: Search STAC items by full-featured filtering.
       description: >-
-        retrieve items matching filters. Intended as the standard, full-featured
-        query API. This method is mandatory.
+        retrieve items matching filters.
+        Intended as the standard, full-featured query API. This method is mandatory.
       operationId: postSearchSTAC
       tags:
         - STAC
@@ -224,25 +221,25 @@ components:
       items:
         $ref: '#/components/schemas/link'
     link:
-      type: object
-      required:
-        - href
-        - rel
-      additionalProperties: true
-      properties:
-        href:
-          type: string
-          format: url
-          example: 'http://www.geoserver.example/stac/naip/child/catalog.json'
-        rel:
-          type: string
-          example: child
-        type:
-          type: string
-          example: application/json
-        title:
-          type: string
-          example: NAIP Child Catalog
+        type: object
+        required:
+          - href
+          - rel
+        additionalProperties: true
+        properties:
+          href:
+            type: string
+            format: url
+            example: http://www.geoserver.example/stac/naip/child/catalog.json
+          rel:
+            type: string
+            example: child
+          type:
+            type: string
+            example: application/json
+          title:
+            type: string
+            example: "NAIP Child Catalog"
     searchBody:
       description: The search criteria
       type: object
@@ -428,22 +425,19 @@ components:
           datetime: '2016-05-03T13:21:30.040Z'
         links:
           - rel: self
-            href: >-
-              http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04.json
+            href: http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04.json
         assets:
           analytic:
             title: 4-Band Analytic
-            href: >-
-              http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/analytic.tif
+            href: http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/analytic.tif
           thumbnail:
             title: Thumbnail
-            href: >-
-              http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/thumb.png
+            href: http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/thumb.png
             type: image/png
     itemId:
       type: string
       example: path/to/example.tif
-      description: 'Provider identifier, a unique ID, potentially a link to a file.'
+      description: Provider identifier, a unique ID, potentially a link to a file.
     itemType:
       type: string
       description: The GeoJSON type
@@ -460,8 +454,7 @@ components:
             type: string
             format: url
             description: Link to the asset object
-            example: >-
-              http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/thumb.png
+            example: http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/thumb.png
           title:
             type: string
             description: Displayed title
@@ -483,14 +476,12 @@ components:
     itemCollectionLinks:
       type: array
       description: >-
-        An array of links. Can be used for pagination, e.g. by providing a link
-        with the `next` relation type.
+        An array of links. Can be used for pagination, e.g. by providing a link with the `next` relation type.
       items:
         $ref: '#/components/schemas/link'
       example:
         - rel: next
-          href: >-
-            http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
+          href: http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
 tags:
   - name: STAC
     description: Extension to WFS3 Core to support STAC metadata model and search API

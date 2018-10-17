@@ -11,8 +11,8 @@ few best practices to evolve and [improvements](roadmap.md) to the spec that wil
 
 ## Implementations and Feedback
 
-The best way to help out with STAC is to try to implement the specification, either a [static catalog](static-catalog/), a 
-[catalog api](api-spec) or even both. This can be done by extending existing catalog software, creating new software, or 
+The best way to help out with STAC is to try to implement the specification, either a [static catalog](catalog-spec/README.md), a 
+[catalog api](api-spec/README.md) or even both. This can be done by extending existing catalog software, creating new software, or 
 standing up a service end point that exposes data. Implementations using the specification as it stands will likely 
 have to make a number of decisions while building, as there is a lot that is left unspecified. The best thing to do 
 is to document those decisions, and share them with the core STAC group. Ideally make mini-specifications, but even just
@@ -84,7 +84,7 @@ there are also STAC API's that have html as an output in addition to json. Aimin
 **GDAL Implementation** - As the most used geospatial library it is important that GDAL be a tool that can query STAC catalogs,
 both dynamic and static ones. Ideally GDAL could also create static catalogs as an output format. 
 
-**STAC Profile Implementations** - It is important that implementations start to create extensions to the core STAC fields,
+**STAC Extension Implementations** - It is important that implementations start to create extensions to the core STAC fields,
 for things like earth observation metadata fields, derived data, mosaics, point clouds, DEM/DSM, etc. 
 
 ## Tier 3
