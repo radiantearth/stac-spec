@@ -15,13 +15,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed examples throughout
 
 ### Added
+- **Changelog**: This changelog added
 - **Collections added**: Collections are a type of Catalog with additional fields, such as provider and license. Items must belong to a single Collection.
 - **Extension maturity**: Protocol for providing maturity classification for extensions based on stability and implementations.
 - **Commons extension**: The previous 'Collections' extension is now the 'Commons' extension and allows an Item to inherit properties from it's Collection.
 - **Datetime-range extension**: Extension for providing start and end datetimes.
 - **Scientific extension**: Extension for providings links to scientific publications relating to the data.
 - **rel types**: A list of supported 'rel' types are provided for use when specifying links, 'derived_from' and 'license' types added.
-- **eo:constellaion**: A new field in the EO specification to specify a grouping of platforms.
+- **eo:constellation**: A new field in the EO specification to specify a grouping of platforms.
 - **stac_version**: The stac_version field is required on all Catalogs (and Collections)
 - **JSON schemas**: Added JSON schemas where they were missing.
 
