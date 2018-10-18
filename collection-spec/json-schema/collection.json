@@ -45,7 +45,7 @@
       "title": "Collection License Name",
       "type": "string"
     },
-    "provider": {
+    "providers": {
       "type": "array",
       "items": {
         "properties": {

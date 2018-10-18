@@ -792,7 +792,7 @@ components:
           title: Collection License Name
           type: string
           example: Apache-2.0
-        provider:
+        providers:
           type: array
           items:
             properties:
