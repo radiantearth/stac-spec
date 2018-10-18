@@ -932,14 +932,19 @@ components:
                 title: Organization name
                 type: string
                 example: Big Building Corp
-              type:
-                title: Organization type
-                type: string
-                enum:
+              roles:
+                title: Organization roles
+                type: array
+                items:
+                  type: string
+                  enum:
+                    - producer
+                    - licensor
+                    - processor
+                    - host
+                example:
                   - producer
-                  - processor
-                  - host
-                example: producer
+                  - licensor
               url:
                 title: Organization homepage
                 type: string

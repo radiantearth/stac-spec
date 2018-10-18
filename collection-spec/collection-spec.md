@@ -62,11 +62,11 @@ The coordinate reference system of the values is WGS84 longitude/latitude.
 
 The object provides information about a provider. A provider is any of the organizations that captured or processed the content of the collection and therefore influenced the data offered by this collection. May also include information about the final storage provider hosting the data.
 
-| Field Name | Type   | Description                                                  |
-| ---------- | ------ | ------------------------------------------------------------ |
-| name       | string | **REQUIRED.** The name of the organization or the individual. |
-| type       | string | The type of provider. Any of `producer`, `processor` or `host`. |
-| url        | string | Homepage of the provider.                                    |
+| Field Name | Type      | Description                                                  |
+| ---------- | --------- | ------------------------------------------------------------ |
+| name       | string    | **REQUIRED.** The name of the organization or the individual. |
+| type       | [string]  | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`. |
+| url        | string    | Homepage of the provider. |
 
 **type**: The type of the provider can be one of the following elements:
 

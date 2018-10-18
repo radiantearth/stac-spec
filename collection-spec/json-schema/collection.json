@@ -53,14 +53,18 @@
             "title": "Organization name",
             "type": "string"
           },
-          "type": {
-            "title": "Organization type",
-            "type": "string",
-            "enum": [
-              "producer",
-              "processor",
-              "host"
-            ]
+          "roles": {
+            "title": "Organization roles",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "producer",
+                "licensor",
+                "processor",
+                "host"
+              ]
+            }
           },
           "url": {
             "title": "Organization homepage",
