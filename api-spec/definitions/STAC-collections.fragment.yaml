@@ -28,7 +28,7 @@ components:
         version:
           title: Collection Version
           type: string
-          example: 1
+          example: 1.0.0
         license:
           title: Collection License Name
           type: string
