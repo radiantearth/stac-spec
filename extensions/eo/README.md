@@ -26,7 +26,7 @@ It is not necessary, but recommended to use the [Commons extension](../commons/R
 | ---------------- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | eo:gsd           | number                   | **REQUIRED.** Ground Sample distance. The nominal distance between pixel centers available, in meters.                                                                                                                                                     |
 | eo:platform      | string                   | **REQUIRED.** Unique name of the specific platform the instrument is attached to. For satellites this would be the name of the satellite (e.g., landsat-8, sentinel-2A), whereas for drones this would be a unique name for the drone.                     |
-| eo:constellation | string                   | Name of the group or constellation that the platform belongs to. Example: The Sentinel-2 group has S2A and S2B, this field allows users to search for Sentinel-2 data without needing to specify which specific platform the data came from. |
+| eo:constellation | string                   | Name of the constellation that the platform belongs to. See below for details. |
 | eo:instrument    | string                   | **REQUIRED.** Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1).                                                                                                                                                                      |
 | eo:bands         | [Band Object]             | **REQUIRED.** This is a list of the available bands where each item is a Band Object.                                                                                                                                                                      |
 | eo:epsg          | integer                  | EPSG code of the datasource, null if no EPSG code.                                                                                                                                                                                                         |
@@ -42,6 +42,8 @@ commonly used GSD in the center of the image. If the data includes multiple band
 values, this should be the value for the greatest number or most common bands. For instance, Landsat
 optical and short-wave IR bands are all 30 meters, but the panchromatic band is 15 meters. The
 eo:gsd should be 30 meters in this case since those are the bands most commonly used.
+
+**eo:constellation** is the name of the group of satellites that have similar payloads and have their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and radiometric characteristics. Examples are the Sentinel-2 [constellation](https://www.esa.int/Our_Activities/Observing_the_Earth/Copernicus/Sentinel-2/Satellite_constellation), which has S2A and S2B and RapidEye. This field allows users to search for Sentinel-2 data, for example, without needing to specify which specific platform the data came from.
 
 **eo:instrument** is the name of the sensor used, although for Items which contain data from
 multiple sensors this could also name multiple sensors. For example, data from the Landsat-8
