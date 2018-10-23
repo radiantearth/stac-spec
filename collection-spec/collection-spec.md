@@ -39,7 +39,7 @@ The object describes the spatio-temporal extents of the Collection. Both spatial
 **Note:** The STAC Collection Specification tries to align with [WFS 3.0](https://github.com/opengeospatial/WFS_FES), but there are still issues to be solved.
 The WFS specification is in draft state and may change, especially regarding [extents](https://github.com/opengeospatial/WFS_FES/issues/168) or
 [open date ranges](https://github.com/opengeospatial/WFS_FES/issues/155) for temporal extents. Therefore, it is also likely that the following fields change over time. 
-Please also note that WFS Collections and STAC Collections originate from different specifications and despite the fact that we try to aling them as good as possible
+Please also note that WFS Collections and STAC Collections originate from different specifications and despite the fact that we try to align them as much as possible
 be aware of their differences by reading both specifications.
 
 | Element  | Type           | Description                                                         |

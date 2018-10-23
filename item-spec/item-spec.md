@@ -132,7 +132,7 @@ or streamed. It is allowed to add additional fields.
 
 #### Asset types
 
-The following types are commonly for assets and are used as key for the Asset Object:
+The following types are commonly for assets and are used as keys for the Asset Object:
 
 | Type      | Description |
 | --------- | ----------- |
