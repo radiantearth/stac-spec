@@ -63,7 +63,7 @@
             ]
           },
           "url": {
-            "title": "Organization homepage",
+            "title": "Homepage",
             "type": "string",
             "format": "url"
           }
