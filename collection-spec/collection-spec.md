@@ -65,8 +65,8 @@ The object provides information about a provider. A provider is any of the organ
 | Field Name | Type      | Description                                                  |
 | ---------- | --------- | ------------------------------------------------------------ |
 | name       | string    | **REQUIRED.** The name of the organization or the individual. |
-| type       | [string]  | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`. |
-| url        | string    | Homepage of the provider. |
+| roles      | [string]  | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`. |
+| url        | string | Homepage on which the provider describes the dataset and publishes contact information. |
 
 **type**: The type of the provider can be one of the following elements:
 

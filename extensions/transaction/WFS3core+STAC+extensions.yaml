@@ -946,7 +946,10 @@ components:
                   - producer
                   - licensor
               url:
-                title: Organization homepage
+                title: Homepage
+                description: >-
+                  Homepage on which the provider describes the dataset and
+                  publishes contact information.
                 type: string
                 format: url
                 example: 'http://www.big-building.com'
