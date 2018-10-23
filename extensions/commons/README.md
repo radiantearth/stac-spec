@@ -52,7 +52,6 @@ An incomplete Collection:
   "properties": {
     "eo:gsd": 15,
     "eo:platform": "landsat-8",
-    "eo:constellation": "landsat-8",
     "eo:instrument": "OLI_TIRS",
     "eo:off_nadir": 0,
     "eo:bands": [
