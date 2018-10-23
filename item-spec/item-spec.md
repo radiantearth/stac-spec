@@ -127,6 +127,7 @@ or streamed. It is allowed to add additional fields.
 | Field Name | Type   | Description                                                                           |
 | ---------- | ------ | ------------------------------------------------------------------------------------- |
 | href       | string | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
+| rel        | string | Relationship between the current document and the linked asset. See chapter ["Asset relation types"](#asset-relation-types) for more information. |
 | title      | string | The displayed title for clients and users.                                            |
 | type       | string | Media type of the asset (see chapter on Media Types below).                           |
 
@@ -137,6 +138,17 @@ The following types are commonly for assets and are used as key for the Asset Ob
 | Type      | Description |
 | --------- | ----------- |
 | thumbnail | STRONGLY RECOMMENDED. A downsampled image of the core asset, for direct display online in a web page or interactive search application. Even assets that are less easily translated in to a visual image should provide some visual representation, that users can browse. For example a SAR asset can render an elevation mask or hillshade for display. If at all possible it should be included for a better user experience in searching data. |
+
+#### Asset Relation Types
+
+The following types are commonly used by assets:
+
+| Rel       | Description |
+| --------- | ----------- |
+| analytic | tk (cf. Planet examples) |
+| qa | tk QA band |
+| thumbnail | A downsampled image of the core asset, for direct display online in a web page or interactive search application. Even assets that are less easily translated in to a visual image should provide some visual representation, that users can browse. For example a SAR asset can render an elevation mask or hillshade for display. If at all possible it should be included for a better user experience in searching data. |
+| visual | A full-resolution asset suitable for visual display, e.g. a 3-band Cloud Optimized GeoTIFF. |
 
 #### Media Types
 
