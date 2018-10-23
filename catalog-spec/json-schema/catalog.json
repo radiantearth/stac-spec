@@ -31,13 +31,13 @@
       "title": "Catalog",
       "type": "object",
       "required": [
-        "stac_version",
+        "stacVersion",
         "id",
         "description",
         "links"
       ],
       "properties": {
-        "stac_version": {
+        "stacVersion": {
           "title": "STAC version",
           "type": "string"
         },

@@ -5,7 +5,7 @@
   "description": "This object represents Collections in a SpatioTemporal Asset Catalog.",
   "type": "object",
   "required": [
-    "stac_version",
+    "stacVersion",
     "id",
     "description",
     "license",
@@ -14,7 +14,7 @@
   ],
   "additionalProperties": true,
   "properties": {
-    "stac_version": {
+    "stacVersion": {
       "title": "STAC version",
       "type": "string"
     },

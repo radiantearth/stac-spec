@@ -19,7 +19,7 @@ Implementations are encouraged, however, as good effort will be made to not chan
 
 | Element      | Type              | Description                                                  |
 | ------------ | ----------------- | ------------------------------------------------------------ |
-| stac_version | string            | **REQUIRED.** The STAC version the collection implements.    |
+| stacVersion  | string            | **REQUIRED.** The STAC version the collection implements.    |
 | id           | string            | **REQUIRED.** Identifier for the collection that is unique across the provider. |
 | title        | string            | A short descriptive one-line title for the collection.       |
 | description  | string            | **REQUIRED.** Detailed multi-line description to fully explain the collection. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
@@ -30,7 +30,7 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | extent       | [Extent Object]   | **REQUIRED.** Spatial and temporal extents.                  |
 | links        | [Link Object]     | **REQUIRED.** A list of references to other documents.       |
 
-**stac_version**: It is not allowed to mix STAC versions. The root catalog or the root collection respectively MUST specify the implemented STAC version. Child Catalogs and child Collections MUST NOT specify a different STAC version.
+**stacVersion**: It is not allowed to mix STAC versions. The root catalog or the root collection respectively MUST specify the implemented STAC version. Child Catalogs and child Collections MUST NOT specify a different STAC version.
 
 ### Extent Object
 
@@ -99,7 +99,7 @@ The following types are commonly used as `rel` types in the Link Object of a Col
 | child   | URL to a child STAC [Catalog](../catalog-spec/) or Collection. |
 | item    | URL to a STAC [Item](../item-spec/README.md). All items linked from a collection MUST refer back to its collection with the `collection` relation type. |
 | license | The license URL for the collection SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file. |
-| derived_from | URL to a STAC Collection that was used as input data in the creation of this collection. See the note in [STAC Item](../item-spec/item-spec.md#relation-types) for more info. |
+| derivedFrom | URL to a STAC Collection that was used as input data in the creation of this collection. See the note in [STAC Item](../item-spec/item-spec.md#relation-types) for more info. |
 
 **Note:** The [STAC Catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is _not_ a requirement for collections, but _recommended_. In contrast to catalogs, it is **REQUIRED** that items linked from a Collection MUST refer back to its Collection with the `collection` relation type.
 

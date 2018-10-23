@@ -342,13 +342,13 @@ components:
     catalogDefinition:
       type: object
       required:
-        - stac_version
+        - stacVersion
         - id
         - description
         - links
       additionalProperties: true
       properties:
-        stac_version:
+        stacVersion:
           type: string
           example: 0.6.0
         id:

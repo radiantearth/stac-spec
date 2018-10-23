@@ -3,13 +3,13 @@ components:
     collectionInfo:
       type: object
       required:
-        - stac_version
+        - stacVersion
         - id
         - description
         - license
         - extent
       properties:
-        stac_version:
+        stacVersion:
           type: string
           example: 0.6.0
         id:

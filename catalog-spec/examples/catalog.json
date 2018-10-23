@@ -1,5 +1,5 @@
 {
-  "stac_version": "0.6.0",
+  "stacVersion": "0.6.0",
   "id": "sample",
   "title": "Sample catalog",
   "description": "This is a very basic sample catalog.",
