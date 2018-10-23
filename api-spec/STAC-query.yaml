@@ -52,6 +52,9 @@ paths:
         - $ref: '#/components/parameters/bbox'
         - $ref: '#/components/parameters/time'
         - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/query'
+        - $ref: '#/components/parameters/sort'
+        - $ref: '#/components/parameters/fields'
       responses:
         '200':
           description: A feature collection.
@@ -209,6 +212,31 @@ components:
       required: true
       schema:
         type: string
+    query:
+      name: query
+      in: query
+      description: >-
+        query for properties in items. Use the JSON form of the queryFilter used
+        in POST.
+      required: false
+      schema:
+        type: string
+    sort:
+      name: sort
+      in: query
+      description: Allows sorting results by the specified properties
+      required: false
+      schema:
+        $ref: '#/components/schemas/sort'
+    fields:
+      name: fields
+      in: query
+      description: Determines the shape of the features in the response
+      required: false
+      schema:
+        $ref: '#/components/schemas/fields'
+      style: form
+      explode: false
   schemas:
     exception:
       type: object
@@ -255,6 +283,9 @@ components:
             limit:
               type: number
               example: 10
+        - $ref: '#/components/schemas/queryFilter'
+        - $ref: '#/components/schemas/sortFilter'
+        - $ref: '#/components/schemas/fieldsFilter'
     bbox:
       description: |
         Only features that have a geometry that intersects the bounding box are
@@ -491,6 +522,135 @@ components:
         - rel: next
           href: >-
             http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
+    queryFilter:
+      type: object
+      description: Allows users to query properties for specific values
+      properties:
+        query:
+          $ref: '#/components/schemas/query'
+    query:
+      type: object
+      description: Define which properties to query and the operatations to apply
+      additionalProperties:
+        $ref: '#/components/schemas/queryProp'
+      example:
+        'eo:cloud_cover':
+          lt: 50
+        providers: Planet
+        published:
+          date: '2018-02-12T00:00:00Z/2018-03-18T12:31:12Z'
+        'pl:item_type':
+          startsWith: PSScene
+    queryProp:
+      description: Apply query operations to a specific property
+      anyOf:
+        - description: >-
+            if the object doesn't contain any of the operators, it is equivalent
+            to using the equals operator
+        - type: object
+          description: Match using an operator
+          properties:
+            eq:
+              description: >-
+                Find items with a property that is equal to the specified value.
+                For strings, a case-insensitive comparison must be performed.
+            neq:
+              description: >-
+                Find items that *don't* contain the specified value. For
+                strings, a case-insensitive comparison must be performed.
+            gt:
+              type: number
+              description: >-
+                Find items with a property value greater than the specified
+                value.
+            lt:
+              type: number
+              description: Find items with a property value less than the specified value.
+            gte:
+              type: number
+              description: >-
+                Find items with a property value greater than or equal the
+                specified value.
+            lte:
+              type: number
+              description: >-
+                Find items with a property value greater than or equal the
+                specified value.
+            startsWith:
+              type: string
+              description: >-
+                Find items with a property that begins with the specified
+                string. A case-insensitive comparison must be performed.
+            endsWith:
+              type: string
+              description: >-
+                Find items with a property that ends with the specified string.
+                A case-insensitive comparison must be performed.
+            contains:
+              type: string
+              description: >-
+                Find items with a property that contains with the specified
+                string. A case-insensitive comparison must be performed.
+            time:
+              $ref: '#/components/schemas/time'
+    sortFilter:
+      type: object
+      description: Sort the results
+      properties:
+        sort:
+          $ref: '#/components/schemas/sort'
+    sort:
+      type: array
+      description: |
+        An array of objects containing a property name and sort direction.
+      minItems: 1
+      items:
+        type: object
+        required:
+          - field
+        properties:
+          field:
+            type: string
+          direction:
+            type: string
+            default: asc
+            enum:
+              - asc
+              - desc
+      example:
+        - field: 'eo:cloud_cover'
+        - field: providers
+          direction: desc
+    fieldsFilter:
+      type: object
+      description: Determines the shape of the features in the response
+      properties:
+        fields:
+          $ref: '#/components/schemas/fields'
+    fields:
+      description: >
+        The geometry member determines whether the geometry is populated or is
+        null. The
+
+        include and exclude members specify an array of property names that are
+        either 
+
+        included or excluded from the result, respectively. If both include and
+        exclude 
+
+        are specified, include takes precedence.
+      type: object
+      properties:
+        geometry:
+          type: boolean
+        include:
+          type: array
+          items:
+            type: string
+        exclude:
+          type: array
+          items:
+            type: string
 tags:
   - name: STAC
     description: Extension to WFS3 Core to support STAC metadata model and search API

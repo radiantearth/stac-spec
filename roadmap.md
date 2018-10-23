@@ -17,12 +17,12 @@ spec changes discusses on a pull request, merging once there is community consen
 
 ### Asset definitions
 
-Currently the 'Asset' items in the array only require a link to the asset, and contain an option 'name'. There is likely
-quite a bit more that can be standardized in a useful way - at the very least some optional fields to help providers
+Currently the 'Asset' items in the array only require a link to the asset, and contain an optional 'title' and media 'type'.
+There is likely quite a bit more that can be standardized in a useful way - at the very least some optional fields to help providers
 describe more of what they're doing. Another idea is to require a link to a 'product definition' that an asset must
 implement, which would provide the needed fields. This would increase the burden on the client, to follow or cache
 the definitions, but would also decrease the repetition of the same fields over and over again. There is additional
-discussion on this topic in the [static catalog recommendations](static-catalog/static-recommendations.md#asset-definition).
+discussion on this topic in the [static catalog recommendations](catalog-spec/static-recommendations.md#asset-definition).
 Part of this is also tracked in [Issue 23](https://github.com/radiantearth/stac-spec/issues/23)
 
 ### Querying and Filtering
@@ -45,10 +45,10 @@ it is potentially a good place to put data that applies to all the Items in the 
 contact information and license data. The individual items could then just reference the catalog they come 
 from instead of repeating each field.
 
-### Domain and Vendor profiles
+### Domain and Vendor extensions
 
 Ideally there is a way for domains (like Earth Observation / satellite imagery) or specific vendors to publish
-more meta information about the additional fields they use. The STAC mechanisms should enable a full `Item` with
+more meta information about the additional fields they use. The STAC mechanisms should enable a full Item with
 all the extra fields included to be self-describing, so clients could understand more than just the core fields.
 This likely would involve ways of defining additional schemas, and ways to share those schemas and validate a
 response against several schemas. This could be some additional mechanics in Catalog API (likely optional, to
@@ -58,19 +58,19 @@ leverage web best practices to share core schema definitions across different ST
 
 The schema definition mechanism part of this is defined in [Issue 30](https://github.com/radiantearth/stac-spec/issues/30).
 
-### Earth Observation Profile
+### EO Extension
 
 The top priority for many of the initial STAC implementors is to share more fields between data than just
 date and time. At the [boulder sprint](http://github.com/radiantearth/boulder-sprint) the metadata group
 initially came up with around 20 fields to standardize. Most all of them were quite useful to satellite
 imagery (and less useful for other data, which is why they didn't make the final cut for STAC core). It
-is a goal to make that list a 'profile' for the domain, so that different vendors can share a single cloud
+is a goal to make that list an 'extension' for the domain, so that different vendors can share a single cloud
 cover definition. Right now one might have parameters for maxCloudCover and minCloudCover ranging from 0 to 100, 
 another may have a 'cloud_cover' parameter that takes a value range from 0 to 1.
 
 Ideally the main fields that users utilize to search for imagery would have shared definitions that would be
-used across all satellite imagery providers. After this core profile is established it would be great to
-create more profiles for other data types, as well as downstream imagery products (mosaics, band mathed, 
+used across all satellite imagery providers. After this core extension is established it would be great to
+create more extensions for other data types, as well as downstream imagery products (mosaics, band mathed, 
 land cover, etc)
 
 ### Additional rel Link definitions 
@@ -112,11 +112,11 @@ This will take more research on what exactly we should do. But likely candidates
 versions of the spec, leveraging http://schema.org or defining a similar canonical location for geospatial schemas,
 and defining microformats to go in the html versions.
 
-### Additional Profiles
+### Additional extensions
 
 This item will hopefully continously happen, as real world implementations come online. But we should evolve the
 schemas people define to become best practices and defined extensions. We may also need some 'type'
-definitions to help clients more easily recognize known schemas. Candidates for additional profiles include
+definitions to help clients more easily recognize known schemas. Candidates for additional extensions include
 derived data (like NDVI), including even specific types of derived data that might add more information, mosiacs,
 DEMs / DSMs, LiDAR, SAR, hyperspectral imagery, and many more.
 

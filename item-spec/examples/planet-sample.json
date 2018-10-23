@@ -1,0 +1,127 @@
+{
+  "links": [
+    { "rel":"self", "href": "https://api.planet.com/data/v1/item-types/PSScene4Band/items/20171110_121030_1013"},
+    { "rel":"full-assets", "href": "https://api.planet.com/data/v1/item-types/PSScene4Band/items/20171110_121030_1013/assets/"}
+  ],
+  "bbox": [
+      -38.9237469532665,
+      -13.169235186077524,
+      -38.671635567195025,
+      -13.048292073058748
+    ],
+  "geometry": {
+    "coordinates": [
+      [
+        [
+          -38.92116702540037,
+          -13.110092317731418
+        ],
+        [
+          -38.9112864728743,
+          -13.062487360866074
+        ],
+        [
+          -38.9110789705375,
+          -13.062527998574287
+        ],
+        [
+          -38.908213551271224,
+          -13.048292073058748
+        ],
+        [
+          -38.671635567195025,
+          -13.094581158659716
+        ],
+        [
+          -38.67642080836562,
+          -13.118491623177688
+        ],
+        [
+          -38.68693656624613,
+          -13.169235186077524
+        ],
+        [
+          -38.9237469532665,
+          -13.122881179500025
+        ],
+        [
+          -38.92116702540037,
+          -13.110092317731418
+        ]
+      ]
+    ],
+    "type": "Polygon"
+  },
+  "id": "20171110_121030_1013",
+  "properties": {
+    "datetime": "2017-11-10T12:10:30.535417Z",
+    "eo:cloud_cover": 23,
+    "eo:gsd": 4,
+    "eo:sun_azimuth": 101.8,
+    "eo:sun_elevation": 58.8,
+    "eo:off_nadir": 1,
+    "pl:acquired": "2017-11-10T12:10:30.535417Z",
+    "pl:anomalous_pixels": 0.14,
+    "pl:columns": 9111,
+    "pl:epsg_code": 32724,
+    "pl:ground_control": true,
+    "pl:instrument": "PS2",
+    "pl:item_type": "PSScene4Band",
+    "pl:origin_x": 508263,
+    "pl:origin_y": 8557524,
+    "pl:pixel_resolution": 3,
+    "pl:provider": "planetscope",
+    "pl:published": "2017-11-10T16:11:38Z",
+    "pl:quality_category": "standard",
+    "pl:rows": 4466,
+    "pl:satellite_id": "1013",
+    "pl:strip_id": "902639",
+    "pl:updated": "2017-11-11T11:17:33Z",
+    "pl:usable_data": 0,
+    "pl:view_angle": 1
+  },
+  "type": "Feature",
+  "assets": {
+    "thumbnail": { 
+      "href": "https://api.planet.com/data/v1/item-types/PSScene4Band/items/20171110_121030_1013/thumb",
+      "title": "Thumbnail", 
+      "status": "active"
+    },
+    "analytic": {
+      "href": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcxMTEwXzEyMTAxMF8xMDEzIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWMiLCAiY3QiOiAiaXRlbS10eXBlIn0",
+      "title": "PSScene4Band GeoTIFF (COG)",
+      "activate": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcxMTEwXzEtMTAzMF8xMDEzIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWMiLCAiY3QiOiAiaXRlbS10eXBlIn0/activate",
+      "asset_type": "https://api.planet.com/data/v1/asset-types/analytic",
+      "_permissions": [
+        "download"
+      ],
+      "md5_digest": null,
+      "status": "inactive"
+    },
+    "analytic_xml": {
+      "href": "https://api.planet.com/data/v1/assets/NTY2VuZTReyJpIjogIjIwMTcxMTEwXzEyMTAxMF8xMDEzIiQiOiAiaXRlbS10ewgImMiOiAiUFbHl0aWMiLCAiY3XBlIn0",
+      "title": "PSScene4Band XML Metadata",
+      "activate": "https://api.planet.com/data/v1/assets/tMTAzMF8xMDEzIiwInQiOiAeyJpIjogIjIwMTcxMTEwXzEiYW5hbHl0aWMiLCAiY3gImMiOiAiUFNTY2VuZTRCYW5kIiwgQiOiAiaXRlbS10eXBlIn0/activate",
+      "asset_type": "https://api.planet.com/data/v1/asset-types/analytic_xml",
+      "_permissions": [
+        "download"
+      ],
+      "md5_digest": null,
+      "status": "activating"
+    },
+    "udm": {
+      "href": "https://api.planet.com/data/v1/assets/NTY2VuZTReyJpIzEyMTAxMF8xMDEzIiQiOiAiaXRlbTcxMTEwXAiUFbHl0S10ewgImMiOijogIjIwMaWMiLCAiY3XBlIn0",
+      "title": "PSScene4Band Unusable Data Mask",
+      "activate": "https://api.planet.com/data/v1/assets/tMTAzMF8xMDEzIiwInQiOiAeyJpIjogIjIgImMiOiAiUFwMTcxMTEwXzEiYW5hbHl0aWMiLCAiY3NTY2VuZTRCYW5kIiwgQiOiAiaXRlbS10eXBlIn0/activate",
+      "asset_type": "https://api.planet.com/data/v1/asset-types/udm",
+      "_permissions": [
+        "download"
+      ],
+      "expires_at": "2017-11-26T06:41:41.467106",
+      "location": "https://api.planet.com/data/v1/download?token=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOd01QTVVnMVQzaGFWTzBNdFBtb0pQamiJ6K3haZmsrNVZ4ZG415WeHExUEh6VkpNSFRGNVZUMVRpQ1pKcmdhcU5HeTBOR1JVS3dmWWFpZ255eExDTnRWUT09IiwiaXRlbV90eXBlX2lkIjoiUFNTY2VuZTRCYW5kIiwidG9rZW5fdHlwZSI6InR5cGVkLWl0ZW0iLCJleHAiOjE1MTE2Nzg1MDEsIml0ZW1faWQiOiIyMDE3MTEyMl8xMjExMjJfMTAzOSIsImFzc2V0X3R5cGUiOiJhbmFseXRpY19kbiJ9.HJAskK7QIeBIT_7fCumZ73vpECjN9J6rdAaKd9QBu2Z8gVixK2V_tIxg2mXBqJGJQxuVmAJw-SYoYeGmevWilA",
+      "md5_digest": "d860370a9468e39f97b2044bc5fd4bfe",
+      "status": "active"
+    }
+
+  }
+}
