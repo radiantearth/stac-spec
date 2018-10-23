@@ -53,6 +53,10 @@
             "title": "Organization name",
             "type": "string"
           },
+          "description": {
+            "title": "Provider description",
+            "type": "string"
+          },
           "roles": {
             "title": "Organization roles",
             "type": "array",

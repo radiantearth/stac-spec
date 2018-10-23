@@ -800,6 +800,10 @@ components:
                 title: Organization name
                 type: string
                 example: Big Building Corp
+              description:
+                title: Provider description
+                type: string
+                example: No further processing applied.
               roles:
                 title: Organization roles
                 type: array
