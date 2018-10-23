@@ -40,6 +40,9 @@ someone should still review that all the schemas have been updated and align wit
 can not happen automatically.
 * **Final Spec Read Through**: There should be a final read through of the core specification to make sure it makes sense
 and there are no typos, errors, etc.
+* **Update the version numbers**: There are several places in the spec that use the version number in text or a link. These
+include the readme, and the openapi specs. Right now the best thing to do is just a search & replace. Hopefully in the future
+there will be scripts or continuous integration to do this.
 * **Swaggerhub release of OpenAPI Specs**: The spec uses [Swaggerhub](http://swaggerhub.com) to display more easily browsable
 versions of the API specifications of the [standalone](https://app.swaggerhub.com/apis/cholmesgeo/STAC-standalone) and 
 [wfs3 integrated](https://app.swaggerhub.com/apis/cholmesgeo/STAC_WFS-example/) versions. These should be updated to the 
