@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "id": "schema.json#",
+  "type": "object", 
+  "title": "Mixin Extension",
+  "properties": {
+    "properties": {
+      "type": "object",
+      "properties": {
+        "mix:license": {
+          "title": "Item Licenses",
+          "type": "string"
+        },
+        "mix:providers": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "name": {
+                "title": "Organization name",
+                "type": "string"
+              },
+              "description": {
+                "title": "Provider description",
+                "type": "string"
+              },
+              "roles": {
+                "title": "Organization roles",
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "producer",
+                    "licensor",
+                    "processor",
+                    "host"
+                  ]
+                }
+              },
+              "url": {
+                "title": "Homepage",
+                "type": "string",
+                "format": "url"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
