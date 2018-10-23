@@ -71,6 +71,7 @@ The object provides information about a provider. A provider is any of the organ
 
 **type**: The type of the provider can be one of the following elements:
 
+* *licensor*: The organization that is licensing the dataset under the license specified in the collection's `license` field.
 * *producer*: The producer of the data is the provider that initially captured and processed the source data, e.g. ESA for Sentinel-2 data.
 * *processor*: A processor is any provider who processed data to a derived product.
 * *host*: The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list. 
