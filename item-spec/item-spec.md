@@ -155,8 +155,8 @@ Common STAC Item Media Types:
 
 | Media Type                      | Description                                                                              |
 | ------------------------------ | ----------------------------------------------------------------------------------------- |
-| `image/tiff` or `image/x.geotiff`     | GeoTIFF TIFF file with standardized georeferencing metadata                        |
-| `image/tiff` or `image/x.cloud-optimized-geotiff` | Cloud Optimized GeoTIFF                                                |
+| `image/tiff` or `image/vnd.stac.geotiff` | GeoTIFF with standardized georeferencing metadata                               |
+| `image/vnd.stac.geotiff; cloud-optimized=true` | Cloud Optimized GeoTIFF                                                   |
 | `image/jp2`                      | JPEG 2000                                                                               |
 | `image/png`                      | Visual PNGs (e.g. thumbnails)                                                           |
 | `image/jpeg`                     | Visual JPEGs (e.g. thumbnails, oblique)                                                 |
