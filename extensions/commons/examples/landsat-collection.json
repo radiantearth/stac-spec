@@ -21,22 +21,22 @@
         {
             "name": "USGS",
             "url": "https://landsat.usgs.gov/",
-            "type": "producer"
+            "roles": ["producer", "licensor"]
         },
         {
             "name": "Planet Labs",
             "url": "https://github.com/landsat-pds/landsat_ingestor",
-            "type": "processor"
+            "roles": ["processor"]
         },
         {
             "name": "AWS",
             "url": "https://landsatonaws.com/",
-            "type": "host"
+            "roles": ["host"]
         },
         {
             "name": "Development Seed",
             "url": "https://developmentseed.org/",
-            "type": "processor"
+            "roles": ["processor"]
         }
     ],
     "license": "PDDL-1.0",
