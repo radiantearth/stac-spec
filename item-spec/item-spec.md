@@ -100,6 +100,8 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may use the [Commons extension](../extensions/commons/README.md) and holds common fields of this and other Items (see chapter '[Collections](#Collections)' for more explanations). |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
 
+A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+
 *Note regarding the type `derived_from`: A full provenance model is far beyond the scope of STAC, and the goal is to align with any good independent spec 
 that comes along for that. But the derived_from field is seen as a way to encourage fuller specs and at least start a linking
 structure that can be used as a jumping off point for more experiments in provenance tracking*
