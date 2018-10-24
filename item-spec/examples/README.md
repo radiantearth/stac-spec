@@ -21,7 +21,7 @@ satellite imagery, as most providers include a number of complementary files.
 
 **DigitalGlobe** The [DigitalGlobe sample](digitalglobe-sample.json) is taken from the proposed DigitalGlobe static catalog
 [pull request](https://github.com/radiantearth/stac-spec/pull/33), with minor field updates to validate against the the 
-stac-item specification.
+item specification.
 
 **Landsat8** The [Landsat8 sample](landsat8-sample.json) is meant to be an example of how an S3-based catalog like the 
 [Landsat on AWS](https://landsatonaws.com/) public data set could be a STAC static catalog. It includes the 'collection'
