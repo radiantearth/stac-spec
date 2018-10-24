@@ -36,8 +36,8 @@
   },
   "properties":{
     "datetime":"2018-01-01T13:21:30Z",
-    "mix:license":"PDDL-1.0",
-    "mix:providers":[
+    "item:license":"PDDL-1.0",
+    "item:providers":[
       {
         "name":"John Doe",
         "roles":[

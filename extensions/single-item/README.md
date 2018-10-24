@@ -1,18 +1,18 @@
-# Mixin Extension Specification (`mix`)
+# SIngle Item Extension Specification (`item`)
 
 **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
-Provides a way to specify several fields in Items that usually reside on the collection-level such as license and provider.
+Provides a way to specify several fields in individual Items that usually reside on the collection-level such as license and providers.
 
 - [Example](example.json)
 - [JSON Schema](schema.json)
 
 ## Item fields
 
-| Field Name       | Type              | Description                                                  |
-| ---------------- | ----------------- | ------------------------------------------------------------ |
-| mix:license      | string            | Item's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
-| mix:providers    | [Provider Object] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
+| Field Name        | Type              | Description                                                  |
+| ----------------- | ----------------- | ------------------------------------------------------------ |
+| item:license      | string            | Item's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
+| item:providers    | [Provider Object] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 
 ### Provider Object
 

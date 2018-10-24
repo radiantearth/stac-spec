@@ -2,16 +2,16 @@
   "$schema": "http://json-schema.org/draft-06/schema#",
   "id": "schema.json#",
   "type": "object", 
-  "title": "Mixin Extension",
+  "title": "Single Item Extension",
   "properties": {
     "properties": {
       "type": "object",
       "properties": {
-        "mix:license": {
+        "item:license": {
           "title": "Item Licenses",
           "type": "string"
         },
-        "mix:providers": {
+        "item:providers": {
           "type": "array",
           "items": {
             "properties": {
