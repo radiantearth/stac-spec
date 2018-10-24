@@ -81,7 +81,7 @@ and a discussion of the collaboration [principles](principles.md) and specificat
 An important core principle of the STAC design is to embrace best practices of making data available on the web (like 
 [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS) and [W3C Spatial Data on the Web](https://www.w3.org/TR/sdw-bp/)), and 
 to leverage the reliability of flat files on object stores like [AWS S3](https://aws.amazon.com/s3/) and [Google Cloud Storage](https://cloud.google.com/storage/).
-This leaded to designing a static catalog at the core of the STAC spec.
+This lead to designing a static catalog at the core of the STAC spec.
 
 #### Static Catalog
 
@@ -105,6 +105,10 @@ or at least may have a 'backup' of its fields stored as a cached static catalog.
 The Item specification defines the core fields that all assets must make available for searching in a catalog.
 In addition there are some basic fields for describing collections of data.
 Vendors can extend those core fields for the metadata they want to make available, and the community has started to define shared extensions.
+
+#### UML Diagram
+
+A UML diagram of the [STAC model](https://github.com/radiantearth/stac-spec/blob/uml-diagram/STAC-060-uml.pdf) is provided to help with navigating the specification. 
 
 ## Contributing
 
