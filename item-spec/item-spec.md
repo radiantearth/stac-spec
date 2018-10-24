@@ -64,6 +64,7 @@ custom fields.
 | Field Name | Type   | Description                                                  |
 | ---------- | ------ | ------------------------------------------------------------ |
 | datetime   | string | **REQUIRED.** The searchable date and time of the assets, in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
+| title      | string | A human readable title describing the item. |
 
 **datetime** is likely the acquisition (in the case of single camera type captures) or the 'nominal'
 or representative time in the case of assets that are combined together. Though time can be a
@@ -154,8 +155,8 @@ Common STAC Item Media Types:
 
 | Media Type                      | Description                                                                              |
 | ------------------------------ | ----------------------------------------------------------------------------------------- |
-| `image/tiff` or `image/x.geotiff`     | GeoTIFF TIFF file with standardized georeferencing metadata                        |
-| `image/tiff` or `image/x.cloud-optimized-geotiff` | Cloud Optimized GeoTIFF                                                |
+| `image/tiff` or `image/vnd.stac.geotiff` | GeoTIFF with standardized georeferencing metadata                               |
+| `image/vnd.stac.geotiff; cloud-optimized=true` | Cloud Optimized GeoTIFF                                                   |
 | `image/jp2`                      | JPEG 2000                                                                               |
 | `image/png`                      | Visual PNGs (e.g. thumbnails)                                                           |
 | `image/jpeg`                     | Visual JPEGs (e.g. thumbnails, oblique)                                                 |

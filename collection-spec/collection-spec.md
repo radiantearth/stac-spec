@@ -62,14 +62,16 @@ The coordinate reference system of the values is WGS84 longitude/latitude.
 
 The object provides information about a provider. A provider is any of the organizations that captured or processed the content of the collection and therefore influenced the data offered by this collection. May also include information about the final storage provider hosting the data.
 
-| Field Name | Type   | Description                                                  |
-| ---------- | ------ | ------------------------------------------------------------ |
-| name       | string | **REQUIRED.** The name of the organization or the individual. |
-| type       | string | The type of provider. Any of `producer`, `processor` or `host`. |
-| url        | string | Homepage of the provider.                                    |
+| Field Name  | Type      | Description                                                  |
+| ----------- | --------- | ------------------------------------------------------------ |
+| name        | string    | **REQUIRED.** The name of the organization or the individual. |
+| description | string    | Multi-line description to add further provider information such as processing details for processors and producers, hosting details for hosts or basic contact information. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| roles       | [string]  | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`. |
+| url         | string    | Homepage on which the provider describes the dataset and publishes contact information. |
 
 **type**: The type of the provider can be one of the following elements:
 
+* *licensor*: The organization that is licensing the dataset under the license specified in the collection's `license` field.
 * *producer*: The producer of the data is the provider that initially captured and processed the source data, e.g. ESA for Sentinel-2 data.
 * *processor*: A processor is any provider who processed data to a derived product.
 * *host*: The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list. 
@@ -82,7 +84,8 @@ This object describes a relationship with another entity. Data providers are adv
 | ---------- | ------ | ------------------------------------------------------------ |
 | href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information. |
-| type       | string | Media type of the referenced entity.                          |
+| type       | string | Media type of the referenced entity. |
+| title      | string | A human readable title to be used in rendered displays of the link. |
 
 Please see the chapter 'relative vs absolute links' in the [Item spec](../item-spec/item-spec.md#relative-vs-absolute-links) for a discussion on that topic. 
 

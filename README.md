@@ -33,7 +33,8 @@ The [master branch](https://github.com/radiantearth/stac-spec/tree/master) is th
 [dev](https://github.com/radiantearth/stac-spec/tree/dev) branch is where active development takes place, and may have inconsistent examples. 
 Whenever dev stabilizes a release is cut and we merge dev in to master. So master should be stable at any given time.
 It is possible that there may be small releases in quick succession, especially if they are nice improvements that do 
-not require lots of updating. 
+not require lots of updating. More information on how the STAC development process works can be found in 
+[process.md](process.md).
 
 ## Communication
 
