@@ -204,6 +204,7 @@ with links.
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information. |
 | type       | string | Media type of the referenced entity.                                                                                                |
 | title      | string | A human readable title to be used in rendered displays of the link.                                                                 |
+A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
 
 Please see the chapter 'relative vs absolute links' in the [Item spec](../item-spec/item-spec.md#relative-vs-absolute-links) for a discussion on that topic. 
 
