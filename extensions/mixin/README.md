@@ -11,7 +11,7 @@ Provides a way to specify several fields in Items that usually reside on the col
 
 | Field Name       | Type              | Description                                                  |
 | ---------------- | ----------------- | ------------------------------------------------------------ |
-| mix:license      | string            | Items's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
+| mix:license      | string            | Item's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
 | mix:providers    | [Provider Object] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 
 ### Provider Object
@@ -25,7 +25,7 @@ The object provides information about a provider. A provider is any of the organ
 | roles       | [string]  | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`. |
 | url         | string    | Homepage on which the provider describes the dataset and publishes contact information. |
 
-**type**: The type of the provider can be one of the following elements:
+**roles**: The provider's role(s) can be one or more of the following elements:
 
 * *licensor*: The organization that is licensing the dataset under the license specified in the collection's `license` field.
 * *producer*: The producer of the data is the provider that initially captured and processed the source data, e.g. ESA for Sentinel-2 data.

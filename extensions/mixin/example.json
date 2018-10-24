@@ -39,9 +39,11 @@
     "mix:license":"PDDL-1.0",
     "mix:providers":[
       {
-        "name": "John Doe",
-        "type": "producer",
-        "url": "https://doe-drones.com/"
+        "name":"John Doe",
+        "roles":[
+          "producer"
+        ],
+        "url":"https://doe-drones.com/"
       }
     ]
   },
