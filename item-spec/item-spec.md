@@ -121,7 +121,6 @@ provide additional information about a set of items, for example the license, pr
 giving context on the overall set of data that an individual Item is a part of. If Items are part of a STAC Collection, 
 the [STAC Collection spec *requires* Items to link back to the Collection](collection-spec/collection-spec.md#relation-types).
 
-
 ### Asset Object
 
 An asset is an object that contains a link to data associated with the Item that can be downloaded
@@ -135,7 +134,7 @@ or streamed. It is allowed to add additional fields.
 
 #### Asset types
 
-The following types are commonly for assets and are used as key for the Asset Object:
+The following types are common for assets and are used as the key for the Asset Object:
 
 | Type      | Description |
 | --------- | ----------- |

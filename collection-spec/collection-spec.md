@@ -27,7 +27,7 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | version      | string            | Version of the collection.                                   |
 | license      | string            | **REQUIRED.** Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
 | providers    | [Provider Object] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
-| extent       | [Extent Object]   | **REQUIRED.** Spatial and temporal extents.                  |
+| extent       | Extent Object     | **REQUIRED.** Spatial and temporal extents.                  |
 | links        | [Link Object]     | **REQUIRED.** A list of references to other documents.       |
 
 **stac_version**: It is not allowed to mix STAC versions. The root catalog or the root collection respectively MUST specify the implemented STAC version. Child Catalogs and child Collections MUST NOT specify a different STAC version.
@@ -39,7 +39,7 @@ The object describes the spatio-temporal extents of the Collection. Both spatial
 **Note:** The STAC Collection Specification tries to align with [WFS 3.0](https://github.com/opengeospatial/WFS_FES), but there are still issues to be solved.
 The WFS specification is in draft state and may change, especially regarding [extents](https://github.com/opengeospatial/WFS_FES/issues/168) or
 [open date ranges](https://github.com/opengeospatial/WFS_FES/issues/155) for temporal extents. Therefore, it is also likely that the following fields change over time. 
-Please also note that WFS Collections and STAC Collections originate from different specifications and despite the fact that we try to aling them as good as possible
+Please also note that WFS Collections and STAC Collections originate from different specifications and despite the fact that we try to align them as much as possible
 be aware of their differences by reading both specifications.
 
 | Element  | Type           | Description                                                         |
