@@ -17,7 +17,7 @@ contains a number of real world examples. See the [readme](examples/README.md) f
 discussion of the examples.
 
 **Schemas:** The schemas to validate the core Item definition are found in the 
-*[json-schema/](json-schema/)* folder. The primary one is *[stac-item.json](json-schema/stac-item.json)*, 
+*[json-schema/](json-schema/)* folder. The primary one is *[item.json](json-schema/item.json)*, 
 and it also includes the necessary *[geojson.json](json-schema/geojson.json)* schema definition, 
 which is a dependency.
 
