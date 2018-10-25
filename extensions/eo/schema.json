@@ -16,7 +16,7 @@
         {
           "oneOf": [
             {
-              "$ref": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/json-spec/json-schema/stac-item.json#/definitions/core"
+              "$ref": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/json-spec/json-schema/item.json#/definitions/core"
             }
           ]
         },
