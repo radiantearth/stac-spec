@@ -7,7 +7,7 @@ info:
     specification. Any service that implements this endpoint to allow search of
     spatiotemporal assets can be considered a STAC API. The endpoint is also
     available as an OpenAPI fragment that can be integrated with other OpenAPI
-    definitions, and is designed to slot seamless into a WFS 3 API definition.
+    definitions, and is designed to slot seamlessly into a WFS 3 API definition.
   contact:
     name: Cool Sat Corp
     email: info@cool-sat.com
@@ -63,7 +63,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -95,7 +95,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -139,7 +139,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/req-classes'
         default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -161,7 +161,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -188,7 +188,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -226,7 +226,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -260,7 +260,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -288,7 +288,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -323,7 +323,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -358,7 +358,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -386,7 +386,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -924,7 +924,7 @@ components:
           title: Collection License Name
           type: string
           example: Apache-2.0
-        provider:
+        providers:
           type: array
           items:
             properties:
@@ -932,16 +932,28 @@ components:
                 title: Organization name
                 type: string
                 example: Big Building Corp
-              type:
-                title: Organization type
+              description:
+                title: Provider description
                 type: string
-                enum:
+                example: No further processing applied.
+              roles:
+                title: Organization roles
+                type: array
+                items:
+                  type: string
+                  enum:
+                    - producer
+                    - licensor
+                    - processor
+                    - host
+                example:
                   - producer
-                  - processor
-                  - host
-                example: producer
+                  - licensor
               url:
-                title: Organization homepage
+                title: Homepage
+                description: >-
+                  Homepage on which the provider describes the dataset and
+                  publishes contact information.
                 type: string
                 format: url
                 example: 'http://www.big-building.com'

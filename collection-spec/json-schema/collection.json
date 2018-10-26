@@ -45,7 +45,7 @@
       "title": "Collection License Name",
       "type": "string"
     },
-    "provider": {
+    "providers": {
       "type": "array",
       "items": {
         "properties": {
@@ -53,17 +53,25 @@
             "title": "Organization name",
             "type": "string"
           },
-          "type": {
-            "title": "Organization type",
-            "type": "string",
-            "enum": [
-              "producer",
-              "processor",
-              "host"
-            ]
+          "description": {
+            "title": "Provider description",
+            "type": "string"
+          },
+          "roles": {
+            "title": "Organization roles",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "producer",
+                "licensor",
+                "processor",
+                "host"
+              ]
+            }
           },
           "url": {
-            "title": "Organization homepage",
+            "title": "Homepage",
             "type": "string",
             "format": "url"
           }

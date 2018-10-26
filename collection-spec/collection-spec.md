@@ -26,8 +26,8 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | keywords     | [string]          | List of keywords describing the collection.                  |
 | version      | string            | Version of the collection.                                   |
 | license      | string            | **REQUIRED.** Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
-| provider     | [Provider Object] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
-| extent       | [Extent Object]   | **REQUIRED.** Spatial and temporal extents.                  |
+| providers    | [Provider Object] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
+| extent       | Extent Object     | **REQUIRED.** Spatial and temporal extents.                  |
 | links        | [Link Object]     | **REQUIRED.** A list of references to other documents.       |
 
 **stac_version**: It is not allowed to mix STAC versions. The root catalog or the root collection respectively MUST specify the implemented STAC version. Child Catalogs and child Collections MUST NOT specify a different STAC version.
@@ -39,7 +39,7 @@ The object describes the spatio-temporal extents of the Collection. Both spatial
 **Note:** The STAC Collection Specification tries to align with [WFS 3.0](https://github.com/opengeospatial/WFS_FES), but there are still issues to be solved.
 The WFS specification is in draft state and may change, especially regarding [extents](https://github.com/opengeospatial/WFS_FES/issues/168) or
 [open date ranges](https://github.com/opengeospatial/WFS_FES/issues/155) for temporal extents. Therefore, it is also likely that the following fields change over time. 
-Please also note that WFS Collections and STAC Collections originate from different specifications and despite the fact that we try to aling them as good as possible
+Please also note that WFS Collections and STAC Collections originate from different specifications and despite the fact that we try to align them as much as possible
 be aware of their differences by reading both specifications.
 
 | Element  | Type           | Description                                                         |
@@ -62,14 +62,16 @@ The coordinate reference system of the values is WGS84 longitude/latitude.
 
 The object provides information about a provider. A provider is any of the organizations that captured or processed the content of the collection and therefore influenced the data offered by this collection. May also include information about the final storage provider hosting the data.
 
-| Field Name | Type   | Description                                                  |
-| ---------- | ------ | ------------------------------------------------------------ |
-| name       | string | **REQUIRED.** The name of the organization or the individual. |
-| type       | string | The type of provider. Any of `producer`, `processor` or `host`. |
-| url        | string | Homepage of the provider.                                    |
+| Field Name  | Type      | Description                                                  |
+| ----------- | --------- | ------------------------------------------------------------ |
+| name        | string    | **REQUIRED.** The name of the organization or the individual. |
+| description | string    | Multi-line description to add further provider information such as processing details for processors and producers, hosting details for hosts or basic contact information. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| roles       | [string]  | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`. |
+| url         | string    | Homepage on which the provider describes the dataset and publishes contact information. |
 
-**type**: The type of the provider can be one of the following elements:
+**roles**: The provider's role(s) can be one or more of the following elements:
 
+* *licensor*: The organization that is licensing the dataset under the license specified in the collection's `license` field.
 * *producer*: The producer of the data is the provider that initially captured and processed the source data, e.g. ESA for Sentinel-2 data.
 * *processor*: A processor is any provider who processed data to a derived product.
 * *host*: The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list. 
@@ -82,7 +84,10 @@ This object describes a relationship with another entity. Data providers are adv
 | ---------- | ------ | ------------------------------------------------------------ |
 | href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information. |
-| type       | string | Media type of the referenced entity.                          |
+| type       | string | Media type of the referenced entity. |
+| title      | string | A human readable title to be used in rendered displays of the link. |
+
+A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
 
 Please see the chapter 'relative vs absolute links' in the [Item spec](../item-spec/item-spec.md#relative-vs-absolute-links) for a discussion on that topic. 
 

@@ -1,54 +1,54 @@
 # WFS and STAC integration
 
-At the [Ft Collins Sprint](https://github.com/radiantearth/community-sprints/tree/master/03072018-ft-collins-co) the
-decision was made to integrate STAC with the [Web Feature Service 3 specification](https://github.com/opengeospatial/WFS_FES). 
+At the [Fort Collins Sprint](https://github.com/radiantearth/community-sprints/tree/master/03072018-ft-collins-co) the
+decision was made to align STAC with the [Web Feature Service 3 specification](https://github.com/opengeospatial/WFS_FES).
 This document gives more details on what that practically means and how it all works.
 
-## What is WFS?
+## What is WFS
 
-WFS stands for Web Feature Service, and is the specification from the [Open Geospatial Consortium](http://opengeospatial.org) 
+WFS stands for Web Feature Service, and is the specification from the [Open Geospatial Consortium](http://opengeospatial.org)
 that specifies how to search for geospatial vector data online. The specifications have traditionally been quite
 heavyweight, but the new 3.0 version of WFS is actually very in line with what the SpatioTemporal Asset Catalog group has done.
 It provides a RESTful interface to query geospatial data, with GeoJSON as a main return type. With WFS you can return any
-'feature', which is basically any type of geospatial object that can be represented by points, lines or polygons. So one
+"feature", which is basically any type of geospatial object that can be represented by points, lines or polygons. So one
 might have a WFS of all the buildings for a city, or the locations of ships, or all the electricity lines.
 
 ## WFS + STAC API
 
 The STAC API has developed as a RESTful interface to query geospatial assets, with GeoJSON as return type. While STAC
-is much more about the 'assets' - another piece of data that is linked to - each STAC Item fits in to the definition of
-a 'feature', where the geometry is basically the footprint of the asset. So the data in a catalog could easily be
+is much more about the "assets" - another piece of data that is linked to - each STAC Item fits in to the definition of
+a "feature", where the geometry is basically the footprint of the asset. So the data in a catalog could easily be
 represented as a WFS, with just some extensions for linking to the assets, and fixing the `datetime` field.
 
 So the decision was made to combine efforts. The key piece that STAC needs that WFS does not provide is the ability
-to search across 'collections', so the `/stac/search` endpoint is made to be an 'extension' to WFS that provides
-that capability. So any WFS that is providing data that can be represented as STAC Items can choose to add the 
+to search across 'collections', so the `/stac/search` endpoint is made to be an "extension" to WFS that provides
+that capability. So any WFS that is providing data that can be represented as STAC Items can choose to add the
 STAC endpoint.
 
-In addition to the `/stac/search` endpoint, STAC API's provide the ability to 'browse' all the [Items](../item-spec/) that
+In addition to the `/stac/search` endpoint, STAC APIs provide the ability to 'browse' all the [Items](../item-spec/) that
 are available from a service. This is done using the `/stac/` endpoint, returning a full [STAC Catalog](../catalog-spec/).
 Ideally that Catalog makes extensive use of [STAC Collections](../collection-spec/) to further describe the holdings.
 
-The STAC Collection spec is designed to be compatible with the WFS /collections/{collectionId} endpoint's response. This enables
-WFS + STAC implementations to just extend the WFS collections with a bit more information to be STAC compliant Collection 
+The STAC Collection spec is designed to be compatible with the WFS `/collections/{collectionId}` endpoint's response. This enables
+WFS + STAC implementations to just extend the WFS collections with a bit more information to be STAC compliant Collection
 definitions.
 
-An additional best practice is to use the WFS items available in /collections/{collectionId}/items as the 'canonical' web
-location. Then the STAC Catalogs returned from `/stac/` can either link directly to those (from the appropriate sub-catalog - 
-for example /stac/landsat8/42/31/2017/ would be a catalog consisting of links to /collections/). Or it can return json
-in the link structure (like /stac/landsat8/42/31/2017/item203123.json), and have that returned json use a link with rel=canonical that goes back to the Item that is in the collection.
+An additional best practice is to use the WFS items available in `/collections/{collectionId}/items` as the "canonical" web
+location. Then the STAC Catalogs returned from `/stac/` can either link directly to those (from the appropriate sub-catalog -
+for example `/stac/landsat8/42/31/2017/` would be a catalog consisting of links to `/collections/`). Or it can return JSON
+in the link structure (like `/stac/landsat8/42/31/2017/item203123.json`), and have that returned JSON use a link with `rel=canonical` that goes back to the `Item` that is in the collection.
 
 ### WFS Structure
 
-A Web Feature Service is a standard API that represents collections of geospatial data. 
+A Web Feature Service is a standard API that represents collections of geospatial data.
 
 ```
 GET /collections
 ```
 
-Lists the collections of data on the server that can be queried ([7.11](https://rawgit.com/opengeospatial/WFS_FES/master/docs/17-069.html#_feature_collections_metadata)), 
-and each describes basic information about the geospatial data collection, like its name and description, as well as the 
-spatial and temporal extents of all the data contained. The collections returned are compliant to both WFS Collections and 
+Lists the collections of data on the server that can be queried ([7.11](https://rawgit.com/opengeospatial/WFS_FES/master/docs/17-069.html#_feature_collections_metadata)),
+and each describes basic information about the geospatial data collection, like its name and description, as well as the
+spatial and temporal extents of all the data contained. The collections returned are compliant to both WFS Collections and
 [STAC collections](../collections-spec/README.md). A STAC search extension would only query those collections which
 have data that validates as STAC Items - with a datetime field and references to assets. But a STAC can live alongside
 other WFS collections, like an organization might choose to have their building and road data in WFS collections, alongside
@@ -58,11 +58,10 @@ their STAC-compatible imagery data.
 GET /collections/{name}/items?bbox=160.6,-55.95,-170,-25.89
 ```
 
-Requests all the data in the collection that is in New Zealand. The filtering is made to be compatible with the STAC API, 
+Requests all the data in the collection that is in New Zealand. The filtering is made to be compatible with the STAC API,
 and the two specs seek to share the general query and filtering patterns. The key difference is that a STAC search endpoint
 will do cross collection search. A typical WFS will have multiple collections, and each will just offer search for its particular
 collection.
-
 
 ### Strongly Typed STAC data
 
@@ -73,8 +72,8 @@ useful to let users inspect a particular data type. That area of the `/collectio
 metadata and validation schemas that give more insight in to that data, as well as a place to query just that data.
 
 In general it is recommended to provide as much information about different types of data as possible, so using WFS is recommended. But
-the standalone option is there for those who just want to expose their data as quickly and easily as possible. Note a WFS can 
-provide heterogenous data from any of its collections endpoints, but the STAC API recommendation is to use one collection per 
+the standalone option is there for those who just want to expose their data as quickly and easily as possible. Note a WFS can
+provide heterogenous data from any of its collections endpoints, but the STAC API recommendation is to use one collection per
 logical data type.
 
 ### Potential Transaction Extension

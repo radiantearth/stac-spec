@@ -19,7 +19,7 @@ required fields is a valid STAC Item.
   - See the [minimal example](examples/sample.json), as well as a [more fleshed example](examples/sample-full.json) that contains a number of
     current best practices. There are more real world inspired samples in the [examples/](examples/) folder.
   - Real world [implementations](../implementations.md) are also available.
-- [JSON Schema](json-schema/stac-item.json)
+- [JSON Schema](json-schema/item.json)
 
 ## WARNING
 
@@ -64,6 +64,7 @@ custom fields.
 | Field Name | Type   | Description                                                  |
 | ---------- | ------ | ------------------------------------------------------------ |
 | datetime   | string | **REQUIRED.** The searchable date and time of the assets, in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
+| title      | string | A human readable title describing the item. |
 
 **datetime** is likely the acquisition (in the case of single camera type captures) or the 'nominal'
 or representative time in the case of assets that are combined together. Though time can be a
@@ -99,6 +100,8 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may use the [Commons extension](../extensions/commons/README.md) and holds common fields of this and other Items (see chapter '[Collections](#Collections)' for more explanations). |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
 
+A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+
 *Note regarding the type `derived_from`: A full provenance model is far beyond the scope of STAC, and the goal is to align with any good independent spec 
 that comes along for that. But the derived_from field is seen as a way to encourage fuller specs and at least start a linking
 structure that can be used as a jumping off point for more experiments in provenance tracking*
@@ -118,7 +121,6 @@ provide additional information about a set of items, for example the license, pr
 giving context on the overall set of data that an individual Item is a part of. If Items are part of a STAC Collection, 
 the [STAC Collection spec *requires* Items to link back to the Collection](collection-spec/collection-spec.md#relation-types).
 
-
 ### Asset Object
 
 An asset is an object that contains a link to data associated with the Item that can be downloaded
@@ -132,7 +134,7 @@ or streamed. It is allowed to add additional fields.
 
 #### Asset types
 
-The following types are commonly for assets and are used as key for the Asset Object:
+The following types are common for assets and are used as the key for the Asset Object:
 
 | Type      | Description |
 | --------- | ----------- |
@@ -155,8 +157,8 @@ Common STAC Item Media Types:
 
 | Media Type                      | Description                                                                              |
 | ------------------------------ | ----------------------------------------------------------------------------------------- |
-| `image/tiff` or `image/x.geotiff`     | GeoTIFF TIFF file with standardized georeferencing metadata                        |
-| `image/tiff` or `image/x.cloud-optimized-geotiff` | Cloud Optimized GeoTIFF                                                |
+| `image/tiff` or `image/vnd.stac.geotiff` | GeoTIFF with standardized georeferencing metadata                               |
+| `image/vnd.stac.geotiff; cloud-optimized=true` | Cloud Optimized GeoTIFF                                                   |
 | `image/jp2`                      | JPEG 2000                                                                               |
 | `image/png`                      | Visual PNGs (e.g. thumbnails)                                                           |
 | `image/jpeg`                     | Visual JPEGs (e.g. thumbnails, oblique)                                                 |

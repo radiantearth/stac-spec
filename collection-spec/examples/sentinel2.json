@@ -12,10 +12,13 @@
     "radiance",
     "sentinel"
   ],
-  "provider": [
+  "providers": [
     {
       "name": "European Union/ESA/Copernicus",
-      "type": "producer",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
       "url": "https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi"
     }
   ],

@@ -7,7 +7,7 @@ info:
     specification. Any service that implements this endpoint to allow search of
     spatiotemporal assets can be considered a STAC API. The endpoint is also
     available as an OpenAPI fragment that can be integrated with other OpenAPI
-    definitions, and is designed to slot seamless into a WFS 3 API definition.
+    definitions, and is designed to slot seamlessly into a WFS 3 API definition.
   contact:
     name: Cool Sat Corp
     email: info@cool-sat.com
@@ -66,7 +66,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -98,7 +98,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -177,22 +177,12 @@ components:
         Either a date-time or a period string that adheres to RFC3339. Examples:
 
         * A date-time: "2018-02-12T23:20:50Z" 
-
-        * A period: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or
-
-        "2018-02-12T00:00:00Z/P1M6DT12H31M12S" 
-
+        * A period: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or "2018-02-12T00:00:00Z/P1M6DT12H31M12S" 
 
         Only features that have a temporal property that intersects the value
-        of 
-
-        `time` are selected. If a feature has multiple temporal properties, it
-        is
-
-        the decision of the server whether only a single temporal property is
-        used to 
-
-        determine the extent or all relevant temporal properties.
+        of `time` are selected. If a feature has multiple temporal properties, it
+        is the decision of the server whether only a single temporal property is
+        used to determine the extent or all relevant temporal properties.
       required: false
       schema:
         type: string
@@ -349,25 +339,15 @@ components:
         Either a date-time or a period string that adheres to RFC 3339.
         Examples:
 
-
         * A date-time: "2018-02-12T23:20:50Z"  
+        * A period: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or "2018-02-12T00:00:00Z/P1M6DT12H31M12S"
 
-        * A period:
-
-        "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or
-
-        "2018-02-12T00:00:00Z/P1M6DT12H31M12S"
-
-
-        Only features that have a temporal property that intersects the value of
-
+        Only features that have a temporal property that intersects the value of 
         `time` are selected.
 
 
         If a feature has multiple temporal properties, it is the decision of the
-
         server whether only a single temporal property is used to determine the
-
         extent or all relevant temporal properties.
       example: '2018-02-12T00:00:00Z/2018-03-18T12:31:12Z'
     catalogDefinition:
@@ -536,7 +516,7 @@ components:
       example:
         'eo:cloud_cover':
           lt: 50
-        provider: Planet
+        providers: Planet
         published:
           date: '2018-02-12T00:00:00Z/2018-03-18T12:31:12Z'
         'pl:item_type':
@@ -619,7 +599,7 @@ components:
               - desc
       example:
         - field: 'eo:cloud_cover'
-        - field: provider
+        - field: providers
           direction: desc
     fieldsFilter:
       type: object
