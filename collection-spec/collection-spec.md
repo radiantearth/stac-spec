@@ -69,7 +69,7 @@ The object provides information about a provider. A provider is any of the organ
 | roles       | [string]  | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`. |
 | url         | string    | Homepage on which the provider describes the dataset and publishes contact information. |
 
-**type**: The type of the provider can be one of the following elements:
+**roles**: The provider's role(s) can be one or more of the following elements:
 
 * *licensor*: The organization that is licensing the dataset under the license specified in the collection's `license` field.
 * *producer*: The producer of the data is the provider that initially captured and processed the source data, e.g. ESA for Sentinel-2 data.

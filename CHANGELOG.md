@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+- Added Single Item extension
 - Provider Object in collections: added a `description` field., renamed `type` to `roles`, change `roles` from string to array and added a `licensor` role.
 
 ## [v0.6.0-rc1] - 2018-10-16
