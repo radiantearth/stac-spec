@@ -10,37 +10,36 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [v0.6.0-rc2] - 2018-10-25
 
 ### Fixed
-- Reorganized and cleaned up repository
-- Fixed examples throughout
+- Reorganized and cleaned up repository.
+- Fixed examples throughout.
 
 ### Added
-- **Changelog**: This changelog added
+- **Changelog**: This changelog added.
 - **Collections added**: Collections are a type of Catalog with additional fields, such as provider and license. Items must belong to a single Collection.
 - **Extension maturity**: Protocol for providing maturity classification for extensions based on stability and implementations.
-- **Commons extension**: The previous 'Collections' extension is now the 'Commons' extension and allows an Item to inherit properties from it's Collection.
+- **Commons extension**: The previous 'Collections' extension is now the 'Commons' extension and allows an Item to inherit properties from its Collection.
 - **Datetime-range extension**: Extension for providing start and end datetimes.
 - **Scientific extension**: Extension for providings links to scientific publications relating to the data.
-- **rel types**: A list of supported 'rel' types are provided for use when specifying links, 'derived_from' and 'license' types added.
+- **rel types**: A list of supported `rel` types are provided for use when specifying links, `derived_from` and `license` types added.
 - **eo:constellation**: A new field in the EO specification to specify a grouping of platforms.
-- **stac_version**: The stac_version field is required on all Catalogs (and Collections)
+- **stac_version**: The `stac_version` field is required on all Catalogs (and Collections).
 - **JSON schemas**: Added JSON schemas where they were missing.
-- **Single Item extension**: Extension to supply License and Providers for single Items when no collection.
-- **UML Diagram**: See STAC-060-uml.pdf
-- **Development Process**: See process.md for information on the STAC development process
+- **Single Item extension**: Extension to supply License and Providers for single Items when no collection is used.
+- **UML Diagram**: See STAC-060-uml.pdf.
+- **Development Process**: See process.md for information on the STAC development process.
 
 ### Changed
-- **Endpoints**: Main catalog endpoint at /stac, search endpoint now at /stac/search
-- **eo:bands**: The eo:bands field is now an array rather than a dictionary, and has been moved inside of 'properties' in a STAC Item.
-- **Catalog fields**: Catalogs have a smaller number of basic fields: id, stac_version, title (optional), description, and links. The new Collections type contains additional fields.
+- **API**: Main catalog endpoint at `/stac`, search endpoint now at `/stac/search`.
+- **eo:bands**: The `eo:bands` field is now an array rather than a dictionary, and has been moved inside of `properties` in a STAC Item.
+- **Catalog fields**: Catalogs have a smaller number of basic fields: `id`, `stac_version`, `title` (optional), `description`, and `links`. The new Collections type contains additional fields.
 - **links**: The links fields are now an array rather than a dictionary.
 - **properties**: Fields with the data type array or objects are allowed inside the `properties` in a STAC Item.
 - **description**: Description fields now allow formatting with CommonMark.
-- **assets**: Fields changed names: name to title and mime_type to type.
-- **Providers Object in collections**: added a `description` field., renamed `type` to `roles`, change `roles` from string to array and added a `licensor` role.
+- **assets**: Fields changed names: `name` to `title` and `mime_type` to `type`.
 
 ### Removed:
-* **provider**: Provider field in Items got removed. Use Collections instead.
-* **license**: License field in Items got removed. Use Collections instead.
+* **provider**: Provider field in Items got removed. Use Collections or the Single Item extension instead.
+* **license**: License field in Items got removed. Use Collections or the Single Item extension instead.
 
 
 ## [v0.5.2] - 2018-07-12
