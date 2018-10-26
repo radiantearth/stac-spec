@@ -133,7 +133,6 @@ See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
       "name": "1",
       "common_name": "coastal",
       "gsd": 30.0,
-      "accuracy": null,
       "wavelength": 0.44,
       "full_width_half_max": 0.02
     },
@@ -141,7 +140,6 @@ See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
       "name": "2",
       "common_name": "blue",
       "gsd": 30.0,
-      "accuracy": null,
       "wavelength": 0.48,
       "full_width_half_max": 0.06
     },
