@@ -108,7 +108,7 @@ Vendors can extend those core fields for the metadata they want to make availabl
 
 #### UML Diagram
 
-A UML diagram of the [STAC model](https://github.com/radiantearth/stac-spec/blob/uml-diagram/STAC-060-uml.pdf) is provided to help with navigating the specification. 
+A UML diagram of the [STAC model](STAC-060-uml.pdf) is provided to help with navigating the specification. 
 
 ## Contributing
 
