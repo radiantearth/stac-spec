@@ -6,10 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-- Added Single Item extension
-- Provider Object in collections: added a `description` field., renamed `type` to `roles`, change `roles` from string to array and added a `licensor` role.
 
-## [v0.6.0-rc1] - 2018-10-16
+## [v0.6.0-rc2] - 2018-10-25
 
 ### Fixed
 - Reorganized and cleaned up repository
@@ -26,6 +24,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **eo:constellation**: A new field in the EO specification to specify a grouping of platforms.
 - **stac_version**: The stac_version field is required on all Catalogs (and Collections)
 - **JSON schemas**: Added JSON schemas where they were missing.
+- **Single Item extension**: Extension to supply License and Providers for single Items when no collection.
+- **UML Diagram**: See STAC-060-uml.pdf
+- **Development Process**: See process.md for information on the STAC development process
 
 ### Changed
 - **Endpoints**: Main catalog endpoint at /stac, search endpoint now at /stac/search
@@ -35,6 +36,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **properties**: Fields with the data type array or objects are allowed inside the `properties` in a STAC Item.
 - **description**: Description fields now allow formatting with CommonMark.
 - **assets**: Fields changed names: name to title and mime_type to type.
+- **Providers Object in collections**: added a `description` field., renamed `type` to `roles`, change `roles` from string to array and added a `licensor` role.
 
 ### Removed:
 * **provider**: Provider field in Items got removed. Use Collections instead.
@@ -105,7 +107,7 @@ Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkam
 
 
 [Unreleased]: https://github.com/radiantearth/stac-spec/compare/master...dev
-[v0.6.0-rc1]: https://github.com/radiantearth/stac-spec/compare/v0.5.2...v0.6.0-rc1
+[v0.6.0-rc2]: https://github.com/radiantearth/stac-spec/compare/v0.5.2...v0.6.0-rc2
 [v0.5.2]: https://github.com/radiantearth/stac-spec/compare/v0.5.1...v0.5.2
 [v0.5.1]: https://github.com/radiantearth/stac-spec/compare/v0.5.0...v0.5.1
 [v0.5.0]: https://github.com/radiantearth/stac-spec/compare/v0.4.1...v0.5.0
