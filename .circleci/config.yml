@@ -29,4 +29,10 @@ jobs:
           command: |
             python ~/stac-validator/stac_validator.py catalog-spec/examples/catalog.json
             python ~/stac-validator/stac_validator.py collection-spec/examples/sentinel2.json
+            python ~/stac-validator/stac_validator.py item-spec/examples/sample.json
             python ~/stac-validator/stac_validator.py item-spec/examples/sample-full.json
+            python ~/stac-validator/stac_validator.py item-spec/examples/sentinel2-sample.json
+            python ~/stac-validator/stac_validator.py item-spec/examples/planet-sample.json
+            python ~/stac-validator/stac_validator.py item-spec/examples/landsat8-sample.json
+            python ~/stac-validator/stac_validator.py item-spec/examples/digitalglobe-sample.json
+            python ~/stac-validator/stac_validator.py item-spec/examples/CBERS_4_MUX_20170528_090_084_L2.json
