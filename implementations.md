@@ -16,14 +16,25 @@ Browsable online version are usually powered by [stac-browser](https://github.co
 - Browsable online version: https://vigilant-heyrovsky-0d9af8.netlify.com/
 - Source code: https://github.com/SpaceNetChallenge/stac-implementation
 
-### CBERS (STAC 0.5)
+### CBERS-4 (STAC 0.6 and 0.5)
 
-[CBERS](https://en.wikipedia.org/wiki/China%E2%80%93Brazil_Earth_Resources_Satellite_program) is maintaining 
-a full STAC Catalog, and keeping it up to date with the spec.
+[CBERS-4](https://en.wikipedia.org/wiki/China%E2%80%93Brazil_Earth_Resources_Satellite_program) is maintaining 
+a full STAC Catalog, and keeping it up to date with the spec for versions 0.6 and 0.5.
+
+The source code is available from https://github.com/fredliporace/cbers-2-stac
+
+STAC items are published to public SNS topics as soon as new scenes are ingested into AWS.
+
+#### STAC 0.6
+
+- Catalog: https://cbers-stac-0-6.s3.amazonaws.com/catalog.json
+- SNS topic: arn:aws:sns:us-east-1:769537946825:cbers-2-stac-0-6-CBERSSTACItemTopic-X1VTPGK5HBZ5
+
+#### STAC 0.5
 
 - Catalog: https://cbers-stac.s3.amazonaws.com/catalog.json
+- SNS topic: arn:aws:sns:us-east-1:769537946825:cbers-2-stac-CBERSSTACItemTopic-N0MZUA5EIQC9
 - Browsable online version: http://cbers-stac.netlify.com/
-- Source code: https://github.com/fredliporace/cbers-2-stac
 
 ### ISERV (STAC 0.4.1)
 
