@@ -116,14 +116,12 @@ See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
   "assets" :{
     "B1": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B1.TIF",
-      "type": "GeoTIFF",
-      "required": true,
+      "type": "image/vnd.stac.geotiff",
       "eo:bands": [0]
     },
     "B2": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B2.TIF",
-      "type": "GeoTIFF",
-      "required": true,
+      "type": "image/vnd.stac.geotiff",
       "eo:bands": [1]
     },
     ...
