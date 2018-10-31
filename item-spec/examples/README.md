@@ -30,7 +30,7 @@ concept, which is explained more in the [/extensions/examples/ folder](../extens
 **Planet** The [Planet sample](planet-sample.json) is an adaption of Planet's [Data API](https://www.planet.com/docs/reference/data-api/) 
 returned JSON, with minor tweaks to have it fit in to a STAC Item.
 
-**CBERS** The [CBERS sample](CBERS_4_MUX_20170528_090_084_L2.json) is copied from [CBERS static STAC catalog](https://cbers-stac.s3.amazonaws.com/catalog.json).
+**CBERS** The [CBERS sample](CBERS_4_MUX_20181029_177_106_L4.json) is copied from [CBERS static STAC catalog](https://cbers-stac-0-6.s3.amazonaws.com/catalog.json).
 
 ## Example Discussion
 
