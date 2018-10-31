@@ -53,8 +53,8 @@ of the spec.
 ## API (Active Catalog) Examples
 ### Boundless STAC Server
 
-* Items call: http://stac.boundlessgeo.io/stac/search/stac
-* OpenAPI Document: https://app.swaggerhub.com/apis/joshfix/STAC/1.0.0-RC34
+* Search endpoint: https://stac.boundlessgeo.io/search/stac
+* Root catalog: https://stac.boundlessgeo.io/stac
 
 ### Harris STAC Server
 
