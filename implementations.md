@@ -8,12 +8,12 @@ Browsable online version are usually powered by [stac-browser](https://github.co
 
 ## Static Catalog Examples
 
-### Spacenet (STAC 0.5)
+### Spacenet (STAC 0.6)
 
 [Spacenet](https://spacenetchallenge.github.io/) has made all their imagery available as STAC.
 
-- Catalog: https://s3.amazonaws.com/spacenet-stac/spacenet-dataset.json
-- Browsable online version: https://vigilant-heyrovsky-0d9af8.netlify.com/
+- Catalog: https://s3.amazonaws.com/spacenet-stac/spacenet-repository.json 
+- Browsable online version: https://spacenet-stac.netlify.com/
 - Source code: https://github.com/SpaceNetChallenge/stac-implementation
 
 ### CBERS-4 (STAC 0.6 and 0.5)
@@ -35,6 +35,14 @@ STAC items are published to public SNS topics as soon as new scenes are ingested
 - Catalog: https://cbers-stac.s3.amazonaws.com/catalog.json
 - SNS topic: arn:aws:sns:us-east-1:769537946825:cbers-2-stac-CBERSSTACItemTopic-N0MZUA5EIQC9
 - Browsable online version: http://cbers-stac.netlify.com/
+
+### Earth on AWS (STAC 0.6.0)
+
+This catalog contains datasets from [Earth on AWS](https://aws.amazon.com/earth/) program. Currently it contains all the items from Landsat-8 and soon will contain Sentinel-2.
+
+- Catalog: https://earth-stac.s3.amazonaws.com/catalog.json
+- SNS topic (for Landsat): arn:aws:sns:us-east-1:552188055668:earth-stac-landsat
+
 
 ### ISERV (STAC 0.4.1)
 
@@ -67,6 +75,15 @@ of the spec.
 * Search endpoint: https://stac.boundlessgeo.io/search/stac
 * Root catalog: https://stac.boundlessgeo.io/stac
 
+### Development Seed sat-api
+
+Development Seed's [sat-api](https://github.com/sat-utils/sat-api) is an easily deployable open-source API that can ingest data from any STAC static catalog. Development Seed also runs a deployed instance that contains publicly available satellite imagery available on AWS.
+
+* Latest release: https://sat-api.developmentseed.org/stac
+* Development release: https://sat-api-dev.developmentseed.org/stac
+
+The latest API should contain the latest available STAC version, while the development API will contain the next version (and may not include all items).
+
 ### Harris STAC Server
 
 Contains a number of Landsat records:
@@ -82,6 +99,9 @@ Contains a number of Landsat records:
 
 Other software related to STAC like validators, crawlers etc.
 
+ * [STAC Validator](https://github.com/sparkgeo/stac-validator) is a Python library for validating STAC catalogs and items.
+ * [sat-stac](https://github.com/sat-utils/sat-stac]) is a Python library and CLI for creating and updating static STAC catalogs.
+ * [sat-search](https://github.com/sat-utils/sat-search) is a Python library and CLI for searching (and saving) a dynamic STAC API.
  * [Serverless STAC Crawler](https://github.com/fredliporace/stac-crawler) is a static STAC crawler that runs on Lambda and SQS integration.
  * [STAC Browser](https://github.com/radiantearth/stac-browser/) generates/renders browsable HTML versions of STAC catalogs.
 
