@@ -8,12 +8,12 @@ Browsable online version are usually powered by [stac-browser](https://github.co
 
 ## Static Catalog Examples
 
-### Spacenet (STAC 0.5)
+### Spacenet (STAC 0.6)
 
 [Spacenet](https://spacenetchallenge.github.io/) has made all their imagery available as STAC.
 
-- Catalog: https://s3.amazonaws.com/spacenet-stac/spacenet-dataset.json
-- Browsable online version: https://vigilant-heyrovsky-0d9af8.netlify.com/
+- Catalog: https://s3.amazonaws.com/spacenet-stac/spacenet-repository.json 
+- Browsable online version: https://spacenet-stac.netlify.com/
 - Source code: https://github.com/SpaceNetChallenge/stac-implementation
 
 ### CBERS-4 (STAC 0.6 and 0.5)
