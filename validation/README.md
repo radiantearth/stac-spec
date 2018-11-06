@@ -8,7 +8,7 @@ This directory includes installation instructions for a Python validator and a J
 ## Python Validator
 Install the validator from the [stac-validator](https://github.com/sparkgeo/stac-validator) repository and follow the instructions.
 
-The validator can be run as a command line tool and will report on nested catalogs as well as single items.
+The validator can be run as a command line tool and will report on nested catalogs as well as single items. There is no need to specifically identify 
 
 ```
 stac_validator.py --help
