@@ -36,12 +36,12 @@ STAC items are published to public SNS topics as soon as new scenes are ingested
 - SNS topic: arn:aws:sns:us-east-1:769537946825:cbers-2-stac-CBERSSTACItemTopic-N0MZUA5EIQC9
 - Browsable online version: http://cbers-stac.netlify.com/
 
-### Earth on AWS (STAC 0.6.0)
+### Landsat-8 on AWS (STAC 0.6.0)
 
-This catalog contains datasets from [Earth on AWS](https://aws.amazon.com/earth/) program. Currently it contains all the items from Landsat-8 and soon will contain Sentinel-2.
+This catalog contains all Landsat-8 metadata from the [Earth on AWS](https://aws.amazon.com/earth/) program.
 
-- Catalog: https://earth-stac.s3.amazonaws.com/catalog.json
-- SNS topic (for Landsat): arn:aws:sns:us-east-1:552188055668:earth-stac-landsat
+- Catalog: https://landsat-stac.s3.amazonaws.com/catalog.json
+- SNS topic: arn:aws:sns:us-west-2:552188055668:landsat-stac
 
 
 ### ISERV (STAC 0.4.1)
@@ -75,7 +75,7 @@ of the spec.
 * Search endpoint: https://stac.boundlessgeo.io/search/stac
 * Root catalog: https://stac.boundlessgeo.io/stac
 
-### Development Seed sat-api
+### sat-api
 
 Development Seed's [sat-api](https://github.com/sat-utils/sat-api) is an easily deployable open-source API that can ingest data from any STAC static catalog. Development Seed also runs a deployed instance that contains publicly available satellite imagery available on AWS.
 
