@@ -35,4 +35,4 @@ jobs:
             python ~/stac-validator/stac_validator.py item-spec/examples/planet-sample.json
             python ~/stac-validator/stac_validator.py item-spec/examples/landsat8-sample.json
             python ~/stac-validator/stac_validator.py item-spec/examples/digitalglobe-sample.json
-            python ~/stac-validator/stac_validator.py item-spec/examples/CBERS_4_MUX_20170528_090_084_L2.json
+            python ~/stac-validator/stac_validator.py item-spec/examples/CBERS_4_MUX_20181029_177_106_L4.json
