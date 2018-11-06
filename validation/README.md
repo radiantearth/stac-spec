@@ -3,7 +3,7 @@
 
 Any JSON Schema validation tool can be used, just run the JSON data to test against the various STAC schema, and be sure to include any remote schema like the geojson.json schema in the testing. 
 
-This directory includes installation instructions for a Python validator and a JavaScript validator. The python validator is more complete and the recommnded tool for validation.
+This directory includes installation instructions for a Python validator and a JavaScript validator. The python validator is more complete and the recommnded tool for validation. The Javascript validator has been deprecated and will be removed in the next release.
 
 ## Python Validator
 Install the validator from the [stac-validator](https://github.com/sparkgeo/stac-validator) repository and follow the instructions.
