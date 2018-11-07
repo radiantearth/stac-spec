@@ -116,14 +116,12 @@ See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
   "assets" :{
     "B1": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B1.TIF",
-      "type": "GeoTIFF",
-      "required": true,
+      "type": "image/vnd.stac.geotiff",
       "eo:bands": [0]
     },
     "B2": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B2.TIF",
-      "type": "GeoTIFF",
-      "required": true,
+      "type": "image/vnd.stac.geotiff",
       "eo:bands": [1]
     },
     ...
@@ -133,7 +131,6 @@ See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
       "name": "1",
       "common_name": "coastal",
       "gsd": 30.0,
-      "accuracy": null,
       "wavelength": 0.44,
       "full_width_half_max": 0.02
     },
@@ -141,7 +138,6 @@ See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
       "name": "2",
       "common_name": "blue",
       "gsd": 30.0,
-      "accuracy": null,
       "wavelength": 0.48,
       "full_width_half_max": 0.06
     },
