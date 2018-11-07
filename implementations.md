@@ -53,13 +53,12 @@ This catalog contains all Landsat-8 metadata from the [Earth on AWS](https://aws
 - Browsable online version: http://iserv-stac.netlify.com/
 - Source code: https://github.com/raster-foundry/pystac
 
-### Planet Disaster Data (STAC 0.5)
+### Planet Disaster Data (STAC 0.6)
 
 [Planet](http://planet.com) maintains a very small, hand-built catalog to serve as a reference example
 of the spec.
 
 - Catalog: https://storage.googleapis.com/pdd-stac/disasters/catalog.json
-- Browsable online version: http://planet-stac.netlify.com/
 - Raw catalog files: https://console.cloud.google.com/storage/browser/pdd-stac/disasters/hurricane-harvey/0831/
 - Source code: https://github.com/cholmes/pdd-stac/tree/master/disasters/hurricane-harvey
 
@@ -70,12 +69,12 @@ of the spec.
 - Examples: https://github.com/TDG-Platform/dg-stac/tree/master/examples
 
 ## API (Active Catalog) Examples
-### Boundless STAC Server
+### Boundless STAC Server (0.6.0)
 
 * Search endpoint: https://stac.boundlessgeo.io/search/stac
 * Root catalog: https://stac.boundlessgeo.io/stac
 
-### sat-api
+### sat-api (0.6.0)
 
 Development Seed's [sat-api](https://github.com/sat-utils/sat-api) is an easily deployable open-source API that can ingest data from any STAC static catalog. Development Seed also runs a deployed instance that contains publicly available satellite imagery available on AWS.
 
@@ -84,16 +83,6 @@ Development Seed's [sat-api](https://github.com/sat-utils/sat-api) is an easily 
 
 The latest API should contain the latest available STAC version, while the development API will contain the next version (and may not include all items).
 
-### Harris STAC Server
-
-Contains a number of Landsat records:
-
-* Items call: http://35.160.175.42:8081/items/?limit=10 
-* Can see a particular Landsat item at: http://35.160.175.42:8081/items/LC08_L1TP_040032_20170415_20170501_01_T1
-
-### Other implementations
-
-* [Geocatalogo](https://github.com/go-spatial/geocatalogo) is a Go implementation of STAC.
 
 ## Ecosystem
 
@@ -105,10 +94,20 @@ Other software related to STAC like validators, crawlers etc.
  * [Serverless STAC Crawler](https://github.com/fredliporace/stac-crawler) is a static STAC crawler that runs on Lambda and SQS integration.
  * [STAC Browser](https://github.com/radiantearth/stac-browser/) generates/renders browsable HTML versions of STAC catalogs.
 
-## Early prototypes / outdated
+## Early prototypes / not updated
 
 A list of software developed as early prototypes for the proof of concept or seem to be outdated (no activity in more than six months).
 
+### Harris STAC Server
+
+Contains a number of Landsat records:
+
+* Items call: http://35.160.175.42:8081/items/?limit=10 
+* Can see a particular Landsat item at: http://35.160.175.42:8081/items/LC08_L1TP_040032_20170415_20170501_01_T1
+
+### Others
+
+* [Geocatalogo](https://github.com/go-spatial/geocatalogo) is a Go implementation of STAC.
 * [Catalog Crawler](https://github.com/radiantearth/community-sprints/tree/master/10252017-boulder-co/catalog-crawler) was done during the [Boulder Sprint](https://github.com/radiantearth/community-sprints/tree/master/10252017-boulder-co), as an early proof of concept.
 * [py-stac](https://github.com/raster-foundry/pystac) was used to create the ISERV catalog. It is still pretty tied to that data type.
 * [go-stac](https://github.com/planetlabs/go-stac) does validation of static catalogs.
