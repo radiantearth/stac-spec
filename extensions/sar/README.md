@@ -7,7 +7,7 @@ SAR data is considered to be data that represents a snapshot of the earth for a 
 
 It is not necessary, but recommended to use the [Commons extension](../commons/README.md) (see chapter "Placing common fields in Collections").
 
-- Example is missing, PRs are welcome.
+- [Example (Sentinel-1)](example-sentinel1.json)
 - JSON Schema is missing. PRs are welcome.
 
 ## Item fields
@@ -21,23 +21,23 @@ It is not necessary, but recommended to use the [Commons extension](../commons/R
 | sar:pass_direction | string        | **REQUIRED.** Direction of the orbit, either `ascending`, `descending` or `irrelevant`. |
 | sar:type           | string        | The product type, either `RAW`, `GRD`, `OCN` or `SLC`. |
 
-**sar:constellation** is the name of the group of satellites that have similar payloads and have their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and radiometric characteristics. Examples are the Sentinel-1 [constellation](https://www.esa.int/Our_Activities/Observing_the_Earth/Copernicus/Sentinel-2/Satellite_constellation), which has S1A, S1B, S1C and S1D and RADARSAT, which has RADARSAT-1 and RADARSAT-2. This field allows users to search for Sentinel-1 data, for example, without needing to specify which specific platform the data came from.
+**sar:constellation** is the name of the group of satellites that have similar payloads and have their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and radiometric characteristics. Examples are the Sentinel-1 [constellation](https://www.esa.int/Our_Activities/Observing_the_Earth/Copernicus/Sentinel-1/Satellite_constellation), which has S1A, S1B, S1C and S1D and RADARSAT, which has RADARSAT-1 and RADARSAT-2. This field allows users to search for Sentinel-1 data, for example, without needing to specify which specific platform the data came from.
 
 ### Band Object
 
-| Field Name         | Type     | Description |
-| ------------------ | -------- | ----------- |
-| name               | string   | The name of the band. |
-| common_name        | string   | The name commonly used to refer to the band to make it easier to search for bands across instruments. See below for a list of accepted common names. |
-| description        | string   | Description to fully explain the band. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| instrument_mode    | string   | **REQUIRED.** The sensor mode, either `SM`, `IW`, `EW` or `WV`. |
-| polarization       | [string] | **REQUIRED.** The polarization, one of `HH`, `VV`, `HV` or `VH` for single channels. For multi-channels all channels must be added to the array, for instance for `HH+HV` both `HH` and `HV` must be added. |
-| beam_mode          | string   | The beam mode: `wide`, `fine` or similar. |
-| resolution         | [number] | **REQUIRED.** The resolution is the maximum ability to distinguish two adjacent targets, in meters (m). The first element of the array is the range resolution, the second element is the azimuth resolution. |
+| Field Name          | Type      | Description |
+| ------------------- | --------- | ----------- |
+| name                | string    | The name of the band. |
+| common_name         | string    | The name commonly used to refer to the band to make it easier to search for bands across instruments. See below for a list of accepted common names. |
+| description         | string    | Description to fully explain the band. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| instrument_mode     | string    | **REQUIRED.** The sensor mode, either `SM`, `IW`, `EW` or `WV`. |
+| polarization        | [string]  | **REQUIRED.** The polarization, one of `HH`, `VV`, `HV` or `VH` for single channels. For multi-channels all channels must be added to the array, for instance for `HH+HV` both `HH` and `HV` must be added. |
+| resolution          | [number]  | **REQUIRED.** The resolution is the maximum ability to distinguish two adjacent targets, in meters (m). The first element of the array is the range resolution, the second element is the azimuth resolution. |
 | pixel_spacing       | [number]  | **REQUIRED.** The resolution is the distance between adjacent pixels, in meters (m). The first element of the array is the range pixel spacing, the second element is the azimuth pixel spacing. |
-| looks      | [integer] | **REQUIRED.** The number of groups of signal samples (looks) sent. The first element of the array is the number of range looks, the second element is the number of azimuth looks. |
-| center_wavelength  | number   | The center wavelength of the band, in centimeters (cm). |
-| full_width_half_max | number   | Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in centimeters (cm). |
+| looks               | [integer] | **REQUIRED.** The number of groups of signal samples (looks) sent. The first element of the array is the number of range looks, the second element is the number of azimuth looks. |
+| center_wavelength   | number    | The center wavelength of the band, in centimeters (cm). |
+| center_frequency    | number    | The center frequency of the band, in gigahertz (GHz). |
+| full_width_half_max | number    | Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in centimeters (cm). |
 
 **resolution, pixel_spacing, looks**: These three fields are all two-element arrays. The first element of the array is the range (measured perpendicular to the flight path), the second element is the azimuth (measured parallel to the flight path).
 
