@@ -4,7 +4,8 @@
 
 A group of STAC Item objects from a single source can share a lot of common metadata. This is especially true with satellite imagery that uses the STAC EO Extension. Rather than including these common metadata fields on every Item, they can be provided into the [STAC Collection](../../collection-spec/README.md) that the STAC Items belong to.
 
-- Examples (missing, PRs welcome)
+- [Examples](examples/):
+  - Landsat 8: An [Item](examples/landsat-item.json) that uses the Commons extension to place shared data in a [Collection](examples/landsat-collection.json).
 - JSON Schema (missing, PRs welcome)
 
 ## WARNING
