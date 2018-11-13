@@ -15,23 +15,25 @@
       ]
     },
     "properties": {
-      "datetime": "2018-11-03T23:58:55Z",
+      "datetime": "2018-11-03T23:58:55.617217Z",
+      "dtr:start_datetime": "2018-11-03T23:58:55.121559Z",
+      "dtr:end_datetime": "2018-11-03T23:59:55.112875Z",
       "sar:platform": "Sentinel-1A",
       "sar:constellation": "Sentinel-1",
       "sar:instrument": "C-SAR",
+      "sar:instrument_mode": "EW",
+      "sar:resolution": [50,50],
+      "sar:pixel_spacing": [25,25],
+      "sar:looks": [3,1],
+      "sar:frequency_band": "C",
+      "sar:center_wavelength": 5.546576466235,
+      "sar:center_frequency": 5.405,
       "sar:pass_direction": "ascending",
       "sar:type": "GRD",
       "sar:bands": [
         {
-          "description": "Sentinel-1 EW Level-1 GRD Product",
-          "common_name": "C",
-          "instrument_mode": "EW",
-          "polarization": ["HH"],
-          "resolution": [50,50],
-          "pixel_spacing": [25,25],
-          "looks": [3,1],
-          "center_wavelength": 5.546576466235,
-          "center_frequency": 5.405
+          "description": "Single co-polarization, horizontal transmit/horizontal receive.",
+          "polarization": ["HH"]
         }
       ]
     },
