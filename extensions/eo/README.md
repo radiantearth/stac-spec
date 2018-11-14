@@ -29,7 +29,7 @@ It is not necessary, but recommended to use the [Commons extension](../commons/R
 | eo:constellation | string                   | Name of the constellation that the platform belongs to. See below for details. |
 | eo:instrument    | string                   | **REQUIRED.** Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1).                                                                                                                                                                      |
 | eo:bands         | [Band Object]             | **REQUIRED.** This is a list of the available bands where each item is a Band Object.                                                                                                                                                                      |
-| eo:epsg          | integer                  | EPSG code of the datasource, null if no EPSG code.                                                                                                                                                                                                         |
+| eo:epsg          | integer\|null             | EPSG code of the datasource, `null` if no EPSG code.                                                                                                                                                                                                       |
 | eo:cloud_cover   | number                  | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided.                                                                                                                                    |
 | eo:off_nadir     | number                   | Viewing angle. The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90).                                                                                                                                   |
 | eo:azimuth       | number                   | Viewing azimuth angle. The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360).                                                 |
@@ -58,19 +58,19 @@ there is no valid EPSG code.
 
 ### Band Object
 
-| element             | type info | description                                                                                                                                                   |
-| ------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name                | string    | The name of the band (e.g., "B01", "B02", "B1", "B5", "QA").                                                                                                  |
-| common_name         | string    | The name commonly used to refer to the band to make it easier to search for bands across instruments. See below for a list of accepted common names.          |
-| description         | string    | Description to fully explain the band. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| gsd                 | number    | Ground Sample distance, the nominal distance between pixel centers available, in meters. See eo:gsd for more information. Defaults to eo:gsd if not provided. |
-| accuracy            | number    | The expected error between the measured location and the true location of a pixel, in meters on the ground.                                                   |
-| center_wavelength   | number    | The center wavelength of the band, in micrometres (μm).                                                                                                       |
-| full_width_half_max | number    | Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in micrometres (μm).                                  |
+| Field Name          | Type   | Description                                                  |
+| ------------------- | ------ | ------------------------------------------------------------ |
+| name                | string | The name of the band (e.g., "B01", "B02", "B1", "B5", "QA"). |
+| common_name         | string | The name commonly used to refer to the band to make it easier to search for bands across instruments. See below for a list of accepted common names. |
+| description         | string | Description to fully explain the band. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| gsd                 | number | Ground Sample distance, the nominal distance between pixel centers available, in meters. See `eo:gsd` for more information. Defaults to `eo:gsd` if not provided. |
+| accuracy            | number | The expected error between the measured location and the true location of a pixel, in meters on the ground. |
+| center_wavelength   | number | The center wavelength of the band, in micrometers (μm).      |
+| full_width_half_max | number | Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in micrometers (μm). |
 
 
 **full_width_half_max** (FWHM) is a common way to describe the size of a spectral band. It is the
-width, in micrometres (μm), of the bandpass measured at a half of the maximum transmission. Thus, if the
+width, in micrometers (μm), of the bandpass measured at a half of the maximum transmission. Thus, if the
 maximum transmission of the bandpass was 80%, the FWHM is measured as the width of the bandpass at
 40% transmission.
 
@@ -96,7 +96,7 @@ numbers of several popular instruments.
 
 ## Associating assets with bands
 
-Asset definitions that contain band data should reference the band index. Each asset should provide a "eo:bands" property that is an array of 0 based indexes to the correct Band Objects.
+Asset definitions that contain band data should reference the band index. Each asset should provide a `eo:bands` property that is an array of 0 based indexes to the correct Band Objects.
 
 ### Item `Asset Object` fields
 | Field Name | Type     | Description                                  |
