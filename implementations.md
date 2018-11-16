@@ -83,6 +83,12 @@ Development Seed's [sat-api](https://github.com/sat-utils/sat-api) is an easily 
 
 The latest API should contain the latest available STAC version, while the development API will contain the next version (and may not include all items).
 
+### openEO Earth Engine driver (0.6.0)
+
+Mirrors the [Google Earth Engine dataset catalogue](https://developers.google.com/earth-engine/datasets/) for data discvoery within the [openEO Earth Engine](https://github.com/Open-EO/openeo-earthengine-driver) driver:
+
+* Root catalog: https://earthengine.openeo.org/v0.3/stac
+* No search endpoint
 
 ## Ecosystem
 
