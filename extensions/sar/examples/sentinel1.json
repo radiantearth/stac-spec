@@ -24,7 +24,7 @@
       "sar:instrument_mode": "EW",
       "sar:resolution": [50,50],
       "sar:pixel_spacing": [25,25],
-      "sar:looks": [3,1],
+      "sar:looks": [3,1,2.7],
       "sar:frequency_band": "C",
       "sar:center_wavelength": 5.546576466235,
       "sar:center_frequency": 5.405,
