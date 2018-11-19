@@ -22,6 +22,7 @@
       "sar:constellation": "Sentinel-1",
       "sar:instrument": "C-SAR",
       "sar:instrument_mode": "EW",
+      "sar:polarization": ["HH"],
       "sar:resolution": [50,50],
       "sar:pixel_spacing": [25,25],
       "sar:looks": [3,1,2.7],
@@ -29,11 +30,11 @@
       "sar:center_wavelength": 5.546576466235,
       "sar:center_frequency": 5.405,
       "sar:pass_direction": "ascending",
+      "sar:absolute_orbit": [24430],
       "sar:type": "GRD",
       "sar:bands": [
         {
-          "description": "Single co-polarization, horizontal transmit/horizontal receive.",
-          "polarization": ["HH"]
+          "name": "band_1"
         }
       ]
     },
