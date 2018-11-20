@@ -1,0 +1,51 @@
+{
+  "id": "ASA_GM1_1PNPDE20090520_023957_000001022079_00118_37747_3607",
+  "type": "Feature",
+  "bbox": [64.302468,114.587673,71.179088,128.611298],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [65.212918,114.587673],
+        [71.179088,117.542266],
+        [70.096391,128.611298],
+        [64.302468,123.2946],
+        [65.212918,114.587673]
+      ]
+    ]
+  },
+  "properties": {
+    "datetime": "2009-05-20T02:40:46.763325Z",
+    "dtr:start_datetime": "2009-05-20T02:40:01.042784Z",
+    "dtr:end_datetime": "2009-05-20T02:41:31.483865Z",
+    "sar:platform": "Envisat",
+    "sar:constellation": "Envisat",
+    "sar:instrument": "ASAR",
+    "sar:instrument_mode": "GM",
+    "sar:polarization": ["HH"],
+    "sar:resolution": [1000,1000],
+    "sar:pixel_spacing": [500,500],
+    "sar:looks": [3,4],
+    "sar:frequency_band": "C",
+    "sar:center_wavelength": 5.623568898893265,
+    "sar:center_frequency": 5.331,
+    "sar:pass_direction": "descending",
+    "sar:absolute_orbit": [37747],
+    "sar:type": "GM1_1P",
+    "sar:bands": [
+      {
+        "name": "amplitude",
+        "data_type": "amplitude",
+        "polarization": "HH"
+      },
+      {
+        "name": "intensity",
+        "description": "Equals the square of the amplitude band",
+        "data_type": "intensity",
+        "polarization": "HH"
+      }
+    ]
+  },
+  "assets": {},
+  "links": []
+}

@@ -1,90 +1,91 @@
 {
-    "id": "S1A_EW_GRDM_1SSH_20181103T235855_20181103T235955_024430_02AD5D_5616",
-    "type": "Feature",
-    "bbox": [-70.275032,-64.72924,-65.087479,-51.105831],
-    "geometry": {
-      "type": "Polygon",
-      "coordinates": [
-        [
-          [-67.071648,-64.72924],
-          [-65.087479,-56.674374],
-          [-68.033211,-51.105831],
-          [-70.275032,-59.805672],
-          [-67.071648,-64.72924]
-        ]
+  "id": "S1A_EW_GRDM_1SSH_20181103T235855_20181103T235955_024430_02AD5D_5616",
+  "type": "Feature",
+  "bbox": [-70.275032,-64.72924,-65.087479,-51.105831],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [-67.071648,-64.72924],
+        [-65.087479,-56.674374],
+        [-68.033211,-51.105831],
+        [-70.275032,-59.805672],
+        [-67.071648,-64.72924]
       ]
-    },
-    "properties": {
-      "datetime": "2018-11-03T23:58:55.617217Z",
-      "dtr:start_datetime": "2018-11-03T23:58:55.121559Z",
-      "dtr:end_datetime": "2018-11-03T23:59:55.112875Z",
-      "sar:platform": "Sentinel-1A",
-      "sar:constellation": "Sentinel-1",
-      "sar:instrument": "C-SAR",
-      "sar:instrument_mode": "EW",
-      "sar:polarization": ["HH"],
-      "sar:resolution": [50,50],
-      "sar:pixel_spacing": [25,25],
-      "sar:looks": [3,1,2.7],
-      "sar:frequency_band": "C",
-      "sar:center_wavelength": 5.546576466235,
-      "sar:center_frequency": 5.405,
-      "sar:pass_direction": "ascending",
-      "sar:absolute_orbit": [24430],
-      "sar:type": "GRD",
-      "sar:bands": [
-        {
-          "name": "band_1"
-        }
-      ]
-    },
-    "assets": {
-      "noises": {
-        "href": "./annotation/calibration/noise-s1a-ew-grd-hh-20181103t235855-20181103t235955-024430-02ad5d-001.xml",
-        "title": "Calibration Schema",
-        "type": "text/xml",
-        "checksum:md5": "a30d1711e81a4b11ef67b28744321659"
-      },
-      "calibrations": {
-        "href": "./annotation/calibration/calibration-s1a-ew-grd-hh-20181103t235855-20181103t235955-024430-02ad5d-001.xml",
-        "title": "Noise Schema",
-        "type": "text/xml",
-        "checksum:md5": "4fc5351af67db0b8f1746efe421a05e4"
-      },
-      "products": {
-        "href": "./annotation/s1a-ew-grd-hh-20181103t235855-20181103t235955-024430-02ad5d-001.xml",
-        "title": "Product Schema",
-        "type": "text/xml",
-        "checksum:md5": "7a7f2588a85362b9beea2a12d4514d45"
-      },
-      "measurement": {
-        "href": "./measurement/s1a-ew-grd-hh-20181103t235855-20181103t235955-024430-02ad5d-001.tiff",
-        "title": "Measurements",
-        "type": "image/tiff",
-        "sar:bands": [
-          0
-        ],
-        "checksum:md5": "163700a8a6501eccd00b6d3b44ddaed0"
-      },
-      "thumbnail": {
-        "href": "./preview/quick-look.png",
-        "title": "Thumbnail",
-        "type": "image/png",
-        "checksum:md5": "f52acd32b09769d3b1871b420789456c"
-      }
-    },
-    "links": [
+    ]
+  },
+  "properties": {
+    "datetime": "2018-11-03T23:58:55.617217Z",
+    "dtr:start_datetime": "2018-11-03T23:58:55.121559Z",
+    "dtr:end_datetime": "2018-11-03T23:59:55.112875Z",
+    "sar:platform": "Sentinel-1A",
+    "sar:constellation": "Sentinel-1",
+    "sar:instrument": "C-SAR",
+    "sar:instrument_mode": "EW",
+    "sar:polarization": ["HH"],
+    "sar:resolution": [50,50],
+    "sar:pixel_spacing": [25,25],
+    "sar:looks": [3,1,2.7],
+    "sar:frequency_band": "C",
+    "sar:center_wavelength": 5.546576466235,
+    "sar:center_frequency": 5.405,
+    "sar:pass_direction": "ascending",
+    "sar:absolute_orbit": [24430],
+    "sar:type": "GRD",
+    "sar:bands": [
       {
-        "rel": "self",
-        "href": "https://example.com/collections/sentinel-1/items/S1A_EW_GRDM_1SSH_20181103T235855_20181103T235955_024430_02AD5D_5616"
-      },
-      {
-        "rel": "parent",
-        "href": "https://example.com/collections/sentinel-1"
-      },
-      {
-        "rel": "root",
-        "href": "https://example.com/collections"
+        "name": "band_1",
+        "polarization": "HH"
       }
     ]
-  }
+  },
+  "assets": {
+    "noises": {
+      "href": "./annotation/calibration/noise-s1a-ew-grd-hh-20181103t235855-20181103t235955-024430-02ad5d-001.xml",
+      "title": "Calibration Schema",
+      "type": "text/xml",
+      "checksum:md5": "a30d1711e81a4b11ef67b28744321659"
+    },
+    "calibrations": {
+      "href": "./annotation/calibration/calibration-s1a-ew-grd-hh-20181103t235855-20181103t235955-024430-02ad5d-001.xml",
+      "title": "Noise Schema",
+      "type": "text/xml",
+      "checksum:md5": "4fc5351af67db0b8f1746efe421a05e4"
+    },
+    "products": {
+      "href": "./annotation/s1a-ew-grd-hh-20181103t235855-20181103t235955-024430-02ad5d-001.xml",
+      "title": "Product Schema",
+      "type": "text/xml",
+      "checksum:md5": "7a7f2588a85362b9beea2a12d4514d45"
+    },
+    "measurement": {
+      "href": "./measurement/s1a-ew-grd-hh-20181103t235855-20181103t235955-024430-02ad5d-001.tiff",
+      "title": "Measurements",
+      "type": "image/tiff",
+      "sar:bands": [
+        0
+      ],
+      "checksum:md5": "163700a8a6501eccd00b6d3b44ddaed0"
+    },
+    "thumbnail": {
+      "href": "./preview/quick-look.png",
+      "title": "Thumbnail",
+      "type": "image/png",
+      "checksum:md5": "f52acd32b09769d3b1871b420789456c"
+    }
+  },
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://example.com/collections/sentinel-1/items/S1A_EW_GRDM_1SSH_20181103T235855_20181103T235955_024430_02AD5D_5616"
+    },
+    {
+      "rel": "parent",
+      "href": "https://example.com/collections/sentinel-1"
+    },
+    {
+      "rel": "root",
+      "href": "https://example.com/collections"
+    }
+  ]
+}
