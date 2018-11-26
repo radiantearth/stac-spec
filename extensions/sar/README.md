@@ -7,7 +7,7 @@ SAR data is considered to be data that represents a snapshot of the earth for a 
 
 It is not necessary, but recommended to use the [Commons extension](../commons/README.md) (see chapter "Placing common fields in Collections").
 
-- [Examples](examples/) (for example [Sentinel-1](examples/sentinel1.json) and [Envisat](examples/envisat.json))
+- [Examples](examples/) (for example [Sentinel-1](examples/sentinel1.json) and [Envisat](examples/envisat.json))
 - JSON Schema is missing. PRs are welcome.
 
 ## Item fields
@@ -63,13 +63,13 @@ In SAR, you usually have frame start and end time. To describe this information 
 
 ### Band Object
 
-The bands are dependent on `sar:type`. For instance, SLC has the phase and magnitude bands, GRD has amplitude and intensity for each available polarization, OCN data contains radial velocities, wind spectra, ... and geocoded data can contain sigma0 values for each polarization and angular information (projected incidence angle). This may differ based on the processing that was applied to the data.
+The bands contained in SAR image are dependent on the `sar:type`. For example, single look complex (SLC) data contain both phase and amplitude information of the signal. This may be provided for instance in form of complex number components (i and q bands) for each available polarization. Multilooked data (for example GRD in case of Sentinel-1) contain only amplitude and intensity bands for each polarization. Geocoded data contain radiometrically calibrated and terrain corrected data such as sigma0 or flattening gamma and may also contain angular information such as projected local incidence angle. Details about each band and the respective processing applied is given in its description.
 
 | Field Name          | Type         | Description |
 | ------------------- | ------------ | ----------- |
 | name                | string       | The name of the band. |
 | description         | string       | Description to fully explain the band, should include processing information. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| data_type           | string       | Specifies the type of the data contained in the band (for example `amplitude`, `intensity`, `phase`, `angle`, `sigma0`, `gamma0`). |
+| data_type           | string       | Specifies the type of the data contained in the band, for example `amplitude`, `intensity`, `phase`, `angle`, `sigma0`, `gamma0`. |
 | unit                | string       | The unit of measurement for the data, specified as [OGC URN](http://www.opengis.net/def/uom/). |
 | polarization        | string\|null | The polarization of the band, either `HH`, `VV`, `HV`, `VH` or `null` if not applicable. |
 

@@ -46,6 +46,25 @@
       }
     ]
   },
-  "assets": {},
-  "links": []
+  "assets": {
+    "product": {
+      "href": "ASA_GM1_1PNPDE20090520_023957_000001022079_00118_37747_3607.n1.gz",
+      "type": "application/gzip",
+      "sar:bands": [0,1]
+    }
+  },
+  "links": [
+    {
+      "rel": "about",
+      "href": "https://earth.esa.int/pub/ESA_DOC/ENVISAT/ASAR/asar.ProductHandbook.2_2.pdf",
+      "title": "ASAR Product Handbook",
+      "type": "application/pdf"
+    },
+    {
+      "rel": "about",
+      "href": "https://earth.esa.int/web/sppa/mission-performance/esa-missions/envisat/asar/products-and-algorithms",
+      "title": "ASAR Product and Algorithms",
+      "type": "text/html"
+    }
+  ]
 }
