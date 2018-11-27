@@ -1,0 +1,53 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "id": "schema.json#",
+    "type": "object", 
+    "title": "STAC Training Data Extension Spec",
+    "properties": {
+      "properties": {
+        "type": "object",
+        "required": [
+          "td:description",
+          "td:objects",
+          "td:source_type",
+          "td:task_type"
+        ],
+        "properties": {
+          "td:description": {
+            "title": "Description",
+            "type": "string"
+          }, 
+          "td:objects": {
+            "title": "Objects",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+          },
+          "td:source_type": {
+            "title": "Source type",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "ground",
+                "remote"
+              ]
+            }
+          },
+          "td:precision": {
+            "title": "Task type",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "classification",
+                "detection",
+                "segmentation"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }

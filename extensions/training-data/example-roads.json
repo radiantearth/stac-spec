@@ -1,0 +1,42 @@
+{
+    "type": "Feature",
+    "bbox": [32.4875934, 15.5138112, 32.4893484, 15.5155662 ],
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[
+        [32.4875934, 15.5155662],
+        [32.4893484, 15.5155662],
+        [32.4893484, 15.5138112],
+        [32.4875934, 15.5138112],
+        [32.4875934, 15.5155662]
+      ]]
+    },
+    "id": "myAOI_Khartoum_image4",
+    "properties": {
+      "collection": "roads",
+      "datetime": "2015-04-13T08:18:08Z",
+      "td:title": "Khartoum roads",
+      "td:description": "Roads manually drawn using high resolution imagery",
+      "td:source_type": "remote",
+      "td:precision": "detection"
+    },
+    "assets": {
+      "thumbnail": {
+        "title": "Thumbnail",
+        "href": "http://my.sweet.thumbnail.com/mythumb.jpg",
+        "type": "image/jpeg"
+      },
+      "labels": {
+        "title": "Labels",
+        "href": "example-labels.json",
+        "type": "application/geo+json"
+      }
+    },
+    "links": [
+      {
+        "rel": "source",
+        "href": "example-source.json",
+        "td:assets": ["rgb", "multi", "multi-pan", "pan"]
+      }
+    ]
+}
