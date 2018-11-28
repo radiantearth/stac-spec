@@ -8,35 +8,23 @@
         "type": "object",
         "required": [
           "td:description",
-          "td:objects",
-          "td:source_type",
-          "td:task_type"
+          "td:classes",
+          "td:label_type"
         ],
         "properties": {
           "td:description": {
             "title": "Description",
             "type": "string"
           }, 
-          "td:objects": {
-            "title": "Objects",
+          "td:classes": {
+            "title": "Classes",
             "type": "array",
             "items": {
                 "type": "string"
             }
           },
-          "td:source_type": {
-            "title": "Source type",
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "ground",
-                "remote"
-              ]
-            }
-          },
-          "td:precision": {
-            "title": "Task type",
+          "td:label_type": {
+            "title": "Label type",
             "type": "array",
             "items": {
               "type": "string",

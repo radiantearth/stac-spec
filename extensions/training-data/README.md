@@ -26,9 +26,8 @@ Some additional notes are given here for some of the core STAC Item fields and w
 |-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------| 
 | td:title | string | Title | A human readable title of the dataset for display |
 | td:description | string | Description | **REQUIRED.** A description of the training data, how it was created, and what it is recommended for |
-| td:objects | [string] | Objects | **REQUIRED.** a list of keywords representing the nature of the labels. (e.g., trees, buildings, cars, hippos)
-| td:source_type      | string (enum)     |  Method                | **REQUIRED.** The method of gathering the training data, either "ground" or "remote" |
-| td:precision  | string (enum) | Task             |  **REQUIRED.** One of 'classification', 'detection', or 'segmentation' |
+| td:classes | [string] | Classes | **REQUIRED.** a list of keywords representing the nature of the labels. (e.g., tree, building, car, hippo)
+| td:label_type  | string (enum) | Label Type             |  **REQUIRED.** One of 'classification', 'detection', or 'segmentation' |
 
 #### Required Asset: labels
 The TD Extension aads the requirement of at least one asset that uses the key "labels". The asset will contain a link to the actual label data as a GeoJSON FeatureCollection.
@@ -37,7 +36,7 @@ Each Feature in the GeoJSON is a single AOI, either Polygon, Line, or Point and 
 
 | element         | type info       | name                       | description       | 
 |-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------| 
-| td:label | string | label | The name of the feature (e.g., road, building, face) |
+| td:label | string | label | **REQUIRED.** The label of the feature (e.g., road, building, face). Must be one of the classes from td:classes in the Training Data Item |
 
 #### Links: source imagery
 A Training Data Item links to any source imagery that the AOIs apply to by linking to the STAC Item representing the imagery. Source imagery is indicated by using a `rel` type of "source" and providing the link to the STAC Item.
