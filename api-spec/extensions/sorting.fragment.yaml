@@ -44,5 +44,5 @@ components:
 
       example:
         - field: eo:cloud_cover
-        - field: provider
+        - field: providers
           direction: desc

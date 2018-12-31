@@ -1,8 +1,8 @@
-# STAC JSON Examples
+# STAC Item Examples
 
 ## Overview
 
-This directory contains a number of samples and more 'real world' examples of how a STAC `Item` could be implemented. As of right
+This directory contains a number of samples and more 'real world' examples of how a STAC Item could be implemented. As of right
 now none of these are actual production implementations - they are more adaptations of current catalogs to the STAC
 specifications. In time these will evolve to be examples of truly real world implementations.
 
@@ -10,7 +10,7 @@ This document also contains discussion of the various examples in this folder.
 
 ## In this directory
 
-**[sample.json](examples/sample.json)** is the most minimal possible compliant `Item` record. Most all data will
+**[sample.json](examples/sample.json)** is the most minimal possible compliant Item record. Most all data will
 include additional fields, as STAC is designed to be a minimal common subset. But it is useful for showing exactly what is
 required.
 
@@ -21,7 +21,7 @@ satellite imagery, as most providers include a number of complementary files.
 
 **DigitalGlobe** The [DigitalGlobe sample](digitalglobe-sample.json) is taken from the proposed DigitalGlobe static catalog
 [pull request](https://github.com/radiantearth/stac-spec/pull/33), with minor field updates to validate against the the 
-stac-item specification.
+item specification.
 
 **Landsat8** The [Landsat8 sample](landsat8-sample.json) is meant to be an example of how an S3-based catalog like the 
 [Landsat on AWS](https://landsatonaws.com/) public data set could be a STAC static catalog. It includes the 'collection'
@@ -30,11 +30,11 @@ concept, which is explained more in the [/extensions/examples/ folder](../extens
 **Planet** The [Planet sample](planet-sample.json) is an adaption of Planet's [Data API](https://www.planet.com/docs/reference/data-api/) 
 returned JSON, with minor tweaks to have it fit in to a STAC Item.
 
-**CBERS** The [CBERS sample](CBERS_4_MUX_20170528_090_084_L2.json) is copied from [CBERS static STAC catalog](https://cbers-stac.s3.amazonaws.com/catalog.json).
+**CBERS** The [CBERS sample](CBERS_4_MUX_20181029_177_106_L4.json) is copied from [CBERS static STAC catalog](https://cbers-stac-0-6.s3.amazonaws.com/catalog.json).
 
 ## Example Discussion
 
-These examples demonstrate that there is a range of potential implementations of STAC `Item`s. Most were made by adapting
+These examples demonstrate that there is a range of potential implementations of STAC Items. Most were made by adapting
 the current implementations as minimally as possible. The hope is that there will emerge more consensus and best practices
 on the things outside of the core fields, to increase interoperability. 
 
@@ -51,10 +51,8 @@ has a better workflow - but it shows how the asset field can be adapted.
 
 ### Asset definition
 
-Currently the additional metadata on assets is quite minimal - only a link is required, and 'name' is the only other specified
-field. Some of the examples use the name, some just use their own convention. DigitalGlobe defines its bands in properties,
-while Landsat8 and Planet contain a demonstration of how they could reference a 'Product' definition that's more at the catalog
-level (though each Item could theoretically define its own product as well).
+Currently the additional metadata on assets is quite minimal - only a link is required. 'title' and 'type' are the only other specified
+fields.
 
 ### Permissions
 

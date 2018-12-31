@@ -2,31 +2,36 @@
   "$schema": "http://json-schema.org/draft-06/schema#",
   "id": "schema.json#",
   "type": "object", 
-  "title": "STAC Scientific Profile Spec",
+  "title": "STAC Scientific Extension Spec",
   "properties": {
-    "sci:doi": {
-      "type": "string",
-      "title": "Dataset DOI",
-      "pattern": "^(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![%\"#? ])\\S)+)$"
-    }, 
-    "sci:citation": {
-      "type": "string", 
-      "title": "Proposed Dataset Citation"
-    },
-    "sci:publications": {
-      "type": "array",
-      "title": "Publications",
-      "items": {
-        "type": "object",
-        "properties": {
-          "doi": {
-            "type": "string",
-            "title": "Publication DOI",
-            "pattern": "^(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![%\"#? ])\\S)+)$"
-          }, 
-          "citation": { 
-            "type": "string", 
-            "title": "Publication Citation"
+    "properties": {
+      "type": "object",
+      "properties": {
+        "sci:doi": {
+          "type": "string",
+          "title": "Data DOI",
+          "pattern": "^(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![%\"#? ])\\S)+)$"
+        }, 
+        "sci:citation": {
+          "type": "string", 
+          "title": "Proposed Data Citation"
+        },
+        "sci:publications": {
+          "type": "array",
+          "title": "Publications",
+          "items": {
+            "type": "object",
+            "properties": {
+              "doi": {
+                "type": "string",
+                "title": "Publication DOI",
+                "pattern": "^(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![%\"#? ])\\S)+)$"
+              }, 
+              "citation": { 
+                "type": "string", 
+                "title": "Publication Citation"
+              }
+            }
           }
         }
       }

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-06/schema#",
-  "id": "stac-item.json#",
+  "id": "item.json#",
   "title": "STAC Item",
   "type": "object",
   "description": "This object represents the metadata for an item in a SpatioTemporal Asset Catalog.",
@@ -64,22 +64,6 @@
                   "description": "The searchable date/time of the assets, in UTC (Formatted in RFC 3339) ",
                   "type": "string",
                   "format": "date-time"
-                },
-                "provider": {
-                  "title": "Provider",
-                  "description": "Provider name and contact",
-                  "oneOf": [
-                    {
-                      "type": "string"
-                    },
-                    {
-                      "$ref": "#/definitions/entity"
-                    }
-                  ]
-                },
-                "license": {
-                  "title": "Data license",
-                  "description": "Data license name based on SPDX License List"
                 }
               }
             }
@@ -94,10 +78,20 @@
         "href"
       ],
       "properties": {
-        "rel": {
+        "href": {
+          "title": "Link reference",
           "type": "string"
         },
-        "href": {
+        "rel": {
+          "title": "Link relation type",
+          "type": "string"
+        },
+        "type": {
+          "title": "Link type",
+          "type": "string"
+        },
+        "title": {
+          "title": "Link title",
           "type": "string"
         }
       }
@@ -109,32 +103,16 @@
       ],
       "properties": {
         "href": {
+          "title": "Asset reference",
           "type": "string"
         },
-        "name": {
+        "title": {
+          "title": "Asset title",
           "type": "string"
         },
         "type": {
+          "title": "Asset type",
           "type": "string"
-        }
-      }
-    },
-    "entity": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string",
-          "format": "email"
-        },
-        "phone": {
-          "type": "string"
-        },
-        "url": {
-          "type": "string",
-          "format": "uri"
         }
       }
     }

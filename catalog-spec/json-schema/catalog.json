@@ -9,13 +9,20 @@
         "href"
       ],
       "properties": {
-        "rel": {
+        "href": {
+          "title": "Link reference",
           "type": "string"
         },
-        "href": {
+        "rel": {
+          "title": "Link relation type",
           "type": "string"
         },
         "type": {
+          "title": "Link type",
+          "type": "string"
+        },
+        "title": {
+          "title": "Link title",
           "type": "string"
         }
       }
@@ -24,13 +31,22 @@
       "title": "Catalog",
       "type": "object",
       "required": [
-        "name",
+        "stac_version",
+        "id",
         "description",
         "links"
       ],
       "properties": {
-        "name": {
-          "title": "Name",
+        "stac_version": {
+          "title": "STAC version",
+          "type": "string"
+        },
+        "id": {
+          "title": "Identifier",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
           "type": "string"
         },
         "description": {

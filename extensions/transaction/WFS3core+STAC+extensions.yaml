@@ -1,11 +1,13 @@
 openapi: 3.0.1
 info:
-  title: STAC API integrated with OGC Web Feature Service standard
-  version: 0.4.5
+  title: The SpatioTemporal Asset Catalog API + WFS3 + Transaction extension
+  version: 0.6.0
   description: >-
-    This is an example OpenAPI specification of a SpatioTemporal Asset Catalog
-    API  that also implements the OGC Web Feature Service 3.0 specification
-    (conformance  classes: "STAC", "Core", "GeoJSON", "HTML", "OpenAPI 3.0").
+    This is an OpenAPI definition of the core SpatioTemporal Asset Catalog API
+    specification. Any service that implements this endpoint to allow search of
+    spatiotemporal assets can be considered a STAC API. The endpoint is also
+    available as an OpenAPI fragment that can be integrated with other OpenAPI
+    definitions, and is designed to slot seamlessly into a WFS 3 API definition.
   contact:
     name: Cool Sat Corp
     email: info@cool-sat.com
@@ -19,6 +21,88 @@ servers:
   - url: 'http://www.cool-sat.com'
     description: Production server
 paths:
+  /stac:
+    get:
+      summary: Return the root catalog or collection.
+      description: >-
+        Returns the root STAC Catalog or STAC Collection that is the entry point
+        for users to browse with STAC Browser or for search engines to crawl.
+        This can either return a single STAC Collection or more commonly a STAC
+        catalog that usually lists sub-catalogs of STAC Collections, i.e. a
+        simple catalog that lists all collections available through the API.
+      tags:
+        - STAC
+      responses:
+        '200':
+          description: A catalog json definition. Used as an entry point for a crawler.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/catalogDefinition'
+  /stac/search:
+    get:
+      summary: Search STAC items by simple filtering.
+      description: >-
+        Retrieve Items matching filters. Intended as a shorthand API for simple
+        queries. This method is optional.
+      operationId: getSearchSTAC
+      tags:
+        - STAC
+      parameters:
+        - $ref: '#/components/parameters/bbox'
+        - $ref: '#/components/parameters/time'
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: A feature collection.
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/itemCollection'
+            text/html:
+              schema:
+                type: string
+        default:
+          description: An error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
+    post:
+      summary: Search STAC items by full-featured filtering.
+      description: >-
+        retrieve items matching filters. Intended as the standard, full-featured
+        query API. This method is mandatory.
+      operationId: postSearchSTAC
+      tags:
+        - STAC
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/searchBody'
+      responses:
+        '200':
+          description: A feature collection.
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/itemCollection'
+            text/html:
+              schema:
+                type: string
+        default:
+          description: An error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
   /:
     get:
       summary: landing page of this API
@@ -38,22 +122,6 @@ paths:
             text/html:
               schema:
                 type: string
-  /api:
-    get:
-      summary: API definition
-      description: >-
-        The API definition is a formal OpenAPI3 compliant document in JSON form,
-        describing the complete API implemented here.
-      operationId: getAPI
-      tags:
-        - Capabilities
-      responses:
-        '200':
-          description: OpenAPI3 definition of this API
-          content:
-            application/json:
-              schema:
-                type: string
   /conformance:
     get:
       summary: information about standards that this API conforms to
@@ -71,7 +139,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/req-classes'
         default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -93,7 +161,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -120,7 +188,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -153,12 +221,12 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: '#/components/schemas/featureCollectionGeoJSON'
+                $ref: 'http://geojson.org/schema/FeatureCollection.json'
             text/html:
               schema:
                 type: string
         default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -176,11 +244,11 @@ paths:
         - $ref: '#/components/parameters/collectionId'
       requestBody:
         content:
-            application/json:
-              schema:
-                oneOf:
-                 - $ref: '#/components/schemas/item'
-                 - $ref: '#/components/schemas/itemCollection'
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/item'
+                - $ref: '#/components/schemas/itemCollection'
       responses:
         '200':
           description: Status of the create request.
@@ -192,7 +260,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -215,12 +283,12 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: '#/components/schemas/featureGeoJSON'
+                $ref: 'http://geojson.org/schema/Feature.json'
             text/html:
               schema:
                 type: string
         default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -255,7 +323,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -290,7 +358,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -318,69 +386,7 @@ paths:
               schema:
                 type: string
         default:
-          description: An error occured.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/exception'
-            text/html:
-              schema:
-                type: string
-  /search/stac:
-    get:
-      summary: >-
-        retrieve items matching filters. Intended as a shorthand API for simple
-        queries. This method is optional.
-      operationId: getSearchSTAC
-      tags:
-        - STAC
-      parameters:
-        - $ref: '#/components/parameters/bbox'
-        - $ref: '#/components/parameters/time'
-        - $ref: '#/components/parameters/limit'
-      responses:
-        '200':
-          description: A feature collection.
-          content:
-            application/geo+json:
-              schema:
-                $ref: '#/components/schemas/itemCollection'
-            text/html:
-              schema:
-                type: string
-        default:
-          description: An error occured.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/exception'
-            text/html:
-              schema:
-                type: string
-    post:
-      summary: >-
-        retrieve items matching filters. Intended as the standard, full-featured
-        query API. This method is mandatory.
-      operationId: postSearchSTAC
-      tags:
-        - STAC
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/searchBody'
-      responses:
-        '200':
-          description: A feature collection.
-          content:
-            application/geo+json:
-              schema:
-                $ref: '#/components/schemas/itemCollection'
-            text/html:
-              schema:
-                type: string
-        default:
-          description: An error occured.
+          description: An error occurred.
           content:
             application/json:
               schema:
@@ -504,230 +510,30 @@ components:
           type: string
         description:
           type: string
-    root:
-      type: object
-      required:
-        - links
-      properties:
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/link'
-          example:
-            - href: 'http://data.example.org/'
-              rel: self
-              type: application/json
-              title: this document
-            - href: 'http://data.example.org/api'
-              rel: service
-              type: application/openapi+json;version=3.0
-              title: the API definition
-            - href: 'http://data.example.org/conformance'
-              rel: conformance
-              type: application/json
-              title: WFS 3.0 conformance classes implemented by this server
-            - href: 'http://data.example.org/collections'
-              rel: data
-              type: application/json
-              title: Metadata about the feature collections
-    req-classes:
-      type: object
-      required:
-        - conformsTo
-      properties:
-        conformsTo:
-          type: array
-          items:
-            type: string
-          example:
-            - 'http://www.opengis.net/spec/wfs-1/3.0/req/core'
-            - 'http://www.opengis.net/spec/wfs-1/3.0/req/oas30'
-            - 'http://www.opengis.net/spec/wfs-1/3.0/req/html'
-            - 'http://www.opengis.net/spec/wfs-1/3.0/req/geojson'
+    links:
+      type: array
+      items:
+        $ref: '#/components/schemas/link'
     link:
       type: object
       required:
         - href
+        - rel
+      additionalProperties: true
       properties:
         href:
           type: string
+          format: url
+          example: 'http://www.geoserver.example/stac/naip/child/catalog.json'
         rel:
           type: string
-          example: prev
+          example: child
         type:
           type: string
-          example: application/geo+json
-        hreflang:
-          type: string
-          example: en
-    content:
-      type: object
-      required:
-        - links
-        - collections
-      properties:
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/link'
-          example:
-            - href: 'http://data.example.org/collections.json'
-              rel: self
-              type: application/json
-              title: this document
-            - href: 'http://data.example.org/collections.html'
-              rel: alternate
-              type: text/html
-              title: this document as HTML
-            - href: 'http://schemas.example.org/1.0/foobar.xsd'
-              rel: describedBy
-              type: application/xml
-              title: XML schema for Acme Corporation data
-        collections:
-          type: array
-          items:
-            $ref: '#/components/schemas/collectionInfo'
-    collectionInfo:
-      type: object
-      required:
-        - name
-        - links
-      properties:
-        name:
-          description: 'identifier of the collection used, for example, in URIs'
-          type: string
-          example: buildings
+          example: application/json
         title:
-          description: human readable title of the collection
           type: string
-          example: Buildings
-        description:
-          description: a description of the features in the collection
-          type: string
-          example: Buildings in the city of Bonn.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/link'
-          example:
-            - href: 'http://data.example.org/collections/buildings/items'
-              rel: item
-              type: application/geo+json
-              title: Buildings
-            - href: 'http://example.org/concepts/building.html'
-              rel: describedBy
-              type: text/html
-              title: Feature catalogue for buildings
-        extent:
-          $ref: '#/components/schemas/extent'
-        crs:
-          description: >-
-            The coordinate reference systems in which geometries may be
-            retrieved. Coordinate reference systems are identified by a URI. The
-            first coordinate reference system is the coordinate reference system
-            that is used by default. This is always
-            "http://www.opengis.net/def/crs/OGC/1.3/CRS84", i.e. WGS84
-            longitude/latitude.
-          type: array
-          items:
-            type: string
-          default:
-            - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
-    extent:
-      type: object
-      properties:
-        crs:
-          description: >-
-            Coordinate reference system of the coordinates in the spatial extent
-            (property `spatial`). In the Core, only WGS84 longitude/latitude is
-            supported. Extensions may support additional coordinate reference
-            systems.
-          type: string
-          enum:
-            - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
-          default: 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
-        spatial:
-          description: >-
-            West, north, east, south edges of the spatial extent. The minimum
-            and maximum values apply to the coordinate reference system WGS84
-            longitude/latitude that is supported in the Core. If, for example, a
-            projected coordinate reference system is used, the minimum and
-            maximum values need to be adjusted.
-          type: array
-          minItems: 4
-          maxItems: 6
-          items:
-            type: number
-          example:
-            - -180
-            - -90
-            - 180
-            - 90
-        trs:
-          description: >-
-            Temporal reference system of the coordinates in the temporal extent
-            (property `temporal`). In the Core, only the Gregorian calendar is
-            supported. Extensions may support additional temporal reference
-            systems.
-          type: string
-          enum:
-            - 'http://www.opengis.net/def/uom/ISO-8601/0/Gregorian'
-          default: 'http://www.opengis.net/def/uom/ISO-8601/0/Gregorian'
-        temporal:
-          description: Begin and end times of the temporal extent.
-          type: array
-          minItems: 2
-          maxItems: 2
-          items:
-            type: string
-            format: dateTime
-          example:
-            - '2011-11-11T12:22:11Z'
-            - '2012-11-24T12:32:43Z'
-    featureCollectionGeoJSON:
-      type: object
-      required:
-        - features
-      properties:
-        features:
-          type: array
-          items:
-            $ref: '#/components/schemas/featureGeoJSON'
-    featureGeoJSON:
-      type: object
-      required:
-        - type
-        - geometry
-        - properties
-      properties:
-        type:
-          type: string
-          enum:
-            - Feature
-        geometry:
-          $ref: '#/components/schemas/geometryGeoJSON'
-        properties:
-          type: object
-          nullable: true
-        id:
-          oneOf:
-            - type: string
-            - type: integer
-    geometryGeoJSON:
-      type: object
-      required:
-        - type
-      properties:
-        type:
-          type: string
-          enum:
-            - Point
-            - MultiPoint
-            - LineString
-            - MultiLineString
-            - Polygon
-            - MultiPolygon
-            - GeometryCollection
+          example: NAIP Child Catalog
     searchBody:
       description: The search criteria
       type: object
@@ -739,7 +545,7 @@ components:
           properties:
             limit:
               type: number
-              example: 5
+              example: 10
     bbox:
       description: |
         Only features that have a geometry that intersects the bounding box are
@@ -796,51 +602,7 @@ components:
       description: Only returns items that intersect with the provided polygon.
       properties:
         intersects:
-          $ref: '#/components/schemas/polygon'
-    polygon:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-            - polygon
-        coordinates:
-          $ref: '#/components/schemas/polygon2D'
-      required:
-        - type
-        - coordinates
-    polygon2D:
-      type: array
-      minItems: 1
-      items:
-        $ref: '#/components/schemas/linearRing2D'
-    linearRing2D:
-      type: array
-      minItems: 4
-      items:
-        $ref: '#/components/schemas/point2D'
-      example:
-        - - -104
-          - 35
-        - - -103
-          - 35
-        - - -103
-          - 34
-        - - -104
-          - 34
-        - - -104
-          - 35
-    point2D:
-      description: A 2d geojson point
-      type: array
-      minimum: 2
-      maximum: 2
-      items:
-        type: number
-        format: double
-      example:
-        - -104
-        - 35
+          $ref: 'http://geojson.org/schema/Geometry.json'
     time:
       type: string
       description: >
@@ -868,6 +630,29 @@ components:
 
         extent or all relevant temporal properties.
       example: '2018-02-12T00:00:00Z/2018-03-18T12:31:12Z'
+    catalogDefinition:
+      type: object
+      required:
+        - stac_version
+        - id
+        - description
+        - links
+      additionalProperties: true
+      properties:
+        stac_version:
+          type: string
+          example: 0.6.0
+        id:
+          type: string
+          example: naip
+        title:
+          type: string
+          example: NAIP Imagery
+        description:
+          type: string
+          example: Catalog of NAIP Imagery.
+        links:
+          $ref: '#/components/schemas/links'
     itemCollection:
       type: object
       required:
@@ -890,41 +675,25 @@ components:
         - id
         - type
         - geometry
+        - bbox
         - links
         - properties
         - assets
       properties:
         id:
-          type: string
-          example: path/to/example.tif
-          description: 'unique ID, potentially link to file'
+          $ref: '#/components/schemas/itemId'
         bbox:
           $ref: '#/components/schemas/bbox'
         geometry:
-          type: object
-          description: footprint of the item
+          $ref: 'http://geojson.org/schema/Geometry.json'
         type:
-          type: string
-          description: The GeoJSON type
-          enum:
-            - Feature
+          $ref: '#/components/schemas/itemType'
         properties:
           $ref: '#/components/schemas/itemProperties'
         links:
-          type: array
-          items:
-            $ref: '#/components/schemas/link'
+          $ref: '#/components/schemas/links'
         assets:
-          type: object
-          additionalProperties:
-            type: object
-            required:
-              - href
-            properties:
-              href:
-                type: string
-              name:
-                type: string
+          $ref: '#/components/schemas/itemAssets'
       example:
         type: Feature
         id: CS3-20160503_132130_04
@@ -948,61 +717,50 @@ components:
                 - 37.488035566
         properties:
           datetime: '2016-05-03T13:21:30.040Z'
-          provider: 'http://www.cool-sat.com'
-          license: CC-BY-4.0
         links:
           - rel: self
             href: >-
               http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04.json
         assets:
           analytic:
-            name: 4-Band Analytic
+            title: 4-Band Analytic
             href: >-
               http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/analytic.tif
           thumbnail:
-            name: thumbnail
+            title: Thumbnail
             href: >-
               http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/thumb.png
-    partialItem:
+            type: image/png
+    itemId:
+      type: string
+      example: path/to/example.tif
+      description: 'Provider identifier, a unique ID, potentially a link to a file.'
+    itemType:
+      type: string
+      description: The GeoJSON type
+      enum:
+        - Feature
+    itemAssets:
       type: object
-      properties:
-        id:
-          type: string
-          example: path/to/example.tif
-          description: 'unique ID, potentially link to file'
-        bbox:
-          $ref: '#/components/schemas/bbox'
-        geometry:
-          type: object
-          description: footprint of the item
-        type:
-          type: string
-          description: The GeoJSON type
-          enum:
-            - Feature
+      additionalProperties:
+        type: object
+        required:
+          - href
         properties:
-          $ref: '#/components/schemas/partialItemProperties'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/link'
-        assets:
-          type: object
-          additionalProperties:
-            type: object
-            required:
-              - href
-            properties:
-              href:
-                type: string
-              name:
-                type: string
-      example:
-        assets:
-          analytic:
-            name: 1-Band Analytic
-            href: >-
-              http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/analytic-1.tif
+          href:
+            type: string
+            format: url
+            description: Link to the asset object
+            example: >-
+              http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/thumb.png
+          title:
+            type: string
+            description: Displayed title
+            example: Thumbnail
+          type:
+            type: string
+            description: Media type of the asset
+            example: image/png
     itemProperties:
       type: object
       required:
@@ -1011,42 +769,276 @@ components:
       properties:
         datetime:
           $ref: '#/components/schemas/time'
-        provider:
+      additionalProperties:
+        description: Any additional properties added in via extensions.
+    itemCollectionLinks:
+      type: array
+      description: >-
+        An array of links. Can be used for pagination, e.g. by providing a link
+        with the `next` relation type.
+      items:
+        $ref: '#/components/schemas/link'
+      example:
+        - rel: next
+          href: >-
+            http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
+    root:
+      type: object
+      required:
+        - links
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          example:
+            - href: 'http://data.example.org/'
+              rel: self
+              type: application/json
+              title: this document
+            - href: 'http://data.example.org/api'
+              rel: service
+              type: application/openapi+json;version=3.0
+              title: the API definition
+            - href: 'http://data.example.org/conformance'
+              rel: conformance
+              type: application/json
+              title: WFS 3.0 conformance classes implemented by this server
+            - href: 'http://data.example.org/collections'
+              rel: data
+              type: application/json
+              title: Metadata about the feature collections
+    req-classes:
+      type: object
+      required:
+        - conformsTo
+      properties:
+        conformsTo:
+          type: array
+          items:
+            type: string
+          example:
+            - 'http://www.opengis.net/spec/wfs-1/3.0/req/core'
+            - 'http://www.opengis.net/spec/wfs-1/3.0/req/oas30'
+            - 'http://www.opengis.net/spec/wfs-1/3.0/req/html'
+            - 'http://www.opengis.net/spec/wfs-1/3.0/req/geojson'
+    content:
+      type: object
+      required:
+        - links
+        - collections
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          example:
+            - href: 'http://data.example.org/collections.json'
+              rel: self
+              type: application/json
+              title: this document
+            - href: 'http://data.example.org/collections.html'
+              rel: alternate
+              type: text/html
+              title: this document as HTML
+            - href: 'http://schemas.example.org/1.0/foobar.xsd'
+              rel: describedBy
+              type: application/xml
+              title: XML schema for Acme Corporation data
+        collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/collectionInfo'
+    collectionInfo:
+      type: object
+      required:
+        - name
+        - links
+        - stac_version
+        - id
+        - description
+        - license
+        - extent
+      properties:
+        name:
+          description: 'identifier of the collection used, for example, in URIs'
           type: string
-          description: Information about the provider
+          example: buildings
+        title:
+          description: human readable title of the collection
+          type: string
+          example: Buildings
+        description:
+          description: a description of the features in the collection
+          type: string
+          example: Buildings in the city of Bonn.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          example:
+            - href: 'http://data.example.org/collections/buildings/items'
+              rel: item
+              type: application/geo+json
+              title: Buildings
+            - href: 'http://example.org/concepts/building.html'
+              rel: describedBy
+              type: text/html
+              title: Feature catalogue for buildings
+        extent:
+          $ref: '#/components/schemas/extent'
+        crs:
+          description: >-
+            The coordinate reference systems in which geometries may be
+            retrieved. Coordinate reference systems are identified by a URI. The
+            first coordinate reference system is the coordinate reference system
+            that is used by default. This is always
+            "http://www.opengis.net/def/crs/OGC/1.3/CRS84", i.e. WGS84
+            longitude/latitude.
+          type: array
+          items:
+            type: string
+          default:
+            - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+        stac_version:
+          type: string
+          example: 0.6.0
+        id:
+          description: 'identifier of the collection used, for example, in URIs'
+          type: string
+          example: buildings
+        keywords:
+          title: Keywords
+          type: array
+          items:
+            type: string
+            example:
+              - buildings
+              - properties
+              - constructions
+        version:
+          title: Collection Version
+          type: string
+          example: 1
         license:
+          title: Collection License Name
           type: string
-          description: Data license name based on SPDX License List
+          example: Apache-2.0
+        providers:
+          type: array
+          items:
+            properties:
+              name:
+                title: Organization name
+                type: string
+                example: Big Building Corp
+              description:
+                title: Provider description
+                type: string
+                example: No further processing applied.
+              roles:
+                title: Organization roles
+                type: array
+                items:
+                  type: string
+                  enum:
+                    - producer
+                    - licensor
+                    - processor
+                    - host
+                example:
+                  - producer
+                  - licensor
+              url:
+                title: Homepage
+                description: >-
+                  Homepage on which the provider describes the dataset and
+                  publishes contact information.
+                type: string
+                format: url
+                example: 'http://www.big-building.com'
+    extent:
+      type: object
+      properties:
+        crs:
+          description: >-
+            Coordinate reference system of the coordinates in the spatial extent
+            (property `spatial`). In the Core, only WGS84 longitude/latitude is
+            supported. Extensions may support additional coordinate reference
+            systems.
+          type: string
+          enum:
+            - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+          default: 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+        spatial:
+          description: >-
+            West, south, east, north edges of the spatial extent. The minimum
+            and maximum values apply to the coordinate reference system WGS84
+            longitude/latitude that is supported in the Core. If, for example, a
+            projected coordinate reference system is used, the minimum and
+            maximum values need to be adjusted.
+          type: array
+          minItems: 4
+          maxItems: 6
+          items:
+            type: number
+          example:
+            - -180
+            - -90
+            - 180
+            - 90
+        trs:
+          description: >-
+            Temporal reference system of the coordinates in the temporal extent
+            (property `temporal`). In the Core, only the Gregorian calendar is
+            supported. Extensions may support additional temporal reference
+            systems.
+          type: string
+          enum:
+            - 'http://www.opengis.net/def/uom/ISO-8601/0/Gregorian'
+          default: 'http://www.opengis.net/def/uom/ISO-8601/0/Gregorian'
+        temporal:
+          description: Begin and end times of the temporal extent.
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            type: string
+            format: dateTime
+          example:
+            - '2011-11-11T12:22:11Z'
+            - '2012-11-24T12:32:43Z'
+    partialItem:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/itemId'
+        bbox:
+          $ref: '#/components/schemas/bbox'
+        geometry:
+          $ref: 'http://geojson.org/schema/Geometry.json'
+        type:
+          $ref: '#/components/schemas/itemType'
+        properties:
+          $ref: '#/components/schemas/partialItemProperties'
+        links:
+          $ref: '#/components/schemas/links'
+        assets:
+          $ref: '#/components/schemas/itemAssets'
+      example:
+        assets:
+          analytic:
+            title: 1-Band Analytic
+            href: >-
+              http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/analytic-1.tif
     partialItemProperties:
       type: object
       description: allows for partial collections of metadata fields
+      additionalProperties: true
       properties:
         datetime:
           $ref: '#/components/schemas/time'
-        provider:
-          type: string
-          description: Information about the provider
-        license:
-          type: string
-          description: Data license name based on SPDX License List
-    itemCollectionLinks:
-      type: object
-      properties:
-        next:
-          type: string
-          format: url
-          description: >-
-            A URL to obtain the next paginated data set. If not present, the
-            client should utilize the `nextPageToken`.
-          example: >-
-            http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
 tags:
-  - name: Capabilities
-    description: >-
-      Essential characteristics of this API including information about the
-      data.
-  - name: Features
-    description: Access to data (features).
   - name: STAC
     description: Extension to WFS3 Core to support STAC metadata model and search API
   - name: Extensions

@@ -2,14 +2,14 @@
   "name": "api-spec",
   "version": "1.0.0",
   "description": "Generate STAC openapi defintions from fragments.",
-  "main": "index.js",
+  "repository": "https://github.com/radiantearth/stac-spec",
+  "license": "Apache-2.0",
   "scripts": {
     "generate-standalone": "yaml-files definitions/STAC-standalone.yaml STAC-standalone.yaml",
     "generate-query-ext": "yaml-files definitions/STAC-query.yaml STAC-query.yaml",
     "generate-wfs": "yaml-files definitions/WFS3core+STAC.yaml WFS3core+STAC.yaml",
     "generate-all": "npm run generate-standalone && npm run generate-wfs && npm run generate-query-ext"
   },
-  "author": "",
   "dependencies": {
     "yaml-files": "^1.1.0"
   }

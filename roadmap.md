@@ -17,8 +17,8 @@ spec changes discusses on a pull request, merging once there is community consen
 
 ### Asset definitions
 
-Currently the 'Asset' items in the array only require a link to the asset, and contain an option 'name'. There is likely
-quite a bit more that can be standardized in a useful way - at the very least some optional fields to help providers
+Currently the 'Asset' items in the array only require a link to the asset, and contain an optional 'title' and media 'type'.
+There is likely quite a bit more that can be standardized in a useful way - at the very least some optional fields to help providers
 describe more of what they're doing. Another idea is to require a link to a 'product definition' that an asset must
 implement, which would provide the needed fields. This would increase the burden on the client, to follow or cache
 the definitions, but would also decrease the repetition of the same fields over and over again. There is additional
@@ -48,7 +48,7 @@ from instead of repeating each field.
 ### Domain and Vendor extensions
 
 Ideally there is a way for domains (like Earth Observation / satellite imagery) or specific vendors to publish
-more meta information about the additional fields they use. The STAC mechanisms should enable a full `Item` with
+more meta information about the additional fields they use. The STAC mechanisms should enable a full Item with
 all the extra fields included to be self-describing, so clients could understand more than just the core fields.
 This likely would involve ways of defining additional schemas, and ways to share those schemas and validate a
 response against several schemas. This could be some additional mechanics in Catalog API (likely optional, to
@@ -58,7 +58,7 @@ leverage web best practices to share core schema definitions across different ST
 
 The schema definition mechanism part of this is defined in [Issue 30](https://github.com/radiantearth/stac-spec/issues/30).
 
-### Earth Observation Extension
+### EO Extension
 
 The top priority for many of the initial STAC implementors is to share more fields between data than just
 date and time. At the [boulder sprint](http://github.com/radiantearth/boulder-sprint) the metadata group
