@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
+
+# Read 'pdal info --all' output and emit a STAC pc object
 
 import sys
 import json
@@ -6,8 +8,6 @@ import os
 
 
 data = sys.stdin.read()
-#with open('ak.json','rb') as d:
-#    data = d.read()
 
 j = json.loads(data)
 
