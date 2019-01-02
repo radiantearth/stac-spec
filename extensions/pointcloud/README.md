@@ -1,6 +1,6 @@
 # STAC Point Cloud Extension Spec (`pc`)
 
-**Extension [Maturity Classification](../README.md#extension-maturity): Pilot**
+**Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
 This document explains the fields of the STAC Point Cloud Extension to a STAC Catalog,
 which allows STAC to more fully describe point cloud datasets. The point clouds can
