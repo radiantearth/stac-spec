@@ -7,7 +7,7 @@ which allows STAC to more fully describe point cloud datasets. The point clouds 
 come from either active or passive sensors, and data is frequently acquired using
 tools such as LiDAR or coincidence-matched imagery.
 
-- [Example](example-alaska.json)
+- [Example](example-autzen.json)
 - JSON Schema is missing. PRs are welcome.
 
 ## Item Fields
@@ -19,21 +19,23 @@ tools such as LiDAR or coincidence-matched imagery.
 | pc:encoding   | string              | Content encoding or format of the data. |
 | pc:schema     | [Schema Object]     | A sequential array of items that define the dimensions and their types. |
 | pc:statistics | [Statistics Object] | A sequential array of items mapping to `pc:schema` defines per-channel statistics. |
-| pc:type       | string              | Phenomenology type for the point cloud. Valid values include `lidar`, `eopc`, `radar`, `sonar`. |
+| pc:type       | string              | Phenomenology type for the point cloud. Possible valid values might include `lidar`, `eopc`, `radar`, `sonar`. |
 
 ### Schema Object
 
-A sequential array of items that define the dimensions and their types.
+A sequential array of items that define the dimensions and their types. All fields are
+required.
 
 | Field Name | Type    | Description |
 | ---------- | ------- | -------------------------- |
 | name       | string  | The name of the dimension. |
-| size       | integer | |
-| type       | string  | |
+| size       | integer | The size of the dimension in bytes. Whole bytes only are supported.|
+| type       | string  | Dimension type. Valid values include `floating`, `unsigned`, and `signed`|
 
 ### Statistics Object
 
-A sequential array of items mapping to `pc:schema` defines per-channel statistics.
+A sequential array of items mapping to `pc:schema` defines per-channel statistics. All fields
+are optional.
 
 | Field Name | Type    | Description |
 | ---------- | ------- | ----------- |
@@ -42,7 +44,7 @@ A sequential array of items mapping to `pc:schema` defines per-channel statistic
 | maximum    | number  | The maximum value of the channel. |
 | minimum    | number  | The minimum value of the channel. |
 | name       | string  | The name of the channel. |
-| position   | integer | |
+| position   | integer | Position of the channel in the schema.|
 | stddev     | number  | The standard deviation of the channel. |
 | variance   | number  | The variance of the channel. |
 
