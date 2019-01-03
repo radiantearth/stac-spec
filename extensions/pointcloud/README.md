@@ -14,23 +14,24 @@ tools such as LiDAR or coincidence-matched imagery.
 
 | Field Name    | Type                | Description |
 | ------------- | ------------------- | ----------- |
-| pc:count      | integer             | The number of points in the item. |
+| pc:count      | integer             | **REQUIRED.** The number of points in the item. |
+| pc:type       | string              | **REQUIRED.** Phenomenology type for the point cloud. Possible valid values might include `lidar`, `eopc`, `radar`, `sonar`, or `other` |
+| pc:encoding   | string              | **REQUIRED.** Content encoding or format of the data. |
+| pc:schema     | [Schema Object]     | **REQUIRED.** A sequential array of items that define the dimensions and their types. |
 | pc:density    | number              | Number of points per square unit area. |
-| pc:encoding   | string              | Content encoding or format of the data. |
 | pc:schema     | [Schema Object]     | A sequential array of items that define the dimensions and their types. |
 | pc:statistics | [Statistics Object] | A sequential array of items mapping to `pc:schema` defines per-channel statistics. |
-| pc:type       | string              | Phenomenology type for the point cloud. Possible valid values might include `lidar`, `eopc`, `radar`, `sonar`. |
 
 ### Schema Object
 
-A sequential array of items that define the dimensions and their types. All fields are
-required.
+A sequential array of items that define the dimensions or channels of
+the point cloud, their types, and their sizes (in full bytes).
 
 | Field Name | Type    | Description |
 | ---------- | ------- | -------------------------- |
-| name       | string  | The name of the dimension. |
-| size       | integer | The size of the dimension in bytes. Whole bytes only are supported.|
-| type       | string  | Dimension type. Valid values include `floating`, `unsigned`, and `signed`|
+| name       | string  | **REQUIRED.** The name of the dimension. |
+| size       | integer | **REQUIRED.** The size of the dimension in bytes. Whole bytes only are supported.|
+| type       | string  | **REQUIRED.** Dimension type. Valid values include `floating`, `unsigned`, and `signed`|
 
 ### Statistics Object
 
