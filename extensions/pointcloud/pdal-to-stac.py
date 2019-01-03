@@ -63,8 +63,7 @@ properties = {}
 
 properties['pc:schema'] = j['schema']['dimensions']
 properties['pc:statistics'] = j['stats']['statistic']
-properties['c:id'] = os.path.basename(j['filename'])
-properties['c:description'] = "USGS 3DEP LiDAR"
+properties['title'] = "USGS 3DEP LiDAR"
 properties['item:provider'] = "USGS"
 properties['item:license'] = 'LICENSE'
 properties['pc:type'] = 'lidar' # eopc, lidar, radar, sonar

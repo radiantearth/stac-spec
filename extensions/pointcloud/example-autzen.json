@@ -43,8 +43,6 @@
     }
   ],
   "properties": {
-    "c:description": "USGS 3DEP LiDAR",
-    "c:id": "autzen-full.laz",
     "datetime": "2013-07-17T00:00:00-05:00Z",
     "item:license": "LICENSE",
     "item:provider": "USGS",
@@ -295,7 +293,8 @@
         "variance": 1388953.768
       }
     ],
-    "pc:type": "lidar"
+    "pc:type": "lidar",
+    "title": "USGS 3DEP LiDAR"
   },
   "type": "Feature"
 }
