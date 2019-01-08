@@ -53,6 +53,7 @@ stable for over a year and are used in twenty or more implementations.
 | [Single Item](single-item/README.md) (`item`)                | Item             | Provides a way to specify several fields in individual Items that usually reside on the collection-level such as license and providers. | *Proposal* |
 | [Scientific](scientific//README.md) (`sci`)                  | Item             | Scientific metadata is considered to be data that indicate from which publication a collection originates and how the collection itself should be cited or referenced. | *Proposal* |
 | [Transaction](transaction//README.md)                        | API              | Provides an API extension to support the creation, editing, and deleting of items on a specific WFS3 collection. | *Pilot* |
+| [Point Cloud](pointcloud/README.md) (`pc`)             	| Item	| Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LiDAR or coincidence-matched imagery. | *Proposal* |
 
 ## Third-party / vendor extensions
 
