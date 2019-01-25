@@ -1,4 +1,4 @@
-# SIngle Item Extension Specification (`item`)
+# Single Item Extension Specification (`item`)
 
 **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
