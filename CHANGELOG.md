@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fixed several examples and typos.
 - Updated JSON Schema versions for uniformity
 - Added OpenEO GEE implementation
-- clarified 'intersects' behavior for STAC API
+- Clarified 'intersects' behavior for STAC API
 
 ## [v0.6.0] - 2018-11-06
 
