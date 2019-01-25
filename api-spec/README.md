@@ -20,7 +20,7 @@ It takes a JSON object that can filter on date and time:
 ```
 
 This tells the server to return all the catalog items it has that are from the second half of March, 2018 and
-that fall within this area:
+that intersect with this area:
 
 ![swiss_bbox](https://user-images.githubusercontent.com/407017/38382405-b5e69344-38be-11e8-90dc-35738678356d.png)
 
@@ -33,8 +33,7 @@ pageable links to iterate through any results past that limit.
 ## Dynamic Catalog API
 
 The other endpoint that is included as an option in STAC API is `/stac/`, which implements the [STAC Catalog Spec](../catalog-spec/README.md).
-See the [Dynamic Catalog](https://github.com/radiantearth/stac-spec/blob/structure_and_cleanup/catalog-spec/catalog-spec.md#dynamic-catalogs)
-section of that spec for more information. Implementing this enables tools like
+Implementing this enables tools like
 [STAC Browser](https://medium.com/@mojodna/a-stac-browser-348a60674061) to use the dynamic catalog, to enable better
 discovery through people browsing and search engines crawling.
 
