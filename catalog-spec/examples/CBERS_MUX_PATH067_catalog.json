@@ -1,0 +1,35 @@
+{
+  "stac_version": "0.6.0",
+  "id": "CBERS4 MUX 067",
+  "description": "CBERS4 MUX camera path 067 catalog",
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://cbers-stac-0-6.s3.amazonaws.com/CBERS4/MUX/067/catalog.json"
+    },
+    {
+      "rel": "root",
+      "href": "https://cbers-stac-0-6.s3.amazonaws.com/catalog.json"
+    },
+    {
+      "rel": "parent",
+      "href": "/CBERS4/MUX/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "/CBERS4/MUX/067/085/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "/CBERS4/MUX/067/086/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "/CBERS4/MUX/067/087/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "/CBERS4/MUX/067/088/catalog.json"
+    }
+  ]
+}

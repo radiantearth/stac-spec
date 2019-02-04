@@ -78,12 +78,12 @@ datetime fields.
 This object describes a relationship with another entity. Data providers are advised to be liberal
 with the links section, to describe things like the catalog an item is in, related items, parent or
 child items (modeled in different ways, like an 'acquisition' or derived data). The `self` link is
-required as an absolute URL, to represent the location that the Item can be found online. It is
+recommended to be an absolute URL, to represent the location that the Item can be found online. It is
 allowed to add additional fields such as a `title` and `type`.
 
 | Field Name | Type   | Description                                                                                                                         |
 | ---------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed.                                |
+| href       | string | **REQUIRED.** The actual link in the format of an URI. See discussion about absolute URIs and relative references below.                                |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information. |
 | type       | string | Media type of the referenced entity. 																								|
 | title      | string | A human readable title to be used in rendered displays of the link. |
@@ -106,13 +106,20 @@ A more complete list of possible 'rel' types can be seen at the [IANA page of Li
 that comes along for that. But the derived_from field is seen as a way to encourage fuller specs and at least start a linking
 structure that can be used as a jumping off point for more experiments in provenance tracking*
 
-#### Relative vs Absolute links
+#### Absolute URIs vs Relative References
 
-Currently the JSON schema for links does not require a URI formatting, to give the option for
-implementors to provide relative links. In general, Catalog API's should aim for absolute links
+Currently the JSON schema for links does not require an absolute URI formatting such as
+`http://example.com/foo/bar.json`, to give the option for
+implementors to provide relative references such as `/foo/bar.json`.
+
+In general, Catalog API's should aim for absolute URIs
 whenever possible. But Static Catalogs are potentially more portable if they can be implemented with
-relative links, so that every link doesn't need to be rewritten when the data is copied. The `self`
-link is required to be absolute.
+relative references, so that every link doesn't need to be rewritten when the data is copied to
+a different server, for instance.
+
+It is however required for all relative references to use absolute paths, that is, the references
+must begin with a `/`. Relative path references such as `../catalog.json` or `foo/bar.json` are
+not allowed.
 
 #### Collections
 
@@ -128,7 +135,7 @@ or streamed. It is allowed to add additional fields.
 
 | Field Name | Type   | Description                                                                           |
 | ---------- | ------ | ------------------------------------------------------------------------------------- |
-| href       | string | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
+| href       | string | **REQUIRED.** Link to the asset object. See discussion about absolute URIs and relative references above. |
 | title      | string | The displayed title for clients and users.                                            |
 | type       | string | Media type of the asset (see chapter on Media Types below).                           |
 

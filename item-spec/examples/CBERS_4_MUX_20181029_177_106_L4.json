@@ -49,15 +49,15 @@
   "links": [
     {
       "rel": "self",
-      "href": "https://cbers-stac-0-6.s3.amazonaws.com/CBERS4/MUX/177/106/CBERS_4_MUX_20181029_177_106_L4.json"
+      "href": "/CBERS4/MUX/177/106/CBERS_4_MUX_20181029_177_106_L4.json"
     },
     {
       "rel": "parent",
-      "href": "https://cbers-stac-0-6.s3.amazonaws.com/CBERS4/MUX/177/catalog.json"
+      "href": "/CBERS4/MUX/177/catalog.json"
     },
     {
       "rel": "collection",
-      "href": "https://cbers-stac-0-6.s3.amazonaws.com/collections/CBERS_4_MUX_collection.json"
+      "href": "/collections/CBERS_4_MUX_collection.json"
     }
   ],
   "assets": {
