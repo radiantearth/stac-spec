@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-06/schema#",
-  "id": "catalog.json#",
+  "$id": "catalog.json#",
   "definitions": {
     "link": {
       "type": "object",

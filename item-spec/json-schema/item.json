@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-06/schema#",
-  "id": "item.json#",
+  "$id": "item.json#",
   "title": "STAC Item",
   "type": "object",
   "description": "This object represents the metadata for an item in a SpatioTemporal Asset Catalog.",

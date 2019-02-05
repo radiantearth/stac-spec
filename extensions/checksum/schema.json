@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-06/schema#",
-  "id": "schema.json#",
+  "$id": "schema.json#",
   "type": "object", 
   "title": "Checksum Extension Specification",
   "additionalProperties": true,
