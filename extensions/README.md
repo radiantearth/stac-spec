@@ -25,9 +25,9 @@ maturity classification, so that STAC spec users can easily get a sense of how m
 on the extension. 
 
 | Maturity Classification |  Min Impl # | Description | Stability |
-| ----------------------- | ----------- | ----------- | --------- | 
+| ----------------------- | ----------- | ----------- | --------- |
 | Proposal | 0 | An idea put forward by a community member to gather feedback | Not stable - breaking changes almost guaranteed as implementors try out the idea. |
-| Pilot | 1 | Idea is fleshed out and implemented in one or more catalogs. Additional implementations encouraged to help give feedback | Approaching stability - breaking changes are not anticipated but can easily come from additional feedback |
+| Pilot | 1 | Idea is fleshed out, with examples and a JSON schema, and implemented in one or more catalogs. Additional implementations encouraged to help give feedback | Approaching stability - breaking changes are not anticipated but can easily come from additional feedback |
 | Candidate | 3 | A number of implementors are using it and are standing behind it as a solid extension. Can generally count on an extension at this maturity level | Mostly stable, breaking changes require a new version and minor changes are unlikely. |
 | Stable | 6 | Highest current level of maturity. The community of extension maintainers commits to a STAC review process for any changes, which are not made lightly. | Completely stable, all changes require a new version number and review process. |
 | Deprecated | N/A | A previous extension that has likely been superceded by a newer one or did not work out for some reason. | DO NOT USE, is not supported |
@@ -45,12 +45,15 @@ stable for over a year and are used in twenty or more implementations.
 
 | Extension Name (Prefix)                                      | Scope            | Description                                                  | Maturity |
 | ------------------------------------------------------------ | ---------------- | ------------------------------------------------------------ | -------- |
+| [Checksum](checksum/README.md) (`checksum`)                  | Item +Catalog +Collection    | Provides a way to specify file checksums for assets and links in Items, Catalogs and Collections. | *Proposal* |
 | [Commons](commons/README.md) (-)                             | Item +Collection | Provides a way to specify data fields in a collection that are common across the STAC Items in that collection, so that each does not need to repeat all the same information. | *Proposal* |
 | [Datetime Range](datetime-range//README.md) (`dtr`)          | Item             | An extension to provide datetime ranges with a start and an end datetime stamp in a consistent way. | *Proposal* |
-| [EO](eo//README.md) (`eo`)                                   | Item             | Covers electro-optical data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, off nadir, sun angle + elevation, gsd and more. | *Pilot* |
+| [EO](eo/README.md) (`eo`)                                    | Item             | Covers electro-optical data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, off nadir, sun angle + elevation, gsd and more. | *Pilot* |
+| [SAR](sar/README.md) (`sar`)                                 | Item             | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. | *Proposal* |
 | [Single Item](single-item/README.md) (`item`)                | Item             | Provides a way to specify several fields in individual Items that usually reside on the collection-level such as license and providers. | *Proposal* |
 | [Scientific](scientific//README.md) (`sci`)                  | Item             | Scientific metadata is considered to be data that indicate from which publication a collection originates and how the collection itself should be cited or referenced. | *Proposal* |
 | [Transaction](transaction//README.md)                        | API              | Provides an API extension to support the creation, editing, and deleting of items on a specific WFS3 collection. | *Pilot* |
+| [Point Cloud](pointcloud/README.md) (`pc`)             	| Item	| Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LiDAR or coincidence-matched imagery. | *Proposal* |
 
 ## Third-party / vendor extensions
 
