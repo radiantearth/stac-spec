@@ -36,7 +36,7 @@ STAC items are published to public SNS topics as soon as new scenes are ingested
 - SNS topic: arn:aws:sns:us-east-1:769537946825:cbers-2-stac-CBERSSTACItemTopic-N0MZUA5EIQC9
 - Browsable online version: http://cbers-stac.netlify.com/
 
-### Landsat-8 on AWS (STAC 0.6.0)
+### Landsat-8 on AWS (STAC 0.6)
 
 This catalog contains all Landsat-8 metadata from the [Earth on AWS](https://aws.amazon.com/earth/) program.
 
@@ -69,12 +69,12 @@ of the spec.
 - Examples: https://github.com/TDG-Platform/dg-stac/tree/master/examples
 
 ## API (Active Catalog) Examples
-### Boundless STAC Server (0.6.0)
+### Boundless STAC Server (0.6)
 
 * Search endpoint: https://stac.boundlessgeo.io/search/stac
 * Root catalog: https://stac.boundlessgeo.io/stac
 
-### sat-api (0.6.0)
+### sat-api (0.6)
 
 Development Seed's [sat-api](https://github.com/sat-utils/sat-api) is an easily deployable open-source API that can ingest data from any STAC static catalog. Development Seed also runs a deployed instance that contains publicly available satellite imagery available on AWS.
 
@@ -83,7 +83,7 @@ Development Seed's [sat-api](https://github.com/sat-utils/sat-api) is an easily 
 
 The latest API should contain the latest available STAC version, while the development API will contain the next version (and may not include all items).
 
-### openEO Earth Engine driver (0.6.0)
+### openEO Earth Engine driver (0.6)
 
 Mirrors the [Google Earth Engine dataset catalogue](https://developers.google.com/earth-engine/datasets/) for data discovery within the [openEO Earth Engine](https://github.com/Open-EO/openeo-earthengine-driver) driver:
 

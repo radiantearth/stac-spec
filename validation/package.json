@@ -1,7 +1,7 @@
 {
   "name": "stac_validation",
   "description": "Package to validate STAC items, catalogs and collections.",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "author": "STAC Team",
   "license": "Apache-2.0",
   "repository": "https://github.com/radiantearth/stac-spec",

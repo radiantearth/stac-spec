@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-06/schema#",
-  "id": "collection.json#",
+  "$id": "collection.json#",
   "title": "STAC Collection Specification",
   "description": "This object represents Collections in a SpatioTemporal Asset Catalog.",
   "type": "object",
