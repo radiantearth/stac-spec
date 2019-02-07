@@ -16,7 +16,8 @@
   "properties": {
     "stac_version": {
       "title": "STAC version",
-      "type": "string"
+      "type": "string",
+      "const": "0.6.1"
     },
     "id": {
       "title": "Identifier",
