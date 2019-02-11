@@ -1,0 +1,216 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$id": "schema.json#",
+  "title": "SAR Extension",
+  "type": "object",
+  "description": "STAC SAR Extension",
+  "additionalProperties": true,
+  "properties": {
+    "properties": {
+      "type": "object",
+      "required": [
+        "sar:platform",
+        "sar:instrument",
+        "sar:instrument_mode",
+        "sar:frequency_band",
+        "sar:polarization",
+        "sar:pass_direction",
+        "sar:type"
+      ],
+      "properties": {
+        "sar:platform": {
+          "title": "Platform",
+          "type": "string"
+        },
+        "sar:constellation": {
+          "title": "Constellation",
+          "type": "string"
+        },
+        "sar:instrument": {
+          "title": "Instrument",
+          "type": "string"
+        },
+        "sar:instrument_mode": {
+          "title": "Instrument Mode",
+          "type": "string",
+          "example": "WV"
+        },
+        "sar:frequency_band": {
+          "title": "Frequency Band",
+          "type": "string",
+          "enum": [
+            "P",
+            "L",
+            "S",
+            "C",
+            "X",
+            "Ku",
+            "K",
+            "Ka"
+          ]
+        },
+        "sar:center_wavelength": {
+          "title": "Center Wavelength (cm)",
+          "type": "number"
+        },
+        "sar:center_frequency": {
+          "title": "Center Wavelength (GHz)",
+          "type": "number"
+        },
+        "sar:polarization": {
+          "title": "Polarization",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "type": "string",
+            "enum": [
+              "HH",
+              "VV",
+              "HV",
+              "VH"
+            ]
+          }
+        },
+        "sar:bands": {
+          "title": "Bands",
+          "type": "array",
+          "items": {
+            "properties": {
+              "name": {
+                "title": "Name of the band",
+                "type": "string"
+              },
+              "common_name": {
+                "title": "Description of the band",
+                "type": "string"
+              },
+              "data_type": {
+                "title": "Data type of the band",
+                "type": "string",
+                "examples": [
+                  "amplitude",
+                  "intensity",
+                  "phase",
+                  "angle",
+                  "sigma0",
+                  "gamma0"
+                ]
+              },
+              "unit": {
+                "title": "Unit of the band (OGC URN)",
+                "type": "string",
+                "format": "uri"
+              },
+              "polarization": {
+                "title": "Polarization of the band",
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "enum": [
+                  "HH",
+                  "VV",
+                  "HV",
+                  "VH",
+                  null
+                ]
+              }
+            }
+          }
+        },
+        "sar:pass_direction": {
+          "title": "Pass direction",
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "ascending",
+            "descending",
+            null
+          ]
+        },
+        "sar:type": {
+          "title": "Product type",
+          "type": "string",
+          "examples": [
+            "RAW",
+            "GRD",
+            "OCN",
+            "SLC"
+          ]
+        },
+        "sar:resolution": {
+          "title": "Resolution (m)",
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "sar:pixel_spacing": {
+          "title": "Pixel spacing (m)",
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "sar:looks": {
+          "title": "Groups of signal samples (looks)",
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 3,
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "sar:absolute_orbit": {
+          "title": "Absolute orbit numbers",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": [
+              "number",
+              "array"
+            ],
+            "minimum": 0,
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "sar:off_nadir": {
+          "title": "Viewing angles",
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": [
+              "number",
+              "array"
+            ],
+            "minimum": 0,
+            "maximum": 90,
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 90
+            }
+          }
+        }
+      }
+    }
+  }
+}
