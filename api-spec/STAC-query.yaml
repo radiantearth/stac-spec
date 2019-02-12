@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: The SpatioTemporal Asset Catalog API (standalone)
-  version: 0.6.0
+  version: 0.6.1
   description: >-
     This is an OpenAPI definition of the core SpatioTemporal Asset Catalog API
     specification. Any service that implements this endpoint to allow search of
@@ -361,7 +361,7 @@ components:
       properties:
         stac_version:
           type: string
-          example: 0.6.0
+          example: 0.6.1
         id:
           type: string
           example: naip
