@@ -77,7 +77,6 @@ extension, please get in touch through the referenced issues:
 
 - [Drone content Extension](https://github.com/radiantearth/stac-spec/issues/149)
 - [Full Motion Video Content Extension](https://github.com/radiantearth/stac-spec/issues/156)
-- [Point Cloud Extension](https://github.com/radiantearth/stac-spec/issues/157)
 - [Storage Extensions](https://github.com/radiantearth/stac-spec/issues/148)
 
 ## Extending STAC
