@@ -1,7 +1,7 @@
 {
   "stac_version": "0.6.0",
   "id": "datacube",
-  "description": "Multi-dimensional datacube.",
+  "description": "Multi-dimensional data cube.",
   "links": [
     {
       "rel": "self",

@@ -1,8 +1,8 @@
-# Datacube Extension Specification (`cube`)
+# Data cube Extension Specification (`cube`)
 
 **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
-Datacube related metadata, especially to describe their dimensions.
+Data cube related metadata, especially to describe their dimensions.
 
 - [Example](example.json)
 - JSON Schema is missing, PRs are welcome.
@@ -11,7 +11,7 @@ Datacube related metadata, especially to describe their dimensions.
 
 | Field Name      | Type                                                         | Description |
 | --------------- | ------------------------------------------------------------ | ----------- |
-| cube:dimensions | Map<string, Dimension Object\|Temporal Dimension Object\|Spatial Dimension Object> | Uniquely named dimensions of the datacube. |
+| cube:dimensions | Map<string, Dimension Object\|Temporal Dimension Object\|Spatial Dimension Object> | Uniquely named dimensions of the data cube. |
 
 ### Dimension Object
 
