@@ -11,27 +11,36 @@
   "properties": {
     "cube:dimensions": {
       "x": {
-        "axis": "x",
+        "type": "spatial",
+        "number": 1,
         "extent": [-180,180],
-        "crs": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+        "reference_system": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
       },
       "y": {
-        "axis": "y",
+        "type": "spatial",
+        "number": 2,
         "extent": [-90,90],
-        "crs": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+        "reference_system": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
       },
-      "height": {
-        "axis": "z",
-        "extent": [0,20],
+      "levels": {
+        "type": "spatial",
+        "number": 3,
+        "extent": [0,10],
+        "step": 2,
         "unit": "http://www.opengis.net/def/uom/SI/metre"
       },
       "time": {
-        "extent": ["2015-01-01T00:00:00Z","2018-12-31T23:59:59Z"],
-        "trs": "http://www.opengis.net/def/uom/ISO-8601/0/Gregorian"
+        "type": "temporal",
+        "extent": ["2015-01-01T00:00:00Z","2018-12-31T23:59:59Z"]
       },
       "temperature": {
+        "type": "temperature",
         "extent": [0,273.15],
         "unit": "http://www.opengis.net/def/uom/SI/kelvin"
+      },
+      "spectral": {
+        "type": "bands",
+        "values": ["red", "green", "blue"]
       }
     }
   }
