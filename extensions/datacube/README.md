@@ -21,7 +21,7 @@ Data cube related metadata, especially to describe their dimensions.
 | number | integer | Number of the dimension, unique across each dimension type. |
 | values           | [number\|string\]      | If the dimension consists of [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values, a set of all potential values. |
 | extent           | [number\|string\|null] | If the dimension consists of [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values, the extent (lower and upper bounds) of the values as two-dimensional array. Use `null` for open intervals. |
-| step             | number\|null            | If the dimension consists of [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between the values. Use `null` for irregularly spaced steps. |
+| step             | string\|number\|null   | If the dimension consists of [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between the values. Use `null` for irregularly spaced steps. |
 | unit             | string                 | The unit of measurement for the data, specified as [OGC URL](http://www.opengis.net/def/uom/). |
 | reference_system | string                 | The reference system for the data, specified as [OGC URL](http://www.opengis.net/def/uom/). |
 
@@ -46,6 +46,7 @@ This object inherits all fields from the Dimension Object, but adds or restricts
 | ---------------- | -------------- | ------------------------------------------------------------ |
 | type             | string         | **REQUIRED.** Type of the dimension, always `temporal`.      |
 | extent           | [string\|null] | **REQUIRED.** Extent (lower and upper bounds) of the dimension as two-dimensional array. `null` is allowed for open date ranges. |
+| step             | string\|null   | The space between the temporal instances as [ISO8601 duration](https://en.wikipedia.org/wiki/ISO_8601#Durations), e.g. `P1D`. Use `null` for irregularly spaced steps. |
 | reference_system | string         | The temporal reference system for the data, specified as [OGC URL](http://www.opengis.net/def/uom/). Defaults to `http://www.opengis.net/def/uom/ISO-8601/0/Gregorian`. |
 
 ## Implementations
