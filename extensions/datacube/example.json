@@ -17,7 +17,7 @@
           -180,
           180
         ],
-        "reference_system": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+        "reference_system": 4326
       },
       "y": {
         "type": "spatial",
@@ -26,7 +26,7 @@
           -90,
           90
         ],
-        "reference_system": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
+        "reference_system": 4326
       },
       "pressure_levels": {
         "type": "spatial",
@@ -36,7 +36,7 @@
           1000
         ],
         "step": 100,
-        "unit": "http://www.opengis.net/def/uom/SI/Pa"
+        "unit": "urn:ogc:def:uom:SI:Pa"
       },
       "metered_levels": {
         "type": "spatial",
@@ -49,7 +49,7 @@
           100,
           1000
         ],
-        "unit": "http://www.opengis.net/def/uom/SI/metre"
+        "unit": "urn:ogc:def:uom:SI:metre"
       },
       "time": {
         "type": "temporal",
