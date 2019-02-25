@@ -1,11 +1,11 @@
 {
   "stac_version": "0.7.0",
   "id": "datacube",
-  "description": "Multi-dimensional data cube.",
+  "description": "Multi-dimensional data cube in a STAC collection.",
   "links": [
     {
       "rel": "self",
-      "href": "catalog.json"
+      "href": "http://www.example.org/datacubes/catalog.json"
     }
   ],
   "properties": {
@@ -17,16 +17,16 @@
           -180,
           180
         ],
-        "reference_system": 4326
+        "reference_system": 3857
       },
       "y": {
         "type": "spatial",
         "axis": "y",
         "extent": [
-          -90,
-          90
+          -85,
+          85
         ],
-        "reference_system": 4326
+        "reference_system": 3857
       },
       "pressure_levels": {
         "type": "spatial",
@@ -55,7 +55,7 @@
         "type": "temporal",
         "extent": [
           "2015-01-01T00:00:00Z",
-          "2018-12-31T23:59:59Z"
+          "2018-12-31T00:00:00Z"
         ],
         "step": "P1D"
       },
