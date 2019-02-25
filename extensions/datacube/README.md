@@ -18,29 +18,28 @@ Data cube related metadata, especially to describe their dimensions.
 | Field Name       | Type                   | Description |
 | ---------------- | ---------------------- | ----------- |
 | type             | string                 | **REQUIRED.** Custom type of the dimension. |
-| number | integer | Number of the dimension, unique across each dimension type. |
-| values           | [number\|string\]      | If the dimension consists of [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values, a set of all potential values. |
-| extent           | [number\|string\|null] | If the dimension consists of [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values, the extent (lower and upper bounds) of the values as two-dimensional array. Use `null` for open intervals. |
-| step             | string\|number\|null   | If the dimension consists of [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between the values. Use `null` for irregularly spaced steps. |
+| values           | [number\|string]       | If the dimension consists of [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values, a set of all potential values. |
+| extent           | [number\|null]         | If the dimension consists of [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values, the extent (lower and upper bounds) of the values as two-dimensional array. Use `null` for open intervals. |
+| step             | number\|null           | If the dimension consists of [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between the values. Use `null` for irregularly spaced steps. |
 | unit             | string                 | The unit of measurement for the data, specified as [OGC URN](http://www.opengis.net/def/uom/). |
-| reference_system | string\|number         | The reference system for the data, sspecified as [EPSG code](http://www.epsg-registry.org/) or [OGC URL](http://www.opengis.net/def/uom/). |
+| reference_system | string                 | The reference system for the data, specified as [OGC URN](http://www.opengis.net/def/uom/). |
 
-A Dimension Object SHOULD specify either an `extent` or a set of `values`.
+A Dimension Object MUST specify an `extent` or a set of `values`. It MAY specify both.
 
 ### Spatial Dimension Object
 
-This object inherits all fields from the Dimension Object, but adds or restricts the following fields:
+This object inherits the fields from the Dimension Object, but restricts or changes the definition of the following fields:
 
 | Field Name       | Type             | Description                                                  |
 | ---------------- | ---------------- | ------------------------------------------------------------ |
 | type             | string           | **REQUIRED.** Type of the dimension, always `spatial`.       |
-| number           | integer          | **REQUIRED.** Axis of the spatial dimension (1 = x, 2 = y or 3 = z). |
+| axis             | string           | **REQUIRED.** Axis of the spatial dimension (`x`, `y` or `z`). |
 | extent           | [number\|string] | **REQUIRED.** Extent (lower and upper bounds) of the dimension as two-dimensional array. Open intervals with `null` are not allowed. |
 | reference_system | string\|number   | The spatial reference system for the data, specified as [EPSG code](http://www.epsg-registry.org/) or [OGC URN](http://www.opengis.net/def/uom/). Defaults to EPSG code 4326. |
 
 ### Temporal Dimension Object
 
-This object inherits all fields from the Dimension Object, but adds or restricts the following fields:
+This object inherits the fields from the Dimension Object, but restricts or changes the definition of the following fields:
 
 | Field Name       | Type           | Description                                                  |
 | ---------------- | -------------- | ------------------------------------------------------------ |
