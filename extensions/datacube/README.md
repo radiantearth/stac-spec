@@ -5,7 +5,7 @@
 Data cube related metadata, especially to describe their dimensions.
 
 - [Example](example.json)
-- JSON Schema is missing, PRs are welcome.
+- [JSON Schema](schema.json)
 
 ## Item Fields
 
@@ -34,7 +34,7 @@ This object inherits the fields from the Dimension Object, but restricts or chan
 | ---------------- | ---------------- | ------------------------------------------------------------ |
 | type             | string           | **REQUIRED.** Type of the dimension, always `spatial`.       |
 | axis             | string           | **REQUIRED.** Axis of the spatial dimension (`x`, `y` or `z`). |
-| extent           | [number\|string] | **REQUIRED.** Extent (lower and upper bounds) of the dimension as two-dimensional array. Open intervals with `null` are not allowed. |
+| extent           | [number]         | **REQUIRED.** Extent (lower and upper bounds) of the dimension as two-dimensional array. Open intervals with `null` are not allowed. |
 | reference_system | string\|number   | The spatial reference system for the data, specified as [EPSG code](http://www.epsg-registry.org/) or [OGC URN](http://www.opengis.net/def/uom/). Defaults to EPSG code 4326. |
 
 ### Temporal Dimension Object
