@@ -135,7 +135,11 @@
             "const": "temporal"
           },
           "values": {
-            "$ref": "#/definitions/fields/values"
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
           },
           "extent": {
             "type": "array",
@@ -156,10 +160,6 @@
           },
           "unit": {
             "$ref": "#/definitions/fields/unit"
-          },
-          "reference_system": {
-            "type": "string",
-            "default": "urn:ogc:def:uom:iso-8601:0:Gregorian"
           }
         }
       }
