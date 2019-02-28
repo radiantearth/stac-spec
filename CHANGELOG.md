@@ -130,6 +130,7 @@ Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkam
 
 
 [Unreleased]: https://github.com/radiantearth/stac-spec/compare/master...dev
+[v0.6.2]: https://github.com/radiantearth/stac-spec/compare/v0.6.1...v0.6.2
 [v0.6.1]: https://github.com/radiantearth/stac-spec/compare/v0.6.0...v0.6.1
 [v0.6.0]: https://github.com/radiantearth/stac-spec/compare/v0.5.2...v0.6.0
 [v0.5.2]: https://github.com/radiantearth/stac-spec/compare/v0.5.1...v0.5.2
