@@ -43,15 +43,17 @@ This catalog contains all Landsat-8 metadata from the [Earth on AWS](https://aws
 - Catalog: https://landsat-stac.s3.amazonaws.com/catalog.json
 - SNS topic: arn:aws:sns:us-west-2:552188055668:landsat-stac
 
+### ISERV (STAC 0.6.1 and 0.4.1)
 
-### ISERV (STAC 0.4.1)
+[ISERV](https://www.nasa.gov/mission_pages/station/research/experiments/867.html)
+data is hosted by [Radiant Earth](http://radiant.earth), created by
+[Azavea](http://azavea.com) (0.4.1) and Radiant Earth (0.6.1).
 
-[ISERV](https://www.nasa.gov/mission_pages/station/research/experiments/867.html) data is hosted by
-[Radiant.Earth](http://radiant.earth), created by [Azavea](http://azavea.com).
-
-- Catalog: https://s3-us-west-2.amazonaws.com/radiant-nasa-iserv/iserv.json
-- Browsable online version: http://iserv-stac.netlify.com/
-- Source code: https://github.com/raster-foundry/pystac
+- Catalog (0.4.1): https://s3-us-west-2.amazonaws.com/radiant-nasa-iserv/iserv.json
+- Catalog (0.6.1): https://iserv-stac.s3.amazonaws.com/0.6.1/catalog.json (`us-west-2`)
+- Browsable online version: https://iserv.stac.cloud/
+- Source code: https://github.com/raster-foundry/pystac (0.4.1)
+- Source code: https://github.com/radiantearth/iserv-stac-generator (0.6.1, generated from 0.4.1)
 
 ### Planet Disaster Data (STAC 0.6)
 
