@@ -59,6 +59,9 @@
             ]
           }
         ],
+        "not": {
+          "required": ["axis"]
+        },
         "properties": {
           "type": {
             "allOf": [
@@ -169,6 +172,9 @@
           "type",
           "extent"
         ],
+        "not": {
+          "required": ["axis"]
+        },
         "properties": {
           "type": {
             "type": "string",
