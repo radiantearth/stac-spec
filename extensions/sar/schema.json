@@ -98,9 +98,8 @@
                 ]
               },
               "unit": {
-                "title": "Unit of the band (OGC URN)",
-                "type": "string",
-                "format": "uri"
+                "title": "Unit of the band",
+                "type": "string"
               },
               "polarization": {
                 "title": "Polarization of the band",

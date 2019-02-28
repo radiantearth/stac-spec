@@ -71,7 +71,7 @@ The bands contained in SAR image are dependent on the `sar:type`. For example, s
 | name                | string       | The name of the band. |
 | description         | string       | Description to fully explain the band, should include processing information. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | data_type           | string       | Specifies the type of the data contained in the band, for example `amplitude`, `intensity`, `phase`, `angle`, `sigma0`, `gamma0`. |
-| unit                | string       | The unit of measurement for the data, specified as [OGC URN](http://www.opengis.net/def/uom/). |
+| unit                | string       | The unit of measurement for the data, preferably the symbols from [SI](https://physics.nist.gov/cuu/Units/units.html) or [UDUNITS](https://ncics.org/portfolio/other-resources/udunits2/). |
 | polarization        | string\|null | The polarization of the band, either `HH`, `VV`, `HV`, `VH` or `null` if not applicable. |
 
 ## Associating assets with bands
