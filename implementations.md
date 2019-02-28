@@ -45,6 +45,15 @@ This catalog contains all Landsat-8 metadata from the [Earth on AWS](https://aws
 - SNS topic: arn:aws:sns:us-west-2:552188055668:landsat-stac
 - Browsable online version: https://landsat.stac.cloud/
 
+### Sentinel-2 on AWS (STAC 0.6)
+
+This catalog contains all Sentinel-2 metadata from the [Earth on AWS](https://aws.amazon.com/earth/) program.
+
+- Catalog: https://sentinel-stac.s3.amazonaws.com/catalog.json
+- SNS topic: arn:aws:sns:eu-central-1:552188055668:sentinel-stac
+- Browsable online version: https://sentinel.stac.cloud/
+
+
 ### ISERV (STAC 0.6 and 0.4.1)
 
 [ISERV](https://www.nasa.gov/mission_pages/station/research/experiments/867.html)
