@@ -1,0 +1,72 @@
+{
+  "stac_version": "0.7.0",
+  "id": "datacube",
+  "description": "Multi-dimensional data cube in a STAC collection.",
+  "links": [
+    {
+      "rel": "self",
+      "href": "http://www.example.org/datacubes/catalog.json"
+    }
+  ],
+  "properties": {
+    "cube:dimensions": {
+      "x": {
+        "type": "spatial",
+        "axis": "x",
+        "extent": [
+          -180,
+          180
+        ],
+        "reference_system": 3857
+      },
+      "y": {
+        "type": "spatial",
+        "axis": "y",
+        "extent": [
+          -85,
+          85
+        ],
+        "reference_system": 3857
+      },
+      "pressure_levels": {
+        "type": "spatial",
+        "axis": "z",
+        "extent": [
+          0,
+          1000
+        ],
+        "step": 100,
+        "unit": "Pa"
+      },
+      "metered_levels": {
+        "type": "spatial",
+        "axis": "z",
+        "values": [
+          0,
+          10,
+          25,
+          50,
+          100,
+          1000
+        ],
+        "unit": "m"
+      },
+      "time": {
+        "type": "temporal",
+        "extent": [
+          "2015-01-01T00:00:00Z",
+          "2018-12-31T00:00:00Z"
+        ],
+        "step": "P1D"
+      },
+      "spectral": {
+        "type": "bands",
+        "values": [
+          "red",
+          "green",
+          "blue"
+        ]
+      }
+    }
+  }
+}
