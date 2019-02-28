@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v0.6.2] - 2019-03-01
+
+### Fixed
+- Fixed several examples and typos, improved descriptions
+- Strictly checking the STAC version numbers in the JSON schemas
+- Added missing required fields in Item JSON schema
+- Changed `id` to `$id` in JSON schemas (draft-06 compatibility)
+
+### Changed
+- Extensions require examples and a JSON schema to get to the maturity level 'Pilot'
+- Updated ISERV implementation
+
+### Added
+- Checksum extension
+- Data Cube extension
+- Point Cloud extension
+- SAR extension
+
 ## [v0.6.1] - 2019-01-25
 
 ### Fixed
