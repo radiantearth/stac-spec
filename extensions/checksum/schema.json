@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$id": "schema.json#",
+  "type": "object", 
+  "title": "Checksum Extension Specification",
+  "additionalProperties": true,
+  "allOf": [
+    {
+      "$ref": "#/definitions/core"
+    }
+  ],
+  "definitions": {
+    "core": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/checksums"
+          }
+        },
+        "assets": {
+          "title": "Assets",
+          "type": "object",
+          "patternProperties": {
+            ".+": {
+              "$ref": "#/definitions/checksums"
+            }
+          }
+        }
+      }
+    },
+    "checksums": {
+      "type": "object",
+      "properties": {
+        "checksum:md5": {
+          "type": "string",
+          "pattern": "^[A-Fa-f0-9]{32}$",
+          "title": "MD5 checksum"
+        },
+        "checksum:sha1": {
+          "type": "string",
+          "pattern": "^[A-Fa-f0-9]{40}$",
+          "title": "SHA1 checksum"
+        },
+        "checksum:sha2": {
+          "type": "string",
+          "pattern": "^[A-Fa-f0-9]+$",
+          "title": "SHA2 checksum"
+        },
+        "checksum:sha3": {
+          "type": "string",
+          "pattern": "^[A-Fa-f0-9]+$",
+          "title": "SHA3 checksum"
+        }
+      }
+    }
+  }
+}
