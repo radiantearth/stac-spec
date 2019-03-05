@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-06/schema#",
-  "id": "catalog.json#",
+  "$id": "catalog.json#",
   "definitions": {
     "link": {
       "type": "object",
@@ -39,7 +39,8 @@
       "properties": {
         "stac_version": {
           "title": "STAC version",
-          "type": "string"
+          "type": "string",
+          "const": "0.6.2"
         },
         "id": {
           "title": "Identifier",

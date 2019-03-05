@@ -13,7 +13,7 @@ Browsable online version are usually powered by [stac-browser](https://github.co
 [Spacenet](https://spacenetchallenge.github.io/) has made all their imagery available as STAC.
 
 - Catalog: https://s3.amazonaws.com/spacenet-stac/spacenet-repository.json 
-- Browsable online version: https://spacenet-stac.netlify.com/
+- Browsable online version: https://spacenet.stac.cloud/
 - Source code: https://github.com/SpaceNetChallenge/stac-implementation
 
 ### CBERS-4 (STAC 0.6 and 0.5)
@@ -29,6 +29,7 @@ STAC items are published to public SNS topics as soon as new scenes are ingested
 
 - Catalog: https://cbers-stac-0-6.s3.amazonaws.com/catalog.json
 - SNS topic: arn:aws:sns:us-east-1:769537946825:cbers-2-stac-0-6-CBERSSTACItemTopic-X1VTPGK5HBZ5
+- Browsable online version: https://cbers.stac.cloud/
 
 #### STAC 0.5
 
@@ -36,22 +37,34 @@ STAC items are published to public SNS topics as soon as new scenes are ingested
 - SNS topic: arn:aws:sns:us-east-1:769537946825:cbers-2-stac-CBERSSTACItemTopic-N0MZUA5EIQC9
 - Browsable online version: http://cbers-stac.netlify.com/
 
-### Landsat-8 on AWS (STAC 0.6.0)
+### Landsat-8 on AWS (STAC 0.6)
 
 This catalog contains all Landsat-8 metadata from the [Earth on AWS](https://aws.amazon.com/earth/) program.
 
 - Catalog: https://landsat-stac.s3.amazonaws.com/catalog.json
 - SNS topic: arn:aws:sns:us-west-2:552188055668:landsat-stac
+- Browsable online version: https://landsat.stac.cloud/
+
+### Sentinel-2 on AWS (STAC 0.6)
+
+This catalog contains all Sentinel-2 metadata from the [Earth on AWS](https://aws.amazon.com/earth/) program.
+
+- Catalog: https://sentinel-stac.s3.amazonaws.com/catalog.json
+- SNS topic: arn:aws:sns:eu-central-1:552188055668:sentinel-stac
+- Browsable online version: https://sentinel.stac.cloud/
 
 
-### ISERV (STAC 0.4.1)
+### ISERV (STAC 0.6 and 0.4.1)
 
-[ISERV](https://www.nasa.gov/mission_pages/station/research/experiments/867.html) data is hosted by
-[Radiant.Earth](http://radiant.earth), created by [Azavea](http://azavea.com).
+[ISERV](https://www.nasa.gov/mission_pages/station/research/experiments/867.html)
+data is hosted by [Radiant Earth](http://radiant.earth), created by
+[Azavea](http://azavea.com) (0.4.1) and Radiant Earth (0.6.1).
 
-- Catalog: https://s3-us-west-2.amazonaws.com/radiant-nasa-iserv/iserv.json
-- Browsable online version: http://iserv-stac.netlify.com/
-- Source code: https://github.com/raster-foundry/pystac
+- Catalog (0.6.1): https://iserv-stac.s3.amazonaws.com/0.6.1/catalog.json (`us-west-2`)
+- Catalog (0.4.1): https://s3-us-west-2.amazonaws.com/radiant-nasa-iserv/iserv.json
+- Browsable online version: https://iserv.stac.cloud/
+- Source code: https://github.com/radiantearth/iserv-stac-generator (0.6.1, generated from 0.4.1)
+- Source code: https://github.com/raster-foundry/pystac (0.4.1)
 
 ### Planet Disaster Data (STAC 0.6)
 
@@ -59,6 +72,7 @@ This catalog contains all Landsat-8 metadata from the [Earth on AWS](https://aws
 of the spec.
 
 - Catalog: https://storage.googleapis.com/pdd-stac/disasters/catalog.json
+- Browsable online version: https://planet.stac.cloud
 - Raw catalog files: https://console.cloud.google.com/storage/browser/pdd-stac/disasters/hurricane-harvey/0831/
 - Source code: https://github.com/cholmes/pdd-stac/tree/master/disasters/hurricane-harvey
 
@@ -69,20 +83,29 @@ of the spec.
 - Examples: https://github.com/TDG-Platform/dg-stac/tree/master/examples
 
 ## API (Active Catalog) Examples
-### Boundless STAC Server (0.6.0)
+### Boundless STAC Server (0.6)
 
 * Search endpoint: https://stac.boundlessgeo.io/search/stac
 * Root catalog: https://stac.boundlessgeo.io/stac
+* Browsable online version: https://boundless.stac.cloud/
 
-### sat-api (0.6.0)
+### sat-api (0.6)
 
 Development Seed's [sat-api](https://github.com/sat-utils/sat-api) is an easily deployable open-source API that can ingest data from any STAC static catalog. Development Seed also runs a deployed instance that contains publicly available satellite imagery available on AWS.
 
 * Latest release: https://sat-api.developmentseed.org/stac
 * Development release: https://sat-api-dev.developmentseed.org/stac
+* Browsable online version: https://sat-api.stac.cloud/
 
 The latest API should contain the latest available STAC version, while the development API will contain the next version (and may not include all items).
 
+### openEO Earth Engine driver (0.6)
+
+Mirrors the [Google Earth Engine dataset catalogue](https://developers.google.com/earth-engine/datasets/) for data discovery within the [openEO Earth Engine](https://github.com/Open-EO/openeo-earthengine-driver) driver:
+
+* Root catalog: https://earthengine.openeo.org/v0.3/stac
+* No search endpoint
+* Browsable online version: https://openeo.stac.cloud/
 
 ## Ecosystem
 
@@ -93,6 +116,8 @@ Other software related to STAC like validators, crawlers etc.
  * [sat-search](https://github.com/sat-utils/sat-search) is a Python library and CLI for searching (and saving) a dynamic STAC API.
  * [Serverless STAC Crawler](https://github.com/fredliporace/stac-crawler) is a static STAC crawler that runs on Lambda and SQS integration.
  * [STAC Browser](https://github.com/radiantearth/stac-browser/) generates/renders browsable HTML versions of STAC catalogs.
+ * STAC.cloud is a domain for demoing the easy publishing of browsable versions of any online catalog, powered by STAC Browser. Anyone with a catalog to share is welcome to jump on the [STAC Gitter](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby) and someone there will be able to help set up (your-name).stac.cloud. 
+    * *Note: Eventually STAC Browsers should be published at URL's that more match the catalog publisher, as the STAC vision is one of decentralized nodes, embracing web principles. STAC.cloud is just a way to easily show our progress.*
 
 ## Early prototypes / not updated
 

@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: The SpatioTemporal Asset Catalog API + WFS3 + Transaction extension
-  version: 0.6.0
+  version: 0.6.2
   description: >-
     This is an OpenAPI definition of the core SpatioTemporal Asset Catalog API
     specification. Any service that implements this endpoint to allow search of
@@ -641,7 +641,7 @@ components:
       properties:
         stac_version:
           type: string
-          example: 0.6.0
+          example: 0.6.2
         id:
           type: string
           example: naip
@@ -902,7 +902,7 @@ components:
             - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
         stac_version:
           type: string
-          example: 0.6.0
+          example: 0.6.2
         id:
           description: 'identifier of the collection used, for example, in URIs'
           type: string
