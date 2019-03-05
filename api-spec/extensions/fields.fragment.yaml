@@ -26,14 +26,13 @@ components:
           $ref: '#/components/schemas/fields'
     fields:
       description: |
-        The geometry member determines whether the geometry is populated or is null. The
-        include and exclude members specify an array of property names that are either 
-        included or excluded from the result, respectively. If both include and exclude 
-        are specified, include takes precedence.
+        The include and exclude members specify an array of
+        property names that are either included or excluded
+        from the result, respectively. If both include and
+        exclude are specified, include takes precedence.
+        Values should include the full JSON path of the property.
       type: object
       properties:
-        geometry:
-          type: boolean
         include:
           type: array
           items:
@@ -42,3 +41,9 @@ components:
           type: array
           items:
             type: string
+      example:
+        include:
+          - id,properties.eo:cloud_cover
+        exclude:
+          - geometry,properties.datetime
+
