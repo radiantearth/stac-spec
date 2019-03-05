@@ -89,7 +89,7 @@ It is allowed to add additional fields such as a `title` and `type`.
 
 #### Relative vs Absolute links
 
-Currently the JSON schema for links does not require a URI formatting, to give the option for
+Currently, the JSON schema for links does not require them to be formatted as URIs, to allow
 implementors to provide relative links. In general, Catalog API's should aim for absolute links
 whenever possible. But Static Catalogs are potentially more portable if they can be implemented with
 relative links, so that every link doesn't need to be rewritten when the data is copied. Additional
