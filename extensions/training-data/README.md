@@ -28,15 +28,20 @@ Some additional notes are given here for some of the core STAC Item fields and w
 | td:description | string | Description | **REQUIRED.** A description of the training data, how it was created, and what it is recommended for |
 | td:classes | [string] | Classes | **REQUIRED.** a list of keywords representing the nature of the labels. (e.g., tree, building, car, hippo)
 | td:label_type  | string (enum) | Label Type             |  **REQUIRED.** One of 'classification', 'detection', or 'segmentation' |
+| td:label_property | string | Label Name | **REQUIRED.** This is the name of the property field in the "labels" asset that contains the class (one of keywords from `td:classes`). 
 
-#### Required Asset: labels
-The TD Extension aads the requirement of at least one asset that uses the key "labels". The asset will contain a link to the actual label data as a GeoJSON FeatureCollection.
+#### Assets
 
-Each Feature in the GeoJSON is a single AOI, either Polygon, Line, or Point and must contain the following properties.
+##### labels (required)
+The TD Extension requires at least one asset that uses the key "labels". The asset will contain a link to the actual label data. The asset has these requirements:
 
-| element         | type info       | name                       | description       | 
-|-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------| 
-| td:label | string | label | **REQUIRED.** The label of the feature (e.g., road, building, face). Must be one of the classes from td:classes in the Training Data Item |
+- is a GeoJSON FeatureCollection
+- each feature should have a property containing the label for the class (one of `td:classes`)
+- the name of the property can be anything (use "label" if making from scratch), but needs to be specified in the `Item` with the `td:label_property` field.
+
+##### Rendered images (optional)
+The source imagery used for creating the training data is linked to under `links` (see below). However the source imagery is likely to have been rendered in some way when creating the traiining data. For instance, a byte-scaled true color image may have been created from the source imagery. It may be useful to save this image and include it as an asset in the `Item`.
+
 
 #### Links: source imagery
 A Training Data Item links to any source imagery that the AOIs apply to by linking to the STAC Item representing the imagery. Source imagery is indicated by using a `rel` type of "source" and providing the link to the STAC Item.

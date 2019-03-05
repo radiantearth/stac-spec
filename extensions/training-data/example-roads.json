@@ -18,7 +18,8 @@
       "td:title": "Khartoum roads",
       "td:description": "Roads manually drawn using high resolution imagery",
       "td:label_type": "detection",
-      "td:classes": ["road"]
+      "td:classes": ["road"],
+      "td:label_property": "label"
     },
     "assets": {
       "thumbnail": {

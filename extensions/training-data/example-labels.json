@@ -5,7 +5,7 @@
     {
       "type": "Feature",
       "properties": {
-        "td:label": "road"
+        "label": "road"
       },
       "geometry": {
         "type": "LineString",
@@ -24,7 +24,7 @@
     {
       "type": "Feature",
       "properties": {
-        "td:label": "road"
+        "label": "road"
       },
       "geometry": {
         "type": "LineString",
