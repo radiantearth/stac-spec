@@ -87,16 +87,24 @@ It is allowed to add additional fields such as a `title` and `type`.
 | type       | string | Media type of the referenced entity. 																								|
 | title      | string | A human readable title to be used in rendered displays of the link. |
 
+#### Relative vs Absolute links
+
+Currently the JSON schema for links does not require a URI formatting, to give the option for
+implementors to provide relative links. In general, Catalog API's should aim for absolute links
+whenever possible. But Static Catalogs are potentially more portable if they can be implemented with
+relative links, so that every link doesn't need to be rewritten when the data is copied. Additional
+recommendations for particular ```rel``` types are given in the ```rel``` type description.
+
 #### Relation types
 
 The following types are commonly used as `rel` types in the Link Object of an Item:
 
 | Type         | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
-| self         | **REQUIRED.** _Absolute_ URL to the Item if it is publicly online, or an _absolute reference_ to the item in the form ```/path/to/item``` otherwise. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
+| self         | STRONGLY RECOMMENDED. _Absolute_ URL to the Item if it is publicly online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root         | URL to the root STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
-| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may use the [Commons extension](../extensions/commons/README.md) and holds common fields of this and other Items (see chapter '[Collections](#Collections)' for more explanations). |
+| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may use the [Commons extension](../extensions/commons/README.md) and holds common fields of this and other Items (see chapter '[Collections](#Collections)' for more explanations). _Absolute_ URLs should be used whenever possible. |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
 
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
@@ -104,14 +112,6 @@ A more complete list of possible 'rel' types can be seen at the [IANA page of Li
 *Note regarding the type `derived_from`: A full provenance model is far beyond the scope of STAC, and the goal is to align with any good independent spec 
 that comes along for that. But the derived_from field is seen as a way to encourage fuller specs and at least start a linking
 structure that can be used as a jumping off point for more experiments in provenance tracking*
-
-#### Relative vs Absolute links
-
-Currently the JSON schema for links does not require a URI formatting, to give the option for
-implementors to provide relative links. In general, Catalog API's should aim for absolute links
-whenever possible. But Static Catalogs are potentially more portable if they can be implemented with
-relative links, so that every link doesn't need to be rewritten when the data is copied. The `self`
-link is required to be absolute if the Item is online.
 
 #### Collections
 
