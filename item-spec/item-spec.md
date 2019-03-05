@@ -77,13 +77,12 @@ datetime fields.
 
 This object describes a relationship with another entity. Data providers are advised to be liberal
 with the links section, to describe things like the catalog an item is in, related items, parent or
-child items (modeled in different ways, like an 'acquisition' or derived data). The `self` link is
-required as an absolute URL, to represent the location that the Item can be found online. It is
-allowed to add additional fields such as a `title` and `type`.
+child items (modeled in different ways, like an 'acquisition' or derived data).
+It is allowed to add additional fields such as a `title` and `type`.
 
 | Field Name | Type   | Description                                                                                                                         |
 | ---------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed.                                |
+| href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed unless otherwise noted in the ```rel``` type description.                    |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information. |
 | type       | string | Media type of the referenced entity. 																								|
 | title      | string | A human readable title to be used in rendered displays of the link. |
@@ -94,7 +93,7 @@ The following types are commonly used as `rel` types in the Link Object of an It
 
 | Type         | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
-| self         | **REQUIRED.** _Absolute_ URL to the item file itself. This is required, to represent the location that the file can be found online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
+| self         | **REQUIRED.** _Absolute_ URL to the Item if it is publicly online, or an _absolute reference_ to the item in the form ```/path/to/item``` otherwise. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root         | URL to the root STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may use the [Commons extension](../extensions/commons/README.md) and holds common fields of this and other Items (see chapter '[Collections](#Collections)' for more explanations). |
@@ -112,7 +111,7 @@ Currently the JSON schema for links does not require a URI formatting, to give t
 implementors to provide relative links. In general, Catalog API's should aim for absolute links
 whenever possible. But Static Catalogs are potentially more portable if they can be implemented with
 relative links, so that every link doesn't need to be rewritten when the data is copied. The `self`
-link is required to be absolute.
+link is required to be absolute if the Item is online.
 
 #### Collections
 
