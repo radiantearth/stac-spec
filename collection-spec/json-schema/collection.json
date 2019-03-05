@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-06/schema#",
-  "id": "collection.json#",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "collection.json#",
   "title": "STAC Collection Specification",
   "description": "This object represents Collections in a SpatioTemporal Asset Catalog.",
   "type": "object",
@@ -16,7 +16,8 @@
   "properties": {
     "stac_version": {
       "title": "STAC version",
-      "type": "string"
+      "type": "string",
+      "const": "0.6.2"
     },
     "id": {
       "title": "Identifier",

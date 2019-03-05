@@ -11,7 +11,7 @@ components:
       properties:
         stac_version:
           type: string
-          example: 0.6.0
+          example: 0.6.2
         id:
           description: 'identifier of the collection used, for example, in URIs'
           type: string

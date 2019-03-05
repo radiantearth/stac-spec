@@ -47,7 +47,7 @@ be aware of their differences by reading both specifications.
 | spatial  | [number]       | **REQUIRED.** Potential *spatial extent* covered by the collection. |
 | temporal | [string\|null] | **REQUIRED.** Potential *temporal extent* covered by the collection. A list of two timestamps, which MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). Open date ranges are supported by setting either the start or the end time to `null`. Example for data from the beginning of 2019 until now: `["2009-01-01T00:00:00Z", null]`. |
 
-**temporal** - The bounding box is provided as four or six numbers, depending on whether the coordinate reference system includes a vertical axis (height or depth):
+**spatial**: The bounding box is provided as four or six numbers, depending on whether the coordinate reference system includes a vertical axis (height or depth):
 
 - Lower left corner, coordinate axis 1 (west)
 - Lower left corner, coordinate axis 2 (south)

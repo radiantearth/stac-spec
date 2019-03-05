@@ -8,9 +8,11 @@ SAR data is considered to be data that represents a snapshot of the earth for a 
 It is not necessary, but recommended to use the [Commons extension](../commons/README.md) (see chapter "Placing common fields in Collections").
 
 - [Examples](examples/) (for example [Sentinel-1](examples/sentinel1.json) and [Envisat](examples/envisat.json))
-- JSON Schema is missing. PRs are welcome.
+- [JSON Schema](schema.json)
 
 ## Item fields
+
+**Note:** In the following specification *range* values are meant to be measured perpendicular to the flight path and *azimuth* values are meant to be measured parallel to the flight path.
 
 | Field Name            | Type               | Description                                                  |
 | --------------------- | ------------------ | ------------------------------------------------------------ |
@@ -20,16 +22,17 @@ It is not necessary, but recommended to use the [Commons extension](../commons/R
 | sar:instrument_mode   | string             | **REQUIRED.** The name of the sensor acquisition mode that is commonly used. This should be the short name, if available. For example, `WV` for "Wave mode" of Sentinel-1 and Envisat ASAR satellites. |
 | sar:frequency_band    | string             | **REQUIRED.** The common name for the frequency band to make it easier to search for bands across instruments. See section "Common Frequency Band Names" for a list of accepted names. |
 | sar:center_wavelength | number             | The center wavelength of the instrument, in centimeters (cm). |
-| sar:center_frequency  | number             | The center frequency of the instrument, in gigahertz (GHz).  |
+| sar:center_frequency  | number             | The center frequency of the instrument, in gigahertz (GHz). |
 | sar:polarization      | [string]           | **REQUIRED.** A single polarization or a polarization combinations specified as array. See below for more details. |
 | sar:bands             | [Band Object]      | This is a list of the available bands where each item is a Band Object. See section "Band Object" for details. |
-| sar:pass_direction    | string             | **REQUIRED.** Direction of the orbit, either `ascending`, `descending` or `irrelevant`. |
+| sar:pass_direction    | string\|null       | **REQUIRED.** Direction of the orbit, either `ascending`, `descending` or `null` if not relevant. |
 | sar:type              | string             | **REQUIRED.** The product type, for example `RAW`, `GRD`, `OCN` or `SLC` for Sentinel-1. |
-| sar:resolution        | [number]           | The resolution is the maximum ability to distinguish two adjacent targets, in meters (m). The first element of the array is the range resolution, the second element is the azimuth resolution. |
-| sar:pixel_spacing     | [number]           | The resolution is the distance between adjacent pixels, in meters (m). The first element of the array is the range pixel spacing, the second element is the azimuth pixel spacing. Strongly RECOMMENDED to be specified for products of type `GRD`. |
+| sar:resolution        | [number]           | The maximum ability to distinguish two adjacent targets, in meters (m). The first element of the array is the range resolution, the second element is the azimuth resolution. |
+| sar:pixel_spacing     | [number]           | The distance between adjacent pixels, in meters (m). The first element of the array is the range pixel spacing, the second element is the azimuth pixel spacing. Strongly RECOMMENDED to be specified for products of type `GRD`. |
 | sar:looks             | [number]           | The number of groups of signal samples (looks). The first element of the array must be the number of range looks, the second element must be the number of azimuth looks, the optional third element is the equivalent number of looks (ENL). |
-| sar:absolute_orbit    | [number\|[number]] | A list of absolute orbit numbers. See below for details.     |
-| sar:off_nadir         | [number\|[number]] | Viewing angle(s). See below for details.                     |
+| sar:absolute_orbit    | [number\|[number]] | A list of absolute orbit numbers. See below for details. |
+| sar:off_nadir         | [number\|[number]] | Viewing angle(s). Measured in degrees (0-90). See below for details. |
+
 
 **sar:absolute_orbit** lists absolute orbit numbers. Usually corresponds to the orbit count within the orbit cycle (e.g. ALOS, ERS-1/2, JERS-1, and RADARSAT-1, Sentinel-1). For UAVSAR it is the [Flight ID](http://uavsar.jpl.nasa.gov/cgi-bin/data.pl). A range can be specified as two element array in the array, e.g. `[25101, [25131, 25140]]` would be 25101 and 25131 to 25140.
 
@@ -37,9 +40,7 @@ It is not necessary, but recommended to use the [Commons extension](../commons/R
 
 **sar:off_nadir** is the angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90). A range can be specified as two element array in the array, e.g. `[20.1, [24.5, 30]]` would be 20.1 and 24.5 to 30.
 
-**sar:polarization** specifies a single polarization or a polarization combination. For single polarized radars one of `HH`, `VV`, `HV` or `VH` must be set. Fully polarimetric radars add all four polarizations to the array. Dual polarized radars and alternating polarization add the corresponding polarizations to the array, for instance for `HH+HV` add both `HH` and `HV`. 
-
-**sar:resolution, sar:pixel_spacing, sar:looks**: These three fields are all two-element arrays. The first element of the array is the range (measured perpendicular to the flight path), the second element is the azimuth (measured parallel to the flight path).
+**sar:polarization** specifies a single polarization or a polarization combination. For single polarized radars one of `HH`, `VV`, `HV` or `VH` must be set. Fully polarimetric radars add all four polarizations to the array. Dual polarized radars and alternating polarization add the corresponding polarizations to the array, for instance for `HH+HV` add both `HH` and `HV`.
 
 ### Common Frequency Band Names
 
@@ -70,7 +71,7 @@ The bands contained in SAR image are dependent on the `sar:type`. For example, s
 | name                | string       | The name of the band. |
 | description         | string       | Description to fully explain the band, should include processing information. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | data_type           | string       | Specifies the type of the data contained in the band, for example `amplitude`, `intensity`, `phase`, `angle`, `sigma0`, `gamma0`. |
-| unit                | string       | The unit of measurement for the data, specified as [OGC URN](http://www.opengis.net/def/uom/). |
+| unit                | string       | The unit of measurement for the data, preferably the symbols from [SI](https://physics.nist.gov/cuu/Units/units.html) or [UDUNITS](https://ncics.org/portfolio/other-resources/udunits2/). |
 | polarization        | string\|null | The polarization of the band, either `HH`, `VV`, `HV`, `VH` or `null` if not applicable. |
 
 ## Associating assets with bands
