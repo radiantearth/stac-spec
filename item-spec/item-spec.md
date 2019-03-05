@@ -101,7 +101,7 @@ The following types are commonly used as `rel` types in the Link Object of an It
 
 | Type         | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
-| self         | STRONGLY RECOMMENDED. _Absolute_ URL to the Item if it is publicly online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
+| self         | STRONGLY RECOMMENDED. _Absolute_ URL to the Item if it is available at a public URL. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root         | URL to the root STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may use the [Commons extension](../extensions/commons/README.md) and holds common fields of this and other Items (see chapter '[Collections](#Collections)' for more explanations). _Absolute_ URLs should be used whenever possible. |
