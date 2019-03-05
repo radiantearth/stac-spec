@@ -89,9 +89,9 @@ It is allowed to add additional fields such as a `title` and `type`.
 
 #### Relative vs Absolute links
 
-Currently the JSON schema for links does not require a URI formatting, to give the option for
-implementors to provide relative links. In general, Catalog API's should aim for absolute links
-whenever possible. But Static Catalogs are potentially more portable if they can be implemented with
+Currently, the JSON schema for links does not require them to be formatted as URIs, to allow
+implementors to provide relative links. In general, Catalog APIs should aim to provide absolute links
+whenever possible. Static Catalogs are potentially more portable if they incorporate only
 relative links, so that every link doesn't need to be rewritten when the data is copied. Additional
 recommendations for particular ```rel``` types are given in the ```rel``` type description.
 
@@ -101,7 +101,7 @@ The following types are commonly used as `rel` types in the Link Object of an It
 
 | Type         | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
-| self         | STRONGLY RECOMMENDED. _Absolute_ URL to the Item if it is publicly online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
+| self         | STRONGLY RECOMMENDED. _Absolute_ URL to the Item if it is available at a public URL. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root         | URL to the root STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may use the [Commons extension](../extensions/commons/README.md) and holds common fields of this and other Items (see chapter '[Collections](#Collections)' for more explanations). _Absolute_ URLs should be used whenever possible. |
