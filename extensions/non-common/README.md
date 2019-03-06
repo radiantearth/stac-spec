@@ -11,9 +11,9 @@ This extension allows specifying the potential values or extents so that user's 
 
 ## Collection fields
 
-| Field Name       | Type             | Description                                                  |
-| ---------------- | ---------------- | ------------------------------------------------------------ |
-| other_properties | [Summary Object] | **REQUIRED.** A list of all properties used in STAC Items, which don't have common values across all items. Allows to specify a summary of the values in the items as extent or set of values. |
+| Field Name       | Type                        | Description                                                  |
+| ---------------- | --------------------------- | ------------------------------------------------------------ |
+| other_properties | Map<string, Summary Object> | **REQUIRED.** A map of all properties used in STAC Items, which don't have common values across all items. The keys have to be the property names and the values allow to specify a summary of the values in the items as extent or set of values. |
 
 ### Summary Object
 
