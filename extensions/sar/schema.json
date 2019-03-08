@@ -81,7 +81,7 @@
                 "title": "Name of the band",
                 "type": "string"
               },
-              "common_name": {
+              "description": {
                 "title": "Description of the band",
                 "type": "string"
               },
