@@ -5,49 +5,89 @@ are required to meet the core specification, but following these practices will 
 and for users. They come about from practical experience of implementors, and introduce a bit more 'constraint' for
 those who are creating new catalogs or new tools to work with STAC. 
 
-In time some of these may evolve to become part of the core specification, but while the core is still evolving to 
-meet various use cases it should remain quite flexible and simple.
+In time some of these may evolve to become part of the core specification, but while the current goal of the core is to remain 
+quite flexible and simple to meet a wide variety of use cases.
 
 [Work In Progress]
 
 ## Catalog Layout
 
-### Static Catalog Layout
+Creating a catalog involves a number of decisions as to what folder structure to use to represent sub-catalogs, items
+and assets, and how to name them. The specification leaves this totally open, and you can link things as you want. We
+encourage people to explore new structures. But the following are what a number of implementors ended up doing. Following
+these recommendations makes for more legible catalogs.
 
-(intro)
-
-1. Root documents (catalogs / collections) should be at the root of a directory tree containing a static catalog (e.g. `/home/user/static-catalogs/sample/catalog.json`)
-2. Catalogs should be named `catalog.json` (cf. `index.html`)
-3. Collections that are distinct from catalogs should be named `collection.json`
+1. Root documents (catalogs / collections) should be at the root of a directory tree containing the static catalog.
+2. Catalogs should be named `catalog.json` (cf. `index.html`).
+3. Collections that are distinct from catalogs should be named `collection.json`.
 4. Items should be named `<id>.json`
-5. Sub-catalogs _and items_ should be stored in subdirectories of their parent (and only 1 subdirectory deeper than a document's parent) (e.g. `.../sample/sub1/catalog.json`) -- this means that each item and its assets are contained in a unique subdirectory
-6. ~Items should be stored in the same directory as their parent catalog (e.g. `.../sample/sub1/item1.json` when a part of the `sub1` catalog)~
-7. [Reverse relative links](https://github.com/radiantearth/stac-spec/issues/373#issuecomment-466884051) (name, implementation, necessity TBD) should not start with `../` ((5) should satisfy this)
-8. Limit the number of items in a catalog or sub-catalog, grouping / partitioning as relevant to the dataset
+5. Sub-catalogs should be stored in subdirectories of their parent (and only 1 subdirectory deeper than a document's parent) (e.g. `.../sample/sub1/catalog.json`).
+6. Items should be stored in subdirectories of their parent catalog (e.g. `.../sample/sub1/3425/3425.json`). 
+This means that each item and its assets are contained in a unique subdirectory
+7. Limit the number of items in a catalog or sub-catalog, grouping / partitioning as relevant to the dataset
 
 ### Dynamic Catalog Layout
 
-Follow the same principles in the static catalog, but as url paths instead of storage in directories.
+While these recommendations were primarily written for [static catalogs](catalog-spec.md#static-catalogs), they apply
+equally well to [dynamic catalogs](catalog-spec.md#dynamic-catalogs). Subdirectories of course would just be URL paths 
+generated dynamically, but the structure would be the same as is recommended.
 
 One benefit of a dynamic catalog is that it can generate various 'views' of the catalog, exposing the same Items in 
 different sub-catalog organization structures. For example one catalog could divide sub-catalogs by date and another 
 by providers, and users could browse down to both. The leaf Items should just be linked to in a single canonical location 
-(or at least use a rel link that indicates the location of the canonical one. It is recommended that dynamic catalogs 
-provide multiple 'views' to allow users to navigate in a way that makes sense to them. But the canonical 'rel' link should
-be used to designate the primary location of the item to search engine crawlers.
+(or at least use a rel link that indicates the location of the canonical one). It is recommended that dynamic catalogs 
+provide multiple 'views' to allow users to navigate in a way that makes sense to them, providing multiple 'sub-catalogs'
+from the root catalog that enable different paths to browse (country/state, date/time, constellation/satellite, etc). But the 
+canonical 'rel' link should be used to designate the primary location of the item to search engine crawlers.
 
-(move the above from the main spec)
+## Use of links
 
-## Use of self links
-
-The main catalog specification says that self links are not required, but are strongly recommended. This is what the
-spec must say to enable the various use cases, but there is more subtlety for when it is essential to use them, and how to 
-make useful catalogs that do not use them. The best practice is to use one of the below catalog types, applying the link
-recommendations consistently, instead of just haphazardly applying anything the spec allows.
+The main catalog specification allows both relative and absolute links, and says that `self` links are not required, but are 
+strongly recommended. This is what the spec must say to enable the various use cases, but there is more subtlety for when it 
+is essential to use different link types. The best practice is to use one of the below 
+catalog types, applying the link recommendations consistently, instead of just haphazardly applying anything the spec allows.
 
 ### Self-contained Catalogs
 
-### Permalink Catalogs
+A 'self-contained catalog' is one that is designed for portability. Users may want to download a catalog from online and be
+able to use it on their local computer, so all links need to be relative. Or a tool that creates catalogs may need to work 
+without knowing the final location that it will live at online, so it isn't possible to set absolute 'self' URL's. These use
+cases should utilize a catalog that follows the listed principles:
+
+* **Only relative href's in `links`**: The full catalog structure of links down to sub-catalogs and items, and their 
+links back to their parents and roots, should be done with relative URL's. This enables the full catalog to be downloaded or
+copy to another location and to still be valid.
+
+* **Use Asset `href` links consistently**: The links to the actual assets are allowed to be either relative or absolute. There
+are two types of 'self-contained catalogs'. The first is just the metadata, and use absolute href links to refer to the 
+online locations of the assets. The second uses relative href links for the assets, and includes them in the folder structure.
+This enables offline use of a catalog, by including all the actual data.
+
+Self-contained catalogs tend to be used more as static catalogs, where they can be easily passed around. But often they will
+be generated by a more dynamic STAC service, enabling a subset of a catalog or a portion of a search criteria to be downloaded
+and used in other contexts. That catalog could be used offline, or even published in another location.
+
+Self-contained catalogs are not just for offline use, however - they designed to be able to be published online and to live
+on the cloud in object storage. They just aim to ease the burden of publishing, by not requiring lots of updating of links. 
+The single `self` link at the root is recommended for online catalogs, to anchor it and enable provenance tracking.
+
+### Published Catalogs
+
+A 'published catalog' is one that lives online in a stable location, and uses `self` links to establish its location and 
+enable easy provenance tracking. There are two types of published catalogs:
+
+* **Absolute Published Catalog** is a catalog that uses absolute links for everything, both in the `links` objects and in the
+`asset` hrefs. It includes `self` links for every item. Generally these are implemented by dynamic catalogs, as it is quite
+easy for them to generate the proper links dynamically. But a static catalog that knows its published location could easily
+implement it.
+* **Relative Published Catalog** is a catalog that uses relative links for everything, but includes an absolute `self` link at
+the root catalog, to identify its online location. This is designed so that a self-contained catalog can be 'published' online
+by just adding one field (the self link) to its root catalog. All the other links should remain relative.
+
+## Static to Dynamic best practices
+
+Many implementors are using static catalogs to be the reliable core of their dynamic services, or layering their STAC API
+on top of any static catalog that is published. These are some recommendations on how to handle this:
 
 ## Inclusion of Paths From Root Documents
 
