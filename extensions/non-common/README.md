@@ -4,7 +4,7 @@
 
 This extension lists all properties, which don't have common values across the items. It's the counterpart to the [Commons extension](../commons/), which lists properties with common values across all items.
 
-This extension allows specifying the potential values or extents so that user's don't need to walk through STAC Items to find potential values to query for. 
+This extension allows specifying the potential values or extents so that users don't need to walk through STAC Items to find potential values to query for. 
 
 - [Example](example.json)
 - [JSON Schema](schema.json)
