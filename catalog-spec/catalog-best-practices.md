@@ -56,7 +56,7 @@ cases should utilize a catalog that follows the listed principles:
 
 * **Only relative href's in `links`**: The full catalog structure of links down to sub-catalogs and items, and their 
 links back to their parents and roots, should be done with relative URL's. This enables the full catalog to be downloaded or
-copy to another location and to still be valid.
+copy to another location and to still be valid. This also implies no `self` link, as that link must be absolute.
 
 * **Use Asset `href` links consistently**: The links to the actual assets are allowed to be either relative or absolute. There
 are two types of 'self-contained catalogs'. The first is just the metadata, and use absolute href links to refer to the 
@@ -69,7 +69,7 @@ and used in other contexts. That catalog could be used offline, or even publishe
 
 Self-contained catalogs are not just for offline use, however - they designed to be able to be published online and to live
 on the cloud in object storage. They just aim to ease the burden of publishing, by not requiring lots of updating of links. 
-The single `self` link at the root is recommended for online catalogs, to anchor it and enable provenance tracking.
+Adding a single `self` link at the root is recommended for online catalogs, turning it into a 'relative published catalog', as detailed below. This anchors it in an online location and enable provenance tracking.
 
 ### Published Catalogs
 
@@ -89,16 +89,31 @@ by just adding one field (the self link) to its root catalog. All the other link
 Many implementors are using static catalogs to be the reliable core of their dynamic services, or layering their STAC API
 on top of any static catalog that is published. These are some recommendations on how to handle this:
 
-## Inclusion of Paths From Root Documents
+#### Ingestion and links
 
-(possibly move this to self-contained catalog section?)
+Implementors have found that it's best to 'ingest' a static STAC into an internal datastore (often elasticsearch, but a 
+traditional database could work fine too) and then generate the full STAC API responses from that internal representation.
+There were attempts to have the API refer directly to the static STAC Items, but maintaining the link structure in a 
+coherent way was difficult. So the recommendation is to create new absolute links, at least for the STAC search/ endpoint 
+responses, with the API's location at the base url. The /stac endpoint with the catalogs could either link directly
+to the static catalog, or can follow the 'dynamic catalog layout' recommendations above with a new set of URL's.
 
-Inclusion of the path from a root document (rel=root), allows knowledge of the root document’s URI to be used to resolve 
-relative links in child documents. The root document’s rel=self can be absolute or it can be provided externally, allowing 
-all links in a catalog to be relative (including rel=self).
+Ideally each `Item` would use its `links` to provide a reference back to the static location. The location of the static
+item should be treated as the canonical location, as the generated API is more likely to move or be temporarily down. The
+spec provides the `derived_from` rel attribute, which fits well enough, but `canonical` is likely the more appropriate one
+as everything but the links should be the same.
 
-Href:from is a proposal with no prior art; HTML 4’s rev attribute comes close to describing this relationship, but isn’t 
-quite right (and was dropped in HTML5). It also duplicates rel=self, potentially suggested an alternative link role (to self) 
-where the href is the path from the root document. (This breaks link crawlers, as href is expected to be relative from the current document, rather than from another.)
+#### Keeping static and dynamic catalogs in sync with cloud notification and queue services
+
+There is a set of emerging practices to use services like Amazon's Simple Queue Service (SQS) and Simple Notification Service
+(SNS) to keep catalogs in sync. There is a great [blog post on the CBERS STAC implementation on AWS](https://aws.amazon.com/blogs/publicsector/keeping-a-spatiotemporal-asset-catalog-stac-up-to-date-with-sns-sqs/). The core 
+idea is that a static catalog should emit a notification whenever it changes. The recommendation for SNS is to use message 
+body as the STAC item JSON itself, with some attributes such as a scene’s datetime and geographic bounding box that allows 
+basic geographic filtering from listeners. 
+
+The dynamic STAC API would then listen to the notifications and update its internal datastore whenever new data comes into
+the static catalog. Implementors have had success using AWS Lambda to do a full 'serverless' updating of the elasticsearch
+database, but it could just as easily be a server-based process.
+
 
 
