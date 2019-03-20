@@ -32,7 +32,7 @@ It is not necessary, but recommended to use the [Commons extension](../commons/R
 | sar:looks             | [number]           | The number of groups of signal samples (looks). The first element of the array must be the number of range looks, the second element must be the number of azimuth looks, the optional third element is the equivalent number of looks (ENL). |
 | sar:relative_orbit    | [number]           | A list of relative orbit numbers. See below for details. |
 | sar:off_nadir         | number             | The off-nadir view angle is the angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90). |
-| sar:incidence_angle_center | number        | The center incidence angle is the angle defined by the incident radar beam at the scene center and the vertical (normal) to the intercepting surface. Measured in degrees (0-90). |
+| sar:incidence_angle   | number             | The center incidence angle is the angle defined by the incident radar beam at the scene center and the vertical (normal) to the intercepting surface. Measured in degrees (0-90). |
 
 
 **sar:relative_orbit** lists relative orbit numbers. These numbers are usually derived from absolute orbit numbers in a proprietary way. The absolute orbit number usually corresponds to the orbit count within the orbit cycle (e.g. for ALOS, ERS-1/2, JERS-1, and RADARSAT-1, Sentinel-1). For UAVSAR it is the [Flight ID](http://uavsar.jpl.nasa.gov/cgi-bin/data.pl).
