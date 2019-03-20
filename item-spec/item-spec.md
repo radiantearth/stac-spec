@@ -45,7 +45,7 @@ inherited from GeoJSON.
 | properties | Properties Object                                                          | **REQUIRED.** A dictionary of additional metadata for the item. |
 | links      | [Link Object]                                                              | **REQUIRED.** List of link objects to resources and related URLs. A link with the `rel` set to `self` is required. |
 | assets     | Map<string, Asset Object>                                                  | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key. Some pre-defined keys are listed in the chapter 'Asset types'. |
-| collection | string                                                                     | The `id` of the STAC Collection this Item references to (see `collection` relation type below). This field provides an easy way for a user to search for any Items that belong in a specified Collection. |
+| collection | string                                                                     | The `id` of the STAC Collection this Item references to (see `collection` relation type below). This field is *required* if such a relation type is present. This field provides an easy way for a user to search for any Items that belong in a specified Collection. |
 
 **assets** should include the main asset, as well as any 'sidecar' files that are related and help a
 client make sense of the data. Examples of this include extended metadata (in XML, JSON, etc.),
