@@ -30,12 +30,9 @@ It is not necessary, but recommended to use the [Commons extension](../commons/R
 | sar:resolution        | [number]           | The maximum ability to distinguish two adjacent targets, in meters (m). The first element of the array is the range resolution, the second element is the azimuth resolution. |
 | sar:pixel_spacing     | [number]           | The distance between adjacent pixels, in meters (m). The first element of the array is the range pixel spacing, the second element is the azimuth pixel spacing. Strongly RECOMMENDED to be specified for products of type `GRD`. |
 | sar:looks             | [number]           | The number of groups of signal samples (looks). The first element of the array must be the number of range looks, the second element must be the number of azimuth looks, the optional third element is the equivalent number of looks (ENL). |
-| sar:relative_orbit    | [number]           | A list of relative orbit numbers. See below for details. |
-| sar:off_nadir         | number             | The off-nadir view angle is the angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90). |
+| sar:absolute_orbit    | [number]           | A list of absolute orbit numbers. Usually corresponds to the orbit count within the orbit cycle (e.g. ALOS, ERS-1/2, JERS-1, and RADARSAT-1, Sentinel-1). For airborne SAR such as UAVSAR it can be the [Flight ID](http://uavsar.jpl.nasa.gov/cgi-bin/data.pl) or a similar concept. |
+| sar:relative_orbit    | [number]           | A list of relative orbit numbers. The relative orbit number is usually a count of orbits from 1 to the number of orbits contained in a repeat cycle. |
 | sar:incidence_angle   | number             | The center incidence angle is the angle defined by the incident radar beam at the scene center and the vertical (normal) to the intercepting surface. Measured in degrees (0-90). |
-
-
-**sar:relative_orbit** lists relative orbit numbers. These numbers are usually derived from absolute orbit numbers in a proprietary way. The absolute orbit number usually corresponds to the orbit count within the orbit cycle (e.g. for ALOS, ERS-1/2, JERS-1, and RADARSAT-1, Sentinel-1). For UAVSAR it is the [Flight ID](http://uavsar.jpl.nasa.gov/cgi-bin/data.pl).
 
 **sar:constellation** is the name of the group of satellites that have similar payloads and have their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and radiometric characteristics. Examples are the Sentinel-1 [constellation](https://www.esa.int/Our_Activities/Observing_the_Earth/Copernicus/Sentinel-1/Satellite_constellation), which has S1A, S1B, S1C and S1D and RADARSAT, which has RADARSAT-1 and RADARSAT-2. This field allows users to search for Sentinel-1 data, for example, without needing to specify which specific platform the data came from.
 

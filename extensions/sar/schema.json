@@ -170,8 +170,8 @@
             "minimum": 0
           }
         },
-        "sar:relative_orbit": {
-          "title": "Relative orbit numbers",
+        "sar:absolute_orbit": {
+          "title": "Absolute orbit numbers",
           "type": "array",
           "minItems": 1,
           "items": {
@@ -179,11 +179,14 @@
             "minimum": 0
           }
         },
-        "sar:off_nadir": {
-          "title": "Off-nadir view angle",
-          "type": "number",
-          "minimum": 0,
-          "maximum": 90
+        "sar:relative_orbit": {
+          "title": "Relative orbit numbers",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "number",
+            "minimum": 1
+          }
         },
         "sar:incidence_angle": {
           "title": "Center incidence angle",
