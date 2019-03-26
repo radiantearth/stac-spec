@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "schema.json#",
   "title": "SAR Extension",
   "type": "object",
@@ -81,7 +81,7 @@
                 "title": "Name of the band",
                 "type": "string"
               },
-              "common_name": {
+              "description": {
                 "title": "Description of the band",
                 "type": "string"
               },

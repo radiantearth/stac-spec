@@ -97,7 +97,7 @@ The following types are commonly used as `rel` types in the Link Object of a Col
 
 | Type    | Description                                                  |
 | ------- | ------------------------------------------------------------ |
-| self    | **REQUIRED.** *Absolute* URL to the collection. This is required, to represent the location that the file can be found online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
+| self    | STRONGLY RECOMMENDED. _Absolute_ URL to the location that the collection file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root    | URL to the root STAC [Catalog](../catalog-spec/README.md) or Collection. Collections should include a link to their root, even if it's the root and points to itself. |
 | parent  | URL to the parent STAC [Catalog](../catalog-spec/README.md) or Collection. Non-root collections should include a link to their parent. |
 | child   | URL to a child STAC [Catalog](../catalog-spec/) or Collection. |

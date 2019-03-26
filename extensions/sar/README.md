@@ -16,14 +16,14 @@ It is not necessary, but recommended to use the [Commons extension](../commons/R
 
 | Field Name            | Type               | Description                                                  |
 | --------------------- | ------------------ | ------------------------------------------------------------ |
-| sar:platform          | string             | **REQUIRED.** Unique name of the specific platform the instrument is attached to. For satellites this would be the name of the satellite (e.g., landsat-8, sentinel-2A), whereas for drones this would be a unique name for the drone. |
+| sar:platform          | string             | **REQUIRED.** Unique name of the specific platform the instrument is attached to. For satellites this would be the name of the satellite (e.g., sentinel-1A). |
 | sar:constellation     | string             | Name of the constellation that the platform belongs to. See below for details. |
 | sar:instrument        | string             | **REQUIRED.** Name of the sensor used, although for Items which contain data from multiple sensors this could also name multiple sensors. |
 | sar:instrument_mode   | string             | **REQUIRED.** The name of the sensor acquisition mode that is commonly used. This should be the short name, if available. For example, `WV` for "Wave mode" of Sentinel-1 and Envisat ASAR satellites. |
 | sar:frequency_band    | string             | **REQUIRED.** The common name for the frequency band to make it easier to search for bands across instruments. See section "Common Frequency Band Names" for a list of accepted names. |
 | sar:center_wavelength | number             | The center wavelength of the instrument, in centimeters (cm). |
 | sar:center_frequency  | number             | The center frequency of the instrument, in gigahertz (GHz). |
-| sar:polarization      | [string]           | **REQUIRED.** A single polarization or a polarization combinations specified as array. See below for more details. |
+| sar:polarization      | [string]           | **REQUIRED.** A single polarization or a polarization combination specified as array. See below for more details. |
 | sar:bands             | [Band Object]      | This is a list of the available bands where each item is a Band Object. See section "Band Object" for details. |
 | sar:pass_direction    | string\|null       | **REQUIRED.** Direction of the orbit, either `ascending`, `descending` or `null` if not relevant. |
 | sar:type              | string             | **REQUIRED.** The product type, for example `RAW`, `GRD`, `OCN` or `SLC` for Sentinel-1. |
