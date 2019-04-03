@@ -30,7 +30,7 @@
     "sar:center_wavelength": 5.623568898893265,
     "sar:center_frequency": 5.331,
     "sar:pass_direction": "descending",
-    "sar:absolute_orbit": [37747],
+    "sar:absolute_orbit": 37747,
     "sar:type": "GM1_1P",
     "sar:bands": [
       {

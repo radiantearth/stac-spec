@@ -14,25 +14,29 @@ It is not necessary, but recommended to use the [Commons extension](../commons/R
 
 **Note:** In the following specification *range* values are meant to be measured perpendicular to the flight path and *azimuth* values are meant to be measured parallel to the flight path.
 
-| Field Name            | Type               | Description                                                  |
-| --------------------- | ------------------ | ------------------------------------------------------------ |
-| sar:platform          | string             | **REQUIRED.** Unique name of the specific platform the instrument is attached to. For satellites this would be the name of the satellite (e.g., sentinel-1A). |
-| sar:constellation     | string             | Name of the constellation that the platform belongs to. See below for details. |
-| sar:instrument        | string             | **REQUIRED.** Name of the sensor used, although for Items which contain data from multiple sensors this could also name multiple sensors. |
-| sar:instrument_mode   | string             | **REQUIRED.** The name of the sensor acquisition mode that is commonly used. This should be the short name, if available. For example, `WV` for "Wave mode" of Sentinel-1 and Envisat ASAR satellites. |
-| sar:frequency_band    | string             | **REQUIRED.** The common name for the frequency band to make it easier to search for bands across instruments. See section "Common Frequency Band Names" for a list of accepted names. |
-| sar:center_wavelength | number             | The center wavelength of the instrument, in centimeters (cm). |
-| sar:center_frequency  | number             | The center frequency of the instrument, in gigahertz (GHz). |
-| sar:polarization      | [string]           | **REQUIRED.** A single polarization or a polarization combination specified as array. See below for more details. |
-| sar:bands             | [Band Object]      | This is a list of the available bands where each item is a Band Object. See section "Band Object" for details. |
-| sar:pass_direction    | string\|null       | **REQUIRED.** Direction of the orbit, either `ascending`, `descending` or `null` if not relevant. |
-| sar:type              | string             | **REQUIRED.** The product type, for example `RAW`, `GRD`, `OCN` or `SLC` for Sentinel-1. |
-| sar:resolution        | [number]           | The maximum ability to distinguish two adjacent targets, in meters (m). The first element of the array is the range resolution, the second element is the azimuth resolution. |
-| sar:pixel_spacing     | [number]           | The distance between adjacent pixels, in meters (m). The first element of the array is the range pixel spacing, the second element is the azimuth pixel spacing. Strongly RECOMMENDED to be specified for products of type `GRD`. |
-| sar:looks             | [number]           | The number of groups of signal samples (looks). The first element of the array must be the number of range looks, the second element must be the number of azimuth looks, the optional third element is the equivalent number of looks (ENL). |
-| sar:absolute_orbit    | [number]           | A list of absolute orbit numbers. Usually corresponds to the orbit count within the orbit cycle (e.g. ALOS, ERS-1/2, JERS-1, and RADARSAT-1, Sentinel-1). For airborne SAR such as UAVSAR it can be the [Flight ID](http://uavsar.jpl.nasa.gov/cgi-bin/data.pl) or a similar concept. |
-| sar:relative_orbit    | [number]           | A list of relative orbit numbers. The relative orbit number is usually a count of orbits from 1 to the number of orbits contained in a repeat cycle. |
-| sar:incidence_angle   | number             | The center incidence angle is the angle defined by the incident radar beam at the scene center and the vertical (normal) to the intercepting surface. Measured in degrees (0-90). |
+| Field Name            | Type          | Description                                                  |
+| --------------------- | ------------- | ------------------------------------------------------------ |
+| sar:platform          | string        | **REQUIRED.** Unique name of the specific platform the instrument is attached to. For satellites this would be the name of the satellite (e.g., sentinel-1A). |
+| sar:constellation     | string        | Name of the constellation that the platform belongs to. See below for details. |
+| sar:instrument        | string        | **REQUIRED.** Name of the sensor used, although for Items which contain data from multiple sensors this could also name multiple sensors. |
+| sar:instrument_mode   | string        | **REQUIRED.** The name of the sensor acquisition mode that is commonly used. This should be the short name, if available. For example, `WV` for "Wave mode" of Sentinel-1 and Envisat ASAR satellites. |
+| sar:frequency_band    | string        | **REQUIRED.** The common name for the frequency band to make it easier to search for bands across instruments. See section "Common Frequency Band Names" for a list of accepted names. |
+| sar:center_wavelength | number        | The center wavelength of the instrument, in centimeters (cm). |
+| sar:center_frequency  | number        | The center frequency of the instrument, in gigahertz (GHz).  |
+| sar:polarization      | [string]      | **REQUIRED.** A single polarization or a polarization combination specified as array. See below for more details. |
+| sar:bands             | [Band Object] | This is a list of the available bands where each item is a Band Object. See section "Band Object" for details. |
+| sar:pass_direction    | string\|null  | **REQUIRED.** Direction of the orbit, either `ascending`, `descending` or `null` if not relevant. |
+| sar:type              | string        | **REQUIRED.** The product type, for example `RAW`, `GRD`, `OCN` or `SLC` for Sentinel-1. |
+| sar:resolution        | [number]      | The maximum ability to distinguish two adjacent targets, in meters (m). The first element of the array is the range resolution, the second element is the azimuth resolution. |
+| sar:pixel_spacing     | [number]      | The distance between adjacent pixels, in meters (m). The first element of the array is the range pixel spacing, the second element is the azimuth pixel spacing. Strongly RECOMMENDED to be specified for products of type `GRD`. |
+| sar:looks             | [number]      | The number of groups of signal samples (looks). The first element of the array must be the number of range looks, the second element must be the number of azimuth looks, the optional third element is the equivalent number of looks (ENL). |
+| sar:absolute_orbit    | integer       | An absolute orbit number associated with the acquisition. See below for details. |
+| sar:relative_orbit    | integer       | A relative orbit number associated with the acquisition. See below for details. |
+| sar:incidence_angle   | number        | The center incidence angle is the angle defined by the incident radar beam at the scene center and the vertical (normal) to the intercepting surface. Measured in degrees (0-90). |
+
+**sar:absolute_orbit** usually corresponds to the number of orbits elapsed since satellite launch (e.g. ALOS, ERS-1/2, JERS-1, RADARSAT-1 and Sentinel-1). For airborne SAR such as UAVSAR it can be the [Flight ID](http://uavsar.jpl.nasa.gov/cgi-bin/data.pl) or a similar concept. The center orbit number should be specified if readily available, otherwise the orbit number at the start of the flight can be used instead.
+
+**sar:relative_orbit** is a count of orbits from 1 to the number of orbits contained in a repeat cycle, where relative orbit 1 starts from a defined reference for a given satellite. This property is usually not set for airborne SAR such as UAVSAR. The center orbit number should be specified if readily available, otherwise the orbit number at the start of the flight can be used instead.
 
 **sar:constellation** is the name of the group of satellites that have similar payloads and have their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and radiometric characteristics. Examples are the Sentinel-1 [constellation](https://www.esa.int/Our_Activities/Observing_the_Earth/Copernicus/Sentinel-1/Satellite_constellation), which has S1A, S1B, S1C and S1D and RADARSAT, which has RADARSAT-1 and RADARSAT-2. This field allows users to search for Sentinel-1 data, for example, without needing to specify which specific platform the data came from.
 
