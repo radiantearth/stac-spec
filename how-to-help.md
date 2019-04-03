@@ -1,6 +1,6 @@
 ## Introduction
 
-The SpatioTemproal Asset Catalog is a specification to help interoperability, but the key to achieve that goal is a community
+The SpatioTemporal Asset Catalog is a specification to help interoperability, but the key to achieve that goal is a community
 of like-minded collaborators who are building software and exposing data in a standard way. The specification is really 
 the result of that collaboration, and the aim is to provide a flexible base that others can extend and innovate on top of.
 If others in the community create similar functionality with their geospatial access API's then the community will hopefully
