@@ -1,6 +1,6 @@
 # STAC Catalog Best Practices
 
-This document makes a number of recommendations for creating real world SpatioTemporal Asset Catalogs. None of them 
+This document makes a number of recommendations for creating real world SpatioTemporal Asset [Catalogs](catalog-spec.md). None of them 
 are required to meet the core specification, but following these practices will make life easier for client tooling
 and for users. They come about from practical experience of implementors, and introduce a bit more 'constraint' for
 those who are creating new catalogs or new tools to work with STAC. 
@@ -8,7 +8,48 @@ those who are creating new catalogs or new tools to work with STAC.
 In time some of these may evolve to become part of the core specification, but while the current goal of the core is to remain 
 quite flexible and simple to meet a wide variety of use cases.
 
-[Work In Progress]
+## Static and Dynamic Catalogs
+
+As mentioned in the main [Catalog specification](catalog-spec.md), there are two main types of catalogs - static
+and dynamic. This section explains each of them in more depth and shares some best practices on each.
+
+#### Static Catalogs
+
+A main target for STAC has been object storage services like [Amazon S3](https://aws.amazon.com/s3/), 
+[Google Cloud Storage](https://cloud.google.com/storage/) and [Azure Storage](https://azure.microsoft.com/en-us/services/storage/), 
+so that users can stand up a full STAC implementation with static files. Implementations created with just files online
+are referred to as 'static catalogs'. These include not just the cloud services, but any type of file server that is online.
+
+Static Catalogs tend to make extensive use of *sub-catalogs* to organize their Items in to sensible browsing structures, 
+as they can only have a single representation of their catalog, since the static nature means the structure is baked in.
+While it is up to the implementor to organize the catalog, it is recommended to arrange it in a way that would make sense 
+for a human to browse a set of STAC Items in an intuitive matter.
+
+The recommendation for static catalogs is to define them using the file name `catalog.json` to distinguish 
+the catalog from item other JSON type files. In order to support multiple catalogs, the recommended practice 
+is to place the `catalog.json` in namespaces "directories". For example:
+
+- current/catalog.json
+- archive/catalog.json
+
+#### Dynamic Catalogs
+
+Dynamic STAC Catalogs are those that generate their JSON responses programmatically instead of relying on a set of
+already defined files. Typically a dynamic catalog implements the full [STAC API](../stac-api/) which enables 
+search of the Items indexed. But the `/stac/` endpoint returns the exact same `Catalog` and `Item` structures as a
+static catalog, enabling the same discovery from people browsing and search engines crawling. Dynamic API's that
+just seek to expose some data can also choose to only implement a Catalog the `/stac/` endpoint that returns dynamically.
+For example a Content Management Service like Drupal or an Open Data Catalog like CKAN could choose to expose its content
+as linked STAC Items by implementing a dynamic catalog. 
+
+One benefit of a dynamic catalog is that it can generate various 'views' of the catalog, exposing the same `Items` in 
+different sub-catalog organization structures. For example one catalog could divide sub-catalogs by date and another by
+providers, and users could browse down to both. The leaf Items should just be linked to in a single canonical location
+(or at least use a `rel` link that indicates the location of the canonical one.
+
+The STAC API is also made to be compatible with WFS3, which has a set structure for the canonical location of its features.
+STAC Items should use the WFS3 location as their canonical location, and then in the `/stac/` browse structure would just
+link to those locations. 
 
 ## Catalog Layout
 
