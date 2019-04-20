@@ -34,8 +34,8 @@
             ]
         ]
     },
+    "collection": "landsat-8-l1",
     "properties": {
-        "collection": "landsat-8-l1",
         "datetime": "2018-10-01T01:08:32.033Z",
         "eo:cloud_cover": 78,
         "eo:sun_azimuth": 168.8989761,

@@ -26,7 +26,9 @@ A Collection may not link to any Items, it may just be a definition of a Collect
 
 ### Linking to a STAC Collection
 
-All Items link to a Collection (this is part of the core STAC spec) and is specified in two places. One is a field under properties called `collection` which is the `id` of a STAC Collection record. The `collection` field provides an easy way for a user to search for any Items that belong in a specified Collection.
+All Items are strongly recommended to link to a Collection (this is part of the core STAC spec) and related references are specified in two places.
+
+One is a field called `collection` in a STAC Item which is the `id` of a STAC Collection record. The `collection` field provides an easy way for a user to search for any Items that belong in a specified Collection.
 
 A STAC Item must also provide a link to the STAC Collection using the `collection` rel type:
 
