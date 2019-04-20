@@ -46,6 +46,7 @@
     "cbers:path": 177,
     "cbers:row": 106
   },
+  "collection": "CBERS_4_MUX",
   "links": [
     {
       "rel": "self",
