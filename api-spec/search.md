@@ -20,6 +20,44 @@ This query will perform an intersects operation on the geometry values of the it
 objects may provide a bbox property in addition to geometry, but it should not be used for the bbox filter since
 it is an optional field in GeoJSON.
 
+
+### Searching
+
+The `/stac/search` endpoint accepts a JSON object specifying a bounding box and date/time.
+
+```json
+{
+  "bbox": [5.5, 46, 8, 47.4],
+  "time": "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
+}
+```
+
+This tells the server to return all the catalog items it has that are from the second half of March, 2018 and
+that intersect with this area:
+
+![swiss_bbox](https://user-images.githubusercontent.com/407017/38382405-b5e69344-38be-11e8-90dc-35738678356d.png)
+
+_Map © OpenStreetMap contributors_
+
+The return format is a [GeoJSON](http://geojson.org/) `FeatureCollection` with features compliant with the [Item spec](../item-spec/README.md) for STAC.
+
+It returns up to `limit` Items optionally requested by the client, and includes
+`next` links to iterate through any results past that `limit`.
+
+The `POST` endpoint is required for all STAC API implementations. The fields of the JSON object can also be used
+for a `GET` endpoint, which are included in the OpenAPI specifications. The `GET` requests are designed to reflect the same
+fields as the `POST` fields, and are based on WFS 3 requests. It is recommended for implementations to implement both, but
+only `POST` is required.
+
+### Filtering
+
+The core STAC API includes two filters - Bounding Box and Time. All STAC Items require space and time, and thus any STAC
+client can expect to be able to filter on them. Most data will include additional data that users would like to query on,
+so there is a mechanism to also specify more filters. See the [Filtering](filters.md) document for additional information
+on the core filters as well as how to extend them. It is anticipated that "extensions" for domains (e.g. earth observation
+imagery) will require additional fields to query their common fields.
+
+
 ## Examples
 
 ### To filter by spatial extent
