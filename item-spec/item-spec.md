@@ -193,3 +193,11 @@ The core is space and time, but there are often other metadata attributes that a
 providers can fill it with tens or even hundreds of fields of metadata that is not recommended. If providers have lots of metadata then 
 that should be linked to in the Asset Object or in a Link Object, or even a new Asset Object could be added that is potentially easier to parse.
 There is a lot of metadata that is only of relevance to advanced processing algorithms, and while that is important it should not be in the core STAC items.
+
+### HTML versions of Items
+
+It is recommended to have a complementary HTML version of each `Item` available for easy human consumption and search 
+engine crawlability. The exact nature of the HTML is not part of the specification, but it is recommended to use common
+ecosystem tools like [STAC Browser](https://github.com/radiantearth/stac-browser) to generate it. More information on creating 
+HTML versions of STAC can be found in the [STAC on the Web section](../catalog-spec/catalog-best-practices.md#stac-on-the-web) 
+of the catalog best practices document.
