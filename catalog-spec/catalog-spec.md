@@ -179,7 +179,7 @@ with links.
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
 
 Please see the chapter 'relative vs absolute links' in the [Item spec](../item-spec/item-spec.md#relative-vs-absolute-links)
- for a discussion on that topic, as well as the (use of links)[catalog-best-practices.md#use-of-links] section of the 
+ for a discussion on that topic, as well as the [use of links](catalog-best-practices.md#use-of-links) section of the 
  catalog best practices document.
 
 #### Relation types
