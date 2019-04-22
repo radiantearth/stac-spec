@@ -80,6 +80,7 @@
     "dg:product": "WORLDVIEW02_LV1B",
     "datetime": "2015-11-09T18:04:46.000Z"
   },
+  "collection": "dg_worldview02",
    "links": [
       {
         "rel": "self",
