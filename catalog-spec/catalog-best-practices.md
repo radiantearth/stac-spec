@@ -127,6 +127,48 @@ by just adding one field (the self link) to its root catalog. All the other link
 resolution of item and sub-catalog self links may be done by traversing parent and root links, but requires reading multiple 
 sources to achieve this.
 
+## STAC on the Web
+
+One of the primary goals of STAC is to make spatiotemporal data more accessible on the web. One would have a right to be 
+surprised that there is nothing about HTML in the entire specification. This is not because it's not incredibly important to
+have web-accessible versions of every STAC Item, but because it is difficult to specify what should be on web pages without
+ending up with very bad looking pages. 
+
+The main recommendation is to have an HTML page for every single STAC Item and Catalog. They should be visually pleasing, 
+crawlable by search engines and ideally interactive. The current best practice is to use a tool in the STAC Ecosystem called
+[STAC Browser](https://github.com/radiantearth/stac-browser/). It can crawl most any valid catalog and generate unique web
+pages for each `Item` and `Catalog` (or `Collection`). While it has a default look and feel, the design can easily be 
+modified to match an existing web presence. And it will automatically turn any Item with a [Cloud Optimized 
+GeoTIFF](http://cogeo.org) asset into an interactive, zoomable web map (using [tiles.rdnt.io](http://tiles.rdnt.io/) to render
+the tiles on a [leaflet](https://leafletjs.com/) map).
+
+Implementors are welcome to generate their own web pages, and additional tools that automatically transform STAC JSON into 
+html sites are encouraged. In time there will likely emerge a set of best practices from an array of tools, and we may be
+able to specify in the core standard how to make the right HTML pages. But for now it is useful for catalogs to focus on 
+making data available as JSON, and then leverage tools that can evolve at the same time to make the best HTML experience.
+
+#### Schema.org, JSON-LD, DCAT, microformats, etc
+
+There is a strong desire to align STAC with the various web standards for data. These include [schema.org](http://schema.org) 
+tags, [JSON-LD](https://json-ld.org/) (particularly for Google's [dataset 
+search](https://developers.google.com/search/docs/data-types/dataset)), [DCAT](https://www.w3.org/TR/vocab-dcat/)
+and [microformats](http://microformats.org/wiki/about). STAC aims to align with as many as possible. Thusfar it has not seemed
+to make sense to include any of them directly in the core STAC standard. They are all more intended to be a part of the HTML
+pages that search engines crawl, so the logical place to do the integration is by leveraging [STAC 
+Browser](https://github.com/radiantearth/stac-browser/). It tries to implement as many as possible, with more on the roadmap.
+So anyone wanting to push forward those integrations is encouraged to help out on STAC Browser, or make another open source
+STAC -> HTML transformation tool.
+
+#### Deploying STAC Browser & stac.cloud
+
+There are a number of STAC Browser [examples on stacspec.org](https://stacspec.org/#examples), that are all deployed on 
+the [stac.cloud](http://stac.cloud) domain. Anyone with a public catalog is welcome to have a STAC Browser instance hosted
+for free. But the bigger recommendation is to host your catalog's STAC Browser on your own domain. And to customize its 
+design to look and feel like your main web presence. The goal of stac.cloud is to bootstrap live web pages for catalogs, but
+not to be *the* central hub. STAC's goal is to be decentralized, so each catalog should have its own location and just be
+part of the wider web. 
+
+
 ## Static to Dynamic best practices
 
 Many implementors are using static catalogs to be the reliable core of their dynamic services, or layering their STAC API
