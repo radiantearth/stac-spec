@@ -30,6 +30,7 @@ It is not necessary, but recommended to use the [Commons extension](../commons/R
 | sar:resolution        | [number]           | The maximum ability to distinguish two adjacent targets, in meters (m). The first element of the array is the range resolution, the second element is the azimuth resolution. |
 | sar:pixel_spacing     | [number]           | The distance between adjacent pixels, in meters (m). The first element of the array is the range pixel spacing, the second element is the azimuth pixel spacing. Strongly RECOMMENDED to be specified for products of type `GRD`. |
 | sar:looks             | [number]           | The number of groups of signal samples (looks). The first element of the array must be the number of range looks, the second element must be the number of azimuth looks, the optional third element is the equivalent number of looks (ENL). |
+| sar:observation_direction | string         | Antenna pointing direction relative to the flight trajectory of the satellite, either `left` or `right`.
 | sar:absolute_orbit    | [number\|[number]] | A list of absolute orbit numbers. See below for details. |
 | sar:off_nadir         | [number\|[number]] | Viewing angle(s). Measured in degrees (0-90). See below for details. |
 
