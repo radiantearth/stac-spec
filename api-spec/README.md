@@ -54,9 +54,9 @@ The [`definitions` folder](./definitions/) contains the YAML files that will imp
 
 See [yaml-files](https://www.npmjs.com/package/yaml-files) for the syntax to import YAML fragments.
 
-### Fragments
+### Extensions
 
-The [`fragments` folder](./fragments/) contains valid yaml that is intended to be merged into an openapi document. It should be possible to import one or more fragments at the same time to create a new STAC+extensions definition.
+The [`extensions` folder](./extensions/) contains valid yaml that is intended to be merged into an openapi document. It should be possible to import one or more fragments at the same time to create a new STAC+extensions definition.
 
 ### Building OpenAPI Definitions
 

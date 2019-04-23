@@ -34,6 +34,7 @@ It is not necessary, but recommended to use the [Commons extension](../commons/R
 | sar:looks_range       | number             | Number of range looks, which is the number of groups of signal samples (looks) perpendicular to the flight path. |
 | sar:looks_azimuth     | number             | Number of azimuth looks, which is the number of groups of signal samples (looks) parallel to the flight path. |
 | sar:looks_equivalent_number | number       | The equivalent number of looks (ENL). |
+| sar:observation_direction | string         | Antenna pointing direction relative to the flight trajectory of the satellite, either `left` or `right`.
 | sar:absolute_orbit    | [number\|[number]] | A list of absolute orbit numbers. See below for details. |
 | sar:off_nadir         | [number\|[number]] | Viewing angle(s). Measured in degrees (0-90). See below for details. |
 
