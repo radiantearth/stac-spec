@@ -140,35 +140,40 @@
             "SLC"
           ]
         },
-        "sar:resolution": {
-          "title": "Resolution (m)",
-          "type": "array",
-          "minItems": 2,
-          "maxItems": 2,
-          "items": {
-            "type": "number",
-            "minimum": 0
-          }
+        "sar:resolution_range": {
+          "title": "Resolution range (m)",
+          "type": "number",
+          "minimum": 0
         },
-        "sar:pixel_spacing": {
-          "title": "Pixel spacing (m)",
-          "type": "array",
-          "minItems": 2,
-          "maxItems": 2,
-          "items": {
-            "type": "number",
-            "minimum": 0
-          }
+        "sar:resolution_azimuth": {
+          "title": "Resolution azimuth (m)",
+          "type": "number",
+          "minimum": 0
         },
-        "sar:looks": {
-          "title": "Groups of signal samples (looks)",
-          "type": "array",
-          "minItems": 2,
-          "maxItems": 3,
-          "items": {
-            "type": "number",
-            "minimum": 0
-          }
+        "sar:pixel_spacing_range": {
+          "title": "Pixel spacing range (m)",
+          "type": "number",
+          "minimum": 0
+        },
+        "sar:pixel_spacing_azimuth": {
+          "title": "Pixel spacing azimuth (m)",
+          "type": "number",
+          "minimum": 0
+        },
+        "sar:looks_range": {
+          "title": "Looks range",
+          "type": "integer",
+          "minimum": 0
+        },
+        "sar:looks_azimuth": {
+          "title": "Looks azimuth",
+          "type": "integer",
+          "minimum": 0
+        },
+        "sar:looks_equivalent_number": {
+          "title": "Equivalent number of looks (ENL)",
+          "type": "number",
+          "minimum": 0
         },
         "sar:observation_direction": {
           "title": "Antenna pointing direction",
