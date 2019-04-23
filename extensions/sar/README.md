@@ -27,9 +27,13 @@ It is not necessary, but recommended to use the [Commons extension](../commons/R
 | sar:bands             | [Band Object]      | This is a list of the available bands where each item is a Band Object. See section "Band Object" for details. |
 | sar:pass_direction    | string\|null       | **REQUIRED.** Direction of the orbit, either `ascending`, `descending` or `null` if not relevant. |
 | sar:type              | string             | **REQUIRED.** The product type, for example `RAW`, `GRD`, `OCN` or `SLC` for Sentinel-1. |
-| sar:resolution        | [number]           | The maximum ability to distinguish two adjacent targets, in meters (m). The first element of the array is the range resolution, the second element is the azimuth resolution. |
-| sar:pixel_spacing     | [number]           | The distance between adjacent pixels, in meters (m). The first element of the array is the range pixel spacing, the second element is the azimuth pixel spacing. Strongly RECOMMENDED to be specified for products of type `GRD`. |
-| sar:looks             | [number]           | The number of groups of signal samples (looks). The first element of the array must be the number of range looks, the second element must be the number of azimuth looks, the optional third element is the equivalent number of looks (ENL). |
+| sar:resolution_range  | number             | The range resolution, which is the maximum ability to distinguish two adjacent targets perpendicular to the flight path, in meters (m).  |
+| sar:resolution_azimuth | number            | The azimuth resolution, which is the maximum ability to distinguish two adjacent targets parallel to the flight path, in meters (m).  |
+| sar:pixel_spacing_range | number           | The range azimuth, which is the distance between adjacent pixels perpendicular to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`. |
+| sar:pixel_spacing_azimuth | number         | The azimuth pixel spacing, which is the distance between adjacent pixels parallel to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`. |
+| sar:looks_range       | number             | Number of range looks, which is the number of groups of signal samples (looks) perpendicular to the flight path. |
+| sar:looks_azimuth     | number             | Number of azimuth looks, which is the number of groups of signal samples (looks) parallel to the flight path. |
+| sar:looks_equivalent_number | number       | The equivalent number of looks (ENL). |
 | sar:observation_direction | string         | Antenna pointing direction relative to the flight trajectory of the satellite, either `left` or `right`.
 | sar:absolute_orbit    | [number\|[number]] | A list of absolute orbit numbers. See below for details. |
 | sar:off_nadir         | [number\|[number]] | Viewing angle(s). Measured in degrees (0-90). See below for details. |
