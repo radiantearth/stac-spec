@@ -170,6 +170,14 @@
             "minimum": 0
           }
         },
+        "sar:observation_direction": {
+          "title": "Antenna pointing direction",
+          "type": "string",
+          "enum": [
+            "left",
+            "right"
+          ]
+        },
         "sar:absolute_orbit": {
           "title": "Absolute orbit numbers",
           "type": "array",

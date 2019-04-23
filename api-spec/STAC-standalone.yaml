@@ -41,7 +41,7 @@ paths:
                 $ref: '#/components/schemas/catalogDefinition'
   /stac/search:
     get:
-      summary: Search STAC items with simple filtering.
+      summary: Search STAC items by simple filtering.
       description: >-
         Retrieve Items matching filters. Intended as a shorthand API for simple
         queries. This method is optional.
@@ -74,7 +74,7 @@ paths:
     post:
       summary: Search STAC items with full-featured filtering.
       description: >-
-        retrieve items matching filters. Intended as the standard, full-featured
+        Retrieve items matching filters. Intended as the standard, full-featured
         query API. This method is mandatory.
       operationId: postSearchSTAC
       tags:
@@ -171,13 +171,14 @@ components:
       name: time
       in: query
       description: >
-        Either a date-time or a period string that adheres to RFC3339. Examples:
+        Either a date-time or a period string that adheres to RFC3339.
+        Examples:
 
-        * A date-time: "2018-02-12T23:20:50Z" 
-        * A period: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or "2018-02-12T00:00:00Z/P1M6DT12H31M12S" 
+        * A date-time: "2018-02-12T23:20:50Z"
+        * A period: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or "2018-02-12T00:00:00Z/P1M6DT12H31M12S"
 
-        Only features that have a temporal property that intersects the value
-        of `time` are selected. If a feature has multiple temporal properties, it
+        Only features that have a temporal property that intersects the value of
+        `time` are selected. If a feature has multiple temporal properties, it
         is the decision of the server whether only a single temporal property is
         used to determine the extent or all relevant temporal properties.
       required: false
@@ -308,7 +309,7 @@ components:
         Either a date-time or a period string that adheres to RFC 3339.
         Examples:
 
-        * A date-time: "2018-02-12T23:20:50Z"  
+        * A date-time: "2018-02-12T23:20:50Z"
         * A period: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or "2018-02-12T00:00:00Z/P1M6DT12H31M12S"
 
         Only features that have a temporal property that intersects the value of

@@ -34,7 +34,7 @@ paths:
         - STAC
       responses:
         '200':
-          description: A catalog json definition. Used as an entry point for a crawler.
+          description: A catalog JSON definition. Used as an entry point for a crawler.
           content:
             application/json:
               schema:
@@ -75,9 +75,9 @@ paths:
               schema:
                 type: string
     post:
-      summary: Search STAC items by full-featured filtering.
+      summary: Search STAC items with full-featured filtering.
       description: >-
-        retrieve items matching filters. Intended as the standard, full-featured
+        Retrieve items matching filters. Intended as the standard, full-featured
         query API. This method is mandatory.
       operationId: postSearchSTAC
       tags:
@@ -333,7 +333,8 @@ components:
       name: time
       in: query
       description: >
-        Either a date-time or a period string that adheres to RFC3339. Examples:
+        Either a date-time or a period string that adheres to RFC3339.
+        Examples:
 
         * A date-time: "2018-02-12T23:20:50Z"  * A period:
         "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or
@@ -984,7 +985,7 @@ components:
               - asc
               - desc
       example:
-        - field: 'eo:cloud_cover'
+        - field: eo:cloud_cover
         - field: providers
           direction: desc
     fieldsFilter:
@@ -994,21 +995,14 @@ components:
         fields:
           $ref: '#/components/schemas/fields'
     fields:
-      description: >
-        The geometry member determines whether the geometry is populated or is
-        null. The
-
-        include and exclude members specify an array of property names that are
-        either 
-
-        included or excluded from the result, respectively. If both include and
-        exclude 
-
-        are specified, include takes precedence.
+      description: |
+        The include and exclude members specify an array of
+        property names that are either included or excluded
+        from the result, respectively. If both include and
+        exclude are specified, include takes precedence.
+        Values should include the full JSON path of the property.
       type: object
       properties:
-        geometry:
-          type: boolean
         include:
           type: array
           items:
@@ -1017,6 +1011,11 @@ components:
           type: array
           items:
             type: string
+      example:
+        include:
+          - 'id,properties.eo:cloud_cover'
+        exclude:
+          - 'geometry,properties.datetime'
 tags:
   - name: STAC
     description: Extension to WFS3 Core to support STAC metadata model and search API
