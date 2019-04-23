@@ -4,7 +4,7 @@ A STAC API is the dynamic version of a SpatioTemporal Asset Catalog. It returns 
 
 ## In this directory
 
-** The Specification:** The main definition of the STAC API specification is in the *[api-spec.md](api-spec.md)* file. It includes an overview and in depth explanatiosn of the REST endpoints and parameters.
+**The Specification:** The main definition of the STAC API specification is in the *[api-spec.md](api-spec.md)* file. It includes an overview and in depth explanatiosn of the REST endpoints and parameters.
 
 **Examples:** For samples of how the STAC API can be queries, see the *[examples/](examples/)* folder.
 
@@ -12,7 +12,7 @@ A STAC API is the dynamic version of a SpatioTemporal Asset Catalog. It returns 
 
 ## Schemas (OpenAPI definitions)
 
-The definitive specification for STAC is the [OpenAPI](http://openapis.org/) 3.0 YAML document, which is available in several forms. The most straightforward for an implementor new to STAC is the [STAC-standalone.yaml](STAC-standalone.yaml).
+The definitive specification for STAC is the [OpenAPI](http://openapis.org/) 3.0 YAML document, which is available in two versions. The most straightforward for an implementor new to STAC is the [STAC-standalone.yaml](STAC-standalone.yaml).
 This gives a complete service with the main STAC endpoint. See the [online documentation](https://app.swaggerhub.com/apis/cholmesgeo/STAC-standalone/) for the API rendered interactively.
 
 The OpenAPI specification is contained within several YAML files in the [definitions](definitions/) and [extensions](extensions/) directories.
