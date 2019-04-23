@@ -34,7 +34,8 @@
     "sar:center_wavelength": 5.546576466235,
     "sar:center_frequency": 5.405,
     "sar:pass_direction": "ascending",
-    "sar:absolute_orbit": [24430],
+    "sar:absolute_orbit": 24430,
+    "sar:relative_orbit": 33,
     "sar:type": "GRD",
     "sar:bands": [
       {
