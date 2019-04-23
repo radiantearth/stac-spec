@@ -1,1 +1,1 @@
-!!files_merge_append ["definitions/STAC-standalone.yaml", "definitions/WFS3-core.yaml", "definitions/STAC-collection.fragment.yaml"]
+!!files_merge_append ["definitions/WFS3-core.yaml", "definitions/STAC.yaml"]

@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: The SpatioTemporal Asset Catalog API (standalone)
+  title: The SpatioTemporal Asset Catalog API
   version: 0.6.2
   description: >-
     This is an OpenAPI definition of the core SpatioTemporal Asset Catalog API

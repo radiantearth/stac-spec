@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: WFS3 core API
+  title: The SpatioTemporal Asset Catalog API
   version: 0.6.2
   description: >-
     This is an OpenAPI definition of the core SpatioTemporal Asset Catalog API
@@ -9,103 +9,12 @@ info:
     available as an OpenAPI fragment that can be integrated with other OpenAPI
     definitions, and is designed to slot seamlessly into a WFS 3 API definition.
   contact:
-    name: Cool Sat Corp
-    email: info@cool-sat.com
-    url: 'http://cool-sat.com/contact/'
+    name: STAC Specification
+    url: 'http://satspec.org'
   license:
     name: Apache License 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0'
-servers:
-  - url: 'http://dev.cool-sat.com/'
-    description: Development server
-  - url: 'http://www.cool-sat.com'
-    description: Production server
 paths:
-  /stac:
-    get:
-      summary: Return the root catalog or collection.
-      description: >-
-        Returns the root STAC Catalog or STAC Collection that is the entry point
-        for users to browse with STAC Browser or for search engines to crawl.
-        This can either return a single STAC Collection or more commonly a STAC
-        catalog that usually lists sub-catalogs of STAC Collections, i.e. a
-        simple catalog that lists all collections available through the API.
-      tags:
-        - STAC
-      responses:
-        '200':
-          description: A catalog JSON definition. Used as an entry point for a crawler.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/catalogDefinition'
-  /stac/search:
-    get:
-      summary: Search STAC items with simple filtering.
-      description: >-
-        Retrieve Items matching filters. Intended as a shorthand API for simple
-        queries. This method is optional.
-      operationId: getSearchSTAC
-      tags:
-        - STAC
-      parameters:
-        - $ref: '#/components/parameters/bbox'
-        - $ref: '#/components/parameters/time'
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/query'
-        - $ref: '#/components/parameters/sort'
-        - $ref: '#/components/parameters/fields'
-      responses:
-        '200':
-          description: A feature collection.
-          content:
-            application/geo+json:
-              schema:
-                $ref: '#/components/schemas/itemCollection'
-            text/html:
-              schema:
-                type: string
-        default:
-          description: An error occurred.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/exception'
-            text/html:
-              schema:
-                type: string
-    post:
-      summary: Search STAC items with full-featured filtering.
-      description: >-
-        retrieve items matching filters. Intended as the standard, full-featured
-        query API. This method is mandatory.
-      operationId: postSearchSTAC
-      tags:
-        - STAC
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/searchBody'
-      responses:
-        '200':
-          description: A feature collection.
-          content:
-            application/geo+json:
-              schema:
-                $ref: '#/components/schemas/itemCollection'
-            text/html:
-              schema:
-                type: string
-        default:
-          description: An error occurred.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/exception'
-            text/html:
-              schema:
-                type: string
   /:
     get:
       summary: landing page of this API
@@ -265,8 +174,107 @@ paths:
             text/html:
               schema:
                 type: string
+  /stac:
+    get:
+      summary: Return the root catalog or collection.
+      description: >-
+        Returns the root STAC Catalog or STAC Collection that is the entry point
+        for users to browse with STAC Browser or for search engines to crawl.
+        This can either return a single STAC Collection or more commonly a STAC
+        catalog that usually lists sub-catalogs of STAC Collections, i.e. a
+        simple catalog that lists all collections available through the API.
+      tags:
+        - STAC
+      responses:
+        '200':
+          description: A catalog JSON definition. Used as an entry point for a crawler.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/catalogDefinition'
+  /stac/search:
+    get:
+      summary: Search STAC items with simple filtering.
+      description: >-
+        Retrieve Items matching filters. Intended as a shorthand API for simple
+        queries. This method is optional.
+      operationId: getSearchSTAC
+      tags:
+        - STAC
+      parameters:
+        - $ref: '#/components/parameters/bbox'
+        - $ref: '#/components/parameters/time'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/query'
+        - $ref: '#/components/parameters/sort'
+        - $ref: '#/components/parameters/fields'
+      responses:
+        '200':
+          description: A feature collection.
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/itemCollection'
+            text/html:
+              schema:
+                type: string
+        default:
+          description: An error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
+    post:
+      summary: Search STAC items with full-featured filtering.
+      description: >-
+        retrieve items matching filters. Intended as the standard, full-featured
+        query API. This method is mandatory.
+      operationId: postSearchSTAC
+      tags:
+        - STAC
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/searchBody'
+      responses:
+        '200':
+          description: A feature collection.
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/itemCollection'
+            text/html:
+              schema:
+                type: string
+        default:
+          description: An error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
 components:
   parameters:
+    collectionId:
+      name: collectionId
+      in: path
+      required: true
+      description: Identifier (name) of a specific collection
+      schema:
+        type: string
+    featureId:
+      name: featureId
+      in: path
+      description: Local identifier of a specific feature
+      required: true
+      schema:
+        type: string
     limit:
       name: limit
       in: query
@@ -348,20 +356,6 @@ components:
         type: string
       style: form
       explode: false
-    collectionId:
-      name: collectionId
-      in: path
-      required: true
-      description: Identifier (name) of a specific collection
-      schema:
-        type: string
-    featureId:
-      name: featureId
-      in: path
-      description: Local identifier of a specific feature
-      required: true
-      schema:
-        type: string
     query:
       name: query
       in: query
@@ -388,6 +382,232 @@ components:
       style: form
       explode: false
   schemas:
+    root:
+      type: object
+      required:
+        - links
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          example:
+            - href: 'http://data.example.org/'
+              rel: self
+              type: application/json
+              title: this document
+            - href: 'http://data.example.org/api'
+              rel: service
+              type: application/openapi+json;version=3.0
+              title: the API definition
+            - href: 'http://data.example.org/conformance'
+              rel: conformance
+              type: application/json
+              title: WFS 3.0 conformance classes implemented by this server
+            - href: 'http://data.example.org/collections'
+              rel: data
+              type: application/json
+              title: Metadata about the feature collections
+    req-classes:
+      type: object
+      required:
+        - conformsTo
+      properties:
+        conformsTo:
+          type: array
+          items:
+            type: string
+          example:
+            - 'http://www.opengis.net/spec/wfs-1/3.0/req/core'
+            - 'http://www.opengis.net/spec/wfs-1/3.0/req/oas30'
+            - 'http://www.opengis.net/spec/wfs-1/3.0/req/html'
+            - 'http://www.opengis.net/spec/wfs-1/3.0/req/geojson'
+    content:
+      type: object
+      required:
+        - links
+        - collections
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          example:
+            - href: 'http://data.example.org/collections.json'
+              rel: self
+              type: application/json
+              title: this document
+            - href: 'http://data.example.org/collections.html'
+              rel: alternate
+              type: text/html
+              title: this document as HTML
+            - href: 'http://schemas.example.org/1.0/foobar.xsd'
+              rel: describedBy
+              type: application/xml
+              title: XML schema for Acme Corporation data
+        collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/collectionInfo'
+    collectionInfo:
+      type: object
+      required:
+        - name
+        - links
+        - stac_version
+        - id
+        - description
+        - license
+        - extent
+      properties:
+        name:
+          description: 'identifier of the collection used, for example, in URIs'
+          type: string
+          example: buildings
+        title:
+          description: human readable title of the collection
+          type: string
+          example: Buildings
+        description:
+          description: a description of the features in the collection
+          type: string
+          example: Buildings in the city of Bonn.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+          example:
+            - href: 'http://data.example.org/collections/buildings/items'
+              rel: item
+              type: application/geo+json
+              title: Buildings
+            - href: 'http://example.org/concepts/building.html'
+              rel: describedBy
+              type: text/html
+              title: Feature catalogue for buildings
+        extent:
+          $ref: '#/components/schemas/extent'
+        crs:
+          description: >-
+            The coordinate reference systems in which geometries may be
+            retrieved. Coordinate reference systems are identified by a URI. The
+            first coordinate reference system is the coordinate reference system
+            that is used by default. This is always
+            "http://www.opengis.net/def/crs/OGC/1.3/CRS84", i.e. WGS84
+            longitude/latitude.
+          type: array
+          items:
+            type: string
+          default:
+            - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+        stac_version:
+          type: string
+          example: 0.6.2
+        id:
+          description: 'identifier of the collection used, for example, in URIs'
+          type: string
+          example: buildings
+        keywords:
+          title: Keywords
+          type: array
+          items:
+            type: string
+            example:
+              - buildings
+              - properties
+              - constructions
+        version:
+          title: Collection Version
+          type: string
+          example: 2018Q3
+        license:
+          title: Collection License Name
+          type: string
+          example: Apache-2.0
+        providers:
+          type: array
+          items:
+            properties:
+              name:
+                title: Organization name
+                type: string
+                example: Big Building Corp
+              description:
+                title: Provider description
+                type: string
+                example: No further processing applied.
+              roles:
+                title: Organization roles
+                type: array
+                items:
+                  type: string
+                  enum:
+                    - producer
+                    - licensor
+                    - processor
+                    - host
+                example:
+                  - producer
+                  - licensor
+              url:
+                title: Homepage
+                description: >-
+                  Homepage on which the provider describes the dataset and
+                  publishes contact information.
+                type: string
+                format: url
+                example: 'http://www.big-building.com'
+    extent:
+      type: object
+      properties:
+        crs:
+          description: >-
+            Coordinate reference system of the coordinates in the spatial extent
+            (property `spatial`). In the Core, only WGS84 longitude/latitude is
+            supported. Extensions may support additional coordinate reference
+            systems.
+          type: string
+          enum:
+            - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+          default: 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+        spatial:
+          description: >-
+            West, south, east, north edges of the spatial extent. The minimum
+            and maximum values apply to the coordinate reference system WGS84
+            longitude/latitude that is supported in the Core. If, for example, a
+            projected coordinate reference system is used, the minimum and
+            maximum values need to be adjusted.
+          type: array
+          minItems: 4
+          maxItems: 6
+          items:
+            type: number
+          example:
+            - -180
+            - -90
+            - 180
+            - 90
+        trs:
+          description: >-
+            Temporal reference system of the coordinates in the temporal extent
+            (property `temporal`). In the Core, only the Gregorian calendar is
+            supported. Extensions may support additional temporal reference
+            systems.
+          type: string
+          enum:
+            - 'http://www.opengis.net/def/uom/ISO-8601/0/Gregorian'
+          default: 'http://www.opengis.net/def/uom/ISO-8601/0/Gregorian'
+        temporal:
+          description: Begin and end times of the temporal extent.
+          type: array
+          minItems: 2
+          maxItems: 2
+          items:
+            type: string
+            format: dateTime
+          example:
+            - '2011-11-11T12:22:11Z'
+            - '2012-11-24T12:32:43Z'
     exception:
       type: object
       required:
@@ -662,232 +882,6 @@ components:
         - rel: next
           href: >-
             http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
-    root:
-      type: object
-      required:
-        - links
-      properties:
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/link'
-          example:
-            - href: 'http://data.example.org/'
-              rel: self
-              type: application/json
-              title: this document
-            - href: 'http://data.example.org/api'
-              rel: service
-              type: application/openapi+json;version=3.0
-              title: the API definition
-            - href: 'http://data.example.org/conformance'
-              rel: conformance
-              type: application/json
-              title: WFS 3.0 conformance classes implemented by this server
-            - href: 'http://data.example.org/collections'
-              rel: data
-              type: application/json
-              title: Metadata about the feature collections
-    req-classes:
-      type: object
-      required:
-        - conformsTo
-      properties:
-        conformsTo:
-          type: array
-          items:
-            type: string
-          example:
-            - 'http://www.opengis.net/spec/wfs-1/3.0/req/core'
-            - 'http://www.opengis.net/spec/wfs-1/3.0/req/oas30'
-            - 'http://www.opengis.net/spec/wfs-1/3.0/req/html'
-            - 'http://www.opengis.net/spec/wfs-1/3.0/req/geojson'
-    content:
-      type: object
-      required:
-        - links
-        - collections
-      properties:
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/link'
-          example:
-            - href: 'http://data.example.org/collections.json'
-              rel: self
-              type: application/json
-              title: this document
-            - href: 'http://data.example.org/collections.html'
-              rel: alternate
-              type: text/html
-              title: this document as HTML
-            - href: 'http://schemas.example.org/1.0/foobar.xsd'
-              rel: describedBy
-              type: application/xml
-              title: XML schema for Acme Corporation data
-        collections:
-          type: array
-          items:
-            $ref: '#/components/schemas/collectionInfo'
-    collectionInfo:
-      type: object
-      required:
-        - name
-        - links
-        - stac_version
-        - id
-        - description
-        - license
-        - extent
-      properties:
-        name:
-          description: 'identifier of the collection used, for example, in URIs'
-          type: string
-          example: buildings
-        title:
-          description: human readable title of the collection
-          type: string
-          example: Buildings
-        description:
-          description: a description of the features in the collection
-          type: string
-          example: Buildings in the city of Bonn.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/link'
-          example:
-            - href: 'http://data.example.org/collections/buildings/items'
-              rel: item
-              type: application/geo+json
-              title: Buildings
-            - href: 'http://example.org/concepts/building.html'
-              rel: describedBy
-              type: text/html
-              title: Feature catalogue for buildings
-        extent:
-          $ref: '#/components/schemas/extent'
-        crs:
-          description: >-
-            The coordinate reference systems in which geometries may be
-            retrieved. Coordinate reference systems are identified by a URI. The
-            first coordinate reference system is the coordinate reference system
-            that is used by default. This is always
-            "http://www.opengis.net/def/crs/OGC/1.3/CRS84", i.e. WGS84
-            longitude/latitude.
-          type: array
-          items:
-            type: string
-          default:
-            - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
-        stac_version:
-          type: string
-          example: 0.6.2
-        id:
-          description: 'identifier of the collection used, for example, in URIs'
-          type: string
-          example: buildings
-        keywords:
-          title: Keywords
-          type: array
-          items:
-            type: string
-            example:
-              - buildings
-              - properties
-              - constructions
-        version:
-          title: Collection Version
-          type: string
-          example: 2018Q3
-        license:
-          title: Collection License Name
-          type: string
-          example: Apache-2.0
-        providers:
-          type: array
-          items:
-            properties:
-              name:
-                title: Organization name
-                type: string
-                example: Big Building Corp
-              description:
-                title: Provider description
-                type: string
-                example: No further processing applied.
-              roles:
-                title: Organization roles
-                type: array
-                items:
-                  type: string
-                  enum:
-                    - producer
-                    - licensor
-                    - processor
-                    - host
-                example:
-                  - producer
-                  - licensor
-              url:
-                title: Homepage
-                description: >-
-                  Homepage on which the provider describes the dataset and
-                  publishes contact information.
-                type: string
-                format: url
-                example: 'http://www.big-building.com'
-    extent:
-      type: object
-      properties:
-        crs:
-          description: >-
-            Coordinate reference system of the coordinates in the spatial extent
-            (property `spatial`). In the Core, only WGS84 longitude/latitude is
-            supported. Extensions may support additional coordinate reference
-            systems.
-          type: string
-          enum:
-            - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
-          default: 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
-        spatial:
-          description: >-
-            West, south, east, north edges of the spatial extent. The minimum
-            and maximum values apply to the coordinate reference system WGS84
-            longitude/latitude that is supported in the Core. If, for example, a
-            projected coordinate reference system is used, the minimum and
-            maximum values need to be adjusted.
-          type: array
-          minItems: 4
-          maxItems: 6
-          items:
-            type: number
-          example:
-            - -180
-            - -90
-            - 180
-            - 90
-        trs:
-          description: >-
-            Temporal reference system of the coordinates in the temporal extent
-            (property `temporal`). In the Core, only the Gregorian calendar is
-            supported. Extensions may support additional temporal reference
-            systems.
-          type: string
-          enum:
-            - 'http://www.opengis.net/def/uom/ISO-8601/0/Gregorian'
-          default: 'http://www.opengis.net/def/uom/ISO-8601/0/Gregorian'
-        temporal:
-          description: Begin and end times of the temporal extent.
-          type: array
-          minItems: 2
-          maxItems: 2
-          items:
-            type: string
-            format: dateTime
-          example:
-            - '2011-11-11T12:22:11Z'
-            - '2012-11-24T12:32:43Z'
     queryFilter:
       type: object
       description: Allows users to query properties for specific values
@@ -1015,6 +1009,11 @@ components:
           - 'id,properties.eo:cloud_cover'
         exclude:
           - 'geometry,properties.datetime'
+servers:
+  - url: 'http://dev.cool-sat.com/'
+    description: Development server
+  - url: 'http://www.cool-sat.com'
+    description: Production server
 tags:
   - name: STAC
     description: Extension to WFS3 Core to support STAC metadata model and search API
