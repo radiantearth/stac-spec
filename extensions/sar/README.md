@@ -14,36 +14,36 @@ It is not necessary, but recommended to use the [Commons extension](../commons/R
 
 **Note:** In the following specification *range* values are meant to be measured perpendicular to the flight path and *azimuth* values are meant to be measured parallel to the flight path.
 
-| Field Name            | Type               | Description                                                  |
-| --------------------- | ------------------ | ------------------------------------------------------------ |
-| sar:platform          | string             | **REQUIRED.** Unique name of the specific platform the instrument is attached to. For satellites this would be the name of the satellite (e.g., sentinel-1A). |
-| sar:constellation     | string             | Name of the constellation that the platform belongs to. See below for details. |
-| sar:instrument        | string             | **REQUIRED.** Name of the sensor used, although for Items which contain data from multiple sensors this could also name multiple sensors. |
-| sar:instrument_mode   | string             | **REQUIRED.** The name of the sensor acquisition mode that is commonly used. This should be the short name, if available. For example, `WV` for "Wave mode" of Sentinel-1 and Envisat ASAR satellites. |
-| sar:frequency_band    | string             | **REQUIRED.** The common name for the frequency band to make it easier to search for bands across instruments. See section "Common Frequency Band Names" for a list of accepted names. |
-| sar:center_wavelength | number             | The center wavelength of the instrument, in centimeters (cm). |
-| sar:center_frequency  | number             | The center frequency of the instrument, in gigahertz (GHz). |
-| sar:polarization      | [string]           | **REQUIRED.** A single polarization or a polarization combination specified as array. See below for more details. |
-| sar:bands             | [Band Object]      | This is a list of the available bands where each item is a Band Object. See section "Band Object" for details. |
-| sar:pass_direction    | string\|null       | **REQUIRED.** Direction of the orbit, either `ascending`, `descending` or `null` if not relevant. |
-| sar:type              | string             | **REQUIRED.** The product type, for example `RAW`, `GRD`, `OCN` or `SLC` for Sentinel-1. |
-| sar:resolution_range  | number             | The range resolution, which is the maximum ability to distinguish two adjacent targets perpendicular to the flight path, in meters (m).  |
-| sar:resolution_azimuth | number            | The azimuth resolution, which is the maximum ability to distinguish two adjacent targets parallel to the flight path, in meters (m).  |
-| sar:pixel_spacing_range | number           | The range azimuth, which is the distance between adjacent pixels perpendicular to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`. |
-| sar:pixel_spacing_azimuth | number         | The azimuth pixel spacing, which is the distance between adjacent pixels parallel to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`. |
-| sar:looks_range       | number             | Number of range looks, which is the number of groups of signal samples (looks) perpendicular to the flight path. |
-| sar:looks_azimuth     | number             | Number of azimuth looks, which is the number of groups of signal samples (looks) parallel to the flight path. |
-| sar:looks_equivalent_number | number       | The equivalent number of looks (ENL). |
-| sar:observation_direction | string         | Antenna pointing direction relative to the flight trajectory of the satellite, either `left` or `right`.
-| sar:absolute_orbit    | [number\|[number]] | A list of absolute orbit numbers. See below for details. |
-| sar:off_nadir         | [number\|[number]] | Viewing angle(s). Measured in degrees (0-90). See below for details. |
+| Field Name                | Type          | Description                                                  |
+| ------------------------- | ------------- | ------------------------------------------------------------ |
+| sar:platform              | string        | **REQUIRED.** Unique name of the specific platform the instrument is attached to. For satellites this would be the name of the satellite (e.g., sentinel-1A). |
+| sar:constellation         | string        | Name of the constellation that the platform belongs to. See below for details. |
+| sar:instrument            | string        | **REQUIRED.** Name of the sensor used, although for Items which contain data from multiple sensors this could also name multiple sensors. |
+| sar:instrument_mode       | string        | **REQUIRED.** The name of the sensor acquisition mode that is commonly used. This should be the short name, if available. For example, `WV` for "Wave mode" of Sentinel-1 and Envisat ASAR satellites. |
+| sar:frequency_band        | string        | **REQUIRED.** The common name for the frequency band to make it easier to search for bands across instruments. See section "Common Frequency Band Names" for a list of accepted names. |
+| sar:center_wavelength     | number        | The center wavelength of the instrument, in centimeters (cm). |
+| sar:center_frequency      | number        | The center frequency of the instrument, in gigahertz (GHz). |
+| sar:polarization          | [string]      | **REQUIRED.** A single polarization or a polarization combination specified as array. See below for more details. |
+| sar:bands                 | [Band Object] | This is a list of the available bands where each item is a Band Object. See section "Band Object" for details. |
+| sar:pass_direction        | string\|null  | **REQUIRED.** Direction of the orbit, either `ascending`, `descending` or `null` if not relevant. |
+| sar:type                  | string        | **REQUIRED.** The product type, for example `RAW`, `GRD`, `OCN` or `SLC` for Sentinel-1. |
+| sar:resolution_range      | number        | The range resolution, which is the maximum ability to distinguish two adjacent targets perpendicular to the flight path, in meters (m).  |
+| sar:resolution_azimuth    | number        | The azimuth resolution, which is the maximum ability to distinguish two adjacent targets parallel to the flight path, in meters (m).  |
+| sar:pixel_spacing_range   | number        | The range azimuth, which is the distance between adjacent pixels perpendicular to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`. |
+| sar:pixel_spacing_azimuth | number        | The azimuth pixel spacing, which is the distance between adjacent pixels parallel to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`. |
+| sar:looks_range           | number        | Number of range looks, which is the number of groups of signal samples (looks) perpendicular to the flight path. |
+| sar:looks_azimuth         | number        | Number of azimuth looks, which is the number of groups of signal samples (looks) parallel to the flight path. |
+| sar:looks_equivalent_number | number      | The equivalent number of looks (ENL). |
+| sar:observation_direction | string        | Antenna pointing direction relative to the flight trajectory of the satellite, either `left` or `right`.
+| sar:absolute_orbit        | integer       | An absolute orbit number associated with the acquisition. See below for details. |
+| sar:relative_orbit        | integer       | A relative orbit number associated with the acquisition. See below for details. |
+| sar:incidence_angle       | number        | The center incidence angle is the angle defined by the incident radar beam at the scene center and the vertical (normal) to the intercepting surface. Measured in degrees (0-90). |
 
+**sar:absolute_orbit** usually corresponds to the number of orbits elapsed since satellite launch (e.g. ALOS, ERS-1/2, JERS-1, RADARSAT-1 and Sentinel-1). For airborne SAR such as UAVSAR it can be the [Flight ID](http://uavsar.jpl.nasa.gov/cgi-bin/data.pl) or a similar concept. The center orbit number should be specified if readily available, otherwise the orbit number at the start of the flight can be used instead.
 
-**sar:absolute_orbit** lists absolute orbit numbers. Usually corresponds to the orbit count within the orbit cycle (e.g. ALOS, ERS-1/2, JERS-1, and RADARSAT-1, Sentinel-1). For UAVSAR it is the [Flight ID](http://uavsar.jpl.nasa.gov/cgi-bin/data.pl). A range can be specified as two element array in the array, e.g. `[25101, [25131, 25140]]` would be 25101 and 25131 to 25140.
+**sar:relative_orbit** is a count of orbits from 1 to the number of orbits contained in a repeat cycle, where relative orbit 1 starts from a defined reference for a given satellite. This property is usually not set for airborne SAR such as UAVSAR. The center orbit number should be specified if readily available, otherwise the orbit number at the start of the flight can be used instead.
 
 **sar:constellation** is the name of the group of satellites that have similar payloads and have their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and radiometric characteristics. Examples are the Sentinel-1 [constellation](https://www.esa.int/Our_Activities/Observing_the_Earth/Copernicus/Sentinel-1/Satellite_constellation), which has S1A, S1B, S1C and S1D and RADARSAT, which has RADARSAT-1 and RADARSAT-2. This field allows users to search for Sentinel-1 data, for example, without needing to specify which specific platform the data came from.
-
-**sar:off_nadir** is the angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90). A range can be specified as two element array in the array, e.g. `[20.1, [24.5, 30]]` would be 20.1 and 24.5 to 30.
 
 **sar:polarization** specifies a single polarization or a polarization combination. For single polarized radars one of `HH`, `VV`, `HV` or `VH` must be set. Fully polarimetric radars add all four polarizations to the array. Dual polarized radars and alternating polarization add the corresponding polarizations to the array, for instance for `HH+HV` add both `HH` and `HV`.
 
