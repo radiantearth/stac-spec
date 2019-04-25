@@ -8,6 +8,8 @@ A STAC API is a [Web Feature Service 3 (WFS3) API](https://github.com/opengeospa
 
 **The Specification:** The main definition of the STAC API specification is in the *[api-spec.md](api-spec.md)* file. It includes an overview and in depth explanation of the REST endpoints and parameters.
 
+**Extensions:** API Extensions are given in the *[extensions](extensions/)* folder. YAML fragments are provided for each extension with details provided in the *[README](extensions/README.md)*.
+
 **Examples:** For samples of how the STAC API can be queries, see the *[examples/](examples/)* folder.
 
 **Schemas:** The API is described by the OpenAPI specification documents in the *[openapi](openapi/)* folder.
