@@ -1,1 +1,0 @@
-!!files_merge_append ["definitions/WFS3.yaml", "definitions/STAC.yaml"]
