@@ -1,9 +1,18 @@
-# Fields API Extension
+# Sort API Extension
 
 **Extension [Maturity Classification](../../../extensions/README.md#extension-maturity): Pilot**
 
-This document explains the fields of the STAC Electro-Optical (EO) Extension to a STAC Item. EO
-data is considered to be data that represents a snapshot of the earth for a single date and time. It
-could consist of multiple spectral bands in any part of the electromagnetic spectrum. Examples of EO
-data include sensors with visible, short-wave and mid-wave IR bands (e.g., the OLI instrument on
-Landsat-8), long-wave IR bands (e.g. TIRS aboard Landsat-8).
+The STAC search endpoint, `/stac/search`, by default returns results in descending order using the datetime property. The sort API extension adds a new parameter, `sort` that allows the user to define fields to sort results by. Only properties may be used to sort results. The syntax for the `sort` parameter is:
+
+```json
+{
+    "sort": [
+        {
+            "field": "<property_name>",
+            "direction": "<direction>"
+        }
+    ]
+}
+```
+
+where <direction> is either "asc" (ascending) or "desc" (descending). The `sort` value is an array, so multiple sort fields can be defined which will be used to sort the data in the order provided (e.g., first by `datetime`, then by `eo:cloud_cover`).

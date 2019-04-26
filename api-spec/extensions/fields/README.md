@@ -2,8 +2,27 @@
 
 **Extension [Maturity Classification](../../../extensions/README.md#extension-maturity): Pilot**
 
-This document explains the fields of the STAC Electro-Optical (EO) Extension to a STAC Item. EO
-data is considered to be data that represents a snapshot of the earth for a single date and time. It
-could consist of multiple spectral bands in any part of the electromagnetic spectrum. Examples of EO
-data include sensors with visible, short-wave and mid-wave IR bands (e.g., the OLI instrument on
-Landsat-8), long-wave IR bands (e.g. TIRS aboard Landsat-8).
+The STAC search endpoint, `/stac/search`, by default returns entire Items. The fields API extension adds a new parameter, `fields` that allows the user to define fields in the items returned to be returned or excluded. If both include and exclude are specified, include takes precedence.
+
+To return just the `id`, `geometry`, and the property `eo:cloud_cover`:
+```json
+{
+    "fields": [
+        {
+            "include": "id,geometry,properties.eo:cloud_cover",
+        }
+    ]
+}
+```
+
+To return the whole item without the geometry:
+
+```json
+{
+    "fields": [
+        {
+            "exclude": "geometry",
+        }
+    ]
+}
+```
