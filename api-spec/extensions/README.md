@@ -36,3 +36,97 @@ implemented. If you would find any of these helpful or are considering to implem
 extension, please get in touch through the referenced issues:
 
 - None yet
+
+## Creating new extensions
+
+Creating new extensions requires creating an OpenAPI fragment to define it.
+
+Example fragment:
+
+```yaml
+IntersectsFilter:
+  type: object
+  description: >-
+    Only returns items that intersect with the provided polygon.
+  properties:
+    intersects:
+      $ref: "#/definitions/Polygon"
+Polygon:
+  type: object
+  properties:
+    type:
+      type: string
+      enum:
+        - polygon
+    coordinates:
+      $ref: "#/definitions/Polygon2D"
+  required:
+    - type
+    - coordinates
+Polygon2D:
+  type: array
+  minItems: 1
+  items:
+    $ref: "#/definitions/LinearRing2D"
+LinearRing2D:
+  type: array
+  minItems: 4
+  items:
+    $ref: "#/definitions/Point2D"
+  example: [[-104, 35], [-103, 35], [-103, 34], [-104, 34], [-104, 35]]
+Point2D:
+  description: A 2d geojson point
+  type: array
+  minimum: 2
+  maximum: 2
+  items:
+    type: number
+    format: double
+  example:
+    - -104
+    - 35
+```
+
+It is likely that there are schemas that should be used in common for types of filters that target different fields. We should define a common set of filter types that can be used in defining filters for different fields.
+
+- `NumberRange`
+- `TimeRange`
+- `Text`
+- `ArrayIncludes`
+- Etc.
+
+When defining a new filter fragment, you would reference these common filter types:
+
+```yaml
+CloudCover:
+  type: object
+  description: >-
+    Filter items by desired cloud coverage.
+  properties:
+    cloudcover:
+      $ref: "#/definitions/NumberRange"
+```
+
+Some additional extensions that have been discussed:
+
+CQL support for generic queries:
+
+```json
+{
+  "CQL": "CQL Select String"
+}
+```
+
+### Adding filters to search
+
+Filters should be documented as properties in the `searchBody`:
+
+```yaml
+searchBody:
+  description: The search criteria
+  type: object
+  allOf:
+    - $ref: "#/components/schema/bboxFilter"
+    - $ref: "#/components/schema/TimeFilter"
+    - $ref: "#/components/schema/IntersectsFilter"
+```
