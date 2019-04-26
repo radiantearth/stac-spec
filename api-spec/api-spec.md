@@ -19,14 +19,17 @@ The core WFS3 endpoints are shown below, with details provided in an [OpenAPI sp
 | /collections/{collection_id}/items | Items | GeoJSON FeatureCollection of Items in Collection |
 | /collections/{collection_id}/items/{item_id} | Item | Returns single Item GeoJSON |
 
-The `/collections/{collection_id}/items` endpoint accepts parameters for filtering the results.
+The `/collections/{collection_id}/items` endpoint accepts parameters for filtering the results (also called filters). Searching using POST will accept a JSON object where the top level keys specify which type of filter to apply (e.g., bbox=[...]). Those same key names can be used as query string parameters for the GET request. 
+
+Items in the collection should match all filters to be returned when querying. This implies a logical AND operation. If an OR operation is needed, it should be specified through an extension filter.
 
 ### Filter Parameters
 
 | Parameter      | Type          | Description        |
 | ------------ | ------------- | ---------------------- |
-| bbox | [number] (x4)        | Requested bounding box (minlat, minlon, maxlat, maxlon) |
-| time | datetime string | Single date, date+time, or a range ('/' seperator)
+| bbox | [number] (x4)        | Requested bounding box [west, south, east, north] |
+| time | datetime string | Single date, date+time, or a range ('/' seperator) |
+| intersects | GeoJSON Feature | Searches items by performing intersection between their geometry and provided GeoJSON Feature |
 | page | number | The page number of results. Defaults to 1) |
 | limit | number | The maximum number of results to return (page size). Defaults to 10 |
 
