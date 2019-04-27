@@ -27,10 +27,10 @@ Items in the collection should match all filters to be returned when querying. T
 
 | Parameter      | Type          | Description        |
 | ------------ | ------------- | ---------------------- |
-| bbox | [number] (x4)        | Requested bounding box [west, south, east, north] |
-| time | datetime string | Single date, date+time, or a range ('/' seperator) |
+| bbox | [number]       | Requested bounding box [west, south, east, north] |
+| time | string | Single date, date+time, or a range ('/' seperator), formatted to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6) |
 | intersects | GeoJSON Feature | Searches items by performing intersection between their geometry and provided GeoJSON Feature |
-| page | number | The page number of results. Defaults to 1) |
+| page | number | The page number of results. Defaults to 1 |
 | limit | number | The maximum number of results to return (page size). Defaults to 10 |
 
 ## STAC Endpoints
