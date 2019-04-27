@@ -37,11 +37,9 @@ Items in the collection should match all filters to be returned when querying. T
 
 STAC provides some additional endpoints for the root Catalog itself, as well as the capability to search the Catalog. Note that a STAC API does not need to implement WFS 3, in which case it would only support the endpoints given below. See the [OpenAPI specification document](definitions/STAC-standalone.yaml).
 
-```
 | Endpoint      | Returns          | Description        |
 | ------------ | ------------- | ---------------------- |
 | /stac | Catalog        | Root catalog |
 | /stac/search | Items | GeoJSON FeatureCollection of Items found |
-```
 
 The `stac/search` endpoint is similar to the `items` endpoint in WFS3 in that it accepts parameters for filtering, however it performs the filtering across all collections. The parameters accepted are the same as the Filter Parameters above, however the *[extensions](extensions/README.md)* also provide advanced querying parameters.
