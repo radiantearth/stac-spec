@@ -1,14 +1,14 @@
 ## STAC API Specification
 
-The Web Feature Service is a standard API that represents collections of geospatial data. The [Web Feature Service 3 API](https://github.com/opengeospatial/WFS_FES), currently under development, is the latest iteration of that standard. WFS3 defines the RESTful interface to query geospatial data, with GeoJSON as a main return type. With WFS you can return any `Feature`, which in the STAC specification is referred to as an `Item`. WFS also defines the concept of a Collection, which contains `Feature`s. A STAC `Collection` aligns with a WFS3 `Collection`; it contains `Item`s.
+The Web Feature Service is a standard API that represents collections of geospatial data. The [Web Feature Service 3.0 API](https://github.com/opengeospatial/WFS_FES), currently under development, is the latest iteration of that standard. WFS 3 defines the RESTful interface to query geospatial data, with GeoJSON as a main return type. With WFS you can return any `Feature`, which is a geometry plus any number of properties. In the STAC specification an `Item` is a `Feature`, with additional required fields for `datetime` and `assets`. WFS also defines the concept of a Collection, which contains `Feature`s. A STAC `Collection` aligns with (and extends slightly) a WFS 3 `Collection`; it contains `Item`s.
 
-In WFS3 Collections are the sets of data that can be queried ([7.11](https://rawgit.com/opengeospatial/WFS_FES/master/docs/17-069.html#_feature_collections_metadata)), and each describes basic information about the geospatial dataset, like its name and description, as well as the spatial and temporal extents of all the data contained. [STAC collections](../collections-spec/README.md) contain this same information, along with other STAC specific fields and thus are compliant with both WFS Collections and STAC Collections and is returnd from the `/collections/{collection_id}` endpoint.
+In WFS 3 Collections are the sets of data that can be queried ([7.11](https://rawgit.com/opengeospatial/WFS_FES/master/docs/17-069.html#_feature_collections_metadata)), and each describes basic information about the geospatial dataset, like its name and description, as well as the spatial and temporal extents of all the data contained. [STAC collections](../collections-spec/README.md) contain this same information, along with other STAC specific fields and thus are compliant with both WFS Collections and STAC Collections and is returned from the `/collections/{collection_id}` endpoint.
 
-In WFS3 Features are the individual records within a Collection and are provided in GeoJSON format. [STAC Items](../item-spec/README.md) are analagous to WFS3 Features, are in GeoJSON, and are returned from the `/collections/{collection_id}/items/{item_id}` endpoint.
+In WFS 3 Features are the individual records within a Collection and are provided in GeoJSON format. [STAC Items](../item-spec/README.md) are analagous to WFS 3 Features, are in GeoJSON, and are returned from the `/collections/{collection_id}/items/{item_id}` endpoint.
 
 ### WFS3 Endpoints
 
-The core WFS3 endpoints are shown below, with details provided in an [OpenAPI specification document](definitions/WFS3.yaml).
+The core WFS 3 endpoints are shown below, with details provided in an [OpenAPI specification document](definitions/WFS3.yaml).
 
 | Endpoint      | Returns          | Description        |
 | ------------ | ------------- | ---------------------- |
@@ -35,7 +35,7 @@ Items in the collection should match all filters to be returned when querying. T
 
 ## STAC Endpoints
 
-STAC provides some additional endpoints for the root Catalog itself, as well as the capability to search the Catalog. Note that a STAC API does not need to implement WFS3, in which case it would only support the endpoints given below. See the [OpenAPI specification document](definitions/STAC-standalone.yaml).
+STAC provides some additional endpoints for the root Catalog itself, as well as the capability to search the Catalog. Note that a STAC API does not need to implement WFS 3, in which case it would only support the endpoints given below. See the [OpenAPI specification document](definitions/STAC-standalone.yaml).
 
 ```
 | Endpoint      | Returns          | Description        |
