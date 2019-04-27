@@ -42,4 +42,7 @@ STAC provides some additional endpoints for the root Catalog itself, as well as 
 | /stac | Catalog        | Root catalog |
 | /stac/search | Items | GeoJSON FeatureCollection of Items found |
 
+The `stac` endpoint should function as a complete `Catalog` representation of all the data contained in the API and linked to in some way from root through `Collections` and `Items`.
+
 The `stac/search` endpoint is similar to the `items` endpoint in WFS3 in that it accepts parameters for filtering, however it performs the filtering across all collections. The parameters accepted are the same as the Filter Parameters above, however the *[extensions](extensions/README.md)* also provide advanced querying parameters.
+
