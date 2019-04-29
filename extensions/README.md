@@ -41,7 +41,9 @@ A 'mature' classification level will likely be added once there are extensions t
 stable for over a year and are used in twenty or more implementations.
 
 
-## List of community extensions
+## List of content extensions
+
+An extension can add new fields to STAC entities (content extension), or can add new endpoints or behavior to the API (API extension). Below is a list of content extensions, while API extensions given under [api-spec](../api-spec/) in a folder for [API extensions](../api-spec/extensions/).
 
 | Extension Name (Prefix)                                      | Scope            | Description                                                  | Maturity |
 | ------------------------------------------------------------ | ---------------- | ------------------------------------------------------------ | -------- |

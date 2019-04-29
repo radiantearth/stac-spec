@@ -10,7 +10,7 @@ info:
     definitions, and is designed to slot seamlessly into a WFS 3 API definition.
   contact:
     name: STAC Specification
-    url: 'http://satspec.org'
+    url: 'http://stacspec.org'
   license:
     name: Apache License 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0'

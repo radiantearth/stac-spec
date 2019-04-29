@@ -9,8 +9,8 @@ API Extensions given follow the same guidelines for Extension Maturity as given 
 
 ## List of community extensions
 
-| Extension Name (Prefix)                                      | Description                                                  | Maturity |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
+| Extension Name | Description | Maturity |
+| -------------  | ----------- | -------- |
 | [Fields](fields/README.md) | Adds parameter to constrol which fields are returned in the response. | *Pilot* |
 | [Query](query/README.md) | Adds parameter to search Item and Collection properties. | *Pilot* |
 | [Sort](sort/README.md) | Adds Parameter to control sorting of returns results. | *Pilot* |
