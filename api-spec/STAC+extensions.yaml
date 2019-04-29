@@ -231,7 +231,12 @@ paths:
       summary: Search STAC items with full-featured filtering.
       description: >-
         retrieve items matching filters. Intended as the standard, full-featured
-        query API. This method is mandatory.
+        query API. This method is mandatory
+
+
+        If this endpoint is implemented on a server, it is **required** to add a
+        link with `rel` set to `search` to the `links` array in `GET /stac` that
+        refers to this endpoint.
       operationId: postSearchSTAC
       tags:
         - STAC
@@ -617,16 +622,13 @@ components:
           type: string
         description:
           type: string
-    links:
-      type: array
-      items:
-        $ref: '#/components/schemas/link'
     link:
+      title: Link
+      description: A generic link.
       type: object
       required:
         - href
         - rel
-      additionalProperties: true
       properties:
         href:
           type: string
@@ -737,7 +739,6 @@ components:
         - id
         - description
         - links
-      additionalProperties: true
       properties:
         stac_version:
           type: string
@@ -752,7 +753,31 @@ components:
           type: string
           example: Catalog of NAIP Imagery.
         links:
-          $ref: '#/components/schemas/links'
+          type: array
+          items:
+            anyOf:
+              - $ref: '#/components/schemas/link'
+              - title: Link to search endpoint
+                description: >-
+                  Link the search endpoint, which is **required** to be
+                  specified if the API implements `/stac/search`.
+                type: object
+                required:
+                  - href
+                  - rel
+                properties:
+                  href:
+                    type: string
+                    format: url
+                    example: 'http://www.cool-sat.com/stac/search'
+                  rel:
+                    type: string
+                    enum:
+                      - search
+                  type:
+                    type: string
+                  title:
+                    type: string
     itemCollection:
       type: object
       required:
@@ -791,7 +816,9 @@ components:
         properties:
           $ref: '#/components/schemas/itemProperties'
         links:
-          $ref: '#/components/schemas/links'
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
         assets:
           $ref: '#/components/schemas/itemAssets'
       example:
