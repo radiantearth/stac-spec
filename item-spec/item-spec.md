@@ -105,7 +105,7 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | self         | STRONGLY RECOMMENDED. _Absolute_ URL to the Item if it is available at a public URL. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root         | URL to the root STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
-| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may use the [Commons extension](../extensions/commons/README.md) and holds common fields of this and other Items (see chapter '[Collections](#Collections)' for more explanations). _Absolute_ URLs should be used whenever possible. |
+| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may hold common fields of this and other Items (see chapter '[Collections](#Collections)' for more explanations). _Absolute_ URLs should be used whenever possible. |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
 
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
@@ -118,8 +118,18 @@ structure that can be used as a jumping off point for more experiments in proven
 
 Items are *strongly recommended* to provide a link to a STAC Collection definition. It is important as Collections 
 provide additional information about a set of items, for example the license, provider and other information (see section 'Extensions')
-giving context on the overall set of data that an individual Item is a part of. If Items are part of a STAC Collection, 
-the [STAC Collection spec *requires* Items to link back to the Collection](collection-spec/collection-spec.md#relation-types).
+giving context on the overall set of data that an individual Item is a part of.
+
+If Items are part of a STAC Collection, the [STAC Collection spec *requires* Items to link back to the Collection](collection-spec/collection-spec.md#relation-types).
+Linking back must happen in two places:
+
+1. The field `collection` in an Item must be filled (see section 'Item fields'). It is the `id` of a STAC Collection.
+2. An Item must also provide a link to the STAC Collection using the `collection` relation type (see section 'Relation types'):
+    ```
+    "links": [
+      { "rel": "collection", "href": "link/to/collection/record.json" }
+    ]
+    ```
 
 ### Asset Object
 
@@ -177,10 +187,6 @@ media type.
 
 There are emerging best practices, which in time will evolve in to specification extensions for
 particular domains or uses.
-
-Optionally, common information shared across items can be split up into STAC Collections using the
-[Commons extension](../extensions/commons/README.md). Please note that this extension is only in
-'[proposal](../extensions/README.md#extension-maturity)' stage.
 
 The [extensions page](../extensions/README.md) gives an overview about relevant extensions for STAC Items.
 

@@ -4,9 +4,13 @@ The STAC Collection Specification defines a set of common fields to describe a g
 STAC Collections Specification extends the [STAC Catalog Spec](../catalog-spec/README.md) with additional fields to describe the whole dataset and the included set of items.
 It shares the same fields and therefore every Collection is also a valid Catalog. Collections can have both parent Catalogs and Collections and child Items, Catalogs and Collections. 
 
+A group of STAC Item objects from a single source can share a lot of common metadata. This is especially true with satellite imagery that uses the STAC EO or SAR extension. Rather than including these common metadata fields on every Item, they can be provided in the `properties` of the STAC Collection that the STAC Items belong to.
+
 A STAC collection can be represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Collection and also a valid STAC Catalog.
 
-* [Example (Sentinel 2)](examples/sentinel2.json)
+* [Examples](examples/):
+  * Sentinel 2: A basic standalone example of a [Item](examples/sentinel2.json) without items.
+  * Landsat 8: A [Collection](examples/landsat-collection.json) that holds shared data from an [Item](examples/landsat-item.json).
 * [JSON Schema](json-schema/collection.json) - please see the [validation instructions](../validation/README.md)
 
 ## WARNING
@@ -28,6 +32,7 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | license      | string            | **REQUIRED.** Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
 | providers    | [Provider Object] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | extent       | Extent Object     | **REQUIRED.** Spatial and temporal extents.                  |
+| properties   | object            | Common fields across referenced items. May also be used to describe standalone collections better that don't reference any items. See the section 'Common Fields' for more information. |
 | links        | [Link Object]     | **REQUIRED.** A list of references to other documents.       |
 
 **stac_version**: It is not allowed to mix STAC versions. The root catalog or the root collection respectively MUST specify the implemented STAC version. Child Catalogs and child Collections MUST NOT specify a different STAC version.
@@ -107,12 +112,107 @@ The following types are commonly used as `rel` types in the Link Object of a Col
 
 **Note:** The [STAC Catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is _not_ a requirement for collections, but _recommended_. In contrast to catalogs, it is **REQUIRED** that items linked from a Collection MUST refer back to its Collection with the `collection` relation type.
 
+### Common Fields
+
+STAC Collections allow one to more fields to be moved out of linked Items and into the parent STAC Collection, from which any member Item will inherit. Any field under an Items `properties` can be removed and added to the Collection `properties`. Since a Collection contains no properties itself, anything under properties are metadata fields that are common across all member Items.
+
+This provides maximum flexibility to data providers, as the set of common metadata fields can vary between different types of data. For instance, Landsat and Sentinel data always have an `eo:off_nadir` value of `0`, because those satellites are always pointed downward (i.e., nadir), while satellite that can be pointed will have varying `eo:off_nadir` values. This allows the data provider to define the set of metadata that defines the collection. While some metadata fields are more likely to be part of the common set, such as or `eo:instrument` rather than `eo:cloud_cover`, it depends on how the data provider chooses to organize their data.
+
+If a metadata field is specified in the Collection properties, it will be ignored in any Item that links to that Collection. This is important because a Collection is the metadata that is common across all Item objects. If a field is variable at all, it should not be part of the Commons.
+
+A Collection may not link to any Items, it may just be a definition of a Collection, in which case the `properties` could still be used by defining any properties that would theoretically be shared by any member Item. This helps to define **standalone Collections** better with the metadata fields defined by extensions such as EO or SAR for Items.
+
+#### Merging common fields into a STAC Item
+
+To get the complete record of an Item (both individual and commons properties), the properties from the Collection can be merged with the Item.
+
+An incomplete Collection:
+```json
+{
+  "id": "landsat-8-l1",
+  "title": "Landsat 8 L1",
+  "description": "Landat 8 imagery radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
+  "version": "0.1.0",
+  "extent": {...},
+  "license": "PDDL-1.0",
+  "properties": {
+    "eo:gsd": 15,
+    "eo:platform": "landsat-8",
+    "eo:instrument": "OLI_TIRS",
+    "eo:off_nadir": 0,
+    "eo:bands": [
+      {
+        "id": "B1",
+        "common_name": "coastal",
+        "gsd": 30,
+        "center_wavelength": 0.44,
+        "full_width_half_max": 0.02
+      },
+      ...
+    ]
+  },
+  "links": [...]
+}
+```
+
+An incomplete item:
+```json
+{
+  "type": "Feature",
+  "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
+  "bbox": [...],
+  "geometry": {...},
+  "properties": {
+    "collection": "landsat-8-l1",
+    "datetime": "2018-10-01T01:08:32.033Z",
+    "eo:cloud_cover": 78,
+    "eo:sun_azimuth": 168.8989761,
+    "eo:sun_elevation": 26.32596431,
+    "landsat:path": 107,
+    "landsat:row": 18
+  },
+  "assets": {...},
+  "links": [...]
+}
+```
+
+The merged Item then looks like this:
+
+```json
+{
+  "type": "Feature",
+  "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
+  "bbox": [],
+  "geometry": {},
+  "properties": {
+    "collection": "landsat-8-l1",
+    "datetime": "2018-10-01T01:08:32.033Z",
+    "eo:cloud_cover": 78,
+    "eo:sun_azimuth": 168.8989761,
+    "eo:sun_elevation": 26.32596431,
+    "landsat:path": 107,
+    "landsat:row": 18,
+    "eo:gsd": 15,
+    "eo:platform": "landsat-8",
+    "eo:constellation": "landsat-8",
+    "eo:instrument": "OLI_TIRS",
+    "eo:off_nadir": 0,
+    "eo:bands": [
+      {
+        "id": "B1",
+        "common_name": "coastal",
+        "gsd": 30,
+        "center_wavelength": 0.44,
+        "full_width_half_max": 0.02
+      },
+      ...
+    ]
+  },
+  "assets": {...},
+  "links": [...]
+}
+```
+
 ## Extensions
-
-Important related extensions for the STAC Collection Specification:
-
-* [Commons extension](../extensions/commons/README.md), which primarily allows to add shared Item metadata to Collections,
-  but could also be used to describe Collections better that are not referring to Items by adding additional fields from Item extensions.
-  Please note that this extension is only in '[proposal](../extensions/README.md#extension-maturity)' stage.
 
 The [extensions page](../extensions/README.md) gives a full overview about relevant extensions for STAC Collections.
