@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: The SpatioTemporal Asset Catalog API + WFS3
+  title: WFS3 core API
 paths:
   /:
     get:

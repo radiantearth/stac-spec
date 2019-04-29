@@ -41,7 +41,9 @@ A 'mature' classification level will likely be added once there are extensions t
 stable for over a year and are used in twenty or more implementations.
 
 
-## List of community extensions
+## List of content extensions
+
+An extension can add new fields to STAC entities (content extension), or can add new endpoints or behavior to the API (API extension). Below is a list of content extensions, while API extensions given under [api-spec](../api-spec/) in a folder for [API extensions](../api-spec/extensions/).
 
 | Extension Name (Prefix)                                      | Scope            | Description                                                  | Maturity |
 | ------------------------------------------------------------ | ---------------- | ------------------------------------------------------------ | -------- |
@@ -54,7 +56,6 @@ stable for over a year and are used in twenty or more implementations.
 | [SAR](sar/README.md) (`sar`)                                 | Item             | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. | *Proposal* |
 | [Single Item](single-item/README.md) (`item`)                | Item             | Provides a way to specify several fields in individual Items that usually reside on the collection-level such as license and providers. | *Proposal* |
 | [Scientific](scientific/README.md) (`sci`)                   | Item             | Scientific metadata is considered to be data that indicate from which publication data originates and how the data itself should be cited or referenced. | *Proposal* |
-| [Transaction](transaction/README.md)                         | API              | Provides an API extension to support the creation, editing, and deleting of items on a specific WFS3 collection. | *Pilot* |
 
 ## Third-party / vendor extensions
 

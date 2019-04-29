@@ -1,0 +1,1 @@
+!!files_merge_append ["openapi-schema/WFS3.yaml", "openapi-schema/STAC.yaml"]
