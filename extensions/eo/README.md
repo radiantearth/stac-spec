@@ -15,7 +15,7 @@ these fields will evolve to higher level extensions. In the meantime other imple
 to reuse the names and definitions here.
 
 A lot of EO data will have common metadata across many Items. It is not necessary, but recommended	
-to place common fields in [STAC Collections](../../collection-spec/collection-spec.md).
+to place common fields in [STAC Collections](../../collection-spec/collection-spec.md#common-fields-and-standalone-collections).
 The exact metadata that would appear in a STAC Collection record will vary depending on the dataset.
 
 - [Example (Landsat 8)](example-landsat8.json)

@@ -6,8 +6,8 @@ a few required fields that identify the time range and assets of the item. An It
 granular entity in a STAC, containing the core metadata that enables any client to search or crawl
 online catalogs of spatial 'assets' - satellite imagery, derived data, DEM's, etc.
 
-The same Item definition is used in both '[catalogs](../catalog-spec/README.md)' and
-the '[/stac/search](../api-spec/README.md)' endpoint. Catalogs are simply sets of items that are linked online,
+The same Item definition is used in both [STAC catalogs](../catalog-spec/README.md) and
+the [`/stac/search`](../api-spec/README.md) endpoint. Catalogs are simply sets of items that are linked online,
 generally served by simple web servers and used for crawling data. The search endpoint enables dynamic
 queries, for example selecting all Items in Hawaii on June 3, 2015, but the results they return are
 FeatureCollections of items.
@@ -105,7 +105,7 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | self         | STRONGLY RECOMMENDED. _Absolute_ URL to the Item if it is available at a public URL. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root         | URL to the root STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
-| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may hold common fields of this and other Items (see chapter '[Collections](#Collections)' for more explanations). _Absolute_ URLs should be used whenever possible. |
+| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may hold [common fields](../collection-spec/collection-spec.md#common-fields-and-standalone-collections) of this and other Items (see chapter '[Collections](#Collections)' for more explanations). _Absolute_ URLs should be used whenever possible. |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
 
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
@@ -116,8 +116,7 @@ structure that can be used as a jumping off point for more experiments in proven
 
 #### Collections
 
-Items are *strongly recommended* to provide a link to a STAC Collection definition. It is important as Collections 
-provide additional information about a set of items, for example the license, provider and other information (see section 'Extensions')
+Items are *strongly recommended* to provide a link to a STAC Collection definition. It is important as Collections provide additional information about a set of items, for example the license, provider and other information
 giving context on the overall set of data that an individual Item is a part of.
 
 If Items are part of a STAC Collection, the [STAC Collection spec *requires* Items to link back to the Collection](collection-spec/collection-spec.md#relation-types).
