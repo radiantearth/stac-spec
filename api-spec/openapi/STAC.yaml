@@ -43,7 +43,10 @@ paths:
       summary: Search STAC items with simple filtering.
       description: >-
         Retrieve Items matching filters. Intended as a shorthand API for simple
-        queries. This method is optional.
+        queries.
+        
+
+        This method is optional, but you MUST implement `POST /stac/search` if you want to implement this method.
       operationId: getSearchSTAC
       tags:
         - STAC
@@ -74,10 +77,10 @@ paths:
       summary: Search STAC items with full-featured filtering.
       description: >-
         retrieve items matching filters. Intended as the standard, full-featured
-        query API. This method is mandatory
+        query API.
         
         
-        If this endpoint is implemented on a server, it is **required** to add a link with `rel` set to `search` to the `links` array in `GET /stac` that refers to this endpoint.
+        This method is mandatory to implement if `GET /stac/search` is implemented. If this endpoint is implemented on a server, it is required to add a link with `rel` set to `search` to the `links` array in `GET /stac` that refers to this endpoint.
       operationId: postSearchSTAC
       tags:
         - STAC
