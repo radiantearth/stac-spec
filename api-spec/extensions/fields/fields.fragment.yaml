@@ -43,7 +43,9 @@ components:
             type: string
       example:
         include:
-          - id,properties.eo:cloud_cover
+          - id
+          - 'properties.eo:cloud_cover'
         exclude:
-          - geometry,properties.datetime
+          - geometry
+          - properties.datetime
 
