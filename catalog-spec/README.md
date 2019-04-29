@@ -29,12 +29,6 @@ contains a full sample catalog.
 **Schemas:** The schemas to validate the core Catalog definition are found in the *[json-schema/](json-schema/)* folder.
 The primary one is *[catalog.json](json-schema/catalog.json)*.
 
-## In the API directory
-
-**Dynamic Catalog OpenAPI Definition:** The [api-spec](../api-spec) directory contains OpenAPI definitions of the `/stac/`
-endpoint, that is the dynamic version of a Catalog. See [STAC-standalone.yaml](../api-spec/STAC-standalone.yaml), or you can
-browse it online on [swaggerhub's STAC-standalone](https://app.swaggerhub.com/apis/cholmesgeo/STAC-standalone/0.6.0-beta#/STAC/get_stac) definition.
-
 ## Schema Validation
 
 Instruction on schema validation for STAC Catalog can be found in the [validation instructions](validation/README.md).

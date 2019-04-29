@@ -24,11 +24,6 @@ structures and fields.
 **Schemas:** The schemas to validate the STAC Collection definition are found in the 
 *[json-schema/](json-schema/)* folder. The primary one is *[collection.json](json-schema/collection.json)*.
 
-## In the API directory
-
-**Dynamic Catalog OpenAPI Definition:** The [api-spec](../api-spec) directory contains OpenAPI definitions of the WFS3 `/collections` and `/collections/{collectionId}`
-endpoints in the file [WFS3core+STAC.yaml](../api-spec/WFS3core+STAC.yaml.yaml). These endpoints are the dynamic versions of a STAC and WFS3 Collection. See 
-
 ## Schema Validation
 
 Instruction on schema validation for STAC Items can be found in the [validation instructions](validation/README.md).
