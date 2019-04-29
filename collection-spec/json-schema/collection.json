@@ -112,6 +112,9 @@
       },
       "additionalProperties": true
     },
+    "properties": {
+      "type": "object"
+    },
     "links": {
       "type": "array",
       "items": {
