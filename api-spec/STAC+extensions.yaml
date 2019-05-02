@@ -209,6 +209,7 @@ paths:
         - $ref: '#/components/parameters/bbox'
         - $ref: '#/components/parameters/time'
         - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/query'
         - $ref: '#/components/parameters/sort'
         - $ref: '#/components/parameters/fields'
@@ -305,6 +306,22 @@ components:
         minimum: 1
         maximum: 10000
         default: 10
+      style: form
+      explode: false
+    page:
+      name: page
+      in: query
+      description: |
+        The optional page parameter returns the specified page of results
+        (with each page having size=limit).
+
+        * Minimum = 1
+        * Default = 1
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
       style: form
       explode: false
     bbox:
