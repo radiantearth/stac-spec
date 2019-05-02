@@ -210,6 +210,8 @@ paths:
         - $ref: '#/components/parameters/time'
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/ids'
+        - $ref: '#/components/parameters/collections'
         - $ref: '#/components/parameters/query'
         - $ref: '#/components/parameters/sort'
         - $ref: '#/components/parameters/fields'
@@ -323,6 +325,40 @@ components:
         minimum: 1
         default: 1
       style: form
+      explode: false
+    ids:
+      name: ids
+      in: query
+      description: >
+        The optional ids parameter returns a FeatureCollection of all matching
+        ids.
+
+        If provided all other parameters will be ignored other than `limit` and
+        `page`.
+      required: false
+      schema:
+        type: array
+        minItems: 1
+        items:
+          type: string
+      explode: false
+    collections:
+      name: collections
+      in: query
+      description: >
+        The collections search parameter is a list of of collection IDs for
+        Items to match.
+
+        Only items that are included in one of these collections will be
+        returned, otherwise
+
+        all collections will be searched.
+      required: false
+      schema:
+        type: array
+        minItems: 1
+        items:
+          type: string
       explode: false
     bbox:
       name: bbox
