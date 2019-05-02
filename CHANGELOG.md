@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [v0.7.0]
 
 ### Fixed
-- Updated UML diagram
 - Continuous Integration to build STAC API's from fragments, with new readme's.
 - Updated language / fixed typos
 
@@ -19,13 +18,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Moved hosting of interactive api docs from swaggerhub to [stacspec.org](http://stacspec.org)
 - Moved static vs dynamic discussion text to catalog best practices document
 - Refinements to SAR extension
+- Commons extension ability to 'merge' properties is now in the core specification
 
 ### Added
 - Catalog best practices document, including recommendations for catalog layouts, html, and self-contained catalogs.
 - `page` parameter for STAC API
-- `collection` property field
-- link to `/stac/search/` from `/stac/`
-- Commons extension / ability to 'merge' properties now in core
+- `collection` property field in Items (previously part of the Commons extension)
+- It is now required to link to `/stac/search/` from `/stac/`
+- Added new fields to SAR extension
 
 ## [v0.6.2] - 2019-03-01
 
@@ -153,6 +153,7 @@ Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkam
 
 
 [Unreleased]: https://github.com/radiantearth/stac-spec/compare/master...dev
+[v0.7.0]: https://github.com/radiantearth/stac-spec/compare/v0.6.2...v0.7.0
 [v0.6.2]: https://github.com/radiantearth/stac-spec/compare/v0.6.1...v0.6.2
 [v0.6.1]: https://github.com/radiantearth/stac-spec/compare/v0.6.0...v0.6.1
 [v0.6.0]: https://github.com/radiantearth/stac-spec/compare/v0.5.2...v0.6.0
