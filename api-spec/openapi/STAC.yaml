@@ -320,7 +320,7 @@ components:
       description: Only returns items that intersect with the provided polygon.
       properties:
         intersects:
-          $ref: 'http://geojson.org/schema/Geometry.json'
+          $ref: 'https://stacspec.org/assets/Geometry.json'
     time:
       type: string
       description: >
@@ -479,7 +479,7 @@ components:
         bbox:
           $ref: '#/components/schemas/bbox'
         geometry:
-          $ref: 'http://geojson.org/schema/Geometry.json'
+          $ref: 'https://stacspec.org/assets/Geometry.json'
         type:
           $ref: '#/components/schemas/itemType'
         properties:
