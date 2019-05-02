@@ -32,6 +32,8 @@ Items in the collection should match all filters to be returned when querying. T
 | intersects | GeoJSON Feature | Searches items by performing intersection between their geometry and provided GeoJSON Feature |
 | page | number | The page number of results. Defaults to 1 |
 | limit | number | The maximum number of results to return (page size). Defaults to 10 |
+| ids | [string] | Array of Item ids to return. All other filter parameters other than `page` and `limit` are ignored |
+| collections | [string] | Array of Collection IDs to include in the search for items. Only Items in one of the provided Collections will be searched |
 
 ## STAC Endpoints
 
