@@ -6,8 +6,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [v0.7.0]
+
+### Fixed
+- Updated UML diagram
+- Continuous Integration to build STAC API's from fragments, with new readme's.
+- Updated language / fixed typos
+
 ### Changed
+- No longer require an absolute self link for Items
 - Reorganized api-spec, added extensions folder to hold API extensions
+- Moved hosting of interactive api docs from swaggerhub to [stacspec.org](http://stacspec.org)
+- Moved static vs dynamic discussion text to catalog best practices document
+- Refinements to SAR extension
+
+### Added
+- Catalog best practices document, including recommendations for catalog layouts, html, and self-contained catalogs.
+- `page` parameter for STAC API
+- `collection` property field
+- link to `/stac/search/` from `/stac/`
+- Commons extension / ability to 'merge' properties now in core
 
 ## [v0.6.2] - 2019-03-01
 
