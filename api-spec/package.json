@@ -5,7 +5,7 @@
   "repository": "https://github.com/radiantearth/stac-spec",
   "license": "Apache-2.0",
   "scripts": {
-    "generate-ext": "yaml-files extensions/STAC+extensions.merge.yaml STAC+extensions.yaml",
+    "generate-ext": "yaml-files extensions/STAC-extensions.merge.yaml STAC-extensions.yaml",
     "generate-core": "yaml-files openapi/STAC.merge.yaml STAC.yaml",
     "generate-all": "npm run generate-core && npm run generate-ext"
   },
