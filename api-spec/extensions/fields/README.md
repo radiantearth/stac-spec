@@ -9,7 +9,11 @@ To return just the `id`, `geometry`, and the property `eo:cloud_cover`:
 {
     "fields": [
         {
-            "include": "id,geometry,properties.eo:cloud_cover",
+            "include": [
+                "id",
+                "geometry",
+                "properties.eo:cloud_cover"
+            ]
         }
     ]
 }
@@ -21,7 +25,9 @@ To return the whole item without the geometry:
 {
     "fields": [
         {
-            "exclude": "geometry",
+            "exclude": [
+                "geometry"
+            ]
         }
     ]
 }
