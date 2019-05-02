@@ -1,29 +1,18 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/stac
     docker:
       - image: circleci/python:3.6.4
-
-    working_directory: ~/stac
 
     steps:
       - checkout
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
-      - restore_cache:
-          key: v2-python-requirements-{{ checksum "requirements.txt" }}
       - run:
           name: install
           command: |
-            git clone git@github.com:sparkgeo/stac-validator.git ~/stac-validator
-            cd ~/stac-validator
-            pip install -r requirements.txt
-            pip install .
-      - save_cache:
-          key: v2-python-requirements-{{ checksum "requirements.txt" }}
-          paths:
-            - "~/.cache/pip"
-            - "/usr/local/lib/python3.6/site-packages"
+            pip install stac-validator
       - run:
           name: validate
           command: |
