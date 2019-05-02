@@ -156,7 +156,7 @@ components:
       in: query
       description: |
         The optional ids parameter returns a FeatureCollection of all matching ids.
-        If provided all other parameters will be ignored other than `limit` and `page`.
+        If provided all other parameters that further restrict the number of search results (except `page` and `limit`) will be ignored.
       required: false
       schema:
         type: array
