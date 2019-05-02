@@ -72,7 +72,7 @@
             },
             "collection": {
               "title": "Collection ID",
-              "description": " The id of the STAC Collection this Item references to.",
+              "description": "The ID of the STAC Collection this Item references to.",
               "type": "string"
             }
           }
