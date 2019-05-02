@@ -133,7 +133,7 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: 'http://geojson.org/schema/FeatureCollection.json'
+                $ref: 'https://stacspec.org/assets/FeatureCollection.json'
             text/html:
               schema:
                 type: string
@@ -161,7 +161,7 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: 'http://geojson.org/schema/Feature.json'
+                $ref: 'https://stacspec.org/assets/Feature.json'
             text/html:
               schema:
                 type: string
@@ -901,7 +901,7 @@ components:
           href: >-
             http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
 servers:
-  - url: 'http://dev.cool-sat.com/'
+  - url: 'http://dev.cool-sat.com'
     description: Development server
   - url: 'http://www.cool-sat.com'
     description: Production server
