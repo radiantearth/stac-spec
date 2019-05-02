@@ -6,7 +6,7 @@ The API is a [Web Feature Service 3.0 (WFS 3) API](https://github.com/opengeospa
 
 ## In this directory
 
-**The Specification:** The main definition of the STAC API specification is in the *[api-spec.md](api-spec.md)* file. It includes an overview and in depth explanation of the REST endpoints and parameters.
+**The Specification:** The main description of the STAC API specification is in the *[api-spec.md](api-spec.md)* file. It includes an overview and in depth explanation of the REST endpoints and parameters.
 
 **Extensions:** API Extensions are given in the *[extensions](extensions/)* folder. YAML fragments are provided for each extension with details provided in the *[README](extensions/README.md)*.
 
@@ -16,13 +16,18 @@ The API is a [Web Feature Service 3.0 (WFS 3) API](https://github.com/opengeospa
 
 ## OpenAPI definitions
 
-The definitive specification for STAC is provided as an [OpenAPI](http://openapis.org/) 3.0 specification that is contained within several YAML files in the [openapi](openapi/) and [extensions](extensions/) directories.
+The definitive specification for STAC API is provided as an [OpenAPI](http://openapis.org/) 3.0 specification that is contained within several YAML files in the [openapi](openapi/) and [extensions](extensions/) directories.
+
+These are built into the definitive core API specification at [STAC.yaml](STAC.yaml), which can be viewed online at 
+[stacspec.org/STAC-api.html](https://stacspec.org/STAC-api.html). An additional OpenAPI definition is provided at 
+[STAC-extensions.yaml](STAC-extensions.yaml) that includes all the optional extensions, and can be browsed online at
+[stacspec.org/STAC-ext-api.html](https://stacspec.org/STAC-ext-api.html).
 
 In the [openapi](openapi/) directory there are three files
 
 - WFS3.yaml - The WFS3.yaml file is the WFS3 OpenAPI definition **as currently used by STAC**
 - STAC.yaml - Contains additional endpoints and components that STAC uses, which is treated as a WFS 3 extension
-- STAC.merge.yaml - A file referencing the above two used to create the final [STAC.yaml](../STAC.yamnl) definition
+- STAC.merge.yaml - A file referencing the above two used to create the final [STAC.yaml](STAC.yaml) definition
 
 A basic STAC implementation implements both the WFS3 and STAC definitions.
 
