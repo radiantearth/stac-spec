@@ -131,7 +131,7 @@ might look something like this:
 
 ```json
 {
-  "stac_version": "0.6.2",
+  "stac_version": "0.7.0",
   "id": "NAIP",
   "description": "Catalog of NAIP Imagery",
   "links": [
@@ -149,7 +149,7 @@ A typical '_child_' sub-catalog could look similar:
 
 ```json
 {
-  "stac_version": "0.6.2",
+  "stac_version": "0.7.0",
   "id": "NAIP",
   "description": "Catalog of NAIP Imagery - 30087",
   "links": [
