@@ -40,7 +40,7 @@
         "stac_version": {
           "title": "STAC version",
           "type": "string",
-          "const": "0.6.2"
+          "const": "0.7.0"
         },
         "id": {
           "title": "Identifier",
