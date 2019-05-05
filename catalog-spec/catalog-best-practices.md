@@ -25,9 +25,9 @@ as they can only have a single representation of their catalog, since the static
 While it is up to the implementor to organize the catalog, it is recommended to arrange it in a way that would make sense 
 for a human to browse a set of STAC Items in an intuitive matter.
 
-The recommendation for static catalogs is to define them using the file name `catalog.json` to distinguish 
-the catalog from item other JSON type files. In order to support multiple catalogs, the recommended practice 
-is to place the `catalog.json` in namespaces "directories". For example:
+The recommendation for static catalogs is to define them using the file name `catalog.json` or `collection.json` to distinguish 
+the catalog from other JSON type files. In order to support multiple catalogs, the recommended practice 
+is to place the catalog file in namespaces "directories". For example:
 
 - current/catalog.json
 - archive/catalog.json
