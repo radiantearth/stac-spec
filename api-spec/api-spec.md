@@ -23,6 +23,8 @@ The `/collections/{collection_id}/items` endpoint accepts parameters for filteri
 
 Items in the collection should match all filters to be returned when querying. This implies a logical AND operation. If an OR operation is needed, it should be specified through an extension filter.
 
+The ``{collection_id}`` and ``{item_id}`` must be properly [percented encoded](https://tools.ietf.org/html/rfc3986#section-2) if a reserved character is used within the id.
+
 ### Filter Parameters
 
 | Parameter      | Type          | Description        |
