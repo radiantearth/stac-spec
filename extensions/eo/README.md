@@ -195,7 +195,7 @@ Planet example:
 
 A number of implementations listed on [STAC Implementations page](../../implementations.md) are making use of the core EO 
 properties, including the SpaceNet, CBERS, sat-api and Planet implementations. This is not marked as more mature because
-the eo:bands portion is still being fleshed out, with changes coming in 0.6.0.
+the eo:bands portion is still being fleshed out.
 
 ## Extensions
 
