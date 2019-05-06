@@ -24,11 +24,6 @@ structures and fields.
 **Schemas:** The schemas to validate the STAC Collection definition are found in the 
 *[json-schema/](json-schema/)* folder. The primary one is *[collection.json](json-schema/collection.json)*.
 
-## In the API directory
-
-**Dynamic Catalog OpenAPI Definition:** The [api-spec](../api-spec) directory contains OpenAPI definitions of the WFS3 `/collections` and `/collections/{collectionId}`
-endpoints in the file [WFS3core+STAC.yaml](../api-spec/WFS3core+STAC.yaml.yaml). These endpoints are the dynamic versions of a STAC and WFS3 Collection. See 
-
 ## Schema Validation
 
 Instruction on schema validation for STAC Items can be found in the [validation instructions](validation/README.md).
@@ -37,8 +32,8 @@ Instruction on schema validation for STAC Items can be found in the [validation 
 
 STAC Collections are defined for flexibility. They only require a handful of fields, and
 implementors are free to add most any JSON field or object that they want via extensions.
-Many fields originating from the [STAC Item spec](../item-spec/item-spec.md) can already be 
-reused using the [Commons extension](../extensions/commons/README.md).
+Many fields originating from the [STAC Item spec](../item-spec/item-spec.md) can be 
+reused with the `properties` field.
 This flexibility and extensibility is a design goal, so that it is quite easy to implement a
 collection and be able to adapt it to most any data model.
 

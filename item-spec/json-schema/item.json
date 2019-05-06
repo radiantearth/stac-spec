@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "item.json#",
   "title": "STAC Item",
   "type": "object",
@@ -69,6 +69,11 @@
                   "format": "date-time"
                 }
               }
+            },
+            "collection": {
+              "title": "Collection ID",
+              "description": "The ID of the STAC Collection this Item references to.",
+              "type": "string"
             }
           }
         }

@@ -4,9 +4,13 @@ The STAC Collection Specification defines a set of common fields to describe a g
 STAC Collections Specification extends the [STAC Catalog Spec](../catalog-spec/README.md) with additional fields to describe the whole dataset and the included set of items.
 It shares the same fields and therefore every Collection is also a valid Catalog. Collections can have both parent Catalogs and Collections and child Items, Catalogs and Collections. 
 
+A group of STAC Item objects from a single source can share a lot of common metadata. This is especially true with satellite imagery that uses the STAC EO or SAR extension. Rather than including these common metadata fields on every Item, they can be provided in the `properties` of the STAC Collection that the STAC Items belong to.
+
 A STAC collection can be represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Collection and also a valid STAC Catalog.
 
-* [Example (Sentinel 2)](examples/sentinel2.json)
+* [Examples](examples/):
+  * Sentinel 2: A basic standalone example of a [Item](examples/sentinel2.json) without items.
+  * Landsat 8: A [Collection](examples/landsat-collection.json) that holds shared data from an [Item](examples/landsat-item.json).
 * [JSON Schema](json-schema/collection.json) - please see the [validation instructions](../validation/README.md)
 
 ## WARNING
@@ -28,6 +32,7 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | license      | string            | **REQUIRED.** Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
 | providers    | [Provider Object] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | extent       | Extent Object     | **REQUIRED.** Spatial and temporal extents.                  |
+| properties   | object            | Common fields across referenced items. May also be used to describe standalone collections better that don't reference any items. See the section 'Common Fields' for more information. |
 | links        | [Link Object]     | **REQUIRED.** A list of references to other documents.       |
 
 **stac_version**: It is not allowed to mix STAC versions. The root catalog or the root collection respectively MUST specify the implemented STAC version. Child Catalogs and child Collections MUST NOT specify a different STAC version.
@@ -97,7 +102,7 @@ The following types are commonly used as `rel` types in the Link Object of a Col
 
 | Type    | Description                                                  |
 | ------- | ------------------------------------------------------------ |
-| self    | **REQUIRED.** *Absolute* URL to the collection. This is required, to represent the location that the file can be found online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
+| self    | STRONGLY RECOMMENDED. _Absolute_ URL to the location that the collection file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root    | URL to the root STAC [Catalog](../catalog-spec/README.md) or Collection. Collections should include a link to their root, even if it's the root and points to itself. |
 | parent  | URL to the parent STAC [Catalog](../catalog-spec/README.md) or Collection. Non-root collections should include a link to their parent. |
 | child   | URL to a child STAC [Catalog](../catalog-spec/) or Collection. |
@@ -107,12 +112,105 @@ The following types are commonly used as `rel` types in the Link Object of a Col
 
 **Note:** The [STAC Catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is _not_ a requirement for collections, but _recommended_. In contrast to catalogs, it is **REQUIRED** that items linked from a Collection MUST refer back to its Collection with the `collection` relation type.
 
+### Common Fields and Standalone Collections
+
+The `properties` field in STAC collections can be used in two ways, either to **move common fields in Items to the parent Collection** or to describe **standalone Collections** better that don't reference any items. Any field that can be used under an Items `properties` can be removed and added to the Collection `properties`. Since a Collection contains no properties itself, anything under properties are metadata fields that are common across all member Items.
+
+To **move common fields in Items to the parent Collection**, the collection specification allows one to more fields that are common across all linked Items to be moved out of the respective Items and into the parent STAC Collection, from which the Items then inherit. This provides maximum flexibility to data providers, as the set of common metadata fields can vary between different types of data. For instance, Landsat and Sentinel data always have an `eo:off_nadir` value of `0`, because those satellites are always pointed downward (i.e., nadir), while satellites that can be pointed will have varying `eo:off_nadir` values. This allows the data provider to define the set of metadata that defines the collection. While some metadata fields are more likely to be part of the common set, such as or `eo:instrument` rather than `eo:cloud_cover`, it depends on how the data provider chooses to organize their data. If a metadata field is specified in the Collection properties, it will be ignored in any Item that links to that Collection. This is important because a Collection is the metadata that is common across all Item objects. If a field is variable at all, it should not be part of the common fields.
+
+STAC Collections which don't link to any Item are called **standalone Collections**. To describe them with more fields than the Collection fields has to offer, it is allowed to re-use the metadata fields defined by content extensions for Items. Whenever suitable, the `properties` are used in the same way as if they were common fields across theoretical Items. This makes much sense for fields such as `eo:platform` or `eo:epsg`, which are often the same for a whole collection, but doesn't make much sense for `eo:cloud_cover`, which usually varies heavily across a Collection. The data provider is free to decide, which fields are reasoable to be used.
+
+#### Merging common fields into a STAC Item
+
+To get the complete record of an Item (both individual and commons properties), the properties from the Collection can be merged with the Item.
+
+An incomplete Collection:
+```json
+{
+  "id": "landsat-8-l1",
+  "title": "Landsat 8 L1",
+  "description": "Landat 8 imagery radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
+  "version": "0.1.0",
+  "extent": {...},
+  "license": "PDDL-1.0",
+  "properties": {
+    "eo:gsd": 15,
+    "eo:platform": "landsat-8",
+    "eo:instrument": "OLI_TIRS",
+    "eo:off_nadir": 0,
+    "eo:bands": [
+      {
+        "id": "B1",
+        "common_name": "coastal",
+        "gsd": 30,
+        "center_wavelength": 0.44,
+        "full_width_half_max": 0.02
+      },
+      ...
+    ]
+  },
+  "links": [...]
+}
+```
+
+An incomplete item:
+```json
+{
+  "type": "Feature",
+  "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
+  "bbox": [...],
+  "geometry": {...},
+  "properties": {
+    "collection": "landsat-8-l1",
+    "datetime": "2018-10-01T01:08:32.033Z",
+    "eo:cloud_cover": 78,
+    "eo:sun_azimuth": 168.8989761,
+    "eo:sun_elevation": 26.32596431,
+    "landsat:path": 107,
+    "landsat:row": 18
+  },
+  "assets": {...},
+  "links": [...]
+}
+```
+
+The merged Item then looks like this:
+
+```json
+{
+  "type": "Feature",
+  "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
+  "bbox": [],
+  "geometry": {},
+  "properties": {
+    "collection": "landsat-8-l1",
+    "datetime": "2018-10-01T01:08:32.033Z",
+    "eo:cloud_cover": 78,
+    "eo:sun_azimuth": 168.8989761,
+    "eo:sun_elevation": 26.32596431,
+    "landsat:path": 107,
+    "landsat:row": 18,
+    "eo:gsd": 15,
+    "eo:platform": "landsat-8",
+    "eo:constellation": "landsat-8",
+    "eo:instrument": "OLI_TIRS",
+    "eo:off_nadir": 0,
+    "eo:bands": [
+      {
+        "id": "B1",
+        "common_name": "coastal",
+        "gsd": 30,
+        "center_wavelength": 0.44,
+        "full_width_half_max": 0.02
+      },
+      ...
+    ]
+  },
+  "assets": {...},
+  "links": [...]
+}
+```
+
 ## Extensions
-
-Important related extensions for the STAC Collection Specification:
-
-* [Commons extension](../extensions/commons/README.md), which primarily allows to add shared Item metadata to Collections,
-  but could also be used to describe Collections better that are not referring to Items by adding additional fields from Item extensions.
-  Please note that this extension is only in '[proposal](../extensions/README.md#extension-maturity)' stage.
 
 The [extensions page](../extensions/README.md) gives a full overview about relevant extensions for STAC Collections.

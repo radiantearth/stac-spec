@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: The SpatioTemporal Asset Catalog API + WFS3
+  title: WFS3 core API
 paths:
   /:
     get:
@@ -120,7 +120,7 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: 'http://geojson.org/schema/FeatureCollection.json'
+                $ref: 'https://stacspec.org/assets/FeatureCollection.json'
             text/html:
               schema:
                 type: string
@@ -148,7 +148,7 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: 'http://geojson.org/schema/Feature.json'
+                $ref: 'https://stacspec.org/assets/Feature.json'
             text/html:
               schema:
                 type: string
