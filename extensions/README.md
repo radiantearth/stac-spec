@@ -127,3 +127,12 @@ An example of this can be seen in a Landsat example:
     "l8:image_quality_oli": 9
   },
 ```
+
+### Directory Structure
+
+A STAC extension can have references to additional schemas within the extension schema. An example of this is the STAC item spec and the accompyning geojson spec.
+
+In order to keep these files together to preserve relative `ref` links the files should be grouped.
+See the [EU](eo/) extension file structure as an example.
+* Specification examples should be stored in an `examples` directory. 
+* The specification file(s) themselves stored in a `json-schema` directory. 
