@@ -131,9 +131,8 @@ An example of this can be seen in a Landsat example:
 ### Directory Structure
 
 A STAC extension can have references to additional schemas within the extension schema. 
-An example of this is the STAC item spec and the accompanying geojson spec.
+These files should be kept together in order to preserve relative `$ref` links. 
 
-These files should be kept together in order to preserve relative `$ref` links within the json schema. 
 An example of this is from the [item.json](https://github.com/radiantearth/stac-spec/blob/master/item-spec/json-schema/item.json#L19) specification file.
 
 ```json
@@ -146,4 +145,4 @@ An example of this is from the [item.json](https://github.com/radiantearth/stac-
 
 See the [EU](eo/) extension file structure as an example.
 * Specification examples should be stored in an `examples` directory. 
-* The specification file(s) themselves stored in a `json-schema` directory. 
+* The specification schema file(s) should be stored in a `json-schema` directory. 
