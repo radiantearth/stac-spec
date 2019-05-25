@@ -50,7 +50,7 @@ Then, run the [yaml-files](https://www.npmjs.com/package/yaml-files) command lin
 
 ```
 $ npm install
-$ yaml-files myapi.merge.yaml myapi.yaml
+$ $(npm bin)/yaml-files myapi.merge.yaml myapi.yaml
 ```
 
 ## API Evolution
