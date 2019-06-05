@@ -14,15 +14,21 @@ This document explains the fields of the STAC Label Extension to a STAC Collecti
 
 
 ### New Collection properties
-| element         | type info       | name                       | description       | 
-|-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------| 
-| label:description | string   | Description | **REQUIRED.** A description of the label, how it was created, and what it is recommended for |
-| label:classes     | [string] | Classes     | **REQUIRED.** a list of keywords representing the nature of the labels. (e.g., tree, building, car, hippo)
-| label:property    | string   | Name        | **REQUIRED.** This is the name of the property field in the "labels" asset that contains the class (one of keywords from `label:classes`). 
+| element         | type info       | name                       | description       |
+|-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------|
+| label:property    | [string]     | Name        | **REQUIRED.** This is the name of the property field(s) in the label asset `FeatureCollection` that contains label metadata (keywords from `label:classes` if the property defines classes). |
+|label:classes     | Class Object | Classes   |  A Class Object defining the list of possible class names for each `label:property`. (e.g., tree, building, car, hippo) |
 | label:title       | string   | Title       | A human readable title of the dataset for display |
 | label:type  | [string] | Type | Recommended to be a subset of 'regression', 'classification', 'detection', or 'segmentation', but may be an arbitrary value |
 | label:method  | [string] | Method | Recommended to be a subset of 'automated' or 'manual', but may be an arbitrary value. |
 | label:version  | number | Version |  Monotonically-increasing version number. |
+| label:description | string   | Description | **REQUIRED.** A description of the label, how it was created, and what it is recommended for |
+
+### Class Object
+| Field Name      | Type       | name                       | description       |
+|-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------|
+| name            | string     | Name                       | The property key within the asset corresponding to class labels. |
+| classes         | [string]   | Classes                    | The different possible classes within the property `name`. |
 
 ## Item fields
 
@@ -33,14 +39,82 @@ Like other content extensions, the Label extension adds additional fields to a S
 ### Core Item fields
 Some additional notes are given here for some of the core STAC Item fields and what they represent for label.
 
-- **bbox** and **geometry**: The bounding box and the geometry of a Label Item represents the region for which the label is valid. This could be the extent of all the AOIs in the dataset, or could be the region the provider believes the label is representative.
+- **bbox** and **geometry**: The bounding box and the geometry of a Label Item represents the region for which the label(s) is/are valid. This could be the extent of all the AOIs in the dataset, or could be the region the provider believes the label is representative.
 - **properties.datetime**: The datetime of a Label Item is the nominal datetime for which the label applies, typically this is the datetime of the source imagery used to generate the labels. If the label applies over a range of datetimes (e.g., generated from multiple source images) then use the datetime-range (dtr) extension to indicate start and end datetimes.
 - **assets**: Unlike other extensions, the Label extension requires a single asset with the key "labels". This is a GeoJSON FeatureCollection asset containing the actual label features. As with the core STAC Item a thumbnail asset is also strongly encouraged.
 
 ### New Item properties
-| element         | type info       | name                       | description       | 
-|-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------| 
-| label:tixxx       | string | Title | A human readable title of the dataset for display |
+| element         | type info       | name                       | description       |
+|-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------|
+| label:summary       | Label Summary Object | Summary | An Object storing counts (for classification-type data) or summary statistics (for continuous numerical/regression data). |
+| label:datetime | datetime | Datetime | **Required** The date and time *that the source imagery was collected.* |
+
+### Label Summary Object
+
+| Field Name      | Type       | name                       | description       |
+|-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------|
+| property_key         | string     | Name                       | The property key within the asset corresponding to class labels. |
+| counts         | [Count Object]     | Counts                       | An object containing counts for categorical data. |
+| statistics         | [Stats Object]     | Statistics                       | An object containing statistics for regression/continuous numeric value data. |
+
+A [BETTER NAME] generally won't have both counts and statistics, but one of the two.
+
+### Count Object
+
+| Field Name      | Type       | name                       | description       |
+|-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------|
+| class_name         | string   | Classes                    | The different possible classes within the property `name`. |
+| count | number | Count | The number of occurrences of the class.
+
+
+```json
+  {
+    "field_name": "road_type",
+    "counts": [
+      {
+        "class_name": "dirt",
+        "count": 10
+      },
+      {
+        "class_name": "paved",
+        "count": 99
+      }
+    ]
+  }
+
+```
+
+### Stats Object
+
+| Field Name      | Type       | name                       | description       |
+|-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------|
+| stat_name         | string   | Stat Name                    | The name of the statistic being reported. |
+| value | number | Value | The value of the statistic `stat_name`. |
+
+```json
+  {
+    "field_name": "elevation",
+    "statistics": [
+      {
+        "stat_name": "mean",
+        "value": 100.1
+      },
+      {
+        "stat_name": "median",
+        "value": 102.3
+      },
+      {
+        "stat_name": "max",
+        "value": 100000
+      }
+    ]
+  }
+
+```
+
+
+
+
 
 #### Assets
 
@@ -60,8 +134,8 @@ A Label Item links to any source imagery that the AOIs apply to by linking to th
 
 In addition the link has a new Label specific field:
 
-| element         | type info       | name                       | description       | 
-|-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------| 
+| element         | type info       | name                       | description       |
+|-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------|
 | label:assets | [string] | Assets | The keys for the assets to which the label applies |
 
 
