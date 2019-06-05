@@ -11,7 +11,7 @@
 | vis:preview_image_script_name | string     | Optional URL linking to the JavaScript script used to create the sample/thumbnail image.        |
 | vis:earth_engine_script_name  | string     | Optional URL linking to the JavaScript script file used for the Earth Engine site code snippet. |
 
-\* = One of the objects defined below:
+\* = One of the Image Visualization, Table Visualization, or Polygon Visualization, defined below:
 
 ### Image Visualization
 
