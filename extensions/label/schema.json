@@ -7,23 +7,23 @@
       "properties": {
         "type": "object",
         "required": [
-          "td:description",
-          "td:classes",
-          "td:label_type"
+          "label:description",
+          "label:classes",
+          "label:label_type"
         ],
         "properties": {
-          "td:description": {
+          "label:description": {
             "title": "Description",
             "type": "string"
           }, 
-          "td:classes": {
+          "label:classes": {
             "title": "Classes",
             "type": "array",
             "items": {
                 "type": "string"
             }
           },
-          "td:label_type": {
+          "label:label_type": {
             "title": "Label type",
             "type": "array",
             "items": {
@@ -35,7 +35,7 @@
               ]
             }
           },
-          "td:label_property": {
+          "label:label_property": {
             "title": "Label property name",
             "type": "string"
           }

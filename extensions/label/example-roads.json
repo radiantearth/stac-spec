@@ -15,11 +15,11 @@
     "properties": {
       "collection": "roads",
       "datetime": "2015-04-13T08:18:08Z",
-      "td:title": "Khartoum roads",
-      "td:description": "Roads manually drawn using high resolution imagery",
-      "td:label_type": "detection",
-      "td:classes": ["road"],
-      "td:label_property": "label"
+      "label:title": "Khartoum roads",
+      "label:description": "Roads manually drawn using high resolution imagery",
+      "label:label_type": "detection",
+      "label:classes": ["road"],
+      "label:label_property": "label"
     },
     "assets": {
       "thumbnail": {
@@ -37,7 +37,7 @@
       {
         "rel": "source",
         "href": "example-source.json",
-        "td:assets": ["rgb", "multi", "multi-pan", "pan"]
+        "label:assets": ["rgb", "multi", "multi-pan", "pan"]
       }
     ]
 }
