@@ -28,8 +28,8 @@ Items in the collection should match all filters to be returned when querying. T
 | Parameter      | Type          | Description        |
 | ------------ | ------------- | ---------------------- |
 | bbox | [number]       | Requested bounding box [west, south, east, north] |
-| time | string | Single date, date+time, or a range ('/' seperator), formatted to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6) |
-| intersects | GeoJSON Feature | Searches items by performing intersection between their geometry and provided GeoJSON Feature |
+| time | string | Single date, date+time, or a range ('/' separator), formatted to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6) |
+| intersects | GeoJSON FeatureCollection, Feature, Polygon, or MultiPolygon  | Searches items by performing intersection between their geometry and provided GeoJSON |
 | page | number | The page number of results. Defaults to 1 |
 | limit | number | The maximum number of results to return (page size). Defaults to 10 |
 | ids | [string] | Array of Item ids to return. All other filter parameters that further restrict the number of search results (except `page` and `limit`) are ignored |
@@ -40,10 +40,77 @@ Items in the collection should match all filters to be returned when querying. T
 STAC provides some additional endpoints for the root Catalog itself, as well as the capability to search the Catalog. Note that a STAC API does not need to implement WFS 3, in which case it would only support the endpoints given below. See the [OpenAPI specification document](definitions/STAC-standalone.yaml).
 
 | Endpoint      | Returns          | Description        |
-| ------------ | ------------- | ---------------------- |
-| /stac | Catalog        | Root catalog |
-| /stac/search | Items | GeoJSON FeatureCollection of Items found |
+| ------------- | -------------- | ---------------------- |
+| /stac         | Catalog        | Root catalog |
+| /stac/search  | SearchResult   | Object containing a GeoJSON FeatureCollection of Items matching query and other metadata |  
 
+### SearchResult fields
+
+| Element      | Type          | Description                                                  |
+| ------------ | ------------- | ------------------------------------------------------------ |
+| results           | GeoJSON FeatureCollection | **REQUIRED.** GeoJSON FeatureCollection containing results |
+| count             | number                    | the total number of results for this query.  This is not required to be precise, and may represent an estimate. |
+| aggregations      | [Aggregation Object]      | aggregations over values, similar to those offered by Elasticsearch |
+| properties | Properties Object | A dictionary of additional metadata for the search.  For example, this could pass back query execution information.|
+| next | string | a URI containing query parameters that should the user submit the same query again will give the next page of data. If this does not exist, there are no more results |
+| prev | string | a URI containing query parameters that should the user submit the same query again will give the previous page of data.  If this does not exist, the query represents the first page of the results |
+
+### Aggregation fields
+
+| Element      | Type          | Description                                                  |
+| ------------ | ------------- | ------------------------------------------------------------ |
+| name           | string          | **REQUIRED.** the name of the item attribute or property key being aggregated over |
+| buckets        | [Bucket Object] | **REQUIRED.** an array of buckets that this aggregations values have been counted over |
+
+### Bucket fields
+
+| Element      | Type          | Description                                                  |
+| ------------ | ------------- | ------------------------------------------------------------ |
+| key           | string        | **REQUIRED.** the key for this bucket as the native type (e.g, timestamp, number) |
+| key_as_string | string        | **REQUIRED.** the key for this bucket as a string.  Dates, times, and datetimes should use RFC 3339 |
+| count         | number        | **REQUIRED.** the count of items whose value is contained in this bucket | 
+
+**Examples:**
+
+```
+{
+  "featureCollection": { 
+    "type":"FeatureCollection"
+    ...
+  },
+  "count" : 42,
+  "aggregations" : [
+    {
+      "name": "datetime",
+      "buckets": [
+         {
+           "key_as_string": "2014-08-01T00:00:00.000Z",
+           "key": 1406851200000,
+           "count": 4
+         }, 
+        {
+          "key_as_string": "2014-09-01T00:00:00.000Z",
+          "key": 1806851200000,
+          "count": 9
+        }
+      ]
+    },
+    {
+    
+    }
+  ],
+  "properties": {
+        "search": {
+          "endpoint": "https://vpc-asset-catalog-prod-l3b3dcedj4nkjcergw6fohsrzm.us-east-1.es.amazonaws.com:443",
+          "executionDuration": 1038,
+          "index": "items_test",
+          "path": "POST:/items_test/item/_search?",
+          "query": "{\"query\":{\"bool\":{\"filter\":[{\"terms\":{\"properties.vendor:product\":[\"landsat8_sr\"]}}]}},\"size\":2000,\"_source\":{\"excludes\":[\"title\",\"*.eo:common_name\",\"*.eo:name\",\"*.href\",\"*.eo:gsd\"]},\"aggs\":{\"datetime\":{\"date_histogram\":{\"interval\":\"1M\",\"field\":\"properties.datetime\"}},\"product\":{\"terms\":{\"field\":\"properties.vendor:product.keyword\"}},\"product_family\":{\"terms\":{\"field\":\"properties.vendor:product_family.keyword\"}},\"cloud_cover\":{\"range\":{\"field\":\"properties.eo:cloud_cover\",\"ranges\":[{\"to\":5.0},{\"from\":5.0,\"to\":15.0},{\"from\":15.0,\"to\":40.0},{\"from\":40.0}]}},\"spatial_resolution\":{\"range\":{\"field\":\"assets.eo:gsd\",\"ranges\":[{\"to\":1.0},{\"from\":1.0,\"to\":5.0},{\"from\":5.0,\"to\":10.0},{\"from\":10.0,\"to\":30.0},{\"from\":30.0,\"to\":100.0},{\"from\":100.0,\"to\":250.0},{\"from\":250.0,\"to\":500.0},{\"from\":500.0,\"to\":1000.0},{\"from\":1000.0}]}}}}"
+        }
+  }
+}
+```
+  
 The `/stac` endpoint should function as a complete `Catalog` representation of all the data contained in the API and linked to in some way from root through `Collections` and `Items`.
 
 The `/stac/search` endpoint is similar to the `items` endpoint in WFS3 in that it accepts parameters for filtering, however it performs the filtering across all collections. The parameters accepted are the same as the Filter Parameters above, however the *[extensions](extensions/README.md)* also provide advanced querying parameters.
