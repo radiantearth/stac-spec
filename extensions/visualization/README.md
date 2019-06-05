@@ -2,13 +2,14 @@
 
 ## Item Fields
 
-| Field Name                 | Type       | Description                                                  |
-|----------------------------|------------|--------------------------------------------------------------|
-| visualization:display_name | string     | Name of the displayed visualization.                         |
-| visualization:vis          | \*         | Parameters for visualizing the dataset as an image.          |
-| visualization:lookat       | LatLonZoom | Coordinate on which the visualization is initially centered. |
-
-<!-- We might want to add a filter field, which is a structure that translates into a query into the dataset of interest. -->
+| Field Name                    | Type       | Description                                                                                     |
+|-------------------------------|------------|-------------------------------------------------------------------------------------------------|
+| vis:display_name              | string     | Name of the displayed visualization.                                                            |
+| vis:vis                       | \*         | Parameters for visualizing the dataset as an image.                                             |
+| vis:lookat                    | LatLonZoom | Coordinate on which the visualization is initially centered.                                    |
+| vis:filter                    | Filter     | Optional structure translating to a query into the dataset.                                     |
+| vis:preview_image_script_name | string     | Optional URL linking to the JavaScript script used to create the sample/thumbnail image.        |
+| vis:earth_engine_script_name  | string     | Optional URL linking to the JavaScript script file used for the Earth Engine site code snippet. |
 
 \* = One of the objects defined below:
 
@@ -61,3 +62,15 @@ LatLonZoom is defined as follows:
 | lat        | double | Latitude of the coordinates.  |
 | lon        | double | Longitude of the coordinates. |
 | zoom       | double | Zoom level.                   |
+
+Filter is defined as follows:
+
+## Filter
+
+| Field Name     | Type   | Description                                                                                                |
+|----------------|--------|------------------------------------------------------------------------------------------------------------|
+| filter_name    | string | Operation to apply. One of ["FILTER_UNSPECIFIED", "EQUALS", "LIST_CONTAINS", "LAST_N_DAYS", "DATE_RANGE"]. |
+| property_name  | string | Name of the property to use in the filter.                                                                 |
+| property_value | string | Value of property to filter.                                                                               |
+| time_start     | string | ISO 8601 string specifying the start time of the filter.                                                   |
+| time_end       | string | ISO 8601 string specifying the end time of the filter.                                                     |
