@@ -13,9 +13,9 @@ This document explains the fields of the STAC Label Extension to a STAC Item. It
 ## Examples
 
 **Roads:**
-- [Example Roads Item](sprint_4_example_roads_item.json)
-- [Example Roads Asset (labels)](spacenetroads_AOI_3_Paris_img101.json)
-- [Example Roads Source Imagery Item](example-source.json)
+- [Example Roads Item](examples/sprint4_roads/sprint_4_example_roads_item.json)
+- [Example Roads Asset (labels)](examples/sprint4_roads/spacenetroads_AOI_3_Paris_img101.json)
+- [Example Roads Source Imagery Item](examples/sprint4_roads/example-source.json)
 
 
 ## Schema
