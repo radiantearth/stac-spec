@@ -36,11 +36,12 @@ Some additional notes are given here for some of the core STAC Item fields and w
 ### New Item fields
 | element           | type info           | name                       | description       |
 |-------------------|---------------------|----------------------------|--------------------------------------------------------------------------------------------------|
-| label:property    | [string]            | Name                       | **REQUIRED** These are the names of the property field(s) in each `Feature` of the label asset's `FeatureCollection` that contains the  classes (keywords from `label:classes` if the property defines classes). |
+| label:property    | [string]            | Property                       | **REQUIRED** These are the names of the property field(s) in each `Feature` of the label asset's `FeatureCollection` that contains the  classes (keywords from `label:classes` if the property defines classes). |
 | label:classes     | Class Object        | Classes                    | **REQUIRED** A Class Object defining the list of possible class names for each `label:property`. (e.g., tree, building, car, hippo)|
 | label:description | string              | Description                | **REQUIRED** A description of the label, how it was created, and what it is recommended for |
+| label:type | string              | Type                | **REQUIRED** An ENUM of either `vector` label type or `raster` label type |
 | label:title       | string              | Title                      | A human readable title of the dataset for display |
-| label:type        | [string]            | Type                       | Recommended to be a subset of 'regression', 'classification', 'detection', or 'segmentation', but may be an arbitrary value |
+| label:task        | [string]            | Task                       | Recommended to be a subset of 'regression', 'classification', 'detection', or 'segmentation', but may be an arbitrary value |
 | label:method      | [string]            | Method                     | Recommended to be a subset of 'automated' or 'manual', but may be an arbitrary value. |
 | label:version     | number              | Version                    |  Monotonically-increasing version number. |
 | label:overview    | Label Overview Object| Overview                    | An Object storing counts (for classification-type data) or summary statistics (for continuous numerical/regression data). |
@@ -55,7 +56,7 @@ Some additional notes are given here for some of the core STAC Item fields and w
 
 | Field Name      | Type            | name                       | description       |
 |-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------|
-| property_key    | string          | Name                       | The property key within the asset corresponding to class labels. |
+| property_key    | string          | Property Key                       | The property key within the asset corresponding to class labels. |
 | counts          | [Count Object]  | Counts                     | An object containing counts for categorical data. |
 | statistics      | [Stats Object]  | Statistics                 | An object containing statistics for regression/continuous numeric value data. |
 
@@ -65,7 +66,7 @@ Some additional notes are given here for some of the core STAC Item fields and w
 
 | Field Name      | Type            | name                       | description       |
 |-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------|
-| class_name      | string          | Classes                    | The different possible classes within the property `name`. |
+| class_name      | string          | Class Name                    | The different possible classes within the property `name`. |
 | count           | number          | Count                      | The number of occurrences of the class.
 
 
