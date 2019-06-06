@@ -147,9 +147,7 @@ In addition the link has a new Label specific field:
 
 
 ## Implementations
-Example implementations can be found in [Examples](#Examples). The Roads implementation provides an example item for labels from the [SpaceNet Road Network Extraction Challenge Dataset](https://spacenet.ai/spacenet-roads-dataset/), providing segmentation labels for road networks.
-
-The Misc Samples implementation provides an example catalog of collections with sample label items from several training datasets, [SpaceNet Buildings](https://spacenet.ai/spacenet-buildings-dataset-v2/) and [Open AI Tanzania Building Footprint Segmentation Challenge](https://competitions.codalab.org/competitions/20100) for now, providing segementation labels for building footprints.
+Example implementations can be found in [Examples](#Examples). The Roads implementation provides an example item for labels from the [SpaceNet Road Network Extraction Challenge Dataset](https://spacenet.ai/spacenet-roads-dataset/), providing segmentation labels for road networks. The Misc Samples implementation provides an example catalog of collections with sample label items from several training datasets, [SpaceNet Buildings](https://spacenet.ai/spacenet-buildings-dataset-v2/) and [Open AI Tanzania Building Footprint Segmentation Challenge](https://competitions.codalab.org/competitions/20100) for now, providing segmentation labels for buildings.
 
 Raster Foundry will support exporting STAC-compliant training data label items, assets, and sources all in `json` format contained in a `zip` file for a project layer. There is a [Pull Request](https://github.com/raster-foundry/raster-foundry/pull/5018) for the backend support in its repository. Frontend support is on the roadmap.
 

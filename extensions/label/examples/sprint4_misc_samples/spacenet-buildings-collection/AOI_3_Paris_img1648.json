@@ -1509,9 +1509,19 @@
     "datetime": "2016-08-26T22:41:55.000000Z",
     "label:property": "[\"OBJECTID_1\"]",
     "label:description": "building footprints manually labeled",
-    "label:tasks": "segmentation",
+    "label:task": "segmentation",
     "label:type": "vector",
-    "label:method": "manual"
+    "label:method": "manual",
+    "label:classes": [
+      [
+        {
+          "name": "OBJECTID_1",
+          "classes": [
+            0
+          ]
+        }
+      ]
+    ]
   },
   "links": [
     {

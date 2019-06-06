@@ -48918,9 +48918,25 @@
     "datetime": "2019-04-23T00:00:00Z",
     "label:property": "[building, condition]",
     "label:description": "building roofprints manually  labeled and classified according to building completion status",
-    "label:tasks": "segmentation",
+    "label:task": "segmentation",
     "label:type": "vector",
-    "label:method": "manual"
+    "label:method": "manual",
+    "label:classes": [
+      {
+        "name": "building",
+        "classes": [
+          "yes"
+        ]
+      },
+      {
+        "name": "condition",
+        "classes": [
+          "Complete",
+          "Incomplete",
+          "Foundation"
+        ]
+      }
+    ]
   },
   "links": [
     {
