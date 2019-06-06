@@ -147,5 +147,7 @@ In addition the link has a new Label specific field:
 ## Implementations
 Example implementations can be found in [Examples](#Examples). The Roads implementation provides an example item for labels from the [SpaceNet Road Network Extraction Challenge Dataset](https://spacenet.ai/spacenet-roads-dataset/), providing segmentation labels for road networks.
 
+Raster Foundry will support exporting STAC-compliant training data label items, assets, and sources all in `json` format contained in a `zip` file for a project layer. There is a [Pull Request](https://github.com/raster-foundry/raster-foundry/pull/5018) for the backend support in its repository. Frontend support is on the roadmap.
+
 ## Extensions
 Label Items may often use the `datetime-range` extension if the label set applies over a range of dates. While the EO extension doesn't make sense within a Label Item itself, most Label Items will link to source data which will frequently use the EO Extension. The [extensions page](../README.md) gives an overview about these and other extensions.
