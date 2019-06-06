@@ -16,7 +16,7 @@
         {
           "oneOf": [
             {
-              "$ref": "geojson.json#/definitions/feature"
+              "$ref": "https://geojson.org/schema/Feature.json"
             }
           ]
         },
