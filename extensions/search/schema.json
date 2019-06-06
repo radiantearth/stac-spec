@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "schema.json#",
+  "title": "Search Extension",
+  "type": "object",
+  "description": "STAC Search Extension",
+  "additionalProperties": true,
+  "allOf": [
+    {
+      "$ref": "#/definitions/search_meta"
+    }
+  ],
+  "definitions": {
+    "search_meta": {
+      "properties": {
+        "properties": {
+          "type": "object",
+          "required": [
+            "next",
+            "returned"
+          ],
+          "properties": {
+            "next": {
+              "type": ["string", "null"]
+            },
+            "limit": {
+              "type": ["number", "null"]
+            },
+            "found": {
+              "type": "number"
+            },
+            "returned": {
+              "type": "number"
+            },
+            "properties": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+

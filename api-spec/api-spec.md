@@ -27,22 +27,24 @@ Items in the collection should match all filters to be returned when querying. T
 
 | Parameter      | Type          | Description        |
 | ------------ | ------------- | ---------------------- |
-| bbox | [number]       | Requested bounding box [west, south, east, north] |
-| time | string | Single date, date+time, or a range ('/' seperator), formatted to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6) |
-| intersects | GeoJSON Feature | Searches items by performing intersection between their geometry and provided GeoJSON Feature |
-| page | number | The page number of results. Defaults to 1 |
-| limit | number | The maximum number of results to return (page size). Defaults to 10 |
-| ids | [string] | Array of Item ids to return. All other filter parameters that further restrict the number of search results (except `page` and `limit`) are ignored |
+| ids | [string] | Array of Item ids to return. All other filter parameters that further restrict the number of search results (except `next` and `limit`) are ignored |
 | collections | [string] | Array of Collection IDs to include in the search for items. Only Items in one of the provided Collections will be searched |
+| intersects | GeoJSON Feature | Searches items by performing intersection between their geometry and provided GeoJSON Feature |
+| bbox | [number]       | Requested bounding box [west, south, east, north] |
+| time | string | Single date, date+time, or a range ('/' separator), formatted to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6) |
+| next | string | The token to retrieve the next set of results, e.g., offset, page, continuation token|
+| limit | number | The maximum number of results to return (page size). Defaults to 10 |
+
+In general, only one of **intersects** or **bbox** should be specified.  If both are specified, results should match both.
 
 ## STAC Endpoints
 
 STAC provides some additional endpoints for the root Catalog itself, as well as the capability to search the Catalog. Note that a STAC API does not need to implement WFS 3, in which case it would only support the endpoints given below. See the [OpenAPI specification document](definitions/STAC-standalone.yaml).
 
 | Endpoint      | Returns          | Description        |
-| ------------ | ------------- | ---------------------- |
-| /stac | Catalog        | Root catalog |
-| /stac/search | Items | GeoJSON FeatureCollection of Items found |
+| ------------- | ------------- | ---------------------- |
+| /stac         | Catalog        | Root catalog |
+| /stac/search  | ItemCollection   | GeoJSON FeatureCollection, probably containing additional STAC metadata, including search metadata from the `search` extension |
 
 The `/stac` endpoint should function as a complete `Catalog` representation of all the data contained in the API and linked to in some way from root through `Collections` and `Items`.
 
