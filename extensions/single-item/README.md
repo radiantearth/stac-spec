@@ -4,8 +4,8 @@
 
 Provides a way to specify several fields in individual Items that usually reside on the collection-level such as license and providers.
 
-- [Example](example.json)
-- [JSON Schema](schema.json)
+- [Example](examples/example.json)
+- [JSON Schema](json-schema/schema.json)
 
 ## Item fields
 

@@ -10,7 +10,7 @@ to place common fields in [STAC Collections](../../collection-spec/collection-sp
 The exact metadata that would appear in a STAC Collection record will vary depending on the dataset.
 
 - [Examples](examples/) (for example [Sentinel-1](examples/sentinel1.json) and [Envisat](examples/envisat.json))
-- [JSON Schema](schema.json)
+- [JSON Schema](json-schema/schema.json)
 
 ## Item fields
 
