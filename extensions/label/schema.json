@@ -52,10 +52,6 @@
               "vector"
             ]
           },
-          "label:title": {
-            "title": "Title",
-            "type": "string"
-          },
           "label:task": {
             "title": "Task",
             "type": "array",
