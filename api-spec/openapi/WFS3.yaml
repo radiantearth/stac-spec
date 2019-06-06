@@ -120,7 +120,7 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: 'https://stacspec.org/assets/FeatureCollection.json'
+                $ref: 'https://geojson.org/schema/FeatureCollection.json'
             text/html:
               schema:
                 type: string
@@ -148,7 +148,7 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: 'https://stacspec.org/assets/Feature.json'
+                $ref: 'https://geojson.org/schema/Feature.json'
             text/html:
               schema:
                 type: string
