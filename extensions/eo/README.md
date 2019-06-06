@@ -36,6 +36,10 @@ The exact metadata that would appear in a STAC Collection record will vary depen
 | eo:azimuth       | number                   | Viewing azimuth angle. The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360). |
 | eo:sun_azimuth   | number                   | Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360). |
 | eo:sun_elevation | number                   | Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (0-90). |
+| eo:native_crs    | string                   | Proj4 string representing the CRS that the `eo:native_geometry` and `eo:native_extent` fields represent |
+| eo:native_geometry | [GeoJSON Polygon Object](https://tools.ietf.org/html/rfc7946#section-3.1.6) | Recommended. Defines the footprint of the asset represented by this item, formatted according to [RFC 7946, sections 3.1.6](https://tools.ietf.org/html/rfc7946), except not necessarily in CRS EPSG:4326 as required by RFC7946.  Specified based on the `eo:native_crs` field (not necessarily EPSG:4326). Ideally, this will be represented by a 5 point Polygon |
+| eo:native_extent | [number]                 | Bounding box of the asset represented by this item in the native CRS. Specified as four coordinates based on the CRS defined in the eo:native_crs field.  First two numbers are coordinates of the lower left corner, followed by coordinates of upper right corner, e.g \[west, south, east, north]  |
+| eo:centroid      | [number]         | Coordinates representing the centroid of the item.  Coordinates defined as \[lat,lon] |
 
 **eo:gsd** is the nominal Ground Sample Distance for the data, as measured in meters on the ground.
 Since GSD can vary across a scene depending on projection, this should be the average or most
