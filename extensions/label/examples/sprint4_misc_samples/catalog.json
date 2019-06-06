@@ -1,7 +1,7 @@
 {
-  "id": "openml_data_demo",
-  "title": "stac4ml demo",
-  "description": "Sample ML training data in the STAC format",
+  "id": "label_extension_demo",
+  "title": "label extension demo",
+  "description": "Sample ML training data labels in the STAC format",
   "stac_version": "0.7",
   "links": [
     {
@@ -19,10 +19,6 @@
     {
       "rel": "child",
       "href": "spacenet-buildings-collection/catalog.json"
-    },
-    {
-      "rel": "child",
-      "href": "spacenet-roads-collection/catalog.json"
     }
   ]
 }

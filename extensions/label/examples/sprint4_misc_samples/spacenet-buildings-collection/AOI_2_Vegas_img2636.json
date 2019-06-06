@@ -1097,14 +1097,14 @@
     },
     "raster": {
       "title": "AOI_2_Vegas_img2636_raster",
-      "href": "https://www.dropbox.com/s/m8boillyu3ad4u0/RGB-PanSharpen_AOI_2_Vegas_img2636_cog.tif?dl=1",
+      "href": "https://spacenet-dataset.s3.amazonaws.com/AOI_2_Vegas/srcData/rasterData/AOI_2_Vegas_MUL-PanSharpen_Cloud.tif",
       "type": "image/vnd.stac.geotiff; cloud-optimized=true"
     }
   },
   "properties": {
-    "datetime": "2019-04-23T00:00:00Z",
+    "datetime": "2016-08-26T22:41:55.000000Z",
     "label:property": "[\"OBJECTID_1\"]",
-    "label:description": "here is a description",
+    "label:description": "building footprints manually labeled",
     "label:tasks": "segmentation",
     "label:type": "vector",
     "label:method": "manual"

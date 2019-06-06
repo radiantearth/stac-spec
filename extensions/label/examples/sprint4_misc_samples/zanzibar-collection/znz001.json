@@ -50,7 +50,7 @@
   "properties": {
     "datetime": "2019-04-23T00:00:00Z",
     "label:property": "[building, condition]",
-    "label:description": "here is a description",
+    "label:description": "building roofprints manually  labeled and classified according to building completion status",
     "label:tasks": "segmentation",
     "label:type": "vector",
     "label:method": "manual"
