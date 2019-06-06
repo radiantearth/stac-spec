@@ -18,7 +18,7 @@ This document explains the fields of the STAC Label Extension to a STAC Item. It
 - [Example Roads Source Imagery Item](examples/sprint4_roads/example-source.json)
 
 **Buildings:**
-- [Example Catalog & Collections of Building Footprint Label Items](examples/sprint4_misc_samples)
+- [Example Catalog & Collections of Building Footprint Label Items](examples/sprint4_misc_samples/catalog.json)
 
 ## Schema
 - [JSON Schema](schema.json)
