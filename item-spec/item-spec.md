@@ -68,6 +68,8 @@ custom fields.
 | license    | string | Item's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
 | providers  | [Provider Object] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | title      | string | A human readable title describing the item. |
+| created    | string | Creation date and time of this metadata file. This is NOT the timestamp the asset was created. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
+| updated    | string | Date and time this metadata file was updated last. This is NOT the timestamp the asset was updated last. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
 
 **datetime** is likely the acquisition (in the case of single camera type captures) or the 'nominal'
 or representative time in the case of assets that are combined together. Though time can be a

@@ -109,6 +109,16 @@
                       }
                     }
                   }
+                },
+                "created": {
+                  "title": "Metadata updated at",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updated": {
+                  "title": "Metadata updated at",
+                  "type": "string",
+                  "format": "date-time"
                 }
               }
             },
