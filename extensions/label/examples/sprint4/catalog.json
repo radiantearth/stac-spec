@@ -1,0 +1,28 @@
+{
+  "id": "openml_data_demo",
+  "title": "stac4ml demo",
+  "description": "Sample ML training data in the STAC format",
+  "stac_version": "0.7",
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://my.cat/catalog.json"
+    },
+    {
+      "rel": "root",
+      "href": "./catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "zanzibar-collection/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "spacenet-buildings-collection/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "spacenet-roads-collection/catalog.json"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "znz001",
+  "type": "Feature",
+  "bbox": [
+    39.28919876472999,
+    -5.743028283012867,
+    39.31302874892266,
+    -5.722212794937691
+  ],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          39.31302874892266,
+          -5.743028283012867
+        ],
+        [
+          39.31302874892266,
+          -5.722212794937691
+        ],
+        [
+          39.28919876472999,
+          -5.722212794937691
+        ],
+        [
+          39.28919876472999,
+          -5.743028283012867
+        ],
+        [
+          39.31302874892266,
+          -5.743028283012867
+        ]
+      ]
+    ]
+  },
+  "assets": {
+    "labels": {
+      "title": "znz001_label",
+      "href": "https://www.dropbox.com/sh/ct3s1x2a846x3yl/AAARCAOqhcRdoU7ULOb9GJl9a/grid_001.geojson?dl=1",
+      "type": "application/geo+json",
+      "license": "CC-BY-4.0"
+    },
+    "raster": {
+      "title": "znz001_raster",
+      "href": "https://oin-hotosm.s3.amazonaws.com/5afeda152b6a08001185f11a/0/5afeda152b6a08001185f11b.tif",
+      "type": "image/vnd.stac.geotiff; cloud-optimized=true"
+    }
+  },
+  "properties": {
+    "datetime": "2019-04-23T00:00:00Z",
+    "label:property": "[building, condition]",
+    "label:description": "here is a description",
+    "label:tasks": "segmentation",
+    "label:type": "vector",
+    "label:method": "manual"
+  },
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://my.cat/zanzibar-collection/znz001.json"
+    },
+    {
+      "rel": "root",
+      "href": "../catalog.json"
+    },
+    {
+      "rel": "parent",
+      "href": "catalog.json"
+    },
+    {
+      "rel": "collection",
+      "href": "catalog.json"
+    }
+  ]
+}
