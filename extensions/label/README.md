@@ -2,16 +2,34 @@
 
 **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
-This document explains the fields of the STAC Label Extension to a STAC Collection and Item. It is used to describe labeled Areas of Interest (AOIs) that are used with earth observation imagery. The AOI is usually a polygon, but in some cases could be a line or point such as is the case with a road. This extension is meant to support using labeled AOIs with Machine Learning models, particularly training data sets, but can be used in any application where labeled AOIs are needed.
+This extension is meant to support using labeled AOIs with Machine Learning models, particularly training data sets, but can be used in any application where labeled AOIs are needed.
+
+This document explains the fields of the STAC Label Extension to a STAC Item. It is used to describe labeled Areas of Interest (AOIs) that are used with earth observation imagery. These labels can take several forms, though all are expected to be contained with a GeoJSON `FeatureCollection`:
+- **Tile classification labels:** A GeoJSON `FeatureCollection` with a single `Feature`. This feature's geometry should match the bounds of the labeled image tile, and a `Feature` property should define the class (see below).
+- **Object detection labels:** A GeoJSON `FeatureCollection` containing rectangular bounding boxes (as `Polygon` geometry `Feature`s) defining the bounds of an object of interest (e.g. a car). A `Feature` property **must** define the class of the object labeled. Additional `Feature` properties may be defined for additional metadata.
+- **Segmentation labels:** A GeoJSON `FeatureCollection` containing `Polygon` geometry `Feature`s that trace the boundaries of objects of interest (e.g. buildings, vegetation, bodies of water). If using raster-formatted segmentation labels (i.e. pixel masks), these should be stored using the core STAC specification, not `label`.
+
 
 - [Example Item](example-roads.json)
 - [Example Asset (labels)](example-labels.json)
 - [Example Source Imagery](example-source.json)
 - [JSON Schema](schema.json)
 
-## Collection fields
+## Item fields
 
-### New Collection properties
+A Label Item represents a polygon or set of polygons defining labels and label classes and should be part of a Collection. See the [raster labels](#raster-labels) section below for notes on raster-formatted labels. It is up to the data provider how to group their catalog, but a typical use might have a Collection of a series of label sets (Items) that are related. For example a "Building" collection might have 50 Items, each one was a set of building AOIs for a single country. The Collection holds details on the data providers and the license.
+
+Like other content extensions, the Label extension adds additional fields to a STAC Item, which are detailed after some additional clarification on what the core fields mean with respect to a Label Item.
+
+### Core Item fields
+Some additional notes are given here for some of the core STAC Item fields and what they represent for label.
+
+- **bbox** and **geometry**: The bounding box and the geometry of a Label Item represents the region for which the label(s) is/are valid. This could be the extent of all the AOIs in the dataset, or could be the region the provider believes the label is representative.
+- **properties.datetime**: The datetime of a Label Item is the nominal datetime for which the label applies, typically this is the datetime of the source imagery used to generate the labels. If the label applies over a range of datetimes (e.g., generated from multiple source images) then use the datetime-range (dtr) extension to indicate start and end datetimes.
+- **assets**: The label assets are GeoJSON FeatureCollection assets containing the actual label features. As with the core STAC Item a thumbnail asset is also strongly encouraged.
+
+### New Item fields
+
 | element           | type info       | name                       | description       |
 |-------------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------|
 | label:property    | [string]        | Name                       | **REQUIRED** These are the names of the property field(s) in each `Feature` of the label asset's `FeatureCollection` that contains the  classes (keywords from `label:classes` if the property defines classes). |
@@ -26,24 +44,11 @@ This document explains the fields of the STAC Label Extension to a STAC Collecti
 | name            | string          | Name                       | The property key within the asset's each `Feature` corresponding to class labels. |
 | classes         | [string or numeric]        | Classes                    | The different possible class values within the property `name`. |
 
-## Item fields
-
-A Label Item represents a set of polygons with labels and should be part of a Collection. It is up to the data provider how to group their catalog, but a typical use might have a Collection of a series of label sets (Items) that are related. For example a "Building" collection might have 50 Items, each one was a set of building AOIs for a single country. The Collection holds details on the data providers and the license.
-
-Like other content extensions, the Label extension adds additional fields to a STAC Item, which are detailed after some additional clarification on what the core fields mean with respect to a Label Item.
-
-### Core Item fields
-Some additional notes are given here for some of the core STAC Item fields and what they represent for label.
-
-- **bbox** and **geometry**: The bounding box and the geometry of a Label Item represents the region for which the label(s) is/are valid. This could be the extent of all the AOIs in the dataset, or could be the region the provider believes the label is representative.
-- **properties.datetime**: The datetime of a Label Item is the nominal datetime for which the label applies, typically this is the datetime of the source imagery used to generate the labels. If the label applies over a range of datetimes (e.g., generated from multiple source images) then use the datetime-range (dtr) extension to indicate start and end datetimes.
-- **assets**: Unlike other extensions, the Label extension requires a single asset with the key "labels". This is a GeoJSON FeatureCollection asset containing the actual label features. As with the core STAC Item a thumbnail asset is also strongly encouraged.
-
 ### New Item properties
 | element         | type info           | name                       | description       |
 |-----------------|---------------------|----------------------------|--------------------------------------------------------------------------------------------------|
 | label:datetime  | datetime            | Datetime                   | **Required** The date and time *that the source imagery was collected.* |
-| label:summary   | [Label Summary Object] | Summary                    | An Object storing counts (for classification-type data) or summary statistics (for continuous numerical/regression data). |
+| label:summaries   | [Label Summary Object] | Summaries                    | Objects storing counts (for classification-type data) or summary statistics (for continuous numerical/regression data) for each `feature` property storing label classes or metadata within the label asset `FeatureCollection`. |
 
 ### Label Summary Object
 
