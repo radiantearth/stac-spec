@@ -67,6 +67,20 @@
                   "description": "The searchable date/time of the assets, in UTC (Formatted in RFC 3339) ",
                   "type": "string",
                   "format": "date-time"
+                },
+                "title": {
+                  "title": "Title",
+                  "type": "string"
+                },
+                "created": {
+                  "title": "Metadata updated at",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updated": {
+                  "title": "Metadata updated at",
+                  "type": "string",
+                  "format": "date-time"
                 }
               }
             },
