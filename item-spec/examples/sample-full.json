@@ -17,7 +17,7 @@
   "properties": {
     "datetime": "2016-05-03T13:22:30.040Z",
     "title": "A CS3 item",
-    "license": "proprietary",
+    "license": "PDDL-1.0",
     "providers": [
       {
         "name": "CoolSat",
