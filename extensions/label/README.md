@@ -10,10 +10,15 @@ This document explains the fields of the STAC Label Extension to a STAC Item. It
 - **Object detection labels:** A GeoJSON `FeatureCollection` containing rectangular bounding boxes (as `Polygon` geometry `Feature`s) defining the bounds of an object of interest (e.g. a car). A `Feature` property **must** define the class of the object labeled. Additional `Feature` properties may be defined for additional metadata.
 - **Segmentation labels:** A GeoJSON `FeatureCollection` containing `Polygon` geometry `Feature`s that trace the boundaries of objects of interest (e.g. buildings, vegetation, bodies of water), or raster-formatted pixel masks defining pixel classes. (See [raster label notes](#raster-label-notes))
 
+## Examples
 
-- [Example Item](example-roads.json)
-- [Example Asset (labels)](example-labels.json)
-- [Example Source Imagery](example-source.json)
+**Roads:**
+- [Example Roads Item](sprint_4_example_roads_item.json)
+- [Example Roads Asset (labels)](spacenetroads_AOI_3_Paris_img101.json)
+- [Example Roads Source Imagery Item](example-source.json)
+
+
+## Schema
 - [JSON Schema](schema.json)
 
 ## Item fields
@@ -140,7 +145,7 @@ In addition the link has a new Label specific field:
 
 
 ## Implementations
-
+Example implementations can be found in [Examples](#Examples). The Roads implementation provides an example item for labels from the [SpaceNet Road Network Extraction Challenge Dataset](https://spacenet.ai/spacenet-roads-dataset/), providing segmentation labels for road networks.
 
 ## Extensions
 Label Items may often use the `datetime-range` extension if the label set applies over a range of dates. While the EO extension doesn't make sense within a Label Item itself, most Label Items will link to source data which will frequently use the EO Extension. The [extensions page](../README.md) gives an overview about these and other extensions.

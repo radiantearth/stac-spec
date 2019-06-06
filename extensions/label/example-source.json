@@ -1,46 +1,40 @@
 {
     "type": "Feature",
-    "bbox": [32.4875934, 15.5138112, 32.4893484, 15.5155662 ],
+    "bbox": [2.23379639995, 49.0178709, 2.23730639995, 49.0213809],
     "geometry": {
       "type": "Polygon",
       "coordinates": [[
-        [32.4875934, 15.5155662],
-        [32.4893484, 15.5155662],
-        [32.4893484, 15.5138112],
-        [32.4875934, 15.5138112],
-        [32.4875934, 15.5155662]
+        [2.23379639995, 49.0178709],
+        [2.23730639995, 49.0178709],
+        [2.23730639995, 49.0213809],
+        [2.23379639995, 49.0213809]
       ]]
     },
-    "id": "Khartoum_image4",
+    "id": "AOI_3_Paris_img101",
     "properties": {
       "collection": "imagery",
-      "datetime": "2015-04-13T08:18:08Z"
+      "datetime": "2016-08-26T22:41:55.000000Z"
     },
     "assets": {
-      "thumbnail": {
-        "title": "Thumbnail",
-        "href": "http://mycoolsat.com/khartoum-thumb.jpg",
-        "type": "image/jpeg"
-      },
       "rgb": {
         "title": "RGB Pan Sharpened (primary)",
-        "href": "http://mycoolsat.com/Khartoum_image4-rgb.tif",
-        "type": "image/vnd.stac.geotiff; cloud-optimized=true"
+        "href": "https://spacenet-dataset.s3.amazonaws.com/SpaceNet_Roads_Competition/Train/AOI_3_Paris_Roads_Train/RGB-PanSharpen/RGB-PanSharpen_AOI_3_Paris_img101.tif",
+        "type": "image/vnd.stac.geotiff"
       },
       "multi": {
         "title": "8 band multispectral",
-        "href": "http://mycoolsat.com/Khartoum_image4-multi.tif",
-        "type": "image/vnd.stac.geotiff; cloud-optimized=true"
+        "href": "https://spacenet-dataset.s3.amazonaws.com/SpaceNet_Roads_Competition/Train/AOI_3_Paris_Roads_Train/MUL/MUL_AOI_3_Paris_img101.tif",
+        "type": "image/vnd.stac.geotiff"
       },
       "multi-pan": {
         "title": "8 band pan-sharpened multispectral",
-        "href": "http://mycoolsat.com/Khartoum_image4-multi-pan.tif",
-        "type": "image/vnd.stac.geotiff; cloud-optimized=true"
+        "href": "https://spacenet-dataset.s3.amazonaws.com/SpaceNet_Roads_Competition/Train/AOI_3_Paris_Roads_Train/MUL-PanSharpen/MUL-PanSharpen_AOI_3_Paris_img101.tif",
+        "type": "image/vnd.stac.geotiff"
       },
       "pan": {
         "title": "Single band panchromatic",
-        "href": "http://mycoolsat.com/Khartoum_image4-pan.tif",
-        "type": "image/vnd.stac.geotiff; cloud-optimized=true"
+        "href": "https://spacenet-dataset.s3.amazonaws.com/SpaceNet_Roads_Competition/Train/AOI_3_Paris_Roads_Train/PAN/PAN_AOI_3_Paris_img101.tif",
+        "type": "image/vnd.stac.geotiff"
       }
     },
     "links": []
