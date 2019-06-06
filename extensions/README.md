@@ -26,9 +26,9 @@ on the extension.
 
 | Maturity Classification |  Min Impl # | Description | Stability |
 | ----------------------- | ----------- | ----------- | --------- |
-| Proposal | 0 | An idea put forward by a community member to gather feedback | Not stable - breaking changes almost guaranteed as implementors try out the idea. |
+| Proposal | 0 | An idea put forward by a community member to gather feedback | Not stable - breaking changes almost guaranteed as implementers try out the idea. |
 | Pilot | 1 | Idea is fleshed out, with examples and a JSON schema, and implemented in one or more catalogs. Additional implementations encouraged to help give feedback | Approaching stability - breaking changes are not anticipated but can easily come from additional feedback |
-| Candidate | 3 | A number of implementors are using it and are standing behind it as a solid extension. Can generally count on an extension at this maturity level | Mostly stable, breaking changes require a new version and minor changes are unlikely. |
+| Candidate | 3 | A number of implementers are using it and are standing behind it as a solid extension. Can generally count on an extension at this maturity level | Mostly stable, breaking changes require a new version and minor changes are unlikely. |
 | Stable | 6 | Highest current level of maturity. The community of extension maintainers commits to a STAC review process for any changes, which are not made lightly. | Completely stable, all changes require a new version number and review process. |
 | Deprecated | N/A | A previous extension that has likely been superceded by a newer one or did not work out for some reason. | DO NOT USE, is not supported |
 
@@ -127,3 +127,12 @@ An example of this can be seen in a Landsat example:
     "l8:image_quality_oli": 9
   },
 ```
+
+### Directory Structure
+
+A STAC extension can have references to additional schemas within the extension schema. 
+These files should be kept together in order to preserve relative `$ref` links. 
+
+See the [EU](eo/) extension file structure as an example.
+* Specification examples should be stored in an `examples` directory. 
+* The specification schema file(s) should be stored in a `json-schema` directory. 
