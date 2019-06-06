@@ -76,6 +76,11 @@ data, so use whatever single date and time is most useful for a user to search f
 extensions may further specify the meaning of the main `datetime` field, and many will also add more
 datetime fields.
 
+**license** and **provider** should be defined at the Collection level if possible (as either
+common properties or Collection fields). Item-level definition of these fields will override
+Collection `properties`. If none are defined, the Collection's `license` and `providers` fields
+will be assumed to apply to related Items.
+
 ### Provider Object
 
 The object provides information about a provider. A provider is any of the organizations that captured or processed the content of the collection and therefore influenced the data offered by this collection. May also include information about the final storage provider hosting the data.
