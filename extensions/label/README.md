@@ -6,8 +6,9 @@ This extension is meant to support using labeled AOIs with Machine Learning mode
 
 This document explains the fields of the STAC Label Extension to a STAC Item. It is used to describe labeled Areas of Interest (AOIs) that are used with earth observation imagery. These labels can take several forms, though all are expected to be contained with a GeoJSON `FeatureCollection`:
 - **Tile classification labels:** A GeoJSON `FeatureCollection` with a single `Feature`. This feature's geometry should match the bounds of the labeled image tile, and a `Feature` property should define the class (see below).
+- **Tile regression labels:** A GeoJSON `FeatureCollection` with a single `Feature`. This feature's geometry should match the bounds of the labeled image tile, and a `Feature` property should define the regression value (see below).
 - **Object detection labels:** A GeoJSON `FeatureCollection` containing rectangular bounding boxes (as `Polygon` geometry `Feature`s) defining the bounds of an object of interest (e.g. a car). A `Feature` property **must** define the class of the object labeled. Additional `Feature` properties may be defined for additional metadata.
-- **Segmentation labels:** A GeoJSON `FeatureCollection` containing `Polygon` geometry `Feature`s that trace the boundaries of objects of interest (e.g. buildings, vegetation, bodies of water). If using raster-formatted segmentation labels (i.e. pixel masks), these should be stored using the core STAC specification, not `label`.
+- **Segmentation labels:** A GeoJSON `FeatureCollection` containing `Polygon` geometry `Feature`s that trace the boundaries of objects of interest (e.g. buildings, vegetation, bodies of water), or raster-formatted pixel masks defining pixel classes. (See [raster label notes](#raster-label-notes))
 
 
 - [Example Item](example-roads.json)
@@ -17,7 +18,7 @@ This document explains the fields of the STAC Label Extension to a STAC Item. It
 
 ## Item fields
 
-A Label Item represents a polygon or set of polygons defining labels and label classes and should be part of a Collection. See the [raster labels](#raster-labels) section below for notes on raster-formatted labels. It is up to the data provider how to group their catalog, but a typical use might have a Collection of a series of label sets (Items) that are related. For example a "Building" collection might have 50 Items, each one was a set of building AOIs for a single country. The Collection holds details on the data providers and the license.
+A Label Item represents a polygon, set of polygons, or raster data defining labels and label metadata and should be part of a Collection. See the [raster label notes](#raster-label-notes) section below for details on raster-formatted labels. It is up to the data provider how to group their catalog, but a typical use might have a Collection of a series of label sets (Items) that are related. For example a "Building" collection might have 50 Items, each one was a set of building AOIs for a single country. The Collection holds details on the data providers and the license.
 
 Like other content extensions, the Label extension adds additional fields to a STAC Item, which are detailed after some additional clarification on what the core fields mean with respect to a Label Item.
 
@@ -28,16 +29,11 @@ Some additional notes are given here for some of the core STAC Item fields and w
 - **properties.datetime**: The datetime of a Label Item is the nominal datetime for which the label applies, typically this is the datetime of the source imagery used to generate the labels. If the label applies over a range of datetimes (e.g., generated from multiple source images) then use the datetime-range (dtr) extension to indicate start and end datetimes.
 - **assets**: The label assets are GeoJSON FeatureCollection assets containing the actual label features. As with the core STAC Item a thumbnail asset is also strongly encouraged.
 
-### Changes to Item properties
-| element         | type info           | name                       | description       |
-|-----------------|---------------------|----------------------------|--------------------------------------------------------------------------------------------------|
-| datetime        | datetime            | Datetime                   | **Required** The date and time *that the source imagery was collected.* |
-
 ### New Item fields
 | element           | type info           | name                       | description       |
 |-------------------|---------------------|----------------------------|--------------------------------------------------------------------------------------------------|
-| label:property    | [string]            | Property                       | **REQUIRED** These are the names of the property field(s) in each `Feature` of the label asset's `FeatureCollection` that contains the  classes (keywords from `label:classes` if the property defines classes). |
-| label:classes     | Class Object        | Classes                    | **REQUIRED** A Class Object defining the list of possible class names for each `label:property`. (e.g., tree, building, car, hippo)|
+| label:property    | [string] or null        | Name                       | **REQUIRED** These are the names of the property field(s) in each `Feature` of the label asset's `FeatureCollection` that contains the  classes (keywords from `label:classes` if the property defines classes). If labels are rasters, use `null`. |
+| label:classes     | Class Object        | Classes                    | **REQUIRED** if using categorical data. A Class Object defining the list of possible class names for each `label:property`. (e.g., tree, building, car, hippo)|
 | label:description | string              | Description                | **REQUIRED** A description of the label, how it was created, and what it is recommended for |
 | label:type | string              | Type                | **REQUIRED** An ENUM of either `vector` label type or `raster` label type |
 | label:title       | string              | Title                      | A human readable title of the dataset for display |
@@ -49,7 +45,7 @@ Some additional notes are given here for some of the core STAC Item fields and w
 #### Class Object
 | Field Name      | Type            | name                       | description       |
 |-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------|
-| name            | string          | Name                       | The property key within the asset's each `Feature` corresponding to class labels. |
+| name            | string or null  | Name                       | The property key within the asset's each `Feature` corresponding to class labels. If labels are raster-formatted, use null.|
 | classes         | [string or numeric]        | Classes                    | The different possible class values within the property `name`. |
 
 #### Label Overview Object
@@ -115,18 +111,20 @@ Some additional notes are given here for some of the core STAC Item fields and w
 
 ```
 
-#### Raster Label Notes
-
-[Placeholder]
-
 #### Assets
 
 ##### labels (required)
 The Label Extension requires at least one asset that uses the key "labels". The asset will contain a link to the actual label data. The asset has these requirements:
 
 - is a GeoJSON FeatureCollection
-- each feature should have one or more properties containing the label(s) for the class (one of `label:classes`)
-- the name of the property can be anything (use "label" if making from scratch), but needs to be specified in the `Item` with the `label:label_property` field.
+- if `label:tasks` is tile_classification, object_detection, or segmentation, each feature should have one or more properties containing the label(s) for the class (one of `label:classes`). the name of the property can be anything (use "label" if making from scratch), but needs to be specified in the `Item` with the `label:property` field.
+- if `label:tasks` is tile_regression, each feature should have one or more properties defining the value for regression. the name of the property can be anything (use "label" if making from scratch), but needs to be specified in the `Item` with the `label:property` field.
+
+##### Raster Label Notes
+
+If the labels are formatted as rasters - for example, a pixel mask with 1s where there is water and 0s where there is land - the following approach is recommended for including those data.
+
+The raster label file (e.g. a GeoTIFF) should be included as an asset under the item. Along with the image file, a GeoJSON `FeatureCollection` asset should be included. That `FeatureCollection` should contain a single `Feature`, ideally a polygon geometry defining the extent of the raster.
 
 ##### Rendered images (optional)
 The source imagery used for creating the label is linked to under `links` (see below). However the source imagery is likely to have been rendered in some way when creating the training data. For instance, a byte-scaled true color image may have been created from the source imagery. It may be useful to save this image and include it as an asset in the `Item`.
