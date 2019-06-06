@@ -19,30 +19,87 @@
     2.23730639995,
     49.0213809
   ],
-  "label:property": ["road_type", "lane_number", "paved"],
-  "label:type": "vector",
-  "label:classes":
-  [
-    {
-      "name": "road_type",
-      "classes": [1, 2, 3, 4, 5, 6]
-    },
-    {
-      "name": "lane_number",
-      "classes": [1, 2, 3, 4, 5]
-    },
-    {
-      "name": "paved",
-      "classes": [0, 1]
-    }
-  ],
-  "label:task": ["segmentation"],
-  "label:method": ["manual"],
-  "label:version": 1,
   "properties":
   {
     "datetime": "2016-08-26T22:41:55.000000Z",
-    "title": "AOI 3 Paris img101 road network labels"
+    "title": "AOI 3 Paris img101 road network labels",
+    "label:property": ["road_type", "lane_number", "paved"],
+    "label:type": "vector",
+    "label:classes":
+    [
+      {
+        "name": "road_type",
+        "classes": [1, 2, 3, 4, 5, 6]
+      },
+      {
+        "name": "lane_number",
+        "classes": [1, 2, 3, 4, 5]
+      },
+      {
+        "name": "paved",
+        "classes": [0, 1]
+      }
+    ],
+    "label:task": ["segmentation"],
+    "label:method": ["manual"],
+    "label:version": 1,
+    "label:overview":
+    [
+      {
+        "property_key": "road_type",
+        "counts":
+        [
+          {
+            "class_name": 1,
+            "count": 0
+          },
+          {
+            "class_name": 2,
+            "count": 0
+          },
+          {
+            "class_name": 3,
+            "count": 0
+          },
+          {
+            "class_name": 4,
+            "count": 0
+          },
+          {
+            "class_name": 5,
+            "count": 15
+          },
+          {
+            "class_name": 6,
+            "count": 4
+          },
+        ],
+      },
+      {
+        "property_key": "lane_number",
+        "statistics":
+        [
+          {
+            "stat_name": "mean",
+            "value": 1.8
+          },
+          {
+            "stat_name": "max",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "property_key": "paved",
+        "counts":
+        [
+          {
+            "class_name": 1,
+            "count": 19
+          }
+        ]
+      }
+    ]
   },
   "links":
   [
@@ -71,63 +128,6 @@
       "rel": "source",
       "title": "The source imagery these road labels were derived from",
       "label:assets": "road_labels"
-    }
-  ],
-  "label:overview":
-  [
-    {
-      "property_key": "road_type",
-      "counts":
-      [
-        {
-          "class_name": 1,
-          "count": 0
-        },
-        {
-          "class_name": 2,
-          "count": 0
-        },
-        {
-          "class_name": 3,
-          "count": 0
-        },
-        {
-          "class_name": 4,
-          "count": 0
-        },
-        {
-          "class_name": 5,
-          "count": 15
-        },
-        {
-          "class_name": 6,
-          "count": 4
-        },
-      ],
-    },
-    {
-      "property_key": "lane_number",
-      "statistics":
-      [
-        {
-          "stat_name": "mean",
-          "value": 1.8
-        },
-        {
-          "stat_name": "max",
-          "value": 2
-        }
-      ]
-    },
-    {
-      "property_key": "paved",
-      "counts":
-      [
-        {
-          "class_name": 1,
-          "count": 19
-        }
-      ]
     }
   ],
   "assets":
