@@ -29,7 +29,7 @@ Some additional notes are given here for some of the core STAC Item fields and w
 - **properties.datetime**: The datetime of a Label Item is the nominal datetime for which the label applies, typically this is the datetime of the source imagery used to generate the labels. If the label applies over a range of datetimes (e.g., generated from multiple source images) then use the datetime-range (dtr) extension to indicate start and end datetimes.
 - **assets**: The label assets are GeoJSON FeatureCollection assets containing the actual label features. As with the core STAC Item a thumbnail asset is also strongly encouraged.
 
-### New Item fields
+### New Item properties
 | element           | type info            | name                       | description       |
 |-------------------|----------------------|----------------------------|--------------------------------------------------------------------------------------------------|
 | label:property    | [string] or null     | Name                       | **REQUIRED** These are the names of the property field(s) in each `Feature` of the label asset's `FeatureCollection` that contains the  classes (keywords from `label:classes` if the property defines classes). If labels are rasters, use `null`. |
@@ -140,7 +140,7 @@ In addition the link has a new Label specific field:
 
 
 ## Implementations
-This is an initial proposal, there are no current implementations.
+
 
 ## Extensions
 Label Items may often use the `datetime-range` extension if the label set applies over a range of dates. While the EO extension doesn't make sense within a Label Item itself, most Label Items will link to source data which will frequently use the EO Extension. The [extensions page](../README.md) gives an overview about these and other extensions.
