@@ -19,6 +19,26 @@
     2.23730639995,
     49.0213809
   ],
+  "label:property": ["road_type", "lane_number", "paved"],
+  "label:type": "vector",
+  "label:classes":
+  [
+    {
+      "name": "road_type",
+      "classes": [1, 2, 3, 4, 5, 6]
+    },
+    {
+      "name": "lane_number",
+      "classes": [1, 2, 3, 4, 5]
+    },
+    {
+      "name": "paved",
+      "classes": [0, 1]
+    }
+  ],
+  "label:task": ["segmentation"],
+  "label:method": ["manual"],
+  "label:version": 1,
   "properties":
   {
     "datetime": "2016-08-26T22:41:55.000000Z",
@@ -53,7 +73,7 @@
       "label:assets": "road_labels"
     }
   ],
-  "label:summaries":
+  "label:overview":
   [
     {
       "property_key": "road_type",
