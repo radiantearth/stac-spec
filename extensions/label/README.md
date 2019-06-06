@@ -15,9 +15,7 @@ This document explains the fields of the STAC Label Extension to a STAC Collecti
 | element           | type info       | name                       | description       |
 |-------------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------|
 | label:property    | [string]        | Name                       | **REQUIRED** These are the names of the property field(s) in each `Feature` of the label asset's `FeatureCollection` that contains the  classes (keywords from `label:classes` if the property defines classes). |
-| label:classes     | Class Object    | Classes                    | **REQUIRED** A Class Object defining the list of possible class names for each `label:property`. (e.g., tree, building, car, hippo)|
-| label:description | string          | Description                | **REQUIRED** A description of the label, how it was created, and what it is recommended for |
-| label:title       | string          | Title                      | A human readable title of the dataset for display |
+| label:classes     | [Class Object]    | Classes                    | **REQUIRED** A Class Object defining the list of possible class names for each `label:property`. (e.g., tree, building, car, hippo)|
 | label:type        | [string]        | Type                       | Recommended to be a subset of 'regression', 'classification', 'detection', or 'segmentation', but may be an arbitrary value |
 | label:method      | [string]        | Method                     | Recommended to be a subset of 'automated' or 'manual', but may be an arbitrary value. |
 | label:version     | number          | Version                    |  Monotonically-increasing version number. |
@@ -26,7 +24,7 @@ This document explains the fields of the STAC Label Extension to a STAC Collecti
 | Field Name      | Type            | name                       | description       |
 |-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------|
 | name            | string          | Name                       | The property key within the asset's each `Feature` corresponding to class labels. |
-| classes         | [string]        | Classes                    | The different possible classes within the property `name`. |
+| classes         | [string or numeric]        | Classes                    | The different possible class values within the property `name`. |
 
 ## Item fields
 
@@ -45,7 +43,7 @@ Some additional notes are given here for some of the core STAC Item fields and w
 | element         | type info           | name                       | description       |
 |-----------------|---------------------|----------------------------|--------------------------------------------------------------------------------------------------|
 | label:datetime  | datetime            | Datetime                   | **Required** The date and time *that the source imagery was collected.* |
-| label:summary   | Label Summary Object| Summary                    | An Object storing counts (for classification-type data) or summary statistics (for continuous numerical/regression data). |
+| label:summary   | [Label Summary Object] | Summary                    | An Object storing counts (for classification-type data) or summary statistics (for continuous numerical/regression data). |
 
 ### Label Summary Object
 
