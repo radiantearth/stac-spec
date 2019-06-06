@@ -33,7 +33,7 @@ Some additional notes are given here for some of the core STAC Item fields and w
 | label:type        | [string]            | Type                       | Recommended to be a subset of 'regression', 'classification', 'detection', or 'segmentation', but may be an arbitrary value |
 | label:method      | [string]            | Method                     | Recommended to be a subset of 'automated' or 'manual', but may be an arbitrary value. |
 | label:version     | number              | Version                    |  Monotonically-increasing version number. |
-| label:summary     | Label Summary Object| Summary                    | An Object storing counts (for classification-type data) or summary statistics (for continuous numerical/regression data). |
+| label:overview     | Label Overview Object| Overview                    | An Object storing counts (for classification-type data) or summary statistics (for continuous numerical/regression data). |
 
 #### Class Object
 | Field Name      | Type            | name                       | description       |
@@ -41,7 +41,7 @@ Some additional notes are given here for some of the core STAC Item fields and w
 | name            | string          | Name                       | The property key within the asset's each `Feature` corresponding to class labels. |
 | classes         | [string]        | Classes                    | The different possible classes within the property `name`. |
 
-#### Label Summary Object
+#### Label Overview Object
 
 | Field Name      | Type            | name                       | description       |
 |-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------|
@@ -49,7 +49,7 @@ Some additional notes are given here for some of the core STAC Item fields and w
 | counts          | [Count Object]  | Counts                     | An object containing counts for categorical data. |
 | statistics      | [Stats Object]  | Statistics                 | An object containing statistics for regression/continuous numeric value data. |
 
-`label:summary ` generally won't have both counts and statistics, but one of the two.
+`label:overview ` generally won't have both counts and statistics, but one of the two.
 
 ##### Count Object
 
