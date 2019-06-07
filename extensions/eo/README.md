@@ -25,12 +25,11 @@ The exact metadata that would appear in a STAC Collection record will vary depen
 
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
-| eo:gsd           | number                   | **REQUIRED.** Ground Sample distance. The nominal distance between pixel centers available, in meters. |
+| eo:gsd           | number                   | **REQUIRED.** Ground Sample Distance. The nominal distance between pixel centers available, in meters. |
 | eo:platform      | string                   | **REQUIRED.** Unique name of the specific platform the instrument is attached to. For satellites this would be the name of the satellite (e.g., landsat-8, sentinel-2A), whereas for drones this would be a unique name for the drone. |
 | eo:constellation | string                   | Name of the constellation that the platform belongs to. See below for details. |
 | eo:instrument    | string                   | **REQUIRED.** Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1). |
 | eo:bands         | [Band Object]            | **REQUIRED.** This is a list of the available bands where each item is a Band Object. |
-| eo:epsg          | integer\|null            | [EPSG code](http://www.epsg-registry.org/) of the datasource, `null` if no EPSG code. |
 | eo:cloud_cover   | number                   | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided. |
 | eo:off_nadir     | number                   | Viewing angle. The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90). |
 | eo:azimuth       | number                   | Viewing azimuth angle. The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360). |
@@ -50,12 +49,6 @@ eo:gsd should be 30 meters in this case since those are the bands most commonly 
 multiple sensors this could also name multiple sensors. For example, data from the Landsat-8
 platform is collected with the OLI sensor as well as the TIRS sensor, but the data is distributed
 together and commonly referred to as OLI_TIRS.
-
-**eo:epsg** - A Coordinate Reference System (CRS) is the native reference system (sometimes called a
-'projection') used by the data, and can usually be referenced using an [EPSG code](http://epsg.io).
-If the data does not have a CRS, such as in the case of non-rectified imagery with Ground Control
-Points, eo:epsg should be set to null. It should also be set to null if a CRS exists, but for which
-there is no valid EPSG code.
 
 ### Band Object
 

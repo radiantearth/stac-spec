@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "schema.json#",
+  "title": "Projection Extension",
+  "type": "object",
+  "description": "STAC Projection Extension",
+  "additionalProperties": true,
+  "properties": {
+    "properties": {
+      "type": "object",
+      "required": [
+        "proj:epsg",
+        "proj:crs",
+        "proj:geometry",
+        "proj:extent",
+        "proj:centroid"
+      ],
+      "properties": {
+        "proj:epsg": {
+          "title": "EPSG code",
+          "type": "integer"
+        },
+        "proj:crs": {
+          "title": "Coordinate Reference System",
+          "type": "string"
+        },
+        "proj:geometry": {
+          "title": "Geometry",
+          "type": "object"
+        },
+        "proj:extent": {
+          "title": "Extent",
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "type": "number"
+          }
+        },
+        "proj:centroid": {
+          "title": "Centroid",
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}
