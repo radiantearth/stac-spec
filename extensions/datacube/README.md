@@ -4,8 +4,8 @@
 
 Data cube related metadata, especially to describe their dimensions.
 
-- [Example](example.json)
-- [JSON Schema](schema.json)
+- [Example](examples/example.json)
+- [JSON Schema](json-schema/schema.json)
 
 ## Item Fields
 
