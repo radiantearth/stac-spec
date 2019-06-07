@@ -48904,7 +48904,7 @@
       "license": "CC-BY-4.0"
     },
     "raster": {
-      "title": "znz029_raster",
+      "title": "znz029_previewcog",
       "href": "https://oin-hotosm.s3.amazonaws.com/5ae242fd0b093000130afd38/0/5ae242fd0b093000130afd39.tif",
       "type": "image/vnd.stac.geotiff; cloud-optimized=true"
     },
@@ -48917,10 +48917,11 @@
   "properties": {
     "datetime": "2019-04-23T00:00:00Z",
     "label:property": "[building, condition]",
-    "label:description": "building roofprints manually  labeled and classified according to building completion status",
+    "label:description": "building footprints manually  labeled and classified according to building completion status",
     "label:task": "segmentation",
     "label:type": "vector",
     "label:method": "manual",
+    "label:version": 1,
     "label:classes": [
       {
         "name": "building",
@@ -48936,7 +48937,16 @@
           "Foundation"
         ]
       }
-    ]
+    ],
+    "label:overview": {
+      "property_key": "building",
+      "counts": [
+        {
+          "class_name": "yes",
+          "count": 1612
+        }
+      ]
+    }
   },
   "links": [
     {
@@ -48954,6 +48964,12 @@
     {
       "rel": "collection",
       "href": "catalog.json"
+    },
+    {
+      "rel": "source",
+      "href": "https://oin-hotosm.s3.amazonaws.com/5ae242fd0b093000130afd38/0/5ae242fd0b093000130afd39.tif",
+      "title": "The source imagery these building labels were derived from",
+      "label:assets": "building"
     }
   ]
 }

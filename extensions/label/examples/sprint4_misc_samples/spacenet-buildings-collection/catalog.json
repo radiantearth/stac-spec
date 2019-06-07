@@ -6,12 +6,12 @@
   "extent": {
     "spatial": [
       -115.23556259985658,
-      15.629641199956897,
+      31.234725900085653,
       121.66738919996575,
       49.00558590002751
     ],
     "temporal": [
-      "2019-06-06T00:00:00Z",
+      "2016-08-28T00:00:00Z",
       null
     ]
   },
@@ -20,6 +20,18 @@
     "demo"
   ],
   "license": "CC-BY-SA-4.0",
+  "providers": [
+    {
+      "name": "SpaceNet",
+      "roles": [
+        "licensor",
+        "host",
+        "producer",
+        "processor"
+      ],
+      "url": "https://spacenet.ai"
+    }
+  ],
   "links": [
     {
       "rel": "self",
@@ -32,10 +44,6 @@
     {
       "rel": "parent",
       "href": "../catalog.json"
-    },
-    {
-      "rel": "item",
-      "href": "AOI_5_Khartoum_img805.json"
     },
     {
       "rel": "item",

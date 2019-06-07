@@ -1091,12 +1091,12 @@
   "assets": {
     "labels": {
       "title": "AOI_2_Vegas_img2636_label",
-      "href": "https://www.dropbox.com/s/844lb2j58qqweza/buildings_AOI_2_Vegas_img2636.geojson?dl=1",
+      "href": "https://spacenet-dataset.s3.amazonaws.com/SpaceNet_Buildings_Dataset_Round2/spacenetV2_Train/AOI_2_Vegas/geojson/buildings/buildings_AOI_2_Vegas_img2636.geojson",
       "type": "application/geo+json",
       "license": "CC-BY-SA-4.0"
     },
     "raster": {
-      "title": "AOI_2_Vegas_img2636_raster",
+      "title": "AOI_2_Vegas_img2636_previewcog",
       "href": "https://spacenet-dataset.s3.amazonaws.com/AOI_2_Vegas/srcData/rasterData/AOI_2_Vegas_MUL-PanSharpen_Cloud.tif",
       "type": "image/vnd.stac.geotiff; cloud-optimized=true"
     }
@@ -1108,16 +1108,24 @@
     "label:task": "segmentation",
     "label:type": "vector",
     "label:method": "manual",
+    "label:version": 1,
     "label:classes": [
-      [
+      {
+        "name": "OBJECTID_1",
+        "classes": [
+          0
+        ]
+      }
+    ],
+    "label:overview": {
+      "property_key": "OBJECTID_1",
+      "counts": [
         {
-          "name": "OBJECTID_1",
-          "classes": [
-            0
-          ]
+          "class_name": 0,
+          "count": 27
         }
       ]
-    ]
+    }
   },
   "links": [
     {
@@ -1135,6 +1143,12 @@
     {
       "rel": "collection",
       "href": "catalog.json"
+    },
+    {
+      "rel": "source",
+      "href": "https://spacenet-dataset.s3.amazonaws.com/SpaceNet_Buildings_Dataset_Round2/spacenetV2_Train/AOI_2_Vegas/RGB-PanSharpen/RGB-PanSharpen_AOI_2_Vegas_img2636.tif",
+      "title": "The source imagery these building labels were derived from",
+      "label:assets": "OBJECTID_1"
     }
   ]
 }

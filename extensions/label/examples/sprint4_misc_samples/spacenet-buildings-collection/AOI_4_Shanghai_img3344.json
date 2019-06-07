@@ -675,12 +675,12 @@
   "assets": {
     "labels": {
       "title": "AOI_4_Shanghai_img3344_label",
-      "href": "https://www.dropbox.com/s/tqtoqo5lzv7ikq3/buildings_AOI_4_Shanghai_img3344.geojson?dl=1",
+      "href": "https://spacenet-dataset.s3.amazonaws.com/SpaceNet_Buildings_Dataset_Round2/spacenetV2_Train/AOI_4_Shanghai/geojson/buildings/buildings_AOI_4_Shanghai_img3344.geojson",
       "type": "application/geo+json",
       "license": "CC-BY-SA-4.0"
     },
     "raster": {
-      "title": "AOI_4_Shanghai_img3344_raster",
+      "title": "AOI_4_Shanghai_img3344_previewcog",
       "href": "https://spacenet-dataset.s3.amazonaws.com/AOI_4_Shanghai/srcData/rasterData/AOI_4_Shanghai_MUL-PanSharpen_Cloud.tif",
       "type": "image/vnd.stac.geotiff; cloud-optimized=true"
     }
@@ -692,16 +692,24 @@
     "label:task": "segmentation",
     "label:type": "vector",
     "label:method": "manual",
+    "label:version": 1,
     "label:classes": [
-      [
+      {
+        "name": "OBJECTID_1",
+        "classes": [
+          0
+        ]
+      }
+    ],
+    "label:overview": {
+      "property_key": "OBJECTID_1",
+      "counts": [
         {
-          "name": "OBJECTID_1",
-          "classes": [
-            0
-          ]
+          "class_name": 0,
+          "count": 8
         }
       ]
-    ]
+    }
   },
   "links": [
     {
@@ -719,6 +727,12 @@
     {
       "rel": "collection",
       "href": "catalog.json"
+    },
+    {
+      "rel": "source",
+      "href": "https://spacenet-dataset.s3.amazonaws.com/SpaceNet_Buildings_Dataset_Round2/spacenetV2_Train/AOI_4_Shanghai/RGB-PanSharpen/RGB-PanSharpen_AOI_4_Shanghai_img3344.tif",
+      "title": "The source imagery these building labels were derived from",
+      "label:assets": "OBJECTID_1"
     }
   ]
 }
