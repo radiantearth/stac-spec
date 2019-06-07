@@ -65,7 +65,9 @@ custom fields.
 | Field Name | Type   | Description                                                  |
 | ---------- | ------ | ------------------------------------------------------------ |
 | datetime   | string | **REQUIRED.** The searchable date and time of the assets, in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
-| title      | string | A human readable title describing the item.                  |
+| license    | string | Item's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
+| providers  | [Provider Object] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
+| title      | string | A human readable title describing the item. |
 | created    | string | Creation date and time of this metadata file. This is NOT the timestamp the asset was created. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
 | updated    | string | Date and time this metadata file was updated last. This is NOT the timestamp the asset was updated last. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
 
@@ -75,6 +77,29 @@ complex thing to capture, for this purpose keep in mind the STAC spec is primari
 data, so use whatever single date and time is most useful for a user to search for. STAC content
 extensions may further specify the meaning of the main `datetime` field, and many will also add more
 datetime fields.
+
+**license** and **provider** should be defined at the Collection level if possible (as either
+common properties or Collection fields). Item-level definition of these fields will override
+Collection `properties`. If none are defined, the Collection's `license` and `providers` fields
+will be assumed to apply to related Items.
+
+### Provider Object
+
+The object provides information about a provider. A provider is any of the organizations that captured or processed the content of the collection and therefore influenced the data offered by this collection. May also include information about the final storage provider hosting the data.
+
+| Field Name  | Type      | Description                                                  |
+| ----------- | --------- | ------------------------------------------------------------ |
+| name        | string    | **REQUIRED.** The name of the organization or the individual. |
+| description | string    | Multi-line description to add further provider information such as processing details for processors and producers, hosting details for hosts or basic contact information. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| roles       | [string]  | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`. |
+| url         | string    | Homepage on which the provider describes the dataset and publishes contact information. |
+
+**roles**: The provider's role(s) can be one or more of the following elements:
+
+* *licensor*: The organization that is licensing the dataset under the license specified in the collection's `license` field.
+* *producer*: The producer of the data is the provider that initially captured and processed the source data, e.g. ESA for Sentinel-2 data.
+* *processor*: A processor is any provider who processed data to a derived product.
+* *host*: The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list. 
 
 ### Link Object
 
@@ -108,6 +133,7 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | root         | URL to the root STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may hold [common fields](../collection-spec/collection-spec.md#common-fields-and-standalone-collections) of this and other Items (see chapter '[Collections](#Collections)' for more explanations). _Absolute_ URLs should be used whenever possible. |
+| license | The license URL for the item SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC Item with the license text in a separate file and link to this file. |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
 
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
