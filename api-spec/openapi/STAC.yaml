@@ -477,6 +477,7 @@ components:
                 format: url
                 example: http://www.big-building.com
     itemCollection:
+      description: A GeoJSON FeatureCollection augmented with foreign members that contain values relevant to a STAC entity
       type: object
       required:
         - features
@@ -493,6 +494,7 @@ components:
         links:
           $ref: '#/components/schemas/itemCollectionLinks'
     item:
+      description:  A GeoJSON Feature augmented with foreign members that contain values relevant to a STAC entity
       type: object
       required:
         - id

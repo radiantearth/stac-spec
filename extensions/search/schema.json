@@ -24,13 +24,13 @@
               "type": ["string", "null"]
             },
             "limit": {
-              "type": ["number", "null"]
+              "type": ["integer", "null"]
             },
             "found": {
-              "type": "number"
+              "type": "integer"
             },
             "returned": {
-              "type": "number"
+              "type": "integer"
             },
             "properties": {
               "type": "object"

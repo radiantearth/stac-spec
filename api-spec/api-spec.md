@@ -43,8 +43,8 @@ STAC provides some additional endpoints for the root Catalog itself, as well as 
 
 | Endpoint      | Returns          | Description        |
 | ------------- | ------------- | ---------------------- |
-| /stac         | Catalog        | Root catalog |
-| /stac/search  | ItemCollection   | GeoJSON FeatureCollection, probably containing additional STAC metadata, including search metadata from the `search` extension |
+| /stac         | Catalog        | Root catalog entry point |
+| /stac/search  | ItemCollection   | Retrieves a group of Items matching the provided search predicates, probably containing search metadata from the `search` extension |
 
 The `/stac` endpoint should function as a complete `Catalog` representation of all the data contained in the API and linked to in some way from root through `Collections` and `Items`.
 
