@@ -1,4 +1,4 @@
-## STAC API Specification
+# STAC API Specification
 
 The Web Feature Service is a standard API that represents collections of geospatial data. The [Web Feature Service 3.0 API](https://github.com/opengeospatial/WFS_FES), currently under development, is the latest iteration of that standard. WFS 3 defines the RESTful interface to query geospatial data, with GeoJSON as a main return type. With WFS you can return any `Feature`, which is a geometry plus any number of properties. In the STAC specification an `Item` is a `Feature`, with additional required fields for `datetime` and `assets`. WFS also defines the concept of a Collection, which contains `Feature`s. A STAC `Collection` aligns with (and extends slightly) a WFS 3 `Collection`; it contains `Item`s.
 
@@ -6,7 +6,42 @@ In WFS 3 Collections are the sets of data that can be queried ([7.11](https://ra
 
 In WFS 3 Features are the individual records within a Collection and are provided in GeoJSON format. [STAC Items](../item-spec/README.md) are analagous to WFS 3 Features, are in GeoJSON, and are returned from the `/collections/{collection_id}/items/{item_id}` endpoint.
 
-### WFS3 Endpoints
+## STAC ItemCollection Specification
+
+This section explains the structure and content of a SpatioTemporal Asset Catalog (STAC) ItemCollection. An **ItemCollection** is a 
+[GeoJSON](http://geojson.org/) [FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) that is augmented with 
+[foreign members](https://tools.ietf.org/html/rfc7946#section-6) relevant to a STAC entity.
+
+Similary to the relationship between a GeoJSON Feature and a STAC Item, a STAC ItemCollection should be a valid GeoJSON FeatureCollection
+to allow interoperability with existing tools that support GeoJSON. 
+
+### ItemCollection fields
+
+This object describes a STAC ItemCollection. The fields `type` and `features` are inherited from GeoJSON FeatureCollection.
+
+| Field Name | Type                                                                       | Description |
+| ---------- | -------------------------------------------------------------------------- | ----------- |
+| type       | string | **REQUIRED.** always "FeatureCollection"                |
+| features   | [Item] | **REQUIRED** a possibly-empty array of Items          |
+| links      | [Link] | an array of Links related to this Item Collection   |
+          
+### ItemCollection Example
+
+An ItemCollection is identical to a GeoJSON FeatureCollection.
+
+```
+{
+  "type": "FeatureCollection",
+  "features": [ ]
+}
+```
+
+### ItemCollection Extensions
+
+The [Search Extension](extensions/search/README.md) adds additional fields to STAC ItemCollections relevant to their use as 
+search results.
+
+## WFS3 Endpoints
 
 The core WFS 3 endpoints are shown below, with details provided in an [OpenAPI specification document](definitions/WFS3.yaml).
 

@@ -1,8 +1,9 @@
 # STAC Item Specification
 
-This document explains the structure and content of a SpatioTemporal Asset Catalog (STAC) Item. Each
-is a [GeoJSON](http://geojson.org/) [feature](https://tools.ietf.org/html/rfc7946#section-3.2), plus
-a few required fields that identify the time range and assets of the item. An Item is the core
+This document explains the structure and content of a SpatioTemporal Asset Catalog (STAC) Item. An **Item** is a 
+[GeoJSON](http://geojson.org/) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) augmented with 
+[foreign members](https://tools.ietf.org/html/rfc7946#section-6) relevant to a STAC entity.
+These attributes include fields that identify the time range and assets of the Item. An Item is the core
 granular entity in a STAC, containing the core metadata that enables any client to search or crawl
 online catalogs of spatial 'assets' - satellite imagery, derived data, DEM's, etc.
 

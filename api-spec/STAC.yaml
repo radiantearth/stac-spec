@@ -928,14 +928,10 @@ components:
     itemCollectionLinks:
       type: array
       description: >-
-        An array of links. Can be used for pagination, e.g. by providing a link
-        with the `next` relation type.
+        An array of links to resources related to this collection.
       items:
         $ref: '#/components/schemas/link'
-      example:
-        - rel: next
-          href: >-
-            http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
+
 servers:
   - url: 'http://dev.cool-sat.com'
     description: Development server
