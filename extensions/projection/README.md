@@ -10,11 +10,11 @@ When specified on an Item, the values apply to all Assets in that Item, unless o
 
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
-| proj:epsg   | integer\|null            | [EPSG code](http://www.epsg-registry.org/) of the datasource |
-| proj:crs    | string \|null                  | Proj4 string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:extent` fields represent |
-| proj:geometry | [GeoJSON Polygon Object](https://tools.ietf.org/html/rfc7946#section-3.1.6) | Recommended. Defines the footprint of this item, formatted according to [RFC 7946, sections 3.1.6](https://tools.ietf.org/html/rfc7946), except not necessarily in EPSG:4326 as required by RFC7946 |
-| proj:extent | [number]                 | Bounding box of the asset represented by this item in the native CRS |
-| proj:centroid      | [number]         | Coordinates representing the centroid of the item in the native CRS |
+| proj:epsg        | integer\|null  | **Required** [EPSG code](http://www.epsg-registry.org/) of the datasource |
+| proj:crs         | string \|null  | **Required** Proj4 string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:extent` fields represent |
+| proj:geometry    | Polygon Object | Recommended. Defines the footprint of this item. |
+| proj:extent      | [number]       | Recommended. Bounding box of the item or asset in the native CRS |
+| proj:centroid    | [number]       | Recommended. Coordinates representing the centroid of the item or asset in the native CRS |
 
 **proj:epsg** - A Coordinate Reference System (CRS) is the native reference system (sometimes called a
 'projection') used by the data, and can usually be referenced using an [EPSG code](http://epsg.io).
@@ -28,7 +28,7 @@ If the data does not have a CRS, such as in the case of non-rectified imagery wi
 Points, eo:crs should be set to null. It should also be set to null if a CRS exists, but for which
 a Proj4 string does not exist (tbd: is that possible?).
 
-**proj:geometry** - A [GeoJSON Polygon Object](https://tools.ietf.org/html/rfc7946#section-3.1.6) representing the footprint of this item, formatted according to [RFC 7946, sections 3.1.6](https://tools.ietf.org/html/rfc7946), except not necessarily in EPSG:4326 as required by RFC7946.  Specified based on the `proj:crs` field (not necessarily EPSG:4326). Ideally, this will be represented by a Polygon with five coordinates, as the item in the native CRS should be a square aligned to the CRS grid.
+**proj:geometry** - A Polygon object representing the footprint of this item, formatted according the Polygon object format specified in [RFC 7946, sections 3.1.6](https://tools.ietf.org/html/rfc7946), except not necessarily in EPSG:4326 as required by RFC7946.  Specified based on the `proj:crs` field (not necessarily EPSG:4326). Ideally, this will be represented by a Polygon with five coordinates, as the item in the native CRS should be a square aligned to the CRS grid.
 
 **proj:extent** - Bounding box of the asset represented by this item in the native CRS. Specified as four coordinates based on the CRS defined in the eo:crs field.  First two numbers are coordinates of the lower left corner, followed by coordinates of upper right corner, e.g., \[west, south, east, north]
 
