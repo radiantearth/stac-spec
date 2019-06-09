@@ -21,7 +21,7 @@
           "type": "integer"
         },
         "proj:crs": {
-          "title": "Coordinate Reference System",
+          "title": "Coordinate Reference System in PROJ format",
           "type": "string"
         },
         "proj:geometry": {

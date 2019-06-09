@@ -2,7 +2,8 @@
 
 **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
-This document explains the fields of the STAC Projection (`proj`) Extension to a STAC Item or Asset. 
+This document explains the fields of the STAC Projection (`proj`) Extension to a STAC Item or Asset. Here `proj` is short
+for "projection", and not a reference to the use of the PROJ format for the CRS attribute.
 
 When specified on an Item, the values apply to all Assets in that Item, unless otherwise explicitly defined within an Item.  For example, an Item may have several related Assets each representing a band for the Item, all of which are in the same native CRS, e.g., a UTM Zone.  However, there may also be assets intended for display, like a preview image or thumbnail, that have been reprojected to a different CRS, e.g., Web Mercator, to better accommodate that use case.
 
@@ -11,7 +12,7 @@ When specified on an Item, the values apply to all Assets in that Item, unless o
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
 | proj:epsg        | integer\|null  | **Required** [EPSG code](http://www.epsg-registry.org/) of the datasource |
-| proj:crs         | string \|null  | **Required** Proj4 string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:extent` fields represent |
+| proj:crs         | string \|null  | **Required** PROJ string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:extent` fields represent |
 | proj:geometry    | Polygon Object | Recommended. Defines the footprint of this item. |
 | proj:extent      | [number]       | Recommended. Bounding box of the item or asset in the native CRS |
 | proj:centroid    | [number]       | Recommended. Coordinates representing the centroid of the item or asset in the native CRS |
@@ -19,18 +20,18 @@ When specified on an Item, the values apply to all Assets in that Item, unless o
 **proj:epsg** - A Coordinate Reference System (CRS) is the native reference system (sometimes called a
 'projection') used by the data, and can usually be referenced using an [EPSG code](http://epsg.io).
 If the data does not have a CRS, such as in the case of non-rectified imagery with Ground Control
-Points, eo:epsg should be set to null. It should also be set to null if a CRS exists, but for which
+Points, proj:epsg should be set to null. It should also be set to null if a CRS exists, but for which
 there is no valid EPSG code.
 
 **proj:crs** - A Coordinate Reference System (CRS) is the native reference system (sometimes called a
-'projection') used by the data. This value is a Proj4 string.
+'projection') used by the data. This value is a PROJ string.
 If the data does not have a CRS, such as in the case of non-rectified imagery with Ground Control
-Points, eo:crs should be set to null. It should also be set to null if a CRS exists, but for which
-a Proj4 string does not exist (tbd: is that possible?).
+Points, proj:crs should be set to null. It should also be set to null if a CRS exists, but for which
+a PROJ string does not exist.
 
 **proj:geometry** - A Polygon object representing the footprint of this item, formatted according the Polygon object format specified in [RFC 7946, sections 3.1.6](https://tools.ietf.org/html/rfc7946), except not necessarily in EPSG:4326 as required by RFC7946.  Specified based on the `proj:crs` field (not necessarily EPSG:4326). Ideally, this will be represented by a Polygon with five coordinates, as the item in the native CRS should be a square aligned to the CRS grid.
 
-**proj:extent** - Bounding box of the asset represented by this item in the native CRS. Specified as four coordinates based on the CRS defined in the eo:crs field.  First two numbers are coordinates of the lower left corner, followed by coordinates of upper right corner, e.g., \[west, south, east, north]
+**proj:extent** - Bounding box of the asset represented by this item in the native CRS. Specified as four coordinates based on the CRS defined in the `proj:epsg` and `proj:crs` fields.  First two numbers are coordinates of the lower left corner, followed by coordinates of upper right corner, e.g., \[west, south, east, north]
 
 **proj:centroid** - Coordinates representing the centroid of the item in the native coordinate system.  Coordinates defined as \[lat,lon], even if the native coordinate system does not use lat/long.
 
