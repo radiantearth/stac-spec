@@ -1,4 +1,4 @@
-# STAC Collection Specification
+# STAC Collections
 
 [STAC Items](../item-spec/README.md) are focused on search within a collection*. Another topic of 
 interest is the search of collections, instead of within a collection. The [STAC Collection specification](collection-spec.md)
