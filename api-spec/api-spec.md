@@ -29,7 +29,7 @@ Items in the collection should match all filters to be returned when querying. T
 | ------------ | ------------- | ---------------------- |
 | ids | [string] | Array of Item ids to return. All other filter parameters that further restrict the number of search results (except `next` and `limit`) are ignored |
 | collections | [string] | Array of Collection IDs to include in the search for items. Only Items in one of the provided Collections will be searched |
-| intersects | GeoJSON Feature | Searches items by performing intersection between their geometry and provided GeoJSON Feature |
+| intersects | GeoJSON Geometry | Searches items by performing intersection between their geometry and provided GeoJSON geometry.  All GeoJSON geometry types must be supported. |
 | bbox | [number]       | Requested bounding box [west, south, east, north] |
 | time | string | Single date, date+time, or a range ('/' separator), formatted to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6) |
 | next | string | The token to retrieve the next set of results, e.g., offset, page, continuation token|
