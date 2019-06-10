@@ -1,25 +1,41 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "schema.json#",
+  "$id": "stac-extension-datetime-range.json#",
   "type": "object", 
   "title": "STAC Datetime Range Extension Spec",
-  "properties": {
-    "properties": {
+  "allOf": [
+    {
+      "$ref": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/json-schema/item.json#/definitions/core"
+    },
+    {
+      "$ref": "#/definitions/datetime-range"
+    }
+  ],
+  "definitions": {
+    "datetime-range": {
       "type": "object",
       "required": [
-        "dtr:start_datetime",
-        "dtr:end_datetime"
+        "properties"
       ],
       "properties": {
-        "dtr:start_datetime": {
-          "type": "string",
-          "format": "date-time",
-          "title": "Start datetime"
-        }, 
-        "dtr:end_datetime": {
-          "type": "string",
-          "format": "date-time",
-          "title": "End datetime"
+        "properties": {
+          "type": "object",
+          "required": [
+            "dtr:start_datetime",
+            "dtr:end_datetime"
+          ],
+          "properties": {
+            "dtr:start_datetime": {
+              "type": "string",
+              "format": "date-time",
+              "title": "Start datetime"
+            }, 
+            "dtr:end_datetime": {
+              "type": "string",
+              "format": "date-time",
+              "title": "End datetime"
+            }
+          }
         }
       }
     }

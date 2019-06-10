@@ -56,13 +56,13 @@ If the `/stac/search` endpoint is implemented, it is **required** to add a link 
 
 Unless otherwise noted by **Path-only**, these filters are passed as query string, form, or JSON entity parameters.  Query and form parameters should use comma-separated string values. JSON entity parameters should use JSON Arrays. 
 
-| Parameter    | Type            | APIs       | Description        |
-| -----------  | --------------- | ---------- | ---------------------- |
-| collectionId | [string]        | WFS3       | **Path-only** Single Collection ID to include in the search for items. Only Items in one of the provided Collection will be searched |
-| limit        | number          | WFS3, STAC | The maximum number of results to return (page size). Defaults to 10 |
-| bbox         | [number]        | WFS3, STAC | Requested bounding box [west, south, east, north] |
-| time         | string          | WFS3, STAC | Single date, date+time, or a range ('/' seperator), formatted to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6) |
-| intersects   | GeoJSON Feature | STAC       | Searches items by performing intersection between their geometry and provided GeoJSON Feature |
-| page         | number          | STAC       | The page number of results. Defaults to 1 |
-| ids          | [string]        | STAC       | Array of Item ids to return. All other filter parameters that further restrict the number of search results (except `page` and `limit`) are ignored |
-| collections  | [string]        | STAC       | Array of Collection IDs to include in the search for items. Only Items in one of the provided Collections will be searched |
+| Parameter    | Type             | APIs       | Description        |
+| -----------  | ---------------- | ---------- | ---------------------- |
+| collectionId | [string]         | WFS3       | **Path-only** Single Collection ID to include in the search for items. Only Items in one of the provided Collection will be searched |
+| limit        | number           | WFS3, STAC | The maximum number of results to return (page size). Defaults to 10 |
+| bbox         | [number]         | WFS3, STAC | Requested bounding box [west, south, east, north] |
+| time         | string           | WFS3, STAC | Single date, date+time, or a range ('/' seperator), formatted to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6) |
+| intersects   | GeoJSON Geometry | STAC | Searches items by performing intersection between their geometry and provided GeoJSON geometry.  All GeoJSON geometry types must be supported. |
+| page         | number           | STAC       | The page number of results. Defaults to 1 |
+| ids          | [string]         | STAC       | Array of Item ids to return. All other filter parameters that further restrict the number of search results (except `page` and `limit`) are ignored |
+| collections  | [string]         | STAC       | Array of Collection IDs to include in the search for items. Only Items in one of the provided Collections will be searched |
