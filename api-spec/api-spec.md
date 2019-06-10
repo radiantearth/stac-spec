@@ -29,7 +29,7 @@ Items in the collection should match all filters to be returned when querying. T
 | ------------ | ------------- | ---------------------- |
 | bbox | [number]       | Requested bounding box [west, south, east, north] |
 | time | string | Single date, date+time, or a range ('/' seperator), formatted to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6) |
-| intersects | GeoJSON Geometry | Searches items by performing intersection between their geometry and provided GeoJSON GeoJSON |
+| intersects | GeoJSON Geometry | Searches items by performing intersection between their geometry and provided GeoJSON geometry.  All GeoJSON geometry types must be supported. |
 | page | number | The page number of results. Defaults to 1 |
 | limit | number | The maximum number of results to return (page size). Defaults to 10 |
 | ids | [string] | Array of Item ids to return. All other filter parameters that further restrict the number of search results (except `page` and `limit`) are ignored |
