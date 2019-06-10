@@ -16,6 +16,18 @@
   },
   "properties": {
     "datetime": "2016-05-03T13:22:30.040Z",
+    "title": "A CS3 item",
+    "license": "PDDL-1.0",
+    "providers": [
+      {
+        "name": "CoolSat",
+        "roles": [
+          "producer",
+          "licensor"
+        ],
+        "url": "https://cool-sat.com/"
+      }
+    ],
     "eo:sun_azimuth": 168.7,
     "eo:cloud_cover": 0.12,
     "eo:off_nadir": 1.4,

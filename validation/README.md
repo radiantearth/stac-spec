@@ -2,7 +2,7 @@
 
 Any JSON Schema validation tool can be used, just run the JSON data to test
 against the various STAC schema, and be sure to include any remote schema
-like the geojson.json schema in the testing.
+in the testing.
 
 This directory includes installation instructions for a Python validator and
 a JavaScript validator. The python validator is more complete and the

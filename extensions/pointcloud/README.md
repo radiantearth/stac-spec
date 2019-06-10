@@ -7,7 +7,7 @@ which allows STAC to more fully describe point cloud datasets. The point clouds 
 come from either active or passive sensors, and data is frequently acquired using
 tools such as LiDAR or coincidence-matched imagery.
 
-- [Example](example-autzen.json)
+- [Example](examples/example-autzen.json)
 - JSON Schema is missing. PRs are welcome.
 
 ## Item Fields

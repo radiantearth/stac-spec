@@ -133,7 +133,7 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: 'https://stacspec.org/assets/FeatureCollection.json'
+                $ref: 'https://geojson.org/schema/FeatureCollection.json'
             text/html:
               schema:
                 type: string
@@ -161,7 +161,7 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: 'https://stacspec.org/assets/Feature.json'
+                $ref: 'https://geojson.org/schema/Feature.json'
             text/html:
               schema:
                 type: string
@@ -741,7 +741,7 @@ components:
       description: Only returns items that intersect with the provided geometry.
       properties:
         intersects:
-          $ref: 'https://stacspec.org/assets/Geometry.json'
+          $ref: 'https://geojson.org/schema/Geometry.json'
     time:
       type: string
       description: >
@@ -837,7 +837,7 @@ components:
         bbox:
           $ref: '#/components/schemas/bbox'
         geometry:
-          $ref: 'https://stacspec.org/assets/Geometry.json'
+          $ref: 'https://geojson.org/schema/Geometry.json'
         type:
           $ref: '#/components/schemas/itemType'
         properties:
