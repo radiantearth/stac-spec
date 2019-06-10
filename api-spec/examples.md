@@ -8,49 +8,49 @@ parameters (such as intersect)
 
 ## Core examples
 
-Requests all the data in the collection that is in New Zealand:
+Requests all the items in the collection that is in New Zealand:
 
 ```
 GET /stac/search?bbox=160.6,-55.95,-170,-25.89
 ```
 
-Request all the data in `mycollection` that is in New Zealand:
+Request all the items in `mycollection` that is in New Zealand:
 
 ```
 GET /stac/search/items?bbox=160.6,-55.95,-170,-25.89&collections=mycollection
 ```
 
-Request 100 results in `mycollection` from New Zealand:
+Request 100 items in `mycollection` from New Zealand:
 
 ```
 GET /stac/search?bbox=160.6,-55.95,-170,-25.89&limit=100&collections=mycollection
 ```
 
-Request all the data in `mycollection` that is in New Zealand from January 1st, 2019:
+Request all the items in `mycollection` that is in New Zealand from January 1st, 2019:
 
 ```
 GET /stac/search?bbox=160.6,-55.95,-170,-25.89&time=2019-01-01&collections=mycollection
 ```
 
-Request 100 results in `mycollection` or `yourcollection` that is in New Zealand from January 1st, 2019:
+Request 100 items in `mycollection` or `yourcollection` that is in New Zealand from January 1st, 2019:
 
 ```
 GET /stac/search?bbox=160.6,-55.95,-170,-25.89&time=2019-01-01&limit=100&collections=mycollection,yourcollection
 ```
 
-Request all the data in any collection that is in New Zealand from January 1st, 2019:
+Request all the items in any collection that is in New Zealand from January 1st, 2019:
 
 ```
 GET /stac/search?bbox=160.6,-55.95,-170,-25.89&time=2019-01-01
 ```
 
-Request all the data in any collection that is in New Zealand and has the id `1` or `2`:
+Request all the items in any collection that is in New Zealand and has the id `1` or `2`:
 
 ```
 GET /stac/search?bbox=160.6,-55.95,-170,-25.89&time=2019-01-01&ids=1,2
 ```
 
-Request 100 results in `mycollection` or `yourcollection` that is in New Zealand and has the id `1` or `2`:
+Request 100 items in `mycollection` or `yourcollection` that is in New Zealand and has the id `1` or `2`:
 
 ```
 GET /stac/search?bbox=160.6,-55.95,-170,-25.89&time=2019-01-01&limit=100&collections=mycollection,yourcollection&ids=1,2
@@ -71,7 +71,7 @@ Body:
 }
 ```
 
-Request all the data in `mycollection` from between January 1st and April 1st, 2019:
+Request all the items in `mycollection` from between January 1st and April 1st, 2019:
 
 ```
 GET /stac/search?time=2019-01-01/2019-04-01&collections=mycollection
@@ -131,7 +131,7 @@ to the collections endpoint, where the collection ID in the path variable is use
 `collections` query parameter array in order to ensure the results are limited to that collection.  This is purely 
 optional and neither required nor a recommendation.
 
-Request 100 results in `mycollection` from New Zealand using the collections endpoint:
+Request 100 items in `mycollection` from New Zealand using the collections endpoint:
 
 ```
 GET /collections/mycollection/items?bbox=160.6,-55.95,-170,-25.89&limit=100
@@ -144,7 +144,7 @@ Note that the collections endpoint _only_ supports HTTP GET. HTTP POST requests 
 The API Extensions allow for more sophisticated searching, such as the ability to search by geometries and searching on 
 specific Item properties.
 
-Use the *[Query](extensions/query/README.md)* extension to search for any data falling within a specific geometry 
+Use the *[Query](extensions/query/README.md)* extension to search for any items falling within a specific geometry 
 collected between Jan 1st and May 1st, 2019:
 
 ```
