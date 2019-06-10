@@ -9,7 +9,7 @@ search, for example, from calling the `/stac/search` API endpoint.
 
 | Element      | Type          | Description                                                  |
 | ------------ | ------------- | ------------------------------------------------------------ |
-| `search:meta`  | SearchMeta | **REQUIRED.** The search-related metadata for the ItemCollection |
+| `search:meta`  | SearchMeta | **REQUIRED.** The search-related metadata for the [ItemCollection](../itemcollection-spec/README.md). |
 
 ### SearchMeta fields
 
