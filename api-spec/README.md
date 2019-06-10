@@ -1,6 +1,6 @@
 # STAC API
 
-A STAC API is the dynamic version of a SpatioTemporal Asset Catalog. It returns a STAC [Catalog](../catalog-spec/README.md), [Collection](../collection-spec/README.md), or [ItemCollection](../itemcollection-spec/README.md), depending on the endpoint. Catalogs and Collections are JSON, while Items and ItemCollections are GeoJSON-compliant entities with foreign members.  Typically, a Feature is used when returning a
+A STAC API is the dynamic version of a SpatioTemporal Asset Catalog. It returns a STAC [Catalog](../catalog-spec/README.md), [Collection](../collection-spec/README.md), [Item](../item-spec/README.md), or [ItemCollection](../itemcollection-spec/README.md), depending on the endpoint. Catalogs and Collections are JSON, while Items and ItemCollections are GeoJSON-compliant entities with foreign members.  Typically, a Feature is used when returning a
 single Item, and FeatureCollection when multiple Items (rather than a JSON array of Item entities).
 
 The API is a [Web Feature Service 3.0 (WFS 3) API](https://github.com/opengeospatial/WFS_FES), in that WFS 3 defines many of the endpoints that STAC uses. A STAC API should be compatible and usable with WFS3 clients. However, WFS 3 is still under development and while STAC tries to stay in sync with WFS3 developments, there may be discrepancies prior to final versions of both specifications.
