@@ -1,4 +1,4 @@
-## STAC API Specification
+# STAC API Specification
 
 The Web Feature Service is a standard API that represents collections of geospatial data. The [Web Feature Service 3.0 API](https://github.com/opengeospatial/WFS_FES), currently under development, is the latest iteration of that standard. WFS 3 defines the RESTful interface to query geospatial data, with GeoJSON as a main return type. With WFS you can return any `Feature`, which is a geometry plus any number of properties. In the STAC specification an `Item` is a `Feature`, with additional required fields for `datetime` and `assets`. WFS also defines the concept of a Collection, which contains `Feature`s. A STAC `Collection` aligns with (and extends slightly) a WFS 3 `Collection`; it contains `Item`s.
 
@@ -6,7 +6,7 @@ In WFS 3 Collections are the sets of data that can be queried ([7.11](https://ra
 
 In WFS 3 Features are the individual records within a Collection and are provided in GeoJSON format. [STAC Items](../item-spec/README.md) are analagous to WFS 3 Features, are in GeoJSON, and are returned from the `/collections/{collection_id}/items/{item_id}` endpoint.
 
-### WFS3 Endpoints
+## WFS3 Endpoints
 
 The core WFS 3 endpoints are shown below, with details provided in an [OpenAPI specification document](definitions/WFS3.yaml).
 
@@ -42,7 +42,7 @@ STAC provides some additional endpoints for the root Catalog itself, as well as 
 | Endpoint      | Returns          | Description        |
 | ------------ | ------------- | ---------------------- |
 | /stac | Catalog        | Root catalog |
-| /stac/search | Items | GeoJSON FeatureCollection of Items found |
+| /stac/search  | [ItemCollection](../itemcollection-spec/README.md) | Retrieves a group of Items matching the provided search predicates, probably containing search metadata from the `search` extension |
 
 The `/stac` endpoint should function as a complete `Catalog` representation of all the data contained in the API and linked to in some way from root through `Collections` and `Items`.
 
