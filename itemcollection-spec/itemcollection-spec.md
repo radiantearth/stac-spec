@@ -27,7 +27,18 @@ This object describes a STAC ItemCollection. The fields `type` and `features` ar
 | type       | string | **REQUIRED.** always "FeatureCollection" to provide compatability with GeoJSON  |
 | features   | [Item] | **REQUIRED** a possibly-empty array of Items          |
 | links      | [Link] | an array of Links related to this ItemCollection   |
-          
+| properties      | Properties | an array of Links related to this ItemCollection   |
+
+### Properties Object
+
+The Properties object adds additional metadata to the ItemCollection. Basically, each entry is a
+key-value pair. The values SHOULD not be an array or object to avoid GIS systems mis-rendering them.
+Metadata that require an object or array SHOULD be placed a level up, directly in the
+ItemCollection object. Additional fields can be introduced through extensions. It is generally allowed to add
+custom fields.
+
+There are no required fields for the core definition of ItemCollection.
+
 ## ItemCollection Example
 
 An ItemCollection is identical to a GeoJSON FeatureCollection.
@@ -36,16 +47,17 @@ An ItemCollection is identical to a GeoJSON FeatureCollection.
 {
   "type": "FeatureCollection",
   "features": [ ],
-   "links":[
+  "links":[
       {
         "rel":"self",
         "href":"http://stac.example.com/stac/search?collection=modis_mcd43a4"
       }
-    ]
+    ],
+  "properties" : {}  
 }
 ```
 
 ## ItemCollection Extensions
 
-The [Search Extension](extensions/search/README.md) adds additional fields to STAC ItemCollections relevant to their use as 
+The [Search Extension](extensions/search/README.md) adds additional fields to STAC ItemCollection relevant to their use as 
 search results.

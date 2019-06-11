@@ -24,8 +24,7 @@
           "type": "object",
           "required": [
             "type",
-            "features",
-            "links"
+            "features"
           ],
           "properties": {
             "type": {
@@ -40,14 +39,17 @@
               "items": {
                 "$ref": "../../item-spec/json-schema/item.json"
               }
-            }
-          },
-          "links": {
-            "title": "Links",
-            "description": "Links to item collection relations",
-            "type": "array",
-            "items": {
-              "$ref": "../../item-spec/json-schema/item.json#/definitions/link"
+            },
+            "links": {
+              "title": "Links",
+              "description": "Links to item collection relations",
+              "type": "array",
+              "items": {
+                "$ref": "../../item-spec/json-schema/item.json#/definitions/link"
+              }
+            },
+            "properties": {
+              "type": "object"
             }
           }
         }
