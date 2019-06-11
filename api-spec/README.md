@@ -9,22 +9,22 @@ The API is a [Web Feature Service 3.0 (WFS 3) API](https://github.com/opengeospa
 
 **The Specification:** The main description of the STAC API specification is in the *[api-spec.md](api-spec.md)* file. It includes an overview and in depth explanation of the REST endpoints and parameters.
 
-**Extensions:** API Extensions are given in the *[extensions](extensions)* folder. YAML fragments are provided for each extension with details provided in the *[README](extensions/README.md)*.
+**Extensions:** API Extensions are given in the *[extensions](extensions/)* folder. YAML fragments are provided for each extension with details provided in the *[README](extensions/README.md)*.
 
 **Examples:** For samples of how the STAC API can be queried, see the *[examples.md](examples.md)* file.
 
-**API Definitions:** The API is described by the OpenAPI documents in the *[openapi](openapi)* folder.
+**API Definitions:** The API is described by the OpenAPI documents in the *[openapi](openapi/)* folder.
 
 ## OpenAPI definitions
 
-The definitive specification for STAC API is provided as an [OpenAPI](http://openapis.org/) 3.0 specification that is contained within several YAML files in the [openapi](openapi) and [extensions](extensions) directories.
+The definitive specification for STAC API is provided as an [OpenAPI](http://openapis.org/) 3.0 specification that is contained within several YAML files in the [openapi](openapi/) and [extensions](extensions/) directories.
 
 These are built into the definitive core API specification at [STAC.yaml](STAC.yaml), which can be viewed online at 
 [stacspec.org/STAC-api.html](https://stacspec.org/STAC-api.html). An additional OpenAPI definition is provided at 
 [STAC-extensions.yaml](STAC-extensions.yaml) that includes all the optional extensions, and can be browsed online at
 [stacspec.org/STAC-ext-api.html](https://stacspec.org/STAC-ext-api.html).
 
-In the [openapi](openapi) directory there are three files
+In the [openapi](openapi/) directory there are three files
 
 - WFS3.yaml - The WFS3.yaml file is the WFS3 OpenAPI definition **as currently used by STAC**
 - STAC.yaml - Contains additional endpoints and components that STAC uses, which is treated as a WFS 3 extension
@@ -32,9 +32,9 @@ In the [openapi](openapi) directory there are three files
 
 A basic STAC implementation implements both the WFS3 and STAC definitions.
 
-The YAML files in the [extensions](extensions) folder are fragments. Fragments are used to describe incomplete pieces of an OpenAPI document, and must be merged with a complete OpenAPI document to be usable. This way extensions can be kept separate, and implementors can combine just the extensions they want to use in order to create a custom OpenAPI document they can use.
+The YAML files in the [extensions](extensions/) folder are fragments. Fragments are used to describe incomplete pieces of an OpenAPI document, and must be merged with a complete OpenAPI document to be usable. This way extensions can be kept separate, and implementors can combine just the extensions they want to use in order to create a custom OpenAPI document they can use.
 
-Editing should be done on the files in the [openapi](openapi) and [extensions](extensions) directories, *not* the `STAC.yaml` and `STAC-extensions.yaml` files, as these are automatically generated. If any of the files are edited, update the OpenAPI docs to overwrite the files:
+Editing should be done on the files in the [openapi](openapi/) and [extensions](extensions/) directories, *not* the `STAC.yaml` and `STAC-extensions.yaml` files, as these are automatically generated. If any of the files are edited, update the OpenAPI docs to overwrite the files:
 
 ```
 $ npm install

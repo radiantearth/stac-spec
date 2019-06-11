@@ -1,16 +1,16 @@
 # STAC API Specification
 
-The STAC API is intended to be a superset of the WFS 3.0 API specification.
+The STAC API is intended to be a superset of the WFS 3 API specification.
 
 The Web Feature Service is a standard API that represents collections of geospatial data. The [Web Feature Service 3.0 API](https://github.com/opengeospatial/WFS_FES), currently under development, is the latest iteration of that standard. WFS 3 defines the RESTful interface to query geospatial data, with GeoJSON as a main return type. With WFS you can return any `Feature`, which is a geometry plus any number of properties. In the STAC specification an `Item` is a `Feature`, with additional required fields for `datetime` and `assets`. WFS also defines the concept of a Collection, which contains `Feature`s. A STAC `Collection` aligns with (and extends slightly) a WFS 3 `Collection`; it contains `Item`s.
 
-In WFS 3 Collections are the sets of data that can be queried ([7.11](https://rawgit.com/opengeospatial/WFS_FES/master/docs/17-069.html#_feature_collections_metadata)), and each describes basic information about the geospatial dataset, like its name and description, as well as the spatial and temporal extents of all the data contained. [STAC collections](../collection-spec/README.md) contain this same information, along with other STAC specific fields and thus are compliant with both WFS Collections and STAC Collections and is returned from the `/collections/{collection_id}` endpoint.
+In WFS 3 Collections are the sets of data that can be queried ([7.11](https://github.com/opengeospatial/WFS_FES/blob/master/core/standard/clause_7_core.adoc#feature-collections)), and each describes basic information about the geospatial dataset, like its name and description, as well as the spatial and temporal extents of all the data contained. [STAC collections](../collection-spec/README.md) contain this same information, along with other STAC specific fields and thus are compliant with both WFS Collections and STAC Collections and is returned from the `/collections/{collection_id}` endpoint.
 
 In WFS 3 Features are the individual records within a Collection and are provided in GeoJSON format. [STAC Items](../item-spec/README.md) are analogous to WFS 3 Features, are in GeoJSON, and are returned from the `/collections/{collection_id}/items/{item_id}` endpoint.
 
 ## HTTP Request Methods and Content Types
 
-For WFS3-compliance, it is only **required** that `GET` be implemented for the WFS3 endpoints.  It is also only **required** that `GET` be implemented for the STAC endpoints. 
+For WFS3-compliance, it is **required** only that `GET` is implemented for the WFS3 endpoints.  Also, it is **required** only that `GET` is implemented for the STAC endpoints. 
 
 Since STAC adds additional filter parameters that may have much larger values, like `intersects`, it is **recommended** to also support `POST` for both the WFS3 and STAC endpoints that
  accept filter parameters (e.g., `/collections/{collection_id}/items` and `/stac/search`). 
