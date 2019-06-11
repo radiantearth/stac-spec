@@ -1,19 +1,10 @@
 {
   "type": "FeatureCollection",
   "features": [ ],
-  "search:meta": {
-    "next": "2",
-    "limit": 10,
-    "found": 1092873,
-    "returned": 9,
-    "properties": {
-      "elasticsearch_query": {
-        "endpoint": "https://vpc-asset-catalog-prod-xyz.us-east-1.es.amazonaws.com:443",
-        "executionDuration": 782,
-        "index": "items_prod",
-        "path": "POST:/items_prod/item/_search?",
-        "query": "{\"query\":{\"bool\":{}},\"size\":10}"
-      }
-    }
+  "properties" : {
+      "search:next": "2",
+      "search:limit": 10,
+      "search:found": 1092873,
+      "search:returned": 9
   }
 }
