@@ -7,11 +7,11 @@
   "additionalProperties": true,
   "allOf": [
     {
-      "$ref": "#/definitions/search_meta"
+      "$ref": "#/definitions/search_metadata"
     }
   ],
   "definitions": {
-    "search_meta": {
+    "search_metadata": {
       "properties": {
         "properties": {
           "type": "object",
@@ -31,9 +31,6 @@
             },
             "returned": {
               "type": "integer"
-            },
-            "properties": {
-              "type": "object"
             }
           }
         }

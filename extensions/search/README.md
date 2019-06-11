@@ -9,9 +9,9 @@ search, for example, from calling the `/stac/search` API endpoint.
 
 | Element      | Type          | Description                                                  |
 | ------------ | ------------- | ------------------------------------------------------------ |
-| `search:meta`  | SearchMeta | **REQUIRED.** The search-related metadata for the [ItemCollection](../itemcollection-spec/README.md). |
+| `search:metadat`  | SearchMetadata | **REQUIRED.** The search-related metadata for the [ItemCollection](../itemcollection-spec/README.md). |
 
-### SearchMeta fields
+### SearchMetadata fields
 
 | Element      | Type          | Description                                                  |
 | ------------ | ------------- | ------------------------------------------------------------ |
@@ -29,20 +29,11 @@ The ability to implement meaningful semantics for the `next` query parameter and
 {
   "type": "FeatureCollection",
   "features": [ ],
-  "search:meta": {
+  "search:metadata": {
     "next": "2", 
     "limit": 10, 
     "found": 1092873, 
-    "returned": 9,
-    "properties": {
-      "elasticsearch_query": {
-        "endpoint": "https://vpc-asset-catalog-prod-xyz.us-east-1.es.amazonaws.com:443",
-        "executionDuration": 782,
-        "index": "items_prod",
-        "path": "POST:/items_prod/item/_search?",
-        "query": "{\"query\":{\"bool\":{}},\"size\":10}"
-      }
-    }
+    "returned": 9
   }
 }
 ```
