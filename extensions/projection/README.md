@@ -12,7 +12,7 @@ When specified on an Item, the values apply to all Assets in that Item, unless o
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
 | proj:epsg        | integer\|null  | **Required** [EPSG code](http://www.epsg-registry.org/) of the datasource |
-| proj:crs         | string \|null  | **Required** PROJ string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:extent` fields represent |
+| proj:crs         | string \|null  | Recommended. PROJ string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:extent` fields represent |
 | proj:geometry    | Polygon Object | Recommended. Defines the footprint of this item. |
 | proj:extent      | [number]       | Recommended. Bounding box of the item or asset in the native CRS |
 | proj:centroid    | [number]       | Recommended. Coordinates representing the centroid of the item or asset in the native CRS |
@@ -29,9 +29,9 @@ If the data does not have a CRS, such as in the case of non-rectified imagery wi
 Points, proj:crs should be set to null. It should also be set to null if a CRS exists, but for which
 a PROJ string does not exist.
 
-**proj:geometry** - A Polygon object representing the footprint of this item, formatted according the Polygon object format specified in [RFC 7946, sections 3.1.6](https://tools.ietf.org/html/rfc7946), except not necessarily in EPSG:4326 as required by RFC7946.  Specified based on the `proj:crs` field (not necessarily EPSG:4326). Ideally, this will be represented by a Polygon with five coordinates, as the item in the native CRS should be a square aligned to the CRS grid.
+**proj:geometry** - A Polygon object representing the footprint of this item, formatted according the Polygon object format specified in [RFC 7946, sections 3.1.6](https://tools.ietf.org/html/rfc7946), except not necessarily in EPSG:4326 as required by RFC7946.  Specified based on the `proj:crs` field (not necessarily EPSG:4326). Ideally, this will be represented by a Polygon with five coordinates, as the item in the native CRS should be a square aligned to the CRS grid.  It is recommended that either or both of `proj:geometry` and `proj:extent` be defined.
 
-**proj:extent** - Bounding box of the asset represented by this item in the native CRS. Specified as four coordinates based on the CRS defined in the `proj:epsg` and `proj:crs` fields.  First two numbers are coordinates of the lower left corner, followed by coordinates of upper right corner, e.g., \[west, south, east, north]
+**proj:extent** - Bounding box of the asset represented by this item in the native CRS. Specified as four coordinates based on the CRS defined in the `proj:epsg` and `proj:crs` fields.  First two numbers are coordinates of the lower left corner, followed by coordinates of upper right corner, e.g., \[west, south, east, north]. It is recommended that either or both of `proj:geometry` and `proj:extent` be defined.
 
 **proj:centroid** - Coordinates representing the centroid of the item in the native coordinate system.  Coordinates defined as \[lat,lon], even if the native coordinate system does not use lat/long.
 

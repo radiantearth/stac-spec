@@ -9,11 +9,7 @@
     "properties": {
       "type": "object",
       "required": [
-        "proj:epsg",
-        "proj:crs",
-        "proj:geometry",
-        "proj:extent",
-        "proj:centroid"
+        "proj:epsg"
       ],
       "properties": {
         "proj:epsg": {
