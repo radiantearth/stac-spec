@@ -41,8 +41,6 @@ There are no required fields for the core definition of ItemCollection.
 
 ## ItemCollection Example
 
-An ItemCollection is identical to a GeoJSON FeatureCollection.
-
 ```json
 {
   "type": "FeatureCollection",
