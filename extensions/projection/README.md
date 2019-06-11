@@ -2,12 +2,14 @@
 
 **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
-This document explains the fields of the STAC Projection (`proj`) Extension to a STAC Item or Asset. Here `proj` is short
+This document explains the fields of the STAC Projection (`proj`) Extension to a STAC Item. Here `proj` is short
 for "projection", and not a reference to the use of the PROJ format for the CRS attribute.
 
-When specified on an Item, the values apply to all Assets in that Item, unless otherwise explicitly defined within an Item.  For example, an Item may have several related Assets each representing a band for the Item, all of which are in the same native CRS, e.g., a UTM Zone.  However, there may also be assets intended for display, like a preview image or thumbnail, that have been reprojected to a different CRS, e.g., Web Mercator, to better accommodate that use case.
+The field names defined herein should be added as fields in the Item's Properties object. 
 
-## Item or Asset fields
+When specified on an Item, the values are assumed to apply to all Assets in that Item.  For example, an Item may have several related Assets each representing a band for the Item, all of which are in the same native CRS, e.g., a UTM Zone.  However, there may also be assets intended for display, like a preview image or thumbnail, that have been reprojected to a different CRS, e.g., Web Mercator, to better accommodate that use case.  This case of differing projections per Asset is not currently handled by this extension.
+
+## Item Properties fields
 
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
@@ -42,37 +44,39 @@ a PROJ string does not exist.
   "id": "LC81530252014153LGN00",
   "type": "Feature",
   ...
-  "proj:crs": "+proj=utm +zone=14 +datum=WGS84 +units=m +no_defs ",
-  "proj:epsg": 32614,
-  "proj:geometry": {
-    "coordinates": [
-      [
+  "properties": {
+    "proj:epsg": 32614,
+    "proj:crs": "+proj=utm +zone=14 +datum=WGS84 +units=m +no_defs ",
+    "proj:geometry": {
+      "coordinates": [
         [
-          169200.0,
-          3712800.0
-        ],
-        [
-          403200.0,
-          3712800.0
-        ],
-        [
-          403200.0,
-          3951000.0
-        ],
-        [
-          169200.0,
-          3951000.0
-        ],
-        [
-          169200.0,
-          3712800.0
+          [
+            169200.0,
+            3712800.0
+          ],
+          [
+            403200.0,
+            3712800.0
+          ],
+          [
+            403200.0,
+            3951000.0
+          ],
+          [
+            169200.0,
+            3951000.0
+          ],
+          [
+            169200.0,
+            3712800.0
+          ]
         ]
-      ]
-    ],
-    "type": "Polygon"
+      ],
+      "type": "Polygon"
+    },
+    "proj:extent": [ 169200.0, 3712800.0, 403200.0, 3951000.0 ],
+    "proj:centroid": [ 34.595302781575604, -101.34448382627504 ]
   },
-  "proj:extent": [ 169200.0, 3712800.0 403200.0, 3951000.0 ],
-  "proj:centroid": [ 34.595302781575604, -101.34448382627504 ],
   "assets" :{
     "B1": {
       "href": "http://example.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B1.TIF",
