@@ -19,9 +19,9 @@ search, for example, from calling the `/stac/search` API endpoint.
 | Element      | Type          | Description                                                  |
 | ------------ | ------------- | ------------------------------------------------------------ |
 | next         | string \| null | **REQUIRED.** The value to set for the `next` query parameter in order to get the next page of results |
-| returned     | number         | **REQUIRED*** The count of results returned by this response. equal to the cardinality of features array |
-| limit        | number \| null | The maximum number of results to which the result was limited |
-| found        | number         | The count of total number of results for this query, possibly estimated, particularly in the context of NoSQL data stores |
+| returned     | integer         | **REQUIRED*** The count of results returned by this response. equal to the cardinality of features array |
+| limit        | integer \| null | The maximum number of results to which the result was limited |
+| found        | integer         | The count of total number of results for this query, possibly estimated, particularly in the context of NoSQL data stores |
 
 **next** - The value to set for the `next` query parameter in order to get the next page of results.  This will typically be something like the "page" parameter in many APIs, "offset" parameter in a SQL query, or "searchAfter" parameter in an Elasticsearch query.  The value `null` indicates that there are no more results for which to query. 
 
