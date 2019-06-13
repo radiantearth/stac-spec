@@ -29,7 +29,7 @@ The minimal amount is specified right now, but best practices should emerge with
 ## Current version and branches
 
 The [master branch](https://github.com/radiantearth/stac-spec/tree/master) is the 'stable' version of the spec. It is currently version 
-**0.6.2** of the specification. The 
+**0.7.0** of the specification. The 
 [dev](https://github.com/radiantearth/stac-spec/tree/dev) branch is where active development takes place, and may have inconsistent examples. 
 Whenever dev stabilizes a release is cut and we merge dev in to master. So master should be stable at any given time.
 It is possible that there may be small releases in quick succession, especially if they are nice improvements that do 
@@ -108,7 +108,7 @@ Vendors can extend those core fields for the metadata they want to make availabl
 
 #### UML Diagram
 
-A UML diagram of the [STAC model](STAC-060-uml.pdf) is provided to help with navigating the specification. 
+A UML diagram of the [STAC model](STAC-UML.pdf) is provided to help with navigating the specification. 
 
 ## Contributing
 

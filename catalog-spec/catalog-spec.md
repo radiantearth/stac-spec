@@ -91,54 +91,25 @@ root catalog might be a sub-catalog of someone else's structure. The goal is for
 information and links they want to, while also encouraging a natural web of information to arise as Catalogs and Items are
 linked to across the web.
 
+There are a number of emerging 'best practices' for how to organize and implement good catalogs. These can be found in
+the [best practices document](catalog-best-practices.md), and include things like catalog layout, use of self links, 
+publishing catalogs, and more. This specification is designed for maximum flexbility, but the best practices provide
+guidance for good recommendations when implementing.
+
 ### Catalog Types
 
-The core Items and Catalogs of a SpatioTemporal Asset Catalog are designed for ease of implementation. 
-With the same core JSON documents and link structures it can be implemented in a way that is just files available online,
-or easily implementable with modern REST service infrastructures. These represent two different types of catalogs, the 
-'static catalog' and the 'dynamic catalog', which can operate a bit differently though they can be treated the same by
-clients.
+Though it is technically an implementation detail outside the scope of the core specification, it is worth mentioning
+that implementations generally fall into two different 'types':
 
-But any server can implement the same JSON and link structure, creating responses
-dynamically as REST calls. These are referred to as 'dynamic catalogs'.
+* **Static Catalogs** can be implemented as simply files online, often stored in an cloud storage service like [Amazon S3](https://aws.amazon.com/s3/). 
+or [Google Cloud Storage](https://cloud.google.com/storage/).
+The core JSON documents and link structures are encoded in the file, and work as long as things are structured properly.
+* **Dynamic Catalogs** are implemented in software, returning the JSON documents and links dynamically. This is mostly 
+used when data holdings are already exposed through a dynamic interface, and STAC can be an alternate facade on the 
+same core database or search cluster.
 
-#### Static Catalogs
-
-A main target for STAC has been object storage services like [Amazon S3](https://aws.amazon.com/s3/), 
-[Google Cloud Storage](https://cloud.google.com/storage/) and [Azure Storage](https://azure.microsoft.com/en-us/services/storage/), 
-so that users can stand up a full STAC implementation with static files. Implementations created with just files online
-are referred to as 'static catalogs'. These include not just the cloud services, but any type of file server that is online.
-
-Static Catalogs tend to make extensive use of *sub-catalogs* to organize their Items in to sensible browsing structures, 
-as they can only have a single representation of their catalog, as the static nature means the structure is baked in. 
-While it is up to the implementor to organize the catalog, it is recommended to arrange the in a way that would make sense 
-for a human to browse a set of STAC Items in an intuitive matter.
-
-Static catalogs a recommended to be defined using the file name `catalog.json` to distinguish from item other JSON
-type files. In order to support multiple catalogs, the recommended practice is to place the
-`catalog.json` in namespaces "directories". For example:
-
-- current/catalog.json
-- archive/catalog.json
-
-#### Dynamic Catalogs
-
-Dynamic STAC Catalogs are those that generate their JSON responses programmatically instead of relying on a set of
-already defined files. Typically a dynamic catalog implements the full [STAC API](../stac-api/) which enables 
-search of the Items indexed. But the `/stac/` endpoint returns the exact same `Catalog` and `Item` structures as a
-static catalog, enabling the same discovery from people browsing and search engines crawling. But dynamic API's that
-just seek to expose some data can also choose to only implement a Catalog the `/stac/` endpoint that returns dynamically.
-For example a Content Management Service like Drupal or an Open Data Catalog like CKAN could choose to expose its content
-as linked STAC Items by implementing a dynamic catalog. 
-
-One benefit of a dynamic catalog is that it can generate various 'views' of the catalog, exposing the same `Items` in 
-different sub-catalog organization structures. For example one catalog could divide sub-catalogs by date and another by
-providers, and users could browse down to both. The leaf Items should just be linked to in a single canonical location
-(or at least use a `rel` link that indicates the location of the canonical one.
-
-The STAC API is also made to be compatible with WFS3, which has a set structure for the canonical location of its features.
-STAC Items should use the WFS3 location as their canonical location, and then in the `/stac/` browse structure would just
-link to those locations. 
+The two catalog types both implement the same fields and links, and can be treated as the same by clients. For more 
+details on the two types and how you might use them see the [Static and Dynamic Catalogs](catalog-best-practices.md#static-and-dynamic-catalogs) section of the best practices document.
 
 ## Catalog fields
 
@@ -160,7 +131,7 @@ might look something like this:
 
 ```json
 {
-  "stac_version": "0.6.2",
+  "stac_version": "0.7.0",
   "id": "NAIP",
   "description": "Catalog of NAIP Imagery",
   "links": [
@@ -178,7 +149,7 @@ A typical '_child_' sub-catalog could look similar:
 
 ```json
 {
-  "stac_version": "0.6.2",
+  "stac_version": "0.7.0",
   "id": "NAIP",
   "description": "Catalog of NAIP Imagery - 30087",
   "links": [
@@ -207,7 +178,9 @@ with links.
 
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
 
-Please see the chapter 'relative vs absolute links' in the [Item spec](../item-spec/item-spec.md#relative-vs-absolute-links) for a discussion on that topic. 
+Please see the chapter 'relative vs absolute links' in the [Item spec](../item-spec/item-spec.md#relative-vs-absolute-links)
+ for a discussion on that topic, as well as the [use of links](catalog-best-practices.md#use-of-links) section of the 
+ catalog best practices document.
 
 #### Relation types
 
@@ -215,8 +188,8 @@ The following types are commonly used as `rel` types in the Link Object of a STA
 
 | Type    | Description |
 | ------- | ----------- |
-| self    | **REQUIRED.** _Absolute_ URL to the catalog file itself. This is required, to represent the location that the file can be found online. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root    | URL to the root STAC Catalog or [Collection](../collection-spec/README.md). Catalogs should include a link to their root, even if it's the root and points to itself. |
+| self    | STRONGLY RECOMMENDED. _Absolute_ URL to the location that the catalog file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
+| root    | STRONGLY RECOMMENDED. URL to the root STAC Catalog or [Collection](../collection-spec/README.md). Catalogs should include a link to their root, even if it's the root and points to itself. |
 | parent  | URL to the parent STAC Catalog or [Collection](../collection-spec/README.md). Non-root catalogs should include a link to their parent. |
 | child   | URL to a child STAC Catalog or [Collection](../collection-spec/README.md). |
 | item    | URL to a STAC [Item](../item-spec/). |

@@ -19,17 +19,15 @@ an OpenAPI definition of the standard way to do this, at the `/stac/` endpoint.
 **The Specification:** The main Catalog specification is in *[catalog-spec.md](catalog-spec.md)*.
 It includes an overview and in depth explanation of the structures and fields.
 
+**Best Practices:** While the main spec is designed to be quite flexible, there are a set of emerging best practices for
+how to actually manage a catalog. The *[catalog-best-practices.md](catalog-best-practices.md)* document lays out a number
+of these. In time some of these may evolve to be part of the core spec.
+
 **Examples:** For samples of how Catalogs can be implemented the *[examples/](examples/)* folder
 contains a full sample catalog. 
 
 **Schemas:** The schemas to validate the core Catalog definition are found in the *[json-schema/](json-schema/)* folder.
 The primary one is *[catalog.json](json-schema/catalog.json)*.
-
-## In the API directory
-
-**Dynamic Catalog OpenAPI Definition:** The [api-spec](../api-spec) directory contains OpenAPI definitions of the `/stac/`
-endpoint, that is the dynamic version of a Catalog. See [STAC-standalone.yaml](../api-spec/STAC-standalone.yaml), or you can
-browse it online on [swaggerhub's STAC-standalone](https://app.swaggerhub.com/apis/cholmesgeo/STAC-standalone/0.6.0-beta#/STAC/get_stac) definition.
 
 ## Schema Validation
 

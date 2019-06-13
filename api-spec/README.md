@@ -1,100 +1,60 @@
-# STAC API Specification
+# STAC API
 
-A STAC API is the dynamic version of a SpatioTemporal Asset Catalog. It returns [STAC Items](../item-spec/README.md)
-(GeoJSON objects with required links, time stamp and links to assets) from search queries on a RESTful endpoint, and also
-offers an endpoint to return STAC Items as a compliant [STAC Catalog](../catalog-spec/README.md) for discovery.
+A STAC API is the dynamic version of a SpatioTemporal Asset Catalog. It returns STAC [Catalogs](../catalog-spec/README.md), [Collections](../collection-spec/README.md), or [Items](../item-spec/README.md), depending on the endpoint. Catalogs and Collections are JSON, while Items are GeoJSON - Features when just a single Item, or a Feature Collection when multiple Items are returned from a search.
 
-The core of the spec is a single endpoint:
+The API is a [Web Feature Service 3.0 (WFS 3) API](https://github.com/opengeospatial/WFS_FES), in that WFS 3 defines many of the endpoints that STAC uses. A STAC API should be compatible and usable with WFS3 clients. However, WFS 3 is still under development and while STAC tries to stay in sync with WFS3 developments, there may be discrepencies prior to final versions of both specifications.
+
+## In this directory
+
+**The Specification:** The main description of the STAC API specification is in the *[api-spec.md](api-spec.md)* file. It includes an overview and in depth explanation of the REST endpoints and parameters.
+
+**Extensions:** API Extensions are given in the *[extensions](extensions/)* folder. YAML fragments are provided for each extension with details provided in the *[README](extensions/README.md)*.
+
+**Examples:** For samples of how the STAC API can be queried, see the *[examples.md](examples.md)* file.
+
+**API Definitions:** The API is described by the OpenAPI documents in the *[openapi](openapi/)* folder.
+
+## OpenAPI definitions
+
+The definitive specification for STAC API is provided as an [OpenAPI](http://openapis.org/) 3.0 specification that is contained within several YAML files in the [openapi](openapi/) and [extensions](extensions/) directories.
+
+These are built into the definitive core API specification at [STAC.yaml](STAC.yaml), which can be viewed online at 
+[stacspec.org/STAC-api.html](https://stacspec.org/STAC-api.html). An additional OpenAPI definition is provided at 
+[STAC-extensions.yaml](STAC-extensions.yaml) that includes all the optional extensions, and can be browsed online at
+[stacspec.org/STAC-ext-api.html](https://stacspec.org/STAC-ext-api.html).
+
+In the [openapi](openapi/) directory there are three files
+
+- WFS3.yaml - The WFS3.yaml file is the WFS3 OpenAPI definition **as currently used by STAC**
+- STAC.yaml - Contains additional endpoints and components that STAC uses, which is treated as a WFS 3 extension
+- STAC.merge.yaml - A file referencing the above two used to create the final [STAC.yaml](STAC.yaml) definition
+
+A basic STAC implementation implements both the WFS3 and STAC definitions.
+
+The YAML files in the [extensions](extensions/) folder are fragments. Fragments are used to describe incomplete pieces of an OpenAPI document, and must be merged with a complete OpenAPI document to be usable. This way extensions can be kept separate, and implementors can combine just the extensions they want to use in order to create a custom OpenAPI document they can use.
+
+Editing should be done on the files in the [openapi](openapi/) and [extensions](extensions/) directories, *not* the `STAC.yaml` and `STAC-extensions.yaml` files, as these are automatically generated. If any of the files are edited, update the OpenAPI docs to overwrite the files:
 
 ```
-/stac/search
+$ npm install
+$ npm run generate-all
 ```
 
-It takes a JSON object that can filter on date and time:
+Create your own OpenAPI document by combinining the STAC definition with the extensions you want by creating a `myapi.merge.yaml` file. This file should contain a line indicating the files that need to be merged:
 
-```json
-{
-  "bbox": [5.5, 46, 8, 47.4],
-  "time": "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
-}
+```
+!!files_merge_append ["STAC.yaml", "extensions/query.fragment.yaml"]
 ```
 
-This tells the server to return all the catalog items it has that are from the second half of March, 2018 and
-that intersect with this area:
+Then, run the [yaml-files](https://www.npmjs.com/package/yaml-files) command line tool:
 
-![swiss_bbox](https://user-images.githubusercontent.com/407017/38382405-b5e69344-38be-11e8-90dc-35738678356d.png)
-
-_Map © OpenStreetMap contributors_
-
-The return format is a [GeoJSON](http://geojson.org/) `FeatureCollection` with features compliant with the
-[Item spec](../item-spec/README.md) for STAC. It returns to a limit optionally requested by the client, and includes
-pageable links to iterate through any results past that limit.
-
-## Dynamic Catalog API
-
-The other endpoint that is included as an option in STAC API is `/stac/`, which implements the [STAC Catalog Spec](../catalog-spec/README.md).
-Implementing this enables tools like
-[STAC Browser](https://medium.com/@mojodna/a-stac-browser-348a60674061) to use the dynamic catalog, to enable better
-discovery through people browsing and search engines crawling.
-
-The OpenAPI spec in this directory documents the endpoint, and refer to the STAC Catalog and [STAC Collection](../collection-spec/README.md) for more information about the full content and link structure.
-
-## API Fragments
-
-The STAC API should be simple to implement and extensible. To support that goal, the extensions are broken out into fragments.
-These fragments should allow an implementor to layer on additional functionality as needed.
-
-We have structured our OpenAPI YAML files so that that can be joined together with `import` statements to prevent copying the
-extensions into every possibly combination. In the [`api-spec` folder](.) you can expect to find complete OpenAPI definitions that are
-useable as-is. For developers who want to author their own extension or combine extensions into a new OpenAPI defintion file, see below.
-
-### Definitions
-
-The [`definitions` folder](./definitions/) contains the YAML files that will import fragments and output a complete definition. These are not directly usable in OpenAPI as they have `import` directives that need to be resolved.
-
-See [yaml-files](https://www.npmjs.com/package/yaml-files) for the syntax to import YAML fragments.
-
-### Fragments
-
-The [`fragments` folder](./fragments/) contains valid yaml that is intended to be merged into an openapi document. It should be possible to import one or more fragments at the same time to create a new STAC+extensions definition.
-
-### Building OpenAPI Definitions
-
-To rebuild all definitions run the included Node.js scripts.
-
-```bash
-npm install
-npm run generate-all
+```
+$ npm install
+$ yaml-files myapi.merge.yaml myapi.yaml
 ```
 
-## Specification
+## API Evolution
 
-The definitive specification for STAC is the [OpenAPI](http://openapis.org/) 3.0 YAML document. This is available
-in several forms. The most straightforward for an implementor new to STAC is the [STAC-standalone.yaml](STAC-standalone.yaml).
-This gives a complete service with the main STAC endpoint. See the [online documentation](https://app.swaggerhub.com/apis/cholmesgeo/STAC-standalone/) for the API rendered interactively.
+The STAC API is still a work in progress. It currently tries to adhere to the WFS 3 API specification, with some STAC specific extensions, but WFS3 is also evolving and not finalized. The WFS 3 portion of the API is provided in the *[WFS3.yaml](openapi/WFS3.yaml)* and represents the version of WFS 3 that is currently being used by STAC. It may diverge some with the *[WFS3](https://github.com/opengeospatial/WFS_FES)* spec at any given time, either out of date or 'ahead', with proposals to align WFS3. The long term goal is for STAC's API and WFS 3 to completely align, ideally all of STAC API is made from WFS 3 plus its extension ecosystem, and STAC just focuses on the content. But until then STAC will work to bring practical implementation experience to WFS 3. 
 
-### Filtering
-
-The core STAC API includes two filters - Bounding Box and Time. All STAC Items require space and time, and thus any STAC
-client can expect to be able to filter on them. Most data will include additional data that users would like to query on,
-so there is a mechanism to also specify more filters. See the [Filtering](filters.md) document for additional information
-on the core filters as well as how to extend them. It is anticipated that "extensions" for domains (e.g. earth observation
-imagery) will require additional fields to query their common fields.
-
-### WFS 3.0 Integration
-
-At the [Fort Collins Sprint](https://github.com/radiantearth/community-sprints/tree/master/03072018-ft-collins-co) the
-decision was made to align STAC with the [WFS 3 specification](https://github.com/opengeospatial/WFS_FES), as
-they are quite similar in spirit and intention. It is anticipated that most STAC implementations will also implement
-WFS, and indeed most additional functionality that extends STAC will be done as WFS extensions.
-
-This folder thus also provides an [OpenAPI fragment](STAC-fragment.yaml), as well as an [example service](https://app.swaggerhub.com/apis/cholmesgeo/STAC_WFS-example/) ([YAML](WFS3core+STAC.yaml))
-for those interested in what a server that implements both STAC and WFS would look like. Those interested in learning more
-can read the [deeper discussion of WFS integration](wfs-stac.md).
-
-### `GET` requests
-
-The `POST` endpoint is required for all STAC API implementations. The fields of the JSON object can also be used
-for a `GET` endpoint, which are included in the OpenAPI specifications. The `GET` requests are designed to reflect the same
-fields as the `POST` fields, and are based on WFS 3 requests. It is recommended for implementations to implement both, but
-only `POST` is required.
+The evolution of the STAC Item spec will take place in this repository, primarily informed by the real world implementations that people create. The goal is for the core API spec to remain quite small and stable, with most all the evolution taking place in extensions. Once there is a critical mass of implementations utilizing different extensions the core API spec will lock down to a 1.0.

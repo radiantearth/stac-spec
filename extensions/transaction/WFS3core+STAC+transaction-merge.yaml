@@ -1,1 +1,0 @@
-!!files_merge_append ["../../api-spec/definitions/STAC-standalone.yaml", "../../api-spec/definitions/WFS3core.fragment.yaml", "../../api-spec/definitions/STAC-collections.fragment.yaml", "transaction-fragment.yaml"]

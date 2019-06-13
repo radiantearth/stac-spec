@@ -16,6 +16,18 @@
   },
   "properties": {
     "datetime": "2016-05-03T13:22:30.040Z",
+    "title": "A CS3 item",
+    "license": "PDDL-1.0",
+    "providers": [
+      {
+        "name": "CoolSat",
+        "roles": [
+          "producer",
+          "licensor"
+        ],
+        "url": "https://cool-sat.com/"
+      }
+    ],
     "eo:sun_azimuth": 168.7,
     "eo:cloud_cover": 0.12,
     "eo:off_nadir": 1.4,
@@ -28,6 +40,7 @@
     "cs:sat_id": "CS3",
     "cs:product_level": "LV1B"
   },
+  "collection": "CS3",
   "links": [
     {"rel": "self", "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json"},
     {"rel": "thumbnail", "href":"thumbnail.png"},

@@ -1,0 +1,612 @@
+openapi: 3.0.1
+info:
+  title: The SpatioTemporal Asset Catalog API
+  version: 0.7.0
+  description: >-
+    This is an OpenAPI definition of the core SpatioTemporal Asset Catalog API
+    specification. Any service that implements this endpoint to allow search of
+    spatiotemporal assets can be considered a STAC API. The endpoint is also
+    available as an OpenAPI fragment that can be integrated with other OpenAPI
+    definitions, and is designed to slot seamlessly into a WFS 3 API definition.
+  contact:
+    name: STAC Specification
+    url: 'http://stacspec.org'
+  license:
+    name: Apache License 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0'
+servers:
+  - url: 'http://dev.cool-sat.com'
+    description: Development server
+  - url: 'http://www.cool-sat.com'
+    description: Production server
+paths:
+  /stac:
+    get:
+      summary: Return the root catalog or collection.
+      description: >-
+        Returns the root STAC Catalog or STAC Collection that is the entry point
+        for users to browse with STAC Browser or for search engines to crawl.
+        This can either return a single STAC Collection or more commonly a STAC
+        catalog that usually lists sub-catalogs of STAC Collections, i.e. a
+        simple catalog that lists all collections available through the API.
+      tags:
+        - STAC
+      responses:
+        '200':
+          description: A catalog JSON definition. Used as an entry point for a crawler.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/catalogDefinition'
+  /stac/search:
+    get:
+      summary: Search STAC items with simple filtering.
+      description: >-
+        Retrieve Items matching filters. Intended as a shorthand API for simple
+        queries.
+        
+
+        This method is optional, but you MUST implement `POST /stac/search` if you want to implement this method.
+      operationId: getSearchSTAC
+      tags:
+        - STAC
+      parameters:
+        - $ref: '#/components/parameters/bbox'
+        - $ref: '#/components/parameters/time'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/ids'
+        - $ref: '#/components/parameters/collections'
+      responses:
+        '200':
+          description: A feature collection.
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/itemCollection'
+            text/html:
+              schema:
+                type: string
+        default:
+          description: An error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
+    post:
+      summary: Search STAC items with full-featured filtering.
+      description: >-
+        retrieve items matching filters. Intended as the standard, full-featured
+        query API.
+        
+        
+        This method is mandatory to implement if `GET /stac/search` is implemented. If this endpoint is implemented on a server, it is required to add a link with `rel` set to `search` to the `links` array in `GET /stac` that refers to this endpoint.
+      operationId: postSearchSTAC
+      tags:
+        - STAC
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/searchBody'
+      responses:
+        '200':
+          description: A feature collection.
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/itemCollection'
+            text/html:
+              schema:
+                type: string
+        default:
+          description: An error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
+components:
+  parameters:
+    limit:
+      name: limit
+      in: query
+      description: |
+        The optional limit parameter limits the number of items that are
+        presented in the response document.
+
+        Only items are counted that are on the first level of the collection in
+        the response document. Nested objects contained within the explicitly
+        requested items shall not be counted.
+
+        * Minimum = 1
+        * Maximum = 10000
+        * Default = 10
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 10000
+        default: 10
+      style: form
+      explode: false
+    page:
+      name: page
+      in: query
+      description: |
+        The optional page parameter returns the specified page of results
+        (with each page having size=limit).
+
+        * Minimum = 1
+        * Default = 1
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+      style: form
+      explode: false
+    ids:
+      name: ids
+      in: query
+      description: |
+        The optional ids parameter returns a FeatureCollection of all matching ids.
+        If provided all other parameters that further restrict the number of search results (except `page` and `limit`) will be ignored.
+      required: false
+      schema:
+        type: array
+        minItems: 1
+        items:
+          type: string
+      explode: false
+    collections:
+      name: collections
+      in: query
+      description: |
+        The collections search parameter is a list of of collection IDs for Items to match.
+        Only items that are included in one of these collections will be returned, otherwise
+        all collections will be searched.
+      required: false
+      schema:
+        type: array
+        minItems: 1
+        items:
+          type: string
+      explode: false
+    bbox:
+      name: bbox
+      in: query
+      description: |
+        Only features that have a geometry that intersects the bounding box are
+        selected. The bounding box is provided as four or six numbers,
+        depending on whether the coordinate reference system includes a
+        vertical axis (elevation or depth):
+
+        * Lower left corner, coordinate axis 1
+        * Lower left corner, coordinate axis 2  
+        * Lower left corner, coordinate axis 3 (optional) 
+        * Upper right corner, coordinate axis 1 
+        * Upper right corner, coordinate axis 2 
+        * Upper right corner, coordinate axis 3 (optional)
+
+        The coordinate reference system of the values is WGS84
+        longitude/latitude (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless
+        a different coordinate reference system is specified in the parameter
+        `bbox-crs`.
+
+        For WGS84 longitude/latitude the values are in most cases the sequence
+        of minimum longitude, minimum latitude, maximum longitude and maximum
+        latitude. However, in cases where the box spans the antimeridian the
+        first value (west-most box edge) is larger than the third value
+        (east-most box edge).
+
+
+        If a feature has multiple spatial geometry properties, it is the
+        decision of the server whether only a single spatial geometry property
+        is used to determine the extent or all relevant geometries.
+      required: false
+      schema:
+        type: array
+        minItems: 4
+        maxItems: 6
+        items:
+          type: number
+      style: form
+      explode: false
+    time:
+      name: time
+      in: query
+      description: >
+        Either a date-time or a period string that adheres to RFC3339. Examples:
+
+        * A date-time: "2018-02-12T23:20:50Z" 
+        * A period: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or "2018-02-12T00:00:00Z/P1M6DT12H31M12S" 
+
+        Only features that have a temporal property that intersects the value
+        of `time` are selected. If a feature has multiple temporal properties, it
+        is the decision of the server whether only a single temporal property is
+        used to determine the extent or all relevant temporal properties.
+      required: false
+      schema:
+        type: string
+      style: form
+      explode: false
+    collectionId:
+      name: collectionId
+      in: path
+      required: true
+      description: Identifier (name) of a specific collection
+      schema:
+        type: string
+    featureId:
+      name: featureId
+      in: path
+      description: Local identifier of a specific feature
+      required: true
+      schema:
+        type: string
+  schemas:
+    exception:
+      type: object
+      required:
+        - code
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+    link:
+      title: Link
+      description: A generic link.
+      type: object
+      required:
+        - href
+        - rel
+      properties:
+        href:
+          type: string
+          format: url
+          example: 'http://www.geoserver.example/stac/naip/child/catalog.json'
+        rel:
+          type: string
+          example: child
+        type:
+          type: string
+          example: application/json
+        title:
+          type: string
+          example: NAIP Child Catalog
+    searchBody:
+      description: The search criteria
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/bboxFilter'
+        - $ref: '#/components/schemas/timeFilter'
+        - $ref: '#/components/schemas/intersectsFilter'
+        - type: object
+          properties:
+            limit:
+              type: number
+              example: 10
+    bbox:
+      description: |
+        Only features that have a geometry that intersects the bounding box are
+        selected. The bounding box is provided as four or six numbers,
+        depending on whether the coordinate reference system includes a
+        vertical axis (elevation or depth):
+
+        * Lower left corner, coordinate axis 1
+        * Lower left corner, coordinate axis 2  
+        * Lower left corner, coordinate axis 3 (optional) 
+        * Upper right corner, coordinate axis 1 
+        * Upper right corner, coordinate axis 2 
+        * Upper right corner, coordinate axis 3 (optional)
+
+        The coordinate reference system of the values is WGS84
+        longitude/latitude (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless
+        a different coordinate reference system is specified in the parameter
+        `bbox-crs`.
+
+        For WGS84 longitude/latitude the values are in most cases the sequence
+        of minimum longitude, minimum latitude, maximum longitude and maximum
+        latitude. However, in cases where the box spans the antimeridian the
+        first value (west-most box edge) is larger than the third value
+        (east-most box edge).
+
+
+        If a feature has multiple spatial geometry properties, it is the
+        decision of the server whether only a single spatial geometry property
+        is used to determine the extent or all relevant geometries.
+      type: array
+      minItems: 4
+      maxItems: 6
+      items:
+        type: number
+      example:
+        - -110
+        - 39.5
+        - -105
+        - 40.5
+    bboxFilter:
+      type: object
+      description: Only return items that intersect the provided bounding box.
+      properties:
+        bbox:
+          $ref: '#/components/schemas/bbox'
+    timeFilter:
+      description: An object representing a time based filter.
+      type: object
+      properties:
+        time:
+          $ref: '#/components/schemas/time'
+    intersectsFilter:
+      type: object
+      description: Only returns items that intersect with the provided polygon.
+      properties:
+        intersects:
+          $ref: 'https://geojson.org/schema/Geometry.json'
+    time:
+      type: string
+      description: >
+        Either a date-time or a period string that adheres to RFC 3339.
+        Examples:
+
+        * A date-time: "2018-02-12T23:20:50Z"  
+        * A period: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or "2018-02-12T00:00:00Z/P1M6DT12H31M12S"
+
+        Only features that have a temporal property that intersects the value of
+        `time` are selected.
+
+        If a feature has multiple temporal properties, it is the decision of the
+        server whether only a single temporal property is used to determine the
+        extent or all relevant temporal properties.
+      example: '2018-02-12T00:00:00Z/2018-03-18T12:31:12Z'
+    catalogDefinition:
+      type: object
+      required:
+        - stac_version
+        - id
+        - description
+        - links
+      properties:
+        stac_version:
+          type: string
+          example: 0.7.0
+        id:
+          type: string
+          example: naip
+        title:
+          type: string
+          example: NAIP Imagery
+        description:
+          type: string
+          example: Catalog of NAIP Imagery.
+        links:
+          type: array
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/link'
+            - title: Link to search endpoint
+              description: Link the search endpoint, which is **required** to be specified if the API implements `/stac/search`.
+              type: object
+              required:
+                - href
+                - rel
+              properties:
+                href:
+                  type: string
+                  format: url
+                  example: 'http://www.cool-sat.com/stac/search'
+                rel:
+                  type: string
+                  enum:
+                    - search
+                type:
+                  type: string
+                title:
+                  type: string
+    collectionInfo:
+      type: object
+      required:
+        - stac_version
+        - id
+        - description
+        - license
+        - extent
+      properties:
+        stac_version:
+          type: string
+          example: 0.7.0
+        id:
+          description: 'identifier of the collection used, for example, in URIs'
+          type: string
+          example: buildings
+        keywords:
+          title: Keywords
+          type: array
+          items:
+            type: string
+            example:
+              - buildings
+              - properties
+              - constructions
+        version:
+          title: Collection Version
+          type: string
+          example: 2018Q3
+        license:
+          title: Collection License Name
+          type: string
+          example: Apache-2.0
+        providers:
+          type: array
+          items:
+            properties:
+              name:
+                title: Organization name
+                type: string
+                example: Big Building Corp
+              description:
+                title: Provider description
+                type: string
+                example: "No further processing applied."
+              roles:
+                title: Organization roles
+                type: array
+                items:
+                  type: string
+                  enum:
+                    - producer
+                    - licensor
+                    - processor
+                    - host
+                example: 
+                  - producer
+                  - licensor
+              url:
+                title: Homepage
+                description: >-
+                  Homepage on which the provider describes the dataset and
+                  publishes contact information.
+                type: string
+                format: url
+                example: http://www.big-building.com
+    itemCollection:
+      type: object
+      required:
+        - features
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - FeatureCollection
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/item'
+        links:
+          $ref: '#/components/schemas/itemCollectionLinks'
+    item:
+      type: object
+      required:
+        - id
+        - type
+        - geometry
+        - bbox
+        - links
+        - properties
+        - assets
+      properties:
+        id:
+          $ref: '#/components/schemas/itemId'
+        bbox:
+          $ref: '#/components/schemas/bbox'
+        geometry:
+          $ref: 'https://geojson.org/schema/Geometry.json'
+        type:
+          $ref: '#/components/schemas/itemType'
+        properties:
+          $ref: '#/components/schemas/itemProperties'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        assets:
+          $ref: '#/components/schemas/itemAssets'
+      example:
+        type: Feature
+        id: CS3-20160503_132130_04
+        bbox:
+          - -122.59750209
+          - 37.48803556
+          - -122.2880486
+          - 37.613537207
+        geometry:
+          type: Polygon
+          coordinates:
+            - - - -122.308150179
+                - 37.488035566
+              - - -122.597502109
+                - 37.538869539
+              - - -122.576687533
+                - 37.613537207
+              - - -122.2880486
+                - 37.562818007
+              - - -122.308150179
+                - 37.488035566
+        properties:
+          datetime: '2016-05-03T13:21:30.040Z'
+        links:
+          - rel: self
+            href: >-
+              http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04.json
+        assets:
+          analytic:
+            title: 4-Band Analytic
+            href: >-
+              http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/analytic.tif
+          thumbnail:
+            title: Thumbnail
+            href: >-
+              http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/thumb.png
+            type: image/png
+    itemId:
+      type: string
+      example: path/to/example.tif
+      description: 'Provider identifier, a unique ID, potentially a link to a file.'
+    itemType:
+      type: string
+      description: The GeoJSON type
+      enum:
+        - Feature
+    itemAssets:
+      type: object
+      additionalProperties:
+        type: object
+        required:
+          - href
+        properties:
+          href:
+            type: string
+            format: url
+            description: Link to the asset object
+            example: >-
+              http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/thumb.png
+          title:
+            type: string
+            description: Displayed title
+            example: Thumbnail
+          type:
+            type: string
+            description: Media type of the asset
+            example: image/png
+    itemProperties:
+      type: object
+      required:
+        - datetime
+      description: provides the core metatdata fields plus extensions
+      properties:
+        datetime:
+          $ref: '#/components/schemas/time'
+      additionalProperties:
+        description: Any additional properties added in via extensions.
+    itemCollectionLinks:
+      type: array
+      description: >-
+        An array of links. Can be used for pagination, e.g. by providing a link
+        with the `next` relation type.
+      items:
+        $ref: '#/components/schemas/link'
+      example:
+        - rel: next
+          href: >-
+            http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
+tags:
+  - name: STAC
+    description: Extension to WFS3 Core to support STAC metadata model and search API
