@@ -81,11 +81,5 @@
       "rel": "self",
       "href": "http://stac.example.com/stac/search?collection=CS3"
     }
-  ],
-  "properties": {
-    "extension:prop1": 1337,
-    "extension:prop1": "bar",
-    "vendor:prop1": 2.71828,
-    "vendor:prop2": "foo"
-  }
+  ]
 }

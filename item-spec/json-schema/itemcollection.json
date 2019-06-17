@@ -47,9 +47,6 @@
               "items": {
                 "$ref": "item.json#/definitions/link"
               }
-            },
-            "properties": {
-              "type": "object"
             }
           }
         }

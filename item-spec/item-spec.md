@@ -139,7 +139,7 @@ structure that can be used as a jumping off point for more experiments in proven
 Items are *strongly recommended* to provide a link to a STAC Collection definition. It is important as Collections provide additional information about a set of items, for example the license, provider and other information
 giving context on the overall set of data that an individual Item is a part of.
 
-If Items are part of a STAC Collection, the [STAC Collection spec *requires* Items to link back to the Collection](collection-spec/collection-spec.md#relation-types).
+If Items are part of a STAC Collection, the [STAC Collection spec *requires* Items to link back to the Collection](../collection-spec/collection-spec.md#relation-types).
 Linking back must happen in two places:
 
 1. The field `collection` in an Item must be filled (see section 'Item fields'). It is the `id` of a STAC Collection.
@@ -226,7 +226,7 @@ Items are represented in JSON format and are very flexible. Any JSON object that
 required fields is a valid STAC ItemCollection.
 
 - Examples:
-  - See the [minimal example](examples/itemcollection-minimal-sample.json), as well as a [more complete example](examples/itemcollection-sample-full.json). There are more real world inspired samples in the [examples/](examples/) folder.
+  - See the [minimal example](examples/itemcollection-sample-minimal.json), as well as a [more complete example](examples/itemcollection-sample-full.json). There are more real world inspired samples in the [examples/](examples/) folder.
   - Real world [implementations](../implementations.md) are also available.
 - [JSON Schema](json-schema/itemcollection.json)
 
@@ -234,20 +234,9 @@ This object describes a STAC ItemCollection. The fields `type` and `features` ar
 
 | Field Name | Type                                                                       | Description |
 | ---------- | -------------------------------------------------------------------------- | ----------- |
-| type       | string | **REQUIRED.** always "FeatureCollection" to provide compatability with GeoJSON  |
+| type       | string | **REQUIRED.** always "FeatureCollection" to provide compatibility with GeoJSON  |
 | features   | [Item] | **REQUIRED** a possibly-empty array of Items          |
 | links      | [Link] | an array of Links related to this ItemCollection   |
-| properties      | Properties | an array of Links related to this ItemCollection   |
-
-### Properties Object
-
-The Properties object adds additional metadata to the ItemCollection. Basically, each entry is a
-key-value pair. The values SHOULD not be an array or object to avoid GIS systems mis-rendering them.
-Metadata that require an object or array SHOULD be placed a level up, directly in the
-ItemCollection object. Additional fields can be introduced through extensions. It is generally allowed to add
-custom fields.
-
-There are no required fields for the core definition of ItemCollection.
 
 ### ItemCollection Example
 
@@ -260,14 +249,13 @@ There are no required fields for the core definition of ItemCollection.
         "rel":"self",
         "href":"http://stac.example.com/stac/search?collection=modis_mcd43a4"
       }
-    ],
-  "properties" : {}  
+    ]
 }
 ```
 
 ### ItemCollection Extensions
 
-The [Search Extension](extensions/search/README.md) adds additional fields to STAC ItemCollection relevant to their use as 
+The [Search Extension](../extensions/search/README.md) adds additional fields to STAC ItemCollection relevant to their use as 
 search results.
 
 ## Recommendations
