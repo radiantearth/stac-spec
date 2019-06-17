@@ -146,7 +146,7 @@ components:
         bbox:
           $ref: '#/components/schemas/bbox'
         geometry:
-          $ref: 'https://stacspec.org/assets/Geometry.json'
+          $ref: 'https://geojson.org/schema/Geometry.json'
         type:
           $ref: '#/components/schemas/itemType'
         properties:
