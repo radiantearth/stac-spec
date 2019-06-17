@@ -41,17 +41,24 @@ $ npm install
 $ npm run generate-all
 ```
 
-Create your own OpenAPI document by combinining the STAC definition with the extensions you want by creating a `myapi.merge.yaml` file. This file should contain a line indicating the files that need to be merged:
+Create your own OpenAPI document by combining the STAC definition with the extensions you want by creating a `myapi.merge.yaml` file. This file should contain a line indicating the files that need to be merged:
 
 ```
-!!files_merge_append ["STAC.yaml", "extensions/query.fragment.yaml"]
+!!files_merge_append ["STAC.yaml", "extensions/query/query.fragment.yaml"]
 ```
 
 Then, run the [yaml-files](https://www.npmjs.com/package/yaml-files) command line tool:
 
 ```
-$ npm install
+$ npm -g install
 $ yaml-files myapi.merge.yaml myapi.yaml
+```
+
+The commands above require root/administrator level access to install the npm packages globally. If you do not have the required permissions or do not want to install the packages globally for any other reason check the npm documentation for your platform for instructions to install and run local packages. Unix bash users for instance may use:
+
+```
+$ npm install
+$ $(npm bin)/yaml-files myapi.merge.yaml myapi.yaml
 ```
 
 ## API Evolution
