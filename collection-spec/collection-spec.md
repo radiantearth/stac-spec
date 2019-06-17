@@ -140,7 +140,7 @@ An incomplete Collection:
     "eo:off_nadir": 0,
     "eo:bands": [
       {
-        "id": "B1",
+        "name": "B1",
         "common_name": "coastal",
         "gsd": 30,
         "center_wavelength": 0.44,
@@ -197,7 +197,7 @@ The merged Item then looks like this:
     "eo:off_nadir": 0,
     "eo:bands": [
       {
-        "id": "B1",
+        "name": "B1",
         "common_name": "coastal",
         "gsd": 30,
         "center_wavelength": 0.44,
