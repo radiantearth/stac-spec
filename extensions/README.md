@@ -53,7 +53,6 @@ An extension can add new fields to STAC entities (content extension), or can add
 | [EO](eo/README.md) (`eo`)                                    | Item             | Covers electro-optical data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, off nadir, sun angle + elevation, gsd and more. | *Pilot* |
 | [Point Cloud](pointcloud/README.md) (`pc`)                   | Item             | Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LiDAR or coincidence-matched imagery. | *Proposal* |
 | [SAR](sar/README.md) (`sar`)                                 | Item             | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. | *Proposal* |
-| [Search](search/README.md) | [ItemCollection](../itemcollection-spec/README.md) | Adds search-related metadata to [ItemCollection](../itemcollection-spec/README.md). | *Proposal* |
 | [Scientific](scientific/README.md) (`sci`)                   | Item             | Scientific metadata is considered to be data that indicate from which publication data originates and how the data itself should be cited or referenced. | *Proposal* |
 
 ## Third-party / vendor extensions
