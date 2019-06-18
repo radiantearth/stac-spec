@@ -10,16 +10,13 @@ In WFS 3 Features are the individual records within a Collection and are provide
 
 ## HTTP Request Methods and Content Types
 
-For WFS3-compliance, it is **required** only that `GET` is implemented for the WFS3 endpoints.  Also, it is **required** only that `GET` is implemented for the STAC endpoints. 
+The WFS 3 and STAC APIs follow a RESTful model.  A core principal of this is the use of HTTP Request Methods (verbs) and the `Content-Type` header to drive behavior. This section describes how these are used in the WFS 3 and STAC endpoints. 
 
-Since STAC adds additional filter parameters that may have much larger values, like `intersects`, it is **recommended** to also support `POST` for both the WFS3 and STAC endpoints that
- accept filter parameters (e.g., `/collections/{collection_id}/items` and `/stac/search`). 
- 
-It is **recommended** that these `Content-Type` options be supported when using POST:
-
-1. POST with the `Content-Type` header set to `application/x-www-form-urlencoded` with the appropriate content body format.
-2. POST with the `Content-Type` header set to `multipart/form-data` with the appropriate content body format.
-3. POST with the `Content-Type` header set to `application/json`, where the content body is a JSON object with the same names as the filter parameters, as defined in the [STAC API OpenAPI specification document](STAC.yaml).  
+1. **Required** GET (both WFS 3 and STAC)
+2. **Recommended** POST `Content-Type: application/x-www-form-urlencoded` with the corresponding content body format.
+3. **Recommended** POST `Content-Type: multipart/form-data` with the corresponding content body format.
+4. **Optional** **STAC endpoint /stac/search only** POST `Content-Type: application/json`, where the content body is a JSON object representing a filter, as defined in the [STAC API OpenAPI specification document](STAC.yaml).  
+5. **Prohibited** **WFS 3 endpoints only** POST `Content-Type: application/json`, where the content body is a JSON object representing a filter.  This is prohibited due to conflict with the [Transaction Extension](extensions/transaction/README.md), which defines a POST `Content-Type: application/json` operation to create an Item.
 
 ## WFS3 Endpoints
 
