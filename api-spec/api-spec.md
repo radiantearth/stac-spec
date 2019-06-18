@@ -208,12 +208,12 @@ implement and requires no string parsing like CQL does (because all of the token
   "query": {
     "predicates": [
       {
-        "name": "eo:cloud_cover",
+        "name": "properties.eo:cloud_cover",
         "op": "lt", // or "<" ?
         "value": 10
       },
       {
-        "name": "eo:cloud_cover",
+        "name": "properties.eo:cloud_cover",
         "op": "gte", // or "<" ?
         "value": 0
       }
