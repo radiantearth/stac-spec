@@ -2,6 +2,14 @@
 
 This document explains the structure and content of a SpatioTemporal Asset Catalog (STAC) Item and ItemCollection. 
 
+**This is still an early version of the STAC spec, expect that there may be some changes before	
+everything is finalized.**	
+
+ Implementations are encouraged, however, as good effort will be made to not change anything too	
+drastically. Using the specification now will ensure that needed changes can be made before	
+everything is locked in. So now is an ideal time to implement, as your feedback will be directly	
+incorporated.
+
 ## Item
 
 This section explains the structure and content of a SpatioTemporal Asset Catalog (STAC) Item. Each
