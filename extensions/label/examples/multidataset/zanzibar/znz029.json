@@ -48921,7 +48921,7 @@
     "label:task": "segmentation",
     "label:type": "vector",
     "label:method": "manual",
-    "label:version": 1,
+    "version": 1,
     "label:classes": [
       {
         "name": "building",
@@ -48951,7 +48951,7 @@
   "links": [
     {
       "rel": "self",
-      "href": "https://my.cat/zanzibar-collection/znz029.json"
+      "href": "znz029.json"
     },
     {
       "rel": "root",

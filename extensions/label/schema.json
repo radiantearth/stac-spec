@@ -70,10 +70,6 @@
               ]
             }
           },
-          "label:version": {
-            "title": "Version",
-            "type": "number"
-          },
           "label:overview": {
             "title": "Overview",
             "type": "object",

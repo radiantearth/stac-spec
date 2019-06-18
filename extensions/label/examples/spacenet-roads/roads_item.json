@@ -42,7 +42,7 @@
     ],
     "label:task": ["segmentation"],
     "label:method": ["manual"],
-    "label:version": 1,
+    "version": 1,
     "label:overview":
     [
       {
@@ -104,27 +104,27 @@
   "links":
   [
     {
-      "href": "https://<endpoint>/sprint_4_example_roads_item.json",
+      "href": "roads_item.json",
       "rel": "self",
       "title": "sample SpaceNet roads label item"
     },
     {
-      "href": "https://<endpoint>/sprint_4_example_roads_collection.json",
+      "href": "roads_collection.json",
       "rel": "root",
       "title": "sample SpaceNet roads label collection"
     },
     {
-      "href": "https://<endpoint>/sprint_4_example_roads_collection.json",
+      "href": "roads_collection.json",
       "rel": "parent",
       "title": "sample SpaceNet roads label collection"
     },
     {
-      "href": "https://<endpoint>/sprint_4_example_roads_collection.json",
+      "href": "roads_collection.json",
       "rel": "collection",
       "title": "sample SpaceNet roads label collection"
     },
     {
-      "href": "https://<endpoint_for_raster_imagery>/AOI_3_Paris_img101_item.json",
+      "href": "roads_source.json",
       "rel": "source",
       "title": "The source imagery these road labels were derived from",
       "label:assets": "road_labels"
@@ -134,7 +134,7 @@
   {
     "road_labels":
     {
-      "href": "https://spacenet-dataset.s3.amazonaws.com/SpaceNet_Roads_Competition/Train/AOI_3_Paris_Roads_Train/geojson/spacenetroads/spacenetroads_AOI_3_Paris_img101.geojson",
+      "href": "spacenetroads_AOI_3_Paris_img101.geojson",
       "title": "AOI_3_Paris_img101_roads",
       "type": "application/geo+json"
     }

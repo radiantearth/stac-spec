@@ -35,7 +35,7 @@
   "links": [
     {
       "rel": "self",
-      "href": "https://my.cat/spacenet-buildings-collection/catalog.json"
+      "href": "catalog.json"
     },
     {
       "rel": "root",
