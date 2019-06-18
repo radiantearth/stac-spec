@@ -42,7 +42,7 @@ STAC provides some additional endpoints for the root Catalog itself, as well as 
 | Endpoint      | Returns          | Description        |
 | ------------ | ------------- | ---------------------- |
 | /stac | Catalog        | Root catalog |
-| /stac/search  | [ItemCollection](../itemcollection-spec/README.md) | Retrieves a group of Items matching the provided search predicates, probably containing search metadata from the `search` extension |
+| /stac/search  | [ItemCollection](../item-spec/README.md#itemcollection-fields) | Retrieves a group of Items matching the provided search predicates, probably containing search metadata from the `search` extension |
 
 The `/stac` endpoint should function as a complete `Catalog` representation of all the data contained in the API and linked to in some way from root through `Collections` and `Items`.
 
