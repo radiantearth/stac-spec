@@ -2,7 +2,7 @@
 
 **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
-This extension is intended to augment the core ItemCollection object when the ItemCollection is the result of a 
+This extension is intended to augment the core [ItemCollection](../../item-spec/item-spec.md#itemcollection-fields) object when the ItemCollection is the result of a 
 search, for example, from calling the `/stac/search` API endpoint.
 
 - [Example](examples/example.json)
@@ -12,7 +12,7 @@ search, for example, from calling the `/stac/search` API endpoint.
 
 | Element           | Type                  | Description                                                  |
 | ----------------- | --------------------- | ------------------------------------------------------------ |
-| `search:metadata` | SearchMetadata Object | **REQUIRED.** The search-related metadata for the [ItemCollection](../../item-spec/README.md). |
+| `search:metadata` | SearchMetadata Object | **REQUIRED.** The search-related metadata for the [ItemCollection](../../../item-spec/item-spec.md#itemcollection-fields). |
 
 ### SearchMetadata Object
 
