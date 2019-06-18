@@ -711,7 +711,7 @@ components:
         - type: object
           properties:
             limit:
-              type: number
+              type: integer
               example: 10
         - $ref: '#/components/schemas/queryFilter'
         - $ref: '#/components/schemas/sortFilter'
