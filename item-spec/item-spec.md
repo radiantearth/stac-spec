@@ -2,7 +2,7 @@
 
 This document explains the structure and content of a SpatioTemporal Asset Catalog (STAC) Item and ItemCollection. 
 
-## Item fields
+## Item
 
 This section explains the structure and content of a SpatioTemporal Asset Catalog (STAC) Item. Each
 is a [GeoJSON](http://geojson.org/) [feature](https://tools.ietf.org/html/rfc7946#section-3.2), plus
@@ -25,8 +25,9 @@ required fields is a valid STAC Item.
   - Real world [implementations](../implementations.md) are also available.
 - [JSON Schema](json-schema/item.json)
 
-This object describes a STAC Item. The fields `id`, `type`, `bbox`, `geometry` and `properties` are
-inherited from GeoJSON.
+### Item Fields
+
+This object describes a STAC Item. The fields `id`, `type`, `bbox`, `geometry` and `properties` are inherited from GeoJSON.
 
 | Field Name | Type                                                                       | Description |
 | ---------- | -------------------------------------------------------------------------- | ----------- |
@@ -209,7 +210,7 @@ particular domains or uses.
 
 The [extensions page](../extensions/README.md) gives an overview about relevant extensions for STAC Items.
 
-## ItemCollection fields
+## ItemCollection
 
 This section explains the structure and content of a SpatioTemporal Asset Catalog (STAC) ItemCollection. 
 An **ItemCollection** is a [GeoJSON](http://geojson.org/) [FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) 
@@ -229,6 +230,8 @@ required fields is a valid STAC ItemCollection.
   - See the [minimal example](examples/itemcollection-sample-minimal.json), as well as a [more complete example](examples/itemcollection-sample-full.json). There are more real world inspired samples in the [examples/](examples/) folder.
   - Real world [implementations](../implementations.md) are also available.
 - [JSON Schema](json-schema/itemcollection.json)
+
+### ItemCollection Fields
 
 This object describes a STAC ItemCollection. The fields `type` and `features` are inherited from GeoJSON FeatureCollection.
 
