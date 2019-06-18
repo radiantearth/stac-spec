@@ -87,13 +87,13 @@ Additionally, there are several reserved parameters over STAC search that have n
 | -----------  | ---------------- | ---------- | ---------------------- |
 | fields | string | Placeholder parameter for API Fields Extension. |
 | sort | string | Placeholder parameter for API Sort Extensions. |
-| query_type | string | Placeholder parameter for API Query Extension Type (e.g., `cql`). |
+| query_profile | string | Placeholder parameter for API Query Extension profile (e.g., `cql`). |
 | query | string | Placeholder parameter for API Query Extension. |
 | operationName | string | Placeholder for GraphQL operationName parameter. |
 | variables | string | Placeholder for GraphQL variables parameter. |
 
-**query_type** semantics TBD if you only implement one query extension, or if you choose to auto-detect? maybe that's 
-the disambiguator, and it's only required that a 400 status code result if the query cannot be parsed wrt to the specified query_type.
+**query_profile** semantics TBD if you only implement one query extension, or if you choose to auto-detect? maybe that's 
+the disambiguator, and it's only required that a 400 status code result if the query cannot be parsed wrt to the specified query_profile.
 
 Should the GraphQL Extension be allowed to specify that fields and sort should be ignored?
 
@@ -105,11 +105,11 @@ Example for (likely) the only Fields Extension:
 **query**
 Example CQL Query Extension:
 
-    query_type=cql&query=properties.eo:cloud_cover<1 AND properties.landsat:wrs_row=28
+    query_profile=cql&query=properties.eo:cloud_cover<1 AND properties.landsat:wrs_row=28
 
 Example GraphQL Query Extension:
     
-    query_type=graphql&query={item{id}}
+    query_profile=graphql&query={item{id}}
 
 **sort**
 Example for (likely) the only  Sort Extension:
@@ -132,12 +132,10 @@ Like Filter Parameters, these attribute names are reserved for extensions, must 
 | -----------  | ---------------- | ---------- | ---------------------- |
 | fields | Fields | Placeholder parameter for API Fields Extension. |
 | sort | Sort | Placeholder parameter for API Sort Extensions. |
-| query_type | string | Placeholder parameter for API Query Extension Type (e.g., `cql`). |
+| query_profile | string | Placeholder parameter for API Query Extension Type (e.g., `cql`). |
 | query | Query | Placeholder parameter for API Query Extension. |
 | operationName | string | Placeholder for GraphQL operationName parameter. |
 | variables | string | Placeholder for GraphQL variables parameter. |
-
-
 
 ### Fields fields
 
@@ -187,7 +185,7 @@ This object describes a Query Extension format.
 
 | Field Name | Type  | Description |
 | ---------- | --------- | ----------- |
-| query_type       | string    | the Query Extension name that is used for this, e.g., `cql` |
+| query_profile       | string    | the Query Extension name that is used for this, e.g., `cql` |
 | query      | object    | an extension-specific object representing the query filter |
 
 **type** the type as described in the Query Extension 
@@ -198,30 +196,41 @@ Query Extensions are **recommended** to use attribute names qualified from the r
 
 Example:
 
+A query profile like the existing Query Extension, but that uses arrays of name/op/value instead of a fixed structure. 
+
+I think it's important to have a Query Extension like this that, even though it is custom to STAC, is extremely simple to 
+implement and requires no string parsing like CQL does (because all of the tokens are already separated).  
+
 ```
 { 
   ...
-  "query_type": "cql",
+  "query_profile": "existing_query_extension_but_with_arrays",
   "query": {
-    "predicate": "properties.eo:cloud_cover<1 AND properties.landsat:wrs_row=28"
+    "predicates": [
+      {
+        "name": "eo:cloud_cover",
+        "op": "lt", // or "<" ?
+        "value": 10
+      },
+      {
+        "name": "eo:cloud_cover",
+        "op": "gte", // or "<" ?
+        "value": 0
+      }
+    ]
   }
   ...
 }
 ```
 
+A query profile that uses CQL:
 
 ```
 { 
   ...
-  "type": "existing_query_extension_but_with_arrays",
+  "query_profile": "cql",
   "query": {
-    "predicates": [
-      {
-        "name": "eo:cloud_cover",
-        "gte": 0,
-        "lte": 10
-      }
-    ]
+    "predicate": "properties.eo:cloud_cover<1 AND properties.landsat:wrs_row=28"
   }
   ...
 }
