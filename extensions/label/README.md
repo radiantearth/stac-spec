@@ -13,13 +13,20 @@ This document explains the fields of the STAC Label Extension to a STAC Item. It
 ## Examples
 
 **Roads:**
-- [Example Roads Item](examples/sprint4_roads/sprint_4_example_roads_item.json)
-- [Example Roads Asset (labels)](examples/sprint4_roads/spacenetroads_AOI_3_Paris_img101.json)
-- [Example Roads Source Imagery Item](examples/sprint4_roads/example-source.json)
+- [Example Roads Item](examples/spacenet-roads/roads_item.json)
+- [Example Roads Asset (labels)](examples/spacenet-roads/spacenetroads_AOI_3_Paris_img101.geojson)
+- [Example Roads Source Imagery Item](examples/spacenet-roads/roads_source.json)
+- [Example Roads Collection](examples/spacenet-roads/roads_collection.json)
 
 **Buildings:**
-- [Example Catalog & Collections of Building Footprint Label Items](examples/sprint4_misc_samples/catalog.json)
-
+- [Example Collection of Two Building Footprint Label Catalogs](examples/multidataset/catalog.json)
+- [Example SpaceNet Buildings Catalog](examples/multidataset/spacenet-buildings/catalog.json)
+- [Example SpaceNet Buildings (Vegas) Item](examples/multidataset/spacenet-buildings/AOI_2_Vegas_img2636.json)
+- [Example SpaceNet Buildings (Paris) Item](examples/multidataset/spacenet-buildings/AOI_3_Paris_img1648.json)
+- [Example SpaceNet Buildings (Shanghai) Item](examples/multidataset/spacenet-buildings/AOI_4_Shanghai_img3344.json)
+- [Example World Bank Zanzibar Buildings Catalog](examples/multidataset/zanzibar/catalog.json)
+- [Example World Bank Zanzibar Building Item 1](examples/multidataset/zanzibar/znz001.json)
+- [Example World Bank Zanzibar Building Item 2](examples/multidataset/zanzibar/znz029.json)
 ## Schema
 - [JSON Schema](schema.json)
 
@@ -45,7 +52,6 @@ Some additional notes are given here for some of the core STAC Item fields and w
 | label:type        | string               | Type                       | **REQUIRED** An ENUM of either `vector` label type or `raster` label type |
 | label:task        | [string]             | Task                       | Recommended to be a subset of 'regression', 'classification', 'detection', or 'segmentation', but may be an arbitrary value |
 | label:method      | [string]             | Method                     | Recommended to be a subset of 'automated' or 'manual', but may be an arbitrary value. |
-| label:version     | number               | Version                    |  Monotonically-increasing version number. |
 | label:overview    | Label Overview Object| Overview                   | An Object storing counts (for classification-type data) or summary statistics (for continuous numerical/regression data). |
 
 #### Class Object

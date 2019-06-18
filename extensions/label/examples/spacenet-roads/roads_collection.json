@@ -20,12 +20,12 @@
   "links":
   [
     {
-      "href": "https://<endpoint>/sprint_4_example_roads_collection.json",
+      "href": "roads_collection.json",
       "rel": "self",
       "title": "sample SpaceNet roads label collection"
     },
     {
-      "href": "https://<endpoint>/sprint_4_example_roads_collection.json",
+      "href": "roads_collection.json",
       "rel": "root",
       "title": "sample SpaceNet roads label collection"
     }

@@ -60,7 +60,7 @@
   "links": [
     {
       "rel": "self",
-      "href": "https://my.cat/zanzibar-collection/catalog.json"
+      "href": "catalog.json"
     },
     {
       "rel": "root",
