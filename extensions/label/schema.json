@@ -90,7 +90,7 @@
                     },
                     "count": {
                       "title": "Count",
-                      "type": "number"
+                      "type": "integer"
                     }
                   }
                 }
