@@ -48942,7 +48942,7 @@
       "property_key": "building",
       "counts": [
         {
-          "class_name": "yes",
+          "name": "yes",
           "count": 1612
         }
       ]
