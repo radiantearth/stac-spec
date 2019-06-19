@@ -705,7 +705,7 @@
       "property_key": "OBJECTID_1",
       "counts": [
         {
-          "class_name": 0,
+          "name": 0,
           "count": 8
         }
       ]

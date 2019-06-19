@@ -46,7 +46,7 @@ Some additional notes are given here for some of the core STAC Item fields and w
 ### New Item properties
 | element           | type info            | name                       | description       |
 |-------------------|----------------------|----------------------------|--------------------------------------------------------------------------------------------------|
-| label:property    | [string\|null]       | Name                       | **REQUIRED** These are the names of the property field(s) in each `Feature` of the label asset's `FeatureCollection` that contains the  classes (keywords from `label:classes` if the property defines classes). If labels are rasters, use `null`. |
+| label:property    | [string] or null     | Name                       | **REQUIRED** These are the names of the property field(s) in each `Feature` of the label asset's `FeatureCollection` that contains the  classes (keywords from `label:classes` if the property defines classes). If labels are rasters, use `null`. |
 | label:classes     | Class Object         | Classes                    | **REQUIRED** if using categorical data. A Class Object defining the list of possible class names for each `label:property`. (e.g., tree, building, car, hippo)|
 | label:description | string               | Description                | **REQUIRED** A description of the label, how it was created, and what it is recommended for |
 | label:type        | string               | Type                       | **REQUIRED** An ENUM of either `vector` label type or `raster` label type |
@@ -57,8 +57,8 @@ Some additional notes are given here for some of the core STAC Item fields and w
 #### Class Object
 | Field Name      | Type                 | name                       | description       |
 |-----------------|----------------------|----------------------------|--------------------------------------------------------------------------------------------------|
-| name            | string\|null         | Name                       | The property key within the asset's each `Feature` corresponding to class labels. If labels are raster-formatted, use null.|
-| classes         | [string\|number]     | Classes                    | The different possible class values within the property `name`. |
+| name            | string or null       | Name                       | The property key within the asset's each `Feature` corresponding to class labels. If labels are raster-formatted, use null.|
+| classes         | [string or numeric]  | Classes                    | The different possible class values within the property `name`. |
 
 #### Label Overview Object
 
@@ -74,8 +74,8 @@ Some additional notes are given here for some of the core STAC Item fields and w
 
 | Field Name      | Type            | name                       | description       |
 |-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------|
-| class_name      | string          | Class Name                    | The different possible classes within the property `name`. |
-| count           | integer         | Count                      | The number of occurrences of the class.
+| name      | string          | Class Name                    | The different possible classes within the property `name`. |
+| count           | number          | Count                      | The number of occurrences of the class.
 
 
 ```json
@@ -83,11 +83,11 @@ Some additional notes are given here for some of the core STAC Item fields and w
     "property_key": "road_type",
     "counts": [
       {
-        "class_name": "dirt",
+        "name": "dirt",
         "count": 10
       },
       {
-        "class_name": "paved",
+        "name": "paved",
         "count": 99
       }
     ]
@@ -99,23 +99,23 @@ Some additional notes are given here for some of the core STAC Item fields and w
 
 | Field Name      | Type       | name                       | description       |
 |-----------------|------------|----------------------------|--------------------------------------------------------------------------------------------------|
-| stat_name       | string     | Stat Name                  | The name of the statistic being reported. |
-| value           | number     | Value                      | The value of the statistic `stat_name`. |
+| name       | string     | Stat Name                  | The name of the statistic being reported. |
+| value           | number     | Value                      | The value of the statistic `name`. |
 
 ```json
   {
     "property_key": "elevation",
     "statistics": [
       {
-        "stat_name": "mean",
+        "name": "mean",
         "value": 100.1
       },
       {
-        "stat_name": "median",
+        "name": "median",
         "value": 102.3
       },
       {
-        "stat_name": "max",
+        "name": "max",
         "value": 100000
       }
     ]

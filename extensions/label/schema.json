@@ -84,13 +84,13 @@
                 "items": {
                   "type": "object",
                   "properties": {
-                    "class_name": {
+                    "name": {
                       "title": "Class Name",
                       "type": "string"
                     },
                     "count": {
                       "title": "Count",
-                      "type": "integer"
+                      "type": "number"
                     }
                   }
                 }
@@ -101,7 +101,7 @@
                 "items": {
                   "type": "object",
                   "properties": {
-                    "stat_name": {
+                    "name": {
                       "title": "Stat Name",
                       "type": "string"
                     },
