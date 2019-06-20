@@ -18,7 +18,6 @@ The WFS 3 and STAC APIs follow a RESTful model.  A core principal of this is the
 4. **Optional** **STAC endpoint /stac/search only** POST `Content-Type: application/json`, where the content body is a JSON object representing a filter, as defined in the [STAC API OpenAPI specification document](STAC.yaml).  
 5. **Prohibited** **WFS 3 endpoints only** POST `Content-Type: application/json`, where the content body is a JSON object representing a filter.  This is prohibited due to conflict with the [Transaction Extension](extensions/transaction/README.md), which defines a POST `Content-Type: application/json` operation to create an Item.
 
-
 ## WFS3 Endpoints
 
 The core WFS 3 endpoints are shown below, with details provided in an [OpenAPI specification document](openapi/WFS3.yaml).
