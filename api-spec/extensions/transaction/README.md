@@ -6,9 +6,9 @@ The core API doesn't support adding, editing, or removing items. The transaction
 
 ## Methods
 
-| Path                                                  | Description                                                                                                                      |
-| ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `POST /collections/{collectionID}/items`              | Adds a new item to a collection.                                                                                                 |
-| `PUT /collections/{collectionId}/items/{featureId}`   | Updates an existing item by ID using a complete item description.                                                                |
-| `PATCH /collections/{collectionId}/items/{featureId}` | Updates an existing item by ID using a partial item description, compliant with [RFC 7386](https://tools.ietf.org/html/rfc7386). |
-| `DELETE /collections/{collectionID}/items`            | Deletes an existing item by ID.                                                                                                  |
+| Path                                                  | Content-Type Header | Description |
+| ----------------------------------------------------- | ------------------- | ----------- |
+| `POST /collections/{collectionID}/items`              | `application/json`  | Adds a new item to a collection. |
+| `PUT /collections/{collectionId}/items/{featureId}`   | `application/json`  | Updates an existing item by ID using a complete item description. |
+| `PATCH /collections/{collectionId}/items/{featureId}` | `application/json`  | Updates an existing item by ID using a partial item description, compliant with [RFC 7386](https://tools.ietf.org/html/rfc7386). |
+| `DELETE /collections/{collectionID}/items/{featureId}`| n/a                 | Deletes an existing item by ID. |

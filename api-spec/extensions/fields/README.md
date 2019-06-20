@@ -7,15 +7,13 @@ The STAC search endpoint, `/stac/search`, by default returns entire Items. The f
 To return just the `id`, `geometry`, and the property `eo:cloud_cover`:
 ```json
 {
-    "fields": [
-        {
-            "include": [
-                "id",
-                "geometry",
-                "properties.eo:cloud_cover"
-            ]
-        }
-    ]
+    "fields": {
+        "include": [
+            "id",
+            "geometry",
+            "properties.eo:cloud_cover"
+        ]
+    }
 }
 ```
 
@@ -23,12 +21,10 @@ To return the whole item without the geometry:
 
 ```json
 {
-    "fields": [
-        {
-            "exclude": [
-                "geometry"
-            ]
-        }
-    ]
+    "fields": {
+        "exclude": [
+            "geometry"
+        ]
+    }
 }
 ```
