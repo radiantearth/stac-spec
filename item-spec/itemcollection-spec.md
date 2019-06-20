@@ -1,6 +1,6 @@
 # STAC ItemCollection Specification
 
-This section explains the structure and content of a SpatioTemporal Asset Catalog (STAC) ItemCollection. 
+This document explains the structure and content of a SpatioTemporal Asset Catalog (STAC) ItemCollection. 
 An **ItemCollection** is a [GeoJSON](http://geojson.org/) [FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) 
 that is augmented with [foreign members](https://tools.ietf.org/html/rfc7946#section-6) relevant to a STAC entity.
 
@@ -25,7 +25,7 @@ required fields is a valid STAC ItemCollection.
 
 Implementations are encouraged, however, as good effort will be made to not change anything too drastically. Using the specification now will ensure that needed changes can be made before everything is locked in. So now is an ideal time to implement, as your feedback will be directly incorporated. 
 
-## ItemCollection Fields
+## ItemCollection fields
 
 This object describes a STAC ItemCollection. The fields `type` and `features` are inherited from GeoJSON FeatureCollection.
 
@@ -35,22 +35,7 @@ This object describes a STAC ItemCollection. The fields `type` and `features` ar
 | features   | [Item] | **REQUIRED** a possibly-empty array of Items          |
 | links      | [Link] | an array of Links related to this ItemCollection   |
 
-## ItemCollection Example
-
-```json
-{
-  "type": "FeatureCollection",
-  "features": [ ],
-  "links":[
-      {
-        "rel":"self",
-        "href":"http://stac.example.com/stac/search?collection=modis_mcd43a4"
-      }
-    ]
-}
-```
-
-## ItemCollection Extensions
+## Extensions
 
 The [Search Extension](../extensions/search/README.md) adds additional fields to STAC ItemCollection relevant to their use as 
 search results.
