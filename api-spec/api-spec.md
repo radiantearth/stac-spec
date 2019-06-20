@@ -8,8 +8,6 @@ In WFS 3 Collections are the sets of data that can be queried ([7.11](http://doc
 
 In WFS 3 Features are the individual records within a Collection and are provided in GeoJSON format. [STAC Items](../item-spec/README.md) are analogous to WFS 3 Features, are in GeoJSON, and are returned from the `/collections/{collection_id}/items/{item_id}` endpoint.
 
-Explicit note here that these paths are relative to some URI root, e.g., it doesn't have to be http://example.com/stac/search, that http://example.com/api/v1/stac/search is fine, and root URI is `http://example.com/api/v1`
-
 ## HTTP Request Methods and Content Types
 
 The WFS 3 and STAC APIs follow a RESTful model.  A core principal of this is the use of HTTP Request Methods (verbs) and the `Content-Type` header to drive behavior. This section describes how these are used in the WFS 3 and STAC endpoints. 
@@ -20,8 +18,6 @@ The WFS 3 and STAC APIs follow a RESTful model.  A core principal of this is the
 4. **Optional** **STAC endpoint /stac/search only** POST `Content-Type: application/json`, where the content body is a JSON object representing a filter, as defined in the [STAC API OpenAPI specification document](STAC.yaml).  
 5. **Prohibited** **WFS 3 endpoints only** POST `Content-Type: application/json`, where the content body is a JSON object representing a filter.  This is prohibited due to conflict with the [Transaction Extension](extensions/transaction/README.md), which defines a POST `Content-Type: application/json` operation to create an Item.
 
-GraphQL Extension:
-1. POST with the `Content-Type` header set to `application/graphql`, where the content body is a JSON object with the same names as the filter parameters, as defined in the [STAC API OpenAPI specification document](STAC.yaml).  
 
 ## WFS3 Endpoints
 
@@ -54,13 +50,6 @@ The `/stac/search` endpoint is similar to the `items` endpoint in WFS3 in that i
 
 If the `/stac/search` endpoint is implemented, it is **required** to add a link with the `rel` type set to `search` to the `links` array in `GET /stac` that refers to the search endpoint in the `href` property.
 
-Catalog extension to describe capabilities:
-
-GET/POST Parameters
-POST JSON (this should not be required)
-GET/POST Parameter extensions
-POST JSON extensions
-
 ## Filter Parameters
 
 Unless otherwise noted by **Path-only**, these filters are passed as query string, form, or JSON entity parameters.  Query and form parameters should use comma-separated string values. JSON entity parameters should use JSON Arrays. 
@@ -80,38 +69,28 @@ Additionally, there are several reserved parameters over STAC search that have n
 
 | Parameter    | Type             | APIs       | Description        |
 | -----------  | ---------------- | ---------- | ---------------------- |
-| fields | string | Placeholder parameter for API Fields Extension. |
-| sort | string | Placeholder parameter for API Sort Extensions. |
-| query_profile | string | Placeholder parameter for API Query Extension profile (e.g., `cql`). |
-| query | string | Placeholder parameter for API Query Extension. |
-| operationName | string | Placeholder for GraphQL operationName parameter. |
-| variables | string | Placeholder for GraphQL variables parameter. |
+| fields | string | Placeholder parameter for [API Fields Extension](extensions/fields/README.md). |
+| sort | string | Placeholder parameter for [API Sort Extension](extensions/sort/README.md). |
+| query_profile | string | Placeholder parameter for [API Query Extension](extensions/query/README.md) profile name (e.g., `cql`). |
+| query | string | Placeholder parameter for [API Query Extension](extensions/query/README.md). |
 
-**query_profile** semantics TBD if you only implement one query extension, or if you choose to auto-detect? maybe that's 
+**query_profile** semantics TBD. if you only implement one query extension, or if you choose to auto-detect? maybe this is just
 the disambiguator, and it's only required that a 400 status code result if the query cannot be parsed wrt to the specified query_profile.
-
-Should the GraphQL Extension be allowed to specify that fields and sort should be ignored?
-
-**fields** 
-Example for (likely) the only Fields Extension:
-
-    fields=@summary,-geometry
 
 **query**
 Example CQL Query Extension:
 
     query_profile=cql&query=properties.eo:cloud_cover<1 AND properties.landsat:wrs_row=28
 
-Example GraphQL Query Extension:
-    
-    query_profile=graphql&query={item{id}}
+**fields** 
+Example for (likely) the only Fields Extension:
 
+    fields=properties.eo:cloud_cover,-geometry
+    
 **sort**
 Example for (likely) the only  Sort Extension:
 
     sort=properties.datetime|asc,id|desc
-
-Note: Jive API did this with a hardcoded set of sorts, with names like datetimeAsc, idAsc, usernameDesc. Pipe syntax seems reasonable to me to allow arbitrary ones.
 
 ## Filter JSON Body
 
@@ -123,69 +102,30 @@ Like Filter Parameters, these attribute names are reserved for extensions, must 
 
 **TBD** how to allow multiple different extensions format. Partially for allowing multiple to be implemented by the same impl, but more so that you don't accidentally get different semantics because a different format was expected -- need good error handling w/ bad query
 
-| Parameter    | Type             | APIs       | Description        |
-| -----------  | ---------------- | ---------- | ---------------------- |
-| fields | Fields | Placeholder parameter for API Fields Extension. |
-| sort | Sort | Placeholder parameter for API Sort Extensions. |
-| query_profile | string | Placeholder parameter for API Query Extension Type (e.g., `cql`). |
-| query | Query | Placeholder parameter for API Query Extension. |
-| operationName | string | Placeholder for GraphQL operationName parameter. |
-| variables | string | Placeholder for GraphQL variables parameter. |
-
-### Fields fields
-
-This object describes a Fields Extension format.
-
-| Field Name | Type  | Description |
-| ---------- | --------- | ----------- |
-| type       | string    | the Fields Extension name that is used for this, e.g., `include_exclude_csv` |
-| value      | object    | an extension-specific object representing the field filter |
-
-**type** the type as described in the Fields Extension 
-
-**value** the object representing whatever a field definitions means as specified by `type`.  This is completely implementation-specific.
-
-Example:
-
-```
-{ 
-  ...
-  "fields": {
-    "type": "include_exclude_array",
-    "value": {
-      "description": ["id","properties.eo:cloud_cover","properties.proj:geometry","properties.proj:crs"]
-    }
-  }
-  ...
-}
-```
-
-```
-{ 
-  ...
-  "fields": {
-    "type": "include_exclude_csv",
-    "value": {
-      "description": "@summary,-geometry"
-    }
-  }
-  ...
-}
-```
-
+| Parameter | Type         | Description |
+| --------- | ------------ | ----------- |
+| fields    | FieldsFilter | Placeholder attribute for API Fields Extension. |
+| sort      | SortFilter   | Placeholder attribute for API Sort Extensions. |
+| query     | Query        | Placeholder attribute for an API Query Extension. |
 
 ### Query fields
 
-This object describes a Query Extension format.
+Additions to JSON Search body entity:
 
-| Field Name | Type  | Description |
+| Field Name | Type      | Description |
 | ---------- | --------- | ----------- |
-| query_profile       | string    | the Query Extension name that is used for this, e.g., `cql` |
 | query      | object    | an extension-specific object representing the query filter |
 
-**type** the type as described in the Query Extension 
+This object describes a Query Extension format.
 
-**value** the object representing whatever a query means in the Query Extension specified by `type`.  This is completely implemenation-specific.
+| Field Name | Type      | Description |
+| ---------- | --------- | ----------- |
+| profile    | string    | a value uniquely representing which query extension is being used |
+| query      | object    | representation of what a query is in the query extension. |
+
+**profile** the profile name as described in the Query Extension, e.g., `cql`
+
+**query** the object representing whatever a query means in the Query Extension specified by `type`.  This is completely implemenation-specific.
 
 Query Extensions are **recommended** to use attribute names qualified from the root of Item, rather than Item Properties.
 
@@ -199,20 +139,14 @@ implement and requires no string parsing like CQL does (because all of the token
 ```
 { 
   ...
-  "query_profile": "existing_query_extension_but_with_arrays",
   "query": {
-    "predicates": [
-      {
-        "name": "properties.eo:cloud_cover",
-        "op": "lt", // or "<" ?
-        "value": 10
-      },
-      {
-        "name": "properties.eo:cloud_cover",
-        "op": "gte", // or "<" ?
-        "value": 0
+    "profile": "existing_query_extension_but_with_arrays",
+    "query": {
+      "properties.eo:cloud_cover": {
+        "gte": 0,
+        "lte": 10
       }
-    ]
+    }
   }
   ...
 }
@@ -223,36 +157,10 @@ A query profile that uses CQL:
 ```
 { 
   ...
-  "query_profile": "cql",
-  "query": {
-    "predicate": "properties.eo:cloud_cover<1 AND properties.landsat:wrs_row=28"
-  }
-  ...
-}
-```
-
-### Sort fields
-
-This object describes a Sort Extension format.
-
-| Field Name | Type  | Description |
-| ---------- | --------- | ----------- |
-| type       | string    | the Sort Extension name that is used for this, e.g., `phil_sort` |
-| value      | object    | an extension-specific object representing the sort |
-
-**type** the type as described in the Sort Extension 
-
-**value** the object representing whatever a sort definitions means as specified by `type`.  This is completely implementation-specific.
-
-Example:
-
-```
-{ 
-  ...
-  "fields": {
-    "type": "phil_sort",
-    "value": {
-      "description": "properties.datetime|asc,id|desc"
+  "query" : {
+    "profile": "cql",
+    "query": {
+      "predicate": "properties.eo:cloud_cover<1 AND properties.landsat:wrs_row=28"
     }
   }
   ...
