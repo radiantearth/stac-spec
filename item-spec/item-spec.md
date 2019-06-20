@@ -1,17 +1,5 @@
 # STAC Item and ItemCollection Specification
 
-This document explains the structure and content of a SpatioTemporal Asset Catalog (STAC) Item and ItemCollection. 
-
-**This is still an early version of the STAC spec, expect that there may be some changes before	
-everything is finalized.**	
-
- Implementations are encouraged, however, as good effort will be made to not change anything too	
-drastically. Using the specification now will ensure that needed changes can be made before	
-everything is locked in. So now is an ideal time to implement, as your feedback will be directly	
-incorporated.
-
-## Item
-
 This section explains the structure and content of a SpatioTemporal Asset Catalog (STAC) Item. Each
 is a [GeoJSON](http://geojson.org/) [feature](https://tools.ietf.org/html/rfc7946#section-3.2), plus
 a few required fields that identify the time range and assets of the item. An Item is the core
@@ -33,7 +21,13 @@ required fields is a valid STAC Item.
   - Real world [implementations](../implementations.md) are also available.
 - [JSON Schema](json-schema/item.json)
 
-### Item Fields
+## WARNING
+
+**This is still an early version of the STAC spec, expect that there may be some changes before everything is finalized.**
+
+Implementations are encouraged, however, as good effort will be made to not change anything too drastically. Using the specification now will ensure that needed changes can be made before everything is locked in. So now is an ideal time to implement, as your feedback will be directly incorporated. 
+
+## Item Fields
 
 This object describes a STAC Item. The fields `id`, `type`, `bbox`, `geometry` and `properties` are inherited from GeoJSON.
 
@@ -55,7 +49,7 @@ by multiple files - all should be linked to. It is generally recommended that di
 levels or formats are not exhaustively listed in an Item, but instead are represented by related
 Items that are linked to, but the best practices around this are still emerging.
 
-### Properties Object
+## Properties Object
 
 The Properties object adds additional metadata to the GeoJSON Object. Additional fields can be introduced through 
 extensions. It is generally allowed to add custom fields.
@@ -83,7 +77,7 @@ common properties or Collection fields). Item-level definition of these fields w
 Collection `properties`. If none are defined, the Collection's `license` and `providers` fields
 will be assumed to apply to related Items.
 
-### Provider Object
+## Provider Object
 
 The object provides information about a provider. A provider is any of the organizations that captured or processed the content of the collection and therefore influenced the data offered by this collection. May also include information about the final storage provider hosting the data.
 
@@ -101,7 +95,7 @@ The object provides information about a provider. A provider is any of the organ
 * *processor*: A processor is any provider who processed data to a derived product.
 * *host*: The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list. 
 
-### Link Object
+## Link Object
 
 This object describes a relationship with another entity. Data providers are advised to be liberal
 with the links section, to describe things like the catalog an item is in, related items, parent or
@@ -115,7 +109,7 @@ It is allowed to add additional fields such as a `title` and `type`.
 | type       | string | Media type of the referenced entity. 																								|
 | title      | string | A human readable title to be used in rendered displays of the link. |
 
-#### Relative vs Absolute links
+### Relative vs Absolute links
 
 Currently, the JSON schema for links does not require them to be formatted as URIs, to allow
 implementors to provide relative links. In general, Catalog APIs should aim to provide absolute links
@@ -123,7 +117,7 @@ whenever possible. Static Catalogs are potentially more portable if they incorpo
 relative links, so that every link doesn't need to be rewritten when the data is copied. Additional
 recommendations for particular ```rel``` types are given in the ```rel``` type description.
 
-#### Relation types
+### Relation types
 
 The following types are commonly used as `rel` types in the Link Object of an Item:
 
@@ -142,7 +136,7 @@ A more complete list of possible 'rel' types can be seen at the [IANA page of Li
 that comes along for that. But the derived_from field is seen as a way to encourage fuller specs and at least start a linking
 structure that can be used as a jumping off point for more experiments in provenance tracking*
 
-#### Collections
+### Collections
 
 Items are *strongly recommended* to provide a link to a STAC Collection definition. It is important as Collections provide additional information about a set of items, for example the license, provider and other information
 giving context on the overall set of data that an individual Item is a part of.
@@ -158,7 +152,7 @@ Linking back must happen in two places:
     ]
     ```
 
-### Asset Object
+## Asset Object
 
 An asset is an object that contains a link to data associated with the Item that can be downloaded
 or streamed. It is allowed to add additional fields.
@@ -169,7 +163,7 @@ or streamed. It is allowed to add additional fields.
 | title      | string | The displayed title for clients and users.                                            |
 | type       | string | Media type of the asset (see chapter on Media Types below).                           |
 
-#### Asset types
+### Asset types
 
 The following types are common for assets and are used as the key for the Asset Object:
 
@@ -177,7 +171,7 @@ The following types are common for assets and are used as the key for the Asset 
 | --------- | ----------- |
 | thumbnail | STRONGLY RECOMMENDED. A downsampled image of the core asset, for direct display online in a web page or interactive search application. Even assets that are less easily translated in to a visual image should provide some visual representation, that users can browse. For example a SAR asset can render an elevation mask or hillshade for display. If at all possible it should be included for a better user experience in searching data. |
 
-#### Media Types
+### Media Types
 
 The media type of an Asset can be used by STAC browsers to better determine what to render and display 
 to users searching and browsing the catalog.  Media types are often referred to by the now-deprecated term "MIME types".
@@ -210,63 +204,12 @@ Common STAC Item Media Types:
 Note: should GeoTIFF become an IANA-registered type in the future (e.g., image/geotiff), this will be added as a recommended
 media type.
 
-### Item Extensions
+## Item Extensions
 
 There are emerging best practices, which in time will evolve in to specification extensions for
 particular domains or uses.
 
 The [extensions page](../extensions/README.md) gives an overview about relevant extensions for STAC Items.
-
-## ItemCollection
-
-This section explains the structure and content of a SpatioTemporal Asset Catalog (STAC) ItemCollection. 
-An **ItemCollection** is a [GeoJSON](http://geojson.org/) [FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) 
-that is augmented with [foreign members](https://tools.ietf.org/html/rfc7946#section-6) relevant to a STAC entity.
-
-Similary to the relationship between a GeoJSON Feature and a STAC Item, a STAC ItemCollection should be a valid GeoJSON FeatureCollection to allow interoperability with existing tools that support GeoJSON. 
-
-The same ItemCollection definition is currently only used by the [`/stac/search`](../api-spec/README.md) endpoint. 
-The search endpoint enables dynamic
-queries, for example selecting all Items in Hawaii on June 3, 2015, but the results they return are an
-ItemCollection of Items.
-
-Items are represented in JSON format and are very flexible. Any JSON object that contains all the
-required fields is a valid STAC ItemCollection.
-
-- Examples:
-  - See the [minimal example](examples/itemcollection-sample-minimal.json), as well as a [more complete example](examples/itemcollection-sample-full.json). There are more real world inspired samples in the [examples/](examples/) folder.
-  - Real world [implementations](../implementations.md) are also available.
-- [JSON Schema](json-schema/itemcollection.json)
-
-### ItemCollection Fields
-
-This object describes a STAC ItemCollection. The fields `type` and `features` are inherited from GeoJSON FeatureCollection.
-
-| Field Name | Type                                                                       | Description |
-| ---------- | -------------------------------------------------------------------------- | ----------- |
-| type       | string | **REQUIRED.** always "FeatureCollection" to provide compatibility with GeoJSON  |
-| features   | [Item] | **REQUIRED** a possibly-empty array of Items          |
-| links      | [Link] | an array of Links related to this ItemCollection   |
-
-### ItemCollection Example
-
-```json
-{
-  "type": "FeatureCollection",
-  "features": [ ],
-  "links":[
-      {
-        "rel":"self",
-        "href":"http://stac.example.com/stac/search?collection=modis_mcd43a4"
-      }
-    ]
-}
-```
-
-### ItemCollection Extensions
-
-The [Search Extension](../extensions/search/README.md) adds additional fields to STAC ItemCollection relevant to their use as 
-search results.
 
 ## Recommendations
 
