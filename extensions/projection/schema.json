@@ -24,7 +24,7 @@
           "title": "Geometry",
           "type": "object"
         },
-        "proj:extent": {
+        "proj:bbox": {
           "title": "Extent",
           "type": "array",
           "minItems": 4,
