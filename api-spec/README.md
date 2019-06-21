@@ -1,8 +1,9 @@
 # STAC API
 
-A STAC API is the dynamic version of a SpatioTemporal Asset Catalog. It returns STAC [Catalogs](../catalog-spec/README.md), [Collections](../collection-spec/README.md), or [Items](../item-spec/README.md), depending on the endpoint. Catalogs and Collections are JSON, while Items are GeoJSON - Features when just a single Item, or a Feature Collection when multiple Items are returned from a search.
+A STAC API is the dynamic version of a SpatioTemporal Asset Catalog. It returns a STAC [Catalog](../catalog-spec/catalog-spec.md), [Collection](../collection-spec/collection-spec.md), [Item](../item-spec/item-spec.md), or [ItemCollection](../item-spec/itemcollection-spec.md), depending on the endpoint. Catalogs and Collections are JSON, while Items and ItemCollections are GeoJSON-compliant entities with foreign members.  Typically, a Feature is used when returning a
+single Item, and FeatureCollection when multiple Items (rather than a JSON array of Item entities).
 
-The API is a [Web Feature Service 3.0 (WFS 3) API](https://github.com/opengeospatial/WFS_FES), in that WFS 3 defines many of the endpoints that STAC uses. A STAC API should be compatible and usable with WFS3 clients. However, WFS 3 is still under development and while STAC tries to stay in sync with WFS3 developments, there may be discrepencies prior to final versions of both specifications.
+The API is a [Web Feature Service 3.0 (WFS 3) API](https://github.com/opengeospatial/WFS_FES), in that WFS 3 defines many of the endpoints that STAC uses. A STAC API should be compatible and usable with WFS3 clients. However, WFS 3 is still under development and while STAC tries to stay in sync with WFS3 developments, there may be discrepancies prior to final versions of both specifications.
 
 ## In this directory
 
@@ -40,17 +41,24 @@ $ npm install
 $ npm run generate-all
 ```
 
-Create your own OpenAPI document by combinining the STAC definition with the extensions you want by creating a `myapi.merge.yaml` file. This file should contain a line indicating the files that need to be merged:
+Create your own OpenAPI document by combining the STAC definition with the extensions you want by creating a `myapi.merge.yaml` file. This file should contain a line indicating the files that need to be merged:
 
 ```
-!!files_merge_append ["STAC.yaml", "extensions/query.fragment.yaml"]
+!!files_merge_append ["STAC.yaml", "extensions/query/query.fragment.yaml"]
 ```
 
 Then, run the [yaml-files](https://www.npmjs.com/package/yaml-files) command line tool:
 
 ```
-$ npm install
+$ npm -g install
 $ yaml-files myapi.merge.yaml myapi.yaml
+```
+
+The commands above require root/administrator level access to install the npm packages globally. If you do not have the required permissions or do not want to install the packages globally for any other reason check the npm documentation for your platform for instructions to install and run local packages. Unix bash users for instance may use:
+
+```
+$ npm install
+$ $(npm bin)/yaml-files myapi.merge.yaml myapi.yaml
 ```
 
 ## API Evolution
