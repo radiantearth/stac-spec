@@ -22,11 +22,12 @@ The WFS 3 and STAC APIs follow a RESTful model.  A core principal of this is the
 
 The core WFS 3 endpoints are shown below, with details provided in an [OpenAPI specification document](openapi/WFS3.yaml).
 
-| Endpoint      | Returns          | Description        |
-| ------------ | ------------- | ---------------------- |
-| / | JSON        | Landing page, links to API capabilities |
-| /conformance | JSON | Info about standards the API conforms to       |
-| /collections | Collections | List of Collections contained in the catalog |
+| Endpoint     | Returns       | Description |
+| ------------ | ------------- | ----------- |
+| /            | JSON          | Landing page, links to API capabilities |
+| /api         | JSON          | API definition |
+| /conformance | JSON          | Info about standards to which the API conforms |
+| /collections | [Collection]   | List of Collections contained in the catalog |
 | /collections/{collection_id} | Collection | Returns single Collection JSON |
 | /collections/{collection_id}/items | ItemCollection | GeoJSON FeatureCollection-conformant entity of Items in collection |
 | /collections/{collection_id}/items/{item_id} | Item | Returns single Item (GeoJSON Feature)|
@@ -38,10 +39,10 @@ Items in the collection should match all filters to be returned when querying. T
 
 STAC provides some additional endpoints for the root Catalog itself, as well as the capability to search the Catalog. Note that a STAC API does not need to implement WFS 3, in which case it would only support the endpoints given below. See the [OpenAPI specification document](openapi/STAC.yaml).
 
-| Endpoint      | Returns          | Description        |
-| ------------ | ------------- | ---------------------- |
-| /stac | Catalog        | Root catalog |
-| /stac/search | Items | GeoJSON FeatureCollection of Items found |
+| Endpoint      | Returns | Description |
+| ------------- | ------- | ----------- |
+| /stac         | Catalog | Root catalog |
+| /stac/search  | Items   | GeoJSON FeatureCollection of Items found |
 
 The `/stac` endpoint should function as a complete `Catalog` representation of all the data contained in the API and linked to in some way from root through `Collections` and `Items`.
 
