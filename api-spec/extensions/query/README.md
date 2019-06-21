@@ -30,6 +30,16 @@ Find scenes with cloud cover between 0 and 10%:
     "eo:cloud_cover": {
       "gte": 0,
       "lte": 10
+    },
+    "stringAttr1": {
+      "startsWith": "abc",
+      "endsWith": "xyz"
+    },
+    "stringAttr2": {
+      "contains": "mnop"
+    },
+    "stringAttr3": {
+      "in": ["landsat", "modis", "naip"]
     }
   }
 }
