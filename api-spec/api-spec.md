@@ -22,14 +22,17 @@ The WFS 3 and STAC APIs follow a RESTful model.  A core principal of this is the
 
 The core WFS 3 endpoints are shown below, with details provided in an [OpenAPI specification document](openapi/WFS3.yaml).
 
-| Endpoint      | Returns          | Description        |
-| ------------ | ------------- | ---------------------- |
-| / | JSON        | Landing page, links to API capabilities |
-| /conformance | JSON | Info about standards the API conforms to       |
-| /collections | Collections | List of Collections contained in the catalog |
+| Endpoint     | Returns       | Description |
+| ------------ | ------------- | ----------- |
+| /            | JSON          | Landing page, links to API capabilities |
+| /api         | JSON          | API definition |
+| /conformance | JSON          | Info about standards to which the API conforms |
+| /collections | [Collection]   | List of Collections contained in the catalog |
 | /collections/{collection_id} | Collection | Returns single Collection JSON |
 | /collections/{collection_id}/items | ItemCollection | GeoJSON FeatureCollection-conformant entity of Items in collection |
 | /collections/{collection_id}/items/{item_id} | Item | Returns single Item (GeoJSON Feature)|
+
+While the `/api` endpoint is required by WFS 3 [7.3. API definition](https://rawcdn.githack.com/opengeospatial/WFS_FES/3.0.0-draft.1/docs/17-069.html#_api_definition_2), it does not appear in the WFS 3 OpenAPI Specification.
 
 The `/collections/{collection_id}/items` endpoint accepts parameters for filtering the results (also called filters). 
 Items in the collection should match all filters to be returned when querying. This implies a logical AND operation. If an OR operation is needed, it should be specified through an extension filter.
@@ -38,10 +41,10 @@ Items in the collection should match all filters to be returned when querying. T
 
 STAC provides some additional endpoints for the root Catalog itself, as well as the capability to search the Catalog. Note that a STAC API does not need to implement WFS 3, in which case it would only support the endpoints given below. See the [OpenAPI specification document](openapi/STAC.yaml).
 
-| Endpoint      | Returns          | Description        |
-| ------------ | ------------- | ---------------------- |
-| /stac | Catalog        | Root catalog |
-| /stac/search | Items | GeoJSON FeatureCollection of Items found |
+| Endpoint      | Returns | Description |
+| ------------- | ------- | ----------- |
+| /stac         | Catalog | Root catalog |
+| /stac/search  | [ItemCollection](../item-spec/itemcollection-spec.md) | Retrieves a group of Items matching the provided search predicates, probably containing search metadata from the `search` extension |
 
 The `/stac` endpoint should function as a complete `Catalog` representation of all the data contained in the API and linked to in some way from root through `Collections` and `Items`.
 
@@ -59,10 +62,12 @@ Unless otherwise noted by **Path-only**, these filters are passed as query strin
 | limit        | integer          | WFS3, STAC | The maximum number of results to return (page size). Defaults to 10 |
 | bbox         | [number]         | WFS3, STAC | Requested bounding box [west, south, east, north] |
 | time         | string           | WFS3, STAC | Single date, date+time, or a range ('/' seperator), formatted to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6) |
-| intersects   | GeoJSON Geometry | STAC | Searches items by performing intersection between their geometry and provided GeoJSON geometry.  All GeoJSON geometry types must be supported. |
-| page         | integer          | STAC       | The page number of results. Defaults to 1 |
-| ids          | [string]         | STAC       | Array of Item ids to return. All other filter parameters that further restrict the number of search results (except `page` and `limit`) are ignored |
+| intersects   | GeoJSON Geometry | STAC       | Searches items by performing intersection between their geometry and provided GeoJSON geometry.  All GeoJSON geometry types must be supported. |
+| next         | string           | STAC       | The token to retrieve the next set of results, e.g., offset, page, continuation token|
+| ids | [string] | Array of Item ids to return. All other filter parameters that further restrict the number of search results (except `next` and `limit`) are ignored |
 | collections  | [string]         | STAC       | Array of Collection IDs to include in the search for items. Only Items in one of the provided Collections will be searched |
+
+In general, only one of **intersects** or **bbox** should be specified.  If both are specified, results should match both. 
 
 Additionally, there are several reserved parameters over STAC search that have no meaning in the base API Specification, but which are reserved exclusively for the use of API Extensions.  API implementations are free to add additional implementation-specific filter parameters, but they **MUST NOT** use following parameters unless implementing the syntax and semantics of an API Extension attached to that parameter.  If no API Extension for that parameter is implemented by an api, then if that parameter has a non-empty value in the request a 400 Bad Request status code must be returned. 
 
