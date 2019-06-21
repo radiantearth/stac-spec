@@ -42,7 +42,7 @@ STAC provides some additional endpoints for the root Catalog itself, as well as 
 | Endpoint      | Returns | Description |
 | ------------- | ------- | ----------- |
 | /stac         | Catalog | Root catalog |
-| /stac/search  | Items   | GeoJSON FeatureCollection of Items found |
+| /stac/search  | [ItemCollection](../item-spec/itemcollection-spec.md) | Retrieves a group of Items matching the provided search predicates, probably containing search metadata from the `search` extension |
 
 The `/stac` endpoint should function as a complete `Catalog` representation of all the data contained in the API and linked to in some way from root through `Collections` and `Items`.
 
@@ -60,7 +60,9 @@ Unless otherwise noted by **Path-only**, these filters are passed as query strin
 | limit        | integer          | WFS3, STAC | The maximum number of results to return (page size). Defaults to 10 |
 | bbox         | [number]         | WFS3, STAC | Requested bounding box [west, south, east, north] |
 | time         | string           | WFS3, STAC | Single date, date+time, or a range ('/' seperator), formatted to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6) |
-| intersects   | GeoJSON Geometry | STAC | Searches items by performing intersection between their geometry and provided GeoJSON geometry.  All GeoJSON geometry types must be supported. |
-| page         | integer          | STAC       | The page number of results. Defaults to 1 |
-| ids          | [string]         | STAC       | Array of Item ids to return. All other filter parameters that further restrict the number of search results (except `page` and `limit`) are ignored |
+| intersects   | GeoJSON Geometry | STAC       | Searches items by performing intersection between their geometry and provided GeoJSON geometry.  All GeoJSON geometry types must be supported. |
+| next         | string           | STAC       | The token to retrieve the next set of results, e.g., offset, page, continuation token|
+| ids | [string] | Array of Item ids to return. All other filter parameters that further restrict the number of search results (except `next` and `limit`) are ignored |
 | collections  | [string]         | STAC       | Array of Collection IDs to include in the search for items. Only Items in one of the provided Collections will be searched |
+
+In general, only one of **intersects** or **bbox** should be specified.  If both are specified, results should match both. 
