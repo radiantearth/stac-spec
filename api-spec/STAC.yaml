@@ -738,7 +738,7 @@ components:
           $ref: '#/components/schemas/time'
     intersectsFilter:
       type: object
-      description: Only returns items that intersect with the provided geometry.
+      description: Only returns items that intersect with the provided polygon.
       properties:
         intersects:
           $ref: 'https://geojson.org/schema/Geometry.json'
