@@ -22,6 +22,12 @@ paths:
       responses:
         '201':
           description: Status of the create request.
+          headers:
+            Location:
+              description: A link to the item
+              schema:
+                type: string
+                format: url
           content:
             application/geo+json:
               schema:
@@ -31,7 +37,7 @@ paths:
                 type: string
         '400':
           $ref: '#/components/responses/BadRequest'
-        '503':
+        '500':
           $ref: '#/components/responses/InternalServerError'
         default:
           description: An error occurred.
@@ -73,7 +79,7 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '404':
           $ref: '#/components/responses/NotFound'
-        '503':
+        '500':
           $ref: '#/components/responses/InternalServerError'
         default:
           description: An error occurred.
@@ -114,7 +120,7 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '404':
           $ref: '#/components/responses/NotFound'
-        '503':
+        '500':
           $ref: '#/components/responses/InternalServerError'
         default:
           description: An error occurred.
@@ -141,7 +147,7 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '404':
           $ref: '#/components/responses/NotFound'
-        '503':
+        '500':
           $ref: '#/components/responses/InternalServerError'
         default:
           description: An error occurred.
@@ -175,7 +181,7 @@ components:
         assets:
           analytic:
             title: 1-Band Analytic
-            href: http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/analytic-1.tif
+            href: http://cool-sat.com/catalog/collections/cs/items/CS3-20160500_132130_04/analytic-1.tif
     partialItemProperties:
       type: object
       description: allows for partial collections of metadata fields
