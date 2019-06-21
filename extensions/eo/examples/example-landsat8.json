@@ -42,7 +42,7 @@
         "eo:sun_elevation": 26.32596431,
         "landsat:path": 107,
         "landsat:row": 18,
-        "eo:gsd": 15,
+        "eo:gsd": 30,
         "eo:platform": "landsat-8",
         "eo:instrument": "OLI_TIRS",
         "eo:off_nadir": 0,
