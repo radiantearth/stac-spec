@@ -25,7 +25,7 @@ The exact metadata that would appear in a STAC Collection record will vary depen
 
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
-| eo:gsd           | number                   | **REQUIRED.** Ground Sample distance. The nominal distance between pixel centers available, in meters. |
+| eo:gsd           | number                   | **REQUIRED.** Ground Sample Distance at the sensor. |
 | eo:platform      | string                   | **REQUIRED.** Unique name of the specific platform the instrument is attached to. For satellites this would be the name of the satellite (e.g., landsat-8, sentinel-2A), whereas for drones this would be a unique name for the drone. |
 | eo:constellation | string                   | Name of the constellation that the platform belongs to. See below for details. |
 | eo:instrument    | string                   | **REQUIRED.** Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1). |
@@ -37,12 +37,16 @@ The exact metadata that would appear in a STAC Collection record will vary depen
 | eo:sun_azimuth   | number                   | Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360). |
 | eo:sun_elevation | number                   | Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (0-90). |
 
-**eo:gsd** is the nominal Ground Sample Distance for the data, as measured in meters on the ground.
-Since GSD can vary across a scene depending on projection, this should be the average or most
-commonly used GSD in the center of the image. If the data includes multiple bands with different GSD
-values, this should be the value for the greatest number or most common bands. For instance, Landsat
-optical and short-wave IR bands are all 30 meters, but the panchromatic band is 15 meters. The
-eo:gsd should be 30 meters in this case since those are the bands most commonly used.
+**eo:gsd** is the nominal Ground Sample Distance for the data, as measured in meters on the ground. There are many
+definitions of GSD. The value of this attribute should be related to the spatial resolution at the sensor, rather
+than the pixel size of images after orthorectification, pansharpening, or scaling.
+The GSD of a sensor can vary depending on off-nadir and wavelength, so it is at the discretion of the implementer
+to decide which value most accurately represents the GSD. For example, Landsat8 optical and short-wave IR bands 
+are all 30 meters, but the panchromatic band is 15 meters. The
+`eo:gsd` should be 30 meters in this case because that is nominal spatial resolution at the sensor. The Planet 
+PlanetScope Ortho Tile Product has an `eo:gsd` of 3.7 (or 4 if rounding), even though the pixel size of the images is 
+3.125.   For example, one might choose for WorldView-2 the 
+Multispectral 20° off-nadir value of 2.07 and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.
 
 **eo:constellation** is the name of the group of satellites that have similar payloads and have their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and radiometric characteristics. Examples are the Sentinel-2 [constellation](https://www.esa.int/Our_Activities/Observing_the_Earth/Copernicus/Sentinel-2/Satellite_constellation), which has S2A and S2B and RapidEye. This field allows users to search for Sentinel-2 data, for example, without needing to specify which specific platform the data came from.
 
@@ -64,11 +68,17 @@ there is no valid EPSG code.
 | name                | string | The name of the band (e.g., "B01", "B02", "B1", "B5", "QA"). |
 | common_name         | string | The name commonly used to refer to the band to make it easier to search for bands across instruments. See below for a list of accepted common names. |
 | description         | string | Description to fully explain the band. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| gsd                 | number | Ground Sample distance, the nominal distance between pixel centers available, in meters. See `eo:gsd` for more information. Defaults to `eo:gsd` if not provided. |
+| gsd                 | number | Ground Sample Distance, the nominal distance between pixel centers available, in meters. Defaults to `eo:gsd` if not provided. |
 | accuracy            | number | The expected error between the measured location and the true location of a pixel, in meters on the ground. |
 | center_wavelength   | number | The center wavelength of the band, in micrometers (μm).      |
 | full_width_half_max | number | Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in micrometers (μm). |
 
+**eo:gsd** is the Ground Sample Distance, measured in meters on the ground. This value is the nominal distance between 
+pixel centers for the data.
+Since GSD can vary across a scene depending on projection, this should be the average or most
+commonly used GSD in the center of the image. For instance, Landsat8 optical and short-wave IR bands are 30 meters
+and the panchromatic band is 15 meters. The Planet PlanetScope Ortho Tile Product has a band `gsd` of 3.125 (3 if 
+rounding), which is different from the `eo:gsd` of 3.7 (4 if rounding).
 
 **full_width_half_max** (FWHM) is a common way to describe the size of a spectral band. It is the
 width, in micrometers (μm), of the bandpass measured at a half of the maximum transmission. Thus, if the
