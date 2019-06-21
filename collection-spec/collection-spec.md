@@ -134,7 +134,7 @@ An incomplete Collection:
   "extent": {...},
   "license": "PDDL-1.0",
   "properties": {
-    "eo:gsd": 15,
+    "eo:gsd": 30,
     "eo:platform": "landsat-8",
     "eo:instrument": "OLI_TIRS",
     "eo:off_nadir": 0,
@@ -190,7 +190,7 @@ The merged Item then looks like this:
     "eo:sun_elevation": 26.32596431,
     "landsat:path": 107,
     "landsat:row": 18,
-    "eo:gsd": 15,
+    "eo:gsd": 30,
     "eo:platform": "landsat-8",
     "eo:constellation": "landsat-8",
     "eo:instrument": "OLI_TIRS",
