@@ -95,7 +95,7 @@ If time is a period without a start or end date, the end date is assigned to "no
 
 The API Extensions allow for more sophisticated searching, such as the ability to search by geometries and searching on specific Item properties.
 
-Use the *[Query](extensions/query/README.md)* extension to search for any data falling within a specific geometry collected between Jan 1st and May 1st, 2019:
+Use the *[Query](extensions/query-stacql/README.md)* extension to search for any data falling within a specific geometry collected between Jan 1st and May 1st, 2019:
 
 ```
 POST /stac/search

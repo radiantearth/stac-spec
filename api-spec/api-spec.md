@@ -52,9 +52,9 @@ The `/stac/search` endpoint is similar to the `items` endpoint in WFS3 in that i
 
 If the `/stac/search` endpoint is implemented, it is **required** to add a link with the `rel` type set to `search` to the `links` array in `GET /stac` that refers to the search endpoint in the `href` property.
 
-## Filter Parameters
+## Filter Parameters and Fields
 
-Unless otherwise noted by **Path-only**, these filters are passed as query string, form, or JSON entity parameters.  Query and form parameters should use comma-separated string values. JSON entity parameters should use JSON Arrays. 
+Unless otherwise noted by **Path-only**, these filters are passed as query string parameters, form parameters, or JSON entity fields.  For filters that represent a set of values, query and form parameters should use comma-separated string values and JSON entity attributes should use JSON Arrays. 
 
 | Parameter    | Type             | APIs       | Description        |
 | -----------  | ---------------- | ---------- | ---------------------- |
@@ -69,104 +69,73 @@ Unless otherwise noted by **Path-only**, these filters are passed as query strin
 
 In general, only one of **intersects** or **bbox** should be specified.  If both are specified, results should match both. 
 
-Additionally, there are several reserved parameters over STAC search that have no meaning in the base API Specification, but which are reserved exclusively for the use of API Extensions.  API implementations are free to add additional implementation-specific filter parameters, but they **MUST NOT** use following parameters unless implementing the syntax and semantics of an API Extension attached to that parameter.  If no API Extension for that parameter is implemented by an api, then if that parameter has a non-empty value in the request a 400 Bad Request status code must be returned. 
+## Reserved Parameters
+
+Additionally, there are several reserved parameters over STAC search that have no meaning in the base STAC API specification, but which are reserved exclusively for the use of API Extensions.  API implementations are free to add additional implementation-specific parameters, but they **MUST NOT** use following parameters unless implementing the syntax and semantics of an API Extension attached to that parameter.  If no API Extension for that parameter is implemented by an API, then if that parameter has a non-empty value in the request a 400 Bad Request status code must be returned. 
+
+### Fields and Sort Extensions
+
+These parameters and fields are reserved for the fields and sort extensions.
 
 | Parameter    | Type             | APIs       | Description        |
 | -----------  | ---------------- | ---------- | ---------------------- |
-| fields | string | Placeholder parameter for [API Fields Extension](extensions/fields/README.md). |
-| sort | string | Placeholder parameter for [API Sort Extension](extensions/sort/README.md). |
-| query_profile | string | Placeholder parameter for [API Query Extension](extensions/query/README.md) profile name (e.g., `cql`). |
-| query | string | Placeholder parameter for [API Query Extension](extensions/query/README.md). |
-
-**query_profile** semantics TBD. if you only implement one query extension, or if you choose to auto-detect? maybe this is just
-the disambiguator, and it's only required that a 400 status code result if the query cannot be parsed wrt to the specified query_profile.
-
-**query**
-Example CQL Query Extension:
-
-    query_profile=cql&query=properties.eo:cloud_cover<1 AND properties.landsat:wrs_row=28
-
-**fields** 
-Example for (likely) the only Fields Extension:
-
-    fields=properties.eo:cloud_cover,-geometry
+| fields | string or Fields | Placeholder parameter for [API Fields Extension](extensions/fields/README.md). |
+| sort | string or [Sort] | Placeholder parameter for [API Sort Extension](extensions/sort/README.md). |
     
-**sort**
-Example for (likely) the only  Sort Extension:
+### Query Extensions
 
-    sort=properties.datetime|asc,id|desc
+These parameters and fields are reserved for query extensions. 
 
-## Filter JSON Body
+All Extensions **should** use attribute names qualified from the root of Item, rather than Item Properties.
 
-Used with `POST Content-Header: application/json`
+| Parameter    | Type             | APIs       | Description        |
+| -----------  | ---------------- | ---------- | ---------------------- |
+| query_profile | string | Placeholder parameter for [API Query Extension](extensions/query-stacql/README.md) query profile name (e.g., `cql`). |
+| query | string or QueryFilter | Placeholder parameter for [API Query Extension](extensions/query-stacql/README.md)query value. |
 
-All Extensions are **recommended** to use attribute names qualified from the root of Item, rather than Item Properties.
+**query_profile** In the case where an API supports multiple Query Extensions, this is used to explicitly state which query extension that the value passed for `query` should be processed as.  This parameter is optional if an API only supports one Query Extension or if there is no ambiguity between which extension a given query value represents (e.g., the query syntax is distinct enough to automatically disambiguate).  However, if a value is provided for this parameter and either the API does not support that Query Extension or if the value provided for the `query` parameter is not a valid query according to that profile, a 400 Bad Request response should be returned.
 
-Like Filter Parameters, these attribute names are reserved for extensions, must not implement different semantics.
+**query** Represents a query in the target query language.  For GET, it is **recommended** for this to be a simple string be a simple string. For JSON Entity, it can be either a string or an arbitrary object representing a query in the target query language.
 
-**TBD** how to allow multiple different extensions format. Partially for allowing multiple to be implemented by the same impl, but more so that you don't accidentally get different semantics because a different format was expected -- need good error handling w/ bad query
+#### Query Extension GET and POST Form Parameters Examples
 
-| Parameter | Type         | Description |
-| --------- | ------------ | ----------- |
-| fields    | FieldsFilter | Placeholder attribute for API Fields Extension. |
-| sort      | SortFilter   | Placeholder attribute for API Sort Extensions. |
-| query     | Query        | Placeholder attribute for an API Query Extension. |
+Used for GET and POST with `Content-Type: application/x-www-form-urlencoded` or `Content-Type: multipart/form-data`.
 
-### Query fields
+Example STACQL Query Extension:
 
-Additions to JSON Search body entity:
+    GET /stac/search?query_profile=stacql&query={"properties.eo:cloud_cover":{"lte":5}}
 
-| Field Name | Type      | Description |
-| ---------- | --------- | ----------- |
-| query      | object    | an extension-specific object representing the query filter |
+Example Contextual Query Language (CQL) Query Extension:
 
-This object describes a Query Extension format.
+    GET /stac/search?query_profile=cql&query=properties.eo:cloud_cover<1 AND properties.landsat:wrs_row=28
 
-| Field Name | Type      | Description |
-| ---------- | --------- | ----------- |
-| profile    | string    | a value uniquely representing which query extension is being used |
-| query      | object    | representation of what a query is in the query extension. |
+#### Query Extension JSON Body Examples
 
-**profile** the profile name as described in the Query Extension, e.g., `cql`
+Used with `POST Content-Header: application/json`.
 
-**query** the object representing whatever a query means in the Query Extension specified by `type`.  This is completely implemenation-specific.
-
-Query Extensions are **recommended** to use attribute names qualified from the root of Item, rather than Item Properties.
-
-Example:
-
-A query profile like the existing Query Extension, but that uses arrays of name/op/value instead of a fixed structure. 
-
-I think it's important to have a Query Extension like this that, even though it is custom to STAC, is extremely simple to 
-implement and requires no string parsing like CQL does (because all of the tokens are already separated).  
+Example STACQL Query Extension:
 
 ```
 { 
   ...
+  "query_profile": "stacql",
   "query": {
-    "profile": "existing_query_extension_but_with_arrays",
-    "query": {
-      "properties.eo:cloud_cover": {
-        "gte": 0,
-        "lte": 10
-      }
+    "properties.eo:cloud_cover": {
+      "gte": 0,
+      "lte": 10
     }
   }
   ...
 }
 ```
 
-A query profile that uses CQL:
+Example Contextual Query Language (CQL) Query Extension:
 
 ```
 { 
   ...
-  "query" : {
-    "profile": "cql",
-    "query": {
-      "predicate": "properties.eo:cloud_cover<1 AND properties.landsat:wrs_row=28"
-    }
-  }
+  "query_profile": "cql",
+  "query": "properties.eo:cloud_cover<1 AND properties.landsat:wrs_row=28"
   ...
 }
 ```

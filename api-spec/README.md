@@ -44,7 +44,7 @@ $ npm run generate-all
 Create your own OpenAPI document by combining the STAC definition with the extensions you want by creating a `myapi.merge.yaml` file. This file should contain a line indicating the files that need to be merged:
 
 ```
-!!files_merge_append ["STAC.yaml", "extensions/query/query.fragment.yaml"]
+!!files_merge_append ["STAC.yaml", "extensions/query-stacql/stacql.fragment.yaml"]
 ```
 
 Then, run the [yaml-files](https://www.npmjs.com/package/yaml-files) command line tool:
