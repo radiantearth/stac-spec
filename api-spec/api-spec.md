@@ -67,4 +67,4 @@ Unless otherwise noted by **Path-only**, these filters are passed as query strin
 | ids | [string] | Array of Item ids to return. All other filter parameters that further restrict the number of search results (except `next` and `limit`) are ignored |
 | collections  | [string]         | STAC       | Array of Collection IDs to include in the search for items. Only Items in one of the provided Collections will be searched |
 
-In general, only one of **intersects** or **bbox** should be specified.  If both are specified, results should match both. 
+Only one of either **intersects** or **bbox** should be specified.  If both are specified, a Bad Request response should be returned. 
