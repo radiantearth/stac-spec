@@ -397,19 +397,27 @@ components:
           type: number
       style: form
       explode: false
-    time:
-      name: time
+    datetime:
+      name: datetime
       in: query
       description: >
-        Either a date-time or a period string that adheres to RFC3339. Examples:
+        Either a date-time or an interval containing date-times that adhere to
+        RFC3339. Examples:
 
-        * A date-time: "2018-02-12T23:20:50Z"  * A period:
-        "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or
-        "2018-02-12T00:00:00Z/P1M6DT12H31M12S" 
 
-        Only features that have a temporal property that intersects the value of
-        `time` are selected. If a feature has multiple temporal properties, it
+        * A date-time: "2018-02-12T23:20:50Z" 
+
+        * An interval : "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or
+        "2018-02-12T00:00:00Z/.."
+
+
+        Only features that have a temporal property that intersects the value
+
+        of `time` are selected. If a feature has multiple temporal properties,
+        it
+
         is the decision of the server whether only a single temporal property is
+
         used to determine the extent or all relevant temporal properties.
       required: false
       schema:
@@ -678,7 +686,7 @@ components:
       type: object
       allOf:
         - $ref: '#/components/schemas/bboxFilter'
-        - $ref: '#/components/schemas/timeFilter'
+        - $ref: '#/components/schemas/datetimeFilter'
         - $ref: '#/components/schemas/intersectsFilter'
         - type: object
           properties:
@@ -730,35 +738,44 @@ components:
       properties:
         bbox:
           $ref: '#/components/schemas/bbox'
-    timeFilter:
-      description: An object representing a time based filter.
-      type: object
-      properties:
-        time:
-          $ref: '#/components/schemas/time'
     intersectsFilter:
       type: object
       description: Only returns items that intersect with the provided polygon.
       properties:
         intersects:
           $ref: 'https://geojson.org/schema/Geometry.json'
-    time:
+    datetimeFilter:
+      description: An object representing a datetime-based filter.
+      type: object
+      properties:
+        datetime:
+          $ref: '#/components/schemas/datetimeOrDatetimeInterval'
+    datetimeOrDatetimeInterval:
       type: string
       description: >
-        Either a date-time or a period string that adheres to RFC 3339.
-        Examples:
+        Either a date-time or an interval containing date-times that adhere to
+        RFC3339. Examples:
 
-        * A date-time: "2018-02-12T23:20:50Z"   * A period:
-        "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or
-        "2018-02-12T00:00:00Z/P1M6DT12H31M12S"
 
-        Only features that have a temporal property that intersects the value of
-        `time` are selected.
+        * A date-time: "2018-02-12T23:20:50Z"
 
-        If a feature has multiple temporal properties, it is the decision of the
-        server whether only a single temporal property is used to determine the
-        extent or all relevant temporal properties.
+        * An interval : "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or
+        "2018-02-12T00:00:00Z/.."
+
+
+        Only features that have a temporal property that intersects the value
+
+        of `time` are selected. If a feature has multiple temporal properties,
+        it
+
+        is the decision of the server whether only a single temporal property is
+
+        used to determine the extent or all relevant temporal properties.
       example: '2018-02-12T00:00:00Z/2018-03-18T12:31:12Z'
+    datetime:
+      type: string
+      description: A date-time that adheres to RFC 3339.
+      example: '2018-02-12T00:00:00Z'
     catalogDefinition:
       type: object
       required:
@@ -806,6 +823,9 @@ components:
                   title:
                     type: string
     itemCollection:
+      description: >-
+        A GeoJSON FeatureCollection augmented with foreign members that contain
+        values relevant to a STAC entity
       type: object
       required:
         - features
@@ -822,6 +842,9 @@ components:
         links:
           $ref: '#/components/schemas/itemCollectionLinks'
     item:
+      description: >-
+        A GeoJSON Feature augmented with foreign members that contain values
+        relevant to a STAC entity
       type: object
       required:
         - id
@@ -922,19 +945,20 @@ components:
       description: provides the core metatdata fields plus extensions
       properties:
         datetime:
-          $ref: '#/components/schemas/time'
+          $ref: '#/components/schemas/datetime'
       additionalProperties:
         description: Any additional properties added in via extensions.
     itemCollectionLinks:
       type: array
       description: >-
-        An array of links to resources related to this collection.
+        An array of links. Can be used for pagination, e.g. by providing a link
+        with the `next` relation type.
       items:
         $ref: '#/components/schemas/link'
       example:
         - rel: next
           href: >-
-            http://api.cool-sat.com/stac/search?next=ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
+            http://api.cool-sat.com/query/gasd312fsaeg/ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
 servers:
   - url: 'http://dev.cool-sat.com'
     description: Development server
