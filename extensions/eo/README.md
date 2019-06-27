@@ -3,10 +3,10 @@
 **Extension [Maturity Classification](../README.md#extension-maturity): Pilot**
 
 This document explains the fields of the STAC Electro-Optical (EO) Extension to a STAC Item. EO
-data is considered to be data that represents a snapshot of the earth for a single date and time. It
+data is considered to be data that represents a snapshot of the Earth for a single date and time. It
 could consist of multiple spectral bands in any part of the electromagnetic spectrum. Examples of EO
 data include sensors with visible, short-wave and mid-wave IR bands (e.g., the OLI instrument on
-Landsat-8), long-wave IR bands (e.g. TIRS aboard Landsat-8).
+Landsat-8), and long-wave IR bands (e.g. TIRS aboard Landsat-8).
 
 **Note:** This extension used to be called Earth Observation with a much broader scope (including
 Synthetic Aperture Radar (SAR), etc). The decision was made to limit this to what was already its 
@@ -65,15 +65,19 @@ there is no valid EPSG code.
 
 | Field Name          | Type   | Description                                                  |
 | ------------------- | ------ | ------------------------------------------------------------ |
-| name                | string | The name of the band (e.g., "B01", "B02", "B1", "B5", "QA"). |
+| id                  | string | The unique identifier of the band (e.g., "B01", "B02", "B1", "B5", "QA"). |
 | common_name         | string | The name commonly used to refer to the band to make it easier to search for bands across instruments. See below for a list of accepted common names. |
 | description         | string | Description to fully explain the band. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | gsd                 | number | Ground Sample Distance, the nominal distance between pixel centers available, in meters. Defaults to `eo:gsd` if not provided. |
 | accuracy            | number | The expected error between the measured location and the true location of a pixel, in meters on the ground. |
 | center_wavelength   | number | The center wavelength of the band, in micrometers (μm).      |
 | full_width_half_max | number | Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in micrometers (μm). |
+| ref                 | string | A reference to a Band Object defined in the Item or Collection.  Object is only meaningful if only this field is defined or if only some of the other fields are defined. |
 
-**eo:gsd** is the Ground Sample Distance, measured in meters on the ground. This value is the nominal distance between 
+One of **id** or **ref** must be defined. If **ref** is defined, all other fields should be ignored, and the entire band
+replaced by the resolved referenced band object. 
+
+**gsd** is the Ground Sample Distance, measured in meters on the ground. This value is the nominal distance between 
 pixel centers for the data.
 Since GSD can vary across a scene depending on projection, this should be the average or most
 commonly used GSD in the center of the image. For instance, Landsat8 optical and short-wave IR bands are 30 meters
@@ -114,7 +118,44 @@ Asset definitions that contain band data should reference the band index. Each a
 | ---------- | -------- | -------------------------------------------- |
 | eo:bands   | [number] | Lists the band names available in the asset. |
 
-See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
+See [example-landsat8.json](examples/example-landsat8.json) for a full example.
+
+Minimal Band Objects are either:
+
+```
+{
+  "id": "B1",
+}
+```
+
+or
+
+```
+{
+  "ref": "B1"
+}
+```
+
+A more useful definition would be the following, which could be in either Collection or Item:
+
+```
+{
+  "id": "B1",
+  "common_name": "coastal",
+  "gsd": 30.0,
+  "wavelength": 0.44,
+  "full_width_half_max": 0.02,
+}
+```
+
+which would then be referenced by `id`:
+
+```
+"eo:bands": [{"ref": "B1"}]
+```
+
+Example with references:
+
 ```
 {
   "id": "LC81530252014153LGN00",
@@ -128,25 +169,25 @@ See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
     "B1": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B1.TIF",
       "type": "image/vnd.stac.geotiff",
-      "eo:bands": [0]
+      "eo:bands": [{"ref": "B1"}]
     },
     "B2": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B2.TIF",
       "type": "image/vnd.stac.geotiff",
-      "eo:bands": [1]
+      "eo:bands": [{"ref": "B2"}]
     },
     ...
   },
   "eo:bands": [
     {
-      "name": "1",
+      "id": "B1",
       "common_name": "coastal",
       "gsd": 30.0,
       "wavelength": 0.44,
       "full_width_half_max": 0.02
     },
     {
-      "name": "2",
+      "id": "B2",
       "common_name": "blue",
       "gsd": 30.0,
       "wavelength": 0.48,
@@ -156,6 +197,46 @@ See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
   ]
  }
 ```
+
+Example with full definitions within `eo:bands` array:
+
+```
+{
+  "id": "LC81530252014153LGN00",
+  "type": "Feature",
+  ...
+  "properties": {
+    ...
+  },
+
+  "assets" :{
+    "B1": {
+      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B1.TIF",
+      "type": "image/vnd.stac.geotiff",
+      "eo:bands": [{
+                         "id": "B1",
+                         "common_name": "coastal",
+                         "gsd": 30.0,
+                         "wavelength": 0.44,
+                         "full_width_half_max": 0.02
+                       }]
+    },
+    "B2": {
+      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B2.TIF",
+      "type": "image/vnd.stac.geotiff",
+      "eo:bands": [{
+                         "id": "B2",
+                         "common_name": "blue",
+                         "gsd": 30.0,
+                         "wavelength": 0.48,
+                         "full_width_half_max": 0.06
+                       }]
+    },
+    ...
+  }
+ }
+```
+
 Planet example:
 
 ```
@@ -170,7 +251,12 @@ Planet example:
     "analytic": {
       "href": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcxMTEwXzEyMTAxMF8xMDEzIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWMiLCAiY3QiOiAiaXRlbS10eXBlIn0",
       "name": "PSScene4Band GeoTIFF (COG)",
-      "eo:bands":[0,1,2,3]
+      "eo:bands":[
+        { "ref": "RED"},
+        { "ref": "GREEN"},
+        { "ref": "BLUE"},
+        { "ref": "NIR"}
+      ]
       ...
     }
     ...
@@ -178,21 +264,25 @@ Planet example:
   },
   "eo:bands": [
     {
+      "id": "RED",
       "full_width_half_max": 0.08,
       "center_wavelength": 0.63,
       "common_name": "red"
     },
     {
+      "id": "GREEN",
       "full_width_half_max": 0.09,
       "center_wavelength": 0.545,
       "common_name": "green"
     },
     {
+      "id": "BLUE",
       "full_width_half_max": 0.06,
       "center_wavelength": 0.485,
       "common_name": "blue"
     },
     {
+      "id": "NIR",
       "full_width_half_max": 0.08,
       "center_wavelength": 0.82,
       "common_name": "nir"
