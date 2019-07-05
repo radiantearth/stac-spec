@@ -79,5 +79,3 @@ components:
               items:
                 type: string
               description: Find items with a property that matches one of the specified strings. A case-insensitive comparison must be performed.
-            time:
-              $ref: '#/components/schemas/time'

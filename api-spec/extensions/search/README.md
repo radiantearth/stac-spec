@@ -21,7 +21,7 @@ search, for example, from calling the `/stac/search` API endpoint.
 | next         | string \| null  | **REQUIRED.** The value to set for the `next` query parameter in order to get the next page of results |
 | returned     | integer         | **REQUIRED*** The count of results returned by this response. equal to the cardinality of features array |
 | limit        | integer \| null | The maximum number of results to which the result was limited |
-| found        | integer         | The count of total number of results for this query, possibly estimated, particularly in the context of NoSQL data stores |
+| matched        | integer         | The count of total number of results that match for this query, possibly estimated, particularly in the context of NoSQL data stores |
 
 **next** - The value to set for the `next` query parameter in order to get the next page of results.  This will typically be something like the "page" parameter in many APIs, "offset" parameter in a SQL query, or "searchAfter" parameter in an Elasticsearch query.  The value `null` indicates that there are no more results for which to query. 
 
@@ -38,7 +38,7 @@ The ability to implement meaningful semantics for the `next` query parameter and
   "search:metadata": {
     "next": "2", 
     "limit": 10, 
-    "found": 1092873, 
+    "matched": 1092873, 
     "returned": 9
   }
 }
