@@ -25,14 +25,11 @@ The core WFS 3 endpoints are shown below, with details provided in an [OpenAPI s
 | Endpoint     | Returns       | Description |
 | ------------ | ------------- | ----------- |
 | /            | JSON          | Landing page, links to API capabilities |
-| /api         | JSON          | API definition |
 | /conformance | JSON          | Info about standards to which the API conforms |
 | /collections | [Collection]   | List of Collections contained in the catalog |
 | /collections/{collection_id} | Collection | Returns single Collection JSON |
 | /collections/{collection_id}/items | ItemCollection | GeoJSON FeatureCollection-conformant entity of Items in collection |
 | /collections/{collection_id}/items/{item_id} | Item | Returns single Item (GeoJSON Feature)|
-
-While the `/api` endpoint is required by WFS 3 [7.3. API definition](https://rawcdn.githack.com/opengeospatial/WFS_FES/3.0.0-draft.1/docs/17-069.html#_api_definition_2), it does not appear in the WFS 3 OpenAPI Specification.
 
 The `/collections/{collection_id}/items` endpoint accepts parameters for filtering the results (also called filters). 
 Items in the collection should match all filters to be returned when querying. This implies a logical AND operation. If an OR operation is needed, it should be specified through an extension filter.
@@ -67,4 +64,4 @@ Unless otherwise noted by **Path-only**, these filters are passed as query strin
 | ids | [string] | Array of Item ids to return. All other filter parameters that further restrict the number of search results (except `next` and `limit`) are ignored |
 | collections  | [string]         | STAC       | Array of Collection IDs to include in the search for items. Only Items in one of the provided Collections will be searched |
 
-In general, only one of **intersects** or **bbox** should be specified.  If both are specified, results should match both. 
+Only one of either **intersects** or **bbox** should be specified.  If both are specified, a Bad Request response should be returned. 
