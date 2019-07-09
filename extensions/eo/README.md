@@ -139,14 +139,14 @@ See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
   },
   "eo:bands": [
     {
-      "name": "1",
+      "name": "B01",
       "common_name": "coastal",
       "gsd": 30.0,
       "wavelength": 0.44,
       "full_width_half_max": 0.02
     },
     {
-      "name": "2",
+      "name": "B02",
       "common_name": "blue",
       "gsd": 30.0,
       "wavelength": 0.48,
