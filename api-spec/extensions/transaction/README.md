@@ -4,6 +4,8 @@
 
 The core API doesn't support adding, editing, or removing items. The transaction API extension supports the creation, editing, and deleting of items through POST, PUT, PATCH, and DELETE requests.
 
+Transactions support optomistic locking through use of the ETag header.
+
 ## Methods
 
 | Path                                                  | Content-Type Header | Description |

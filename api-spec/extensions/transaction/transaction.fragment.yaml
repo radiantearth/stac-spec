@@ -28,6 +28,10 @@ paths:
               schema:
                 type: string
                 format: url
+            ETag:
+              schema:
+                type: string
+              description: A string to ensure the item has not been modified
           content:
             application/geo+json:
               schema:
@@ -49,6 +53,14 @@ paths:
               schema:
                 type: string
   '/collections/{collectionId}/items/{featureId}':
+    get:
+      responses:
+        '200':
+          headers:
+            ETag:
+              schema:
+                type: string
+              description: A string to ensure the item has not been modified
     put:
       summary: update an existing feature by Id with a complete item definition
       description: >-
@@ -60,6 +72,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/collectionId'
         - $ref: '#/components/parameters/featureId'
+        - $ref: '#/components/parameters/IfMatch'
       requestBody:
         content:
           application/json:
@@ -101,6 +114,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/collectionId'
         - $ref: '#/components/parameters/featureId'
+        - $ref: '#/components/parameters/IfMatchOptional'
       requestBody:
         content:
           application/json:
@@ -140,6 +154,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/collectionId'
         - $ref: '#/components/parameters/featureId'
+        - $ref: '#/components/parameters/IfMatch'
       responses:
         '204':
           description: Status of the delete request.
@@ -159,6 +174,23 @@ paths:
               schema:
                 type: string
 components:
+  parameters:
+    IfMatch:
+      name: If-Match
+      in: header
+      description: >-
+        Only take the action if the ETag of the item still matches
+      required: true
+      schema:
+        type: string
+    IfMatchOptional:
+      name: If-Match
+      in: header
+      description: >-
+        Only take the action if the ETag of the item still matches
+      required: false
+      schema:
+        type: string
   schemas:
     partialItem:
       type: object
@@ -174,7 +206,9 @@ components:
         properties:
           $ref: '#/components/schemas/partialItemProperties'
         links:
-          $ref: '#/components/schemas/links'
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
         assets:
           $ref: '#/components/schemas/itemAssets'
       example:
