@@ -247,6 +247,11 @@ paths:
       responses:
         '200':
           description: Status of the update request.
+          headers:
+            ETag:
+              schema:
+                type: string
+              description: A string to ensure the item has not been modified
           content:
             text/html:
               schema:
@@ -289,6 +294,11 @@ paths:
       responses:
         '200':
           description: Status of the update request.
+          headers:
+            ETag:
+              schema:
+                type: string
+              description: A string to ensure the item has not been modified
           content:
             text/html:
               schema:
