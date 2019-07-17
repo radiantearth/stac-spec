@@ -7,12 +7,6 @@ The key difference is that a STAC search endpoint will do cross collection searc
 
 ## WFS
 
-```
-GET /collections/{collectionId}/items?bbox=160.6,-55.95,-170,-25.89
-```
-
-Requests all the data in the collection that is in New Zealand.
-
 Request all the data in `mycollection` that is in New Zealand:
 
 ```
@@ -28,13 +22,13 @@ GET /collections/mycollection/items?bbox=160.6,-55.95,-170,-25.89&limit=100
 Request all the data in `mycollection` that is in New Zealand from January 1st, 2019:
 
 ```
-GET /collections/mycollection/items?bbox=160.6,-55.95,-170,-25.89&datetime=2019-01-01T00:00:00Z/2019-01-02T00:00:00Z
+GET /collections/mycollection/items?bbox=160.6,-55.95,-170,-25.89&datetime=2019-01-01T00:00:00Z/2019-01-01T23:59:59ZZ
 ```
 
-Request 10 results from the data in `mycollection` from between January 1st and April 1st, 2019:
+Request 10 results from the data in `mycollection` from between January 1st (inclusive) and April 1st, 2019 (exclusive):
 
 ```
-GET /collections/mycollection/items?datetime=2019-01-01T00:00:00Z/2019-04-01T00:00:00Z&limit=10
+GET /collections/mycollection/items?datetime=2019-01-01T00:00:00Z/2019-03-31T23:59:59Z&limit=10
 ```
 
 ## STAC API
