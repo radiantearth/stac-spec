@@ -222,7 +222,7 @@ components:
       name: time
       in: query
       description: >
-        Either a date-time or a period string that adheres to RFC3339. Examples:
+        Either a date-time that adheres to RFC3339 or a period string that adheres to ISO8601. Examples:
 
         * A date-time: "2018-02-12T23:20:50Z" 
         * A period: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or "2018-02-12T00:00:00Z/P1M6DT12H31M12S" 
@@ -353,7 +353,7 @@ components:
     time:
       type: string
       description: >
-        Either a date-time or a period string that adheres to RFC 3339.
+        Either a date-time that adheres to RFC3339 or a period string that adheres to ISO8601. 
         Examples:
 
         * A date-time: "2018-02-12T23:20:50Z"  
