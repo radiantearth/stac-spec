@@ -529,6 +529,9 @@ components:
             type: string
     exception:
       type: object
+      description: >-
+        Information about the exception: an error code plus an optional
+        description.
       properties:
         code:
           type: string
@@ -538,9 +541,16 @@ components:
         - code
     extent:
       type: object
+      description: >-
+        The extent of the features in the collection. In the Core only spatial
+        and temporal
+
+        extents are specified. Extensions may add additional members to
+        represent other
+
+        extents, for example, thermal or pressure ranges.
       properties:
         spatial:
-          description: The spatial extent of the features in the collection.
           type: object
           properties:
             bbox:
