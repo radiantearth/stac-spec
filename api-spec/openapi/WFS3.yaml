@@ -112,7 +112,7 @@ paths:
         - $ref: '#/components/parameters/featureId'
       responses:
         '200':
-          $ref: '#/components/responses/Features'
+          $ref: '#/components/responses/Feature'
         '404':
           $ref: '#/components/responses/NotFound'
         '500':

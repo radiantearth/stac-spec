@@ -116,17 +116,13 @@ components:
     limit:
       name: limit
       in: query
-      description: |
-        The optional limit parameter limits the number of items that are
-        presented in the response document.
+      description: |-
+        The optional limit parameter limits the number of items that are presented in the response document.
 
-        Only items are counted that are on the first level of the collection in
-        the response document. Nested objects contained within the explicitly
-        requested items shall not be counted.
+        Only items are counted that are on the first level of the collection in the response document.
+        Nested objects contained within the explicitly requested items shall not be counted.
 
-        * Minimum = 1
-        * Maximum = 10000
-        * Default = 10
+        Minimum = 1. Maximum = 10000. Default = 10.
       required: false
       schema:
         type: integer
@@ -181,34 +177,30 @@ components:
     bbox:
       name: bbox
       in: query
-      description: |
-        Only features that have a geometry that intersects the bounding box are
-        selected. The bounding box is provided as four or six numbers,
-        depending on whether the coordinate reference system includes a
-        vertical axis (elevation or depth):
+      description: |-
+        Only features that have a geometry that intersects the bounding box are selected.
+        The bounding box is provided as four or six numbers, depending on whether the
+        coordinate reference system includes a vertical axis (elevation or depth):
 
         * Lower left corner, coordinate axis 1
-        * Lower left corner, coordinate axis 2  
-        * Lower left corner, coordinate axis 3 (optional) 
-        * Upper right corner, coordinate axis 1 
-        * Upper right corner, coordinate axis 2 
+        * Lower left corner, coordinate axis 2
+        * Lower left corner, coordinate axis 3 (optional)
+        * Upper right corner, coordinate axis 1
+        * Upper right corner, coordinate axis 2
         * Upper right corner, coordinate axis 3 (optional)
 
-        The coordinate reference system of the values is WGS84
-        longitude/latitude (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless
-        a different coordinate reference system is specified in the parameter
-        `bbox-crs`.
+        The coordinate reference system of the values is WGS 84 longitude/latitude
+        (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless a different coordinate
+        reference system is specified in the parameter `bbox-crs`.
 
-        For WGS84 longitude/latitude the values are in most cases the sequence
-        of minimum longitude, minimum latitude, maximum longitude and maximum
-        latitude. However, in cases where the box spans the antimeridian the
-        first value (west-most box edge) is larger than the third value
-        (east-most box edge).
+        For WGS 84 longitude/latitude the values are in most cases the sequence of
+        minimum longitude, minimum latitude, maximum longitude and maximum latitude.
+        However, in cases where the box spans the antimeridian the first value
+        (west-most box edge) is larger than the third value (east-most box edge).
 
-
-        If a feature has multiple spatial geometry properties, it is the
-        decision of the server whether only a single spatial geometry property
-        is used to determine the extent or all relevant geometries.
+        If a feature has multiple spatial geometry properties, it is the decision of the
+        server whether only a single spatial geometry property is used to determine
+        the extent or all relevant geometries.
       required: false
       schema:
         type: array
@@ -236,20 +228,6 @@ components:
         type: string
       style: form
       explode: false
-    collectionId:
-      name: collectionId
-      in: path
-      required: true
-      description: Identifier (name) of a specific collection
-      schema:
-        type: string
-    featureId:
-      name: featureId
-      in: path
-      description: Local identifier of a specific feature
-      required: true
-      schema:
-        type: string
   schemas:
     exception:
       type: object
@@ -410,72 +388,6 @@ components:
                   type: string
                 title:
                   type: string
-    collectionInfo:
-      type: object
-      required:
-        - stac_version
-        - id
-        - description
-        - license
-        - extent
-      properties:
-        stac_version:
-          type: string
-          example: 0.7.0
-        id:
-          description: 'identifier of the collection used, for example, in URIs'
-          type: string
-          example: buildings
-        keywords:
-          title: Keywords
-          type: array
-          items:
-            type: string
-            example:
-              - buildings
-              - properties
-              - constructions
-        version:
-          title: Collection Version
-          type: string
-          example: 2018Q3
-        license:
-          title: Collection License Name
-          type: string
-          example: Apache-2.0
-        providers:
-          type: array
-          items:
-            properties:
-              name:
-                title: Organization name
-                type: string
-                example: Big Building Corp
-              description:
-                title: Provider description
-                type: string
-                example: "No further processing applied."
-              roles:
-                title: Organization roles
-                type: array
-                items:
-                  type: string
-                  enum:
-                    - producer
-                    - licensor
-                    - processor
-                    - host
-                example: 
-                  - producer
-                  - licensor
-              url:
-                title: Homepage
-                description: >-
-                  Homepage on which the provider describes the dataset and
-                  publishes contact information.
-                type: string
-                format: url
-                example: http://www.big-building.com
     itemCollection:
       description: A GeoJSON FeatureCollection augmented with foreign members that contain values relevant to a STAC entity
       type: object
@@ -597,7 +509,7 @@ components:
         datetime:
           $ref: '#/components/schemas/time'
       additionalProperties:
-        description: Any additional properties added in via extensions.
+        description: Any additional properties added in via Item specification or extensions.
     itemCollectionLinks:
       type: array
       description: >-
