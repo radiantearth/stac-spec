@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Moved Single Item Extension to core (`license` and `providers` properties for Items)
 
+### Added
+
+- Property `summaries` have been added to catalogs and collections.
+
 ## [v0.7.0] - 2019-05-06
 
 ### Fixed
