@@ -1,7 +1,6 @@
 {
   "stac_version": "0.7.0",
   "id": "sample",
-  "title": "Sample catalog",
   "description": "This is a very basic sample catalog.",
   "links": [
     {
@@ -9,11 +8,7 @@
       "rel": "item"
     },
     {
-      "href": "http://www.example.com/sample-catalog/catalog.json",
-      "rel": "root"
-    },
-    {
-      "href": "http://www.example.com/sample-catalog/catalog.json",
+      "href": "basic.json",
       "rel": "self"
     }
   ]

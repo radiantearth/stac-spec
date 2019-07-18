@@ -32,10 +32,13 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | license      | string            | **REQUIRED.** Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
 | providers    | [Provider Object] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | extent       | Extent Object     | **REQUIRED.** Spatial and temporal extents.                  |
-| properties   | object            | Common fields across referenced items. May also be used to describe standalone collections better that don't reference any items. See the section 'Common Fields' for more information. |
+| properties   | object            | Common fields across referenced items. |
+| summaries    | Map<string, [*]|Range Object> | A map of property summaries, either a set of values or a range. |
 | links        | [Link Object]     | **REQUIRED.** A list of references to other documents.       |
 
 **stac_version**: It is not allowed to mix STAC versions. The root catalog or the root collection respectively MUST specify the implemented STAC version. Child Catalogs and child Collections MUST NOT specify a different STAC version.
+
+**summaries**: You can optionally summarize the potential values that are available as part of the `properties` in STAC Items. Summaries are either a range (i.e. the minimum and the maxmimum value) or a unique set of all values. The set of values must contain at least one element.
 
 ### Extent Object
 
@@ -62,6 +65,16 @@ be aware of their differences by reading both specifications.
 - Upper right corner, coordinate axis 3 (height, optional)
 
 The coordinate reference system of the values is WGS84 longitude/latitude.
+
+### Range Object
+
+Ranges can be specified for [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values only, which means they need to have a rank order.
+Therefore, ranges can only be specified for numbers and some special types of strings. Examples: grades (A to F), dates or times.
+
+| Field Name | Type           | Description |
+| ---------- | -------------- | ----------- |
+| min        | number\|string | **REQUIRED.** Minimum value of the range. |
+| max        | number\|string | **REQUIRED.** Maximum value of the range. |
 
 ### Provider Object
 

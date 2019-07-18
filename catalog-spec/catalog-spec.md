@@ -119,11 +119,56 @@ details on the two types and how you might use them see the [Static and Dynamic 
 | id           | string        | **REQUIRED.** Identifier for the catalog.                    |
 | title        | string        | A short descriptive one-line title for the catalog.          |
 | description  | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| summaries    | Map<string, [*]|Range Object> | A map of property summaries, either a set of values or a range. |
 | links        | [Link Object] | **REQUIRED.** A list of references to other documents.       |
 
 **stac_version**: It is not allowed to mix STAC versions. The root catalog or the root collection respectively MUST specify the implemented STAC version. Child Catalogs and child Collections MUST NOT specify a different STAC version.
 
-**Examples:**
+**summaries**: You can optionally summarize the potential values that are available as part of the `properties` in STAC Items. Summaries are either a range (i.e. the minimum and the maxmimum value) or a unique set of all values. The set of values must contain at least one element.
+
+### Range Object
+
+Ranges can be specified for [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values only, which means they need to have a rank order.
+Therefore, ranges can only be specified for numbers and some special types of strings. Examples: grades (A to F), dates or times.
+
+| Field Name | Type           | Description |
+| ---------- | -------------- | ----------- |
+| min        | number\|string | **REQUIRED.** Minimum value of the range. |
+| max        | number\|string | **REQUIRED.** Maximum value of the range. |
+
+### Link Object
+
+This object describes a relationship with another entity. Data providers are advised to be liberal
+with links.
+
+| Field Name | Type   | Description                                                                                                                         |
+| ---------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed.                                |
+| rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter ["Relation types"](#relation-types) for more information. |
+| type       | string | Media type of the referenced entity.                                                                                                |
+| title      | string | A human readable title to be used in rendered displays of the link.                                                                 |
+
+A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+
+Please see the chapter 'relative vs absolute links' in the [Item spec](../item-spec/item-spec.md#relative-vs-absolute-links)
+ for a discussion on that topic, as well as the [use of links](catalog-best-practices.md#use-of-links) section of the 
+ catalog best practices document.
+
+#### Relation types
+
+The following types are commonly used as `rel` types in the Link Object of a STAC Collection:
+
+| Type    | Description |
+| ------- | ----------- |
+| self    | STRONGLY RECOMMENDED. _Absolute_ URL to the location that the catalog file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
+| root    | STRONGLY RECOMMENDED. URL to the root STAC Catalog or [Collection](../collection-spec/README.md). Catalogs should include a link to their root, even if it's the root and points to itself. |
+| parent  | URL to the parent STAC Catalog or [Collection](../collection-spec/README.md). Non-root catalogs should include a link to their parent. |
+| child   | URL to a child STAC Catalog or [Collection](../collection-spec/README.md). |
+| item    | URL to a STAC [Item](../item-spec/item-spec.md). |
+
+**Note:** A link to at least one `item` or `child` catalog is **REQUIRED**.
+
+### Examples
 
 A catalog of
 [NAIP imagery](https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/)
@@ -163,38 +208,6 @@ A typical '_child_' sub-catalog could look similar:
 ```
 
 The `root` catalog in this example could hold a set of sub-catalogs with different STAC collections, e.g. data from other satellites or processed variants of the NAIP imagery.
-
-### Link Object
-
-This object describes a relationship with another entity. Data providers are advised to be liberal
-with links.
-
-| Field Name | Type   | Description                                                                                                                         |
-| ---------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed.                                |
-| rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter ["Relation types"](#relation-types) for more information. |
-| type       | string | Media type of the referenced entity.                                                                                                |
-| title      | string | A human readable title to be used in rendered displays of the link.                                                                 |
-
-A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
-
-Please see the chapter 'relative vs absolute links' in the [Item spec](../item-spec/item-spec.md#relative-vs-absolute-links)
- for a discussion on that topic, as well as the [use of links](catalog-best-practices.md#use-of-links) section of the 
- catalog best practices document.
-
-#### Relation types
-
-The following types are commonly used as `rel` types in the Link Object of a STAC Collection:
-
-| Type    | Description |
-| ------- | ----------- |
-| self    | STRONGLY RECOMMENDED. _Absolute_ URL to the location that the catalog file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root    | STRONGLY RECOMMENDED. URL to the root STAC Catalog or [Collection](../collection-spec/README.md). Catalogs should include a link to their root, even if it's the root and points to itself. |
-| parent  | URL to the parent STAC Catalog or [Collection](../collection-spec/README.md). Non-root catalogs should include a link to their parent. |
-| child   | URL to a child STAC Catalog or [Collection](../collection-spec/README.md). |
-| item    | URL to a STAC [Item](../item-spec/item-spec.md). |
-
-**Note:** A link to at least one `item` or `child` catalog is **REQUIRED**.
 
 ## Extensions
 
