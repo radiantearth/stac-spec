@@ -24,7 +24,7 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | Element      | Type              | Description                                                  |
 | ------------ | ----------------- | ------------------------------------------------------------ |
 | stac_version | string            | **REQUIRED.** The STAC version the collection implements.    |
-| id           | string            | **REQUIRED.** Identifier for the collection that is unique across the provider. Must be [percented encoded](https://tools.ietf.org/html/rfc3986#section-2) if a reserved character is used. |
+| id           | string            | **REQUIRED.** Identifier for the collection that is unique across the provider. The use of URI reserved characters such as `:` or `/` is discouraged since this will result in [percented encoded](https://tools.ietf.org/html/rfc3986#section-2) STAC endpoints. |
 | title        | string            | A short descriptive one-line title for the collection.       |
 | description  | string            | **REQUIRED.** Detailed multi-line description to fully explain the collection. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | keywords     | [string]          | List of keywords describing the collection.                  |
