@@ -30,7 +30,7 @@
               "type": ["integer", "null"],
               "minimum": 0
             },
-            "found": {
+            "matched": {
               "type": "integer",
               "minimum": 0
             },
