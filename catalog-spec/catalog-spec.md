@@ -116,6 +116,7 @@ details on the two types and how you might use them see the [Static and Dynamic 
 | Element      | Type          | Description                                                  |
 | ------------ | ------------- | ------------------------------------------------------------ |
 | stac_version | string        | **REQUIRED.** The STAC version the catalog implements.       |
+| stac_extensions | [string]   | A list of extensions the catalog and its items have implemented. |
 | id           | string        | **REQUIRED.** Identifier for the catalog.                    |
 | title        | string        | A short descriptive one-line title for the catalog.          |
 | description  | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
@@ -123,46 +124,7 @@ details on the two types and how you might use them see the [Static and Dynamic 
 
 **stac_version**: It is not allowed to mix STAC versions. The root catalog or the root collection respectively MUST specify the implemented STAC version. Child Catalogs and child Collections MUST NOT specify a different STAC version.
 
-**Examples:**
-
-A catalog of
-[NAIP imagery](https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/)
-might look something like this:
-
-```json
-{
-  "stac_version": "0.7.0",
-  "id": "NAIP",
-  "description": "Catalog of NAIP Imagery",
-  "links": [
-    { "rel": "self", "href": "https://www.fsa.usda.gov/naip/catalog.json" },
-    { "rel": "child", "href": "https://www.fsa.usda.gov/naip/30087/catalog.json" },
-    { "rel": "root", "href": "https://www.fsa.usda.gov/catalog.json" }
-  ]
-}
-```
-
-In addition, the catalog shown above is strongly recommended to also follow the [STAC Collection specification](../collection-spec/collection-spec.md) 
-to add more information about the NAIP imagery such as the spatial and temporal extents, a license and more.
-
-A typical '_child_' sub-catalog could look similar:
-
-```json
-{
-  "stac_version": "0.7.0",
-  "id": "NAIP",
-  "description": "Catalog of NAIP Imagery - 30087",
-  "links": [
-    { "rel": "self", "href": "https://www.fsa.usda.gov/naip/30087/catalog.json" },
-    { "rel": "parent", "href": "../catalog.json" },
-    { "rel": "root", "href": "https://www.fsa.usda.gov/catalog.json" },
-    { "rel": "item", "href": "https://www.fsa.usda.gov/naip/30087/m_3008718_sw_16_1_20130805.json" },
-    { "rel": "item", "href": "https://www.fsa.usda.gov/naip/30087/m_3008718_sw_16_1_20130806.json" }
-  ]
-}
-```
-
-The `root` catalog in this example could hold a set of sub-catalogs with different STAC collections, e.g. data from other satellites or processed variants of the NAIP imagery.
+**stac_extensions**: A list of extensions the catalog and its items have implemented. The list contains URLs to the JSON Schema files it can be validated against. For official extensions, a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. If the versions of the extension and the catalog diverge, you can specify the URL of the JSON schema file.
 
 ### Link Object
 
@@ -195,6 +157,49 @@ The following types are commonly used as `rel` types in the Link Object of a STA
 | item    | URL to a STAC [Item](../item-spec/item-spec.md). |
 
 **Note:** A link to at least one `item` or `child` catalog is **REQUIRED**.
+
+## Examples
+
+A catalog of
+[NAIP imagery](https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/)
+might look something like this:
+
+```json
+{
+  "stac_version": "0.7.0",
+  "stac_extensions": ["eo", "http://example.com/stac/schemas/1.0/naip-fields"],
+  "id": "NAIP",
+  "description": "Catalog of NAIP Imagery",
+  "links": [
+    { "rel": "self", "href": "https://www.fsa.usda.gov/naip/catalog.json" },
+    { "rel": "child", "href": "https://www.fsa.usda.gov/naip/30087/catalog.json" },
+    { "rel": "root", "href": "https://www.fsa.usda.gov/catalog.json" }
+  ]
+}
+```
+
+In addition, the catalog shown above is strongly recommended to also follow the [STAC Collection specification](../collection-spec/collection-spec.md) 
+to add more information about the NAIP imagery such as the spatial and temporal extents, a license and more.
+
+A typical '_child_' sub-catalog could look similar:
+
+```json
+{
+  "stac_version": "0.7.0",
+  "stac_extensions": ["eo"],
+  "id": "NAIP",
+  "description": "Catalog of NAIP Imagery - 30087",
+  "links": [
+    { "rel": "self", "href": "https://www.fsa.usda.gov/naip/30087/catalog.json" },
+    { "rel": "parent", "href": "../catalog.json" },
+    { "rel": "root", "href": "https://www.fsa.usda.gov/catalog.json" },
+    { "rel": "item", "href": "https://www.fsa.usda.gov/naip/30087/m_3008718_sw_16_1_20130805.json" },
+    { "rel": "item", "href": "https://www.fsa.usda.gov/naip/30087/m_3008718_sw_16_1_20130806.json" }
+  ]
+}
+```
+
+The `root` catalog in this example could hold a set of sub-catalogs with different STAC collections, e.g. data from other satellites or processed variants of the NAIP imagery.
 
 ## Extensions
 

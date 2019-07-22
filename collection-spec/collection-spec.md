@@ -24,6 +24,7 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | Element      | Type              | Description                                                  |
 | ------------ | ----------------- | ------------------------------------------------------------ |
 | stac_version | string            | **REQUIRED.** The STAC version the collection implements.    |
+| stac_extensions | [string]       | A list of extensions the collection and its items have implemented. |
 | id           | string            | **REQUIRED.** Identifier for the collection that is unique across the provider. |
 | title        | string            | A short descriptive one-line title for the collection.       |
 | description  | string            | **REQUIRED.** Detailed multi-line description to fully explain the collection. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
@@ -36,6 +37,8 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | links        | [Link Object]     | **REQUIRED.** A list of references to other documents.       |
 
 **stac_version**: It is not allowed to mix STAC versions. The root catalog or the root collection respectively MUST specify the implemented STAC version. Child Catalogs and child Collections MUST NOT specify a different STAC version.
+
+**stac_extensions**: A list of extensions the collection and its items have implemented. The list contains URLs to the JSON Schema files it can be validated against. For official extensions, a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. If the versions of the extension and the catalog diverge, you can specify the URL of the JSON schema file.
 
 ### Extent Object
 
@@ -127,6 +130,8 @@ To get the complete record of an Item (both individual and commons properties), 
 An incomplete Collection:
 ```json
 {
+  "stac_version": "0.7.0",
+  "stac_extensions": ["eo", "https://example.com/stac/landsat-extension/1.0/schema.json"],
   "id": "landsat-8-l1",
   "title": "Landsat 8 L1",
   "description": "Landat 8 imagery radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
@@ -178,6 +183,8 @@ The merged Item then looks like this:
 
 ```json
 {
+  "stac_version": "0.7.0",
+  "stac_extensions": ["eo", "https://example.com/stac/landsat-extension/1.0/schema.json"],
   "type": "Feature",
   "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
   "bbox": [],

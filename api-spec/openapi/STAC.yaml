@@ -377,6 +377,8 @@ components:
         stac_version:
           type: string
           example: 0.7.0
+        stac_extensions:
+          type: string
         id:
           type: string
           example: naip

@@ -42,6 +42,29 @@
           "type": "string",
           "const": "0.7.0"
         },
+        "stac_extensions": {
+          "title": "STAC extensions",
+          "anyOf": [
+            {
+              "title": "Reference to a JSON Schema",
+              "type": "string",
+              "format": "uri"
+            },
+            {
+              "title": "Reference to a core extension",
+              "type": "string",
+              "enum": [
+                "checksum",
+                "datacube",
+                "datetime-range",
+                "eo",
+                "pointcloud",
+                "sar",
+                "scientific"
+              ]
+            }
+          ]
+        },
         "id": {
           "title": "Identifier",
           "type": "string"

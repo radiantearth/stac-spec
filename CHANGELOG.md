@@ -7,8 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
 
 ### Changed
-
 - Moved Single Item Extension to core (`license` and `providers` properties for Items)
+
+### Added
+- **stac_extensions**: Introduced this field for Catalogs and Collections.
 
 ## [v0.7.0] - 2019-05-06
 
