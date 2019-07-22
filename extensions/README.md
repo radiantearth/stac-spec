@@ -139,6 +139,5 @@ See the [EU](eo/) extension file structure as an example.
 
 Make sure to choose a meaningful name for the extension folder as it will be the shortcut
 that is used to reference it in the `stac_extensions` field. Also, make sure to add the
-folder name to the enum defined for the `stac_extensions` field in the JSON schemas of
-[STAC catalog](../catalog-spec/json-schema/catalog.json) and
-[STAC Collection](../collection-spec/json-schema/collection.json).
+folder name to the enum defined for the `stac_extensions` field in the
+[JSON schema of the STAC catalog specification](../catalog-spec/json-schema/catalog.json).
