@@ -106,7 +106,7 @@ The following types are commonly used as `rel` types in the Link Object of a Col
 | root    | URL to the root STAC [Catalog](../catalog-spec/README.md) or Collection. Collections should include a link to their root, even if it's the root and points to itself. |
 | parent  | URL to the parent STAC [Catalog](../catalog-spec/README.md) or Collection. Non-root collections should include a link to their parent. |
 | child   | URL to a child STAC [Catalog](../catalog-spec/) or Collection. |
-| item    | URL to a STAC [Item](../item-spec/README.md). All items linked from a collection MUST refer back to its collection with the `collection` relation type. |
+| item    | URL to a STAC [Item](../item-spec/item-spec.md). All items linked from a collection MUST refer back to its collection with the `collection` relation type. |
 | license | The license URL for the collection SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file. |
 | derived_from | URL to a STAC Collection that was used as input data in the creation of this collection. See the note in [STAC Item](../item-spec/item-spec.md#relation-types) for more info. |
 
@@ -134,13 +134,13 @@ An incomplete Collection:
   "extent": {...},
   "license": "PDDL-1.0",
   "properties": {
-    "eo:gsd": 15,
+    "eo:gsd": 30,
     "eo:platform": "landsat-8",
     "eo:instrument": "OLI_TIRS",
     "eo:off_nadir": 0,
     "eo:bands": [
       {
-        "id": "B1",
+        "name": "B1",
         "common_name": "coastal",
         "gsd": 30,
         "center_wavelength": 0.44,
@@ -190,14 +190,14 @@ The merged Item then looks like this:
     "eo:sun_elevation": 26.32596431,
     "landsat:path": 107,
     "landsat:row": 18,
-    "eo:gsd": 15,
+    "eo:gsd": 30,
     "eo:platform": "landsat-8",
     "eo:constellation": "landsat-8",
     "eo:instrument": "OLI_TIRS",
     "eo:off_nadir": 0,
     "eo:bands": [
       {
-        "id": "B1",
+        "name": "B1",
         "common_name": "coastal",
         "gsd": 30,
         "center_wavelength": 0.44,

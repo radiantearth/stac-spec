@@ -1,8 +1,9 @@
 # STAC Item Specification
 
-This document explains the structure and content of a SpatioTemporal Asset Catalog (STAC) Item. Each
-is a [GeoJSON](http://geojson.org/) [feature](https://tools.ietf.org/html/rfc7946#section-3.2), plus
-a few required fields that identify the time range and assets of the item. An Item is the core
+This document explains the structure and content of a SpatioTemporal Asset Catalog (STAC) Item. An **Item** is a 
+[GeoJSON](http://geojson.org/) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) augmented with 
+[foreign members](https://tools.ietf.org/html/rfc7946#section-6) relevant to a STAC entity.
+These attributes include fields that identify the time range and assets of the Item. An Item is the core
 granular entity in a STAC, containing the core metadata that enables any client to search or crawl
 online catalogs of spatial 'assets' - satellite imagery, derived data, DEM's, etc.
 
@@ -23,17 +24,13 @@ required fields is a valid STAC Item.
 
 ## WARNING
 
-**This is still an early version of the STAC spec, expect that there may be some changes before
-everything is finalized.**
+**This is still an early version of the STAC spec, expect that there may be some changes before everything is finalized.**
 
-Implementations are encouraged, however, as good effort will be made to not change anything too
-drastically. Using the specification now will ensure that needed changes can be made before
-everything is locked in. So now is an ideal time to implement, as your feedback will be directly
-incorporated.
+Implementations are encouraged, however, as good effort will be made to not change anything too drastically. Using the specification now will ensure that needed changes can be made before everything is locked in. So now is an ideal time to implement, as your feedback will be directly incorporated. 
 
 ## Item fields
 
-This object describes a STAC Item. The fields `id`, `type`, `bbox`, `geometry` and `properties` are
+This object describes a STAC Item. The fields `id`, `type`, `bbox`, `geometry` and `properties` are 
 inherited from GeoJSON.
 
 | Field Name | Type                                                                       | Description |
@@ -56,16 +53,19 @@ Items that are linked to, but the best practices around this are still emerging.
 
 ### Properties Object
 
-The Properties object adds additional metadata to the GeoJSON Object. Basically, each entry is a
-key-value pair. The values SHOULD not be an array or object to avoid GIS systems mis-rendering them.
-Metadata that require an object or array SHOULD be placed a level up, directly in the GeoJSON/STAC
-Item object. Additional fields can be introduced through extensions. It is generally allowed to add
-custom fields.
+The Properties object adds additional metadata to the GeoJSON Object. Additional fields can be introduced through 
+extensions. It is generally allowed to add custom fields.
+
+It is recommended to add multiple attributes for related values instead of a nested object, e.g., two fields `eo:cloud_cover` and `eo:sun_azimuth` instead of a field `eo` with an object value containing the two fields. The convention (as used within Extensions) is for related attributes to use a common prefix on the attribute names to group them, e.g. `eo`. A nested data structure should only be used when the data itself is nested, as with `eo:bands`.
 
 | Field Name | Type   | Description                                                  |
 | ---------- | ------ | ------------------------------------------------------------ |
 | datetime   | string | **REQUIRED.** The searchable date and time of the assets, in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
+| license    | string | Item's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
+| providers  | [Provider Object] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | title      | string | A human readable title describing the item. |
+| created    | string | Creation date and time of this metadata file. This is NOT the timestamp the asset was created. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
+| updated    | string | Date and time this metadata file was updated last. This is NOT the timestamp the asset was updated last. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
 
 **datetime** is likely the acquisition (in the case of single camera type captures) or the 'nominal'
 or representative time in the case of assets that are combined together. Though time can be a
@@ -73,6 +73,29 @@ complex thing to capture, for this purpose keep in mind the STAC spec is primari
 data, so use whatever single date and time is most useful for a user to search for. STAC content
 extensions may further specify the meaning of the main `datetime` field, and many will also add more
 datetime fields.
+
+**license** and **provider** should be defined at the Collection level if possible (as either
+common properties or Collection fields). Item-level definition of these fields will override
+Collection `properties`. If none are defined, the Collection's `license` and `providers` fields
+will be assumed to apply to related Items.
+
+### Provider Object
+
+The object provides information about a provider. A provider is any of the organizations that captured or processed the content of the collection and therefore influenced the data offered by this collection. May also include information about the final storage provider hosting the data.
+
+| Field Name  | Type      | Description                                                  |
+| ----------- | --------- | ------------------------------------------------------------ |
+| name        | string    | **REQUIRED.** The name of the organization or the individual. |
+| description | string    | Multi-line description to add further provider information such as processing details for processors and producers, hosting details for hosts or basic contact information. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| roles       | [string]  | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`. |
+| url         | string    | Homepage on which the provider describes the dataset and publishes contact information. |
+
+**roles**: The provider's role(s) can be one or more of the following elements:
+
+* *licensor*: The organization that is licensing the dataset under the license specified in the collection's `license` field.
+* *producer*: The producer of the data is the provider that initially captured and processed the source data, e.g. ESA for Sentinel-2 data.
+* *processor*: A processor is any provider who processed data to a derived product.
+* *host*: The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list. 
 
 ### Link Object
 
@@ -106,6 +129,7 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | root         | URL to the root STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may hold [common fields](../collection-spec/collection-spec.md#common-fields-and-standalone-collections) of this and other Items (see chapter '[Collections](#Collections)' for more explanations). _Absolute_ URLs should be used whenever possible. |
+| license | The license URL for the item SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC Item with the license text in a separate file and link to this file. |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
 
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
@@ -119,7 +143,7 @@ structure that can be used as a jumping off point for more experiments in proven
 Items are *strongly recommended* to provide a link to a STAC Collection definition. It is important as Collections provide additional information about a set of items, for example the license, provider and other information
 giving context on the overall set of data that an individual Item is a part of.
 
-If Items are part of a STAC Collection, the [STAC Collection spec *requires* Items to link back to the Collection](collection-spec/collection-spec.md#relation-types).
+If Items are part of a STAC Collection, the [STAC Collection spec *requires* Items to link back to the Collection](../collection-spec/collection-spec.md#relation-types).
 Linking back must happen in two places:
 
 1. The field `collection` in an Item must be filled (see section 'Item fields'). It is the `id` of a STAC Collection.

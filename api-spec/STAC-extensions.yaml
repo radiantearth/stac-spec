@@ -133,7 +133,7 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: 'https://stacspec.org/assets/FeatureCollection.json'
+                $ref: 'https://geojson.org/schema/FeatureCollection.json'
             text/html:
               schema:
                 type: string
@@ -161,7 +161,7 @@ paths:
           content:
             application/geo+json:
               schema:
-                $ref: 'https://stacspec.org/assets/Feature.json'
+                $ref: 'https://geojson.org/schema/Feature.json'
             text/html:
               schema:
                 type: string
@@ -711,7 +711,7 @@ components:
         - type: object
           properties:
             limit:
-              type: number
+              type: integer
               example: 10
         - $ref: '#/components/schemas/queryFilter'
         - $ref: '#/components/schemas/sortFilter'
@@ -772,7 +772,7 @@ components:
       description: Only returns items that intersect with the provided polygon.
       properties:
         intersects:
-          $ref: 'https://stacspec.org/assets/Geometry.json'
+          $ref: 'https://geojson.org/schema/Geometry.json'
     time:
       type: string
       description: >
@@ -868,7 +868,7 @@ components:
         bbox:
           $ref: '#/components/schemas/bbox'
         geometry:
-          $ref: 'https://stacspec.org/assets/Geometry.json'
+          $ref: 'https://geojson.org/schema/Geometry.json'
         type:
           $ref: '#/components/schemas/itemType'
         properties:
@@ -986,6 +986,11 @@ components:
           date: '2018-02-12T00:00:00Z/2018-03-18T12:31:12Z'
         'pl:item_type':
           startsWith: PSScene
+        product:
+          in:
+            - foo
+            - bar
+            - baz
     queryProp:
       description: Apply query operations to a specific property
       anyOf:
@@ -1036,6 +1041,13 @@ components:
               description: >-
                 Find items with a property that contains with the specified
                 string. A case-insensitive comparison must be performed.
+            in:
+              type: array
+              items:
+                type: string
+              description: >-
+                Find items with a property that matches one of the specified
+                strings. A case-insensitive comparison must be performed.
             time:
               $ref: '#/components/schemas/time'
     sortFilter:

@@ -1,6 +1,7 @@
 openapi: 3.0.1
 info:
   title: The SpatioTemporal Asset Catalog API + WFS3 + Transaction extension
+  version: 0.7.0
 paths:
   '/collections/{collectionId}/items':
     post:
@@ -19,8 +20,14 @@ paths:
                  - $ref: '#/components/schemas/item'
                  - $ref: '#/components/schemas/itemCollection'
       responses:
-        '200':
+        '201':
           description: Status of the create request.
+          headers:
+            Location:
+              description: A link to the item
+              schema:
+                type: string
+                format: url
           content:
             application/geo+json:
               schema:
@@ -28,6 +35,10 @@ paths:
             text/html:
               schema:
                 type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '5XX':
+          $ref: '#/components/responses/InternalServerError'
         default:
           description: An error occurred.
           content:
@@ -64,6 +75,12 @@ paths:
             application/json:
               schema:
                 type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/InternalServerError'
         default:
           description: An error occurred.
           content:
@@ -99,6 +116,12 @@ paths:
             application/json:
               schema:
                 type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/InternalServerError'
         default:
           description: An error occurred.
           content:
@@ -118,15 +141,14 @@ paths:
         - $ref: '#/components/parameters/collectionId'
         - $ref: '#/components/parameters/featureId'
       responses:
-        '200':
-          description: Status of the update request.
-          content:
-            text/html:
-              schema:
-                type: string
-            application/json:
-              schema:
-                type: string
+        '204':
+          description: Status of the delete request.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '5XX':
+          $ref: '#/components/responses/InternalServerError'
         default:
           description: An error occurred.
           content:
@@ -146,7 +168,7 @@ components:
         bbox:
           $ref: '#/components/schemas/bbox'
         geometry:
-          $ref: 'https://stacspec.org/assets/Geometry.json'
+          $ref: 'https://geojson.org/schema/Geometry.json'
         type:
           $ref: '#/components/schemas/itemType'
         properties:
@@ -159,7 +181,7 @@ components:
         assets:
           analytic:
             title: 1-Band Analytic
-            href: http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/analytic-1.tif
+            href: http://cool-sat.com/catalog/collections/cs/items/CS3-201605XX_132130_04/analytic-1.tif
     partialItemProperties:
       type: object
       description: allows for partial collections of metadata fields
@@ -167,6 +189,27 @@ components:
       properties:
         datetime:
           $ref: '#/components/schemas/time'
+
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/exception'
+    BadRequest:
+      description: The request was malformed or semantically invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/exception'
+    InternalServerError:
+      description: The request was syntactically and semantically valid, but an error occurred while trying to act upon it
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/exception'
+
 tags:
   - name: Extensions
     description: >-
