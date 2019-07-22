@@ -31,7 +31,6 @@ The core WFS 3 endpoints are shown below, with details provided in an [OpenAPI s
 | /collections/{collection_id} | Collection | Returns single Collection JSON |
 | /collections/{collection_id}/items | ItemCollection | GeoJSON FeatureCollection-conformant entity of Items in collection |
 | /collections/{collection_id}/items/{item_id} | Item | Returns single Item (GeoJSON Feature)|
->>>>>>> bdcfbcbb18ec4e6ee2a444cd5c1aae9cd801b7fe
 
 The `/collections/{collection_id}/items` endpoint accepts parameters for filtering the results (also called filters). 
 Items in the collection should match all filters to be returned when querying. This implies a logical AND operation. If an OR operation is needed, it should be specified through an extension filter.
