@@ -52,13 +52,14 @@ Multispectral 20° off-nadir value of 2.07 and for WorldView-3 the Multispectral
 be the name of the satellite, whereas for drones this would be a unique name for the drone.  It is recommended that 
 the value be lowercase with no spaces. Examples include `landsat-8` (Landsat-8), `sentinel-2a` and `sentinel-2b` 
 (Sentinel-2), `terra` and `aqua` (part of NASA EOS, carrying the MODIS instruments),
- `mycorp-uav-034` (hypothetical drone name), and `WORLDVIEW02` (Maxar/DigitalGlobe WorldView-2).
+ `mycorp-uav-034` (hypothetical drone name), and `worldview02` (Maxar/DigitalGlobe WorldView-2).
  
 **eo:instrument** is the name of the sensor used, although for Items which contain data from
-multiple sensors this could also name multiple sensors. For example, data from the Landsat-8
+multiple sensors this could also name multiple sensors.  It is recommended 
+that the value be lowercase with no spaces. For example, data from the Landsat-8
 platform is collected with the OLI sensor as well as the TIRS sensor, but the data is distributed
-together and commonly referred to as OLI_TIRS. Examples include `OLI_TIRS` (Landsat-8), `MSI` (Sentinel-2), 
-`ASTER` (Terra), and `MODIS` (Terra and Aqua).
+together and commonly referred to as OLI_TIRS. Examples include `oli_tirs` (Landsat-8), `msi` (Sentinel-2), 
+`aster` (Terra), and `modis` (Terra and Aqua).
 
 **eo:constellation** is the name of a logical collection one or more platforms that have similar payloads and have 
 their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and 

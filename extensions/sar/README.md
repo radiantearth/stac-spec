@@ -18,8 +18,8 @@ The exact metadata that would appear in a STAC Collection record will vary depen
 
 | Field Name                | Type          | Description                                                  |
 | ------------------------- | ------------- | ------------------------------------------------------------ |
-| sar:platform              | string        | **REQUIRED.** Unique name of the specific platform the instrument is attached to. For satellites this would be the name of the satellite (e.g., sentinel-1A). |
-| sar:constellation         | string        | Name of the constellation that the platform belongs to. See below for details. |
+| sar:platform              | string        | **REQUIRED.** Unique name of the specific platform to which the instrument is attached. |
+| sar:constellation         | string        | Name of the constellation to which the platform belongs. |
 | sar:instrument            | string        | **REQUIRED.** Name of the sensor used, although for Items which contain data from multiple sensors this could also name multiple sensors. |
 | sar:instrument_mode       | string        | **REQUIRED.** The name of the sensor acquisition mode that is commonly used. This should be the short name, if available. For example, `WV` for "Wave mode" of Sentinel-1 and Envisat ASAR satellites. |
 | sar:frequency_band        | string        | **REQUIRED.** The common name for the frequency band to make it easier to search for bands across instruments. See section "Common Frequency Band Names" for a list of accepted names. |
@@ -41,13 +41,28 @@ The exact metadata that would appear in a STAC Collection record will vary depen
 | sar:relative_orbit        | integer       | A relative orbit number associated with the acquisition. See below for details. |
 | sar:incidence_angle       | number        | The center incidence angle is the angle defined by the incident radar beam at the scene center and the vertical (normal) to the intercepting surface. Measured in degrees (0-90). |
 
+**sar:platform** is the unique name of the specific platform the instrument is attached to. For satellites this would 
+be the name of the satellite, whereas for drones this would be a unique name for the drone.  It is recommended that 
+the value be lowercase with no spaces. Examples include `sentinel-1a` (Sentinel-1) and `envisat` (Envisat).
+ 
+**sar:constellation** is the name of a logical collection one or more platforms that have similar payloads and have 
+their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and 
+radiometric characteristics. This field allows users to search for related data sets without needing to specify from 
+which specific platform the data came. It is recommended that the value be lowercase with no spaces. Most existing 
+SAR systems are single-satellite, so the constellation name is the same as the satellite name, e.g., 
+`sentinel-1a` (Sentinel-1) and `envisat` (Envisat).
+
+**sar:instrument** is the name of the sensor used, although for Items which contain data from
+multiple sensors this could also name multiple sensors.  It is recommended that the value be lowercase with no spaces. 
+For example, data from the Landsat-8
+platform is collected with the OLI sensor as well as the TIRS sensor, but the data is distributed
+together and commonly referred to as OLI_TIRS. Examples include `c-sar` (Sentinel-1) and `asar` (Envisat).
+
+**sar:polarization** specifies a single polarization or a polarization combination. For single polarized radars one of `HH`, `VV`, `HV` or `VH` must be set. Fully polarimetric radars add all four polarizations to the array. Dual polarized radars and alternating polarization add the corresponding polarizations to the array, for instance for `HH+HV` add both `HH` and `HV`.
+
 **sar:absolute_orbit** usually corresponds to the number of orbits elapsed since satellite launch (e.g. ALOS, ERS-1/2, JERS-1, RADARSAT-1 and Sentinel-1). For airborne SAR such as UAVSAR it can be the [Flight ID](http://uavsar.jpl.nasa.gov/cgi-bin/data.pl) or a similar concept. The center orbit number should be specified if readily available, otherwise the orbit number at the start of the flight can be used instead.
 
 **sar:relative_orbit** is a count of orbits from 1 to the number of orbits contained in a repeat cycle, where relative orbit 1 starts from a defined reference for a given satellite. This property is usually not set for airborne SAR such as UAVSAR. The center orbit number should be specified if readily available, otherwise the orbit number at the start of the flight can be used instead.
-
-**sar:constellation** is the name of the group of satellites that have similar payloads and have their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and radiometric characteristics. Examples are the Sentinel-1 [constellation](https://www.esa.int/Our_Activities/Observing_the_Earth/Copernicus/Sentinel-1/Satellite_constellation), which has S1A, S1B, S1C and S1D and RADARSAT, which has RADARSAT-1 and RADARSAT-2. This field allows users to search for Sentinel-1 data, for example, without needing to specify which specific platform the data came from.
-
-**sar:polarization** specifies a single polarization or a polarization combination. For single polarized radars one of `HH`, `VV`, `HV` or `VH` must be set. Fully polarimetric radars add all four polarizations to the array. Dual polarized radars and alternating polarization add the corresponding polarizations to the array, for instance for `HH+HV` add both `HH` and `HV`.
 
 ### Common Frequency Band Names
 
