@@ -1,7 +1,4 @@
 openapi: 3.0.1
-info:
-  title: The SpatioTemporal Asset Catalog API + WFS3 + Transaction extension
-  version: 0.7.0
 paths:
   '/collections/{collectionId}/items':
     post:
@@ -9,7 +6,7 @@ paths:
       description: create a new feature in a specific collection
       operationId: postFeature
       tags:
-        - Extensions
+        - Transaction Extension
       parameters:
         - $ref: '#/components/parameters/collectionId'
       requestBody:
@@ -56,7 +53,7 @@ paths:
         GeoJSON  description be submitted.
       operationId: putFeature
       tags:
-        - Extensions
+        - Transaction Extension
       parameters:
         - $ref: '#/components/parameters/collectionId'
         - $ref: '#/components/parameters/featureId'
@@ -97,7 +94,7 @@ paths:
         fragement (containing the fields to be updated) be submitted.
       operationId: patchFeature
       tags:
-        - Extensions
+        - Transaction Extension
       parameters:
         - $ref: '#/components/parameters/collectionId'
         - $ref: '#/components/parameters/featureId'
@@ -136,7 +133,7 @@ paths:
       description: Use this method to delete an existing feature.
       operationId: deleteFeature
       tags:
-        - Extensions
+        - Transaction Extension
       parameters:
         - $ref: '#/components/parameters/collectionId'
         - $ref: '#/components/parameters/featureId'
@@ -174,7 +171,9 @@ components:
         properties:
           $ref: '#/components/schemas/partialItemProperties'
         links:
-          $ref: '#/components/schemas/links'
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
         assets:
           $ref: '#/components/schemas/itemAssets'
       example:
@@ -189,7 +188,6 @@ components:
       properties:
         datetime:
           $ref: '#/components/schemas/time'
-
   responses:
     NotFound:
       description: The specified resource was not found
@@ -209,9 +207,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/exception'
-
 tags:
-  - name: Extensions
+  - name: Transaction Extension
     description: >-
       STAC-specific operations to add, remove, and edit items within WFS3
       collections.
