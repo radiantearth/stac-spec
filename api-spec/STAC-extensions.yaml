@@ -855,6 +855,25 @@ components:
             $ref: '#/components/schemas/item'
         links:
           $ref: '#/components/schemas/itemCollectionLinks'
+        'search:metadata':
+          type: object
+          required:
+            - next
+            - returned
+          properties:
+            next:
+              type: string
+              nullable: true
+            limit:
+              type: integer
+              nullable: true
+              minimum: 0
+            matched:
+              type: integer
+              minimum: 0
+            returned:
+              type: integer
+              minimum: 0
     item:
       description: >-
         A GeoJSON Feature augmented with foreign members that contain values
