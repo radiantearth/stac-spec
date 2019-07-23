@@ -158,7 +158,7 @@ paths:
         - STAC
       parameters:
         - $ref: '#/components/parameters/bbox'
-        - $ref: '#/components/parameters/time'
+        - $ref: '#/components/parameters/datetime'
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/ids'
@@ -408,26 +408,6 @@ components:
         minItems: 1
         items:
           type: string
-      explode: false
-    time:
-      name: time
-      in: query
-      description: >
-        Either a date-time that adheres to RFC3339 or a period string that
-        adheres to ISO8601. Examples:
-
-        * A date-time: "2018-02-12T23:20:50Z"  * A period:
-        "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or
-        "2018-02-12T00:00:00Z/P1M6DT12H31M12S" 
-
-        Only features that have a temporal property that intersects the value of
-        `time` are selected. If a feature has multiple temporal properties, it
-        is the decision of the server whether only a single temporal property is
-        used to determine the extent or all relevant temporal properties.
-      required: false
-      schema:
-        type: string
-      style: form
       explode: false
   schemas:
     collection:
@@ -869,7 +849,7 @@ components:
       type: object
       allOf:
         - $ref: '#/components/schemas/bboxFilter'
-        - $ref: '#/components/schemas/timeFilter'
+        - $ref: '#/components/schemas/datetimeFilter'
         - $ref: '#/components/schemas/intersectsFilter'
         - type: object
           properties:
@@ -921,34 +901,47 @@ components:
       properties:
         bbox:
           $ref: '#/components/schemas/bbox'
-    timeFilter:
-      description: An object representing a time based filter.
+    datetimeFilter:
+      description: An object representing a date+time based filter.
       type: object
       properties:
-        time:
-          $ref: '#/components/schemas/time'
+        datetime:
+          $ref: '#/components/schemas/datetime'
     intersectsFilter:
       type: object
       description: Only returns items that intersect with the provided polygon.
       properties:
         intersects:
           $ref: 'https://geojson.org/schema/Geometry.json'
-    time:
+    datetime:
       type: string
-      description: >
-        Either a date-time that adheres to RFC3339 or a period string that
-        adheres to ISO8601.  Examples:
+      description: >-
+        Either a date-time or an interval, open or closed. Date and time
+        expressions
 
-        * A date-time: "2018-02-12T23:20:50Z"   * A period:
-        "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or
-        "2018-02-12T00:00:00Z/P1M6DT12H31M12S"
+        adhere to RFC 3339. Open intervals are expressed using double-dots.
+
+
+        Examples:
+
+
+        * A date-time: "2018-02-12T23:20:50Z"
+
+        * A closed interval: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
+
+        * Open intervals: "2018-02-12T00:00:00Z/.." or "../2018-03-18T12:31:12Z"
+
 
         Only features that have a temporal property that intersects the value of
-        `time` are selected.
+
+        `datetime` are selected.
+
 
         If a feature has multiple temporal properties, it is the decision of the
-        server whether only a single temporal property is used to determine the
-        extent or all relevant temporal properties.
+
+        server whether only a single temporal property is used to determine
+
+        the extent or all relevant temporal properties.
       example: '2018-02-12T00:00:00Z/2018-03-18T12:31:12Z'
     catalogDefinition:
       type: object
@@ -1119,7 +1112,7 @@ components:
       description: provides the core metatdata fields plus extensions
       properties:
         datetime:
-          $ref: '#/components/schemas/time'
+          $ref: '#/components/schemas/datetime'
       additionalProperties:
         description: >-
           Any additional properties added in via Item specification or
