@@ -116,7 +116,7 @@ details on the two types and how you might use them see the [Static and Dynamic 
 | Element      | Type          | Description                                                  |
 | ------------ | ------------- | ------------------------------------------------------------ |
 | stac_version | string        | **REQUIRED.** The STAC version the catalog implements.       |
-| id           | string        | **REQUIRED.** Identifier for the catalog.                    |
+| id           | string        | **REQUIRED.** Identifier for the catalog. The use of URI reserved characters such as `:` or `/` is discouraged since this will result in [percented encoded](https://tools.ietf.org/html/rfc3986#section-2) STAC API endpoints. |
 | title        | string        | A short descriptive one-line title for the catalog.          |
 | description  | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | links        | [Link Object] | **REQUIRED.** A list of references to other documents.       |
