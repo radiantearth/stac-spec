@@ -48,15 +48,14 @@ the value be lowercase with no spaces. Examples include `sentinel-1a` (Sentinel-
 **sar:constellation** is the name of a logical collection one or more platforms that have similar payloads and have 
 their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and 
 radiometric characteristics. This field allows users to search for related data sets without needing to specify from 
-which specific platform the data came. It is recommended that the value be lowercase with no spaces. Most existing 
-SAR systems are single-satellite, so the constellation name is the same as the satellite name, e.g., 
-`sentinel-1a` (Sentinel-1) and `envisat` (Envisat).
+which specific platform the data came. It is recommended that the value be lowercase with no spaces. One example is 
+the constellation `sentinel-1` (Sentinel-1) consisting of two satellites Sentinel-1A and Sentinel-1B. If a system 
+consists of only a single satellite, the constellation name is the same as the satellite name, e.g., `envisat` 
+(Envisat). 
 
-**sar:instrument** is the name of the sensor used, although for Items which contain data from
-multiple sensors this could also name multiple sensors.  It is recommended that the value be lowercase with no spaces. 
-For example, data from the Landsat-8
-platform is collected with the OLI sensor as well as the TIRS sensor, but the data is distributed
-together and commonly referred to as OLI_TIRS. Examples include `c-sar` (Sentinel-1) and `asar` (Envisat).
+**sar:instrument** is the name of the sensor used, although for Items which contain data from multiple sensors this 
+could also name multiple sensors.  It is recommended that the value be lowercase with no spaces. Examples include 
+`c-sar` (Sentinel-1) and `asar` (Envisat).
 
 **sar:polarization** specifies a single polarization or a polarization combination. For single polarized radars one of `HH`, `VV`, `HV` or `VH` must be set. Fully polarimetric radars add all four polarizations to the array. Dual polarized radars and alternating polarization add the corresponding polarizations to the array, for instance for `HH+HV` add both `HH` and `HV`.
 
