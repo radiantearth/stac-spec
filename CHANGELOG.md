@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+- Added Projection Extension to describe Items with Assets that have an associated geospatial projection.
+
 ### Changed
 
 - Moved Single Item Extension to core (`license` and `providers` properties for Items)
