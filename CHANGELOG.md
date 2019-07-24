@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Moved Single Item Extension to core (`license` and `providers` properties for Items)
+- Sort Extension - added non-JSON query/form parameter format 
 
 ## [v0.7.0] - 2019-05-06
 
