@@ -806,6 +806,9 @@ components:
                   title:
                     type: string
     itemCollection:
+      description: >-
+        A GeoJSON FeatureCollection augmented with foreign members that contain
+        values relevant to a STAC entity
       type: object
       required:
         - features
@@ -822,6 +825,9 @@ components:
         links:
           $ref: '#/components/schemas/itemCollectionLinks'
     item:
+      description: >-
+        A GeoJSON Feature augmented with foreign members that contain values
+        relevant to a STAC entity
       type: object
       required:
         - id
@@ -928,7 +934,8 @@ components:
     itemCollectionLinks:
       type: array
       description: >-
-        An array of links to resources related to this collection.
+        An array of links. Can be used for pagination, e.g. by providing a link
+        with the `next` relation type.
       items:
         $ref: '#/components/schemas/link'
       example:
