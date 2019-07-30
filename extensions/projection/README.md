@@ -13,11 +13,11 @@ When specified on an Item, the values are assumed to apply to all Assets in that
 
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
-| proj:epsg        | integer\|null  | **Required** [EPSG code](http://www.epsg-registry.org/) of the datasource |
-| proj:crs         | string \|null  | Recommended. PROJ string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
-| proj:geometry    | Polygon Object | Recommended. Defines the footprint of this item. |
-| proj:bbox        | [number]       | Recommended. Bounding box of the item in the native CRS |
-| proj:centroid    | [number]       | Recommended. Coordinates representing the centroid of the item in the native CRS |
+| proj:epsg        | integer\|null   | **Required** [EPSG code](http://www.epsg-registry.org/) of the datasource |
+| proj:crs         | string \|null   | Recommended. PROJ string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
+| proj:geometry    | Polygon Object  | Recommended. Defines the footprint of this item. |
+| proj:bbox        | [number]        | Recommended. Bounding box of the item in the native CRS |
+| proj:centroid    | Centroid Object | Recommended. Coordinates representing the centroid of the item in the native CRS |
 
 **proj:epsg** - A Coordinate Reference System (CRS) is the native reference system (sometimes called a
 'projection') used by the data, and can usually be referenced using an [EPSG code](http://epsg.io).
@@ -35,7 +35,16 @@ a PROJ string does not exist.
 
 **proj:bbox** - Bounding box of the asset represented by this item in the native CRS. Specified as four coordinates based on the CRS defined in the `proj:epsg` and `proj:crs` fields.  First two numbers are coordinates of the lower left corner, followed by coordinates of upper right corner, e.g., \[west, south, east, north], \[xmin, ymin, xmax, ymax], \[left, down, right, up]. It is recommended that either or both of `proj:geometry` and `proj:bbox` be defined.
 
-**proj:centroid** - Coordinates representing the centroid of the item in the native coordinate system.  Coordinates defined as \[lat,lon], even if the native coordinate system does not use lat/long.
+**proj:centroid** - Coordinates representing the centroid of the item in the native coordinate system.  Coordinates are defined in latitude and longitude, even if the native coordinate system does not use lat/long.
+
+## Centroid Object
+
+This object represents the centroid of an asset's geometry.
+
+| Field Name          | Type   | Description                                                  |
+| ------------------- | ------ | ------------------------------------------------------------ |
+| lat                 | number | The latitude of the centroid.  |
+| lon                 | number | The longitude of the centroid. |
 
 ## Examples
 
@@ -75,7 +84,10 @@ a PROJ string does not exist.
       "type": "Polygon"
     },
     "proj:bbox": [ 169200.0, 3712800.0, 403200.0, 3951000.0 ],
-    "proj:centroid": [ 34.595302781575604, -101.34448382627504 ]
+    "proj:centroid": {
+        "lat": 34.595302781575604, 
+        "lon": -101.34448382627504 
+    }
   },
   "assets" :{
     "B1": {
@@ -116,7 +128,10 @@ a PROJ string does not exist.
           "type": "Polygon"
         },
         "proj:bbox": [ 169200.0, 3712800.0 403200.0, 3951000.0 ],
-        "proj:centroid": [ 34.595302781575604, -101.34448382627504 ],
+        "proj:centroid": { 
+            "lat": 34.595302781575604, 
+            "lon": -101.34448382627504 
+        },
     },
     ...
   }
