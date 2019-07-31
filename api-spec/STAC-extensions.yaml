@@ -349,6 +349,115 @@ paths:
             text/html:
               schema:
                 type: string
+    put:
+      summary: update an existing feature by Id with a complete item definition
+      description: >-
+        Use this method to update an existing feature. Requires the entire
+        GeoJSON  description be submitted.
+      operationId: putFeature
+      tags:
+        - Transaction Extension
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/featureId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/item'
+      responses:
+        '200':
+          description: Status of the update request.
+          content:
+            text/html:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/InternalServerError'
+        default:
+          description: An error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
+    patch:
+      summary: update an existing feature by Id with a partial item definition
+      description: >-
+        Use this method to update an existing feature. Requires a GeoJSON 
+        fragement (containing the fields to be updated) be submitted.
+      operationId: patchFeature
+      tags:
+        - Transaction Extension
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/featureId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/partialItem'
+      responses:
+        '200':
+          description: Status of the update request.
+          content:
+            text/html:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/InternalServerError'
+        default:
+          description: An error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
+    delete:
+      summary: delete an existing feature by Id
+      description: Use this method to delete an existing feature.
+      operationId: deleteFeature
+      tags:
+        - Transaction Extension
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/featureId'
+      responses:
+        '204':
+          description: Status of the delete request.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/InternalServerError'
+        default:
+          description: An error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/exception'
+            text/html:
+              schema:
+                type: string
   /stac:
     get:
       summary: Return the root catalog or collection.
@@ -1044,6 +1153,25 @@ components:
             $ref: '#/components/schemas/item'
         links:
           $ref: '#/components/schemas/itemCollectionLinks'
+        'search:metadata':
+          type: object
+          required:
+            - next
+            - returned
+          properties:
+            next:
+              type: string
+              nullable: true
+            limit:
+              type: integer
+              nullable: true
+              minimum: 0
+            matched:
+              type: integer
+              minimum: 0
+            returned:
+              type: integer
+              minimum: 0
     item:
       description: >-
         A GeoJSON Feature augmented with foreign members that contain values
