@@ -55,7 +55,7 @@ This object represents the centroid of an asset's geometry.
   ...
   "properties": {
     "proj:epsg": 32614,
-    "proj:crs": "+proj=utm +zone=14 +datum=WGS84 +units=m +no_defs ",
+    "proj:crs": "+proj=utm +zone=14 +datum=WGS84 +units=m +no_defs",
     "proj:geometry": {
       "coordinates": [
         [
@@ -89,7 +89,7 @@ This object represents the centroid of an asset's geometry.
         "lon": -101.34448382627504 
     }
   },
-  "assets" :{
+  "assets": {
     "B1": {
       "href": "http://example.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B1.TIF",
       "type": "image/vnd.stac.geotiff",
@@ -98,40 +98,40 @@ This object represents the centroid of an asset's geometry.
     "thumbnail": {
       "href": "http://example.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_thumbnail.jpg",
       "type": "image/jpeg",
-        "proj:crs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs ",
-        "proj:epsg": 3857,
-        "proj:geometry": {
-          "coordinates": [
+      "proj:crs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs ",
+      "proj:epsg": 3857,
+      "proj:geometry": {
+        "coordinates": [
+          [
             [
-              [
-                169200.0,
-                3712800.0
-              ],
-              [
-                403200.0,
-                3712800.0
-              ],
-              [
-                403200.0,
-                3951000.0
-              ],
-              [
-                169200.0,
-                3951000.0
-              ],
-              [
-                169200.0,
-                3712800.0
-              ]
+              169200.0,
+              3712800.0
+            ],
+            [
+              403200.0,
+              3712800.0
+            ],
+            [
+              403200.0,
+              3951000.0
+            ],
+            [
+              169200.0,
+              3951000.0
+            ],
+            [
+              169200.0,
+              3712800.0
             ]
-          ],
-          "type": "Polygon"
-        },
-        "proj:bbox": [ 169200.0, 3712800.0 403200.0, 3951000.0 ],
-        "proj:centroid": { 
-            "lat": 34.595302781575604, 
-            "lon": -101.34448382627504 
-        },
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "proj:bbox": [ 169200.0, 3712800.0, 403200.0, 3951000.0 ],
+      "proj:centroid": { 
+        "lat": 34.595302781575604, 
+        "lon": -101.34448382627504 
+      }
     },
     ...
   }
