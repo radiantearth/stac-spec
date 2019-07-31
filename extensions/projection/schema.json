@@ -55,7 +55,7 @@
               "title":"Centroid",
               "type":"array",
               "minItems":2,
-              "maxItems":2,
+              "maxItems":3,
               "items":{
                 "type":"number"
               }
