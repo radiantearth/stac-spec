@@ -44,3 +44,28 @@ Find scenes with cloud cover between 0 and 10%:
   }
 }
 ```
+
+## Design Note
+
+ An alternative approach, and somewhat more conventional for JSON, would be to represent the predicates as an array of
+objects each representing a single predicate:
+
+ ```json
+{
+  "query": [
+    { 
+      "field": "eo:cloud_cover",
+      "operator": "gte",
+      "value": 0
+    },
+    { 
+      "field": "eo:cloud_cover",
+      "operator": "lte",
+      "value": 10
+    }
+  ]
+}
+``` 
+
+ However, this syntax results in larger strings, which are more difficult to write correctly when constructing simple
+GET requests. 

@@ -49,9 +49,11 @@ The `/stac/search` endpoint is similar to the `items` endpoint in WFS3 in that i
 
 If the `/stac/search` endpoint is implemented, it is **required** to add a link with the `rel` type set to `search` to the `links` array in `GET /stac` that refers to the search endpoint in the `href` property.
 
-## Filter Parameters
+## Filter Parameters and Fields
 
-Unless otherwise noted by **Path-only**, these filters are passed as query string, form, or JSON entity parameters.  Query and form parameters should use comma-separated string values. JSON entity parameters should use JSON Arrays. 
+Unless otherwise noted by **Path-only**, these filters are passed as query string parameters, form parameters, or JSON 
+entity fields.  For filters that represent a set of values, query and form parameters should use comma-separated 
+string values and JSON entity attributes should use JSON Arrays. 
 
 | Parameter    | Type             | APIs       | Description        |
 | -----------  | ---------------- | ---------- | ---------------------- |
@@ -65,3 +67,40 @@ Unless otherwise noted by **Path-only**, these filters are passed as query strin
 | collections  | [string]         | STAC       | Array of Collection IDs to include in the search for items. Only Items in one of the provided Collections will be searched |
 
 Only one of either **intersects** or **bbox** should be specified.  If both are specified, a Bad Request response should be returned. 
+
+## Reserved Parameters
+
+ Additionally, there are several reserved parameters over STAC search that have no meaning in the base STAC API 
+ specification, but which are reserved exclusively for the use of API Extensions.  API implementations are free to 
+ add additional implementation-specific parameters, but they **MUST NOT** use following parameters unless implementing 
+ the syntax and semantics of an API Extension attached to that parameter.  If no API Extension for that parameter is 
+ implemented by an API, then if that parameter has a non-empty value in the request a 400 Bad Request status code must 
+ be returned. 
+ 
+### Fields Extension
+ 
+These parameters and fields are reserved for the Fields extension.
+ 
+| Parameter | Type              | APIs       | Description |
+| --------- | ----------------- | ---------- | ----------- |
+| fields    | string or [Field] | Placeholder parameter for [API Fields Extension](extensions/fields/README.md). |
+ 
+### Sort Extension
+ 
+These parameters and fields are reserved for the Sort extension.
+ 
+| Parameter | Type             | APIs       | Description |
+| --------- | ---------------- | ---------- | ----------- | 
+| sort      | string or [Sort] | Placeholder parameter for [API Sort Extension](extensions/sort/README.md). |
+
+### Query Extension
+
+These parameters and fields are reserved for query extensions. 
+
+All Extensions **should** use attribute names qualified from the root of Item, rather than Item Properties.
+
+| Parameter | Type                  | APIs       | Description |
+| --------  | --------------------- | ---------- | ----------- |
+| query     | string or QueryFilter | Placeholder parameter for [API Query Extension](extensions/query/README.md) query value. |
+
+ **query** Represents a query in the query language.
