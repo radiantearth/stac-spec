@@ -1,45 +1,55 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "schema.json#",
-  "title": "Projection Extension",
-  "type": "object",
-  "description": "STAC Projection Extension",
-  "additionalProperties": true,
-  "properties": {
-    "properties": {
-      "type": "object",
-      "required": [
-        "proj:epsg"
-      ],
-      "properties": {
-        "proj:epsg": {
-          "title": "EPSG code",
-          "type": "integer"
-        },
-        "proj:crs": {
-          "title": "Coordinate Reference System in PROJ format",
-          "type": "string"
-        },
-        "proj:geometry": {
-          "title": "Geometry",
-          "type": "object"
-        },
-        "proj:bbox": {
-          "title": "Extent",
-          "type": "array",
-          "minItems": 4,
-          "maxItems": 6,
-          "items": {
-            "type": "number"
-          }
-        },
-        "proj:centroid": {
-          "title": "Centroid",
-          "type": "array",
-          "minItems": 2,
-          "maxItems": 3,
-          "items": {
-            "type": "number"
+  "$schema":"http://json-schema.org/draft-07/schema#",
+  "$id":"schema.json#",
+  "title":"Projection Extension",
+  "description":"STAC Projection Extension to a STAC Item",
+  "allOf":[
+    {
+      "$ref": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/json-schema/item.json#/definitions/core"
+    },
+    {
+      "$ref":"#/definitions/proj"
+    }
+  ],
+  "definitions":{
+    "proj":{
+      "properties":{
+        "properties":{
+          "type":"object",
+          "required":[
+            "proj:epsg"
+          ],
+          "properties":{
+            "proj:epsg":{
+              "title":"EPSG code",
+              "type":"integer"
+            },
+            "proj:crs":{
+              "title":"Coordinate Reference System in PROJ format",
+              "type":"string"
+            },
+            "proj:geometry":{
+              "title":"Geometry",
+              "type":"object"
+            },
+            "proj:bbox":{
+              "title":"Extent",
+              "type":"array",
+              "minItems":4,
+              "maxItems":6,
+              "items":{
+                "type":"number"
+              }
+            },
+            "proj:centroid":{
+              "title":"Centroid",
+              "type":"array",
+              "minItems":2,
+              "maxItems":3,
+              "items":{
+                "type":"number"
+              }
+            }
           }
         }
       }
