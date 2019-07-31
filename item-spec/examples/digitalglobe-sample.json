@@ -77,18 +77,18 @@
     "dg:part": 2,
     "dg:platform": "worldview02",
     "dg:product_level": "LV1B",
-    "dg:product": "worldview02_LV1B",
+    "dg:product": "worldview02_lv1b",
     "datetime": "2015-11-09T18:04:46.000Z"
   },
   "collection": "dg_worldview02",
    "links": [
       {
         "rel": "self",
-        "href": "https://s3.amazonaws.com/digitalglobe-catalog-spec/collections/dg_worldview02_LV1B/103001004B316600_P002_MUL"
+        "href": "https://s3.amazonaws.com/digitalglobe-catalog-spec/collections/dg_worldview02_lv1b/103001004B316600_P002_MUL"
       },
       {
         "rel": "collection",
-        "href": "https://s3.amazonaws.com/digitalglobe-catalog-spec/collections/dg_worldview02_LV1B.json"
+        "href": "https://s3.amazonaws.com/digitalglobe-catalog-spec/collections/dg_worldview02_lv1b.json"
       }
     ]
 }
