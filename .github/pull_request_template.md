@@ -1,14 +1,14 @@
-**Related issue(s):** #
+**Related Issue(s):** #
 
 
-**Changes proposed in this pull request:**
+**Proposed Changes:**
 
 1. 
 2. 
 
 
-**Mandatory PR check list:**
+**PR Checklist:**
 
 - [ ] This PR has breaking changes.
 - [ ] I have added my changes to the [CHANGELOG](https://github.com/radiantearth/stac-spec/blob/dev/CHANGELOG.md).
-- [ ] API only: I have updated the [generated OpenAPI files](https://github.com/radiantearth/stac-spec/blob/dev/api-spec/README.md#openapi-definitions) by executing `npm run generate-all`.
+- [ ] API only: I have run `npm run generate-all` to update the [generated OpenAPI files](https://github.com/radiantearth/stac-spec/blob/dev/api-spec/README.md#openapi-definitions).
