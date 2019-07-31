@@ -13,6 +13,10 @@
   ],
   "definitions":{
     "proj":{
+      "type": "object",
+      "required": [
+        "properties"
+      ],
       "properties":{
         "properties":{
           "type":"object",
@@ -22,11 +26,17 @@
           "properties":{
             "proj:epsg":{
               "title":"EPSG code",
-              "type":"integer"
+              "type":[
+                "integer",
+                "null"
+              ]
             },
             "proj:crs":{
               "title":"Coordinate Reference System in PROJ format",
-              "type":"string"
+              "type":[
+                "string",
+                "null"
+              ]
             },
             "proj:geometry":{
               "title":"Geometry",
@@ -45,7 +55,7 @@
               "title":"Centroid",
               "type":"array",
               "minItems":2,
-              "maxItems":3,
+              "maxItems":2,
               "items":{
                 "type":"number"
               }
