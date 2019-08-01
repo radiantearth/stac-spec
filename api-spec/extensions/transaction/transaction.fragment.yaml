@@ -229,7 +229,7 @@ components:
       additionalProperties: true
       properties:
         datetime:
-          $ref: '#/components/schemas/time'
+          $ref: '#/components/schemas/datetime'
   responses:
     NotFound:
       description: The specified resource was not found

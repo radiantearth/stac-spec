@@ -6,7 +6,7 @@
   "type": "object",
   "allOf": [
     {
-      "$ref": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/catalog-spec/json-schema/catalog.json"
+      "$ref": "../../catalog-spec/json-schema/catalog.json"
     },
     {
       "$ref": "#/definitions/collection"
