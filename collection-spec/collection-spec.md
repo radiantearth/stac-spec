@@ -35,7 +35,7 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | providers    | [Provider Object] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | extent       | Extent Object     | **REQUIRED.** Spatial and temporal extents.                  |
 | properties   | object            | Common fields across referenced items. |
-| summaries    | Map<string, [*]|Range Object> | A map of property summaries, either a set of values or a range. |
+| summaries    | Map<string, [*]\|Range Object> | A map of property summaries, either a set of values or a range. |
 | links        | [Link Object]     | **REQUIRED.** A list of references to other documents.       |
 
 **stac_version**: It is not allowed to mix STAC versions. The root catalog or the root collection respectively MUST specify the implemented STAC version. Child Catalogs and child Collections MUST NOT specify a different STAC version.
@@ -86,16 +86,6 @@ The temporal reference system is the Gregorian calendar. Example for data from t
 
 The list of timestamps is wrapped in a list to potentially support multiple extents later or with an extension.
 
-### Range Object
-
-Ranges can be specified for [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values only, which means they need to have a rank order.
-Therefore, ranges can only be specified for numbers and some special types of strings. Examples: grades (A to F), dates or times.
-
-| Field Name | Type           | Description |
-| ---------- | -------------- | ----------- |
-| min        | number\|string | **REQUIRED.** Minimum value of the range. |
-| max        | number\|string | **REQUIRED.** Maximum value of the range. |
-
 ### Provider Object
 
 The object provides information about a provider. A provider is any of the organizations that captured or processed the content of the collection and therefore influenced the data offered by this collection. May also include information about the final storage provider hosting the data.
@@ -112,7 +102,7 @@ The object provides information about a provider. A provider is any of the organ
 * *licensor*: The organization that is licensing the dataset under the license specified in the collection's `license` field.
 * *producer*: The producer of the data is the provider that initially captured and processed the source data, e.g. ESA for Sentinel-2 data.
 * *processor*: A processor is any provider who processed data to a derived product.
-* *host*: The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list. 
+* *host*: The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list.
 
 ### Link Object
 
@@ -145,7 +135,17 @@ The following types are commonly used as `rel` types in the Link Object of a Col
 
 **Note:** The [STAC Catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is _not_ a requirement for collections, but _recommended_. In contrast to catalogs, it is **REQUIRED** that items linked from a Collection MUST refer back to its Collection with the `collection` relation type.
 
-### Common Fields and Standalone Collections
+### Range Object
+
+Ranges can be specified for [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values only, which means they need to have a rank order.
+Therefore, ranges can only be specified for numbers and some special types of strings. Examples: grades (A to F), dates or times.
+
+| Field Name | Type           | Description |
+| ---------- | -------------- | ----------- |
+| min        | number\|string | **REQUIRED.** Minimum value of the range. |
+| max        | number\|string | **REQUIRED.** Maximum value of the range. |
+
+## Common Fields and Standalone Collections
 
 The `properties` field in STAC collections can be used in two ways, either to **move common fields in Items to the parent Collection** or to describe **standalone Collections** better that don't reference any items. Any field that can be used under an Items `properties` can be removed and added to the Collection `properties`. Since a Collection contains no properties itself, anything under properties are metadata fields that are common across all member Items.
 
@@ -153,7 +153,7 @@ To **move common fields in Items to the parent Collection**, the collection spec
 
 STAC Collections which don't link to any Item are called **standalone Collections**. To describe them with more fields than the Collection fields has to offer, it is allowed to re-use the metadata fields defined by content extensions for Items. Whenever suitable, the `properties` are used in the same way as if they were common fields across theoretical Items. This makes much sense for fields such as `eo:platform` or `eo:epsg`, which are often the same for a whole collection, but doesn't make much sense for `eo:cloud_cover`, which usually varies heavily across a Collection. The data provider is free to decide, which fields are reasoable to be used.
 
-#### Merging common fields into a STAC Item
+### Merging common fields into a STAC Item
 
 To get the complete record of an Item (both individual and commons properties), the properties from the Collection can be merged with the Item.
 

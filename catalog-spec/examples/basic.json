@@ -6,10 +6,6 @@
     {
       "href": "item.json",
       "rel": "item"
-    },
-    {
-      "href": "basic.json",
-      "rel": "self"
     }
   ]
 }

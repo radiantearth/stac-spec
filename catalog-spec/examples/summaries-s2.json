@@ -168,10 +168,6 @@
       "rel": "item"
     },
     {
-      "href": "summaries-s2.json",
-      "rel": "self"
-    },
-    {
       "rel": "license",
       "href": "https://scihub.copernicus.eu/twiki/pub/SciHubWebPortal/TermsConditions/Sentinel_Data_Terms_and_Conditions.pdf",
       "title": "Sentinel Data Terms and Conditions"

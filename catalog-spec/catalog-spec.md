@@ -119,22 +119,12 @@ details on the two types and how you might use them see the [Static and Dynamic 
 | id           | string        | **REQUIRED.** Identifier for the catalog.                    |
 | title        | string        | A short descriptive one-line title for the catalog.          |
 | description  | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| summaries    | Map<string, [*]|Range Object> | A map of property summaries, either a set of values or a range. |
+| summaries    | Map<string, [*]\|Range Object> | A map of property summaries, either a set of values or a range. |
 | links        | [Link Object] | **REQUIRED.** A list of references to other documents.       |
 
 **stac_version**: It is not allowed to mix STAC versions. The root catalog or the root collection respectively MUST specify the implemented STAC version. Child Catalogs and child Collections MUST NOT specify a different STAC version.
 
-**summaries**: You can optionally summarize the potential values that are available as part of the `properties` in STAC Items. Summaries are either a range (i.e. the minimum and the maxmimum value) or a unique set of all values. The set of values must contain at least one element.
-
-### Range Object
-
-Ranges can be specified for [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values only, which means they need to have a rank order.
-Therefore, ranges can only be specified for numbers and some special types of strings. Examples: grades (A to F), dates or times.
-
-| Field Name | Type           | Description |
-| ---------- | -------------- | ----------- |
-| min        | number\|string | **REQUIRED.** Minimum value of the range. |
-| max        | number\|string | **REQUIRED.** Maximum value of the range. |
+**summaries**: You can optionally summarize the potential values that are available as part of the `properties` in STAC Items. They are used to inform users about values they can expect from items without having to crawl through them. Summaries are either a range (i.e. the minimum and the maxmimum value) or a unique set of all values. The set of values must contain at least one element.
 
 ### Link Object
 
@@ -168,7 +158,17 @@ The following types are commonly used as `rel` types in the Link Object of a STA
 
 **Note:** A link to at least one `item` or `child` catalog is **REQUIRED**.
 
-### Examples
+### Range Object
+
+Ranges can be specified for [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values only, which means they need to have a rank order.
+Therefore, ranges can only be specified for numbers and some special types of strings. Examples: grades (A to F), dates or times.
+
+| Field Name | Type           | Description |
+| ---------- | -------------- | ----------- |
+| min        | number\|string | **REQUIRED.** Minimum value of the range. |
+| max        | number\|string | **REQUIRED.** Maximum value of the range. |
+
+## Examples
 
 A catalog of
 [NAIP imagery](https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/)
