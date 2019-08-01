@@ -40,7 +40,11 @@ Implementations are encouraged, however, as good effort will be made to not chan
 
 **stac_version**: It is not allowed to mix STAC versions. The root catalog or the root collection respectively MUST specify the implemented STAC version. Child Catalogs and child Collections MUST NOT specify a different STAC version.
 
-**summaries**: You can optionally summarize the potential values that are available as part of the `properties` in STAC Items. Summaries are either a range (i.e. the minimum and the maxmimum value) or a unique set of all values. The set of values must contain at least one element.
+**summaries**: You can optionally summarize the potential values that are available as part of the `properties` in STAC Items.
+Summaries are used to inform users about values they can expect from items without having to crawl through them. It also helps do fully define collections, especially if they don't link to any Items.
+Summaries are either a range (i.e. the minimum and the maxmimum value) or a unique set of all values.
+Ranges can specify the potential range of values, but it is recommended to be as precise as possible. The set of values must contain at least one element and it is strongly recommended to list all values.
+It is recommended to list as many properties as reasonable so that consumers get a full overview about the properties included in the Items. Nevertheless, it is not very useful to list all potential `title` values of the Items. Also, a range for the `datetime` property may be better suited to be included in the STAC Collection. In general, properties that are covered by the Collection specification (e.g. `providers` and `license`) may not be repeated in the summaries.
 
 ### Extent Object
 
