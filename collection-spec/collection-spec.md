@@ -6,7 +6,9 @@ It shares the same fields and therefore every Collection is also a valid Catalog
 
 A group of STAC Item objects from a single source can share a lot of common metadata. This is especially true with satellite imagery that uses the STAC EO or SAR extension. Rather than including these common metadata fields on every Item, they can be provided in the `properties` of the STAC Collection that the STAC Items belong to.
 
-A STAC collection can be represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Collection and also a valid STAC Catalog.
+A STAC Collection can be represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Collection and also a valid STAC Catalog.
+
+STAC Collections are meant to be compatible with WFS3 Collections, but please be aware that WFS Collections and STAC Collections originate from different specifications and despite the fact that we try to align them as much as possible be there may be subtle differences in the specifications.
 
 * [Examples](examples/):
   * Sentinel 2: A basic standalone example of a [Item](examples/sentinel2.json) without items.
@@ -41,18 +43,20 @@ Implementations are encouraged, however, as good effort will be made to not chan
 
 The object describes the spatio-temporal extents of the Collection. Both spatial and temporal extents are required to be specified.
 
-**Note:** The STAC Collection Specification tries to align with [WFS 3.0](https://github.com/opengeospatial/WFS_FES), but there are still issues to be solved.
-The WFS specification is in draft state and may change, especially regarding [extents](https://github.com/opengeospatial/WFS_FES/issues/168) or
-[open date ranges](https://github.com/opengeospatial/WFS_FES/issues/155) for temporal extents. Therefore, it is also likely that the following fields change over time. 
-Please also note that WFS Collections and STAC Collections originate from different specifications and despite the fact that we try to align them as much as possible
-be aware of their differences by reading both specifications.
+| Element  | Type                   | Description                                                         |
+| -------- | -----------------------| ------------------------------------------------------------------- |
+| spatial  | Spatial Extent Object  | **REQUIRED.** Potential *spatial extent* covered by the collection. |
+| temporal | Temporal Extent Object | **REQUIRED.** Potential *temporal extent* covered by the collection. |
 
-| Element  | Type           | Description                                                         |
-| -------- | -------------- | ------------------------------------------------------------------- |
-| spatial  | [number]       | **REQUIRED.** Potential *spatial extent* covered by the collection. |
-| temporal | [string\|null] | **REQUIRED.** Potential *temporal extent* covered by the collection. A list of two timestamps, which MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). Open date ranges are supported by setting either the start or the end time to `null`. Example for data from the beginning of 2019 until now: `["2009-01-01T00:00:00Z", null]`. |
+#### Spatial Extent Object
 
-**spatial**: The bounding box is provided as four or six numbers, depending on whether the coordinate reference system includes a vertical axis (height or depth):
+The object describes the spatial extents of the Collection.
+
+| Element | Type       | Description                                                         |
+| ------- | ---------- | ------------------------------------------------------------------- |
+| bbox    | [[number]] | **REQUIRED.** Potential *spatial extent* covered by the collection. |
+
+**bbox**: The bounding box is provided as four or six numbers, depending on whether the coordinate reference system includes a vertical axis (height or depth):
 
 - Lower left corner, coordinate axis 1 (west)
 - Lower left corner, coordinate axis 2 (south)
@@ -61,7 +65,23 @@ be aware of their differences by reading both specifications.
 - Upper right corner, coordinate axis 2 (north)
 - Upper right corner, coordinate axis 3 (height, optional)
 
-The coordinate reference system of the values is WGS84 longitude/latitude.
+The coordinate reference system of the values is WGS 84 longitude/latitude. Example that covers the whole Earth: `[-180, -90, 180, 90]`.
+
+The list of numbers is wrapped in a list to potentially support multiple bounding boxes later or with an extension.
+
+#### Temporal Extent Object
+
+The object describes the temporal extents of the Collection.
+
+| Element  | Type             | Description                                                          |
+| -------- | ---------------- | -------------------------------------------------------------------- |
+| interval | [[number\|null]] | **REQUIRED.** Potential *temporal extent* covered by the collection. |
+
+**interval**: A list of two timestamps wrapped in a list. The timestamps MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). Open date ranges are supported by setting either the start or the end time to `null`.
+
+The temporal reference system is the Gregorian calendar. Example for data from the beginning of 2019 until now: `[["2009-01-01T00:00:00Z", null]]`.
+
+The list of timestamps is wrapped in a list to potentially support multiple extents later or with an extension.
 
 ### Provider Object
 
@@ -125,7 +145,7 @@ STAC Collections which don't link to any Item are called **standalone Collection
 To get the complete record of an Item (both individual and commons properties), the properties from the Collection can be merged with the Item.
 
 An incomplete Collection:
-```json
+```
 {
   "id": "landsat-8-l1",
   "title": "Landsat 8 L1",
@@ -154,7 +174,7 @@ An incomplete Collection:
 ```
 
 An incomplete item:
-```json
+```
 {
   "type": "Feature",
   "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
@@ -176,7 +196,7 @@ An incomplete item:
 
 The merged Item then looks like this:
 
-```json
+```
 {
   "type": "Feature",
   "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
