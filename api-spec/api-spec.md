@@ -66,7 +66,8 @@ string values and JSON entity attributes should use JSON Arrays.
 | ids | [string] | Array of Item ids to return. All other filter parameters that further restrict the number of search results (except `next` and `limit`) are ignored |
 | collections  | [string]         | STAC       | Array of Collection IDs to include in the search for items. Only Items in one of the provided Collections will be searched |
 
-Only one of either **intersects** or **bbox** should be specified.  If both are specified, a Bad Request response should be returned. 
+Only one of either **intersects** or **bbox** should be specified.  If both are specified, a 400 Bad Request response 
+should be returned. 
 
 ## Reserved Parameters
 
@@ -83,7 +84,7 @@ These parameters and fields are reserved for the Fields extension.
  
 | Parameter | Type              | APIs       | Description |
 | --------- | ----------------- | ---------- | ----------- |
-| fields    | string or [Field] | Placeholder parameter for [API Fields Extension](extensions/fields/README.md). |
+| fields    | string \| [Field] | Placeholder parameter for [API Fields Extension](extensions/fields/README.md). |
  
 ### Sort Extension
  
@@ -91,7 +92,7 @@ These parameters and fields are reserved for the Sort extension.
  
 | Parameter | Type             | APIs       | Description |
 | --------- | ---------------- | ---------- | ----------- | 
-| sort      | string or [Sort] | Placeholder parameter for [API Sort Extension](extensions/sort/README.md). |
+| sort      | string \| [Sort] | Placeholder parameter for [API Sort Extension](extensions/sort/README.md). |
 
 ### Query Extension
 
@@ -101,6 +102,6 @@ All Extensions **should** use attribute names qualified from the root of Item, r
 
 | Parameter | Type                  | APIs       | Description |
 | --------  | --------------------- | ---------- | ----------- |
-| query     | string or QueryFilter | Placeholder parameter for [API Query Extension](extensions/query/README.md) query value. |
+| query     | string \| QueryFilter | Placeholder parameter for [API Query Extension](extensions/query/README.md) query value. |
 
  **query** Represents a query in the query language.

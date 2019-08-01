@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Moved Single Item Extension to core (`license` and `providers` properties for Items)
+- API: Core API now has reserved parameters to prevent overlap with extensions
 
 ### Added
 
