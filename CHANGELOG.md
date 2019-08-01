@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Moved Single Item Extension to core (`license` and `providers` properties for Items)
+- Clarified meaning of SAR and EO platform, constellation, and instrument
 
 ### Added
 
