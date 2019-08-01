@@ -19,7 +19,6 @@ tools such as LiDAR or coincidence-matched imagery.
 | pc:encoding   | string              | **REQUIRED.** Content encoding or format of the data. |
 | pc:schema     | [Schema Object]     | **REQUIRED.** A sequential array of items that define the dimensions and their types. |
 | pc:density    | number              | Number of points per square unit area. |
-| pc:schema     | [Schema Object]     | A sequential array of items that define the dimensions and their types. |
 | pc:statistics | [Statistics Object] | A sequential array of items mapping to `pc:schema` defines per-channel statistics. |
 
 ### Schema Object
