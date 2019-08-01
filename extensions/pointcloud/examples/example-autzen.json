@@ -44,8 +44,6 @@
   ],
   "properties": {
     "datetime": "2013-07-17T00:00:00-05:00Z",
-    "item:license": "LICENSE",
-    "item:provider": "USGS",
     "pc:count": 10653336,
     "pc:density": 0,
     "pc:encoding": "LASzip",
