@@ -1,11 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "stac-extension-datetime-range.json#",
-  "type": "object", 
-  "title": "STAC Datetime Range Extension Spec",
+  "title": "Datetime Range Extension",
+  "description": "STAC Datetime Range Extension Extension to a STAC Item.",
   "allOf": [
     {
-      "$ref": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/json-schema/item.json#/definitions/core"
+      "$ref": "../../../master/item-spec/json-schema/item.json"
     },
     {
       "$ref": "#/definitions/datetime-range"
