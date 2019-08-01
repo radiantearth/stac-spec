@@ -1543,7 +1543,7 @@ components:
       additionalProperties: true
       properties:
         datetime:
-          $ref: '#/components/schemas/time'
+          $ref: '#/components/schemas/datetime'
   responses:
     LandingPage:
       description: |-
