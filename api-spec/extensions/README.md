@@ -128,6 +128,6 @@ searchBody:
   type: object
   allOf:
     - $ref: "#/components/schema/bboxFilter"
-    - $ref: "#/components/schema/TimeFilter"
-    - $ref: "#/components/schema/IntersectsFilter"
+    - $ref: "#/components/schema/datetimeFilter"
+    - $ref: "#/components/schema/intersectsFilter"
 ```
