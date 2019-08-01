@@ -342,3 +342,6 @@ components:
           example:
             - '2011-11-11T12:22:11Z'
             - '2012-11-24T12:32:43Z'
+tags:
+  - name: Capabilities
+  - name: Features
