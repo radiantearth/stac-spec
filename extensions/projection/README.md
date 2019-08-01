@@ -33,13 +33,13 @@ a PROJ string does not exist.
 
 **proj:geometry** - A Polygon object representing the footprint of this item, formatted according the Polygon object format specified in [RFC 7946, sections 3.1.6](https://tools.ietf.org/html/rfc7946), except not necessarily in EPSG:4326 as required by RFC7946.  Specified based on the `proj:crs` field (not necessarily EPSG:4326). Ideally, this will be represented by a Polygon with five coordinates, as the item in the native CRS should be a square aligned to the CRS grid.  It is recommended that either or both of `proj:geometry` and `proj:bbox` be defined.
 
-**proj:bbox** - Bounding box of the asset represented by this item in the native CRS. Specified as four coordinates based on the CRS defined in the `proj:epsg` and `proj:crs` fields.  First two numbers are coordinates of the lower left corner, followed by coordinates of upper right corner, e.g., \[west, south, east, north], \[xmin, ymin, xmax, ymax], \[left, down, right, up]. It is recommended that either or both of `proj:geometry` and `proj:bbox` be defined.
+**proj:bbox** - Bounding box of the assets represented by this item in the native CRS. Specified as four coordinates based on the CRS defined in the `proj:epsg` and `proj:crs` fields.  First two numbers are coordinates of the lower left corner, followed by coordinates of upper right corner, e.g., \[west, south, east, north], \[xmin, ymin, xmax, ymax], \[left, down, right, up]. It is recommended that either or both of `proj:geometry` and `proj:bbox` be defined.
 
 **proj:centroid** - Coordinates representing the centroid of the item in the native coordinate system.  Coordinates are defined in latitude and longitude, even if the native coordinate system does not use lat/long.
 
 ## Centroid Object
 
-This object represents the centroid of an asset's geometry.
+This object represents the centroid of an item's geometry.
 
 | Field Name          | Type   | Description                                                  |
 | ------------------- | ------ | ------------------------------------------------------------ |
@@ -88,52 +88,6 @@ This object represents the centroid of an asset's geometry.
         "lat": 34.595302781575604, 
         "lon": -101.34448382627504 
     }
-  },
-  "assets": {
-    "B1": {
-      "href": "http://example.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B1.TIF",
-      "type": "image/vnd.stac.geotiff",
-      "eo:bands": [0]
-    },
-    "thumbnail": {
-      "href": "http://example.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_thumbnail.jpg",
-      "type": "image/jpeg",
-      "proj:crs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs ",
-      "proj:epsg": 3857,
-      "proj:geometry": {
-        "coordinates": [
-          [
-            [
-              169200.0,
-              3712800.0
-            ],
-            [
-              403200.0,
-              3712800.0
-            ],
-            [
-              403200.0,
-              3951000.0
-            ],
-            [
-              169200.0,
-              3951000.0
-            ],
-            [
-              169200.0,
-              3712800.0
-            ]
-          ]
-        ],
-        "type": "Polygon"
-      },
-      "proj:bbox": [ 169200.0, 3712800.0, 403200.0, 3951000.0 ],
-      "proj:centroid": { 
-        "lat": 34.595302781575604, 
-        "lon": -101.34448382627504 
-      }
-    },
-    ...
   }
  }
 ```

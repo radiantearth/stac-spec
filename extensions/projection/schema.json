@@ -53,11 +53,18 @@
             },
             "proj:centroid":{
               "title":"Centroid",
-              "type":"array",
-              "minItems":2,
-              "maxItems":3,
-              "items":{
-                "type":"number"
+              "type":"object",
+              "required": [
+                "lat",
+                "lon"
+              ],
+              "properties": {
+                "lat": {
+                  "type": "number"
+                },
+                "lon": {
+                  "type": "number"
+                }
               }
             }
           }
