@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - **stac_extensions**: Introduced this field for Catalogs and Collections.
+- API Transaction extension supports optimistic locking through use of the ETag header.
+
 
 ## [v0.7.0] - 2019-05-06
 
