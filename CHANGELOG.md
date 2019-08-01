@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 	- WFS links have additional fields `hreflang` and `length`.
 	- WFS Collections have additional fields `crs` and `itemType`.
 
+### Added
+
+- API Transaction extension supports optimistic locking through use of the ETag header.
+
 ## [v0.7.0] - 2019-05-06
 
 ### Fixed
