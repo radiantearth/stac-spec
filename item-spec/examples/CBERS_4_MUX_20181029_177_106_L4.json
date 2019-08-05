@@ -1,4 +1,9 @@
 {
+  "stac_version": "0.7.0",
+  "stac_extensions": [
+    "eo",
+    "https://example.com/stac/cbers-extension/1.0/schema.json"
+  ],
   "id": "CBERS_4_MUX_20181029_177_106_L4",
   "type": "Feature",
   "geometry": {

@@ -51,26 +51,24 @@
         },
         "stac_extensions": {
           "title": "STAC extensions",
-          "anyOf": [
-            {
-              "title": "Reference to a JSON Schema",
-              "type": "string",
-              "format": "uri"
-            },
-            {
-              "title": "Reference to a core extension",
-              "type": "string",
-              "enum": [
-                "checksum",
-                "datacube",
-                "datetime-range",
-                "eo",
-                "pointcloud",
-                "sar",
-                "scientific"
-              ]
-            }
-          ]
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "anyOf": [
+              {
+                "title": "Reference to a JSON Schema",
+                "type": "string",
+                "format": "uri"
+              },
+              {
+                "title": "Reference to a core extension",
+                "type": "string",
+                "enum": [
+                  "checksum"
+                ]
+              }
+            ]
+          }
         },
         "id": {
           "title": "Identifier",

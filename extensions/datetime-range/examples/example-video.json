@@ -1,4 +1,8 @@
 {
+  "stac_version": "0.7.0",
+  "stac_extensions": [
+    "datetime-range"
+  ],
   "type":"Feature",
   "id":"half-moon-bay/video-2018-01-01-0001",
   "bbox":[

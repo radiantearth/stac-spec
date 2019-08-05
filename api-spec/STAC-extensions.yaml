@@ -1167,6 +1167,21 @@ components:
 
         the extent or all relevant temporal properties.
       example: '2018-02-12T00:00:00Z/2018-03-18T12:31:12Z'
+    stac_version:
+      title: STAC version
+      type: string
+      example: 0.7.0
+    stac_extensions:
+      title: STAC extensions
+      type: array
+      uniqueItems: true
+      items:
+        anyOf:
+          - title: Reference to a JSON Schema
+            type: string
+            format: uri
+          - title: Reference to a core extension
+            type: string
     catalogDefinition:
       type: object
       required:
@@ -1176,10 +1191,9 @@ components:
         - links
       properties:
         stac_version:
-          type: string
-          example: 0.7.0
+          $ref: '#/components/schemas/stac_version'
         stac_extensions:
-          type: string
+          $ref: '#/components/schemas/stac_extensions'
         id:
           type: string
           example: naip
@@ -1259,6 +1273,7 @@ components:
         relevant to a STAC entity
       type: object
       required:
+        - stac_version
         - id
         - type
         - geometry
@@ -1267,6 +1282,10 @@ components:
         - properties
         - assets
       properties:
+        stac_version:
+          $ref: '#/components/schemas/stac_version'
+        stac_extensions:
+          $ref: '#/components/schemas/stac_extensions'
         id:
           $ref: '#/components/schemas/itemId'
         bbox:
@@ -1284,6 +1303,7 @@ components:
         assets:
           $ref: '#/components/schemas/itemAssets'
       example:
+        stac_version: 0.7.0
         type: Feature
         id: CS3-20160503_132130_04
         bbox:
@@ -1517,6 +1537,10 @@ components:
     partialItem:
       type: object
       properties:
+        stac_version:
+          $ref: '#/components/schemas/stac_version'
+        stac_extensions:
+          $ref: '#/components/schemas/stac_extensions'
         id:
           $ref: '#/components/schemas/itemId'
         bbox:

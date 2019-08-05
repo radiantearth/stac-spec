@@ -1,4 +1,9 @@
 {
+  "stac_version": "0.7.0",
+  "stac_extensions": [
+    "eo",
+    "https://example.digitalglobe.com/stac/1.0/schema.json"
+  ],
   "id": "103001004B316600_P002_MUL",
   "type": "Feature",
   "geometry": {

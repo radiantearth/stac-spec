@@ -1,4 +1,9 @@
 {
+  "stac_version": "0.7.0",
+  "stac_extensions": [
+    "datetime-range",
+    "sar"
+  ],
   "id": "ASA_GM1_1PNPDE20090520_023957_000001022079_00118_37747_3607",
   "type": "Feature",
   "bbox": [64.302468,114.587673,71.179088,128.611298],

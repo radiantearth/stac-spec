@@ -16,7 +16,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 	- WFS Collections have additional fields `crs` and `itemType`.
 
 ### Added
-- **stac_extensions**: Introduced this field for Catalogs and Collections.
+- **stac_version**: Each Item must specify the STAC version.
+- **stac_extensions**: Introduced this field for Items, Catalogs and Collections.
 - API Transaction extension supports optimistic locking through use of the ETag header.
 
 

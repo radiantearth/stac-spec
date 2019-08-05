@@ -1,9 +1,6 @@
 {
   "stac_version": "0.7.0",
-  "stac_extensions": [
-    "eo",
-    "https://example.com/stac/sample-extension/1.0/schema.json"
-  ],
+  "stac_extensions": [],
   "id": "sample",
   "title": "Sample catalog",
   "description": "This is a very basic sample catalog.",
