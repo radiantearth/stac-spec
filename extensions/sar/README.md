@@ -42,20 +42,18 @@ The exact metadata that would appear in a STAC Collection record will vary depen
 | sar:incidence_angle       | number        | The center incidence angle is the angle defined by the incident radar beam at the scene center and the vertical (normal) to the intercepting surface. Measured in degrees (0-90). |
 
 **sar:platform** is the unique name of the specific platform the instrument is attached to. For satellites this would 
-be the name of the satellite, whereas for drones this would be a unique name for the drone.  It is recommended that 
-the value consist of only lowercase characters, numbers, `_`, and `-`. Examples include `sentinel-1a` (Sentinel-1) and `envisat` (Envisat).
+be the name of the satellite, whereas for drones this would be a unique name for the drone. Examples include `sentinel-1a` (Sentinel-1) and `envisat` (Envisat).
  
 **sar:constellation** is the name of a logical collection one or more platforms that have similar payloads and have 
 their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and 
 radiometric characteristics. This field allows users to search for related data sets without needing to specify from 
-which specific platform the data came. It is recommended that the value consist of only lowercase characters, numbers, `_`, and `-`. One example is 
+which specific platform the data came. One example is 
 the constellation `sentinel-1` (Sentinel-1) consisting of two satellites Sentinel-1A and Sentinel-1B. If a system 
 consists of only a single satellite, the constellation name is the same as the satellite name, e.g., `envisat` 
 (Envisat). 
 
 **sar:instrument** is the name of the sensor used, although for Items which contain data from multiple sensors this 
-could also name multiple sensors.  It is recommended that the value consist of only lowercase characters, numbers, `_`, and `-`. Examples include 
-`c-sar` (Sentinel-1) and `asar` (Envisat).
+could also name multiple sensors. Examples include `c-sar` (Sentinel-1) and `asar` (Envisat).
 
 **sar:polarization** specifies a single polarization or a polarization combination. For single polarized radars one of `HH`, `VV`, `HV` or `VH` must be set. Fully polarimetric radars add all four polarizations to the array. Dual polarized radars and alternating polarization add the corresponding polarizations to the array, for instance for `HH+HV` add both `HH` and `HV`.
 

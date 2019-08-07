@@ -49,14 +49,13 @@ PlanetScope Ortho Tile Product has an `eo:gsd` of 3.7 (or 4 if rounding), even t
 Multispectral 20° off-nadir value of 2.07 and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.
 
 **eo:platform** is the unique name of the specific platform the instrument is attached to. For satellites this would 
-be the name of the satellite, whereas for drones this would be a unique name for the drone.  It is recommended that 
-the value consist of only lowercase characters, numbers, `_`, and `-`. Examples include `landsat-8` (Landsat-8), `sentinel-2a` and `sentinel-2b` 
-(Sentinel-2), `terra` and `aqua` (part of NASA EOS, carrying the MODIS instruments),
- `mycorp-uav-034` (hypothetical drone name), and `worldview02` (Maxar/DigitalGlobe WorldView-2).
+be the name of the satellite, whereas for drones this would be a unique name for the drone. Examples include 
+`landsat-8` (Landsat-8), `sentinel-2a` and `sentinel-2b` (Sentinel-2), `terra` and `aqua` (part of NASA EOS, 
+carrying the MODIS instruments), `mycorp-uav-034` (hypothetical drone name), and `worldview02` 
+(Maxar/DigitalGlobe WorldView-2).
  
 **eo:instrument** is the name of the sensor used, although for Items which contain data from
-multiple sensors this could also name multiple sensors.  It is recommended 
-that the value consist of only lowercase characters, numbers, `_`, and `-`. For example, data from the Landsat-8
+multiple sensors this could also name multiple sensors. For example, data from the Landsat-8
 platform is collected with the OLI sensor as well as the TIRS sensor, but the data is distributed
 together and commonly referred to as OLI_TIRS. Examples include `oli_tirs` (Landsat-8), `msi` (Sentinel-2), 
 `aster` (Terra), and `modis` (Terra and Aqua).
@@ -64,8 +63,7 @@ together and commonly referred to as OLI_TIRS. Examples include `oli_tirs` (Land
 **eo:constellation** is the name of a logical collection one or more platforms that have similar payloads and have 
 their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and 
 radiometric characteristics. This field allows users to search for related data sets without needing to specify which 
-specific platform the data came from, for example, from either of the Sentinel-2 satellites. It is recommended 
-that the value consist of only lowercase characters, numbers, `_`, and `-`. Examples include `landsat-8` 
+specific platform the data came from, for example, from either of the Sentinel-2 satellites. Examples include `landsat-8` 
 (Landsat-8, a constellation consisting of a single platform), `sentinel-2` ([Sentinel-2](https://www.esa.int/Our_Activities/Observing_the_Earth/Copernicus/Sentinel-2/Satellite_constellation)), 
 `rapideye` (operated by Planet Labs), and `modis` (NASA EOS satellites Aqua and Terra).  In the case of `modis`, this
 is technically referring to a pair of sensors on two different satellites, whose data is combined into a series of 
