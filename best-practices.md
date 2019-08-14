@@ -1,6 +1,6 @@
-# STAC Catalog Best Practices
+# STAC Best Practices
 
-This document makes a number of recommendations for creating real world SpatioTemporal Asset [Catalogs](catalog-spec.md). None of them 
+This document makes a number of recommendations for creating real world SpatioTemporal Asset Catalogs. None of them 
 are required to meet the core specification, but following these practices will make life easier for client tooling
 and for users. They come about from practical experience of implementors, and introduce a bit more 'constraint' for
 those who are creating new catalogs or new tools to work with STAC. 
