@@ -28,7 +28,7 @@ The exact metadata that would appear in a STAC Collection record will vary depen
 | eo:gsd           | number                   | **REQUIRED.** Ground Sample Distance at the sensor. |
 | eo:platform      | string                   | **REQUIRED.** Unique name of the specific platform to which the instrument is attached. |
 | eo:instrument    | string                   | **REQUIRED.** Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1). |
-| eo:bands         | [Band Object]            | **REQUIRED.** This is a list of the available bands where each item is a Band Object. |
+| eo:bands         | [[Band Object](#band-object)] | **REQUIRED.** This is a list of the available bands where each item is a [Band Object](#band-object). |
 | eo:constellation | string                   | Name of the constellation to which the platform belongs. |
 | eo:epsg          | integer\|null            | [EPSG code](http://www.epsg-registry.org/) of the datasource, `null` if no EPSG code. |
 | eo:cloud_cover   | number                   | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided. |
@@ -81,7 +81,7 @@ there is no valid EPSG code.
 | Field Name          | Type   | Description                                                  |
 | ------------------- | ------ | ------------------------------------------------------------ |
 | name                | string | The name of the band (e.g., "B01", "B02", "B1", "B5", "QA"). |
-| common_name         | string | The name commonly used to refer to the band to make it easier to search for bands across instruments. See below for a list of accepted common names. |
+| common_name         | string | The name commonly used to refer to the band to make it easier to search for bands across instruments. See the [list of accepted common names](#common-band-names). |
 | description         | string | Description to fully explain the band. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | gsd                 | number | Ground Sample Distance, the nominal distance between pixel centers available, in meters. Defaults to `eo:gsd` if not provided. |
 | accuracy            | number | The expected error between the measured location and the true location of a pixel, in meters on the ground. |
@@ -122,9 +122,9 @@ numbers of several popular instruments.
 
 ## Associating assets with bands
 
-Asset definitions that contain band data should reference the band index. Each asset should provide a `eo:bands` property that is an array of 0 based indexes to the correct Band Objects.
+Asset definitions that contain band data should reference the band index. Each asset should provide a `eo:bands` property that is an array of 0 based indexes to the correct [Band Objects](#band-object).
 
-### Item `Asset Object` fields
+### Item [`Asset Object`](../../item-spec/item-spec.md#asset-object) fields
 | Field Name | Type     | Description                                  |
 | ---------- | -------- | -------------------------------------------- |
 | eo:bands   | [number] | Lists the band names available in the asset. |
