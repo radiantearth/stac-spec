@@ -120,9 +120,16 @@ details on the two types and how you might use them see the [Static and Dynamic 
 | id           | string        | **REQUIRED.** Identifier for the catalog.                    |
 | title        | string        | A short descriptive one-line title for the catalog.          |
 | description  | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| summaries    | Map<string, [*]\|Range Object> | A map of property summaries, either a set of values or a range. |
 | links        | [Link Object] | **REQUIRED.** A list of references to other documents.       |
 
 **stac_extensions**: A list of extensions the Catalog implements. This does NOT declare the extensions of children or Items. The list contains URLs to the JSON Schema files it can be validated against. For official extensions, a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. If the versions of the extension and the catalog diverge, you can specify the URL of the JSON schema file.
+
+**summaries**: You can optionally summarize the potential values that are available as part of the `properties` in STAC Items.
+Summaries are used to inform users about values they can expect from items without having to crawl through them. It also helps do fully define collections, especially if they don't link to any Items.
+Summaries are either a range (i.e. the minimum and the maxmimum value) or a unique set of all values.
+Ranges can specify the potential range of values, but it is recommended to be as precise as possible. The set of values must contain at least one element and it is strongly recommended to list all values.
+It is recommended to list as many properties as reasonable so that consumers get a full overview about the properties included in the Items. Nevertheless, it is not very useful to list all potential `title` values of the Items. Also, a range for the `datetime` property may be better suited to be included in the STAC Collection. In general, properties that are covered by the Collection specification (e.g. `providers` and `license`) may not be repeated in the summaries.
 
 ### Link Object
 
@@ -155,6 +162,16 @@ The following types are commonly used as `rel` types in the Link Object of a STA
 | item    | URL to a STAC [Item](../item-spec/item-spec.md). |
 
 **Note:** A link to at least one `item` or `child` catalog is **REQUIRED**.
+
+### Range Object
+
+Ranges can be specified for [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values only, which means they need to have a rank order.
+Therefore, ranges can only be specified for numbers and some special types of strings. Examples: grades (A to F), dates or times.
+
+| Field Name | Type           | Description |
+| ---------- | -------------- | ----------- |
+| min        | number\|string | **REQUIRED.** Minimum value of the range. |
+| max        | number\|string | **REQUIRED.** Maximum value of the range. |
 
 ## Examples
 

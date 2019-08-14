@@ -35,10 +35,17 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | license      | string            | **REQUIRED.** Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
 | providers    | [Provider Object] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | extent       | Extent Object     | **REQUIRED.** Spatial and temporal extents.                  |
-| properties   | object            | Common fields across referenced items. May also be used to describe standalone collections better that don't reference any items. See the section 'Common Fields' for more information. |
+| properties   | object            | Common fields across referenced items. |
+| summaries    | Map<string, [*]\|Range Object> | A map of property summaries, either a set of values or a range. |
 | links        | [Link Object]     | **REQUIRED.** A list of references to other documents.       |
 
 **stac_extensions**: A list of extensions the Collection implements. This does NOT declare the extensions of child Catalogs or Items. The list contains URLs to the JSON Schema files it can be validated against. For official extensions, a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. If the versions of the extension and the collection diverge, you can specify the URL of the JSON schema file.
+
+**summaries**: You can optionally summarize the potential values that are available as part of the `properties` in STAC Items.
+Summaries are used to inform users about values they can expect from items without having to crawl through them. It also helps do fully define collections, especially if they don't link to any Items.
+Summaries are either a range (i.e. the minimum and the maxmimum value) or a unique set of all values.
+Ranges can specify the potential range of values, but it is recommended to be as precise as possible. The set of values must contain at least one element and it is strongly recommended to list all values.
+It is recommended to list as many properties as reasonable so that consumers get a full overview about the properties included in the Items. Nevertheless, it is not very useful to list all potential `title` values of the Items. Also, a range for the `datetime` property may be better suited to be included in the STAC Collection. In general, properties that are covered by the Collection specification (e.g. `providers` and `license`) may not be repeated in the summaries.
 
 ### Extent Object
 
@@ -100,7 +107,7 @@ The object provides information about a provider. A provider is any of the organ
 * *licensor*: The organization that is licensing the dataset under the license specified in the collection's `license` field.
 * *producer*: The producer of the data is the provider that initially captured and processed the source data, e.g. ESA for Sentinel-2 data.
 * *processor*: A processor is any provider who processed data to a derived product.
-* *host*: The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list. 
+* *host*: The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list.
 
 ### Link Object
 
@@ -133,7 +140,17 @@ The following types are commonly used as `rel` types in the Link Object of a Col
 
 **Note:** The [STAC Catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is _not_ a requirement for collections, but _recommended_. In contrast to catalogs, it is **REQUIRED** that items linked from a Collection MUST refer back to its Collection with the `collection` relation type.
 
-### Common Fields and Standalone Collections
+### Range Object
+
+Ranges can be specified for [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values only, which means they need to have a rank order.
+Therefore, ranges can only be specified for numbers and some special types of strings. Examples: grades (A to F), dates or times.
+
+| Field Name | Type           | Description |
+| ---------- | -------------- | ----------- |
+| min        | number\|string | **REQUIRED.** Minimum value of the range. |
+| max        | number\|string | **REQUIRED.** Maximum value of the range. |
+
+## Common Fields and Standalone Collections
 
 The `properties` field in STAC collections can be used in two ways, either to **move common fields in Items to the parent Collection** or to describe **standalone Collections** better that don't reference any items. Any field that can be used under an Items `properties` can be removed and added to the Collection `properties`. Since a Collection contains no properties itself, anything under properties are metadata fields that are common across all member Items.
 
@@ -141,7 +158,7 @@ To **move common fields in Items to the parent Collection**, the collection spec
 
 STAC Collections which don't link to any Item are called **standalone Collections**. To describe them with more fields than the Collection fields has to offer, it is allowed to re-use the metadata fields defined by content extensions for Items. Whenever suitable, the `properties` are used in the same way as if they were common fields across theoretical Items. This makes much sense for fields such as `eo:platform` or `eo:epsg`, which are often the same for a whole collection, but doesn't make much sense for `eo:cloud_cover`, which usually varies heavily across a Collection. The data provider is free to decide, which fields are reasoable to be used.
 
-#### Merging common fields into a STAC Item
+### Merging common fields into a STAC Item
 
 To get the complete record of an Item (both individual and commons properties), the properties from the Collection can be merged with the Item.
 

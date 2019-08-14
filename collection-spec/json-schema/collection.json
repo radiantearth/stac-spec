@@ -8,6 +8,11 @@
       "$ref": "../../catalog-spec/json-schema/catalog.json"
     },
     {
+      "$ref": "#/definitions/collection"
+    }
+  ],
+  "definitions": {
+    "collection": {
       "title": "STAC Collection",
       "description": "These are the fields specific to a STAC Collection. All other fields are inherited from STAC Catalog.",
       "type": "object",
@@ -130,5 +135,5 @@
         }
       }
     }
-  ]
+  }
 }
