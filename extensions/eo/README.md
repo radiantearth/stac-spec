@@ -132,7 +132,7 @@ Asset definitions that contain band data should reference the band index. Each a
 See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
 ```
 {
-  "stac_version": "0.7.0",
+  "stac_version": "0.8.0",
   "stac_extensions": ["eo"],
   "id": "LC81530252014153LGN00",
   "type": "Feature",
@@ -177,7 +177,7 @@ Planet example:
 
 ```
 {
-  "stac_version": "0.7.0",
+  "stac_version": "0.8.0",
   "stac_extensions": ["eo"],
   "id": "20171110_121030_1013",
   "type": "Feature",

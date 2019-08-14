@@ -1,5 +1,5 @@
 {
-    "stac_version": "0.7.0",
+    "stac_version": "0.8.0",
     "stac_extensions": [],
     "id": "landsat-8-l1",
     "title": "Landsat 8 L1",
@@ -55,7 +55,6 @@
         "name": "Development Seed",
         "url": "https://developmentseed.org/",
         "roles": ["processor"]
-        }
       }
     ],
     "license": "PDDL-1.0",
