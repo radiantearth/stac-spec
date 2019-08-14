@@ -116,13 +116,14 @@ details on the two types and how you might use them see the [Static and Dynamic 
 | Element      | Type          | Description                                                  |
 | ------------ | ------------- | ------------------------------------------------------------ |
 | stac_version | string        | **REQUIRED.** The STAC version the catalog implements.       |
+| stac_extensions | [string]   | A list of extensions the Catalog implements.                 |
 | id           | string        | **REQUIRED.** Identifier for the catalog.                    |
 | title        | string        | A short descriptive one-line title for the catalog.          |
 | description  | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | summaries    | Map<string, [*]\|Range Object> | A map of property summaries, either a set of values or a range. |
 | links        | [Link Object] | **REQUIRED.** A list of references to other documents.       |
 
-**stac_version**: It is not allowed to mix STAC versions. The root catalog or the root collection respectively MUST specify the implemented STAC version. Child Catalogs and child Collections MUST NOT specify a different STAC version.
+**stac_extensions**: A list of extensions the Catalog implements. This does NOT declare the extensions of children or Items. The list contains URLs to the JSON Schema files it can be validated against. For official extensions, a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. If the versions of the extension and the catalog diverge, you can specify the URL of the JSON schema file.
 
 **summaries**: You can optionally summarize the potential values that are available as part of the `properties` in STAC Items.
 Summaries are used to inform users about values they can expect from items without having to crawl through them. It also helps do fully define collections, especially if they don't link to any Items.

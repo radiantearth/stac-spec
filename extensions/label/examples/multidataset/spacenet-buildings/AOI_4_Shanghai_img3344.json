@@ -1,4 +1,8 @@
 {
+  "stac_version": "0.7.0",
+  "stac_extensions": [
+    "label"
+  ],
   "id": "AOI_4_Shanghai_img3344",
   "type": "Feature",
   "bbox": [

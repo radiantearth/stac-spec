@@ -35,6 +35,8 @@ inherited from GeoJSON.
 
 | Field Name | Type                                                                       | Description |
 | ---------- | -------------------------------------------------------------------------- | ----------- |
+| stac_version | string                                                                   | **REQUIRED.** The STAC version the Item implements. |
+| stac_extensions | [string]                                                              | A list of extensions the Item implements. |
 | id         | string                                                                     | **REQUIRED.** Provider identifier. As most geospatial assets are already defined by some identification scheme by the data provider it is recommended to simply use that ID. Data providers are advised to include sufficient information to make their IDs globally unique, including things like unique satellite IDs. |
 | type       | string                                                                     | **REQUIRED.** Type of the GeoJSON Object. MUST be set to `Feature`. |
 | geometry   | [GeoJSON Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) | **REQUIRED.** Defines the full footprint of the asset represented by this item, formatted according to [RFC 7946, section 3.1](https://tools.ietf.org/html/rfc7946). The footprint should be the default GeoJSON geometry, though additional geometries can be included. Specified in Longitude/Latitude based on EPSG:4326. |
@@ -43,6 +45,8 @@ inherited from GeoJSON.
 | links      | [Link Object]                                                              | **REQUIRED.** List of link objects to resources and related URLs. A link with the `rel` set to `self` is required. |
 | assets     | Map<string, Asset Object>                                                  | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key. Some pre-defined keys are listed in the chapter 'Asset types'. |
 | collection | string                                                                     | The `id` of the STAC Collection this Item references to (see `collection` relation type below). This field is *required* if such a relation type is present. This field provides an easy way for a user to search for any Items that belong in a specified Collection. |
+
+**stac_extensions**: A list of extensions the Item implements. The list contains URLs to the JSON Schema files it can be validated against. For official extensions, a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. If the versions of the extension and the item diverge, you can specify the URL of the JSON schema file.
 
 **assets** should include the main asset, as well as any 'sidecar' files that are related and help a
 client make sense of the data. Examples of this include extended metadata (in XML, JSON, etc.),
@@ -128,7 +132,7 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | self         | STRONGLY RECOMMENDED. _Absolute_ URL to the Item if it is available at a public URL. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root         | URL to the root STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
-| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may hold [common fields](../collection-spec/collection-spec.md#common-fields-and-standalone-collections) of this and other Items (see chapter '[Collections](#Collections)' for more explanations). _Absolute_ URLs should be used whenever possible. |
+| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may hold [common fields](../collection-spec/collection-spec.md#common-fields-and-standalone-collections) of this and other Items (see chapter '[Collections](#Collections)' for more explanations). _Absolute_ URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
 | license | The license URL for the item SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC Item with the license text in a separate file and link to this file. |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
 

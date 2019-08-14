@@ -1,4 +1,9 @@
 {
+  "stac_version": "0.7.0",
+  "stac_extensions": [
+      "eo",
+      "https://example.com/cs-extension/1.0/schema.json"
+  ],
   "type": "Feature",
   "id" : "CS3-20160503_132131_05",
   "bbox": [-122.59750209, 37.48803556, -122.2880486, 37.613537207],

@@ -1,4 +1,8 @@
 {
+  "stac_version": "0.7.0",
+  "stac_extensions": [
+    "label"
+  ],
   "id": "AOI_3_Paris_img101",
   "type": "Feature",
   "geometry": {
