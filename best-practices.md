@@ -8,6 +8,21 @@ those who are creating new catalogs or new tools to work with STAC.
 In time some of these may evolve to become part of the core specification, but while the current goal of the core is to remain 
 quite flexible and simple to meet a wide variety of use cases.
 
+
+## Fields and ID's
+
+When defining one's STAC properties and fields there are many choices to make on how to name various aspects of one's
+data. One of the key properties is the ID. The specification is quite flexible on ID's, primarily so that existing
+providers can easily use their same ID when they translate their data into STAC - they just need to be sure it is globally
+unique, so may need a prefix. But the use of URI reserved characters such as `:` or `/` is discouraged since this will 
+result in [percented encoded](https://tools.ietf.org/html/rfc3986#section-2) STAC API endpoints. This isn't a blocker,
+it just makes the ID's served through API's a bit less parsable. 
+
+When defining unique fields for search, like constellation or platform, it is recommended that 
+the value consist of only lowercase characters, numbers, `_`, and `-`. Examples include `sentinel-1a` (Sentinel-1), 
+`landsat-8` (Landsat-8) and `envisat` (Envisat). This is to provide consistency for search across collections, so that
+people can just search for 'landsat-8', instead of thinking through all the ways providers might have chosen to name it.
+
 ## Static and Dynamic Catalogs
 
 As mentioned in the main [Catalog specification](catalog-spec.md), there are two main types of catalogs - static
