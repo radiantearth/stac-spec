@@ -23,6 +23,7 @@
         {
           "type": "object",
           "required": [
+            "stac_version",
             "id",
             "type",
             "geometry",
@@ -32,6 +33,32 @@
             "properties"
           ],
           "properties": {
+            "stac_version": {
+              "title": "STAC version",
+              "type": "string",
+              "const": "0.7.0"
+            },
+            "stac_extensions": {
+              "title": "STAC extensions",
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "anyOf": [
+                  {
+                    "title": "Reference to a JSON Schema",
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  {
+                    "title": "Reference to a core extension",
+                    "type": "string",
+                    "enum": [
+                      "checksum"
+                    ]
+                  }
+                ]
+              }
+            },
             "id": {
               "title": "Provider ID",
               "description": "Provider item ID",

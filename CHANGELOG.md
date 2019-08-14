@@ -7,7 +7,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
 
 ### Changed
-
 - Moved Single Item Extension to core (`license` and `providers` properties for Items)
 - API: Core API now has reserved parameters to prevent overlap with extensions
 - Updated specification to base on WFS3 draft 2 (OGC API - Features - Part 1: Core, v1.0.0-draft.2). This leads to many changes in the API and one change in STAC collections, notably:
@@ -18,7 +17,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Clarified meaning of SAR and EO platform, constellation, and instrument
 
 ### Added
-
+- **stac_version**: Each Item must specify the STAC version.
+- **stac_extensions**: Introduced this field for Items, Catalogs and Collections.
 - Property `summaries` have been added to catalogs and collections.
 - API Transaction extension supports optimistic locking through use of the ETag header.
 

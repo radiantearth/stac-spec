@@ -1,4 +1,8 @@
 {
+  "stac_version": "0.7.0",
+  "stac_extensions": [
+    "pointcloud"
+  ],
   "assets": {},
   "bbox": [
     -123.0755422,
