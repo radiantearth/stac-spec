@@ -18,7 +18,7 @@ and improvements, to the issue tracker or (ideally) as pull requests. To merge a
 by at least two members of the STAC spec core team (who have write access to the main repository). It also must pass the
 Continuous Integration testing (right now it is minimal, but it will expand).
 
-* **Note** *The development process will continue to evolve as the specification matures. 0.6.0 will also introduce Continuous
+* **Note** *The development process will continue to evolve as the specification matures. 0.6.0 introduced Continuous
 Integration, and once it is full validating everything and the spec is more mature then we will aim to have `dev` branch
 always in a consistent state.*
 
