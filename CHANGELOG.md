@@ -19,7 +19,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- Property `summaries` have been added to catalogs and collections.
 - API Transaction extension supports optimistic locking through use of the ETag header.
+
 
 ## [v0.7.0] - 2019-05-06
 
