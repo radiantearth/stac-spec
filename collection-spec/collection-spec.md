@@ -32,7 +32,7 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | description  | string            | **REQUIRED.** Detailed multi-line description to fully explain the collection. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | keywords     | [string]          | List of keywords describing the collection.                  |
 | version      | string            | Version of the collection.                                   |
-| license      | string            | **REQUIRED.** Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
+| license      | string            | **REQUIRED.** Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60). Alternatively, use `proprietary` if the license is not on the SPDX license list or `various` if multiple licenses apply. In these two cases links to the license texts SHOULD be added, see the `license` link relation type. |
 | providers    | [Provider Object] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | extent       | Extent Object     | **REQUIRED.** Spatial and temporal extents.                  |
 | properties   | object            | Common fields across referenced items. |
@@ -135,7 +135,7 @@ The following types are commonly used as `rel` types in the Link Object of a Col
 | parent  | URL to the parent STAC [Catalog](../catalog-spec/README.md) or Collection. Non-root collections should include a link to their parent. |
 | child   | URL to a child STAC [Catalog](../catalog-spec/) or Collection. |
 | item    | URL to a STAC [Item](../item-spec/item-spec.md). All items linked from a collection MUST refer back to its collection with the `collection` relation type. |
-| license | The license URL for the collection SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file. |
+| license | The license URL(s) for the collection SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file. |
 | derived_from | URL to a STAC Collection that was used as input data in the creation of this collection. See the note in [STAC Item](../item-spec/item-spec.md#relation-types) for more info. |
 
 **Note:** The [STAC Catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is _not_ a requirement for collections, but _recommended_. In contrast to catalogs, it is **REQUIRED** that items linked from a Collection MUST refer back to its Collection with the `collection` relation type.
