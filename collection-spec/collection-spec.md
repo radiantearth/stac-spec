@@ -33,11 +33,11 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | keywords     | [string]          | List of keywords describing the collection.                  |
 | version      | string            | Version of the collection.                                   |
 | license      | string            | **REQUIRED.** Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60). Alternatively, use `proprietary` if the license is not on the SPDX license list or `various` if multiple licenses apply. In these two cases links to the license texts SHOULD be added, see the `license` link relation type. |
-| providers    | [Provider Object] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
-| extent       | Extent Object     | **REQUIRED.** Spatial and temporal extents.                  |
+| providers    | [[Provider Object](#provider-object) | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
+| extent       | [Extent Object](#extent-object) | **REQUIRED.** Spatial and temporal extents.    |
 | properties   | object            | Common fields across referenced items. |
-| summaries    | Map<string, [*]\|Range Object> | A map of property summaries, either a set of values or a range. |
-| links        | [Link Object]     | **REQUIRED.** A list of references to other documents.       |
+| summaries    | Map<string, [*]\|[Range Object](#range-object)> | A map of property summaries, either a set of values or a range. |
+| links        | [[Link Object](#link-object)]     | **REQUIRED.** A list of references to other documents.       |
 
 **stac_extensions**: A list of extensions the Collection implements. This does NOT declare the extensions of child Catalogs or Items. The list contains URLs to the JSON Schema files it can be validated against. For official extensions, a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. If the versions of the extension and the collection diverge, you can specify the URL of the JSON schema file.
 
@@ -51,10 +51,10 @@ It is recommended to list as many properties as reasonable so that consumers get
 
 The object describes the spatio-temporal extents of the Collection. Both spatial and temporal extents are required to be specified.
 
-| Element  | Type                   | Description                                                         |
-| -------- | -----------------------| ------------------------------------------------------------------- |
-| spatial  | Spatial Extent Object  | **REQUIRED.** Potential *spatial extent* covered by the collection. |
-| temporal | Temporal Extent Object | **REQUIRED.** Potential *temporal extent* covered by the collection. |
+| Element  | Type                                              | Description                                                         |
+| -------- | ------------------------------------------------- | ------------------------------------------------------------------- |
+| spatial  | [Spatial Extent Object](#spatial-extent-object)   | **REQUIRED.** Potential *spatial extent* covered by the collection. |
+| temporal | [Temporal Extent Object](#temporal-extent-object) | **REQUIRED.** Potential *temporal extent* covered by the collection. |
 
 #### Spatial Extent Object
 
@@ -117,7 +117,7 @@ This object describes a relationship with another entity. Data providers are adv
 | ---------- | ------ | ------------------------------------------------------------ |
 | href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information. |
-| type       | string | Media type of the referenced entity. |
+| type       | string | [Media type](../item-spec/item-spec.md#media-types) of the referenced entity. |
 | title      | string | A human readable title to be used in rendered displays of the link. |
 
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
@@ -134,11 +134,11 @@ The following types are commonly used as `rel` types in the Link Object of a Col
 | root    | URL to the root STAC [Catalog](../catalog-spec/README.md) or Collection. Collections should include a link to their root, even if it's the root and points to itself. |
 | parent  | URL to the parent STAC [Catalog](../catalog-spec/README.md) or Collection. Non-root collections should include a link to their parent. |
 | child   | URL to a child STAC [Catalog](../catalog-spec/) or Collection. |
-| item    | URL to a STAC [Item](../item-spec/item-spec.md). All items linked from a collection MUST refer back to its collection with the `collection` relation type. |
+| item    | URL to a STAC [Item](../item-spec/item-spec.md). All items linked from a collection MUST refer back to its collection with the [`collection` relation type](../item-spec/item-spec.md#relation-types). |
 | license | The license URL(s) for the collection SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file. |
 | derived_from | URL to a STAC Collection that was used as input data in the creation of this collection. See the note in [STAC Item](../item-spec/item-spec.md#relation-types) for more info. |
 
-**Note:** The [STAC Catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is _not_ a requirement for collections, but _recommended_. In contrast to catalogs, it is **REQUIRED** that items linked from a Collection MUST refer back to its Collection with the `collection` relation type.
+**Note:** The [STAC Catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is _not_ a requirement for collections, but _recommended_. In contrast to catalogs, it is **REQUIRED** that items linked from a Collection MUST refer back to its Collection with the [`collection` relation type](../item-spec/item-spec.md#relation-types).
 
 ### Range Object
 
