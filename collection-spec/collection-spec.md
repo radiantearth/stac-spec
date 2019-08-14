@@ -173,7 +173,7 @@ An incomplete Collection:
   "properties": {
     "eo:gsd": 30,
     "eo:platform": "landsat-8",
-    "eo:instrument": "OLI_TIRS",
+    "eo:instrument": "oli_tirs",
     "eo:off_nadir": 0,
     "eo:bands": [
       {
@@ -230,7 +230,7 @@ The merged Item then looks like this:
     "eo:gsd": 30,
     "eo:platform": "landsat-8",
     "eo:constellation": "landsat-8",
-    "eo:instrument": "OLI_TIRS",
+    "eo:instrument": "oli_tirs",
     "eo:off_nadir": 0,
     "eo:bands": [
       {
