@@ -54,16 +54,15 @@
       {
         "name": "Development Seed",
         "url": "https://developmentseed.org/",
-        "roles": [
-          "processor"
-        ]
+        "roles": ["processor"]
+        }
       }
     ],
     "license": "PDDL-1.0",
     "properties": {
       "eo:gsd": 30,
       "eo:platform": "landsat-8",
-      "eo:instrument": "OLI_TIRS",
+      "eo:instrument": "oli_tirs",
       "eo:off_nadir": 0,
       "eo:bands": [
         {

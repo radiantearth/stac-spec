@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 	- Query parameter `time` was renamed to `datetime` and accepts slightly different values.
 	- WFS links have additional fields `hreflang` and `length`.
 	- WFS Collections have additional fields `crs` and `itemType`.
+- Clarified meaning of SAR and EO platform, constellation, and instrument
 
 ### Added
 - **stac_version**: Each Item must specify the STAC version.

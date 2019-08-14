@@ -49,7 +49,7 @@
         "landsat:row": 18,
         "eo:gsd": 30,
         "eo:platform": "landsat-8",
-        "eo:instrument": "OLI_TIRS",
+        "eo:instrument": "oli_tirs",
         "eo:off_nadir": 0,
         "eo:bands": [
             {
