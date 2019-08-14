@@ -55,7 +55,6 @@
         "name": "Development Seed",
         "url": "https://developmentseed.org/",
         "roles": ["processor"]
-        }
       }
     ],
     "license": "PDDL-1.0",
