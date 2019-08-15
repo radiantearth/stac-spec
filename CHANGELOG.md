@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Property `summaries` have been added to catalogs and collections.
 - API Transaction extension supports optimistic locking through use of the ETag header.
+- Asset Definition Extension added to Collections to allow specifying details about Assets that may appear in member Items.
 
 
 ## [v0.7.0] - 2019-05-06
