@@ -106,19 +106,26 @@ The band's common_name is the name that is commonly used to refer to that band's
 properties. The table below shows the common name based on the average band range for the band
 numbers of several popular instruments.
 
-| Common Name | Band Range (μm) | Landsat 5 | Landsat 7 | Landsat 8 | Sentinel 2 | MODIS |
-| ----------- | --------------- | --------- | --------- | --------- | ---------- | ----- |
-| coastal     | 0.40 - 0.45     |           |           | 1         | 1          |       |
-| blue        | 0.45 - 0.5      | 1         | 1         | 2         | 2          | 3     |
-| green       | 0.5 - 0.6       | 2         | 2         | 3         | 3          | 4     |
-| red         | 0.6 - 0.7       | 3         | 3         | 4         | 4          | 1     |
-| pan         | 0.5 - 0.7       |           | 8         | 8         |            |       |
-| nir         | 0.77 - 1.00     | 4         | 4         | 5         | 8          | 2     |
-| cirrus      | 1.35 - 1.40     |           |           | 9         | 10         | 26    |
-| swir16      | 1.55 - 1.75     | 5         | 5         | 6         | 11         | 6     |
-| swir22      | 2.1 - 2.3       | 7         | 7         | 7         | 12         | 7     |
-| lwir11      | 10.5 - 11.5     |           |           | 10        |            | 31    |
-| lwir12      | 11.5 - 12.5     |           |           | 11        |            | 32    |
+| Common Name | Band Range (μm) | Landsat 5/7 | Landsat 8 | Sentinel 2 | MODIS |
+| ----------- | --------------- | ----------- | --------- | ---------- | ----- |
+| coastal     | 0.40 - 0.45     |             | 1         | 1          |       |
+| blue        | 0.45 - 0.50     | 1           | 2         | 2          | 3     |
+| green       | 0.50 - 0.60     | 2           | 3         | 3          | 4     |
+| red         | 0.60 - 0.70     | 3           | 4         | 4          | 1     |
+| yellow      | 0.58 - 0.62     |             |           |            |       |
+| pan         | 0.50 - 0.70     | 8 *L7 only* | 8         |            |       |
+| rededge     | 0.70 - 0.75     |             |           |            |       |
+| nir         | 0.75 - 1.00     | 4           |           | 8          | 2     |
+| nir08       | 0.75 - 0.90     |             | 5         | 8a         |       |
+| nir09       | 0.85 - 1.05     |             |           | 9          |       |
+| cirrus      | 1.35 - 1.40     |             | 9         | 10         | 26    |
+| swir16      | 1.55 - 1.75     | 5           | 6         | 11         | 6     |
+| swir22      | 2.10 - 2.30     | 7           | 7         | 12         | 7     |
+| lwir        | 10.5 - 12.5     |             |           |            |       |
+| lwir11      | 10.5 - 11.5     |             | 10        |            | 31    |
+| lwir12      | 11.5 - 12.5     |             | 11        |            | 32    |
+
+The difference between the `nir`, `nir08`, and `nir09` bands are that the `nir` band is a wider band that covers most of the spectral range of 0.75μm to 1.0μm. `nir08` and `nir09` are narrow bands centered 0.85μm and 0.95μm respectively. The same goes for the difference between `lwir`, `lwir11` and `lwir12`. 
 
 ## Associating assets with bands
 
