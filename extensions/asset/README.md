@@ -1,4 +1,4 @@
-# Asset Definition Specification (`asset`)
+# Asset Definition Specification
 
 **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
@@ -23,6 +23,8 @@ An asset is an object that contains details about the datafiles that will be inc
 | ---------- | ------ | ------------------------------------------------------------------------------------- |
 | title      | string | **REQUIRED.** The displayed title for clients and users.                                            |
 | type       | string | **REQUIRED.** [Media type](#media-types) of the asset.
+
+Other custom fields, or fields from other extensions may also be included in the Asset object.
 
 ## Implementations
 

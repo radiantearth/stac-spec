@@ -47,7 +47,7 @@ An extension can add new fields to STAC entities (content extension), or can add
 
 | Extension Name (Prefix)                                      | Scope            | Description                                                  | Maturity |
 | ------------------------------------------------------------ | ---------------- | ------------------------------------------------------------ | -------- |
-| [Asset Definition](asset/README.md) (`asset`)                  | Collection | Provides a way to specify details about what assets may be found in Items belonging to a collection | *Proposal* |
+| [Asset Definition](asset/README.md) (-)                  | Collection | Provides a way to specify details about what assets may be found in Items belonging to a collection | *Proposal* |
 | [Checksum](checksum/README.md) (`checksum`)                  | Item +Catalog +Collection | Provides a way to specify file checksums for assets and links in Items, Catalogs and Collections. | *Proposal* |
 | [Data Cube](datacube/README.md) (`cube`)                      | Item             | Data Cube related metadata, especially to describe their dimensions. | *Proposal* |
 | [Datetime Range](datetime-range/README.md) (`dtr`)          | Item             | An extension to provide datetime ranges with a start and an end datetime stamp in a consistent way. | *Proposal* |
