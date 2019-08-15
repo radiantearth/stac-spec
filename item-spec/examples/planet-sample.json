@@ -1,4 +1,9 @@
 {
+  "stac_version": "0.8.0",
+  "stac_extensions": [
+      "eo",
+      "https://example.planet.com/stac/1.0/schema.json"
+  ],
   "links": [
     { "rel":"self", "href": "https://api.planet.com/data/v1/item-types/PSScene4Band/items/20171110_121030_1013"},
     { "rel":"full-assets", "href": "https://api.planet.com/data/v1/item-types/PSScene4Band/items/20171110_121030_1013/assets/"}

@@ -22,7 +22,7 @@ it is recommended to add the fields to a corresponding [STAC Collection](../../c
 | ---------------- | -------------------- | ----------- |
 | sci:doi          | string               | The DOI name of the data, e.g. `10.1000/xyz123`. This MUST NOT be a DOIs link. For all DOI names respective DOI links SHOULD be added to the links section (see chapter "Relation types"). |
 | sci:citation     | string               | The recommended human-readable reference (citation) to be used by publications citing the data. No specific citation style is suggested, but the citation should contain all information required to find the publication distinctively. |
-| sci:publications | [Publication Object] | List of relevant publications referencing and describing the data. |
+| sci:publications | [[Publication Object](#publication-object)] | List of relevant publications referencing and describing the data. |
 
 ### Publication Object
 
@@ -43,7 +43,7 @@ required to find the publication distinctively.
 
 ## Relation types
 
-This extension adds the following types as applicable `rel` types for the Link Object:
+This extension adds the following types as applicable `rel` types for the [Link Object](../../item-spec/item-spec.md#link-object):
 
 | Type    | Description |
 | ------- | ----------- |
