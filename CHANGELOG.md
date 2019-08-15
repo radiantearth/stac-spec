@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **stac_extensions**: Introduced this field for Items, Catalogs and Collections.
 - Property `summaries` have been added to catalogs and collections.
 - API Transaction extension supports optimistic locking through use of the ETag header.
-
+- [Single File Catalog extension](extensions/single-file-catalog/README.md) added as a format to have a set of Collections and Items in a single file.
 
 ## [v0.7.0] - 2019-05-06
 

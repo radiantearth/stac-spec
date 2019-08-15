@@ -55,6 +55,7 @@ An extension can add new fields to STAC entities (content extension), or can add
 | [Point Cloud](pointcloud/README.md) (`pc`)                   | Item             | Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LiDAR or coincidence-matched imagery. | *Proposal* |
 | [SAR](sar/README.md) (`sar`)                                 | Item             | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. | *Proposal* |
 | [Scientific](scientific/README.md) (`sci`)                   | Item             | Scientific metadata is considered to be data that indicate from which publication data originates and how the data itself should be cited or referenced. | *Proposal* |
+| [Single File STAC](single-file-stac/README.md) (-)                   | Catloag +Collection +Item | An extension to provide a set of Collections and Items as a single file catalog. | *Proposal* |
 
 ## Third-party / vendor extensions
 
