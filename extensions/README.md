@@ -137,3 +137,8 @@ These files should be kept together in order to preserve relative `$ref` links.
 See the [EU](eo/) extension file structure as an example.
 * Specification examples should be stored in an `examples` directory. 
 * The specification schema file(s) should be stored in a `json-schema` directory. 
+
+Make sure to choose a meaningful name for the extension folder as it will be the shortcut
+that is used to reference it in the `stac_extensions` field. Also, make sure to add the
+folder name to the enum defined for the `stac_extensions` field in the
+[JSON schema of the STAC catalog specification](../catalog-spec/json-schema/catalog.json).

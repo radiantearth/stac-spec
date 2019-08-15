@@ -202,6 +202,10 @@ components:
     partialItem:
       type: object
       properties:
+        stac_version:
+          $ref: '#/components/schemas/stac_version'
+        stac_extensions:
+          $ref: '#/components/schemas/stac_extensions'
         id:
           $ref: '#/components/schemas/itemId'
         bbox:

@@ -1,5 +1,8 @@
 {
-  "stac_version": "0.7.0",
+  "stac_version": "0.8.0",
+  "stac_extensions": [
+    "datacube"
+  ],
   "id": "datacube",
   "description": "Multi-dimensional data cube in a STAC collection.",
   "links": [

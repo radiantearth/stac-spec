@@ -3,7 +3,6 @@
   "$id": "collection.json#",
   "title": "STAC Collection Specification",
   "description": "This object represents Collections in a SpatioTemporal Asset Catalog.",
-  "type": "object",
   "allOf": [
     {
       "$ref": "../../catalog-spec/json-schema/catalog.json"
@@ -14,6 +13,8 @@
   ],
   "definitions": {
     "collection": {
+      "title": "STAC Collection",
+      "description": "These are the fields specific to a STAC Collection. All other fields are inherited from STAC Catalog.",
       "type": "object",
       "required": [
         "license",
@@ -77,30 +78,59 @@
           ],
           "properties": {
             "spatial": {
-              "title": "Spatial extent",
-              "type": "array",
-              "minItems": 4,
-              "maxItems": 6,
-              "items": {
-                "type": "number"
+              "title": "Spatial extent object",
+              "type": "object",
+              "required": [
+                "bbox"
+              ],
+              "properties": {
+                "bbox": {
+                  "title": "Spatial extents",
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "title": "Spatial extent",
+                    "type": "array",
+                    "minItems": 4,
+                    "maxItems": 6,
+                    "items": {
+                      "type": "number"
+                    }
+                  }
+                }
               }
             },
             "temporal": {
-              "title": "Temporal extent",
-              "type": "array",
-              "minItems": 2,
-              "maxItems": 2,
-              "items": {
-                "type": [
-                  "string",
-                  "null"
-                ],
-                "format": "date-time"
+              "title": "Temporal extent object",
+              "type": "object",
+              "required": [
+                "interval"
+              ],
+              "properties": {
+                "interval": {
+                  "title": "Temporal extents",
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "title": "Temporal extent",
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "items": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "format": "date-time"
+                    }
+                  }
+                }
               }
             }
           }
         },
         "properties": {
+          "title": "Common properties",
           "type": "object"
         }
       }
