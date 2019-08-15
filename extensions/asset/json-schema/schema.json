@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "stac-extension-asset.json#",
+    "title": "Asset Definition Extension Specification",
+    "description": "STAC Asset Definition Extension to a STAC Collection",
+    "allOf": [
+      {
+        "$ref": "../../../collection-spec/json-schema/collection.json#/definitions/core"
+      },
+      {
+        "$ref": "#/definitions/asset"
+      }
+    ],
+    "definitions": {
+      "asset": {
+        "type": "object",
+        "required": [
+          "title",
+          "type"
+        ],
+        "properties": {
+          "title": {
+            "title": "Asset title",
+            "type": "string"
+          },
+          "type": {
+            "title": "Asset type",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }

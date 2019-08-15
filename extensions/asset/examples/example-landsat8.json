@@ -1,0 +1,240 @@
+{
+    "id": "landsat-8-l1",
+    "title": "Landsat 8 L1",
+    "description": "Landat 8 imagery radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
+    "keywords": [
+        "landsat",
+        "earth observation",
+        "usgs"
+    ],
+    "version": "0.1.0",
+    "stac_version": "0.7.0",
+    "extent": {
+        "spatial": [
+            -180,
+            -90,
+            180,
+            90
+        ],
+        "temporal": [
+            "2013-06-01",
+            null
+        ]
+    },
+    "providers": [
+        {
+            "name": "USGS",
+            "roles": [
+                "producer"
+            ],
+            "url": "https://landsat.usgs.gov/"
+        },
+        {
+            "name": "Planet Labs",
+            "roles": [
+                "processor"
+            ],
+            "url": "https://github.com/landsat-pds/landsat_ingestor"
+        },
+        {
+            "name": "AWS",
+            "roles": [
+                "host"
+            ],
+            "url": "https://landsatonaws.com/"
+        },
+        {
+            "name": "Development Seed",
+            "roles": [
+                "processor"
+            ],
+            "url": "https://github.com/sat-utils/sat-api"
+        }
+    ],
+    "license": "PDDL-1.0",
+    "properties": {
+        "eo:gsd": 15,
+        "eo:platform": "landsat-8",
+        "eo:instrument": "OLI_TIRS",
+        "eo:off_nadir": 0,
+        "eo:bands": [
+            {
+                "name": "B1",
+                "common_name": "coastal",
+                "gsd": 30,
+                "center_wavelength": 0.44,
+                "full_width_half_max": 0.02
+            },
+            {
+                "name": "B2",
+                "common_name": "blue",
+                "gsd": 30,
+                "center_wavelength": 0.48,
+                "full_width_half_max": 0.06
+            },
+            {
+                "name": "B3",
+                "common_name": "green",
+                "gsd": 30,
+                "center_wavelength": 0.56,
+                "full_width_half_max": 0.06
+            },
+            {
+                "name": "B4",
+                "common_name": "red",
+                "gsd": 30,
+                "center_wavelength": 0.65,
+                "full_width_half_max": 0.04
+            },
+            {
+                "name": "B5",
+                "common_name": "nir",
+                "gsd": 30,
+                "center_wavelength": 0.86,
+                "full_width_half_max": 0.03
+            },
+            {
+                "name": "B6",
+                "common_name": "swir16",
+                "gsd": 30,
+                "center_wavelength": 1.6,
+                "full_width_half_max": 0.08
+            },
+            {
+                "name": "B7",
+                "common_name": "swir22",
+                "gsd": 30,
+                "center_wavelength": 2.2,
+                "full_width_half_max": 0.2
+            },
+            {
+                "name": "B8",
+                "common_name": "pan",
+                "gsd": 15,
+                "center_wavelength": 0.59,
+                "full_width_half_max": 0.18
+            },
+            {
+                "name": "B9",
+                "common_name": "cirrus",
+                "gsd": 30,
+                "center_wavelength": 1.37,
+                "full_width_half_max": 0.02
+            },
+            {
+                "name": "B10",
+                "common_name": "lwir11",
+                "gsd": 100,
+                "center_wavelength": 10.9,
+                "full_width_half_max": 0.8
+            },
+            {
+                "name": "B11",
+                "common_name": "lwir12",
+                "gsd": 100,
+                "center_wavelength": 12,
+                "full_width_half_max": 1
+            }
+        ]
+    },
+    "assets": {
+        "index": {
+            "type": "text/html",
+            "title": "HTML index page"
+        },
+        "thumbnail": {
+            "title": "Thumbnail image",
+            "type": "image/jpeg"
+        },
+        "B1": {
+            "type": "image/x.geotiff",
+            "eo:bands": [
+                0
+            ],
+            "title": "Band 1 (coastal)"
+        },
+        "B2": {
+            "type": "image/x.geotiff",
+            "eo:bands": [
+                1
+            ],
+            "title": "Band 2 (blue)"
+        },
+        "B3": {
+            "type": "image/x.geotiff",
+            "eo:bands": [
+                2
+            ],
+            "title": "Band 3 (green)"
+        },
+        "B4": {
+            "type": "image/x.geotiff",
+            "eo:bands": [
+                3
+            ],
+            "title": "Band 4 (red)"
+        },
+        "B5": {
+            "type": "image/x.geotiff",
+            "eo:bands": [
+                4
+            ],
+            "title": "Band 5 (nir)"
+        },
+        "B6": {
+            "type": "image/x.geotiff",
+            "eo:bands": [
+                5
+            ],
+            "title": "Band 6 (swir16)"
+        },
+        "B7": {
+            "type": "image/x.geotiff",
+            "eo:bands": [
+                6
+            ],
+            "title": "Band 7 (swir22)"
+        },
+        "B8": {
+            "type": "image/x.geotiff",
+            "eo:bands": [
+                7
+            ],
+            "title": "Band 8 (pan)"
+        },
+        "B9": {
+            "type": "image/x.geotiff",
+            "eo:bands": [
+                8
+            ],
+            "title": "Band 9 (cirrus)"
+        },
+        "B10": {
+            "type": "image/x.geotiff",
+            "eo:bands": [
+                9
+            ],
+            "title": "Band 10 (lwir)"
+        },
+        "B11": {
+            "type": "image/x.geotiff",
+            "eo:bands": [
+                10
+            ],
+            "title": "Band 11 (lwir)"
+        },
+        "ANG": {
+            "title": "Angle coefficients file",
+            "type": "text/plain"
+        },
+        "MTL": {
+            "title": "original metadata file",
+            "type": "text/plain"
+        },
+        "BQA": {
+            "title": "Band quality data",
+            "type": "image/x.geotiff"
+        }
+    },
+    "links": [ ]
+}
