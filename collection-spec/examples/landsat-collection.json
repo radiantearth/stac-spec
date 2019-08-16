@@ -1,4 +1,6 @@
 {
+    "stac_version": "0.8.0",
+    "stac_extensions": [],
     "id": "landsat-8-l1",
     "title": "Landsat 8 L1",
     "description": "Landat 8 imagery radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
@@ -6,7 +8,6 @@
       "landsat"
     ],
     "version": "0.1.0",
-    "stac_version": "0.7.0",
     "extent": {
       "spatial": {
         "bbox": [
@@ -54,7 +55,6 @@
         "name": "Development Seed",
         "url": "https://developmentseed.org/",
         "roles": ["processor"]
-        }
       }
     ],
     "license": "PDDL-1.0",

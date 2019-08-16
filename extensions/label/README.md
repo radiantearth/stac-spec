@@ -47,12 +47,12 @@ Some additional notes are given here for some of the core STAC Item fields and w
 | element           | type info            | name                       | description       |
 |-------------------|----------------------|----------------------------|--------------------------------------------------------------------------------------------------|
 | label:property    | [string\|null]       | Name                       | **REQUIRED** These are the names of the property field(s) in each `Feature` of the label asset's `FeatureCollection` that contains the  classes (keywords from `label:classes` if the property defines classes). If labels are rasters, use `null`. |
-| label:classes     | Class Object         | Classes                    | **REQUIRED** if using categorical data. A Class Object defining the list of possible class names for each `label:property`. (e.g., tree, building, car, hippo)|
+| label:classes     | [Class Object](#class-object) | Classes           | **REQUIRED** if using categorical data. A Class Object defining the list of possible class names for each `label:property`. (e.g., tree, building, car, hippo)|
 | label:description | string               | Description                | **REQUIRED** A description of the label, how it was created, and what it is recommended for |
 | label:type        | string               | Type                       | **REQUIRED** An ENUM of either `vector` label type or `raster` label type |
 | label:task        | [string]             | Task                       | Recommended to be a subset of 'regression', 'classification', 'detection', or 'segmentation', but may be an arbitrary value |
 | label:method      | [string]             | Method                     | Recommended to be a subset of 'automated' or 'manual', but may be an arbitrary value. |
-| label:overview    | Label Overview Object| Overview                   | An Object storing counts (for classification-type data) or summary statistics (for continuous numerical/regression data). |
+| label:overview    | [Label Overview Object](#label-overview-object) | Overview | An Object storing counts (for classification-type data) or summary statistics (for continuous numerical/regression data). |
 
 #### Class Object
 | Field Name      | Type                 | name                       | description       |
@@ -62,11 +62,11 @@ Some additional notes are given here for some of the core STAC Item fields and w
 
 #### Label Overview Object
 
-| Field Name      | Type            | name                       | description       |
-|-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------|
-| property_key    | string          | Property Key                       | The property key within the asset corresponding to class labels. |
-| counts          | [Count Object]  | Counts                     | An object containing counts for categorical data. |
-| statistics      | [Stats Object]  | Statistics                 | An object containing statistics for regression/continuous numeric value data. |
+| Field Name      | Type                            | name                       | description       |
+|-----------------| ------------------------------- |----------------------------|--------------------------------------------------------------------------------------------------|
+| property_key    | string                          | Property Key                       | The property key within the asset corresponding to class labels. |
+| counts          | [[Count Object](#count-object)] | Counts                     | An object containing counts for categorical data. |
+| statistics      | [[Stats Object](#stats-object)] | Statistics                 | An object containing statistics for regression/continuous numeric value data. |
 
 `label:overview ` generally won't have both counts and statistics, but one of the two.
 

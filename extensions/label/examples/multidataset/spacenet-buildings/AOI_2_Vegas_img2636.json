@@ -1,4 +1,8 @@
 {
+  "stac_version": "0.8.0",
+  "stac_extensions": [
+    "label"
+  ],
   "id": "AOI_2_Vegas_img2636",
   "type": "Feature",
   "bbox": [

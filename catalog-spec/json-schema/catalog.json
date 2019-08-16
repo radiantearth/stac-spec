@@ -1,6 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "catalog.json#",
+  "title": "STAC Catalog Specification",
+  "description": "This object represents Catalogs in a SpatioTemporal Asset Catalog.",
   "allOf": [
     {
       "$ref": "#/definitions/catalog"
@@ -20,7 +22,28 @@
         "stac_version": {
           "title": "STAC version",
           "type": "string",
-          "const": "0.7.0"
+          "const": "0.8.0"
+        },
+        "stac_extensions": {
+          "title": "STAC extensions",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "anyOf": [
+              {
+                "title": "Reference to a JSON Schema",
+                "type": "string",
+                "format": "uri"
+              },
+              {
+                "title": "Reference to a core extension",
+                "type": "string",
+                "enum": [
+                  "checksum"
+                ]
+              }
+            ]
+          }
         },
         "id": {
           "title": "Identifier",

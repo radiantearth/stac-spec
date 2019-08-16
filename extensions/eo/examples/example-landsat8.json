@@ -1,4 +1,9 @@
 {
+    "stac_version": "0.8.0",
+    "stac_extensions": [
+      "eo",
+      "https://example.com/stac/landsat-extension/1.0/schema.json"
+    ],
     "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
     "type": "Feature",
     "bbox": [
