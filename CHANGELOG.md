@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
 
 ### Changed
-- Moved Single Item Extension to core (`license` and `providers` properties for Items)
+- Moved Single Item Extension to core (`license` and `providers` properties for Items).
+- Allow `various` for the `license` fields.
 - API: Core API now has reserved parameters to prevent overlap with extensions
 - Updated specification to base on WFS3 draft 2 (OGC API - Features - Part 1: Core, v1.0.0-draft.2). This leads to many changes in the API and one change in STAC collections, notably:
     - The structure of the field `extent` in STAC and WFS Collections changed.

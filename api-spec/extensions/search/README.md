@@ -12,7 +12,7 @@ search, for example, from calling the `/stac/search` API endpoint.
 
 | Element           | Type                  | Description                                                  |
 | ----------------- | --------------------- | ------------------------------------------------------------ |
-| `search:metadata` | SearchMetadata Object | **REQUIRED.** The search-related metadata for the [ItemCollection](../../../item-spec/item-spec.md#itemcollection-fields). |
+| `search:metadata` | [SearchMetadata Object](#searchmetadata-object) | **REQUIRED.** The search-related metadata for the [ItemCollection](../../../item-spec/item-spec.md#itemcollection-fields). |
 
 ### SearchMetadata Object
 
