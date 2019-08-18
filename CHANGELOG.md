@@ -32,6 +32,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added Search Metadata API extension which adds fields to a response from a STAC API such as the number of items found and how many were returned.
 - ItemCollection class added to spec that is a GeoJSON FeatureCollection of Items, such as what would be returned from a search. Located in item directory.
 - `in` operator added to the query extension (to check if value is in a list of values)
+- New bands added to the [common band names](extensions/eo/README.md#common-band-names) for the EO extension: yellow, rededge, and 2 narrow NIR bands
+
 
 ## [v0.7.0] - 2019-05-06
 
