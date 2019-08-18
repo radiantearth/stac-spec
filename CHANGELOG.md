@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **stac_extensions**: Introduced this field for Items, Catalogs and Collections.
 - Property `summaries` have been added to catalogs and collections.
 - API Transaction extension supports optimistic locking through use of the ETag header.
+- New bands added to the [common band names](extensions/eo/README.md#common-band-names) for the EO extension: yellow, rededge, and 2 narrow NIR bands
 
 
 ## [v0.7.0] - 2019-05-06
