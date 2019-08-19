@@ -120,7 +120,7 @@ details on the two types and how you might use them see the [Static and Dynamic 
 | id           | string        | **REQUIRED.** Identifier for the catalog.                    |
 | title        | string        | A short descriptive one-line title for the catalog.          |
 | description  | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| summaries    | Map<string, [*]\|[Stats Object](#stats-object)> | A map of property summaries, either a set of values or a statistics such as a range. |
+| summaries    | Map<string, [*]\|[Stats Object](#stats-object)> | A map of property summaries, either a set of values or statistics such as a range. |
 | links        | [[Link Object](#link-object) | **REQUIRED.** A list of references to other documents.       |
 
 **stac_extensions**: A list of extensions the Catalog implements. This does NOT declare the extensions of children or Items. The list contains URLs to the JSON Schema files it can be validated against. For official extensions, a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. If the versions of the extension and the catalog diverge, you can specify the URL of the JSON schema file.
