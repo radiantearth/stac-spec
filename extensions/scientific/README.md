@@ -10,13 +10,16 @@ persistent digital interoperable identifier that uniquely identify for digital p
 can be registered at registration agencies affiliated with the
 [International DOI Foundation](https://www.doi.org/).
 
+This extension applies to STAC Items and STAC Collections.
 As these scientific information are often closely bound to the collection level and therefore are shared across all items,
 it is recommended to add the fields to a corresponding [STAC Collection](../../collection-spec/README.md).
 
-- [Example (Collection)](examples/example-merraclim.json)
+- Examples: [Collection](examples/collection.json), [Item](examples/item.json)
 - [JSON Schema](json-schema/schema.json)
 
-## Item Fields
+## Item and Collection Fields
+
+For Items, the fields are placed in the `properties`. For Collections, the fields are placed on the top level of the Collection.
 
 | Field Name       | Type                 | Description |
 | ---------------- | -------------------- | ----------- |
