@@ -102,7 +102,7 @@ the catalog could be of limited use to users. A Catalog or Collection linking to
 is a common use case when multiple data source are combined. Client developers should be aware of this use case. Nevertheless, it 
 is strongly recommended that Catalogs don't contain differently versioned Items so that users/clients can at least use and/or download
 consistent (Sub-)Catalogs containing either all or no data. Collections that are referenced from Items should always use the same
-STAC version. Otherwise some behaviour of functionality may be unpredicatble (e.g. merging common fields into Items or reading summaries).
+STAC version. Otherwise some behaviour of functionality may be unpredictable (e.g. merging common fields into Items or reading summaries).
 
 ## Use of links
 
