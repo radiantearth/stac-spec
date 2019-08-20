@@ -123,6 +123,8 @@ details on the two types and how you might use them see the [Static and Dynamic 
 | summaries    | Map<string, [*]\|[Stats Object](#stats-object)> | A map of property summaries, either a set of values or statistics such as a range. |
 | links        | [[Link Object](#link-object) | **REQUIRED.** A list of references to other documents.       |
 
+**stac_version**: In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
+
 **stac_extensions**: A list of extensions the Catalog implements. This does NOT declare the extensions of children or Items. The list contains URLs to the JSON Schema files it can be validated against. For official extensions, a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. If the versions of the extension and the catalog diverge, you can specify the URL of the JSON schema file.
 
 **summaries**: You can optionally summarize the potential values that are available as part of the `properties` in STAC Items.
