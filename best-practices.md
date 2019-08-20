@@ -1,6 +1,6 @@
-# STAC Catalog Best Practices
+# STAC Best Practices
 
-This document makes a number of recommendations for creating real world SpatioTemporal Asset [Catalogs](catalog-spec.md). None of them 
+This document makes a number of recommendations for creating real world SpatioTemporal Asset Catalogs. None of them 
 are required to meet the core specification, but following these practices will make life easier for client tooling
 and for users. They come about from practical experience of implementors, and introduce a bit more 'constraint' for
 those who are creating new catalogs or new tools to work with STAC. 
@@ -8,12 +8,26 @@ those who are creating new catalogs or new tools to work with STAC.
 In time some of these may evolve to become part of the core specification, but while the current goal of the core is to remain 
 quite flexible and simple to meet a wide variety of use cases.
 
+## Fields and ID's
+
+When defining one's STAC properties and fields there are many choices to make on how to name various aspects of one's
+data. One of the key properties is the ID. The specification is quite flexible on ID's, primarily so that existing
+providers can easily use their same ID when they translate their data into STAC - they just need to be sure it is globally
+unique, so may need a prefix. But the use of URI reserved characters such as `:` or `/` is discouraged since this will 
+result in [percented encoded](https://tools.ietf.org/html/rfc3986#section-2) STAC API endpoints. This isn't a blocker,
+it just makes the ID's served through API's a bit less parsable. 
+
+When defining unique fields for search, like constellation or platform, it is recommended that 
+the value consist of only lowercase characters, numbers, `_`, and `-`. Examples include `sentinel-1a` (Sentinel-1), 
+`landsat-8` (Landsat-8) and `envisat` (Envisat). This is to provide consistency for search across collections, so that
+people can just search for 'landsat-8', instead of thinking through all the ways providers might have chosen to name it.
+
 ## Static and Dynamic Catalogs
 
 As mentioned in the main [Catalog specification](catalog-spec.md), there are two main types of catalogs - static
 and dynamic. This section explains each of them in more depth and shares some best practices on each.
 
-#### Static Catalogs
+### Static Catalogs
 
 A main target for STAC has been object storage services like [Amazon S3](https://aws.amazon.com/s3/), 
 [Google Cloud Storage](https://cloud.google.com/storage/) and [Azure Storage](https://azure.microsoft.com/en-us/services/storage/), 
@@ -32,7 +46,7 @@ is to place the catalog file in namespaces "directories". For example:
 - current/catalog.json
 - archive/catalog.json
 
-#### Dynamic Catalogs
+### Dynamic Catalogs
 
 Dynamic STAC Catalogs are those that generate their JSON responses programmatically instead of relying on a set of
 already defined files. Typically a dynamic catalog implements the full [STAC API](../stac-api/) which enables 
@@ -80,6 +94,15 @@ by providers, and users could browse down to both. The leaf Items should just be
 provide multiple 'views' to allow users to navigate in a way that makes sense to them, providing multiple 'sub-catalogs'
 from the root catalog that enable different paths to browse (country/state, date/time, constellation/satellite, etc). But the 
 canonical 'rel' link should be used to designate the primary location of the item to search engine crawlers.
+
+### Mixing STAC Versions
+
+Although it is allowed to mix STAC versions, it should be used carefully as clients may not support all versions so that 
+the catalog could be of limited use to users. A Catalog or Collection linking to differently versioned Sub-Catalogs or Sub-Collections
+is a common use case when multiple data source are combined. Client developers should be aware of this use case. Nevertheless, it 
+is strongly recommended that Catalogs don't contain differently versioned Items so that users/clients can at least use and/or download
+consistent (Sub-)Catalogs containing either all or no data. Collections that are referenced from Items should always use the same
+STAC version. Otherwise some behaviour of functionality may be unpredictable (e.g. merging common fields into Items or reading summaries).
 
 ## Use of links
 
