@@ -114,47 +114,67 @@ Asset definitions that contain band data should reference the band index. Each a
 | ---------- | -------- | -------------------------------------------- |
 | eo:bands   | [number] | Lists the band names available in the asset. |
 
-See [landsat8-merged.json](examples/landsat8-merged.json) for a full example.
+See [example-landsat8.json](examples/example-landsat8.json) for a full example.
 ```
 {
-  "id": "LC81530252014153LGN00",
-  "type": "Feature",
-  ...
-  "properties": {
+    "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
+    "type": "Feature",
     ...
-  },
-
-  "assets" :{
-    "B1": {
-      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B1.TIF",
-      "type": "image/vnd.stac.geotiff",
-      "eo:bands": [0]
+    "properties": {
+        ...
+        "eo:bands": [
+            {
+                "name": "B1",
+                "common_name": "coastal",
+                "gsd": 30,
+                "center_wavelength": 0.44,
+                "full_width_half_max": 0.02
+            },
+            {
+                "name": "B2",
+                "common_name": "blue",
+                "gsd": 30,
+                "center_wavelength": 0.48,
+                "full_width_half_max": 0.06
+            },
+            {
+                "name": "B3",
+                "common_name": "green",
+                "gsd": 30,
+                "center_wavelength": 0.56,
+                "full_width_half_max": 0.06
+            },
+            ...
+        ]
     },
-    "B2": {
-      "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B2.TIF",
-      "type": "image/vnd.stac.geotiff",
-      "eo:bands": [1]
-    },
-    ...
-  },
-  "eo:bands": [
-    {
-      "name": "B01",
-      "common_name": "coastal",
-      "gsd": 30.0,
-      "wavelength": 0.44,
-      "full_width_half_max": 0.02
-    },
-    {
-      "name": "B02",
-      "common_name": "blue",
-      "gsd": 30.0,
-      "wavelength": 0.48,
-      "full_width_half_max": 0.06
-    },
-    ...
-  ]
- }
+    "assets": {
+        "B1": {
+            "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B1.TIF",
+            "type": "image/vnd.stac.geotiff",
+            "eo:bands": [
+                0
+            ],
+            "title": "Band 1 (coastal)"
+        },
+        "B2": {
+            "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B2.TIF",
+            "type": "image/vnd.stac.geotiff",
+            "eo:bands": [
+                1
+            ],
+            "title": "Band 2 (blue)"
+        },
+        "B3": {
+            "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B3.TIF",
+            "type": "image/vnd.stac.geotiff",
+            "eo:bands": [
+                2
+            ],
+            "title": "Band 3 (green)"
+        },
+      ...
+    }
+}
 ```
 Planet example:
 
@@ -164,6 +184,28 @@ Planet example:
   "type": "Feature",
   "properties": {
     ...
+    "eo:bands": [
+      {
+        "full_width_half_max": 0.08,
+        "center_wavelength": 0.63,
+        "common_name": "red"
+      },
+      {
+        "full_width_half_max": 0.09,
+        "center_wavelength": 0.545,
+        "common_name": "green"
+      },
+      {
+        "full_width_half_max": 0.06,
+        "center_wavelength": 0.485,
+        "common_name": "blue"
+      },
+      {
+        "full_width_half_max": 0.08,
+        "center_wavelength": 0.82,
+        "common_name": "nir"
+      }
+    ]
   },
   ...
   "assets": {
@@ -172,32 +214,9 @@ Planet example:
       "name": "PSScene4Band GeoTIFF (COG)",
       "eo:bands":[0,1,2,3]
       ...
-    }
+    },
     ...
-
-  },
-  "eo:bands": [
-    {
-      "full_width_half_max": 0.08,
-      "center_wavelength": 0.63,
-      "common_name": "red"
-    },
-    {
-      "full_width_half_max": 0.09,
-      "center_wavelength": 0.545,
-      "common_name": "green"
-    },
-    {
-      "full_width_half_max": 0.06,
-      "center_wavelength": 0.485,
-      "common_name": "blue"
-    },
-    {
-      "full_width_half_max": 0.08,
-      "center_wavelength": 0.82,
-      "common_name": "nir"
-    }
-  ]
+  }
 }
 ```
 
