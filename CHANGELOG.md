@@ -16,6 +16,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 	- WFS links have additional fields `hreflang` and `length`.
 	- WFS Collections have additional fields `crs` and `itemType`.
 - Clarified meaning of SAR and EO platform, constellation, and instrument
+- Numerous typos, clarification and general word-smithing
+- The API intersects parameter now accepts a GeoJSON Geometry (any type) *instead* of a GeoJSON Feature.
+- `time` API parameter changed to `datetime` (changed in WFS3)
+- Clarification on `include` and `exclude` parameters in the field extension and notes on default values.
+- API queries should contain either `bbox` or `intersects`.
 
 ### Added
 - **stac_version**: Each Item must specify the STAC version.
@@ -23,6 +28,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Property `summaries` have been added to catalogs and collections.
 - API Transaction extension supports optimistic locking through use of the ETag header.
 - [Single File Catalog extension](extensions/single-file-catalog/README.md) added as a format to have a set of Collections and Items in a single file.
+- [Label extension](extensions/label/README.md) added with additional fields for describing labeled data, such as used for training data or from the output of a classification
+- Timestamp fields added to `Item`: `created` and `updated` to refer to the datetime the metadata file was created or updated.
+- Added Search Metadata API extension which adds fields to a response from a STAC API such as the number of items found and how many were returned.
+- ItemCollection class added to spec that is a GeoJSON FeatureCollection of Items, such as what would be returned from a search. Located in item directory.
+- `in` operator added to the query extension (to check if value is in a list of values)
+- New bands added to the [common band names](extensions/eo/README.md#common-band-names) for the EO extension: yellow, rededge, and 2 narrow NIR bands
+- [Scientific extension](extensions/scientific/README.md) can be used in Collections.
+
 
 ## [v0.7.0] - 2019-05-06
 

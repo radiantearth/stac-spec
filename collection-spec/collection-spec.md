@@ -36,15 +36,17 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | providers    | [[Provider Object](#provider-object) | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | extent       | [Extent Object](#extent-object) | **REQUIRED.** Spatial and temporal extents.    |
 | properties   | object            | Common fields across referenced items. |
-| summaries    | Map<string, [*]\|[Range Object](#range-object)> | A map of property summaries, either a set of values or a range. |
+| summaries    | Map<string, [*]\|[Stats Object](#stats-object)> | A map of property summaries, either a set of values or statistics such as a range. |
 | links        | [[Link Object](#link-object)]     | **REQUIRED.** A list of references to other documents.       |
+
+**stac_version**: In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
 
 **stac_extensions**: A list of extensions the Collection implements. This does NOT declare the extensions of child Catalogs or Items. The list contains URLs to the JSON Schema files it can be validated against. For official extensions, a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. If the versions of the extension and the collection diverge, you can specify the URL of the JSON schema file.
 
 **summaries**: You can optionally summarize the potential values that are available as part of the `properties` in STAC Items.
 Summaries are used to inform users about values they can expect from items without having to crawl through them. It also helps do fully define collections, especially if they don't link to any Items.
-Summaries are either a range (i.e. the minimum and the maxmimum value) or a unique set of all values.
-Ranges can specify the potential range of values, but it is recommended to be as precise as possible. The set of values must contain at least one element and it is strongly recommended to list all values.
+Summaries are either a unique set of all values or statistics. Statistics by default only specify the range (minimum and maximum values), but can optionally be accompanied by additional statistical values.
+The range can specify the potential range of values, but it is recommended to be as precise as possible. The set of values must contain at least one element and it is strongly recommended to list all values.
 It is recommended to list as many properties as reasonable so that consumers get a full overview about the properties included in the Items. Nevertheless, it is not very useful to list all potential `title` values of the Items. Also, a range for the `datetime` property may be better suited to be included in the STAC Collection. In general, properties that are covered by the Collection specification (e.g. `providers` and `license`) may not be repeated in the summaries.
 
 ### Extent Object
@@ -140,15 +142,17 @@ The following types are commonly used as `rel` types in the Link Object of a Col
 
 **Note:** The [STAC Catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is _not_ a requirement for collections, but _recommended_. In contrast to catalogs, it is **REQUIRED** that items linked from a Collection MUST refer back to its Collection with the [`collection` relation type](../item-spec/item-spec.md#relation-types).
 
-### Range Object
+### Stats Object
 
+For a good understanding of the summarized field, statistics can be added. By default, only ranges with a minimum and a maximum value can be specified.
 Ranges can be specified for [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values only, which means they need to have a rank order.
 Therefore, ranges can only be specified for numbers and some special types of strings. Examples: grades (A to F), dates or times.
+Implementors are free to add other derived statistical values to the object, for example `mean` or `stddev`.
 
 | Field Name | Type           | Description |
 | ---------- | -------------- | ----------- |
-| min        | number\|string | **REQUIRED.** Minimum value of the range. |
-| max        | number\|string | **REQUIRED.** Maximum value of the range. |
+| min        | number\|string | **REQUIRED.** Minimum value. |
+| max        | number\|string | **REQUIRED.** Maximum value. |
 
 ## Common Fields and Standalone Collections
 

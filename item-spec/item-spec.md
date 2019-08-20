@@ -46,6 +46,8 @@ inherited from GeoJSON.
 | assets     | Map<string, [Asset Object](#asset-object)>                                 | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key. Some pre-defined keys are listed in the chapter '[Asset types](#asset-types)'. |
 | collection | string                                                                     | The `id` of the STAC Collection this Item references to (see [`collection` relation type](#relation-types)). This field is *required* if such a relation type is present. This field provides an easy way for a user to search for any Items that belong in a specified Collection. |
 
+**stac_version**: In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
+
 **stac_extensions**: A list of extensions the Item implements. The list contains URLs to the JSON Schema files it can be validated against. For official extensions, a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. If the versions of the extension and the item diverge, you can specify the URL of the JSON schema file.
 
 **assets** should include the main asset, as well as any 'sidecar' files that are related and help a
@@ -189,8 +191,8 @@ would be appropriate; if it is an XML, then `text/xml` is appropriate.
 
 Common STAC Item Media Types:
 
-| Media Type                      | Description                                                                              |
-| -----------------------------.- | ----------------------------------------------------------------------------------------- |
+| Media Type                       | Description                                                                             |
+| -------------------------------- | --------------------------------------------------------------------------------------- |
 | `image/tiff` or `image/vnd.stac.geotiff` | GeoTIFF with standardized georeferencing metadata                               |
 | `image/vnd.stac.geotiff; cloud-optimized=true` | Cloud Optimized GeoTIFF                                                   |
 | `image/jp2`                      | JPEG 2000                                                                               |
@@ -204,8 +206,9 @@ Common STAC Item Media Types:
 | `application/x-hdf5`             | Hierarchical Data Format version 5                                                      |
 | `application/x-hdf`              | Hierarchical Data Format versions 4 and earlier.                                        |
 
-Note: should GeoTIFF become an IANA-registered type in the future (e.g., image/geotiff), this will be added as a recommended
-media type.
+Note: should GeoTIFF become an IANA-registered type in the future (e.g., [`image/tiff; application=geojson`](https://github.com/opengeospatial/geotiff/issues/34#issuecomment-514078289)),
+this will be added as a recommended media type and `image/vnd.stac.geotiff` will be deprecated.
+Same applies for [Cloud Optimized GeoTiffs](http://osgeo-org.1560.x6.nabble.com/Media-type-tc5411498.html).
 
 ## Extensions
 
