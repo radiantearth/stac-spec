@@ -59,7 +59,7 @@ string values and JSON entity attributes should use JSON Arrays.
 | -----------  | ---------------- | ---------- | ---------------------- |
 | collectionId | [string]         | WFS3       | **Path-only** Single Collection ID to include in the search for items. Only Items in one of the provided Collection will be searched |
 | limit        | integer          | WFS3, STAC | The maximum number of results to return (page size). Defaults to 10 |
-| bbox         | [number]         | WFS3, STAC | Requested bounding box [west, south, east, north] |
+| bbox         | [number]         | WFS3, STAC | Requested bounding box.  Represented using either 2D or 3D geometries. The length of the array must be 2*n where n is the number of dimensions. The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). When using 3D geometries, the elevation of the southwesterly most extent is the minimum elevation in meters and the elevation of the northeasterly most extent is the maximum. |
 | datetime     | string           | WFS3, STAC | Single date+time, or a range ('/' seperator), formatted to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). Use double dots `..` for open date ranges. |
 | intersects   | GeoJSON Geometry | STAC       | Searches items by performing intersection between their geometry and provided GeoJSON geometry.  All GeoJSON geometry types must be supported. |
 | next         | string           | STAC       | The token to retrieve the next set of results, e.g., offset, page, continuation token|
