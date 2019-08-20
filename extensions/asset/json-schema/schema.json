@@ -5,7 +5,7 @@
   "description": "STAC Asset Definition Extension to a STAC Collection",
   "allOf": [
     {
-      "$ref": "../../../collection-spec/json-schema/collection.json#/definitions/core"
+      "$ref": "../../../collection-spec/json-schema/collection.json"
     },
     {
       "$ref": "#/definitions/assets"
@@ -13,15 +13,19 @@
   ],
   "definitions": {
     "assets": {
-      "title": "Asset links",
-      "description": "Links to assets",
+      "title": "Asset schemas",
       "type": "object",
-      "patternProperties": {
-          ".+": {
-          "$ref": "#/definitions/asset"
+      "required": [
+        "assets"
+      ],
+      "properties": {
+        "assets": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/asset"
           }
-      },
-      "additionalProperties": false
+        }
+      }
     },
     "asset": {
       "type": "object",
@@ -39,6 +43,6 @@
           "type": "string"
         }
       }
-    }    
+    }
   }
 }
