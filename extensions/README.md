@@ -102,18 +102,18 @@ evolve to make fully resolved namespacing an option.
 
 An example of this can be seen in a Landsat example:
 
-```json
+```
   "properties": {
-	"datetime":"2018-01-01T13:21:30Z",
+    "datetime":"2018-01-01T13:21:30Z",
 
     "dtr:start_datetime":"2018-01-01T13:21:30Z",
     "dtr:end_datetime":"2018-01-01T13:31:30Z",
 
-    "eo:off_nadir_angle": -0.001,
+    "eo:off_nadir": -0.001,
     "eo:cloud_cover": 10.31,
     "eo:sun_azimuth": 149.01607154,
     "eo:sun_elevation": 59.21424700,
-    "eo:resolution": 30,
+    "eo:gsd": 30,
 
     "l8:data_type": "L1T",
     "l8:wrs_path": 153,
@@ -127,7 +127,7 @@ An example of this can be seen in a Landsat example:
     "l8:geometric_rmse_model_y": 4.654,
     "l8:geometric_rmse_verify": 5.364,
     "l8:image_quality_oli": 9
-  },
+  }
 ```
 
 ### Directory Structure
