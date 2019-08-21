@@ -117,73 +117,70 @@ Asset definitions that contain band data should reference the band index. Each a
 See [example-landsat8.json](examples/example-landsat8.json) for a full example.
 ```
 {
-    "stac_version": "0.8.0",
-    "stac_extensions": ["eo"],
-    "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
-    "type": "Feature",
+  "stac_version": "0.8.0",
+  "stac_extensions": ["eo"],
+  "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
+  "type": "Feature",
+  ...
+  "properties": {
     ...
-    "properties": {
-        ...
-        "eo:bands": [
-            {
-                "name": "B1",
-                "common_name": "coastal",
-                "gsd": 30,
-                "center_wavelength": 0.44,
-                "full_width_half_max": 0.02
-            },
-            {
-                "name": "B2",
-                "common_name": "blue",
-                "gsd": 30,
-                "center_wavelength": 0.48,
-                "full_width_half_max": 0.06
-            },
-            {
-                "name": "B3",
-                "common_name": "green",
-                "gsd": 30,
-                "center_wavelength": 0.56,
-                "full_width_half_max": 0.06
-            },
-            ...
-        ]
-    },
-    "assets": {
-        "B1": {
-            "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B1.TIF",
-            "type": "image/vnd.stac.geotiff",
-            "eo:bands": [
-                0
-            ],
-            "title": "Band 1 (coastal)"
-        },
-        "B2": {
-            "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B2.TIF",
-            "type": "image/vnd.stac.geotiff",
-            "eo:bands": [
-                1
-            ],
-            "title": "Band 2 (blue)"
-        },
-        "B3": {
-            "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B3.TIF",
-            "type": "image/vnd.stac.geotiff",
-            "eo:bands": [
-                2
-            ],
-            "title": "Band 3 (green)"
-        },
+    "eo:bands": [
+      {
+        "name": "B1",
+        "common_name": "coastal",
+        "gsd": 30,
+        "center_wavelength": 0.44,
+        "full_width_half_max": 0.02
+      },
+      {
+        "name": "B2",
+        "common_name": "blue",
+        "gsd": 30,
+        "center_wavelength": 0.48,
+        "full_width_half_max": 0.06
+      },
+      {
+        "name": "B3",
+        "common_name": "green",
+        "gsd": 30,
+        "center_wavelength": 0.56,
+        "full_width_half_max": 0.06
+      },
       ...
-    }
+    ]
+  },
+  "assets": {
+    "B1": {
+      "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B1.TIF",
+      "type": "image/vnd.stac.geotiff",
+      "eo:bands": [0],
+      "title": "Band 1 (coastal)"
+    },
+    "B2": {
+      "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B2.TIF",
+      "type": "image/vnd.stac.geotiff",
+      "eo:bands": [1],
+      "title": "Band 2 (blue)"
+    },
+    "B3": {
+      "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B3.TIF",
+      "type": "image/vnd.stac.geotiff",
+      "eo:bands": [2],
+      "title": "Band 3 (green)"
+    },
+    ...
+  }
 }
 ```
 Planet example:
 
 ```
 {
+  "stac_version": "0.8.0",
+  "stac_extensions": ["eo"],
   "id": "20171110_121030_1013",
   "type": "Feature",
+  ...
   "properties": {
     ...
     "eo:bands": [
@@ -209,15 +206,13 @@ Planet example:
       }
     ]
   },
-  ...
   "assets": {
     "analytic": {
       "href": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcxMTEwXzEyMTAxMF8xMDEzIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWMiLCAiY3QiOiAiaXRlbS10eXBlIn0",
-      "name": "PSScene4Band GeoTIFF (COG)",
-      "eo:bands":[0,1,2,3]
-      ...
-    },
-    ...
+      "title": "PSScene4Band GeoTIFF (COG)",
+      "type": "image/vnd.stac.geotiff; cloud-optimized=true",
+      "eo:bands": [0,1,2,3]
+    }
   }
 }
 ```
