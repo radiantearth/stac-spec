@@ -1,11 +1,16 @@
 # STAC API Examples
 
-A typical WFS will have multiple collections, and each will just offer simple search for its particular collection at `/collections/{collectionId}/items`.
-For advanced queries across collections use the STAC API at `/stac/search`. 
-The filtering is made to be compatible with the STAC API whenever feasible, and the two specs seek to share the general query and filtering patterns.
-The key difference is that a STAC search endpoint will do cross collection search.
+A typical WFS will have multiple collections, and each will just offer simple search for its particular collection at `GET /collections/{collectionId}/items`.
+Due to the limited parameter support in WFS3, it is recommended to use the STAC API endpoint `POST /stac/search` for advanced queries.
+The filtering is made to be compatible between STAC API and WFS3 whenever feasible, and the two specs seek to share the general query and filtering patterns.
+The key difference is that the STAC API search endpoints will do cross collection search.
+
+Implementations may **optionally** provide support for the full superset of STAC API query parameters to the `/collections/{collectionId}/items` endpoint,
+where the collection ID in the path is equivalent to providing that single value in the `collections` query parameter in STAC API.
 
 ## WFS
+
+Note that the WFS endpoints _only_ supports HTTP GET. HTTP POST requests are not supported.
 
 Request all the data in `mycollection` that is in New Zealand:
 
