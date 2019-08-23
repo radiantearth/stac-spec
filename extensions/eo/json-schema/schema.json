@@ -1,0 +1,120 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "stac-extension-eo.json#",
+  "title": "EO Extension",
+  "description": "STAC EO Extension to a STAC Item.",
+  "allOf": [
+    {
+      "$ref": "../../../item-spec/json-schema/item.json#/definitions/core"
+    },
+    {
+      "$ref": "#/definitions/eo"
+    }
+  ],
+  "definitions": {
+    "eo": {
+      "type": "object",
+      "required": [
+        "properties"
+      ],
+      "properties": {
+        "properties": {
+          "type": "object",
+          "required": [
+            "eo:gsd",
+            "eo:platform",
+            "eo:instrument",
+            "eo:bands"
+          ],
+          "properties": {
+            "eo:gsd": {
+              "title": "Ground Sample Distance",
+              "type": "number"
+            },
+            "eo:platform": {
+              "title": "Platform",
+              "type": "string"
+            },
+            "eo:constellation": {
+              "title": "Constellation",
+              "type": "string"
+            },
+            "eo:instrument": {
+              "title": "Instrument",
+              "type": "string"
+            },
+            "eo:bands": {
+              "title": "Bands",
+              "type": "array",
+              "items": {
+                "properties": {
+                  "name": {
+                    "title": "Name of the band",
+                    "type": "string"
+                  },
+                  "common_name": {
+                    "title": "Common Name of the band",
+                    "type": "string"
+                  },
+                  "gsd": {
+                    "title": "Ground Sample Distance",
+                    "type": "number"
+                  },
+                  "accuracy": {
+                    "title": "Accuracy",
+                    "type": "number"
+                  },
+                  "center_wavelength": {
+                    "title": "Center Wavelength",
+                    "type": "number"
+                  },
+                  "full_width_half_max": {
+                    "title": "Full Width Half Max (FWHM)",
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "eo:epsg": {
+              "title": "EPSG code",
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "eo:cloud_cover": {
+              "title": "Cloud Cover",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            "eo:off_nadir": {
+              "title": "Off Nadir",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 90
+            },
+            "eo:azimuth": {
+              "title": "Azimuth",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 360
+            },
+            "eo:sun_azimuth": {
+              "title": "Sun Azimuth",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 360
+            },
+            "eo:sun_elevation": {
+              "title": "Sun Elevation",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 90
+            }
+          }
+        }
+      }
+    }
+  }
+}

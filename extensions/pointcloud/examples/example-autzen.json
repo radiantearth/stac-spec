@@ -1,0 +1,302 @@
+{
+  "stac_version": "0.8.0",
+  "stac_extensions": [
+    "pointcloud"
+  ],
+  "assets": {},
+  "bbox": [
+    -123.0755422,
+    44.04971882,
+    123.791472,
+    -123.0619599,
+    44.06278031,
+    187.531248
+  ],
+  "geometry": {
+    "coordinates": [
+      [
+        [
+          -123.07498674,
+          44.04971882
+        ],
+        [
+          -123.07554223,
+          44.06248623
+        ],
+        [
+          -123.0625126,
+          44.06278031
+        ],
+        [
+          -123.06195992,
+          44.05001283
+        ],
+        [
+          -123.07498674,
+          44.04971882
+        ]
+      ]
+    ],
+    "type": "Polygon"
+  },
+  "id": "autzen-full.laz",
+  "links": [
+    {
+      "href": "/Users/hobu/dev/git/pdal/test/data/autzen/autzen-full.laz",
+      "rel": "self"
+    }
+  ],
+  "properties": {
+    "datetime": "2013-07-17T00:00:00-05:00Z",
+    "pc:count": 10653336,
+    "pc:density": 0,
+    "pc:encoding": "LASzip",
+    "pc:schema": [
+      {
+        "name": "X",
+        "size": 8,
+        "type": "floating"
+      },
+      {
+        "name": "Y",
+        "size": 8,
+        "type": "floating"
+      },
+      {
+        "name": "Z",
+        "size": 8,
+        "type": "floating"
+      },
+      {
+        "name": "Intensity",
+        "size": 2,
+        "type": "unsigned"
+      },
+      {
+        "name": "ReturnNumber",
+        "size": 1,
+        "type": "unsigned"
+      },
+      {
+        "name": "NumberOfReturns",
+        "size": 1,
+        "type": "unsigned"
+      },
+      {
+        "name": "ScanDirectionFlag",
+        "size": 1,
+        "type": "unsigned"
+      },
+      {
+        "name": "EdgeOfFlightLine",
+        "size": 1,
+        "type": "unsigned"
+      },
+      {
+        "name": "Classification",
+        "size": 1,
+        "type": "unsigned"
+      },
+      {
+        "name": "ScanAngleRank",
+        "size": 4,
+        "type": "floating"
+      },
+      {
+        "name": "UserData",
+        "size": 1,
+        "type": "unsigned"
+      },
+      {
+        "name": "PointSourceId",
+        "size": 2,
+        "type": "unsigned"
+      },
+      {
+        "name": "GpsTime",
+        "size": 8,
+        "type": "floating"
+      },
+      {
+        "name": "Red",
+        "size": 2,
+        "type": "unsigned"
+      },
+      {
+        "name": "Green",
+        "size": 2,
+        "type": "unsigned"
+      },
+      {
+        "name": "Blue",
+        "size": 2,
+        "type": "unsigned"
+      }
+    ],
+    "pc:statistics": [
+      {
+        "average": 637294.1783,
+        "count": 10653336,
+        "maximum": 639003.73,
+        "minimum": 635577.79,
+        "name": "X",
+        "position": 0,
+        "stddev": 967.9329805,
+        "variance": 936894.2548
+      },
+      {
+        "average": 851247.6953,
+        "count": 10653336,
+        "maximum": 853537.66,
+        "minimum": 848882.15,
+        "name": "Y",
+        "position": 1,
+        "stddev": 1322.356387,
+        "variance": 1748626.415
+      },
+      {
+        "average": 434.1025002,
+        "count": 10653336,
+        "maximum": 615.26,
+        "minimum": 406.14,
+        "name": "Z",
+        "position": 2,
+        "stddev": 24.67893148,
+        "variance": 609.0496589
+      },
+      {
+        "average": 77.14742312,
+        "count": 10653336,
+        "maximum": 254,
+        "minimum": 0,
+        "name": "Intensity",
+        "position": 3,
+        "stddev": 62.62422344,
+        "variance": 3921.793362
+      },
+      {
+        "average": 1.17801438,
+        "count": 10653336,
+        "maximum": 4,
+        "minimum": 1,
+        "name": "ReturnNumber",
+        "position": 4,
+        "stddev": 0.4653418642,
+        "variance": 0.2165430505
+      },
+      {
+        "average": 1.358579791,
+        "count": 10653336,
+        "maximum": 4,
+        "minimum": 1,
+        "name": "NumberOfReturns",
+        "position": 5,
+        "stddev": 0.6656066447,
+        "variance": 0.4430322055
+      },
+      {
+        "average": 0.4989654884,
+        "count": 10653336,
+        "maximum": 1,
+        "minimum": 0,
+        "name": "ScanDirectionFlag",
+        "position": 6,
+        "stddev": 0.4999993213,
+        "variance": 0.2499993213
+      },
+      {
+        "average": 0,
+        "count": 10653336,
+        "maximum": 0,
+        "minimum": 0,
+        "name": "EdgeOfFlightLine",
+        "position": 7,
+        "stddev": 0,
+        "variance": 0
+      },
+      {
+        "average": 1.256686262,
+        "count": 10653336,
+        "maximum": 2,
+        "minimum": 1,
+        "name": "Classification",
+        "position": 8,
+        "stddev": 0.436805292,
+        "variance": 0.1907988632
+      },
+      {
+        "average": -0.812061405,
+        "count": 10653336,
+        "maximum": 20,
+        "minimum": -21,
+        "name": "ScanAngleRank",
+        "position": 9,
+        "stddev": 8.484319324,
+        "variance": 71.98367439
+      },
+      {
+        "average": 126.4052859,
+        "count": 10653336,
+        "maximum": 156,
+        "minimum": 115,
+        "name": "UserData",
+        "position": 10,
+        "stddev": 3.833000243,
+        "variance": 14.69189086
+      },
+      {
+        "average": 7329.903705,
+        "count": 10653336,
+        "maximum": 7334,
+        "minimum": 7326,
+        "name": "PointSourceId",
+        "position": 11,
+        "stddev": 3.107430355,
+        "variance": 9.656123408
+      },
+      {
+        "average": 121.3214254,
+        "count": 10653336,
+        "maximum": 255,
+        "minimum": 35,
+        "name": "Red",
+        "position": 12,
+        "stddev": 45.56263834,
+        "variance": 2075.954013
+      },
+      {
+        "average": 126.2526972,
+        "count": 10653336,
+        "maximum": 255,
+        "minimum": 49,
+        "name": "Green",
+        "position": 13,
+        "stddev": 36.85451838,
+        "variance": 1358.255525
+      },
+      {
+        "average": 111.2207554,
+        "count": 10653336,
+        "maximum": 255,
+        "minimum": 49,
+        "name": "Blue",
+        "position": 14,
+        "stddev": 31.95561927,
+        "variance": 1021.161603
+      },
+      {
+        "average": 247608.4011,
+        "count": 10653336,
+        "maximum": 249783.703,
+        "minimum": 245369.8966,
+        "name": "GpsTime",
+        "position": 15,
+        "stddev": 1178.538827,
+        "variance": 1388953.768
+      }
+    ],
+    "pc:type": "lidar",
+    "title": "USGS 3DEP LiDAR"
+  },
+  "type": "Feature"
+}

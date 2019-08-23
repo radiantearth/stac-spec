@@ -4,10 +4,10 @@
 
 Provides a way to specify MD5, SHA1, SHA2 and SHA3 file checksums for assets and links in STAC Items, STAC Catalogs and STAC Collections.
 
-- [Example](example-sentinel1.json)
-- [JSON Schema](schema.json)
+- [Example](examples/example-sentinel1.json)
+- [JSON Schema](json-scehma/schema.json)
 
-## `Link Object` and `Asset Object` fields
+## [`Link Object`](../../item-spec/item-spec.md#link-object) and [`Asset Object`](../../item-spec/item-spec.md#asset-object) fields
 
 | Field Name    | Type   | Description                                                  |
 | ------------- | ------ | ------------------------------------------------------------ |

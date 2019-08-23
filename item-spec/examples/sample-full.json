@@ -1,4 +1,9 @@
 {
+  "stac_version": "0.8.0",
+  "stac_extensions": [
+      "eo",
+      "https://example.com/cs-extension/1.0/schema.json"
+  ],
   "type": "Feature",
   "id" : "CS3-20160503_132131_05",
   "bbox": [-122.59750209, 37.48803556, -122.2880486, 37.613537207],
@@ -16,10 +21,24 @@
   },
   "properties": {
     "datetime": "2016-05-03T13:22:30.040Z",
+    "title": "A CS3 item",
+    "license": "PDDL-1.0",
+    "providers": [
+      {
+        "name": "CoolSat",
+        "roles": [
+          "producer",
+          "licensor"
+        ],
+        "url": "https://cool-sat.com/"
+      }
+    ],
     "eo:sun_azimuth": 168.7,
     "eo:cloud_cover": 0.12,
     "eo:off_nadir": 1.4,
-    "eo:platform": "COOLSAT2",
+    "eo:platform": "coolsat2",
+    "eo:instrument": "cool_sensor_v1",
+    "eo:bands": [],
     "eo:sun_elevation": 33.4,
     "eo:gsd": 0.512,
     "cs:type": "scene",

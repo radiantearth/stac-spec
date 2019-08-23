@@ -1,4 +1,9 @@
 {
+  "stac_version": "0.8.0",
+  "stac_extensions": [
+      "eo",
+      "https://example.com/stac/landsat-extension/1.0/schema.json"
+  ],
   "id": "LC81530252014153LGN00",
   "type": "Feature",
   "bbox": [ 49.16354,72.27502,51.36812,75.67662 ],
@@ -32,9 +37,7 @@
  
   "properties": {
     "datetime": "2014-06-02T09:22:02Z",
-    "c:id": "L1T",
-    "c:name": "Landsat L1T",
-    "c:description": "Landat 8 imagery that is radiometrically calibrated and orthorectified using ground points and Digital Elevation Model (DEM) data to correct relief displacement.",
+    "collection": "L1T",
     "eo:gsd": 30.0,
     "eo:cloud_cover" : 10,
     "eo:off_nadir" : 0.000,
@@ -57,7 +60,8 @@
   "links": [
     { "rel":"self", "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00.json"},
     { "rel":"alternate", "href": "https://landsatonaws.com/L8/153/025/LC81530252014153LGN00", "type": "text/html"},
-    { "rel":"root", "href": "http://landsat-pds.s3.amazonaws.com/L8/L1T-collection.json"}
+    { "rel":"root", "href": "http://landsat-pds.s3.amazonaws.com/L8/L1T-collection.json"},
+    { "rel":"collection", "href": "http://landsat-pds.s3.amazonaws.com/L8/L1T-collection.json"}
   ],
 
   "assets" :{

@@ -30,11 +30,18 @@ components:
       example:
         eo:cloud_cover:
           lt: 50
-        providers: Planet
+        providers:
+          eq: 'Planet'
         published:
-          date: '2018-02-12T00:00:00Z/2018-03-18T12:31:12Z'
+          gt: '2018-02-12T00:00:00Z'
+          lte: '2018-03-18T12:31:12Z'
         pl:item_type:
           startsWith: PSScene
+        product:
+          in:
+            - foo
+            - bar
+            - baz
     queryProp:
       description: Apply query operations to a specific property
       anyOf:
@@ -67,5 +74,8 @@ components:
             contains:
               type: string
               description: Find items with a property that contains with the specified string. A case-insensitive comparison must be performed.
-            time:
-              $ref: '#/components/schemas/time'
+            in:
+              type: array
+              items:
+                type: string
+              description: Find items with a property that matches one of the specified strings. A case-insensitive comparison must be performed.

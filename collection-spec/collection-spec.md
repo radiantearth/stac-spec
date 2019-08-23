@@ -6,7 +6,9 @@ It shares the same fields and therefore every Collection is also a valid Catalog
 
 A group of STAC Item objects from a single source can share a lot of common metadata. This is especially true with satellite imagery that uses the STAC EO or SAR extension. Rather than including these common metadata fields on every Item, they can be provided in the `properties` of the STAC Collection that the STAC Items belong to.
 
-A STAC collection can be represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Collection and also a valid STAC Catalog.
+A STAC Collection can be represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Collection and also a valid STAC Catalog.
+
+STAC Collections are meant to be compatible with WFS3 Collections, but please be aware that WFS Collections and STAC Collections originate from different specifications and despite the fact that we try to align them as much as possible be there may be subtle differences in the specifications.
 
 * [Examples](examples/):
   * Sentinel 2: A basic standalone example of a [Item](examples/sentinel2.json) without items.
@@ -23,45 +25,66 @@ Implementations are encouraged, however, as good effort will be made to not chan
 
 | Element      | Type              | Description                                                  |
 | ------------ | ----------------- | ------------------------------------------------------------ |
-| stac_version | string            | **REQUIRED.** The STAC version the collection implements.    |
+| stac_version | string            | **REQUIRED.** The STAC version the Collection implements.    |
+| stac_extensions | [string]       | A list of extensions the Collection implements. |
 | id           | string            | **REQUIRED.** Identifier for the collection that is unique across the provider. |
 | title        | string            | A short descriptive one-line title for the collection.       |
 | description  | string            | **REQUIRED.** Detailed multi-line description to fully explain the collection. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | keywords     | [string]          | List of keywords describing the collection.                  |
 | version      | string            | Version of the collection.                                   |
-| license      | string            | **REQUIRED.** Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) or `proprietary` if the license is not on the SPDX license list. Proprietary licensed data SHOULD add a link to the license text, see the `license` relation type. |
-| providers    | [Provider Object] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
-| extent       | Extent Object     | **REQUIRED.** Spatial and temporal extents.                  |
-| properties   | object            | Common fields across referenced items. May also be used to describe standalone collections better that don't reference any items. See the section 'Common Fields' for more information. |
-| links        | [Link Object]     | **REQUIRED.** A list of references to other documents.       |
+| license      | string            | **REQUIRED.** Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60). Alternatively, use `proprietary` if the license is not on the SPDX license list or `various` if multiple licenses apply. In these two cases links to the license texts SHOULD be added, see the `license` link relation type. |
+| providers    | [[Provider Object](#provider-object) | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
+| extent       | [Extent Object](#extent-object) | **REQUIRED.** Spatial and temporal extents.    |
+| properties   | object            | Common fields across referenced items. |
+| summaries    | Map<string, [*]\|[Stats Object](#stats-object)> | A map of property summaries, either a set of values or statistics such as a range. |
+| links        | [[Link Object](#link-object)]     | **REQUIRED.** A list of references to other documents.       |
 
-**stac_version**: It is not allowed to mix STAC versions. The root catalog or the root collection respectively MUST specify the implemented STAC version. Child Catalogs and child Collections MUST NOT specify a different STAC version.
+**stac_version**: In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
+
+**stac_extensions**: A list of extensions the Collection implements. This does NOT declare the extensions of child Catalogs or Items. The list contains URLs to the JSON Schema files it can be validated against. For official extensions, a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. If the versions of the extension and the collection diverge, you can specify the URL of the JSON schema file.
+
+**summaries**: You can optionally summarize the potential values that are available as part of the `properties` in STAC Items.
+Summaries are used to inform users about values they can expect from items without having to crawl through them. It also helps do fully define collections, especially if they don't link to any Items.
+Summaries are either a unique set of all values or statistics. Statistics by default only specify the range (minimum and maximum values), but can optionally be accompanied by additional statistical values.
+The range can specify the potential range of values, but it is recommended to be as precise as possible. The set of values must contain at least one element and it is strongly recommended to list all values.
+It is recommended to list as many properties as reasonable so that consumers get a full overview about the properties included in the Items. Nevertheless, it is not very useful to list all potential `title` values of the Items. Also, a range for the `datetime` property may be better suited to be included in the STAC Collection. In general, properties that are covered by the Collection specification (e.g. `providers` and `license`) may not be repeated in the summaries.
 
 ### Extent Object
 
 The object describes the spatio-temporal extents of the Collection. Both spatial and temporal extents are required to be specified.
 
-**Note:** The STAC Collection Specification tries to align with [WFS 3.0](https://github.com/opengeospatial/WFS_FES), but there are still issues to be solved.
-The WFS specification is in draft state and may change, especially regarding [extents](https://github.com/opengeospatial/WFS_FES/issues/168) or
-[open date ranges](https://github.com/opengeospatial/WFS_FES/issues/155) for temporal extents. Therefore, it is also likely that the following fields change over time. 
-Please also note that WFS Collections and STAC Collections originate from different specifications and despite the fact that we try to align them as much as possible
-be aware of their differences by reading both specifications.
+| Element  | Type                                              | Description                                                         |
+| -------- | ------------------------------------------------- | ------------------------------------------------------------------- |
+| spatial  | [Spatial Extent Object](#spatial-extent-object)   | **REQUIRED.** Potential *spatial extent* covered by the collection. |
+| temporal | [Temporal Extent Object](#temporal-extent-object) | **REQUIRED.** Potential *temporal extent* covered by the collection. |
 
-| Element  | Type           | Description                                                         |
-| -------- | -------------- | ------------------------------------------------------------------- |
-| spatial  | [number]       | **REQUIRED.** Potential *spatial extent* covered by the collection. |
-| temporal | [string\|null] | **REQUIRED.** Potential *temporal extent* covered by the collection. A list of two timestamps, which MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). Open date ranges are supported by setting either the start or the end time to `null`. Example for data from the beginning of 2019 until now: `["2009-01-01T00:00:00Z", null]`. |
+#### Spatial Extent Object
 
-**spatial**: The bounding box is provided as four or six numbers, depending on whether the coordinate reference system includes a vertical axis (height or depth):
+The object describes the spatial extents of the Collection.
 
-- Lower left corner, coordinate axis 1 (west)
-- Lower left corner, coordinate axis 2 (south)
-- Lower left corner, coordinate axis 3 (base, optional)
-- Upper right corner, coordinate axis 1 (east)
-- Upper right corner, coordinate axis 2 (north)
-- Upper right corner, coordinate axis 3 (height, optional)
+| Element | Type       | Description                                                         |
+| ------- | ---------- | ------------------------------------------------------------------- |
+| bbox    | [[number]] | **REQUIRED.** Potential *spatial extent* covered by the collection. |
 
-The coordinate reference system of the values is WGS84 longitude/latitude.
+**bbox**: Bounding Box of the assets represented by this collection using either 2D or 3D geometries. The length of the array must be 2*n where n is the number of dimensions. The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). When using 3D geometries, the elevation of the southwesterly most extent is the minimum depth/height in meters and the elevation of the northeasterly most extent is the maximum.
+
+The coordinate reference system of the values is WGS 84 longitude/latitude. Example that covers the whole Earth: `[-180.0, -90.0, 180.0, 90.0]`.  Example that covers the whole earth with a depth of 100 meters to a height of 150 meters: `[-180.0, -90.0, -100.0, 180.0, 90.0, 150.0]`.
+
+The list of numbers is wrapped in a list to potentially support multiple bounding boxes later or with an extension.
+
+#### Temporal Extent Object
+
+The object describes the temporal extents of the Collection.
+
+| Element  | Type             | Description                                                          |
+| -------- | ---------------- | -------------------------------------------------------------------- |
+| interval | [[number\|null]] | **REQUIRED.** Potential *temporal extent* covered by the collection. |
+
+**interval**: A list of two timestamps wrapped in a list. The timestamps MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). Open date ranges are supported by setting either the start or the end time to `null`.
+
+The temporal reference system is the Gregorian calendar. Example for data from the beginning of 2019 until now: `[["2009-01-01T00:00:00Z", null]]`.
+
+The list of timestamps is wrapped in a list to potentially support multiple extents later or with an extension.
 
 ### Provider Object
 
@@ -79,7 +102,7 @@ The object provides information about a provider. A provider is any of the organ
 * *licensor*: The organization that is licensing the dataset under the license specified in the collection's `license` field.
 * *producer*: The producer of the data is the provider that initially captured and processed the source data, e.g. ESA for Sentinel-2 data.
 * *processor*: A processor is any provider who processed data to a derived product.
-* *host*: The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list. 
+* *host*: The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list.
 
 ### Link Object
 
@@ -89,7 +112,7 @@ This object describes a relationship with another entity. Data providers are adv
 | ---------- | ------ | ------------------------------------------------------------ |
 | href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information. |
-| type       | string | Media type of the referenced entity. |
+| type       | string | [Media type](../item-spec/item-spec.md#media-types) of the referenced entity. |
 | title      | string | A human readable title to be used in rendered displays of the link. |
 
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
@@ -106,13 +129,25 @@ The following types are commonly used as `rel` types in the Link Object of a Col
 | root    | URL to the root STAC [Catalog](../catalog-spec/README.md) or Collection. Collections should include a link to their root, even if it's the root and points to itself. |
 | parent  | URL to the parent STAC [Catalog](../catalog-spec/README.md) or Collection. Non-root collections should include a link to their parent. |
 | child   | URL to a child STAC [Catalog](../catalog-spec/) or Collection. |
-| item    | URL to a STAC [Item](../item-spec/README.md). All items linked from a collection MUST refer back to its collection with the `collection` relation type. |
-| license | The license URL for the collection SHOULD be specified if the `license` field is set to `proprietary`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file. |
+| item    | URL to a STAC [Item](../item-spec/item-spec.md). All items linked from a collection MUST refer back to its collection with the [`collection` relation type](../item-spec/item-spec.md#relation-types). |
+| license | The license URL(s) for the collection SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file. |
 | derived_from | URL to a STAC Collection that was used as input data in the creation of this collection. See the note in [STAC Item](../item-spec/item-spec.md#relation-types) for more info. |
 
-**Note:** The [STAC Catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is _not_ a requirement for collections, but _recommended_. In contrast to catalogs, it is **REQUIRED** that items linked from a Collection MUST refer back to its Collection with the `collection` relation type.
+**Note:** The [STAC Catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is _not_ a requirement for collections, but _recommended_. In contrast to catalogs, it is **REQUIRED** that items linked from a Collection MUST refer back to its Collection with the [`collection` relation type](../item-spec/item-spec.md#relation-types).
 
-### Common Fields and Standalone Collections
+### Stats Object
+
+For a good understanding of the summarized field, statistics can be added. By default, only ranges with a minimum and a maximum value can be specified.
+Ranges can be specified for [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values only, which means they need to have a rank order.
+Therefore, ranges can only be specified for numbers and some special types of strings. Examples: grades (A to F), dates or times.
+Implementors are free to add other derived statistical values to the object, for example `mean` or `stddev`.
+
+| Field Name | Type           | Description |
+| ---------- | -------------- | ----------- |
+| min        | number\|string | **REQUIRED.** Minimum value. |
+| max        | number\|string | **REQUIRED.** Maximum value. |
+
+## Common Fields and Standalone Collections
 
 The `properties` field in STAC collections can be used in two ways, either to **move common fields in Items to the parent Collection** or to describe **standalone Collections** better that don't reference any items. Any field that can be used under an Items `properties` can be removed and added to the Collection `properties`. Since a Collection contains no properties itself, anything under properties are metadata fields that are common across all member Items.
 
@@ -120,13 +155,14 @@ To **move common fields in Items to the parent Collection**, the collection spec
 
 STAC Collections which don't link to any Item are called **standalone Collections**. To describe them with more fields than the Collection fields has to offer, it is allowed to re-use the metadata fields defined by content extensions for Items. Whenever suitable, the `properties` are used in the same way as if they were common fields across theoretical Items. This makes much sense for fields such as `eo:platform` or `eo:epsg`, which are often the same for a whole collection, but doesn't make much sense for `eo:cloud_cover`, which usually varies heavily across a Collection. The data provider is free to decide, which fields are reasoable to be used.
 
-#### Merging common fields into a STAC Item
+### Merging common fields into a STAC Item
 
 To get the complete record of an Item (both individual and commons properties), the properties from the Collection can be merged with the Item.
 
 An incomplete Collection:
-```json
+```
 {
+  "stac_version": "0.8.0",
   "id": "landsat-8-l1",
   "title": "Landsat 8 L1",
   "description": "Landat 8 imagery radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
@@ -134,13 +170,13 @@ An incomplete Collection:
   "extent": {...},
   "license": "PDDL-1.0",
   "properties": {
-    "eo:gsd": 15,
+    "eo:gsd": 30,
     "eo:platform": "landsat-8",
-    "eo:instrument": "OLI_TIRS",
+    "eo:instrument": "oli_tirs",
     "eo:off_nadir": 0,
     "eo:bands": [
       {
-        "id": "B1",
+        "name": "B1",
         "common_name": "coastal",
         "gsd": 30,
         "center_wavelength": 0.44,
@@ -154,8 +190,9 @@ An incomplete Collection:
 ```
 
 An incomplete item:
-```json
+```
 {
+  "stac_version": "0.8.0",
   "type": "Feature",
   "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
   "bbox": [...],
@@ -176,8 +213,9 @@ An incomplete item:
 
 The merged Item then looks like this:
 
-```json
+```
 {
+  "stac_version": "0.8.0",
   "type": "Feature",
   "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
   "bbox": [],
@@ -190,14 +228,14 @@ The merged Item then looks like this:
     "eo:sun_elevation": 26.32596431,
     "landsat:path": 107,
     "landsat:row": 18,
-    "eo:gsd": 15,
+    "eo:gsd": 30,
     "eo:platform": "landsat-8",
     "eo:constellation": "landsat-8",
-    "eo:instrument": "OLI_TIRS",
+    "eo:instrument": "oli_tirs",
     "eo:off_nadir": 0,
     "eo:bands": [
       {
-        "id": "B1",
+        "name": "B1",
         "common_name": "coastal",
         "gsd": 30,
         "center_wavelength": 0.44,

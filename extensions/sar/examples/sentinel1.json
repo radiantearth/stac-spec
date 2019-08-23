@@ -1,4 +1,10 @@
 {
+  "stac_version": "0.8.0",
+  "stac_extensions": [
+    "checksum",
+    "datetime-range",
+    "sar"
+  ],
   "id": "S1A_EW_GRDM_1SSH_20181103T235855_20181103T235955_024430_02AD5D_5616",
   "type": "Feature",
   "bbox": [-70.275032,-64.72924,-65.087479,-51.105831],
@@ -18,9 +24,9 @@
     "datetime": "2018-11-03T23:58:55.617217Z",
     "dtr:start_datetime": "2018-11-03T23:58:55.121559Z",
     "dtr:end_datetime": "2018-11-03T23:59:55.112875Z",
-    "sar:platform": "Sentinel-1A",
-    "sar:constellation": "Sentinel-1",
-    "sar:instrument": "C-SAR",
+    "sar:platform": "sentinel-1a",
+    "sar:constellation": "sentinel-1",
+    "sar:instrument": "c-sar",
     "sar:instrument_mode": "EW",
     "sar:polarization": ["HH"],
     "sar:resolution_range": 50,

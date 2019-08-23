@@ -6,7 +6,8 @@ The STAC search endpoint, `/stac/search`, by default only accepts the core filte
 
 The syntax for the `query` filter is:
 
-```json
+<!-- use unflavored code here, as <value> is not valid JSON and is highlighted as an error -->
+```
 {
   "query": {
     "<property_name>": {
@@ -16,7 +17,8 @@ The syntax for the `query` filter is:
 }
 ```
 
-Each property to search is an entry in the `query` filter. <operator> can be one of: eq, neq, lt, lte, gt, gte, startsWith, endsWith, contains. Multiple operators can be provided for each property which is treated as a logical AND, all conditions must be met.
+Each property to search is an entry in the `query` filter. <operator> can be one of: `eq`, `neq`, `lt`, `lte`, `gt`, `gte`, `startsWith`, `endsWith`, `contains`, `in`. 
+Multiple operators may be provided for each property and are treated as a logical AND, where all conditions must be met.
 
 ### Examples
 
@@ -25,9 +27,19 @@ Find scenes with cloud cover between 0 and 10%:
 ```json
 {
   "query": {
-    "<o:cloud_cover": {
+    "eo:cloud_cover": {
       "gte": 0,
       "lte": 10
+    },
+    "stringAttr1": {
+      "startsWith": "abc",
+      "endsWith": "xyz"
+    },
+    "stringAttr2": {
+      "contains": "mnop"
+    },
+    "stringAttr3": {
+      "in": ["landsat", "modis", "naip"]
     }
   }
 }

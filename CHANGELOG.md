@@ -6,7 +6,40 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
-None yet.
+## [v0.8.0-RC1] - 2019-08-23
+
+### Changed
+- Updated specification to base on WFS3 draft 2 (OGC API - Features - Part 1: Core, v1.0.0-draft.2). This leads to many changes in the API and one change in STAC collections, notably:
+	- The structure of the field `extent` in STAC and WFS Collections changed.
+ 	- Query parameter `time` was renamed to `datetime` and accepts slightly different values.
+	- WFS links have additional fields `hreflang` and `length`.
+	- WFS Collections have additional fields `crs` and `itemType`.
+	- `time` API parameter changed to `datetime`
+- The API intersects parameter now accepts a GeoJSON Geometry (any type) *instead* of a GeoJSON Feature.
+- API: Clarification on `include` and `exclude` parameters in the field extension and notes on default values.
+- API: queries should contain either `bbox` or `intersects`.
+- API: Core API now has reserved parameters to prevent overlap with extensions
+- Updated bbox definitions in API, Item, and Collection specs to include support for optional elevation values.
+- Moved Single Item Extension to core (`license` and `providers` properties for Items).
+- Allow `various` for the `license` fields.
+- Clarified meaning of SAR and EO platform, constellation, and instrument
+- Numerous typos, clarification and general word-smithing
+
+### Added
+- **stac_version**: Each Item must specify the STAC version.
+- **stac_extensions**: Introduced this field for Items, Catalogs and Collections.
+- Property `summaries` have been added to catalogs and collections.
+- API Transaction extension supports optimistic locking through use of the ETag header.
+- Asset Definition Extension added to Collections to allow specifying details about Assets that may appear in member Items.
+- [Single File Catalog extension](extensions/single-file-stac/README.md) added as a format to have a set of Collections and Items in a single file.
+- [Label extension](extensions/label/README.md) added with additional fields for describing labeled data, such as used for training data or from the output of a classification
+- Timestamp fields added to `Item`: `created` and `updated` to refer to the datetime the metadata file was created or updated.
+- Added Search Metadata API extension which adds fields to a response from a STAC API such as the number of items found and how many were returned.
+- ItemCollection class added to spec that is a GeoJSON FeatureCollection of Items, such as what would be returned from a search. Located in item directory.
+- `in` operator added to the query extension (to check if value is in a list of values)
+- New bands added to the [common band names](extensions/eo/README.md#common-band-names) for the EO extension: yellow, rededge, and 2 narrow NIR bands
+- [Scientific extension](extensions/scientific/README.md) can be used in Collections.
+
 
 ## [v0.7.0] - 2019-05-06
 

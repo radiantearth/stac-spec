@@ -7,20 +7,19 @@ which allows STAC to more fully describe point cloud datasets. The point clouds 
 come from either active or passive sensors, and data is frequently acquired using
 tools such as LiDAR or coincidence-matched imagery.
 
-- [Example](example-autzen.json)
+- [Example](examples/example-autzen.json)
 - JSON Schema is missing. PRs are welcome.
 
 ## Item Fields
 
-| Field Name    | Type                | Description |
-| ------------- | ------------------- | ----------- |
-| pc:count      | integer             | **REQUIRED.** The number of points in the item. |
-| pc:type       | string              | **REQUIRED.** Phenomenology type for the point cloud. Possible valid values might include `lidar`, `eopc`, `radar`, `sonar`, or `other` |
-| pc:encoding   | string              | **REQUIRED.** Content encoding or format of the data. |
-| pc:schema     | [Schema Object]     | **REQUIRED.** A sequential array of items that define the dimensions and their types. |
-| pc:density    | number              | Number of points per square unit area. |
-| pc:schema     | [Schema Object]     | A sequential array of items that define the dimensions and their types. |
-| pc:statistics | [Statistics Object] | A sequential array of items mapping to `pc:schema` defines per-channel statistics. |
+| Field Name    | Type                              | Description |
+| ------------- | --------------------------------- | ----------- |
+| pc:count      | integer                           | **REQUIRED.** The number of points in the item. |
+| pc:type       | string                            | **REQUIRED.** Phenomenology type for the point cloud. Possible valid values might include `lidar`, `eopc`, `radar`, `sonar`, or `other` |
+| pc:encoding   | string                            | **REQUIRED.** Content encoding or format of the data. |
+| pc:schema     | [[Schema Object](#schema-object)] | **REQUIRED.** A sequential array of items that define the dimensions and their types. |
+| pc:density    | number                            | Number of points per square unit area. |
+| pc:statistics | [[Stats Object](#stats-object)]   | A sequential array of items mapping to `pc:schema` defines per-channel statistics. |
 
 ### Schema Object
 
@@ -33,7 +32,7 @@ the point cloud, their types, and their sizes (in full bytes).
 | size       | integer | **REQUIRED.** The size of the dimension in bytes. Whole bytes only are supported.|
 | type       | string  | **REQUIRED.** Dimension type. Valid values include `floating`, `unsigned`, and `signed`|
 
-### Statistics Object
+### Stats Object
 
 A sequential array of items mapping to `pc:schema` defines per-channel statistics. All fields
 are optional.

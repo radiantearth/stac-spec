@@ -8,24 +8,22 @@ endpoints of a `/stac/search` endpoint.
 
 ## In this directory
 
+**Item Specification:** The main definition of the STAC Item specification is in 
+*[item-spec.md](item-spec.md)*. It includes an overview and an in-depth explanation of the fields.
 
-**The Specification:** The main definition of the STAC Item specification is in 
-*[item-spec.md](item-spec.md)*. It includes an overview and in depth explanation of the fields.
+**ItemCollection Specification:** The main definition of the STAC ItemCollection specification is in 
+*[itemcollection-spec.md](itemcollection-spec.md)*. It includes an overview and an in-depth explanation of the fields.
 
 **Examples:** For samples of how STAC Items can be implemented the *[examples/](examples/)* folder 
 contains a number of real world examples. See the [readme](examples/README.md) for additional 
 discussion of the examples.
 
 **Schemas:** The schemas to validate the core Item definition are found in the 
-*[json-schema/](json-schema/)* folder. The primary one is *[item.json](json-schema/item.json)*, 
-and it also includes the necessary *[geojson.json](json-schema/geojson.json)* schema definition, 
-which is a dependency.
-
+*[json-schema/](json-schema/)* folder. The two are *[item.json](json-schema/item.json)* and *[itemcollection.json](json-schema/itemcollection.json)*.
 
 ## Schema Validation
 
 Instruction on schema validation for STAC Items can be found in the [validation instructions](validation/README.md).
-
 
 ## Item Evolution 
 
@@ -53,8 +51,3 @@ real world implementations that people create. The goal is for the core Item spe
 quite small and stable, with most all the evolution taking place in extensions. Once there is 
 a critical mass of implementations utilizing different extensions the core Item spec will lock
 down to a 1.0.
-
-
-
-
-
