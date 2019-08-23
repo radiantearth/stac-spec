@@ -12,14 +12,6 @@ where the collection ID in the path is equivalent to providing that single value
 
 Note that the WFS endpoints _only_ supports HTTP GET. HTTP POST requests are not supported.
 
-Request 100 items in `mycollection` from New Zealand using the collections endpoint:
-
-```
-GET /collections/mycollection/items?bbox=160.6,-55.95,-170,-25.89&limit=100
-```
-
-Note that the collections endpoint _only_ supports HTTP GET. HTTP POST requests are not supported.
-
 Request all the data in `mycollection` that is in New Zealand:
 
 ```
