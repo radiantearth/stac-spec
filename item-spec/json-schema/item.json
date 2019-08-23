@@ -53,7 +53,14 @@
                     "title": "Reference to a core extension",
                     "type": "string",
                     "enum": [
-                      "checksum"
+                      "checksum",
+                      "cube",
+                      "datetime-range",
+                      "eo",
+                      "label",
+                      "pointcloud",
+                      "sar",
+                      "scientific"
                     ]
                   }
                 ]
