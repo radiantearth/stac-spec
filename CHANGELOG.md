@@ -6,22 +6,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [v0.8.0] - 2019-08-23 (RC1)
+
 ### Changed
-- Moved Single Item Extension to core (`license` and `providers` properties for Items).
-- Allow `various` for the `license` fields.
-- API: Core API now has reserved parameters to prevent overlap with extensions
 - Updated specification to base on WFS3 draft 2 (OGC API - Features - Part 1: Core, v1.0.0-draft.2). This leads to many changes in the API and one change in STAC collections, notably:
-    - The structure of the field `extent` in STAC and WFS Collections changed.
-	- Query parameter `time` was renamed to `datetime` and accepts slightly different values.
+	- The structure of the field `extent` in STAC and WFS Collections changed.
+ 	- Query parameter `time` was renamed to `datetime` and accepts slightly different values.
 	- WFS links have additional fields `hreflang` and `length`.
 	- WFS Collections have additional fields `crs` and `itemType`.
+	- `time` API parameter changed to `datetime`
+- The API intersects parameter now accepts a GeoJSON Geometry (any type) *instead* of a GeoJSON Feature.
+- API: Clarification on `include` and `exclude` parameters in the field extension and notes on default values.
+- API: queries should contain either `bbox` or `intersects`.
+- API: Core API now has reserved parameters to prevent overlap with extensions
+- Updated bbox definitions in API, Item, and Collection specs to include support for optional elevation values.
+- Moved Single Item Extension to core (`license` and `providers` properties for Items).
+- Allow `various` for the `license` fields.
 - Clarified meaning of SAR and EO platform, constellation, and instrument
 - Numerous typos, clarification and general word-smithing
-- The API intersects parameter now accepts a GeoJSON Geometry (any type) *instead* of a GeoJSON Feature.
-- `time` API parameter changed to `datetime` (changed in WFS3)
-- Clarification on `include` and `exclude` parameters in the field extension and notes on default values.
-- API queries should contain either `bbox` or `intersects`.
-- Updated bbox definitions in API, Item, and Collection specs to include support for optional elevation values.
 
 ### Added
 - **stac_version**: Each Item must specify the STAC version.
