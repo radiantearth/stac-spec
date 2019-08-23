@@ -21,6 +21,29 @@
         "extent"
       ],
       "properties": {
+        "stac_extensions": {
+          "title": "STAC extensions",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "anyOf": [
+              {
+                "title": "Reference to a JSON Schema",
+                "type": "string",
+                "format": "uri"
+              },
+              {
+                "title": "Reference to a core extension",
+                "type": "string",
+                "enum": [
+                  "asset",
+                  "checksum",
+                  "scientific"
+                ]
+              }
+            ]
+          }
+        },
         "keywords": {
           "title": "Keywords",
           "type": "array",
