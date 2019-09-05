@@ -56,7 +56,7 @@ paths:
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/next'
         - $ref: '#/components/parameters/ids'
-        - $ref: '#/components/parameters/collections'
+        - $ref: '#/components/parameters/collectionsArray'
       responses:
         '200':
           description: A feature collection.
@@ -141,14 +141,14 @@ components:
       schema:
         $ref: '#/components/schemas/ids'
       explode: false
-    collections:
+    collectionsArray:
       name: collections
       in: query
       description:
-        $ref: '#/components/schemas/collections/description'
+        $ref: '#/components/schemas/collectionsArray/description'
       required: false
       schema:
-        $ref: '#/components/schemas/collections'
+        $ref: '#/components/schemas/collectionsArray'
       explode: false
     bbox:
       name: bbox
@@ -265,7 +265,7 @@ components:
       properties:
         bbox:
           $ref: '#/components/schemas/bbox'
-    collections:
+    collectionsArray:
       type: array
       description: |
         Array of Collection IDs to include in the search for items.
@@ -314,7 +314,7 @@ components:
       description: Only returns the collections specified
       properties:
         collections:
-          $ref: '#/components/schemas/collections'
+          $ref: '#/components/schemas/collectionsArray'
     datetime:
       type: string
       description: |-
