@@ -21,21 +21,24 @@
           },
           "label:classes": {
             "title": "Classes",
-            "type": "object",
-            "required": [
-              "name",
-              "classes"
-            ],
-            "properties": {
-              "name": {
-                "title": "Name",
-                "type": "string"
-              },
-              "classes": {
-                "title": "Classes",
-                "type": "array",
-                "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "name",
+                "classes"
+              ],
+              "properties": {
+                "name": {
+                  "title": "Name",
                   "type": "string"
+                },
+                "classes": {
+                  "title": "Classes",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
