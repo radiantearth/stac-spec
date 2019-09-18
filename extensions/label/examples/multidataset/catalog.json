@@ -3,9 +3,6 @@
     "title": "label extension demo",
     "description": "Sample ML training data labels in the STAC format",
     "stac_version": "0.8.0",
-    "stac_extensions": [
-      "label"
-    ],
     "links":
     [
         {
