@@ -43,7 +43,7 @@
   "links": [
     {
       "rel": "self",
-      "href": "catalog.json"
+      "href": "collection.json"
     },
     {
       "rel": "root",

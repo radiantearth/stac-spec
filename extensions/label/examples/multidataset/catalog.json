@@ -15,11 +15,11 @@
         },
         {
             "rel": "child",
-            "href": "zanzibar/catalog.json"
+            "href": "zanzibar/collection.json"
         },
         {
             "rel": "child",
-            "href": "spacenet-buildings/catalog.json"
+            "href": "spacenet-buildings/collection.json"
         }
     ]
 }
