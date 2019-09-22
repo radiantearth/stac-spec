@@ -20,11 +20,11 @@ This document explains the fields of the STAC Label Extension to a STAC Item. It
 
 **Buildings:**
 - [Example Collection of Two Building Footprint Label Catalogs](examples/multidataset/catalog.json)
-- [Example SpaceNet Buildings Catalog](examples/multidataset/spacenet-buildings/catalog.json)
+- [Example SpaceNet Buildings Collection](examples/multidataset/spacenet-buildings/collection.json)
 - [Example SpaceNet Buildings (Vegas) Item](examples/multidataset/spacenet-buildings/AOI_2_Vegas_img2636.json)
 - [Example SpaceNet Buildings (Paris) Item](examples/multidataset/spacenet-buildings/AOI_3_Paris_img1648.json)
 - [Example SpaceNet Buildings (Shanghai) Item](examples/multidataset/spacenet-buildings/AOI_4_Shanghai_img3344.json)
-- [Example World Bank Zanzibar Buildings Catalog](examples/multidataset/zanzibar/catalog.json)
+- [Example World Bank Zanzibar Buildings Collection](examples/multidataset/zanzibar/collection.json)
 - [Example World Bank Zanzibar Building Item 1](examples/multidataset/zanzibar/znz001.json)
 - [Example World Bank Zanzibar Building Item 2](examples/multidataset/zanzibar/znz029.json)
 ## Schema
