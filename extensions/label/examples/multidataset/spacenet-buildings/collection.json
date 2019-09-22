@@ -42,10 +42,6 @@
   ],
   "links": [
     {
-      "rel": "self",
-      "href": "collection.json"
-    },
-    {
       "rel": "root",
       "href": "../catalog.json"
     },

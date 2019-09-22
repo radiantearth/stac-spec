@@ -167694,10 +167694,6 @@
   },
   "links": [
     {
-      "rel": "self",
-      "href": "znz001.json"
-    },
-    {
       "rel": "root",
       "href": "../catalog.json"
     },

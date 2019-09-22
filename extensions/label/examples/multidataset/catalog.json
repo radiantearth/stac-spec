@@ -6,10 +6,6 @@
     "links":
     [
         {
-            "rel": "self",
-            "href": "catalog.json"
-        },
-        {
             "rel": "root",
             "href": "./catalog.json"
         },

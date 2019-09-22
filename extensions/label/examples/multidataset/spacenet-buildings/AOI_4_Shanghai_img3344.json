@@ -717,10 +717,6 @@
   },
   "links": [
     {
-      "rel": "self",
-      "href": "AOI_4_Shanghai_img3344.json"
-    },
-    {
       "rel": "root",
       "href": "../catalog.json"
     },

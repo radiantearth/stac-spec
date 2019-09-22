@@ -108,11 +108,6 @@
   "links":
   [
     {
-      "href": "roads_item.json",
-      "rel": "self",
-      "title": "sample SpaceNet roads label item"
-    },
-    {
       "href": "roads_collection.json",
       "rel": "root",
       "title": "sample SpaceNet roads label collection"

@@ -1133,10 +1133,6 @@
   },
   "links": [
     {
-      "rel": "self",
-      "href": "AOI_2_Vegas_img2636.json"
-    },
-    {
       "rel": "root",
       "href": "../catalog.json"
     },

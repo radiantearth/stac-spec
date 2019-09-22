@@ -1537,10 +1537,6 @@
   },
   "links": [
     {
-      "rel": "self",
-      "href": "AOI_3_Paris_img1648.json"
-    },
-    {
       "rel": "root",
       "href": "../catalog.json"
     },
