@@ -29,6 +29,7 @@
     "title": "AOI 3 Paris img101 road network labels",
     "label:property": ["road_type", "lane_number", "paved"],
     "label:type": "vector",
+    "label:description": "sample SpaceNet roads label",
     "label:classes":
     [
       {
