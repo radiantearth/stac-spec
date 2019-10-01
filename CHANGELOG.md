@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Fixed
+- [Label extension](extensions/label/README.md): moved label:classes to be a list of Class Objects from a single Class Object in spec markdown and json schema (matching previous example JSON).
+
 ## [v0.8.0-RC1] - 2019-08-23
 
 ### Changed
@@ -132,7 +135,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [v0.5.2] - 2018-07-12
 
-Minor bug fixes on 0.5.1 for the schema files. Thanks @francbartoli 
+Minor bug fixes on 0.5.1 for the schema files. Thanks @francbartoli
 
 
 ## [v0.5.1] - 2018-07-06
@@ -140,17 +143,17 @@ Minor bug fixes on 0.5.1 for the schema files. Thanks @francbartoli
 Minor bug fixes from 0.5.1 release
 
 *  [Update openapi / swagger specs for new 'links'](https://github.com/radiantearth/stac-spec/commit/480d4fb02b4a7e880c7ca01320fe2773260ba595)
-* [minor fixes on collection extension](https://github.com/radiantearth/stac-spec/pull/124) - thanks @m-mohr 
-* [minor cbers example updates](https://github.com/radiantearth/stac-spec/pull/123) - thanks @fredliporace 
+* [minor fixes on collection extension](https://github.com/radiantearth/stac-spec/pull/124) - thanks @m-mohr
+* [minor cbers example updates](https://github.com/radiantearth/stac-spec/pull/123) - thanks @fredliporace
 
 
 ## [v0.5.0] - 2018-07-01
 
 The 0.5.0 release of the STAC spec is an iteration forward on the spec, with a number of core improvements. Highlights include:
 
-* **Links is now a dictionary** - This is the most core change done. It aligns the structure with the 'asset' change in 0.5.0, making it easier for clients to look up the link that they want more easily. The schema is updated to this (and actually checks assets better now, thanks @mojodna ) 
+* **Links is now a dictionary** - This is the most core change done. It aligns the structure with the 'asset' change in 0.5.0, making it easier for clients to look up the link that they want more easily. The schema is updated to this (and actually checks assets better now, thanks @mojodna )
 
-* **Transactions Extension** - There is now a transaction extension for the STAC API, thanks to @hgs-msmith and @hgs-trutherford 
+* **Transactions Extension** - There is now a transaction extension for the STAC API, thanks to @hgs-msmith and @hgs-trutherford
 
 * **Collections iterations** @matthewhanson has evolved the collections extension, adding in some namespace type hints on it, and explaining it more clearly.
 
@@ -163,9 +166,9 @@ Full list of issues and pull requests at https://github.com/radiantearth/stac-sp
 
 A few minor improvements on the release. ([issues](https://github.com/radiantearth/stac-spec/issues?utf8=%E2%9C%93&q=milestone%3A0.4.1+))
 
-* @hgs-msmith got a swagger version of the spec, and made some minor improvements to the openapi version #103 and #102 
+* @hgs-msmith got a swagger version of the spec, and made some minor improvements to the openapi version #103 and #102
 * @francbartoli and @m-mohr pointed out some inconsistencies with landsat, so got the openapi updated #106
-* @m-mohr pointed out some issues with landsat example, so updated those #105 
+* @m-mohr pointed out some issues with landsat example, so updated those #105
 * @hgs-trutherford pointed out that the planet example was a bit confusing, so updated it to the EO profile.
 
 
@@ -174,7 +177,7 @@ A few minor improvements on the release. ([issues](https://github.com/radiantear
 The 0.4.0 is the first 'official' release of the SpatioTemporal Asset Catalog (STAC) specification!
 
 It is the result of the [ft. collins sprint](https://github.com/radiantearth/community-sprints/tree/master/03072018-ft-collins-co), the second in person meeting of the STAC community. But it also includes
-a number of improvements from remote contributors. 
+a number of improvements from remote contributors.
 
 Highlights include:
 
@@ -188,7 +191,7 @@ Highlights include:
 
 * Numerous small improvements and bug fixes.
 
-See the [milestone 0.4.0 in the issue tracker](https://github.com/radiantearth/stac-spec/milestone/3) for the complete lists of improvements. 
+See the [milestone 0.4.0 in the issue tracker](https://github.com/radiantearth/stac-spec/milestone/3) for the complete lists of improvements.
 
 Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkamin, @hemphillda, @jeffnaus  and @fredliporace for contributing to the spec directly, and to [everyone](https://github.com/opengeospatial/wfs3hackathon/blob/master/notes/introductions.md#participants) who participated in the [Ft Collins sprint](https://github.com/radiantearth/community-sprints/tree/master/03072018-ft-collins-co) and brought great ideas.
 
