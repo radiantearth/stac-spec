@@ -29,7 +29,7 @@ implement. Some depend on particular knowledge or background, like deep involvem
 only a few people are able to do, since they depend on working for a particular company.
 
 In time we may try to track these in their own project, but for now this list should be sufficient. It is a complement
-to the [roadmap](roadmap.md), which is just for the specification itself. But that roadmap will only evolve with this
+to the [roadmap](stacspec.org), which is just for the specification itself. But that roadmap will only evolve with this
 set of work on real implementations to inform it.
 
 ### Tier 1
@@ -66,7 +66,7 @@ well as a nice command line tool.
 **API -> Static catalog tool** - Building on top of core client and server tooling in tier one can introduce some cool value add tools.
 A client library that crawls a STAC API and can create a static STAC can be used as a 'backup' tool for an API, making a copy
 of the catalog that can't go down (ideally this would extend the spec to have a link 'rel' type that refers back to the source
-data as a [spec extension](https://github.com/radiantearth/stac-spec/blob/dev/roadmap.md#provenance--duplication-tracking). 
+data as a [spec extension](stacspec.org). 
 
 **Static catalog -> API tool** - The flip of the previous tool,  a STAC API could crawl a static catalog and serve as a 
 dynamic query service on top of the core.

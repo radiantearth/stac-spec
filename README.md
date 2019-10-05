@@ -71,7 +71,7 @@ just the Items a user requests in their query. The API is specified as a couple 
 **Extensions:** The *[extensions/](extensions/)* folder is where extensions live. Extensions can extend the 
 functionality of the core spec or add fields for specific domains.
 
-**Additional documents** include the current [roadmap](roadmap.md) and a complementary [how to help](how-to-help.md)
+**Additional documents** A complementary [how to help](how-to-help.md)
 document, a [list of implementations](implementations.md), 
 and a discussion of the collaboration [principles](principles.md) and specification approach.
 
