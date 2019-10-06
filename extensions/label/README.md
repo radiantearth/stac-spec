@@ -145,11 +145,13 @@ The source imagery used for creating the label is linked to under `links` (see b
 #### Links: source imagery
 A Label Item links to any source imagery that the AOI applys to by linking to the STAC Item representing the imagery. Source imagery is indicated by using a `rel` type of "source" and providing the link to the STAC Item.
 
-In addition the link has a new Label specific field:
+In addition the source imagery link has a new label extension specific field:
 
 | element         | type info       | name                       | description       |
 |-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------|
-| label:assets    | [string]        | Assets                     | The keys for the assets to which the label applies |
+| label:assets    | [string]        | Assets                     | The keys for the assets within the `source` item to which this label item applies. |
+
+The `label:assets` field applies to situations where the labels may apply to certain assets inside the source imagery Item, but not others (e.g. if the labels were traced on top of RGB imagery, but the source item also contains assets for a Digital Elevation Model).
 
 
 ## Implementations
