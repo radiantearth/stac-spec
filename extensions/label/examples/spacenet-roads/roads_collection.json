@@ -1,8 +1,5 @@
 {
   "stac_version": "0.8.0",
-  "stac_extensions": [
-    "label"
-  ],
   "id": "spacenet-roads-sample",
   "description": "A sample of the SpaceNet Roads dataset built during STAC Sprint 4. The dataset contains hand-labeled roads.",
   "keywords": [
