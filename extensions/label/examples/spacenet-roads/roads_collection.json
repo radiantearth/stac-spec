@@ -44,13 +44,12 @@
   "links": [
     {
       "href": "roads_collection.json",
-      "rel": "self",
+      "rel": "root",
       "title": "sample SpaceNet roads label collection"
     },
     {
-      "href": "roads_collection.json",
-      "rel": "root",
-      "title": "sample SpaceNet roads label collection"
+      "rel": "item",
+      "href": "roads_item.json"
     }
   ]
 }
