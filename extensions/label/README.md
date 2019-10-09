@@ -52,7 +52,7 @@ Some additional notes are given here for some of the core STAC Item fields and w
 | label:type        | string               | Type                       | **REQUIRED** An ENUM of either `vector` label type or `raster` label type |
 | label:task        | [string]             | Task                       | Recommended to be a subset of 'regression', 'classification', 'detection', or 'segmentation', but may be an arbitrary value |
 | label:method      | [string]             | Method                     | Recommended to be a subset of 'automated' or 'manual', but may be an arbitrary value. |
-| label:overview    | [Label Overview Object](#label-overview-object) | Overview | An Object storing counts (for classification-type data) or summary statistics (for continuous numerical/regression data). |
+| label:overview    | [[Label Overview Object](#label-overview-object)] | Overview | An Object storing counts (for classification-type data) or summary statistics (for continuous numerical/regression data). |
 
 #### Class Object
 | Field Name      | Type                 | name                       | description       |
