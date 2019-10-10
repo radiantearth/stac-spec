@@ -174,19 +174,19 @@ See [example-landsat8.json](examples/example-landsat8.json) for a full example.
   "assets": {
     "B1": {
       "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B1.TIF",
-      "type": "image/tiff; application=geotiff",
+      "type": "image/vnd.stac.geotiff",
       "eo:bands": [0],
       "title": "Band 1 (coastal)"
     },
     "B2": {
       "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B2.TIF",
-      "type": "image/tiff; application=geotiff",
+      "type": "image/vnd.stac.geotiff",
       "eo:bands": [1],
       "title": "Band 2 (blue)"
     },
     "B3": {
       "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B3.TIF",
-      "type": "image/tiff; application=geotiff",
+      "type": "image/vnd.stac.geotiff",
       "eo:bands": [2],
       "title": "Band 3 (green)"
     },
@@ -232,7 +232,7 @@ Planet example:
     "analytic": {
       "href": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcxMTEwXzEyMTAxMF8xMDEzIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWMiLCAiY3QiOiAiaXRlbS10eXBlIn0",
       "title": "PSScene4Band GeoTIFF (COG)",
-      "type": "image/tiff; application=geotiff; cloud-optimized=true",
+      "type": "image/vnd.stac.geotiff; cloud-optimized=true",
       "eo:bands": [0,1,2,3]
     }
   }

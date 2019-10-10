@@ -24,7 +24,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Allow `various` for the `license` fields.
 - Clarified meaning of SAR and EO platform, constellation, and instrument
 - Numerous typos, clarification and general word-smithing
-- Changed GeoTIFF type from `image/vnd.stac.geotiff` to `image/tiff; application=geotiff`
 
 ### Added
 - **stac_version**: Each Item must specify the STAC version.

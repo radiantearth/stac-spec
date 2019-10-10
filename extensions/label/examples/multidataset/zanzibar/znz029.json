@@ -48910,7 +48910,7 @@
     "raster": {
       "title": "znz029_previewcog",
       "href": "https://oin-hotosm.s3.amazonaws.com/5ae242fd0b093000130afd38/0/5ae242fd0b093000130afd39.tif",
-      "type": "image/tiff; application=geotiff; cloud-optimized=true"
+      "type": "image/vnd.stac.geotiff; cloud-optimized=true"
     },
     "thumbnail": {
       "title": "znz029_thumbnail",

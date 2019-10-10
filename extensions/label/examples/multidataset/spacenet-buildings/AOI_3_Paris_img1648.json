@@ -1506,7 +1506,7 @@
     "raster": {
       "title": "AOI_3_Paris_img1648_previewcog",
       "href": "https://spacenet-dataset.s3.amazonaws.com/AOI_3_Paris/srcData/rasterData/AOI_3_Paris_MUL-PanSharpen_Cloud.tif",
-      "type": "image/tiff; application=geotiff; cloud-optimized=true"
+      "type": "image/vnd.stac.geotiff; cloud-optimized=true"
     }
   },
   "properties": {
