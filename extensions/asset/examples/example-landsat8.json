@@ -158,77 +158,77 @@
         "type": "image/jpeg"
       },
       "B1": {
-        "type": "image/vnd.stac.geotiff",
+        "type": "image/tiff; application=geotiff",
         "eo:bands": [
           0
         ],
         "title": "Band 1 (coastal)"
       },
       "B2": {
-        "type": "image/vnd.stac.geotiff",
+        "type": "image/tiff; application=geotiff",
         "eo:bands": [
           1
         ],
         "title": "Band 2 (blue)"
       },
       "B3": {
-        "type": "image/vnd.stac.geotiff",
+        "type": "image/tiff; application=geotiff",
         "eo:bands": [
           2
         ],
         "title": "Band 3 (green)"
       },
       "B4": {
-        "type": "image/vnd.stac.geotiff",
+        "type": "image/tiff; application=geotiff",
         "eo:bands": [
           3
         ],
         "title": "Band 4 (red)"
       },
       "B5": {
-        "type": "image/vnd.stac.geotiff",
+        "type": "image/tiff; application=geotiff",
         "eo:bands": [
           4
         ],
         "title": "Band 5 (nir)"
       },
       "B6": {
-        "type": "image/vnd.stac.geotiff",
+        "type": "image/tiff; application=geotiff",
         "eo:bands": [
           5
         ],
         "title": "Band 6 (swir16)"
       },
       "B7": {
-        "type": "image/vnd.stac.geotiff",
+        "type": "image/tiff; application=geotiff",
         "eo:bands": [
           6
         ],
         "title": "Band 7 (swir22)"
       },
       "B8": {
-        "type": "image/vnd.stac.geotiff",
+        "type": "image/tiff; application=geotiff",
         "eo:bands": [
           7
         ],
         "title": "Band 8 (pan)"
       },
       "B9": {
-        "type": "image/vnd.stac.geotiff",
+        "type": "image/tiff; application=geotiff",
         "eo:bands": [
           8
         ],
         "title": "Band 9 (cirrus)"
       },
       "B10": {
-        "type": "image/vnd.stac.geotiff",
+        "type": "image/tiff; application=geotiff",
         "eo:bands": [
           9
         ],
         "title": "Band 10 (lwir)"
       },
       "B11": {
-        "type": "image/vnd.stac.geotiff",
+        "type": "image/tiff; application=geotiff",
         "eo:bands": [
           10
         ],
@@ -244,7 +244,7 @@
       },
       "BQA": {
         "title": "Band quality data",
-        "type": "image/vnd.stac.geotiff"
+        "type": "image/tiff; application=geotiff"
       }
     },
     "links": []
