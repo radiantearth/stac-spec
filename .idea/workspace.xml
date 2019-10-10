@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3387facc-5c17-4d35-a9f6-81352586dee6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collection-spec/examples/landsat-item.json" beforeDir="false" afterPath="$PROJECT_DIR$/collection-spec/examples/landsat-item.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensions/asset/examples/example-landsat8.json" beforeDir="false" afterPath="$PROJECT_DIR$/extensions/asset/examples/example-landsat8.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensions/eo/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/extensions/eo/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensions/eo/examples/example-landsat8.json" beforeDir="false" afterPath="$PROJECT_DIR$/extensions/eo/examples/example-landsat8.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensions/label/examples/multidataset/spacenet-buildings/AOI_2_Vegas_img2636.json" beforeDir="false" afterPath="$PROJECT_DIR$/extensions/label/examples/multidataset/spacenet-buildings/AOI_2_Vegas_img2636.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensions/label/examples/multidataset/spacenet-buildings/AOI_3_Paris_img1648.json" beforeDir="false" afterPath="$PROJECT_DIR$/extensions/label/examples/multidataset/spacenet-buildings/AOI_3_Paris_img1648.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensions/label/examples/multidataset/spacenet-buildings/AOI_4_Shanghai_img3344.json" beforeDir="false" afterPath="$PROJECT_DIR$/extensions/label/examples/multidataset/spacenet-buildings/AOI_4_Shanghai_img3344.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensions/label/examples/multidataset/zanzibar/znz001.json" beforeDir="false" afterPath="$PROJECT_DIR$/extensions/label/examples/multidataset/zanzibar/znz001.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensions/label/examples/multidataset/zanzibar/znz029.json" beforeDir="false" afterPath="$PROJECT_DIR$/extensions/label/examples/multidataset/zanzibar/znz029.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extensions/label/examples/spacenet-roads/roads_source.json" beforeDir="false" afterPath="$PROJECT_DIR$/extensions/label/examples/spacenet-roads/roads_source.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/item-spec/examples/CBERS_4_MUX_20181029_177_106_L4.json" beforeDir="false" afterPath="$PROJECT_DIR$/item-spec/examples/CBERS_4_MUX_20181029_177_106_L4.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/item-spec/examples/landsat8-sample.json" beforeDir="false" afterPath="$PROJECT_DIR$/item-spec/examples/landsat8-sample.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/item-spec/item-spec.md" beforeDir="false" afterPath="$PROJECT_DIR$/item-spec/item-spec.md" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>true</other-services-enabled>
+  </component>
+  <component name="ProjectId" id="1S1SiiNLexVSv7wRwqKCLsPAts4" />
+  <component name="PropertiesComponent">
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="LombokPluginEnabledInProject" value="true" />
+    <property name="LombokPluginIS_BUILDER_Enabled" value="true" />
+    <property name="LombokPluginIS_CONSTRUCTOR_Enabled" value="true" />
+    <property name="LombokPluginIS_DELEGATE_Enabled" value="true" />
+    <property name="LombokPluginIS_LOG_Enabled" value="true" />
+    <property name="LombokPluginIS_LOMBOK_VERSION_CHECK_Enabled" value="false" />
+    <property name="LombokPluginIS_MISSING_LOMBOK_CHECK_Enabled" value="false" />
+    <property name="LombokPluginIS_RUNTIME_PATCH_Enabled" value="true" />
+    <property name="LombokPluginIS_THIRD_PARTY_Enabled" value="false" />
+    <property name="LombokPluginIS_VAL_Enabled" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/local/bin/node" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.32528734" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3387facc-5c17-4d35-a9f6-81352586dee6" name="Default Changelist" comment="" />
+      <created>1570729737176</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1570729737176</updated>
+      <workItem from="1570729738736" duration="1008000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

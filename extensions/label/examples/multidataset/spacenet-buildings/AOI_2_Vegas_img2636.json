@@ -1102,7 +1102,7 @@
     "raster": {
       "title": "AOI_2_Vegas_img2636_previewcog",
       "href": "https://spacenet-dataset.s3.amazonaws.com/AOI_2_Vegas/srcData/rasterData/AOI_2_Vegas_MUL-PanSharpen_Cloud.tif",
-      "type": "image/vnd.stac.geotiff; cloud-optimized=true"
+      "type": "image/tiff; application=geotiff; cloud-optimized=true"
     }
   },
   "properties": {
