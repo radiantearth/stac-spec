@@ -206,8 +206,8 @@ Common STAC Item Media Types:
 | `application/x-hdf5`             | Hierarchical Data Format version 5                                                      |
 | `application/x-hdf`              | Hierarchical Data Format versions 4 and earlier.                                        |
 
-Note: should Cloud Optimized GeoTIFF become an IANA-registered type in the future (e.g., [`image/tiff; application=geojson`](https://github.com/opengeospatial/geotiff/issues/34#issuecomment-514078289)),
-this will be added as a recommended media type and `image/vnd.stac.geotiff; cloud-optimized=true` will be deprecated.
+Note: should Cloud Optimized GeoTIFF become an IANA-registered type in the future this will be added as a recommended 
+media type and `image/vnd.stac.geotiff; cloud-optimized=true` will be deprecated.
 [Cloud Optimized GeoTiffs](http://osgeo-org.1560.x6.nabble.com/Media-type-tc5411498.html).
 
 ## Extensions
