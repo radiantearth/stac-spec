@@ -686,7 +686,7 @@
     "raster": {
       "title": "AOI_4_Shanghai_img3344_previewcog",
       "href": "https://spacenet-dataset.s3.amazonaws.com/AOI_4_Shanghai/srcData/rasterData/AOI_4_Shanghai_MUL-PanSharpen_Cloud.tif",
-      "type": "image/vnd.stac.geotiff; cloud-optimized=true"
+      "type": "image/tiff; application=geotiff; cloud-optimized=true"
     }
   },
   "properties": {

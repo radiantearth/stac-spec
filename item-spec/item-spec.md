@@ -193,8 +193,8 @@ Common STAC Item Media Types:
 
 | Media Type                       | Description                                                                             |
 | -------------------------------- | --------------------------------------------------------------------------------------- |
-| `image/tiff` or `image/vnd.stac.geotiff` | GeoTIFF with standardized georeferencing metadata                               |
-| `image/vnd.stac.geotiff; cloud-optimized=true` | Cloud Optimized GeoTIFF                                                   |
+| `image/tiff; application=geotiff`| GeoTIFF with standardized georeferencing metadata                               |
+| `image/tiff; application=geotiff; cloud-optimized=true` | Cloud Optimized GeoTIFF                                                   |
 | `image/jp2`                      | JPEG 2000                                                                               |
 | `image/png`                      | Visual PNGs (e.g. thumbnails)                                                           |
 | `image/jpeg`                     | Visual JPEGs (e.g. thumbnails, oblique)                                                 |
@@ -206,9 +206,9 @@ Common STAC Item Media Types:
 | `application/x-hdf5`             | Hierarchical Data Format version 5                                                      |
 | `application/x-hdf`              | Hierarchical Data Format versions 4 and earlier.                                        |
 
-Note: should GeoTIFF become an IANA-registered type in the future (e.g., [`image/tiff; application=geojson`](https://github.com/opengeospatial/geotiff/issues/34#issuecomment-514078289)),
-this will be added as a recommended media type and `image/vnd.stac.geotiff` will be deprecated.
-Same applies for [Cloud Optimized GeoTiffs](http://osgeo-org.1560.x6.nabble.com/Media-type-tc5411498.html).
+Note: should Cloud Optimized GeoTIFF become an IANA-registered type in the future this will be added as a recommended 
+media type and `image/tiff; application=geotiff; cloud-optimized=true` will be deprecated.
+[Cloud Optimized GeoTiffs](http://osgeo-org.1560.x6.nabble.com/Media-type-tc5411498.html).
 
 ## Extensions
 
@@ -232,5 +232,5 @@ There is a lot of metadata that is only of relevance to advanced processing algo
 It is recommended to have a complementary HTML version of each `Item` available for easy human consumption and search 
 engine crawlability. The exact nature of the HTML is not part of the specification, but it is recommended to use common
 ecosystem tools like [STAC Browser](https://github.com/radiantearth/stac-browser) to generate it. More information on creating 
-HTML versions of STAC can be found in the [STAC on the Web section](../best-practices.md#stac-on-the-web) 
-of the catalog best practices document.
+HTML versions of STAC can be found in the [STAC on the Web section](../best-practices.md#stac-on-the-web) of the catalog 
+best practices document.
