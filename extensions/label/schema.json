@@ -21,21 +21,24 @@
           },
           "label:classes": {
             "title": "Classes",
-            "type": "object",
-            "required": [
-              "name",
-              "classes"
-            ],
-            "properties": {
-              "name": {
-                "title": "Name",
-                "type": "string"
-              },
-              "classes": {
-                "title": "Classes",
-                "type": "array",
-                "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "name",
+                "classes"
+              ],
+              "properties": {
+                "name": {
+                  "title": "Name",
                   "type": "string"
+                },
+                "classes": {
+                  "title": "Classes",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -72,42 +75,45 @@
           },
           "label:overview": {
             "title": "Overview",
-            "type": "object",
-            "properties": {
-              "property_key": {
-                "title": "Property Key",
-                "type": "string"
-              },
-              "counts": {
-                "title": "Counts",
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "title": "Class Name",
-                      "type": "string"
-                    },
-                    "count": {
-                      "title": "Count",
-                      "type": "integer"
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "property_key": {
+                  "title": "Property Key",
+                  "type": "string"
+                },
+                "counts": {
+                  "title": "Counts",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "title": "Class Name",
+                        "type": "string"
+                      },
+                      "count": {
+                        "title": "Count",
+                        "type": "integer"
+                      }
                     }
                   }
-                }
-              },
-              "statistics": {
-                "title": "Statistics",
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "title": "Stat Name",
-                      "type": "string"
-                    },
-                    "value": {
-                      "title": "Value",
-                      "type": "number"
+                },
+                "statistics": {
+                  "title": "Statistics",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "title": "Stat Name",
+                        "type": "string"
+                      },
+                      "value": {
+                        "title": "Value",
+                        "type": "number"
+                      }
                     }
                   }
                 }

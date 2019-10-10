@@ -167694,20 +167694,16 @@
   },
   "links": [
     {
-      "rel": "self",
-      "href": "znz001.json"
-    },
-    {
       "rel": "root",
       "href": "../catalog.json"
     },
     {
       "rel": "parent",
-      "href": "catalog.json"
+      "href": "collection.json"
     },
     {
       "rel": "collection",
-      "href": "catalog.json"
+      "href": "collection.json"
     },
     {
       "rel": "source",

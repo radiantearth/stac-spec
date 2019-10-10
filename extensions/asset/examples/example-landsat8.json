@@ -9,6 +9,9 @@
     ],
     "version": "0.1.0",
     "stac_version": "0.8.0",
+    "stac_extensions": [
+      "asset"
+    ],
     "extent": {
       "spatial": {
         "bbox": [
