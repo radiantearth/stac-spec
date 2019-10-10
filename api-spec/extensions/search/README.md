@@ -19,7 +19,7 @@ search, for example, from calling the `/stac/search` API endpoint.
 | Element      | Type            | Description                                                  |
 | ------------ | --------------- | ------------------------------------------------------------ |
 | next         | string \| null  | **REQUIRED.** The value to set for the `next` query parameter in order to get the next page of results |
-| returned     | integer         | **REQUIRED*** The count of results returned by this response. equal to the cardinality of features array |
+| returned     | integer         | **REQUIRED** The count of results returned by this response. equal to the cardinality of features array |
 | limit        | integer \| null | The maximum number of results to which the result was limited |
 | matched        | integer         | The count of total number of results that match for this query, possibly estimated, particularly in the context of NoSQL data stores |
 

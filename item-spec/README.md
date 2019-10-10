@@ -23,7 +23,7 @@ discussion of the examples.
 
 ## Schema Validation
 
-Instruction on schema validation for STAC Items can be found in the [validation instructions](validation/README.md).
+Instruction on schema validation for STAC Items can be found in the [validation instructions](../validation/README.md).
 
 ## Item Evolution 
 

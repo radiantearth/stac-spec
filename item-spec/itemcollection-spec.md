@@ -37,5 +37,4 @@ This object describes a STAC ItemCollection. The fields `type` and `features` ar
 
 ## Extensions
 
-The [Search Extension](../extensions/search/README.md) adds additional fields to STAC ItemCollection relevant to their use as 
-search results.
+The [Search Extension](../api-spec/extensions/search/README.md) adds additional fields to STAC ItemCollection relevant to their use as search results.

@@ -20,11 +20,11 @@ This document explains the fields of the STAC Label Extension to a STAC Item. It
 
 **Buildings:**
 - [Example Collection of Two Building Footprint Label Catalogs](examples/multidataset/catalog.json)
-- [Example SpaceNet Buildings Catalog](examples/multidataset/spacenet-buildings/catalog.json)
+- [Example SpaceNet Buildings Collection](examples/multidataset/spacenet-buildings/collection.json)
 - [Example SpaceNet Buildings (Vegas) Item](examples/multidataset/spacenet-buildings/AOI_2_Vegas_img2636.json)
 - [Example SpaceNet Buildings (Paris) Item](examples/multidataset/spacenet-buildings/AOI_3_Paris_img1648.json)
 - [Example SpaceNet Buildings (Shanghai) Item](examples/multidataset/spacenet-buildings/AOI_4_Shanghai_img3344.json)
-- [Example World Bank Zanzibar Buildings Catalog](examples/multidataset/zanzibar/catalog.json)
+- [Example World Bank Zanzibar Buildings Collection](examples/multidataset/zanzibar/collection.json)
 - [Example World Bank Zanzibar Building Item 1](examples/multidataset/zanzibar/znz001.json)
 - [Example World Bank Zanzibar Building Item 2](examples/multidataset/zanzibar/znz029.json)
 ## Schema
@@ -47,12 +47,12 @@ Some additional notes are given here for some of the core STAC Item fields and w
 | element           | type info            | name                       | description       |
 |-------------------|----------------------|----------------------------|--------------------------------------------------------------------------------------------------|
 | label:property    | [string\|null]       | Name                       | **REQUIRED** These are the names of the property field(s) in each `Feature` of the label asset's `FeatureCollection` that contains the  classes (keywords from `label:classes` if the property defines classes). If labels are rasters, use `null`. |
-| label:classes     | [Class Object](#class-object) | Classes           | **REQUIRED** if using categorical data. A Class Object defining the list of possible class names for each `label:property`. (e.g., tree, building, car, hippo)|
+| label:classes     | [[Class Object](#class-object)] | Classes           | **REQUIRED** if using categorical data. A Class Object defining the list of possible class names for each `label:property`. (e.g., tree, building, car, hippo)|
 | label:description | string               | Description                | **REQUIRED** A description of the label, how it was created, and what it is recommended for |
 | label:type        | string               | Type                       | **REQUIRED** An ENUM of either `vector` label type or `raster` label type |
 | label:task        | [string]             | Task                       | Recommended to be a subset of 'regression', 'classification', 'detection', or 'segmentation', but may be an arbitrary value |
 | label:method      | [string]             | Method                     | Recommended to be a subset of 'automated' or 'manual', but may be an arbitrary value. |
-| label:overview    | [Label Overview Object](#label-overview-object) | Overview | An Object storing counts (for classification-type data) or summary statistics (for continuous numerical/regression data). |
+| label:overview    | [[Label Overview Object](#label-overview-object)] | Overview | An Object storing counts (for classification-type data) or summary statistics (for continuous numerical/regression data). |
 
 #### Class Object
 | Field Name      | Type                 | name                       | description       |
@@ -145,11 +145,13 @@ The source imagery used for creating the label is linked to under `links` (see b
 #### Links: source imagery
 A Label Item links to any source imagery that the AOI applys to by linking to the STAC Item representing the imagery. Source imagery is indicated by using a `rel` type of "source" and providing the link to the STAC Item.
 
-In addition the link has a new Label specific field:
+In addition the source imagery link has a new label extension specific field:
 
 | element         | type info       | name                       | description       |
 |-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------|
-| label:assets    | [string]        | Assets                     | The keys for the assets to which the label applies |
+| label:assets    | [string]        | Assets                     | The keys for the assets within the `source` item to which this label item applies. |
+
+The `label:assets` field applies to situations where the labels may apply to certain assets inside the source imagery Item, but not others (e.g. if the labels were traced on top of RGB imagery, but the source item also contains assets for a Digital Elevation Model).
 
 
 ## Implementations
