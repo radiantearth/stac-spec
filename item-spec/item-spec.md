@@ -232,5 +232,5 @@ There is a lot of metadata that is only of relevance to advanced processing algo
 It is recommended to have a complementary HTML version of each `Item` available for easy human consumption and search 
 engine crawlability. The exact nature of the HTML is not part of the specification, but it is recommended to use common
 ecosystem tools like [STAC Browser](https://github.com/radiantearth/stac-browser) to generate it. More information on creating 
-HTML versions of STAC can be found in the [STAC on the Web section](../best-practices.md#stac-on-the-web)  
-of the catalog best practices document.
+HTML versions of STAC can be found in the [STAC on the Web section](../best-practices.md#stac-on-the-web) of the catalog 
+best practices document.
