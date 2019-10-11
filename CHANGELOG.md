@@ -43,11 +43,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Updated language, fixed typos and examples.
+- Renamed `pc:schema` to `pc:schemas` in the Point Cloud extension.
+
+### Changes since 0.8.0rc1
 - [Label extension](extensions/label/README.md):
     - moved label:classes to be a list of Class Objects from a single Class Object in spec markdown and json schema (matching previous example JSON).
     - moved label:overview to be a list of Overview Objects from a single Overview Object in spec markdown and json schema (matching previous example JSON).
     - Renamed fields to use plural forms (`label:property` -> `label:properties`, `label:task` -> `label:tasks`, `label:method` -> `label:methods` and `label:overview` -> `label:overviews`)
-- Renamed `pc:schema` to `pc:schemas` in the Point Cloud extension.
+
 
 ## [v0.7.0] - 2019-05-06
 
