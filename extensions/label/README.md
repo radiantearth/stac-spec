@@ -129,8 +129,8 @@ Some additional notes are given here for some of the core STAC Item fields and w
 The Label Extension requires at least one asset that uses the key "labels". The asset will contain a link to the actual label data. The asset has these requirements:
 
 - is a GeoJSON FeatureCollection
-- if `label:taskss` is tile_classification, object_detection, or segmentation, each feature should have one or more properties containing the label(s) for the class (one of `label:classes`). the name of the property can be anything (use "label" if making from scratch), but needs to be specified in the `Item` with the `label:properties` field.
-- if `label:taskss` is tile_regression, each feature should have one or more properties defining the value for regression. the name of the property can be anything (use "label" if making from scratch), but needs to be specified in the `Item` with the `label:properties` field.
+- if `label:tasks` is tile_classification, object_detection, or segmentation, each feature should have one or more properties containing the label(s) for the class (one of `label:classes`). the name of the property can be anything (use "label" if making from scratch), but needs to be specified in the `Item` with the `label:properties` field.
+- if `label:tasks` is tile_regression, each feature should have one or more properties defining the value for regression. the name of the property can be anything (use "label" if making from scratch), but needs to be specified in the `Item` with the `label:properties` field.
 
 ##### Raster Label Notes
 
