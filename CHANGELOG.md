@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
 
 ### Changed
-- Changed GeoTIFF type from `image/vnd.stac.geotiff` to `image/tiff; application=geotiff`
+- Changed GeoTIFF media type from `image/vnd.stac.geotiff` to `image/tiff; application=geotiff`, changed Cloud-optimized GeoTiff media type from `image/vnd.stac.geotiff; cloud-optimized=true` to `image/tiff; application=geotiff; profile=cloud-optimized`.
 
 ### Fixed
 - [Label extension](extensions/label/README.md): moved label:classes to be a list of Class Objects from a single Class Object in spec markdown and json schema (matching previous example JSON).
