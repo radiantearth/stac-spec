@@ -167660,11 +167660,11 @@
   },
   "properties": {
     "datetime": "2019-04-23T00:00:00Z",
-    "label:property": "[building, condition]",
+    "label:properties": "[building, condition]",
     "label:description": "building footprints manually  labeled and classified according to building completion status",
-    "label:task": "segmentation",
+    "label:tasks": "segmentation",
     "label:type": "vector",
-    "label:method": "manual",
+    "label:methods": "manual",
     "version": 1,
     "label:classes": [
       {
@@ -167682,7 +167682,7 @@
         ]
       }
     ],
-    "label:overview": {
+    "label:overviews": {
       "property_key": "building",
       "counts": [
         {

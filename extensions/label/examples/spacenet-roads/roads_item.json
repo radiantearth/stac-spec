@@ -27,7 +27,7 @@
   {
     "datetime": "2016-08-26T22:41:55.000000Z",
     "title": "AOI 3 Paris img101 road network labels",
-    "label:property": ["road_type", "lane_number", "paved"],
+    "label:properties": ["road_type", "lane_number", "paved"],
     "label:type": "vector",
     "label:description": "sample SpaceNet roads label",
     "label:classes":
@@ -45,10 +45,10 @@
         "classes": [0, 1]
       }
     ],
-    "label:task": ["segmentation"],
-    "label:method": ["manual"],
+    "label:tasks": ["segmentation"],
+    "label:methods": ["manual"],
     "version": 1,
-    "label:overview":
+    "label:overviews":
     [
       {
         "property_key": "road_type",
