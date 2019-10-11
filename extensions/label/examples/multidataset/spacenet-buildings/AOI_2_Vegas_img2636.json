@@ -1107,15 +1107,15 @@
   },
   "properties": {
     "datetime": "2016-08-26T22:41:55.000000Z",
-    "label:property": [
+    "label:properties": [
       "OBJECTID_1"
     ],
     "label:description": "building footprints manually labeled",
-    "label:task": [
+    "label:tasks": [
       "segmentation"
     ],
     "label:type": "vector",
-    "label:method": [
+    "label:methods": [
       "manual"
     ],
     "version": 1,
@@ -1127,7 +1127,7 @@
         ]
       }
     ],
-    "label:overview": [
+    "label:overviews": [
       {
         "property_key": "OBJECTID_1",
         "counts": [

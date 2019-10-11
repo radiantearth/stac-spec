@@ -37,7 +37,7 @@
   "properties": {
     "datetime": "2016-08-26T22:41:55.000000Z",
     "title": "AOI 3 Paris img101 road network labels",
-    "label:property": [
+    "label:properties": [
       "road_type",
       "lane_number",
       "paved"
@@ -74,14 +74,14 @@
         ]
       }
     ],
-    "label:task": [
+    "label:tasks": [
       "segmentation"
     ],
-    "label:method": [
+    "label:methods": [
       "manual"
     ],
     "version": 1,
-    "label:overview": [
+    "label:overviews": [
       {
         "property_key": "road_type",
         "counts": [

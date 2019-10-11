@@ -46,13 +46,13 @@ Some additional notes are given here for some of the core STAC Item fields and w
 ### New Item properties
 | element           | type info            | name                       | description       |
 |-------------------|----------------------|----------------------------|--------------------------------------------------------------------------------------------------|
-| label:property    | [string\|null]       | Name                       | **REQUIRED** These are the names of the property field(s) in each `Feature` of the label asset's `FeatureCollection` that contains the  classes (keywords from `label:classes` if the property defines classes). If labels are rasters, use `null`. |
-| label:classes     | [[Class Object](#class-object)] | Classes           | **REQUIRED** if using categorical data. A Class Object defining the list of possible class names for each `label:property`. (e.g., tree, building, car, hippo)|
+| label:properties  | [string\|null]       | Name                       | **REQUIRED** These are the names of the property field(s) in each `Feature` of the label asset's `FeatureCollection` that contains the  classes (keywords from `label:classes` if the property defines classes). If labels are rasters, use `null`. |
+| label:classes     | [[Class Object](#class-object)] | Classes           | **REQUIRED** if using categorical data. A Class Object defining the list of possible class names for each `label:properties`. (e.g., tree, building, car, hippo)|
 | label:description | string               | Description                | **REQUIRED** A description of the label, how it was created, and what it is recommended for |
 | label:type        | string               | Type                       | **REQUIRED** An ENUM of either `vector` label type or `raster` label type |
-| label:task        | [string]             | Task                       | Recommended to be a subset of 'regression', 'classification', 'detection', or 'segmentation', but may be an arbitrary value |
-| label:method      | [string]             | Method                     | Recommended to be a subset of 'automated' or 'manual', but may be an arbitrary value. |
-| label:overview    | [[Label Overview Object](#label-overview-object)] | Overview | An Object storing counts (for classification-type data) or summary statistics (for continuous numerical/regression data). |
+| label:tasks       | [string]             | Task                       | Recommended to be a subset of 'regression', 'classification', 'detection', or 'segmentation', but may be an arbitrary value |
+| label:methods     | [string]             | Method                     | Recommended to be a subset of 'automated' or 'manual', but may be an arbitrary value. |
+| label:overviews   | [[Label Overview Object](#label-overview-object)] | Overview | An Object storing counts (for classification-type data) or summary statistics (for continuous numerical/regression data). |
 
 #### Class Object
 | Field Name      | Type                 | name                       | description       |
@@ -68,7 +68,7 @@ Some additional notes are given here for some of the core STAC Item fields and w
 | counts          | [[Count Object](#count-object)] | Counts                     | An object containing counts for categorical data. |
 | statistics      | [[Stats Object](#stats-object)] | Statistics                 | An object containing statistics for regression/continuous numeric value data. |
 
-`label:overview ` generally won't have both counts and statistics, but one of the two.
+`label:overviews ` generally won't have both counts and statistics, but one of the two.
 
 #### Count Object
 
@@ -129,8 +129,8 @@ Some additional notes are given here for some of the core STAC Item fields and w
 The Label Extension requires at least one asset that uses the key "labels". The asset will contain a link to the actual label data. The asset has these requirements:
 
 - is a GeoJSON FeatureCollection
-- if `label:tasks` is tile_classification, object_detection, or segmentation, each feature should have one or more properties containing the label(s) for the class (one of `label:classes`). the name of the property can be anything (use "label" if making from scratch), but needs to be specified in the `Item` with the `label:property` field.
-- if `label:tasks` is tile_regression, each feature should have one or more properties defining the value for regression. the name of the property can be anything (use "label" if making from scratch), but needs to be specified in the `Item` with the `label:property` field.
+- if `label:taskss` is tile_classification, object_detection, or segmentation, each feature should have one or more properties containing the label(s) for the class (one of `label:classes`). the name of the property can be anything (use "label" if making from scratch), but needs to be specified in the `Item` with the `label:properties` field.
+- if `label:taskss` is tile_regression, each feature should have one or more properties defining the value for regression. the name of the property can be anything (use "label" if making from scratch), but needs to be specified in the `Item` with the `label:properties` field.
 
 ##### Raster Label Notes
 
