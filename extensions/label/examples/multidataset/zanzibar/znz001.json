@@ -167650,7 +167650,7 @@
     "raster": {
       "title": "znz001_previewcog",
       "href": "https://oin-hotosm.s3.amazonaws.com/5afeda152b6a08001185f11a/0/5afeda152b6a08001185f11b.tif",
-      "type": "image/tiff; application=geotiff; cloud-optimized=true"
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized"
     },
     "thumbnail": {
       "title": "znz001_thumbnail",

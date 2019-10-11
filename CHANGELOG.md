@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
 
 ### Changed
-- Changed GeoTIFF type from `image/vnd.stac.geotiff` to `image/tiff; application=geotiff`
+- Changed GeoTIFF media type from `image/vnd.stac.geotiff` to `image/tiff; application=geotiff`, changed Cloud-optimized GeoTiff media type from `image/vnd.stac.geotiff; cloud-optimized=true` to `image/tiff; application=geotiff; profile=cloud-optimized`.
 
 ### Fixed
 - Updated language, fixed typos and examples.

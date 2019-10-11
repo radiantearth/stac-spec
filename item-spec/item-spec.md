@@ -191,24 +191,24 @@ would be appropriate; if it is an XML, then `text/xml` is appropriate.
 
 Common STAC Item Media Types:
 
-| Media Type                       | Description                                                                             |
-| -------------------------------- | --------------------------------------------------------------------------------------- |
-| `image/tiff; application=geotiff`| GeoTIFF with standardized georeferencing metadata                               |
-| `image/tiff; application=geotiff; cloud-optimized=true` | Cloud Optimized GeoTIFF                                                   |
-| `image/jp2`                      | JPEG 2000                                                                               |
-| `image/png`                      | Visual PNGs (e.g. thumbnails)                                                           |
-| `image/jpeg`                     | Visual JPEGs (e.g. thumbnails, oblique)                                                 |
-| `text/xml` or `application/xml`  | XML metadata [RFC 7303](https://www.ietf.org/rfc/rfc7303.txt)                           |
-| `application/json`               | JSON metadata                                                                           |
-| `text/plain`                     | Plain text metadata                                                                     |
-| `application/geo+json`           | GeoJSON                                                                                 |
-| `application/geopackage+sqlite3` | GeoPackage                                                                              |
-| `application/x-hdf5`             | Hierarchical Data Format version 5                                                      |
-| `application/x-hdf`              | Hierarchical Data Format versions 4 and earlier.                                        |
+| Media Type                                              | Description                                                  |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
+| `image/tiff; application=geotiff`                       | GeoTIFF with standardized georeferencing metadata            |
+| `image/tiff; application=geotiff; profile=cloud-optimized` | Cloud Optimized GeoTIFF (unofficial). Once there is an [official media type](http://osgeo-org.1560.x6.nabble.com/Media-type-tc5411498.html) it will be added and the proprietary media type here will be deprecated. |
+| `image/jp2`                                             | JPEG 2000                                                    |
+| `image/png`                                             | Visual PNGs (e.g. thumbnails)                                |
+| `image/jpeg`                                            | Visual JPEGs (e.g. thumbnails, oblique)                      |
+| `text/xml` or `application/xml`                         | XML metadata [RFC 7303](https://www.ietf.org/rfc/rfc7303.txt) |
+| `application/json`                                      | JSON metadata                                                |
+| `text/plain`                                            | Plain text metadata                                          |
+| `application/geo+json`                                  | GeoJSON                                                      |
+| `application/geopackage+sqlite3`                        | GeoPackage                                                   |
+| `application/x-hdf5`                                    | Hierarchical Data Format version 5                           |
+| `application/x-hdf`                                     | Hierarchical Data Format versions 4 and earlier.             |
 
-Note: should Cloud Optimized GeoTIFF become an IANA-registered type in the future this will be added as a recommended 
-media type and `image/tiff; application=geotiff; cloud-optimized=true` will be deprecated.
-[Cloud Optimized GeoTiffs](http://osgeo-org.1560.x6.nabble.com/Media-type-tc5411498.html).
+Deprecation notice: GeoTiff previously used the media type `image/vnd.stac.geotiff` and
+Cloud Optimized GeoTiffs used `image/vnd.stac.geotiff; profile=cloud-optimized`.
+Both can still appear in old catalogues, but are deprecated and should be replaced.
 
 ## Extensions
 
