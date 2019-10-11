@@ -7,12 +7,12 @@
       "properties": {
         "type": "object",
         "required": [
-          "label:property",
+          "label:properties",
           "label:classes",
           "label:description"
         ],
         "properties": {
-          "label:property": {
+          "label:properties": {
             "title": "Property",
             "type": "array",
             "items": {
@@ -55,14 +55,14 @@
               "vector"
             ]
           },
-          "label:task": {
+          "label:tasks": {
             "title": "Task",
             "type": "array",
             "items": {
               "type": "string"
             }
           },
-          "label:method": {
+          "label:methods": {
             "title": "Method",
             "type": "array",
             "items": {
@@ -73,7 +73,7 @@
               ]
             }
           },
-          "label:overview": {
+          "label:overviews": {
             "title": "Overview",
             "type": "array",
             "items": {
