@@ -194,7 +194,7 @@ Common STAC Item Media Types:
 | Media Type                                              | Description                                                  |
 | ------------------------------------------------------- | ------------------------------------------------------------ |
 | `image/tiff; application=geotiff`                       | GeoTIFF with standardized georeferencing metadata            |
-| `image/tiff; application=geotiff; cloud-optimized=true` | Cloud Optimized GeoTIFF (unofficial). Once there is an [official media type](http://osgeo-org.1560.x6.nabble.com/Media-type-tc5411498.html) it will be added and the proprietary media type here will be deprecated. |
+| `image/tiff; application=geotiff; profile=cloud-optimized` | Cloud Optimized GeoTIFF (unofficial). Once there is an [official media type](http://osgeo-org.1560.x6.nabble.com/Media-type-tc5411498.html) it will be added and the proprietary media type here will be deprecated. |
 | `image/jp2`                                             | JPEG 2000                                                    |
 | `image/png`                                             | Visual PNGs (e.g. thumbnails)                                |
 | `image/jpeg`                                            | Visual JPEGs (e.g. thumbnails, oblique)                      |
@@ -207,7 +207,7 @@ Common STAC Item Media Types:
 | `application/x-hdf`                                     | Hierarchical Data Format versions 4 and earlier.             |
 
 Deprecation notice: GeoTiff previously used the media type `image/vnd.stac.geotiff` and
-Cloud Optimized GeoTiffs used `image/vnd.stac.geotiff; cloud-optimized=true`.
+Cloud Optimized GeoTiffs used `image/vnd.stac.geotiff; profile=cloud-optimized`.
 Both can still appear in old catalogues, but are deprecated and should be replaced.
 
 ## Extensions
