@@ -18,7 +18,7 @@ paths:
                  - $ref: '#/components/schemas/itemCollection'
       responses:
         '201':
-          description: Create request succeeded.
+          description: Create request succeeded for a single item.
           headers:
             Location:
               description: A link to the item
@@ -32,10 +32,13 @@ paths:
           content:
             application/geo+json:
               schema:
-                type: string
-            text/html:
+                $ref: '#/components/schemas/item'
+        '207':
+          description: Multistatus response for creating multiple items.
+          content:
+            application/json:
               schema:
-                type: string
+                $ref: '#/components/schemas/multiStatus'
         '400':
           $ref: '#/components/responses/BadRequest'
         '5XX':
@@ -46,9 +49,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/exception'
-            text/html:
-              schema:
-                type: string
   '/collections/{collectionId}/items/{featureId}':
     get:
       responses:
@@ -85,9 +85,6 @@ paths:
                 type: string
               description: A string to ensure the item has not been modified
           content:
-            text/html:
-              schema:
-                type: string
             application/json:
               schema:
                 type: string
@@ -105,9 +102,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/exception'
-            text/html:
-              schema:
-                type: string
     patch:
       summary: update an existing item by id with a partial item definition
       description: >-
@@ -134,9 +128,6 @@ paths:
                 type: string
               description: A string to ensure the item has not been modified
           content:
-            text/html:
-              schema:
-                type: string
             application/json:
               schema:
                 type: string
@@ -154,9 +145,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/exception'
-            text/html:
-              schema:
-                type: string
     delete:
       summary: delete an existing item by id
       description: Use this method to delete an existing item.
@@ -184,9 +172,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/exception'
-            text/html:
-              schema:
-                type: string
 components:
   parameters:
     IfMatch:
@@ -241,6 +226,46 @@ components:
       properties:
         datetime:
           $ref: '#/components/schemas/datetime'
+    multiStatus:
+      type: object
+      description: provides status information about the result of a bulk request
+      additionalProperties: true
+      properties:
+        multistatus:
+          type: array
+          items:
+            $ref: '#/components/schemas/multiStatusResponse'
+        metadata:
+          type: object
+          items:
+            $ref: '#/components/schemas/multiStatusMetadata'
+    multiStatusResponse:
+      type: object
+      description: provides status information about a single operation within a bulk request
+      additionalProperties: true
+      properties:
+        status:
+          type: number
+          description: the http status code of the response
+        message:
+          type: string
+          description: a message describing the status of a single operation within a bulk request, e.g. OK or Bad Request
+        href:
+          $ref: '#/components/schemas/link'
+    multiStatusMetadata:
+      type: object
+      description: provides metadata information about a bulk request
+      additionalProperties: true
+      properties:
+        succeeded:
+          type: number
+          description: the number of operations that succeeded in a bulk request
+        failed:
+          type: number
+          description: the number of operations that failed in a bulk request
+        total:
+          type: number
+          description: the total number of operations performed in a bulk request
   responses:
     NotFound:
       description: The specified resource was not found
