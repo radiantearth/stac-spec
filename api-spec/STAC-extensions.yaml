@@ -21,7 +21,7 @@ tags:
     description: access to data (features)
   - name: STAC
     description: Extension to WFS3 Core to support STAC metadata model and search API
-  - name: Transaction Extension
+  - name: CRUD Extension
     description: >-
       STAC-specific operations to add, remove, and edit items within WFS3
       collections.
@@ -109,11 +109,11 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
     post:
-      summary: add a new feature to a collection
-      description: create a new feature in a specific collection
-      operationId: postFeature
+      summary: add a new item to a collection
+      description: create a new item in a specific collection
+      operationId: postItem
       tags:
-        - Transaction Extension
+        - CRUD Extension
       parameters:
         - $ref: '#/components/parameters/collectionId'
       requestBody:
@@ -125,7 +125,7 @@ paths:
                 - $ref: '#/components/schemas/itemCollection'
       responses:
         '201':
-          description: Status of the create request.
+          description: Create request succeeded.
           headers:
             Location:
               description: A link to the item
@@ -173,6 +173,7 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Feature'
+          description: Get request succeeded.
           headers:
             ETag:
               schema:
@@ -183,13 +184,13 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
     put:
-      summary: update an existing feature by Id with a complete item definition
+      summary: update an existing item by id with a complete item definition
       description: >-
-        Use this method to update an existing feature. Requires the entire
-        GeoJSON  description be submitted.
-      operationId: putFeature
+        Use this method to update an existing item. Requires the entire GeoJSON 
+        description be submitted.
+      operationId: putItem
       tags:
-        - Transaction Extension
+        - CRUD Extension
       parameters:
         - $ref: '#/components/parameters/collectionId'
         - $ref: '#/components/parameters/featureId'
@@ -201,7 +202,7 @@ paths:
               $ref: '#/components/schemas/item'
       responses:
         '200':
-          description: Status of the update request.
+          description: Put request succeeded.
           headers:
             ETag:
               schema:
@@ -218,6 +219,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '404':
           $ref: '#/components/responses/NotFound'
+        '412':
+          $ref: '#/components/responses/PreconditionFailed'
         5XX:
           $ref: '#/components/responses/InternalServerError'
         default:
@@ -230,13 +233,13 @@ paths:
               schema:
                 type: string
     patch:
-      summary: update an existing feature by Id with a partial item definition
+      summary: update an existing item by id with a partial item definition
       description: >-
-        Use this method to update an existing feature. Requires a GeoJSON 
-        fragement (containing the fields to be updated) be submitted.
-      operationId: patchFeature
+        Use this method to update an existing item. Requires a GeoJSON fragement
+        (containing the fields to be updated) be submitted.
+      operationId: patchItem
       tags:
-        - Transaction Extension
+        - CRUD Extension
       parameters:
         - $ref: '#/components/parameters/collectionId'
         - $ref: '#/components/parameters/featureId'
@@ -248,7 +251,7 @@ paths:
               $ref: '#/components/schemas/partialItem'
       responses:
         '200':
-          description: Status of the update request.
+          description: Patch request succeeded.
           headers:
             ETag:
               schema:
@@ -265,6 +268,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '404':
           $ref: '#/components/responses/NotFound'
+        '412':
+          $ref: '#/components/responses/PreconditionFailed'
         5XX:
           $ref: '#/components/responses/InternalServerError'
         default:
@@ -277,22 +282,24 @@ paths:
               schema:
                 type: string
     delete:
-      summary: delete an existing feature by Id
-      description: Use this method to delete an existing feature.
-      operationId: deleteFeature
+      summary: delete an existing item by id
+      description: Use this method to delete an existing item.
+      operationId: deleteItem
       tags:
-        - Transaction Extension
+        - CRUD Extension
       parameters:
         - $ref: '#/components/parameters/collectionId'
         - $ref: '#/components/parameters/featureId'
         - $ref: '#/components/parameters/IfMatch'
       responses:
         '204':
-          description: Status of the delete request.
+          description: Delete request succeeded.
         '400':
           $ref: '#/components/responses/BadRequest'
         '404':
           $ref: '#/components/responses/NotFound'
+        '412':
+          $ref: '#/components/responses/PreconditionFailed'
         5XX:
           $ref: '#/components/responses/InternalServerError'
         default:
@@ -558,14 +565,18 @@ components:
     IfMatch:
       name: If-Match
       in: header
-      description: Only take the action if the ETag of the item still matches
+      description: >-
+        Only take the action if the ETag of the item still matches the If-Match
+        header of the request
       required: true
       schema:
         type: string
     IfMatchOptional:
       name: If-Match
       in: header
-      description: Only take the action if the ETag of the item still matches
+      description: >-
+        Only take the action if the ETag of the item still matches the If-Match
+        header of the request
       required: false
       schema:
         type: string
@@ -1530,7 +1541,7 @@ components:
         stac_extensions:
           $ref: '#/components/schemas/stac_extensions'
         id:
-          $ref: '#/components/schemas/itemId'
+          $ref: '#/components/schemas/featureId'
         bbox:
           $ref: '#/components/schemas/bbox'
         geometry:
@@ -1934,6 +1945,12 @@ components:
             type: string
     BadRequest:
       description: The request was malformed or semantically invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/exception'
+    PreconditionFailed:
+      description: The ETag of the item did not match the If-Match header of the request
       content:
         application/json:
           schema:

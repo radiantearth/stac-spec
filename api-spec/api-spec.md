@@ -10,13 +10,13 @@ In WFS 3 Features are the individual records within a Collection and are provide
 
 ## HTTP Request Methods and Content Types
 
-The WFS 3 and STAC APIs follow a RESTful model.  A core principal of this is the use of HTTP Request Methods (verbs) and the `Content-Type` header to drive behavior. This section describes how these are used in the WFS 3 and STAC endpoints. 
+The WFS 3 and STAC APIs follow a RESTful model.  A core principal of this is the use of HTTP Request Methods (verbs) and the `Content-Type` header to drive behavior. This section describes how these are used in the WFS 3 and STAC endpoints.
 
 1. **Required** GET (both WFS 3 and STAC)
 2. **Recommended** POST `Content-Type: application/x-www-form-urlencoded` with the corresponding content body format.
 3. **Recommended** POST `Content-Type: multipart/form-data` with the corresponding content body format.
-4. **Optional** **STAC endpoint /stac/search only** POST `Content-Type: application/json`, where the content body is a JSON object representing a filter, as defined in the [STAC API OpenAPI specification document](STAC.yaml).  
-5. **Prohibited** **WFS 3 endpoints only** POST `Content-Type: application/json`, where the content body is a JSON object representing a filter.  This is prohibited due to conflict with the [Transaction Extension](extensions/transaction/README.md), which defines a POST `Content-Type: application/json` operation to create an Item.
+4. **Optional** **STAC endpoint /stac/search only** POST `Content-Type: application/json`, where the content body is a JSON object representing a filter, as defined in the [STAC API OpenAPI specification document](STAC.yaml).
+5. **Prohibited** **WFS 3 endpoints only** POST `Content-Type: application/json`, where the content body is a JSON object representing a filter.  This is prohibited due to conflict with the [CRUD Extension](extensions/crud/README.md), which defines a POST `Content-Type: application/json` operation to create an Item.
 
 ## WFS3 Endpoints
 
@@ -31,7 +31,7 @@ The core WFS 3 endpoints are shown below, with details provided in an [OpenAPI s
 | /collections/{collectionId}/items | ItemCollection | GeoJSON FeatureCollection-conformant entity of Items in collection |
 | /collections/{collectionId}/items/{featureId} | Item | Returns single Item (GeoJSON Feature) |
 
-The `/collections/{collection_id}/items` endpoint accepts parameters for filtering the results (also called filters). 
+The `/collections/{collection_id}/items` endpoint accepts parameters for filtering the results (also called filters).
 Items in the collection should match all filters to be returned when querying. This implies a logical AND operation. If an OR operation is needed, it should be specified through an extension filter.
 
 ## STAC Endpoints
@@ -51,9 +51,9 @@ If the `/stac/search` endpoint is implemented, it is **required** to add a link 
 
 ## Filter Parameters and Fields
 
-Unless otherwise noted by **Path-only**, these filters are passed as query string parameters, form parameters, or JSON 
-entity fields.  For filters that represent a set of values, query and form parameters should use comma-separated 
-string values and JSON entity attributes should use JSON Arrays. 
+Unless otherwise noted by **Path-only**, these filters are passed as query string parameters, form parameters, or JSON
+entity fields.  For filters that represent a set of values, query and form parameters should use comma-separated
+string values and JSON entity attributes should use JSON Arrays.
 
 | Parameter    | Type             | APIs       | Description        |
 | -----------  | ---------------- | ---------- | ---------------------- |
@@ -66,37 +66,37 @@ string values and JSON entity attributes should use JSON Arrays.
 | ids | [string] | STAC | Array of Item ids to return. All other filter parameters that further restrict the number of search results (except `next` and `limit`) are ignored |
 | collections  | [string]         | STAC       | Array of Collection IDs to include in the search for items. Only Items in one of the provided Collections will be searched |
 
-Only one of either **intersects** or **bbox** should be specified.  If both are specified, a 400 Bad Request response 
-should be returned. 
+Only one of either **intersects** or **bbox** should be specified.  If both are specified, a 400 Bad Request response
+should be returned.
 
 ## Reserved Parameters
 
- Additionally, there are several reserved parameters over STAC search that have no meaning in the base STAC API 
- specification, but which are reserved exclusively for the use of API Extensions.  API implementations are free to 
- add additional implementation-specific parameters, but they **MUST NOT** use following parameters unless implementing 
- the syntax and semantics of an API Extension attached to that parameter.  If no API Extension for that parameter is 
- implemented by an API, then if that parameter has a non-empty value in the request a 400 Bad Request status code must 
- be returned. 
- 
+ Additionally, there are several reserved parameters over STAC search that have no meaning in the base STAC API
+ specification, but which are reserved exclusively for the use of API Extensions.  API implementations are free to
+ add additional implementation-specific parameters, but they **MUST NOT** use following parameters unless implementing
+ the syntax and semantics of an API Extension attached to that parameter.  If no API Extension for that parameter is
+ implemented by an API, then if that parameter has a non-empty value in the request a 400 Bad Request status code must
+ be returned.
+
 ### Fields Extension
- 
+
 These parameters and fields are reserved for the Fields extension.
- 
+
 | Parameter | Type              | APIs       | Description |
 | --------- | ----------------- | ---------- | ----------- |
 | fields    | string \| [Field] | Placeholder parameter for [API Fields Extension](extensions/fields/README.md). |
- 
+
 ### Sort Extension
- 
+
 These parameters and fields are reserved for the Sort extension.
- 
+
 | Parameter | Type             | APIs       | Description |
-| --------- | ---------------- | ---------- | ----------- | 
+| --------- | ---------------- | ---------- | ----------- |
 | sort      | string \| [Sort] | Placeholder parameter for [API Sort Extension](extensions/sort/README.md). |
 
 ### Query Extension
 
-These parameters and fields are reserved for query extensions. 
+These parameters and fields are reserved for query extensions.
 
 All Extensions **should** use attribute names qualified from the root of Item, rather than Item Properties.
 
