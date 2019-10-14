@@ -11,7 +11,7 @@ A STAC Collection can be represented in JSON format. Any JSON object that contai
 STAC Collections are meant to be compatible with WFS3 Collections, but please be aware that WFS Collections and STAC Collections originate from different specifications and despite the fact that we try to align them as much as possible be there may be subtle differences in the specifications.
 
 * [Examples](examples/):
-  * Sentinel 2: A basic standalone example of a [Item](examples/sentinel2.json) without items.
+  * Sentinel 2: A basic standalone example of a [Collection](examples/sentinel2.json) without items.
   * Landsat 8: A [Collection](examples/landsat-collection.json) that holds shared data from an [Item](examples/landsat-item.json).
 * [JSON Schema](json-schema/collection.json) - please see the [validation instructions](../validation/README.md)
 

@@ -29,7 +29,7 @@ The minimal amount is specified right now, but best practices should emerge with
 ## Current version and branches
 
 The [master branch](https://github.com/radiantearth/stac-spec/tree/master) is the 'stable' version of the spec. It is currently version 
-**0.8.0-RC1** of the specification. The 
+**0.8.0** of the specification. The 
 [dev](https://github.com/radiantearth/stac-spec/tree/dev) branch is where active development takes place, and may have inconsistent examples. 
 Whenever dev stabilizes a release is cut and we merge dev in to master. So master should be stable at any given time.
 It is possible that there may be small releases in quick succession, especially if they are nice improvements that do 
@@ -71,7 +71,7 @@ just the Items a user requests in their query. The API is specified as a couple 
 **Extensions:** The *[extensions/](extensions/)* folder is where extensions live. Extensions can extend the 
 functionality of the core spec or add fields for specific domains.
 
-**Additional documents** include the current [roadmap](roadmap.md) and a complementary [how to help](how-to-help.md)
+**Additional documents** A complementary [how to help](how-to-help.md)
 document, a [list of implementations](implementations.md), 
 and a discussion of the collaboration [principles](principles.md) and specification approach.
 
