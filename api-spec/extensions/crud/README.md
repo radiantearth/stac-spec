@@ -4,7 +4,7 @@
 
 The core API doesn't support adding, editing, or removing items. The CRUD API extension supports the creation, editing, and deleting of items through POST, PUT, PATCH, and DELETE requests.
 
-The PUT and DELETE methods support optimistic locking through use of ETags. For PATCH, ETags and optimistic locking are optional.
+The PUT and DELETE methods support optimistic locking through use of ETags to solve the [Lost Update Problem](https://www.w3.org/1999/04/Editing/). For PATCH, ETags and optimistic locking are optional. See also: [ETags and Optimistic Concurrency Control](https://fideloper.com/etags-and-optimistic-concurrency-control)
 
 ## Single Item CRUD Methods
 
@@ -27,9 +27,9 @@ The PUT and DELETE methods support optimistic locking through use of ETags. For 
 
 Bulk CRUD operations return an HTTP 207 Multi-Status response. See: [RFC 4918 Multi-Status Response](https://tools.ietf.org/html/rfc4918#section-13).
 
-The order of the response objects in the `multistatus` array corresponds to the order of the `features` array in the POST'ed [ItemCollection](../item-spec/itemcollection-spec.md).
+The order of the response objects in the `multistatus` array corresponds to the order of the `features` array in the request body [ItemCollection](../item-spec/itemcollection-spec.md).
 
-The `metadata` object in the response gives the client a quick way to determine if everything succeeded or not, so it only needs to inspect the multistatus array if there was an error.
+The `metadata` object in the Multi-Status response gives the client a quick way to determine if everything succeeded or not, so it only needs to inspect the multistatus array if there was an error.
 
 
 ### Bulk POST Example
