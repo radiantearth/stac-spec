@@ -4,7 +4,7 @@
 
 The core API doesn't support adding, editing, or removing items. The CRUD API extension supports the creation, editing, and deleting of items through POST, PUT, PATCH, and DELETE requests.
 
-The PUT and DELETE methods support optimistic locking through use of an If-Match: ETag header.
+The PUT and DELETE methods support optimistic locking through use of ETags. For PATCH, ETags and optimistic locking are optional.
 
 ## Single Item CRUD Methods
 
@@ -15,21 +15,28 @@ The PUT and DELETE methods support optimistic locking through use of an If-Match
 | `PATCH /collections/{collectionId}/items/{featureId}` | `application/json`  | Updates an existing item by ID using a partial item description, compliant with [RFC 7386](https://tools.ietf.org/html/rfc7386). The request *may* contain an If-Match: ETag header to support optimistic locking. |
 | `DELETE /collections/{collectionID}/items/{featureId}`| n/a                 | Deletes an existing item by ID. The request *must* contain an If-Match: ETag header to support optimistic locking. |
 
+
 ## Bulk CRUD Methods
 
 | Path                                                  | Content-Type Header | Description |
 | ----------------------------------------------------- | ------------------- | ----------- |
 | `POST /collections/{collectionID}/items`              | `application/json`  | Adds an [ItemCollection](../item-spec/itemcollection-spec.md) to a collection. |
-| `PUT /collections/{collectionId}/items/`              | `application/json`  | Updates a number of items by their IDs using complete item descriptions. The items in the request body *must* contain an id and an etag field to support optimistic locking. |
-| `PATCH /collections/{collectionId}/items/`            | `application/json`  | Updates a number of items by their IDs using partial item descriptions, compliant with [RFC 7386](https://tools.ietf.org/html/rfc7386). The items in the request body *must* contain an id and *may* contain an etag field to support optimistic locking. |
-| `DELETE /collections/{collectionID}/items/`           | `application/json`  | Deletes a collection of existing items by their IDs. The items in the request body *must* contain an id and an etag field to support optimistic locking. |
+| `PUT /collections/{collectionId}/items`              | `application/json`  | Updates a number of items by their IDs using complete item descriptions. The items in the request body *must* contain an id and an etag field to support optimistic locking. |
+| `PATCH /collections/{collectionId}/items`            | `application/json`  | Updates a number of items by their IDs using partial item descriptions, compliant with [RFC 7386](https://tools.ietf.org/html/rfc7386). The items in the request body *must* contain an id and *may* contain an etag field to support optimistic locking. |
+| `DELETE /collections/{collectionID}/items`           | `application/json`  | Deletes a collection of existing items by their IDs. The items in the request body *must* contain an id and an etag field to support optimistic locking. |
+
+Bulk CRUD operations return an HTTP 207 Multi-Status response. See: [RFC 4918 Multi-Status Response](https://tools.ietf.org/html/rfc4918#section-13).
+
+The order of the response objects in the `multistatus` array corresponds to the order of the `features` array in the POST'ed [ItemCollection](../item-spec/itemcollection-spec.md).
+
+The `metadata` object in the response gives the client a quick way to determine if everything succeeded or not, so it only needs to inspect the multistatus array if there was an error.
+
 
 ### Bulk POST Example
 
 POST an [ItemCollection](../item-spec/itemcollection-spec.md) with 3 items to `/collections/{collectionID}/items`:
 
 Example Response:
-See: [RFC 4918 Multi-Status Response](https://tools.ietf.org/html/rfc4918#section-13)
 ```
 HTTP 207
 {
@@ -57,10 +64,6 @@ HTTP 207
   }
 }
 ```
-
-The order of the response objects in the `multistatus` array corresponds to the order of the `features` array in the POST'ed [ItemCollection](../item-spec/itemcollection-spec.md).
-
-The metadata object in the response gives the client a quick way to determine if everything succeeded or not, so it only needs to inspect the multistatus array if there was an error.
 
 ### Bulk PUT Example
 
