@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+- Data Cube extension: Allow to be used in Collections and added new fields (`data_type` and `description`).
+
 ## [v0.8.0] - 2019-10-11
 
 ### Changed
