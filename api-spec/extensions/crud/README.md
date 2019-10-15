@@ -4,7 +4,7 @@
 
 The core API doesn't support adding, editing, or removing items. The CRUD API extension supports the creation, editing, and deleting of items through POST, PUT, PATCH, and DELETE requests.
 
-The PUT and DELETE methods support optimistic locking through use of ETags to solve the [Lost Update Problem](https://www.w3.org/1999/04/Editing/). For PATCH, ETags and optimistic locking are optional. See also: [ETags and Optimistic Concurrency Control](https://fideloper.com/etags-and-optimistic-concurrency-control)
+The PUT and DELETE methods support optimistic locking through use of ETags to solve the [Lost Update Problem](https://www.w3.org/1999/04/Editing/). For PATCH, ETags and optimistic locking are optional. See also: [ETags and Optimistic Concurrency Control](https://fideloper.com/etags-and-optimistic-concurrency-control).
 
 ## Single Item CRUD Methods
 
@@ -20,21 +20,23 @@ The PUT and DELETE methods support optimistic locking through use of ETags to so
 
 | Path                                                  | Content-Type Header | Description |
 | ----------------------------------------------------- | ------------------- | ----------- |
-| `POST /collections/{collectionID}/items`              | `application/json`  | Adds an [ItemCollection](../item-spec/itemcollection-spec.md) to a collection. |
-| `PUT /collections/{collectionId}/items`              | `application/json`  | Updates a number of items by their IDs using complete item descriptions. The items in the request body *must* contain an id and an etag field to support optimistic locking. |
-| `PATCH /collections/{collectionId}/items`            | `application/json`  | Updates a number of items by their IDs using partial item descriptions, compliant with [RFC 7386](https://tools.ietf.org/html/rfc7386). The items in the request body *must* contain an id and *may* contain an etag field to support optimistic locking. |
-| `DELETE /collections/{collectionID}/items`           | `application/json`  | Deletes a collection of existing items by their IDs. The items in the request body *must* contain an id and an etag field to support optimistic locking. |
+| `POST /collections/{collectionID}/items`              | `application/json`  | Adds a number of items to a collection. |
+| `PUT /collections/{collectionId}/items`               | `application/json`  | Updates a number of items by their IDs using complete item descriptions. The items in the request body *must* contain an id and an etag field to support optimistic locking. |
+| `PATCH /collections/{collectionId}/items`             | `application/json`  | Updates a number of items by their IDs using partial item descriptions, compliant with [RFC 7386](https://tools.ietf.org/html/rfc7386). The items in the request body *must* contain an id and *may* contain an etag field to support optimistic locking.  |
+| `DELETE /collections/{collectionID}/items`            | `application/json`  | Deletes a number of existing items by their IDs. The items in the request body *must* contain an id and an etag field to support optimistic locking. |
 
-Bulk CRUD operations return an HTTP 207 Multi-Status response. See: [RFC 4918 Multi-Status Response](https://tools.ietf.org/html/rfc4918#section-13).
+The request body for all bulk CRUD requests is an [ItemCollection](../../../item-spec/itemcollection-spec.md). The items in the request body may be complete item descriptions, or partial item descriptions, depending on the method being invoked.
 
-The order of the response objects in the `multistatus` array corresponds to the order of the `features` array in the request body [ItemCollection](../item-spec/itemcollection-spec.md).
+Bulk CRUD operations return an HTTP 207 Multi-Status response. See: [RFC 4918 Multi-Status Response](https://tools.ietf.org/html/rfc4918#section-13) with a `multistatus` array of individual response objects, and a `metadata` object.
 
-The `metadata` object in the Multi-Status response gives the client a quick way to determine if everything succeeded or not, so it only needs to inspect the multistatus array if there was an error.
+The order of the response objects in the `multistatus` array corresponds to the order of the `features` array in the request body's [ItemCollection](../../../item-spec/itemcollection-spec.md).
+
+The `metadata` object in the Multi-Status response gives the client a quick way to determine if everything succeeded or not, so it only needs to inspect the `multistatus` array for details if there was an error.
 
 
 ### Bulk POST Example
 
-POST an [ItemCollection](../item-spec/itemcollection-spec.md) with 3 items to `/collections/{collectionID}/items`:
+POST an [ItemCollection](../../../item-spec/itemcollection-spec.md) with 3 items to `/collections/{collectionID}/items`:
 
 Example Response:
 ```
@@ -44,7 +46,7 @@ HTTP 207
     {
       "status": 201
       "message": "Created",
-      "href": "<link to newly created item>"
+      "href": "<link to newly created item 1>"
     },
     {
       "status": 400
@@ -54,7 +56,7 @@ HTTP 207
     {
       "status": 201
       "message": "Created",
-      "href": "<link to newly created item>"
+      "href": "<link to newly created item 3>"
     }
   ],
   "metadata": {
@@ -67,7 +69,7 @@ HTTP 207
 
 ### Bulk PUT Example
 
-PUT an [ItemCollection](../item-spec/itemcollection-spec.md) with 3 items to `/collections/{collectionID}/items`:
+PUT an [ItemCollection](../../../item-spec/itemcollection-spec.md) with 3 items to `/collections/{collectionID}/items`:
 E.g. PUT request body
 ```
 {
@@ -84,7 +86,7 @@ E.g. PUT request body
   },
   {
     "id": "id3",
-    "etag": "etag2",
+    "etag": "etag3",
     ... // a full item description
   }]
 }
@@ -98,7 +100,7 @@ HTTP 207
     {
       "status": 200
       "message": "OK",
-      "href": "<link to newly replaced item: id1>"
+      "href": "<link to newly replaced item 1>"
     },
     {
       "status": 400
@@ -121,7 +123,7 @@ HTTP 207
 
 ### Bulk PATCH Example
 
-PATCH an [ItemCollection](../item-spec/itemcollection-spec.md) with 3 items to `/collections/{collectionID}/items`:
+PATCH an [ItemCollection](../../../item-spec/itemcollection-spec.md) with 3 items to `/collections/{collectionID}/items`:
 E.g. PATCH request body
 ```
 {
@@ -149,7 +151,7 @@ HTTP 207
     {
       "status": 200
       "message": "OK",
-      "href": "<link to newly patched item: id1>"
+      "href": "<link to newly patched item 1>"
     },
     {
       "status": 404
@@ -172,7 +174,7 @@ HTTP 207
 
 ### Bulk DELETE Example
 
-DELETE an [ItemCollection](../item-spec/itemcollection-spec.md) with 3 items to `/collections/{collectionID}/items`:
+DELETE an [ItemCollection](../../../item-spec/itemcollection-spec.md) with 3 items to `/collections/{collectionID}/items`:
 E.g. DELETE request body
 ```
 {
@@ -187,7 +189,7 @@ E.g. DELETE request body
   },
   {
     "id": "id3",
-    "etag": "etag2"
+    "etag": "etag3"
   }]
 }
 ```
