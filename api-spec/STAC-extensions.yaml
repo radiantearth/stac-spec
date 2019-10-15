@@ -141,7 +141,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/item'
         '207':
-          description: Multistatus response for creating multiple items.
+          description: Multi-Status response for creating multiple items.
           content:
             application/json:
               schema:
@@ -1583,6 +1583,9 @@ components:
             A message describing the status of a single operation within a bulk
             request
         href:
+          description: >-
+            A link to the resulting resource from a bulk request on a single
+            item
           $ref: '#/components/schemas/link'
     multiStatusMetadata:
       type: object
@@ -1979,7 +1982,9 @@ components:
           schema:
             $ref: '#/components/schemas/exception'
     PreconditionFailed:
-      description: The ETag of the item did not match the If-Match header of the request
+      description: >-
+        The ETag of the item did not match the If-Match header of the request,
+        or the etag value of the item in the bulk request
       content:
         application/json:
           schema:
