@@ -27,9 +27,9 @@ The PUT and DELETE methods support optimistic locking through use of ETags to so
 
 The request body for all bulk CRUD requests is an [ItemCollection](../../../item-spec/itemcollection-spec.md). The items in the request body may be complete item descriptions, or partial item descriptions, depending on the method being invoked.
 
-Bulk CRUD operations return an HTTP 207 Multi-Status response. See: [RFC 4918 Multi-Status Response](https://tools.ietf.org/html/rfc4918#section-13) with a `multistatus` array of individual response objects, and a `metadata` object.
+Bulk CRUD operations return an HTTP 207 Multi-Status response with a `multistatus` array of individual response objects, and a `metadata` object. See: [RFC 4918 Multi-Status Response](https://tools.ietf.org/html/rfc4918#section-13).
 
-The order of the response objects in the `multistatus` array corresponds to the order of the `features` array in the request body's [ItemCollection](../../../item-spec/itemcollection-spec.md).
+The order of the response objects in the `multistatus` array corresponds to the order of the `features` array in the request body's [ItemCollection](../../../item-spec/itemcollection-spec.md). This way a client can correlate a specific item in the request body with its corresponding response.
 
 The `metadata` object in the Multi-Status response gives the client a quick way to determine if everything succeeded or not, so it only needs to inspect the `multistatus` array for details if there was an error.
 
@@ -46,7 +46,7 @@ HTTP 207
     {
       "status": 201
       "message": "Created",
-      "href": "<link to newly created item 1>"
+      "href": "<link to newly created item>"
     },
     {
       "status": 400
@@ -56,7 +56,7 @@ HTTP 207
     {
       "status": 201
       "message": "Created",
-      "href": "<link to newly created item 3>"
+      "href": "<link to newly created item>"
     }
   ],
   "metadata": {
@@ -100,7 +100,7 @@ HTTP 207
     {
       "status": 200
       "message": "OK",
-      "href": "<link to newly replaced item 1>"
+      "href": "<link to newly replaced item: id1>"
     },
     {
       "status": 400
@@ -151,7 +151,7 @@ HTTP 207
     {
       "status": 200
       "message": "OK",
-      "href": "<link to newly patched item 1>"
+      "href": "<link to newly patched item: id1>"
     },
     {
       "status": 404
