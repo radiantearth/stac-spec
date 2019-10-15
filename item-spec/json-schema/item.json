@@ -146,7 +146,7 @@
                   }
                 },
                 "created": {
-                  "title": "Metadata updated at",
+                  "title": "Metadata created at",
                   "type": "string",
                   "format": "date-time"
                 },
