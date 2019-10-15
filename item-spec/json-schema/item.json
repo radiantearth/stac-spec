@@ -21,8 +21,6 @@
           "required": [
             "stac_version",
             "id",
-            "type",
-            "geometry",
             "links",
             "assets",
             "bbox",
@@ -66,6 +64,13 @@
               "title": "Provider ID",
               "description": "Provider item ID",
               "type": "string"
+            },
+            "bbox": {
+              "type": "array",
+              "minItems": 4,
+              "items": {
+                "type": "number"
+              }
             },
             "links": {
               "title": "Item links",
