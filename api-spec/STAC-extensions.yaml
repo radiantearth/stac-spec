@@ -109,8 +109,8 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
     post:
-      summary: add a new item to a collection
-      description: create a new item in a specific collection
+      summary: Add a new item to a collection
+      description: Create a new item in a specific collection
       operationId: postItem
       tags:
         - CRUD Extension
@@ -184,10 +184,10 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
     put:
-      summary: update an existing item by id with a complete item definition
+      summary: Update an existing item by id with a complete item definition
       description: >-
-        Use this method to update an existing item. Requires the entire GeoJSON 
-        description be submitted.
+        Use this method to update an existing item. Requires the entire GeoJSON
+        item description be submitted.
       operationId: putItem
       tags:
         - CRUD Extension
@@ -227,9 +227,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/exception'
     patch:
-      summary: update an existing item by id with a partial item definition
+      summary: Update an existing item by id with a partial item definition
       description: >-
-        Use this method to update an existing item. Requires a GeoJSON fragement
+        Use this method to update an existing item. Requires a GeoJSON fragment
         (containing the fields to be updated) be submitted.
       operationId: patchItem
       tags:
@@ -270,7 +270,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/exception'
     delete:
-      summary: delete an existing item by id
+      summary: Delete an existing item by id
       description: Use this method to delete an existing item.
       operationId: deleteItem
       tags:
@@ -1541,22 +1541,22 @@ components:
             $ref: '#/components/schemas/link'
         assets:
           $ref: '#/components/schemas/itemAssets'
-      example:
-        assets:
-          analytic:
-            title: 1-Band Analytic
-            href: >-
-              http://cool-sat.com/catalog/collections/cs/items/CS3-201605XX_132130_04/analytic-1.tif
+          example:
+            assets:
+              analytic:
+                title: 1-Band Analytic
+                href: >-
+                  http://cool-sat.com/catalog/collections/cs/items/CS3-201605XX_132130_04/analytic-1.tif
     partialItemProperties:
       type: object
-      description: allows for partial collections of metadata fields
+      description: A subset of an item's fields
       additionalProperties: true
       properties:
         datetime:
           $ref: '#/components/schemas/datetime'
     multiStatus:
       type: object
-      description: provides status information about the result of a bulk request
+      description: Provides status information about the result of a bulk request
       additionalProperties: true
       properties:
         multistatus:
@@ -1570,34 +1570,34 @@ components:
     multiStatusResponse:
       type: object
       description: >-
-        provides status information about a single operation within a bulk
+        Provides status information about a single operation within a bulk
         request
       additionalProperties: true
       properties:
         status:
           type: number
-          description: the http status code of the response
+          description: The http status code of the response
         message:
           type: string
           description: >-
-            a message describing the status of a single operation within a bulk
-            request, e.g. OK or Bad Request
+            A message describing the status of a single operation within a bulk
+            request
         href:
           $ref: '#/components/schemas/link'
     multiStatusMetadata:
       type: object
-      description: provides metadata information about a bulk request
+      description: Provides metadata information about a bulk request
       additionalProperties: true
       properties:
         succeeded:
           type: number
-          description: the number of operations that succeeded in a bulk request
+          description: The number of operations that succeeded in a bulk request
         failed:
           type: number
-          description: the number of operations that failed in a bulk request
+          description: The number of operations that failed in a bulk request
         total:
           type: number
-          description: the total number of operations performed in a bulk request
+          description: The total number of operations performed in a bulk request
   responses:
     LandingPage:
       description: |-

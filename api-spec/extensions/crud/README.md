@@ -26,8 +26,8 @@ HTTP 207
 {
   "multistatus": [
     {
-      "status": 200
-      "message": "OK",
+      "status": 201
+      "message": "Created",
       "href": "<link to newly created item>"
     },
     {
@@ -36,8 +36,8 @@ HTTP 207
       "href": null
     },
     {
-      "status": 200
-      "message": "OK",
+      "status": 201
+      "message": "Created",
       "href": "<link to newly created item>"
     }
   ],
