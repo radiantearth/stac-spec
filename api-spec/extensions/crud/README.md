@@ -70,6 +70,7 @@ HTTP 207
 ### Bulk PUT Example
 
 PUT an [ItemCollection](../../../item-spec/itemcollection-spec.md) with 3 items to `/collections/{collectionID}/items`:
+
 E.g. PUT request body
 ```
 {
@@ -124,6 +125,7 @@ HTTP 207
 ### Bulk PATCH Example
 
 PATCH an [ItemCollection](../../../item-spec/itemcollection-spec.md) with 3 items to `/collections/{collectionID}/items`:
+
 E.g. PATCH request body
 ```
 {
@@ -175,6 +177,7 @@ HTTP 207
 ### Bulk DELETE Example
 
 DELETE an [ItemCollection](../../../item-spec/itemcollection-spec.md) with 3 items to `/collections/{collectionID}/items`:
+
 E.g. DELETE request body
 ```
 {
