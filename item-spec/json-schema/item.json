@@ -14,11 +14,7 @@
     "core": {
       "allOf": [
         {
-          "oneOf": [
-            {
-              "$ref": "https://geojson.org/schema/Feature.json"
-            }
-          ]
+          "$ref": "https://geojson.org/schema/Feature.json"
         },
         {
           "type": "object",
