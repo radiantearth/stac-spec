@@ -11,19 +11,22 @@ The PUT and DELETE methods support optimistic locking through use of ETags to so
 | Path                                                  | Content-Type Header | Description |
 | ----------------------------------------------------- | ------------------- | ----------- |
 | `POST /collections/{collectionID}/items`              | `application/json`  | Adds a new [Item](../item-spec/item-spec.md), to a collection. |
-| `PUT /collections/{collectionId}/items/{featureId}`   | `application/json`  | Updates an existing item by ID using a complete item description. The request *must* contain an If-Match: ETag header to support optimistic locking. |
-| `PATCH /collections/{collectionId}/items/{featureId}` | `application/json`  | Updates an existing item by ID using a partial item description, compliant with [RFC 7386](https://tools.ietf.org/html/rfc7386). The request *may* contain an If-Match: ETag header to support optimistic locking. |
-| `DELETE /collections/{collectionID}/items/{featureId}`| n/a                 | Deletes an existing item by ID. The request *must* contain an If-Match: ETag header to support optimistic locking. |
-
+| `PUT /collections/{collectionId}/items/{featureId}`   | `application/json`  | Updates an existing item by ID using a complete item description. The request **must** contain an If-Match: ETag header to support optimistic locking. |
+| `PATCH /collections/{collectionId}/items/{featureId}` | `application/json`  | Updates an existing item by ID using a partial item description, compliant with [RFC 7386](https://tools.ietf.org/html/rfc7386). The request **may** contain an If-Match: ETag header to support optimistic locking. |
+| `DELETE /collections/{collectionID}/items/{featureId}`| n/a                 | Deletes an existing item by ID. The request **must** contain an If-Match: ETag header to support optimistic locking. |
 
 ## Bulk CRUD Methods
+
+Note: this API is **not** transactional. That is, updates are not rolled back if one of the operations fails. Each operation in a bulk update succeeds or fails independently.
+
+Since the If-Match: ETag header is only designed to support optimistic locking for a single item, items themselves must contain an etag field in order to support optimistic locking for bulk operations.
 
 | Path                                                  | Content-Type Header | Description |
 | ----------------------------------------------------- | ------------------- | ----------- |
 | `POST /collections/{collectionID}/items`              | `application/json`  | Adds a number of items to a collection. |
-| `PUT /collections/{collectionId}/items`               | `application/json`  | Updates a number of items by their IDs using complete item descriptions. The items in the request body *must* contain an id and an etag field to support optimistic locking. |
-| `PATCH /collections/{collectionId}/items`             | `application/json`  | Updates a number of items by their IDs using partial item descriptions, compliant with [RFC 7386](https://tools.ietf.org/html/rfc7386). The items in the request body *must* contain an id and *may* contain an etag field to support optimistic locking.  |
-| `DELETE /collections/{collectionID}/items`            | `application/json`  | Deletes a number of existing items by their IDs. The items in the request body *must* contain an id and an etag field to support optimistic locking. |
+| `PUT /collections/{collectionId}/items`               | `application/json`  | Updates a number of items by their IDs using complete item descriptions. The items in the request body **must** contain an id and an etag field to support optimistic locking. |
+| `PATCH /collections/{collectionId}/items`             | `application/json`  | Updates a number of items by their IDs using partial item descriptions, compliant with [RFC 7386](https://tools.ietf.org/html/rfc7386). The items in the request body **must** contain an id and **may** contain an etag field to support optimistic locking.  |
+| `DELETE /collections/{collectionID}/items`            | `application/json`  | Deletes a number of existing items by their IDs. The items in the request body **must** contain an id and an etag field to support optimistic locking. |
 
 The request body for all bulk CRUD requests is an [ItemCollection](../../../item-spec/itemcollection-spec.md). The items in the request body may be complete item descriptions, or partial item descriptions, depending on the method being invoked.
 
@@ -32,7 +35,6 @@ Bulk CRUD operations return an HTTP 207 Multi-Status response with a `multistatu
 The order of the response objects in the `multistatus` array corresponds to the order of the `features` array in the request body's [ItemCollection](../../../item-spec/itemcollection-spec.md). This way a client can correlate a specific item in the request body with its corresponding response.
 
 The `metadata` object in the Multi-Status response gives the client a quick way to determine if everything succeeded or not, so it only needs to inspect the `multistatus` array for details if there was an error.
-
 
 ### Bulk POST Example
 
