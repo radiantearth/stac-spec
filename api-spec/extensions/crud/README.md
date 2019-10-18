@@ -26,7 +26,7 @@ Since the If-Match: ETag header is only designed to support optimistic locking f
 | `POST /collections/{collectionID}/items`              | `application/json`  | Adds a number of items to a collection. |
 | `PUT /collections/{collectionId}/items`               | `application/json`  | Updates a number of items by their IDs using complete item descriptions. The items in the request body **must** contain an id and an etag field to support optimistic locking. |
 | `PATCH /collections/{collectionId}/items`             | `application/json`  | Updates a number of items by their IDs using partial item descriptions, compliant with [RFC 7386](https://tools.ietf.org/html/rfc7386). The items in the request body **must** contain an id and **may** contain an etag field to support optimistic locking.  |
-| `DELETE /collections/{collectionID}/items`            | `application/json`  | Deletes a number of existing items by their IDs. The items in the request body **must** contain an id and an etag field to support optimistic locking. |
+| `DELETE /collections/{collectionID}/items`            | `application/json`  | Deletes a number of existing items by their IDs. The items in the request body **must** contain an id and an etag field to support optimistic locking. If the request body is empty, all items are deleted. |
 
 The request body for all bulk CRUD requests is an [ItemCollection](../../../item-spec/itemcollection-spec.md). The items in the request body may be complete item descriptions, or partial item descriptions, depending on the method being invoked.
 
