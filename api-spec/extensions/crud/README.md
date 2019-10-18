@@ -10,10 +10,10 @@ The PUT and DELETE methods support optimistic locking through use of ETags to so
 
 | Path                                                  | Content-Type Header | Description |
 | ----------------------------------------------------- | ------------------- | ----------- |
-| `POST /collections/{collectionID}/items`              | `application/json`  | Adds a new [Item](../item-spec/item-spec.md), to a collection. |
+| `POST /collections/{collectionId}/items`              | `application/json`  | Adds a new [Item](../item-spec/item-spec.md), to a collection. |
 | `PUT /collections/{collectionId}/items/{featureId}`   | `application/json`  | Updates an existing item by ID using a complete item description. The request **must** contain an If-Match: ETag header to support optimistic locking. |
 | `PATCH /collections/{collectionId}/items/{featureId}` | `application/json`  | Updates an existing item by ID using a partial item description, compliant with [RFC 7386](https://tools.ietf.org/html/rfc7386). The request **may** contain an If-Match: ETag header to support optimistic locking. |
-| `DELETE /collections/{collectionID}/items/{featureId}`| n/a                 | Deletes an existing item by ID. The request **must** contain an If-Match: ETag header to support optimistic locking. |
+| `DELETE /collections/{collectionId}/items/{featureId}`| n/a                 | Deletes an existing item by ID. The request **must** contain an If-Match: ETag header to support optimistic locking. |
 
 ## Bulk CRUD Methods
 
@@ -23,10 +23,10 @@ Since the If-Match: ETag header is only designed to support optimistic locking f
 
 | Path                                                  | Content-Type Header | Description |
 | ----------------------------------------------------- | ------------------- | ----------- |
-| `POST /collections/{collectionID}/items`              | `application/json`  | Adds a number of items to a collection. |
+| `POST /collections/{collectionId}/items`              | `application/json`  | Adds a number of items to a collection. |
 | `PUT /collections/{collectionId}/items`               | `application/json`  | Updates a number of items by their IDs using complete item descriptions. The items in the request body **must** contain an id and an etag field to support optimistic locking. |
 | `PATCH /collections/{collectionId}/items`             | `application/json`  | Updates a number of items by their IDs using partial item descriptions, compliant with [RFC 7386](https://tools.ietf.org/html/rfc7386). The items in the request body **must** contain an id and **may** contain an etag field to support optimistic locking.  |
-| `DELETE /collections/{collectionID}/items`            | `application/json`  | Deletes a number of existing items by their IDs. The items in the request body **must** contain an id and an etag field to support optimistic locking. If the request body is empty, all items are deleted (convenient, but potentially susceptible to lost updates). |
+| `DELETE /collections/{collectionId}/items`            | `application/json`  | Deletes a number of existing items by their IDs. The items in the request body **must** contain an id and an etag field to support optimistic locking. If the request body is empty, all items are deleted (convenient, but potentially susceptible to lost updates). |
 
 The request body for all bulk CRUD requests is an [ItemCollection](../../../item-spec/itemcollection-spec.md). The items in the request body may be complete item descriptions, or partial item descriptions, depending on the method being invoked.
 
@@ -38,7 +38,7 @@ The `metadata` object in the Multi-Status response gives the client a quick way 
 
 ### Bulk POST Example
 
-POST an [ItemCollection](../../../item-spec/itemcollection-spec.md) with 3 items to `/collections/{collectionID}/items`:
+POST an [ItemCollection](../../../item-spec/itemcollection-spec.md) with 3 items to `/collections/{collectionId}/items`:
 
 Example Response:
 ```
@@ -71,7 +71,7 @@ HTTP 207
 
 ### Bulk PUT Example
 
-PUT an [ItemCollection](../../../item-spec/itemcollection-spec.md) with 3 items to `/collections/{collectionID}/items`:
+PUT an [ItemCollection](../../../item-spec/itemcollection-spec.md) with 3 items to `/collections/{collectionId}/items`:
 
 E.g. PUT request body
 ```
@@ -126,7 +126,7 @@ HTTP 207
 
 ### Bulk PATCH Example
 
-PATCH an [ItemCollection](../../../item-spec/itemcollection-spec.md) with 3 items to `/collections/{collectionID}/items`:
+PATCH an [ItemCollection](../../../item-spec/itemcollection-spec.md) with 3 items to `/collections/{collectionId}/items`:
 
 E.g. PATCH request body
 ```
@@ -178,7 +178,7 @@ HTTP 207
 
 ### Bulk DELETE Example
 
-DELETE an [ItemCollection](../../../item-spec/itemcollection-spec.md) with 3 items to `/collections/{collectionID}/items`:
+DELETE an [ItemCollection](../../../item-spec/itemcollection-spec.md) with 3 items to `/collections/{collectionId}/items`:
 
 E.g. DELETE request body
 ```
