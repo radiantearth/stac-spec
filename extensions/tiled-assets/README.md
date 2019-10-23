@@ -57,11 +57,16 @@ The pixel buffer definition.
 
 ### Dimension Object
 
-An additional dimension of that tile pyramid. The possible values of that dimension can either be passed as a concrete list of positions, or as a ruleset.
+An additional dimension of that tile pyramid. The possible values of that dimension can either be passed as a concrete list of positions, or as a ruleset for discrete values.
 
-| Field Name    | Type    | Description                                                                                                      |
-| ------------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
-| positions     | [*]     | The discrete possible values of that dimension.                  |
+| Field Name    | Type            | Description                                                                                                      |
+| ------------- | --------------- | ---------------------------------------------------------------------------------------------------------------- |
+| positions     | [number|string] | The discrete possible values of that dimension.                                                                  |
+| start         | number|string   | The first possible value of that particular dimension. Either a numeric or an ISO 8601 date or datetime.         |
+| stop          | number|string   | The last possible value of that particular dimension. Either a numeric or an ISO 8601 date or datetime.          |
+| steps         | number          | The number of steps in that dimension, including the `start` and `stop` values as borders.                       |
+
+Either `positions` or all of `start`, `stop`, and `steps` are required.
 
 ## Item fields
 
@@ -78,6 +83,8 @@ An asset template is an object that contains a link template to data associated 
 | hrefTemplate | string | **REQUIRED.** Link template to the asset object. Relative and absolute links are both allowed. All parts of the template within curly braces `{}` are meant to be template items to be replaced |
 | title        | string | The displayed title for clients and users.                                            |
 | type         | string | [Media type](../README.md#media-types) of the asset.                                  |
+
+The available template parameters are `{tilePyramid}`, `{tileMatrix}`, `{tileRow}`, and `{tileCol}`. Also, each dimension enables an additional template parameter of the same name. E.g: if there is a `date` dimension object in the map of dimensions, the `{date}` template parameter should be used.
 
 ## Implementations
 
