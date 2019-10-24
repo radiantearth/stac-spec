@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "stac-extension-eo.json#",
+  "$id": "eo-item.json#",
   "title": "EO Extension",
   "description": "STAC EO Extension to a STAC Item.",
   "allOf": [
