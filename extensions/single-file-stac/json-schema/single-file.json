@@ -5,7 +5,7 @@
   "description": "Single File STAC Extension to combine Collections and Items in single file catalog",
   "allOf": [
     {
-      "$ref": "../../../master/item-spec/json-schema/itemcollection.json"
+      "$ref": "../../../item-spec/json-schema/itemcollection.json"
     },
     {
       "$ref": "#/definitions/single-file-stac"
