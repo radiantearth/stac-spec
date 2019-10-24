@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "schema.json#",
+  "$id": "single-file.json#",
   "title": "Single File STAC Extension",
   "description": "Single File STAC Extension to combine Collections and Items in single file catalog",
   "allOf": [
