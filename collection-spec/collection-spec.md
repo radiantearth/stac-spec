@@ -35,7 +35,7 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | license      | string            | **REQUIRED.** Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60). Alternatively, use `proprietary` if the license is not on the SPDX license list or `various` if multiple licenses apply. In these two cases links to the license texts SHOULD be added, see the `license` link relation type. |
 | providers    | [[Provider Object](#provider-object) | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | extent       | [Extent Object](#extent-object) | **REQUIRED.** Spatial and temporal extents.    |
-| properties   | object            | Common fields across referenced items. |
+| properties   | Map<string, *>    | Common fields across referenced items. |
 | summaries    | Map<string, [*]\|[Stats Object](#stats-object)> | A map of property summaries, either a set of values or statistics such as a range. |
 | links        | [[Link Object](#link-object)]     | **REQUIRED.** A list of references to other documents.       |
 
