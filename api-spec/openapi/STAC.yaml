@@ -7,7 +7,7 @@ info:
     specification. Any service that implements this endpoint to allow search of
     spatiotemporal assets can be considered a STAC API. The endpoint is also
     available as an OpenAPI fragment that can be integrated with other OpenAPI
-    definitions, and is designed to slot seamlessly into a WFS 3 API definition.
+    definitions, and is designed to slot seamlessly into a OGC API - Features definition.
   contact:
     name: STAC Specification
     url: 'http://stacspec.org'
@@ -575,4 +575,4 @@ components:
             http://api.cool-sat.com/stac/search?next=ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
 tags:
   - name: STAC
-    description: Extension to WFS3 Core to support STAC metadata model and search API
+    description: Extension to OGC API - Features to support STAC metadata model and search API
