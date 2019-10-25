@@ -256,5 +256,5 @@ components:
 tags:
   - name: Transaction Extension
     description: >-
-      STAC-specific operations to add, remove, and edit items within WFS3
+      STAC-specific operations to add, remove, and edit items within OGC API - Features
       collections.

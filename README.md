@@ -63,7 +63,7 @@ In the context of STAC it is most likely a collection of STAC Items that is made
 It includes things like the spatial and temporal extent of the data, the license, keywords, etc.
 It enables discovery at a higher level than individual items, providing a simple way to describe sets of data.
 
-**[api-spec/](api-spec/)** extends the core publishing capabilities of [WFS 3](https://github.com/opengeospatial/wfs_fes) with two 
+**[api-spec/](api-spec/)** extends the core publishing capabilities of [OGC API - Features](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html) with  
 STAC-related endpoints. They add catalog and collection browsing and an active STAC REST search endpoint that returns
 just the Items a user requests in their query. The API is specified as a couple [OpenAPI](http://openapis.org) documents, one is just the
 [minimal core API](api-spec/STAC.yaml) and the other one [integrates the API extensions](api-spec/STAC-extensions.yaml).
