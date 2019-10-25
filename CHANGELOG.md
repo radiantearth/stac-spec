@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+- Updated specification to base on OGC API - Features - Part 1: Core, v1.0.0 instead of OGC API - Features - Part 1: Core, v1.0.0-draft.2 (fka WFS3 draft 2).
+
 ## [v0.8.0] - 2019-10-11
 
 ### Changed
@@ -191,7 +193,7 @@ Highlights include:
 
 * Updates to the core **`Item` JSON specification**, including simplifying to a single datetime, moving thumbnails from 'links' to 'assets', making assets a dictionary for easier lookup and requiring `self` links to be absolute links.
 
-* Alignment of **STAC API** with the new [WFS 3](https://github.com/opengeospatial/WFS_FES/) specification
+* Alignment of **STAC API** with the new [WFS3](https://github.com/opengeospatial/WFS_FES/) specification
 
 * Cleanup of the **static catalog** specification for greater clarity around the catalog
 

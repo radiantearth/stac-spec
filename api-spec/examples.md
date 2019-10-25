@@ -1,16 +1,16 @@
 # STAC API Examples
 
-A typical WFS will have multiple collections, and each will just offer simple search for its particular collection at `GET /collections/{collectionId}/items`.
-Due to the limited parameter support in WFS3, it is recommended to use the STAC API endpoint `POST /stac/search` for advanced queries.
-The filtering is made to be compatible between STAC API and WFS3 whenever feasible, and the two specs seek to share the general query and filtering patterns.
+A typical OAFeat will have multiple collections, and each will just offer simple search for its particular collection at `GET /collections/{collectionId}/items`.
+Due to the limited parameter support in OGC API - Features, it is recommended to use the STAC API endpoint `POST /stac/search` for advanced queries.
+The filtering is made to be compatible between STAC API and OGC API - Features whenever feasible, and the two specs seek to share the general query and filtering patterns.
 The key difference is that the STAC API search endpoints will do cross collection search.
 
 Implementations may **optionally** provide support for the full superset of STAC API query parameters to the `/collections/{collectionId}/items` endpoint,
 where the collection ID in the path is equivalent to providing that single value in the `collections` query parameter in STAC API.
 
-## WFS
+## OGC API - Features (OAFeat)
 
-Note that the WFS endpoints _only_ supports HTTP GET. HTTP POST requests are not supported.
+Note that the OAFeat endpoints _only_ supports HTTP GET. HTTP POST requests are not supported.
 
 Request all the data in `mycollection` that is in New Zealand:
 
