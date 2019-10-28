@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "stac-extension-scientific.json#",
+  "$id": "schema.json#",
   "title": "Scientific Extension",
   "description": "STAC Scientific Extension to STAC Items or STAC Collections.",
   "oneOf": [
