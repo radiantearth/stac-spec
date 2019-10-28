@@ -61,8 +61,8 @@ different sub-catalog organization structures. For example one catalog could div
 providers, and users could browse down to both. The leaf Items should just be linked to in a single canonical location
 (or at least use a `rel` link that indicates the location of the canonical one.
 
-The STAC API is also made to be compatible with WFS3, which has a set structure for the canonical location of its features.
-STAC Items should use the WFS3 location as their canonical location, and then in the `/stac/` browse structure would just
+The STAC API is also made to be compatible with OGC API - Features, which has a set structure for the canonical location of its features.
+STAC Items should use the OGC API - Features location as their canonical location, and then in the `/stac/` browse structure would just
 link to those locations. 
 
 ## Catalog Layout
