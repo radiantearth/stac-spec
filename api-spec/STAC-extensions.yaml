@@ -730,8 +730,6 @@ components:
           datetime:
             min: '2015-06-23T00:00:00Z'
             max: '2019-07-10T13:44:56Z'
-          license:
-            - proprietary
           'sci:citation':
             - 'Copernicus Sentinel data [Year]'
           'eo:gsd':
@@ -1645,12 +1643,15 @@ components:
               type: integer
               nullable: true
               minimum: 0
+              example: 5
             matched:
               type: integer
               minimum: 0
+              example: 1
             returned:
               type: integer
               minimum: 0
+              example: 1
     item:
       description: >-
         A GeoJSON Feature augmented with foreign members that contain values
