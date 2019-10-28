@@ -26,9 +26,9 @@ These are built into the definitive core API specification at [STAC.yaml](STAC.y
 
 In the [openapi](openapi/) directory there are three files
 
-- WFS3.yaml - The WFS3.yaml file is the OGC API - Features OpenAPI definition **as currently used by STAC**
-- STAC.yaml - Contains additional endpoints and components that STAC uses, which is treated as a OGC API - Features extension
-- STAC.merge.yaml - A file referencing the above two used to create the final [STAC.yaml](STAC.yaml) definition
+- OAFeat.yaml - The OAFeat.yaml file is the OGC API - Features OpenAPI definition as currently used by STAC API.
+- STAC.yaml - Contains (1) additional STAC-specific endpoints that STAC APIs expose and (2) extensions and concretization to OGC API - Features that STAC APIs require.
+- STAC.merge.yaml - A file referencing the above two used to create the final [STAC.yaml](STAC.yaml) definition.
 
 A basic STAC implementation implements both the OGC API - Features and STAC definitions.
 
