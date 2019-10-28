@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 - Numerous typos, clarifications and fixes for documentation and examples.
 - Fixed STAC API definition to include STAC-related fields and examples in *OGC API - Features*-derived endpoints.
+- Fixed JSON schemas for extensions: `$id` field matches file name.
 
 ## [v0.8.0] - 2019-10-11
 
