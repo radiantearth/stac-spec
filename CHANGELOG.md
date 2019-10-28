@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+# Changed
 - Updated specification to base on OGC API - Features - Part 1: Core, v1.0.0 instead of OGC API - Features - Part 1: Core, v1.0.0-draft.2 (fka WFS3 draft 2).
+
+# Fixed
+- Fixed JSON schemas for extensions: `$id` field matches file name.
 
 ## [v0.8.0] - 2019-10-11
 
