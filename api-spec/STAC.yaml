@@ -1668,9 +1668,9 @@ components:
         Information about the feature collection with id `collectionId`.
 
 
-        The response contains a linkto the items in the collection
+        The response contains a link to the items in the collection
 
-        (path `/collections/{collectionId}/items`,link relation `items`)
+        (path `/collections/{collectionId}/items`, link relation `items`)
 
         as well as key information about the collection. This information
 
