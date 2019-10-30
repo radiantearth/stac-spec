@@ -1,4 +1,8 @@
 {
+  "stac_version": "0.8.0",
+  "stac_extensions": [
+    "label"
+  ],
   "id": "znz001",
   "type": "Feature",
   "bbox": [
@@ -167646,7 +167650,7 @@
     "raster": {
       "title": "znz001_previewcog",
       "href": "https://oin-hotosm.s3.amazonaws.com/5afeda152b6a08001185f11a/0/5afeda152b6a08001185f11b.tif",
-      "type": "image/vnd.stac.geotiff; cloud-optimized=true"
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized"
     },
     "thumbnail": {
       "title": "znz001_thumbnail",
@@ -167656,11 +167660,18 @@
   },
   "properties": {
     "datetime": "2019-04-23T00:00:00Z",
-    "label:property": "[building, condition]",
+    "label:properties": [
+      "building",
+      "condition"
+    ],
     "label:description": "building footprints manually  labeled and classified according to building completion status",
-    "label:task": "segmentation",
+    "label:tasks": [
+      "segmentation"
+    ],
     "label:type": "vector",
-    "label:method": "manual",
+    "label:methods": [
+      "manual"
+    ],
     "version": 1,
     "label:classes": [
       {
@@ -167678,32 +167689,30 @@
         ]
       }
     ],
-    "label:overview": {
-      "property_key": "building",
-      "counts": [
-        {
-          "name": "yes",
-          "count": 4440
-        }
-      ]
-    }
+    "label:overviews": [
+      {
+        "property_key": "building",
+        "counts": [
+          {
+            "name": "yes",
+            "count": 4440
+          }
+        ]
+      }
+    ]
   },
   "links": [
-    {
-      "rel": "self",
-      "href": "znz001.json"
-    },
     {
       "rel": "root",
       "href": "../catalog.json"
     },
     {
       "rel": "parent",
-      "href": "catalog.json"
+      "href": "collection.json"
     },
     {
       "rel": "collection",
-      "href": "catalog.json"
+      "href": "collection.json"
     },
     {
       "rel": "source",

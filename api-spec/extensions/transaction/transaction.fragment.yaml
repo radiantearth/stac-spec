@@ -202,6 +202,10 @@ components:
     partialItem:
       type: object
       properties:
+        stac_version:
+          $ref: '#/components/schemas/stac_version'
+        stac_extensions:
+          $ref: '#/components/schemas/stac_extensions'
         id:
           $ref: '#/components/schemas/itemId'
         bbox:
@@ -229,7 +233,7 @@ components:
       additionalProperties: true
       properties:
         datetime:
-          $ref: '#/components/schemas/time'
+          $ref: '#/components/schemas/datetime'
   responses:
     NotFound:
       description: The specified resource was not found
@@ -252,5 +256,5 @@ components:
 tags:
   - name: Transaction Extension
     description: >-
-      STAC-specific operations to add, remove, and edit items within WFS3
+      STAC-specific operations to add, remove, and edit items within OGC API - Features
       collections.

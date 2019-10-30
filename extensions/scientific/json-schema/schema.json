@@ -1,54 +1,70 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "stac-extension-scientific.json#",
+  "$id": "schema.json#",
   "title": "Scientific Extension",
-  "description": "STAC Scientific Extension to a STAC Item.",
-  "allOf": [
+  "description": "STAC Scientific Extension to STAC Items or STAC Collections.",
+  "oneOf": [
     {
-      "$ref": "../../../item-spec/json-schema/item.json#/definitions/core"
+      "allOf": [
+        {
+          "$ref": "../../../item-spec/json-schema/item.json"
+        },
+        {
+          "type": "object",
+          "required": [
+            "properties"
+          ],
+          "properties": {
+            "properties": {
+              "$ref": "#/definitions/scientific"
+            }
+          }
+        }
+      ]
     },
     {
-      "$ref": "#/definitions/scientific"
+      "allOf": [
+        {
+          "$ref": "../../../collection-spec/json-schema/collection.json"
+        },
+        {
+          "$ref": "#/definitions/scientific"
+        }
+      ]
     }
   ],
   "definitions": {
     "scientific": {
       "type": "object",
-      "required": [
-        "properties"
-      ],
       "properties": {
-        "properties": {
-          "type": "object",
-          "properties": {
-            "sci:doi": {
-              "type": "string",
-              "title": "Data DOI",
-              "pattern": "^(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![%\"#? ])\\S)+)$"
-            }, 
-            "sci:citation": {
-              "type": "string", 
-              "title": "Proposed Data Citation"
-            },
-            "sci:publications": {
-              "type": "array",
-              "title": "Publications",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "doi": {
-                    "type": "string",
-                    "title": "Publication DOI",
-                    "pattern": "^(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![%\"#? ])\\S)+)$"
-                  }, 
-                  "citation": { 
-                    "type": "string", 
-                    "title": "Publication Citation"
-                  }
-                }
+        "sci:doi": {
+          "type": "string",
+          "title": "Data DOI",
+          "pattern": "^(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![%\"#? ])\\S)+)$"
+        }, 
+        "sci:citation": {
+          "type": "string", 
+          "title": "Proposed Data Citation"
+        },
+        "sci:publications": {
+          "type": "array",
+          "title": "Publications",
+          "items": {
+            "type": "object",
+            "properties": {
+              "doi": {
+                "type": "string",
+                "title": "Publication DOI",
+                "pattern": "^(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![%\"#? ])\\S)+)$"
+              }, 
+              "citation": { 
+                "type": "string", 
+                "title": "Publication Citation"
               }
             }
           }
         }
       }
     }
+  }
+}

@@ -1,13 +1,13 @@
 openapi: 3.0.1
 info:
   title: The SpatioTemporal Asset Catalog API
-  version: 0.7.0
+  version: 0.8.0
   description: >-
     This is an OpenAPI definition of the core SpatioTemporal Asset Catalog API
     specification. Any service that implements this endpoint to allow search of
     spatiotemporal assets can be considered a STAC API. The endpoint is also
     available as an OpenAPI fragment that can be integrated with other OpenAPI
-    definitions, and is designed to slot seamlessly into a WFS 3 API definition.
+    definitions, and is designed to slot seamlessly into a OGC API - Features definition.
   contact:
     name: STAC Specification
     url: 'http://stacspec.org'
@@ -52,11 +52,11 @@ paths:
         - STAC
       parameters:
         - $ref: '#/components/parameters/bbox'
-        - $ref: '#/components/parameters/time'
+        - $ref: '#/components/parameters/datetime'
         - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/next'
         - $ref: '#/components/parameters/ids'
-        - $ref: '#/components/parameters/collections'
+        - $ref: '#/components/parameters/collectionsArray'
       responses:
         '200':
           description: A feature collection.
@@ -116,67 +116,39 @@ components:
     limit:
       name: limit
       in: query
-      description: |
-        The optional limit parameter limits the number of items that are
-        presented in the response document.
-
-        Only items are counted that are on the first level of the collection in
-        the response document. Nested objects contained within the explicitly
-        requested items shall not be counted.
-
-        * Minimum = 1
-        * Maximum = 10000
-        * Default = 10
+      description: The maximum number of results to return (page size). Defaults to 10
       required: false
       schema:
-        type: integer
-        minimum: 1
-        maximum: 10000
-        default: 10
+        $ref: '#/components/schemas/limit'
       style: form
       explode: false
-    page:
-      name: page
+    next:
+      name: next
       in: query
-      description: |
-        The optional page parameter returns the specified page of results
-        (with each page having size=limit).
-
-        * Minimum = 1
-        * Default = 1
+      description: The token to retrieve the next set of results, e.g., offset, page, continuation token
       required: false
       schema:
-        type: integer
-        minimum: 1
-        default: 1
+        $ref: '#/components/schemas/next'
       style: form
-      explode: false
     ids:
       name: ids
       in: query
       description: |
-        The optional ids parameter returns a FeatureCollection of all matching ids.
-        If provided all other parameters that further restrict the number of search results (except `page` and `limit`) will be ignored.
+        Array of Item ids to return. All other filter parameters that further restrict the number of 
+        search results (except `next` and `limit`) are ignored
       required: false
       schema:
-        type: array
-        minItems: 1
-        items:
-          type: string
+        $ref: '#/components/schemas/ids'
       explode: false
-    collections:
+    collectionsArray:
       name: collections
       in: query
       description: |
-        The collections search parameter is a list of of collection IDs for Items to match.
-        Only items that are included in one of these collections will be returned, otherwise
-        all collections will be searched.
+        Array of Collection IDs to include in the search for items.
+        Only Items in one of the provided Collections will be searched
       required: false
       schema:
-        type: array
-        minItems: 1
-        items:
-          type: string
+        $ref: '#/components/schemas/collectionsArray'
       explode: false
     bbox:
       name: bbox
@@ -211,45 +183,33 @@ components:
         is used to determine the extent or all relevant geometries.
       required: false
       schema:
-        type: array
-        minItems: 4
-        maxItems: 6
-        items:
-          type: number
+        $ref: '#/components/schemas/bbox'
       style: form
       explode: false
-    time:
-      name: time
+    datetime:
+      name: datetime
       in: query
-      description: >
-        Either a date-time or a period string that adheres to RFC3339. Examples:
+      description: |-
+        Either a date-time or an interval, open or closed. Date and time expressions
+        adhere to RFC 3339. Open intervals are expressed using double-dots.
 
-        * A date-time: "2018-02-12T23:20:50Z" 
-        * A period: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or "2018-02-12T00:00:00Z/P1M6DT12H31M12S" 
+        Examples:
 
-        Only features that have a temporal property that intersects the value
-        of `time` are selected. If a feature has multiple temporal properties, it
-        is the decision of the server whether only a single temporal property is
-        used to determine the extent or all relevant temporal properties.
+        * A date-time: "2018-02-12T23:20:50Z"
+        * A closed interval: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
+        * Open intervals: "2018-02-12T00:00:00Z/.." or "../2018-03-18T12:31:12Z"
+
+        Only features that have a temporal property that intersects the value of
+        `datetime` are selected.
+
+        If a feature has multiple temporal properties, it is the decision of the
+        server whether only a single temporal property is used to determine
+        the extent or all relevant temporal properties.
+      schema:
+        $ref: '#/components/schemas/datetime'
       required: false
-      schema:
-        type: string
-      style: form
       explode: false
-    collectionId:
-      name: collectionId
-      in: path
-      required: true
-      description: Identifier (name) of a specific collection
-      schema:
-        type: string
-    featureId:
-      name: featureId
-      in: path
-      description: Local identifier of a specific feature
-      required: true
-      schema:
-        type: string
+      style: form
   schemas:
     exception:
       type: object
@@ -286,13 +246,20 @@ components:
       type: object
       allOf:
         - $ref: '#/components/schemas/bboxFilter'
-        - $ref: '#/components/schemas/timeFilter'
+        - $ref: '#/components/schemas/datetimeFilter'
         - $ref: '#/components/schemas/intersectsFilter'
-        - type: object
-          properties:
-            limit:
-              type: integer
-              example: 10
+        - $ref: '#/components/schemas/nextFilter'
+        - $ref: '#/components/schemas/collectionsFilter'
+        - $ref: '#/components/schemas/idsFilter'
+        - $ref: '#/components/schemas/limitFilter'
+    next:
+      type: string
+      description: The token to retrieve the next set of results, e.g., offset, page, continuation token
+      default: null
+    limit:
+      type: integer
+      example: 10
+      description: The maximum number of results to return (page size). Defaults to 10
     bbox:
       description: |
         Only features that have a geometry that intersects the bounding box are
@@ -338,34 +305,90 @@ components:
       properties:
         bbox:
           $ref: '#/components/schemas/bbox'
-    timeFilter:
-      description: An object representing a time based filter.
+    collectionsArray:
+      type: array
+      description: |
+        Array of Collection IDs to include in the search for items.
+        Only Items in one of the provided Collections will be searched
+      items:
+        type: string
+    ids:
+      type: array
+      description: |
+        Array of Item ids to return. All other filter parameters that further restrict the number of 
+        search results (except `next` and `limit`) are ignored
+      items:
+        type: string
+    datetimeFilter:
+      description: An object representing a date+time based filter.
       type: object
       properties:
-        time:
-          $ref: '#/components/schemas/time'
+        datetime:
+          $ref: '#/components/schemas/datetime'
     intersectsFilter:
       type: object
       description: Only returns items that intersect with the provided polygon.
       properties:
         intersects:
           $ref: 'https://geojson.org/schema/Geometry.json'
-    time:
+    limitFilter:
+      type: object
+      description: Only returns maximum number of results (page size)
+      properties:
+        limit:
+          $ref: '#/components/schemas/limit'
+    nextFilter:
+      type: object
+      description: Only returns the next set of results
+      properties:
+        next:
+          $ref: '#/components/schemas/next' 
+    idsFilter:
+      type: object
+      description: Only returns items that match the array of given ids
+      properties:
+        ids:
+          $ref: '#/components/schemas/ids'
+    collectionsFilter:
+      type: object
+      description: Only returns the collections specified
+      properties:
+        collections:
+          $ref: '#/components/schemas/collectionsArray'
+    datetime:
       type: string
-      description: >
-        Either a date-time or a period string that adheres to RFC 3339.
+      description: |-
+        Either a date-time or an interval, open or closed. Date and time expressions
+        adhere to RFC 3339. Open intervals are expressed using double-dots.
+
         Examples:
 
-        * A date-time: "2018-02-12T23:20:50Z"  
-        * A period: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z" or "2018-02-12T00:00:00Z/P1M6DT12H31M12S"
+        * A date-time: "2018-02-12T23:20:50Z"
+        * A closed interval: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
+        * Open intervals: "2018-02-12T00:00:00Z/.." or "../2018-03-18T12:31:12Z"
 
         Only features that have a temporal property that intersects the value of
-        `time` are selected.
+        `datetime` are selected.
 
         If a feature has multiple temporal properties, it is the decision of the
-        server whether only a single temporal property is used to determine the
-        extent or all relevant temporal properties.
+        server whether only a single temporal property is used to determine
+        the extent or all relevant temporal properties.
       example: '2018-02-12T00:00:00Z/2018-03-18T12:31:12Z'
+    stac_version:
+      title: STAC version
+      type: string
+      example: 0.8.0
+    stac_extensions:
+      title: STAC extensions
+      type: array
+      uniqueItems: true
+      items:
+        anyOf:
+          - title: Reference to a JSON Schema
+            type: string
+            format: uri
+          - title: Reference to a core extension
+            type: string
     catalogDefinition:
       type: object
       required:
@@ -375,8 +398,9 @@ components:
         - links
       properties:
         stac_version:
-          type: string
-          example: 0.7.0
+          $ref: '#/components/schemas/stac_version'
+        stac_extensions:
+          $ref: '#/components/schemas/stac_extensions'
         id:
           type: string
           example: naip
@@ -410,72 +434,6 @@ components:
                   type: string
                 title:
                   type: string
-    collectionInfo:
-      type: object
-      required:
-        - stac_version
-        - id
-        - description
-        - license
-        - extent
-      properties:
-        stac_version:
-          type: string
-          example: 0.7.0
-        id:
-          description: 'identifier of the collection used, for example, in URIs'
-          type: string
-          example: buildings
-        keywords:
-          title: Keywords
-          type: array
-          items:
-            type: string
-            example:
-              - buildings
-              - properties
-              - constructions
-        version:
-          title: Collection Version
-          type: string
-          example: 2018Q3
-        license:
-          title: Collection License Name
-          type: string
-          example: Apache-2.0
-        providers:
-          type: array
-          items:
-            properties:
-              name:
-                title: Organization name
-                type: string
-                example: Big Building Corp
-              description:
-                title: Provider description
-                type: string
-                example: "No further processing applied."
-              roles:
-                title: Organization roles
-                type: array
-                items:
-                  type: string
-                  enum:
-                    - producer
-                    - licensor
-                    - processor
-                    - host
-                example: 
-                  - producer
-                  - licensor
-              url:
-                title: Homepage
-                description: >-
-                  Homepage on which the provider describes the dataset and
-                  publishes contact information.
-                type: string
-                format: url
-                example: http://www.big-building.com
     itemCollection:
       description: A GeoJSON FeatureCollection augmented with foreign members that contain values relevant to a STAC entity
       type: object
@@ -497,6 +455,7 @@ components:
       description:  A GeoJSON Feature augmented with foreign members that contain values relevant to a STAC entity
       type: object
       required:
+        - stac_version
         - id
         - type
         - geometry
@@ -505,6 +464,10 @@ components:
         - properties
         - assets
       properties:
+        stac_version:
+          $ref: '#/components/schemas/stac_version'
+        stac_extensions:
+          $ref: '#/components/schemas/stac_extensions'
         id:
           $ref: '#/components/schemas/itemId'
         bbox:
@@ -522,6 +485,7 @@ components:
         assets:
           $ref: '#/components/schemas/itemAssets'
       example:
+        stac_version: '0.8.0'
         type: Feature
         id: CS3-20160503_132130_04
         bbox:
@@ -595,9 +559,9 @@ components:
       description: provides the core metatdata fields plus extensions
       properties:
         datetime:
-          $ref: '#/components/schemas/time'
+          $ref: '#/components/schemas/datetime'
       additionalProperties:
-        description: Any additional properties added in via extensions.
+        description: Any additional properties added in via Item specification or extensions.
     itemCollectionLinks:
       type: array
       description: >-
@@ -611,4 +575,4 @@ components:
             http://api.cool-sat.com/stac/search?next=ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
 tags:
   - name: STAC
-    description: Extension to WFS3 Core to support STAC metadata model and search API
+    description: Extension to OGC API - Features to support STAC metadata model and search API

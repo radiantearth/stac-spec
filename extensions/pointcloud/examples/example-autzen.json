@@ -1,4 +1,8 @@
 {
+  "stac_version": "0.8.0",
+  "stac_extensions": [
+    "pointcloud"
+  ],
   "assets": {},
   "bbox": [
     -123.0755422,
@@ -47,7 +51,7 @@
     "pc:count": 10653336,
     "pc:density": 0,
     "pc:encoding": "LASzip",
-    "pc:schema": [
+    "pc:schemas": [
       {
         "name": "X",
         "size": 8,

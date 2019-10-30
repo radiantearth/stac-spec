@@ -45,17 +45,19 @@ stable for over a year and are used in twenty or more implementations.
 
 An extension can add new fields to STAC entities (content extension), or can add new endpoints or behavior to the API (API extension). Below is a list of content extensions, while API extensions given under [api-spec](../api-spec/) in a folder for [API extensions](../api-spec/extensions/).
 
-| Extension Name (Prefix)                             | Scope            | Description                                                  | Maturity |
-| ----------------------------------------------------| ---------------- | ------------------------------------------------------------ | -------- |
-| [Checksum](checksum/README.md) (`checksum`)         | Item +Catalog +Collection | Provides a way to specify file checksums for assets and links in Items, Catalogs and Collections. | *Proposal* |
-| [Data Cube](datacube/README.md) (`cube`)            | Item | Data Cube related metadata, especially to describe their dimensions. | *Proposal* |
-| [Datetime Range](datetime-range//README.md) (`dtr`) | Item | An extension to provide datetime ranges with a start and an end datetime stamp in a consistent way. | *Proposal* |
-| [EO](eo/README.md) (`eo`)                           | Item | Covers electro-optical data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, off nadir, sun angle + elevation, gsd and more. | *Pilot* |
-| [Label](label/README.md) (`label`)                  | Item | Items that relate labeled AOIs with source imagery | *Proposal* |
-| [Point Cloud](pointcloud/README.md) (`pc`)          | Item | Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LiDAR or coincidence-matched imagery. | *Proposal* |
-| [Projection](projection/README.md) (`proj`)         | Item | Provides a way to describe items whose assets are in a geospatial projection. | *Proposal* |
-| [SAR](sar/README.md) (`sar`)                        | Item | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. | *Proposal* |
-| [Scientific](scientific/README.md) (`sci`)          | Item | Scientific metadata is considered to be data that indicate from which publication data originates and how the data itself should be cited or referenced. | *Proposal* |
+| Extension Name (Prefix)                                      | Scope            | Description                                                  | Maturity |
+| ------------------------------------------------------------ | ---------------- | ------------------------------------------------------------ | -------- |
+| [Asset Definition](asset/README.md) (-)                  | Collection | Provides a way to specify details about what assets may be found in Items belonging to a collection | *Proposal* |
+| [Checksum](checksum/README.md) (`checksum`)                  | Item +Catalog +Collection | Provides a way to specify file checksums for assets and links in Items, Catalogs and Collections. | *Proposal* |
+| [Data Cube](datacube/README.md) (`cube`)                     | Item             | Data Cube related metadata, especially to describe their dimensions. | *Proposal* |
+| [Datetime Range](datetime-range/README.md) (`dtr`)           | Item             | An extension to provide datetime ranges with a start and an end datetime stamp in a consistent way. | *Proposal* |
+| [EO](eo/README.md) (`eo`)                                    | Item             | Covers electro-optical data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, off nadir, sun angle + elevation, gsd and more. | *Pilot* |
+| [Label](label/README.md) (`label`)                           | Item             | Items that relate labeled AOIs with source imagery | *Proposal* |
+| [Point Cloud](pointcloud/README.md) (`pc`)                   | Item             | Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LiDAR or coincidence-matched imagery. | *Proposal* |
+| [Projection](projection/README.md) (`proj`)                  | Item             | Provides a way to describe items whose assets are in a geospatial projection. | *Proposal* |
+| [SAR](sar/README.md) (`sar`)                                 | Item             | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. | *Proposal* |
+| [Scientific](scientific/README.md) (`sci`)                   | Item +Collection | Scientific metadata is considered to be data that indicate from which publication data originates and how the data itself should be cited or referenced. | *Proposal* |
+| [Single File STAC](single-file-stac/README.md) (-)           | ItemCollection | An extension to provide a set of Collections and Items as a single file catalog. | *Proposal* |
 
 ## Third-party / vendor extensions
 
@@ -101,18 +103,18 @@ evolve to make fully resolved namespacing an option.
 
 An example of this can be seen in a Landsat example:
 
-```json
+```
   "properties": {
-	"datetime":"2018-01-01T13:21:30Z",
+    "datetime":"2018-01-01T13:21:30Z",
 
     "dtr:start_datetime":"2018-01-01T13:21:30Z",
     "dtr:end_datetime":"2018-01-01T13:31:30Z",
 
-    "eo:off_nadir_angle": -0.001,
+    "eo:off_nadir": -0.001,
     "eo:cloud_cover": 10.31,
     "eo:sun_azimuth": 149.01607154,
     "eo:sun_elevation": 59.21424700,
-    "eo:resolution": 30,
+    "eo:gsd": 30,
 
     "l8:data_type": "L1T",
     "l8:wrs_path": 153,
@@ -126,7 +128,7 @@ An example of this can be seen in a Landsat example:
     "l8:geometric_rmse_model_y": 4.654,
     "l8:geometric_rmse_verify": 5.364,
     "l8:image_quality_oli": 9
-  },
+  }
 ```
 
 ### Directory Structure
@@ -134,6 +136,11 @@ An example of this can be seen in a Landsat example:
 A STAC extension can have references to additional schemas within the extension schema. 
 These files should be kept together in order to preserve relative `$ref` links. 
 
-See the [EU](eo/) extension file structure as an example.
+See the [EO](eo/) extension file structure as an example.
 * Specification examples should be stored in an `examples` directory. 
 * The specification schema file(s) should be stored in a `json-schema` directory. 
+
+Make sure to choose a meaningful name for the extension folder as it will be the shortcut
+that is used to reference it in the `stac_extensions` field. Also, make sure to add the
+folder name to the enum defined for the `stac_extensions` field in the
+[JSON schema of the STAC catalog specification](../catalog-spec/json-schema/catalog.json).
