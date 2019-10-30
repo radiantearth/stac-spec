@@ -313,7 +313,8 @@
       "reference_system_spatial": {
         "type": [
           "string",
-          "number"
+          "number",
+          "object"
         ],
         "default": 4326
       },

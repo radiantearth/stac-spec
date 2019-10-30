@@ -31,7 +31,7 @@ A spatial dimension in one of the horizontal (x or y) directions.
 | extent           | [number]       | **REQUIRED.** Extent (lower and upper bounds) of the dimension as two-dimensional array. Open intervals with `null` are not allowed. |
 | values           | [number]       | Optionally, a set of all potential values.                   |
 | step             | number\|null   | The space between the values. Use `null` for irregularly spaced steps. |
-| reference_system | string\|number | The spatial reference system for the data, specified as [EPSG code](http://www.epsg-registry.org/) or [PROJ definition](https://proj4.org/operations/projections/index.html). Defaults to EPSG code 4326. |
+| reference_system | string\|number\|object | The spatial reference system for the data, specified as [EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html), [PROJJSON](https://proj.org/schemas/v0.1/projjson.schema.json) or [PROJ definition](https://proj4.org/operations/projections/index.html). Defaults to EPSG code 4326. |
 
 ### Vertical Spatial Dimension Object
 
@@ -47,7 +47,7 @@ A spatial dimension in vertical (z) direction.
 | values           | [number\|string] | A set of all potential values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
 | step             | number\|null     | If the dimension consists of [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between the values. Use `null` for irregularly spaced steps. |
 | unit             | string           | The unit of measurement for the data, preferably the symbols from [SI](https://physics.nist.gov/cuu/Units/units.html) or [UDUNITS](https://ncics.org/portfolio/other-resources/udunits2/). |
-| reference_system | string\|number   | The spatial reference system for the data, specified as [EPSG code](http://www.epsg-registry.org/) or [PROJ definition](https://proj4.org/operations/projections/index.html). Defaults to EPSG code 4326. |
+| reference_system | string\|number\|object | The spatial reference system for the data, specified as [EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html), [PROJJSON](https://proj.org/schemas/v0.1/projjson.schema.json) or [PROJ definition](https://proj4.org/operations/projections/index.html). Defaults to EPSG code 4326. |
 
 An Vertical Spatial Dimension Object MUST specify **at least** a `data_type`, an `extent` or a set of `values`. It is **recommended** to specify `data_type` and either `extent` or `values`.
 
