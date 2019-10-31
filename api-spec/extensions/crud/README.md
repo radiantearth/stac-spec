@@ -19,7 +19,7 @@ The PUT and DELETE methods support optimistic locking through use of ETags to so
 
 Note: this API is **not** transactional. That is, updates are not rolled back if one of the operations fails. Each operation in a bulk update succeeds or fails independently.
 
-Since the If-Match: ETag header is only designed to support optimistic locking for a single item, items themselves must contain an etag field in order to support optimistic locking for bulk operations.
+Since the If-Match: ETag header is only designed to support optimistic locking for a single resource, items themselves must contain an etag field in order to support optimistic locking for bulk operations.
 
 | Path                                                  | Content-Type Header | Description |
 | ----------------------------------------------------- | ------------------- | ----------- |
