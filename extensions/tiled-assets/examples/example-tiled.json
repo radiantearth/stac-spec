@@ -1,0 +1,231 @@
+{
+    "stac_version": "0.8.0",
+    "stac_extensions": [
+        "eo",
+        "tiled-assets"
+    ],
+    "id": "s2cloudless_2018",
+    "type": "Feature",
+    "bbox": [
+        -180,
+        90,
+        180,
+        90
+    ],
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    180,
+                    90
+                ],
+                [
+                    -180,
+                    90
+                ],
+                [
+                    -180,
+                    -90
+                ],
+                [
+                    180,
+                    -90
+                ],
+                [
+                    180,
+                    90
+                ]
+            ]
+        ]
+    },
+    "properties": {
+        "collection": "s2cloudless",
+        "datetime": "2018",
+        "eo:gsd": 10,
+        "eo:platform": "sentinel-2",
+        "eo:instrument": "msi",
+        "eo:bands": [
+            {
+                "name": "B2",
+                "common_name": "blue",
+                "gsd": 10
+            },
+            {
+                "name": "B3",
+                "common_name": "green",
+                "gsd": 10
+            },
+            {
+                "name": "B4",
+                "common_name": "red",
+                "gsd": 10
+            },
+            {
+                "name": "B8",
+                "common_name": "nir",
+                "gsd": 10
+            }
+        ],
+        "tl:tileMatrixSet": [
+            {
+                "type": "TileMatrixSetType",
+                "title": "Google Maps Compatible for the World",
+                "identifier": "WebMercatorQuad",
+                "boundingBox": {
+                    "type": "BoundingBoxType",
+                    "crs": "http://www.opengis.net/def/crs/EPSG/0/3857",
+                    "lowerCorner": [
+                        -20037508.3427892,
+                        -20037508.3427892
+                    ],
+                    "upperCorner": [
+                        20037508.3427892,
+                        20037508.3427892
+                    ]
+                },
+                "supportedCRS": "http://www.opengis.net/def/crs/EPSG/0/3857",
+                "wellKnownScaleSet": "http://www.opengis.net/def/wkss/OGC/1.0/GoogleMapsCompatible",
+                "tileMatrix": [
+                    {
+                        "type": "TileMatrixType",
+                        "identifier": "0",
+                        "scaleDenominator": 559082264.028717,
+                        "topLeftCorner": [
+                            -20037508.3427892,
+                            20037508.3427892
+                        ],
+                        "tileWidth": 256,
+                        "tileHeight": 256,
+                        "matrixWidth": 1,
+                        "matrixHeight": 1
+                    },
+                    {
+                        "type": "TileMatrixType",
+                        "identifier": "1",
+                        "scaleDenominator": 279541132.014358,
+                        "topLeftCorner": [
+                            -20037508.3427892,
+                            20037508.3427892
+                        ],
+                        "tileWidth": 256,
+                        "tileHeight": 256,
+                        "matrixWidth": 2,
+                        "matrixHeight": 2
+                    },
+                    {
+                        "type": "TileMatrixType",
+                        "identifier": "2",
+                        "scaleDenominator": 139770566.007179,
+                        "topLeftCorner": [
+                            -20037508.3427892,
+                            20037508.3427892
+                        ],
+                        "tileWidth": 256,
+                        "tileHeight": 256,
+                        "matrixWidth": 4,
+                        "matrixHeight": 4
+                    },
+                    {
+                        "type": "TileMatrixType",
+                        "identifier": "3",
+                        "scaleDenominator": 69885283.0035897,
+                        "topLeftCorner": [
+                            -20037508.3427892,
+                            20037508.3427892
+                        ],
+                        "tileWidth": 256,
+                        "tileHeight": 256,
+                        "matrixWidth": 8,
+                        "matrixHeight": 8
+                    },
+                    {
+                        "type": "TileMatrixType",
+                        "identifier": "4",
+                        "scaleDenominator": 34942641.5017948,
+                        "topLeftCorner": [
+                            -20037508.3427892,
+                            20037508.3427892
+                        ],
+                        "tileWidth": 256,
+                        "tileHeight": 256,
+                        "matrixWidth": 16,
+                        "matrixHeight": 16
+                    }
+                ]
+            }
+        ]
+    },
+    "assetTemplates": {
+        "bands": {
+            "hrefTemplate": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}.tif",
+            "title": "",
+            "type": "image/vnd.stac.geotiff",
+            "eo:bands": [
+                2,
+                1,
+                0,
+                3
+            ]
+        },
+        "B02": {
+            "hrefTemplate": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B02.tif",
+            "title": "",
+            "type": "image/vnd.stac.geotiff",
+            "eo:bands": [
+                0
+            ]
+        },
+        "B03": {
+            "hrefTemplate": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B03.tif",
+            "title": "",
+            "type": "image/vnd.stac.geotiff",
+            "eo:bands": [
+                1
+            ]
+        },
+        "B04": {
+            "hrefTemplate": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B04.tif",
+            "title": "",
+            "type": "image/vnd.stac.geotiff",
+            "eo:bands": [
+                2
+            ]
+        },
+        "B08": {
+            "hrefTemplate": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B08.tif",
+            "title": "",
+            "type": "image/vnd.stac.geotiff",
+            "eo:bands": [
+                3
+            ]
+        }
+    },
+    "assets": {
+        "thumbnail": {
+            "href": "http://cloudless.eox.at/s2cloudless_2018/0/0/0.tif",
+            "title": "Overview of the whole tiled dataset.",
+            "type": "image/vnd.stac.geotiff",
+            "eo:bands": [
+                2,
+                1,
+                0,
+                3
+            ]
+        }
+    },
+    "links": [
+        {
+            "rel": "self",
+            "href": "http://cloudless.eox.at/s2cloudless_2018/stac.json"
+        },
+        {
+            "rel": "parent",
+            "href": "http://cloudless.eox.at/s2cloudless/stack.json"
+        },
+        {
+            "rel": "root",
+            "href": "http://cloudless.eox.at/stack.json"
+        }
+    ]
+}
