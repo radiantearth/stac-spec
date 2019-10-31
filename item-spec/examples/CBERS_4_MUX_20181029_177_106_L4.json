@@ -78,28 +78,28 @@
     },
     "B5": {
       "href": "s3://cbers-pds/CBERS4/MUX/177/106/CBERS_4_MUX_20181029_177_106_L4/CBERS_4_MUX_20181029_177_106_L4_BAND5.tif",
-      "type": "image/vnd.stac.geotiff; cloud-optimized=true",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "eo:bands": [
         0
       ]
     },
     "B6": {
       "href": "s3://cbers-pds/CBERS4/MUX/177/106/CBERS_4_MUX_20181029_177_106_L4/CBERS_4_MUX_20181029_177_106_L4_BAND6.tif",
-      "type": "image/vnd.stac.geotiff; cloud-optimized=true",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "eo:bands": [
         1
       ]
     },
     "B7": {
       "href": "s3://cbers-pds/CBERS4/MUX/177/106/CBERS_4_MUX_20181029_177_106_L4/CBERS_4_MUX_20181029_177_106_L4_BAND7.tif",
-      "type": "image/vnd.stac.geotiff; cloud-optimized=true",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "eo:bands": [
         2
       ]
     },
     "B8": {
       "href": "s3://cbers-pds/CBERS4/MUX/177/106/CBERS_4_MUX_20181029_177_106_L4/CBERS_4_MUX_20181029_177_106_L4_BAND8.tif",
-      "type": "image/vnd.stac.geotiff; cloud-optimized=true",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "eo:bands": [
         3
       ]

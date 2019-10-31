@@ -42,7 +42,7 @@ inherited from GeoJSON.
 | geometry   | [GeoJSON Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) | **REQUIRED.** Defines the full footprint of the asset represented by this item, formatted according to [RFC 7946, section 3.1](https://tools.ietf.org/html/rfc7946). The footprint should be the default GeoJSON geometry, though additional geometries can be included. Coordinates are specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). |
 | bbox       | [number]                                                                   | **REQUIRED.** Bounding Box of the asset represented by this item using either 2D or 3D geometries. The length of the array must be 2*n where n is the number of dimensions. The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). When using 3D geometries, the elevation of the southwesterly most extent is the minimum depth/height in meters and the elevation of the northeasterly most extent is the maximum.  This field enables more naive clients to easily index and search geospatially. STAC compliant APIs are required to compute intersection operations with the item's geometry field, not its bbox. |
 | properties | [Properties Object](#properties-object)                                    | **REQUIRED.** A dictionary of additional metadata for the item. |
-| links      | [[Link Object](#link-object)]                                              | **REQUIRED.** List of link objects to resources and related URLs. A link with the `rel` set to `self` is required. |
+| links      | [[Link Object](#link-object)]                                              | **REQUIRED.** List of link objects to resources and related URLs. A link with the `rel` set to `self` is strongly recommended. |
 | assets     | Map<string, [Asset Object](#asset-object)>                                 | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key. Some pre-defined keys are listed in the chapter '[Asset types](#asset-types)'. |
 | collection | string                                                                     | The `id` of the STAC Collection this Item references to (see [`collection` relation type](#relation-types)). This field is *required* if such a relation type is present. This field provides an easy way for a user to search for any Items that belong in a specified Collection. |
 
@@ -191,24 +191,24 @@ would be appropriate; if it is an XML, then `text/xml` is appropriate.
 
 Common STAC Item Media Types:
 
-| Media Type                       | Description                                                                             |
-| -------------------------------- | --------------------------------------------------------------------------------------- |
-| `image/tiff` or `image/vnd.stac.geotiff` | GeoTIFF with standardized georeferencing metadata                               |
-| `image/vnd.stac.geotiff; cloud-optimized=true` | Cloud Optimized GeoTIFF                                                   |
-| `image/jp2`                      | JPEG 2000                                                                               |
-| `image/png`                      | Visual PNGs (e.g. thumbnails)                                                           |
-| `image/jpeg`                     | Visual JPEGs (e.g. thumbnails, oblique)                                                 |
-| `text/xml` or `application/xml`  | XML metadata [RFC 7303](https://www.ietf.org/rfc/rfc7303.txt)                           |
-| `application/json`               | JSON metadata                                                                           |
-| `text/plain`                     | Plain text metadata                                                                     |
-| `application/geo+json`           | GeoJSON                                                                                 |
-| `application/geopackage+sqlite3` | GeoPackage                                                                              |
-| `application/x-hdf5`             | Hierarchical Data Format version 5                                                      |
-| `application/x-hdf`              | Hierarchical Data Format versions 4 and earlier.                                        |
+| Media Type                                              | Description                                                  |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
+| `image/tiff; application=geotiff`                       | GeoTIFF with standardized georeferencing metadata            |
+| `image/tiff; application=geotiff; profile=cloud-optimized` | Cloud Optimized GeoTIFF (unofficial). Once there is an [official media type](http://osgeo-org.1560.x6.nabble.com/Media-type-tc5411498.html) it will be added and the proprietary media type here will be deprecated. |
+| `image/jp2`                                             | JPEG 2000                                                    |
+| `image/png`                                             | Visual PNGs (e.g. thumbnails)                                |
+| `image/jpeg`                                            | Visual JPEGs (e.g. thumbnails, oblique)                      |
+| `text/xml` or `application/xml`                         | XML metadata [RFC 7303](https://www.ietf.org/rfc/rfc7303.txt) |
+| `application/json`                                      | JSON metadata                                                |
+| `text/plain`                                            | Plain text metadata                                          |
+| `application/geo+json`                                  | GeoJSON                                                      |
+| `application/geopackage+sqlite3`                        | GeoPackage                                                   |
+| `application/x-hdf5`                                    | Hierarchical Data Format version 5                           |
+| `application/x-hdf`                                     | Hierarchical Data Format versions 4 and earlier.             |
 
-Note: should GeoTIFF become an IANA-registered type in the future (e.g., [`image/tiff; application=geojson`](https://github.com/opengeospatial/geotiff/issues/34#issuecomment-514078289)),
-this will be added as a recommended media type and `image/vnd.stac.geotiff` will be deprecated.
-Same applies for [Cloud Optimized GeoTiffs](http://osgeo-org.1560.x6.nabble.com/Media-type-tc5411498.html).
+Deprecation notice: GeoTiff previously used the media type `image/vnd.stac.geotiff` and
+Cloud Optimized GeoTiffs used `image/vnd.stac.geotiff; profile=cloud-optimized`.
+Both can still appear in old catalogues, but are deprecated and should be replaced.
 
 ## Extensions
 
@@ -232,5 +232,5 @@ There is a lot of metadata that is only of relevance to advanced processing algo
 It is recommended to have a complementary HTML version of each `Item` available for easy human consumption and search 
 engine crawlability. The exact nature of the HTML is not part of the specification, but it is recommended to use common
 ecosystem tools like [STAC Browser](https://github.com/radiantearth/stac-browser) to generate it. More information on creating 
-HTML versions of STAC can be found in the [STAC on the Web section](../catalog-spec/catalog-best-practices.md#stac-on-the-web) 
-of the catalog best practices document.
+HTML versions of STAC can be found in the [STAC on the Web section](../best-practices.md#stac-on-the-web) of the catalog 
+best practices document.

@@ -24,7 +24,7 @@ people can just search for 'landsat-8', instead of thinking through all the ways
 
 ## Static and Dynamic Catalogs
 
-As mentioned in the main [Catalog specification](catalog-spec.md), there are two main types of catalogs - static
+As mentioned in the main [Catalog specification](catalog-spec/catalog-spec.md), there are two main types of catalogs - static
 and dynamic. This section explains each of them in more depth and shares some best practices on each.
 
 ### Static Catalogs
@@ -49,7 +49,7 @@ is to place the catalog file in namespaces "directories". For example:
 ### Dynamic Catalogs
 
 Dynamic STAC Catalogs are those that generate their JSON responses programmatically instead of relying on a set of
-already defined files. Typically a dynamic catalog implements the full [STAC API](../stac-api/) which enables 
+already defined files. Typically a dynamic catalog implements the full [STAC API](api-spec/api-spec.md/) which enables 
 search of the Items indexed. But the `/stac/` endpoint returns the exact same `Catalog` and `Item` structures as a
 static catalog, enabling the same discovery from people browsing and search engines crawling. Dynamic API's that
 just seek to expose some data can also choose to only implement a Catalog the `/stac/` endpoint that returns dynamically.
@@ -61,8 +61,8 @@ different sub-catalog organization structures. For example one catalog could div
 providers, and users could browse down to both. The leaf Items should just be linked to in a single canonical location
 (or at least use a `rel` link that indicates the location of the canonical one.
 
-The STAC API is also made to be compatible with WFS3, which has a set structure for the canonical location of its features.
-STAC Items should use the WFS3 location as their canonical location, and then in the `/stac/` browse structure would just
+The STAC API is also made to be compatible with OGC API - Features, which has a set structure for the canonical location of its features.
+STAC Items should use the OGC API - Features location as their canonical location, and then in the `/stac/` browse structure would just
 link to those locations. 
 
 ## Catalog Layout
@@ -83,8 +83,8 @@ This means that each item and its assets are contained in a unique subdirectory
 
 ### Dynamic Catalog Layout
 
-While these recommendations were primarily written for [static catalogs](catalog-spec.md#static-catalogs), they apply
-equally well to [dynamic catalogs](catalog-spec.md#dynamic-catalogs). Subdirectories of course would just be URL paths 
+While these recommendations were primarily written for [static catalogs](catalog-spec/catalog-spec.md#static-catalogs), they apply
+equally well to [dynamic catalogs](catalog-spec/catalog-spec.md#dynamic-catalogs). Subdirectories of course would just be URL paths 
 generated dynamically, but the structure would be the same as is recommended.
 
 One benefit of a dynamic catalog is that it can generate various 'views' of the catalog, exposing the same Items in 

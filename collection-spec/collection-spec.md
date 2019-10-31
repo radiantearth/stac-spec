@@ -8,10 +8,10 @@ A group of STAC Item objects from a single source can share a lot of common meta
 
 A STAC Collection can be represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Collection and also a valid STAC Catalog.
 
-STAC Collections are meant to be compatible with WFS3 Collections, but please be aware that WFS Collections and STAC Collections originate from different specifications and despite the fact that we try to align them as much as possible be there may be subtle differences in the specifications.
+STAC Collections are meant to be compatible with *OGC API - Features* Collections, but please be aware that OAFeat Collections and STAC Collections originate from different specifications and despite the fact that we try to align them as much as possible be there may be subtle differences in the specifications.
 
 * [Examples](examples/):
-  * Sentinel 2: A basic standalone example of a [Item](examples/sentinel2.json) without items.
+  * Sentinel 2: A basic standalone example of a [Collection](examples/sentinel2.json) without items.
   * Landsat 8: A [Collection](examples/landsat-collection.json) that holds shared data from an [Item](examples/landsat-item.json).
 * [JSON Schema](json-schema/collection.json) - please see the [validation instructions](../validation/README.md)
 
@@ -35,7 +35,7 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | license      | string            | **REQUIRED.** Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60). Alternatively, use `proprietary` if the license is not on the SPDX license list or `various` if multiple licenses apply. In these two cases links to the license texts SHOULD be added, see the `license` link relation type. |
 | providers    | [[Provider Object](#provider-object) | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | extent       | [Extent Object](#extent-object) | **REQUIRED.** Spatial and temporal extents.    |
-| properties   | object            | Common fields across referenced items. |
+| properties   | Map<string, *>    | Common fields across referenced items. |
 | summaries    | Map<string, [*]\|[Stats Object](#stats-object)> | A map of property summaries, either a set of values or statistics such as a range. |
 | links        | [[Link Object](#link-object)]     | **REQUIRED.** A list of references to other documents.       |
 

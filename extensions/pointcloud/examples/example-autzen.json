@@ -51,7 +51,7 @@
     "pc:count": 10653336,
     "pc:density": 0,
     "pc:encoding": "LASzip",
-    "pc:schema": [
+    "pc:schemas": [
       {
         "name": "X",
         "size": 8,

@@ -10,7 +10,8 @@ info:
     specification. Any service that implements this endpoint to allow search of
     spatiotemporal assets can be considered a STAC API. The endpoint is also
     available as an OpenAPI fragment that can be integrated with other OpenAPI
-    definitions, and is designed to slot seamlessly into a WFS 3 API definition.
+    definitions, and is designed to slot seamlessly into a OGC API - Features
+    definition.
   contact:
     name: STAC Specification
     url: 'http://stacspec.org'
@@ -20,11 +21,13 @@ tags:
   - name: Data
     description: access to data (features)
   - name: STAC
-    description: Extension to WFS3 Core to support STAC metadata model and search API
+    description: >-
+      Extension to OGC API - Features to support STAC metadata model and search
+      API
   - name: Transaction Extension
     description: >-
-      STAC-specific operations to add, remove, and edit items within WFS3
-      collections.
+      STAC-specific operations to add, remove, and edit items within OGC API -
+      Features collections.
 paths:
   /:
     get:
@@ -46,7 +49,7 @@ paths:
         - Capabilities
       summary: information about specifications that this API conforms to
       description: |-
-        A list of all conformance classes specified in a standard that the 
+        A list of all conformance classes specified in a standard that the
         server conforms to.
       operationId: getConformanceDeclaration
       responses:
@@ -339,9 +342,9 @@ paths:
         - $ref: '#/components/parameters/bbox'
         - $ref: '#/components/parameters/datetime'
         - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/next'
         - $ref: '#/components/parameters/ids'
-        - $ref: '#/components/parameters/collections'
+        - $ref: '#/components/parameters/collectionsArray'
         - $ref: '#/components/parameters/query'
         - $ref: '#/components/parameters/sort'
         - $ref: '#/components/parameters/fields'
@@ -407,58 +410,34 @@ components:
     bbox:
       name: bbox
       in: query
-      description: >-
+      description: |
         Only features that have a geometry that intersects the bounding box are
-        selected.
-
-        The bounding box is provided as four or six numbers, depending on
-        whether the
-
-        coordinate reference system includes a vertical axis (elevation or
-        depth):
-
+        selected. The bounding box is provided as four or six numbers,
+        depending on whether the coordinate reference system includes a
+        vertical axis (elevation or depth):
 
         * Lower left corner, coordinate axis 1
-
-        * Lower left corner, coordinate axis 2
-
-        * Lower left corner, coordinate axis 3 (optional)
-
-        * Upper right corner, coordinate axis 1
-
-        * Upper right corner, coordinate axis 2
-
+        * Lower left corner, coordinate axis 2  
+        * Lower left corner, coordinate axis 3 (optional) 
+        * Upper right corner, coordinate axis 1 
+        * Upper right corner, coordinate axis 2 
         * Upper right corner, coordinate axis 3 (optional)
 
+        The coordinate reference system of the values is WGS84
+        longitude/latitude (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless
+        a different coordinate reference system is specified in the parameter
+        `bbox-crs`.
 
-        The coordinate reference system of the values is WGS 84
-        longitude/latitude
-
-        (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless a different
-        coordinate
-
-        reference system is specified in the parameter `bbox-crs`.
-
-
-        For WGS 84 longitude/latitude the values are in most cases the sequence
-        of
-
-        minimum longitude, minimum latitude, maximum longitude and maximum
-        latitude.
-
-        However, in cases where the box spans the antimeridian the first value
-
-        (west-most box edge) is larger than the third value (east-most box
-        edge).
+        For WGS84 longitude/latitude the values are in most cases the sequence
+        of minimum longitude, minimum latitude, maximum longitude and maximum
+        latitude. However, in cases where the box spans the antimeridian the
+        first value (west-most box edge) is larger than the third value
+        (east-most box edge).
 
 
         If a feature has multiple spatial geometry properties, it is the
-        decision of the
-
-        server whether only a single spatial geometry property is used to
-        determine
-
-        the extent or all relevant geometries.
+        decision of the server whether only a single spatial geometry property
+        is used to determine the extent or all relevant geometries.
       required: false
       schema:
         type: array
@@ -466,6 +445,7 @@ components:
         maxItems: 6
         items:
           type: number
+        $ref: '#/components/schemas/bbox'
       style: form
       explode: false
     collectionId:
@@ -508,6 +488,7 @@ components:
       required: false
       schema:
         type: string
+        $ref: '#/components/schemas/datetime'
       style: form
       explode: false
     featureId:
@@ -520,76 +501,47 @@ components:
     limit:
       name: limit
       in: query
-      description: >-
-        The optional limit parameter limits the number of items that are
-        presented in the response document.
-
-
-        Only items are counted that are on the first level of the collection in
-        the response document.
-
-        Nested objects contained within the explicitly requested items shall not
-        be counted.
-
-
-        Minimum = 1. Maximum = 10000. Default = 10.
+      description: The maximum number of results to return (page size). Defaults to 10
       required: false
       schema:
         type: integer
         minimum: 1
         maximum: 10000
         default: 10
+        $ref: '#/components/schemas/limit'
       style: form
       explode: false
-    page:
-      name: page
+    next:
+      name: next
       in: query
-      description: |
-        The optional page parameter returns the specified page of results
-        (with each page having size=limit).
-
-        * Minimum = 1
-        * Default = 1
+      description: >-
+        The token to retrieve the next set of results, e.g., offset, page,
+        continuation token
       required: false
       schema:
-        type: integer
-        minimum: 1
-        default: 1
+        $ref: '#/components/schemas/next'
       style: form
-      explode: false
     ids:
       name: ids
       in: query
       description: >
-        The optional ids parameter returns a FeatureCollection of all matching
-        ids.
+        Array of Item ids to return. All other filter parameters that further
+        restrict the number of 
 
-        If provided all other parameters that further restrict the number of
-        search results (except `page` and `limit`) will be ignored.
+        search results (except `next` and `limit`) are ignored
       required: false
       schema:
-        type: array
-        minItems: 1
-        items:
-          type: string
+        $ref: '#/components/schemas/ids'
       explode: false
-    collections:
+    collectionsArray:
       name: collections
       in: query
-      description: >
-        The collections search parameter is a list of of collection IDs for
-        Items to match.
-
-        Only items that are included in one of these collections will be
-        returned, otherwise
-
-        all collections will be searched.
+      description: |
+        Array of Collection IDs to include in the search for items.
+        Only Items in one of the provided Collections will be searched
       required: false
       schema:
-        type: array
-        minItems: 1
-        items:
-          type: string
+        $ref: '#/components/schemas/collectionsArray'
       explode: false
     query:
       name: query
@@ -724,6 +676,7 @@ components:
         extents, for example, thermal or pressure ranges.
       properties:
         spatial:
+          description: The spatial extent of the features in the collection.
           type: object
           properties:
             bbox:
@@ -742,13 +695,63 @@ components:
               minItems: 1
               items:
                 description: >-
-                  West, south, east, north edges of the bounding box. The
-                  coordinates
+                  Each bounding box is provided as four or six numbers,
+                  depending on
 
-                  are in the coordinate reference system specified in `crs`. By
-                  default
+                  whether the coordinate reference system includes a vertical
+                  axis
 
-                  this is WGS 84 longitude/latitude.
+                  (height or depth):
+
+
+                  * Lower left corner, coordinate axis 1
+
+                  * Lower left corner, coordinate axis 2
+
+                  * Minimum value, coordinate axis 3 (optional)
+
+                  * Upper right corner, coordinate axis 1
+
+                  * Upper right corner, coordinate axis 2
+
+                  * Maximum value, coordinate axis 3 (optional)
+
+
+                  The coordinate reference system of the values is WGS 84
+                  longitude/latitude
+
+                  (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless a
+                  different coordinate
+
+                  reference system is specified in `crs`.
+
+
+                  For WGS 84 longitude/latitude the values are in most cases the
+                  sequence of
+
+                  minimum longitude, minimum latitude, maximum longitude and
+                  maximum latitude.
+
+                  However, in cases where the box spans the antimeridian the
+                  first value
+
+                  (west-most box edge) is larger than the third value (east-most
+                  box edge).
+
+
+                  If the vertical axis is included, the third and the sixth
+                  number are
+
+                  the bottom and the top of the 3-dimensional bounding box.
+
+
+                  If a feature has multiple spatial geometry properties, it is
+                  the decision of the
+
+                  server whether only a single spatial geometry property is used
+                  to determine
+
+                  the extent or all relevant geometries.
                 type: array
                 minItems: 4
                 maxItems: 6
@@ -855,14 +858,11 @@ components:
           items:
             $ref: '#/components/schemas/link'
         timeStamp:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/timeStamp'
         numberMatched:
-          type: integer
-          minimum: 0
+          $ref: '#/components/schemas/numberMatched'
         numberReturned:
-          type: integer
-          minimum: 0
+          $ref: '#/components/schemas/numberReturned'
     featureGeoJSON:
       type: object
       required:
@@ -1030,6 +1030,25 @@ components:
                 minItems: 2
                 items:
                   type: number
+    numberMatched:
+      description: |-
+        The number of features of the feature type that match the selection
+        parameters like `bbox`.
+      type: integer
+      minimum: 0
+      example: 127
+    numberReturned:
+      description: |-
+        The number of features in the feature collection.
+
+        A server may omit this information in a response, if the information
+        about the number of features is not known or difficult to compute.
+
+        If the value is provided, the value shall be identical to the number
+        of items in the "features" array.
+      type: integer
+      minimum: 0
+      example: 10
     pointGeoJSON:
       type: object
       required:
@@ -1065,6 +1084,13 @@ components:
               minItems: 2
               items:
                 type: number
+    timeStamp:
+      description: >-
+        This property indicates the time and date when the response was
+        generated.
+      type: string
+      format: date-time
+      example: '2017-08-17T08:05:32Z'
     searchBody:
       description: The search criteria
       type: object
@@ -1072,14 +1098,23 @@ components:
         - $ref: '#/components/schemas/bboxFilter'
         - $ref: '#/components/schemas/datetimeFilter'
         - $ref: '#/components/schemas/intersectsFilter'
-        - type: object
-          properties:
-            limit:
-              type: integer
-              example: 10
+        - $ref: '#/components/schemas/nextFilter'
+        - $ref: '#/components/schemas/collectionsFilter'
+        - $ref: '#/components/schemas/idsFilter'
+        - $ref: '#/components/schemas/limitFilter'
         - $ref: '#/components/schemas/queryFilter'
         - $ref: '#/components/schemas/sortFilter'
         - $ref: '#/components/schemas/fieldsFilter'
+    next:
+      type: string
+      description: >-
+        The token to retrieve the next set of results, e.g., offset, page,
+        continuation token
+      default: null
+    limit:
+      type: integer
+      example: 10
+      description: The maximum number of results to return (page size). Defaults to 10
     bbox:
       description: |
         Only features that have a geometry that intersects the bounding box are
@@ -1125,6 +1160,22 @@ components:
       properties:
         bbox:
           $ref: '#/components/schemas/bbox'
+    collectionsArray:
+      type: array
+      description: |
+        Array of Collection IDs to include in the search for items.
+        Only Items in one of the provided Collections will be searched
+      items:
+        type: string
+    ids:
+      type: array
+      description: >
+        Array of Item ids to return. All other filter parameters that further
+        restrict the number of 
+
+        search results (except `next` and `limit`) are ignored
+      items:
+        type: string
     datetimeFilter:
       description: An object representing a date+time based filter.
       type: object
@@ -1137,6 +1188,30 @@ components:
       properties:
         intersects:
           $ref: 'https://geojson.org/schema/Geometry.json'
+    limitFilter:
+      type: object
+      description: Only returns maximum number of results (page size)
+      properties:
+        limit:
+          $ref: '#/components/schemas/limit'
+    nextFilter:
+      type: object
+      description: Only returns the next set of results
+      properties:
+        next:
+          $ref: '#/components/schemas/next'
+    idsFilter:
+      type: object
+      description: Only returns items that match the array of given ids
+      properties:
+        ids:
+          $ref: '#/components/schemas/ids'
+    collectionsFilter:
+      type: object
+      description: Only returns the collections specified
+      properties:
+        collections:
+          $ref: '#/components/schemas/collectionsArray'
     datetime:
       type: string
       description: >-
@@ -1573,11 +1648,11 @@ components:
   responses:
     LandingPage:
       description: |-
-        The landing page provides links to the API definition 
-        (link relations `service-desc` and `service-doc`), 
-        the Conformance declaration (path `/conformance`, 
-        link relation `conformance`), and the Feature 
-        Collections (path `/collections`, link relation 
+        The landing page provides links to the API definition
+        (link relations `service-desc` and `service-doc`),
+        the Conformance declaration (path `/conformance`,
+        link relation `conformance`), and the Feature
+        Collections (path `/collections`, link relation
         `data`).
       content:
         application/json:
@@ -1616,9 +1691,9 @@ components:
       description: |-
         The URIs of all conformance classes supported by the server.
 
-        To support "generic" clients that want to access multiple 
-        OGC API Features implementations - and not "just" a specific 
-        API / server, the server declares the conformance 
+        To support "generic" clients that want to access multiple
+        OGC API Features implementations - and not "just" a specific
+        API / server, the server declares the conformance
         classes it implements and conforms to.
       content:
         application/json:
@@ -1639,18 +1714,18 @@ components:
 
 
         The dataset is organized as one or more feature collections. This
-        resource 
+        resource
 
-        provides information about and access to the collections. 
+        provides information about and access to the collections.
 
 
         The response contains the list of collections. For each collection, a
-        link 
+        link
 
         to the items in the collection (path
-        `/collections/{collectionId}/items`, 
+        `/collections/{collectionId}/items`,
 
-        link relation `items`) as well as key information about the collection. 
+        link relation `items`) as well as key information about the collection.
 
         This information includes:
 
@@ -1733,11 +1808,11 @@ components:
         Information about the feature collection with id `collectionId`.
 
 
-        The response contains a linkto the items in the collection 
+        The response contains a linkto the items in the collection
 
-        (path `/collections/{collectionId}/items`,link relation `items`) 
+        (path `/collections/{collectionId}/items`,link relation `items`)
 
-        as well as key information about the collection. This information 
+        as well as key information about the collection. This information
 
         includes:
 
@@ -1798,41 +1873,41 @@ components:
             type: string
     Features:
       description: >-
-        The response is a document consisting of features in the collection. 
+        The response is a document consisting of features in the collection.
 
-        The features included in the response are determined by the server 
+        The features included in the response are determined by the server
 
-        based on the query parameters of the request. To support access to 
+        based on the query parameters of the request. To support access to
 
-        larger collections without overloading the client, the API supports 
+        larger collections without overloading the client, the API supports
 
-        paged access with links to the next page, if more features are selected 
+        paged access with links to the next page, if more features are selected
 
         that the page size.
 
 
-        The `bbox` and `datetime` parameter can be used to select only a 
+        The `bbox` and `datetime` parameter can be used to select only a
 
-        subset of the features in the collection (the features that are in the 
+        subset of the features in the collection (the features that are in the
 
         bounding box or time interval). The `bbox` parameter matches all
-        features 
+        features
 
-        in the collection that are not associated with a location, too. The 
+        in the collection that are not associated with a location, too. The
 
-        `datetime` parameter matches all features in the collection that are 
+        `datetime` parameter matches all features in the collection that are
 
         not associated with a time stamp or interval, too.
 
 
-        The `limit` parameter may be used to control the subset of the 
+        The `limit` parameter may be used to control the subset of the
 
         selected features that should be returned in the response, the page
         size.
 
-        Each page may include information about the number of selected and 
+        Each page may include information about the number of selected and
 
-        returned features (`numberMatched` and `numberReturned`) as well as 
+        returned features (`numberMatched` and `numberReturned`) as well as
 
         links to support paging (link relation `next`).
       content:
