@@ -27,7 +27,7 @@ item specification.
 
 **Landsat8** The [Landsat8 sample](landsat8-sample.json) is meant to be an example of how an S3-based catalog like the 
 [Landsat on AWS](https://landsatonaws.com/) public data set could be a STAC static catalog. It includes the 'collection'
-concept, which is explained more in the [/collection-spec/examples folder](../../collection-spec/examples).
+concept, which is explained more in the [/collection-spec/ folder](../../collection-spec/).
 
 **Planet** The [Planet sample](planet-sample.json) is an adaption of Planet's [Data API](https://www.planet.com/docs/reference/data-api/) 
 returned JSON, with minor tweaks to have it fit in to a STAC Item.
