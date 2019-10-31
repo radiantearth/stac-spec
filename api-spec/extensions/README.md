@@ -13,7 +13,7 @@ API Extensions given follow the same guidelines for Extension Maturity as given 
 | -------------  | ----------- | -------- |
 | [Fields](fields/README.md) | Adds parameter to control which fields are returned in the response. | *Pilot* |
 | [Query](query/README.md) | Adds parameter to search Item and Collection properties. | *Pilot* |
-| [Search](search/README.md) | Adds search-related metadata to [ItemCollection](../../item-spec/item-spec.md#itemcollection-fields). | *Proposal* |
+| [Search](search/README.md) | Adds search-related metadata to [ItemCollection](../../item-spec/itemcollection-spec.md). | *Proposal* |
 | [Sort](sort/README.md) | Adds Parameter to control sorting of returns results. | *Pilot* |
 | [Transaction](transaction/README.md) | Adds PUT and DELETE endpoints for the creation, editing, and deleting of items and Collections. | *Pilot* |
 
@@ -128,6 +128,6 @@ searchBody:
   type: object
   allOf:
     - $ref: "#/components/schema/bboxFilter"
-    - $ref: "#/components/schema/TimeFilter"
-    - $ref: "#/components/schema/IntersectsFilter"
+    - $ref: "#/components/schema/datetimeFilter"
+    - $ref: "#/components/schema/intersectsFilter"
 ```

@@ -25,6 +25,10 @@ paths:
               schema:
                 type: string
                 format: url
+            ETag:
+              schema:
+                type: string
+              description: A string to ensure the item has not been modified
           content:
             application/geo+json:
               schema:
@@ -46,6 +50,14 @@ paths:
               schema:
                 type: string
   '/collections/{collectionId}/items/{featureId}':
+    get:
+      responses:
+        '200':
+          headers:
+            ETag:
+              schema:
+                type: string
+              description: A string to ensure the item has not been modified
     put:
       summary: update an existing feature by Id with a complete item definition
       description: >-
@@ -57,6 +69,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/collectionId'
         - $ref: '#/components/parameters/featureId'
+        - $ref: '#/components/parameters/IfMatch'
       requestBody:
         content:
           application/json:
@@ -65,6 +78,11 @@ paths:
       responses:
         '200':
           description: Status of the update request.
+          headers:
+            ETag:
+              schema:
+                type: string
+              description: A string to ensure the item has not been modified
           content:
             text/html:
               schema:
@@ -98,6 +116,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/collectionId'
         - $ref: '#/components/parameters/featureId'
+        - $ref: '#/components/parameters/IfMatchOptional'
       requestBody:
         content:
           application/json:
@@ -106,6 +125,11 @@ paths:
       responses:
         '200':
           description: Status of the update request.
+          headers:
+            ETag:
+              schema:
+                type: string
+              description: A string to ensure the item has not been modified
           content:
             text/html:
               schema:
@@ -137,6 +161,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/collectionId'
         - $ref: '#/components/parameters/featureId'
+        - $ref: '#/components/parameters/IfMatch'
       responses:
         '204':
           description: Status of the delete request.
@@ -156,10 +181,31 @@ paths:
               schema:
                 type: string
 components:
+  parameters:
+    IfMatch:
+      name: If-Match
+      in: header
+      description: >-
+        Only take the action if the ETag of the item still matches
+      required: true
+      schema:
+        type: string
+    IfMatchOptional:
+      name: If-Match
+      in: header
+      description: >-
+        Only take the action if the ETag of the item still matches
+      required: false
+      schema:
+        type: string
   schemas:
     partialItem:
       type: object
       properties:
+        stac_version:
+          $ref: '#/components/schemas/stac_version'
+        stac_extensions:
+          $ref: '#/components/schemas/stac_extensions'
         id:
           $ref: '#/components/schemas/itemId'
         bbox:
@@ -187,7 +233,7 @@ components:
       additionalProperties: true
       properties:
         datetime:
-          $ref: '#/components/schemas/time'
+          $ref: '#/components/schemas/datetime'
   responses:
     NotFound:
       description: The specified resource was not found
@@ -210,5 +256,5 @@ components:
 tags:
   - name: Transaction Extension
     description: >-
-      STAC-specific operations to add, remove, and edit items within WFS3
+      STAC-specific operations to add, remove, and edit items within OGC API - Features
       collections.

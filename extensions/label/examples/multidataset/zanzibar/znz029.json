@@ -1,4 +1,8 @@
 {
+  "stac_version": "0.8.0",
+  "stac_extensions": [
+    "label"
+  ],
   "id": "znz029",
   "type": "Feature",
   "bbox": [
@@ -48906,7 +48910,7 @@
     "raster": {
       "title": "znz029_previewcog",
       "href": "https://oin-hotosm.s3.amazonaws.com/5ae242fd0b093000130afd38/0/5ae242fd0b093000130afd39.tif",
-      "type": "image/vnd.stac.geotiff; cloud-optimized=true"
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized"
     },
     "thumbnail": {
       "title": "znz029_thumbnail",
@@ -48916,11 +48920,18 @@
   },
   "properties": {
     "datetime": "2019-04-23T00:00:00Z",
-    "label:property": "[building, condition]",
-    "label:description": "building footprints manually  labeled and classified according to building completion status",
-    "label:task": "segmentation",
+    "label:properties": [
+      "building",
+      "condition"
+    ],
+    "label:description": "building footprints manually labeled and classified according to building completion status",
+    "label:tasks": [
+      "segmentation"
+    ],
     "label:type": "vector",
-    "label:method": "manual",
+    "label:methods": [
+      "manual"
+    ],
     "version": 1,
     "label:classes": [
       {
@@ -48938,32 +48949,30 @@
         ]
       }
     ],
-    "label:overview": {
-      "property_key": "building",
-      "counts": [
-        {
-          "name": "yes",
-          "count": 1612
-        }
-      ]
-    }
+    "label:overviews": [
+      {
+        "property_key": "building",
+        "counts": [
+          {
+            "name": "yes",
+            "count": 1612
+          }
+        ]
+      }
+    ]
   },
   "links": [
-    {
-      "rel": "self",
-      "href": "znz029.json"
-    },
     {
       "rel": "root",
       "href": "../catalog.json"
     },
     {
       "rel": "parent",
-      "href": "catalog.json"
+      "href": "collection.json"
     },
     {
       "rel": "collection",
-      "href": "catalog.json"
+      "href": "collection.json"
     },
     {
       "rel": "source",

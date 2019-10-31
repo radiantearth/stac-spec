@@ -1,84 +1,119 @@
 {
+  "stac_version": "0.8.0",
+  "stac_extensions": [
+    "label"
+  ],
   "id": "AOI_3_Paris_img101",
   "type": "Feature",
   "geometry": {
     "type": "Polygon",
     "coordinates": [
       [
-        [2.23379639995, 49.0178709],
-        [2.23730639995, 49.0178709],
-        [2.23730639995, 49.0213809],
-        [2.23379639995, 49.0213809]
+        [
+          2.23379639995,
+          49.0178709
+        ],
+        [
+          2.23730639995,
+          49.0178709
+        ],
+        [
+          2.23730639995,
+          49.0213809
+        ],
+        [
+          2.23379639995,
+          49.0213809
+        ]
       ]
     ]
   },
-  "bbox":
-  [
+  "bbox": [
     2.23379639995,
     49.0178709,
     2.23730639995,
     49.0213809
   ],
-  "properties":
-  {
+  "properties": {
     "datetime": "2016-08-26T22:41:55.000000Z",
     "title": "AOI 3 Paris img101 road network labels",
-    "label:property": ["road_type", "lane_number", "paved"],
+    "label:properties": [
+      "road_type",
+      "lane_number",
+      "paved"
+    ],
     "label:type": "vector",
-    "label:classes":
-    [
+    "label:description": "sample SpaceNet roads label",
+    "label:classes": [
       {
         "name": "road_type",
-        "classes": [1, 2, 3, 4, 5, 6]
+        "classes": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ]
       },
       {
         "name": "lane_number",
-        "classes": [1, 2, 3, 4, 5]
+        "classes": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
       },
       {
         "name": "paved",
-        "classes": [0, 1]
+        "classes": [
+          "0",
+          "1"
+        ]
       }
     ],
-    "label:task": ["segmentation"],
-    "label:method": ["manual"],
+    "label:tasks": [
+      "segmentation"
+    ],
+    "label:methods": [
+      "manual"
+    ],
     "version": 1,
-    "label:overview":
-    [
+    "label:overviews": [
       {
         "property_key": "road_type",
-        "counts":
-        [
+        "counts": [
           {
-            "name": 1,
+            "name": "1",
             "count": 0
           },
           {
-            "name": 2,
+            "name": "2",
             "count": 0
           },
           {
-            "name": 3,
+            "name": "3",
             "count": 0
           },
           {
-            "name": 4,
+            "name": "4",
             "count": 0
           },
           {
-            "name": 5,
+            "name": "5",
             "count": 15
           },
           {
-            "name": 6,
+            "name": "6",
             "count": 4
           }
         ]
       },
       {
         "property_key": "lane_number",
-        "statistics":
-        [
+        "statistics": [
           {
             "name": "mean",
             "value": 1.8
@@ -91,23 +126,16 @@
       },
       {
         "property_key": "paved",
-        "counts":
-        [
+        "counts": [
           {
-            "name": 1,
+            "name": "1",
             "count": 19
           }
         ]
       }
     ]
   },
-  "links":
-  [
-    {
-      "href": "roads_item.json",
-      "rel": "self",
-      "title": "sample SpaceNet roads label item"
-    },
+  "links": [
     {
       "href": "roads_collection.json",
       "rel": "root",
@@ -130,10 +158,8 @@
       "label:assets": "road_labels"
     }
   ],
-  "assets":
-  {
-    "road_labels":
-    {
+  "assets": {
+    "road_labels": {
       "href": "spacenetroads_AOI_3_Paris_img101.geojson",
       "title": "AOI_3_Paris_img101_roads",
       "type": "application/geo+json"

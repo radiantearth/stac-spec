@@ -2,24 +2,20 @@
     "id": "label_extension_demo",
     "title": "label extension demo",
     "description": "Sample ML training data labels in the STAC format",
-    "stac_version": "0.7.0",
+    "stac_version": "0.8.0",
     "links":
     [
-        {
-            "rel": "self",
-            "href": "catalog.json"
-        },
         {
             "rel": "root",
             "href": "./catalog.json"
         },
         {
             "rel": "child",
-            "href": "zanzibar/catalog.json"
+            "href": "zanzibar/collection.json"
         },
         {
             "rel": "child",
-            "href": "spacenet-buildings/catalog.json"
+            "href": "spacenet-buildings/collection.json"
         }
     ]
 }

@@ -1,19 +1,27 @@
 {
-  "stac_version": "0.7.0",
+  "stac_version": "0.8.0",
   "id": "spacenet-buildings-collection",
   "title": "spacenet-buildings AoI",
   "description": "Collection of training labels for spacenet-buildings",
   "extent": {
-    "spatial": [
-      -115.23556259985658,
-      31.234725900085653,
-      121.66738919996575,
-      49.00558590002751
-    ],
-    "temporal": [
-      "2016-08-28T00:00:00Z",
-      null
-    ]
+    "spatial": {
+      "bbox": [
+        [
+          -115.23556259985658,
+          31.234725900085653,
+          121.66738919996575,
+          49.00558590002751
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2016-08-28T00:00:00Z",
+          null
+        ]
+      ]
+    }
   },
   "collection version": "1.0",
   "keywords": [
@@ -33,10 +41,6 @@
     }
   ],
   "links": [
-    {
-      "rel": "self",
-      "href": "catalog.json"
-    },
     {
       "rel": "root",
       "href": "../catalog.json"

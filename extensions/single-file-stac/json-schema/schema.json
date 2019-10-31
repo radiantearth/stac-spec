@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "schema.json#",
+  "title": "Single File STAC Extension",
+  "description": "Single File STAC Extension to combine Collections and Items in single file catalog",
+  "allOf": [
+    {
+      "$ref": "../../../master/item-spec/json-schema/itemcollection.json"
+    },
+    {
+      "$ref": "#/definitions/single-file-stac"
+    }
+  ],
+  "definitions": {
+    "collections": {
+      "type": "array",
+      "items": {
+        "$ref": "../../collection-spec/json-schema/collection.json"
+      }
+    },
+    "search": {
+      "type": "object",
+      "required": [
+          "endpoint"
+      ],
+      "properties": {
+        "endpoint": {
+          "title": "STAC compliant endpoint",
+          "type": "string"
+        },
+        "parameters": {
+          "title": "Search parameters",
+          "type": "object"
+        }
+      }
+    }
+  }
+}
