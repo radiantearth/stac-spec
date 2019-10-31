@@ -20,7 +20,7 @@ The OAFeat and STAC APIs follow a RESTful model. A core principal of this is the
 
 ## OGC API - Features Endpoints
 
-The core OGC API - Features endpoints are shown below, with details provided in an [OpenAPI specification document](openapi/WFS3.yaml).
+The core OGC API - Features endpoints are shown below, with details provided in an [OpenAPI specification document](openapi/OAFeat.yaml).
 
 | Endpoint     | Returns       | Description |
 | ------------ | ------------- | ----------- |
