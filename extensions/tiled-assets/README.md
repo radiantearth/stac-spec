@@ -12,10 +12,12 @@ This extension is modelled closely after the definitions from the [OGC Two Dimen
 
 ## Item properties
 
-| Field Name         | Type                                               | Description                                                                                                     |
-| ------------------ | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| tl:tileMatrixSet   | [[TileMatrixSet Object](#tile-matrix-set-object)]  | An array of available tile matrix sets                                                                          |
-| tl:dimensions      | Map<string, [Dimension Object](#dimension-object)> | Additional dimensions. The keys of this object can be used to replace the template parameters of the same name. |
+| Field Name        | Type                                                                                   | Description                                                                                                     |
+| ----------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| tl:tileMatrixSet  | [[TileMatrixSet Object](#tile-matrix-set-object)]                                      | An array of available tile matrix sets                                                                          |
+| tl:dimensions     | Map<string, [Discrete Dimension Object](#discrete-dimension-object)\|[number\|string]> | Additional dimensions. The keys of this object can be used to replace the template parameters of the same name. |
+
+**tl:dimension:** The possible values of this dimension can be expressed as either a finite list of values (using an array of values) or as a discrete dimension using the [Discrete Dimension Object](#discrete-dimension-object).
 
 ### Tile Matrix Set Object
 
@@ -88,18 +90,17 @@ The pixel buffer definition.
 | borderBottom  | boolean | Whether or not the pixelbuffer is included images on the bottom border of the last tile row. Default is `true`.  |
 | borderRight   | boolean | Whether or not the pixelbuffer is included images on the right border of the last tile column. Default is `true`.   |
 
-### Dimension Object
+### Discrete Dimension Object
 
-An additional dimension of that tile pyramid. The possible values of that dimension can either be passed as a concrete list of positions, or as a ruleset for discrete values.
+An additional discrete dimension of that tile pyramid. The possible values of that dimension are passed as a ruleset for discrete values.
 
 | Field Name    | Type             | Description                                                                                                      |
 | ------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------- |
-| positions     | [number\|string] | The discrete possible values of that dimension.                                                                  |
 | start         | number\|string   | The first possible value of that particular dimension. Either a numeric or an ISO 8601 date or datetime.         |
 | stop          | number\|string   | The last possible value of that particular dimension. Either a numeric or an ISO 8601 date or datetime.          |
 | steps         | integer          | The number of steps in that dimension, including the `start` and `stop` values as borders.                       |
 
-Either `positions` or all of `start`, `stop`, and `steps` are required.
+**steps:** This is meant as a total number of steps. Where the first value is always the `start` and the last step is always the `stop` value.
 
 ## Item fields
 

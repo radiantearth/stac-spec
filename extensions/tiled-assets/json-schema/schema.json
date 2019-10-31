@@ -34,7 +34,21 @@
               "type": "object",
               "patternProperties": {
                 "[a-zA-Z0-9]+": {
-                  "$ref": "#/definitions/dimension"
+                  "oneOf": [
+                    {
+                      "$ref": "#/definitions/discreteDimension"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": [
+                          "string",
+                          "number"
+                        ]
+                      },
+                      "description": "The possible values of that dimension as a list"
+                    }
+                  ]
                 }
               },
               "additionalProperties": false
@@ -76,7 +90,12 @@
     },
     "tileMatrixSet": {
       "type": "object",
-      "required": ["type", "identifier", "supportedCRS", "tileMatrix"],
+      "required": [
+        "type",
+        "identifier",
+        "supportedCRS",
+        "tileMatrix"
+      ],
       "properties": {
         "type": {
           "type": "string",
@@ -130,34 +149,14 @@
         }
       }
     },
-    "dimension": {
+    "discreteDimension": {
       "type": "object",
-      "anyOf": [
-        {
-          "required": [
-            "positions"
-          ]
-        },
-        {
-          "required": [
-            "start",
-            "stop",
-            "step"
-          ]
-        }
+      "required": [
+        "start",
+        "stop",
+        "step"
       ],
       "properties": {
-        "positions": {
-          "title": "The discrete possible values of that dimension.",
-          "type": "array",
-          "items": {
-            "type": [
-              "string",
-              "number"
-            ],
-            "pattern": "[a-zA-Z0-9]+"
-          }
-        },
         "start": {
           "title": "The first possible value of that particular dimension. Either a numeric or an ISO 8601 date or datetime.",
           "type": [
@@ -351,7 +350,6 @@
           "description": "Maximum tile row index valid for this layer"
         }
       }
-
     }
   }
 }
