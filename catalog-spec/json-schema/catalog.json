@@ -1,7 +1,94 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "catalog.json#",
+  "title": "STAC Catalog Specification",
+  "description": "This object represents Catalogs in a SpatioTemporal Asset Catalog.",
+  "allOf": [
+    {
+      "$ref": "#/definitions/catalog"
+    }
+  ],
   "definitions": {
+    "catalog": {
+      "title": "Catalog",
+      "type": "object",
+      "required": [
+        "stac_version",
+        "id",
+        "description",
+        "links"
+      ],
+      "properties": {
+        "stac_version": {
+          "title": "STAC version",
+          "type": "string",
+          "const": "0.8.0"
+        },
+        "stac_extensions": {
+          "title": "STAC extensions",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "id": {
+          "title": "Identifier",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/link"
+          }
+        },
+        "summaries": {
+          "$ref": "#/definitions/summaries"
+        }
+      }
+    },
+    "summaries": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "title": "Stats",
+            "type": "object",
+            "required": [
+              "min",
+              "max"
+            ],
+            "properties": {
+              "min": {
+                "title": "Minimum value",
+                "type": ["number", "string"]
+              },
+              "max": {
+                "title": "Maximum value",
+                "type": ["number", "string"]
+              }
+            }
+          },
+          {
+            "title": "Set of values",
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "description": "Any data type could occur."
+            }
+          }
+        ]
+      }
+    },
     "link": {
       "type": "object",
       "required": [
@@ -26,47 +113,6 @@
           "type": "string"
         }
       }
-    },
-    "catalog": {
-      "title": "Catalog",
-      "type": "object",
-      "required": [
-        "stac_version",
-        "id",
-        "description",
-        "links"
-      ],
-      "properties": {
-        "stac_version": {
-          "title": "STAC version",
-          "type": "string",
-          "const": "0.7.0"
-        },
-        "id": {
-          "title": "Identifier",
-          "type": "string"
-        },
-        "title": {
-          "title": "Title",
-          "type": "string"
-        },
-        "description": {
-          "title": "Description",
-          "type": "string"
-        },
-        "links": {
-          "title": "Links",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/link"
-          }
-        }
-      }
     }
-  },
-  "allOf": [
-    {
-      "$ref": "#/definitions/catalog"
-    }
-  ]
+  }
 }

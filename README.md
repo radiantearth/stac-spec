@@ -29,7 +29,7 @@ The minimal amount is specified right now, but best practices should emerge with
 ## Current version and branches
 
 The [master branch](https://github.com/radiantearth/stac-spec/tree/master) is the 'stable' version of the spec. It is currently version 
-**0.7.0** of the specification. The 
+**0.8.0** of the specification. The 
 [dev](https://github.com/radiantearth/stac-spec/tree/dev) branch is where active development takes place, and may have inconsistent examples. 
 Whenever dev stabilizes a release is cut and we merge dev in to master. So master should be stable at any given time.
 It is possible that there may be small releases in quick succession, especially if they are nice improvements that do 
@@ -63,16 +63,15 @@ In the context of STAC it is most likely a collection of STAC Items that is made
 It includes things like the spatial and temporal extent of the data, the license, keywords, etc.
 It enables discovery at a higher level than individual items, providing a simple way to describe sets of data.
 
-**[api-spec/](api-spec/)** extends the core publishing capabilities of STAC with an active REST search endpoint that returns
-just the Items a user requests in their query. It is specified as a couple [OpenAPI](http://openapis.org) documents, one
-[standalone](api-spec/STAC-standalone.yaml) and one that is [integrated with WFS3](api-spec/WFS3core%2BSTAC.yaml) 
-(see [WFS3 on GitHub](https://github.com/opengeospatial/wfs_fes) for info on it). The documents also include the `/stac/` 
-endpoint which is a way for a dynamic server to provide catalog and collection browsing.
+**[api-spec/](api-spec/)** extends the core publishing capabilities of [OGC API - Features](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html) with  
+STAC-related endpoints. They add catalog and collection browsing and an active STAC REST search endpoint that returns
+just the Items a user requests in their query. The API is specified as a couple [OpenAPI](http://openapis.org) documents, one is just the
+[minimal core API](api-spec/STAC.yaml) and the other one [integrates the API extensions](api-spec/STAC-extensions.yaml).
 
 **Extensions:** The *[extensions/](extensions/)* folder is where extensions live. Extensions can extend the 
 functionality of the core spec or add fields for specific domains.
 
-**Additional documents** include the current [roadmap](roadmap.md) and a complementary [how to help](how-to-help.md)
+**Additional documents** A complementary [how to help](how-to-help.md)
 document, a [list of implementations](implementations.md), 
 and a discussion of the collaboration [principles](principles.md) and specification approach.
 

@@ -1,11 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "stac-extension-checksum.json#",
-  "type": "object", 
+  "$id": "schema.json#",
   "title": "Checksum Extension Specification",
+  "description": "STAC Checksum Extension to a STAC Item",
   "allOf": [
     {
-      "$ref": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/json-schema/item.json#/definitions/core"
+      "$ref": "../../../item-spec/json-schema/item.json#/definitions/core"
     },
     {
       "$ref": "#/definitions/checksum"

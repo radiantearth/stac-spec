@@ -2,7 +2,6 @@
 
 This folder contains extensions to the SpatioTemporal Asset Catalog API specification by providing  new OpenAPI fragments.
 
-
 Anyone is welcome to create an extension (see section 'Extending STAC'), and is encouraged to at least link to the extension from here. The third-party / vendor extension section is for the sharing of extensions. As third parties create useful extensions for their implementation it is expected that others will make use of it, and then evolve to make it a 'community extension', that several providers maintain together. For now anyone from the community is welcome to use this extensions/ folder of the stac-spec repository to collaborate.
 
 API Extensions given follow the same guidelines for Extension Maturity as given in the *[Content Extensions README](../../extensions/README.md)*.
@@ -13,7 +12,7 @@ API Extensions given follow the same guidelines for Extension Maturity as given 
 | -------------  | ----------- | -------- |
 | [Fields](fields/README.md) | Adds parameter to control which fields are returned in the response. | *Pilot* |
 | [Query - STACQL](query-stacql/README.md) | Adds parameter to search Item and Collection properties. | *Pilot* |
-| [Search](search/README.md) | Adds search-related metadata to [ItemCollection](../../item-spec/item-spec.md#itemcollection-fields). | *Proposal* |
+| [Search](search/README.md) | Adds search-related metadata to [ItemCollection](../../item-spec/itemcollection-spec.md). | *Proposal* |
 | [Sort](sort/README.md) | Adds Parameter to control sorting of returns results. | *Pilot* |
 | [Transaction](transaction/README.md) | Adds PUT and DELETE endpoints for the creation, editing, and deleting of items and Collections. | *Pilot* |
 
@@ -128,6 +127,6 @@ searchBody:
   type: object
   allOf:
     - $ref: "#/components/schema/bboxFilter"
-    - $ref: "#/components/schema/TimeFilter"
-    - $ref: "#/components/schema/IntersectsFilter"
+    - $ref: "#/components/schema/datetimeFilter"
+    - $ref: "#/components/schema/intersectsFilter"
 ```
