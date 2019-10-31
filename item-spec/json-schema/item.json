@@ -14,28 +14,63 @@
     "core": {
       "allOf": [
         {
-          "oneOf": [
-            {
-              "$ref": "https://geojson.org/schema/Feature.json"
-            }
-          ]
+          "$ref": "https://geojson.org/schema/Feature.json"
         },
         {
           "type": "object",
           "required": [
+            "stac_version",
             "id",
-            "type",
-            "geometry",
             "links",
             "assets",
             "bbox",
             "properties"
           ],
           "properties": {
+            "stac_version": {
+              "title": "STAC version",
+              "type": "string",
+              "const": "0.8.0"
+            },
+            "stac_extensions": {
+              "title": "STAC extensions",
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "anyOf": [
+                  {
+                    "title": "Reference to a JSON Schema",
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  {
+                    "title": "Reference to a core extension",
+                    "type": "string",
+                    "enum": [
+                      "checksum",
+                      "cube",
+                      "datetime-range",
+                      "eo",
+                      "label",
+                      "pointcloud",
+                      "sar",
+                      "scientific"
+                    ]
+                  }
+                ]
+              }
+            },
             "id": {
               "title": "Provider ID",
               "description": "Provider item ID",
               "type": "string"
+            },
+            "bbox": {
+              "type": "array",
+              "minItems": 4,
+              "items": {
+                "type": "number"
+              }
             },
             "links": {
               "title": "Item links",
@@ -111,7 +146,7 @@
                   }
                 },
                 "created": {
-                  "title": "Metadata updated at",
+                  "title": "Metadata created at",
                   "type": "string",
                   "format": "date-time"
                 },

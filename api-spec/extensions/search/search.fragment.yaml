@@ -1,0 +1,24 @@
+components:
+  schemas:
+    itemCollection:
+      type: object
+      properties:
+        'search:metadata':
+          type: object
+          required:
+            - next
+            - returned
+          properties:
+            next:
+              type: string
+              nullable: true
+            limit:
+              type: integer
+              nullable: true
+              minimum: 0
+            matched:
+              type: integer
+              minimum: 0
+            returned:
+              type: integer
+              minimum: 0

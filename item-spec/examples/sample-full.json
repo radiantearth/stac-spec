@@ -1,4 +1,9 @@
 {
+  "stac_version": "0.8.0",
+  "stac_extensions": [
+      "eo",
+      "https://example.com/cs-extension/1.0/schema.json"
+  ],
   "type": "Feature",
   "id" : "CS3-20160503_132131_05",
   "bbox": [-122.59750209, 37.48803556, -122.2880486, 37.613537207],
@@ -31,7 +36,9 @@
     "eo:sun_azimuth": 168.7,
     "eo:cloud_cover": 0.12,
     "eo:off_nadir": 1.4,
-    "eo:platform": "COOLSAT2",
+    "eo:platform": "coolsat2",
+    "eo:instrument": "cool_sensor_v1",
+    "eo:bands": [],
     "eo:sun_elevation": 33.4,
     "eo:gsd": 0.512,
     "cs:type": "scene",
@@ -43,7 +50,6 @@
   "collection": "CS3",
   "links": [
     {"rel": "self", "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json"},
-    {"rel": "thumbnail", "href":"thumbnail.png"},
     {"rel": "root", "href": "http://cool-sat.com/catalog/catalog.json"},
     {"rel": "parent", "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/catalog.json"},
     {"rel": "collection", "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/catalog.json"},
@@ -52,8 +58,7 @@
   "assets": {
     "analytic": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/analytic.tif",
-      "title": "4-Band Analytic",
-      "product": "http://cool-sat.com/catalog/products/analytic.json"
+      "title": "4-Band Analytic"
     },
     "thumbnail": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png",
@@ -61,18 +66,15 @@
     },
     "udm": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/UDM.tif",
-      "title": "Unusable Data Mask",
-      "product": "http://cool-sat.com/catalog/products/udm.json"
+      "title": "Unusable Data Mask"
     },
     "json-metadata": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/extended-metadata.json",
-      "title": "Extended Metadata",
-      "product": "http://cool-sat.com/catalog/products/extended-metadata.json"
+      "title": "Extended Metadata"
     },
     "ephemeris": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/S3-20160503_132130_04.EPH",
-      "title": "Satellite Ephemeris Metadata",
-      "product": "http://cool-sat.com/catalog/products/satellite-ephemeris.json"
+      "title": "Satellite Ephemeris Metadata"
     }
   }
 

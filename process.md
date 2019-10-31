@@ -18,7 +18,7 @@ and improvements, to the issue tracker or (ideally) as pull requests. To merge a
 by at least two members of the STAC spec core team (who have write access to the main repository). It also must pass the
 Continuous Integration testing (right now it is minimal, but it will expand).
 
-* **Note** *The development process will continue to evolve as the specification matures. 0.6.0 will also introduce Continuous
+* **Note** *The development process will continue to evolve as the specification matures. 0.6.0 introduced Continuous
 Integration, and once it is full validating everything and the spec is more mature then we will aim to have `dev` branch
 always in a consistent state.*
 
@@ -73,7 +73,7 @@ with no changes to the spec - just updating the version numbers.
 
 ### Governance 
 
-The goal of STAC is to to have a Project Steering Committee of core contributors, representing diverse organizations and 
+The goal of STAC is to have a Project Steering Committee of core contributors, representing diverse organizations and 
 implementations. To bootstrap Chris Holmes is the Benevolent Dictator for 
 Life or until a PSC is formed, so we don't get stuck waiting for votes when there is not enough activity. 
 

@@ -1,19 +1,27 @@
 {
-  "stac_version": "0.7",
+  "stac_version": "0.8.0",
   "id": "zanzibar-collection",
   "title": "zanzibar AoI",
   "description": "Collection of training labels for zanzibar",
   "extent": {
-    "spatial": [
-      39.28919876472999,
-      -5.878778696206506,
-      39.356865475223195,
-      -5.722212794937691
-    ],
-    "temporal": [
-      "2016-08-28T00:00:00Z",
-      null
-    ]
+    "spatial": {
+      "bbox": [
+        [
+          39.28919876472999,
+          -5.878778696206506,
+          39.356865475223195,
+          -5.722212794937691
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2016-08-28T00:00:00Z",
+          null
+        ]
+      ]
+    }
   },
   "collection version": "1.0",
   "keywords": [
@@ -58,10 +66,6 @@
     }
   ],
   "links": [
-    {
-      "rel": "self",
-      "href": "catalog.json"
-    },
     {
       "rel": "root",
       "href": "../catalog.json"

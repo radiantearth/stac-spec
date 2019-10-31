@@ -1,8 +1,8 @@
 # Search Extension Specification
 
-**Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+**Extension [Maturity Classification](../../../extensions/README.md#extension-maturity): Proposal**
 
-This extension is intended to augment the core [ItemCollection](../../item-spec/item-spec.md#itemcollection-fields) object when the ItemCollection is the result of a 
+This extension is intended to augment the core [ItemCollection](../../../item-spec/itemcollection-spec.md) object when the ItemCollection is the result of a 
 search, for example, from calling the `/stac/search` API endpoint.
 
 - [Example](examples/example.json)
@@ -12,14 +12,14 @@ search, for example, from calling the `/stac/search` API endpoint.
 
 | Element           | Type                  | Description                                                  |
 | ----------------- | --------------------- | ------------------------------------------------------------ |
-| `search:metadata` | SearchMetadata Object | **REQUIRED.** The search-related metadata for the [ItemCollection](../../../item-spec/item-spec.md#itemcollection-fields). |
+| `search:metadata` | [SearchMetadata Object](#searchmetadata-object) | **REQUIRED.** The search-related metadata for the [ItemCollection](../../../item-spec/itemcollection-spec.md). |
 
 ### SearchMetadata Object
 
 | Element      | Type            | Description                                                  |
 | ------------ | --------------- | ------------------------------------------------------------ |
 | next         | string \| null  | **REQUIRED.** The value to set for the `next` query parameter in order to get the next page of results |
-| returned     | integer         | **REQUIRED*** The count of results returned by this response. equal to the cardinality of features array |
+| returned     | integer         | **REQUIRED** The count of results returned by this response. equal to the cardinality of features array |
 | limit        | integer \| null | The maximum number of results to which the result was limited |
 | matched        | integer         | The count of total number of results that match for this query, possibly estimated, particularly in the context of NoSQL data stores |
 
