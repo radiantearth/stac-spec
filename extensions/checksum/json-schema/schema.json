@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "stac-extension-checksum.json#",
+  "$id": "schema.json#",
   "title": "Checksum Extension Specification",
   "description": "STAC Checksum Extension to a STAC Item",
   "allOf": [
