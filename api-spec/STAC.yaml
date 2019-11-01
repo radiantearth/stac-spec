@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: The SpatioTemporal Asset Catalog API
-  version: 0.8.0
+  version: 0.8.1
   license:
     name: Apache License 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0'
@@ -473,7 +473,7 @@ components:
         summaries:
           $ref: '#/components/schemas/summaries'
       example:
-        stac_version: 0.8.0
+        stac_version: 0.8.1
         stac_extensions: []
         id: Sentinel-2
         title: 'Sentinel-2 MSI: MultiSpectral Instrument, Level-1C'
@@ -1285,7 +1285,7 @@ components:
     stac_version:
       title: STAC version
       type: string
-      example: 0.8.0
+      example: 0.8.1
     stac_extensions:
       title: STAC extensions
       type: array
@@ -1442,7 +1442,7 @@ components:
         assets:
           $ref: '#/components/schemas/itemAssets'
       example:
-        stac_version: 0.8.0
+        stac_version: 0.8.1
         stac_extensions:
           - eo
           - 'https://example.com/cs-extension/1.0/schema.json'

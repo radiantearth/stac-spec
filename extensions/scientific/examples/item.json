@@ -1,5 +1,5 @@
 {
-  "stac_version": "0.8.0",
+  "stac_version": "0.8.1",
   "stac_extensions": ["scientific","datetime-range","checksum"],
   "id": "MERRAclim.2_5m_min_80s",
   "type": "Feature",

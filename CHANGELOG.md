@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [v0.8.1] - 2019-11-01
+
 ### Changed
 - Updated specification to base on OGC API - Features - Part 1: Core, v1.0.0 instead of OGC API - Features - Part 1: Core, v1.0.0-draft.2 (fka WFS3 draft 2).
 
@@ -213,6 +215,7 @@ Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkam
 
 
 [Unreleased]: https://github.com/radiantearth/stac-spec/compare/master...dev
+[v0.8.1]: https://github.com/radiantearth/stac-spec/compare/v0.8.0...v0.8.1
 [v0.8.0]: https://github.com/radiantearth/stac-spec/compare/v0.7.0...v0.8.0
 [v0.7.0]: https://github.com/radiantearth/stac-spec/compare/v0.6.2...v0.7.0
 [v0.6.2]: https://github.com/radiantearth/stac-spec/compare/v0.6.1...v0.6.2
