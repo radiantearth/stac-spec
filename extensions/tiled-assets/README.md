@@ -7,7 +7,7 @@ An extension to allow the specification of tiled assets within STAC Items. With 
 
 This extension is modelled closely after the definitions from the [OGC Two Dimensional Tile Matrix Set](http://docs.opengeospatial.org/is/17-083r2/17-083r2.html)
 
-- [Example](examples/example.json)
+- Examples: [Tiled](examples/example-tiled.json), [Dimension](examples/example-dimension.json)
 - [JSON Schema](json-schema/schema.json)
 
 ## Item properties
