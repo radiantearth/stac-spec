@@ -6,7 +6,7 @@ An extension to provide a set of Collections and Items as a single file catalog.
 
 The Items in the single file catalog should not be merged with the Collection properties (i.e., common properties). The Collections are all included in the file as well, so there is no need to duplicate the common properties for every Item in the catalog.
 
-- [Example](examples/example.json)
+- [Example](examples/example-search.json)
 - [JSON Schema](json-schema/schema.json)
 
 ## Catalog fields
