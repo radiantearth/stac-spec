@@ -22,7 +22,7 @@ Note: this API is **not** transactional. That is, updates are not rolled back if
 | Path                                                  | Content-Type Header | Description |
 | ----------------------------------------------------- | ------------------- | ----------- |
 | `POST /collections/{collectionId}/items`              | `application/json`  | Adds a number of items to a collection. |
-| `DELETE /collections/{collectionId}/items`            | `application/json`  | Deletes all the items in the collection (convenient, but potentially susceptible to lost updates). |
+| `DELETE /collections/{collectionId}/items`            | n/a                 | Deletes all the items in the collection (convenient, but potentially susceptible to lost updates). |
 
 The request body for a bulk POST request is an [ItemCollection](../../../item-spec/itemcollection-spec.md).
 
@@ -71,6 +71,6 @@ DELETE `/collections/{collectionId}/items`:
 
 Example Responses:
 ```
-HTTP 204 No content (Successful delete of all items in the collection)
+HTTP 204 No content (Successfully deleted all items in the collection)
 or
 HTTP 500 An error occurred (One or more items in the collection was not deleted)
