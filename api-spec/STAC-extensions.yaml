@@ -112,8 +112,8 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
     post:
-      summary: Add a new item to a collection
-      description: Create a new item in a specific collection
+      summary: Add a new item or an ItemCollection to a collection
+      description: Create one or more new items in a specific collection
       operationId: postItem
       tags:
         - CRUD Extension
@@ -159,82 +159,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/exception'
-    put:
-      summary: Replace multiple items.
-      description: >-
-        Replace a number of items by their IDs and ETags using complete item
-        descriptions.
-      operationId: putItems
-      tags:
-        - CRUD Extension
-      parameters:
-        - $ref: '#/components/parameters/collectionId'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/itemCollection'
-      responses:
-        '207':
-          description: Multi-Status response for replacing multiple items.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/multiStatus'
-        5XX:
-          $ref: '#/components/responses/InternalServerError'
-        default:
-          description: An error occurred.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/exception'
-    patch:
-      summary: Update multiple items.
-      description: >-
-        Update a number of items by their IDs and ETags using partial item
-        descriptions.
-      operationId: patchItems
-      tags:
-        - CRUD Extension
-      parameters:
-        - $ref: '#/components/parameters/collectionId'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/partialItemCollection'
-      responses:
-        '207':
-          description: Multi-Status response for patching multiple items.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/multiStatus'
-        5XX:
-          $ref: '#/components/responses/InternalServerError'
-        default:
-          description: An error occurred.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/exception'
     delete:
-      summary: Delete multiple items.
-      description: Delete a number of items by their IDs and ETags.
+      summary: Delete all of the items in a collection.
+      description: Delete all of the items in a collection.
       operationId: deleteItems
       tags:
         - CRUD Extension
       parameters:
         - $ref: '#/components/parameters/collectionId'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/partialItemCollection'
       responses:
-        '207':
-          description: Multi-Status response for deleting multiple items.
+        '204':
+          description: Delete all items succeeded.
           content:
             application/json:
               schema:
