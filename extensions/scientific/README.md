@@ -15,7 +15,7 @@ As these scientific information are often closely bound to the collection level 
 it is recommended to add the fields to a corresponding [STAC Collection](../../collection-spec/README.md).
 
 - Examples: [Collection](examples/collection.json), [Item](examples/item.json)
-- [JSON Schema](json-schema/schema.json)
+- [JSON Schema](json-schema/scientific.json)
 
 ## Item and Collection Fields
 

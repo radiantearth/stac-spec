@@ -5,12 +5,12 @@
 This document explains the fields of the STAC Synthetic-Aperture Radar (SAR) Extension to a STAC Item.
 SAR data is considered to be data that represents a snapshot of the earth for a single date and time taken by a synthetic-aperture radar system such as Sentinel-1, RADARSAT or EnviSAT.
 
-A lot of SAR data will have common metadata across many Items. It is not necessary, but recommended	
+A lot of SAR data will have common metadata across many Items. It is not necessary, but recommended
 to place common fields in [STAC Collections](../../collection-spec/collection-spec.md).
 The exact metadata that would appear in a STAC Collection record will vary depending on the dataset.
 
 - [Examples](examples/) (for example [Sentinel-1](examples/sentinel1.json) and [Envisat](examples/envisat.json))
-- [JSON Schema](json-schema/schema.json)
+- [JSON Schema](json-schema/sar-item.json)
 
 ## Item fields
 
@@ -41,18 +41,18 @@ The exact metadata that would appear in a STAC Collection record will vary depen
 | sar:relative_orbit        | integer       | A relative orbit number associated with the acquisition. |
 | sar:incidence_angle       | number        | The center incidence angle is the angle defined by the incident radar beam at the scene center and the vertical (normal) to the intercepting surface. Measured in degrees (0-90). |
 
-**sar:platform** is the unique name of the specific platform the instrument is attached to. For satellites this would 
+**sar:platform** is the unique name of the specific platform the instrument is attached to. For satellites this would
 be the name of the satellite, whereas for drones this would be a unique name for the drone. Examples include `sentinel-1a` (Sentinel-1) and `envisat` (Envisat).
- 
-**sar:constellation** is the name of a logical collection one or more platforms that have similar payloads and have 
-their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and 
-radiometric characteristics. This field allows users to search for related data sets without needing to specify from 
-which specific platform the data came. One example is 
-the constellation `sentinel-1` (Sentinel-1) consisting of two satellites Sentinel-1A and Sentinel-1B. If a system 
-consists of only a single satellite, the constellation name is the same as the satellite name, e.g., `envisat` 
-(Envisat). 
 
-**sar:instrument** is the name of the sensor used, although for Items which contain data from multiple sensors this 
+**sar:constellation** is the name of a logical collection one or more platforms that have similar payloads and have
+their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and
+radiometric characteristics. This field allows users to search for related data sets without needing to specify from
+which specific platform the data came. One example is
+the constellation `sentinel-1` (Sentinel-1) consisting of two satellites Sentinel-1A and Sentinel-1B. If a system
+consists of only a single satellite, the constellation name is the same as the satellite name, e.g., `envisat`
+(Envisat).
+
+**sar:instrument** is the name of the sensor used, although for Items which contain data from multiple sensors this
 could also name multiple sensors. Examples include `c-sar` (Sentinel-1) and `asar` (Envisat).
 
 **sar:polarization** specifies a single polarization or a polarization combination. For single polarized radars one of `HH`, `VV`, `HV` or `VH` must be set. Fully polarimetric radars add all four polarizations to the array. Dual polarized radars and alternating polarization add the corresponding polarizations to the array, for instance for `HH+HV` add both `HH` and `HV`.

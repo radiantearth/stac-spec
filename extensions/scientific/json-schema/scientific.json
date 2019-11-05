@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "schema.json#",
+  "$id": "scientific.json#",
   "title": "Scientific Extension",
   "description": "STAC Scientific Extension to STAC Items or STAC Collections.",
   "oneOf": [
@@ -41,9 +41,9 @@
           "type": "string",
           "title": "Data DOI",
           "pattern": "^(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![%\"#? ])\\S)+)$"
-        }, 
+        },
         "sci:citation": {
-          "type": "string", 
+          "type": "string",
           "title": "Proposed Data Citation"
         },
         "sci:publications": {
@@ -56,9 +56,9 @@
                 "type": "string",
                 "title": "Publication DOI",
                 "pattern": "^(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![%\"#? ])\\S)+)$"
-              }, 
-              "citation": { 
-                "type": "string", 
+              },
+              "citation": {
+                "type": "string",
                 "title": "Publication Citation"
               }
             }

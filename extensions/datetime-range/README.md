@@ -5,7 +5,7 @@
 An extension to provide datetime ranges with a start and an end datetime stamp in a consistent way.
 
 - [Example](examples/example-video.json)
-- [JSON Schema](json-schema/schema.json)
+- [JSON Schema](json-schema/datetime-range-item.json)
 
 ## Item fields
 

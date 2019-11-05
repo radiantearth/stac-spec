@@ -5,7 +5,7 @@
 A Collection extension to provide details about assets that are available in member Items.
 
 - [Example](examples/example-landsat8.json)
-- [JSON Schema](json-schema/schema.json)
+- [JSON Schema](json-schema/asset-collection.json)
 
  This extension serves two purposes:
 

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "schema.json#",
+  "$id": "datacube-item.json#",
   "title": "Data Cube Extension",
   "description": "STAC Data Cube Extension to a STAC Item",
   "allOf": [
