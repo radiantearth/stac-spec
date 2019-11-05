@@ -93,7 +93,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/collectionId'
         - $ref: '#/components/parameters/featureId'
-        - $ref: '#/components/parameters/IfMatch'
+        - $ref: '#/components/parameters/IfMatchOptional'
       requestBody:
         content:
           application/json:
@@ -177,7 +177,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/collectionId'
         - $ref: '#/components/parameters/featureId'
-        - $ref: '#/components/parameters/IfMatch'
+        - $ref: '#/components/parameters/IfMatchOptional'
       responses:
         '204':
           description: Delete request succeeded.
@@ -197,14 +197,6 @@ paths:
                 $ref: '#/components/schemas/exception'
 components:
   parameters:
-    IfMatch:
-      name: If-Match
-      in: header
-      description: >-
-        Only take the action if the ETag of the item still matches the If-Match header of the request
-      required: true
-      schema:
-        type: string
     IfMatchOptional:
       name: If-Match
       in: header
