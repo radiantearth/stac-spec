@@ -57,6 +57,7 @@ An extension can add new fields to STAC entities (content extension), or can add
 | [SAR](sar/README.md) (`sar`)                                 | Item             | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. | *Proposal* |
 | [Scientific](scientific/README.md) (`sci`)                   | Item +Collection | Scientific metadata is considered to be data that indicate from which publication data originates and how the data itself should be cited or referenced. | *Proposal* |
 | [Single File STAC](single-file-stac/README.md) (-)           | ItemCollection | An extension to provide a set of Collections and Items as a single file catalog. | *Proposal* |
+| [Tiled Assets](tiled-asset/README.md) (`tl`)                 | Item             | Allows to specify numerous assets using asset templates via tile matrices and dimensions. | *Proposal* |
 
 ## Third-party / vendor extensions
 

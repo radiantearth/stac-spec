@@ -29,7 +29,7 @@ The description of the tile pyramid.
 | title             | string                                             | Title of this tile matrix set, normally used for display to a human                                                          |
 | abstract          | string                                             | Brief narrative description of this tile matrix set, normally available for display to a human                               |
 | keywords          | [string]                                           | Unordered list of one or more commonly used or formalized word(s) or phrase(s) used to describe this dataset                 |
-| identifier        | string                                             | **REQUIRED.** Tile matrix set identifier. This can be used as the `TileMatrixSet` template parameter.                        |
+| identifier        | string                                             | **REQUIRED.** Tile matrix set identifier. This can be used as the `{TileMatrixSet}` template parameter.                      |
 | boundingBox       | [BoundingBox Object](#bounding-box-object)         | Minimum bounding rectangle surrounding the tile matrix set, in the supported CRS                                             |
 | supportedCRS      | string                                             | **REQUIRED.** Reference to one coordinate reference system (CRS)                                                             |
 | wellKnownScaleSet | string                                             | Reference to a well-known scale set.                                                                                         |
@@ -48,21 +48,21 @@ The description of the tile pyramid.
 
 The description of a single tile matrix (zoom level) of the tile pyramid.
 
-| Field Name          | Type                                                          | Description                                                                                                                                                 |
-| ------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| type                | string                                                        | **REQUIRED.** Type of the Tile Matrix. Fixed to `TileMatrixType`                                                                                            |
-| title               | string                                                        | Title of this tile matrix set, normally used for display to a human                                                                                         |
-| abstract            | string                                                        | Brief narrative description of this tile matrix, normally available for display to a human                                                                  |
-| keywords            | [string]                                                      | Unordered list of one or more commonly used or formalized word(s) or phrase(s) used to describe this dataset                                                |
-| identifier          | string                                                        | **REQUIRED.** Tile matrix identifier. This identifier can be used in templates to replace `{TileMatrix}` parameters.                                        |
-| scaleDenominator    | number                                                        | **REQUIRED.** Scale denominator level of this tile matrix.                                                                                                  |
-| topLeftCorner       | [number]                                                      | **REQUIRED.** Position in CRS coordinates of the top-left corner of this tile matrix.                                                                       |
-| tileWidth           | number                                                        | **REQUIRED.** Width of each tile of this tile matrix in pixels. Pixel buffers are not reflected in this number.                                             |
-| tileHeight          | number                                                        | **REQUIRED.** Height of each tile of this tile matrix in pixels. Pixel buffers are not reflected in this number.                                            |
-| matrixWidth         | number                                                        | **REQUIRED.** The number of columns in this tile matrix. Any number between zero and `matrixWidth - 1` can be used to replace the `{tileCol}` template parameter. |
-| matrixHeight        | number                                                        | **REQUIRED.** The number of rows in this tile matrix. Any number between zero and `matrixHeight - 1` can be used to replace the `{tileRow}` template parameter.   |
-| variableMatrixWidth | [Variable Matrix Width Object](#variable-matrix-width-object) | Describes the rows that has variable matix width                                                                                                            |
-| pixelBuffer         | [Pixel Buffer Object](#pixel-buffer-object)                   | An optional default pixel buffer description object, overriding the default of the pyramid. By default, no pixel buffers are used.                          |
+| Field Name          | Type                                                          | Description                                                                                                                                                       |
+| ------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type                | string                                                        | **REQUIRED.** Type of the Tile Matrix. Fixed to `TileMatrixType`                                                                                                  |
+| title               | string                                                        | Title of this tile matrix set, normally used for display to a human                                                                                               |
+| abstract            | string                                                        | Brief narrative description of this tile matrix, normally available for display to a human                                                                        |
+| keywords            | [string]                                                      | Unordered list of one or more commonly used or formalized word(s) or phrase(s) used to describe this dataset                                                      |
+| identifier          | string                                                        | **REQUIRED.** Tile matrix identifier. This identifier can be used in templates to replace `{TileMatrix}` parameters.                                              |
+| scaleDenominator    | number                                                        | **REQUIRED.** Scale denominator level of this tile matrix.                                                                                                        |
+| topLeftCorner       | [number]                                                      | **REQUIRED.** Position in CRS coordinates of the top-left corner of this tile matrix.                                                                             |
+| tileWidth           | number                                                        | **REQUIRED.** Width of each tile of this tile matrix in pixels. Pixel buffers are not reflected in this number.                                                   |
+| tileHeight          | number                                                        | **REQUIRED.** Height of each tile of this tile matrix in pixels. Pixel buffers are not reflected in this number.                                                  |
+| matrixWidth         | number                                                        | **REQUIRED.** The number of columns in this tile matrix. Any number between zero and `matrixWidth - 1` can be used to replace the `{TileCol}` template parameter. |
+| matrixHeight        | number                                                        | **REQUIRED.** The number of rows in this tile matrix. Any number between zero and `matrixHeight - 1` can be used to replace the `{TileRow}` template parameter.   |
+| variableMatrixWidth | [Variable Matrix Width Object](#variable-matrix-width-object) | Describes the rows that has variable matix width                                                                                                                  |
+| pixelBuffer         | [Pixel Buffer Object](#pixel-buffer-object)                   | An optional default pixel buffer description object, overriding the default of the pyramid. By default, no pixel buffers are used.                                |
 
 ### Variable Matrix Width Object
 
@@ -118,7 +118,7 @@ An asset template is an object that contains a link template to data associated 
 | title        | string | The displayed title for clients and users.                                            |
 | type         | string | [Media type](../README.md#media-types) of the asset.                                  |
 
-The available template parameters are `{tilePyramid}`, `{tileMatrix}`, `{tileRow}`, and `{tileCol}`. Also, each dimension enables an additional template parameter of the same name. E.g: if there is a `date` dimension object in the map of dimensions, the `{date}` template parameter should be used.
+The available template parameters are `{TileMatrixSet}`, `{TileMatrix}`, `{TileRow}`, and `{TileCol}`. Also, each dimension enables an additional template parameter of the same name. E.g: if there is a `date` dimension object in the map of dimensions, the `{date}` template parameter should be used.
 
 It is intended, that all extensions targeting the `Asset Object` are also applicable to the `Asset Template Object` when useful. For example the `eo` extension can also be used in conjunction with tiled assets by specifying the `eo:bands` property in the asset template 
 
