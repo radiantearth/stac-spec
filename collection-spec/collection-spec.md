@@ -162,7 +162,7 @@ To get the complete record of an Item (both individual and commons properties), 
 An incomplete Collection:
 ```
 {
-  "stac_version": "0.8.0",
+  "stac_version": "0.8.1",
   "id": "landsat-8-l1",
   "title": "Landsat 8 L1",
   "description": "Landat 8 imagery radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
@@ -192,7 +192,7 @@ An incomplete Collection:
 An incomplete item:
 ```
 {
-  "stac_version": "0.8.0",
+  "stac_version": "0.8.1",
   "type": "Feature",
   "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
   "bbox": [...],
@@ -215,7 +215,7 @@ The merged Item then looks like this:
 
 ```
 {
-  "stac_version": "0.8.0",
+  "stac_version": "0.8.1",
   "type": "Feature",
   "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
   "bbox": [],
