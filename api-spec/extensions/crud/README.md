@@ -36,6 +36,22 @@ The `metadata` object in the Multi-Status response gives the client a quick way 
 
 POST an [ItemCollection](../../../item-spec/itemcollection-spec.md) with 3 items to `/collections/{collectionId}/items`:
 
+E.g. POST request body
+```
+{
+  "type": "FeatureCollection",
+  "features": [{
+    ... // a full item description
+  },
+  {
+    ... // a full item description
+  },
+  {
+    ... // a full item description
+  }]
+}
+```
+
 Example Response:
 ```
 HTTP 207
