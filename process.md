@@ -73,7 +73,7 @@ with no changes to the spec - just updating the version numbers.
 
 ### Governance 
 
-The goal of STAC is to to have a Project Steering Committee of core contributors, representing diverse organizations and 
+The goal of STAC is to have a Project Steering Committee of core contributors, representing diverse organizations and 
 implementations. To bootstrap Chris Holmes is the Benevolent Dictator for 
 Life or until a PSC is formed, so we don't get stuck waiting for votes when there is not enough activity. 
 
