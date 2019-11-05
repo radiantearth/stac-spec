@@ -50,9 +50,9 @@ is to place the catalog file in namespaces "directories". For example:
 
 Dynamic STAC Catalogs are those that generate their JSON responses programmatically instead of relying on a set of
 already defined files. Typically a dynamic catalog implements the full [STAC API](api-spec/api-spec.md/) which enables 
-search of the Items indexed. But the `/stac/` endpoint returns the exact same `Catalog` and `Item` structures as a
+search of the Items indexed. The `/` endpoint returns the exact same STAC Catalog structure as a
 static catalog, enabling the same discovery from people browsing and search engines crawling. Dynamic API's that
-just seek to expose some data can also choose to only implement a Catalog the `/stac/` endpoint that returns dynamically.
+just seek to expose some data can also choose to not implement `/items` and only link to their data from the `/` endpoint.
 For example a Content Management Service like Drupal or an Open Data Catalog like CKAN could choose to expose its content
 as linked STAC Items by implementing a dynamic catalog. 
 
@@ -60,10 +60,6 @@ One benefit of a dynamic catalog is that it can generate various 'views' of the 
 different sub-catalog organization structures. For example one catalog could divide sub-catalogs by date and another by
 providers, and users could browse down to both. The leaf Items should just be linked to in a single canonical location
 (or at least use a `rel` link that indicates the location of the canonical one.
-
-The STAC API is also made to be compatible with OGC API - Features, which has a set structure for the canonical location of its features.
-STAC Items should use the OGC API - Features location as their canonical location, and then in the `/stac/` browse structure would just
-link to those locations. 
 
 ## Catalog Layout
 
@@ -207,7 +203,7 @@ traditional database could work fine too) and then generate the full STAC API re
 There are instances that have the API refer directly to the static STAC Items, but this only works well if the static STAC 
 catalog is an 'absolute published catalog'. So the recommendation is to always use absolute links - either in the static 
 published catalog, or to create new absolute links for the STAC search/ endpoint 
-responses, with the API's location at the base url. The /stac endpoint with the catalogs could either link directly
+responses, with the API's location at the base url. The `/` endpoint with the catalog could either link directly
 to the static catalog, or can follow the 'dynamic catalog layout' recommendations above with a new set of URL's.
 
 Ideally each `Item` would use its `links` to provide a reference back to the static location. The location of the static

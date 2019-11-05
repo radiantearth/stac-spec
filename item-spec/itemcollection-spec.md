@@ -6,7 +6,7 @@ that is augmented with [foreign members](https://tools.ietf.org/html/rfc7946#sec
 
 Similary to the relationship between a GeoJSON Feature and a STAC Item, a STAC ItemCollection should be a valid GeoJSON FeatureCollection to allow interoperability with existing tools that support GeoJSON. 
 
-The same ItemCollection definition is currently only used by the [`/stac/search`](../api-spec/README.md) endpoint. 
+The same ItemCollection definition is currently only used by the [`/items`](../api-spec/README.md) endpoint. 
 The search endpoint enables dynamic
 queries, for example selecting all Items in Hawaii on June 3, 2015, but the results they return are an
 ItemCollection of Items.

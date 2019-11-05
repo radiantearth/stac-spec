@@ -1,5 +1,5 @@
 paths:
-  /stac/search:
+  /items:
     get:
       parameters:
         - $ref: '#/components/parameters/query'

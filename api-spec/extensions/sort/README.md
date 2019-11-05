@@ -2,7 +2,7 @@
 
 **Extension [Maturity Classification](../../../extensions/README.md#extension-maturity): Pilot**
 
-The STAC search endpoint, `/stac/search`, by default returns results in descending order using the datetime property. The sort API extension adds a new parameter, `sort` that allows the user to define fields to sort results by. Only properties may be used to sort results. The syntax for the `sort` parameter is:
+The STAC search endpoint, `/items`, by default returns results in descending order using the datetime property. The sort API extension adds a new parameter, `sort` that allows the user to define fields to sort results by. Only properties may be used to sort results. The syntax for the `sort` parameter is:
 
 ```json
 {
