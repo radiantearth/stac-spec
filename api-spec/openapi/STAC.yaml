@@ -55,7 +55,6 @@ paths:
         - $ref: '#/components/parameters/datetime'
         # The following parameter is defined in OAFeat.yaml
         - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/next'
         - $ref: '#/components/parameters/ids'
         - $ref: '#/components/parameters/collectionsArray'
       responses:
@@ -116,20 +115,12 @@ paths:
                 type: string
 components:
   parameters:
-    next:
-      name: next
-      in: query
-      description: The token to retrieve the next set of results, e.g., offset, page, continuation token
-      required: false
-      schema:
-        $ref: '#/components/schemas/next'
-      style: form
     ids:
       name: ids
       in: query
       description: |
         Array of Item ids to return. All other filter parameters that further restrict the number of 
-        search results (except `next` and `limit`) are ignored
+        search results are ignored
       required: false
       schema:
         $ref: '#/components/schemas/ids'
@@ -328,6 +319,21 @@ components:
           example: 'http://www.geoserver.example/stac/naip/child/catalog.json'
         rel:
           example: child
+        method:
+          type: string
+          enum:
+            - GET
+            - POST
+          default: get
+          description: Specifies the HTTP method that the link expects
+        headers:
+          type: object
+          description: Object key values pairs they map to headers
+          example:
+            Accept:  application/json
+        body:
+          type: string
+          description: For POST requests, the link can specify the HTTP body as a JSON object.
         title:
           example: NAIP Child Catalog
     license:
@@ -409,14 +415,9 @@ components:
         - $ref: '#/components/schemas/bboxFilter'
         - $ref: '#/components/schemas/datetimeFilter'
         - $ref: '#/components/schemas/intersectsFilter'
-        - $ref: '#/components/schemas/nextFilter'
         - $ref: '#/components/schemas/collectionsFilter'
         - $ref: '#/components/schemas/idsFilter'
         - $ref: '#/components/schemas/limitFilter'
-    next:
-      type: string
-      description: The token to retrieve the next set of results, e.g., offset, page, continuation token
-      default: null
     # This schema bases on OAFeat.yaml#/components/parameters/limit/schema
     limit:
       type: integer
@@ -484,7 +485,7 @@ components:
       type: array
       description: |
         Array of Item ids to return. All other filter parameters that further restrict the number of 
-        search results (except `next` and `limit`) are ignored
+        search results are ignored
       items:
         type: string
     datetimeFilter:
@@ -505,12 +506,6 @@ components:
       properties:
         limit:
           $ref: '#/components/schemas/limit'
-    nextFilter:
-      type: object
-      description: Only returns the next set of results
-      properties:
-        next:
-          $ref: '#/components/schemas/next' 
     idsFilter:
       type: object
       description: Only returns items that match the array of given ids

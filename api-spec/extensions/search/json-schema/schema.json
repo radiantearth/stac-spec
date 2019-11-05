@@ -23,9 +23,6 @@
             "returned"
           ],
           "properties": {
-            "next": {
-              "type": ["string", "null"]
-            },
             "limit": {
               "type": ["integer", "null"],
               "minimum": 0
