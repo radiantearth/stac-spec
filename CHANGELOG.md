@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+- Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
+
 ## [v0.8.1] - 2019-11-01
 
 ### Changed
