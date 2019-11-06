@@ -1148,7 +1148,7 @@ components:
           enum:
             - GET
             - POST
-          default: get
+          default: GET
           description: Specifies the HTTP method that the link expects
         headers:
           type: object
