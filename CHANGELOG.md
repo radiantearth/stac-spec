@@ -6,7 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
-## [v0.8.1] - 2019-11-01
+## [v0.8.1] - 2019-11-06
+
+### Changed
+- Updated Transaction Extension:
+  - Renamed to CRUD Extension since bulk operations are not transactional, e.g. no roll backs, individual operations succeed or fail independently.  This is equivalent to what WFS calls batch operations.
+  - ETags to support optimistic locking for PUT, PATCH, and DELETE are always optional.
+  - Added spec for bulk POST and DELETE.
 
 ### Changed
 - Updated specification to base on OGC API - Features - Part 1: Core, v1.0.0 instead of OGC API - Features - Part 1: Core, v1.0.0-draft.2 (fka WFS3 draft 2).
