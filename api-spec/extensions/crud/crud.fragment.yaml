@@ -241,22 +241,6 @@ components:
       properties:
         datetime:
           $ref: '#/components/schemas/datetime'
-    partialItemCollection:
-      description: >-
-        A GeoJSON FeatureCollection of partial items.
-      type: object
-      required:
-        - features
-        - type
-      properties:
-        type:
-          type: string
-          enum:
-            - FeatureCollection
-        features:
-          type: array
-          items:
-            $ref: '#/components/schemas/partialItem'
     multiStatus:
       type: object
       description: Provides status information about the result of a bulk request
@@ -327,5 +311,5 @@ components:
 tags:
   - name: CRUD Extension
     description: >-
-      STAC-specific operations to add, remove, and edit items within WFS3
+      STAC-specific operations to add, remove, and edit items within OGC API - Features
       collections.
