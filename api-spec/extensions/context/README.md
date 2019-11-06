@@ -1,4 +1,4 @@
-# Search Extension Specification
+# Context Extension Specification
 
 **Extension [Maturity Classification](../../../extensions/README.md#extension-maturity): Proposal**
 
@@ -12,9 +12,9 @@ search, for example, from calling the `/stac/search` API endpoint.
 
 | Element           | Type                  | Description                                                  |
 | ----------------- | --------------------- | ------------------------------------------------------------ |
-| `search:metadata` | [SearchMetadata Object](#searchmetadata-object) | **REQUIRED.** The search-related metadata for the [ItemCollection](../../../item-spec/itemcollection-spec.md). |
+| `context` | [Context Object](#context-object) | **REQUIRED.** The search-related metadata for the [ItemCollection](../../../item-spec/itemcollection-spec.md). |
 
-### SearchMetadata Object
+### Context Object
 
 | Element      | Type            | Description                                                  |
 | ------------ | --------------- | ------------------------------------------------------------ |
@@ -26,13 +26,13 @@ search, for example, from calling the `/stac/search` API endpoint.
 
 **limit** - The maximum number of results requested explicitly, the default limit used by the service implementation if no parameter was provided, or the maximum limit used by the service implementation if the limit parameter was larger. `null` if no limit was placed on the query that retrieved these results, which should be a rare case in practice.
 
-## Example ItemCollection augmented with SearchMeta field
+## Example ItemCollection augmented with Context field
   
 ```json
 {
   "type": "FeatureCollection",
   "features": [ ],
-  "search:metadata": {
+  "context": {
     "limit": 10, 
     "matched": 1092873, 
     "returned": 9
