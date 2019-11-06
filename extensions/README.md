@@ -45,18 +45,18 @@ stable for over a year and are used in twenty or more implementations.
 
 An extension can add new fields to STAC entities (content extension), or can add new endpoints or behavior to the API (API extension). Below is a list of content extensions, while API extensions given under [api-spec](../api-spec/) in a folder for [API extensions](../api-spec/extensions/).
 
-| Extension Name (Prefix)                                      | Scope            | Description                                                  | Maturity |
-| ------------------------------------------------------------ | ---------------- | ------------------------------------------------------------ | -------- |
-| [Asset Definition](asset/README.md) (-)                  | Collection | Provides a way to specify details about what assets may be found in Items belonging to a collection | *Proposal* |
-| [Checksum](checksum/README.md) (`checksum`)                  | Item +Catalog +Collection | Provides a way to specify file checksums for assets and links in Items, Catalogs and Collections. | *Proposal* |
-| [Data Cube](datacube/README.md) (`cube`)                     | Item             | Data Cube related metadata, especially to describe their dimensions. | *Proposal* |
-| [Datetime Range](datetime-range/README.md) (`dtr`)           | Item             | An extension to provide datetime ranges with a start and an end datetime stamp in a consistent way. | *Proposal* |
-| [EO](eo/README.md) (`eo`)                                    | Item             | Covers electro-optical data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, off nadir, sun angle + elevation, gsd and more. | *Pilot* |
-| [Label](label/README.md) (`label`)                           | Item             | Items that relate labeled AOIs with source imagery | *Proposal* |
-| [Point Cloud](pointcloud/README.md) (`pc`)                   | Item             | Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LiDAR or coincidence-matched imagery. | *Proposal* |
-| [SAR](sar/README.md) (`sar`)                                 | Item             | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. | *Proposal* |
-| [Scientific](scientific/README.md) (`sci`)                   | Item +Collection | Scientific metadata is considered to be data that indicate from which publication data originates and how the data itself should be cited or referenced. | *Proposal* |
-| [Single File STAC](single-file-stac/README.md) (-)           | ItemCollection | An extension to provide a set of Collections and Items as a single file catalog. | *Proposal* |
+| Extension Name (Prefix)                     | Scope      | Description                                                  | Maturity |
+| ------------------------------------------- | ---------- | ------------------------------------------------------------ | -------- |
+| [Asset Definition](asset/README.md) (-)     | Collection | Provides a way to specify details about what assets may be found in Items belonging to a collection | **Candidate** |
+| [Checksum](checksum/README.md) (`checksum`) | Item, Catalog, Collection | Provides a way to specify file checksums for assets and links in Items, Catalogs and Collections. | Pilot |
+| [Data Cube](datacube/README.md) (`cube`)    | Item      | Data Cube related metadata, especially to describe their dimensions. | Pilot|
+| [Datetime Range](datetime-range/README.md) (`dtr`) | Item | An extension to provide datetime ranges with a start and an end datetime stamp in a consistent way. | Stable |
+| [EO](eo/README.md) (`eo`)                   | Item       | Covers electro-optical data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, off nadir, sun angle + elevation, gsd and more. | **Stable** |
+| [Label](label/README.md) (`label`)          | Item       | Items that relate labeled AOIs with source imagery | *Pilot* |
+| [Point Cloud](pointcloud/README.md) (`pc`)  | Item       | Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LIDAR or coincidence-matched imagery. | *Proposal* |
+| [SAR](sar/README.md) (`sar`)                | Item       | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. | **Candidate** |
+| [Scientific](scientific/README.md) (`sci`)  | Item, Collection | Scientific metadata is considered to be data that indicate from which publication data originates and how the data itself should be cited or referenced. | *Pilot* |
+| [Single File STAC](single-file-stac/README.md) (-) | ItemCollection | An extension to provide a set of Collections and Items as a single file catalog. | **Candidate** |
 
 ## Third-party / vendor extensions
 
