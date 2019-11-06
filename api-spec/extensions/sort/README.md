@@ -27,7 +27,7 @@ Examples of `sortby` parameter:
 
 When calling `/stac/search` using POST with`Content-Type: application/json`, this extension adds an attribute `sortby` with an object value to the core JSON search request body.
 
-The syntax for the `sorbyt` attribute is:
+The syntax for the `sortby` attribute is:
 
 ```json
 {
