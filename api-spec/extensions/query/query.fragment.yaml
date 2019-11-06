@@ -1,5 +1,5 @@
 paths:
-  /items:
+  /search:
     get:
       parameters:
         - $ref: '#/components/parameters/query'

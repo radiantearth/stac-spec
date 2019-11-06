@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - The STAC API endpoint `/stac` has been merged with `/`
-- The STAC API endpoint `/stac/search` is now called `/items`
+- The STAC API endpoint `/stac/search` is now called `/search`
 
 ## [v0.8.1] - 2019-11-01
 

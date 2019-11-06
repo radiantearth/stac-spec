@@ -312,7 +312,7 @@ paths:
             text/html:
               schema:
                 type: string
-  /items:
+  /search:
     get:
       summary: Search STAC items with simple filtering.
       description: >-
@@ -320,7 +320,7 @@ paths:
         queries.
 
 
-        This method is optional, but you MUST implement `POST /items` if you
+        This method is optional, but you MUST implement `POST /search` if you
         want to implement this method.
       operationId: getSearchSTAC
       tags:
@@ -361,9 +361,9 @@ paths:
         query API.
 
 
-        This method is mandatory to implement if `GET /items` is implemented. If
-        this endpoint is implemented on a server, it is required to add a link
-        with `rel` set to `search` to the `links` array in `GET /stac` that
+        This method is mandatory to implement if `GET /search` is implemented.
+        If this endpoint is implemented on a server, it is required to add a
+        link with `rel` set to `search` to the `links` array in `GET /` that
         refers to this endpoint.
       operationId: postSearchSTAC
       tags:
@@ -1750,7 +1750,7 @@ components:
       example:
         - rel: next
           href: >-
-            http://api.cool-sat.com/items?next=ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
+            http://api.cool-sat.com/search?next=ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
     queryFilter:
       type: object
       description: Allows users to query properties for specific values
@@ -1930,16 +1930,24 @@ components:
           $ref: '#/components/schemas/datetime'
   responses:
     LandingPage:
-      description: |-
+      description: >-
         The landing page provides links to the API definition
+
         (link relations `service-desc` and `service-doc`),
+
         the Conformance declaration (path `/conformance`,
+
         link relation `conformance`), and the Feature
+
         Collections (path `/collections`, link relation
+
         `data`).
 
-        A link to the search endpoint (path `/items`, link relation
-        `search`) is **required** to be specified if the API implements `/items`
+
+        A link to the search endpoint (path `/search`, link relation
+
+        `search`) is **required** to be specified if the API implements
+        `/search`
       content:
         application/json:
           schema:
@@ -1968,7 +1976,7 @@ components:
                 rel: data
                 type: application/json
                 title: Information about the feature collections
-              - href: 'http://data.example.org/items'
+              - href: 'http://data.example.org/search'
                 rel: search
                 type: application/json
                 title: Search across feature collections

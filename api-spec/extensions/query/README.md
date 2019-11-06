@@ -2,7 +2,7 @@
 
 **Extension [Maturity Classification](../../../extensions/README.md#extension-maturity): Pilot**
 
-The STAC search endpoint, `/items`, by default only accepts the core filter parameters given in the *[api-spec](../../api-spec.md)*. The Query API extension adds additional filters for searching on the properties of Items.
+The STAC search endpoint, `/search`, by default only accepts the core filter parameters given in the *[api-spec](../../api-spec.md)*. The Query API extension adds additional filters for searching on the properties of Items.
 
 The syntax for the `query` filter is:
 

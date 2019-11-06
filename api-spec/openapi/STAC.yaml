@@ -31,7 +31,7 @@ paths:
 
         The landing page provides links to the API definition, the conformance
         statements, the collections and sub-catalogs.
-  /items:
+  /search:
     get:
       summary: Search STAC items with simple filtering.
       description: >-
@@ -39,7 +39,7 @@ paths:
         queries.
         
 
-        This method is optional, but you MUST implement `POST /items` if you want to implement this method.
+        This method is optional, but you MUST implement `POST /search` if you want to implement this method.
       operationId: getSearchSTAC
       tags:
         - STAC
@@ -78,7 +78,7 @@ paths:
         query API.
         
         
-        This method is mandatory to implement if `GET /items` is implemented. If this endpoint is implemented on a server, it is required to add a link with `rel` set to `search` to the `links` array in `GET /stac` that refers to this endpoint.
+        This method is mandatory to implement if `GET /search` is implemented. If this endpoint is implemented on a server, it is required to add a link with `rel` set to `search` to the `links` array in `GET /` that refers to this endpoint.
       operationId: postSearchSTAC
       tags:
         - STAC
@@ -148,8 +148,8 @@ components:
         Collections (path `/collections`, link relation
         `data`).
 
-        A link to the search endpoint (path `/items`, link relation
-        `search`) is **required** to be specified if the API implements `/items`
+        A link to the search endpoint (path `/search`, link relation
+        `search`) is **required** to be specified if the API implements `/search`
       content:
         application/json:
           example:
@@ -158,7 +158,7 @@ components:
             title: NAIP Imagery
             description: Catalog of NAIP Imagery.
             links:
-              - href: 'http://data.example.org/items'
+              - href: 'http://data.example.org/search'
                 rel: search
                 type: application/json
                 title: Search across feature collections
@@ -777,7 +777,7 @@ components:
       example:
         - rel: next
           href: >-
-            http://api.cool-sat.com/items?next=ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
+            http://api.cool-sat.com/search?next=ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
 tags:
   - name: STAC
     description: Extension to OGC API - Features to support STAC metadata model and search API
