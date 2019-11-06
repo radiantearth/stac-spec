@@ -52,7 +52,7 @@ Dynamic STAC Catalogs are those that generate their JSON responses programmatica
 already defined files. Typically a dynamic catalog implements the full [STAC API](api-spec/api-spec.md/) which enables 
 search of the Items indexed. The `/` endpoint returns the exact same STAC Catalog structure as a
 static catalog, enabling the same discovery from people browsing and search engines crawling. Dynamic API's that
-just seek to expose some data can also choose to not implement `/items` and only link to their data from the `/` endpoint.
+just seek to expose some data can also choose to not implement `/search` and only link to their data from the `/` endpoint.
 For example a Content Management Service like Drupal or an Open Data Catalog like CKAN could choose to expose its content
 as linked STAC Items by implementing a dynamic catalog. 
 
