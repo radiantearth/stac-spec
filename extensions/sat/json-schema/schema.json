@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "schema.json#",
+  "title": "Sat Extension",
+  "description": "STAC Sat Extension to a STAC Item.",
+  "allOf": [
+    {
+      "$ref": "../../../item-spec/json-schema/item.json#/definitions/core"
+    },
+    {
+      "$ref": "#/definitions/sat"
+    }
+  ],
+  "definitions": {
+    "eo": {
+      "type": "object",
+      "required": [
+        "properties"
+      ],
+      "properties": {
+        "properties": {
+          "type": "object",
+          "required": [
+            "platform",
+            "instrument"
+          ],
+          "properties": {
+            "platform": {
+              "title": "Platform",
+              "type": "string"
+            },
+            "constellation": {
+              "title": "Constellation",
+              "type": "string"
+            },
+            "instrument": {
+              "title": "Instrument",
+              "type": "string"
+            },
+            "off_nadir": {
+              "title": "Off Nadir",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 90
+            },
+            "azimuth": {
+              "title": "Azimuth",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 360
+            },
+            "sun_azimuth": {
+              "title": "Sun Azimuth",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 360
+            },
+            "sun_elevation": {
+              "title": "Sun Elevation",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 90
+            }
+          }
+        }
+      }
+    }
+  }
+}

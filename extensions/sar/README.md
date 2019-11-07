@@ -18,16 +18,12 @@ The exact metadata that would appear in a STAC Collection record will vary depen
 
 | Field Name                | Type          | Description                                                  |
 | ------------------------- | ------------- | ------------------------------------------------------------ |
-| sar:platform              | string        | **REQUIRED.** Unique name of the specific platform to which the instrument is attached. |
-| sar:constellation         | string        | Name of the constellation to which the platform belongs. |
-| sar:instrument            | string        | **REQUIRED.** Name of the sensor used, although for Items which contain data from multiple sensors this could also name multiple sensors. |
 | sar:instrument_mode       | string        | **REQUIRED.** The name of the sensor acquisition mode that is commonly used. This should be the short name, if available. For example, `WV` for "Wave mode" of Sentinel-1 and Envisat ASAR satellites. |
 | sar:frequency_band        | string        | **REQUIRED.** The common name for the frequency band to make it easier to search for bands across instruments. See section "Common Frequency Band Names" for a list of accepted names. |
 | sar:center_wavelength     | number        | The center wavelength of the instrument, in centimeters (cm). |
 | sar:center_frequency      | number        | The center frequency of the instrument, in gigahertz (GHz). |
 | sar:polarization          | [string]      | **REQUIRED.** A single polarization or a polarization combination specified as array. |
 | sar:bands                 | [[Band Object](#band-object)] | This is a list of the available bands where each item is a [Band Object](#band-object). |
-| sar:pass_direction        | string\|null  | **REQUIRED.** Direction of the orbit, either `ascending`, `descending` or `null` if not relevant. |
 | sar:type                  | string        | **REQUIRED.** The product type, for example `RAW`, `GRD`, `OCN` or `SLC` for Sentinel-1. |
 | sar:resolution_range      | number        | The range resolution, which is the maximum ability to distinguish two adjacent targets perpendicular to the flight path, in meters (m).  |
 | sar:resolution_azimuth    | number        | The azimuth resolution, which is the maximum ability to distinguish two adjacent targets parallel to the flight path, in meters (m).  |
@@ -37,9 +33,7 @@ The exact metadata that would appear in a STAC Collection record will vary depen
 | sar:looks_azimuth         | number        | Number of azimuth looks, which is the number of groups of signal samples (looks) parallel to the flight path. |
 | sar:looks_equivalent_number | number      | The equivalent number of looks (ENL). |
 | sar:observation_direction | string        | Antenna pointing direction relative to the flight trajectory of the satellite, either `left` or `right`.
-| sar:absolute_orbit        | integer       | An absolute orbit number associated with the acquisition. |
-| sar:relative_orbit        | integer       | A relative orbit number associated with the acquisition. |
-| sar:incidence_angle       | number        | The center incidence angle is the angle defined by the incident radar beam at the scene center and the vertical (normal) to the intercepting surface. Measured in degrees (0-90). |
+
 
 **sar:platform** is the unique name of the specific platform the instrument is attached to. For satellites this would 
 be the name of the satellite, whereas for drones this would be a unique name for the drone. Examples include `sentinel-1a` (Sentinel-1) and `envisat` (Envisat).
