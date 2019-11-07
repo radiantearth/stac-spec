@@ -106,6 +106,7 @@ class SchemaCache:
 
 def run_validation():
     schema_cache = SchemaCache()
+    collection_cache = {}
     examples = find_all_examples()
 
     for example in examples:
@@ -113,7 +114,8 @@ def run_validation():
 
         d = STAC_IO.read_json(example)
 
-        info = identify_stac_object(d)
+        info = identify_stac_object(d, merge_collection_properties=True,
+                                    json_href=example, collection_cache=collection_cache)
         object_type = info.object_type
         extensions = info.common_extensions
 
