@@ -15,8 +15,8 @@ The OAFeat and STAC APIs follow a RESTful model. A core principal of this is the
 1. **Required** GET (both OAFeat and STAC)
 2. **Recommended** POST `Content-Type: application/x-www-form-urlencoded` with the corresponding content body format.
 3. **Recommended** POST `Content-Type: multipart/form-data` with the corresponding content body format.
-4. **Optional** **STAC endpoint /stac/search only** POST `Content-Type: application/json`, where the content body is a JSON object representing a filter, as defined in the [STAC API OpenAPI specification document](STAC.yaml).
-5. **Prohibited** **OAFeat endpoints only** POST `Content-Type: application/json`, where the content body is a JSON object representing a filter. This is prohibited due to conflict with the [Transaction Extension](extensions/crud/README.md), which defines a POST `Content-Type: application/json` operation to create an Item.
+4. **Optional** **STAC endpoint /search only** POST `Content-Type: application/json`, where the content body is a JSON object representing a filter, as defined in the [STAC API OpenAPI specification document](STAC.yaml).
+5. **Prohibited** **OAFeat endpoints only** POST `Content-Type: application/json`, where the content body is a JSON object representing a filter. This is prohibited due to conflict with the [Transaction Extension](extensions/transaction/README.md), which defines a POST `Content-Type: application/json` operation to create an Item.
 
 ## OGC API - Features Endpoints
 
@@ -40,14 +40,14 @@ STAC provides some additional endpoints for the root Catalog itself, as well as 
 
 | Endpoint      | Returns | Description |
 | ------------- | ------- | ----------- |
-| /stac         | Catalog | Root catalog |
-| /stac/search  | [ItemCollection](../item-spec/itemcollection-spec.md) | Retrieves a group of Items matching the provided search predicates, probably containing search metadata from the `search` extension |
+| /             | Catalog | Extends `/` from OAFeat to return a full STAC catalog. |
+| /search       | [ItemCollection](../item-spec/itemcollection-spec.md) | Retrieves a group of Items matching the provided search predicates, probably containing search metadata from the `search` extension |
 
-The `/stac` endpoint should function as a complete `Catalog` representation of all the data contained in the API and linked to in some way from root through `Collections` and `Items`.
+The `/` endpoint should function as a complete `Catalog` representation of all the data contained in the API and linked to in some way from root through `Collections` and `Items`.
 
-The `/stac/search` endpoint is similar to the `/collections/{collectionId}/items` endpoint in OGC API - Features in that it accepts parameters for filtering, however it performs the filtering across all collections. The parameters accepted are the same as the Filter Parameters above, however the *[extensions](extensions/README.md)* also provide advanced querying parameters.
+The `/search` endpoint is similar to the `/collections/{collectionId}/items` endpoint in OGC API - Features in that it accepts parameters for filtering, however it performs the filtering across all collections. The parameters accepted are the same as the Filter Parameters above, however the *[extensions](extensions/README.md)* also provide advanced querying parameters.
 
-If the `/stac/search` endpoint is implemented, it is **required** to add a link with the `rel` type set to `search` to the `links` array in `GET /stac` that refers to the search endpoint in the `href` property.
+If the `/search` endpoint is implemented, it is **required** to add a link with the `rel` type set to `search` to the `links` array in `/` that refers to the search endpoint in the `href` property.
 
 ## Filter Parameters and Fields
 
@@ -62,7 +62,6 @@ string values and JSON entity attributes should use JSON Arrays.
 | bbox         | [number]         | OAFeat, STAC | Requested bounding box.  Represented using either 2D or 3D geometries. The length of the array must be 2*n where n is the number of dimensions. The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). When using 3D geometries, the elevation of the southwesterly most extent is the minimum elevation in meters and the elevation of the northeasterly most extent is the maximum. |
 | datetime     | string           | OAFeat, STAC | Single date+time, or a range ('/' seperator), formatted to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). Use double dots `..` for open date ranges. |
 | intersects   | GeoJSON Geometry | STAC         | Searches items by performing intersection between their geometry and provided GeoJSON geometry.  All GeoJSON geometry types must be supported. |
-| next         | string           | STAC         | The token to retrieve the next set of results, e.g., offset, page, continuation token|
 | ids | [string] | STAC | Array of Item ids to return. All other filter parameters that further restrict the number of search results (except `next` and `limit`) are ignored |
 | collections  | [string]         | STAC         | Array of Collection IDs to include in the search for items. Only Items in one of the provided Collections will be searched |
 
