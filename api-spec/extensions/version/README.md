@@ -35,17 +35,13 @@ Version ID is a unique identifier for a version of an item or collection. This e
 ## Link "rel" Types
 The extension uses [RFC5829](https://tools.ietf.org/html/rfc5829) rel types to link to different versions:
 
-### version-history
-Points to the list of versions
-
-### latest-version
-Points to the latest version of the record
-
-### predecessor-version
-Points to the previous version of the document
-
-### permalink
-Points to the permanent location of the record. This location points to a specific version, remains accessible and will not change even when there are future versions of the record.
+| Type                | Description |
+| ------------------- | ----------- |
+| latest-version      | Points to the latest version of the record |
+| version-history     | Points to the list of versions |
+| predecessor-version | Points to the previous version of the document |
+| successor-version   | Points to the successor version in the version history. |
+| permalink | Points to the permanent location of the record. This location points to a specific version, remains accessible and will not change even when there are future versions of the record. 
 
 ## Example
 For an item record with the id `this_is_my_id` and version of `02`, this is how the versioning works
