@@ -77,8 +77,6 @@ n/a
     - moved label:overview to be a list of Overview Objects from a single Overview Object in spec markdown and json schema (matching previous example JSON).
     - Renamed fields to use plural forms (`label:property` -> `label:properties`, `label:task` -> `label:tasks`, `label:method` -> `label:methods` and `label:overview` -> `label:overviews`)
 
-- Moved Single Item Extension to core (`license` and `providers` properties for Items)
-
 ## [v0.7.0] - 2019-05-06
 
 ### Fixed
