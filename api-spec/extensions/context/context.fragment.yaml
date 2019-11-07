@@ -3,7 +3,7 @@ components:
     itemCollection:
       type: object
       properties:
-        'search:metadata':
+        'context':
           type: object
           required:
             - next
