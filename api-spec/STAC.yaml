@@ -1533,6 +1533,10 @@ components:
             type: string
             description: Media type of the asset
             example: image/png
+          purpose:
+            type: string
+            description: Purpose of the asset
+            example: thumbnail
     itemProperties:
       type: object
       required:
