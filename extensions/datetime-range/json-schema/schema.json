@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "stac-extension-datetime-range.json#",
+  "$id": "schema.json#",
   "title": "Datetime Range Extension",
   "description": "STAC Datetime Range Extension to a STAC Item.",
   "allOf": [

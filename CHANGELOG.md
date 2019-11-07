@@ -7,10 +7,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
 - [datetime-range extension](extensions/datetime-range/README.md): Removed extension prefix from example and schema. Moved extension to core.
 
-### Fixed
-- [Label extension](extensions/label/README.md): moved label:classes to be a list of Class Objects from a single Class Object in spec markdown and json schema (matching previous example JSON).
+### Changed
+- The STAC API endpoint `/stac` has been merged with `/`
+- The STAC API endpoint `/stac/search` is now called `/search`
+- Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html).
+- [Checksum extension](extensions/checksum/README.md) is now using self-identifiable hashes ([Multihash](https://github.com/multiformats/multihash)).
+- Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
 
-## [v0.8.0-RC1] - 2019-08-23
+## [v0.8.1] - 2019-11-01
+
+### Changed
+- Updated specification to base on OGC API - Features - Part 1: Core, v1.0.0 instead of OGC API - Features - Part 1: Core, v1.0.0-draft.2 (fka WFS3 draft 2).
+
+### Fixed
+- Numerous typos, clarifications and fixes for documentation and examples.
+- Fixed STAC API definition to include STAC-related fields and examples in *OGC API - Features*-derived endpoints.
+- Fixed JSON schemas for extensions: `$id` field matches file name.
+
+## [v0.8.0] - 2019-10-11
 
 ### Changed
 - Updated specification to base on WFS3 draft 2 (OGC API - Features - Part 1: Core, v1.0.0-draft.2). This leads to many changes in the API and one change in STAC collections, notably:
@@ -28,6 +42,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Allow `various` for the `license` fields.
 - Clarified meaning of SAR and EO platform, constellation, and instrument
 - Numerous typos, clarification and general word-smithing
+- Changed GeoTIFF media type from `image/vnd.stac.geotiff` to `image/tiff; application=geotiff`, changed Cloud-optimized GeoTiff media type from `image/vnd.stac.geotiff; cloud-optimized=true` to `image/tiff; application=geotiff; profile=cloud-optimized`.
 
 ### Added
 - **stac_version**: Each Item must specify the STAC version.
@@ -43,6 +58,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `in` operator added to the query extension (to check if value is in a list of values)
 - New bands added to the [common band names](extensions/eo/README.md#common-band-names) for the EO extension: yellow, rededge, and 2 narrow NIR bands
 - [Scientific extension](extensions/scientific/README.md) can be used in Collections.
+
+### Fixed
+- Updated language, fixed typos and examples.
+- Renamed `pc:schema` to `pc:schemas` in the Point Cloud extension.
+
+### Changes since 0.8.0rc1
+- [Label extension](extensions/label/README.md):
+    - moved label:classes to be a list of Class Objects from a single Class Object in spec markdown and json schema (matching previous example JSON).
+    - moved label:overview to be a list of Overview Objects from a single Overview Object in spec markdown and json schema (matching previous example JSON).
+    - Renamed fields to use plural forms (`label:property` -> `label:properties`, `label:task` -> `label:tasks`, `label:method` -> `label:methods` and `label:overview` -> `label:overviews`)
 
 
 ## [v0.7.0] - 2019-05-06
@@ -184,7 +209,7 @@ Highlights include:
 
 * Updates to the core **`Item` JSON specification**, including simplifying to a single datetime, moving thumbnails from 'links' to 'assets', making assets a dictionary for easier lookup and requiring `self` links to be absolute links.
 
-* Alignment of **STAC API** with the new [WFS 3](https://github.com/opengeospatial/WFS_FES/) specification
+* Alignment of **STAC API** with the new [WFS3](https://github.com/opengeospatial/WFS_FES/) specification
 
 * Cleanup of the **static catalog** specification for greater clarity around the catalog
 
@@ -198,6 +223,8 @@ Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkam
 
 
 [Unreleased]: https://github.com/radiantearth/stac-spec/compare/master...dev
+[v0.8.1]: https://github.com/radiantearth/stac-spec/compare/v0.8.0...v0.8.1
+[v0.8.0]: https://github.com/radiantearth/stac-spec/compare/v0.7.0...v0.8.0
 [v0.7.0]: https://github.com/radiantearth/stac-spec/compare/v0.6.2...v0.7.0
 [v0.6.2]: https://github.com/radiantearth/stac-spec/compare/v0.6.1...v0.6.2
 [v0.6.1]: https://github.com/radiantearth/stac-spec/compare/v0.6.0...v0.6.1

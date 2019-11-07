@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "stac-search-extension.json#",
+  "$id": "schema.json#",
   "title": "Search Extension",
   "type": "object",
   "description": "STAC Search Extension",
@@ -23,9 +23,6 @@
             "returned"
           ],
           "properties": {
-            "next": {
-              "type": ["string", "null"]
-            },
             "limit": {
               "type": ["integer", "null"],
               "minimum": 0

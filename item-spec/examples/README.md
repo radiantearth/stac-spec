@@ -12,11 +12,11 @@ This document also contains discussion of the various examples in this folder.
 
 ### Item Examples
 
-**[sample.json](examples/sample.json)** is the most minimal possible compliant Item record. Most all data will
+**[sample.json](sample.json)** is the most minimal possible compliant Item record. Most all data will
 include additional fields, as STAC is designed to be a minimal common subset. But it is useful for showing exactly what is
 required.
 
-**[sample-full.json](examples/sample-full.json)** is a more realistic example, for a hypothetical analytic image 
+**[sample-full.json](sample-full.json)** is a more realistic example, for a hypothetical analytic image 
 acquisition from a satellite company called 'cool sat'. It includes additional fields, including some from the Earth 
 Observation extension, as well as some vendor specific additions. It also links to a variety of assets that is typical for
 satellite imagery, as most providers include a number of complementary files.
@@ -27,7 +27,7 @@ item specification.
 
 **Landsat8** The [Landsat8 sample](landsat8-sample.json) is meant to be an example of how an S3-based catalog like the 
 [Landsat on AWS](https://landsatonaws.com/) public data set could be a STAC static catalog. It includes the 'collection'
-concept, which is explained more in the [/extensions/examples/ folder](../extensions/examples/).
+concept, which is explained more in the [/collection-spec/ folder](../../collection-spec/).
 
 **Planet** The [Planet sample](planet-sample.json) is an adaption of Planet's [Data API](https://www.planet.com/docs/reference/data-api/) 
 returned JSON, with minor tweaks to have it fit in to a STAC Item.

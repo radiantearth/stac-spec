@@ -1,5 +1,5 @@
 {
-  "stac_version": "0.8.0",
+  "stac_version": "0.8.1",
   "id": "zanzibar-collection",
   "title": "zanzibar AoI",
   "description": "Collection of training labels for zanzibar",
@@ -66,10 +66,6 @@
     }
   ],
   "links": [
-    {
-      "rel": "self",
-      "href": "catalog.json"
-    },
     {
       "rel": "root",
       "href": "../catalog.json"

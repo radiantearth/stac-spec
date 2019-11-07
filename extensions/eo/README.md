@@ -82,7 +82,7 @@ there is no valid EPSG code.
 | ------------------- | ------ | ------------------------------------------------------------ |
 | name                | string | The name of the band (e.g., "B01", "B02", "B1", "B5", "QA"). |
 | common_name         | string | The name commonly used to refer to the band to make it easier to search for bands across instruments. See the [list of accepted common names](#common-band-names). |
-| description         | string | Description to fully explain the band. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| description         | string | Description to fully explain the band. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | gsd                 | number | Ground Sample Distance, the nominal distance between pixel centers available, in meters. Defaults to `eo:gsd` if not provided. |
 | accuracy            | number | The expected error between the measured location and the true location of a pixel, in meters on the ground. |
 | center_wavelength   | number | The center wavelength of the band, in micrometers (μm).      |
@@ -139,7 +139,7 @@ Asset definitions that contain band data should reference the band index. Each a
 See [example-landsat8.json](examples/example-landsat8.json) for a full example.
 ```
 {
-  "stac_version": "0.8.0",
+  "stac_version": "0.8.1",
   "stac_extensions": ["eo"],
   "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
   "type": "Feature",
@@ -174,19 +174,19 @@ See [example-landsat8.json](examples/example-landsat8.json) for a full example.
   "assets": {
     "B1": {
       "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B1.TIF",
-      "type": "image/vnd.stac.geotiff",
+      "type": "image/tiff; application=geotiff",
       "eo:bands": [0],
       "title": "Band 1 (coastal)"
     },
     "B2": {
       "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B2.TIF",
-      "type": "image/vnd.stac.geotiff",
+      "type": "image/tiff; application=geotiff",
       "eo:bands": [1],
       "title": "Band 2 (blue)"
     },
     "B3": {
       "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B3.TIF",
-      "type": "image/vnd.stac.geotiff",
+      "type": "image/tiff; application=geotiff",
       "eo:bands": [2],
       "title": "Band 3 (green)"
     },
@@ -198,7 +198,7 @@ Planet example:
 
 ```
 {
-  "stac_version": "0.8.0",
+  "stac_version": "0.8.1",
   "stac_extensions": ["eo"],
   "id": "20171110_121030_1013",
   "type": "Feature",
@@ -232,7 +232,7 @@ Planet example:
     "analytic": {
       "href": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcxMTEwXzEyMTAxMF8xMDEzIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWMiLCAiY3QiOiAiaXRlbS10eXBlIn0",
       "title": "PSScene4Band GeoTIFF (COG)",
-      "type": "image/vnd.stac.geotiff; cloud-optimized=true",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "eo:bands": [0,1,2,3]
     }
   }
