@@ -209,7 +209,7 @@
           "title": "Asset type",
           "type": "string"
         },
-        "purpose": {
+        "rel": {
           "title": "Asset purpose",
           "type": "string"
         }

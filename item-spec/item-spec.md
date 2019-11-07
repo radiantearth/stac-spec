@@ -167,9 +167,12 @@ or streamed. It is allowed to add additional fields.
 | href       | string | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
 | title      | string | The displayed title for clients and users.                                            |
 | type       | string | [Media type](#media-types) of the asset.                                              |
-| purpose    | string | The purpose of the asset, for example `thumbnail`.                                    |
+| rel        | string | The purpose of the asset, for example `thumbnail`.                                    |
 
-**Purpose** is intended to be a tag that adds semantic usage information to an asset. Examples of this are:
+**rel** is intended to be a tag that adds semantic usage information to an asset, similarly to the use of `rel` in Link, even though it is not 
+really a relationship as the `rel` name implies.
+ 
+Examples of this are:
 
 * **thumbnail** An asset that represents a thumbnail of the item, typically a true color image (for items with assets 
 in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable 
