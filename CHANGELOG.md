@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
+- Dropped sar:absolute_orbit field from `sar` extension due to no known use case
+- Removed satellite related fields from `sar` extension due to creation of `sat` extension: `sar:platform`, `sar:instrument`, `sar:constellation`, `sar:pass_direction`, `sar:incidence_angle`
+- Removed satellite related fields from `eo` extension due to creation of `sat` extension
 
 ### Changed
 - The STAC API endpoint `/stac` has been merged with `/`
