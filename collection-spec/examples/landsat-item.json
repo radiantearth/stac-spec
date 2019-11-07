@@ -156,10 +156,6 @@
             "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_thumb_large.jpg",
             "title": "Thumbnail image",
             "type": "image/jpeg"
-        },
-        "index": {
-            "type": "text/html",
-            "title": "HTML index page"
         }
     },
     "links": [
