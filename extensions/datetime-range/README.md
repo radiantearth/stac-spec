@@ -3,6 +3,7 @@
 **Extension [Maturity Classification](../README.md#extension-maturity): Stable**
 
 An extension to provide datetime ranges with a start and an end datetime stamp in a consistent way. 
+While a STAC item can have a nominal datetime describing the capture, this extension allows an item to have a range of capture datetimes. An example of this is the [MODIS 16 day vegetation index product.](https://lpdaac.usgs.gov/products/mod13q1v006/). The datetime property in a STAC item and this extension are not mutually exclusive.
 
 This is a core extension and does not require a prefix when used.
 

@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
-- [datetime-range extension](extensions/datetime-range/README.md): Removed extension prefix from example and schema. Moved extension to core.
+- [datetime-range extension](extensions/datetime-range/README.md): Removed extension prefix from example and schema.
 
 ### Fixed
 - [Label extension](extensions/label/README.md): moved label:classes to be a list of Class Objects from a single Class Object in spec markdown and json schema (matching previous example JSON).
