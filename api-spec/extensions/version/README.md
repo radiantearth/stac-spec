@@ -150,7 +150,7 @@ By going to `/collections/{collectionID}/items/{itemsId}` or by looking at `"rel
 
 ** How do I find the permalink of an item I'm looking at?**
 
-By looking at the `href` value of a link with `"rel": "permanlink"`
+By looking at the `href` value of a link with `"rel": "permalink"`
 
 **How do I find the previous versions of a record?**
 
