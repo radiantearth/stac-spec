@@ -1,6 +1,6 @@
 # Single File STAC Specification
 
-**Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+**Extension [Maturity Classification](../README.md#extension-maturity): Candidate**
 
 An extension to provide a set of Collections and Items as a single file catalog. The single file is a self contained catalog that contains everything that would normally be in a linked set of STAC files. This format is useful to save a portion of a catalog, or when creating a small catalog from derived data that should remain portable. It is most useful for saving the results of a search from a STAC API, as the Items, Collections, and optionally the search parameters are all saved within the single file. Hierarchical links have no meaning in a single file STAC, and so, if present, should be removed when creating a single file catalog.
 

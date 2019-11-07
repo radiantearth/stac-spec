@@ -1,6 +1,6 @@
 # Checksum Extension Specification (`checksum`)
 
-**Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+**Extension [Maturity Classification](../README.md#extension-maturity): Pilot**
 
 Provides a way to specify MD5, SHA1, SHA2 and SHA3 file checksums for assets and links in STAC Items, STAC Catalogs and STAC Collections.
 

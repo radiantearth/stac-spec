@@ -1,6 +1,6 @@
 # Label Extension Specification (`label`)
 
-**Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+**Extension [Maturity Classification](../README.md#extension-maturity): Pilot**
 
 This extension is meant to support using labeled AOIs with Machine Learning models, particularly training data sets, but can be used in any application where labeled AOIs are needed.
 

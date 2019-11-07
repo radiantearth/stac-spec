@@ -1,6 +1,6 @@
 # EO Extension Specification (`eo`)
 
-**Extension [Maturity Classification](../README.md#extension-maturity): Pilot**
+**Extension [Maturity Classification](../README.md#extension-maturity): Stable**
 
 This document explains the fields of the STAC Electro-Optical (EO) Extension to a STAC Item. EO
 data is considered to be data that represents a snapshot of the earth for a single date and time. It

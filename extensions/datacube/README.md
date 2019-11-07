@@ -1,6 +1,6 @@
 # Data cube Extension Specification (`cube`)
 
-**Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+**Extension [Maturity Classification](../README.md#extension-maturity): Pilot**
 
 Data cube related metadata, especially to describe their dimensions.
 

@@ -1,6 +1,6 @@
 # Asset Definition Specification
 
-**Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+**Extension [Maturity Classification](../README.md#extension-maturity): Candidate**
 
 A Collection extension to provide details about assets that are available in member Items.
 
