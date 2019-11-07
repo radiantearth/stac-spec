@@ -3,7 +3,7 @@
 **Extension [Maturity Classification](../../../extensions/README.md#extension-maturity): Proposal**
 
 This extension is intended to augment the core [ItemCollection](../../../item-spec/itemcollection-spec.md) object when the ItemCollection is the result of a 
-search, for example, from calling the `/stac/search` API endpoint.
+search, for example, from calling the `/search` API endpoint.
 
 - [Example](examples/example.json)
 - [JSON Schema](json-schema/schema.json)

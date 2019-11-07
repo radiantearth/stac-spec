@@ -1,7 +1,7 @@
 # STAC API Examples
 
 A typical OAFeat will have multiple collections, and each will just offer simple search for its particular collection at `GET /collections/{collectionId}/items`.
-Due to the limited parameter support in OGC API - Features, it is recommended to use the STAC API endpoint `POST /stac/search` for advanced queries.
+Due to the limited parameter support in OGC API - Features, it is recommended to use the STAC API endpoint `POST /search` for advanced queries.
 The filtering is made to be compatible between STAC API and OGC API - Features whenever feasible, and the two specs seek to share the general query and filtering patterns.
 The key difference is that the STAC API search endpoints will do cross collection search.
 
@@ -48,7 +48,7 @@ A STAC API supports both GET and POST requests. It is best to use POST when usin
 Use the *[Query](extensions/query/README.md)* extension to search for any data falling within a specific geometry collected between Jan 1st and May 1st, 2019:
 
 ```
-POST /stac/search
+POST /search
 ```
 
 Body:
