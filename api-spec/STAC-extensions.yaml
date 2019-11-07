@@ -571,7 +571,12 @@ components:
       description: Allows sorting results by the specified properties
       required: false
       schema:
-        $ref: '#/components/schemas/sortby'
+        type: integer
+        minimum: 1
+        maximum: 10000
+        default: 10
+      style: form
+      explode: false
     fields:
       name: fields
       in: query
