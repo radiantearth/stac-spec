@@ -32,6 +32,7 @@ components:
         type: object
         required:
           - field
+          - direction
         properties:
           field:
             type: string
@@ -41,8 +42,8 @@ components:
             enum:
               - asc
               - desc
-
       example:
         - field: properties.eo:cloud_cover
-        - field: providers
+          direction: asc
+        - field: id
           direction: desc

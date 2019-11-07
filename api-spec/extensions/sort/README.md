@@ -10,18 +10,15 @@ Two values for direction are supported: "asc" (ascending) or "desc" (descending)
 
 ## GET or POST Form
 
-When calling `/stac/search` using GET or POST with `Content-Type: application/x-www-form-urlencoded` or `Content-Type: multipart/form-data`, the semantics are the same, except the syntax is a single parameter `sortby` with a comma-separated list of "<name>:<direction>" definitions.  If no direction is specified, the default is ascending.
-
-The use of colons in extension names is known to be problematic with respect to this format.  However, there is a desire
-to remove the use of colons in extension names, and it is unlikely that a property will be named like `foo:desc`.
+When calling `/stac/search` using GET or POST with `Content-Type: application/x-www-form-urlencoded` or `Content-Type: multipart/form-data`, the semantics are the same, except the syntax is a single parameter `sortby` with a comma-separated list of "<name>|<direction>" definitions.  It is recommended that in implementations, direction be mandatory, and that an error should result from not specifying a direction.
 
 Examples of `sortby` parameter:
 
+    GET /stac/search?sortby=created|asc
+    
     GET /stac/search?sortby=created|asc,id|desc
     
     GET /stac/search?sortby=properties.eo:cloud_cover|desc
-    
-    GET /stac/search?sortby=created
 
 # POST JSON Entity
 
@@ -56,7 +53,8 @@ The syntax for the `sortby` attribute is:
             "direction": "desc"
         },
         {
-            "field": "collection"
+            "field": "collection",
+            "direction": "desc"
         }
     ]
 }
