@@ -160,16 +160,16 @@
     },
     "links": [
         {
-            "rel": "self",
-            "href": "https://<endpoint>/stac/search?id=LC08_L1TP_107018_20181001_20181001_01_RT"
+            "rel": "parent",
+            "href": "./landsat-collection.json"
         },
         {
-            "rel": "parent",
-            "href": "https://<endpoint>/stac/collections/landsat-8-l1"
+            "rel": "collection",
+            "href": "./landsat-collection.json"
         },
         {
             "rel": "root",
-            "href": "https://<endpoint>/stac"
+            "href": "./landsat-collection.json"
         }
     ]
 }

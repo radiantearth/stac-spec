@@ -34,10 +34,12 @@
       ]
     ]
   },
- 
+
   "properties": {
     "datetime": "2014-06-02T09:22:02Z",
     "collection": "L1T",
+    "eo:platform": "landsat-8",
+    "eo:instrument": "oli_tirs",
     "eo:gsd": 30.0,
     "eo:cloud_cover" : 10,
     "eo:off_nadir" : 0.000,
@@ -54,7 +56,86 @@
     "landsat:geometric_rmse_model_x": 5.96,
     "landsat:geometric_rmse_model_y": 4.654,
     "landsat:geometric_rmse_verify": 5.364,
-    "landsat:image_quality_oli": 9
+    "landsat:image_quality_oli": 9,
+    "eo:bands": [
+      {
+        "name": "B1",
+        "common_name": "coastal",
+        "gsd": 30,
+        "center_wavelength": 0.44,
+        "full_width_half_max": 0.02
+      },
+      {
+        "name": "B2",
+        "common_name": "blue",
+        "gsd": 30,
+        "center_wavelength": 0.48,
+        "full_width_half_max": 0.06
+      },
+      {
+        "name": "B3",
+        "common_name": "green",
+        "gsd": 30,
+        "center_wavelength": 0.56,
+        "full_width_half_max": 0.06
+      },
+      {
+        "name": "B4",
+        "common_name": "red",
+        "gsd": 30,
+        "center_wavelength": 0.65,
+        "full_width_half_max": 0.04
+      },
+      {
+        "name": "B5",
+        "common_name": "nir",
+        "gsd": 30,
+        "center_wavelength": 0.86,
+        "full_width_half_max": 0.03
+      },
+      {
+        "name": "B6",
+        "common_name": "swir16",
+        "gsd": 30,
+        "center_wavelength": 1.6,
+        "full_width_half_max": 0.08
+      },
+      {
+        "name": "B7",
+        "common_name": "swir22",
+        "gsd": 30,
+        "center_wavelength": 2.2,
+        "full_width_half_max": 0.2
+      },
+      {
+        "name": "B8",
+        "common_name": "pan",
+        "gsd": 15,
+        "center_wavelength": 0.59,
+        "full_width_half_max": 0.18
+      },
+      {
+        "name": "B9",
+        "common_name": "cirrus",
+        "gsd": 30,
+        "center_wavelength": 1.37,
+        "full_width_half_max": 0.02
+      },
+      {
+        "name": "B10",
+        "common_name": "lwir11",
+        "gsd": 100,
+        "center_wavelength": 10.9,
+        "full_width_half_max": 0.8
+      },
+      {
+        "name": "B11",
+        "common_name": "lwir12",
+        "gsd": 100,
+        "center_wavelength": 12,
+        "full_width_half_max": 1
+      }
+    ]
   },
 
   "links": [

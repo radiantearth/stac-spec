@@ -1,7 +1,7 @@
 {
   "stac_version": "0.8.1",
   "stac_extensions": [
-    "eo",
+      "eo",
     "https://example.com/stac/cbers-extension/1.0/schema.json"
   ],
   "id": "CBERS_4_MUX_20181029_177_106_L4",
@@ -41,29 +41,30 @@
     -63.485124,
     -4.731829
   ],
+  "collection": "CBERS4MUX",
   "properties": {
     "datetime": "2018-10-29T14:24:54Z",
     "eo:sun_azimuth": 111.113,
     "eo:sun_elevation": 65.8018,
     "eo:off_nadir": 0.00751271,
     "eo:epsg": 32763,
+    "eo:instrument": "MUX",
     "cbers:data_type": "L4",
     "cbers:path": 177,
     "cbers:row": 106
   },
-  "collection": "CBERS_4_MUX",
   "links": [
     {
       "rel": "self",
-      "href": "https://cbers-stac-0-6.s3.amazonaws.com/CBERS4/MUX/177/106/CBERS_4_MUX_20181029_177_106_L4.json"
+      "href": "https://cbers-stac-0-7.s3.amazonaws.com/CBERS4/MUX/177/106/CBERS_4_MUX_20181029_177_106_L4.json"
     },
     {
       "rel": "parent",
-      "href": "https://cbers-stac-0-6.s3.amazonaws.com/CBERS4/MUX/177/catalog.json"
+      "href": "https://cbers-stac-0-7.s3.amazonaws.com/CBERS4/MUX/177/106/catalog.json"
     },
     {
       "rel": "collection",
-      "href": "https://cbers-stac-0-6.s3.amazonaws.com/collections/CBERS_4_MUX_collection.json"
+      "href": "https://cbers-stac-0-7.s3.amazonaws.com/CBERS4/MUX/collection.json"
     }
   ],
   "assets": {
@@ -78,28 +79,28 @@
     },
     "B5": {
       "href": "s3://cbers-pds/CBERS4/MUX/177/106/CBERS_4_MUX_20181029_177_106_L4/CBERS_4_MUX_20181029_177_106_L4_BAND5.tif",
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "type": "image/vnd.stac.geotiff; cloud-optimized=true",
       "eo:bands": [
         0
       ]
     },
     "B6": {
       "href": "s3://cbers-pds/CBERS4/MUX/177/106/CBERS_4_MUX_20181029_177_106_L4/CBERS_4_MUX_20181029_177_106_L4_BAND6.tif",
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "type": "image/vnd.stac.geotiff; cloud-optimized=true",
       "eo:bands": [
         1
       ]
     },
     "B7": {
       "href": "s3://cbers-pds/CBERS4/MUX/177/106/CBERS_4_MUX_20181029_177_106_L4/CBERS_4_MUX_20181029_177_106_L4_BAND7.tif",
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "type": "image/vnd.stac.geotiff; cloud-optimized=true",
       "eo:bands": [
         2
       ]
     },
     "B8": {
       "href": "s3://cbers-pds/CBERS4/MUX/177/106/CBERS_4_MUX_20181029_177_106_L4/CBERS_4_MUX_20181029_177_106_L4_BAND8.tif",
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "type": "image/vnd.stac.geotiff; cloud-optimized=true",
       "eo:bands": [
         3
       ]

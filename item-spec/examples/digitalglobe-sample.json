@@ -33,6 +33,7 @@
       ]
     ]
   },
+  "bbox": [-105.161151214, 39.0436821016, -104.947574355, 39.1750024943],
   "assets": {
     "multispectral_image": {
       "href": "https://15NOV09180446-M1BS-056823192010_01_P002.TIF"
@@ -74,9 +75,52 @@
     "eo:off_nadir": 18.4,
     "eo:azimuth": 34.5,
     "eo:platform": "worldview02",
+    "eo:instrument": "worldview02",
     "eo:sun_elevation": 33.4,
     "eo:gsd": 2.047,
     "eo:epsg": null,
+    "eo:bands": [
+      {
+        "name": "Coastal",
+        "common_name": "coastal",
+        "description": "Coastal: 400 - 450 nm"
+      },
+      {
+        "name": "Blue",
+        "common_name": "blue",
+        "description": "Blue: 450 - 510 nm"
+      },
+      {
+        "name": "Green",
+        "common_name": "green",
+        "description": "Green: 510 - 580 nm"
+      },
+      {
+        "name": "Yellow",
+        "common_name": "yellow",
+        "description": "Yellow: 585 - 625 nm"
+      },
+      {
+        "name": "Red",
+        "common_name": "red",
+        "description": "Red: 630 - 690 nm"
+      },
+      {
+        "name": "Red Edge",
+        "common_name": "rededge",
+        "description": "Red Edge: 705 - 745 nm"
+      },
+      {
+        "name": "Near-IR1",
+        "common_name": "nir08",
+        "description": "Near-IR1: 770 - 895 nm"
+      },
+      {
+        "name": "Near-IR2",
+        "common_name": "nir09",
+        "description": "Near-IR2: 860 - 1040 nm"
+      }
+    ],
     "dg:catalog_id": "103001004B316600",
     "dg:soli": "056823192",
     "dg:part": 2,
@@ -86,14 +130,14 @@
     "datetime": "2015-11-09T18:04:46.000Z"
   },
   "collection": "dg_worldview02",
-   "links": [
-      {
-        "rel": "self",
-        "href": "https://s3.amazonaws.com/digitalglobe-catalog-spec/collections/dg_worldview02_lv1b/103001004B316600_P002_MUL"
-      },
-      {
-        "rel": "collection",
-        "href": "https://s3.amazonaws.com/digitalglobe-catalog-spec/collections/dg_worldview02_lv1b.json"
-      }
-    ]
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://s3.amazonaws.com/digitalglobe-catalog-spec/collections/dg_worldview02_lv1b/103001004B316600_P002_MUL"
+    },
+    {
+      "rel": "collection",
+      "href": "https://s3.amazonaws.com/digitalglobe-catalog-spec/collections/dg_worldview02_lv1b.json"
+    }
+  ]
 }
