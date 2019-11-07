@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "schema.json#",
+  "title": "Aerial Extension",
+  "description": "STAC Aerial Extension to a STAC Item",
+  "allOf": [
+    {
+      "$ref": "../../../item-spec/json-schema/item.json#/definitions/core"
+    },
+    {
+      "$ref": "#/definitions/aerial"
+    }
+  ],
+  "definitions": {
+    "aerial": {
+      "type": "object",
+      "required": [
+        "properties"
+      ],
+      "properties": {
+        "properties": {
+          "type": "object",
+          "required": [
+            "aerial:platform",
+            "aerial:instrument"
+          ],
+          "properties": {
+            "aerial:platform": {
+              "title": "Platform",
+              "type": "string"
+            },
+            "aerial:constellation": {
+              "title": "Constellation",
+              "type": "string"
+            },
+            "aerial:instrument": {
+              "title": "Instrument",
+              "type": "string"
+            },
+            "aerial:campaign":{
+              "title": "Campaign",
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
