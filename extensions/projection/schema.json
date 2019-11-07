@@ -21,28 +21,28 @@
         "properties":{
           "type":"object",
           "required":[
-            "proj:epsg"
+            "epsg"
           ],
           "properties":{
-            "proj:epsg":{
+            "epsg":{
               "title":"EPSG code",
               "type":[
                 "integer",
                 "null"
               ]
             },
-            "proj:crs":{
+            "native_crs_proj4":{
               "title":"Coordinate Reference System in PROJ format",
               "type":[
                 "string",
                 "null"
               ]
             },
-            "proj:geometry":{
+            "native_crs_geometry":{
               "title":"Geometry",
               "type":"object"
             },
-            "proj:bbox":{
+            "native_crs_bbox":{
               "title":"Extent",
               "type":"array",
               "minItems":4,
@@ -51,7 +51,7 @@
                 "type":"number"
               }
             },
-            "proj:centroid":{
+            "native_crs_centroid":{
               "title":"Centroid",
               "type":"object",
               "required": [
