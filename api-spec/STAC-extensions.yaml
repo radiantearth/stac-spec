@@ -434,7 +434,7 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/Collections'
-  '/collections/{collectionId}/items/{featureId}/versions/':
+  '/collections/{collectionId}/items/{featureId}/versions':
     get:
       summary: returns a list of links for a versioned item
       description: returns a list of links for a versioned item
