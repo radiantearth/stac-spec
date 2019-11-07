@@ -327,9 +327,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/exception'
-            text/html:
-              schema:
-                type: string
   /search:
     get:
       summary: Search STAC items with simple filtering.
@@ -557,7 +554,7 @@ components:
       in: query
       description: >
         Array of Item ids to return. All other filter parameters that further
-        restrict the number of
+        restrict the number of 
 
         search results are ignored
       required: false
@@ -1411,10 +1408,10 @@ components:
         vertical axis (elevation or depth):
 
         * Lower left corner, coordinate axis 1
-        * Lower left corner, coordinate axis 2
-        * Lower left corner, coordinate axis 3 (optional)
-        * Upper right corner, coordinate axis 1
-        * Upper right corner, coordinate axis 2
+        * Lower left corner, coordinate axis 2  
+        * Lower left corner, coordinate axis 3 (optional) 
+        * Upper right corner, coordinate axis 1 
+        * Upper right corner, coordinate axis 2 
         * Upper right corner, coordinate axis 3 (optional)
 
         The coordinate reference system of the values is WGS84
@@ -1459,7 +1456,7 @@ components:
       type: array
       description: >
         Array of Item ids to return. All other filter parameters that further
-        restrict the number of
+        restrict the number of 
 
         search results are ignored
       items:
