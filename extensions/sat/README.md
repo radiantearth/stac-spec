@@ -15,13 +15,12 @@ This document explains the fields of the sat Extension to a STAC Item. Sat adds 
 | instruments    | [string]                   | **REQUIRED.** Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1). |
 | constellation | string                   | Name of the constellation to which the platform belongs. |
 | off_nadir     | number                   | Viewing angle. The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90). |
-| incidence_angle       | number        | The center incidence angle is the angle defined by the incident radar beam at the scene center and the vertical (normal) to the intercepting surface. Measured in degrees (0-90). |
+| incidence_angle       | number        | The incidence angle is the angle between the vertical (normal) to the intercepting surface and the line of sight back to the satellite at the scene center. Measured in degrees (0-90). |
 | azimuth       | number                   | Viewing azimuth angle. The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360). |
 | sun_azimuth   | number                   | Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360). |
 | sun_elevation | number                   | Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (0-90). |
-| pass_direction        | string\|null  | Direction of the orbit, either `ascending` or `descending`. |
-| absolute_orbit        | integer       | An absolute orbit number associated with the acquisition. |
-| relative_orbit        | integer       | A relative orbit number associated with the acquisition. |
+| pass_direction        | string  | Direction of the orbit, either `ascending` or `descending`. |
+| relative_orbit        | integer       | The relative orbit number at the time of acquisition. |
 
 
 **platform** is the unique name of the specific platform the instrument is attached to. For satellites this would 
@@ -42,13 +41,11 @@ is technically referring to a pair of sensors on two different satellites, whose
 related products. Additionally, the Aqua satellite is technically part of the A-Train constellation and Terra is not 
 part of a constellation, but these combine to form the logical collection referred to as MODIS. 
 
-**absolute_orbit** usually corresponds to the number of orbits elapsed since satellite launch (e.g. ALOS, ERS-1/2, JERS-1, RADARSAT-1 and Sentinel-1). For airborne SAR such as UAVSAR it can be the [Flight ID](http://uavsar.jpl.nasa.gov/cgi-bin/data.pl) or a similar concept. The center orbit number should be specified if readily available, otherwise the orbit number at the start of the flight can be used instead.
-
 **relative_orbit** is a count of orbits from 1 to the number of orbits contained in a repeat cycle, where relative orbit 1 starts from a defined reference for a given satellite. This property is usually not set for airborne SAR such as UAVSAR. The center orbit number should be specified if readily available, otherwise the orbit number at the start of the flight can be used instead.
 
 
 ```
-Planet example:
+Example:
 
 ```
 {
@@ -61,7 +58,7 @@ Planet example:
   ...
   "properties": {
     "platform": "mysatellite",
-    "instrument": "mycamera",
+    "instruments": ["mycamera1", "mycamera2"],
     "constellation": "allmysatellites"
   }
 }

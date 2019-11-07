@@ -22,7 +22,7 @@
           "type": "object",
           "required": [
             "platform",
-            "instrument"
+            "instruments"
           ],
           "properties": {
             "platform": {
@@ -33,12 +33,18 @@
               "title": "Constellation",
               "type": "string"
             },
-            "instrument": {
+            "instruments": {
               "title": "Instrument",
-              "type": "string"
+              "type": "array"
             },
             "off_nadir": {
               "title": "Off Nadir",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 90
+            },
+            "incidence_angle": {
+              "title": "Center incidence angle",
               "type": "number",
               "minimum": 0,
               "maximum": 90
@@ -60,6 +66,18 @@
               "type": "number",
               "minimum": 0,
               "maximum": 90
+            },
+            "relative_orbit": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "pass_direction": {
+              "title": "Pass direction",
+              "type": "string",
+              "enum": [
+                "ascending",
+                "descending"
+              ]
             }
           }
         }
