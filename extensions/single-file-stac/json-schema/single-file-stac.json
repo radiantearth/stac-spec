@@ -12,7 +12,7 @@
     }
   ],
   "definitions": {
-    "single-file-stacc": {
+    "single-file-stac": {
       "type": "object",
       "required": [
         "collections"
