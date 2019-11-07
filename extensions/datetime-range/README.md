@@ -21,4 +21,4 @@ search STAC records by the provided times.
 
 ## Implementations
 
-2 proprietary implementations
+3 proprietary implementations
