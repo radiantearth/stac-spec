@@ -439,9 +439,6 @@ components:
           description: List of keywords describing the collection.
           items:
             type: string
-        version:
-          type: string
-          description: Version of the collection.
         license:
           $ref: '#/components/schemas/license'
         providers:
