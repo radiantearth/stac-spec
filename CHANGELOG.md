@@ -6,12 +6,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
-# Changed
+## [v0.8.1] - 2019-11-01
+
+### Changed
 - Updated specification to base on OGC API - Features - Part 1: Core, v1.0.0 instead of OGC API - Features - Part 1: Core, v1.0.0-draft.2 (fka WFS3 draft 2).
 - Moved Single Item Extension to core (`license` and `providers` properties for Items)
 - Added Projection Extension to describe Items with Assets that have an associated geospatial projection.
 
-# Fixed
+### Fixed
+- Numerous typos, clarifications and fixes for documentation and examples.
+- Fixed STAC API definition to include STAC-related fields and examples in *OGC API - Features*-derived endpoints.
 - Fixed JSON schemas for extensions: `$id` field matches file name.
 
 ## [v0.8.0] - 2019-10-11
@@ -213,6 +217,7 @@ Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkam
 
 
 [Unreleased]: https://github.com/radiantearth/stac-spec/compare/master...dev
+[v0.8.1]: https://github.com/radiantearth/stac-spec/compare/v0.8.0...v0.8.1
 [v0.8.0]: https://github.com/radiantearth/stac-spec/compare/v0.7.0...v0.8.0
 [v0.7.0]: https://github.com/radiantearth/stac-spec/compare/v0.6.2...v0.7.0
 [v0.6.2]: https://github.com/radiantearth/stac-spec/compare/v0.6.1...v0.6.2

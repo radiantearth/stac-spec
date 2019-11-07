@@ -286,9 +286,8 @@ components:
       type: object
       description: |-
         Information about the exception: an error code plus an optional description.
-# Commented out to as this conflicts with the STAC definition and leads to two entries "code" for required in the merged file.
-#     required:
-#       - code
+      required:
+        - code
       properties:
         code:
           type: string
@@ -509,9 +508,8 @@ components:
               type: number
     link:
       type: object
-# Commented out to as this conflicts with the STAC definition and leads to two entries "href" for required in the merged file.
-#     required:
-#       - href
+      required:
+        - href
       properties:
         href:
           type: string
@@ -730,57 +728,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/collections'
-          example:
-            links:
-              - href: 'http://data.example.org/collections.json'
-                rel: self
-                type: application/json
-                title: this document
-              - href: 'http://data.example.org/collections.html'
-                rel: alternate
-                type: text/html
-                title: this document as HTML
-              - href: 'http://schemas.example.org/1.0/buildings.xsd'
-                rel: describedBy
-                type: application/xml
-                title: GML application schema for Acme Corporation building data
-              - href: 'http://download.example.org/buildings.gpkg'
-                rel: enclosure
-                type: application/geopackage+sqlite3
-                title: Bulk download (GeoPackage)
-                length: 472546
-            collections:
-              - id: buildings
-                title: Buildings
-                description: Buildings in the city of Bonn.
-                extent:
-                  spatial:
-                    bbox:
-                      - - 7.01
-                        - 50.63
-                        - 7.22
-                        - 50.78
-                  temporal:
-                    interval:
-                      - - '2010-02-15T12:34:56Z'
-                        - null
-                links:
-                  - href: 'http://data.example.org/collections/buildings/items'
-                    rel: items
-                    type: application/geo+json
-                    title: Buildings
-                  - href: 'http://data.example.org/collections/buildings/items.html'
-                    rel: items
-                    type: text/html
-                    title: Buildings
-                  - href: 'https://creativecommons.org/publicdomain/zero/1.0/'
-                    rel: license
-                    type: text/html
-                    title: CC0-1.0
-                  - href: 'https://creativecommons.org/publicdomain/zero/1.0/rdf'
-                    rel: license
-                    type: application/rdf+xml
-                    title: CC0-1.0
+          # Removed example, I can't override it from STAC.yaml
         text/html:
           schema:
             type: string
@@ -788,8 +736,8 @@ components:
       description: |-
         Information about the feature collection with id `collectionId`.
 
-        The response contains a linkto the items in the collection
-        (path `/collections/{collectionId}/items`,link relation `items`)
+        The response contains a link to the items in the collection
+        (path `/collections/{collectionId}/items`, link relation `items`)
         as well as key information about the collection. This information
         includes:
 
@@ -802,38 +750,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/collection'
-          example:
-            id: buildings
-            title: Buildings
-            description: Buildings in the city of Bonn.
-            extent:
-              spatial:
-                bbox:
-                  - - 7.01
-                    - 50.63
-                    - 7.22
-                    - 50.78
-              temporal:
-                interval:
-                  - - '2010-02-15T12:34:56Z'
-                    - null
-            links:
-              - href: 'http://data.example.org/collections/buildings/items'
-                rel: items
-                type: application/geo+json
-                title: Buildings
-              - href: 'http://data.example.org/collections/buildings/items.html'
-                rel: items
-                type: text/html
-                title: Buildings
-              - href: 'https://creativecommons.org/publicdomain/zero/1.0/'
-                rel: license
-                type: text/html
-                title: CC0-1.0
-              - href: 'https://creativecommons.org/publicdomain/zero/1.0/rdf'
-                rel: license
-                type: application/rdf+xml
-                title: CC0-1.0
+          # Removed example, I can't override it from STAC.yaml
         text/html:
           schema:
             type: string
@@ -862,45 +779,7 @@ components:
         application/geo+json:
           schema:
             $ref: '#/components/schemas/featureCollectionGeoJSON'
-          example:
-            type: FeatureCollection
-            links:
-              - href: 'http://data.example.com/collections/buildings/items.json'
-                rel: self
-                type: application/geo+json
-                title: this document
-              - href: 'http://data.example.com/collections/buildings/items.html'
-                rel: alternate
-                type: text/html
-                title: this document as HTML
-              - href: 'http://data.example.com/collections/buildings/items.json&offset=10&limit=2'
-                rel: next
-                type: application/geo+json
-                title: next page
-            timeStamp: '2018-04-03T14:52:23Z'
-            numberMatched: 123
-            numberReturned: 2
-            features:
-              - type: Feature
-                id: '123'
-                geometry:
-                  type: Polygon
-                  coordinates:
-                    - ...
-                properties:
-                  function: residential
-                  floors: '2'
-                  lastUpdate: '2015-08-01T12:34:56Z'
-              - type: Feature
-                id: '132'
-                geometry:
-                  type: Polygon
-                  coordinates:
-                    - ...
-                properties:
-                  function: public use
-                  floors: '10'
-                  lastUpdate: '2013-12-03T10:15:37Z'
+          # Removed example, I can't override it from STAC.yaml
         text/html:
           schema:
             type: string
@@ -912,33 +791,7 @@ components:
         application/geo+json:
           schema:
             $ref: '#/components/schemas/featureGeoJSON'
-          example:
-            type: Feature
-            links:
-              - href: 'http://data.example.com/id/building/123'
-                rel: canonical
-                title: canonical URI of the building
-              - href: 'http://data.example.com/collections/buildings/items/123.json'
-                rel: self
-                type: application/geo+json
-                title: this document
-              - href: 'http://data.example.com/collections/buildings/items/123.html'
-                rel: alternate
-                type: text/html
-                title: this document as HTML
-              - href: 'http://data.example.com/collections/buildings'
-                rel: collection
-                type: application/geo+json
-                title: the collection document
-            id: '123'
-            geometry:
-              type: Polygon
-              coordinates:
-                - ...
-            properties:
-              function: residential
-              floors: '2'
-              lastUpdate: '2015-08-01T12:34:56Z'
+          # Removed example, I can't override it from STAC.yaml
         text/html:
           schema:
             type: string
