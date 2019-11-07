@@ -35,25 +35,7 @@ The exact metadata that would appear in a STAC Collection record will vary depen
 | sar:observation_direction | string        | Antenna pointing direction relative to the flight trajectory of the satellite, either `left` or `right`.
 
 
-**sar:platform** is the unique name of the specific platform the instrument is attached to. For satellites this would 
-be the name of the satellite, whereas for drones this would be a unique name for the drone. Examples include `sentinel-1a` (Sentinel-1) and `envisat` (Envisat).
- 
-**sar:constellation** is the name of a logical collection one or more platforms that have similar payloads and have 
-their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and 
-radiometric characteristics. This field allows users to search for related data sets without needing to specify from 
-which specific platform the data came. One example is 
-the constellation `sentinel-1` (Sentinel-1) consisting of two satellites Sentinel-1A and Sentinel-1B. If a system 
-consists of only a single satellite, the constellation name is the same as the satellite name, e.g., `envisat` 
-(Envisat). 
-
-**sar:instrument** is the name of the sensor used, although for Items which contain data from multiple sensors this 
-could also name multiple sensors. Examples include `c-sar` (Sentinel-1) and `asar` (Envisat).
-
 **sar:polarization** specifies a single polarization or a polarization combination. For single polarized radars one of `HH`, `VV`, `HV` or `VH` must be set. Fully polarimetric radars add all four polarizations to the array. Dual polarized radars and alternating polarization add the corresponding polarizations to the array, for instance for `HH+HV` add both `HH` and `HV`.
-
-**sar:absolute_orbit** usually corresponds to the number of orbits elapsed since satellite launch (e.g. ALOS, ERS-1/2, JERS-1, RADARSAT-1 and Sentinel-1). For airborne SAR such as UAVSAR it can be the [Flight ID](http://uavsar.jpl.nasa.gov/cgi-bin/data.pl) or a similar concept. The center orbit number should be specified if readily available, otherwise the orbit number at the start of the flight can be used instead.
-
-**sar:relative_orbit** is a count of orbits from 1 to the number of orbits contained in a repeat cycle, where relative orbit 1 starts from a defined reference for a given satellite. This property is usually not set for airborne SAR such as UAVSAR. The center orbit number should be specified if readily available, otherwise the orbit number at the start of the flight can be used instead.
 
 ### Common Frequency Band Names
 
