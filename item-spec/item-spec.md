@@ -8,7 +8,7 @@ granular entity in a STAC, containing the core metadata that enables any client 
 online catalogs of spatial 'assets' - satellite imagery, derived data, DEM's, etc.
 
 The same Item definition is used in both [STAC catalogs](../catalog-spec/README.md) and
-the [`/stac/search`](../api-spec/README.md) endpoint. Catalogs are simply sets of items that are linked online,
+the [`/search`](../api-spec/README.md) endpoint. Catalogs are simply sets of items that are linked online,
 generally served by simple web servers and used for crawling data. The search endpoint enables dynamic
 queries, for example selecting all Items in Hawaii on June 3, 2015, but the results they return are
 FeatureCollections of items.

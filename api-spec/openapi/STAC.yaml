@@ -20,25 +20,18 @@ servers:
   - url: 'http://www.cool-sat.com'
     description: Production server
 paths:
-  /stac:
+  '/':
     get:
-      summary: Return the root catalog or collection.
-      description: >-
+      # Overriding the OAFeat description for this endpoint
+      description: |-
         Returns the root STAC Catalog or STAC Collection that is the entry point
         for users to browse with STAC Browser or for search engines to crawl.
         This can either return a single STAC Collection or more commonly a STAC
-        catalog that usually lists sub-catalogs of STAC Collections, i.e. a
-        simple catalog that lists all collections available through the API.
-      tags:
-        - STAC
-      responses:
-        '200':
-          description: A catalog JSON definition. Used as an entry point for a crawler.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/catalogDefinition'
-  /stac/search:
+        catalog.
+
+        The landing page provides links to the API definition, the conformance
+        statements, the collections and sub-catalogs.
+  /search:
     get:
       summary: Search STAC items with simple filtering.
       description: >-
@@ -46,7 +39,7 @@ paths:
         queries.
         
 
-        This method is optional, but you MUST implement `POST /stac/search` if you want to implement this method.
+        This method is optional, but you MUST implement `POST /search` if you want to implement this method.
       operationId: getSearchSTAC
       tags:
         - STAC
@@ -85,7 +78,7 @@ paths:
         query API.
         
         
-        This method is mandatory to implement if `GET /stac/search` is implemented. If this endpoint is implemented on a server, it is required to add a link with `rel` set to `search` to the `links` array in `GET /stac` that refers to this endpoint.
+        This method is mandatory to implement if `GET /search` is implemented. If this endpoint is implemented on a server, it is required to add a link with `rel` set to `search` to the `links` array in `GET /` that refers to this endpoint.
       operationId: postSearchSTAC
       tags:
         - STAC
@@ -145,6 +138,30 @@ components:
         $ref: '#/components/schemas/collectionsArray'
       explode: false
   responses:
+    # This schema extends OAFeat.yaml#/components/responses/LandingPage.
+    LandingPage:
+      description: |-
+        The landing page provides links to the API definition
+        (link relations `service-desc` and `service-doc`),
+        the Conformance declaration (path `/conformance`,
+        link relation `conformance`), and the Feature
+        Collections (path `/collections`, link relation
+        `data`).
+
+        A link to the search endpoint (path `/search`, link relation
+        `search`) is **required** to be specified if the API implements `/search`
+      content:
+        application/json:
+          example:
+            stac_version: 0.8.1
+            id: naip
+            title: NAIP Imagery
+            description: Catalog of NAIP Imagery.
+            links:
+              - href: 'http://data.example.org/search'
+                rel: search
+                type: application/json
+                title: Search across feature collections
     # This schema extends OAFeat.yaml#/components/responses/Feature change the schema from featureGeoJson to item.
     Feature:
       content:
@@ -584,13 +601,13 @@ components:
                 anyOf:
                   - type: string
                   - type: number
-    catalogDefinition:
+    # This schema extends OAFeat.yaml#/components/schemas/landingPage to add and require additional fields.
+    landingPage:
       type: object
       required:
         - stac_version
         - id
         - description
-        - links
       properties:
         stac_version:
           $ref: '#/components/schemas/stac_version'
@@ -598,39 +615,8 @@ components:
           $ref: '#/components/schemas/stac_extensions'
         id:
           type: string
-          example: naip
-        title:
-          type: string
-          example: NAIP Imagery
-        description:
-          type: string
-          example: Catalog of NAIP Imagery.
         summaries:
           $ref: '#/components/schemas/summaries'
-        links:
-          type: array
-          items:
-            anyOf:
-            - $ref: '#/components/schemas/link'
-            - title: Link to search endpoint
-              description: Link the search endpoint, which is **required** to be specified if the API implements `/stac/search`.
-              type: object
-              required:
-                - href
-                - rel
-              properties:
-                href:
-                  type: string
-                  format: url
-                  example: 'http://www.cool-sat.com/stac/search'
-                rel:
-                  type: string
-                  enum:
-                    - search
-                type:
-                  type: string
-                title:
-                  type: string
     itemCollection:
       description: A GeoJSON FeatureCollection augmented with foreign members that contain values relevant to a STAC entity
       type: object
@@ -791,7 +777,7 @@ components:
       example:
         - rel: next
           href: >-
-            http://api.cool-sat.com/stac/search?next=ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
+            http://api.cool-sat.com/search?next=ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
 tags:
   - name: STAC
     description: Extension to OGC API - Features to support STAC metadata model and search API
