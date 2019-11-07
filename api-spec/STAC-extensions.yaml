@@ -329,7 +329,6 @@ paths:
         - $ref: '#/components/parameters/bbox'
         - $ref: '#/components/parameters/datetime'
         - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/next'
         - $ref: '#/components/parameters/ids'
         - $ref: '#/components/parameters/collectionsArray'
         - $ref: '#/components/parameters/query'
@@ -535,16 +534,6 @@ components:
         default: 10
       style: form
       explode: false
-    next:
-      name: next
-      in: query
-      description: >-
-        The token to retrieve the next set of results, e.g., offset, page,
-        continuation token
-      required: false
-      schema:
-        $ref: '#/components/schemas/next'
-      style: form
     ids:
       name: ids
       in: query
@@ -552,7 +541,7 @@ components:
         Array of Item ids to return. All other filter parameters that further
         restrict the number of 
 
-        search results (except `next` and `limit`) are ignored
+        search results are ignored
       required: false
       schema:
         $ref: '#/components/schemas/ids'
@@ -1152,6 +1141,37 @@ components:
           example: NAIP Child Catalog
         length:
           type: integer
+        method:
+          type: string
+          enum:
+            - GET
+            - POST
+          default: GET
+          description: Specifies the HTTP method that the link expects
+        headers:
+          type: object
+          description: Object key values pairs they map to headers
+          example:
+            Accept: application/json
+        body:
+          type: object
+          description: >-
+            For POST requests, the link can specify the HTTP body as a JSON
+            object.
+        merge:
+          type: boolean
+          default: false
+          description: >-
+            This is only valid when the server is responding to POST request.
+
+            If merge is true, the client is expected to merge the body value
+            into the current request body before following the link. This avoids
+            passing large post bodies back and forth when following links,
+            particularly for navigating pages through the POST /search endpoint.
+
+            NOTE: To support form encoding it is expected that a client be able
+            to merge in the key value pairs specified as JSON `{"next":
+            "token"}` will become `&next=token`
       title: Link
     multilinestringGeoJSON:
       type: object
@@ -1357,19 +1377,12 @@ components:
         - $ref: '#/components/schemas/bboxFilter'
         - $ref: '#/components/schemas/datetimeFilter'
         - $ref: '#/components/schemas/intersectsFilter'
-        - $ref: '#/components/schemas/nextFilter'
         - $ref: '#/components/schemas/collectionsFilter'
         - $ref: '#/components/schemas/idsFilter'
         - $ref: '#/components/schemas/limitFilter'
         - $ref: '#/components/schemas/queryFilter'
         - $ref: '#/components/schemas/sortFilter'
         - $ref: '#/components/schemas/fieldsFilter'
-    next:
-      type: string
-      description: >-
-        The token to retrieve the next set of results, e.g., offset, page,
-        continuation token
-      default: null
     limit:
       type: integer
       minimum: 1
@@ -1435,7 +1448,7 @@ components:
         Array of Item ids to return. All other filter parameters that further
         restrict the number of 
 
-        search results (except `next` and `limit`) are ignored
+        search results are ignored
       items:
         type: string
     datetimeFilter:
@@ -1456,12 +1469,6 @@ components:
       properties:
         limit:
           $ref: '#/components/schemas/limit'
-    nextFilter:
-      type: object
-      description: Only returns the next set of results
-      properties:
-        next:
-          $ref: '#/components/schemas/next'
     idsFilter:
       type: object
       description: Only returns items that match the array of given ids
@@ -1585,9 +1592,6 @@ components:
             - next
             - returned
           properties:
-            next:
-              type: string
-              nullable: true
             limit:
               type: integer
               nullable: true
