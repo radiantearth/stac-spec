@@ -6,8 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Added
+- Added [Version Extension](extensions/version/README.md) to version and deprecate STAC Items and Collections.
+
 ### Removed
 - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
+- Removed `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead.
 
 ### Changed
 - The STAC API endpoint `/stac` has been merged with `/`

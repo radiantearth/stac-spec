@@ -1,7 +1,8 @@
 {
   "stac_version": "0.8.1",
   "stac_extensions": [
-    "label"
+    "label",
+    "version"
   ],
   "id": "AOI_2_Vegas_img2636",
   "type": "Feature",
@@ -1118,7 +1119,7 @@
     "label:methods": [
       "manual"
     ],
-    "version": 1,
+    "version": "1",
     "label:classes": [
       {
         "name": "OBJECTID_1",

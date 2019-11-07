@@ -31,7 +31,6 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | title        | string            | A short descriptive one-line title for the collection.       |
 | description  | string            | **REQUIRED.** Detailed multi-line description to fully explain the collection. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | keywords     | [string]          | List of keywords describing the collection.                  |
-| version      | string            | Version of the collection.                                   |
 | license      | string            | **REQUIRED.** Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60). Alternatively, use `proprietary` if the license is not on the SPDX license list or `various` if multiple licenses apply. In these two cases links to the license texts SHOULD be added, see the `license` link relation type. |
 | providers    | [[Provider Object](#provider-object) | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | extent       | [Extent Object](#extent-object) | **REQUIRED.** Spatial and temporal extents.    |
@@ -166,7 +165,6 @@ An incomplete Collection:
   "id": "landsat-8-l1",
   "title": "Landsat 8 L1",
   "description": "Landat 8 imagery radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
-  "version": "0.1.0",
   "extent": {...},
   "license": "PDDL-1.0",
   "properties": {
