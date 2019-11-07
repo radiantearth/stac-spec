@@ -149,8 +149,8 @@ In order to achieve this, the static catalog must make sure that for every recor
 
 The main record should also provide a link to the versioned record following the linking patterns described [here](/api-spec/extensions/version#link-rel-types). For every update to the record, the same cycle is repeated:
 
-1- add link from the updated record to the previous version
-2- Copy the updated record to the versions folder and name it correctly
+1. add link from the updated record to the previous version
+2. Copy the updated record to the versions folder and name it correctly
 
 #### Example
 
