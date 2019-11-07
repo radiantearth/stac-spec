@@ -600,11 +600,11 @@
         },
         {
           "rel": "parent",
-          "href": "https://n34f767n91.execute-api.us-east-1.amazonaws.com/prod/stac"
+          "href": "https://n34f767n91.execute-api.us-east-1.amazonaws.com/prod"
         },
         {
           "rel": "root",
-          "href": "https://n34f767n91.execute-api.us-east-1.amazonaws.com/prod/stac"
+          "href": "https://n34f767n91.execute-api.us-east-1.amazonaws.com/prod"
         },
         {
           "rel": "items",
