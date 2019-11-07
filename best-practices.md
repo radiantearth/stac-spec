@@ -1,5 +1,15 @@
 # STAC Best Practices
 
+## Table of Contents
+
+* [Fields and ID's](#fields-and-ids)
+* [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
+* [Catalog Layout](#catalog-layout)
+* [Use of Links](#use-of-links)
+* [STAC on the Web](#stac-on-the-web)
+
+---------
+
 This document makes a number of recommendations for creating real world SpatioTemporal Asset Catalogs. None of them 
 are required to meet the core specification, but following these practices will make life easier for client tooling
 and for users. They come about from practical experience of implementors, and introduce a bit more 'constraint' for
@@ -130,6 +140,34 @@ and used in other contexts. That catalog could be used offline, or even publishe
 Self-contained catalogs are not just for offline use, however - they are designed to be able to be published online and to live
 on the cloud in object storage. They just aim to ease the burden of publishing, by not requiring lots of updating of links. 
 Adding a single `self` link at the root is recommended for online catalogs, turning it into a 'relative published catalog', as detailed below. This anchors it in an online location and enable provenance tracking.
+
+### Versioning for Catalogs
+
+The STAC API [Version Extension](/api-spec/extensions/version) provides endpoints and semantics for keeping and accessing previous versions of Collections and Items. The same semantics can be used in static catalogs to preserve previous versions of the documents and link them together.
+
+In order to achieve this, the static catalog must make sure that for every record created, a copy of the record is also created in a separate location and it is named with the version id adopted by the catalog. See [here](/api-spec/extensions/version#version-id) for recommendations on versioning schema.
+
+The main record should also provide a link to the versioned record following the linking patterns described [here](/api-spec/extensions/version#link-rel-types). For every update to the record, the same cycle is repeated:
+
+1- add link from the updated record to the previous version
+2- Copy the updated record to the versions folder and name it correctly
+
+#### Example
+
+When the record `item1.json` is created, a copy of it is created under the versions folder. `item1.json` includes `permalink` to `versions/01.json`
+
+```
+--- root / collections / example_collection / items / my_item / item1.json
+--- root / collections / example_collection / items / my_item / item1.json / versions / 01.json
+```
+
+When `item1.json` is updated, the new `item1.json` includes a link to `versions/01.json` and is also copied to `versions/02.json`. This ensures that `02.json` includes a link to `01.json`
+
+```
+--- root / collections / example_collection / items / my_item / item1.json
+--- root / collections / example_collection / items / my_item / item1.json / versions / 02.json
+--- root / collections / example_collection / items / my_item / item1.json / versions / 01.json
+```
 
 ### Published Catalogs
 
