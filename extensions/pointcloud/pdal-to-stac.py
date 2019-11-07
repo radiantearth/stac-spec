@@ -61,7 +61,7 @@ assets = {}
 #assets['thumbnail'] =
 properties = {}
 
-properties['pc:schema'] = j['schema']['dimensions']
+properties['pc:schemas'] = j['schema']['dimensions']
 properties['pc:statistics'] = j['stats']['statistic']
 properties['title'] = "USGS 3DEP LiDAR"
 properties['item:provider'] = "USGS"

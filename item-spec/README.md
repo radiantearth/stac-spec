@@ -4,7 +4,7 @@ The core of a SpatioTemporal Asset Catalog (STAC) is a set of JSON fields define
 [STAC Item spec](item-spec.md). These fields define an Item - the atomic units that contain 
 metadata for search as plus links to the actual assets that they represent. Their main function 
 is as the leaf nodes of a [Catalog](../catalog-spec/README.md), and are also returned from the search
-endpoints of a `/stac/search` endpoint.
+endpoints of a `/search` endpoint.
 
 ## In this directory
 
@@ -23,7 +23,7 @@ discussion of the examples.
 
 ## Schema Validation
 
-Instruction on schema validation for STAC Items can be found in the [validation instructions](validation/README.md).
+Instruction on schema validation for STAC Items can be found in the [validation instructions](../validation/README.md).
 
 ## Item Evolution 
 

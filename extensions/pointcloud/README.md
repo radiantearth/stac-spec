@@ -17,9 +17,9 @@ tools such as LiDAR or coincidence-matched imagery.
 | pc:count      | integer                           | **REQUIRED.** The number of points in the item. |
 | pc:type       | string                            | **REQUIRED.** Phenomenology type for the point cloud. Possible valid values might include `lidar`, `eopc`, `radar`, `sonar`, or `other` |
 | pc:encoding   | string                            | **REQUIRED.** Content encoding or format of the data. |
-| pc:schema     | [[Schema Object](#schema-object)] | **REQUIRED.** A sequential array of items that define the dimensions and their types. |
+| pc:schemas    | [[Schema Object](#schema-object)] | **REQUIRED.** A sequential array of items that define the dimensions and their types. |
 | pc:density    | number                            | Number of points per square unit area. |
-| pc:statistics | [[Stats Object](#stats-object)]   | A sequential array of items mapping to `pc:schema` defines per-channel statistics. |
+| pc:statistics | [[Stats Object](#stats-object)]   | A sequential array of items mapping to `pc:schemas` defines per-channel statistics. |
 
 ### Schema Object
 
@@ -34,7 +34,7 @@ the point cloud, their types, and their sizes (in full bytes).
 
 ### Stats Object
 
-A sequential array of items mapping to `pc:schema` defines per-channel statistics. All fields
+A sequential array of items mapping to `pc:schemas` defines per-channel statistics. All fields
 are optional.
 
 | Field Name | Type    | Description |

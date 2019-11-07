@@ -1,5 +1,5 @@
 {
-  "stac_version": "0.8.0",
+  "stac_version": "0.8.1",
   "stac_extensions": [
     "label"
   ],
@@ -686,51 +686,55 @@
     "raster": {
       "title": "AOI_4_Shanghai_img3344_previewcog",
       "href": "https://spacenet-dataset.s3.amazonaws.com/AOI_4_Shanghai/srcData/rasterData/AOI_4_Shanghai_MUL-PanSharpen_Cloud.tif",
-      "type": "image/vnd.stac.geotiff; cloud-optimized=true"
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized"
     }
   },
   "properties": {
     "datetime": "2016-08-26T22:41:55.000000Z",
-    "label:property": "[\"OBJECTID_1\"]",
+    "label:properties": [
+      "OBJECTID_1"
+    ],
     "label:description": "building footprints manually labeled",
-    "label:task": "segmentation",
+    "label:tasks": [
+      "segmentation"
+    ],
     "label:type": "vector",
-    "label:method": "manual",
+    "label:methods": [
+      "manual"
+    ],
     "version": 1,
     "label:classes": [
       {
         "name": "OBJECTID_1",
         "classes": [
-          0
+          "0"
         ]
       }
     ],
-    "label:overview": {
-      "property_key": "OBJECTID_1",
-      "counts": [
-        {
-          "name": 0,
-          "count": 8
-        }
-      ]
-    }
+    "label:overviews": [
+      {
+        "property_key": "OBJECTID_1",
+        "counts": [
+          {
+            "name": "0",
+            "count": 8
+          }
+        ]
+      }
+    ]
   },
   "links": [
-    {
-      "rel": "self",
-      "href": "AOI_4_Shanghai_img3344.json"
-    },
     {
       "rel": "root",
       "href": "../catalog.json"
     },
     {
       "rel": "parent",
-      "href": "catalog.json"
+      "href": "collection.json"
     },
     {
       "rel": "collection",
-      "href": "catalog.json"
+      "href": "collection.json"
     },
     {
       "rel": "source",

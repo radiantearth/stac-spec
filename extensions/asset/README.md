@@ -30,7 +30,7 @@ An asset is an object that contains details about the datafiles that will be inc
 | Field Name | Type   | Description                                                                           |
 | ---------- | ------ | ------------------------------------------------------------------------------------- |
 | title      | string | **REQUIRED.** The displayed title for clients and users. This should provide enough information to a user to understand what the asset is  |
-| type       | string | **REQUIRED.** [Media type](#media-types) of the asset.
+| type       | string | **REQUIRED.** [Media type](../../item-spec/item-spec.md#media-types) of the asset.
 
 Other custom fields, or fields from other extensions may also be included in the Asset object.
 
