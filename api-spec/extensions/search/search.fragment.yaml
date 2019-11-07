@@ -16,9 +16,12 @@ components:
               type: integer
               nullable: true
               minimum: 0
+              example: 5
             matched:
               type: integer
               minimum: 0
+              example: 1
             returned:
               type: integer
               minimum: 0
+              example: 1

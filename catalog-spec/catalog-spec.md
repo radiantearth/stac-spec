@@ -92,7 +92,7 @@ information and links they want to, while also encouraging a natural web of info
 linked to across the web.
 
 There are a number of emerging 'best practices' for how to organize and implement good catalogs. These can be found in
-the [best practices document](catalog-best-practices.md), and include things like catalog layout, use of self links, 
+the [best practices document](../best-practices.md), and include things like catalog layout, use of self links, 
 publishing catalogs, and more. This specification is designed for maximum flexbility, but the best practices provide
 guidance for good recommendations when implementing.
 
@@ -109,7 +109,7 @@ used when data holdings are already exposed through a dynamic interface, and STA
 same core database or search cluster.
 
 The two catalog types both implement the same fields and links, and can be treated as the same by clients. For more 
-details on the two types and how you might use them see the [Static and Dynamic Catalogs](catalog-best-practices.md#static-and-dynamic-catalogs) section of the best practices document.
+details on the two types and how you might use them see the [Static and Dynamic Catalogs](../best-practices.md#static-and-dynamic-catalogs) section of the best practices document.
 
 ## Catalog fields
 
@@ -148,7 +148,7 @@ with links.
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
 
 Please see the chapter 'relative vs absolute links' in the [Item spec](../item-spec/item-spec.md#relative-vs-absolute-links)
- for a discussion on that topic, as well as the [use of links](catalog-best-practices.md#use-of-links) section of the 
+ for a discussion on that topic, as well as the [use of links](../best-practices.md#use-of-links) section of the 
  catalog best practices document.
 
 #### Relation types
@@ -185,7 +185,7 @@ might look something like this:
 
 ```json
 {
-  "stac_version": "0.8.0",
+  "stac_version": "0.8.1",
   "id": "NAIP",
   "description": "Catalog of NAIP Imagery",
   "links": [
@@ -203,7 +203,7 @@ A typical '_child_' sub-catalog could look similar:
 
 ```json
 {
-  "stac_version": "0.8.0",
+  "stac_version": "0.8.1",
   "id": "NAIP",
   "description": "Catalog of NAIP Imagery - 30087",
   "links": [
