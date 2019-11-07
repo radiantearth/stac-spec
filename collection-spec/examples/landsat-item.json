@@ -164,6 +164,11 @@
             "href": "./landsat-collection.json"
         },
         {
+            "rel": "self",
+            "href": "https://<endpoint>/search?id=LC08_L1TP_107018_20181001_20181001_01_RT"
+
+        },
+        {
             "rel": "collection",
             "href": "./landsat-collection.json"
         },
