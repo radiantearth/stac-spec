@@ -157,16 +157,16 @@ The main record should also provide a link to the versioned record following the
 When the record `item1.json` is created, a copy of it is created under the versions folder. `item1.json` includes `permalink` to `versions/01.json`
 
 ```
---- root / collections / example_collection / items / my_item / item1.json
---- root / collections / example_collection / items / my_item / item1.json / versions / 01.json
+--- root / collections / example_collection / items / my_item / my_item.json
+--- root / collections / example_collection / items / my_item / versions / 01.json
 ```
 
 When `item1.json` is updated, the new `item1.json` includes a link to `versions/01.json` and is also copied to `versions/02.json`. This ensures that `02.json` includes a link to `01.json`
 
 ```
---- root / collections / example_collection / items / my_item / item1.json
---- root / collections / example_collection / items / my_item / item1.json / versions / 02.json
---- root / collections / example_collection / items / my_item / item1.json / versions / 01.json
+--- root / collections / example_collection / items / my_item / my_item.json
+--- root / collections / example_collection / items / my_item / versions / 02.json
+--- root / collections / example_collection / items / my_item / versions / 01.json
 ```
 
 ### Published Catalogs
