@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Changed
+- Added attribute `purpose` to Asset, to be used similarly to Link `rel`
+
+### Fixed
+
+n/a (yet)
+
 ## [v0.8.1] - 2019-11-01
 
 ### Changed
