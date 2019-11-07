@@ -8,7 +8,7 @@
       "usgs"
     ],
     "version": "0.1.0",
-    "stac_version": "0.8.0",
+    "stac_version": "0.8.1",
     "stac_extensions": [
       "asset"
     ],
