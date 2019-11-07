@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "pointcloud-item.json#",
+  "title": "Point Cloud Extension",
+  "description": "STAC Point Cloud Extension to a STAC Item.",
+  "allOf": [
+    {
+      "$ref": "../../../item-spec/json-schema/item.json#/definitions/core"
+    },
+    {
+      "$ref": "#/definitions/pointcloud"
+    }
+  ],
+  "definitions": {
+    "pointcloud": {
+      "type": "object",
+      "required": [
+        "properties"
+      ],
+      "properties": {
+        "properties": {
+          "type": "object",
+          "required": [
+            "pc:count",
+            "pc:type",
+            "pc:encoding",
+            "pc:schemas"
+          ],
+          "properties": {
+            "pc:count": {
+              "title": "Number of Points",
+              "type": "number"
+            },
+            "pc:type": {
+              "title": "Point Cloud Type",
+              "type": "string"
+            },
+            "pc:encoding": {
+              "title": "Encoding",
+              "type": "string"
+            },
+            "pc:schemas": {
+              "title": "Schemas",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "reqiured": [
+                  "name",
+                  "size",
+                  "type"
+                ],
+                "properties": {
+                  "name": {
+                    "title": "Name",
+                    "type": "string"
+                  },
+                  "size": {
+                    "title": "Size of dimensions in bytes",
+                    "type": "number"
+                  },
+                  "type": {
+                    "title": "Dimension type",
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "pc:density": {
+              "title": "Points Per Square Unit Area",
+              "type": "number"
+            },
+            "pc:statistics": {
+              "title": "Per-channel Statistics",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "average": {
+                    "title": "Average",
+                    "type": "number"
+                  },
+                  "count": {
+                    "title": "Number of Elements",
+                    "type": "number"
+                  },
+                  "maxiumum": {
+                    "title": "Maximum Value",
+                    "type": "number"
+                  },
+                  "minimum": {
+                    "title": "Minimum Value",
+                    "type": "number"
+                  },
+                  "name": {
+                    "title": "Name of Channel",
+                    "type": "string"
+                  },
+                  "position": {
+                    "title": "Position of Channel",
+                    "type": "number"
+                  },
+                  "stddev": {
+                    "title": "Standard Deviation",
+                    "type": "number"
+                  },
+                  "variance": {
+                    "title": "Vvariance",
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
