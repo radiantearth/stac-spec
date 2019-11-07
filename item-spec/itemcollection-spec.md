@@ -39,7 +39,7 @@ This object describes a STAC ItemCollection. The fields `type` and `features` ar
 
 **stac_version**: In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
 
-**stac_extensions**: A list of extensions the Item implements. The list contains URLs to the JSON Schema files it can be validated against. For official extensions, a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. If the versions of the extension and the item diverge, you can specify the URL of the JSON schema file.
+**stac_extensions**: A list of extensions the ItemCollection implements. The list contains URLs to the JSON Schema files it can be validated against. For official extensions, a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. If the versions of the extension and the item diverge, you can specify the URL of the JSON schema file.
 
 ## Extensions
 
