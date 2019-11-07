@@ -73,8 +73,27 @@ OGC API supports paging through hypermedia links. STAC follows the same pattern 
 
 In addition, to avoid passing large post body values to and from the server a "merge" property can be specified. This indicates that the client should send the same post body that it sent on the previous request, but with the specified body value merged on top. This allows servers to indicate what needs to change to get to the next page without mirroring the entire query structure back to the client.
 
-Request:
+Simple GET based search just uses the standard next link:
 ```
+HTTP GET /search?bbox=-110,39.5,-105,40.5
+```
+
+Response:
+```json
+{
+    "type": "FeatureCollection",
+    "features": [],
+    "links": [
+        {
+            "rel": "next",
+            "href": "http://api.cool-sat.com/search?page=2"
+        }
+    ]
+}
+```
+
+For more complex post searches:
+```json
 HTTP POST /search
 
 {
@@ -83,7 +102,7 @@ HTTP POST /search
 ```
 
 Response:
-```
+```json
 200 OK
 {
     "type": "FeatureCollection",
@@ -92,6 +111,7 @@ Response:
         {
             "rel": "next",
             "href": "http://api.cool-sat.com/search",
+            "method": "POST",
             "body": {
                 "page": 2,
                 "limit": 10
@@ -103,7 +123,7 @@ Response:
 ```
 
 This tells the client to post to the search endpoint with a body of:
-```
+```json
 POST /search
 {
     "bbox": [-110, 39.5, -105, 40.5],
@@ -114,10 +134,11 @@ POST /search
 
 This can be even more effective when using continuation tokens on the server.
 
-```
+```json
 {
     "rel": "next",
     "href": "http://api.cool-sat.com/search",
+    "method": "POST",
     "body": {
         "next": "token"
     }
@@ -125,7 +146,7 @@ This can be even more effective when using continuation tokens on the server.
 ```
 The above link tells the client not to merge (default of false) so it is only required to pass the token.
 
-```
+```json
 POST /search
 {
     "next": "token"
