@@ -17,9 +17,9 @@ to remove the use of colons in extension names, and it is unlikely that a proper
 
 Examples of `sortby` parameter:
 
-    GET /stac/search?sortby=created:asc,id:desc
+    GET /stac/search?sortby=created|asc,id|desc
     
-    GET /stac/search?sortby=properties.eo:cloud_cover:desc
+    GET /stac/search?sortby=properties.eo:cloud_cover|desc
     
     GET /stac/search?sortby=created
 
