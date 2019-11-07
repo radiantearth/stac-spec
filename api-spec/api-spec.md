@@ -15,7 +15,7 @@ The OAFeat and STAC APIs follow a RESTful model. A core principal of this is the
 1. **Required** GET (both OAFeat and STAC)
 2. **Recommended** POST `Content-Type: application/x-www-form-urlencoded` with the corresponding content body format.
 3. **Recommended** POST `Content-Type: multipart/form-data` with the corresponding content body format.
-4. **Optional** **STAC endpoint /stac/search only** POST `Content-Type: application/json`, where the content body is a JSON object representing a filter, as defined in the [STAC API OpenAPI specification document](STAC.yaml).  
+4. **Optional** **STAC endpoint /search only** POST `Content-Type: application/json`, where the content body is a JSON object representing a filter, as defined in the [STAC API OpenAPI specification document](STAC.yaml).  
 5. **Prohibited** **OAFeat endpoints only** POST `Content-Type: application/json`, where the content body is a JSON object representing a filter. This is prohibited due to conflict with the [Transaction Extension](extensions/transaction/README.md), which defines a POST `Content-Type: application/json` operation to create an Item.
 
 ## OGC API - Features Endpoints
@@ -40,14 +40,14 @@ STAC provides some additional endpoints for the root Catalog itself, as well as 
 
 | Endpoint      | Returns | Description |
 | ------------- | ------- | ----------- |
-| /stac         | Catalog | Root catalog |
-| /stac/search  | [ItemCollection](../item-spec/itemcollection-spec.md) | Retrieves a group of Items matching the provided search predicates, probably containing search metadata from the `search` extension |
+| /             | Catalog | Extends `/` from OAFeat to return a full STAC catalog. |
+| /search       | [ItemCollection](../item-spec/itemcollection-spec.md) | Retrieves a group of Items matching the provided search predicates, probably containing search metadata from the `search` extension |
 
-The `/stac` endpoint should function as a complete `Catalog` representation of all the data contained in the API and linked to in some way from root through `Collections` and `Items`.
+The `/` endpoint should function as a complete `Catalog` representation of all the data contained in the API and linked to in some way from root through `Collections` and `Items`.
 
-The `/stac/search` endpoint is similar to the `/collections/{collectionId}/items` endpoint in OGC API - Features in that it accepts parameters for filtering, however it performs the filtering across all collections. The parameters accepted are the same as the Filter Parameters above, however the *[extensions](extensions/README.md)* also provide advanced querying parameters.
+The `/search` endpoint is similar to the `/collections/{collectionId}/items` endpoint in OGC API - Features in that it accepts parameters for filtering, however it performs the filtering across all collections. The parameters accepted are the same as the Filter Parameters above, however the *[extensions](extensions/README.md)* also provide advanced querying parameters.
 
-If the `/stac/search` endpoint is implemented, it is **required** to add a link with the `rel` type set to `search` to the `links` array in `GET /stac` that refers to the search endpoint in the `href` property.
+If the `/search` endpoint is implemented, it is **required** to add a link with the `rel` type set to `search` to the `links` array in `/` that refers to the search endpoint in the `href` property.
 
 ## Filter Parameters and Fields
 
@@ -76,21 +76,21 @@ should be returned.
  the syntax and semantics of an API Extension attached to that parameter.  If no API Extension for that parameter is 
  implemented by an API, then if that parameter has a non-empty value in the request a 400 Bad Request status code must 
  be returned. 
- 
+
 ### Fields Extension
- 
+
 These parameters and fields are reserved for the Fields extension.
- 
+
 | Parameter | Type              | APIs       | Description |
 | --------- | ----------------- | ---------- | ----------- |
 | fields    | string \| [Field] | Placeholder parameter for [API Fields Extension](extensions/fields/README.md). |
- 
+
 ### Sort Extension
- 
+
 These parameters and fields are reserved for the Sort extension.
- 
+
 | Parameter | Type             | APIs       | Description |
-| --------- | ---------------- | ---------- | ----------- | 
+| --------- | ---------------- | ---------- | ----------- |
 | sort      | string \| [Sort] | Placeholder parameter for [API Sort Extension](extensions/sort/README.md). |
 
 ### Query Extension
