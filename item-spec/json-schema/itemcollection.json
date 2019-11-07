@@ -27,39 +27,6 @@
             "features"
           ],
           "properties": {
-            "stac_version": {
-              "title": "STAC version",
-              "type": "string",
-              "const": "0.8.1"
-            },
-            "stac_extensions": {
-              "title": "STAC extensions",
-              "type": "array",
-              "uniqueItems": true,
-              "items": {
-                "anyOf": [
-                  {
-                    "title": "Reference to a JSON Schema",
-                    "type": "string",
-                    "format": "uri"
-                  },
-                  {
-                    "title": "Reference to a core extension",
-                    "type": "string",
-                    "enum": [
-                      "checksum",
-                      "cube",
-                      "datetime-range",
-                      "eo",
-                      "label",
-                      "pointcloud",
-                      "sar",
-                      "scientific"
-                    ]
-                  }
-                ]
-              }
-            },
             "type": {
               "title": "Type",
               "description": "Type of entity, always FeatureCollection",
