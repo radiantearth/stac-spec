@@ -36,25 +36,10 @@
     "checksums": {
       "type": "object",
       "properties": {
-        "checksum:md5": {
+        "checksum:multihash": {
           "type": "string",
-          "pattern": "^[A-Fa-f0-9]{32}$",
-          "title": "MD5 checksum"
-        },
-        "checksum:sha1": {
-          "type": "string",
-          "pattern": "^[A-Fa-f0-9]{40}$",
-          "title": "SHA1 checksum"
-        },
-        "checksum:sha2": {
-          "type": "string",
-          "pattern": "^[A-Fa-f0-9]+$",
-          "title": "SHA2 checksum"
-        },
-        "checksum:sha3": {
-          "type": "string",
-          "pattern": "^[A-Fa-f0-9]+$",
-          "title": "SHA3 checksum"
+          "pattern": "^[a-f0-9]+$",
+          "title": "Multihash"
         }
       }
     }

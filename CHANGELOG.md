@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Changed
+- The STAC API endpoint `/stac` has been merged with `/`
+- The STAC API endpoint `/stac/search` is now called `/search`
+- Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html).
+- [Checksum extension](extensions/checksum/README.md) is now using self-identifiable hashes ([Multihash](https://github.com/multiformats/multihash)).
+- Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
+
 ## [v0.8.1] - 2019-11-01
 
 ### Changed

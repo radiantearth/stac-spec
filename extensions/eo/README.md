@@ -82,7 +82,7 @@ there is no valid EPSG code.
 | ------------------- | ------ | ------------------------------------------------------------ |
 | name                | string | The name of the band (e.g., "B01", "B02", "B1", "B5", "QA"). |
 | common_name         | string | The name commonly used to refer to the band to make it easier to search for bands across instruments. See the [list of accepted common names](#common-band-names). |
-| description         | string | Description to fully explain the band. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| description         | string | Description to fully explain the band. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | gsd                 | number | Ground Sample Distance, the nominal distance between pixel centers available, in meters. Defaults to `eo:gsd` if not provided. |
 | accuracy            | number | The expected error between the measured location and the true location of a pixel, in meters on the ground. |
 | center_wavelength   | number | The center wavelength of the band, in micrometers (μm).      |
