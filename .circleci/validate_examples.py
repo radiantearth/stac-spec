@@ -13,7 +13,10 @@ from jsonschema.validators import RefResolver
 
 from pystac import STAC_IO
 from pystac.utils import make_absolute_href
-from pystac.serialization import (identify_stac_object, STACObjectType)
+from pystac.serialization import (merge_common_properties,
+                                  identify_stac_object,
+                                  identify_stac_object_type,
+                                  STACObjectType)
 
 CORE_SCHEMAS = {
     STACObjectType.CATALOG: 'catalog-spec/json-schema/catalog.json',
@@ -74,6 +77,7 @@ def unsafe_read_https_method(uri):
         with open(uri) as f:
             return f.read()
 
+# Set STAC_IO to use our read method, so we can follow HTTP links.
 STAC_IO.read_text_method = unsafe_read_https_method
 
 def find_all_examples():
@@ -106,17 +110,30 @@ class SchemaCache:
 
 def run_validation():
     schema_cache = SchemaCache()
-    collection_cache = {}
     examples = find_all_examples()
+
+    # Cache of collections that have been read through
+    # the `identify_stac_object` method.
+    collection_cache = {}
 
     for example in examples:
         print('Validating example file: {}'.format(example))
 
         d = STAC_IO.read_json(example)
 
-        info = identify_stac_object(d, merge_collection_properties=True,
-                                    json_href=example, collection_cache=collection_cache)
-        object_type = info.object_type
+        object_type = identify_stac_object_type(d)
+
+        if object_type == STACObjectType.ITEM:
+            try:
+                merge_common_properties(d,
+                                        json_href=example,
+                                        collection_cache=collection_cache)
+            except (HTTPError, URLError):
+                # Ignore fake URLs
+                pass
+
+
+        info = identify_stac_object(d)
         extensions = info.common_extensions
 
         schema_paths = [CORE_SCHEMAS[object_type]]
@@ -135,20 +152,6 @@ def run_validation():
                     raise Exception('Extension {} has no associated '
                                     'schema for object type {}'.format(extension, object_type))
                 schema_paths.append(schema_path)
-
-        # Handle Collection common properties for Items
-        if object_type == STACObjectType.ITEM:
-            for l in d['links']:
-                if l['rel'] == 'collection':
-                    collection_href = make_absolute_href(l['href'], example)
-                    try:
-                        collection_d = STAC_IO.read_json(collection_href)
-                        if 'properties' in collection_d:
-                            d['properties'] = dict(ChainMap(d['properties'],
-                                                            collection_d['properties']))
-                    except (HTTPError, URLError):
-                        # Ignore fake URLs
-                        pass
 
         for schema_path in schema_paths:
             print('   Validating against {}'.format(schema_path))
