@@ -2,7 +2,7 @@
 
 **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
-This extension allows to version STAC Collections and STAC Items. Therefore, it also allows to deprecate legacy versions.
+This extension allows to version STAC Collections and STAC Items. Therefore, it also allows to deprecate legacy versions. Only fields and possible link relation types are defined in this extension, but it does NOT suggest any versioning best practices to structure static or dynamic catalogs. Instead check the [Versioning Best Practices for Static and Dynamic Catalogs](../../best-practices.md).
 
 This extension applies to STAC Items and STAC Collections.
 
@@ -20,12 +20,11 @@ For Items, the fields are placed in the `properties`. For Collections, the field
 
 ## Relation types
 
-This extension adds the following types as applicable `rel` types for the [Link Object](../../item-spec/item-spec.md#link-object). These are all following [RFC 5829](https://tools.ietf.org/html/rfc5829).
+This extension adds the following types as applicable `rel` types for the [Link Object](../../item-spec/item-spec.md#link-object) to reference the latest version, the predecessor version and successor versions. These are all following [RFC 5829](https://tools.ietf.org/html/rfc5829).
 
 | Type                | Description |
 | ------------------- | ----------- |
 | latest-version      | This link points to a resource containing the latest (e.g., current) version. |
-| version-history     | This link points to a resource containing the version history for this resource. |
 | predecessor-version | This link points to a resource containing the predecessor version in the version history. |
 | successor-version   | This link points to a resource containing the successor version in the version history. |
 
