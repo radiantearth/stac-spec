@@ -1779,7 +1779,7 @@ components:
             type: string
             description: Media type of the asset
             example: image/png
-          rel:
+          role:
             type: string
             description: Purpose of the asset
             example: thumbnail

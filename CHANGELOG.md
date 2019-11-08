@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
 
 ### Changed
-- Added attribute `purpose` to Asset, to be used similarly to Link `rel`
+- Added attribute `role` to Asset, to be used similarly to Link `rel`
 
 ### Fixed
 
