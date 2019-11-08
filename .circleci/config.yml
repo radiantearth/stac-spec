@@ -13,7 +13,7 @@ jobs:
           name: install
           command: |
             pip install stac-validator
-            pip install git+https://github.com/azavea/pystac.git@rde/feature/identify-version
+            pip install git+https://github.com/azavea/pystac.git@develop
       - run:
           name: validate
           command: |
