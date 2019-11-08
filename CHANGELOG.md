@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html).
 - [Checksum extension](extensions/checksum/README.md) is now using self-identifiable hashes ([Multihash](https://github.com/multiformats/multihash)).
 - API `search` extension renamed to `context` extension. JSON object renamed from `search:metadata` to `context`
+- Fields extension has a simplified format for GET parameters
 
 ## [v0.8.1] - 2019-11-01
 
