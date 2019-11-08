@@ -172,14 +172,15 @@ or streamed. It is allowed to add additional fields.
 **role** is intended to be a value that describes semantic usage of an asset, similarly to the use of `rel` in 
 Link. 
  
-Examples of this are:
+#### Asset Role Types
 
-* **thumbnail** An asset that represents a thumbnail of the item, typically a true color image (for items with assets 
-in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable 
-for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `role` be unique tuple. 
-For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types.
-* **overview** An asset that represents a larger view of the item, for example, a true color composite of multi-band data.
-* **metadata** A metadata sidecar file describing the data in this item, for example the Landsat-8 MTL file.
+Like the Link `rel` field, the `role` field can be given any value.  These are a few standardized role names.
+
+| Role Name | Description                                                                           |
+| --------- | ------------------------------------------------------------------------------------- |
+| thumbnail |  An asset that represents a thumbnail of the item, typically a true color image (for items with assets in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `role` be unique tuple. For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types. |
+| overview  | An asset that represents a possibly larger view than the thumbnail of the Item , for example, a true color composite of multi-band data. |
+| metadata  | A metadata sidecar file describing the data in this item, for example the Landsat-8 MTL file. |
 
 #### Asset types
 
