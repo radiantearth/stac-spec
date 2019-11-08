@@ -1,4 +1,4 @@
-# Version Extension Specification (`-`)
+# Versioning Indicators Extension Specification (`-`)
 
 **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
