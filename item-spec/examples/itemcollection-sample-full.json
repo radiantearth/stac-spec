@@ -80,7 +80,7 @@
   "links": [
     {
       "rel": "self",
-      "href": "http://stac.example.com/stac/search?collection=CS3"
+      "href": "http://stac.example.com/search?collection=CS3"
     }
   ]
 }

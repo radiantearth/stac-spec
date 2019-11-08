@@ -8,7 +8,7 @@ granular entity in a STAC, containing the core metadata that enables any client 
 online catalogs of spatial 'assets' - satellite imagery, derived data, DEM's, etc.
 
 The same Item definition is used in both [STAC catalogs](../catalog-spec/README.md) and
-the [`/stac/search`](../api-spec/README.md) endpoint. Catalogs are simply sets of items that are linked online,
+the [`/search`](../api-spec/README.md) endpoint. Catalogs are simply sets of items that are linked online,
 generally served by simple web servers and used for crawling data. The search endpoint enables dynamic
 queries, for example selecting all Items in Hawaii on June 3, 2015, but the results they return are
 FeatureCollections of items.
@@ -89,7 +89,7 @@ The object provides information about a provider. A provider is any of the organ
 | Field Name  | Type      | Description                                                  |
 | ----------- | --------- | ------------------------------------------------------------ |
 | name        | string    | **REQUIRED.** The name of the organization or the individual. |
-| description | string    | Multi-line description to add further provider information such as processing details for processors and producers, hosting details for hosts or basic contact information. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| description | string    | Multi-line description to add further provider information such as processing details for processors and producers, hosting details for hosts or basic contact information. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | roles       | [string]  | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`. |
 | url         | string    | Homepage on which the provider describes the dataset and publishes contact information. |
 

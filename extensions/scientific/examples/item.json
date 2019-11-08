@@ -58,10 +58,10 @@
   ],
   "assets": {
     "primary": {
-      "href": "https://datadryad.org/bitstream/handle/10255/dryad.150299/2_5m_min_80s.zip?sequence=1",
+      "href": "https://datadryad.org/stash/downloads/file_stream/100467",
       "type": "application/zip",
       "title": "MERRAclim. 2_5m_min_80s",
-      "checksum:md5": "5ade92386763f4463cebb3e05cb7d6c3"
+      "checksum:multihash": "90e4021044a8995dd50b6657a037a7839304535b"
     }
   }
 }
