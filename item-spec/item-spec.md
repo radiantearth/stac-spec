@@ -167,16 +167,16 @@ or streamed. It is allowed to add additional fields.
 | href       | string | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
 | title      | string | The displayed title for clients and users.                                            |
 | type       | string | [Media type](#media-types) of the asset.                                              |
-| rel        | string | The purpose of the asset, for example `thumbnail`.                                    |
+| role        | string | The semantic purpose of the asset.                                                   |
 
-**rel** is intended to be a tag that adds semantic usage information to an asset, similarly to the use of `rel` in Link, even though it is not 
-really a relationship as the `rel` name implies.
+**role** is intended to be a value that describes semantic usage of an asset, similarly to the use of `rel` in 
+Link. 
  
 Examples of this are:
 
 * **thumbnail** An asset that represents a thumbnail of the item, typically a true color image (for items with assets 
 in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable 
-for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `purpose` be unique tuple. 
+for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `role` be unique tuple. 
 For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types.
 * **overview** An asset that represents a larger view of the item, for example, a true color composite of multi-band data.
 * **metadata** A metadata sidecar file describing the data in this item, for example the Landsat-8 MTL file.

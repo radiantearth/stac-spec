@@ -209,8 +209,8 @@
           "title": "Asset type",
           "type": "string"
         },
-        "rel": {
-          "title": "Asset purpose",
+        "role": {
+          "title": "Asset role",
           "type": "string"
         }
       }
