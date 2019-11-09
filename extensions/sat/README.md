@@ -19,7 +19,7 @@ This document explains the fields of the sat Extension to a STAC Item. Sat adds 
 | azimuth_angle       | number                   | Viewing azimuth angle. The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360). |
 | sun_azimuth_angle   | number                   | Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360). |
 | sun_elevation_angle | number                   | Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (0-90). |
-| pass_direction        | string  | Direction of the orbit, either `ascending` or `descending`. |
+| orbit_state        | string  | The state of the orbit. Either `ascending` or `descending` for polar orbiting satellites, or `geostationary` for geosynchronous satellites |
 | relative_orbit        | integer       | The relative orbit number at the time of acquisition. |
 
 **platform** is the unique name of the specific platform the instrument is attached to. For satellites this would 
@@ -38,9 +38,11 @@ specific platform the data came from, for example, from either of the Sentinel-2
 `rapideye` (operated by Planet Labs), and `modis` (NASA EOS satellites Aqua and Terra).  In the case of `modis`, this
 is technically referring to a pair of sensors on two different satellites, whose data is combined into a series of 
 related products. Additionally, the Aqua satellite is technically part of the A-Train constellation and Terra is not 
-part of a constellation, but these combine to form the logical collection referred to as MODIS. 
+part of a constellation, but these combine to form the logical collection referred to as MODIS.
 
-**relative_orbit** is a count of orbits from 1 to the number of orbits contained in a repeat cycle, where relative orbit 1 starts from a defined reference for a given satellite. This property is usually not set for airborne SAR such as UAVSAR. The center orbit number should be specified if readily available, otherwise the orbit number at the start of the flight can be used instead.
+**orbit_state** indicates the type and current state of orbit. Satellites are either geosynchronous in which case they have one state: `geostationary`, or they are sun synchronous (i.e., polar orbiting satellites) in which case they are either `ascending` or `descending`.
+
+**relative_orbit** is a count of orbits from 1 to the number of orbits contained in a repeat cycle, where relative orbit 1 starts from a specific reference location of the sub-satellite point (the point on the earth directly below the satellite). It resets to 1 when the sub-satellite point revisits the refernece location.
 
 ### Viewing and sun geometry
 
