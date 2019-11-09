@@ -14,7 +14,7 @@ This document explains the fields of the sat Extension to a STAC Item. Sat adds 
 | platform      | string                   | **REQUIRED.** Unique name of the specific platform to which the instrument is attached. |
 | instruments    | [string]                   | **REQUIRED.** Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1). |
 | constellation | string                   | Name of the constellation to which the platform belongs. |
-| view_angle     | number                   | Viewing angle. The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90). |
+| off_nadir_angle     | number                   | The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90). |
 | incidence_angle       | number        | The incidence angle is the angle between the vertical (normal) to the intercepting surface and the line of sight back to the satellite at the scene center. Measured in degrees (0-90). |
 | azimuth_angle       | number                   | Viewing azimuth angle. The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360). |
 | sun_azimuth_angle   | number                   | Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360). |
@@ -44,11 +44,11 @@ part of a constellation, but these combine to form the logical collection referr
 
 ### Viewing and sun geometry
 
-The 2d angles (look_angle, incidence_angle, and sun_elevation) are angles measured on a 2d plane formed: satellite location, sub-satellite point on the earth, the sun, and the center of the viewed area. These angles are illustrated below.
+The 2d angles (off_nadir_angle, incidence_angle, and sun_elevation) are angles measured on a 2d plane formed: satellite location, sub-satellite point on the earth, the sun, and the center of the viewed area. These angles are illustrated below.
 
-The look angle (look_angle) and the incidence angle (incidence_angle) are related. When the look angle is low (high incidence angle) then the two angles sum to about 90, so one can be calculated from the other. However, at high look angles with high altitude sensors the curvature of the earth has an impact and their sum will be less than 90. If only providing one of the two angles, look angle is preferred.
+The off-nadir angle (off_nadir_angle) and the incidence angle (incidence_angle) are related. When the off-nadir angle is low (high incidence angle) then the two angles sum to about 90, so one can be calculated from the other. However, at high off-nadir angles with high altitude sensors the curvature of the earth has an impact and their sum will be less than 90. If only providing one of the two angles, the off-nadir angle is preferred.
 
-<diagram of 2d angles (look, incidence, sun_elevation)>
+<diagram of 2d angles (off-nadir, incidence, sun_elevation)>
 
 The azimuth angles indicate the position of the viewed scene and the sun by the angle from true north, as shown below.
 
