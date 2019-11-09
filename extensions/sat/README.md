@@ -40,7 +40,7 @@ is technically referring to a pair of sensors on two different satellites, whose
 related products. Additionally, the Aqua satellite is technically part of the A-Train constellation and Terra is not 
 part of a constellation, but these combine to form the logical collection referred to as MODIS.
 
-**orbit_state** indicates the type and current state of orbit. Satellites are either geosynchronous in which case they have one state: `geostationary`, or they are sun synchronous (i.e., polar orbiting satellites) in which case they are either `ascending` or `descending`.
+**orbit_state** indicates the type and current state of orbit. Satellites are either geosynchronous in which case they have one state: `geostationary`, or they are sun synchronous (i.e., polar orbiting satellites) in which case they are either `ascending` or `descending`. For sun synchronous satellites it is daytime during one of these states, and nighttime during the other.
 
 **relative_orbit** is a count of orbits from 1 to the number of orbits contained in a repeat cycle, where relative orbit 1 starts from a specific reference location of the sub-satellite point (the point on the earth directly below the satellite). It resets to 1 when the sub-satellite point revisits the refernece location.
 
