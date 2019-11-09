@@ -22,7 +22,6 @@ This document explains the fields of the sat Extension to a STAC Item. Sat adds 
 | pass_direction        | string  | Direction of the orbit, either `ascending` or `descending`. |
 | relative_orbit        | integer       | The relative orbit number at the time of acquisition. |
 
-
 **platform** is the unique name of the specific platform the instrument is attached to. For satellites this would 
 be the name of the satellite, whereas for drones this would be a unique name for the drone. Examples include 
 `landsat-8` (Landsat-8), `sentinel-2a` and `sentinel-2b` (Sentinel-2), `terra` and `aqua` (part of NASA EOS, 
@@ -43,10 +42,20 @@ part of a constellation, but these combine to form the logical collection referr
 
 **relative_orbit** is a count of orbits from 1 to the number of orbits contained in a repeat cycle, where relative orbit 1 starts from a defined reference for a given satellite. This property is usually not set for airborne SAR such as UAVSAR. The center orbit number should be specified if readily available, otherwise the orbit number at the start of the flight can be used instead.
 
+### Viewing and sun geometry
 
-```
+The 2d angles (look_angle, incidence_angle, and sun_elevation) are angles measured on a 2d plane formed: satellite location, sub-satellite point on the earth, the sun, and the center of the viewed area. These angles are illustrated below.
+
+The look angle (look_angle) and the incidence angle (incidence_angle) are related. When the look angle is low (high incidence angle) then the two angles sum to about 90, so one can be calculated from the other. However, at high look angles with high altitude sensors the curvature of the earth has an impact and their sum will be less than 90. If only providing one of the two angles, look angle is preferred.
+
+<diagram of 2d angles (look, incidence, sun_elevation)>
+
+The azimuth angles indicate the position of the viewed scene and the sun by the angle from true north, as shown below.
+
+<diagram of 3d angles (azimuth and sun_azimuth)>
+
+
 Example:
-
 ```
 {
   "stac_version": "0.9.0",
