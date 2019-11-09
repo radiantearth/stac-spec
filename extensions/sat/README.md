@@ -70,7 +70,14 @@ Example:
   "properties": {
     "platform": "mysatellite",
     "instruments": ["mycamera1", "mycamera2"],
-    "constellation": "allmysatellites"
+    "constellation": "allmysatellites",
+    "off_nadir_angle": 0,
+    "incidence_angle": 90,
+    "sun_elevation_angle": 45.0,
+    "azimuth_angle": 23.9,
+    "sun_azimuth_angle": 56.4,
+    "orbit_state": "descending",
+    "relative_orbit": 4
   }
 }
 ```
