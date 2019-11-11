@@ -1489,9 +1489,11 @@ components:
             type: string
             description: Media type of the asset
             example: image/png
-          role:
-            type: string
-            description: Purpose of the asset
+          roles:
+            type: array
+            items:
+              type: string
+            description: Purposes of the asset
             example: thumbnail
     itemProperties:
       type: object

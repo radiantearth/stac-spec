@@ -68,12 +68,12 @@
     "thumbnail": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_thumb_large.jpg",
       "type": "image/jpeg",
-      "role": "thumbnail"
+      "roles": [ "thumbnail" ]
     },
     "metadata": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_MTL.txt",
       "type": "mtl",
-      "role": "metadata"
+      "roles": ["metadata"]
     },
     "B1": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_B1.TIF",
