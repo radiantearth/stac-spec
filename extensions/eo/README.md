@@ -26,16 +26,9 @@ The exact metadata that would appear in a STAC Collection record will vary depen
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
 | eo:gsd           | number                   | **REQUIRED.** Ground Sample Distance at the sensor. |
-| eo:platform      | string                   | **REQUIRED.** Unique name of the specific platform to which the instrument is attached. |
-| eo:instrument    | string                   | **REQUIRED.** Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1). |
 | eo:bands         | [[Band Object](#band-object)] | **REQUIRED.** This is a list of the available bands where each item is a [Band Object](#band-object). |
-| eo:constellation | string                   | Name of the constellation to which the platform belongs. |
 | eo:epsg          | integer\|null            | [EPSG code](http://www.epsg-registry.org/) of the datasource, `null` if no EPSG code. |
 | eo:cloud_cover   | number                   | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided. |
-| eo:off_nadir     | number                   | Viewing angle. The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90). |
-| eo:azimuth       | number                   | Viewing azimuth angle. The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360). |
-| eo:sun_azimuth   | number                   | Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360). |
-| eo:sun_elevation | number                   | Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (0-90). |
 
 **eo:gsd** is the nominal Ground Sample Distance for the data, as measured in meters on the ground. There are many
 definitions of GSD. The value of this attribute should be related to the spatial resolution at the sensor, rather
@@ -47,28 +40,6 @@ are all 30 meters, but the panchromatic band is 15 meters. The
 PlanetScope Ortho Tile Product has an `eo:gsd` of 3.7 (or 4 if rounding), even though the pixel size of the images is 
 3.125.   For example, one might choose for WorldView-2 the 
 Multispectral 20° off-nadir value of 2.07 and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.
-
-**eo:platform** is the unique name of the specific platform the instrument is attached to. For satellites this would 
-be the name of the satellite, whereas for drones this would be a unique name for the drone. Examples include 
-`landsat-8` (Landsat-8), `sentinel-2a` and `sentinel-2b` (Sentinel-2), `terra` and `aqua` (part of NASA EOS, 
-carrying the MODIS instruments), `mycorp-uav-034` (hypothetical drone name), and `worldview02` 
-(Maxar/DigitalGlobe WorldView-2).
- 
-**eo:instrument** is the name of the sensor used, although for Items which contain data from
-multiple sensors this could also name multiple sensors. For example, data from the Landsat-8
-platform is collected with the OLI sensor as well as the TIRS sensor, but the data is distributed
-together and commonly referred to as OLI_TIRS. Examples include `oli_tirs` (Landsat-8), `msi` (Sentinel-2), 
-`aster` (Terra), and `modis` (Terra and Aqua).
-
-**eo:constellation** is the name of a logical collection one or more platforms that have similar payloads and have 
-their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and 
-radiometric characteristics. This field allows users to search for related data sets without needing to specify which 
-specific platform the data came from, for example, from either of the Sentinel-2 satellites. Examples include `landsat-8` 
-(Landsat-8, a constellation consisting of a single platform), `sentinel-2` ([Sentinel-2](https://www.esa.int/Our_Activities/Observing_the_Earth/Copernicus/Sentinel-2/Satellite_constellation)), 
-`rapideye` (operated by Planet Labs), and `modis` (NASA EOS satellites Aqua and Terra).  In the case of `modis`, this
-is technically referring to a pair of sensors on two different satellites, whose data is combined into a series of 
-related products. Additionally, the Aqua satellite is technically part of the A-Train constellation and Terra is not 
-part of a constellation, but these combine to form the logical collection referred to as MODIS. 
 
 **eo:epsg** - A Coordinate Reference System (CRS) is the native reference system (sometimes called a
 'projection') used by the data, and can usually be referenced using an [EPSG code](http://epsg.io).
