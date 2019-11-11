@@ -2,7 +2,7 @@
   "type": "FeatureCollection",
   "features": [
     {
-      "stac_version": "0.8.0",
+      "stac_version": "0.8.1",
       "stac_extensions": [],
       "type": "Feature",
       "id": "CS3-20160503_132131_05",
@@ -68,8 +68,7 @@
       "assets": {
         "analytic": {
           "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/analytic.tif",
-          "title": "4-Band Analytic",
-          "product": "http://cool-sat.com/catalog/products/analytic.json"
+          "title": "4-Band Analytic"
         },
         "thumbnail": {
           "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png",
@@ -81,7 +80,7 @@
   "links": [
     {
       "rel": "self",
-      "href": "http://stac.example.com/stac/search?collection=CS3"
+      "href": "http://stac.example.com/search?collection=CS3"
     }
   ]
 }

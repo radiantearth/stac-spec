@@ -8,7 +8,7 @@ A group of STAC Item objects from a single source can share a lot of common meta
 
 A STAC Collection can be represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Collection and also a valid STAC Catalog.
 
-STAC Collections are meant to be compatible with WFS3 Collections, but please be aware that WFS Collections and STAC Collections originate from different specifications and despite the fact that we try to align them as much as possible be there may be subtle differences in the specifications.
+STAC Collections are meant to be compatible with *OGC API - Features* Collections, but please be aware that OAFeat Collections and STAC Collections originate from different specifications and despite the fact that we try to align them as much as possible be there may be subtle differences in the specifications.
 
 * [Examples](examples/):
   * Sentinel 2: A basic standalone example of a [Collection](examples/sentinel2.json) without items.
@@ -29,13 +29,13 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | stac_extensions | [string]       | A list of extensions the Collection implements. |
 | id           | string            | **REQUIRED.** Identifier for the collection that is unique across the provider. |
 | title        | string            | A short descriptive one-line title for the collection.       |
-| description  | string            | **REQUIRED.** Detailed multi-line description to fully explain the collection. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| description  | string            | **REQUIRED.** Detailed multi-line description to fully explain the collection. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | keywords     | [string]          | List of keywords describing the collection.                  |
 | version      | string            | Version of the collection.                                   |
 | license      | string            | **REQUIRED.** Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60). Alternatively, use `proprietary` if the license is not on the SPDX license list or `various` if multiple licenses apply. In these two cases links to the license texts SHOULD be added, see the `license` link relation type. |
 | providers    | [[Provider Object](#provider-object) | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | extent       | [Extent Object](#extent-object) | **REQUIRED.** Spatial and temporal extents.    |
-| properties   | object            | Common fields across referenced items. |
+| properties   | Map<string, *>    | Common fields across referenced items. |
 | summaries    | Map<string, [*]\|[Stats Object](#stats-object)> | A map of property summaries, either a set of values or statistics such as a range. |
 | links        | [[Link Object](#link-object)]     | **REQUIRED.** A list of references to other documents.       |
 
@@ -93,7 +93,7 @@ The object provides information about a provider. A provider is any of the organ
 | Field Name  | Type      | Description                                                  |
 | ----------- | --------- | ------------------------------------------------------------ |
 | name        | string    | **REQUIRED.** The name of the organization or the individual. |
-| description | string    | Multi-line description to add further provider information such as processing details for processors and producers, hosting details for hosts or basic contact information. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| description | string    | Multi-line description to add further provider information such as processing details for processors and producers, hosting details for hosts or basic contact information. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | roles       | [string]  | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`. |
 | url         | string    | Homepage on which the provider describes the dataset and publishes contact information. |
 
@@ -162,7 +162,7 @@ To get the complete record of an Item (both individual and commons properties), 
 An incomplete Collection:
 ```
 {
-  "stac_version": "0.8.0",
+  "stac_version": "0.8.1",
   "id": "landsat-8-l1",
   "title": "Landsat 8 L1",
   "description": "Landat 8 imagery radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
@@ -192,7 +192,7 @@ An incomplete Collection:
 An incomplete item:
 ```
 {
-  "stac_version": "0.8.0",
+  "stac_version": "0.8.1",
   "type": "Feature",
   "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
   "bbox": [...],
@@ -215,7 +215,7 @@ The merged Item then looks like this:
 
 ```
 {
-  "stac_version": "0.8.0",
+  "stac_version": "0.8.1",
   "type": "Feature",
   "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
   "bbox": [],

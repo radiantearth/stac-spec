@@ -1,6 +1,6 @@
 # Adds sorting parameter to the base STAC search.
 paths:
-  /stac/search:
+  /search:
     get:
       parameters:
         - $ref: '#/components/parameters/sort'

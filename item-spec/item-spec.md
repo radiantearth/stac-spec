@@ -8,7 +8,7 @@ granular entity in a STAC, containing the core metadata that enables any client 
 online catalogs of spatial 'assets' - satellite imagery, derived data, DEM's, etc.
 
 The same Item definition is used in both [STAC catalogs](../catalog-spec/README.md) and
-the [`/stac/search`](../api-spec/README.md) endpoint. Catalogs are simply sets of items that are linked online,
+the [`/search`](../api-spec/README.md) endpoint. Catalogs are simply sets of items that are linked online,
 generally served by simple web servers and used for crawling data. The search endpoint enables dynamic
 queries, for example selecting all Items in Hawaii on June 3, 2015, but the results they return are
 FeatureCollections of items.
@@ -42,7 +42,7 @@ inherited from GeoJSON.
 | geometry   | [GeoJSON Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) | **REQUIRED.** Defines the full footprint of the asset represented by this item, formatted according to [RFC 7946, section 3.1](https://tools.ietf.org/html/rfc7946). The footprint should be the default GeoJSON geometry, though additional geometries can be included. Coordinates are specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). |
 | bbox       | [number]                                                                   | **REQUIRED.** Bounding Box of the asset represented by this item using either 2D or 3D geometries. The length of the array must be 2*n where n is the number of dimensions. The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). When using 3D geometries, the elevation of the southwesterly most extent is the minimum depth/height in meters and the elevation of the northeasterly most extent is the maximum.  This field enables more naive clients to easily index and search geospatially. STAC compliant APIs are required to compute intersection operations with the item's geometry field, not its bbox. |
 | properties | [Properties Object](#properties-object)                                    | **REQUIRED.** A dictionary of additional metadata for the item. |
-| links      | [[Link Object](#link-object)]                                              | **REQUIRED.** List of link objects to resources and related URLs. A link with the `rel` set to `self` is required. |
+| links      | [[Link Object](#link-object)]                                              | **REQUIRED.** List of link objects to resources and related URLs. A link with the `rel` set to `self` is strongly recommended. |
 | assets     | Map<string, [Asset Object](#asset-object)>                                 | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key. Some pre-defined keys are listed in the chapter '[Asset types](#asset-types)'. |
 | collection | string                                                                     | The `id` of the STAC Collection this Item references to (see [`collection` relation type](#relation-types)). This field is *required* if such a relation type is present. This field provides an easy way for a user to search for any Items that belong in a specified Collection. |
 
@@ -89,7 +89,7 @@ The object provides information about a provider. A provider is any of the organ
 | Field Name  | Type      | Description                                                  |
 | ----------- | --------- | ------------------------------------------------------------ |
 | name        | string    | **REQUIRED.** The name of the organization or the individual. |
-| description | string    | Multi-line description to add further provider information such as processing details for processors and producers, hosting details for hosts or basic contact information. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| description | string    | Multi-line description to add further provider information such as processing details for processors and producers, hosting details for hosts or basic contact information. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | roles       | [string]  | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`. |
 | url         | string    | Homepage on which the provider describes the dataset and publishes contact information. |
 

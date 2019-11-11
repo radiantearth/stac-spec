@@ -6,7 +6,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
-- Data Cube extension: Allow to be used in Collections and added new field `description`.
+### Removed
+- Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
+
+### Changed
+- The STAC API endpoint `/stac` has been merged with `/`
+- The STAC API endpoint `/stac/search` is now called `/search`
+- Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html).
+- [Checksum extension](extensions/checksum/README.md) is now using self-identifiable hashes ([Multihash](https://github.com/multiformats/multihash)).
+- API `search` extension renamed to `context` extension. JSON object renamed from `search:metadata` to `context`
+- Data Cube extension: Can be used in Collections, added new field `description`, changed allowed values for reference systems.
+
+## [v0.8.1] - 2019-11-01
+
+### Changed
+- Updated specification to base on OGC API - Features - Part 1: Core, v1.0.0 instead of OGC API - Features - Part 1: Core, v1.0.0-draft.2 (fka WFS3 draft 2).
+
+### Fixed
+- Numerous typos, clarifications and fixes for documentation and examples.
+- Fixed STAC API definition to include STAC-related fields and examples in *OGC API - Features*-derived endpoints.
+- Fixed JSON schemas for extensions: `$id` field matches file name.
 
 ## [v0.8.0] - 2019-10-11
 
@@ -193,7 +212,7 @@ Highlights include:
 
 * Updates to the core **`Item` JSON specification**, including simplifying to a single datetime, moving thumbnails from 'links' to 'assets', making assets a dictionary for easier lookup and requiring `self` links to be absolute links.
 
-* Alignment of **STAC API** with the new [WFS 3](https://github.com/opengeospatial/WFS_FES/) specification
+* Alignment of **STAC API** with the new [WFS3](https://github.com/opengeospatial/WFS_FES/) specification
 
 * Cleanup of the **static catalog** specification for greater clarity around the catalog
 
@@ -207,6 +226,7 @@ Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkam
 
 
 [Unreleased]: https://github.com/radiantearth/stac-spec/compare/master...dev
+[v0.8.1]: https://github.com/radiantearth/stac-spec/compare/v0.8.0...v0.8.1
 [v0.8.0]: https://github.com/radiantearth/stac-spec/compare/v0.7.0...v0.8.0
 [v0.7.0]: https://github.com/radiantearth/stac-spec/compare/v0.6.2...v0.7.0
 [v0.6.2]: https://github.com/radiantearth/stac-spec/compare/v0.6.1...v0.6.2

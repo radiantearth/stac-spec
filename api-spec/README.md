@@ -3,7 +3,7 @@
 A STAC API is the dynamic version of a SpatioTemporal Asset Catalog. It returns a STAC [Catalog](../catalog-spec/catalog-spec.md), [Collection](../collection-spec/collection-spec.md), [Item](../item-spec/item-spec.md), or [ItemCollection](../item-spec/itemcollection-spec.md), depending on the endpoint. Catalogs and Collections are JSON, while Items and ItemCollections are GeoJSON-compliant entities with foreign members.  Typically, a Feature is used when returning a
 single Item, and FeatureCollection when multiple Items (rather than a JSON array of Item entities).
 
-The API is a [Web Feature Service 3.0 (WFS 3) API (more recently also known as OGC API - Features)](https://github.com/opengeospatial/WFS_FES), in that WFS 3 defines many of the endpoints that STAC uses. A STAC API should be compatible and usable with WFS3 clients. However, WFS 3 is still under development and while STAC tries to stay in sync with WFS3 developments, there may be discrepancies prior to final versions of both specifications.
+The API is a *[OGC API - Features](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html)* (formerly known as *OGC Web Feature Service 3*), in that it defines many of the endpoints that STAC uses. A STAC API should be compatible and usable with OGC API - Features clients.
 
 ## In this directory
 
@@ -26,11 +26,11 @@ These are built into the definitive core API specification at [STAC.yaml](STAC.y
 
 In the [openapi](openapi/) directory there are three files
 
-- WFS3.yaml - The WFS3.yaml file is the WFS3 OpenAPI definition **as currently used by STAC**
-- STAC.yaml - Contains additional endpoints and components that STAC uses, which is treated as a WFS 3 extension
-- STAC.merge.yaml - A file referencing the above two used to create the final [STAC.yaml](STAC.yaml) definition
+- OAFeat.yaml - The OAFeat.yaml file is the OGC API - Features OpenAPI definition as currently used by STAC API.
+- STAC.yaml - Contains (1) additional STAC-specific endpoints that STAC APIs expose and (2) extensions and concretization to OGC API - Features that STAC APIs require.
+- STAC.merge.yaml - A file referencing the above two used to create the final [STAC.yaml](STAC.yaml) definition.
 
-A basic STAC implementation implements both the WFS3 and STAC definitions.
+A basic STAC implementation implements both the OGC API - Features and STAC definitions.
 
 The YAML files in the [extensions](extensions/) folder are fragments. Fragments are used to describe incomplete pieces of an OpenAPI document, and must be merged with a complete OpenAPI document to be usable. This way extensions can be kept separate, and implementors can combine just the extensions they want to use in order to create a custom OpenAPI document they can use.
 
@@ -63,6 +63,10 @@ $ $(npm bin)/yaml-files myapi.merge.yaml myapi.yaml
 
 ## API Evolution
 
-The STAC API is still a work in progress. It currently tries to adhere to the WFS 3 API specification, with some STAC specific extensions, but WFS3 is also evolving and not finalized. The WFS 3 portion of the API is provided in the *[WFS3.yaml](openapi/WFS3.yaml)* and represents the version of WFS 3 that is currently being used by STAC. It may diverge some with the *[WFS3](https://github.com/opengeospatial/WFS_FES)* spec at any given time, either out of date or 'ahead', with proposals to align WFS3. The long term goal is for STAC's API and WFS 3 to completely align, ideally all of STAC API is made from WFS 3 plus its extension ecosystem, and STAC just focuses on the content. But until then STAC will work to bring practical implementation experience to WFS 3. 
+The STAC API is still a work in progress. It currently tries to adhere to the OGC API - Features (OAFeat) specification, with some STAC specific extensions.
+The OAFeat portion of the API is provided in the *[WFS3.yaml](openapi/WFS3.yaml)* and represents the version of OAFeat that is currently being used by STAC.
+It may diverge some with the *[OAFeat](https://github.com/opengeospatial/ogcapi-features)* spec at any given time, either out of date or 'ahead', with proposals to align OAFeat.
+The long term goal is for STAC's API and OAFeat to completely align, ideally all of STAC API is made from OAFeat plus its extension ecosystem, and STAC just focuses on the content.
+But until then STAC will work to bring practical implementation experience to OAFeat. 
 
 The evolution of the STAC Item spec will take place in this repository, primarily informed by the real world implementations that people create. The goal is for the core API spec to remain quite small and stable, with most all the evolution taking place in extensions. Once there is a critical mass of implementations utilizing different extensions the core API spec will lock down to a 1.0.

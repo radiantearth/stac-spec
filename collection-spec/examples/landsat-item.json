@@ -1,5 +1,5 @@
 {
-    "stac_version": "0.8.0",
+    "stac_version": "0.8.1",
     "stac_extensions": [
         "eo",
         "https://example.com/stac/landsat-extension/1.0/schema.json"
@@ -165,7 +165,7 @@
     "links": [
         {
             "rel": "self",
-            "href": "https://<endpoint>/stac/search?id=LC08_L1TP_107018_20181001_20181001_01_RT"
+            "href": "https://<endpoint>/search?id=LC08_L1TP_107018_20181001_20181001_01_RT"
         },
         {
             "rel": "parent",
