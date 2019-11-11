@@ -111,9 +111,6 @@
           "unit": {
             "$ref": "#/definitions/fields/unit"
           },
-          "data_type": {
-            "$ref": "#/definitions/fields/data_type"
-          },
           "reference_system": {
             "type": "string"
           }
@@ -191,9 +188,6 @@
           },
           "unit": {
             "$ref": "#/definitions/fields/unit"
-          },
-          "data_type": {
-            "$ref": "#/definitions/fields/data_type"
           },
           "reference_system": {
             "$ref": "#/definitions/fields/reference_system_spatial"
@@ -319,9 +313,6 @@
         "default": 4326
       },
       "description": {
-        "type": "string"
-      },
-      "data_type": {
         "type": "string"
       }
     }

@@ -17,7 +17,7 @@ Data cube related metadata, especially to describe their dimensions.
 
 ### Dimension Object
 
-A *Dimension Object* comes in different flavors, each of them is defined below. The fields define mostly very similar fields, but they differ slightly depending on their use case. All objects share the fields `type` and `description` with the same definition, but `type` may be restricted to certain values. The definition of`axis` is shared between the spatial dimensions, but restricted to certain values, too. `extent`, `values` and `step` share the same definition, but differ in the supported data types (number or string) depending on the type of dimension. Whenever it's useful to specify these fields, the objects add the additional fields `reference_system`, `data_type` and `unit` with very similar definitions across the objects.
+A *Dimension Object* comes in different flavors, each of them is defined below. The fields define mostly very similar fields, but they differ slightly depending on their use case. All objects share the fields `type` and `description` with the same definition, but `type` may be restricted to certain values. The definition of`axis` is shared between the spatial dimensions, but restricted to certain values, too. `extent`, `values` and `step` share the same definition, but differ in the supported data types (number or string) depending on the type of dimension. Whenever it's useful to specify these fields, the objects add the additional fields `reference_system` and `unit` with very similar definitions across the objects.
 
 ### Horizontal Spatial Dimension Object
 
@@ -42,14 +42,13 @@ A spatial dimension in vertical (z) direction.
 | type             | string           | **REQUIRED.** Type of the dimension, always `spatial`.       |
 | axis             | string           | **REQUIRED.** Axis of the spatial dimension, always `z`.     |
 | description      | string           | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| data_type        | string           | The data type for the dimension values, e.g. `string`, `boolean`, `number` or `integer`. |
 | extent           | [number\|null]   | If the dimension consists of [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values, the extent (lower and upper bounds) of the values as two-dimensional array. Use `null` for open intervals. |
 | values           | [number\|string] | A set of all potential values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
 | step             | number\|null     | If the dimension consists of [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between the values. Use `null` for irregularly spaced steps. |
 | unit             | string           | The unit of measurement for the data, preferably the symbols from [SI](https://physics.nist.gov/cuu/Units/units.html) or [UDUNITS](https://ncics.org/portfolio/other-resources/udunits2/). |
 | reference_system | string\|number\|object | The spatial reference system for the data, specified as [EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html), [PROJJSON](https://proj.org/projjson.html) or [PROJ definition](https://proj.org/usage/quickstart.html). Defaults to EPSG code 4326. |
 
-An Vertical Spatial Dimension Object MUST specify **at least** a `data_type`, an `extent` or a set of `values`. It is **recommended** to specify `data_type` and either `extent` or `values`.
+An Vertical Spatial Dimension Object MUST specify an `extent` or a set of `values`.
 
 ### Temporal Dimension Object
 
@@ -71,14 +70,13 @@ An additional dimension that is not `spatial`, but may be `temporal` if the dat
 | ---------------- | ---------------- | ------------------------------------------------------------ |
 | type             | string           | **REQUIRED.** Custom type of the dimension, never `spatial`. |
 | description      | string           | Detailed multi-line description to explain the dimension. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| data_type        | string           | The data type for the dimension values, e.g. `string`, `boolean`, `number` or `integer`. |
 | extent           | [number\|null]   | If the dimension consists of [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values, the extent (lower and upper bounds) of the values as two-dimensional array. Use `null` for open intervals. |
 | values           | [number\|string] | A set of all potential values, especially useful for [nominal](https://en.wikipedia.org/wiki/Level_of_measurement#Nominal_level) values. |
 | step             | number\|null     | If the dimension consists of [interval](https://en.wikipedia.org/wiki/Level_of_measurement#Interval_scale) values, the space between the values. Use `null` for irregularly spaced steps. |
 | unit             | string           | The unit of measurement for the data, preferably the symbols from [SI](https://physics.nist.gov/cuu/Units/units.html) or [UDUNITS](https://ncics.org/portfolio/other-resources/udunits2/). |
 | reference_system | string           | The reference system for the data.                           |
 
-An Additional Dimension Object MUST specify **at least** a `data_type`, an `extent` or a set of `values`. It is **recommended** to specify `data_type` and either `extent` or `values`.
+An Additional Dimension Object MUST specify an `extent` or a set of `values`.
 
 ## Implementations
 
