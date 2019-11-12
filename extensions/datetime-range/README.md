@@ -1,4 +1,4 @@
-# Datetime Range Extension Specification (`dtr`)
+# Datetime Range Extension Specification (`-`)
 
 **Extension [Maturity Classification](../README.md#extension-maturity): Stable**
 
