@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [Checksum extension](extensions/checksum/README.md) is now using self-identifiable hashes ([Multihash](https://github.com/multiformats/multihash)).
 - API `search` extension renamed to `context` extension. JSON object renamed from `search:metadata` to `context`
 - Added attribute `role` to Asset, to be used similarly to Link `rel`
+- CollectionItem field `stac_version` is now required and field `stac_extensions` is defined in schema. 
 
 ## [v0.8.1] - 2019-11-01
 
