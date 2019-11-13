@@ -712,7 +712,8 @@ components:
           'eo:cloud_cover': 0.12
           'eo:off_nadir': 1.4
           'platform': coolsat2
-          'instruments': [cool_sensor_v1]
+          'instruments':
+            - cool_sensor_v1
           'eo:bands': []
           'eo:sun_elevation': 33.4
           'eo:gsd': 0.512
