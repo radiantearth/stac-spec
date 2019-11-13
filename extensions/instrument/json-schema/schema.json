@@ -31,7 +31,10 @@
             },
             "instruments": {
               "title": "Instruments",
-              "type": "array"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
             "constellation": {
               "title": "Constellation",
