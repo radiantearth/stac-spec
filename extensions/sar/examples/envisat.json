@@ -40,26 +40,24 @@
     "sar:frequency_band": "C",
     "sar:center_wavelength": 5.623568898893265,
     "sar:center_frequency": 5.331,
-    "sar:type": "GM1_1P",
-    "sar:bands": [
-      {
-        "name": "amplitude",
-        "data_type": "amplitude",
-        "polarization": "HH"
-      },
-      {
-        "name": "intensity",
-        "description": "Equals the square of the amplitude band",
-        "data_type": "intensity",
-        "polarization": "HH"
-      }
-    ]
+    "sar:product": "GM1_1P"
   },
   "assets": {
     "product": {
       "href": "ASA_GM1_1PNPDE20090520_023957_000001022079_00118_37747_3607.n1.gz",
       "type": "application/gzip",
-      "sar:bands": [0,1]
+      "sar:bands": [
+        {
+          "title": "amplitude",
+          "data_type": "amplitude",
+          "polarization": "HH"
+        },
+        {
+          "title": "intensity",
+          "data_type": "intensity",
+          "polarization": "HH"
+        }
+      ]
     }
   },
   "links": [

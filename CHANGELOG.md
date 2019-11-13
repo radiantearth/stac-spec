@@ -13,6 +13,7 @@ n/a
 ### Added
 - Added a version extension to the API specification
 - Added Instrument extension which adds fields: `platform`, `instruments`, `constellation`, and `mission`.
+- Additionl attributes on assets in sar extension (previously from `sar:bands`)
 
 ### Removed
 - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
@@ -21,6 +22,8 @@ n/a
 - Removed satellite related fields from `eo` extension due to creation of `sat` extension
 - Removed `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from SAR extension due to creation of `instrument` extension.
 - Removed `dtr` extension prefix from example and schema in [datetime-range extension](extensions/datetime-range/README.md)
+- Removed `sar:center_wavelength` from sar extension
+- Removed `sar:bands` from sar extension - attributes now directly in `assets`.
 
 ### Changed
 - The STAC API endpoint `/stac` has been merged with `/`
@@ -33,6 +36,7 @@ n/a
 - CollectionItem field `stac_version` is now required and field `stac_extensions` is defined in schema. 
 - Sort Extension - added non-JSON query/form parameter format 
 - Fields extension has a simplified format for GET parameters
+  `sar:type` changed to `sar:product` in sar extension
 
 
 ## [v0.8.1] - 2019-11-01

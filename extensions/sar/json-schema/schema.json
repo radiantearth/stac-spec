@@ -115,7 +115,7 @@
                 }
               }
             },
-            "sar:type": {
+            "sar:product": {
               "title": "Product type",
               "type": "string",
               "examples": [

@@ -43,13 +43,7 @@
     "sar:frequency_band": "C",
     "sar:center_wavelength": 5.546576466235,
     "sar:center_frequency": 5.405,
-    "sar:type": "GRD",
-    "sar:bands": [
-      {
-        "name": "band_1",
-        "polarization": "HH"
-      }
-    ]
+    "sar:product": "GRD"
   },
   "assets": {
     "noises": {
@@ -74,7 +68,12 @@
       "href": "./measurement/s1a-ew-grd-hh-20181103t235855-20181103t235955-024430-02ad5d-001.tiff",
       "title": "Measurements",
       "type": "image/tiff",
-      "sar:bands": [0],
+      "sar:bands": [
+        {
+          "name": "band_1",
+          "polarization": "HH"
+        }
+      ],
       "checksum:multihash": "90e40210163700a8a6501eccd00b6d3b44ddaed0"
     },
     "thumbnail": {
