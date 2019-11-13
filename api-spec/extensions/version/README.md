@@ -1,4 +1,4 @@
-# Version API Extension
+# Items and Collections API Version Extension
 
 **Extension [Maturity Classification](../../../extensions/README.md#extension-maturity): Proposal**
 

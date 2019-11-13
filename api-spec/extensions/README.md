@@ -16,7 +16,7 @@ API Extensions given follow the same guidelines for Extension Maturity as given 
 | [Context](context/README.md) | Adds search related metadata (context) to [ItemCollection](../../item-spec/itemcollection-spec.md). | *Proposal* |
 | [Sort](sort/README.md) | Adds Parameter to control sorting of returns results. | *Pilot* |
 | [Transaction](transaction/README.md) | Adds PUT and DELETE endpoints for the creation, editing, and deleting of items and Collections. | *Pilot* |
-| [Version](version/README.md) | Adds GET versions resource to collections and items endpoints and provides semantics for a versioning scheme for collections and items. | *Proposal* |
+| [Items and Collections API Version](version/README.md) | Adds GET versions resource to collections and items endpoints and provides semantics for a versioning scheme for collections and items. | *Proposal* |
 
 ## Third-party / vendor extensions
 
