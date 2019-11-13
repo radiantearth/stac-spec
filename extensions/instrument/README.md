@@ -34,7 +34,7 @@ is technically referring to a pair of sensors on two different satellites, whose
 related products. Additionally, the Aqua satellite is technically part of the A-Train constellation and Terra is not 
 part of a constellation, but these combine to form the logical collection referred to as MODIS.
 
-**mision** is the name of the mission or campaign for collecting data. This could be a discrete set of data collections over a period of time (such as collecting drone imagery), or could be a set of tasks of related tasks from a satellite data collection.
+**mission** is the name of the mission or campaign for collecting data. This could be a discrete set of data collections over a period of time (such as collecting drone imagery), or could be a set of tasks of related tasks from a satellite data collection.
 
 
 Example:
