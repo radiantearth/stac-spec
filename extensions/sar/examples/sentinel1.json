@@ -27,7 +27,7 @@
     "dtr:end_datetime": "2018-11-03T23:59:55.112875Z",
     "platform": "sentinel-1a",
     "constellation": "sentinel-1",
-    "instrument": "c-sar",
+    "instruments": ["c-sar"],
     "sar:instrument_mode": "EW",
     "sar:polarization": ["HH"],
     "sar:resolution_range": 50,

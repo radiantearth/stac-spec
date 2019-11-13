@@ -74,7 +74,7 @@
     "eo:cloud_cover": 50,
     "eo:off_nadir": 18.4,
     "eo:azimuth": 34.5,
-    "eo:platform": "worldview02",
+    "platform": "worldview02",
     "eo:sun_elevation": 33.4,
     "eo:gsd": 2.047,
     "eo:epsg": null,

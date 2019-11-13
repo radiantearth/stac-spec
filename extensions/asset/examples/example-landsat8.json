@@ -65,8 +65,8 @@
     "license": "PDDL-1.0",
     "properties": {
       "eo:gsd": 15,
-      "eo:platform": "landsat-8",
-      "eo:instrument": "OLI_TIRS",
+      "platform": "landsat-8",
+      "instruments": ["oli", "tirs"],
       "eo:off_nadir": 0,
       "eo:bands": [
         {
