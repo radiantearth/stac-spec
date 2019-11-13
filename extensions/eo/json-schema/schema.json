@@ -22,26 +22,12 @@
           "type": "object",
           "required": [
             "eo:gsd",
-            "eo:platform",
-            "eo:instrument",
             "eo:bands"
           ],
           "properties": {
             "eo:gsd": {
               "title": "Ground Sample Distance",
               "type": "number"
-            },
-            "eo:platform": {
-              "title": "Platform",
-              "type": "string"
-            },
-            "eo:constellation": {
-              "title": "Constellation",
-              "type": "string"
-            },
-            "eo:instrument": {
-              "title": "Instrument",
-              "type": "string"
             },
             "eo:bands": {
               "title": "Bands",
