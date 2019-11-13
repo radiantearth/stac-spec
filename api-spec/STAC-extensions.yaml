@@ -1737,7 +1737,8 @@ components:
             items:
               type: string
             description: Purposes of the asset
-            example: thumbnail
+            example:
+              - thumbnail
     itemProperties:
       type: object
       required:
