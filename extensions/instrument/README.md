@@ -22,7 +22,7 @@ be the name of the satellite, whereas for drones this would be a unique name for
 carrying the MODIS instruments), `mycorp-uav-034` (hypothetical drone name), and `worldview02` 
 (Maxar/DigitalGlobe WorldView-2).
 
-**instruments** is an array of all the sensors used in the creation of the data. For example, data from the Landsat-8 platform is collected with the OLI sensor as well as the TIRS sensor, but the data is distributed together so would be specified as ['oli', 'tirs']. Other instrument examples include `msi` (Sentinel-2), `aster` (Terra), and `modis` (Terra and Aqua), `c-sar` (Sentinel-1) and `asar` (Envisat).
+**instruments** is an array of all the sensors used in the creation of the data. For example, data from the Landsat-8 platform is collected with the OLI sensor as well as the TIRS sensor, but the data is distributed together so would be specified as `['oli', 'tirs']`. Other instrument examples include `msi` (Sentinel-2), `aster` (Terra), and `modis` (Terra and Aqua), `c-sar` (Sentinel-1) and `asar` (Envisat).
 
 **constellation** is the name of a logical collection one or more platforms that have similar payloads and have 
 their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and 
