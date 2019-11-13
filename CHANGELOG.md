@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
+- Removed `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from SAR extension.
 
 ### Changed
 - The STAC API endpoint `/stac` has been merged with `/`
@@ -32,6 +33,9 @@ n/a
 ### Added
 
 n/a
+
+### Added
+- Added Instrument extension which adds fields: `platform`, `instruments`, `constellation`, and `mission`.
 
 ## [v0.8.1] - 2019-11-01
 

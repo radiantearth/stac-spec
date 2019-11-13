@@ -237,12 +237,12 @@ components:
             - 10
             - 30
             - 60
-          'eo:platform':
+          'platform':
             - sentinel-2a
             - sentinel-2b
-          'eo:constellation':
+          'constellation':
             - sentinel-2
-          'eo:instrument':
+          'instruments':
             - msi
           'eo:off_nadir':
             min: 0
@@ -711,8 +711,9 @@ components:
           'eo:sun_azimuth': 168.7
           'eo:cloud_cover': 0.12
           'eo:off_nadir': 1.4
-          'eo:platform': coolsat2
-          'eo:instrument': cool_sensor_v1
+          'platform': coolsat2
+          'instruments':
+            - cool_sensor_v1
           'eo:bands': []
           'eo:sun_elevation': 33.4
           'eo:gsd': 0.512

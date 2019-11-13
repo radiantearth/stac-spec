@@ -151,9 +151,9 @@ Implementors are free to add other derived statistical values to the object, for
 
 The `properties` field in STAC collections can be used in two ways, either to **move common fields in Items to the parent Collection** or to describe **standalone Collections** better that don't reference any items. Any field that can be used under an Items `properties` can be removed and added to the Collection `properties`. Since a Collection contains no properties itself, anything under properties are metadata fields that are common across all member Items.
 
-To **move common fields in Items to the parent Collection**, the collection specification allows one to more fields that are common across all linked Items to be moved out of the respective Items and into the parent STAC Collection, from which the Items then inherit. This provides maximum flexibility to data providers, as the set of common metadata fields can vary between different types of data. For instance, Landsat and Sentinel data always have an `eo:off_nadir` value of `0`, because those satellites are always pointed downward (i.e., nadir), while satellites that can be pointed will have varying `eo:off_nadir` values. This allows the data provider to define the set of metadata that defines the collection. While some metadata fields are more likely to be part of the common set, such as or `eo:instrument` rather than `eo:cloud_cover`, it depends on how the data provider chooses to organize their data. If a metadata field is specified in the Collection properties, it will be ignored in any Item that links to that Collection. This is important because a Collection is the metadata that is common across all Item objects. If a field is variable at all, it should not be part of the common fields.
+To **move common fields in Items to the parent Collection**, the collection specification allows one to more fields that are common across all linked Items to be moved out of the respective Items and into the parent STAC Collection, from which the Items then inherit. This provides maximum flexibility to data providers, as the set of common metadata fields can vary between different types of data. For instance, Landsat and Sentinel data always have an `eo:off_nadir` value of `0`, because those satellites are always pointed downward (i.e., nadir), while satellites that can be pointed will have varying `eo:off_nadir` values. This allows the data provider to define the set of metadata that defines the collection. While some metadata fields are more likely to be part of the common set, such as `instrument` rather than `eo:cloud_cover`, it depends on how the data provider chooses to organize their data. If a metadata field is specified in the Collection properties, it will be ignored in any Item that links to that Collection. This is important because a Collection is the metadata that is common across all Item objects. If a field is variable at all, it should not be part of the common fields.
 
-STAC Collections which don't link to any Item are called **standalone Collections**. To describe them with more fields than the Collection fields has to offer, it is allowed to re-use the metadata fields defined by content extensions for Items. Whenever suitable, the `properties` are used in the same way as if they were common fields across theoretical Items. This makes much sense for fields such as `eo:platform` or `eo:epsg`, which are often the same for a whole collection, but doesn't make much sense for `eo:cloud_cover`, which usually varies heavily across a Collection. The data provider is free to decide, which fields are reasoable to be used.
+STAC Collections which don't link to any Item are called **standalone Collections**. To describe them with more fields than the Collection fields has to offer, it is allowed to re-use the metadata fields defined by content extensions for Items. Whenever suitable, the `properties` are used in the same way as if they were common fields across theoretical Items. This makes much sense for fields such as `platform` or `eo:epsg`, which are often the same for a whole collection, but doesn't make much sense for `eo:cloud_cover`, which usually varies heavily across a Collection. The data provider is free to decide, which fields are reasoable to be used.
 
 ### Merging common fields into a STAC Item
 
@@ -171,8 +171,8 @@ An incomplete Collection:
   "license": "PDDL-1.0",
   "properties": {
     "eo:gsd": 30,
-    "eo:platform": "landsat-8",
-    "eo:instrument": "oli_tirs",
+    "platform": "landsat-8",
+    "instruments": ["oli", "tirs"],
     "eo:off_nadir": 0,
     "eo:bands": [
       {
@@ -229,9 +229,9 @@ The merged Item then looks like this:
     "landsat:path": 107,
     "landsat:row": 18,
     "eo:gsd": 30,
-    "eo:platform": "landsat-8",
-    "eo:constellation": "landsat-8",
-    "eo:instrument": "oli_tirs",
+    "platform": "landsat-8",
+    "constellation": "landsat-8",
+    "instruments": ["oli", "tirs"],
     "eo:off_nadir": 0,
     "eo:bands": [
       {
