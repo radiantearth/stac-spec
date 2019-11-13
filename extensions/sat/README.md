@@ -11,9 +11,6 @@ This document explains the fields of the sat Extension to a STAC Item. Sat adds 
 
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
-| platform      | string                   | **REQUIRED.** Unique name of the specific platform to which the instrument is attached. |
-| instruments    | [string]                   | **REQUIRED.** Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1). |
-| constellation | string                   | Name of the constellation to which the platform belongs. |
 | off_nadir_angle     | number                   | The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90). |
 | incidence_angle       | number        | The incidence angle is the angle between the vertical (normal) to the intercepting surface and the line of sight back to the satellite at the scene center. Measured in degrees (0-90). |
 | azimuth_angle       | number                   | Viewing azimuth angle. The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360). |
@@ -21,24 +18,6 @@ This document explains the fields of the sat Extension to a STAC Item. Sat adds 
 | sun_elevation_angle | number                   | Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (0-90). |
 | orbit_state        | string  | The state of the orbit. Either `ascending` or `descending` for polar orbiting satellites, or `geostationary` for geosynchronous satellites |
 | relative_orbit        | integer       | The relative orbit number at the time of acquisition. |
-
-**platform** is the unique name of the specific platform the instrument is attached to. For satellites this would 
-be the name of the satellite, whereas for drones this would be a unique name for the drone. Examples include 
-`landsat-8` (Landsat-8), `sentinel-2a` and `sentinel-2b` (Sentinel-2), `terra` and `aqua` (part of NASA EOS, 
-carrying the MODIS instruments), `mycorp-uav-034` (hypothetical drone name), and `worldview02` 
-(Maxar/DigitalGlobe WorldView-2).
-
-**instruments** is an array of all the sensors used in the creation of the data. For example, data from the Landsat-8 platform is collected with the OLI sensor as well as the TIRS sensor, but the data is distributed together so would be specified as ['oli', 'TItirsRS']. Other instrument examples include `msi` (Sentinel-2), `aster` (Terra), and `modis` (Terra and Aqua).
-
-**constellation** is the name of a logical collection one or more platforms that have similar payloads and have 
-their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and 
-radiometric characteristics. This field allows users to search for related data sets without needing to specify which 
-specific platform the data came from, for example, from either of the Sentinel-2 satellites. Examples include `landsat-8` 
-(Landsat-8, a constellation consisting of a single platform), `sentinel-2` ([Sentinel-2](https://www.esa.int/Our_Activities/Observing_the_Earth/Copernicus/Sentinel-2/Satellite_constellation)), 
-`rapideye` (operated by Planet Labs), and `modis` (NASA EOS satellites Aqua and Terra).  In the case of `modis`, this
-is technically referring to a pair of sensors on two different satellites, whose data is combined into a series of 
-related products. Additionally, the Aqua satellite is technically part of the A-Train constellation and Terra is not 
-part of a constellation, but these combine to form the logical collection referred to as MODIS.
 
 **orbit_state** indicates the type and current state of orbit. Satellites are either geosynchronous in which case they have one state: `geostationary`, or they are sun synchronous (i.e., polar orbiting satellites) in which case they are either `ascending` or `descending`. For sun synchronous satellites it is daytime during one of these states, and nighttime during the other.
 

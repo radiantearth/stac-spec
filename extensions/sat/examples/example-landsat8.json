@@ -1,7 +1,8 @@
 {
     "stac_version": "0.9.0",
     "stac_extensions": [
-      "sat"
+      "sat",
+      "instrument"
     ],
     "id": "LC08_L1TP_107018_20181001",
     "collection": "landsat-8-l1",
@@ -40,7 +41,6 @@
         ]
     },
     "properties": {
-        
         "datetime": "2018-10-01T01:08:32.033Z",
         "sun_azimuth": 168.8989761,
         "sun_elevation": 26.32596431,

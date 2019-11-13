@@ -25,18 +25,6 @@
             "instruments"
           ],
           "properties": {
-            "platform": {
-              "title": "Platform",
-              "type": "string"
-            },
-            "constellation": {
-              "title": "Constellation",
-              "type": "string"
-            },
-            "instruments": {
-              "title": "Instrument",
-              "type": "array"
-            },
             "off_nadir": {
               "title": "Off Nadir",
               "type": "number",
