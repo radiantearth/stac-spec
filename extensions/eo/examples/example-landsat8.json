@@ -2,6 +2,7 @@
     "stac_version": "0.8.1",
     "stac_extensions": [
       "eo",
+      "instrument",
       "https://example.com/stac/landsat-extension/1.0/schema.json"
     ],
     "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
@@ -45,6 +46,8 @@
         "eo:cloud_cover": 78,
         "eo:sun_azimuth": 168.8989761,
         "eo:sun_elevation": 26.32596431,
+        "platform": "landsat-8",
+        "instruments": ["oli", "tirs"],
         "landsat:path": 107,
         "landsat:row": 18,
         "eo:gsd": 30,
