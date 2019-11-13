@@ -34,12 +34,11 @@ The exact metadata that would appear in a STAC Collection record will vary depen
 | sar:looks_equivalent_number | number      | The equivalent number of looks (ENL). |
 | sar:observation_direction | string        | Antenna pointing direction relative to the flight trajectory of the satellite, either `left` or `right`.
 
-
 **sar:polarization** specifies a single polarization or a polarization combination. For single polarized radars one of `HH`, `VV`, `HV` or `VH` must be set. Fully polarimetric radars add all four polarizations to the array. Dual polarized radars and alternating polarization add the corresponding polarizations to the array, for instance for `HH+HV` add both `HH` and `HV`.
 
 ### Common Frequency Band Names
 
-The `sar:freuency_band` is the name that is commonly used to refer to that band's spectral
+The `sar:frequency_band` is the name that is commonly used to refer to that band's spectral
 properties. The table below shows the common name based on the wavelength and frequency ranges for several SAR satellites.
 
 | Common Name | Wavelength Range (cm) | Frequency Range (GHz) | Satellites |
@@ -55,7 +54,7 @@ properties. The table below shows the common name based on the wavelength and fr
 
 ### Date and Time
 
-In SAR, you usually have frame start and end time. To describe this information it is recommended to use the [Datetime Range Extension Specification](../datetime-range/README.md). The center time of the frame should be specified with the `datetime` property for [STAC ITems](../../item-spec/item-spec.md).
+In SAR, you usually have frame start and end time. To describe this information it is recommended to use the [Datetime Range Extension Specification](../datetime-range/README.md). The center time of the frame should be specified with the `datetime` property for [STAC Items](../../item-spec/item-spec.md).
 
 ### Band Object
 

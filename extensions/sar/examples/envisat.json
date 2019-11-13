@@ -3,7 +3,8 @@
   "stac_extensions": [
     "datetime-range",
     "sat",
-    "sar"
+    "sar",
+    "instrument"
   ],
   "id": "ASA_GM1_1PNPDE20090520_023957_000001022079_00118_37747_3607",
   "type": "Feature",
@@ -24,10 +25,13 @@
     "datetime": "2009-05-20T02:40:46.763325Z",
     "dtr:start_datetime": "2009-05-20T02:40:01.042784Z",
     "dtr:end_datetime": "2009-05-20T02:41:31.483865Z",
+<<<<<<< HEAD
     "platform": "envisat",
     "constellation": "envisat",
     "instruments": ["asar"],
     "pass_direction": "descending",
+=======
+>>>>>>> dev
     "sar:instrument_mode": "GM",
     "sar:polarization": ["HH"],
     "sar:resolution_range": 1000,

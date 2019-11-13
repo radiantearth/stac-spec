@@ -6,18 +6,34 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Fixed
+
+n/a
+
+### Added
+- Added a version extension to the API specification
+- Added Instrument extension which adds fields: `platform`, `instruments`, `constellation`, and `mission`.
+
 ### Removed
 - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
-- Dropped sar:absolute_orbit field from `sar` extension due to no known use case
-- Removed satellite related fields from `sar` extension due to creation of `sat` extension: `sar:platform`, `sar:instrument`, `sar:constellation`, `sar:pass_direction`, `sar:incidence_angle`
+- Dropped `sar:absolute_orbit` field from `sar` extension due to no known use case
+- Removed satellite related fields from `sar` and `eo` extension due to creation of `sat` extension
 - Removed satellite related fields from `eo` extension due to creation of `sat` extension
+- Removed `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from SAR extension due to creation of `instrument` extension.
+- Removed `dtr` extension prefix from example and schema in [datetime-range extension](extensions/datetime-range/README.md)
 
 ### Changed
 - The STAC API endpoint `/stac` has been merged with `/`
 - The STAC API endpoint `/stac/search` is now called `/search`
 - Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html).
 - [Checksum extension](extensions/checksum/README.md) is now using self-identifiable hashes ([Multihash](https://github.com/multiformats/multihash)).
+- Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
 - API `search` extension renamed to `context` extension. JSON object renamed from `search:metadata` to `context`
+- Added attribute `role` to Asset, to be used similarly to Link `rel`
+- CollectionItem field `stac_version` is now required and field `stac_extensions` is defined in schema. 
+- Sort Extension - added non-JSON query/form parameter format 
+- Fields extension has a simplified format for GET parameters
+
 
 ## [v0.8.1] - 2019-11-01
 
@@ -73,7 +89,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - moved label:classes to be a list of Class Objects from a single Class Object in spec markdown and json schema (matching previous example JSON).
     - moved label:overview to be a list of Overview Objects from a single Overview Object in spec markdown and json schema (matching previous example JSON).
     - Renamed fields to use plural forms (`label:property` -> `label:properties`, `label:task` -> `label:tasks`, `label:method` -> `label:methods` and `label:overview` -> `label:overviews`)
-
 
 ## [v0.7.0] - 2019-05-06
 

@@ -1,7 +1,8 @@
 {
-    "stac_version": "0.8.1",
+    "stac_version": "0.9.0",
     "stac_extensions": [
       "eo",
+      "instrument",
       "https://example.com/stac/landsat-extension/1.0/schema.json"
     ],
     "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
@@ -49,7 +50,7 @@
         "landsat:row": 18,
         "eo:gsd": 30,
         "platform": "landsat-8",
-        "instrument": "oli_tirs",
+        "instrument": ["oli", "tirs"],
         "off_nadir": 0,
         "eo:bands": [
             {
