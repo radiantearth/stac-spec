@@ -208,6 +208,10 @@
         "type": {
           "title": "Asset type",
           "type": "string"
+        },
+        "role": {
+          "title": "Asset role",
+          "type": "string"
         }
       }
     }
