@@ -155,7 +155,8 @@ The `label:assets` field applies to situations where the labels may apply to cer
 
 
 ## Implementations
-Example implementations can be found in [Examples](#Examples). The Roads implementation provides an example item for labels from the [SpaceNet Road Network Extraction Challenge Dataset](https://spacenet.ai/spacenet-roads-dataset/), providing segmentation labels for road networks. The Misc Samples implementation provides an example catalog of collections with sample label items from several training datasets, [SpaceNet Buildings](https://spacenet.ai/spacenet-buildings-dataset-v2/) and [Open AI Tanzania Building Footprint Segmentation Challenge](https://competitions.codalab.org/competitions/20100) for now, providing segmentation labels for buildings.
+
+The SpaceNet Challenge Round 2 dataset has a [STAC catalog](https://spacenet-dataset.s3.amazonaws.com/spacenet-stac/SN2_buildings/catalog.json) generated using [PySTAC](https://pystac.readthedocs.io/en/latest) containing Label Items. Further example implementations can be found in [Examples](#Examples). The Roads implementation provides an example item for labels from the [SpaceNet Road Network Extraction Challenge Dataset](https://spacenet.ai/spacenet-roads-dataset/), providing segmentation labels for road networks. The Misc Samples implementation provides an example catalog of collections with sample label items from several training datasets, [SpaceNet Buildings](https://spacenet.ai/spacenet-buildings-dataset-v2/) and [Open AI Tanzania Building Footprint Segmentation Challenge](https://competitions.codalab.org/competitions/20100) for now, providing segmentation labels for buildings.
 
 [Raster Foundry](https://rasterfoundry.azavea.com/) supports exporting STAC-compliant training data label items, assets, and sources in a self-contained `zip` file and as an s3 directory when initiated from an internal annotation and labeling tool.
 
