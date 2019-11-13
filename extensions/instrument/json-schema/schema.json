@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "schema.json#",
+  "title": "Instrument Extension",
+  "description": "STAC Instrument Extension to a STAC Item.",
+  "allOf": [
+    {
+      "$ref": "../../../item-spec/json-schema/item.json#/definitions/core"
+    },
+    {
+      "$ref": "#/definitions/sat"
+    }
+  ],
+  "definitions": {
+    "instrument": {
+      "type": "object",
+      "required": [
+        "properties"
+      ],
+      "properties": {
+        "properties": {
+          "type": "object",
+          "required": [
+            "platform",
+            "instruments"
+          ],
+          "properties": {
+            "platform": {
+              "title": "Platform",
+              "type": "string"
+            },
+            "instruments": {
+              "title": "Instruments",
+              "type": "array"
+            },
+            "constellation": {
+              "title": "Constellation",
+              "type": "string"
+            },
+            "mission": {
+              "title": "Mission",
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
