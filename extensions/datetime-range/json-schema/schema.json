@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "schema.json#",
   "title": "Datetime Range Extension",
-  "description": "STAC Datetime Range Extension Extension to a STAC Item.",
+  "description": "STAC Datetime Range Extension to a STAC Item.",
   "allOf": [
     {
       "$ref": "../../../master/item-spec/json-schema/item.json"
@@ -21,19 +21,21 @@
         "properties": {
           "type": "object",
           "required": [
-            "dtr:start_datetime",
-            "dtr:end_datetime"
+            "start_datetime",
+            "end_datetime"
           ],
           "properties": {
-            "dtr:start_datetime": {
+            "start_datetime": {
+              "title": "Start Date and Time",
+              "description": "The searchable start date/time of the assets, in UTC (Formatted in RFC 3339) ",
               "type": "string",
               "format": "date-time",
-              "title": "Start datetime"
             }, 
-            "dtr:end_datetime": {
+            "end_datetime": {
+              "title": "End Date and Time", 
+              "description": "The searchable end date/time of the assets, in UTC (Formatted in RFC 3339) ",                  
               "type": "string",
               "format": "date-time",
-              "title": "End datetime"
             }
           }
         }
