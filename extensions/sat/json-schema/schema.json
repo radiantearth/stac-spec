@@ -25,7 +25,7 @@
             "instruments"
           ],
           "properties": {
-            "off_nadir": {
+            "off_nadir_angle": {
               "title": "Off Nadir",
               "type": "number",
               "minimum": 0,
@@ -37,20 +37,20 @@
               "minimum": 0,
               "maximum": 90
             },
-            "azimuth": {
-              "title": "Azimuth",
+            "azimuth_angle": {
+              "title": "Azimuth angle",
               "type": "number",
               "minimum": 0,
               "maximum": 360
             },
-            "sun_azimuth": {
-              "title": "Sun Azimuth",
+            "sun_azimuth_angle": {
+              "title": "Sun Azimuth angle",
               "type": "number",
               "minimum": 0,
               "maximum": 360
             },
-            "sun_elevation": {
-              "title": "Sun Elevation",
+            "sun_elevation_angle": {
+              "title": "Sun Elevation angle",
               "type": "number",
               "minimum": 0,
               "maximum": 90
@@ -59,12 +59,13 @@
               "type": "integer",
               "minimum": 1
             },
-            "pass_direction": {
-              "title": "Pass direction",
+            "orbit_state": {
+              "title": "Orbit State",
               "type": "string",
               "enum": [
                 "ascending",
-                "descending"
+                "descending",
+                "geostationary"
               ]
             }
           }
