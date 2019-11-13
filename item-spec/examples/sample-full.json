@@ -62,7 +62,9 @@
     },
     "thumbnail": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png",
-      "title": "Thumbnail"
+      "title": "Thumbnail",
+      "type": "image/png",
+      "role": "thumbnail"
     },
     "udm": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/UDM.tif",
@@ -70,7 +72,9 @@
     },
     "json-metadata": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/extended-metadata.json",
-      "title": "Extended Metadata"
+      "title": "Extended Metadata",
+      "type": "application/json",
+      "role": "thumbnail"
     },
     "ephemeris": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/S3-20160503_132130_04.EPH",
