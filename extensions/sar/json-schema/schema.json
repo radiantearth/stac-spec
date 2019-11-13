@@ -21,8 +21,6 @@
         "properties": {
           "type": "object",
           "required": [
-            "sar:platform",
-            "sar:instrument",
             "sar:instrument_mode",
             "sar:frequency_band",
             "sar:polarization",
@@ -30,18 +28,6 @@
             "sar:type"
           ],
           "properties": {
-            "sar:platform": {
-              "title": "Platform",
-              "type": "string"
-            },
-            "sar:constellation": {
-              "title": "Constellation",
-              "type": "string"
-            },
-            "sar:instrument": {
-              "title": "Instrument",
-              "type": "string"
-            },
             "sar:instrument_mode": {
               "title": "Instrument Mode",
               "type": "string",

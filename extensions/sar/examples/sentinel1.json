@@ -3,7 +3,8 @@
   "stac_extensions": [
     "checksum",
     "datetime-range",
-    "sar"
+    "sar",
+    "instrument"
   ],
   "id": "S1A_EW_GRDM_1SSH_20181103T235855_20181103T235955_024430_02AD5D_5616",
   "type": "Feature",
@@ -24,9 +25,9 @@
     "datetime": "2018-11-03T23:58:55.617217Z",
     "dtr:start_datetime": "2018-11-03T23:58:55.121559Z",
     "dtr:end_datetime": "2018-11-03T23:59:55.112875Z",
-    "sar:platform": "sentinel-1a",
-    "sar:constellation": "sentinel-1",
-    "sar:instrument": "c-sar",
+    "platform": "sentinel-1a",
+    "constellation": "sentinel-1",
+    "instrument": "c-sar",
     "sar:instrument_mode": "EW",
     "sar:polarization": ["HH"],
     "sar:resolution_range": 50,
