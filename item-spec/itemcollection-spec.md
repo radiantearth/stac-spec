@@ -31,9 +31,15 @@ This object describes a STAC ItemCollection. The fields `type` and `features` ar
 
 | Field Name | Type                                                                       | Description |
 | ---------- | -------------------------------------------------------------------------- | ----------- |
+| stac_version | string                                                                   | **REQUIRED.** The STAC version the ItemCollection implements. |
+| stac_extensions | [string]                                                              | A list of extensions the ItemCollection implements. |
 | type       | string | **REQUIRED.** always "FeatureCollection" to provide compatibility with GeoJSON  |
 | features   | [Item] | **REQUIRED** a possibly-empty array of Items          |
 | links      | [Link] | an array of Links related to this ItemCollection   |
+
+**stac_version**: In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
+
+**stac_extensions**: A list of extensions the ItemCollection implements. The list contains URLs to the JSON Schema files it can be validated against. For official extensions, a "shortcut" can be used. This means you can specify the folder name of the extension, for example `single-file-stac` for the Single File STAC  extension. If the versions of the extension and the item diverge, you can specify the URL of the JSON schema file.
 
 ## Extensions
 
