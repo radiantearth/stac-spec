@@ -53,7 +53,7 @@
     "eo:gsd": [10,30,60],
     "platform": ["sentinel-2a","sentinel-2b"],
     "constellation": ["sentinel-2"],
-    "instruments": ["msi"],
+    "instruments": [["msi"]],
     "eo:off_nadir": {
       "min": 0.0,
       "max": 100
