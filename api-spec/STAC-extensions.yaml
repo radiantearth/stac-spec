@@ -391,6 +391,66 @@ paths:
             text/html:
               schema:
                 type: string
+  '/collections/{collectionId}/versions':
+    get:
+      summary: returns a list of links for a versioned collection
+      description: returns a list of links for a versioned collection
+      tags:
+        - Version Extension
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: >-
+            A catalog JSON definition the returns list of links of a collection
+            versions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/catalogDefinition'
+  '/collections/{collectionId}/versions/{versionId}':
+    get:
+      summary: returns the requested version of a collection
+      description: returns the requested version of a collection
+      tags:
+        - Version Extension
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/versionId'
+      responses:
+        '200':
+          $ref: '#/components/responses/Collections'
+  '/collections/{collectionId}/items/{featureId}/versions':
+    get:
+      summary: returns a list of links for a versioned item
+      description: returns a list of links for a versioned item
+      tags:
+        - Version Extension
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/featureId'
+      responses:
+        '200':
+          description: >-
+            A catalog JSON definition the returns list of links of an item
+            versions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/catalogDefinition'
+  '/collections/{collectionId}/items/{featureId}/versions/{versionId}':
+    get:
+      summary: returns the requested version of an item
+      description: returns the requested version of an item
+      tags:
+        - Version Extension
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/featureId'
+        - $ref: '#/components/parameters/versionId'
+      responses:
+        '200':
+          $ref: '#/components/responses/Collections'
 components:
   parameters:
     bbox:
@@ -595,6 +655,13 @@ components:
       in: header
       description: Only take the action if the ETag of the item still matches
       required: false
+      schema:
+        type: string
+    versionId:
+      name: versionId
+      in: path
+      description: local identifier of a version
+      required: true
       schema:
         type: string
   schemas:
@@ -1734,6 +1801,10 @@ components:
             type: string
             description: Media type of the asset
             example: image/png
+          role:
+            type: string
+            description: Purpose of the asset
+            example: thumbnail
     itemProperties:
       type: object
       required:
