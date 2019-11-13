@@ -332,7 +332,7 @@ paths:
         - $ref: '#/components/parameters/ids'
         - $ref: '#/components/parameters/collectionsArray'
         - $ref: '#/components/parameters/query'
-        - $ref: '#/components/parameters/sort'
+        - $ref: '#/components/parameters/sortby'
         - $ref: '#/components/parameters/fields'
       responses:
         '200':
@@ -625,13 +625,15 @@ components:
       required: false
       schema:
         type: string
-    sort:
-      name: sort
+    sortby:
+      name: sortby
       in: query
       description: Allows sorting results by the specified properties
       required: false
       schema:
-        $ref: '#/components/schemas/sort'
+        type: string
+      style: form
+      explode: false
     fields:
       name: fields
       in: query
@@ -1913,9 +1915,9 @@ components:
       type: object
       description: Sort the results
       properties:
-        sort:
-          $ref: '#/components/schemas/sort'
-    sort:
+        sortby:
+          $ref: '#/components/schemas/sortby'
+    sortby:
       type: array
       description: |
         An array of objects containing a property name and sort direction.
@@ -1924,6 +1926,7 @@ components:
         type: object
         required:
           - field
+          - direction
         properties:
           field:
             type: string
@@ -1934,8 +1937,9 @@ components:
               - asc
               - desc
       example:
-        - field: 'eo:cloud_cover'
-        - field: providers
+        - field: 'properties.eo:cloud_cover'
+          direction: asc
+        - field: id
           direction: desc
     fieldsFilter:
       type: object
