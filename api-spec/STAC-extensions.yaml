@@ -1586,7 +1586,7 @@ components:
             $ref: '#/components/schemas/item'
         links:
           $ref: '#/components/schemas/itemCollectionLinks'
-        'search:metadata':
+        context:
           type: object
           required:
             - next
@@ -1732,6 +1732,10 @@ components:
             type: string
             description: Media type of the asset
             example: image/png
+          role:
+            type: string
+            description: Purpose of the asset
+            example: thumbnail
     itemProperties:
       type: object
       required:
