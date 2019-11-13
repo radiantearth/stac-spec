@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added attribute `role` to Asset, to be used similarly to Link `rel`
 - CollectionItem field `stac_version` is now required and field `stac_extensions` is defined in schema. 
 - Sort Extension - added non-JSON query/form parameter format 
+- Fields extension has a simplified format for GET parameters
 
 ### Fixed
 
