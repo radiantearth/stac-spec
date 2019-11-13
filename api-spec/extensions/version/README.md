@@ -103,7 +103,7 @@ GET /collections/my_collection/items/this_is_my_id/versions/02
             "href": "/collections/my_collection/items/this_is_my_id"
         },
         {
-            "rel": version-history,
+            "rel": "version-history",
             "href": "/collections/my_collection/items/this_is_my_id/versions"
         }
     ]
@@ -135,7 +135,7 @@ GET /collections/my_collection/items/this_is_my_id/versions/01
             "href": "/collections/my_collection/items/this_is_my_id"
         },
         {
-            "rel": version-history,
+            "rel": "version-history",
             "href": "/collections/my_collection/items/this_is_my_id/versions"
         }
     ]
