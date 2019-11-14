@@ -90,7 +90,8 @@
     "thumbnail": { 
       "href": "https://api.planet.com/data/v1/item-types/PSScene4Band/items/20171110_121030_1013/thumb",
       "title": "Thumbnail", 
-      "status": "active"
+      "status": "active",
+      "role": "thumbnail"
     },
     "analytic": {
       "href": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcxMTEwXzEyMTAxMF8xMDEzIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWMiLCAiY3QiOiAiaXRlbS10eXBlIn0",
