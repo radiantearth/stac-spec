@@ -143,7 +143,7 @@ Adding a single `self` link at the root is recommended for online catalogs, turn
 
 ### Versioning for Catalogs
 
-The STAC API [Version Extension](/api-spec/extensions/version) provides endpoints and semantics for keeping and accessing previous versions of Collections and Items. The same semantics can be used in static catalogs to preserve previous versions of the documents and link them together.
+The [Items and Collections API Version Extension](./api-spec/extensions/version) provides endpoints and semantics for keeping and accessing previous versions of Collections and Items. The same semantics can be used in static catalogs to preserve previous versions of the documents and link them together.
 
 In order to achieve this, the static catalog must make sure that for every record created, a copy of the record is also created in a separate location and it is named with the version id adopted by the catalog. See [here](/api-spec/extensions/version#version-id) for recommendations on versioning schema.
 
@@ -151,6 +151,8 @@ The main record should also provide a link to the versioned record following the
 
 1. add link from the updated record to the previous version
 2. Copy the updated record to the versions folder and name it correctly
+
+In the Item and Collection STAC files or API responses, versions and deprecation can be indicated with the [Versioning Indicators Extension](./extensions/version).
 
 #### Example
 
