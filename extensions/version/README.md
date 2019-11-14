@@ -20,7 +20,7 @@ For Items, the fields are placed in the `properties`. For Collections, the field
 
 ## Relation types
 
-This extension adds the following types as applicable `rel` types for the [Link Object](../../item-spec/item-spec.md#link-object) to reference the latest version, the predecessor version and successor versions. These are all following [RFC 5829](https://tools.ietf.org/html/rfc5829).
+The following types should be used as applicable `rel` types for the [Link Object](../../item-spec/item-spec.md#link-object) to reference the latest version, the predecessor version and successor versions. These are all following [RFC 5829](https://tools.ietf.org/html/rfc5829).
 
 | Type                | Description |
 | ------------------- | ----------- |
