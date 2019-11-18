@@ -14,6 +14,9 @@ n/a
 - Added a version extension to the API specification
 - Added Instrument extension which adds fields: `platform`, `instruments`, `constellation`, and `mission`.
 
+### Added
+- Added [Version Extension](extensions/version/README.md) to version and deprecate STAC Items and Collections.
+
 ### Removed
 - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
 - Dropped `sar:absolute_orbit` field from `sar` extension due to no known use case
@@ -21,6 +24,7 @@ n/a
 - Removed satellite related fields from `eo` extension due to creation of `sat` extension
 - Removed `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from SAR extension due to creation of `instrument` extension.
 - Removed `dtr` extension prefix from example and schema in [datetime-range extension](extensions/datetime-range/README.md)
+- Removed `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead.
 
 ### Changed
 - The STAC API endpoint `/stac` has been merged with `/`

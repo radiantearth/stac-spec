@@ -10,7 +10,6 @@
     "keywords": [
       "landsat"
     ],
-    "version": "0.1.0",
     "extent": {
       "spatial": {
         "bbox": [
