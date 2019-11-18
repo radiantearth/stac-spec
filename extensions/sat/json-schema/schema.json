@@ -25,41 +25,41 @@
             "instruments"
           ],
           "properties": {
-            "off_nadir_angle": {
+            "sat:off_nadir_angle": {
               "title": "Off Nadir",
               "type": "number",
               "minimum": 0,
               "maximum": 90
             },
-            "incidence_angle": {
+            "sat:incidence_angle": {
               "title": "Center incidence angle",
               "type": "number",
               "minimum": 0,
               "maximum": 90
             },
-            "azimuth_angle": {
+            "sat:azimuth_angle": {
               "title": "Azimuth angle",
               "type": "number",
               "minimum": 0,
               "maximum": 360
             },
-            "sun_azimuth_angle": {
+            "sat:sun_azimuth_angle": {
               "title": "Sun Azimuth angle",
               "type": "number",
               "minimum": 0,
               "maximum": 360
             },
-            "sun_elevation_angle": {
+            "sat:sun_elevation_angle": {
               "title": "Sun Elevation angle",
               "type": "number",
               "minimum": 0,
               "maximum": 90
             },
-            "relative_orbit": {
+            "sat:relative_orbit": {
               "type": "integer",
               "minimum": 1
             },
-            "orbit_state": {
+            "sat:orbit_state": {
               "title": "Orbit State",
               "type": "string",
               "enum": [

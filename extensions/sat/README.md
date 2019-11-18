@@ -1,4 +1,4 @@
-# sat Extension Specification (-)
+# sat Extension Specification (`sat`)
 
 **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
@@ -11,17 +11,17 @@ This document explains the fields of the sat Extension to a STAC Item. Sat adds 
 
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
-| off_nadir_angle     | number                   | The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90). |
-| incidence_angle       | number        | The incidence angle is the angle between the vertical (normal) to the intercepting surface and the line of sight back to the satellite at the scene center. Measured in degrees (0-90). |
-| azimuth_angle       | number                   | Viewing azimuth angle. The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360). |
-| sun_azimuth_angle   | number                   | Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360). |
-| sun_elevation_angle | number                   | Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (0-90). |
-| orbit_state        | string  | The state of the orbit. Either `ascending` or `descending` for polar orbiting satellites, or `geostationary` for geosynchronous satellites |
-| relative_orbit        | integer       | The relative orbit number at the time of acquisition. |
+| sat:off_nadir_angle     | number                   | The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90). |
+| sat:incidence_angle       | number        | The incidence angle is the angle between the vertical (normal) to the intercepting surface and the line of sight back to the satellite at the scene center. Measured in degrees (0-90). |
+| sat:azimuth_angle       | number                   | Viewing azimuth angle. The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360). |
+| sat:sun_azimuth_angle   | number                   | Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360). |
+| sat:sun_elevation_angle | number                   | Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (0-90). |
+| sat:orbit_state        | string  | The state of the orbit. Either `ascending` or `descending` for polar orbiting satellites, or `geostationary` for geosynchronous satellites |
+| sat:relative_orbit        | integer       | The relative orbit number at the time of acquisition. |
 
-**orbit_state** indicates the type and current state of orbit. Satellites are either geosynchronous in which case they have one state: `geostationary`, or they are sun synchronous (i.e., polar orbiting satellites) in which case they are either `ascending` or `descending`. For sun synchronous satellites it is daytime during one of these states, and nighttime during the other.
+**sat:orbit_state** indicates the type and current state of orbit. Satellites are either geosynchronous in which case they have one state: `geostationary`, or they are sun synchronous (i.e., polar orbiting satellites) in which case they are either `ascending` or `descending`. For sun synchronous satellites it is daytime during one of these states, and nighttime during the other.
 
-**relative_orbit** is a count of orbits from 1 to the number of orbits contained in a repeat cycle, where relative orbit 1 starts from a specific reference location of the sub-satellite point (the point on the earth directly below the satellite). It resets to 1 when the sub-satellite point revisits the refernece location.
+**sat:relative_orbit** is a count of orbits from 1 to the number of orbits contained in a repeat cycle, where relative orbit 1 starts from a specific reference location of the sub-satellite point (the point on the earth directly below the satellite). It resets to 1 when the sub-satellite point revisits the refernece location.
 
 ### Viewing and sun geometry
 
@@ -50,13 +50,13 @@ Example:
     "platform": "mysatellite",
     "instruments": ["mycamera1", "mycamera2"],
     "constellation": "allmysatellites",
-    "off_nadir_angle": 0,
-    "incidence_angle": 90,
-    "sun_elevation_angle": 45.0,
-    "azimuth_angle": 23.9,
-    "sun_azimuth_angle": 56.4,
-    "orbit_state": "descending",
-    "relative_orbit": 4
+    "sat:off_nadir_angle": 0,
+    "sat:incidence_angle": 90,
+    "sat:sun_elevation_angle": 45.0,
+    "sat:azimuth_angle": 23.9,
+    "sat:sun_azimuth_angle": 56.4,
+    "sat:orbit_state": "descending",
+    "sat:relative_orbit": 4
   }
 }
 ```

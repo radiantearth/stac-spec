@@ -42,13 +42,13 @@
     },
     "properties": {
         "datetime": "2018-10-01T01:08:32.033Z",
-        "sun_azimuth": 168.8989761,
-        "sun_elevation": 26.32596431,
+        "sat:sun_azimuth_angle": 168.8989761,
+        "sat:sun_elevation_angle": 26.32596431,
         "platform": "landsat-8",
         "instrument": "oli_tirs",
         "constellation": "landsat",
-        "pass_direction": "ascending",
-        "off_nadir": 0
+        "sat:orbit_state": "ascending",
+        "sat:off_nadir_angle": 0
     },
     "assets": {
         "blue": {
