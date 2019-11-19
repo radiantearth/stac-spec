@@ -22,7 +22,6 @@ If the data has been collected by a satellite, it is strongly recommended to use
 | ------------------------- | ------------- | ------------------------------------------------------------ |
 | sar:instrument_mode       | string        | **REQUIRED.** The name of the sensor acquisition mode that is commonly used. This should be the short name, if available. For example, `WV` for "Wave mode" of Sentinel-1 and Envisat ASAR satellites. |
 | sar:frequency_band        | string        | **REQUIRED.** The common name for the frequency band to make it easier to search for bands across instruments. See section "Common Frequency Band Names" for a list of accepted names. |
-| sar:center_wavelength     | number        | The center wavelength of the instrument, in centimeters (cm). |
 | sar:center_frequency      | number        | The center frequency of the instrument, in gigahertz (GHz). |
 | sar:polarization          | [string]      | **REQUIRED.** A single polarization or a polarization combination specified as array. |
 | sar:bands                 | [[Band Object](#band-object)] | This is a list of the available bands where each item is a [Band Object](#band-object). |

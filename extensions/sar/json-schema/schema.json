@@ -46,12 +46,8 @@
                 "Ka"
               ]
             },
-            "sar:center_wavelength": {
-              "title": "Center Wavelength (cm)",
-              "type": "number"
-            },
             "sar:center_frequency": {
-              "title": "Center Wavelength (GHz)",
+              "title": "Center Frequency (GHz)",
               "type": "number"
             },
             "sar:polarization": {
