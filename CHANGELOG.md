@@ -7,11 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
 
 ### Added
-- ItemCollection requires `stac_version` field, `stac_extensions` has also been added.
+- ItemCollection requires `stac_version` field, `stac_extensions` has also been added
+- A `description` field has been added to Item Assets
 - Extensions:
      - [Version Indicators extension](extensions/version/README.md), adds `version` and `deprecated` fields to STAC Items and Collections.
      - Instrument extension, adds fields: `platform`, `instruments`, `constellation` (all moved from EO and SAR extensions), and `mission`.
      - Data Cube extension can be used in Collections, added new field `description`.
+     - Added `description` and `role` fields to the Asset in the [Asset Extension](extensions/asset/README.md)
 - STAC API:
      - Added the [Item and Collection API Version extension](api-spec/extensions/version/README.md) to support versioning in the API specification
 
