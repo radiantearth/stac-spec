@@ -27,15 +27,11 @@ The Satellite extension requires the (Instrument extension)[../instrument/README
 
 ### Viewing and sun geometry
 
-The angles `off_nadir_angle`, `incidence_angle`, and `sun_elevation_angle` are angles measured on a 2d plane formed: satellite location, sub-satellite point on the earth, the sun, and the center of the viewed area. These angles are illustrated below.
+The angles `off_nadir_angle`, `incidence_angle`, and `sun_elevation_angle` are angles measured on a 2d plane formed: satellite location, sub-satellite point on the earth, the sun, and the center of the viewed area.
 
 The off-nadir angle and the incidence angle are related. When the off-nadir angle is low (high incidence angle) then the two angles sum to about 90, so one can be calculated from the other. However, at high off-nadir angles with high altitude sensors the curvature of the earth has an impact and their sum will be less than 90. If only providing one of the two angles, the off-nadir angle is preferred.
 
-<diagram of 2d angles (off-nadir, incidence, sun_elevation)>
-
 The angles `azimuth_angle` and `sun_azimuth_angle` indicate the position of the viewed scene and the sun by the angle from true north, as shown below.
-
-<diagram of 3d angles (azimuth and sun_azimuth)>
 
 
 Example:
