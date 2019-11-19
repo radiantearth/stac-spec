@@ -115,8 +115,8 @@ An example of this can be seen in a Landsat example:
 
     "eo:off_nadir": -0.001,
     "eo:cloud_cover": 10.31,
-    "eo:sun_azimuth": 149.01607154,
-    "eo:sun_elevation": 59.21424700,
+    "eo:sun_azimuth_angle": 149.01607154,
+    "eo:sun_elevation_angle": 59.21424700,
     "eo:gsd": 30,
 
     "l8:data_type": "L1T",
