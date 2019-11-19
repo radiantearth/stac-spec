@@ -190,7 +190,31 @@ components:
         providers:
           $ref: '#/components/schemas/providers'
         summaries:
-          $ref: '#/components/schemas/summaries'
+          description: >-
+            Summaries are either a unique set of all available values *or* statistics. Statistics by default only specify the range (minimum and maximum values), but can optionally be accompanied by additional statistical values. The range can specify the potential range of values, but it is recommended to be as precise as possible. The set of values must contain at least one element and it is strongly recommended to list all values. It is recommended to list as many properties as reasonable so that consumers get a full overview of the Collection. Properties that are covered by the Collection specification (e.g. `providers` and `license`) may not be repeated in the summaries.
+          type: object
+          additionalProperties:
+            oneOf:
+              - type: array
+                title: Set of values
+                items:
+                  description: A value of any type.
+              - type: object
+                title: Statistics
+                description: >-
+                  By default, only ranges with a minimum and a maximum value can be specified. Ranges can be specified for ordinal values only, which means they need to have a rank order. Therefore, ranges can only be specified for numbers and some special types of strings. Examples: grades (A to F), dates or times. Implementors are free to add other derived statistical values to the object, for example `mean` or `stddev`.
+                required:
+                  - min
+                  - max
+                properties:
+                  min:
+                    anyOf:
+                      - type: string
+                      - type: number
+                  max:
+                    anyOf:
+                      - type: string
+                      - type: number
       example:
         stac_version: 0.8.1
         stac_extensions: []
@@ -578,32 +602,6 @@ components:
             format: uri
           - title: Reference to a core extension
             type: string
-    summaries:
-      description: >-
-        Summaries are either a unique set of all available values *or* statistics. Statistics by default only specify the range (minimum and maximum values), but can optionally be accompanied by additional statistical values. The range can specify the potential range of values, but it is recommended to be as precise as possible. The set of values must contain at least one element and it is strongly recommended to list all values. It is recommended to list as many properties as reasonable so that consumers get a full overview of the Collection. Properties that are covered by the Collection specification (e.g. `providers` and `license`) may not be repeated in the summaries.
-      type: object
-      additionalProperties:
-        oneOf:
-          - type: array
-            title: Set of values
-            items:
-              description: A value of any type.
-          - type: object
-            title: Statistics
-            description: >-
-              By default, only ranges with a minimum and a maximum value can be specified. Ranges can be specified for ordinal values only, which means they need to have a rank order. Therefore, ranges can only be specified for numbers and some special types of strings. Examples: grades (A to F), dates or times. Implementors are free to add other derived statistical values to the object, for example `mean` or `stddev`.
-            required:
-              - min
-              - max
-            properties:
-              min:
-                anyOf:
-                  - type: string
-                  - type: number
-              max:
-                anyOf:
-                  - type: string
-                  - type: number
     # This schema extends OAFeat.yaml#/components/schemas/landingPage to add and require additional fields.
     landingPage:
       type: object
@@ -618,8 +616,6 @@ components:
           $ref: '#/components/schemas/stac_extensions'
         id:
           type: string
-        summaries:
-          $ref: '#/components/schemas/summaries'
     itemCollection:
       description: A GeoJSON FeatureCollection augmented with foreign members that contain values relevant to a STAC entity
       type: object

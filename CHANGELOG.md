@@ -10,11 +10,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Added a version extension to the API specification
 - Added [Version Extension](extensions/version/README.md) to version and deprecate STAC Items and Collections.
+- Added Instrument extension which adds fields: `platform`, `instruments`, `constellation`, and `mission`.
 
 ### Removed
 - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
 - Removed `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead.
 - Removed `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from SAR extension.
+- Removed `summaries` field from Catalogs. Use Collections instead.
 
 ### Changed
 - The STAC API endpoint `/stac` has been merged with `/`
@@ -32,13 +34,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 n/a
-
-### Added
-
-n/a
-
-### Added
-- Added Instrument extension which adds fields: `platform`, `instruments`, `constellation`, and `mission`.
 
 ## [v0.8.1] - 2019-11-01
 
