@@ -5,7 +5,7 @@
   "description": "STAC Sat Extension to a STAC Item.",
   "allOf": [
     {
-      "$ref": "../../../item-spec/json-schema/item.json#/definitions/core"
+      "$ref": "../../../item-spec/json-schema/item.json"
     },
     {
       "$ref": "#/definitions/sat"
