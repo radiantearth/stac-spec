@@ -7,41 +7,42 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
 
 ### Added
-- ItemCollection requires `stac_version` field, `stac_extensions` has also been added.
+- ItemCollection requires `stac_version` field, `stac_extensions` has also been added
 - Extensions:
-     - [Version Indicators extension](extensions/version/README.md), adds `version` and `deprecated` fields to STAC Items and Collections.
-     - Instrument extension, adds fields: `platform`, `instruments`, `constellation` (all moved from EO and SAR extensions), and `mission`.
-     - Data Cube extension can be used in Collections, added new field `description`.
+     - [Version Indicators extension](extensions/version/README.md), adds `version` and `deprecated` fields to STAC Items and Collections
+     - Instrument extension, adds fields: `platform`, `instruments`, `constellation` (all moved from EO and SAR extensions), and `mission`
+     - Data Cube extension can be used in Collections, added new field `description`
 - STAC API:
      - Added the [Item and Collection API Version extension](api-spec/extensions/version/README.md) to support versioning in the API specification
 
 ### Changed
-- Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html).
+- Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html)
 - Collection field `property` and the merge ability moved to a new extension 'Commons'
-- Added attribute `role` to Item assets, to be used similarly to Link `rel`.
+- Added attribute `role` to Item assets, to be used similarly to Link `rel`
 - Extensions:
-     - [datetime-range extension](extensions/datetime-range/README.md): Removed extension prefix from example and schema.
-     - Data Cube extension: Changed allowed formats (removed PROJ string, addedPROJJSON / WKT2) for reference systems.
-     - [Checksum extension](extensions/checksum/README.md) is now using self-identifiable hashes ([Multihash](https://github.com/multiformats/multihash)).
-     - Changed `sar:type` to `sar:product` in the [SAR extension](extensions/sar/README.md)..
+     - [datetime-range extension](extensions/datetime-range/README.md): Removed extension prefix from example and schema
+     - Data Cube extension: Changed allowed formats (removed PROJ string, addedPROJJSON / WKT2) for reference systems
+     - [Checksum extension](extensions/checksum/README.md) is now using self-identifiable hashes ([Multihash](https://github.com/multiformats/multihash))
+     - Changed `sar:type` to `sar:product` in the [SAR extension](extensions/sar/README.md)
 - STAC API:
     - The endpoint `/stac` has been merged with `/`
     - The endpoint `/stac/search` is now called `/search`
-    - Sort Extension - added non-JSON query/form parameter format.
-    - Fields extension has a simplified format for GET parameters.
+    - Sort Extension - added non-JSON query/form parameter format
+    - Fields extension has a simplified format for GET parameters
     - `search` extension renamed to `context` extension. JSON object renamed from `search:metadata` to `context`
     - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
 
 ### Removed
-- Removed `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead.
-- Removed `summaries` field from Catalogs. Use Collections instead.
+- `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead
+- `summaries` field from Catalogs, use Collections instead
 - Extensions:
-    - Removed `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from the [SAR extension](extensions/sar/README.md)..
-  - Removed `sar:absolute_orbit` and `sar:center_wavelength` fields from the [SAR extension](extensions/sar/README.md).
-  - Removed `data_type` and `unit` from the `sar:bands` object in the [SAR extension](extensions/sar/README.md)..
-  - Removed `dtr` extension prefix from example and schema in [datetime-range extension](extensions/datetime-range/README.md)
+    - `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from the [SAR extension](extensions/sar/README.md)
+    - `eo:epsg` from the [EO extension](extensions/eo/README.md)
+    - `sar:absolute_orbit` and `sar:center_wavelength` fields from the [SAR extension](extensions/sar/README.md)
+    - `data_type` and `unit` from the `sar:bands` object in the [SAR extension](extensions/sar/README.md)
+    - `dtr` extension prefix from example and schema in [datetime-range extension](extensions/datetime-range/README.md)
 - STAC API:
-    - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
+    - "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
 
 ### Fixed
 
