@@ -78,18 +78,6 @@
                     "title": "Description of the band",
                     "type": "string"
                   },
-                  "data_type": {
-                    "title": "Data type of the band",
-                    "type": "string",
-                    "examples": [
-                      "amplitude",
-                      "intensity",
-                      "phase",
-                      "angle",
-                      "sigma0",
-                      "gamma0"
-                    ]
-                  },
                   "unit": {
                     "title": "Unit of the band",
                     "type": "string"

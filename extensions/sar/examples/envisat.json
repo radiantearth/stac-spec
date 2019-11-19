@@ -38,19 +38,16 @@
     "sar:looks_range": 3,
     "sar:looks_azimuth": 4,
     "sar:frequency_band": "C",
-    "sar:center_wavelength": 5.623568898893265,
     "sar:center_frequency": 5.331,
     "sar:type": "GM1_1P",
     "sar:bands": [
       {
         "name": "amplitude",
-        "data_type": "amplitude",
         "polarization": "HH"
       },
       {
         "name": "intensity",
         "description": "Equals the square of the amplitude band",
-        "data_type": "intensity",
         "polarization": "HH"
       }
     ]
