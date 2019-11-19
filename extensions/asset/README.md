@@ -29,8 +29,11 @@ An asset is an object that contains details about the datafiles that will be inc
 
 | Field Name | Type   | Description                                                                           |
 | ---------- | ------ | ------------------------------------------------------------------------------------- |
-| title      | string | **REQUIRED.** The displayed title for clients and users. This should provide enough information to a user to understand what the asset is  |
-| type       | string | **REQUIRED.** [Media type](../../item-spec/item-spec.md#media-types) of the asset.
+| title      | string | The displayed title for clients and users                                           |
+| description      | string | A description of the Asset providing additional details, such as how it was processed or created                                           |
+| type       | string | [Media type](#media-types) of the asset                                             |
+| role        | string | The semantic purpose of the asset, similar to the use of `rel` in links      
+
 
 Other custom fields, or fields from other extensions may also be included in the Asset object.
 
