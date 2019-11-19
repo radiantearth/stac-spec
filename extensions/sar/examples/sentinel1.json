@@ -1,9 +1,10 @@
 {
-  "stac_version": "0.8.1",
+  "stac_version": "0.9.0",
   "stac_extensions": [
     "checksum",
     "datetime-range",
     "sar",
+    "sat",
     "instrument"
   ],
   "id": "S1A_EW_GRDM_1SSH_20181103T235855_20181103T235955_024430_02AD5D_5616",
@@ -28,6 +29,8 @@
     "platform": "sentinel-1a",
     "constellation": "sentinel-1",
     "instruments": ["c-sar"],
+    "sat:orbit_state": "ascending",
+    "relative_orbit": 33,
     "sar:instrument_mode": "EW",
     "sar:polarization": ["HH"],
     "sar:resolution_range": 50,
@@ -38,11 +41,7 @@
     "sar:looks_azimuth": 1,
     "sar:looks_equivalent_number": 2.7,
     "sar:frequency_band": "C",
-    "sar:center_wavelength": 5.546576466235,
     "sar:center_frequency": 5.405,
-    "sar:pass_direction": "ascending",
-    "sar:absolute_orbit": 24430,
-    "sar:relative_orbit": 33,
     "sar:type": "GRD",
     "sar:bands": [
       {

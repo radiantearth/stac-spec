@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "schema.json#",
+  "title": "Sat Extension",
+  "description": "STAC Sat Extension to a STAC Item.",
+  "allOf": [
+    {
+      "$ref": "../../../item-spec/json-schema/item.json"
+    },
+    {
+      "$ref": "#/definitions/sat"
+    },
+    {
+      "$ref": "../instrument/json-schema/schema.json"
+    }
+  ],
+  "definitions": {
+    "sat": {
+      "type": "object",
+      "required": [
+        "properties"
+      ],
+      "properties": {
+        "properties": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "sat:off_nadir_angle": {
+              "title": "Off Nadir",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 90
+            },
+            "sat:incidence_angle": {
+              "title": "Center incidence angle",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 90
+            },
+            "sat:azimuth_angle": {
+              "title": "Azimuth angle",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 360
+            },
+            "sat:sun_azimuth_angle": {
+              "title": "Sun Azimuth angle",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 360
+            },
+            "sat:sun_elevation_angle": {
+              "title": "Sun Elevation angle",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 90
+            },
+            "sat:relative_orbit": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sat:orbit_state": {
+              "title": "Orbit State",
+              "type": "string",
+              "enum": [
+                "ascending",
+                "descending",
+                "geostationary"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

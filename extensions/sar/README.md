@@ -7,6 +7,8 @@ SAR data is considered to be data that represents a snapshot of the earth for a 
 
 It is not necessary, but recommended to use the [Commons extension](../commons/README.md) (see chapter "Placing common fields in Collections").
 
+If the data has been collected by a satellite, it is strongly recommended to use the [`sat` extension](../sat/README.md), which in turn requires the [`instrument` extension](../instrument/README.md). If the data has been collected on an airborne platform is is strongly recommended to use the [`instrument` extension](../instrument/README.md).
+
 - [Examples](examples/) (for example [Sentinel-1](examples/sentinel1.json) and [Envisat](examples/envisat.json))
 - [JSON Schema](json-schema/schema.json)
 
@@ -22,7 +24,6 @@ It is not necessary, but recommended to use the [Commons extension](../commons/R
 | sar:center_frequency      | number        | The center frequency of the instrument, in gigahertz (GHz). |
 | sar:polarization          | [string]      | **REQUIRED.** A single polarization or a polarization combination specified as array. |
 | sar:bands                 | [[Band Object](#band-object)] | This is a list of the available bands where each item is a [Band Object](#band-object). |
-| sar:pass_direction        | string\|null  | **REQUIRED.** Direction of the orbit, either `ascending`, `descending` or `null` if not relevant. |
 | sar:type                  | string        | **REQUIRED.** The product type, for example `RAW`, `GRD`, `OCN` or `SLC` for Sentinel-1. |
 | sar:resolution_range      | number        | The range resolution, which is the maximum ability to distinguish two adjacent targets perpendicular to the flight path, in meters (m).  |
 | sar:resolution_azimuth    | number        | The azimuth resolution, which is the maximum ability to distinguish two adjacent targets parallel to the flight path, in meters (m).  |
@@ -32,15 +33,8 @@ It is not necessary, but recommended to use the [Commons extension](../commons/R
 | sar:looks_azimuth         | number        | Number of azimuth looks, which is the number of groups of signal samples (looks) parallel to the flight path. |
 | sar:looks_equivalent_number | number      | The equivalent number of looks (ENL). |
 | sar:observation_direction | string        | Antenna pointing direction relative to the flight trajectory of the satellite, either `left` or `right`.
-| sar:absolute_orbit        | integer       | An absolute orbit number associated with the acquisition. |
-| sar:relative_orbit        | integer       | A relative orbit number associated with the acquisition. |
-| sar:incidence_angle       | number        | The center incidence angle is the angle defined by the incident radar beam at the scene center and the vertical (normal) to the intercepting surface. Measured in degrees (0-90). |
 
 **sar:polarization** specifies a single polarization or a polarization combination. For single polarized radars one of `HH`, `VV`, `HV` or `VH` must be set. Fully polarimetric radars add all four polarizations to the array. Dual polarized radars and alternating polarization add the corresponding polarizations to the array, for instance for `HH+HV` add both `HH` and `HV`.
-
-**sar:absolute_orbit** usually corresponds to the number of orbits elapsed since satellite launch (e.g. ALOS, ERS-1/2, JERS-1, RADARSAT-1 and Sentinel-1). For airborne SAR such as UAVSAR it can be the [Flight ID](http://uavsar.jpl.nasa.gov/cgi-bin/data.pl) or a similar concept. The center orbit number should be specified if readily available, otherwise the orbit number at the start of the flight can be used instead.
-
-**sar:relative_orbit** is a count of orbits from 1 to the number of orbits contained in a repeat cycle, where relative orbit 1 starts from a defined reference for a given satellite. This property is usually not set for airborne SAR such as UAVSAR. The center orbit number should be specified if readily available, otherwise the orbit number at the start of the flight can be used instead.
 
 ### Common Frequency Band Names
 
@@ -85,9 +79,12 @@ Asset definitions that contain band data should reference the band index. Each a
 
 ## Extensions
 
-The [extensions page](../README.md) gives an overview about related extensions, for example:
+The [extensions page](../README.md) gives an overview about related extensions. Of particular relevance to SAR data:
+
 
 * the [Datetime Range Extension Specification](../datetime-range/README.md) to describe frame start and end time.
+* the [Sat Extension Specification](../sat/README.md) to describe SAR data collected from a satellite.
+* the [Instrument Extension Specification](../instrument/README.md) which contains fields about the sensor and platform used to collect the data. The Instrument extension is required when using the Sat extension.
 
 ### Placing common fields in Collections
 A lot of SAR data will have common metadata across many Items. It is not necessary, but recommended	

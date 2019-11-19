@@ -15,14 +15,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - STAC API:
      - Added the [Item and Collection API Version extension](api-spec/extensions/version/README.md) to support versioning in the API specification
 
-### Removed
-- Removed `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead.
-- Removed `summaries` field from Catalogs. Use Collections instead.
-- Extensions:
-    - Removed `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from SAR extension.
-- STAC API:
-    - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
-
 ### Changed
 - Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html).
 - Collection field `property` and the merge ability moved to a new extension 'Commons'
@@ -38,6 +30,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - Fields extension has a simplified format for GET parameters.
     - `search` extension renamed to `context` extension. JSON object renamed from `search:metadata` to `context`
     - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
+
+### Removed
+- Removed `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead.
+- Removed `summaries` field from Catalogs. Use Collections instead.
+- Extensions:
+    - Removed `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from SAR extension.
+  - Dropped `sar:absolute_orbit` field from `sar` extension due to no known use case
+  - Removed `dtr` extension prefix from example and schema in [datetime-range extension](extensions/datetime-range/README.md)
+- STAC API:
+    - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
+
+### Fixed
+
+- Clarifications and typos
 
 ## [v0.8.1] - 2019-11-01
 

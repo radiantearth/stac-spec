@@ -24,7 +24,6 @@
             "sar:instrument_mode",
             "sar:frequency_band",
             "sar:polarization",
-            "sar:pass_direction",
             "sar:type"
           ],
           "properties": {
@@ -116,18 +115,6 @@
                 }
               }
             },
-            "sar:pass_direction": {
-              "title": "Pass direction",
-              "type": [
-                "string",
-                "null"
-              ],
-              "enum": [
-                "ascending",
-                "descending",
-                null
-              ]
-            },
             "sar:type": {
               "title": "Product type",
               "type": "string",
@@ -180,21 +167,6 @@
                 "left",
                 "right"
               ]
-            },
-            "sar:absolute_orbit": {
-              "title": "Absolute orbit numbers",
-              "type": "integer",
-              "minimum": 0
-            },
-            "sar:relative_orbit": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "sar:incidence_angle": {
-              "title": "Center incidence angle",
-              "type": "number",
-              "minimum": 0,
-              "maximum": 90
             }
           }
         }
