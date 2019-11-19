@@ -51,7 +51,7 @@ An extension can add new fields to STAC entities (content extension), or can add
 | [Checksum](checksum/README.md) (`checksum`)                  | Item, Catalog, Collection | Provides a way to specify file checksums for assets and links in Items, Catalogs and Collections. | *Proposal* |
 | [Commons](commons/README.md) (-)                             | Item, Collection | Provides a way to specify data fields in a collection that are common across the STAC Items in that collection, so that each does not need to repeat all the same information. | *Proposal* |
 | [Data Cube](datacube/README.md) (`cube`)                     | Item, Collection | Data Cube related metadata, especially to describe their dimensions. | *Proposal* |
-| [Datetime Range](datetime-range/README.md) (`dtr`)           | Item             | An extension to provide datetime ranges with a start and an end datetime stamp in a consistent way. | *Proposal* |
+| [Datetime Range](datetime-range/README.md) (-)           | Item             | An extension to provide datetime ranges with a start and an end datetime stamp in a consistent way. | *Proposal* |
 | [EO](eo/README.md) (`eo`)                                    | Item             | Covers electro-optical data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, gsd and more. | *Pilot* |
 | [Instrument](instrument/README.md) (-)                           | Item             | Items that relate labeled AOIs with source imagery | *Proposal* |
 | [Label](label/README.md) (`label`)                           | Item             | Items that relate labeled AOIs with source imagery | *Proposal* |
@@ -110,13 +110,13 @@ An example of this can be seen in a Landsat example:
   "properties": {
     "datetime":"2018-01-01T13:21:30Z",
 
-    "dtr:start_datetime":"2018-01-01T13:21:30Z",
-    "dtr:end_datetime":"2018-01-01T13:31:30Z",
+    "start_datetime":"2018-01-01T13:21:30Z",
+    "end_datetime":"2018-01-01T13:31:30Z",
 
-    "eo:off_nadir": -0.001,
+    "sat:off_nadir_angle": -0.001,
     "eo:cloud_cover": 10.31,
-    "eo:sun_azimuth": 149.01607154,
-    "eo:sun_elevation": 59.21424700,
+    "sat:sun_azimuth_angle": 149.01607154,
+    "sat:sun_elevation_angle": 59.21424700,
     "eo:gsd": 30,
 
     "l8:data_type": "L1T",
