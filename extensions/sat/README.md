@@ -39,7 +39,8 @@ Example:
 {
   "stac_version": "0.9.0",
   "stac_extensions": [
-    "sat"
+    "sat",
+    "instrument"
   ],
   "id": "20171110",
   "type": "Feature",
