@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
 
 ### Added
-- ItemCollection requires `stac_version` field, `stac_extensions` has also been added.
+- ItemCollection requires `stac_version` field, `stac_extensions` has also been added
+- A `description` field has been added to Item Assets
 - Extensions:
      - [Version Indicators extension](extensions/version/README.md), adds `version` and `deprecated` fields to STAC Items and Collections.
      - Instrument extension, adds fields: `platform`, `instruments`, `constellation` (all moved from EO and SAR extensions), and `mission`.
