@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
      - [datetime-range extension](extensions/datetime-range/README.md): Removed extension prefix from example and schema.
      - Data Cube extension: Changed allowed formats (removed PROJ string, addedPROJJSON / WKT2) for reference systems.
      - [Checksum extension](extensions/checksum/README.md) is now using self-identifiable hashes ([Multihash](https://github.com/multiformats/multihash)).
+     - Changed `sar:type` to `sar:product` in the [SAR extension](extensions/sar/README.md)..
 - STAC API:
     - The endpoint `/stac` has been merged with `/`
     - The endpoint `/stac/search` is now called `/search`
@@ -35,9 +36,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Removed `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead.
 - Removed `summaries` field from Catalogs. Use Collections instead.
 - Extensions:
-    - Removed `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from SAR extension.
-  - Removed `sar:absolute_orbit` and `sar:center_wavelength` fields from `sar` extension.
-  - Removed `data_type` and `unit` from the `sar:bands` object in the `sar` extension.
+    - Removed `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from the [SAR extension](extensions/sar/README.md)..
+  - Removed `sar:absolute_orbit` and `sar:center_wavelength` fields from the [SAR extension](extensions/sar/README.md).
+  - Removed `data_type` and `unit` from the `sar:bands` object in the [SAR extension](extensions/sar/README.md)..
   - Removed `dtr` extension prefix from example and schema in [datetime-range extension](extensions/datetime-range/README.md)
 - STAC API:
     - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
