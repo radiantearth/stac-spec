@@ -168,12 +168,14 @@ or streamed. It is allowed to add additional fields.
 | Field Name | Type   | Description                                                                           |
 | ---------- | ------ | ------------------------------------------------------------------------------------- |
 | href       | string | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
-| title      | string | The displayed title for clients and users.                                            |
-| type       | string | [Media type](#media-types) of the asset.                                              |
-| role        | string | The semantic purpose of the asset.                                                   |
+| title      | string | The displayed title for clients and users                                           |
+| description      | string | A description of the Asset                                            |
+| type       | string | [Media type](#media-types) of the asset                                             |
+| role        | string | The semantic purpose of the asset                                                  |
 
-**role** is intended to be a value that describes semantic usage of an asset, similarly to the use of `rel` in 
-Link. 
+**description** is more verbose than a simple title and could provide details on the asset, such as how it was processed
+
+**role** is intended to be a value that describes semantic usage of an asset, similarly to the use of `rel` in Link. 
  
 #### Asset Role Types
 
