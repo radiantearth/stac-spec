@@ -78,10 +78,6 @@
                     "title": "Description of the band",
                     "type": "string"
                   },
-                  "unit": {
-                    "title": "Unit of the band",
-                    "type": "string"
-                  },
                   "polarization": {
                     "title": "Polarization of the band",
                     "type": [
