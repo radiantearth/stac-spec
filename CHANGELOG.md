@@ -7,16 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
 
 ### Added
-- Added the [Version Indicators extension](extensions/version/README.md) to add `version` and `deprecated` fields to STAC Items and Collections.
-- Added Instrument extension which adds fields: `platform`, `instruments`, `constellation` (all moved from EO and SAR extensions), and `mission`.
 - ItemCollection requires `stac_version` field, `stac_extensions` has also been added.
-- Data Cube extension: Can be used in Collections, added new field `description`.
-- API: Added the [Item and Collection API Version extension](api-spec/extensions/version/README.md) to support versioning in the API specification
+- Extensions:
+     - [Version Indicators extension](extensions/version/README.md), adds `version` and `deprecated` fields to STAC Items and Collections.
+     - Instrument extension, adds fields: `platform`, `instruments`, `constellation` (all moved from EO and SAR extensions), and `mission`.
+     - Data Cube extension can be used in Collections, added new field `description`.
+- STAC API:
+     - Added the [Item and Collection API Version extension](api-spec/extensions/version/README.md) to support versioning in the API specification
 
 ### Removed
 - Removed `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead.
-- Removed `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from SAR extension.
-- API: Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
+- Extensions:
+    - Removed `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from SAR extension.
+- STAC API:
+    - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
 
 ### Changed
 - Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html).

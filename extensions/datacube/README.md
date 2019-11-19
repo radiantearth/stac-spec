@@ -48,7 +48,7 @@ A spatial dimension in vertical (z) direction.
 | unit             | string           | The unit of measurement for the data, preferably the symbols from [SI](https://physics.nist.gov/cuu/Units/units.html) or [UDUNITS](https://ncics.org/portfolio/other-resources/udunits2/). |
 | reference_system | string\|number\|object | The spatial reference system for the data, specified as [EPSG code](http://www.epsg-registry.org/), [WKT2 (ISO 19162) string](http://docs.opengeospatial.org/is/18-010r7/18-010r7.html), [PROJJSON](https://proj.org/projjson.html) or [PROJ definition](https://proj.org/usage/quickstart.html). Defaults to EPSG code 4326. |
 
-An Vertical Spatial Dimension Object MUST specify an `extent` or a set of `values`.
+An Vertical Spatial Dimension Object MUST specify an `extent` or a set of `values`. It MAY specify both. 
 
 ### Temporal Dimension Object
 
@@ -64,7 +64,7 @@ A temporal dimension based on the ISO 8601 standard. The temporal reference syst
 
 ### Additional Dimension Object
 
-An additional dimension that is not `spatial`, but may be `temporal` if the data is not compliant with ISO 8601.
+An additional dimension that is not `spatial`, but may be `temporal` if the data is not compliant with ISO 8601.
 
 | Field Name       | Type             | Description                                                  |
 | ---------------- | ---------------- | ------------------------------------------------------------ |
@@ -76,7 +76,7 @@ An additional dimension that is not `spatial`, but may be `temporal` if the dat
 | unit             | string           | The unit of measurement for the data, preferably the symbols from [SI](https://physics.nist.gov/cuu/Units/units.html) or [UDUNITS](https://ncics.org/portfolio/other-resources/udunits2/). |
 | reference_system | string           | The reference system for the data.                           |
 
-An Additional Dimension Object MUST specify an `extent` or a set of `values`.
+An Additional Dimension Object MUST specify an `extent` or a set of `values`. It MAY specify both. 
 
 ## Implementations
 
