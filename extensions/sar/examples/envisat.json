@@ -28,7 +28,7 @@
     "platform": "envisat",
     "constellation": "envisat",
     "instruments": ["asar"],
-    "pass_direction": "descending",
+    "sat_orbit_state": "descending",
     "sar:instrument_mode": "GM",
     "sar:polarization": ["HH"],
     "sar:resolution_range": 1000,
