@@ -35,7 +35,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Removed `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead.
 - Extensions:
     - Removed `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from SAR extension.
-  - Dropped `sar:absolute_orbit` field from `sar` extension due to no known use case
+  - Removed `sar:absolute_orbit` and `sar:center_wavelength` fields from `sar` extension.
+  - Removed `data_type` and `unit` from the `sar:bands` object in the `sar` extension.
   - Removed `dtr` extension prefix from example and schema in [datetime-range extension](extensions/datetime-range/README.md)
 - STAC API:
     - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
