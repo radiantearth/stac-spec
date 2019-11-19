@@ -113,10 +113,10 @@ An example of this can be seen in a Landsat example:
     "dtr:start_datetime":"2018-01-01T13:21:30Z",
     "dtr:end_datetime":"2018-01-01T13:31:30Z",
 
-    "eo:off_nadir": -0.001,
+    "sat:off_nadir_angle": -0.001,
     "eo:cloud_cover": 10.31,
-    "eo:sun_azimuth_angle": 149.01607154,
-    "eo:sun_elevation_angle": 59.21424700,
+    "sat:sun_azimuth_angle": 149.01607154,
+    "sat:sun_elevation_angle": 59.21424700,
     "eo:gsd": 30,
 
     "l8:data_type": "L1T",
