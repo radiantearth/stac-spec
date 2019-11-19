@@ -40,8 +40,8 @@
             },
             "properties": {
                 "datetime": "2018-02-08T18:02:15.719478+00:00",
-                "eo:sun_azimuth": 152.63804142,
-                "eo:sun_elevation": 31.82216637,
+                "sat:sun_azimuth_angle": 152.63804142,
+                "sat:sun_elevation_angle": 31.82216637,
                 "eo:cloud_cover": 19,
                 "eo:row": "033",
                 "eo:column": "037",
@@ -206,8 +206,8 @@
             },
             "properties": {
                 "datetime": "2018-02-03T17:43:44.623405+00:00",
-                "eo:sun_azimuth": 153.39513457,
-                "eo:sun_elevation": 30.41894816,
+                "sat:sun_azimuth_angle": 153.39513457,
+                "sat:sun_elevation_angle": 30.41894816,
                 "eo:cloud_cover": 36,
                 "eo:row": "033",
                 "eo:column": "034",

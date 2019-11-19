@@ -303,6 +303,6 @@
     "datetime": "2018-06-05T10:00:27.464Z",
     "platform": "sentinel-2",
     "eo:cloud_cover": 88.459539,
-    "eo:sun_azimuth_angle" : 176.091667178268
+    "sat:sun_azimuth_angle" : 176.091667178268
   }
 }
