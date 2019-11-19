@@ -67,4 +67,6 @@ Example:
 
 ## Extensions
 
-The [extensions page](../README.md) gives an overview about related extensions.
+The [extensions page](../README.md) gives an overview about related extensions. Of particular relevance to sat data:
+
+* the [Instrument Extension Specification](../instrument/README.md), which contains fields about the sensor and platform used to collect the data.

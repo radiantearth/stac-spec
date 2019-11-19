@@ -79,6 +79,8 @@ Asset definitions that contain band data should reference the band index. Each a
 
 ## Extensions
 
-The [extensions page](../README.md) gives an overview about related extensions, for example:
+The [extensions page](../README.md) gives an overview about related extensions. Of particular relevance to SAR data:
 
+* the [Instrument Extension Specification](../instrument/README.md) is required when using the SAR extension, which contains fields about the sensor and platform used to collect the data.
 * the [Datetime Range Extension Specification](../datetime-range/README.md) to describe frame start and end time.
+* the [Sat Extension Specification](../sat/README.md) to describe SAR data collected from a satellite.

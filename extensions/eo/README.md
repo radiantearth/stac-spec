@@ -218,4 +218,7 @@ the eo:bands portion is still being fleshed out.
 
 ## Extensions
 
-The [extensions page](../README.md) gives an overview about related extensions.
+The [extensions page](../README.md) gives an overview about related extensions. Of particular relevance to EO data:
+
+* the [Instrument Extension Specification](../instrument/README.md) is required when using the EO extension, which contains fields about the sensor and platform used to collect the data.
+* the [Sat Extension Specification](../sat/README.md) to describe SAR data collected from a satellite.
