@@ -5,9 +5,7 @@
 This document explains the fields of the STAC Synthetic-Aperture Radar (SAR) Extension to a STAC Item.
 SAR data is considered to be data that represents a snapshot of the earth for a single date and time taken by a synthetic-aperture radar system such as Sentinel-1, RADARSAT or EnviSAT.
 
-A lot of SAR data will have common metadata across many Items. It is not necessary, but recommended	
-to place common fields in [STAC Collections](../../collection-spec/collection-spec.md).
-The exact metadata that would appear in a STAC Collection record will vary depending on the dataset.
+It is not necessary, but recommended to use the [Commons extension](../commons/README.md) (see chapter "Placing common fields in Collections").
 
 - [Examples](examples/) (for example [Sentinel-1](examples/sentinel1.json) and [Envisat](examples/envisat.json))
 - [JSON Schema](json-schema/schema.json)
@@ -90,3 +88,8 @@ Asset definitions that contain band data should reference the band index. Each a
 The [extensions page](../README.md) gives an overview about related extensions, for example:
 
 * the [Datetime Range Extension Specification](../datetime-range/README.md) to describe frame start and end time.
+
+### Placing common fields in Collections
+A lot of SAR data will have common metadata across many Items. It is not necessary, but recommended	
+to use the [Commons extension](../commons/README.md) in combination with [STAC Collections](../../collection-spec/README.md).
+The exact metadata that would appear in a STAC Collection record will vary depending on the dataset.

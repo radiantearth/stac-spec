@@ -14,9 +14,9 @@ natural focus, and encourage other sensors to make their own extensions. Once th
 these fields will evolve to higher level extensions. In the meantime other implementations are welcome
 to reuse the names and definitions here.
 
-A lot of EO data will have common metadata across many Items. It is not necessary, but recommended	
-to place common fields in [STAC Collections](../../collection-spec/collection-spec.md#common-fields-and-standalone-collections).
-The exact metadata that would appear in a STAC Collection record will vary depending on the dataset.
+A lot of EO data will have common metadata across many Items. 
+It is not necessary, but recommended to use the [Commons extension](../commons/README.md)
+(see chapter "Placing common fields in Collections").
 
 - [Example (Landsat 8)](examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)
@@ -223,3 +223,8 @@ the eo:bands portion is still being fleshed out.
 ## Extensions
 
 The [extensions page](../README.md) gives an overview about related extensions.
+
+### Placing common fields in Collections
+A lot of EO data will have common metadata across many Items. It is not necessary, but recommended	
+to use the [Commons extension](../commons/README.md) in combination with [STAC Collections](../../collection-spec/README.md).
+The exact metadata that would appear in a STAC Collection record will vary depending on the dataset.

@@ -37,6 +37,7 @@
                 "type": "string",
                 "enum": [
                   "asset",
+                  "commons",
                   "checksum",
                   "scientific"
                 ]
@@ -147,10 +148,6 @@
               }
             }
           }
-        },
-        "properties": {
-          "title": "Common properties",
-          "type": "object"
         }
       }
     }

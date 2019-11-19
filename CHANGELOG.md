@@ -9,8 +9,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Added a version extension to the API specification
-
-### Added
 - Added [Version Extension](extensions/version/README.md) to version and deprecate STAC Items and Collections.
 
 ### Removed
@@ -29,6 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - CollectionItem field `stac_version` is now required and field `stac_extensions` is defined in schema. 
 - Sort Extension - added non-JSON query/form parameter format 
 - Fields extension has a simplified format for GET parameters
+- Collection field `property` and the merge ability moved to a new extension 'Commons'
 
 ### Fixed
 
