@@ -7,7 +7,6 @@
       "earth observation",
       "usgs"
     ],
-    "version": "0.1.0",
     "stac_version": "0.8.1",
     "stac_extensions": [
       "asset"
@@ -65,8 +64,8 @@
     "license": "PDDL-1.0",
     "properties": {
       "eo:gsd": 15,
-      "eo:platform": "landsat-8",
-      "eo:instrument": "OLI_TIRS",
+      "platform": "landsat-8",
+      "instruments": ["oli", "tirs"],
       "eo:off_nadir": 0,
       "eo:bands": [
         {

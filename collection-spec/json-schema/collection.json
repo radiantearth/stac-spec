@@ -51,10 +51,6 @@
             "type": "string"
           }
         },
-        "version": {
-          "title": "Collection Version",
-          "type": "string"
-        },
         "license": {
           "title": "Collection License Name",
           "type": "string"
