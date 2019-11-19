@@ -48,8 +48,7 @@
                 "landsat:product_id": "LC08_L1TP_037033_20180208_20180221_01_T1",
                 "landsat:scene_id": "LC80370332018039LGN00",
                 "landsat:processing_level": "L1TP",
-                "landsat:tier": "T1",
-                "eo:epsg": 32612
+                "landsat:tier": "T1"
             },
             "assets": {
                 "index": {
@@ -215,8 +214,7 @@
                 "landsat:product_id": "LC08_L1TP_034033_20180203_20180220_01_T1",
                 "landsat:scene_id": "LC80340332018034LGN00",
                 "landsat:processing_level": "L1TP",
-                "landsat:tier": "T1",
-                "eo:epsg": 32613
+                "landsat:tier": "T1"
             },
             "assets": {
                 "index": {

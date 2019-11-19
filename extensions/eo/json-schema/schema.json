@@ -61,13 +61,6 @@
                 }
               }
             },
-            "eo:epsg": {
-              "title": "EPSG code",
-              "type": [
-                "integer",
-                "null"
-              ]
-            },
             "eo:cloud_cover": {
               "title": "Cloud Cover",
               "type": "number",
