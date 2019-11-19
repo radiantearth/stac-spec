@@ -54,11 +54,11 @@
     "platform": ["sentinel-2a","sentinel-2b"],
     "constellation": ["sentinel-2"],
     "instruments": [["msi"]],
-    "eo:off_nadir": {
+    "sat:off_nadir_angle": {
       "min": 0.0,
       "max": 100
     },
-    "eo:sun_elevation": {
+    "sat:sun_elevation_angle": {
       "min": 6.78,
       "max": 89.9
     },
