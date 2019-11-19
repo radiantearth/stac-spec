@@ -37,6 +37,7 @@
                 "type": "string",
                 "enum": [
                   "asset",
+                  "commons",
                   "checksum",
                   "scientific"
                 ]
@@ -148,9 +149,38 @@
             }
           }
         },
-        "properties": {
-          "title": "Common properties",
-          "type": "object"
+        "summaries": {
+          "type": "object",
+          "additionalProperties": {
+            "oneOf": [
+              {
+                "title": "Stats",
+                "type": "object",
+                "required": [
+                  "min",
+                  "max"
+                ],
+                "properties": {
+                  "min": {
+                    "title": "Minimum value",
+                    "type": ["number", "string"]
+                  },
+                  "max": {
+                    "title": "Maximum value",
+                    "type": ["number", "string"]
+                  }
+                }
+              },
+              {
+                "title": "Set of values",
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "description": "Any data type could occur."
+                }
+              }
+            ]
+          }
         }
       }
     }

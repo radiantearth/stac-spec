@@ -131,8 +131,8 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | self         | STRONGLY RECOMMENDED. _Absolute_ URL to the Item if it is available at a public URL. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root         | URL to the root STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
-| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may hold [common fields](../collection-spec/collection-spec.md#common-fields-and-standalone-collections) of this and other Items (see chapter '[Collections](#Collections)' for more explanations). _Absolute_ URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
-| license | The license URL(s) for the item SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC Item with the license text in a separate file and link to this file. |
+| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may use the use the [Commons extension](../extensions/commons/README.md) to hold common fields of this and other Items (see chapter '[Collections](#Collections)' for more explanations). _Absolute_ URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
+| license      | The license URL(s) for the item SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC Item with the license text in a separate file and link to this file. |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
 
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
@@ -156,6 +156,9 @@ Linking back must happen in two places:
       { "rel": "collection", "href": "link/to/collection/record.json" }
     ]
     ```
+
+Optionally, common information shared across items can be moved up into STAC Collections
+using the [Commons extension](../extensions/commons/README.md) to avoid duplicating information.
 
 ### Asset Object
 
@@ -228,6 +231,9 @@ Both can still appear in old catalogues, but are deprecated and should be replac
 
 There are emerging best practices, which in time will evolve in to specification extensions for
 particular domains or uses.
+
+Optionally, common information shared across items can be split up into STAC Collections using the
+[Commons extension](../extensions/commons/README.md).
 
 The [extensions page](../extensions/README.md) gives an overview about relevant extensions for STAC Items.
 

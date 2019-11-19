@@ -48,6 +48,7 @@
                     "type": "string",
                     "enum": [
                       "checksum",
+                      "commons",
                       "cube",
                       "datetime-range",
                       "eo",

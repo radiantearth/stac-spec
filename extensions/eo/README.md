@@ -14,9 +14,9 @@ natural focus, and encourage other sensors to make their own extensions. Once th
 these fields will evolve to higher level extensions. In the meantime other implementations are welcome
 to reuse the names and definitions here.
 
-A lot of EO data will have common metadata across many Items. It is not necessary, but recommended	
-to place common fields in [STAC Collections](../../collection-spec/collection-spec.md#common-fields-and-standalone-collections).
-The exact metadata that would appear in a STAC Collection record will vary depending on the dataset.
+A lot of EO data will have common metadata across many Items. 
+It is not necessary, but recommended to use the [Commons extension](../commons/README.md)
+(see chapter "Placing common fields in Collections").
 
 If the data has been collected by a satellite, it is strongly recommended to use the [`sat` extension](../sat/README.md), which in turn requires the [`instrument` extension](../instrument/README.md). If the data has been collected on an airborne platform is is strongly recommended to use the [`instrument` extension](../instrument/README.md).
 
@@ -224,3 +224,8 @@ The [extensions page](../README.md) gives an overview about related extensions. 
 
 * the [Sat Extension Specification](../sat/README.md) to describe SAR data collected from a satellite.
 * the [Instrument Extension Specification](../instrument/README.md) is required when using the EO extension, which contains fields about the sensor and platform used to collect the data. It is required when using the Sat extension.
+
+### Placing common fields in Collections
+A lot of EO data will have common metadata across many Items. It is not necessary, but recommended	
+to use the [Commons extension](../commons/README.md) in combination with [STAC Collections](../../collection-spec/README.md).
+The exact metadata that would appear in a STAC Collection record will vary depending on the dataset.
