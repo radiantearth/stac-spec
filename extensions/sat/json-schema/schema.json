@@ -15,7 +15,7 @@
     }
   ],
   "definitions": {
-    "eo": {
+    "sat": {
       "type": "object",
       "required": [
         "properties"
