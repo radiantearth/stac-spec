@@ -39,7 +39,7 @@
     "sar:looks_azimuth": 4,
     "sar:frequency_band": "C",
     "sar:center_frequency": 5.331,
-    "sar:product": "GM1_1P",
+    "sar:product_type": "GM1_1P",
     "sar:bands": [
       {
         "name": "amplitude",

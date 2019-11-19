@@ -42,7 +42,7 @@
     "sar:looks_equivalent_number": 2.7,
     "sar:frequency_band": "C",
     "sar:center_frequency": 5.405,
-    "sar:product": "GRD",
+    "sar:product_type": "GRD",
     "sar:bands": [
       {
         "name": "band_1",

@@ -24,7 +24,7 @@
             "sar:instrument_mode",
             "sar:frequency_band",
             "sar:polarization",
-            "sar:product"
+            "sar:product_type"
           ],
           "properties": {
             "sar:instrument_mode": {
@@ -95,7 +95,7 @@
                 }
               }
             },
-            "sar:product": {
+            "sar:product_type": {
               "title": "Product type",
               "type": "string",
               "examples": [
