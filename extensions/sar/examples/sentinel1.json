@@ -29,7 +29,7 @@
     "platform": "sentinel-1a",
     "constellation": "sentinel-1",
     "instruments": ["c-sar"],
-    "pass_direction": "ascending",
+    "sat:orbit_state": "ascending",
     "relative_orbit": 33,
     "sar:instrument_mode": "EW",
     "sar:polarization": ["HH"],
@@ -41,7 +41,6 @@
     "sar:looks_azimuth": 1,
     "sar:looks_equivalent_number": 2.7,
     "sar:frequency_band": "C",
-    "sar:center_wavelength": 5.546576466235,
     "sar:center_frequency": 5.405,
     "sar:type": "GRD",
     "sar:bands": [

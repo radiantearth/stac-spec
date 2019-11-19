@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html).
-- CollectionItem field `stac_version` is now required and field `stac_extensions` is defined in schema. 
+- Collection field `property` and the merge ability moved to a new extension 'Commons'
 - Added attribute `role` to Item assets, to be used similarly to Link `rel`.
 - Extensions:
      - [datetime-range extension](extensions/datetime-range/README.md): Removed extension prefix from example and schema.
@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 - Removed `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead.
+- Removed `summaries` field from Catalogs. Use Collections instead.
 - Extensions:
     - Removed `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from SAR extension.
   - Removed `sar:absolute_orbit` and `sar:center_wavelength` fields from `sar` extension.
@@ -43,7 +44,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-n/a
+- Clarifications and typos
 
 ## [v0.8.1] - 2019-11-01
 
