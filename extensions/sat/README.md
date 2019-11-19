@@ -1,10 +1,10 @@
-# sat Extension Specification (`sat`)
+# Satellite Extension Specification (`sat`)
 
 **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
-This document explains the fields of the sat Extension to a STAC Item. Sat adds metadata related to a satellite that carries an instrument for collecting data. It will often be combined with other extensions that describe the actual data, such as the `eo` or `sar` extensions. In many instances, satellite data will share common properties about the spacecraft across all of the Items. It is not necessary, but recommended to place common fields in [STAC Collections](../../collection-spec/collection-spec.md#common-fields-and-standalone-collections).
+This document explains the fields of the Satellite Extension to a STAC Item. Sat adds metadata related to a satellite that carries an instrument for collecting data. It will often be combined with other extensions that describe the actual data, such as the `eo` or `sar` extensions. In many instances, satellite data will share common properties about the spacecraft across all of the Items. It is not necessary, but recommended to place common fields in [STAC Collections](../../collection-spec/collection-spec.md#common-fields-and-standalone-collections).
 
-The `sat` extension requires the (`instrument` extension)[../instrument/README.md]
+The Satellite extension requires the (Instrument extension)[../instrument/README.md].
 
 - [Example (Landsat 8)](examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)
