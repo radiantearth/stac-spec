@@ -9,6 +9,8 @@ A lot of SAR data will have common metadata across many Items. It is not necessa
 to place common fields in [STAC Collections](../../collection-spec/collection-spec.md).
 The exact metadata that would appear in a STAC Collection record will vary depending on the dataset.
 
+If the data has been collected by a satellite, it is strongly recommended to use the [`sat` extension](../sat/README.md), which in turn requires the [`instrument` extension](../instrument/README.md). If the data has been collected on an airborne platform is is strongly recommended to use the [`instrument` extension](../instrument/README.md).
+
 - [Examples](examples/) (for example [Sentinel-1](examples/sentinel1.json) and [Envisat](examples/envisat.json))
 - [JSON Schema](json-schema/schema.json)
 

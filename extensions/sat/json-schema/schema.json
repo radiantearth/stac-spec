@@ -9,6 +9,9 @@
     },
     {
       "$ref": "#/definitions/sat"
+    },
+    {
+      "$ref": "../instrument/json-schema/schema.json"
     }
   ],
   "definitions": {
@@ -20,10 +23,7 @@
       "properties": {
         "properties": {
           "type": "object",
-          "required": [
-            "platform",
-            "instruments"
-          ],
+          "required": [],
           "properties": {
             "sat:off_nadir_angle": {
               "title": "Off Nadir",
