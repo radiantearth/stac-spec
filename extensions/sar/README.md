@@ -22,7 +22,6 @@ If the data has been collected by a satellite, it is strongly recommended to use
 | sar:frequency_band        | string        | **REQUIRED.** The common name for the frequency band to make it easier to search for bands across instruments. See section "Common Frequency Band Names" for a list of accepted names. |
 | sar:center_frequency      | number        | The center frequency of the instrument, in gigahertz (GHz). |
 | sar:polarization          | [string]      | **REQUIRED.** A single polarization or a polarization combination specified as array. |
-| sar:bands                 | [[Band Object](#band-object)] | This is a list of the available bands where each item is a [Band Object](#band-object). |
 | sar:product_type                  | string        | **REQUIRED.** The product type, for example `RAW`, `GRD`, `OCN` or `SLC` for Sentinel-1. |
 | sar:resolution_range      | number        | The range resolution, which is the maximum ability to distinguish two adjacent targets perpendicular to the flight path, in meters (m).  |
 | sar:resolution_azimuth    | number        | The azimuth resolution, which is the maximum ability to distinguish two adjacent targets parallel to the flight path, in meters (m).  |
@@ -55,24 +54,10 @@ properties. The table below shows the common name based on the wavelength and fr
 
 In SAR, you usually have frame start and end time. To describe this information it is recommended to use the [Datetime Range Extension Specification](../datetime-range/README.md). The center time of the frame should be specified with the `datetime` property for [STAC Items](../../item-spec/item-spec.md).
 
-### Band Object
-
-The bands contained in SAR image are dependent on the `sar:product_type`. For example, single look complex (SLC) data contain both phase and amplitude information of the signal. This may be provided for instance in form of complex number components (i and q bands) for each available polarization. Multilooked data (for example GRD in case of Sentinel-1) contain only amplitude and intensity bands for each polarization. Geocoded data contain radiometrically calibrated and terrain corrected data such as sigma0 or flattening gamma and may also contain angular information such as projected local incidence angle. Details about each band and the respective processing applied is given in its description.
-
-| Field Name          | Type         | Description |
-| ------------------- | ------------ | ----------- |
-| name                | string       | The name of the band. |
-| description         | string       | Description to fully explain the band, should include processing information. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| polarization        | string\|null | The polarization of the band, either `HH`, `VV`, `HV`, `VH` or `null` if not applicable. |
-
-## Associating assets with bands
-
-Asset definitions that contain band data should reference the band index. Each asset should provide a `sar:bands` property that is an array of 0 based indexes to the correct [Band Objects](#band-object).
-
 ### Item [`Asset Object`](../../item-spec/item-spec.md#asset-object) fields
 | Field Name | Type     | Description                                  |
 | ---------- | -------- | -------------------------------------------- |
-| sar:bands  | [number] | Lists the band names available in the asset. |
+| sar:polarizations  | [string] | Lists the polarizations available in the asset, in order. One of `HH`, `VV`, `HV`, `VH` |
 
 ## Extensions
 

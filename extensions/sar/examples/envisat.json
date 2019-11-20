@@ -39,24 +39,14 @@
     "sar:looks_azimuth": 4,
     "sar:frequency_band": "C",
     "sar:center_frequency": 5.331,
-    "sar:product_type": "GM1_1P",
-    "sar:bands": [
-      {
-        "name": "amplitude",
-        "polarization": "HH"
-      },
-      {
-        "name": "intensity",
-        "description": "Equals the square of the amplitude band",
-        "polarization": "HH"
-      }
-    ]
+    "sar:product_type": "GM1_1P"
   },
   "assets": {
     "product": {
       "href": "ASA_GM1_1PNPDE20090520_023957_000001022079_00118_37747_3607.n1.gz",
       "type": "application/gzip",
-      "sar:bands": [0,1]
+      "description": "Amplitude and Intensity. Intensity equals the square of the amplitude band",
+      "sar:polarizations": ["HH", "HH"]
     }
   },
   "links": [

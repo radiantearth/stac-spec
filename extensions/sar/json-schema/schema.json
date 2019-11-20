@@ -65,36 +65,6 @@
                 ]
               }
             },
-            "sar:bands": {
-              "title": "Bands",
-              "type": "array",
-              "items": {
-                "properties": {
-                  "name": {
-                    "title": "Name of the band",
-                    "type": "string"
-                  },
-                  "description": {
-                    "title": "Description of the band",
-                    "type": "string"
-                  },
-                  "polarization": {
-                    "title": "Polarization of the band",
-                    "type": [
-                      "string",
-                      "null"
-                    ],
-                    "enum": [
-                      "HH",
-                      "VV",
-                      "HV",
-                      "VH",
-                      null
-                    ]
-                  }
-                }
-              }
-            },
             "sar:product_type": {
               "title": "Product type",
               "type": "string",
