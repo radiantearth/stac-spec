@@ -24,8 +24,8 @@
   },
   "properties": {
     "datetime": "2018-11-03T23:58:55.617217Z",
-    "dtr:start_datetime": "2018-11-03T23:58:55.121559Z",
-    "dtr:end_datetime": "2018-11-03T23:59:55.112875Z",
+    "start_datetime": "2018-11-03T23:58:55.121559Z",
+    "end_datetime": "2018-11-03T23:59:55.112875Z",
     "platform": "sentinel-1a",
     "constellation": "sentinel-1",
     "instruments": ["c-sar"],

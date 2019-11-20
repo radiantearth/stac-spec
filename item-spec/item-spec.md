@@ -62,7 +62,7 @@ Items that are linked to, but the best practices around this are still emerging.
 The Properties object adds additional metadata to the GeoJSON Object. Additional fields can be introduced through 
 extensions. It is generally allowed to add custom fields.
 
-It is recommended to add multiple attributes for related values instead of a nested object, e.g., two fields `eo:cloud_cover` and `eo:sun_azimuth` instead of a field `eo` with an object value containing the two fields. The convention (as used within Extensions) is for related attributes to use a common prefix on the attribute names to group them, e.g. `eo`. A nested data structure should only be used when the data itself is nested, as with `eo:bands`.
+It is recommended to add multiple attributes for related values instead of a nested object, e.g., two fields `eo:cloud_cover` and `sat:sun_azimuth_angle` instead of a field `eo` with an object value containing the two fields. The convention (as used within Extensions) is for related attributes to use a common prefix on the attribute names to group them, e.g. `eo`. A nested data structure should only be used when the data itself is nested, as with `eo:bands`.
 
 | Field Name | Type   | Description                                                  |
 | ---------- | ------ | ------------------------------------------------------------ |
@@ -168,16 +168,14 @@ or streamed. It is allowed to add additional fields.
 | Field Name | Type   | Description                                                                           |
 | ---------- | ------ | ------------------------------------------------------------------------------------- |
 | href       | string | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
-| title      | string | The displayed title for clients and users.                                            |
-| type       | string | [Media type](#media-types) of the asset.                                              |
-| role        | string | The semantic purpose of the asset.                                                   |
+| title      | string | The displayed title for clients and users                                           |
+| description      | string | A description of the Asset providing additional details, such as how it was processed                                           |
+| type       | string | [Media type](#media-types) of the asset                                             |
+| role        | string | The semantic purpose of the asset, similar to the use of `rel` in links                                                  |
 
-**role** is intended to be a value that describes semantic usage of an asset, similarly to the use of `rel` in 
-Link. 
- 
 #### Asset Role Types
 
-Like the Link `rel` field, the `role` field can be given any value.  These are a few standardized role names.
+Like the Link `rel` field, the `role` field can be given any value, however here are a few standardized role names.
 
 | Role Name | Description                                                                           |
 | --------- | ------------------------------------------------------------------------------------- |
