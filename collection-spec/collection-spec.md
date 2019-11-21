@@ -29,15 +29,13 @@ Implementations are encouraged, however, as good effort will be made to not chan
 | stac_extensions | [string]       | A list of extensions the Collection implements. |
 | id           | string            | **REQUIRED.** Identifier for the collection that is unique across the provider. |
 | title        | string            | A short descriptive one-line title for the collection.       |
-| description  | string            | **REQUIRED.** Detailed multi-line description to fully explain the collection. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| description  | string            | **REQUIRED.** Detailed multi-line description to fully explain the collection. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | keywords     | [string]          | List of keywords describing the collection.                  |
-| version      | string            | Version of the collection.                                   |
 | license      | string            | **REQUIRED.** Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60). Alternatively, use `proprietary` if the license is not on the SPDX license list or `various` if multiple licenses apply. In these two cases links to the license texts SHOULD be added, see the `license` link relation type. |
 | providers    | [[Provider Object](#provider-object) | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | extent       | [Extent Object](#extent-object) | **REQUIRED.** Spatial and temporal extents.    |
-| properties   | Map<string, *>    | Common fields across referenced items. |
 | summaries    | Map<string, [*]\|[Stats Object](#stats-object)> | A map of property summaries, either a set of values or statistics such as a range. |
-| links        | [[Link Object](#link-object)]     | **REQUIRED.** A list of references to other documents.       |
+| links        | [[Link Object](#link-object)] | **REQUIRED.** A list of references to other documents.       |
 
 **stac_version**: In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
 
@@ -93,7 +91,7 @@ The object provides information about a provider. A provider is any of the organ
 | Field Name  | Type      | Description                                                  |
 | ----------- | --------- | ------------------------------------------------------------ |
 | name        | string    | **REQUIRED.** The name of the organization or the individual. |
-| description | string    | Multi-line description to add further provider information such as processing details for processors and producers, hosting details for hosts or basic contact information. [CommonMark 0.28](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| description | string    | Multi-line description to add further provider information such as processing details for processors and producers, hosting details for hosts or basic contact information. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | roles       | [string]  | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`. |
 | url         | string    | Homepage on which the provider describes the dataset and publishes contact information. |
 
@@ -147,108 +145,19 @@ Implementors are free to add other derived statistical values to the object, for
 | min        | number\|string | **REQUIRED.** Minimum value. |
 | max        | number\|string | **REQUIRED.** Maximum value. |
 
-## Common Fields and Standalone Collections
+## Standalone Collections
 
-The `properties` field in STAC collections can be used in two ways, either to **move common fields in Items to the parent Collection** or to describe **standalone Collections** better that don't reference any items. Any field that can be used under an Items `properties` can be removed and added to the Collection `properties`. Since a Collection contains no properties itself, anything under properties are metadata fields that are common across all member Items.
-
-To **move common fields in Items to the parent Collection**, the collection specification allows one to more fields that are common across all linked Items to be moved out of the respective Items and into the parent STAC Collection, from which the Items then inherit. This provides maximum flexibility to data providers, as the set of common metadata fields can vary between different types of data. For instance, Landsat and Sentinel data always have an `eo:off_nadir` value of `0`, because those satellites are always pointed downward (i.e., nadir), while satellites that can be pointed will have varying `eo:off_nadir` values. This allows the data provider to define the set of metadata that defines the collection. While some metadata fields are more likely to be part of the common set, such as or `eo:instrument` rather than `eo:cloud_cover`, it depends on how the data provider chooses to organize their data. If a metadata field is specified in the Collection properties, it will be ignored in any Item that links to that Collection. This is important because a Collection is the metadata that is common across all Item objects. If a field is variable at all, it should not be part of the common fields.
-
-STAC Collections which don't link to any Item are called **standalone Collections**. To describe them with more fields than the Collection fields has to offer, it is allowed to re-use the metadata fields defined by content extensions for Items. Whenever suitable, the `properties` are used in the same way as if they were common fields across theoretical Items. This makes much sense for fields such as `eo:platform` or `eo:epsg`, which are often the same for a whole collection, but doesn't make much sense for `eo:cloud_cover`, which usually varies heavily across a Collection. The data provider is free to decide, which fields are reasoable to be used.
-
-### Merging common fields into a STAC Item
-
-To get the complete record of an Item (both individual and commons properties), the properties from the Collection can be merged with the Item.
-
-An incomplete Collection:
-```
-{
-  "stac_version": "0.8.1",
-  "id": "landsat-8-l1",
-  "title": "Landsat 8 L1",
-  "description": "Landat 8 imagery radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
-  "version": "0.1.0",
-  "extent": {...},
-  "license": "PDDL-1.0",
-  "properties": {
-    "eo:gsd": 30,
-    "eo:platform": "landsat-8",
-    "eo:instrument": "oli_tirs",
-    "eo:off_nadir": 0,
-    "eo:bands": [
-      {
-        "name": "B1",
-        "common_name": "coastal",
-        "gsd": 30,
-        "center_wavelength": 0.44,
-        "full_width_half_max": 0.02
-      },
-      ...
-    ]
-  },
-  "links": [...]
-}
-```
-
-An incomplete item:
-```
-{
-  "stac_version": "0.8.1",
-  "type": "Feature",
-  "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
-  "bbox": [...],
-  "geometry": {...},
-  "properties": {
-    "collection": "landsat-8-l1",
-    "datetime": "2018-10-01T01:08:32.033Z",
-    "eo:cloud_cover": 78,
-    "eo:sun_azimuth": 168.8989761,
-    "eo:sun_elevation": 26.32596431,
-    "landsat:path": 107,
-    "landsat:row": 18
-  },
-  "assets": {...},
-  "links": [...]
-}
-```
-
-The merged Item then looks like this:
-
-```
-{
-  "stac_version": "0.8.1",
-  "type": "Feature",
-  "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
-  "bbox": [],
-  "geometry": {},
-  "properties": {
-    "collection": "landsat-8-l1",
-    "datetime": "2018-10-01T01:08:32.033Z",
-    "eo:cloud_cover": 78,
-    "eo:sun_azimuth": 168.8989761,
-    "eo:sun_elevation": 26.32596431,
-    "landsat:path": 107,
-    "landsat:row": 18,
-    "eo:gsd": 30,
-    "eo:platform": "landsat-8",
-    "eo:constellation": "landsat-8",
-    "eo:instrument": "oli_tirs",
-    "eo:off_nadir": 0,
-    "eo:bands": [
-      {
-        "name": "B1",
-        "common_name": "coastal",
-        "gsd": 30,
-        "center_wavelength": 0.44,
-        "full_width_half_max": 0.02
-      },
-      ...
-    ]
-  },
-  "assets": {...},
-  "links": [...]
-}
-```
+STAC Collections which don't link to any Item are called **standalone Collections**.
+To describe them with more fields than the Collection fields has to offer, it is allowed to re-use the metadata fields defined by content extensions for Items in the `summaries` field.
+This makes much sense for fields such as `platform` or `eo:epsg`, which are often the same for a whole collection, but doesn't make much sense for `eo:cloud_cover`, which usually varies heavily across a Collection.
+The data provider is free to decide, which fields are reasoable to be used.
 
 ## Extensions
+
+Important related extensions for the STAC Collection Specification:
+
+* [Commons extension](../extensions/commons/README.md), which primarily allows to add shared Item metadata to Collections,
+  but could also be used to describe Collections better that are not referring to Items by adding additional fields from Item extensions.
+  Please note that this extension is only in '[proposal](../extensions/README.md#extension-maturity)' stage.
 
 The [extensions page](../extensions/README.md) gives a full overview about relevant extensions for STAC Collections.
