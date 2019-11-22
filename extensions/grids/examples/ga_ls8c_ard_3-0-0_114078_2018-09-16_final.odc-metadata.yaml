@@ -1,0 +1,158 @@
+---
+# Dataset
+$schema: https://schemas.opendatacube.org/dataset
+id: 8be8b24f-7f83-4edb-a52d-0ac035cc3af3
+
+label: ga_ls8c_ard_3-0-0_114078_2018-09-16_final
+product:
+  name: ga_ls8c_ard_3
+  href: https://collections.dea.ga.gov.au/product/ga_ls8c_ard_3
+
+crs: epsg:32650
+geometry:
+  type: Polygon
+  coordinates: [[[189345.0712388272, -2952974.65687988], [189296.8933982822, -2952963.106601718],
+      [189337.79128986463, -2952679.558257973], [189907.81206596454, -2949919.456220479],
+      [197302.812992438, -2914234.4517531474], [208807.81578849026, -2858929.438312175],
+      [220792.81838782926, -2801569.4258718197], [229267.5, -2761207.5], [229333.67839608813,
+        -2761221.307536186], [229335.0, -2761215.0], [417051.1293862239, -2800365.632830839],
+      [417208.5183913701, -2800430.610034804], [417322.5, -2800462.5], [377692.1878332662,
+        -2991715.544265748], [377602.5, -2992057.5], [377433.0256963321, -2992022.33020767],
+      [376478.90350629506, -2991854.374015124], [190598.88137237664, -2953274.369412592],
+      [189458.71412733808, -2953034.3340724222], [189345.0, -2952975.0], [189345.0712388272,
+        -2952974.65687988]]]
+grids:
+  default:
+    shape: [7711, 7621]
+    transform: [30.0, 0.0, 188985.0, 0.0, -30.0, -2760885.0, 0.0, 0.0, 1.0]
+  panchromatic:
+    shape: [15421, 15241]
+    transform: [15.0, 0.0, 188992.5, 0.0, -15.0, -2760892.5, 0.0, 0.0, 1.0]
+
+properties:
+  datetime: 2018-09-16 02:15:51.359302Z
+  dea:dataset_maturity: final
+  dtr:end_datetime: 2018-09-16 02:16:06.294141Z
+  dtr:start_datetime: 2018-09-16 02:15:36.359737Z
+  eo:cloud_cover: 0.019121922213058154
+  eo:gsd: 15.0  # Ground sample distance (m)
+  eo:instrument: OLI_TIRS
+  eo:platform: landsat-8
+  eo:sun_azimuth: 49.55485377
+  eo:sun_elevation: 49.35646828
+  fmask:clear: 96.69921798851819
+  fmask:cloud: 0.019121922213058154
+  fmask:cloud_shadow: 0.017756245444225896
+  fmask:snow: 0.0
+  fmask:water: 3.263903843824533
+  gqa:abs_iterative_mean_x: 0.11
+  gqa:abs_iterative_mean_xy: 0.18
+  gqa:abs_iterative_mean_y: 0.14
+  gqa:abs_x: 0.18
+  gqa:abs_xy: 0.29
+  gqa:abs_y: 0.23
+  gqa:cep90: 0.33
+  gqa:iterative_mean_x: -0.08
+  gqa:iterative_mean_xy: 0.13
+  gqa:iterative_mean_y: 0.1
+  gqa:iterative_stddev_x: 0.11
+  gqa:iterative_stddev_xy: 0.18
+  gqa:iterative_stddev_y: 0.15
+  gqa:mean_x: -0.07
+  gqa:mean_xy: 0.13
+  gqa:mean_y: 0.11
+  gqa:stddev_x: 0.3
+  gqa:stddev_xy: 0.55
+  gqa:stddev_y: 0.45
+  landsat:collection_category: T1
+  landsat:collection_number: 1
+  landsat:landsat_product_id: LC08_L1TP_114078_20180916_20180928_01_T1
+  landsat:landsat_scene_id: LC81140782018259LGN00
+  landsat:wrs_path: 114
+  landsat:wrs_row: 78
+  odc:dataset_version: 3.0.0
+  odc:file_format: GeoTIFF
+  odc:processing_datetime: 2019-10-11 17:13:22.333042Z
+  odc:producer: ga.gov.au
+  odc:product_family: ard
+  odc:region_code: '114078'
+
+measurements:
+  nbar_blue:
+    path: ga_ls8c_nbar_3-0-0_114078_2018-09-16_final_band02.tif
+  nbar_coastal_aerosol:
+    path: ga_ls8c_nbar_3-0-0_114078_2018-09-16_final_band01.tif
+  nbar_green:
+    path: ga_ls8c_nbar_3-0-0_114078_2018-09-16_final_band03.tif
+  nbar_nir:
+    path: ga_ls8c_nbar_3-0-0_114078_2018-09-16_final_band05.tif
+  nbar_panchromatic:
+    path: ga_ls8c_nbar_3-0-0_114078_2018-09-16_final_band08.tif
+    grid: panchromatic
+  nbar_red:
+    path: ga_ls8c_nbar_3-0-0_114078_2018-09-16_final_band04.tif
+  nbar_swir_1:
+    path: ga_ls8c_nbar_3-0-0_114078_2018-09-16_final_band06.tif
+  nbar_swir_2:
+    path: ga_ls8c_nbar_3-0-0_114078_2018-09-16_final_band07.tif
+  nbart_blue:
+    path: ga_ls8c_nbart_3-0-0_114078_2018-09-16_final_band02.tif
+  nbart_coastal_aerosol:
+    path: ga_ls8c_nbart_3-0-0_114078_2018-09-16_final_band01.tif
+  nbart_green:
+    path: ga_ls8c_nbart_3-0-0_114078_2018-09-16_final_band03.tif
+  nbart_nir:
+    path: ga_ls8c_nbart_3-0-0_114078_2018-09-16_final_band05.tif
+  nbart_panchromatic:
+    path: ga_ls8c_nbart_3-0-0_114078_2018-09-16_final_band08.tif
+    grid: panchromatic
+  nbart_red:
+    path: ga_ls8c_nbart_3-0-0_114078_2018-09-16_final_band04.tif
+  nbart_swir_1:
+    path: ga_ls8c_nbart_3-0-0_114078_2018-09-16_final_band06.tif
+  nbart_swir_2:
+    path: ga_ls8c_nbart_3-0-0_114078_2018-09-16_final_band07.tif
+  oa_azimuthal_exiting:
+    path: ga_ls8c_oa_3-0-0_114078_2018-09-16_final_azimuthal-exiting.tif
+  oa_azimuthal_incident:
+    path: ga_ls8c_oa_3-0-0_114078_2018-09-16_final_azimuthal-incident.tif
+  oa_combined_terrain_shadow:
+    path: ga_ls8c_oa_3-0-0_114078_2018-09-16_final_combined-terrain-shadow.tif
+  oa_exiting_angle:
+    path: ga_ls8c_oa_3-0-0_114078_2018-09-16_final_exiting-angle.tif
+  oa_fmask:
+    path: ga_ls8c_oa_3-0-0_114078_2018-09-16_final_fmask.tif
+  oa_incident_angle:
+    path: ga_ls8c_oa_3-0-0_114078_2018-09-16_final_incident-angle.tif
+  oa_nbar_contiguity:
+    path: ga_ls8c_oa_3-0-0_114078_2018-09-16_final_nbar-contiguity.tif
+  oa_nbart_contiguity:
+    path: ga_ls8c_oa_3-0-0_114078_2018-09-16_final_nbart-contiguity.tif
+  oa_relative_azimuth:
+    path: ga_ls8c_oa_3-0-0_114078_2018-09-16_final_relative-azimuth.tif
+  oa_relative_slope:
+    path: ga_ls8c_oa_3-0-0_114078_2018-09-16_final_relative-slope.tif
+  oa_satellite_azimuth:
+    path: ga_ls8c_oa_3-0-0_114078_2018-09-16_final_satellite-azimuth.tif
+  oa_satellite_view:
+    path: ga_ls8c_oa_3-0-0_114078_2018-09-16_final_satellite-view.tif
+  oa_solar_azimuth:
+    path: ga_ls8c_oa_3-0-0_114078_2018-09-16_final_solar-azimuth.tif
+  oa_solar_zenith:
+    path: ga_ls8c_oa_3-0-0_114078_2018-09-16_final_solar-zenith.tif
+  oa_time_delta:
+    path: ga_ls8c_oa_3-0-0_114078_2018-09-16_final_time-delta.tif
+
+accessories:
+  thumbnail:nbart:
+    path: ga_ls8c_nbart_3-0-0_114078_2018-09-16_final_thumbnail.jpg
+  thumbnail:nbar:
+    path: ga_ls8c_nbar_3-0-0_114078_2018-09-16_final_thumbnail.jpg
+  checksum:sha1:
+    path: ga_ls8c_ard_3-0-0_114078_2018-09-16_final.sha1
+  metadata:processor:
+    path: ga_ls8c_ard_3-0-0_114078_2018-09-16_final.proc-info.yaml
+
+lineage:
+  level1:
+  - ee020402-c228-5313-baa7-e657d249a2f6
