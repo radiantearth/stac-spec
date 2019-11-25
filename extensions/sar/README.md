@@ -57,7 +57,7 @@ In SAR, you usually have frame start and end time. To describe this information 
 ### Item [`Asset Object`](../../item-spec/item-spec.md#asset-object) fields
 | Field Name | Type     | Description                                  |
 | ---------- | -------- | -------------------------------------------- |
-| sar:polarizations  | [string] | Lists the polarizations available in the asset, in order. One of `HH`, `VV`, `HV`, `VH` |
+| sar:polarizations  | [string] | Lists the polarizations available in the asset, in order. Any of `HH`, `VV`, `HV`, `VH` |
 
 ## Extensions
 
