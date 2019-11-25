@@ -171,7 +171,7 @@ or streamed. It is allowed to add additional fields.
 | ----------- | ------ | ----------- |
 | href        | string | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
 | title       | string | The displayed title for clients and users. |
-| description | string | A description of the Asset providing additional details, such as how it was processed. |
+| description | string | A description of the Asset providing additional details, such as how it was processed or created. |
 | type        | string | [Media type](#media-types) of the asset. |
 | role        | string | The semantic purpose of the asset, similar to the use of `rel` in links. |
 
