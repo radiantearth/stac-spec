@@ -4,6 +4,8 @@
 
 This document explains the fields of the STAC Grids Extension to a STAC Item. Specifically, this extension is designed to provide information per asset on the size, location and grid of the image. This differs from the `eo:gsd` item field in the `eo` extension as that is defined specifically as being related to the spatial resolution at the sensor, rather than the pixel size of images after orthorectification, pansharpening, or scaling. The `grids` extension is designed to be related specifically to the image at the ground, rather than the sensor. 
 
+We suggest encoding the `<insertgdalfunction>` 
+
 - [Example (Landsat 8)](examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)
 
@@ -20,8 +22,8 @@ This document explains the fields of the STAC Grids Extension to a STAC Item. Sp
 | ------------------- | ------ | ------------------------------------------------------------ |
 | name                | string | The name of the grid (e.g., "default", "panchromatic"). |
 | description         | string | Description to fully explain the grid. |
-| shape                 | number |  |
-| transform            | number |  |
+| shape                 | number | Number of pixels in x and y directions. |
+| transform            | number | The affine transformation coefficients as defined in the GDAL [`GetGeoTransform`](https://gdal.org/api/gdaldataset_cpp.html#_CPPv4N11GDALDataset15GetGeoTransformEPd)  |
 
 
 #### Common Grid Types
