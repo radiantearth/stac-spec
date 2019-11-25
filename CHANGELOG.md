@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - ItemCollection requires `stac_version` field, `stac_extensions` has also been added
-- A `description` field has been added to Item Assets
+- A `description` field has been added to Item assets (also Asset definitions extension). 
 - Extensions:
      - [Version Indicators extension](extensions/version/README.md), adds `version` and `deprecated` fields to STAC Items and Collections.
      - Instrument extension, adds fields: `platform`, `instruments`, `constellation` (all moved from EO and SAR extensions), and `mission`.
@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html).
 - Collection field `property` and the merge ability moved to a new extension 'Commons'
-- Added attribute `role` to Item assets, to be used similarly to Link `rel`.
+- Added attribute `role` to Item assets (also Asset definitions extension), to be used similarly to Link `rel`.
 - Extensions:
     - [datetime-range extension](extensions/datetime-range/README.md): Removed extension prefix from example and schema.
     - Data Cube extension: Changed allowed formats (removed PROJ string, addedPROJJSON / WKT2) for reference systems.
@@ -36,6 +36,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 - Removed `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead.
 - Removed `summaries` field from Catalogs. Use Collections instead.
+- `license` field doesn't allow SPDX expressions any longer. Use `various` and links instead.
 - Extensions:
     - Removed `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from SAR extension.
   - Dropped `sar:absolute_orbit` field from `sar` extension due to no known use case
@@ -45,7 +46,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- The `license` field in Item and Collection spec explicitly mentions that the value `proprietary` without a link means that the data is private.
+- The `license` field in Item and Collection spec explicitly mentions that the value `proprietary` without a link means that the data is private.
+- Clarified how to fill `stac_extensions`.
 - Clarifications; typos fixed
 
 ## [v0.8.1] - 2019-11-01
