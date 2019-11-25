@@ -115,14 +115,12 @@ details on the two types and how you might use them see the [Static and Dynamic 
 
 | Element      | Type          | Description                                                  |
 | ------------ | ------------- | ------------------------------------------------------------ |
-| stac_version | string        | **REQUIRED.** The STAC version the catalog implements.       |
+| stac_version | string        | **REQUIRED.** The STAC version the catalog implements. STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind. |
 | stac_extensions | [string]   | A list of extensions the Catalog implements.                 |
 | id           | string        | **REQUIRED.** Identifier for the catalog.                    |
 | title        | string        | A short descriptive one-line title for the catalog.          |
 | description  | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | links        | [[Link Object](#link-object)] | **REQUIRED.** A list of references to other documents.       |
-
-**stac_version**: In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
 
 **stac_extensions**: A list of extensions the Catalog implements. This does NOT declare the extensions of children or Items. The list contains URLs to the JSON Schema files it can be validated against. For official extensions, a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. If the versions of the extension and the catalog diverge, you can specify the URL of the JSON schema file.
 
@@ -141,8 +139,8 @@ with links.
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
 
 Please see the chapter 'relative vs absolute links' in the [Item spec](../item-spec/item-spec.md#relative-vs-absolute-links)
- for a discussion on that topic, as well as the [use of links](../best-practices.md#use-of-links) section of the 
- catalog best practices document.
+for a discussion on that topic, as well as the [use of links](../best-practices.md#use-of-links) section of the 
+catalog best practices document.
 
 #### Relation types
 
