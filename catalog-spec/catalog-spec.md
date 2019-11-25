@@ -96,21 +96,6 @@ the [best practices document](../best-practices.md), and include things like cat
 publishing catalogs, and more. This specification is designed for maximum flexbility, but the best practices provide
 guidance for good recommendations when implementing.
 
-### Catalog Types
-
-Though it is technically an implementation detail outside the scope of the core specification, it is worth mentioning
-that implementations generally fall into two different 'types':
-
-* **Static Catalogs** can be implemented as simply files online, often stored in an cloud storage service like [Amazon S3](https://aws.amazon.com/s3/). 
-or [Google Cloud Storage](https://cloud.google.com/storage/).
-The core JSON documents and link structures are encoded in the file, and work as long as things are structured properly.
-* **Dynamic Catalogs** are implemented in software, returning the JSON documents and links dynamically. This is mostly 
-used when data holdings are already exposed through a dynamic interface, and STAC can be an alternate facade on the 
-same core database or search cluster.
-
-The two catalog types both implement the same fields and links, and can be treated as the same by clients. For more 
-details on the two types and how you might use them see the [Static and Dynamic Catalogs](../best-practices.md#static-and-dynamic-catalogs) section of the best practices document.
-
 ## Catalog fields
 
 | Element      | Type          | Description                                                  |

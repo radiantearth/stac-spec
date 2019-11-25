@@ -19,9 +19,9 @@ An Asset Object defined at the Collection level is nearly the same as the [Asset
 The `href` field is not required, because collections don't point to any data by themselves.
 Additioanlly the remaining fields, `title` and `type` are required in the Asset Definition, in order for it to adequately describe Item assets.
 
-| Field Name         | Type   | Description                                                  |
-| ------------------ | ------ | ------------------------------------------------------------ |
-| assets | Map<string, [Asset Object](#asset-object)> | **REQUIRED.** A dictionary of assets that can be found in member Items |
+| Field Name | Type                                       | Description |
+| ---------- | ------------------------------------------ | ----------- |
+| assets     | Map<string, [Asset Object](#asset-object)> | **REQUIRED.** A dictionary of assets that can be found in member Items |
 
 ### Asset Object
 
