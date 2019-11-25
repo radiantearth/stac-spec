@@ -1,0 +1,81 @@
+# STAC Common Metadata
+
+* [Instrument](#instrument)
+* [Metadata about Metadata](#metadata-about-metadata)
+* [Publishing and Standalone Items](#publishing-and-standalone-items)
+
+## Instrument
+
+Adds metadata specifying a platform and instrument used in a data collection mission. It will often be combined with other extensions that describe the actual data, such as the `eo` or `sar` extensions. In many instances, the instrument fields added here will share common properties across all of the Items. It is not necessary, but recommended to place common fields in [STAC Collections](../../collection-spec/collection-spec.md#common-fields-and-standalone-collections).
+
+- [JSON Schema](json-schema/schema.json)
+
+| Field Name    | Type     | Description |
+| ------------- | -------- | ----------- |
+| platform      | string   | **REQUIRED.** Unique name of the specific platform to which the instrument is attached. |
+| instruments   | [string] | **REQUIRED.** Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1). |
+| constellation | string   | Name of the constellation to which the platform belongs. |
+| mission       | string   | Name of the mission for which data is collected. |
+
+**platform** is the unique name of the specific platform the instrument is attached to. For satellites this would 
+be the name of the satellite, whereas for drones this would be a unique name for the drone. Examples include 
+`landsat-8` (Landsat-8), `sentinel-2a` and `sentinel-2b` (Sentinel-2), `terra` and `aqua` (part of NASA EOS, 
+carrying the MODIS instruments), `mycorp-uav-034` (hypothetical drone name), and `worldview02` 
+(Maxar/DigitalGlobe WorldView-2).
+
+**instruments** is an array of all the sensors used in the creation of the data. For example, data from the Landsat-8 platform is collected with the OLI sensor as well as the TIRS sensor, but the data is distributed together so would be specified as `['oli', 'tirs']`. Other instrument examples include `msi` (Sentinel-2), `aster` (Terra), and `modis` (Terra and Aqua), `c-sar` (Sentinel-1) and `asar` (Envisat).
+
+**constellation** is the name of a logical collection one or more platforms that have similar payloads and have 
+their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and 
+radiometric characteristics. This field allows users to search for related data sets without needing to specify which 
+specific platform the data came from, for example, from either of the Sentinel-2 satellites. Examples include `landsat-8` 
+(Landsat-8, a constellation consisting of a single platform), `sentinel-2` ([Sentinel-2](https://www.esa.int/Our_Activities/Observing_the_Earth/Copernicus/Sentinel-2/Satellite_constellation)), 
+`rapideye` (operated by Planet Labs), and `modis` (NASA EOS satellites Aqua and Terra).  In the case of `modis`, this
+is technically referring to a pair of sensors on two different satellites, whose data is combined into a series of 
+related products. Additionally, the Aqua satellite is technically part of the A-Train constellation and Terra is not 
+part of a constellation, but these combine to form the logical collection referred to as MODIS.
+
+**mission** is the name of the mission or campaign for collecting data. This could be a discrete set of data collections over a period of time (such as collecting drone imagery), or could be a set of tasks of related tasks from a satellite data collection.
+
+
+## Metadata about Metadata
+
+Fields to describe the metadata file itself.
+
+| Field Name | Type   | Description |
+| ---------- | ------ | ----------- |
+| created    | string | Creation date and time of the metadata file. This is NOT the timestamp the asset was created. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
+| updated    | string | Date and time the metadata file was updated last. This is NOT the timestamp the asset was updated last. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
+
+## Publishing and Standalone Items
+
+| Field Name | Type   | Description |
+| ---------- | ------ | ----------- |
+| license    | string | Item's license(s), either a SPDX [License identifier](https://spdx.org/licenses/), `various` if multiple licenses apply or `proprietary` for all other cases. Should be defined at the Collection level if possible. |
+| providers  | [[Provider Object](#provider-object)] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. Should be defined at the Collection level if possible. |
+
+**license**: Item's license(s) as a SPDX [License identifier](https://spdx.org/licenses/). Alternatively, use `proprietary` (see below) if the license is not on the SPDX license list or `various` if multiple licenses apply. In all cases links to the license texts SHOULD be added, see the [`license` link relation type](#relation-types). If no link to a license is included and the `license` field is set to `proprietary`, the collection is private, and consumers have not been granted any explicit right to use the data.
+
+### Provider Object
+
+The object provides information about a provider. A provider is any of the organizations that captured or processed the content of the collection and therefore influenced the data offered by this collection. May also include information about the final storage provider hosting the data.
+
+| Field Name  | Type      | Description                                                  |
+| ----------- | --------- | ------------------------------------------------------------ |
+| name        | string    | **REQUIRED.** The name of the organization or the individual. |
+| description | string    | Multi-line description to add further provider information such as processing details for processors and producers, hosting details for hosts or basic contact information. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| roles       | [string]  | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`. |
+| url         | string    | Homepage on which the provider describes the dataset and publishes contact information. |
+
+**roles**: The provider's role(s) can be one or more of the following elements:
+
+* *licensor*: The organization that is licensing the dataset under the license specified in the collection's `license` field.
+* *producer*: The producer of the data is the provider that initially captured and processed the source data, e.g. ESA for Sentinel-2 data.
+* *processor*: A processor is any provider who processed data to a derived product.
+* *host*: The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list.
+
+### Relation types
+
+| Type         | Description                                                  |
+| ------------ | ------------------------------------------------------------ |
+| license      | The license URL(s) for the item SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC Item with the license text in a separate file and link to this file. |

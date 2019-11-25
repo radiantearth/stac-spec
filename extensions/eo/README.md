@@ -18,7 +18,7 @@ A lot of EO data will have common metadata across many Items.
 It is not necessary, but recommended to use the [Commons extension](../commons/README.md)
 (see chapter "Placing common fields in Collections").
 
-If the data has been collected by a satellite, it is strongly recommended to use the [`sat` extension](../sat/README.md), which in turn requires the [`instrument` extension](../instrument/README.md). If the data has been collected on an airborne platform is is strongly recommended to use the [`instrument` extension](../instrument/README.md).
+If the data has been collected by a satellite, it is strongly recommended to use the [`sat` extension](../sat/README.md), which in turn requires the [Instrument Fields](../item-spec/common-metadata.md#instrument). If the data has been collected on an airborne platform is is strongly recommended to use the [Instrument Fields](../item-spec/common-metadata.md#instrument).
 
 - [Example (Landsat 8)](examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)
@@ -223,7 +223,6 @@ the eo:bands portion is still being fleshed out.
 The [extensions page](../README.md) gives an overview about related extensions. Of particular relevance to EO data:
 
 * the [Sat Extension Specification](../sat/README.md) to describe SAR data collected from a satellite.
-* the [Instrument Extension Specification](../instrument/README.md) is required when using the EO extension, which contains fields about the sensor and platform used to collect the data. It is required when using the Sat extension.
 
 ### Placing common fields in Collections
 A lot of EO data will have common metadata across many Items. It is not necessary, but recommended	

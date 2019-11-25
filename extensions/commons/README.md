@@ -76,7 +76,7 @@ An incomplete item:
 ```
 {
   "stac_version": "0.8.1",
-  "stac_extensions": ["commons", "eo", "instrument", "sat"],
+  "stac_extensions": ["commons", "eo", "sat"],
   "type": "Feature",
   "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
   "bbox": [...],
@@ -98,7 +98,7 @@ The merged Item then looks like this:
 ```
 {
   "stac_version": "0.8.1",
-  "stac_extensions": ["eo", "instrument", "sat"],
+  "stac_extensions": ["eo", "sat"],
   "type": "Feature",
   "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
   "bbox": [...],

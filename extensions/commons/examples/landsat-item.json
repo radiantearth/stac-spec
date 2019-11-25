@@ -3,7 +3,6 @@
     "stac_extensions": [
         "commons",
         "eo",
-        "instrument",
         "sat",
         "https://example.com/stac/landsat-extension/1.0/schema.json"
     ],
