@@ -60,10 +60,10 @@
     ],
     "license": "PDDL-1.0",
     "properties": {
-      "eo:gsd": 30,
       "platform": "landsat-8",
       "instruments": ["oli", "tirs"],
       "sat:off_nadir_angle": 0,
+      "eo:gsd": 30,
       "eo:bands": [
         {
           "name": "B1",
