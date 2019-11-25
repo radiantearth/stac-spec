@@ -43,14 +43,18 @@ inherited from GeoJSON.
 | bbox       | [number]                                                                   | **REQUIRED.** Bounding Box of the asset represented by this item using either 2D or 3D geometries. The length of the array must be 2*n where n is the number of dimensions. The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). When using 3D geometries, the elevation of the southwesterly most extent is the minimum depth/height in meters and the elevation of the northeasterly most extent is the maximum.  This field enables more naive clients to easily index and search geospatially. STAC compliant APIs are required to compute intersection operations with the item's geometry field, not its bbox. |
 | properties | [Properties Object](#properties-object)                                    | **REQUIRED.** A dictionary of additional metadata for the item. |
 | links      | [[Link Object](#link-object)]                                              | **REQUIRED.** List of link objects to resources and related URLs. A link with the `rel` set to `self` is strongly recommended. |
-| assets     | Map<string, [Asset Object](#asset-object)>                                 | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key. Some pre-defined keys are listed in the chapter '[Asset types](#asset-types)'. |
+| assets     | Map<string, [Asset Object](#asset-object)>                                 | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key. |
 | collection | string                                                                     | The `id` of the STAC Collection this Item references to (see [`collection` relation type](#relation-types)). This field is *required* if such a relation type is present. This field provides an easy way for a user to search for any Items that belong in a specified Collection. |
 
 **stac_version**: In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
 
 **stac_extensions**: A list of extensions the Item implements. The list contains URLs to the JSON Schema files it can be validated against. For official extensions, a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. If the versions of the extension and the item diverge, you can specify the URL of the JSON schema file.
 
-**assets** should include the main asset, as well as any 'sidecar' files that are related and help a
+**assets**: Dictionary of asset objects that can be downloaded, each with a unique key. 
+In general, the keys don't have any meaning and are considered to be non-descriptive unique identifiers.
+Providers may assign any meaning to the keys for their respective use cases, but must not expect that clients understand them.
+To communicate the purpose of an asset better use the `role` field in the [Asset Object](#asset-object).
+Assets should include the main asset, as well as any 'sidecar' files that are related and help a
 client make sense of the data. Examples of this include extended metadata (in XML, JSON, etc.),
 unusable data masks, satellite ephemeris data, etc. Some assets (like Landsat data) are represented
 by multiple files - all should be linked to. It is generally recommended that different processing
@@ -182,14 +186,6 @@ Like the Link `rel` field, the `role` field can be given any value, however here
 | thumbnail |  An asset that represents a thumbnail of the item, typically a true color image (for items with assets in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `role` be unique tuple. For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types. |
 | overview  | An asset that represents a possibly larger view than the thumbnail of the Item , for example, a true color composite of multi-band data. |
 | metadata  | A metadata sidecar file describing the data in this item, for example the Landsat-8 MTL file. |
-
-#### Asset types
-
-The following types are common for assets and are used as the key for the Asset Object:
-
-| Type      | Description |
-| --------- | ----------- |
-| thumbnail | STRONGLY RECOMMENDED. A downsampled image of the core asset, for direct display online in a web page or interactive search application. Even assets that are less easily translated in to a visual image should provide some visual representation, that users can browse. For example a SAR asset can render an elevation mask or hillshade for display. If at all possible it should be included for a better user experience in searching data. |
 
 #### Media Types
 

@@ -36,6 +36,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 - Removed `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead.
 - Removed `summaries` field from Catalogs. Use Collections instead.
+- Asset Types in Items. Use the asset's `role` instead.
 - Extensions:
     - Removed `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from SAR extension.
   - Dropped `sar:absolute_orbit` field from `sar` extension due to no known use case
