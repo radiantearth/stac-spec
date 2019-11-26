@@ -15,7 +15,8 @@
     "sar": {
       "type": "object",
       "required": [
-        "properties"
+        "properties",
+        "assets"
       ],
       "properties": {
         "properties": {
@@ -23,8 +24,8 @@
           "required": [
             "sar:instrument_mode",
             "sar:frequency_band",
-            "sar:polarization",
-            "sar:type"
+            "sar:polarizations",
+            "sar:product_type"
           ],
           "properties": {
             "sar:instrument_mode": {
@@ -46,19 +47,16 @@
                 "Ka"
               ]
             },
-            "sar:center_wavelength": {
-              "title": "Center Wavelength (cm)",
-              "type": "number"
-            },
             "sar:center_frequency": {
-              "title": "Center Wavelength (GHz)",
+              "title": "Center Frequency (GHz)",
               "type": "number"
             },
-            "sar:polarization": {
-              "title": "Polarization",
+            "sar:polarizations": {
+              "title": "Polarizations",
               "type": "array",
               "minItems": 1,
               "maxItems": 4,
+              "uniqueItems": true,
               "items": {
                 "type": "string",
                 "enum": [
@@ -69,60 +67,13 @@
                 ]
               }
             },
-            "sar:bands": {
-              "title": "Bands",
-              "type": "array",
-              "items": {
-                "properties": {
-                  "name": {
-                    "title": "Name of the band",
-                    "type": "string"
-                  },
-                  "description": {
-                    "title": "Description of the band",
-                    "type": "string"
-                  },
-                  "data_type": {
-                    "title": "Data type of the band",
-                    "type": "string",
-                    "examples": [
-                      "amplitude",
-                      "intensity",
-                      "phase",
-                      "angle",
-                      "sigma0",
-                      "gamma0"
-                    ]
-                  },
-                  "unit": {
-                    "title": "Unit of the band",
-                    "type": "string"
-                  },
-                  "polarization": {
-                    "title": "Polarization of the band",
-                    "type": [
-                      "string",
-                      "null"
-                    ],
-                    "enum": [
-                      "HH",
-                      "VV",
-                      "HV",
-                      "VH",
-                      null
-                    ]
-                  }
-                }
-              }
-            },
-            "sar:type": {
+            "sar:product_type": {
               "title": "Product type",
               "type": "string",
               "examples": [
-                "RAW",
-                "GRD",
-                "OCN",
-                "SLC"
+                "SSC",
+                "MGD",
+                "SGC"
               ]
             },
             "sar:resolution_range": {
@@ -166,6 +117,25 @@
               "enum": [
                 "left",
                 "right"
+              ]
+            }
+          }
+        }
+      },
+      "asset": {
+        "type": "object",
+        "properties": {
+          "sar:polarizations": {
+            "title": "Polarizations",
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "enum": [
+                "HH",
+                "VV",
+                "HV",
+                "VH"
               ]
             }
           }
