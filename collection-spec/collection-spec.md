@@ -25,21 +25,22 @@ Implementations are encouraged, however, as good effort will be made to not chan
 
 | Element      | Type              | Description                                                  |
 | ------------ | ----------------- | ------------------------------------------------------------ |
-| stac_version | string            | **REQUIRED.** The STAC version the Collection implements.    |
+| stac_version | string            | **REQUIRED.** The STAC version the Collection implements. STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind. |
 | stac_extensions | [string]       | A list of extensions the Collection implements. |
 | id           | string            | **REQUIRED.** Identifier for the collection that is unique across the provider. |
 | title        | string            | A short descriptive one-line title for the collection.       |
 | description  | string            | **REQUIRED.** Detailed multi-line description to fully explain the collection. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | keywords     | [string]          | List of keywords describing the collection.                  |
-| license      | string            | **REQUIRED.** Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60). Alternatively, use `proprietary` if the license is not on the SPDX license list or `various` if multiple licenses apply. In these two cases links to the license texts SHOULD be added, see the `license` link relation type. If no links are included and the `license` field is set to `proprietary`, the collection is private, and consumers have not been granted any explicit right to use the data. |
-| providers    | [[Provider Object](#provider-object) | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
+| license      | string            | **REQUIRED.** Collection's license(s), either a SPDX [License identifier](https://spdx.org/licenses/), `various` if multiple licenses apply or `proprietary` for all other cases. |
+| providers    | [[Provider Object](#provider-object)] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | extent       | [Extent Object](#extent-object) | **REQUIRED.** Spatial and temporal extents.    |
 | summaries    | Map<string, [*]\|[Stats Object](#stats-object)> | A map of property summaries, either a set of values or statistics such as a range. |
 | links        | [[Link Object](#link-object)] | **REQUIRED.** A list of references to other documents.       |
 
-**stac_version**: In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
+**stac_extensions**: A list of extensions the Collection implements. This does NOT declare the extensions of child Catalogs or Items. The list contains URLs to the JSON Schema files it can be validated against. For official [content extensions](../extensions/README.md#list-of-content-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `version` for the Versioning Indicators extension. This does *not* apply for API extensions. If the versions of the extension and the collection diverge, you can specify the URL of the JSON schema file.
+This list must only contain extensions that extend the Collection itself, see the the 'Scope' column in the list of extensions. If an extension such as the Commons extension has influence on multiple parts of the whole catalog structure, it must be listed in all affected parts (e.g. Collection and Item for the Commons extension). If a structure such as the summaries or the Commons extension provide fields in their JSON structure, these extensions must not be listed here as they don't extend the Collection itself. For example, if a Collection includes the field `sat:platform` in the summaries, the Collection still does not list the `sat` extension in the `stac_extensions` field.
 
-**stac_extensions**: A list of extensions the Collection implements. This does NOT declare the extensions of child Catalogs or Items. The list contains URLs to the JSON Schema files it can be validated against. For official extensions, a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. If the versions of the extension and the collection diverge, you can specify the URL of the JSON schema file.
+**license**: Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/). Alternatively, use `proprietary` (see below) if the license is not on the SPDX license list or `various` if multiple licenses apply. In all cases links to the license texts SHOULD be added, see the `license` link relation type. If no link to a license is included and the `license` field is set to `proprietary`, the collection is private, and consumers have not been granted any explicit right to use the data.
 
 **summaries**: You can optionally summarize the potential values that are available as part of the `properties` in STAC Items.
 Summaries are used to inform users about values they can expect from items without having to crawl through them. It also helps do fully define collections, especially if they don't link to any Items.
@@ -157,10 +158,11 @@ The data provider is free to decide, which fields are reasoable to be used.
 
 ## Extensions
 
-Important related extensions for the STAC Collection Specification:
+Commonly used extensions for the STAC Collection specification:
 
-* [Commons extension](../extensions/commons/README.md), which primarily allows to add shared Item metadata to Collections,
-  but could also be used to describe Collections better that are not referring to Items by adding additional fields from Item extensions.
-  Please note that this extension is only in '[proposal](../extensions/README.md#extension-maturity)' stage.
+* [Asset Definition](../extensions/asset/README.md): Allows to indicate the structure of the Item assets.
+* [Commons extension](../extensions/commons/README.md): Allows to add shared Item metadata to Collections.
+* [Scientific extension](../extensions/scientific/README.md): Add fields to indicate citations and DOIs.
+* [Versioning Indicators extension](../extensions/version/README.md): Allows versioning by adding the fields `version` and `deprecated`.
 
 The [extensions page](../extensions/README.md) gives a full overview about relevant extensions for STAC Collections.
