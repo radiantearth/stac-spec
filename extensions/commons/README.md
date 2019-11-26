@@ -51,13 +51,13 @@ An incomplete Collection:
     "platform": "landsat-8",
     "constellation": "landsat-8",
     "instruments": ["oli", "tirs"],
-    "eo:gsd": 30,
+    "eo:resolution": 30,
     "sat:off_nadir_angle": 0,
     "eo:bands": [
       {
         "name": "B1",
         "common_name": "coastal",
-        "gsd": 30,
+        "resolution": 30,
         "center_wavelength": 0.44,
         "full_width_half_max": 0.02
       },
@@ -108,13 +108,13 @@ The merged Item then looks like this:
     "eo:cloud_cover": 78,
     "sat:sun_azimuth_angle": 168.8989761,
     "sat:sun_elevation_angle": 26.32596431,
-    "eo:gsd": 30,
+    "eo:resolution": 30,
     "sat:off_nadir_angle": 0,
     "eo:bands": [
       {
         "name": "B1",
         "common_name": "coastal",
-        "gsd": 30,
+        "resolution": 30,
         "center_wavelength": 0.44,
         "full_width_half_max": 0.02
       },

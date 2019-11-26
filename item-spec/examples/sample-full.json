@@ -40,7 +40,7 @@
     "instruments": ["cool_sensor_v1"],
     "eo:bands": [],
     "sat:sun_elevation_angle": 33.4,
-    "eo:gsd": 0.512,
+    "eo:resolution": 0.512,
     "cs:type": "scene",
     "cs:anomalous_pixels": 0.14,
     "cs:earth_sun_distance": 1.0141560,

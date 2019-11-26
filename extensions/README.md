@@ -52,7 +52,7 @@ An extension can add new fields to STAC entities (content extension), or can add
 | [Commons](commons/README.md) (-)                             | Item, Collection | Provides a way to specify data fields in a collection that are common across the STAC Items in that collection, so that each does not need to repeat all the same information. | *Proposal* |
 | [Data Cube](datacube/README.md) (`cube`)                     | Item, Collection | Data Cube related metadata, especially to describe their dimensions. | *Proposal* |
 | [Datetime Range](datetime-range/README.md) (-)           | Item             | An extension to provide datetime ranges with a start and an end datetime stamp in a consistent way. | *Proposal* |
-| [EO](eo/README.md) (`eo`)                                    | Item             | Covers electro-optical data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, gsd and more. | *Pilot* |
+| [EO](eo/README.md) (`eo`)                                    | Item             | Covers electro-optical data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, resolution and more. | *Pilot* |
 | [Instrument](instrument/README.md) (-)                           | Item             | Items that relate labeled AOIs with source imagery | *Proposal* |
 | [Label](label/README.md) (`label`)                           | Item             | Items that relate labeled AOIs with source imagery | *Proposal* |
 | [Point Cloud](pointcloud/README.md) (`pc`)                   | Item             | Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LiDAR or coincidence-matched imagery. | *Proposal* |
@@ -117,7 +117,7 @@ An example of this can be seen in a Landsat example:
     "eo:cloud_cover": 10.31,
     "sat:sun_azimuth_angle": 149.01607154,
     "sat:sun_elevation_angle": 59.21424700,
-    "eo:gsd": 30,
+    "eo:resolution": 30,
 
     "l8:data_type": "L1T",
     "l8:wrs_path": 153,

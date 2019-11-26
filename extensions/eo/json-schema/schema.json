@@ -21,11 +21,11 @@
         "properties": {
           "type": "object",
           "required": [
-            "eo:gsd",
+            "eo:resolution",
             "eo:bands"
           ],
           "properties": {
-            "eo:gsd": {
+            "eo:resolution": {
               "title": "Ground Sample Distance",
               "type": "number"
             },
@@ -42,7 +42,7 @@
                     "title": "Common Name of the band",
                     "type": "string"
                   },
-                  "gsd": {
+                  "resolution": {
                     "title": "Ground Sample Distance",
                     "type": "number"
                   },
