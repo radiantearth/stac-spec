@@ -133,6 +133,18 @@ An example of this can be seen in a Landsat example:
   }
 ```
 
+### Use of arrays and objects
+
+For content extensions, it is recommended to use use arrays only as true (potentially sorted) enumerations/lists without having additional meaning and to avoid objects whenever possible.
+
+For example, if one would like to define an extension to contain a start and a end date, there are multiple options (tl;dr: option **3** is recommended):
+
+1. Define an object, for example: `"date_range": {"start": "2018-01-01", "end": "2018-01-31"}`. This is **discouraged** as it is more complex to search in objects.
+2. Define an two-element array where the first element is the start date and the second element is the end date, for example `"date_range": ["2018-01-01", "2018-01-31"]`. This is **discouraged** as it would conflict with Collection `summaries`, which always considers arrays as true (potentially sorted) enumeration without any additional meaning.
+3. Define two separate fields, e.g. `"date_range_start": "2018-01-01", "date_range_end": "2018-01-31"`. This is **recommended** as it avoids the conflicts above and is usually better displayed in software that only understands GeoJSON but has no clue about STAC. This is due to the fact that most legacy software can not display arrays or objects GeoJSON `properties` properly.
+
+This rules only applies to the fields defined directly for the Item's `properties`. For fields and structures defined on other levels (e.g. in the root of an Item or in an array), extension authors can freely define the structure. So an array of objects such as the `eo:bands` are fine to use, but keep in mind that the drawbacks mentioned above usually still apply.
+
 ### Directory Structure
 
 A STAC extension can have references to additional schemas within the extension schema. 
