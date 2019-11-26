@@ -69,10 +69,9 @@
               "title": "Product type",
               "type": "string",
               "examples": [
-                "RAW",
-                "GRD",
-                "OCN",
-                "SLC"
+                "SSC",
+                "MGD",
+                "SGC"
               ]
             },
             "sar:resolution_range": {

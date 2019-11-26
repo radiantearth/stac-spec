@@ -22,7 +22,7 @@ If the data has been collected by a satellite, it is strongly recommended to use
 | sar:frequency_band        | string        | **REQUIRED.** The common name for the frequency band to make it easier to search for bands across instruments. See section "Common Frequency Band Names" for a list of accepted names. |
 | sar:center_frequency      | number        | The center frequency of the instrument, in gigahertz (GHz). |
 | sar:polarization          | [string]      | **REQUIRED.** A single polarization or a polarization combination specified as array. |
-| sar:product_type          | string        | **REQUIRED.** The product type, for example `RAW`, `GRD`, `OCN` or `SLC` for Sentinel-1. |
+| sar:product_type          | string        | **REQUIRED.** The product type, for example `SSC`, `MGD`, or `SGC` |
 | sar:resolution_range      | number        | The range resolution, which is the maximum ability to distinguish two adjacent targets perpendicular to the flight path, in meters (m).  |
 | sar:resolution_azimuth    | number        | The azimuth resolution, which is the maximum ability to distinguish two adjacent targets parallel to the flight path, in meters (m).  |
 | sar:pixel_spacing_range   | number        | The range azimuth, which is the distance between adjacent pixels perpendicular to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`. |
