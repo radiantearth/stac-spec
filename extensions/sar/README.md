@@ -21,7 +21,7 @@ If the data has been collected by a satellite, it is strongly recommended to use
 | sar:instrument_mode       | string        | **REQUIRED.** The name of the sensor acquisition mode that is commonly used. This should be the short name, if available. For example, `WV` for "Wave mode" of Sentinel-1 and Envisat ASAR satellites. |
 | sar:frequency_band        | string        | **REQUIRED.** The common name for the frequency band to make it easier to search for bands across instruments. See section "Common Frequency Band Names" for a list of accepted names. |
 | sar:center_frequency      | number        | The center frequency of the instrument, in gigahertz (GHz). |
-| sar:polarization          | [string]      | **REQUIRED.** A single polarization or a polarization combination specified as array. |
+| sar:polarizations         | [string]      | **REQUIRED.** Any combination of polarizations. |
 | sar:product_type          | string        | **REQUIRED.** The product type, for example `SSC`, `MGD`, or `SGC` |
 | sar:resolution_range      | number        | The range resolution, which is the maximum ability to distinguish two adjacent targets perpendicular to the flight path, in meters (m).  |
 | sar:resolution_azimuth    | number        | The azimuth resolution, which is the maximum ability to distinguish two adjacent targets parallel to the flight path, in meters (m).  |
@@ -32,7 +32,7 @@ If the data has been collected by a satellite, it is strongly recommended to use
 | sar:looks_equivalent_number | number      | The equivalent number of looks (ENL). |
 | sar:observation_direction | string        | Antenna pointing direction relative to the flight trajectory of the satellite, either `left` or `right`.
 
-**sar:polarization** specifies a single polarization or a polarization combination. For single polarized radars one of `HH`, `VV`, `HV` or `VH` must be set. Fully polarimetric radars add all four polarizations to the array. Dual polarized radars and alternating polarization add the corresponding polarizations to the array, for instance for `HH+HV` add both `HH` and `HV`.
+**sar:polarizations** specifies a single polarization or a polarization combination. For single polarized radars one of `HH`, `VV`, `HV` or `VH` must be set. Fully polarimetric radars add all four polarizations to the array. Dual polarized radars and alternating polarization add the corresponding polarizations to the array, for instance for `HH+HV` add both `HH` and `HV`.
 
 **sar:product_type**: The product type defines the type of procesed data contained in the assets. A list of suggestions include:
 
@@ -71,9 +71,9 @@ properties. The table below shows the common name based on the wavelength and fr
 In SAR, you usually have frame start and end time. To describe this information it is recommended to use the [Datetime Range Extension Specification](../datetime-range/README.md). The center time of the frame should be specified with the `datetime` property for [STAC Items](../../item-spec/item-spec.md).
 
 ### Item [`Asset Object`](../../item-spec/item-spec.md#asset-object) fields
-| Field Name | Type     | Description                                  |
-| ---------- | -------- | -------------------------------------------- |
-| sar:polarizations  | [string] | Lists the polarizations available in the asset, in order. Any of `HH`, `VV`, `HV`, `VH` |
+| Field Name        | Type     | Description                                  |
+| ----------------- | -------- | -------------------------------------------- |
+| sar:polarizations | [string] | Lists the polarizations available in the asset, in order. Any of `HH`, `VV`, `HV`, `VH`. |
 
 ## Extensions
 
