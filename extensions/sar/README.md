@@ -22,7 +22,7 @@ If the data has been collected by a satellite, it is strongly recommended to use
 | sar:frequency_band        | string        | **REQUIRED.** The common name for the frequency band to make it easier to search for bands across instruments. See section "Common Frequency Band Names" for a list of accepted names. |
 | sar:center_frequency      | number        | The center frequency of the instrument, in gigahertz (GHz). |
 | sar:polarization          | [string]      | **REQUIRED.** A single polarization or a polarization combination specified as array. |
-| sar:product_type                  | string        | **REQUIRED.** The product type, for example `RAW`, `GRD`, `OCN` or `SLC` for Sentinel-1. |
+| sar:product_type          | string        | **REQUIRED.** The product type, for example `RAW`, `GRD`, `OCN` or `SLC` for Sentinel-1. |
 | sar:resolution_range      | number        | The range resolution, which is the maximum ability to distinguish two adjacent targets perpendicular to the flight path, in meters (m).  |
 | sar:resolution_azimuth    | number        | The azimuth resolution, which is the maximum ability to distinguish two adjacent targets parallel to the flight path, in meters (m).  |
 | sar:pixel_spacing_range   | number        | The range azimuth, which is the distance between adjacent pixels perpendicular to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`. |
@@ -33,6 +33,20 @@ If the data has been collected by a satellite, it is strongly recommended to use
 | sar:observation_direction | string        | Antenna pointing direction relative to the flight trajectory of the satellite, either `left` or `right`.
 
 **sar:polarization** specifies a single polarization or a polarization combination. For single polarized radars one of `HH`, `VV`, `HV` or `VH` must be set. Fully polarimetric radars add all four polarizations to the array. Dual polarized radars and alternating polarization add the corresponding polarizations to the array, for instance for `HH+HV` add both `HH` and `HV`.
+
+**sar:product_type**: The product type defines the type of procesed data contained in the assets. A generalized list of suggestions include:
+
+| sar:product_type | Data Type | Description |
+|-------------------|----------------|----------------|
+| SSC | complex | Single-look Slant-range Complex image (standard SLC) |
+| MGD | amplitude | Multilooked Ground-range Detected Image (GRD for Sentinel-1) |
+| GEC | amplitude | Geocoded Ellipsoid Corrected Image |
+| GTC | amplitude | Geocoded Terrain Corrected Image |
+| RTC | amplitude | Geocoded Radiometrically Terrain Corrected Image |
+| SGC | complex | Single-look Ground projected Complex image (SLC in Sentinel-1) |
+
+This can vary by data provider, who all may use slightly different names. Sentinel-1 for instance uses `GRD` and `SLC`, which correspond to the more general names `MGD` and `SGC` in the table above. 
+
 
 ### Common Frequency Band Names
 
@@ -62,7 +76,6 @@ In SAR, you usually have frame start and end time. To describe this information 
 ## Extensions
 
 The [extensions page](../README.md) gives an overview about related extensions. Of particular relevance to SAR data:
-
 
 * the [Datetime Range Extension Specification](../datetime-range/README.md) to describe frame start and end time.
 * the [Sat Extension Specification](../sat/README.md) to describe SAR data collected from a satellite.
