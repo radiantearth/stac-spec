@@ -4,15 +4,19 @@
 
 A group of STAC Item objects from a single source can share a lot of common metadata. This is especially true with satellite imagery that uses the STAC EO Extension. Rather than including these common metadata fields on every Item, they can be provided into the [STAC Collection](../../collection-spec/README.md) that the STAC Items belong to.
 
+This extension makes most sense in **static catalogs** to move common information to a central place. This reduces duplication of metadata and makes updates to static catalogs easier. It also makes navigating a static catalog easier as user know in advance which common fields to expect although Items can better be summarized with the `summaries` field in Collections. Therefore it is recommended to use the summaries for this use case and only use the Commons extension to avoid data duplication.
+
+In **API implementations** the Commons extension should not be used as it leads to less intuitive search results. For example, a search result for Items may not include the fields a user has searched for as it has been moved to the Collection, which may lead to confusion. Also, data duplication in dynamically created responses is usually not an issue and APIs derived from static catalogs can simply merge the common fields back into the Items for the response. In this case the `stac_extensions` field should not contain the `commons` extension any longer. To reduce the size of the response body, the [Fields API Extension](../../api-spec/extensions/fields/README.md) can be used.
+
 - [Examples](examples/):
   - Landsat 8: An [Item](examples/landsat-item.json) that uses the Commons extension to place shared data in a [Collection](examples/landsat-collection.json).
 - [JSON Schema](json-schema/schema.json)
 
 ## Item fields
 
-Unlike other extensions the Commons extension does not add any fields to a STAC Item, instead it allows one to move fields out of Item and into the parent STAC Collection, from which any member Item will inherit. Any field under an Items properties can be removed and added to the Collection properties. Since a Collection contains no properties itself, anything under properties are metadata fields that are common across all member Items.
+Unlike other extensions the Commons extension does not add any fields to a STAC Item, instead it allows one to move fields out of Item and into the parent STAC Collection, from which any member Item will inherit. Any field under an Items `properties` field can be removed and added to the Collection `properties` field. Since a Collection contains no properties itself, anything under properties are metadata fields that are common across all member Items.
 
-This provides maximum flexibility to data providers, as the set of common metadata fields can vary between different types of data. For instance, Landsat and Sentinel data always has a `sat:off_nadir_angle` value of `0`, because those satellites are always pointed downward (i.e., nadir), while satellite that can be pointed will have varying `sat:off_nadir_angle` values. The Commons extension allow the data provider to define the set of metadata that defines the colleciton. While some metadata fields are more likely to be part of the common set, such as or `instrument` rather than `eo:cloud_cover`, it depends on how the data provider chooses to organize their data.
+This provides maximum flexibility to data providers, as the set of common metadata fields can vary between different types of data. For instance, Landsat and Sentinel data always has a `sat:off_nadir_angle` value of `0`, because those satellites are always pointed downward (i.e., nadir), while satellite that can be pointed will have varying `sat:off_nadir_angle` values. The Commons extension allow the data provider to define the set of metadata that defines the collection. While some metadata fields are more likely to be part of the common set, such as or `instrument` rather than `eo:cloud_cover`, it depends on how the data provider chooses to organize their data.
 
 If a metadata field is specified in the Collection properties, it will be ignored in any Item that links to that Collection. This is important because a Collection is the metadata that is common across all Item objects. If a field is variable at all, it should not be part of the Commons.
 
