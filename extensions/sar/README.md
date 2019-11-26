@@ -34,18 +34,20 @@ If the data has been collected by a satellite, it is strongly recommended to use
 
 **sar:polarization** specifies a single polarization or a polarization combination. For single polarized radars one of `HH`, `VV`, `HV` or `VH` must be set. Fully polarimetric radars add all four polarizations to the array. Dual polarized radars and alternating polarization add the corresponding polarizations to the array, for instance for `HH+HV` add both `HH` and `HV`.
 
-**sar:product_type**: The product type defines the type of procesed data contained in the assets. A generalized list of suggestions include:
+**sar:product_type**: The product type defines the type of procesed data contained in the assets. A list of suggestions include:
 
 | sar:product_type | Data Type | Description |
 |-------------------|----------------|----------------|
 | SSC | complex | Single-look Slant-range Complex image (standard SLC) |
-| MGD | amplitude | Multilooked Ground-range Detected Image (GRD for Sentinel-1) |
-| GEC | amplitude | Geocoded Ellipsoid Corrected Image |
-| GTC | amplitude | Geocoded Terrain Corrected Image |
-| RTC | amplitude | Geocoded Radiometrically Terrain Corrected Image |
-| SGC | complex | Single-look Ground projected Complex image (SLC in Sentinel-1) |
+| MGD | amplitude | Multilooked Ground-range Detected image |
+| GRD | amplitude | Multilooked Ground-range Detected image (used by Sentinel-1)
+| GEC | amplitude | Geocoded Ellipsoid Corrected image |
+| GTC | amplitude | Geocoded Terrain Corrected image |
+| RTC | amplitude | Geocoded Radiometrically Terrain Corrected image |
+| SGC | complex | Single-look Ground projected Complex image |
+| SLC | complex | Single-look Ground projected Complex image (used by Sentinel-1) |
 
-This can vary by data provider, who all may use slightly different names. Sentinel-1 for instance uses `GRD` and `SLC`, which correspond to the more general names `MGD` and `SGC` in the table above. 
+This can vary by data provider, who all may use slightly different names. Sentinel-1 for instance uses `GRD`, wihch is the same as the more general `MGD` and `SLC` instead of `SGC`. 
 
 
 ### Common Frequency Band Names
