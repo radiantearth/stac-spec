@@ -30,7 +30,7 @@
     "instruments": ["asar"],
     "sat_orbit_state": "descending",
     "sar:instrument_mode": "GM",
-    "sar:polarization": ["HH"],
+    "sar:polarizations": ["HH"],
     "sar:resolution_range": 1000,
     "sar:resolution_azimuth": 1000,
     "sar:pixel_spacing_range": 500,
