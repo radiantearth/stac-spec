@@ -10,8 +10,8 @@ Catalogs are not intended to be queried. Their purpose is discovery: to be brows
 by machines to build a search index. A Catalog can be represented in JSON format. Any JSON object 
 that contains all the required fields is a valid STAC Catalog.
 
-- [Examples](examples/) and [Implementations](../implementations.md)
-- [JSON Schema](json-schema/catalog.json) - please see the [validation instructions](../validation/README.md)
+- [Examples](examples/)
+- [JSON Schema](json-schema/catalog.json)
 
 This Catalog specification primarily defines a structure for information to be discoverable. Any use 
 that is publishing a set of related spatiotemporal assets is strongly recommended to also use the 
@@ -65,11 +65,6 @@ catalogs and items:
 - `Catalog` -> `Item` (this is a common structure for a catalog to list links to items)
 - `Catalog` -> `Catalog` (this is a common tree structure to group sets of items. Each catalog in
   this relationship may also include item links as well as catalog links)
-- `Item` -> `Catalog` (example: an item may point to a catalog to describe a set of derived assets,
-  where it may be desirable to have the origin asset as a "parent", such as NDVI generated from
-  RGB/IR)
-- `Item` -> `Item` (example: this relationship may be used to describe a 1-1 parent-child
-  relationship, such as a single derived item from one parent item)
 
 As all STAC Collections are also valid STAC Catalogs, all Catalogs described here could also be Collections.
 
@@ -184,8 +179,5 @@ A typical '_child_' sub-catalog could look similar:
 The `root` catalog in this example could hold a set of sub-catalogs with different STAC collections, e.g. data from other satellites or processed variants of the NAIP imagery.
 
 ## Extensions
-
-There are emerging best practices, which in time will evolve in to specification extensions for
-particular domains or uses.
 
 The [extensions page](../extensions/) gives an overview about relevant extensions for STAC Catalogs.
