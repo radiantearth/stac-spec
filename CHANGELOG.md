@@ -20,12 +20,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html)
 - Collection field `property` and the merge ability moved to a new extension 'Commons'
-<<<<<<< HEAD
-- Added attribute `role` to Item assets, to be used similarly to Link `rel`
-=======
 - Added attribute `role` to Item assets (also Asset definitions extension), to be used similarly to Link `rel`.
 - Collection `summaries` merge array fields now.
->>>>>>> dev
 - Extensions:
     - [datetime-range extension](extensions/datetime-range/README.md): Removed extension prefix from example and schema
     - Data Cube extension: Changed allowed formats (removed PROJ string, addedPROJJSON / WKT2) for reference systems
