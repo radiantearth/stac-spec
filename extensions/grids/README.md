@@ -24,8 +24,8 @@ We find this is valuable in instances where a single dataset may have assets wit
 | ------------------- | ------ | ------------------------------------------------------------ |
 | name                | string | The name of the grid (e.g., "default", "panchromatic"). |
 | description         | string | Description to fully explain the grid. |
-| shape                 | matrix | Number of pixels in x and y directions. |
-| transform            | matrix | The affine transformation coefficients as defined in the GDAL [`GetGeoTransform`](https://gdal.org/api/gdaldataset_cpp.html#_CPPv4N11GDALDataset15GetGeoTransformEPd) or the Rasterio [`Transform`](https://rasterio.readthedocs.io/en/stable/api/rasterio.io.html#rasterio.io.BufferedDatasetWriter.transform).   |
+| shape                 | [number] | Number of pixels in x and y directions. A 2*1 array. |
+| transform            | [number]] | The affine transformation coefficients as defined in the GDAL [`GetGeoTransform`](https://gdal.org/api/gdaldataset_cpp.html#_CPPv4N11GDALDataset15GetGeoTransformEPd) or the Rasterio [`Transform`](https://rasterio.readthedocs.io/en/stable/api/rasterio.io.html#rasterio.io.BufferedDatasetWriter.transform).   |
 
 
 #### Common Grid Types
@@ -33,12 +33,12 @@ We find this is valuable in instances where a single dataset may have assets wit
 
 ## Associating assets with grids
 
-Asset definitions that contain band data should reference the band index. Each asset should provide a `grids:grids` property that is an array of 0 based indexes to the correct [Grids Objects](#grids-object).
+Asset definitions that contain grids data should reference the grids index. Each asset should provide a `grids:grids` property that is an array of 0 based indexes to the correct [Grids Objects](#grids-object).
 
 ### Item [`Asset Object`](../../item-spec/item-spec.md#asset-object) fields
 | Field Name | Type     | Description                                  |
 | ---------- | -------- | -------------------------------------------- |
-| grids:grids   | [number] | Lists the grid names available in the asset. |
+| grids:grids   | number | Lists the grid name available in the asset. |
 
 See [example-landsat8.json](examples/example-landsat8.json) for a full example.
 ```
@@ -68,13 +68,13 @@ See [example-landsat8.json](examples/example-landsat8.json) for a full example.
     "nbar_blue": {
       "href": "ga_ls8c_nbar_3-0-0_114078_2018-09-16_final_band02.tif",
       "type": "image/tiff; application=geotiff",
-      "grids:grids": [0],
+      "grids:grids": 0,
       "title": "NBAR (blue)"
     },
     "nbar_panchromatic": {
       "href": "ga_ls8c_nbar_3-0-0_114078_2018-09-16_final_band08.tif",
       "type": "image/tiff; application=geotiff",
-      "grids:grids": [1],
+      "grids:grids": 1,
       "title": "NBAR (panchromatic)"
     },
     "B3": {
