@@ -51,12 +51,12 @@ See [example-landsat8.json](examples/example-landsat8.json) for a full example.
   "properties": {
     ...
     "grids:grids": [
-      {
+      "name" {
         "name": "default",
         "shape": [7711, 7621],
         "transform": [30.0, 0.0, 188985.0, 0.0, -30.0, -2760885.0, 0.0, 0.0, 1.0],
       },
-      {
+      "name" {
         "name": "panchromatic",
         "shape": [15421, 15241],
         "transform": [15.0, 0.0, 188992.5, 0.0, -15.0, -2760892.5, 0.0, 0.0, 1.0]
