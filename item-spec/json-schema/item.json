@@ -214,9 +214,12 @@
           "title": "Asset type",
           "type": "string"
         },
-        "role": {
-          "title": "Asset role",
-          "type": "string"
+        "roles": {
+          "title": "Asset roles",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     }

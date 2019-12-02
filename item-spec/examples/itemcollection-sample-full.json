@@ -75,7 +75,7 @@
         "thumbnail": {
           "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png",
           "title": "Thumbnail",
-          "role": "thumbnail"
+          "roles": [ "thumbnail" ]
         }
       }
     }

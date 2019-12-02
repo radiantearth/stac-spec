@@ -54,7 +54,7 @@ This list must only contain extensions that extend the Item itself, see the the 
 **assets**: Dictionary of asset objects that can be downloaded, each with a unique key. 
 In general, the keys don't have any meaning and are considered to be non-descriptive unique identifiers.
 Providers may assign any meaning to the keys for their respective use cases, but must not expect that clients understand them.
-To communicate the purpose of an asset better use the `role` field in the [Asset Object](#asset-object).
+To communicate the purpose of an asset better use the `roles` field in the [Asset Object](#asset-object).
 Assets should include the main asset, as well as any 'sidecar' files that are related and help a
 client make sense of the data. Examples of this include extended metadata (in XML, JSON, etc.),
 unusable data masks, satellite ephemeris data, etc. Some assets (like Landsat data) are represented
@@ -178,15 +178,15 @@ or streamed. It is allowed to add additional fields.
 | title       | string | The displayed title for clients and users. |
 | description | string | A description of the Asset providing additional details, such as how it was processed or created. |
 | type        | string | [Media type](#media-types) of the asset. |
-| role        | string | The semantic purpose of the asset, similar to the use of `rel` in links. |
+| roles       | [string] | The semantic role of the asset, similar to the use of `rel` in links. 
 
 #### Asset Role Types
 
-Like the Link `rel` field, the `role` field can be given any value, however here are a few standardized role names.
+Like the Link `rel` field, the `roles` field can be given any value, however here are a few standardized role names.
 
 | Role Name | Description                                                                           |
 | --------- | ------------------------------------------------------------------------------------- |
-| thumbnail | STRONGLY RECOMMENDED. An asset that represents a thumbnail of the item, typically a true color image (for items with assets in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `role` be unique tuple. For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types. |
+| thumbnail | STRONGLY RECOMMENDED. An asset that represents a thumbnail of the item, typically a true color image (for items with assets in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `roles` be unique tuples. For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types. |
 | overview  | An asset that represents a possibly larger view than the thumbnail of the Item , for example, a true color composite of multi-band data. |
 | metadata  | A metadata sidecar file describing the data in this item, for example the Landsat-8 MTL file. |
 
