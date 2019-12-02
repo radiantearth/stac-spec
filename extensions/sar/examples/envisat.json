@@ -1,8 +1,10 @@
 {
-  "stac_version": "0.8.1",
+  "stac_version": "0.9.0",
   "stac_extensions": [
     "datetime-range",
-    "sar"
+    "sat",
+    "sar",
+    "instrument"
   ],
   "id": "ASA_GM1_1PNPDE20090520_023957_000001022079_00118_37747_3607",
   "type": "Feature",
@@ -21,10 +23,14 @@
   },
   "properties": {
     "datetime": "2009-05-20T02:40:46.763325Z",
-    "dtr:start_datetime": "2009-05-20T02:40:01.042784Z",
-    "dtr:end_datetime": "2009-05-20T02:41:31.483865Z",
+    "start_datetime": "2009-05-20T02:40:01.042784Z",
+    "end_datetime": "2009-05-20T02:41:31.483865Z",
+    "platform": "envisat",
+    "constellation": "envisat",
+    "instruments": ["asar"],
+    "sat_orbit_state": "descending",
     "sar:instrument_mode": "GM",
-    "sar:polarization": ["HH"],
+    "sar:polarizations": ["HH"],
     "sar:resolution_range": 1000,
     "sar:resolution_azimuth": 1000,
     "sar:pixel_spacing_range": 500,
@@ -32,30 +38,15 @@
     "sar:looks_range": 3,
     "sar:looks_azimuth": 4,
     "sar:frequency_band": "C",
-    "sar:center_wavelength": 5.623568898893265,
     "sar:center_frequency": 5.331,
-    "sar:pass_direction": "descending",
-    "sar:absolute_orbit": 37747,
-    "sar:type": "GM1_1P",
-    "sar:bands": [
-      {
-        "name": "amplitude",
-        "data_type": "amplitude",
-        "polarization": "HH"
-      },
-      {
-        "name": "intensity",
-        "description": "Equals the square of the amplitude band",
-        "data_type": "intensity",
-        "polarization": "HH"
-      }
-    ]
+    "sar:product_type": "GM1_1P"
   },
   "assets": {
     "product": {
       "href": "ASA_GM1_1PNPDE20090520_023957_000001022079_00118_37747_3607.n1.gz",
       "type": "application/gzip",
-      "sar:bands": [0,1]
+      "description": "Amplitude and Intensity. Intensity equals the square of the amplitude band",
+      "sar:polarizations": ["HH", "HH"]
     }
   },
   "links": [

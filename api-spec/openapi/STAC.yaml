@@ -190,7 +190,31 @@ components:
         providers:
           $ref: '#/components/schemas/providers'
         summaries:
-          $ref: '#/components/schemas/summaries'
+          description: >-
+            Summaries are either a unique set of all available values *or* statistics. Statistics by default only specify the range (minimum and maximum values), but can optionally be accompanied by additional statistical values. The range can specify the potential range of values, but it is recommended to be as precise as possible. The set of values must contain at least one element and it is strongly recommended to list all values. It is recommended to list as many properties as reasonable so that consumers get a full overview of the Collection. Properties that are covered by the Collection specification (e.g. `providers` and `license`) may not be repeated in the summaries.
+          type: object
+          additionalProperties:
+            oneOf:
+              - type: array
+                title: Set of values
+                items:
+                  description: A value of any type.
+              - type: object
+                title: Statistics
+                description: >-
+                  By default, only ranges with a minimum and a maximum value can be specified. Ranges can be specified for ordinal values only, which means they need to have a rank order. Therefore, ranges can only be specified for numbers and some special types of strings. Examples: grades (A to F), dates or times. Implementors are free to add other derived statistical values to the object, for example `mean` or `stddev`.
+                required:
+                  - min
+                  - max
+                properties:
+                  min:
+                    anyOf:
+                      - type: string
+                      - type: number
+                  max:
+                    anyOf:
+                      - type: string
+                      - type: number
       example:
         stac_version: 0.8.1
         stac_extensions: []
@@ -241,10 +265,10 @@ components:
             - sentinel-2
           'instruments':
             - msi
-          'eo:off_nadir':
+          'sat:off_nadir_angle':
             min: 0
             max: 100
-          'eo:sun_elevation':
+          'sat:sun_elevation_angle':
             min: 6.78
             max: 89.9
           'eo:bands':
@@ -578,32 +602,6 @@ components:
             format: uri
           - title: Reference to a core extension
             type: string
-    summaries:
-      description: >-
-        Summaries are either a unique set of all available values *or* statistics. Statistics by default only specify the range (minimum and maximum values), but can optionally be accompanied by additional statistical values. The range can specify the potential range of values, but it is recommended to be as precise as possible. The set of values must contain at least one element and it is strongly recommended to list all values. It is recommended to list as many properties as reasonable so that consumers get a full overview of the Collection. Properties that are covered by the Collection specification (e.g. `providers` and `license`) may not be repeated in the summaries.
-      type: object
-      additionalProperties:
-        oneOf:
-          - type: array
-            title: Set of values
-            items:
-              description: A value of any type.
-          - type: object
-            title: Statistics
-            description: >-
-              By default, only ranges with a minimum and a maximum value can be specified. Ranges can be specified for ordinal values only, which means they need to have a rank order. Therefore, ranges can only be specified for numbers and some special types of strings. Examples: grades (A to F), dates or times. Implementors are free to add other derived statistical values to the object, for example `mean` or `stddev`.
-            required:
-              - min
-              - max
-            properties:
-              min:
-                anyOf:
-                  - type: string
-                  - type: number
-              max:
-                anyOf:
-                  - type: string
-                  - type: number
     # This schema extends OAFeat.yaml#/components/schemas/landingPage to add and require additional fields.
     landingPage:
       type: object
@@ -618,8 +616,6 @@ components:
           $ref: '#/components/schemas/stac_extensions'
         id:
           type: string
-        summaries:
-          $ref: '#/components/schemas/summaries'
     itemCollection:
       description: A GeoJSON FeatureCollection augmented with foreign members that contain values relevant to a STAC entity
       type: object
@@ -705,14 +701,14 @@ components:
                 - producer
                 - licensor
               url: 'https://cool-sat.com/'
-          'eo:sun_azimuth': 168.7
+          'sat:sun_azimuth_angle': 168.7
           'eo:cloud_cover': 0.12
-          'eo:off_nadir': 1.4
+          'sat:off_nadir_angle': 1.4
           'platform': coolsat2
           'instruments':
             - cool_sensor_v1
           'eo:bands': []
-          'eo:sun_elevation': 33.4
+          'sat:sun_elevation_angle': 33.4
           'eo:gsd': 0.512
         collection: CS3
         links:

@@ -39,36 +39,43 @@ inherited from GeoJSON.
 | stac_extensions | [string]                                                              | A list of extensions the Item implements. |
 | id         | string                                                                     | **REQUIRED.** Provider identifier. As most geospatial assets are already defined by some identification scheme by the data provider it is recommended to simply use that ID. Data providers are advised to include sufficient information to make their IDs globally unique, including things like unique satellite IDs. |
 | type       | string                                                                     | **REQUIRED.** Type of the GeoJSON Object. MUST be set to `Feature`. |
-| geometry   | [GeoJSON Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) | **REQUIRED.** Defines the full footprint of the asset represented by this item, formatted according to [RFC 7946, section 3.1](https://tools.ietf.org/html/rfc7946). The footprint should be the default GeoJSON geometry, though additional geometries can be included. Coordinates are specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). |
-| bbox       | [number]                                                                   | **REQUIRED.** Bounding Box of the asset represented by this item using either 2D or 3D geometries. The length of the array must be 2*n where n is the number of dimensions. The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). When using 3D geometries, the elevation of the southwesterly most extent is the minimum depth/height in meters and the elevation of the northeasterly most extent is the maximum.  This field enables more naive clients to easily index and search geospatially. STAC compliant APIs are required to compute intersection operations with the item's geometry field, not its bbox. |
+| geometry   | [GeoJSON Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) | **REQUIRED.** Defines the full footprint of the asset represented by this item, formatted according to [RFC 7946, section 3.1](https://tools.ietf.org/html/rfc7946#section-3.1). The footprint should be the default GeoJSON geometry, though additional geometries can be included. Coordinates are specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). |
+| bbox       | [number]                                                                   | **REQUIRED.** Bounding Box of the asset represented by this item, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5). |
 | properties | [Properties Object](#properties-object)                                    | **REQUIRED.** A dictionary of additional metadata for the item. |
 | links      | [[Link Object](#link-object)]                                              | **REQUIRED.** List of link objects to resources and related URLs. A link with the `rel` set to `self` is strongly recommended. |
-| assets     | Map<string, [Asset Object](#asset-object)>                                 | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key. Some pre-defined keys are listed in the chapter '[Asset types](#asset-types)'. |
+| assets     | Map<string, [Asset Object](#asset-object)>                                 | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key. |
 | collection | string                                                                     | The `id` of the STAC Collection this Item references to (see [`collection` relation type](#relation-types)). This field is *required* if such a relation type is present. This field provides an easy way for a user to search for any Items that belong in a specified Collection. |
 
 **stac_version**: In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
 
-**stac_extensions**: A list of extensions the Item implements. The list contains URLs to the JSON Schema files it can be validated against. For official extensions, a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. If the versions of the extension and the item diverge, you can specify the URL of the JSON schema file.
+**stac_extensions**: A list of extensions the Item implements. The list contains URLs to the JSON Schema files it can be validated against. For official [content extensions](../extensions/README.md#list-of-content-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. This does *not* apply for API extensions. If the versions of the extension and the item diverge, you can specify the URL of the JSON schema file.
+This list must only contain extensions that extend the Item itself, see the the 'Scope' column in the list of extensions. If an extension such as the Commons extension has influence on multiple parts of the whole catalog structure, it must be listed in all affected parts (e.g. Collection and Item for the Commons extension).
 
-**assets** should include the main asset, as well as any 'sidecar' files that are related and help a
+**assets**: Dictionary of asset objects that can be downloaded, each with a unique key. 
+In general, the keys don't have any meaning and are considered to be non-descriptive unique identifiers.
+Providers may assign any meaning to the keys for their respective use cases, but must not expect that clients understand them.
+To communicate the purpose of an asset better use the `role` field in the [Asset Object](#asset-object).
+Assets should include the main asset, as well as any 'sidecar' files that are related and help a
 client make sense of the data. Examples of this include extended metadata (in XML, JSON, etc.),
 unusable data masks, satellite ephemeris data, etc. Some assets (like Landsat data) are represented
 by multiple files - all should be linked to. It is generally recommended that different processing
 levels or formats are not exhaustively listed in an Item, but instead are represented by related
 Items that are linked to, but the best practices around this are still emerging.
 
+**bbox**: Bounding Box of the asset represented by this item using either 2D or 3D geometries, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5). The length of the array must be 2*n where n is the number of dimensions. The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). When using 3D geometries, the elevation of the southwesterly most extent is the minimum depth/height in meters and the elevation of the northeasterly most extent is the maximum.  This field enables more naive clients to easily index and search geospatially. STAC compliant APIs are required to compute intersection operations with the item's geometry field, not its bbox.
+
 ### Properties Object
 
 The Properties object adds additional metadata to the GeoJSON Object. Additional fields can be introduced through 
 extensions. It is generally allowed to add custom fields.
 
-It is recommended to add multiple attributes for related values instead of a nested object, e.g., two fields `eo:cloud_cover` and `eo:sun_azimuth` instead of a field `eo` with an object value containing the two fields. The convention (as used within Extensions) is for related attributes to use a common prefix on the attribute names to group them, e.g. `eo`. A nested data structure should only be used when the data itself is nested, as with `eo:bands`.
+It is recommended to add multiple attributes for related values instead of a nested object, e.g., two fields `eo:cloud_cover` and `sat:sun_azimuth_angle` instead of a field `eo` with an object value containing the two fields. The convention (as used within Extensions) is for related attributes to use a common prefix on the attribute names to group them, e.g. `eo`. A nested data structure should only be used when the data itself is nested, as with `eo:bands`.
 
 | Field Name | Type   | Description                                                  |
 | ---------- | ------ | ------------------------------------------------------------ |
 | datetime   | string | **REQUIRED.** The searchable date and time of the assets, in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
-| license    | string | Item's license(s) as a SPDX [License identifier](https://spdx.org/licenses/) or [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60). Alternatively, use `proprietary` if the license is not on the SPDX license list or `various` if multiple licenses apply. In these two cases links to the license texts SHOULD be added, see the [`license` relation type](#relation-types). |
-| providers  | [[Provider Object](#provider-object)] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
+| license    | string | Item's license(s), either a SPDX [License identifier](https://spdx.org/licenses/), `various` if multiple licenses apply or `proprietary` for all other cases. Should be defined at the Collection level if possible. |
+| providers  | [[Provider Object](#provider-object)] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. Should be defined at the Collection level if possible. |
 | title      | string | A human readable title describing the item. |
 | created    | string | Creation date and time of this metadata file. This is NOT the timestamp the asset was created. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
 | updated    | string | Date and time this metadata file was updated last. This is NOT the timestamp the asset was updated last. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
@@ -80,7 +87,7 @@ data, so use whatever single date and time is most useful for a user to search f
 extensions may further specify the meaning of the main `datetime` field, and many will also add more
 datetime fields.
 
-**license** and **provider** should be defined at the Collection level if possible.
+**license**: Items's license(s) as a SPDX [License identifier](https://spdx.org/licenses/). Alternatively, use `proprietary` (see below) if the license is not on the SPDX license list or `various` if multiple licenses apply. In all cases links to the license texts SHOULD be added, see the [`license` link relation type](#relation-types). If no link to a license is included and the `license` field is set to `proprietary`, the collection is private, and consumers have not been granted any explicit right to use the data.
 
 ### Provider Object
 
@@ -131,8 +138,8 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | self         | STRONGLY RECOMMENDED. _Absolute_ URL to the Item if it is available at a public URL. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root         | URL to the root STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
-| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may hold [common fields](../collection-spec/collection-spec.md#common-fields-and-standalone-collections) of this and other Items (see chapter '[Collections](#Collections)' for more explanations). _Absolute_ URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
-| license | The license URL(s) for the item SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC Item with the license text in a separate file and link to this file. |
+| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may use the use the [Commons extension](../extensions/commons/README.md) to hold common fields of this and other Items (see chapter '[Collections](#Collections)' for more explanations). _Absolute_ URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
+| license      | The license URL(s) for the item SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC Item with the license text in a separate file and link to this file. |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
 
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
@@ -157,38 +164,31 @@ Linking back must happen in two places:
     ]
     ```
 
+Optionally, common information shared across items can be moved up into STAC Collections
+using the [Commons extension](../extensions/commons/README.md) to avoid duplicating information.
+
 ### Asset Object
 
 An asset is an object that contains a link to data associated with the Item that can be downloaded
 or streamed. It is allowed to add additional fields.
 
-| Field Name | Type   | Description                                                                           |
-| ---------- | ------ | ------------------------------------------------------------------------------------- |
-| href       | string | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
-| title      | string | The displayed title for clients and users.                                            |
-| type       | string | [Media type](#media-types) of the asset.                                              |
-| roles      | [string] | The semantic purpose of the asset.                                                   |
+| Field Name  | Type   | Description |
+| ----------- | ------ | ----------- |
+| href        | string | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
+| title       | string | The displayed title for clients and users. |
+| description | string | A description of the Asset providing additional details, such as how it was processed or created. |
+| type        | string | [Media type](#media-types) of the asset. |
+| roles       | [string] | The semantic role of the asset, similar to the use of `rel` in links. 
 
-**role** is intended to be a value that describes semantic usage of an asset, similarly to the use of `rel` in 
-Link. 
- 
 #### Asset Role Types
 
-Like the Link `rel` field, the `role` field can be given any value.  These are a few standardized role names.
+Like the Link `rel` field, the `role` field can be given any value, however here are a few standardized role names.
 
 | Role Name | Description                                                                           |
 | --------- | ------------------------------------------------------------------------------------- |
-| thumbnail |  An asset that represents a thumbnail of the item, typically a true color image (for items with assets in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `role` be unique tuple. For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types. |
+| thumbnail | STRONGLY RECOMMENDED. An asset that represents a thumbnail of the item, typically a true color image (for items with assets in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `role` be unique tuple. For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types. |
 | overview  | An asset that represents a possibly larger view than the thumbnail of the Item , for example, a true color composite of multi-band data. |
 | metadata  | A metadata sidecar file describing the data in this item, for example the Landsat-8 MTL file. |
-
-#### Asset types
-
-The following types are common for assets and are used as the key for the Asset Object:
-
-| Type      | Description |
-| --------- | ----------- |
-| thumbnail | STRONGLY RECOMMENDED. A downsampled image of the core asset, for direct display online in a web page or interactive search application. Even assets that are less easily translated in to a visual image should provide some visual representation, that users can browse. For example a SAR asset can render an elevation mask or hillshade for display. If at all possible it should be included for a better user experience in searching data. |
 
 #### Media Types
 
@@ -228,6 +228,9 @@ Both can still appear in old catalogues, but are deprecated and should be replac
 
 There are emerging best practices, which in time will evolve in to specification extensions for
 particular domains or uses.
+
+Optionally, common information shared across items can be split up into STAC Collections using the
+[Commons extension](../extensions/commons/README.md).
 
 The [extensions page](../extensions/README.md) gives an overview about relevant extensions for STAC Items.
 

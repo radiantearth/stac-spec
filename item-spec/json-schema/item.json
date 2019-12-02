@@ -48,6 +48,7 @@
                     "type": "string",
                     "enum": [
                       "checksum",
+                      "commons",
                       "cube",
                       "datetime-range",
                       "eo",
@@ -203,6 +204,10 @@
         },
         "title": {
           "title": "Asset title",
+          "type": "string"
+        },
+        "description": {
+          "title": "Asset description",
           "type": "string"
         },
         "type": {
