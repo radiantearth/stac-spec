@@ -156,11 +156,11 @@
       "type": "image/jpeg",
       "title": "Thumbnail",
       "description": "A medium sized thumbnail",
-      "role": "thumbnail"
+      "roles": [ "thumbnail" ]
     },
     "metadata": {
       "type": "mtl",
-      "role": "metadata",
+      "roles": [ "metadata" ],
       "title": "Original Metadata",
       "description": "The original MTL metadata file provided for each Landsat scene"
     },
