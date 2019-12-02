@@ -31,18 +31,18 @@
                 "null"
               ]
             },
-            "native_crs_proj4":{
+            "asset_crs_proj4":{
               "title":"Coordinate Reference System in PROJ format",
               "type":[
                 "string",
                 "null"
               ]
             },
-            "native_crs_geometry":{
+            "asset_crs_geometry":{
               "title":"Geometry",
               "type":"object"
             },
-            "native_crs_bbox":{
+            "asset_crs_bbox":{
               "title":"Extent",
               "type":"array",
               "minItems":4,
@@ -51,7 +51,7 @@
                 "type":"number"
               }
             },
-            "native_crs_centroid":{
+            "asset_crs_centroid":{
               "title":"Centroid",
               "type":"object",
               "required": [

@@ -1,0 +1,40 @@
+{
+  "id": "LC81530252014153LGN00",
+  "type": "Feature",
+  "properties": {
+    "epsg": 32614,
+    "asset_crs_proj4": "+proj=utm +zone=14 +datum=WGS84 +units=m +no_defs",
+    "asset_crs_geometry": {
+      "coordinates": [
+        [
+          [
+            169200.0,
+            3712800.0
+          ],
+          [
+            403200.0,
+            3712800.0
+          ],
+          [
+            403200.0,
+            3951000.0
+          ],
+          [
+            169200.0,
+            3951000.0
+          ],
+          [
+            169200.0,
+            3712800.0
+          ]
+        ]
+      ],
+      "type": "Polygon"
+    },
+    "asset_crs_bbox": [ 169200.0, 3712800.0, 403200.0, 3951000.0 ],
+    "asset_crs_centroid": {
+      "lat": 34.595302781575604,
+      "lon": -101.34448382627504
+    }
+  }
+}
