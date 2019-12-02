@@ -3,15 +3,12 @@ components:
     itemCollection:
       type: object
       properties:
-        'search:metadata':
+        'context':
           type: object
           required:
             - next
             - returned
           properties:
-            next:
-              type: string
-              nullable: true
             limit:
               type: integer
               nullable: true

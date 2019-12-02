@@ -19,18 +19,20 @@ An Asset Object defined at the Collection level is nearly the same as the [Asset
 The `href` field is not required, because collections don't point to any data by themselves.
 Additioanlly the remaining fields, `title` and `type` are required in the Asset Definition, in order for it to adequately describe Item assets.
 
-| Field Name         | Type   | Description                                                  |
-| ------------------ | ------ | ------------------------------------------------------------ |
-| assets | Map<string, [Asset Object](#asset-object)> | **REQUIRED.** A dictionary of assets that can be found in member Items |
+| Field Name | Type                                       | Description |
+| ---------- | ------------------------------------------ | ----------- |
+| assets     | Map<string, [Asset Object](#asset-object)> | **REQUIRED.** A dictionary of assets that can be found in member Items |
 
 ### Asset Object
 
 An asset is an object that contains details about the datafiles that will be included in member Items. Assets included at the Collection level do not imply that all assets are available from all Items. However, it is recommended that the Asset Definition is a complete set of all assets that may be available from any member Items.
 
-| Field Name | Type   | Description                                                                           |
-| ---------- | ------ | ------------------------------------------------------------------------------------- |
-| title      | string | **REQUIRED.** The displayed title for clients and users. This should provide enough information to a user to understand what the asset is  |
-| type       | string | **REQUIRED.** [Media type](../../item-spec/item-spec.md#media-types) of the asset.
+| Field Name  | Type   | Description |
+| ----------- | ------ | ----------- |
+| title       | string | The displayed title for clients and users. |
+| description | string | A description of the Asset providing additional details, such as how it was processed or created. |
+| type        | string | [Media type](#media-types) of the asset. |
+| role        | string | The semantic purpose of the asset, similar to the use of `rel` in links. |
 
 Other custom fields, or fields from other extensions may also be included in the Asset object.
 
