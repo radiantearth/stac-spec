@@ -8,8 +8,8 @@ We suggest encoding this information as two sets of data, the `shape` which is t
 
 We find this is valuable in instances where a single dataset may have assets with different transformations. An example that we find in our implementation is a single dataset that includes a panchromatic band/measurement. 
 
-- [Example (Landsat 8)](examples/example-landsat8.json)
-- [JSON Schema](json-schema/schema.json)
+   - Example (to be added)
+   - JSON Schema (to be added)
 
 ## Item fields
 
