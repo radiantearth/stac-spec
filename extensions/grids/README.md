@@ -40,7 +40,7 @@ Asset definitions that contain grids data should reference the grids index. Each
 | ---------- | -------- | -------------------------------------------- |
 | grids:grids   | number | Lists the grid name available in the asset. |
 
-See [example-landsat8.json](examples/example-landsat8.json) for a full example.
+See <example-to-be-done> for a full example.
 ```
 {
   "stac_version": "0.8.1",
@@ -68,20 +68,14 @@ See [example-landsat8.json](examples/example-landsat8.json) for a full example.
     "nbar_blue": {
       "href": "ga_ls8c_nbar_3-0-0_114078_2018-09-16_final_band02.tif",
       "type": "image/tiff; application=geotiff",
-      "grids:grids": 0,
+      "grids:grids": "default",
       "title": "NBAR (blue)"
     },
     "nbar_panchromatic": {
       "href": "ga_ls8c_nbar_3-0-0_114078_2018-09-16_final_band08.tif",
       "type": "image/tiff; application=geotiff",
-      "grids:grids": 1,
+      "grids:grids": "panchromatic",
       "title": "NBAR (panchromatic)"
-    },
-    "B3": {
-      "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B3.TIF",
-      "type": "image/tiff; application=geotiff",
-      "eo:bands": [2],
-      "title": "Band 3 (green)"
     },
     ...
   }
