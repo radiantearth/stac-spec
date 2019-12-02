@@ -14,9 +14,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
      - Instrument extension, adds fields: `platform`, `instruments`, `constellation` (all moved from EO and SAR extensions), and `mission`.
      - Data Cube extension can be used in Collections, added new field `description`.
      - Added `description` and `role` fields to the Asset in the [Asset Extension](extensions/asset/README.md)
+     - Added a proposed `Grids` Extension to enable a single item having assets with different grids (eg. panchromatic)
+
 - STAC API:
      - Added the [Item and Collection API Version extension](api-spec/extensions/version/README.md) to support versioning in the API specification
-     - Added a proposed `Grids` Extension to enable a single item having assets with different grids (eg. panchromatic)
 
 ### Changed
 - Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html).
