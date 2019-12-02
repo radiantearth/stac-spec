@@ -25,7 +25,7 @@ We find this is valuable in instances where a single dataset may have assets wit
 | name                | string | The name of the grid (e.g., "default", "panchromatic"). |
 | description         | string | Description to fully explain the grid. |
 | shape                 | [number] | Number of pixels in x and y directions. A 2*1 array. |
-| transform            | [number]] | The affine transformation coefficients as defined in the GDAL [`GetGeoTransform`](https://gdal.org/api/gdaldataset_cpp.html#_CPPv4N11GDALDataset15GetGeoTransformEPd) or the Rasterio [`Transform`](https://rasterio.readthedocs.io/en/stable/api/rasterio.io.html#rasterio.io.BufferedDatasetWriter.transform).   |
+| transform            | [number] | The affine transformation coefficients as defined in the GDAL [`GetGeoTransform`](https://gdal.org/api/gdaldataset_cpp.html#_CPPv4N11GDALDataset15GetGeoTransformEPd) or the Rasterio [`Transform`](https://rasterio.readthedocs.io/en/stable/api/rasterio.io.html#rasterio.io.BufferedDatasetWriter.transform).   |
 
 
 #### Common Grid Types
@@ -51,12 +51,12 @@ See [example-landsat8.json](examples/example-landsat8.json) for a full example.
   "properties": {
     ...
     "grids:grids": [
-      "name" {
+      "default" {
         "name": "default",
         "shape": [7711, 7621],
         "transform": [30.0, 0.0, 188985.0, 0.0, -30.0, -2760885.0, 0.0, 0.0, 1.0],
       },
-      "name" {
+      "panchromatic" {
         "name": "panchromatic",
         "shape": [15421, 15241],
         "transform": [15.0, 0.0, 188992.5, 0.0, -15.0, -2760892.5, 0.0, 0.0, 1.0]
