@@ -58,7 +58,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Updated specification to base on OGC API - Features - Part 1: Core, v1.0.0 instead of OGC API - Features - Part 1: Core, v1.0.0-draft.2 (fka WFS3 draft 2).
-- Moved Single Item Extension to core (`license` and `providers` properties for Items)
 - Added Projection Extension to describe Items with Assets that have an associated geospatial projection.
 
 ### Fixed
