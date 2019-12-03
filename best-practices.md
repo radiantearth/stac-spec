@@ -143,30 +143,30 @@ Adding a single `self` link at the root is recommended for online catalogs, turn
 
 ### Versioning for Catalogs
 
-The STAC API [Version Extension](/api-spec/extensions/version) provides endpoints and semantics for keeping and accessing previous versions of Collections and Items. The same semantics can be used in static catalogs to preserve previous versions of the documents and link them together.
+The STAC [Items and Collections API Version Extension](/api-spec/extensions/version) provides endpoints and semantics for keeping and accessing previous versions of Collections and Items. The same semantics can be used in static catalogs to preserve previous versions of the documents and link them together.
 
 In order to achieve this, the static catalog must make sure that for every record created, a copy of the record is also created in a separate location and it is named with the version id adopted by the catalog. See [here](/api-spec/extensions/version#version-id) for recommendations on versioning schema.
 
-The main record should also provide a link to the versioned record following the linking patterns described [here](/api-spec/extensions/version#link-rel-types). For every update to the record, the same cycle is repeated:
+The main record should also provide a link to the versioned record following the linking patterns described [here](/extensions/version#relation-types). For every update to the record, the same cycle is repeated:
 
-1. add link from the updated record to the previous version
-2. Copy the updated record to the versions folder and name it correctly
+1. Add link from the updated record to the previous version
+2. Create a copy of the updated record and name it correctly
 
 #### Example
 
-When the record `item1.json` is created, a copy of it is created under the versions folder. `item1.json` includes `permalink` to `versions/01.json`
+When the record `my_item.json` is created, a copy of it is also created. `my_item.json` includes `permalink` to `my_item_01.json`
 
 ```
 --- root / collections / example_collection / items / my_item / my_item.json
---- root / collections / example_collection / items / my_item / versions / 01.json
+--- root / collections / example_collection / items / my_item / my_item_01.json
 ```
 
-When `item1.json` is updated, the new `item1.json` includes a link to `versions/01.json` and is also copied to `versions/02.json`. This ensures that `02.json` includes a link to `01.json`
+When `my_item.json` is updated, the new `my_item.json` includes a link to `my_item_01.json` and is also copied to `my_item_02.json`. This ensures that `my_item_02.json` includes a link to `my_item_01.json`
 
 ```
 --- root / collections / example_collection / items / my_item / my_item.json
---- root / collections / example_collection / items / my_item / versions / 02.json
---- root / collections / example_collection / items / my_item / versions / 01.json
+--- root / collections / example_collection / items / my_item / my_item_01.json
+--- root / collections / example_collection / items / my_item / my_item_02.json
 ```
 
 ### Published Catalogs
