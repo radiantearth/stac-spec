@@ -59,7 +59,7 @@
       "href": "s3://sentinel-s2-l2a/tiles/35/V/MK/2018/6/5/0/metadata.xml",
       "title": "Tile metadata",
       "type": "application/xml",
-      "role": "metadata"
+      "roles": [ "metadata" ]
     },
     "tileInfo": {
       "href": "s3://sentinel-s2-l2a/tiles/35/V/MK/2018/6/5/0/tileInfo.json",
@@ -75,7 +75,7 @@
       "href": "s3://sentinel-s2-l2a/tiles/35/V/MK/2018/6/5/0/qi/L2A_PVI.jp2",
       "title": "True color thumbnail",
       "type": "image/jp2",
-      "role": "thumbnail"
+      "roles": [ "thumbnail" ]
     },
     "B02_10m": {
       "href": "s3://sentinel-s2-l2a/tiles/35/V/MK/2018/6/5/0/R10m/B02.jp2",
@@ -280,7 +280,7 @@
       "href": "s3://sentinel-s2-l2a/tiles/35/V/MK/2018/6/5/0/R60m/TCI.jp2",
       "title": "True Color Image (60m)",
       "type": "image/jp2",
-      "role": "overview"
+      "roles": [ "overview" ]
     },
     "WVP_60m": {
       "href": "s3://sentinel-s2-l2a/tiles/35/V/MK/2018/6/5/0/R60m/WVP.jp2",
@@ -304,6 +304,6 @@
     "platform": "sentinel-2",
     "eo:epsg": 32635,
     "eo:cloud_cover": 88.459539,
-    "eo:sun_azimuth" : 176.091667178268
+    "sat:sun_azimuth_angle" : 176.091667178268
   }
 }

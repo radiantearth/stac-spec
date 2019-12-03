@@ -10,8 +10,8 @@ Catalogs are not intended to be queried. Their purpose is discovery: to be brows
 by machines to build a search index. A Catalog can be represented in JSON format. Any JSON object 
 that contains all the required fields is a valid STAC Catalog.
 
-- [Examples](examples/) and [Implementations](../implementations.md)
-- [JSON Schema](json-schema/catalog.json) - please see the [validation instructions](../validation/README.md)
+- [Examples](examples/)
+- [JSON Schema](json-schema/catalog.json)
 
 This Catalog specification primarily defines a structure for information to be discoverable. Any use 
 that is publishing a set of related spatiotemporal assets is strongly recommended to also use the 
@@ -65,11 +65,6 @@ catalogs and items:
 - `Catalog` -> `Item` (this is a common structure for a catalog to list links to items)
 - `Catalog` -> `Catalog` (this is a common tree structure to group sets of items. Each catalog in
   this relationship may also include item links as well as catalog links)
-- `Item` -> `Catalog` (example: an item may point to a catalog to describe a set of derived assets,
-  where it may be desirable to have the origin asset as a "parent", such as NDVI generated from
-  RGB/IR)
-- `Item` -> `Item` (example: this relationship may be used to describe a 1-1 parent-child
-  relationship, such as a single derived item from one parent item)
 
 As all STAC Collections are also valid STAC Catalogs, all Catalogs described here could also be Collections.
 
@@ -96,42 +91,19 @@ the [best practices document](../best-practices.md), and include things like cat
 publishing catalogs, and more. This specification is designed for maximum flexbility, but the best practices provide
 guidance for good recommendations when implementing.
 
-### Catalog Types
-
-Though it is technically an implementation detail outside the scope of the core specification, it is worth mentioning
-that implementations generally fall into two different 'types':
-
-* **Static Catalogs** can be implemented as simply files online, often stored in an cloud storage service like [Amazon S3](https://aws.amazon.com/s3/). 
-or [Google Cloud Storage](https://cloud.google.com/storage/).
-The core JSON documents and link structures are encoded in the file, and work as long as things are structured properly.
-* **Dynamic Catalogs** are implemented in software, returning the JSON documents and links dynamically. This is mostly 
-used when data holdings are already exposed through a dynamic interface, and STAC can be an alternate facade on the 
-same core database or search cluster.
-
-The two catalog types both implement the same fields and links, and can be treated as the same by clients. For more 
-details on the two types and how you might use them see the [Static and Dynamic Catalogs](../best-practices.md#static-and-dynamic-catalogs) section of the best practices document.
-
 ## Catalog fields
 
 | Element      | Type          | Description                                                  |
 | ------------ | ------------- | ------------------------------------------------------------ |
-| stac_version | string        | **REQUIRED.** The STAC version the catalog implements.       |
+| stac_version | string        | **REQUIRED.** The STAC version the catalog implements. STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind. |
 | stac_extensions | [string]   | A list of extensions the Catalog implements.                 |
 | id           | string        | **REQUIRED.** Identifier for the catalog.                    |
 | title        | string        | A short descriptive one-line title for the catalog.          |
 | description  | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| summaries    | Map<string, [*]\|[Stats Object](#stats-object)> | A map of property summaries, either a set of values or statistics such as a range. |
 | links        | [[Link Object](#link-object)] | **REQUIRED.** A list of references to other documents.       |
 
-**stac_version**: In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
-
-**stac_extensions**: A list of extensions the Catalog implements. This does NOT declare the extensions of children or Items. The list contains URLs to the JSON Schema files it can be validated against. For official extensions, a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. If the versions of the extension and the catalog diverge, you can specify the URL of the JSON schema file.
-
-**summaries**: You can optionally summarize the potential values that are available as part of the `properties` in STAC Items.
-Summaries are used to inform users about values they can expect from items without having to crawl through them. It also helps do fully define collections, especially if they don't link to any Items.
-Summaries are either a unique set of all values or statistics. Statistics by default only specify the range (minimum and maximum values), but can optionally be accompanied by additional statistical values.
-The range can specify the potential range of values, but it is recommended to be as precise as possible. The set of values must contain at least one element and it is strongly recommended to list all values.
-It is recommended to list as many properties as reasonable so that consumers get a full overview about the properties included in the Items. Nevertheless, it is not very useful to list all potential `title` values of the Items. Also, a range for the `datetime` property may be better suited to be included in the STAC Collection. In general, properties that are covered by the Collection specification (e.g. `providers` and `license`) may not be repeated in the summaries.
+**stac_extensions**: A list of extensions the Catalog implements. This does NOT declare the extensions of children or Items. The list contains URLs to the JSON Schema files it can be validated against. For official [content extensions](../extensions/README.md#list-of-content-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. This does *not* apply for API extensions. If the versions of the extension and the catalog diverge, you can specify the URL of the JSON schema file.
+This list must only contain extensions that extend the Catalog itself, see the the 'Scope' column in the list of extensions.
 
 ### Link Object
 
@@ -148,8 +120,8 @@ with links.
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
 
 Please see the chapter 'relative vs absolute links' in the [Item spec](../item-spec/item-spec.md#relative-vs-absolute-links)
- for a discussion on that topic, as well as the [use of links](../best-practices.md#use-of-links) section of the 
- catalog best practices document.
+for a discussion on that topic, as well as the [use of links](../best-practices.md#use-of-links) section of the 
+catalog best practices document.
 
 #### Relation types
 
@@ -164,18 +136,6 @@ The following types are commonly used as `rel` types in the Link Object of a STA
 | item    | URL to a STAC [Item](../item-spec/item-spec.md). |
 
 **Note:** A link to at least one `item` or `child` catalog is **REQUIRED**.
-
-### Stats Object
-
-For a good understanding of the summarized field, statistics can be added. By default, only ranges with a minimum and a maximum value can be specified.
-Ranges can be specified for [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values only, which means they need to have a rank order.
-Therefore, ranges can only be specified for numbers and some special types of strings. Examples: grades (A to F), dates or times.
-Implementors are free to add other derived statistical values to the object, for example `mean` or `stddev`.
-
-| Field Name | Type           | Description |
-| ---------- | -------------- | ----------- |
-| min        | number\|string | **REQUIRED.** Minimum value. |
-| max        | number\|string | **REQUIRED.** Maximum value. |
 
 ## Examples
 
@@ -219,8 +179,5 @@ A typical '_child_' sub-catalog could look similar:
 The `root` catalog in this example could hold a set of sub-catalogs with different STAC collections, e.g. data from other satellites or processed variants of the NAIP imagery.
 
 ## Extensions
-
-There are emerging best practices, which in time will evolve in to specification extensions for
-particular domains or uses.
 
 The [extensions page](../extensions/) gives an overview about relevant extensions for STAC Catalogs.

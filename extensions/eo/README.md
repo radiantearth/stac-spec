@@ -14,9 +14,11 @@ natural focus, and encourage other sensors to make their own extensions. Once th
 these fields will evolve to higher level extensions. In the meantime other implementations are welcome
 to reuse the names and definitions here.
 
-A lot of EO data will have common metadata across many Items. It is not necessary, but recommended	
-to place common fields in [STAC Collections](../../collection-spec/collection-spec.md#common-fields-and-standalone-collections).
-The exact metadata that would appear in a STAC Collection record will vary depending on the dataset.
+A lot of EO data will have common metadata across many Items. 
+It is not necessary, but recommended to use the [Commons extension](../commons/README.md)
+(see chapter "Placing common fields in Collections").
+
+If the data has been collected by a satellite, it is strongly recommended to use the [`sat` extension](../sat/README.md), which in turn requires the [`instrument` extension](../instrument/README.md). If the data has been collected on an airborne platform is is strongly recommended to use the [`instrument` extension](../instrument/README.md).
 
 - [Example (Landsat 8)](examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)
@@ -29,10 +31,6 @@ The exact metadata that would appear in a STAC Collection record will vary depen
 | eo:bands         | [[Band Object](#band-object)] | **REQUIRED.** This is a list of the available bands where each item is a [Band Object](#band-object). |
 | eo:epsg          | integer\|null            | [EPSG code](http://www.epsg-registry.org/) of the datasource, `null` if no EPSG code. |
 | eo:cloud_cover   | number                   | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided. |
-| eo:off_nadir     | number                   | Viewing angle. The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90). |
-| eo:azimuth       | number                   | Viewing azimuth angle. The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360). |
-| eo:sun_azimuth   | number                   | Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360). |
-| eo:sun_elevation | number                   | Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (0-90). |
 
 **eo:gsd** is the nominal Ground Sample Distance for the data, as measured in meters on the ground. There are many
 definitions of GSD. The value of this attribute should be related to the spatial resolution at the sensor, rather
@@ -222,4 +220,12 @@ the eo:bands portion is still being fleshed out.
 
 ## Extensions
 
-The [extensions page](../README.md) gives an overview about related extensions.
+The [extensions page](../README.md) gives an overview about related extensions. Of particular relevance to EO data:
+
+* the [Sat Extension Specification](../sat/README.md) to describe SAR data collected from a satellite.
+* the [Instrument Extension Specification](../instrument/README.md) is required when using the EO extension, which contains fields about the sensor and platform used to collect the data. It is required when using the Sat extension.
+
+### Placing common fields in Collections
+A lot of EO data will have common metadata across many Items. It is not necessary, but recommended	
+to use the [Commons extension](../commons/README.md) in combination with [STAC Collections](../../collection-spec/README.md).
+The exact metadata that would appear in a STAC Collection record will vary depending on the dataset.
