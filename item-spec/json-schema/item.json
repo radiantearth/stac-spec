@@ -85,12 +85,9 @@
               "title": "Asset links",
               "description": "Links to assets",
               "type": "object",
-              "patternProperties": {
-                ".+": {
-                  "$ref": "#/definitions/asset"
-                }
-              },
-              "additionalProperties": false
+              "additionalProperties": {
+                "$ref": "#/definitions/asset"
+              }
             },
             "properties": {
               "type": "object",
