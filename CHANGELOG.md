@@ -13,15 +13,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
      - [Version Indicators extension](extensions/version/README.md), adds `version` and `deprecated` fields to STAC Items and Collections
      - Instrument extension, adds fields: `platform`, `instruments`, `constellation` (all moved from EO and SAR extensions), and `mission`
      - Data Cube extension can be used in Collections, added new field `description`
-     - Added `description` and `role` fields to the Asset in the [Asset Extension](extensions/asset/README.md)
+     - Added `description` and `roles` fields to the Asset in the [Asset Extension](extensions/asset/README.md)
 - STAC API:
      - Added the [Item and Collection API Version extension](api-spec/extensions/version/README.md) to support versioning in the API specification
 
 ### Changed
 - Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html)
 - Collection field `property` and the merge ability moved to a new extension 'Commons'
-- Added attribute `role` to Item assets (also Asset definitions extension), to be used similarly to Link `rel`.
+- Added attribute `roles` to Item assets (also Asset definitions extension), to be used similarly to Link `rel`.
 - Collection `summaries` merge array fields now.
+
 - Extensions:
     - [datetime-range extension](extensions/datetime-range/README.md): Removed extension prefix from example and schema
     - Data Cube extension: Changed allowed formats (removed PROJ string, addedPROJJSON / WKT2) for reference systems
@@ -43,7 +44,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - Removed `sar:absolute_orbit` and `sar:center_wavelength` fields from the [SAR extension](extensions/sar/README.md)
     - Removed `data_type` and `unit` from the `sar:bands` object in the [SAR extension](extensions/sar/README.md)
     - Removed `dtr` extension prefix from example and schema in [datetime-range extension](extensions/datetime-range/README.md)
-- Asset Types (pre-defined values for the keys of individual assets, *not* media types) in Items. Use the asset's `role` instead.
+- Asset Types (pre-defined values for the keys of individual assets, *not* media types) in Items. Use the asset's `roles` instead.
 - `license` field doesn't allow SPDX expressions any longer. Use `various` and links instead.
 - STAC API:
     - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support

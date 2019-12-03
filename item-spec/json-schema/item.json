@@ -85,12 +85,9 @@
               "title": "Asset links",
               "description": "Links to assets",
               "type": "object",
-              "patternProperties": {
-                ".+": {
-                  "$ref": "#/definitions/asset"
-                }
-              },
-              "additionalProperties": false
+              "additionalProperties": {
+                "$ref": "#/definitions/asset"
+              }
             },
             "properties": {
               "type": "object",
@@ -214,9 +211,12 @@
           "title": "Asset type",
           "type": "string"
         },
-        "role": {
-          "title": "Asset role",
-          "type": "string"
+        "roles": {
+          "title": "Asset roles",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     }
