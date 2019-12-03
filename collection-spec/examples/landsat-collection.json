@@ -1,13 +1,14 @@
 {
     "stac_version": "0.8.1",
-    "stac_extensions": [],
+    "stac_extensions": [
+      "commons"
+    ],
     "id": "landsat-8-l1",
     "title": "Landsat 8 L1",
     "description": "Landat 8 imagery radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
     "keywords": [
       "landsat"
     ],
-    "version": "0.1.0",
     "extent": {
       "spatial": {
         "bbox": [
@@ -59,10 +60,10 @@
     ],
     "license": "PDDL-1.0",
     "properties": {
+      "platform": "landsat-8",
+      "instruments": ["oli", "tirs"],
+      "sat:off_nadir_angle": 0,
       "eo:gsd": 30,
-      "eo:platform": "landsat-8",
-      "eo:instrument": "oli_tirs",
-      "eo:off_nadir": 0,
       "eo:bands": [
         {
           "name": "B1",

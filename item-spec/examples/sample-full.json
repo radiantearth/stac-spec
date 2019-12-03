@@ -33,13 +33,13 @@
         "url": "https://cool-sat.com/"
       }
     ],
-    "eo:sun_azimuth": 168.7,
+    "sat:sun_azimuth_angle": 168.7,
     "eo:cloud_cover": 0.12,
-    "eo:off_nadir": 1.4,
-    "eo:platform": "coolsat2",
-    "eo:instrument": "cool_sensor_v1",
+    "sat:off_nadir_angle": 1.4,
+    "platform": "coolsat2",
+    "instruments": ["cool_sensor_v1"],
     "eo:bands": [],
-    "eo:sun_elevation": 33.4,
+    "sat:sun_elevation_angle": 33.4,
     "eo:gsd": 0.512,
     "cs:type": "scene",
     "cs:anomalous_pixels": 0.14,
@@ -62,7 +62,9 @@
     },
     "thumbnail": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png",
-      "title": "Thumbnail"
+      "title": "Thumbnail",
+      "type": "image/png",
+      "roles": [ "thumbnail" ]
     },
     "udm": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/UDM.tif",
@@ -70,7 +72,9 @@
     },
     "json-metadata": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/extended-metadata.json",
-      "title": "Extended Metadata"
+      "title": "Extended Metadata",
+      "type": "application/json",
+      "roles": [ "thumbnail" ]
     },
     "ephemeris": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/S3-20160503_132130_04.EPH",

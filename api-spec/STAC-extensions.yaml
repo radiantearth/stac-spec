@@ -332,7 +332,7 @@ paths:
         - $ref: '#/components/parameters/ids'
         - $ref: '#/components/parameters/collectionsArray'
         - $ref: '#/components/parameters/query'
-        - $ref: '#/components/parameters/sort'
+        - $ref: '#/components/parameters/sortby'
         - $ref: '#/components/parameters/fields'
       responses:
         '200':
@@ -391,6 +391,66 @@ paths:
             text/html:
               schema:
                 type: string
+  '/collections/{collectionId}/versions':
+    get:
+      summary: returns a list of links for a versioned collection
+      description: returns a list of links for a versioned collection
+      tags:
+        - Version Extension
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: >-
+            A catalog JSON definition the returns list of links of a collection
+            versions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/catalogDefinition'
+  '/collections/{collectionId}/versions/{versionId}':
+    get:
+      summary: returns the requested version of a collection
+      description: returns the requested version of a collection
+      tags:
+        - Version Extension
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/versionId'
+      responses:
+        '200':
+          $ref: '#/components/responses/Collections'
+  '/collections/{collectionId}/items/{featureId}/versions':
+    get:
+      summary: returns a list of links for a versioned item
+      description: returns a list of links for a versioned item
+      tags:
+        - Version Extension
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/featureId'
+      responses:
+        '200':
+          description: >-
+            A catalog JSON definition the returns list of links of an item
+            versions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/catalogDefinition'
+  '/collections/{collectionId}/items/{featureId}/versions/{versionId}':
+    get:
+      summary: returns the requested version of an item
+      description: returns the requested version of an item
+      tags:
+        - Version Extension
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/featureId'
+        - $ref: '#/components/parameters/versionId'
+      responses:
+        '200':
+          $ref: '#/components/responses/Collections'
 components:
   parameters:
     bbox:
@@ -565,20 +625,23 @@ components:
       required: false
       schema:
         type: string
-    sort:
-      name: sort
+    sortby:
+      name: sortby
       in: query
       description: Allows sorting results by the specified properties
       required: false
       schema:
-        $ref: '#/components/schemas/sort'
+        type: string
+      style: form
+      explode: false
     fields:
       name: fields
       in: query
       description: Determines the shape of the features in the response
       required: false
       schema:
-        $ref: '#/components/schemas/fields'
+        type: string
+        example: 'id,type,-geometry,bbox,properties,-links,-assets'
       style: form
       explode: false
     IfMatch:
@@ -593,6 +656,13 @@ components:
       in: header
       description: Only take the action if the ETag of the item still matches
       required: false
+      schema:
+        type: string
+    versionId:
+      name: versionId
+      in: path
+      description: local identifier of a version
+      required: true
       schema:
         type: string
   schemas:
@@ -660,15 +730,52 @@ components:
           description: List of keywords describing the collection.
           items:
             type: string
-        version:
-          type: string
-          description: Version of the collection.
         license:
           $ref: '#/components/schemas/license'
         providers:
           $ref: '#/components/schemas/providers'
         summaries:
-          $ref: '#/components/schemas/summaries'
+          description: >-
+            Summaries are either a unique set of all available values *or*
+            statistics. Statistics by default only specify the range (minimum
+            and maximum values), but can optionally be accompanied by additional
+            statistical values. The range can specify the potential range of
+            values, but it is recommended to be as precise as possible. The set
+            of values must contain at least one element and it is strongly
+            recommended to list all values. It is recommended to list as many
+            properties as reasonable so that consumers get a full overview of
+            the Collection. Properties that are covered by the Collection
+            specification (e.g. `providers` and `license`) may not be repeated
+            in the summaries.
+          type: object
+          additionalProperties:
+            oneOf:
+              - type: array
+                title: Set of values
+                items:
+                  description: A value of any type.
+              - type: object
+                title: Statistics
+                description: >-
+                  By default, only ranges with a minimum and a maximum value can
+                  be specified. Ranges can be specified for ordinal values only,
+                  which means they need to have a rank order. Therefore, ranges
+                  can only be specified for numbers and some special types of
+                  strings. Examples: grades (A to F), dates or times.
+                  Implementors are free to add other derived statistical values
+                  to the object, for example `mean` or `stddev`.
+                required:
+                  - min
+                  - max
+                properties:
+                  min:
+                    anyOf:
+                      - type: string
+                      - type: number
+                  max:
+                    anyOf:
+                      - type: string
+                      - type: number
       example:
         stac_version: 0.8.1
         stac_extensions: []
@@ -712,17 +819,17 @@ components:
             - 10
             - 30
             - 60
-          'eo:platform':
+          platform:
             - sentinel-2a
             - sentinel-2b
-          'eo:constellation':
+          constellation:
             - sentinel-2
-          'eo:instrument':
+          instruments:
             - msi
-          'eo:off_nadir':
+          'sat:off_nadir_angle':
             min: 0
             max: 100
-          'eo:sun_elevation':
+          'sat:sun_elevation_angle':
             min: 6.78
             max: 89.9
           'eo:bands':
@@ -1097,8 +1204,6 @@ components:
           $ref: '#/components/schemas/stac_extensions'
         id:
           type: string
-        summaries:
-          $ref: '#/components/schemas/summaries'
     linestringGeoJSON:
       type: object
       required:
@@ -1526,47 +1631,6 @@ components:
             format: uri
           - title: Reference to a core extension
             type: string
-    summaries:
-      description: >-
-        Summaries are either a unique set of all available values *or*
-        statistics. Statistics by default only specify the range (minimum and
-        maximum values), but can optionally be accompanied by additional
-        statistical values. The range can specify the potential range of values,
-        but it is recommended to be as precise as possible. The set of values
-        must contain at least one element and it is strongly recommended to list
-        all values. It is recommended to list as many properties as reasonable
-        so that consumers get a full overview of the Collection. Properties that
-        are covered by the Collection specification (e.g. `providers` and
-        `license`) may not be repeated in the summaries.
-      type: object
-      additionalProperties:
-        oneOf:
-          - type: array
-            title: Set of values
-            items:
-              description: A value of any type.
-          - type: object
-            title: Statistics
-            description: >-
-              By default, only ranges with a minimum and a maximum value can be
-              specified. Ranges can be specified for ordinal values only, which
-              means they need to have a rank order. Therefore, ranges can only
-              be specified for numbers and some special types of strings.
-              Examples: grades (A to F), dates or times. Implementors are free
-              to add other derived statistical values to the object, for example
-              `mean` or `stddev`.
-            required:
-              - min
-              - max
-            properties:
-              min:
-                anyOf:
-                  - type: string
-                  - type: number
-              max:
-                anyOf:
-                  - type: string
-                  - type: number
     itemCollection:
       description: >-
         A GeoJSON FeatureCollection augmented with foreign members that contain
@@ -1675,13 +1739,14 @@ components:
                 - producer
                 - licensor
               url: 'https://cool-sat.com/'
-          'eo:sun_azimuth': 168.7
+          'sat:sun_azimuth_angle': 168.7
           'eo:cloud_cover': 0.12
-          'eo:off_nadir': 1.4
-          'eo:platform': coolsat2
-          'eo:instrument': cool_sensor_v1
+          'sat:off_nadir_angle': 1.4
+          platform: coolsat2
+          instruments:
+            - cool_sensor_v1
           'eo:bands': []
-          'eo:sun_elevation': 33.4
+          'sat:sun_elevation_angle': 33.4
           'eo:gsd': 0.512
         collection: CS3
         links:
@@ -1732,6 +1797,13 @@ components:
             type: string
             description: Media type of the asset
             example: image/png
+          roles:
+            type: array
+            items:
+              type: string
+            description: Purposes of the asset
+            example:
+              - thumbnail
     itemProperties:
       type: object
       required:
@@ -1842,9 +1914,9 @@ components:
       type: object
       description: Sort the results
       properties:
-        sort:
-          $ref: '#/components/schemas/sort'
-    sort:
+        sortby:
+          $ref: '#/components/schemas/sortby'
+    sortby:
       type: array
       description: |
         An array of objects containing a property name and sort direction.
@@ -1853,6 +1925,7 @@ components:
         type: object
         required:
           - field
+          - direction
         properties:
           field:
             type: string
@@ -1863,8 +1936,9 @@ components:
               - asc
               - desc
       example:
-        - field: 'eo:cloud_cover'
-        - field: providers
+        - field: 'properties.eo:cloud_cover'
+          direction: asc
+        - field: id
           direction: desc
     fieldsFilter:
       type: object

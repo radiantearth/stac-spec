@@ -1,4 +1,6 @@
 {
+  "stac_version": "0.8.1",
+  "stac_extensions": [],
   "type": "FeatureCollection",
   "features": [
     {
@@ -72,7 +74,8 @@
         },
         "thumbnail": {
           "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png",
-          "title": "Thumbnail"
+          "title": "Thumbnail",
+          "roles": [ "thumbnail" ]
         }
       }
     }

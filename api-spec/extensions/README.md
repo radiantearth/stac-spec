@@ -9,13 +9,16 @@ API Extensions given follow the same guidelines for Extension Maturity as given 
 
 ## List of community extensions
 
-| Extension Name | Description | Maturity |
-| -------------  | ----------- | -------- |
-| [Fields](fields/README.md) | Adds parameter to control which fields are returned in the response. | *Pilot* |
-| [Query](query/README.md) | Adds parameter to search Item and Collection properties. | *Pilot* |
-| [Context](context/README.md) | Adds search related metadata (context) to [ItemCollection](../../item-spec/itemcollection-spec.md). | *Proposal* |
-| [Sort](sort/README.md) | Adds Parameter to control sorting of returns results. | *Pilot* |
-| [Transaction](transaction/README.md) | Adds PUT and DELETE endpoints for the creation, editing, and deleting of items and Collections. | *Pilot* |
+| Extension Name                                         | Scope*         | Description | Maturity |
+| ------------------------------------------------------ | -------------- | ----------- | -------- |
+| [Fields](fields/README.md)                             | *None*         | Adds parameter to control which fields are returned in the response. | *Pilot* |
+| [Query](query/README.md)                               | *None*         | Adds parameter to search Item and Collection properties. | *Pilot* |
+| [Context](context/README.md)                           | ItemCollection | Adds search related metadata (context) to [ItemCollection](../../item-spec/itemcollection-spec.md). | *Proposal* |
+| [Sort](sort/README.md)                                 | *None*         | Adds Parameter to control sorting of returns results. | *Pilot* |
+| [Transaction](transaction/README.md)                   | *None*         | Adds PUT and DELETE endpoints for the creation, editing, and deleting of items and Collections. | *Pilot* |
+| [Items and Collections API Version](version/README.md) | *None*         | Adds GET versions resource to collections and items endpoints and provides semantics for a versioning scheme for collections and items. | *Proposal* |
+
+\* The scope refers to the STAC specifications an extension extends. As all extensions here are API extensions, the API is not mentioned explicitly as scope and only the core STAC specifications (Catalog, Collection, Item and ItemCollection) are listed.
 
 ## Third-party / vendor extensions
 
