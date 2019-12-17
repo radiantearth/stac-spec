@@ -21,11 +21,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html)
 - Collection field `property` and the merge ability moved to a new extension 'Commons'
 - Added attribute `roles` to Item assets (also Asset definitions extension), to be used similarly to Link `rel`.
+- Updated API yaml to clarify bbox filter should be implemented without brackets. Example: `bbox=160.6,-55.95,-170,-25.89`
 - Collection `summaries` merge array fields now.
 
 - Extensions:
     - [datetime-range extension](extensions/datetime-range/README.md): Removed extension prefix from example and schema
-    - Data Cube extension: Changed allowed formats (removed PROJ string, addedPROJJSON / WKT2) for reference systems
+    - Data Cube extension: Changed allowed formats (removed PROJ string, added PROJJSON / WKT2) for reference systems
     - [Checksum extension](extensions/checksum/README.md) is now using self-identifiable hashes ([Multihash](https://github.com/multiformats/multihash))
     - Changed `sar:type` to `sar:product_type` and `sar:polarization` to `sar:polarizations` in the [SAR extension](extensions/sar/README.md)
 - STAC API:
