@@ -35,7 +35,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - Fields extension has a simplified format for GET parameters
     - `search` extension renamed to `context` extension. JSON object renamed from `search:metadata` to `context`
     - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
-- Prefix `eo:` removed from EO field `eo:epsg`, now just `epsg`
 
 ### Removed
 - Removed `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead
@@ -49,6 +48,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `license` field doesn't allow SPDX expressions any longer. Use `various` and links instead.
 - STAC API:
     - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
+- Removed from EO extension field `eo:epsg` in favor of `proj:epsg`
 
 ### Fixed
 

@@ -46,7 +46,7 @@
     "sat:sun_azimuth_angle": 111.113,
     "sat:sun_elevation_angle": 65.8018,
     "sat:off_nadir_angle": -0.00751271,
-    "epsg": 32763,
+    "proj:epsg": 32763,
     "cbers:data_type": "L4",
     "cbers:path": 177,
     "cbers:row": 106

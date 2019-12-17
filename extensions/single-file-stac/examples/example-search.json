@@ -49,7 +49,7 @@
                 "landsat:scene_id": "LC80370332018039LGN00",
                 "landsat:processing_level": "L1TP",
                 "landsat:tier": "T1",
-                "epsg": 32612
+                "proj:epsg": 32612
             },
             "assets": {
                 "index": {
@@ -216,7 +216,7 @@
                 "landsat:scene_id": "LC80340332018034LGN00",
                 "landsat:processing_level": "L1TP",
                 "landsat:tier": "T1",
-                "epsg": 32613
+                "proj:epsg": 32613
             },
             "assets": {
                 "index": {

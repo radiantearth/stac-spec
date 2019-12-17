@@ -21,10 +21,10 @@
         "properties":{
           "type":"object",
           "required":[
-            "epsg"
+            "proj:epsg"
           ],
           "properties":{
-            "epsg":{
+            "proj:epsg":{
               "title":"EPSG code",
               "type":[
                 "integer",

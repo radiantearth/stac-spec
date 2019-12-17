@@ -51,7 +51,7 @@
     "eo:platform": ["sentinel-2a","sentinel-2b"],
     "eo:constellation": ["sentinel-2"],
     "eo:instrument": ["msi"],
-    "epsg": [3857],
+    "proj:epsg": [3857],
     "eo:bands": [
       [
         {
