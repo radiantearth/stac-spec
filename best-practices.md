@@ -1,5 +1,15 @@
 # STAC Best Practices
 
+## Table of Contents
+
+* [Fields and ID's](#fields-and-ids)
+* [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
+* [Catalog Layout](#catalog-layout)
+* [Use of Links](#use-of-links)
+* [STAC on the Web](#stac-on-the-web)
+
+---------
+
 This document makes a number of recommendations for creating real world SpatioTemporal Asset Catalogs. None of them 
 are required to meet the core specification, but following these practices will make life easier for client tooling
 and for users. They come about from practical experience of implementors, and introduce a bit more 'constraint' for
@@ -130,6 +140,36 @@ and used in other contexts. That catalog could be used offline, or even publishe
 Self-contained catalogs are not just for offline use, however - they are designed to be able to be published online and to live
 on the cloud in object storage. They just aim to ease the burden of publishing, by not requiring lots of updating of links. 
 Adding a single `self` link at the root is recommended for online catalogs, turning it into a 'relative published catalog', as detailed below. This anchors it in an online location and enable provenance tracking.
+
+### Versioning for Catalogs
+
+The [Items and Collections API Version Extension](./api-spec/extensions/version) provides endpoints and semantics for keeping and accessing previous versions of Collections and Items. The same semantics can be used in static catalogs to preserve previous versions of the documents and link them together.
+
+In order to achieve this, the static catalog must make sure that for every record created, a copy of the record is also created in a separate location and it is named with the version id adopted by the catalog. See [here](/api-spec/extensions/version/README.md#version-id) for recommendations on versioning schema.
+
+The main record should also provide a link to the versioned record following the linking patterns described [here](/extensions/version/README.md#relation-types). For every update to the record, the same cycle is repeated:
+
+1. Add link from the updated record to the previous version
+2. Create a copy of the updated record and name it correctly
+
+In the Item and Collection STAC files or API responses, versions and deprecation can be indicated with the [Versioning Indicators Extension](./extensions/version).
+
+#### Example
+
+When the record `my_item.json` is created, a copy of it is also created. `my_item.json` includes `permalink` to `my_item_01.json`. The version suffix of the file name is taken from the version field of the record when it is available.
+
+```
+--- root / collections / example_collection / items / my_item / my_item.json
+--- root / collections / example_collection / items / my_item / my_item_01.json
+```
+
+When `my_item.json` is updated, the new `my_item.json` includes a link to `my_item_01.json` and is also copied to `my_item_02.json`. This ensures that `my_item_02.json` includes a link to `my_item_01.json`
+
+```
+--- root / collections / example_collection / items / my_item / my_item.json
+--- root / collections / example_collection / items / my_item / my_item_01.json
+--- root / collections / example_collection / items / my_item / my_item_02.json
+```
 
 ### Published Catalogs
 
