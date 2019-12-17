@@ -145,9 +145,9 @@ Adding a single `self` link at the root is recommended for online catalogs, turn
 
 The [Items and Collections API Version Extension](./api-spec/extensions/version) provides endpoints and semantics for keeping and accessing previous versions of Collections and Items. The same semantics can be used in static catalogs to preserve previous versions of the documents and link them together.
 
-In order to achieve this, the static catalog must make sure that for every record created, a copy of the record is also created in a separate location and it is named with the version id adopted by the catalog. See [here](/api-spec/extensions/version#version-id) for recommendations on versioning schema.
+In order to achieve this, the static catalog must make sure that for every record created, a copy of the record is also created in a separate location and it is named with the version id adopted by the catalog. See [here](/api-spec/extensions/version/README.md#version-id) for recommendations on versioning schema.
 
-The main record should also provide a link to the versioned record following the linking patterns described [here](/extensions/version#relation-types). For every update to the record, the same cycle is repeated:
+The main record should also provide a link to the versioned record following the linking patterns described [here](/extensions/version/README.md#relation-types). For every update to the record, the same cycle is repeated:
 
 1. Add link from the updated record to the previous version
 2. Create a copy of the updated record and name it correctly
@@ -156,7 +156,7 @@ In the Item and Collection STAC files or API responses, versions and deprecation
 
 #### Example
 
-When the record `my_item.json` is created, a copy of it is also created. `my_item.json` includes `permalink` to `my_item_01.json`
+When the record `my_item.json` is created, a copy of it is also created. `my_item.json` includes `permalink` to `my_item_01.json`. The version suffix of the file name is taken from the version field of the record when it is available.
 
 ```
 --- root / collections / example_collection / items / my_item / my_item.json
