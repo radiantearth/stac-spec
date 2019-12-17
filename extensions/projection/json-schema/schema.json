@@ -46,7 +46,14 @@
               ]
             },
             "proj:projjson": {
-              "$ref": "https://proj.org/schemas/v0.1/projjson.schema.json"
+              "oneOf": [
+                {
+                  "$ref": "https://proj.org/schemas/v0.1/projjson.schema.json"
+                },
+                {
+                  "type": "null"
+                }
+              ]
             },
             "proj:geometry":{
               "title":"Geometry",
