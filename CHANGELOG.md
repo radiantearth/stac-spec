@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
      - Added `description` and `roles` fields to the Asset in the [Asset Extension](extensions/asset/README.md)
 - STAC API:
      - Added the [Item and Collection API Version extension](api-spec/extensions/version/README.md) to support versioning in the API specification
+     - Run `npm run serve` or `npm run serve-ext` to quickly render development versions of the OpenAPI spec in the browser.
 
 ### Changed
 - Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html)
