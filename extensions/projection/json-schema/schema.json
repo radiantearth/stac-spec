@@ -5,7 +5,7 @@
   "description":"STAC Projection Extension to a STAC Item",
   "allOf":[
     {
-      "$ref": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/json-schema/item.json#/definitions/core"
+      "$ref": "../../../item-spec/json-schema/item.json"
     },
     {
       "$ref":"#/definitions/proj"
@@ -45,12 +45,8 @@
                 "null"
               ]
             },
-            "proj:projjson":{
-              "title":"Coordinate Reference System in PROJJSON format",
-              "type":[
-                "object",
-                "null"
-              ]
+            "proj:projjson": {
+              "$ref": "https://proj.org/schemas/v0.1/projjson.schema.json"
             },
             "proj:geometry":{
               "title":"Geometry",

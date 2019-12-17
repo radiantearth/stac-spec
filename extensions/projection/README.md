@@ -20,7 +20,7 @@ projections per Asset is not currently handled by this extension.
 | proj:epsg        | integer\|null   | **Required** [EPSG code](http://www.epsg-registry.org/) of the datasource |
 | proj:proj4       | string \|null   | Recommended. PROJ4 string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
 | proj:wkt2        | string \|null   | Recommended. WKT2 string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
-| proj:projjson    | PROJJSON Object \|null   | Recommended. PROJJSON object representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
+| proj:projjson    | [PROJJSON Object](https://proj.org/usage/projjson.html) \|null   | Recommended. PROJJSON object representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
 | proj:geometry    | Polygon Object  | Recommended. Defines the footprint of this Item. |
 | proj:bbox        | [number]        | Recommended. Bounding box of the Item in the asset CRS |
 | proj:centroid    | Centroid Object | Recommended. Coordinates representing the centroid of the Item in the asset CRS |
