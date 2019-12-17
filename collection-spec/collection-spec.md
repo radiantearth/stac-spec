@@ -153,7 +153,7 @@ Implementors are free to add other derived statistical values to the object, for
 
 STAC Collections which don't link to any Item are called **standalone Collections**.
 To describe them with more fields than the Collection fields has to offer, it is allowed to re-use the metadata fields defined by content extensions for Items in the `summaries` field.
-This makes much sense for fields such as `platform` or `eo:epsg`, which are often the same for a whole collection, but doesn't make much sense for `eo:cloud_cover`, which usually varies heavily across a Collection.
+This makes much sense for fields such as `platform` or `epsg`, which are often the same for a whole collection, but doesn't make much sense for `eo:cloud_cover`, which usually varies heavily across a Collection.
 The data provider is free to decide, which fields are reasoable to be used.
 
 ## Extensions

@@ -31,18 +31,32 @@
                 "null"
               ]
             },
-            "asset_crs_proj4":{
-              "title":"Coordinate Reference System in PROJ format",
+            "proj:proj4":{
+              "title":"Coordinate Reference System in PROJ4 format",
               "type":[
                 "string",
                 "null"
               ]
             },
-            "asset_crs_geometry":{
+            "proj:wkt2":{
+              "title":"Coordinate Reference System in WKT2 format",
+              "type":[
+                "string",
+                "null"
+              ]
+            },
+            "proj:projjson":{
+              "title":"Coordinate Reference System in PROJJSON format",
+              "type":[
+                "object",
+                "null"
+              ]
+            },
+            "proj:geometry":{
               "title":"Geometry",
               "type":"object"
             },
-            "asset_crs_bbox":{
+            "proj:bbox":{
               "title":"Extent",
               "type":"array",
               "minItems":4,
@@ -51,7 +65,7 @@
                 "type":"number"
               }
             },
-            "asset_crs_centroid":{
+            "proj:centroid":{
               "title":"Centroid",
               "type":"object",
               "required": [

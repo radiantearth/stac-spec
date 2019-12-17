@@ -29,7 +29,7 @@ If the data has been collected by a satellite, it is strongly recommended to use
 | ---------------- | ------------------------ | ----------- |
 | eo:gsd           | number                   | **REQUIRED.** Ground Sample Distance at the sensor. |
 | eo:bands         | [[Band Object](#band-object)] | **REQUIRED.** This is a list of the available bands where each item is a [Band Object](#band-object). |
-| eo:epsg          | integer\|null            | [EPSG code](http://www.epsg-registry.org/) of the datasource, `null` if no EPSG code. |
+| epsg             | integer\|null            | [EPSG code](http://www.epsg-registry.org/) of the datasource, `null` if no EPSG code. Note: there is not prefix on this field. |
 | eo:cloud_cover   | number                   | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided. |
 
 **eo:gsd** is the nominal Ground Sample Distance for the data, as measured in meters on the ground. There are many
@@ -43,11 +43,11 @@ PlanetScope Ortho Tile Product has an `eo:gsd` of 3.7 (or 4 if rounding), even t
 3.125.   For example, one might choose for WorldView-2 the 
 Multispectral 20° off-nadir value of 2.07 and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.
 
-**eo:epsg** - A Coordinate Reference System (CRS) is the native reference system (sometimes called a
+**epsg** - A Coordinate Reference System (CRS) is the native reference system (sometimes called a
 'projection') used by the data, and can usually be referenced using an [EPSG code](http://epsg.io).
 If the data does not have a CRS, such as in the case of non-rectified imagery with Ground Control
-Points, eo:epsg should be set to null. It should also be set to null if a CRS exists, but for which
-there is no valid EPSG code.
+Points, `epsg` should be set to null. It should also be set to null if a CRS exists, but for which
+there is no valid EPSG code. Note: there is not prefix on this field.
 
 ### Band Object
 

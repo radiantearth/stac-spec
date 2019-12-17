@@ -78,7 +78,7 @@
     "platform": "worldview02",
     "sat:sun_elevation_angle": 33.4,
     "eo:gsd": 2.047,
-    "eo:epsg": null,
+    "epsg": null,
     "dg:catalog_id": "103001004B316600",
     "dg:soli": "056823192",
     "dg:part": 2,

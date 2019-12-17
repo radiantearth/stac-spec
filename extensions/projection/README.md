@@ -18,10 +18,12 @@ projections per Asset is not currently handled by this extension.
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
 | epsg        | integer\|null   | **Required** [EPSG code](http://www.epsg-registry.org/) of the datasource |
-| asset_crs_proj4         | string \|null   | Recommended. PROJ4 string representing the Coordinate Reference System (CRS) that the `asset_crs_geometry` and `asset_crs_bbox` fields represent |
-| asset_crs_geometry    | Polygon Object  | Recommended. Defines the footprint of this Item. |
-| asset_crs_bbox        | [number]        | Recommended. Bounding box of the Item in the asset CRS |
-| asset_crs_centroid    | Centroid Object | Recommended. Coordinates representing the centroid of the Item in the asset CRS |
+| proj:proj4       | string \|null   | Recommended. PROJ4 string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
+| proj:wkt2        | string \|null   | Recommended. WKT2 string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
+| proj:projjson    | PROJJSON Object \|null   | Recommended. PROJJSON object representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
+| proj:geometry    | Polygon Object  | Recommended. Defines the footprint of this Item. |
+| proj:bbox        | [number]        | Recommended. Bounding box of the Item in the asset CRS |
+| proj:centroid    | Centroid Object | Recommended. Coordinates representing the centroid of the Item in the asset CRS |
 
 **epsg** - A Coordinate Reference System (CRS) is the data reference system (sometimes called a
 'projection') used by the asset data, and can usually be referenced using an [EPSG code](http://epsg.io).
@@ -29,26 +31,38 @@ If the asset data does not have a CRS, such as in the case of non-rectified imag
 Points, `epsg` should be set to null. It should also be set to null if a CRS exists, but for which
 there is no valid EPSG code.
 
-**asset_crs_proj4** - A Coordinate Reference System (CRS) is the data reference system (sometimes called a
+**proj:proj4** - A Coordinate Reference System (CRS) is the data reference system (sometimes called a
 'projection') used by the asset data. This value is a PROJ4 string.
 If the data does not have a CRS, such as in the case of non-rectified imagery with Ground Control
-Points, asset_crs_proj4 should be set to null. It should also be set to null if a CRS exists, but for which
+Points, proj:proj4 should be set to null. It should also be set to null if a CRS exists, but for which
 a PROJ4 string does not exist.
 
-**asset_crs_geometry** - A Polygon object representing the footprint of this item, formatted according the Polygon 
+**proj:wkt2** - A Coordinate Reference System (CRS) is the data reference system (sometimes called a
+'projection') used by the asset data. This value is a WKT2 string.
+If the data does not have a CRS, such as in the case of non-rectified imagery with Ground Control
+Points, proj:wkt2 should be set to null. It should also be set to null if a CRS exists, but for which
+a WKT2 string does not exist.
+
+**proj:projjson** - A Coordinate Reference System (CRS) is the data reference system (sometimes called a
+'projection') used by the asset data. This value is a [PROJJSON](https://proj.org/usage/projjson.html) object.
+If the data does not have a CRS, such as in the case of non-rectified imagery with Ground Control
+Points, proj:projjson should be set to null. It should also be set to null if a CRS exists, but for which
+a PROJJSON string does not exist. The schema for this object can be found [here](https://proj.org/schemas/v0.1/projjson.schema.json).
+
+**proj:geometry** - A Polygon object representing the footprint of this item, formatted according the Polygon 
 object format specified in [RFC 7946, sections 3.1.6](https://tools.ietf.org/html/rfc7946), except not necessarily 
-in EPSG:4326 as required by RFC7946.  Specified based on the `asset_crs_proj4` field (not necessarily EPSG:4326). 
+in EPSG:4326 as required by RFC7946.  Specified based on the `proj:proj4` field (not necessarily EPSG:4326). 
 Ideally, this will be represented by a Polygon with five coordinates, as the item in the asset data CRS should be 
-a square aligned to the CRS grid.  It is recommended that either or both of `asset_crs_geometry` and `asset_crs_bbox` 
+a square aligned to the original CRS grid.  It is recommended that either or both of `proj:geometry` and `proj:bbox` 
 be defined.
 
-**asset_crs_bbox** - Bounding box of the assets represented by this item in the asset data CRS. Specified as four 
-coordinates based on the CRS defined in the `epsg` and `asset_crs_proj4` fields.  First two numbers are coordinates 
+**proj:bbox** - Bounding box of the assets represented by this item in the asset data CRS. Specified as four 
+coordinates based on the CRS defined in the `epsg` and `proj:proj4` fields.  First two numbers are coordinates 
 of the lower left corner, followed by coordinates of upper right corner, e.g., \[west, south, east, north], 
-\[xmin, ymin, xmax, ymax], \[left, down, right, up]. It is recommended that either or both of `asset_crs_geometry` 
-and `asset_crs_bbox` be defined.
+\[xmin, ymin, xmax, ymax], \[left, down, right, up]. It is recommended that either or both of `proj:geometry` 
+and `proj:bbox` be defined.
 
-**asset_crs_centroid** - Coordinates representing the centroid of the item in the asset data CRS.  Coordinates are 
+**proj:centroid** - Coordinates representing the centroid of the item in the asset data CRS.  Coordinates are 
 defined in latitude and longitude, even if the data coordinate system does not use lat/long.
 
 ## Centroid Object

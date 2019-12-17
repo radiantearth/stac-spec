@@ -62,7 +62,7 @@
                 }
               }
             },
-            "eo:epsg": {
+            "epsg": {
               "title": "EPSG code",
               "type": [
                 "integer",
