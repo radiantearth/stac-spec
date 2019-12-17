@@ -520,8 +520,8 @@ components:
         (from 160.6°E to 170°W and from 55.95°S to 25.89°S) would be represented
         in JSON
 
-        as [ 160.6, -55.95, -170, -25.89 ] and in a query as
-        bbox=160.6,-55.95,-170,-25.89.
+        as `[160.6, -55.95, -170, -25.89]` and in a query as
+        `bbox=160.6,-55.95,-170,-25.89`.
       required: false
       schema:
         type: array
@@ -1506,34 +1506,64 @@ components:
       maximum: 10000
       description: The maximum number of results to return (page size). Defaults to 10
     bbox:
-      description: |
+      description: >-
         Only features that have a geometry that intersects the bounding box are
+
         selected. The bounding box is provided as four or six numbers,
+
         depending on whether the coordinate reference system includes a
+
         vertical axis (elevation or depth):
 
+
         * Lower left corner, coordinate axis 1
+
         * Lower left corner, coordinate axis 2  
+
         * Lower left corner, coordinate axis 3 (optional) 
+
         * Upper right corner, coordinate axis 1 
+
         * Upper right corner, coordinate axis 2 
+
         * Upper right corner, coordinate axis 3 (optional)
 
+
         The coordinate reference system of the values is WGS84
+
         longitude/latitude (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless
+
         a different coordinate reference system is specified in the parameter
+
         `bbox-crs`.
 
+
         For WGS84 longitude/latitude the values are in most cases the sequence
+
         of minimum longitude, minimum latitude, maximum longitude and maximum
+
         latitude. However, in cases where the box spans the antimeridian the
+
         first value (west-most box edge) is larger than the third value
+
         (east-most box edge).
 
 
         If a feature has multiple spatial geometry properties, it is the
+
         decision of the server whether only a single spatial geometry property
+
         is used to determine the extent or all relevant geometries.
+
+
+        Example: The bounding box of the New Zealand Exclusive Economic Zone in
+        WGS 84
+
+        (from 160.6°E to 170°W and from 55.95°S to 25.89°S) would be represented
+        in JSON
+
+        as `[160.6, -55.95, -170, -25.89]` and in a query as
+        `bbox=160.6,-55.95,-170,-25.89`.
       type: array
       minItems: 4
       maxItems: 6

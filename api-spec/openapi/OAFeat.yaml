@@ -149,10 +149,6 @@ components:
         If a feature has multiple spatial geometry properties, it is the decision of the
         server whether only a single spatial geometry property is used to determine
         the extent or all relevant geometries.
-
-        Example: The bounding box of the New Zealand Exclusive Economic Zone in WGS 84
-        (from 160.6°E to 170°W and from 55.95°S to 25.89°S) would be represented in JSON
-        as [ 160.6, -55.95, -170, -25.89 ] and in a query as bbox=160.6,-55.95,-170,-25.89.
       required: false
       schema:
         type: array
