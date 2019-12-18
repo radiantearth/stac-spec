@@ -46,6 +46,7 @@
               ]
             },
             "proj:projjson": {
+              "title":"Coordinate Reference System in PROJJSON format",
               "oneOf": [
                 {
                   "$ref": "https://proj.org/schemas/v0.1/projjson.schema.json"
@@ -57,7 +58,14 @@
             },
             "proj:geometry":{
               "title":"Geometry",
-              "type":"object"
+              "oneOf": [
+                {
+                  "$ref": "https://geojson.org/schema/Polygon.json"
+                },
+                {
+                  "$ref": "https://geojson.org/schema/MultiPolygon.json"
+                }
+              ]
             },
             "proj:bbox":{
               "title":"Extent",
