@@ -36,6 +36,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - Fields extension has a simplified format for GET parameters
     - `search` extension renamed to `context` extension. JSON object renamed from `search:metadata` to `context`
     - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
+    - Query Extension - type restrictions on query predicates are more accurate, which may require additional implementation support. 
 
 ### Removed
 - Removed `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead
