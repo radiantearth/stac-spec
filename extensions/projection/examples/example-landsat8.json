@@ -1,11 +1,57 @@
 {
   "stac_version": "0.9.0",
   "stac_extensions": [
+    "eo",
     "proj"
   ],
   "id": "LC81530252014153LGN00",
   "type": "Feature",
+  "collection": "landsat-8-l1",
+  "bbox": [
+    148.13933,
+    59.51584,
+    152.52758,
+    60.63437
+  ],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          152.52758,
+          60.63437
+        ],
+        [
+          149.1755,
+          61.19016
+        ],
+        [
+          148.13933,
+          59.51584
+        ],
+        [
+          151.33786,
+          58.97792
+        ],
+        [
+          152.52758,
+          60.63437
+        ]
+      ]
+    ]
+  },
+  "assets": {
+    "B1": {
+      "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B1.TIF",
+      "type": "image/tiff; application=geotiff",
+      "eo:bands": [
+        0
+      ],
+      "title": "Band 1 (coastal)"
+    }
+  },
   "properties": {
+    "datetime": "2018-10-01T01:08:32.033Z",
     "proj:epsg": 32614,
     "proj:proj4": "+proj=utm +zone=14 +datum=WGS84 +units=m +no_defs",
     "proj:wkt2": "PROJCS[\"WGS 84 / UTM zone 14N\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.01745329251994328,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",-99],PARAMETER[\"scale_factor\",0.9996],PARAMETER[\"false_easting\",500000],PARAMETER[\"false_northing\",0],AUTHORITY[\"EPSG\",\"32614\"],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
@@ -163,6 +209,21 @@
     "proj:centroid": {
       "lat": 34.595302781575604,
       "lon": -101.34448382627504
+    },
+    "eo:bands": [
+      {
+        "name": "B1",
+        "common_name": "coastal",
+        "gsd": 30,
+        "center_wavelength": 0.44,
+        "full_width_half_max": 0.02
+      }
+    ]
+  },
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://odu9mlf7d6.execute-api.us-east-1.amazonaws.com/stage/search?id=LC08_L1TP_107018_20181001_20181001_01_RT"
     }
-  }
+  ]
 }
