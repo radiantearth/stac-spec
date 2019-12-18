@@ -1,4 +1,8 @@
 {
+  "stac_version": "0.9.0",
+  "stac_extensions": [
+    "proj"
+  ],
   "id": "LC81530252014153LGN00",
   "type": "Feature",
   "properties": {

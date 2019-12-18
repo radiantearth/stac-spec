@@ -2,6 +2,7 @@
   "stac_version": "0.8.1",
   "stac_extensions": [
     "eo",
+    "proj",
     "instrument",
     "https://example.digitalglobe.com/stac/1.0/schema.json"
   ],
