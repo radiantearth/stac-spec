@@ -13,6 +13,12 @@ e.g. a UTM Zone.  However, there may also be assets intended for display, like a
 been reprojected to a different CRS, e.g., Web Mercator, to better accommodate that use case.  This case of differing 
 projections per Asset is not currently handled by this extension.
 
+## Examples
+- [Example Landsat8](examples/example-landsat8.json)
+
+## Schema
+- [JSON Schema](json-schema/schema.json)
+
 ## Item Properties fields
 
 | Field Name       | Type                     | Description |
@@ -21,7 +27,7 @@ projections per Asset is not currently handled by this extension.
 | proj:proj4       | string \|null   | PROJ4 string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
 | proj:wkt2        | string \|null   | WKT2 string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
 | proj:projjson    | [PROJJSON Object](https://proj.org/usage/projjson.html) \|null   | PROJJSON object representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
-| proj:geometry    | Polygon Object  | Defines the footprint of this Item. |
+| proj:geometry    | [Polygon Object](https://geojson.org/schema/Polygon.json)  | Defines the footprint of this Item. |
 | proj:bbox        | [number]        | Bounding box of the Item in the asset CRS in 2 or 3 dimensions. |
 | proj:centroid    | Centroid Object | Coordinates representing the centroid of the Item in the asset CRS |
 
