@@ -56,12 +56,14 @@ components:
           properties:
             eq:
               description: Find items with a property that is equal to the specified value. For strings, a case-insensitive comparison must be performed.
+              nullable: true
               oneOf:
                 - type: string
                 - type: number
                 - type: boolean
             neq:
               description: Find items that *don't* contain the specified value. For strings, a case-insensitive comparison must be performed.
+              nullable: true
               oneOf:
                 - type: string
                 - type: number
