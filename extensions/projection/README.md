@@ -20,9 +20,9 @@ projections per Asset is not currently handled by this extension.
 | proj:epsg        | integer\|null   | **Required** [EPSG code](http://www.epsg-registry.org/) of the datasource |
 | proj:proj4       | string \|null   | PROJ4 string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
 | proj:wkt2        | string \|null   | WKT2 string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
-| proj:projjson    | [PROJJSON Object](https://proj.org/usage/projjson.html) \|null   | Recommended. PROJJSON object representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
+| proj:projjson    | [PROJJSON Object](https://proj.org/usage/projjson.html) \|null   | PROJJSON object representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
 | proj:geometry    | Polygon Object  | Defines the footprint of this Item. |
-| proj:bbox        | [number]        | Bounding box of the Item in the asset CRS |
+| proj:bbox        | [number]        | Bounding box of the Item in the asset CRS in 2 or 3 dimensions. |
 | proj:centroid    | Centroid Object | Coordinates representing the centroid of the Item in the asset CRS |
 
 **proj:epsg** - A Coordinate Reference System (CRS) is the data reference system (sometimes called a
@@ -53,14 +53,12 @@ a PROJJSON string does not exist. The schema for this object can be found [here]
 object format specified in [RFC 7946, sections 3.1.6](https://tools.ietf.org/html/rfc7946), except not necessarily 
 in EPSG:4326 as required by RFC7946.  Specified based on the `proj:proj4` field (not necessarily EPSG:4326). 
 Ideally, this will be represented by a Polygon with five coordinates, as the item in the asset data CRS should be 
-a square aligned to the original CRS grid.  It is recommended that either or both of `proj:geometry` and `proj:bbox` 
-be defined.
+a square aligned to the original CRS grid. 
 
-**proj:bbox** - Bounding box of the assets represented by this item in the asset data CRS. Specified as four 
+**proj:bbox** - Bounding box of the assets represented by this item in the asset data CRS. Specified as 4 or 6 
 coordinates based on the CRS defined in the `proj:epsg` and `proj:proj4` fields.  First two numbers are coordinates 
-of the lower left corner, followed by coordinates of upper right corner, e.g., \[west, south, east, north], 
-\[xmin, ymin, xmax, ymax], \[left, down, right, up]. It is recommended that either or both of `proj:geometry` 
-and `proj:bbox` be defined.
+of the lower left corner, followed by coordinates of upper right corner, , e.g., \[west, south, east, north], 
+\[xmin, ymin, xmax, ymax], \[left, down, right, up], or \[west, south, lowest, east, north, highest]. The length of the array must be 2*n where n is the number of dimensions. The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). When using 3D geometries, the elevation of the southwesterly most extent is the minimum elevation in meters and the elevation of the northeasterly most extent is the maximum in meters.
 
 **proj:centroid** - Coordinates representing the centroid of the item in the asset data CRS.  Coordinates are 
 defined in latitude and longitude, even if the data coordinate system does not use lat/long.
