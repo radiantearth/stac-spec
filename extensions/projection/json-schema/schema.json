@@ -61,9 +61,6 @@
               "oneOf": [
                 {
                   "$ref": "https://geojson.org/schema/Polygon.json"
-                },
-                {
-                  "$ref": "https://geojson.org/schema/MultiPolygon.json"
                 }
               ]
             },
