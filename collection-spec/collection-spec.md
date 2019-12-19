@@ -66,11 +66,15 @@ The object describes the spatial extents of the Collection.
 
 | Element | Type       | Description                                                         |
 | ------- | ---------- | ------------------------------------------------------------------- |
-| bbox    | [number] | **REQUIRED.** Potential *spatial extent* covered by the collection. |
+| bbox    | [[number]] | **REQUIRED.** Potential *spatial extent* covered by the collection. |
 
-**bbox**: Bounding Box of the assets represented by this collection using either 2D or 3D geometries. The length of the array must be 2*n where n is the number of dimensions. The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). When using 3D geometries, the elevation of the southwesterly most extent is the minimum depth/height in meters and the elevation of the northeasterly most extent is the maximum.
+**bbox**: Bounding Box of the assets represented by this collection using either 2D or 3D geometries. 
 
-The coordinate reference system of the values is WGS 84 longitude/latitude. Example that covers the whole Earth: `[-180.0, -90.0, 180.0, 90.0]`.  Example that covers the whole earth with a depth of 100 meters to a height of 150 meters: `[-180.0, -90.0, -100.0, 180.0, 90.0, 150.0]`.
+This is a single-element array containing an array representing a single bounding box.  This is to potentially support multiple bounding boxes later or with an extension.
+
+The length of the inner array must be 2*n where n is the number of dimensions. The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). When using 3D geometries, the elevation of the southwesterly most extent is the minimum depth/height in meters and the elevation of the northeasterly most extent is the maximum.
+
+The coordinate reference system of the values is WGS 84 longitude/latitude. Example that covers the whole Earth: `[[-180.0, -90.0, 180.0, 90.0]]`.  Example that covers the whole earth with a depth of 100 meters to a height of 150 meters: `[[-180.0, -90.0, -100.0, 180.0, 90.0, 150.0]]`.
 
 #### Temporal Extent Object
 
