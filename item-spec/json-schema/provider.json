@@ -1,13 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "provider.json#",
-  "title": "Publishing Fields",
+  "title": "Provider Fields",
   "type": "object",
   "properties": {
-    "license": {
-      "title": "License",
-      "type": "string"
-    },
     "providers": {
       "title": "Providers",
       "type": "array",
@@ -18,7 +14,7 @@
             "type": "string"
           },
           "description": {
-            "title": "Provider description",
+            "title": "Organization description",
             "type": "string"
           },
           "roles": {
@@ -35,7 +31,7 @@
             }
           },
           "url": {
-            "title": "Homepage",
+            "title": "Organization homepage",
             "type": "string",
             "format": "url"
           }

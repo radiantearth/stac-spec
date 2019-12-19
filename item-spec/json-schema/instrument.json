@@ -3,10 +3,6 @@
   "$id": "instrument.json#",
   "title": "Instrument Fields",
   "type": "object",
-  "required": [
-    "platform",
-    "instruments"
-  ],
   "properties": {
     "platform": {
       "title": "Platform",

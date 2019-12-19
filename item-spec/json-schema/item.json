@@ -11,6 +11,25 @@
     }
   ],
   "definitions": {
+    "common_metadata": {
+      "anyOf": [
+        {
+          "$ref": "datetimerange.json"
+        },
+        {
+          "$ref": "instrument.json"
+        },
+        {
+          "$ref": "licensing.json"
+        },
+        {
+          "$ref": "metadata.json"
+        },
+        {
+          "$ref": "provider.json"
+        }
+      ]
+    },
     "core": {
       "allOf": [
         {
@@ -50,7 +69,6 @@
                       "checksum",
                       "commons",
                       "cube",
-                      "datetime-range",
                       "eo",
                       "label",
                       "pointcloud",
@@ -111,14 +129,7 @@
                   }
                 },
                 {
-                  "anyOf": [
-                    {
-                      "$ref": "instrument.json"
-                    },
-                    {
-                      "$ref": "publishing.json"
-                    }
-                  ]
+                  "$ref": "#/definitions/common_metadata"
                 }
               ]
             },

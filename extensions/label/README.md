@@ -40,7 +40,7 @@ Like other content extensions, the Label extension adds additional fields to a S
 Some additional notes are given here for some of the core STAC Item fields and what they represent for label.
 
 - **bbox** and **geometry**: The bounding box and the geometry of a Label Item represents the region for which the label(s) is/are valid. This could be the extent of all the AOIs in the dataset, or could be the region the provider believes the label is representative.
-- **properties.datetime**: The datetime of a Label Item is the nominal datetime for which the label applies, typically this is the datetime of the source imagery used to generate the labels. If the label applies over a range of datetimes (e.g., generated from multiple source images) then use the datetime-range (dtr) extension to indicate start and end datetimes.
+- **properties.datetime**: The datetime of a Label Item is the nominal datetime for which the label applies, typically this is the datetime of the source imagery used to generate the labels. If the label applies over a range of datetimes (e.g., generated from multiple source images) then use the [Date and Time Range fields](../../item-spec/common-metadata.md#date-and-time-range) to indicate start and end datetimes.
 - **assets**: The label assets are GeoJSON FeatureCollection assets containing the actual label features. As with the core STAC Item a thumbnail asset is also strongly encouraged.
 
 ### New Item properties
@@ -163,4 +163,5 @@ The SpaceNet Challenge Round 2 dataset has a [STAC catalog](https://spacenet-dat
 [PySTAC](https://pystac.readthedocs.io/en/latest/) supports [reading/writing](https://pystac.readthedocs.io/en/latest/tutorials/how-to-create-stac-catalogs.html#Adding-label-items-to-the-Spacenet-5-catalog) STAC collections according to this extension.
 
 ## Extensions
-Label Items may often use the `datetime-range` extension if the label set applies over a range of dates. While the EO extension doesn't make sense within a Label Item itself, most Label Items will link to source data which will frequently use the EO Extension. The [extensions page](../README.md) gives an overview about these and other extensions.
+While the EO extension doesn't make sense within a Label Item itself, most Label Items will link to source data which will frequently use the EO Extension.
+The [extensions page](../README.md) gives an overview about these and other extensions.

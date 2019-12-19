@@ -1,62 +1,74 @@
 # STAC Common Metadata
 
+* [Date and Time](#date-and-time)
+* [Licensing](#licensing)
+* [Provider](#provider)
 * [Instrument](#instrument)
-* [Metadata about Metadata](#metadata-about-metadata)
-* [Publishing and Standalone Items](#publishing-and-standalone-items)
+* [Metadata](#metadata)
 
-## Instrument
+Various *examples* are available in the folder [`examples`](examples/).
+*JSON Schemas* can be found in the folder [`json-schema`](json-schema/).
 
-Adds metadata specifying a platform and instrument used in a data collection mission. It will often be combined with other extensions that describe the actual data, such as the `eo` or `sar` extensions. In many instances, the instrument fields added here will share common properties across all of the Items. It is not necessary, but recommended to place common fields in [STAC Collections](../../collection-spec/collection-spec.md#common-fields-and-standalone-collections).
+*Tip:* In many instances, many of the fields defined here will share common values across all of the Items.
+It is not necessary, but recommended to place common fields in [STAC Collections](../collection-spec/collection-spec.md)
+using the [Commons Extension](../extensions/commons).
 
-- [JSON Schema](json-schema/schema.json)
+## Date and Time
 
-| Field Name    | Type     | Description |
-| ------------- | -------- | ----------- |
-| platform      | string   | **REQUIRED.** Unique name of the specific platform to which the instrument is attached. |
-| instruments   | [string] | **REQUIRED.** Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1). |
-| constellation | string   | Name of the constellation to which the platform belongs. |
-| mission       | string   | Name of the mission for which data is collected. |
+Fields to provide additional temporal information such as ranges with a start and an end datetime stamp.
 
-**platform** is the unique name of the specific platform the instrument is attached to. For satellites this would 
-be the name of the satellite, whereas for drones this would be a unique name for the drone. Examples include 
-`landsat-8` (Landsat-8), `sentinel-2a` and `sentinel-2b` (Sentinel-2), `terra` and `aqua` (part of NASA EOS, 
-carrying the MODIS instruments), `mycorp-uav-034` (hypothetical drone name), and `worldview02` 
-(Maxar/DigitalGlobe WorldView-2).
+### Date and Time Range
 
-**instruments** is an array of all the sensors used in the creation of the data. For example, data from the Landsat-8 platform is collected with the OLI sensor as well as the TIRS sensor, but the data is distributed together so would be specified as `['oli', 'tirs']`. Other instrument examples include `msi` (Sentinel-2), `aster` (Terra), and `modis` (Terra and Aqua), `c-sar` (Sentinel-1) and `asar` (Envisat).
+- [JSON Schema](json-schema/datetimerange.json)
 
-**constellation** is the name of a logical collection one or more platforms that have similar payloads and have 
-their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and 
-radiometric characteristics. This field allows users to search for related data sets without needing to specify which 
-specific platform the data came from, for example, from either of the Sentinel-2 satellites. Examples include `landsat-8` 
-(Landsat-8, a constellation consisting of a single platform), `sentinel-2` ([Sentinel-2](https://www.esa.int/Our_Activities/Observing_the_Earth/Copernicus/Sentinel-2/Satellite_constellation)), 
-`rapideye` (operated by Planet Labs), and `modis` (NASA EOS satellites Aqua and Terra).  In the case of `modis`, this
-is technically referring to a pair of sensors on two different satellites, whose data is combined into a series of 
-related products. Additionally, the Aqua satellite is technically part of the A-Train constellation and Terra is not 
-part of a constellation, but these combine to form the logical collection referred to as MODIS.
+While a STAC item can have a nominal datetime describing the capture, this extension allows an item to have a range
+of capture datetimes. An example of this is the [MODIS 16 day vegetation index product.](https://lpdaac.usgs.gov/products/mod13q1v006/).
+The datetime property in a STAC item and these fields are not mutually exclusive.
 
-**mission** is the name of the mission or campaign for collecting data. This could be a discrete set of data collections over a period of time (such as collecting drone imagery), or could be a set of tasks of related tasks from a satellite data collection.
+**Important:** Using one of the fields REQUIRES to include the other fields as well to enables a user to search STAC records by the provided times.
+
+| Field Name     | Type   | Description                                                  |
+| -------------- | ------ | ------------------------------------------------------------ |
+| start_datetime | string | The first or start date and time for the item, in UTC. It is formatted as `date-time` according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
+| end_datetime   | string | The last or end date and time for the item, in UTC. It is formatted as `date-time` according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
 
 
-## Metadata about Metadata
+## Licensing
 
-Fields to describe the metadata file itself.
+Information about the license(s) of the data, which not the necessarily the same license that applies to the metadata.
+**Licensing information should be defined at the Collection level if possible.**
 
-| Field Name | Type   | Description |
-| ---------- | ------ | ----------- |
-| created    | string | Creation date and time of the metadata file. This is NOT the timestamp the asset was created. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
-| updated    | string | Date and time the metadata file was updated last. This is NOT the timestamp the asset was updated last. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
-
-## Publishing and Standalone Items
+- [JSON Schema](json-schema/license.json)
 
 | Field Name | Type   | Description |
 | ---------- | ------ | ----------- |
 | license    | string | Item's license(s), either a SPDX [License identifier](https://spdx.org/licenses/), `various` if multiple licenses apply or `proprietary` for all other cases. Should be defined at the Collection level if possible. |
-| providers  | [[Provider Object](#provider-object)] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. Should be defined at the Collection level if possible. |
 
-**license**: Item's license(s) as a SPDX [License identifier](https://spdx.org/licenses/). Alternatively, use `proprietary` (see below) if the license is not on the SPDX license list or `various` if multiple licenses apply. In all cases links to the license texts SHOULD be added, see the [`license` link relation type](#relation-types). If no link to a license is included and the `license` field is set to `proprietary`, the collection is private, and consumers have not been granted any explicit right to use the data.
+**license**: Data license(s) as a SPDX [License identifier](https://spdx.org/licenses/). Alternatively, use
+`proprietary` (see below) if the license is not on the SPDX license list or `various` if multiple licenses apply.
+In all cases links to the license texts SHOULD be added, see the [`license` link relation type](#relation-types).
+If no link to a license is included and the `license` field is set to `proprietary`, the collection is private,
+and consumers have not been granted any explicit right to use the data.
 
-### Provider Object
+#### Relation types
+
+| Type         | Description                                                  |
+| ------------ | ------------------------------------------------------------ |
+| license      | The license URL(s) for the item SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC Item with the license text in a separate file and link to this file. |
+
+
+## Provider
+
+Information about the organizations capturing, producing, processing, hosting and publishing this data.
+**Provider information should be defined at the Collection level if possible.**
+
+- [JSON Schema](json-schema/provider.json)
+
+| Field Name | Type   | Description |
+| ---------- | ------ | ----------- |
+| providers  | [[Provider Object](#provider-object)] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list.  |
+
+#### Provider Object
 
 The object provides information about a provider. A provider is any of the organizations that captured or processed the content of the collection and therefore influenced the data offered by this collection. May also include information about the final storage provider hosting the data.
 
@@ -74,8 +86,55 @@ The object provides information about a provider. A provider is any of the organ
 * *processor*: A processor is any provider who processed data to a derived product.
 * *host*: The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list.
 
-### Relation types
 
-| Type         | Description                                                  |
-| ------------ | ------------------------------------------------------------ |
-| license      | The license URL(s) for the item SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC Item with the license text in a separate file and link to this file. |
+## Instrument
+
+Adds metadata specifying a platform and instrument used in a data collection mission. It will often be combined with
+other extensions that describe the actual data, such as the `eo` or `sar` extensions.
+
+- [JSON Schema](json-schema/instrument.json)
+
+| Field Name    | Type     | Description |
+| ------------- | -------- | ----------- |
+| platform      | string   | Unique name of the specific platform to which the instrument is attached. |
+| instruments   | [string] | Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1). |
+| constellation | string   | Name of the constellation to which the platform belongs. |
+| mission       | string   | Name of the mission for which data is collected. |
+
+**platform** is the unique name of the specific platform the instrument is attached to. For satellites this would 
+be the name of the satellite, whereas for drones this would be a unique name for the drone. Examples include 
+`landsat-8` (Landsat-8), `sentinel-2a` and `sentinel-2b` (Sentinel-2), `terra` and `aqua` (part of NASA EOS, 
+carrying the MODIS instruments), `mycorp-uav-034` (hypothetical drone name), and `worldview02` 
+(Maxar/DigitalGlobe WorldView-2).
+
+**instruments** is an array of all the sensors used in the creation of the data. For example, data from the Landsat-8
+platform is collected with the OLI sensor as well as the TIRS sensor, but the data is distributed together so would be
+specified as `['oli', 'tirs']`. Other instrument examples include `msi` (Sentinel-2), `aster` (Terra), and `modis`
+(Terra and Aqua), `c-sar` (Sentinel-1) and `asar` (Envisat).
+
+**constellation** is the name of a logical collection one or more platforms that have similar payloads and have 
+their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and 
+radiometric characteristics. This field allows users to search for related data sets without needing to specify which 
+specific platform the data came from, for example, from either of the Sentinel-2 satellites. Examples include `landsat-8` 
+(Landsat-8, a constellation consisting of a single platform), `sentinel-2`
+([Sentinel-2](https://www.esa.int/Our_Activities/Observing_the_Earth/Copernicus/Sentinel-2/Satellite_constellation)), 
+`rapideye` (operated by Planet Labs), and `modis` (NASA EOS satellites Aqua and Terra).  In the case of `modis`, this
+is technically referring to a pair of sensors on two different satellites, whose data is combined into a series of 
+related products. Additionally, the Aqua satellite is technically part of the A-Train constellation and Terra is not 
+part of a constellation, but these combine to form the logical collection referred to as MODIS.
+
+**mission** is the name of the mission or campaign for collecting data. This could be a discrete set of data collections
+over a period of time (such as collecting drone imagery), or could be a set of tasks of related tasks from a satellite
+data collection.
+
+
+## Metadata
+
+Fields to describe the metadata file itself. These fields do NOT describe the assets.
+
+- [JSON Schema](json-schema/metadata.json)
+
+| Field Name | Type   | Description |
+| ---------- | ------ | ----------- |
+| created    | string | Creation date and time of the metadata file. This is NOT the timestamp the asset was created. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
+| updated    | string | Date and time the metadata file was updated last. This is NOT the timestamp the asset was updated last. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
