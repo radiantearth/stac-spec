@@ -142,7 +142,8 @@ Contains a number of Landsat records:
   [NAIP](https://aws.amazon.com/public-datasets/naip/) and [Sentinel](http://sentinel-pds.s3-website.eu-central-1.amazonaws.com/) all
   get close to the ideas of STAC static catalogs, and hopefully will evolve to implement the standard.
 * Josh Fix's [open-catalog](https://github.com/joshfix/open-catalog) demonstrates generating code from the core swagger spec.
-* Element84 made a [clojure implementation](https://github.com/Element84/catalog-api-spec/tree/dev/implementations/e84) of the spec that serves as a lightweight proxy to NASA's CMR, constrained to just data in USGS EROS. 
+* Element84 made a [clojure implementation](https://github.com/Element84/catalog-api-spec/tree/dev/implementations/e84) of the spec that serves as a lightweight proxy to NASA's CMR, constrained to just data in USGS EROS.
+* Near Space Labs has a gRPC implementation of STAC with a [python client](https://github.com/nearspacelabs/stac-client-python).  
 
 Information about the software implementations that have been informing the evolution of the specification can be found at
 https://github.com/radiantearth/catalog-implementor-survey
