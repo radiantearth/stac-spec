@@ -9,10 +9,6 @@
 Various *examples* are available in the folder [`examples`](examples/).
 *JSON Schemas* can be found in the folder [`json-schema`](json-schema/).
 
-*Tip:* In many instances, many of the fields defined here will share common values across all of the Items.
-It is not necessary, but recommended to place common fields in [STAC Collections](../collection-spec/collection-spec.md)
-using the [Commons Extension](../extensions/commons).
-
 ## Date and Time
 
 Fields to provide additional temporal information such as ranges with a start and an end datetime stamp.
