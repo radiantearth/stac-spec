@@ -3,19 +3,21 @@ jobs:
   build:
     working_directory: ~/stac
     docker:
-      - image: circleci/python:3.6.4
+      - image: danvk/yarn-python36:0.0.1
 
     steps:
       - checkout
-      - run: sudo chown -R circleci:circleci /usr/local/bin
-      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - run:
           name: install
           command: |
+            python3.6 -m venv venv
+            . venv/bin/activate
             pip install stac-validator
+            npm install remark-cli remark-validate-links
       - run:
           name: validate
           command: |
+            . venv/bin/activate
             stac_validator catalog-spec/examples/catalog.json
             stac_validator collection-spec/examples/sentinel2.json
             stac_validator item-spec/examples/sample.json
@@ -25,3 +27,4 @@ jobs:
             stac_validator item-spec/examples/landsat8-sample.json
             stac_validator item-spec/examples/digitalglobe-sample.json
             stac_validator item-spec/examples/CBERS_4_MUX_20181029_177_106_L4.json
+            remark -u validate-links .
