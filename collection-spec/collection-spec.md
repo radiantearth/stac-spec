@@ -72,8 +72,6 @@ The object describes the spatial extents of the Collection.
 
 The coordinate reference system of the values is WGS 84 longitude/latitude. Example that covers the whole Earth: `[-180.0, -90.0, 180.0, 90.0]`.  Example that covers the whole earth with a depth of 100 meters to a height of 150 meters: `[-180.0, -90.0, -100.0, 180.0, 90.0, 150.0]`.
 
-The list of numbers is wrapped in a list to potentially support multiple bounding boxes later or with an extension.
-
 #### Temporal Extent Object
 
 The object describes the temporal extents of the Collection.
