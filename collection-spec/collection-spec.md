@@ -68,11 +68,13 @@ The object describes the spatial extents of the Collection.
 | ------- | ---------- | ------------------------------------------------------------------- |
 | bbox    | [[number]] | **REQUIRED.** Potential *spatial extent* covered by the collection. |
 
-**bbox**: Bounding Box of the assets represented by this collection using either 2D or 3D geometries. The length of the array must be 2*n where n is the number of dimensions. The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). When using 3D geometries, the elevation of the southwesterly most extent is the minimum depth/height in meters and the elevation of the northeasterly most extent is the maximum.
+**bbox**: Bounding Box of the assets represented by this collection using either 2D or 3D geometries. 
 
-The coordinate reference system of the values is WGS 84 longitude/latitude. Example that covers the whole Earth: `[-180.0, -90.0, 180.0, 90.0]`.  Example that covers the whole earth with a depth of 100 meters to a height of 150 meters: `[-180.0, -90.0, -100.0, 180.0, 90.0, 150.0]`.
+This is a single-element array containing an array representing a single bounding box.  This is to potentially support multiple bounding boxes later or with an extension.
 
-The list of numbers is wrapped in a list to potentially support multiple bounding boxes later or with an extension.
+The length of the inner array must be 2*n where n is the number of dimensions. The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). When using 3D geometries, the elevation of the southwesterly most extent is the minimum depth/height in meters and the elevation of the northeasterly most extent is the maximum.
+
+The coordinate reference system of the values is WGS 84 longitude/latitude. Example that covers the whole Earth: `[[-180.0, -90.0, 180.0, 90.0]]`.  Example that covers the whole earth with a depth of 100 meters to a height of 150 meters: `[[-180.0, -90.0, -100.0, 180.0, 90.0, 150.0]]`.
 
 #### Temporal Extent Object
 
@@ -80,13 +82,9 @@ The object describes the temporal extents of the Collection.
 
 | Element  | Type             | Description                                                          |
 | -------- | ---------------- | -------------------------------------------------------------------- |
-| interval | [[number\|null]] | **REQUIRED.** Potential *temporal extent* covered by the collection. |
+| interval | [[string\|null]] | **REQUIRED.** Potential *temporal extent* covered by the collection. |
 
-**interval**: A list of two timestamps wrapped in a list. The timestamps MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). Open date ranges are supported by setting either the start or the end time to `null`.
-
-The temporal reference system is the Gregorian calendar. Example for data from the beginning of 2019 until now: `[["2009-01-01T00:00:00Z", null]]`.
-
-The list of timestamps is wrapped in a list to potentially support multiple extents later or with an extension.
+**interval**: A list of a list of two datetimes. The wrapped list is to potentially support multiple extents later or with an extension. The datetimes MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). Open date ranges are supported by setting either the start or the end time to `null`. Example for data from the beginning of 2019 until now: `[["2009-01-01T00:00:00Z", null]]`. The temporal reference system is the Gregorian calendar. 
 
 ### Provider Object
 
