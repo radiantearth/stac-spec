@@ -82,7 +82,7 @@ The object describes the temporal extents of the Collection.
 | -------- | ---------------- | -------------------------------------------------------------------- |
 | interval | [[string\|null]] | **REQUIRED.** Potential *temporal extent* covered by the collection. |
 
-**interval**: A list of a list of two datetimes. The wrapped list to potentially support multiple extents later or with an extension. The datetimes MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). Open date ranges are supported by setting either the start or the end time to `null`. Example for data from the beginning of 2019 until now: `[["2009-01-01T00:00:00Z", null]]`. The temporal reference system is the Gregorian calendar. 
+**interval**: A list of a list of two datetimes. The wrapped list is to potentially support multiple extents later or with an extension. The datetimes MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). Open date ranges are supported by setting either the start or the end time to `null`. Example for data from the beginning of 2019 until now: `[["2009-01-01T00:00:00Z", null]]`. The temporal reference system is the Gregorian calendar. 
 
 ### Provider Object
 
