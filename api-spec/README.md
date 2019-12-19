@@ -64,7 +64,7 @@ $ $(npm bin)/yaml-files myapi.merge.yaml myapi.yaml
 ## API Evolution
 
 The STAC API is still a work in progress. It currently tries to adhere to the OGC API - Features (OAFeat) specification, with some STAC specific extensions.
-The OAFeat portion of the API is provided in the *[WFS3.yaml](openapi/WFS3.yaml)* and represents the version of OAFeat that is currently being used by STAC.
+The OAFeat portion of the API is provided in the *[OAFeat.yaml](openapi/OAFeat.yaml)* and represents the version of OAFeat that is currently being used by STAC.
 It may diverge some with the *[OAFeat](https://github.com/opengeospatial/ogcapi-features)* spec at any given time, either out of date or 'ahead', with proposals to align OAFeat.
 The long term goal is for STAC's API and OAFeat to completely align, ideally all of STAC API is made from OAFeat plus its extension ecosystem, and STAC just focuses on the content.
 But until then STAC will work to bring practical implementation experience to OAFeat. 
