@@ -40,17 +40,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - Query Extension - type restrictions on query predicates are more accurate, which may require additional implementation support. 
 
 ### Removed
-- Removed `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead
-- Removed `summaries` field from Catalogs. Use Collections instead
+- `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead
+- `summaries` field from Catalogs. Use Collections instead
 - Extensions:
-    - Removed `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from the [SAR extension](extensions/sar/README.md)
-    - Removed `sar:absolute_orbit` and `sar:center_wavelength` fields from the [SAR extension](extensions/sar/README.md)
-    - Removed `data_type` and `unit` from the `sar:bands` object in the [SAR extension](extensions/sar/README.md)
-    - Removed `dtr` extension prefix from example and schema in [datetime-range extension](extensions/datetime-range/README.md)
+    - `gsd` from `eo:bands` in the [EO extension](extensions/eo/README.md)
+    - `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from the [SAR extension](extensions/sar/README.md)
+    - `sar:absolute_orbit` and `sar:center_wavelength` fields from the [SAR extension](extensions/sar/README.md)
+    - `data_type` and `unit` from the `sar:bands` object in the [SAR extension](extensions/sar/README.md)
+    - `dtr` extension prefix from example and schema in [datetime-range extension](extensions/datetime-range/README.md)
 - Asset Types (pre-defined values for the keys of individual assets, *not* media types) in Items. Use the asset's `roles` instead.
 - `license` field doesn't allow SPDX expressions any longer. Use `various` and links instead.
 - STAC API:
-    - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
+    - `next` from the search metadata and query parameter, added POST body and headers to the links for paging support
 - Removed from EO extension field `eo:epsg` in favor of `proj:epsg`
 
 ### Fixed
