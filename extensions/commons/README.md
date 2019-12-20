@@ -61,7 +61,6 @@ An incomplete Collection:
       {
         "name": "B1",
         "common_name": "coastal",
-        "gsd": 30,
         "center_wavelength": 0.44,
         "full_width_half_max": 0.02
       },
@@ -118,7 +117,6 @@ The merged Item then looks like this:
       {
         "name": "B1",
         "common_name": "coastal",
-        "gsd": 30,
         "center_wavelength": 0.44,
         "full_width_half_max": 0.02
       },

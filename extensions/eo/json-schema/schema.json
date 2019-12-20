@@ -43,10 +43,6 @@
                     "title": "Common Name of the band",
                     "type": "string"
                   },
-                  "gsd": {
-                    "title": "Ground Sample Distance",
-                    "type": "number"
-                  },
                   "accuracy": {
                     "title": "Accuracy",
                     "type": "number"

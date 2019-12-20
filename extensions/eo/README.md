@@ -49,17 +49,8 @@ Multispectral 20° off-nadir value of 2.07 and for WorldView-3 the Multispectral
 | name                | string | The name of the band (e.g., "B01", "B02", "B1", "B5", "QA"). |
 | common_name         | string | The name commonly used to refer to the band to make it easier to search for bands across instruments. See the [list of accepted common names](#common-band-names). |
 | description         | string | Description to fully explain the band. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| gsd                 | number | Ground Sample Distance, the nominal distance between pixel centers available, in meters. Defaults to `eo:gsd` if not provided. |
-| accuracy            | number | The expected error between the measured location and the true location of a pixel, in meters on the ground. |
 | center_wavelength   | number | The center wavelength of the band, in micrometers (μm).      |
 | full_width_half_max | number | Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in micrometers (μm). |
-
-**eo:gsd** is the Ground Sample Distance, measured in meters on the ground. This value is the nominal distance between 
-pixel centers for the data.
-Since GSD can vary across a scene depending on projection, this should be the average or most
-commonly used GSD in the center of the image. For instance, Landsat8 optical and short-wave IR bands are 30 meters
-and the panchromatic band is 15 meters. The Planet PlanetScope Ortho Tile Product has a band `gsd` of 3.125 (3 if 
-rounding), which is different from the `eo:gsd` of 3.7 (4 if rounding).
 
 **full_width_half_max** (FWHM) is a common way to describe the size of a spectral band. It is the
 width, in micrometers (μm), of the bandpass measured at a half of the maximum transmission. Thus, if the
@@ -116,21 +107,18 @@ See [example-landsat8.json](examples/example-landsat8.json) for a full example.
       {
         "name": "B1",
         "common_name": "coastal",
-        "gsd": 30,
         "center_wavelength": 0.44,
         "full_width_half_max": 0.02
       },
       {
         "name": "B2",
         "common_name": "blue",
-        "gsd": 30,
         "center_wavelength": 0.48,
         "full_width_half_max": 0.06
       },
       {
         "name": "B3",
         "common_name": "green",
-        "gsd": 30,
         "center_wavelength": 0.56,
         "full_width_half_max": 0.06
       },
