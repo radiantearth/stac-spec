@@ -43,10 +43,6 @@
                     "title": "Common Name of the band",
                     "type": "string"
                   },
-                  "accuracy": {
-                    "title": "Accuracy",
-                    "type": "number"
-                  },
                   "center_wavelength": {
                     "title": "Center Wavelength",
                     "type": "number"
