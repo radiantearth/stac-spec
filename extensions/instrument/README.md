@@ -2,7 +2,7 @@
 
 **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
-This document explains the fields of the Instrument Extension to a STAC Item, which adds metadata specifying a platform and instrument used in a data collection mission. It will often be combined with other extensions that describe the actual data, such as the `eo` or `sar` extensions. In many instances, the instrument fields added here will share common properties across all of the Items. It is not necessary, but recommended to place common fields in [STAC Collections](../../collection-spec/collection-spec.md#common-fields-and-standalone-collections).
+This document explains the fields of the Instrument Extension to a STAC Item, which adds metadata specifying a platform and instrument used in a data collection mission. It will often be combined with other extensions that describe the actual data, such as the `eo` or `sar` extensions. In many instances, the instrument fields added here will share common properties across all of the Items. It is not necessary, but recommended to place common fields in [STAC Collections](../../collection-spec/collection-spec.md) using the [Commons extension](../commons/).
 
 - [Example (Landsat 8)](examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)

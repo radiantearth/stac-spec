@@ -44,5 +44,5 @@ This list must only contain extensions that extend the ItemCollection itself, se
 
 ## Extensions
 
-* The [Context Extension](../api-spec/extensions/search/README.md) adds additional fields to STAC ItemCollection relevant to their use as search results.
+* The [Context Extension](../api-spec/extensions/context/README.md) adds additional fields to STAC ItemCollection relevant to their use as search results.
 * The [Single File STAC Extension](../extensions/single-file-stac/README.md) provides a set of Collections and Items as a single file catalog.
