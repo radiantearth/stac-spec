@@ -29,4 +29,4 @@ jobs:
             stac_validator item-spec/examples/landsat8-sample.json
             stac_validator item-spec/examples/digitalglobe-sample.json
             stac_validator item-spec/examples/CBERS_4_MUX_20181029_177_106_L4.json
-            remark -u validate-links .
+            remark -f -u validate-links .

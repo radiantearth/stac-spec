@@ -18,7 +18,7 @@ A lot of EO data will have common metadata across many Items.
 It is not necessary, but recommended to use the [Commons extension](../commons/README.md)
 (see chapter "Placing common fields in Collections").
 
-If the data has been collected by a satellite, it is strongly recommended to use the [`sat` extension](../sat/README.md), which in turn requires the [Instrument Fields](../item-spec/common-metadata.md#instrument). If the data has been collected on an airborne platform is is strongly recommended to use the [Instrument Fields](../item-spec/common-metadata.md#instrument).
+If the data has been collected by a satellite, it is strongly recommended to use the [`sat` extension](../sat/README.md), which in turn requires the [Instrument Fields](../../item-spec/common-metadata.md#instrument). If the data has been collected on an airborne platform is is strongly recommended to use the [Instrument Fields](../../item-spec/common-metadata.md#instrument).
 
 - [Example (Landsat 8)](examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)

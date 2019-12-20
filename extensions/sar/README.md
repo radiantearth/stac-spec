@@ -5,7 +5,7 @@
 This document explains the fields of the STAC Synthetic-Aperture Radar (SAR) Extension to a STAC Item.
 SAR data is considered to be data that represents a snapshot of the earth for a single date and time taken by a synthetic-aperture radar system such as Sentinel-1, RADARSAT or EnviSAT.
 
-If the data has been collected by a satellite, it is strongly recommended to use the [`sat` extension](../sat/README.md), which in turn requires the [Instrument Fields](../item-spec/common-metadata.md#instrument). If the data has been collected on an airborne platform is is strongly recommended to use the [Instrument Fields](../item-spec/common-metadata.md#instrument).
+If the data has been collected by a satellite, it is strongly recommended to use the [`sat` extension](../sat/README.md), which in turn requires the [Instrument Fields](../../item-spec/common-metadata.md#instrument). If the data has been collected on an airborne platform is is strongly recommended to use the [Instrument Fields](../../item-spec/common-metadata.md#instrument).
 
 To describe frame start and end times, use the [Date and Time Range fields](../../item-spec/common-metadata.md#date-and-time-range).
 

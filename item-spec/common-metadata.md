@@ -34,7 +34,7 @@ The datetime property in a STAC item and these fields are not mutually exclusive
 Information about the license(s) of the data, which not the necessarily the same license that applies to the metadata.
 **Licensing information should be defined at the Collection level if possible.**
 
-- [JSON Schema](json-schema/license.json)
+- [JSON Schema](json-schema/licensing.json)
 
 | Field Name | Type   | Description |
 | ---------- | ------ | ----------- |
