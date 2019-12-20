@@ -43,7 +43,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead
 - `summaries` field from Catalogs. Use Collections instead
 - Extensions:
-    - `gsd` from `eo:bands` in the [EO extension](extensions/eo/README.md)
+    - `gsd` and `accuracy` from `eo:bands` in the [EO extension](extensions/eo/README.md)
     - `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from the [SAR extension](extensions/sar/README.md)
     - `sar:absolute_orbit` and `sar:center_wavelength` fields from the [SAR extension](extensions/sar/README.md)
     - `data_type` and `unit` from the `sar:bands` object in the [SAR extension](extensions/sar/README.md)
