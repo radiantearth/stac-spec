@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
      - Instrument extension, adds fields: `platform`, `instruments`, `constellation` (all moved from EO and SAR extensions), and `mission`
      - Data Cube extension can be used in Collections, added new field `description`
      - Added `description` and `roles` fields to the Asset in the [Asset Extension](extensions/asset/README.md)
+     - Projection Extension to describe Items with Assets that have an associated geospatial projection.
 - STAC API:
      - Added the [Item and Collection API Version extension](api-spec/extensions/version/README.md) to support versioning in the API specification
      - Run `npm run serve` or `npm run serve-ext` to quickly render development versions of the OpenAPI spec in the browser.
@@ -24,7 +25,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added attribute `roles` to Item assets (also Asset definitions extension), to be used similarly to Link `rel`.
 - Updated API yaml to clarify bbox filter should be implemented without brackets. Example: `bbox=160.6,-55.95,-170,-25.89`
 - Collection `summaries` merge array fields now.
-
 - Extensions:
     - [datetime-range extension](extensions/datetime-range/README.md): Removed extension prefix from example and schema
     - Data Cube extension: Changed allowed formats (removed PROJ string, added PROJJSON / WKT2) for reference systems
@@ -51,6 +51,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `license` field doesn't allow SPDX expressions any longer. Use `various` and links instead.
 - STAC API:
     - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
+- Removed from EO extension field `eo:epsg` in favor of `proj:epsg`
 
 ### Fixed
 

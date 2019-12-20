@@ -2,6 +2,7 @@
   "stac_version": "0.8.1",
   "stac_extensions": [
     "eo",
+    "proj",
     "instrument",
     "https://example.digitalglobe.com/stac/1.0/schema.json"
   ],
@@ -78,7 +79,7 @@
     "platform": "worldview02",
     "sat:sun_elevation_angle": 33.4,
     "eo:gsd": 2.047,
-    "eo:epsg": null,
+    "proj:epsg": null,
     "dg:catalog_id": "103001004B316600",
     "dg:soli": "056823192",
     "dg:part": 2,

@@ -1,8 +1,9 @@
 {
   "stac_version": "0.8.1",
   "stac_extensions": [
-      "eo",
-      "instrument"
+    "eo",
+    "proj",
+    "instrument"
   ],
   "type": "Feature",
   "id": "S2A_OPER_MSI_L2A_TL_SGS__20180524T190423_A015250_T26SKD_N02.08",
@@ -302,7 +303,7 @@
     "collection": "s2-l2a",
     "datetime": "2018-06-05T10:00:27.464Z",
     "platform": "sentinel-2",
-    "eo:epsg": 32635,
+    "proj:epsg": 32635,
     "eo:cloud_cover": 88.459539,
     "sat:sun_azimuth_angle" : 176.091667178268
   }

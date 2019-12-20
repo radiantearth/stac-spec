@@ -56,6 +56,7 @@ An extension can add new fields to STAC entities (content extension), or can add
 | [Instrument](instrument/README.md) (-)                       | Item             | Adds metadata specifying a platform and instrument used in a data collection mission. | *Proposal* |
 | [Label](label/README.md) (`label`)                           | Item             | Items that relate labeled AOIs with source imagery | *Proposal* |
 | [Point Cloud](pointcloud/README.md) (`pc`)                   | Item             | Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LiDAR or coincidence-matched imagery. | *Proposal* |
+| [Projection](projection/README.md) (`proj`)                  | Item             | Provides a way to describe items whose assets are in a geospatial projection. | *Proposal* |
 | [SAR](sar/README.md) (`sar`)                                 | Item             | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. | *Proposal* |
 | [Satellite](sat/README.md) (`sat`)                           | Item             | Satellite related metadata for data collected from satellites. | *Proposal* |
 | [Scientific](scientific/README.md) (`sci`)                   | Item, Collection | Scientific metadata is considered to be data that indicate from which publication data originates and how the data itself should be cited or referenced. | *Proposal* |
