@@ -43,14 +43,6 @@
                     "title": "Common Name of the band",
                     "type": "string"
                   },
-                  "gsd": {
-                    "title": "Ground Sample Distance",
-                    "type": "number"
-                  },
-                  "accuracy": {
-                    "title": "Accuracy",
-                    "type": "number"
-                  },
                   "center_wavelength": {
                     "title": "Center Wavelength",
                     "type": "number"
@@ -61,13 +53,6 @@
                   }
                 }
               }
-            },
-            "eo:epsg": {
-              "title": "EPSG code",
-              "type": [
-                "integer",
-                "null"
-              ]
             },
             "eo:cloud_cover": {
               "title": "Cloud Cover",

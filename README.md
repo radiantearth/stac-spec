@@ -87,7 +87,7 @@ This lead to designing a static catalog at the core of the STAC spec.
 STAC Catalogs generally fall into two different types: Static Catalogs and Dynamic Catalog APIs.
 
 The two catalog types both implement the same fields and links, and can be treated as the same by clients.
-For more details on the two types see the chapters below. Additionally, consider the [Static and Dynamic Catalogs](../best-practices.md#static-and-dynamic-catalogs)
+For more details on the two types see the chapters below. Additionally, consider the [Static and Dynamic Catalogs](best-practices.md#static-and-dynamic-catalogs)
 section of the best practices document on how you might use them best.
 
 #### Static Catalog

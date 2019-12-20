@@ -2,6 +2,7 @@
   "stac_version": "0.8.1",
   "stac_extensions": [
     "eo",
+    "proj",
     "https://example.com/stac/cbers-extension/1.0/schema.json"
   ],
   "id": "CBERS_4_MUX_20181029_177_106_L4",
@@ -46,7 +47,7 @@
     "sat:sun_azimuth_angle": 111.113,
     "sat:sun_elevation_angle": 65.8018,
     "sat:off_nadir_angle": -0.00751271,
-    "eo:epsg": 32763,
+    "proj:epsg": 32763,
     "cbers:data_type": "L4",
     "cbers:path": 177,
     "cbers:row": 106

@@ -6,7 +6,7 @@ Data cube related metadata, especially to describe their dimensions.
 
 - Examples:
   - [Item](examples/example-item.json)
-  - [Collection](example-collection.json)
+  - [Collection](examples/example-collection.json)
 - [JSON Schema](json-schema/schema.json)
 
 ## Item Fields

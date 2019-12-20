@@ -555,49 +555,36 @@ components:
             - - name: B1
                 common_name: coastal
                 center_wavelength: 4.439
-                gsd: 60
               - name: B2
                 common_name: blue
                 center_wavelength: 4.966
-                gsd: 10
               - name: B3
                 common_name: green
                 center_wavelength: 5.6
-                gsd: 10
               - name: B4
                 common_name: red
                 center_wavelength: 6.645
-                gsd: 10
               - name: B5
                 center_wavelength: 7.039
-                gsd: 20
               - name: B6
                 center_wavelength: 7.402
-                gsd: 20
               - name: B7
                 center_wavelength: 7.825
-                gsd: 20
               - name: B8
                 common_name: nir
                 center_wavelength: 8.351
-                gsd: 10
               - name: B8A
                 center_wavelength: 8.648
-                gsd: 20
               - name: B9
                 center_wavelength: 9.45
-                gsd: 60
               - name: B10
                 center_wavelength: 1.3735
-                gsd: 60
               - name: B11
                 common_name: swir16
                 center_wavelength: 1.6137
-                gsd: 20
               - name: B12
                 common_name: swir22
                 center_wavelength: 2.2024
-                gsd: 20
         links:
           - rel: self
             href: 'http://cool-sat.com/collections/Sentinel-2'

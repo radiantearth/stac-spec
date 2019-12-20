@@ -846,49 +846,36 @@ components:
             - - name: B1
                 common_name: coastal
                 center_wavelength: 4.439
-                gsd: 60
               - name: B2
                 common_name: blue
                 center_wavelength: 4.966
-                gsd: 10
               - name: B3
                 common_name: green
                 center_wavelength: 5.6
-                gsd: 10
               - name: B4
                 common_name: red
                 center_wavelength: 6.645
-                gsd: 10
               - name: B5
                 center_wavelength: 7.039
-                gsd: 20
               - name: B6
                 center_wavelength: 7.402
-                gsd: 20
               - name: B7
                 center_wavelength: 7.825
-                gsd: 20
               - name: B8
                 common_name: nir
                 center_wavelength: 8.351
-                gsd: 10
               - name: B8A
                 center_wavelength: 8.648
-                gsd: 20
               - name: B9
                 center_wavelength: 9.45
-                gsd: 60
               - name: B10
                 center_wavelength: 1.3735
-                gsd: 60
               - name: B11
                 common_name: swir16
                 center_wavelength: 1.6137
-                gsd: 20
               - name: B12
                 common_name: swir22
                 center_wavelength: 2.2024
-                gsd: 20
         links:
           - rel: self
             href: 'http://cool-sat.com/collections/Sentinel-2'
@@ -1880,11 +1867,12 @@ components:
         $ref: '#/components/schemas/queryProp'
       example:
         'eo:cloud_cover':
+          gt: 8
           lt: 50
-        providers:
-          eq: Planet
-        published:
-          gt: '2018-02-12T00:00:00Z'
+        platform:
+          eq: landsat-8
+        datetime:
+          gte: '2018-02-12T00:00:00Z'
           lte: '2018-03-18T12:31:12Z'
         'pl:item_type':
           startsWith: PSScene
@@ -1893,6 +1881,10 @@ components:
             - foo
             - bar
             - baz
+        'eo:gsd':
+          in:
+            - 10
+            - 20
     queryProp:
       description: Apply query operations to a specific property
       anyOf:
@@ -1906,50 +1898,76 @@ components:
               description: >-
                 Find items with a property that is equal to the specified value.
                 For strings, a case-insensitive comparison must be performed.
+              nullable: true
+              oneOf:
+                - type: string
+                - type: number
+                - type: boolean
             neq:
               description: >-
                 Find items that *don't* contain the specified value. For
                 strings, a case-insensitive comparison must be performed.
+              nullable: true
+              oneOf:
+                - type: string
+                - type: number
+                - type: boolean
             gt:
-              type: number
               description: >-
                 Find items with a property value greater than the specified
                 value.
+              oneOf:
+                - type: string
+                  format: date-time
+                - type: number
             lt:
-              type: number
               description: Find items with a property value less than the specified value.
+              oneOf:
+                - type: string
+                  format: date-time
+                - type: number
             gte:
-              type: number
               description: >-
                 Find items with a property value greater than or equal the
                 specified value.
+              oneOf:
+                - type: string
+                  format: date-time
+                - type: number
             lte:
-              type: number
               description: >-
-                Find items with a property value greater than or equal the
+                Find items with a property value less than or equal the
                 specified value.
+              oneOf:
+                - type: string
+                  format: date-time
+                - type: number
             startsWith:
-              type: string
               description: >-
                 Find items with a property that begins with the specified
                 string. A case-insensitive comparison must be performed.
-            endsWith:
               type: string
+            endsWith:
               description: >-
                 Find items with a property that ends with the specified string.
                 A case-insensitive comparison must be performed.
-            contains:
               type: string
+            contains:
               description: >-
-                Find items with a property that contains with the specified
-                string. A case-insensitive comparison must be performed.
+                Find items with a property that contains the specified literal
+                string, e.g., matches ".*<STRING>.*". A case-insensitive
+                comparison must be performed.
+              type: string
             in:
+              description: >-
+                Find items with a property that equals at least one entry in the
+                specified array. A case-insensitive comparison must be
+                performed.
               type: array
               items:
-                type: string
-              description: >-
-                Find items with a property that matches one of the specified
-                strings. A case-insensitive comparison must be performed.
+                oneOf:
+                  - type: string
+                  - type: number
     sortFilter:
       type: object
       description: Sort the results

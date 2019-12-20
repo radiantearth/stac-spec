@@ -89,8 +89,8 @@ This means that each item and its assets are contained in a unique subdirectory
 
 ### Dynamic Catalog Layout
 
-While these recommendations were primarily written for [static catalogs](catalog-spec/catalog-spec.md#catalog-types), they apply
-equally well to [dynamic catalogs](catalog-spec/catalog-spec.md#catalog-types). Subdirectories of course would just be URL paths 
+While these recommendations were primarily written for [static catalogs](#static-catalogs), they apply
+equally well to [dynamic catalogs](#dynamic-catalogs). Subdirectories of course would just be URL paths 
 generated dynamically, but the structure would be the same as is recommended.
 
 One benefit of a dynamic catalog is that it can generate various 'views' of the catalog, exposing the same Items in 

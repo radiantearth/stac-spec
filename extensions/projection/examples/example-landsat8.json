@@ -1,0 +1,228 @@
+{
+  "stac_version": "0.9.0",
+  "stac_extensions": [
+    "eo",
+    "proj"
+  ],
+  "id": "LC81530252014153LGN00",
+  "type": "Feature",
+  "collection": "landsat-8-l1",
+  "bbox": [
+    148.13933,
+    59.51584,
+    152.52758,
+    60.63437
+  ],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          152.52758,
+          60.63437
+        ],
+        [
+          149.1755,
+          61.19016
+        ],
+        [
+          148.13933,
+          59.51584
+        ],
+        [
+          151.33786,
+          58.97792
+        ],
+        [
+          152.52758,
+          60.63437
+        ]
+      ]
+    ]
+  },
+  "assets": {
+    "B1": {
+      "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B1.TIF",
+      "type": "image/tiff; application=geotiff",
+      "eo:bands": [
+        0
+      ],
+      "title": "Band 1 (coastal)"
+    }
+  },
+  "properties": {
+    "datetime": "2018-10-01T01:08:32.033Z",
+    "proj:epsg": 32614,
+    "proj:proj4": "+proj=utm +zone=14 +datum=WGS84 +units=m +no_defs",
+    "proj:wkt2": "PROJCS[\"WGS 84 / UTM zone 14N\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.01745329251994328,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",-99],PARAMETER[\"scale_factor\",0.9996],PARAMETER[\"false_easting\",500000],PARAMETER[\"false_northing\",0],AUTHORITY[\"EPSG\",\"32614\"],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+    "proj:projjson": {
+      "$schema": "https://proj.org/schemas/v0.1/projjson.schema.json",
+      "type": "ProjectedCRS",
+      "name": "WGS 84 / UTM zone 14N",
+      "base_crs": {
+        "name": "WGS 84",
+        "datum": {
+          "type": "GeodeticReferenceFrame",
+          "name": "World Geodetic System 1984",
+          "ellipsoid": {
+            "name": "WGS 84",
+            "semi_major_axis": 6378137,
+            "inverse_flattening": 298.257223563
+          }
+        },
+        "coordinate_system": {
+          "subtype": "ellipsoidal",
+          "axis": [
+            {
+              "name": "Geodetic latitude",
+              "abbreviation": "Lat",
+              "direction": "north",
+              "unit": "degree"
+            },
+            {
+              "name": "Geodetic longitude",
+              "abbreviation": "Lon",
+              "direction": "east",
+              "unit": "degree"
+            }
+          ]
+        },
+        "id": {
+          "authority": "EPSG",
+          "code": 4326
+        }
+      },
+      "conversion": {
+        "name": "UTM zone 14N",
+        "method": {
+          "name": "Transverse Mercator",
+          "id": {
+            "authority": "EPSG",
+            "code": 9807
+          }
+        },
+        "parameters": [
+          {
+            "name": "Latitude of natural origin",
+            "value": 0,
+            "unit": "degree",
+            "id": {
+              "authority": "EPSG",
+              "code": 8801
+            }
+          },
+          {
+            "name": "Longitude of natural origin",
+            "value": -99,
+            "unit": "degree",
+            "id": {
+              "authority": "EPSG",
+              "code": 8802
+            }
+          },
+          {
+            "name": "Scale factor at natural origin",
+            "value": 0.9996,
+            "unit": "unity",
+            "id": {
+              "authority": "EPSG",
+              "code": 8805
+            }
+          },
+          {
+            "name": "False easting",
+            "value": 500000,
+            "unit": "metre",
+            "id": {
+              "authority": "EPSG",
+              "code": 8806
+            }
+          },
+          {
+            "name": "False northing",
+            "value": 0,
+            "unit": "metre",
+            "id": {
+              "authority": "EPSG",
+              "code": 8807
+            }
+          }
+        ]
+      },
+      "coordinate_system": {
+        "subtype": "Cartesian",
+        "axis": [
+          {
+            "name": "Easting",
+            "abbreviation": "E",
+            "direction": "east",
+            "unit": "metre"
+          },
+          {
+            "name": "Northing",
+            "abbreviation": "N",
+            "direction": "north",
+            "unit": "metre"
+          }
+        ]
+      },
+      "area": "World - N hemisphere - 102°W to 96°W - by country",
+      "bbox": {
+        "south_latitude": 0,
+        "west_longitude": -102,
+        "north_latitude": 84,
+        "east_longitude": -96
+      },
+      "id": {
+        "authority": "EPSG",
+        "code": 32614
+      }
+    },
+    "proj:geometry": {
+      "coordinates": [
+        [
+          [
+            169200.0,
+            3712800.0
+          ],
+          [
+            403200.0,
+            3712800.0
+          ],
+          [
+            403200.0,
+            3951000.0
+          ],
+          [
+            169200.0,
+            3951000.0
+          ],
+          [
+            169200.0,
+            3712800.0
+          ]
+        ]
+      ],
+      "type": "Polygon"
+    },
+    "proj:bbox": [ 169200.0, 3712800.0, 403200.0, 3951000.0 ],
+    "proj:centroid": {
+      "lat": 34.595302781575604,
+      "lon": -101.34448382627504
+    },
+    "eo:bands": [
+      {
+        "name": "B1",
+        "common_name": "coastal",
+        "center_wavelength": 0.44,
+        "full_width_half_max": 0.02
+      }
+    ]
+  },
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://odu9mlf7d6.execute-api.us-east-1.amazonaws.com/stage/search?id=LC08_L1TP_107018_20181001_20181001_01_RT"
+    }
+  ]
+}
