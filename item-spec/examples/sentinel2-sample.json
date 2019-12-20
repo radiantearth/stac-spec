@@ -2,8 +2,7 @@
   "stac_version": "0.8.1",
   "stac_extensions": [
     "eo",
-    "proj",
-    "instrument"
+    "proj"
   ],
   "type": "Feature",
   "id": "S2A_OPER_MSI_L2A_TL_SGS__20180524T190423_A015250_T26SKD_N02.08",

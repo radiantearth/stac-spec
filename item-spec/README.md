@@ -11,6 +11,9 @@ endpoints of a `/search` endpoint.
 **Item Specification:** The main definition of the STAC Item specification is in 
 *[item-spec.md](item-spec.md)*. It includes an overview and an in-depth explanation of the fields.
 
+**Common Metadata:** A set of commonly used metadata fields for STAC Items is listed in 
+*[common-metadata.md](common-metadata.md)*.
+
 **ItemCollection Specification:** The main definition of the STAC ItemCollection specification is in 
 *[itemcollection-spec.md](itemcollection-spec.md)*. It includes an overview and an in-depth explanation of the fields.
 

@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "metadata.json#",
+  "title": "Metadata Fields",
+  "type": "object",
+  "properties": {
+    "created": {
+      "title": "Metadata Creation",
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated": {
+      "title": "Metadata Last Update",
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

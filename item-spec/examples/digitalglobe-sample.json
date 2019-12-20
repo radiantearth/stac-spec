@@ -3,7 +3,6 @@
   "stac_extensions": [
     "eo",
     "proj",
-    "instrument",
     "https://example.digitalglobe.com/stac/1.0/schema.json"
   ],
   "id": "103001004B316600_P002_MUL",

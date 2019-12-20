@@ -4,7 +4,7 @@
 
 This document explains the fields of the Satellite Extension to a STAC Item. Sat adds metadata related to a satellite that carries an instrument for collecting data. It will often be combined with other extensions that describe the actual data, such as the `eo` or `sar` extensions. In many instances, satellite data will share common properties about the spacecraft across all of the Items. It is not necessary, but recommended to place common fields in [STAC Collections](../../collection-spec/collection-spec.md) using the [Commons extension](../commons/).
 
-The Satellite extension requires the (Instrument extension)[../instrument/README.md].
+The Satellite extension requires the [Instrument Fields](../../item-spec/common-metadata.md#instrument).
 
 - [Example (Landsat 8)](examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)
@@ -39,8 +39,7 @@ Example:
 {
   "stac_version": "0.9.0",
   "stac_extensions": [
-    "sat",
-    "instrument"
+    "sat"
   ],
   "id": "20171110",
   "type": "Feature",
@@ -66,6 +65,4 @@ Example:
 
 ## Extensions
 
-The [extensions page](../README.md) gives an overview about related extensions. Of particular relevance to sat data:
-
-* the [Instrument Extension Specification](../instrument/README.md), required when using the `sat` extension, which contains fields about the sensor and platform used to collect the data.
+The [extensions page](../README.md) gives an overview about related extensions. Of particular relevance to sat data.

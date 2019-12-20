@@ -2,10 +2,8 @@
   "stac_version": "0.9.0",
   "stac_extensions": [
     "checksum",
-    "datetime-range",
     "sar",
-    "sat",
-    "instrument"
+    "sat"
   ],
   "id": "S1A_EW_GRDM_1SSH_20181103T235855_20181103T235955_024430_02AD5D_5616",
   "type": "Feature",

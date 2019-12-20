@@ -9,15 +9,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - ItemCollection requires `stac_version` field, `stac_extensions` has also been added
 - A `description` field has been added to Item assets (also Asset definitions extension). 
+- Field `mission` to [Common Metadata fields](item-spec/common-metadata.md).
 - Extensions:
-     - [Version Indicators extension](extensions/version/README.md), adds `version` and `deprecated` fields to STAC Items and Collections
-     - Instrument extension, adds fields: `platform`, `instruments`, `constellation` (all moved from EO and SAR extensions), and `mission`
-     - Data Cube extension can be used in Collections, added new field `description`
-     - Added `description` and `roles` fields to the Asset in the [Asset Extension](extensions/asset/README.md)
-     - Projection Extension to describe Items with Assets that have an associated geospatial projection.
+    - [Version Indicators extension](extensions/version/README.md), adds `version` and `deprecated` fields to STAC Items and Collections
+    - Data Cube extension can be used in Collections, added new field `description`
+    - Added `description` and `roles` fields to the Asset in the [Asset Extension](extensions/asset/README.md)
+    - Projection Extension to describe Items with Assets that have an associated geospatial projection.
 - STAC API:
-     - Added the [Item and Collection API Version extension](api-spec/extensions/version/README.md) to support versioning in the API specification
-     - Run `npm run serve` or `npm run serve-ext` to quickly render development versions of the OpenAPI spec in the browser.
+    - Added the [Item and Collection API Version extension](api-spec/extensions/version/README.md) to support versioning in the API specification
+    - Run `npm run serve` or `npm run serve-ext` to quickly render development versions of the OpenAPI spec in the browser.
 
 ### Changed
 - Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html)
@@ -25,8 +25,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added attribute `roles` to Item assets (also Asset definitions extension), to be used similarly to Link `rel`.
 - Updated API yaml to clarify bbox filter should be implemented without brackets. Example: `bbox=160.6,-55.95,-170,-25.89`
 - Collection `summaries` merge array fields now.
+- Several fields have been moved from extensions or item fields to the [Common Metadata fields](item-spec/common-metadata.md):
+    - `eo:platform` / `sar:platform` => `platform`
+    - `eo:instrument` / `sar:instrument` => `instruments`, also changed from string to array of strings
+    - `eo:constellation` / `sar:constellation` => `constellation`
+    - `dtr:start_datetime` => `start_datetime`
+    - `dtr:end_datetime` => `end_datetime`
 - Extensions:
-    - [datetime-range extension](extensions/datetime-range/README.md): Removed extension prefix from example and schema
     - Data Cube extension: Changed allowed formats (removed PROJ string, added PROJJSON / WKT2) for reference systems
     - [Checksum extension](extensions/checksum/README.md) is now using self-identifiable hashes ([Multihash](https://github.com/multiformats/multihash))
     - Changed `sar:type` to `sar:product_type` and `sar:polarization` to `sar:polarizations` in the [SAR extension](extensions/sar/README.md)
@@ -42,17 +47,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 - `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead
 - `summaries` field from Catalogs. Use Collections instead
-- Extensions:
-    - `gsd` and `accuracy` from `eo:bands` in the [EO extension](extensions/eo/README.md)
-    - `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from the [SAR extension](extensions/sar/README.md)
-    - `sar:absolute_orbit` and `sar:center_wavelength` fields from the [SAR extension](extensions/sar/README.md)
-    - `data_type` and `unit` from the `sar:bands` object in the [SAR extension](extensions/sar/README.md)
-    - `dtr` extension prefix from example and schema in [datetime-range extension](extensions/datetime-range/README.md)
 - Asset Types (pre-defined values for the keys of individual assets, *not* media types) in Items. Use the asset's `roles` instead.
 - `license` field doesn't allow SPDX expressions any longer. Use `various` and links instead.
+- Extensions:
+    - `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from the [SAR extension](extensions/sar/README.md)
+    - Removed from EO extension field `eo:epsg` in favor of `proj:epsg`
+    - `gsd` and `accuracy` from `eo:bands` in the [EO extension](extensions/eo/README.md)
+    - `sar:absolute_orbit` and `sar:center_wavelength` fields from the [SAR extension](extensions/sar/README.md)
+    - `data_type` and `unit` from the `sar:bands` object in the [SAR extension](extensions/sar/README.md)
+    - Datetime Range (`dtr`) extension. Use the [Common Metadata fields](item-spec/common-metadata.md) instead.
 - STAC API:
     - `next` from the search metadata and query parameter, added POST body and headers to the links for paging support
-- Removed from EO extension field `eo:epsg` in favor of `proj:epsg`
 
 ### Fixed
 
