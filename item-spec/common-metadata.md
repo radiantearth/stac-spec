@@ -21,7 +21,7 @@ While a STAC item can have a nominal datetime describing the capture, this exten
 of capture datetimes. An example of this is the [MODIS 16 day vegetation index product.](https://lpdaac.usgs.gov/products/mod13q1v006/).
 The datetime property in a STAC item and these fields are not mutually exclusive.
 
-**Important:** Using one of the fields REQUIRES to include the other fields as well to enables a user to search STAC records by the provided times.
+**Important:** Using one of the fields REQUIRES to include the other field as well to enable a user to search STAC records by the provided times. So if you use `start_datetime` you need to add `end_datetime` and vice-versa.
 
 | Field Name     | Type   | Description                                                  |
 | -------------- | ------ | ------------------------------------------------------------ |
@@ -31,7 +31,7 @@ The datetime property in a STAC item and these fields are not mutually exclusive
 
 ## Licensing
 
-Information about the license(s) of the data, which not the necessarily the same license that applies to the metadata.
+Information about the license(s) of the data, which is not necessarily the same license that applies to the metadata.
 **Licensing information should be defined at the Collection level if possible.**
 
 - [JSON Schema](json-schema/licensing.json)
@@ -55,7 +55,7 @@ and consumers have not been granted any explicit right to use the data.
 
 ## Provider
 
-Information about the organizations capturing, producing, processing, hosting and publishing this data.
+Information about the organizations capturing, producing, processing, hosting or publishing this data.
 **Provider information should be defined at the Collection level if possible.**
 
 - [JSON Schema](json-schema/provider.json)
@@ -66,7 +66,7 @@ Information about the organizations capturing, producing, processing, hosting an
 
 #### Provider Object
 
-The object provides information about a provider. A provider is any of the organizations that captured or processed the content of the collection and therefore influenced the data offered by this collection. May also include information about the final storage provider hosting the data.
+The object provides information about a provider. A provider is any of the organizations that captures or processes the content of the assets and therefore influences the data offered by the STAC catalog. May also include information about the final storage provider hosting the data.
 
 | Field Name  | Type      | Description                                                  |
 | ----------- | --------- | ------------------------------------------------------------ |
@@ -108,16 +108,16 @@ platform is collected with the OLI sensor as well as the TIRS sensor, but the da
 specified as `['oli', 'tirs']`. Other instrument examples include `msi` (Sentinel-2), `aster` (Terra), and `modis`
 (Terra and Aqua), `c-sar` (Sentinel-1) and `asar` (Envisat).
 
-**constellation** is the name of a logical collection one or more platforms that have similar payloads and have 
+**constellation** is the name of a logical collection of one or more platforms that have similar payloads and have 
 their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and 
-radiometric characteristics. This field allows users to search for related data sets without needing to specify which 
+radiometric characteristics. This field allows users to search for related data sets without the need to specify which 
 specific platform the data came from, for example, from either of the Sentinel-2 satellites. Examples include `landsat-8` 
 (Landsat-8, a constellation consisting of a single platform), `sentinel-2`
 ([Sentinel-2](https://www.esa.int/Our_Activities/Observing_the_Earth/Copernicus/Sentinel-2/Satellite_constellation)), 
 `rapideye` (operated by Planet Labs), and `modis` (NASA EOS satellites Aqua and Terra).  In the case of `modis`, this
 is technically referring to a pair of sensors on two different satellites, whose data is combined into a series of 
 related products. Additionally, the Aqua satellite is technically part of the A-Train constellation and Terra is not 
-part of a constellation, but these combine to form the logical collection referred to as MODIS.
+part of a constellation, but these are combined to form the logical collection referred to as MODIS.
 
 **mission** is the name of the mission or campaign for collecting data. This could be a discrete set of data collections
 over a period of time (such as collecting drone imagery), or could be a set of tasks of related tasks from a satellite

@@ -88,7 +88,7 @@ The object describes the temporal extents of the Collection.
 
 ### Provider Object
 
-The object provides information about a provider. A provider is any of the organizations that captured or processed the content of the collection and therefore influenced the data offered by this collection. May also include information about the final storage provider hosting the data.
+The object provides information about a provider. A provider is any of the organizations that captures or processes the content of the collection and therefore influences the data offered by this collection. May also include information about the final storage provider hosting the data.
 
 | Field Name  | Type      | Description                                                  |
 | ----------- | --------- | ------------------------------------------------------------ |
