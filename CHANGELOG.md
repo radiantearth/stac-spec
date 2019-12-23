@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [v0.9.0-rc1] - 2019-12-23
+
 ### Added
 - ItemCollection requires `stac_version` field, `stac_extensions` has also been added
 - A `description` field has been added to Item assets (also Asset definitions extension). 
@@ -273,6 +275,7 @@ Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkam
 
 
 [Unreleased]: https://github.com/radiantearth/stac-spec/compare/master...dev
+[v0.9.0-rc1]: https://github.com/radiantearth/stac-spec/compare/v0.8.0...v0.9.0-rc1
 [v0.8.1]: https://github.com/radiantearth/stac-spec/compare/v0.8.0...v0.8.1
 [v0.8.0]: https://github.com/radiantearth/stac-spec/compare/v0.7.0...v0.8.0
 [v0.7.0]: https://github.com/radiantearth/stac-spec/compare/v0.6.2...v0.7.0
