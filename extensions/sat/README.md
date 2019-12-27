@@ -37,7 +37,7 @@ The angles `azimuth_angle` and `sun_azimuth_angle` indicate the position of the 
 Example:
 ```
 {
-  "stac_version": "0.9.0",
+  "stac_version": "0.9.0-rc1",
   "stac_extensions": [
     "sat"
   ],
