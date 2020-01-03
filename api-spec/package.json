@@ -1,6 +1,6 @@
 {
   "name": "api-spec",
-  "version": "0.8.1",
+  "version": "0.9.0-rc1",
   "description": "Generate STAC openapi defintions from fragments.",
   "repository": "https://github.com/radiantearth/stac-spec",
   "license": "Apache-2.0",
