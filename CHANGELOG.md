@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
-## [v0.9.0-rc1] - 2019-12-23
+## [v0.9.0-rc1] - 2020-01-06
 
 ### Added
 - ItemCollection requires `stac_version` field, `stac_extensions` has also been added
