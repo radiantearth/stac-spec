@@ -37,6 +37,7 @@
                 "type": "string",
                 "enum": [
                   "asset",
+                  "commons",
                   "checksum",
                   "scientific"
                 ]
@@ -51,13 +52,10 @@
             "type": "string"
           }
         },
-        "version": {
-          "title": "Collection Version",
-          "type": "string"
-        },
         "license": {
           "title": "Collection License Name",
-          "type": "string"
+          "type": "string",
+          "pattern": "^[\\w\\-\\.\\+]+$"
         },
         "providers": {
           "type": "array",
@@ -68,7 +66,7 @@
                 "type": "string"
               },
               "description": {
-                "title": "Provider description",
+                "title": "Organization description",
                 "type": "string"
               },
               "roles": {
@@ -85,7 +83,7 @@
                 }
               },
               "url": {
-                "title": "Homepage",
+                "title": "Organization homepage",
                 "type": "string",
                 "format": "url"
               }
@@ -152,9 +150,38 @@
             }
           }
         },
-        "properties": {
-          "title": "Common properties",
-          "type": "object"
+        "summaries": {
+          "type": "object",
+          "additionalProperties": {
+            "oneOf": [
+              {
+                "title": "Stats",
+                "type": "object",
+                "required": [
+                  "min",
+                  "max"
+                ],
+                "properties": {
+                  "min": {
+                    "title": "Minimum value",
+                    "type": ["number", "string"]
+                  },
+                  "max": {
+                    "title": "Maximum value",
+                    "type": ["number", "string"]
+                  }
+                }
+              },
+              {
+                "title": "Set of values",
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "description": "Any data type could occur."
+                }
+              }
+            ]
+          }
         }
       }
     }

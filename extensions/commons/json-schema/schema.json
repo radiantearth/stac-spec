@@ -1,0 +1,31 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "schema.json#",
+	"title": "Commons Extension",
+	"description": "STAC Commons Extension for STAC Items and STAC Collections.",
+	"oneOf": [
+	  {
+		"$ref": "../../../item-spec/json-schema/item.json"
+	  },
+	  {
+		"allOf": [
+		  {
+			"$ref": "../../../collection-spec/json-schema/collection.json"
+		  },
+		  {
+			"type": "object",
+			"required": [
+			  "properties"
+			],
+			"properties": {
+			  "properties": {
+				"title": "Common fields",
+				"type": "object",
+				"additionalProperties": true
+			  }
+			}
+		  }
+		]
+	  }
+	]
+  }

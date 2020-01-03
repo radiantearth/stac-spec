@@ -40,8 +40,8 @@
             },
             "properties": {
                 "datetime": "2018-02-08T18:02:15.719478+00:00",
-                "eo:sun_azimuth": 152.63804142,
-                "eo:sun_elevation": 31.82216637,
+                "sat:sun_azimuth_angle": 152.63804142,
+                "sat:sun_elevation_angle": 31.82216637,
                 "eo:cloud_cover": 19,
                 "eo:row": "033",
                 "eo:column": "037",
@@ -49,7 +49,7 @@
                 "landsat:scene_id": "LC80370332018039LGN00",
                 "landsat:processing_level": "L1TP",
                 "landsat:tier": "T1",
-                "eo:epsg": 32612
+                "proj:epsg": 32612
             },
             "assets": {
                 "index": {
@@ -207,8 +207,8 @@
             },
             "properties": {
                 "datetime": "2018-02-03T17:43:44.623405+00:00",
-                "eo:sun_azimuth": 153.39513457,
-                "eo:sun_elevation": 30.41894816,
+                "sat:sun_azimuth_angle": 153.39513457,
+                "sat:sun_elevation_angle": 30.41894816,
                 "eo:cloud_cover": 36,
                 "eo:row": "033",
                 "eo:column": "034",
@@ -216,7 +216,7 @@
                 "landsat:scene_id": "LC80340332018034LGN00",
                 "landsat:processing_level": "L1TP",
                 "landsat:tier": "T1",
-                "eo:epsg": 32613
+                "proj:epsg": 32613
             },
             "assets": {
                 "index": {
@@ -346,8 +346,7 @@
                 "earth observation",
                 "usgs"
             ],
-            "version": "0.1.0",
-            "stac_version": "0.6.0",
+            "stac_version": "0.9.0-rc1",
             "extent": {
                 "spatial": [
                     -180,
@@ -393,84 +392,73 @@
             "license": "PDDL-1.0",
             "properties": {
                 "eo:gsd": 15,
-                "eo:platform": "landsat-8",
-                "eo:instrument": "OLI_TIRS",
-                "eo:off_nadir": 0,
+                "platform": "landsat-8",
+                "instruments": ["oli", "tirs"],
+                "sat:off_nadir_angle": 0,
                 "eo:bands": [
                     {
                         "name": "B1",
                         "common_name": "coastal",
-                        "gsd": 30,
                         "center_wavelength": 0.44,
                         "full_width_half_max": 0.02
                     },
                     {
                         "name": "B2",
                         "common_name": "blue",
-                        "gsd": 30,
                         "center_wavelength": 0.48,
                         "full_width_half_max": 0.06
                     },
                     {
                         "name": "B3",
                         "common_name": "green",
-                        "gsd": 30,
                         "center_wavelength": 0.56,
                         "full_width_half_max": 0.06
                     },
                     {
                         "name": "B4",
                         "common_name": "red",
-                        "gsd": 30,
                         "center_wavelength": 0.65,
                         "full_width_half_max": 0.04
                     },
                     {
                         "name": "B5",
                         "common_name": "nir",
-                        "gsd": 30,
                         "center_wavelength": 0.86,
                         "full_width_half_max": 0.03
                     },
                     {
                         "name": "B6",
                         "common_name": "swir16",
-                        "gsd": 30,
                         "center_wavelength": 1.6,
                         "full_width_half_max": 0.08
                     },
                     {
                         "name": "B7",
                         "common_name": "swir22",
-                        "gsd": 30,
                         "center_wavelength": 2.2,
                         "full_width_half_max": 0.2
                     },
                     {
                         "name": "B8",
                         "common_name": "pan",
-                        "gsd": 15,
                         "center_wavelength": 0.59,
                         "full_width_half_max": 0.18
                     },
                     {
                         "name": "B9",
                         "common_name": "cirrus",
-                        "gsd": 30,
                         "center_wavelength": 1.37,
                         "full_width_half_max": 0.02
                     },
                     {
                         "name": "B10",
                         "common_name": "lwir11",
-                        "gsd": 100,
                         "center_wavelength": 10.9,
                         "full_width_half_max": 0.8
                     },
                     {
                         "name": "B11",
                         "common_name": "lwir12",
-                        "gsd": 100,
                         "center_wavelength": 12,
                         "full_width_half_max": 1
                     }
@@ -582,11 +570,11 @@
                 },
                 {
                     "rel": "parent",
-                    "href": "https://n34f767n91.execute-api.us-east-1.amazonaws.com/prod/stac"
+                    "href": "https://n34f767n91.execute-api.us-east-1.amazonaws.com/prod"
                 },
                 {
                     "rel": "root",
-                    "href": "https://n34f767n91.execute-api.us-east-1.amazonaws.com/prod/stac"
+                    "href": "https://n34f767n91.execute-api.us-east-1.amazonaws.com/prod"
                 },
                 {
                     "rel": "items",

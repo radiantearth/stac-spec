@@ -1,5 +1,5 @@
 paths:
-  /stac/search:
+  /search:
     get:
       parameters:
         - $ref: '#/components/parameters/fields'
@@ -11,7 +11,8 @@ components:
       description: Determines the shape of the features in the response
       required: false
       schema:
-        $ref: '#/components/schemas/fields'
+        type: string
+        example: 'id,type,-geometry,bbox,properties,-links,-assets'
       style: form
       explode: false
   schemas:
@@ -48,4 +49,3 @@ components:
         exclude:
           - geometry
           - properties.datetime
-

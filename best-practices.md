@@ -1,5 +1,15 @@
 # STAC Best Practices
 
+## Table of Contents
+
+* [Fields and ID's](#fields-and-ids)
+* [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
+* [Catalog Layout](#catalog-layout)
+* [Use of Links](#use-of-links)
+* [STAC on the Web](#stac-on-the-web)
+
+---------
+
 This document makes a number of recommendations for creating real world SpatioTemporal Asset Catalogs. None of them 
 are required to meet the core specification, but following these practices will make life easier for client tooling
 and for users. They come about from practical experience of implementors, and introduce a bit more 'constraint' for
@@ -50,9 +60,9 @@ is to place the catalog file in namespaces "directories". For example:
 
 Dynamic STAC Catalogs are those that generate their JSON responses programmatically instead of relying on a set of
 already defined files. Typically a dynamic catalog implements the full [STAC API](api-spec/api-spec.md/) which enables 
-search of the Items indexed. But the `/stac/` endpoint returns the exact same `Catalog` and `Item` structures as a
+search of the Items indexed. The `/` endpoint returns the exact same STAC Catalog structure as a
 static catalog, enabling the same discovery from people browsing and search engines crawling. Dynamic API's that
-just seek to expose some data can also choose to only implement a Catalog the `/stac/` endpoint that returns dynamically.
+just seek to expose some data can also choose to not implement `/search` and only link to their data from the `/` endpoint.
 For example a Content Management Service like Drupal or an Open Data Catalog like CKAN could choose to expose its content
 as linked STAC Items by implementing a dynamic catalog. 
 
@@ -60,10 +70,6 @@ One benefit of a dynamic catalog is that it can generate various 'views' of the 
 different sub-catalog organization structures. For example one catalog could divide sub-catalogs by date and another by
 providers, and users could browse down to both. The leaf Items should just be linked to in a single canonical location
 (or at least use a `rel` link that indicates the location of the canonical one.
-
-The STAC API is also made to be compatible with OGC API - Features, which has a set structure for the canonical location of its features.
-STAC Items should use the OGC API - Features location as their canonical location, and then in the `/stac/` browse structure would just
-link to those locations. 
 
 ## Catalog Layout
 
@@ -83,8 +89,8 @@ This means that each item and its assets are contained in a unique subdirectory
 
 ### Dynamic Catalog Layout
 
-While these recommendations were primarily written for [static catalogs](catalog-spec/catalog-spec.md#catalog-types), they apply
-equally well to [dynamic catalogs](catalog-spec/catalog-spec.md#catalog-types). Subdirectories of course would just be URL paths 
+While these recommendations were primarily written for [static catalogs](#static-catalogs), they apply
+equally well to [dynamic catalogs](#dynamic-catalogs). Subdirectories of course would just be URL paths 
 generated dynamically, but the structure would be the same as is recommended.
 
 One benefit of a dynamic catalog is that it can generate various 'views' of the catalog, exposing the same Items in 
@@ -134,6 +140,36 @@ and used in other contexts. That catalog could be used offline, or even publishe
 Self-contained catalogs are not just for offline use, however - they are designed to be able to be published online and to live
 on the cloud in object storage. They just aim to ease the burden of publishing, by not requiring lots of updating of links. 
 Adding a single `self` link at the root is recommended for online catalogs, turning it into a 'relative published catalog', as detailed below. This anchors it in an online location and enable provenance tracking.
+
+### Versioning for Catalogs
+
+The [Items and Collections API Version Extension](./api-spec/extensions/version) provides endpoints and semantics for keeping and accessing previous versions of Collections and Items. The same semantics can be used in static catalogs to preserve previous versions of the documents and link them together.
+
+In order to achieve this, the static catalog must make sure that for every record created, a copy of the record is also created in a separate location and it is named with the version id adopted by the catalog. See [here](/api-spec/extensions/version/README.md#version-id) for recommendations on versioning schema.
+
+The main record should also provide a link to the versioned record following the linking patterns described [here](/extensions/version/README.md#relation-types). For every update to the record, the same cycle is repeated:
+
+1. Add link from the updated record to the previous version
+2. Create a copy of the updated record and name it correctly
+
+In the Item and Collection STAC files or API responses, versions and deprecation can be indicated with the [Versioning Indicators Extension](./extensions/version).
+
+#### Example
+
+When the record `my_item.json` is created, a copy of it is also created. `my_item.json` includes `permalink` to `my_item_01.json`. The version suffix of the file name is taken from the version field of the record when it is available.
+
+```
+--- root / collections / example_collection / items / my_item / my_item.json
+--- root / collections / example_collection / items / my_item / my_item_01.json
+```
+
+When `my_item.json` is updated, the new `my_item.json` includes a link to `my_item_01.json` and is also copied to `my_item_02.json`. This ensures that `my_item_02.json` includes a link to `my_item_01.json`
+
+```
+--- root / collections / example_collection / items / my_item / my_item.json
+--- root / collections / example_collection / items / my_item / my_item_01.json
+--- root / collections / example_collection / items / my_item / my_item_02.json
+```
 
 ### Published Catalogs
 
@@ -207,7 +243,7 @@ traditional database could work fine too) and then generate the full STAC API re
 There are instances that have the API refer directly to the static STAC Items, but this only works well if the static STAC 
 catalog is an 'absolute published catalog'. So the recommendation is to always use absolute links - either in the static 
 published catalog, or to create new absolute links for the STAC search/ endpoint 
-responses, with the API's location at the base url. The /stac endpoint with the catalogs could either link directly
+responses, with the API's location at the base url. The `/` endpoint with the catalog could either link directly
 to the static catalog, or can follow the 'dynamic catalog layout' recommendations above with a new set of URL's.
 
 Ideally each `Item` would use its `links` to provide a reference back to the static location. The location of the static

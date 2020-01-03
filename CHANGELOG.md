@@ -6,6 +6,67 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [v0.9.0-rc1] - 2020-01-06
+
+### Added
+- ItemCollection requires `stac_version` field, `stac_extensions` has also been added
+- A `description` field has been added to Item assets (also Asset definitions extension). 
+- Field `mission` to [Common Metadata fields](item-spec/common-metadata.md).
+- Extensions:
+    - [Version Indicators extension](extensions/version/README.md), adds `version` and `deprecated` fields to STAC Items and Collections
+    - Data Cube extension can be used in Collections, added new field `description`
+    - Added `description` and `roles` fields to the Asset in the [Asset Extension](extensions/asset/README.md)
+    - Projection Extension to describe Items with Assets that have an associated geospatial projection.
+- STAC API:
+    - Added the [Item and Collection API Version extension](api-spec/extensions/version/README.md) to support versioning in the API specification
+    - Run `npm run serve` or `npm run serve-ext` to quickly render development versions of the OpenAPI spec in the browser.
+
+### Changed
+- Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html)
+- Collection field `property` and the merge ability moved to a new extension 'Commons'
+- Added attribute `roles` to Item assets (also Asset definitions extension), to be used similarly to Link `rel`.
+- Updated API yaml to clarify bbox filter should be implemented without brackets. Example: `bbox=160.6,-55.95,-170,-25.89`
+- Collection `summaries` merge array fields now.
+- Several fields have been moved from extensions or item fields to the [Common Metadata fields](item-spec/common-metadata.md):
+    - `eo:platform` / `sar:platform` => `platform`
+    - `eo:instrument` / `sar:instrument` => `instruments`, also changed from string to array of strings
+    - `eo:constellation` / `sar:constellation` => `constellation`
+    - `dtr:start_datetime` => `start_datetime`
+    - `dtr:end_datetime` => `end_datetime`
+- Extensions:
+    - Data Cube extension: Changed allowed formats (removed PROJ string, added PROJJSON / WKT2) for reference systems
+    - [Checksum extension](extensions/checksum/README.md) is now using self-identifiable hashes ([Multihash](https://github.com/multiformats/multihash))
+    - Changed `sar:type` to `sar:product_type` and `sar:polarization` to `sar:polarizations` in the [SAR extension](extensions/sar/README.md)
+- STAC API:
+    - The endpoint `/stac` has been merged with `/`
+    - The endpoint `/stac/search` is now called `/search`
+    - Sort Extension - added non-JSON query/form parameter format
+    - Fields extension has a simplified format for GET parameters
+    - `search` extension renamed to `context` extension. JSON object renamed from `search:metadata` to `context`
+    - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
+    - Query Extension - type restrictions on query predicates are more accurate, which may require additional implementation support. 
+
+### Removed
+- `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead
+- `summaries` field from Catalogs. Use Collections instead
+- Asset Types (pre-defined values for the keys of individual assets, *not* media types) in Items. Use the asset's `roles` instead.
+- `license` field doesn't allow SPDX expressions any longer. Use `various` and links instead.
+- Extensions:
+    - `eo:platform`, `eo:instrument`, `eo:constellation` from EO extension, and `sar:platform`, `sar:instrument`, `sar:constellation` from the [SAR extension](extensions/sar/README.md)
+    - Removed from EO extension field `eo:epsg` in favor of `proj:epsg`
+    - `gsd` and `accuracy` from `eo:bands` in the [EO extension](extensions/eo/README.md)
+    - `sar:absolute_orbit` and `sar:center_wavelength` fields from the [SAR extension](extensions/sar/README.md)
+    - `data_type` and `unit` from the `sar:bands` object in the [SAR extension](extensions/sar/README.md)
+    - Datetime Range (`dtr`) extension. Use the [Common Metadata fields](item-spec/common-metadata.md) instead.
+- STAC API:
+    - `next` from the search metadata and query parameter, added POST body and headers to the links for paging support
+
+### Fixed
+
+- The `license` field in Item and Collection spec explicitly mentions that the value `proprietary` without a link means that the data is private.
+- Clarified how to fill `stac_extensions`.
+- More clarifications; typos fixed
+
 ## [v0.8.1] - 2019-11-01
 
 ### Changed
@@ -60,7 +121,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - moved label:classes to be a list of Class Objects from a single Class Object in spec markdown and json schema (matching previous example JSON).
     - moved label:overview to be a list of Overview Objects from a single Overview Object in spec markdown and json schema (matching previous example JSON).
     - Renamed fields to use plural forms (`label:property` -> `label:properties`, `label:task` -> `label:tasks`, `label:method` -> `label:methods` and `label:overview` -> `label:overviews`)
-
 
 ## [v0.7.0] - 2019-05-06
 
@@ -215,6 +275,7 @@ Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkam
 
 
 [Unreleased]: https://github.com/radiantearth/stac-spec/compare/master...dev
+[v0.9.0-rc1]: https://github.com/radiantearth/stac-spec/compare/v0.8.0...v0.9.0-rc1
 [v0.8.1]: https://github.com/radiantearth/stac-spec/compare/v0.8.0...v0.8.1
 [v0.8.0]: https://github.com/radiantearth/stac-spec/compare/v0.7.0...v0.8.0
 [v0.7.0]: https://github.com/radiantearth/stac-spec/compare/v0.6.2...v0.7.0

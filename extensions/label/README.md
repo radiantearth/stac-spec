@@ -40,7 +40,7 @@ Like other content extensions, the Label extension adds additional fields to a S
 Some additional notes are given here for some of the core STAC Item fields and what they represent for label.
 
 - **bbox** and **geometry**: The bounding box and the geometry of a Label Item represents the region for which the label(s) is/are valid. This could be the extent of all the AOIs in the dataset, or could be the region the provider believes the label is representative.
-- **properties.datetime**: The datetime of a Label Item is the nominal datetime for which the label applies, typically this is the datetime of the source imagery used to generate the labels. If the label applies over a range of datetimes (e.g., generated from multiple source images) then use the datetime-range (dtr) extension to indicate start and end datetimes.
+- **properties.datetime**: The datetime of a Label Item is the nominal datetime for which the label applies, typically this is the datetime of the source imagery used to generate the labels. If the label applies over a range of datetimes (e.g., generated from multiple source images) then use the [Date and Time Range fields](../../item-spec/common-metadata.md#date-and-time-range) to indicate start and end datetimes.
 - **assets**: The label assets are GeoJSON FeatureCollection assets containing the actual label features. As with the core STAC Item a thumbnail asset is also strongly encouraged.
 
 ### New Item properties
@@ -155,11 +155,13 @@ The `label:assets` field applies to situations where the labels may apply to cer
 
 
 ## Implementations
-Example implementations can be found in [Examples](#Examples). The Roads implementation provides an example item for labels from the [SpaceNet Road Network Extraction Challenge Dataset](https://spacenet.ai/spacenet-roads-dataset/), providing segmentation labels for road networks. The Misc Samples implementation provides an example catalog of collections with sample label items from several training datasets, [SpaceNet Buildings](https://spacenet.ai/spacenet-buildings-dataset-v2/) and [Open AI Tanzania Building Footprint Segmentation Challenge](https://competitions.codalab.org/competitions/20100) for now, providing segmentation labels for buildings.
 
-Raster Foundry will support exporting STAC-compliant training data label items, assets, and sources all in `json` format contained in a `zip` file for a project layer. There is a [Pull Request](https://github.com/raster-foundry/raster-foundry/pull/5018) for the backend support in its repository. Frontend support is on the roadmap.
+The SpaceNet Challenge Round 2 dataset has a [STAC catalog](https://spacenet-dataset.s3.amazonaws.com/spacenet-stac/SN2_buildings/catalog.json) generated using [PySTAC](https://pystac.readthedocs.io/en/latest) containing Label Items. Further example implementations can be found in [Examples](#Examples). The Roads implementation provides an example item for labels from the [SpaceNet Road Network Extraction Challenge Dataset](https://spacenet.ai/spacenet-roads-dataset/), providing segmentation labels for road networks. The Misc Samples implementation provides an example catalog of collections with sample label items from several training datasets, [SpaceNet Buildings](https://spacenet.ai/spacenet-buildings-dataset-v2/) and [Open AI Tanzania Building Footprint Segmentation Challenge](https://competitions.codalab.org/competitions/20100) for now, providing segmentation labels for buildings.
 
+[Raster Foundry](https://rasterfoundry.azavea.com/) supports exporting STAC-compliant training data label items, assets, and sources in a self-contained `zip` file and as an s3 directory when initiated from an internal annotation and labeling tool.
 
+[PySTAC](https://pystac.readthedocs.io/en/latest/) supports [reading/writing](https://pystac.readthedocs.io/en/latest/tutorials/how-to-create-stac-catalogs.html#Adding-label-items-to-the-Spacenet-5-catalog) STAC collections according to this extension.
 
 ## Extensions
-Label Items may often use the `datetime-range` extension if the label set applies over a range of dates. While the EO extension doesn't make sense within a Label Item itself, most Label Items will link to source data which will frequently use the EO Extension. The [extensions page](../README.md) gives an overview about these and other extensions.
+While the EO extension doesn't make sense within a Label Item itself, most Label Items will link to source data which will frequently use the EO Extension.
+The [extensions page](../README.md) gives an overview about these and other extensions.

@@ -1,0 +1,101 @@
+{
+  "$schema":"http://json-schema.org/draft-07/schema#",
+  "$id":"schema.json#",
+  "title":"Projection Extension",
+  "description":"STAC Projection Extension to a STAC Item",
+  "allOf":[
+    {
+      "$ref": "../../../item-spec/json-schema/item.json"
+    },
+    {
+      "$ref":"#/definitions/proj"
+    }
+  ],
+  "definitions":{
+    "proj":{
+      "type": "object",
+      "required": [
+        "properties"
+      ],
+      "properties":{
+        "properties":{
+          "type":"object",
+          "required":[
+            "proj:epsg"
+          ],
+          "properties":{
+            "proj:epsg":{
+              "title":"EPSG code",
+              "type":[
+                "integer",
+                "null"
+              ]
+            },
+            "proj:proj4":{
+              "title":"Coordinate Reference System in PROJ4 format",
+              "type":[
+                "string",
+                "null"
+              ]
+            },
+            "proj:wkt2":{
+              "title":"Coordinate Reference System in WKT2 format",
+              "type":[
+                "string",
+                "null"
+              ]
+            },
+            "proj:projjson": {
+              "title":"Coordinate Reference System in PROJJSON format",
+              "oneOf": [
+                {
+                  "$ref": "https://proj.org/schemas/v0.1/projjson.schema.json"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "proj:geometry":{
+              "title":"Geometry",
+              "oneOf": [
+                {
+                  "$ref": "https://geojson.org/schema/Polygon.json"
+                }
+              ]
+            },
+            "proj:bbox":{
+              "title":"Extent",
+              "type":"array",
+              "minItems":4,
+              "maxItems":6,
+              "items":{
+                "type":"number"
+              }
+            },
+            "proj:centroid":{
+              "title":"Centroid",
+              "type":"object",
+              "required": [
+                "lat",
+                "lon"
+              ],
+              "properties": {
+                "lat": {
+                  "type": "number",
+                  "minimum": -90,
+                  "maximum": 90
+                },
+                "lon": {
+                  "type": "number",
+                  "minimum": -180,
+                  "maximum": 180
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
