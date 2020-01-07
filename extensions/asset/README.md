@@ -30,7 +30,7 @@ An asset is an object that contains details about the datafiles that will be inc
 | Field Name  | Type   | Description |
 | ----------- | ------ | ----------- |
 | title       | string | The displayed title for clients and users. |
-| description | string | A description of the Asset providing additional details, such as how it was processed or created. |
+| description | string | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | type        | string | [Media type](../../item-spec/item-spec.md#media-types) of the asset. |
 | roles       | [string] | The semantic roles of the asset, similar to the use of `rel` in links. |
 

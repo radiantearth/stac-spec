@@ -105,7 +105,7 @@ Currently, the JSON schema for links does not require them to be formatted as UR
 implementors to provide relative links. In general, Catalog APIs should aim to provide absolute links
 whenever possible. Static Catalogs are potentially more portable if they incorporate only
 relative links, so that every link doesn't need to be rewritten when the data is copied. Additional
-recommendations for particular ```rel``` types are given in the ```rel``` type description.
+recommendations for particular `rel` types are given in the `rel` type description.
 
 #### Relation types
 
@@ -153,7 +153,7 @@ or streamed. It is allowed to add additional fields.
 | ----------- | ------ | ----------- |
 | href        | string | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
 | title       | string | The displayed title for clients and users. |
-| description | string | A description of the Asset providing additional details, such as how it was processed or created. |
+| description | string | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | type        | string | [Media type](#media-types) of the asset. |
 | roles       | [string] | The semantic role of the asset, similar to the use of `rel` in links. 
 
