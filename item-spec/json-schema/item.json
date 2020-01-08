@@ -12,7 +12,7 @@
   ],
   "definitions": {
     "common_metadata": {
-      "anyOf": [
+      "allOf": [
         {
           "$ref": "datetimerange.json"
         },
