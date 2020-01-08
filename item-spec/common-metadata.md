@@ -1,4 +1,6 @@
 # STAC Common Metadata
+This document outlines all commonly used fields that are currently supported in STAC Item properties. These fields are 
+included by default in the core [Item schema](json-schema/item.json) but implementation is not required. 
 
 * [Date and Time](#date-and-time)
 * [Licensing](#licensing)
@@ -17,7 +19,7 @@ Fields to provide additional temporal information such as ranges with a start an
 
 - [JSON Schema](json-schema/datetimerange.json)
 
-While a STAC item can have a nominal datetime describing the capture, this extension allows an item to have a range
+While a STAC item can have a nominal datetime describing the capture, these properties allow an item to have a range
 of capture datetimes. An example of this is the [MODIS 16 day vegetation index product.](https://lpdaac.usgs.gov/products/mod13q1v006/).
 The datetime property in a STAC item and these fields are not mutually exclusive.
 
@@ -85,8 +87,8 @@ The object provides information about a provider. A provider is any of the organ
 
 ## Instrument
 
-Adds metadata specifying a platform and instrument used in a data collection mission. It will often be combined with
-other extensions that describe the actual data, such as the `eo` or `sar` extensions.
+Adds metadata specifying a platform and instrument used in a data collection mission. These fields will often be combined 
+with domain-specific extensions that describe the actual data, such as the `eo` or `sar` extensions.
 
 - [JSON Schema](json-schema/instrument.json)
 

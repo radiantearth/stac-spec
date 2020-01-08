@@ -66,8 +66,10 @@ Items that are linked to, but the best practices around this are still emerging.
 
 ### Properties Object
 
-The Properties object adds additional metadata to the GeoJSON Object. Additional fields can be introduced through 
-extensions. It is generally allowed to add custom fields.
+The Properties object adds additional metadata to the GeoJSON Object. The Item definition also supports a default suite 
+of optional [Common Metadata](common-metadata.md) fields to describe information such as metadata update datetimes, licensing,
+provider attribution, etc. Additional domain-specific fields can be introduced through [extensions](../extensions/README.md#extensions). 
+It is generally allowed to add custom fields.
 
 It is recommended to add multiple attributes for related values instead of a nested object, e.g., two fields `eo:cloud_cover` and `sat:sun_azimuth_angle` instead of a field `eo` with an object value containing the two fields. The convention (as used within Extensions) is for related attributes to use a common prefix on the attribute names to group them, e.g. `eo`. A nested data structure should only be used when the data itself is nested, as with `eo:bands`.
 
