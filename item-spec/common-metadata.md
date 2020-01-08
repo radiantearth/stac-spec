@@ -1,5 +1,5 @@
 # STAC Common Metadata
-This document outlines all commonly used fields that are currently supported in STAC Item properties. These fields are 
+This document outlines all commonly used fields for STAC Item properties. These fields are 
 included by default in the core [Item schema](json-schema/item.json) but implementation is not required. 
 
 * [Date and Time](#date-and-time)
