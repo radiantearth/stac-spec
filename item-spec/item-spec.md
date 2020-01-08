@@ -149,13 +149,13 @@ using the [Commons extension](../extensions/commons/README.md) to avoid duplicat
 An asset is an object that contains a link to data associated with the Item that can be downloaded
 or streamed. It is allowed to add additional fields.
 
-| Field Name  | Type   | Description |
-| ----------- | ------ | ----------- |
-| href        | string | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
-| title       | string | The displayed title for clients and users. |
-| description | string | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| type        | string | [Media type](#media-types) of the asset. |
-| roles       | [string] | The semantic role of the asset, similar to the use of `rel` in links. 
+| Field Name  | Type     | Description |
+| ----------- | -------- | ----------- |
+| href        | string   | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
+| title       | string   | The displayed title for clients and users. |
+| description | string   | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| type        | string   | [Media type](#media-types) of the asset. |
+| roles       | [string] | The [semantic roles](#asset-role-types) of the asset, similar to the use of `rel` in links. 
 
 #### Asset Role Types
 
@@ -163,9 +163,14 @@ Like the Link `rel` field, the `roles` field can be given any value, however her
 
 | Role Name | Description                                                                           |
 | --------- | ------------------------------------------------------------------------------------- |
-| thumbnail | STRONGLY RECOMMENDED. An asset that represents a thumbnail of the item, typically a true color image (for items with assets in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `roles` be unique tuples. For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types. |
-| overview  | An asset that represents a possibly larger view than the thumbnail of the Item , for example, a true color composite of multi-band data. |
+| thumbnail | An asset that represents a thumbnail of the item, typically a true color image (for items with assets in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `roles` be unique tuples. For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types. |
+| overview  | An asset that represents a possibly larger view than the thumbnail of the Item, for example, a true color composite of multi-band data. |
+| data      | The data itself. This is a suggestion for a common role for data files to be used in case data providers don't come up with their own names and semantics. |
 | metadata  | A metadata sidecar file describing the data in this item, for example the Landsat-8 MTL file. |
+
+It is STRONGLY RECOMMENDED to add to each STAC Item
+* a thumbnail with the role `thumbnail` for preview purposes
+* one or more data file although it doesn't need to use the suggested role `data`
 
 #### Media Types
 
