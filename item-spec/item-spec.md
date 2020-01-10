@@ -66,17 +66,13 @@ Items that are linked to, but the best practices around this are still emerging.
 
 ### Properties Object
 
-The Properties object adds additional metadata to the GeoJSON Object. The Item definition also supports a default suite 
-of optional [Common Metadata](common-metadata.md) fields to describe information such as metadata update datetimes, licensing,
-provider attribution, etc. Additional domain-specific fields can be introduced through [extensions](../extensions/README.md#extensions). 
-It is generally allowed to add custom fields.
-
-It is recommended to add multiple attributes for related values instead of a nested object, e.g., two fields `eo:cloud_cover` and `sat:sun_azimuth_angle` instead of a field `eo` with an object value containing the two fields. The convention (as used within Extensions) is for related attributes to use a common prefix on the attribute names to group them, e.g. `eo`. A nested data structure should only be used when the data itself is nested, as with `eo:bands`.
+Additional metadata fields can be added to the GeoJSON Object Properties. The only required field 
+is `datetime` but it is recommended to add more fields, see [Additional Fields](#additional-fields) 
+resources below.
 
 | Field Name | Type   | Description                                                  |
 | ---------- | ------ | ------------------------------------------------------------ |
 | datetime   | string | **REQUIRED.** The searchable date and time of the assets, in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
-| title      | string | A human readable title describing the item. |
 
 **For more fields see the [STAC Common Metadata](common-metadata.md) and the [Content Extensions](../extensions/README.md#list-of-content-extensions).**
 
@@ -86,6 +82,18 @@ complex thing to capture, for this purpose keep in mind the STAC spec is primari
 data, so use whatever single date and time is most useful for a user to search for. STAC content
 extensions may further specify the meaning of the main `datetime` field, and many will also add more
 datetime fields.
+
+#### Additional Fields
+* [STAC Common Metadata](common-metadata.md#stac-common-metadata) a list of fields commonly used 
+throughout all domains. These optional fields are included for STAC Items by default.
+* [Content Extensions](../extensions/README.md#list-of-content-extensions) Domain-specific fields 
+such as EO, SAR and point clouds.
+* [Custom Extensions](../extensions/README.md#extending-stac) It is generally allowed to add custom 
+fields but it is recommended to add multiple attributes for related values instead of a nested object, 
+e.g., two fields `eo:cloud_cover` and `sat:sun_azimuth_angle` instead of a field `eo` with an object 
+value containing the two fields. The convention (as used within Extensions) is for related attributes 
+to use a common prefix on the attribute names to group them, e.g. `eo`. A nested data structure should 
+only be used when the data itself is nested, as with `eo:bands`.
 
 ### Link Object
 
