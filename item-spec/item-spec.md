@@ -82,7 +82,7 @@ extensions may further specify the meaning of the main `datetime` field, and man
 datetime fields.
 
 #### Additional Fields
-* [STAC Common Metadata](common-metadata.md#stac-common-metadata) a list of fields commonly used 
+* [STAC Common Metadata](common-metadata.md#stac-common-metadata) - A list of fields commonly used 
 throughout all domains. These optional fields are included for STAC Items by default.
 * [Content Extensions](../extensions/README.md#list-of-content-extensions) Domain-specific fields 
 such as EO, SAR and point clouds.
