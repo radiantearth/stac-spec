@@ -86,7 +86,7 @@ datetime fields.
 throughout all domains. These optional fields are included for STAC Items by default.
 * [Content Extensions](../extensions/README.md#list-of-content-extensions) - Domain-specific fields 
 such as EO, SAR and point clouds.
-* [Custom Extensions](../extensions/README.md#extending-stac) It is generally allowed to add custom 
+* [Custom Extensions](../extensions/README.md#extending-stac) - It is generally allowed to add custom 
 fields but it is recommended to add multiple attributes for related values instead of a nested object, 
 e.g., two fields `eo:cloud_cover` and `sat:sun_azimuth_angle` instead of a field `eo` with an object 
 value containing the two fields. The convention (as used within Extensions) is for related attributes 
