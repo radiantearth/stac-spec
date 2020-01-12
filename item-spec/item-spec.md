@@ -84,7 +84,7 @@ datetime fields.
 #### Additional Fields
 * [STAC Common Metadata](common-metadata.md#stac-common-metadata) - A list of fields commonly used 
 throughout all domains. These optional fields are included for STAC Items by default.
-* [Content Extensions](../extensions/README.md#list-of-content-extensions) Domain-specific fields 
+* [Content Extensions](../extensions/README.md#list-of-content-extensions) - Domain-specific fields 
 such as EO, SAR and point clouds.
 * [Custom Extensions](../extensions/README.md#extending-stac) It is generally allowed to add custom 
 fields but it is recommended to add multiple attributes for related values instead of a nested object, 
