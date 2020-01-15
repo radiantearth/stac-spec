@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - STAC API:
     - Added the [Item and Collection API Version extension](api-spec/extensions/version/README.md) to support versioning in the API specification
     - Run `npm run serve` or `npm run serve-ext` to quickly render development versions of the OpenAPI spec in the browser.
+    - Added new fields to the `link` object to facilitate [pagination support for POST requests](api-spec/api-spec.md#paging-extension).
 
 ### Changed
 - Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html)
@@ -43,7 +44,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - Sort Extension - added non-JSON query/form parameter format
     - Fields extension has a simplified format for GET parameters
     - `search` extension renamed to `context` extension. JSON object renamed from `search:metadata` to `context`
-    - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
     - Query Extension - type restrictions on query predicates are more accurate, which may require additional implementation support. 
 
 ### Removed
@@ -59,7 +59,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - `data_type` and `unit` from the `sar:bands` object in the [SAR extension](extensions/sar/README.md)
     - Datetime Range (`dtr`) extension. Use the [Common Metadata fields](item-spec/common-metadata.md) instead.
 - STAC API:
-    - `next` from the search metadata and query parameter, added POST body and headers to the links for paging support
+    - `next` from the search metadata and query parameter
 
 ### Fixed
 
