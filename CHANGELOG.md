@@ -6,11 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Changed
+- `putFeature` can return a `PreconditionFailed` to provide more explicit information when the resource has changed in the server
+
 ## [v0.9.0-rc1] - 2020-01-06
 
 ### Added
 - ItemCollection requires `stac_version` field, `stac_extensions` has also been added
-- A `description` field has been added to Item assets (also Asset definitions extension). 
+- A `description` field has been added to Item assets (also Asset definitions extension).
 - Field `mission` to [Common Metadata fields](item-spec/common-metadata.md).
 - Extensions:
     - [Version Indicators extension](extensions/version/README.md), adds `version` and `deprecated` fields to STAC Items and Collections
@@ -44,7 +47,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - Fields extension has a simplified format for GET parameters
     - `search` extension renamed to `context` extension. JSON object renamed from `search:metadata` to `context`
     - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
-    - Query Extension - type restrictions on query predicates are more accurate, which may require additional implementation support. 
+    - Query Extension - type restrictions on query predicates are more accurate, which may require additional implementation support.
 
 ### Removed
 - `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead
