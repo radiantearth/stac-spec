@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Added
+- [Basics](item-spec/common-metadata.md#basics) added to Common Metadata definitions with new `description` field for
+Item properties.
+
+### Changed
+- Item `title` definition moved from core Item fields to [Common Metadata Basics](item-spec/common-metadata.md#basics) 
+fields. No change is required for STAC Items.
+
+### Fixed
+- Fixed Item JSON Schema now `allOf` optional Common Metadata properties are evaluated.
+- Clarified usage of optional Common Metadata fields for STAC Items.
+
 ## [v0.9.0-rc1] - 2020-01-06
 
 ### Added
