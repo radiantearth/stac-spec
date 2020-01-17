@@ -192,7 +192,7 @@ The following fields have been added to the `link` object specification for the 
 
 | Parameter | Type             | Description |
 | --------- | ---------------- | ----------- |
-| method    | string           | One of `GET` or `POST` to indicate the HTTP method of the request |
+| method    | string           | The HTTP method of the request, usually `GET` or `POST`. Defaults to `GET` |
 | headers   | object           | A dictionary of header values that should be included in the next request |
 | body      | object           | A JSON object containing fields/values that should be included in the body of the next request |
 | merge     | boolean          | If true, the headers/body fields in the next link should be merged into the original request for the next request | 
