@@ -226,6 +226,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '404':
           $ref: '#/components/responses/NotFound'
+        '412':
+          $ref: '#/components/responses/PreconditionFailed'
         5XX:
           $ref: '#/components/responses/InternalServerError'
         default:
@@ -240,7 +242,7 @@ paths:
     patch:
       summary: update an existing feature by Id with a partial item definition
       description: >-
-        Use this method to update an existing feature. Requires a GeoJSON 
+        Use this method to update an existing feature. Requires a GeoJSON
         fragement (containing the fields to be updated) be submitted.
       operationId: patchFeature
       tags:
@@ -2305,6 +2307,12 @@ components:
             type: string
     BadRequest:
       description: The request was malformed or semantically invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/exception'
+    PreconditionFailed:
+      description: Some condition specified by the request could not be met in the server
       content:
         application/json:
           schema:
