@@ -55,13 +55,15 @@ Body:
 
 ### Paging
 
-Simple GET based search just uses the standard next link:
+#### Simple GET based search:
+Request:
 ```
 HTTP GET /search?bbox=-110,39.5,-105,40.5
 ```
 
 Response:
 ```json
+200 OK
 {
     "type": "FeatureCollection",
     "features": [],
@@ -73,11 +75,12 @@ Response:
     ]
 }
 ```
+Following the link http://api.cool-sat.com/search?page=2 will send the user to the next page of results.
 
-For more complex post searches:
+#### POST search with body and merge fields:
+Request:
 ```json
 HTTP POST /search
-
 {
     "bbox": [-110, 39.5, -105, 40.5]
 }
@@ -104,7 +107,10 @@ Response:
 }
 ```
 
-This tells the client to post to the search endpoint with a body of:
+This tells the client to POST to the search endpoint using the original request with the `page` and `limit` fields 
+merged in to obtain the next set of results:
+
+Request:
 ```json
 POST /search
 {
@@ -114,23 +120,66 @@ POST /search
 }
 ```
 
-This can be even more effective when using continuation tokens on the server.
+This can be even more effective when using continuation tokens on the server, as the entire request body need not be 
+repeated in the subsequent request:
 
+Response:
 ```json
+200 OK
 {
     "rel": "next",
     "href": "http://api.cool-sat.com/search",
     "method": "POST",
     "body": {
-        "next": "token"
+        "next": "a9f3kfbc98e29a0da23"
     }
 }
 ```
-The above link tells the client not to merge (default of false) so it is only required to pass the token.
+The above link tells the client not to merge (default of false) so it is only required to pass the next token in the body.
 
+Request:
 ```json
 POST /search
 {
-    "next": "token"
+    "next": "a9f3kfbc98e29a0da23"
 }
 ```
+
+#### POST search using headers:
+Request:
+```json
+HTTP POST /search
+{
+    "bbox": [-110, 39.5, -105, 40.5],
+    "page": 2,
+    "limit": 10
+}
+```
+
+Response:
+```json
+200 OK
+{
+    "type": "FeatureCollection",
+    "features": [],
+    "links": [
+        {
+            "rel": "next",
+            "href": "http://api.cool-sat.com/search",
+            "method": "POST",
+            "headers": {
+                "Search-After": "LC81530752019135LGN00"
+            }
+        }
+    ]
+}
+```
+
+This tells the client to POST to the search endpoint with the header `Search-After` to obtain the next set of results:
+
+Request:
+```json
+POST /search
+Search-After: LC81530752019135LGN00
+```
+
