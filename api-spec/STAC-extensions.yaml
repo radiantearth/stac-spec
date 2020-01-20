@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: The SpatioTemporal Asset Catalog API + Extensions
-  version: 0.8.0
+  version: 0.9.0-rc1
   license:
     name: Apache License 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0'
@@ -35,8 +35,13 @@ paths:
         - Capabilities
       summary: landing page
       description: |-
+        Returns the root STAC Catalog or STAC Collection that is the entry point
+        for users to browse with STAC Browser or for search engines to crawl.
+        This can either return a single STAC Collection or more commonly a STAC
+        catalog.
+
         The landing page provides links to the API definition, the conformance
-        statements and to the feature collections in this dataset.
+        statements, the collections and sub-catalogs.
       operationId: getLandingPage
       responses:
         '200':
@@ -307,25 +312,7 @@ paths:
             text/html:
               schema:
                 type: string
-  /stac:
-    get:
-      summary: Return the root catalog or collection.
-      description: >-
-        Returns the root STAC Catalog or STAC Collection that is the entry point
-        for users to browse with STAC Browser or for search engines to crawl.
-        This can either return a single STAC Collection or more commonly a STAC
-        catalog that usually lists sub-catalogs of STAC Collections, i.e. a
-        simple catalog that lists all collections available through the API.
-      tags:
-        - STAC
-      responses:
-        '200':
-          description: A catalog JSON definition. Used as an entry point for a crawler.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/catalogDefinition'
-  /stac/search:
+  /search:
     get:
       summary: Search STAC items with simple filtering.
       description: >-
@@ -333,8 +320,8 @@ paths:
         queries.
 
 
-        This method is optional, but you MUST implement `POST /stac/search` if
-        you want to implement this method.
+        This method is optional, but you MUST implement `POST /search` if you
+        want to implement this method.
       operationId: getSearchSTAC
       tags:
         - STAC
@@ -342,11 +329,10 @@ paths:
         - $ref: '#/components/parameters/bbox'
         - $ref: '#/components/parameters/datetime'
         - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/next'
         - $ref: '#/components/parameters/ids'
         - $ref: '#/components/parameters/collectionsArray'
         - $ref: '#/components/parameters/query'
-        - $ref: '#/components/parameters/sort'
+        - $ref: '#/components/parameters/sortby'
         - $ref: '#/components/parameters/fields'
       responses:
         '200':
@@ -374,10 +360,10 @@ paths:
         query API.
 
 
-        This method is mandatory to implement if `GET /stac/search` is
-        implemented. If this endpoint is implemented on a server, it is required
-        to add a link with `rel` set to `search` to the `links` array in `GET
-        /stac` that refers to this endpoint.
+        This method is mandatory to implement if `GET /search` is implemented.
+        If this endpoint is implemented on a server, it is required to add a
+        link with `rel` set to `search` to the `links` array in `GET /` that
+        refers to this endpoint.
       operationId: postSearchSTAC
       tags:
         - STAC
@@ -405,39 +391,137 @@ paths:
             text/html:
               schema:
                 type: string
+  '/collections/{collectionId}/versions':
+    get:
+      summary: returns a list of links for a versioned collection
+      description: returns a list of links for a versioned collection
+      tags:
+        - Version Extension
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+      responses:
+        '200':
+          description: >-
+            A catalog JSON definition the returns list of links of a collection
+            versions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/catalogDefinition'
+  '/collections/{collectionId}/versions/{versionId}':
+    get:
+      summary: returns the requested version of a collection
+      description: returns the requested version of a collection
+      tags:
+        - Version Extension
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/versionId'
+      responses:
+        '200':
+          $ref: '#/components/responses/Collections'
+  '/collections/{collectionId}/items/{featureId}/versions':
+    get:
+      summary: returns a list of links for a versioned item
+      description: returns a list of links for a versioned item
+      tags:
+        - Version Extension
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/featureId'
+      responses:
+        '200':
+          description: >-
+            A catalog JSON definition the returns list of links of an item
+            versions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/catalogDefinition'
+  '/collections/{collectionId}/items/{featureId}/versions/{versionId}':
+    get:
+      summary: returns the requested version of an item
+      description: returns the requested version of an item
+      tags:
+        - Version Extension
+      parameters:
+        - $ref: '#/components/parameters/collectionId'
+        - $ref: '#/components/parameters/featureId'
+        - $ref: '#/components/parameters/versionId'
+      responses:
+        '200':
+          $ref: '#/components/responses/Collections'
 components:
   parameters:
     bbox:
       name: bbox
       in: query
-      description: |
+      description: >-
         Only features that have a geometry that intersects the bounding box are
-        selected. The bounding box is provided as four or six numbers,
-        depending on whether the coordinate reference system includes a
-        vertical axis (elevation or depth):
+        selected.
+
+        The bounding box is provided as four or six numbers, depending on
+        whether the
+
+        coordinate reference system includes a vertical axis (height or depth):
+
 
         * Lower left corner, coordinate axis 1
-        * Lower left corner, coordinate axis 2  
-        * Lower left corner, coordinate axis 3 (optional) 
-        * Upper right corner, coordinate axis 1 
-        * Upper right corner, coordinate axis 2 
-        * Upper right corner, coordinate axis 3 (optional)
 
-        The coordinate reference system of the values is WGS84
-        longitude/latitude (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless
-        a different coordinate reference system is specified in the parameter
-        `bbox-crs`.
+        * Lower left corner, coordinate axis 2
 
-        For WGS84 longitude/latitude the values are in most cases the sequence
-        of minimum longitude, minimum latitude, maximum longitude and maximum
-        latitude. However, in cases where the box spans the antimeridian the
-        first value (west-most box edge) is larger than the third value
-        (east-most box edge).
+        * Minimum value, coordinate axis 3 (optional)
+
+        * Upper right corner, coordinate axis 1
+
+        * Upper right corner, coordinate axis 2
+
+        * Maximum value, coordinate axis 3 (optional)
+
+
+        The coordinate reference system of the values is WGS 84
+        longitude/latitude
+
+        (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless a different
+        coordinate
+
+        reference system is specified in the parameter `bbox-crs`.
+
+
+        For WGS 84 longitude/latitude the values are in most cases the sequence
+        of
+
+        minimum longitude, minimum latitude, maximum longitude and maximum
+        latitude.
+
+        However, in cases where the box spans the antimeridian the first value
+
+        (west-most box edge) is larger than the third value (east-most box
+        edge).
+
+
+        If the vertical axis is included, the third and the sixth number are
+
+        the bottom and the top of the 3-dimensional bounding box.
 
 
         If a feature has multiple spatial geometry properties, it is the
-        decision of the server whether only a single spatial geometry property
-        is used to determine the extent or all relevant geometries.
+        decision of the
+
+        server whether only a single spatial geometry property is used to
+        determine
+
+        the extent or all relevant geometries.
+
+
+        Example: The bounding box of the New Zealand Exclusive Economic Zone in
+        WGS 84
+
+        (from 160.6°E to 170°W and from 55.95°S to 25.89°S) would be represented
+        in JSON
+
+        as `[160.6, -55.95, -170, -25.89]` and in a query as
+        `bbox=160.6,-55.95,-170,-25.89`.
       required: false
       schema:
         type: array
@@ -445,7 +529,6 @@ components:
         maxItems: 6
         items:
           type: number
-        $ref: '#/components/schemas/bbox'
       style: form
       explode: false
     collectionId:
@@ -488,7 +571,6 @@ components:
       required: false
       schema:
         type: string
-        $ref: '#/components/schemas/datetime'
       style: form
       explode: false
     featureId:
@@ -501,26 +583,27 @@ components:
     limit:
       name: limit
       in: query
-      description: The maximum number of results to return (page size). Defaults to 10
+      description: >-
+        The optional limit parameter limits the number of items that are
+        presented in the response document.
+
+
+        Only items are counted that are on the first level of the collection in
+        the response document.
+
+        Nested objects contained within the explicitly requested items shall not
+        be counted.
+
+
+        Minimum = 1. Maximum = 10000. Default = 10.
       required: false
       schema:
         type: integer
         minimum: 1
         maximum: 10000
         default: 10
-        $ref: '#/components/schemas/limit'
       style: form
       explode: false
-    next:
-      name: next
-      in: query
-      description: >-
-        The token to retrieve the next set of results, e.g., offset, page,
-        continuation token
-      required: false
-      schema:
-        $ref: '#/components/schemas/next'
-      style: form
     ids:
       name: ids
       in: query
@@ -528,7 +611,7 @@ components:
         Array of Item ids to return. All other filter parameters that further
         restrict the number of 
 
-        search results (except `next` and `limit`) are ignored
+        search results are ignored
       required: false
       schema:
         $ref: '#/components/schemas/ids'
@@ -552,20 +635,23 @@ components:
       required: false
       schema:
         type: string
-    sort:
-      name: sort
+    sortby:
+      name: sortby
       in: query
       description: Allows sorting results by the specified properties
       required: false
       schema:
-        $ref: '#/components/schemas/sort'
+        type: string
+      style: form
+      explode: false
     fields:
       name: fields
       in: query
       description: Determines the shape of the features in the response
       required: false
       schema:
-        $ref: '#/components/schemas/fields'
+        type: string
+        example: 'id,type,-geometry,bbox,properties,-links,-assets'
       style: form
       explode: false
     IfMatch:
@@ -582,12 +668,23 @@ components:
       required: false
       schema:
         type: string
+    versionId:
+      name: versionId
+      in: path
+      description: local identifier of a version
+      required: true
+      schema:
+        type: string
   schemas:
     collection:
       type: object
       required:
         - id
         - links
+        - stac_version
+        - description
+        - license
+        - extent
       properties:
         id:
           description: 'identifier of the collection used, for example, in URIs'
@@ -598,7 +695,12 @@ components:
           type: string
           example: address
         description:
-          description: a description of the features in the collection
+          description: >-
+            Detailed multi-line description to fully explain the collection.
+
+
+            [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for
+            rich text representation.
           type: string
           example: An address.
         links:
@@ -629,6 +731,162 @@ components:
           example:
             - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
             - 'http://www.opengis.net/def/crs/EPSG/0/4326'
+        stac_version:
+          $ref: '#/components/schemas/stac_version'
+        stac_extensions:
+          $ref: '#/components/schemas/stac_extensions'
+        keywords:
+          type: array
+          description: List of keywords describing the collection.
+          items:
+            type: string
+        license:
+          $ref: '#/components/schemas/license'
+        providers:
+          $ref: '#/components/schemas/providers'
+        summaries:
+          description: >-
+            Summaries are either a unique set of all available values *or*
+            statistics. Statistics by default only specify the range (minimum
+            and maximum values), but can optionally be accompanied by additional
+            statistical values. The range can specify the potential range of
+            values, but it is recommended to be as precise as possible. The set
+            of values must contain at least one element and it is strongly
+            recommended to list all values. It is recommended to list as many
+            properties as reasonable so that consumers get a full overview of
+            the Collection. Properties that are covered by the Collection
+            specification (e.g. `providers` and `license`) may not be repeated
+            in the summaries.
+          type: object
+          additionalProperties:
+            oneOf:
+              - type: array
+                title: Set of values
+                items:
+                  description: A value of any type.
+              - type: object
+                title: Statistics
+                description: >-
+                  By default, only ranges with a minimum and a maximum value can
+                  be specified. Ranges can be specified for ordinal values only,
+                  which means they need to have a rank order. Therefore, ranges
+                  can only be specified for numbers and some special types of
+                  strings. Examples: grades (A to F), dates or times.
+                  Implementors are free to add other derived statistical values
+                  to the object, for example `mean` or `stddev`.
+                required:
+                  - min
+                  - max
+                properties:
+                  min:
+                    anyOf:
+                      - type: string
+                      - type: number
+                  max:
+                    anyOf:
+                      - type: string
+                      - type: number
+      example:
+        stac_version: 0.9.0-rc1
+        stac_extensions: []
+        id: Sentinel-2
+        title: 'Sentinel-2 MSI: MultiSpectral Instrument, Level-1C'
+        description: |
+          Sentinel-2 is a wide-swath, high-resolution, multi-spectral
+          imaging mission...
+        license: proprietary
+        keywords:
+          - copernicus
+          - esa
+          - eu
+          - msi
+          - radiance
+          - sentinel
+        providers:
+          - name: ESA
+            roles:
+              - producer
+              - licensor
+            url: 'https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi'
+        extent:
+          spatial:
+            bbox:
+              - - -180
+                - -56
+                - 180
+                - 83
+          temporal:
+            interval:
+              - - '2015-06-23T00:00:00Z'
+                - '2019-07-10T13:44:56Z'
+        summaries:
+          datetime:
+            min: '2015-06-23T00:00:00Z'
+            max: '2019-07-10T13:44:56Z'
+          'sci:citation':
+            - 'Copernicus Sentinel data [Year]'
+          'eo:gsd':
+            - 10
+            - 30
+            - 60
+          platform:
+            - sentinel-2a
+            - sentinel-2b
+          constellation:
+            - sentinel-2
+          instruments:
+            - msi
+          'sat:off_nadir_angle':
+            min: 0
+            max: 100
+          'sat:sun_elevation_angle':
+            min: 6.78
+            max: 89.9
+          'eo:bands':
+            - - name: B1
+                common_name: coastal
+                center_wavelength: 4.439
+              - name: B2
+                common_name: blue
+                center_wavelength: 4.966
+              - name: B3
+                common_name: green
+                center_wavelength: 5.6
+              - name: B4
+                common_name: red
+                center_wavelength: 6.645
+              - name: B5
+                center_wavelength: 7.039
+              - name: B6
+                center_wavelength: 7.402
+              - name: B7
+                center_wavelength: 7.825
+              - name: B8
+                common_name: nir
+                center_wavelength: 8.351
+              - name: B8A
+                center_wavelength: 8.648
+              - name: B9
+                center_wavelength: 9.45
+              - name: B10
+                center_wavelength: 1.3735
+              - name: B11
+                common_name: swir16
+                center_wavelength: 1.6137
+              - name: B12
+                common_name: swir22
+                center_wavelength: 2.2024
+        links:
+          - rel: self
+            href: 'http://cool-sat.com/collections/Sentinel-2'
+          - rel: root
+            href: 'http://cool-sat.com/collections'
+          - rel: license
+            href: >-
+              https://scihub.copernicus.eu/twiki/pub/SciHubWebPortal/TermsConditions/Sentinel_Data_Terms_and_Conditions.pdf
+            title: >-
+              Legal notice on the use of Copernicus Sentinel Data and Service
+              Information
     collections:
       type: object
       required:
@@ -657,13 +915,13 @@ components:
       description: >-
         Information about the exception: an error code plus an optional
         description.
+      required:
+        - code
       properties:
         code:
           type: string
         description:
           type: string
-      required:
-        - code
     extent:
       type: object
       description: >-
@@ -781,6 +1039,8 @@ components:
               enum:
                 - 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
               default: 'http://www.opengis.net/def/crs/OGC/1.3/CRS84'
+          required:
+            - bbox
         temporal:
           description: The temporal extent of the features in the collection.
           type: object
@@ -839,6 +1099,11 @@ components:
               enum:
                 - 'http://www.opengis.net/def/uom/ISO-8601/0/Gregorian'
               default: 'http://www.opengis.net/def/uom/ISO-8601/0/Gregorian'
+          required:
+            - interval
+      required:
+        - spatial
+        - temporal
     featureCollectionGeoJSON:
       type: object
       required:
@@ -852,7 +1117,7 @@ components:
         features:
           type: array
           items:
-            $ref: '#/components/schemas/featureGeoJSON'
+            $ref: '#/components/schemas/item'
         links:
           type: array
           items:
@@ -914,6 +1179,9 @@ components:
       type: object
       required:
         - links
+        - stac_version
+        - id
+        - description
       properties:
         title:
           type: string
@@ -927,6 +1195,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/link'
+        stac_version:
+          $ref: '#/components/schemas/stac_version'
+        stac_extensions:
+          $ref: '#/components/schemas/stac_extensions'
+        id:
+          type: string
     linestringGeoJSON:
       type: object
       required:
@@ -947,6 +1221,9 @@ components:
               type: number
     link:
       type: object
+      required:
+        - href
+        - rel
       properties:
         href:
           type: string
@@ -957,7 +1234,7 @@ components:
           example: child
         type:
           type: string
-          example: application/json
+          example: application/geo+json
         hreflang:
           type: string
           example: en
@@ -966,11 +1243,38 @@ components:
           example: NAIP Child Catalog
         length:
           type: integer
+        method:
+          type: string
+          enum:
+            - GET
+            - POST
+          default: GET
+          description: Specifies the HTTP method that the link expects
+        headers:
+          type: object
+          description: Object key values pairs they map to headers
+          example:
+            Accept: application/json
+        body:
+          type: object
+          description: >-
+            For POST requests, the link can specify the HTTP body as a JSON
+            object.
+        merge:
+          type: boolean
+          default: false
+          description: >-
+            This is only valid when the server is responding to POST request.
+
+            If merge is true, the client is expected to merge the body value
+            into the current request body before following the link. This avoids
+            passing large post bodies back and forth when following links,
+            particularly for navigating pages through the POST /search endpoint.
+
+            NOTE: To support form encoding it is expected that a client be able
+            to merge in the key value pairs specified as JSON `{"next":
+            "token"}` will become `&next=token`
       title: Link
-      description: A generic link.
-      required:
-        - href
-        - rel
     multilinestringGeoJSON:
       type: object
       required:
@@ -1091,6 +1395,83 @@ components:
       type: string
       format: date-time
       example: '2017-08-17T08:05:32Z'
+    license:
+      type: string
+      description: >-
+        License(s) of the data as a SPDX [License
+        identifier](https://spdx.org/licenses/) or
+        [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60).
+        Alternatively, use `proprietary` if the license is not on the SPDX
+        license list or `various` if multiple licenses apply. In these two cases
+        links to the license texts SHOULD be added, see the `license` link
+        relation type.
+
+
+        Non-SPDX licenses SHOULD add a link to the license text with the
+        `license` relation in the links section. The license text MUST NOT be
+        provided as a value of this field. If there is no public license URL
+        available, it is RECOMMENDED to host the license text and link to it.
+      example: Apache-2.0
+    providers:
+      type: array
+      description: >-
+        A list of providers, which may include all organizations capturing or
+        processing the data or the hosting provider. Providers should be listed
+        in chronological order with the most recent provider being the last
+        element of the list.
+      items:
+        type: object
+        title: Provider
+        required:
+          - name
+        properties:
+          name:
+            description: The name of the organization or the individual.
+            type: string
+          description:
+            description: >-
+              Multi-line description to add further provider information such as
+              processing details for processors and producers, hosting details
+              for hosts or basic contact information.
+
+
+              CommonMark 0.29 syntax MAY be used for rich text representation.
+            type: string
+          roles:
+            description: >-
+              Roles of the provider.
+
+
+              The provider's role(s) can be one or more of the following
+              elements:
+
+              * licensor: The organization that is licensing the dataset under
+              the license specified in the collection's license field.
+
+              * producer: The producer of the data is the provider that
+              initially captured and processed the source data, e.g. ESA for
+              Sentinel-2 data.
+
+              * processor: A processor is any provider who processed data to a
+              derived product.
+
+              * host: The host is the actual provider offering the data on their
+              storage. There should be no more than one host, specified as last
+              element of the list.
+            type: array
+            items:
+              type: string
+              enum:
+                - producer
+                - licensor
+                - processor
+                - host
+          url:
+            description: >-
+              Homepage on which the provider describes the dataset and publishes
+              contact information.
+            type: string
+            format: url
     searchBody:
       description: The search criteria
       type: object
@@ -1098,52 +1479,78 @@ components:
         - $ref: '#/components/schemas/bboxFilter'
         - $ref: '#/components/schemas/datetimeFilter'
         - $ref: '#/components/schemas/intersectsFilter'
-        - $ref: '#/components/schemas/nextFilter'
         - $ref: '#/components/schemas/collectionsFilter'
         - $ref: '#/components/schemas/idsFilter'
         - $ref: '#/components/schemas/limitFilter'
         - $ref: '#/components/schemas/queryFilter'
         - $ref: '#/components/schemas/sortFilter'
         - $ref: '#/components/schemas/fieldsFilter'
-    next:
-      type: string
-      description: >-
-        The token to retrieve the next set of results, e.g., offset, page,
-        continuation token
-      default: null
     limit:
       type: integer
+      minimum: 1
       example: 10
+      default: 10
+      maximum: 10000
       description: The maximum number of results to return (page size). Defaults to 10
     bbox:
-      description: |
+      description: >-
         Only features that have a geometry that intersects the bounding box are
+
         selected. The bounding box is provided as four or six numbers,
+
         depending on whether the coordinate reference system includes a
+
         vertical axis (elevation or depth):
 
+
         * Lower left corner, coordinate axis 1
+
         * Lower left corner, coordinate axis 2  
+
         * Lower left corner, coordinate axis 3 (optional) 
+
         * Upper right corner, coordinate axis 1 
+
         * Upper right corner, coordinate axis 2 
+
         * Upper right corner, coordinate axis 3 (optional)
 
+
         The coordinate reference system of the values is WGS84
+
         longitude/latitude (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless
+
         a different coordinate reference system is specified in the parameter
+
         `bbox-crs`.
 
+
         For WGS84 longitude/latitude the values are in most cases the sequence
+
         of minimum longitude, minimum latitude, maximum longitude and maximum
+
         latitude. However, in cases where the box spans the antimeridian the
+
         first value (west-most box edge) is larger than the third value
+
         (east-most box edge).
 
 
         If a feature has multiple spatial geometry properties, it is the
+
         decision of the server whether only a single spatial geometry property
+
         is used to determine the extent or all relevant geometries.
+
+
+        Example: The bounding box of the New Zealand Exclusive Economic Zone in
+        WGS 84
+
+        (from 160.6°E to 170°W and from 55.95°S to 25.89°S) would be represented
+        in JSON
+
+        as `[160.6, -55.95, -170, -25.89]` and in a query as
+        `bbox=160.6,-55.95,-170,-25.89`.
       type: array
       minItems: 4
       maxItems: 6
@@ -1173,7 +1580,7 @@ components:
         Array of Item ids to return. All other filter parameters that further
         restrict the number of 
 
-        search results (except `next` and `limit`) are ignored
+        search results are ignored
       items:
         type: string
     datetimeFilter:
@@ -1194,12 +1601,6 @@ components:
       properties:
         limit:
           $ref: '#/components/schemas/limit'
-    nextFilter:
-      type: object
-      description: Only returns the next set of results
-      properties:
-        next:
-          $ref: '#/components/schemas/next'
     idsFilter:
       type: object
       description: Only returns items that match the array of given ids
@@ -1245,7 +1646,7 @@ components:
     stac_version:
       title: STAC version
       type: string
-      example: 0.8.0
+      example: 0.9.0-rc1
     stac_extensions:
       title: STAC extensions
       type: array
@@ -1257,53 +1658,6 @@ components:
             format: uri
           - title: Reference to a core extension
             type: string
-    catalogDefinition:
-      type: object
-      required:
-        - stac_version
-        - id
-        - description
-        - links
-      properties:
-        stac_version:
-          $ref: '#/components/schemas/stac_version'
-        stac_extensions:
-          $ref: '#/components/schemas/stac_extensions'
-        id:
-          type: string
-          example: naip
-        title:
-          type: string
-          example: NAIP Imagery
-        description:
-          type: string
-          example: Catalog of NAIP Imagery.
-        links:
-          type: array
-          items:
-            anyOf:
-              - $ref: '#/components/schemas/link'
-              - title: Link to search endpoint
-                description: >-
-                  Link the search endpoint, which is **required** to be
-                  specified if the API implements `/stac/search`.
-                type: object
-                required:
-                  - href
-                  - rel
-                properties:
-                  href:
-                    type: string
-                    format: url
-                    example: 'http://www.cool-sat.com/stac/search'
-                  rel:
-                    type: string
-                    enum:
-                      - search
-                  type:
-                    type: string
-                  title:
-                    type: string
     itemCollection:
       description: >-
         A GeoJSON FeatureCollection augmented with foreign members that contain
@@ -1323,25 +1677,25 @@ components:
             $ref: '#/components/schemas/item'
         links:
           $ref: '#/components/schemas/itemCollectionLinks'
-        'search:metadata':
+        context:
           type: object
           required:
             - next
             - returned
           properties:
-            next:
-              type: string
-              nullable: true
             limit:
               type: integer
               nullable: true
               minimum: 0
+              example: 5
             matched:
               type: integer
               minimum: 0
+              example: 1
             returned:
               type: integer
               minimum: 0
+              example: 1
     item:
       description: >-
         A GeoJSON Feature augmented with foreign members that contain values
@@ -1378,9 +1732,12 @@ components:
         assets:
           $ref: '#/components/schemas/itemAssets'
       example:
-        stac_version: 0.8.0
+        stac_version: 0.9.0-rc1
+        stac_extensions:
+          - eo
+          - 'https://example.com/cs-extension/1.0/schema.json'
         type: Feature
-        id: CS3-20160503_132130_04
+        id: CS3-20160503_132131_05
         bbox:
           - -122.59750209
           - 37.48803556
@@ -1400,21 +1757,43 @@ components:
               - - -122.308150179
                 - 37.488035566
         properties:
-          datetime: '2016-05-03T13:21:30.040Z'
+          datetime: '2016-05-03T13:22:30.040Z'
+          title: A CS3 item
+          license: PDDL-1.0
+          providers:
+            - name: CoolSat
+              roles:
+                - producer
+                - licensor
+              url: 'https://cool-sat.com/'
+          'sat:sun_azimuth_angle': 168.7
+          'eo:cloud_cover': 0.12
+          'sat:off_nadir_angle': 1.4
+          platform: coolsat2
+          instruments:
+            - cool_sensor_v1
+          'eo:bands': []
+          'sat:sun_elevation_angle': 33.4
+          'eo:gsd': 0.512
+        collection: CS3
         links:
           - rel: self
-            href: >-
-              http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04.json
+            href: 'http://cool-sat.com/collections/CS3/items/20160503_132130_04'
+          - rel: root
+            href: 'http://cool-sat.com/collections'
+          - rel: parent
+            href: 'http://cool-sat.com/collections/CS3'
+          - rel: collection
+            href: 'http://cool-sat.com/collections/CS3'
         assets:
           analytic:
+            href: >-
+              http://cool-sat.com/static-catalog/CS3/20160503_132130_04/analytic.tif
             title: 4-Band Analytic
-            href: >-
-              http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/analytic.tif
           thumbnail:
-            title: Thumbnail
             href: >-
-              http://cool-sat.com/catalog/collections/cs/items/CS3-20160503_132130_04/thumb.png
-            type: image/png
+              http://cool-sat.com/static-catalog/CS3/20160503_132130_04/thumbnail.png
+            title: Thumbnail
     itemId:
       type: string
       example: path/to/example.tif
@@ -1445,6 +1824,13 @@ components:
             type: string
             description: Media type of the asset
             example: image/png
+          roles:
+            type: array
+            items:
+              type: string
+            description: Purposes of the asset
+            example:
+              - thumbnail
     itemProperties:
       type: object
       required:
@@ -1467,7 +1853,7 @@ components:
       example:
         - rel: next
           href: >-
-            http://api.cool-sat.com/stac/search?next=ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
+            http://api.cool-sat.com/search?next=ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
     queryFilter:
       type: object
       description: Allows users to query properties for specific values
@@ -1481,11 +1867,12 @@ components:
         $ref: '#/components/schemas/queryProp'
       example:
         'eo:cloud_cover':
+          gt: 8
           lt: 50
-        providers:
-          eq: Planet
-        published:
-          gt: '2018-02-12T00:00:00Z'
+        platform:
+          eq: landsat-8
+        datetime:
+          gte: '2018-02-12T00:00:00Z'
           lte: '2018-03-18T12:31:12Z'
         'pl:item_type':
           startsWith: PSScene
@@ -1494,6 +1881,10 @@ components:
             - foo
             - bar
             - baz
+        'eo:gsd':
+          in:
+            - 10
+            - 20
     queryProp:
       description: Apply query operations to a specific property
       anyOf:
@@ -1507,57 +1898,83 @@ components:
               description: >-
                 Find items with a property that is equal to the specified value.
                 For strings, a case-insensitive comparison must be performed.
+              nullable: true
+              oneOf:
+                - type: string
+                - type: number
+                - type: boolean
             neq:
               description: >-
                 Find items that *don't* contain the specified value. For
                 strings, a case-insensitive comparison must be performed.
+              nullable: true
+              oneOf:
+                - type: string
+                - type: number
+                - type: boolean
             gt:
-              type: number
               description: >-
                 Find items with a property value greater than the specified
                 value.
+              oneOf:
+                - type: string
+                  format: date-time
+                - type: number
             lt:
-              type: number
               description: Find items with a property value less than the specified value.
+              oneOf:
+                - type: string
+                  format: date-time
+                - type: number
             gte:
-              type: number
               description: >-
                 Find items with a property value greater than or equal the
                 specified value.
+              oneOf:
+                - type: string
+                  format: date-time
+                - type: number
             lte:
-              type: number
               description: >-
-                Find items with a property value greater than or equal the
+                Find items with a property value less than or equal the
                 specified value.
+              oneOf:
+                - type: string
+                  format: date-time
+                - type: number
             startsWith:
-              type: string
               description: >-
                 Find items with a property that begins with the specified
                 string. A case-insensitive comparison must be performed.
-            endsWith:
               type: string
+            endsWith:
               description: >-
                 Find items with a property that ends with the specified string.
                 A case-insensitive comparison must be performed.
-            contains:
               type: string
+            contains:
               description: >-
-                Find items with a property that contains with the specified
-                string. A case-insensitive comparison must be performed.
+                Find items with a property that contains the specified literal
+                string, e.g., matches ".*<STRING>.*". A case-insensitive
+                comparison must be performed.
+              type: string
             in:
+              description: >-
+                Find items with a property that equals at least one entry in the
+                specified array. A case-insensitive comparison must be
+                performed.
               type: array
               items:
-                type: string
-              description: >-
-                Find items with a property that matches one of the specified
-                strings. A case-insensitive comparison must be performed.
+                oneOf:
+                  - type: string
+                  - type: number
     sortFilter:
       type: object
       description: Sort the results
       properties:
-        sort:
-          $ref: '#/components/schemas/sort'
-    sort:
+        sortby:
+          $ref: '#/components/schemas/sortby'
+    sortby:
       type: array
       description: |
         An array of objects containing a property name and sort direction.
@@ -1566,6 +1983,7 @@ components:
         type: object
         required:
           - field
+          - direction
         properties:
           field:
             type: string
@@ -1576,8 +1994,9 @@ components:
               - asc
               - desc
       example:
-        - field: 'eo:cloud_cover'
-        - field: providers
+        - field: 'properties.eo:cloud_cover'
+          direction: asc
+        - field: id
           direction: desc
     fieldsFilter:
       type: object
@@ -1647,22 +2066,31 @@ components:
           $ref: '#/components/schemas/datetime'
   responses:
     LandingPage:
-      description: |-
+      description: >-
         The landing page provides links to the API definition
+
         (link relations `service-desc` and `service-doc`),
+
         the Conformance declaration (path `/conformance`,
+
         link relation `conformance`), and the Feature
+
         Collections (path `/collections`, link relation
+
         `data`).
+
+
+        A link to the search endpoint (path `/search`, link relation
+
+        `search`) is **required** to be specified if the API implements
+        `/search`
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/landingPage'
           example:
-            title: Buildings in Bonn
-            description: >-
-              Access to data about buildings in the city of Bonn via a Web API
-              that conforms to the OGC API Features specification.
+            title: NAIP Imagery
+            description: Catalog of NAIP Imagery.
             links:
               - href: 'http://data.example.org/'
                 rel: self
@@ -1684,6 +2112,12 @@ components:
                 rel: data
                 type: application/json
                 title: Information about the feature collections
+              - href: 'http://data.example.org/search'
+                rel: search
+                type: application/json
+                title: Search across feature collections
+            stac_version: 0.9.0-rc1
+            id: naip
         text/html:
           schema:
             type: string
@@ -1749,57 +2183,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/collections'
-          example:
-            links:
-              - href: 'http://data.example.org/collections.json'
-                rel: self
-                type: application/json
-                title: this document
-              - href: 'http://data.example.org/collections.html'
-                rel: alternate
-                type: text/html
-                title: this document as HTML
-              - href: 'http://schemas.example.org/1.0/buildings.xsd'
-                rel: describedBy
-                type: application/xml
-                title: GML application schema for Acme Corporation building data
-              - href: 'http://download.example.org/buildings.gpkg'
-                rel: enclosure
-                type: application/geopackage+sqlite3
-                title: Bulk download (GeoPackage)
-                length: 472546
-            collections:
-              - id: buildings
-                title: Buildings
-                description: Buildings in the city of Bonn.
-                extent:
-                  spatial:
-                    bbox:
-                      - - 7.01
-                        - 50.63
-                        - 7.22
-                        - 50.78
-                  temporal:
-                    interval:
-                      - - '2010-02-15T12:34:56Z'
-                        - null
-                links:
-                  - href: 'http://data.example.org/collections/buildings/items'
-                    rel: items
-                    type: application/geo+json
-                    title: Buildings
-                  - href: 'http://data.example.org/collections/buildings/items.html'
-                    rel: items
-                    type: text/html
-                    title: Buildings
-                  - href: 'https://creativecommons.org/publicdomain/zero/1.0/'
-                    rel: license
-                    type: text/html
-                    title: CC0-1.0
-                  - href: 'https://creativecommons.org/publicdomain/zero/1.0/rdf'
-                    rel: license
-                    type: application/rdf+xml
-                    title: CC0-1.0
         text/html:
           schema:
             type: string
@@ -1808,9 +2191,9 @@ components:
         Information about the feature collection with id `collectionId`.
 
 
-        The response contains a linkto the items in the collection
+        The response contains a link to the items in the collection
 
-        (path `/collections/{collectionId}/items`,link relation `items`)
+        (path `/collections/{collectionId}/items`, link relation `items`)
 
         as well as key information about the collection. This information
 
@@ -1836,38 +2219,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/collection'
-          example:
-            id: buildings
-            title: Buildings
-            description: Buildings in the city of Bonn.
-            extent:
-              spatial:
-                bbox:
-                  - - 7.01
-                    - 50.63
-                    - 7.22
-                    - 50.78
-              temporal:
-                interval:
-                  - - '2010-02-15T12:34:56Z'
-                    - null
-            links:
-              - href: 'http://data.example.org/collections/buildings/items'
-                rel: items
-                type: application/geo+json
-                title: Buildings
-              - href: 'http://data.example.org/collections/buildings/items.html'
-                rel: items
-                type: text/html
-                title: Buildings
-              - href: 'https://creativecommons.org/publicdomain/zero/1.0/'
-                rel: license
-                type: text/html
-                title: CC0-1.0
-              - href: 'https://creativecommons.org/publicdomain/zero/1.0/rdf'
-                rel: license
-                type: application/rdf+xml
-                title: CC0-1.0
         text/html:
           schema:
             type: string
@@ -1914,46 +2265,6 @@ components:
         application/geo+json:
           schema:
             $ref: '#/components/schemas/featureCollectionGeoJSON'
-          example:
-            type: FeatureCollection
-            links:
-              - href: 'http://data.example.com/collections/buildings/items.json'
-                rel: self
-                type: application/geo+json
-                title: this document
-              - href: 'http://data.example.com/collections/buildings/items.html'
-                rel: alternate
-                type: text/html
-                title: this document as HTML
-              - href: >-
-                  http://data.example.com/collections/buildings/items.json&offset=10&limit=2
-                rel: next
-                type: application/geo+json
-                title: next page
-            timeStamp: '2018-04-03T14:52:23Z'
-            numberMatched: 123
-            numberReturned: 2
-            features:
-              - type: Feature
-                id: '123'
-                geometry:
-                  type: Polygon
-                  coordinates:
-                    - ...
-                properties:
-                  function: residential
-                  floors: '2'
-                  lastUpdate: '2015-08-01T12:34:56Z'
-              - type: Feature
-                id: '132'
-                geometry:
-                  type: Polygon
-                  coordinates:
-                    - ...
-                properties:
-                  function: public use
-                  floors: '10'
-                  lastUpdate: '2013-12-03T10:15:37Z'
         text/html:
           schema:
             type: string
@@ -1964,34 +2275,7 @@ components:
       content:
         application/geo+json:
           schema:
-            $ref: '#/components/schemas/featureGeoJSON'
-          example:
-            type: Feature
-            links:
-              - href: 'http://data.example.com/id/building/123'
-                rel: canonical
-                title: canonical URI of the building
-              - href: 'http://data.example.com/collections/buildings/items/123.json'
-                rel: self
-                type: application/geo+json
-                title: this document
-              - href: 'http://data.example.com/collections/buildings/items/123.html'
-                rel: alternate
-                type: text/html
-                title: this document as HTML
-              - href: 'http://data.example.com/collections/buildings'
-                rel: collection
-                type: application/geo+json
-                title: the collection document
-            id: '123'
-            geometry:
-              type: Polygon
-              coordinates:
-                - ...
-            properties:
-              function: residential
-              floors: '2'
-              lastUpdate: '2015-08-01T12:34:56Z'
+            $ref: '#/components/schemas/item'
         text/html:
           schema:
             type: string

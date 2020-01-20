@@ -1,5 +1,5 @@
 {
-  "stac_version": "0.8.0",
+  "stac_version": "0.9.0-rc1",
   "stac_extensions": [
       "eo",
       "https://example.com/cs-extension/1.0/schema.json"
@@ -20,7 +20,7 @@
     ]
   },
   "properties": {
-    "datetime": "2016-05-03T13:22:30.040Z",
+    "datetime": "2016-05-03T13:22:30Z",
     "title": "A CS3 item",
     "license": "PDDL-1.0",
     "providers": [
@@ -33,13 +33,15 @@
         "url": "https://cool-sat.com/"
       }
     ],
-    "eo:sun_azimuth": 168.7,
+    "created": "2016-05-04T00:00:01Z",
+    "updated": "2017-01-01T00:30:55Z",
+    "sat:sun_azimuth_angle": 168.7,
     "eo:cloud_cover": 0.12,
-    "eo:off_nadir": 1.4,
-    "eo:platform": "coolsat2",
-    "eo:instrument": "cool_sensor_v1",
+    "sat:off_nadir_angle": 1.4,
+    "platform": "coolsat2",
+    "instruments": ["cool_sensor_v1"],
     "eo:bands": [],
-    "eo:sun_elevation": 33.4,
+    "sat:sun_elevation_angle": 33.4,
     "eo:gsd": 0.512,
     "cs:type": "scene",
     "cs:anomalous_pixels": 0.14,
@@ -62,7 +64,9 @@
     },
     "thumbnail": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png",
-      "title": "Thumbnail"
+      "title": "Thumbnail",
+      "type": "image/png",
+      "roles": [ "thumbnail" ]
     },
     "udm": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/UDM.tif",
@@ -70,7 +74,9 @@
     },
     "json-metadata": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/extended-metadata.json",
-      "title": "Extended Metadata"
+      "title": "Extended Metadata",
+      "type": "application/json",
+      "roles": [ "thumbnail" ]
     },
     "ephemeris": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/S3-20160503_132130_04.EPH",

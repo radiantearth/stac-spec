@@ -1,31 +1,27 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "schema.json#",
-  "title": "Search Extension",
+  "title": "Context Extension",
   "type": "object",
-  "description": "STAC Search Extension",
+  "description": "STAC search metadata",
   "allOf": [
     {
-      "$ref": "#/definitions/search_metadata"
+      "$ref": "#/definitions/context"
     }
   ],
   "definitions": {
-    "search_metadata": {
+    "context": {
       "type": "object",
       "required": [
-        "search:metadata"
+        "context"
       ],
       "properties": {
-        "search:metadata": {
+        "context": {
           "type": "object",
           "required": [
-            "next",
             "returned"
           ],
           "properties": {
-            "next": {
-              "type": ["string", "null"]
-            },
             "limit": {
               "type": ["integer", "null"],
               "minimum": 0

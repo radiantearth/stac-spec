@@ -1,5 +1,5 @@
 {
-  "stac_version": "0.8.0",
+  "stac_version": "0.9.0-rc1",
   "id": "sample",
   "description": "This is a very basic sample catalog.",
   "links": [

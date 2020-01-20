@@ -1,8 +1,10 @@
 {
+  "stac_version": "0.9.0-rc1",
+  "stac_extensions": [],
   "type": "FeatureCollection",
   "features": [
     {
-      "stac_version": "0.8.0",
+      "stac_version": "0.9.0-rc1",
       "stac_extensions": [],
       "type": "Feature",
       "id": "CS3-20160503_132131_05",
@@ -72,7 +74,8 @@
         },
         "thumbnail": {
           "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png",
-          "title": "Thumbnail"
+          "title": "Thumbnail",
+          "roles": [ "thumbnail" ]
         }
       }
     }
@@ -80,7 +83,7 @@
   "links": [
     {
       "rel": "self",
-      "href": "http://stac.example.com/stac/search?collection=CS3"
+      "href": "http://stac.example.com/search?collection=CS3"
     }
   ]
 }

@@ -1,15 +1,18 @@
 {
   "name": "api-spec",
-  "version": "1.0.0",
+  "version": "0.9.0-rc1",
   "description": "Generate STAC openapi defintions from fragments.",
   "repository": "https://github.com/radiantearth/stac-spec",
   "license": "Apache-2.0",
   "scripts": {
     "generate-ext": "yaml-files extensions/STAC-extensions.merge.yaml STAC-extensions.yaml",
     "generate-core": "yaml-files openapi/STAC.merge.yaml STAC.yaml",
-    "generate-all": "npm run generate-core && npm run generate-ext"
+    "generate-all": "npm run generate-core && npm run generate-ext",
+    "serve-ext": "npm run generate-all && redoc-cli serve STAC-extensions.yaml --watch --options.expandResponses \"200,201,202,203,204\" --options.pathInMiddlePanel true",
+    "serve": "npm run generate-all && redoc-cli serve STAC.yaml --watch --options.expandResponses \"200,201,202,203,204\" --options.pathInMiddlePanel true"
   },
   "dependencies": {
+    "redoc-cli": "^0.9.4",
     "yaml-files": "^1.1.0"
   }
 }

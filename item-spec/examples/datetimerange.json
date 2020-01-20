@@ -1,8 +1,6 @@
 {
-  "stac_version": "0.8.0",
-  "stac_extensions": [
-    "datetime-range"
-  ],
+  "stac_version": "0.9.0-rc1",
+  "stac_extensions": [],
   "type":"Feature",
   "id":"half-moon-bay/video-2018-01-01-0001",
   "bbox":[
@@ -40,8 +38,8 @@
   },
   "properties":{
     "datetime":"2018-01-01T13:21:30Z",
-    "dtr:start_datetime":"2018-01-01T13:21:30Z",
-    "dtr:end_datetime":"2018-01-01T13:31:30Z"
+    "start_datetime":"2018-01-01T13:21:30Z",
+    "end_datetime":"2018-01-01T13:31:30Z"
   },
   "links":[
     {

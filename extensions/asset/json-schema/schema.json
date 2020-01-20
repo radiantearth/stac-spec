@@ -38,9 +38,20 @@
           "title": "Asset title",
           "type": "string"
         },
+        "description": {
+          "title": "Asset description",
+          "type": "string"
+        },
         "type": {
           "title": "Asset type",
           "type": "string"
+        },
+        "roles": {
+          "title": "Asset roles",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     }

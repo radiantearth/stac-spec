@@ -1,7 +1,8 @@
 {
-  "stac_version": "0.8.0",
+  "stac_version": "0.9.0-rc1",
   "stac_extensions": [
-    "label"
+    "label",
+    "version"
   ],
   "id": "AOI_3_Paris_img101",
   "type": "Feature",
@@ -80,7 +81,7 @@
     "label:methods": [
       "manual"
     ],
-    "version": 1,
+    "version": "1",
     "label:overviews": [
       {
         "property_key": "road_type",
