@@ -67,6 +67,39 @@
                 "gsd": 10
             }
         ],
+        "tl:tile_matrix_links": {
+            "WebMercatorQuad": {
+                "url": "http://schemas.opengis.net/tms/1.0/json/examples/WebMercatorQuad.json",
+                "limits": {
+                    "0": {},
+                    "1": {
+                        "min_tile_col": 0,
+                        "max_tile_col": 0,
+                        "min_tile_row": 0,
+                        "max_tile_row": 0
+                    },
+                    "2": {
+                        "min_tile_col": 1,
+                        "max_tile_col": 1,
+                        "min_tile_row": 2,
+                        "max_tile_row": 2
+                    },
+                    "3": {
+                        "min_tile_col": 2,
+                        "max_tile_col": 2,
+                        "min_tile_row": 4,
+                        "max_tile_row": 4
+                    },
+                    "4": {
+                        "min_tile_col": 4,
+                        "max_tile_col": 5,
+                        "min_tile_row": 8,
+                        "max_tile_row": 9
+                    }
+                }
+            }
+        },
+
         "tl:tileMatrixSet": [
             {
                 "type": "TileMatrixSetType",
@@ -221,11 +254,11 @@
         },
         {
             "rel": "parent",
-            "href": "http://cloudless.eox.at/s2cloudless/stack.json"
+            "href": "http://cloudless.eox.at/s2cloudless/stac.json"
         },
         {
             "rel": "root",
-            "href": "http://cloudless.eox.at/stack.json"
+            "href": "http://cloudless.eox.at/stac.json"
         }
     ]
 }

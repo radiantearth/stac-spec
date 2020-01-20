@@ -2,125 +2,136 @@
 
 **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
-An extension to allow the specification of tiled assets within STAC Items. With this extension it is possible to allow the description of assets using template references and rules to construct those. This extension is tailored for cases where there are too many assets associated with an Item to be practically listed in the `assets` property. For this reason, the new `assetTemplates` property allows to specify template URLs where components can be replaced to get the final URLs to the actual files.
+An extension to allow the specification of tiled assets within STAC Items. With this extension it is possible to allow the description of assets using template references and rules to construct those. This extension is tailored for cases where there are too many assets associated with an Item to be practically listed in the `assets` property. For this reason, the new `asset_templates` property allows to specify template URLs where components can be replaced to get the final URLs to the actual files.
 
-
-This extension is modelled closely after the definitions from the [OGC Two Dimensional Tile Matrix Set](http://docs.opengeospatial.org/is/17-083r2/17-083r2.html)
+This extension is modelled in close alignment to the [OGC Two Dimensional Tile Matrix Set](http://docs.opengeospatial.org/is/17-083r2/17-083r2.html)
 
 - Examples: [Tiled](examples/example-tiled.json), [Dimension](examples/example-dimension.json)
 - [JSON Schema](json-schema/schema.json)
 
-## Item properties
+## Item, Collection and Catalog properties
 
-| Field Name        | Type                                                                                   | Description                                                                                                     |
-| ----------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| tl:tileMatrixSet  | [[TileMatrixSet Object](#tile-matrix-set-object)]                                      | An array of available tile matrix sets                                                                          |
-| tl:dimensions     | Map<string, [Discrete Dimension Object](#discrete-dimension-object)\|[number\|string]> | Additional dimensions. The keys of this object can be used to replace the template parameters of the same name. |
-
-**tl:dimension:** The possible values of this dimension can be expressed as either a finite list of values (using an array of values) or as a discrete dimension using the [Discrete Dimension Object](#discrete-dimension-object).
+| Field Name               | Type                                                                  | Description                                                                                                     |
+| ------------------------ | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| tl:tile_matrix_sets      | Map<string, [TileMatrixSet Object](#tile-matrix-set-object)>          | A mapping of tile matrix set identifier to a tile matrix set link object.                                            |
 
 ### Tile Matrix Set Object
 
-The description of the tile pyramid.
+Tile matrix sets can be directly embedded in a collection, catalog or item. Such directly embedded tile matrix set objects must conform to the [OGC Two Dimensional Tile Matrix Set JSON schema](http://schemas.opengis.net/tms/1.0/json/tms-schema.json).
 
-| Field Name        | Type                                               | Description                                                                                                                  |
-| ----------------- | -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| type              | string                                             | **REQUIRED.** Type of the Tile Matrix Set. Fixed to `TileMatrixSetType`                                                      |
-| title             | string                                             | Title of this tile matrix set, normally used for display to a human                                                          |
-| abstract          | string                                             | Brief narrative description of this tile matrix set, normally available for display to a human                               |
-| keywords          | [string]                                           | Unordered list of one or more commonly used or formalized word(s) or phrase(s) used to describe this dataset                 |
-| identifier        | string                                             | **REQUIRED.** Tile matrix set identifier. This can be used as the `{TileMatrixSet}` template parameter.                      |
-| boundingBox       | [BoundingBox Object](#bounding-box-object)         | Minimum bounding rectangle surrounding the tile matrix set, in the supported CRS                                             |
-| supportedCRS      | string                                             | **REQUIRED.** Reference to one coordinate reference system (CRS)                                                             |
-| wellKnownScaleSet | string                                             | Reference to a well-known scale set.                                                                                         |
-| tileMatrix        | [[Tile Matrix Object](#tile-matrix-object)]        | **REQUIRED.** An array of tile matrix objects, describing the tile matrices of the resolution layers of the tile matrix set. |
-| pixelBuffer       | [Pixel Buffer Object](#pixel-buffer-object)        | An optional default pixel buffer description object. By default, no pixel buffers are used.                                  |
 
-### Bounding Box Object
+## Item properties
 
-| Field Name  | Type     | Description                                                        |
-| ----------- | -------- | ------------------------------------------------------------------ |
-| type        | string   | **REQUIRED.** Type of the Bounding Box. Fixed to `BoundingBoxType` |
-| lowerCorner | [number] | **REQUIRED.** The lower corner of this bounding box.               |
-| upperCorner | [number] | **REQUIRED.** The upper corner of this bounding box.               |
+| Field Name               | Type                                                                  | Description                                                                                                     |
+| ------------------------ | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| tl:tile_matrix_set_links | Map<string, [TileMatrixSetLink Object](#tile-matrix-set-link-object)> | A mapping of tile matrix set identifier to a tile matrix set link object.                                       |
 
-### Tile Matrix Object
+The keys of the `tl:tile_matrix_set_links` mapping can be used as a substitution of the `{TileMatrixSet}` template parameters for the `href_template` field
+of the [Asset Template Object](#asset-template-object).
 
-The description of a single tile matrix (zoom level) of the tile pyramid.
+### Tile Matrix Set Link Object
 
-| Field Name          | Type                                                          | Description                                                                                                                                                       |
-| ------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| type                | string                                                        | **REQUIRED.** Type of the Tile Matrix. Fixed to `TileMatrixType`                                                                                                  |
-| title               | string                                                        | Title of this tile matrix set, normally used for display to a human                                                                                               |
-| abstract            | string                                                        | Brief narrative description of this tile matrix, normally available for display to a human                                                                        |
-| keywords            | [string]                                                      | Unordered list of one or more commonly used or formalized word(s) or phrase(s) used to describe this dataset                                                      |
-| identifier          | string                                                        | **REQUIRED.** Tile matrix identifier. This identifier can be used in templates to replace `{TileMatrix}` parameters.                                              |
-| scaleDenominator    | number                                                        | **REQUIRED.** Scale denominator level of this tile matrix.                                                                                                        |
-| topLeftCorner       | [number]                                                      | **REQUIRED.** Position in CRS coordinates of the top-left corner of this tile matrix.                                                                             |
-| tileWidth           | number                                                        | **REQUIRED.** Width of each tile of this tile matrix in pixels. Pixel buffers are not reflected in this number.                                                   |
-| tileHeight          | number                                                        | **REQUIRED.** Height of each tile of this tile matrix in pixels. Pixel buffers are not reflected in this number.                                                  |
-| matrixWidth         | number                                                        | **REQUIRED.** The number of columns in this tile matrix. Any number between zero and `matrixWidth - 1` can be used to replace the `{TileCol}` template parameter. |
-| matrixHeight        | number                                                        | **REQUIRED.** The number of rows in this tile matrix. Any number between zero and `matrixHeight - 1` can be used to replace the `{TileRow}` template parameter.   |
-| variableMatrixWidth | [Variable Matrix Width Object](#variable-matrix-width-object) | Describes the rows that has variable matix width                                                                                                                  |
-| pixelBuffer         | [Pixel Buffer Object](#pixel-buffer-object)                   | An optional default pixel buffer description object, overriding the default of the pyramid. By default, no pixel buffers are used.                                |
+This object allows to reference a tile matrix set. This concept is modelled after the [TileMatrixSetLink2D requirement class](http://docs.opengeospatial.org/is/17-083r2/17-083r2.html#18).
 
-### Variable Matrix Width Object
+| Field Name           | Type                                                          | Description                                                                                                                  |
+| -------------------- | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| url                  | string                                                        | The URL reference to the actual tile matrix definition.                                                                      |
+| well_known_scale_set | string                                                        | If the tile matrix set completely aligns with a well known scale set can be referenced.                                      |
+| limits               | Map<string, [Tile Matrix Limits](#tile-matrix-limits-object)> | Optional limits for each tile matrix.                                                                                        |
+| pixel_buffer         | Map<string, [Pixel Buffer Object](#pixel-buffer-object)>      | An optional pixel buffer description object per tile matrix. By default, no pixel buffers are used.                          |
 
-List of data structures defining the tiles rows that was variable width
+**url**/**well_known_scale_set**: Either one of these parameters must be present.
 
-| Field Name  | Type     | Description                                                                         |
-| ----------- | -------- | ----------------------------------------------------------------------------------- |
-| type        | string   | **REQUIRED.** Type of the Variable Matrix Width. Fixed to `VariableMatrixWidthType` |
-| coalesce    | number   | **REQUIRED.** Coalescence factor                                                    |
-| minTileRow  | number   | **REQUIRED.** Minimum tile row index valid for this layer                           |
-| maxTileRow  | number   | **REQUIRED.** Maximum tile row index valid for this layer                           |
+**url**: The URL must refer to a valid tile matrix set definition as defined in the Two-dimensional tile matrix set specification in any encoding (JSON, JSON-LD, or XML).
+It is also possible, to have the tile matrix set embedded in the items collection, catalog or even in the items file itself using the `tl:tile_matrix_sets` property. When refering to an embedded tile matrix set definition, the name of the map key of that tile matrix set definition must be used as a URL fragment.
+
+Example reference to an external tile matrix definition:
+
+    "url": "http://schemas.opengis.net/tms/1.0/json/examples/WebMercatorQuad.json"
+
+Example reference to an embedded definition in a collection:
+
+    "url": "https://example.com/collections/stac.json#WebMercatorQuad"
+
+Example reference to an embedded definition in the same item:
+
+    "url": "#WebMercatorQuad"
+
+**limits**: The keys of the map are the identifiers of the tile matrices in their respective tile matrix set. When present, only the referenced tile matrices are used
+for the assets. When the `limits` are not present, the tile matrix set in full is referenced.
+
+**pixel_buffer**: For each tile matrix in a tile matrix set, a pixel buffer can be specified. Similarly to the `limits` property, the key of the mapping must be the identifier of one tile matrix.
+
+### Tile Matrix Limits Object
+
+This object allows to specify subset region of the source tileset. This concept is modelled after the [TileMatrixSetLimits2D requirement class](http://docs.opengeospatial.org/is/17-083r2/17-083r2.html#17).
+
+| Field Name    | Type    | Description                                                                                                           |
+| ------------- | ------- | --------------------------------------------------------------------------------------------------------------------- |
+| min_tile_row  | number  | Minimum tile row index valid for this layer. If not specified it uses the the one from the referenced tile matrix.    |
+| max_tile_row  | number  | Maximum tile row index valid for this layer. If not specified it uses the the one from the referenced tile matrix.    |
+| min_tile_col  | number  | Minimum tile column index valid for this layer. If not specified it uses the the one from the referenced tile matrix. |
+| max_tile_rol  | number  | Maximum tile column index valid for this layer. If not specified it uses the the one from the referenced tile matrix. |
 
 ### Pixel Buffer Object
 
-The pixel buffer definition.
+Pixel buffer objects allow the definition of image boundarys, so that the internal tiles may overlap. When using this information, the clients may be able to reduce the number of requests.
 
-| Field Name    | Type    | Description                                                                                                      |
-| ------------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
-| top           | number  | The size of the pixel-buffer in the top border of the image. Default is `0`.                                     |
-| left          | number  | The size of the pixel-buffer in the left border of the image. Default is `0`.                                    |
-| bottom        | number  | The size of the pixel-buffer in the bottom border of the image. Default is `0`.                                  |
-| right         | number  | The size of the pixel-buffer in the right border of the image. Default is `0`.                                   |
-| borderTop     | boolean | Whether or not the pixelbuffer is included images on the top border of the first tile row. Default is `true`.    |
-| borderLeft    | boolean | Whether or not the pixelbuffer is included images on the left border of the first tile column. Default is `true`. |
-| borderBottom  | boolean | Whether or not the pixelbuffer is included images on the bottom border of the last tile row. Default is `true`.  |
-| borderRight   | boolean | Whether or not the pixelbuffer is included images on the right border of the last tile column. Default is `true`.   |
-
-### Discrete Dimension Object
-
-An additional discrete dimension of that tile pyramid. The possible values of that dimension are passed as a ruleset for discrete values.
-
-| Field Name    | Type             | Description                                                                                                      |
-| ------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------- |
-| start         | number\|string   | The first possible value of that particular dimension. Either a numeric or an ISO 8601 date or datetime.         |
-| stop          | number\|string   | The last possible value of that particular dimension. Either a numeric or an ISO 8601 date or datetime.          |
-| steps         | integer          | The number of steps in that dimension, including the `start` and `stop` values as borders.                       |
-
-**steps:** This is meant as a total number of steps. Where the first value is always the `start` and the last step is always the `stop` value.
+| Field Name    | Type    | Description                                                                                                        |
+| ------------- | ------- | ------------------------------------------------------------------------------------------------------------------ |
+| top           | number  | The size of the pixel-buffer in the top border of the image. Default is `0`.                                       |
+| left          | number  | The size of the pixel-buffer in the left border of the image. Default is `0`.                                      |
+| bottom        | number  | The size of the pixel-buffer in the bottom border of the image. Default is `0`.                                    |
+| right         | number  | The size of the pixel-buffer in the right border of the image. Default is `0`.                                     |
+| border_top    | boolean | Whether or not the pixel-buffer is included images on the top border of the first tile row. Default is `true`.     |
+| border_left   | boolean | Whether or not the pixel-buffer is included images on the left border of the first tile column. Default is `true`. |
+| border_bottom | boolean | Whether or not the pixel-buffer is included images on the bottom border of the last tile row. Default is `true`.   |
+| border_right  | boolean | Whether or not the pixel-buffer is included images on the right border of the last tile column. Default is `true`. |
 
 ## Item fields
 
-| Field Name         | Type                                                         | Description                                                  |
-| ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| assetTemplates     | Map<string, [Asset Template Object](#asset-template-object)> | An array of Asset Template objects that denote templated arguments | 
+| Field Name          | Type                                                         | Description                                                        |
+| ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------ |
+| asset_templates     | Map<string, [Asset Template Object](#asset-template-object)> | An array of Asset Template objects that denote templated arguments |
 
 ### Asset Template Object
 
 An asset template is an object that contains a link template to data associated with the Item that can be downloaded or streamed. It is allowed to add additional fields.
 
-| Field Name   | Type   | Description                                                                           |
-| ------------ | ------ | ------------------------------------------------------------------------------------- |
-| hrefTemplate | string | **REQUIRED.** Link template to the asset object. Relative and absolute links are both allowed. All parts of the template within curly braces `{}` are meant to be template items to be replaced |
-| title        | string | The displayed title for clients and users.                                            |
-| type         | string | [Media type](../README.md#media-types) of the asset.                                  |
+| Field Name    | Type   | Description                                                                           |
+| ------------- | ------ | ------------------------------------------------------------------------------------- |
+| href_template | string | **REQUIRED.** Link template to the asset object. Relative and absolute links are both allowed. All parts of the template within curly braces `{}` are meant to be template substitution parameters to be replaced |
+| title         | string | The displayed title for clients and users.                                            |
+| type          | string | [Media type](../README.md#media-types) of the asset.                                  |
 
-The available template parameters are `{TileMatrixSet}`, `{TileMatrix}`, `{TileRow}`, and `{TileCol}`. Also, each dimension enables an additional template parameter of the same name. E.g: if there is a `date` dimension object in the map of dimensions, the `{date}` template parameter should be used.
+**href_template**: The available template parameters are `{TileMatrixSet}`, `{TileMatrix}`, `{TileRow}`, and `{TileCol}`. Additional template substitution parameters may be present, see the next section for more details.
+Also: it is not mandatory, that all template parameters are present. If, for example, the data is only available in one specific tile matrix, then that parameter can be omitted. It is possible, for whatever reason, to have the same template parameter more than once in the same template string.
 
-It is intended, that all extensions targeting the `Asset Object` are also applicable to the `Asset Template Object` when useful. For example the `eo` extension can also be used in conjunction with tiled assets by specifying the `eo:bands` property in the asset template 
+It is intended, that all extensions targeting the `Asset Object` are also applicable to the `Asset Template Object` when useful. For example the `eo` extension can also be used in conjunction with tiled assets by specifying the `eo:bands` property in the asset template
+
+#### Template Parameters from other extensions
+
+| Extension     | Property   | Template parameter         | Mapping description                                                                                               |
+| ------------- | ---------- | -------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| eo            | bands      | `{eo:band}`                | Each bands name can be used as a substitution value for this bands parameter.                                     |
+| datacube      | dimensions | `{cube:dimensions:<name>}` | The template parameter must specify which dimension it refers to by replacing the `<name>`. Any value that is representable via a `dimension` can be used as a substitution. |
+
+This list is not exhaustive, other useful template substitutions may exist.
+
+#### Template examples
+
+* Plain:
+
+    `http://example.com/data/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpeg`
+
+* Using `eo:bands`:
+
+    `http://example.com/data/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}/{eo:bands}.jpeg`
+
+* Using `cube:dimensions`:
+
+    `http://example.com/data/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}/{cube:dimensions:elevation}.jpeg`
+
 
 ## Implementations
 
