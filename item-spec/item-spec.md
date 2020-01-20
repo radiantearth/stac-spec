@@ -66,17 +66,13 @@ Items that are linked to, but the best practices around this are still emerging.
 
 ### Properties Object
 
-The Properties object adds additional metadata to the GeoJSON Object. Additional fields can be introduced through 
-extensions. It is generally allowed to add custom fields.
-
-It is recommended to add multiple attributes for related values instead of a nested object, e.g., two fields `eo:cloud_cover` and `sat:sun_azimuth_angle` instead of a field `eo` with an object value containing the two fields. The convention (as used within Extensions) is for related attributes to use a common prefix on the attribute names to group them, e.g. `eo`. A nested data structure should only be used when the data itself is nested, as with `eo:bands`.
+Additional metadata fields can be added to the GeoJSON Object Properties. The only required field 
+is `datetime` but it is recommended to add more fields, see [Additional Fields](#additional-fields) 
+resources below.
 
 | Field Name | Type   | Description                                                  |
 | ---------- | ------ | ------------------------------------------------------------ |
 | datetime   | string | **REQUIRED.** The searchable date and time of the assets, in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
-| title      | string | A human readable title describing the item. |
-
-**For more fields see the [STAC Common Metadata](common-metadata.md) and the [Content Extensions](../extensions/README.md#list-of-content-extensions).**
 
 **datetime** is likely the acquisition (in the case of single camera type captures) or the 'nominal'
 or representative time in the case of assets that are combined together. Though time can be a
@@ -84,6 +80,18 @@ complex thing to capture, for this purpose keep in mind the STAC spec is primari
 data, so use whatever single date and time is most useful for a user to search for. STAC content
 extensions may further specify the meaning of the main `datetime` field, and many will also add more
 datetime fields.
+
+#### Additional Fields
+* [STAC Common Metadata](common-metadata.md#stac-common-metadata) - A list of fields commonly used 
+throughout all domains. These optional fields are included for STAC Items by default.
+* [Content Extensions](../extensions/README.md#list-of-content-extensions) - Domain-specific fields 
+such as EO, SAR and point clouds.
+* [Custom Extensions](../extensions/README.md#extending-stac) - It is generally allowed to add custom 
+fields but it is recommended to add multiple attributes for related values instead of a nested object, 
+e.g., two fields `eo:cloud_cover` and `sat:sun_azimuth_angle` instead of a field `eo` with an object 
+value containing the two fields. The convention (as used within Extensions) is for related attributes 
+to use a common prefix on the attribute names to group them, e.g. `eo`. A nested data structure should 
+only be used when the data itself is nested, as with `eo:bands`.
 
 ### Link Object
 
@@ -105,7 +113,7 @@ Currently, the JSON schema for links does not require them to be formatted as UR
 implementors to provide relative links. In general, Catalog APIs should aim to provide absolute links
 whenever possible. Static Catalogs are potentially more portable if they incorporate only
 relative links, so that every link doesn't need to be rewritten when the data is copied. Additional
-recommendations for particular ```rel``` types are given in the ```rel``` type description.
+recommendations for particular `rel` types are given in the `rel` type description.
 
 #### Relation types
 
@@ -149,13 +157,13 @@ using the [Commons extension](../extensions/commons/README.md) to avoid duplicat
 An asset is an object that contains a link to data associated with the Item that can be downloaded
 or streamed. It is allowed to add additional fields.
 
-| Field Name  | Type   | Description |
-| ----------- | ------ | ----------- |
-| href        | string | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
-| title       | string | The displayed title for clients and users. |
-| description | string | A description of the Asset providing additional details, such as how it was processed or created. |
-| type        | string | [Media type](#media-types) of the asset. |
-| roles       | [string] | The semantic role of the asset, similar to the use of `rel` in links. 
+| Field Name  | Type     | Description |
+| ----------- | -------- | ----------- |
+| href        | string   | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
+| title       | string   | The displayed title for clients and users. |
+| description | string   | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| type        | string   | [Media type](#media-types) of the asset. |
+| roles       | [string] | The [semantic roles](#asset-role-types) of the asset, similar to the use of `rel` in links. 
 
 #### Asset Role Types
 
@@ -163,9 +171,14 @@ Like the Link `rel` field, the `roles` field can be given any value, however her
 
 | Role Name | Description                                                                           |
 | --------- | ------------------------------------------------------------------------------------- |
-| thumbnail | STRONGLY RECOMMENDED. An asset that represents a thumbnail of the item, typically a true color image (for items with assets in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `roles` be unique tuples. For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types. |
-| overview  | An asset that represents a possibly larger view than the thumbnail of the Item , for example, a true color composite of multi-band data. |
+| thumbnail | An asset that represents a thumbnail of the item, typically a true color image (for items with assets in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `roles` be unique tuples. For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types. |
+| overview  | An asset that represents a possibly larger view than the thumbnail of the Item, for example, a true color composite of multi-band data. |
+| data      | The data itself. This is a suggestion for a common role for data files to be used in case data providers don't come up with their own names and semantics. |
 | metadata  | A metadata sidecar file describing the data in this item, for example the Landsat-8 MTL file. |
+
+It is STRONGLY RECOMMENDED to add to each STAC Item
+* a thumbnail with the role `thumbnail` for preview purposes
+* one or more data file although it doesn't need to use the suggested role `data`
 
 #### Media Types
 
