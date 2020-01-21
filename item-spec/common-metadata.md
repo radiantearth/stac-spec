@@ -1,5 +1,8 @@
 # STAC Common Metadata
+This document outlines all commonly used fields for STAC Item properties. These fields are 
+included by default in the core [Item schema](json-schema/item.json) but implementation is not required. 
 
+* [Basics](#basics)
 * [Date and Time](#date-and-time)
 * [Licensing](#licensing)
 * [Provider](#provider)
@@ -9,6 +12,18 @@
 Various *examples* are available in the folder [`examples`](examples/).
 *JSON Schemas* can be found in the folder [`json-schema`](json-schema/).
 
+## Basics
+
+Descriptive fields to give a basic overview of a STAC Item.
+
+- [JSON Schema](json-schema/basics.json)
+
+| Field Name  | Type   | Description                                                  |
+| ----------- | ------ | ------------------------------------------------------------ |
+| title       | string | A human readable title describing the Item. |
+| description | string | Detailed multi-line description to fully explain the Item. [CommonMark 0.29](https://commonmark.org/) syntax MAY be used for rich text representation. |
+
+
 ## Date and Time
 
 Fields to provide additional temporal information such as ranges with a start and an end datetime stamp.
@@ -17,7 +32,7 @@ Fields to provide additional temporal information such as ranges with a start an
 
 - [JSON Schema](json-schema/datetimerange.json)
 
-While a STAC item can have a nominal datetime describing the capture, this extension allows an item to have a range
+While a STAC item can have a nominal datetime describing the capture, these properties allow an item to have a range
 of capture datetimes. An example of this is the [MODIS 16 day vegetation index product.](https://lpdaac.usgs.gov/products/mod13q1v006/).
 The datetime property in a STAC item and these fields are not mutually exclusive.
 
@@ -85,8 +100,8 @@ The object provides information about a provider. A provider is any of the organ
 
 ## Instrument
 
-Adds metadata specifying a platform and instrument used in a data collection mission. It will often be combined with
-other extensions that describe the actual data, such as the `eo` or `sar` extensions.
+Adds metadata specifying a platform and instrument used in a data collection mission. These fields will often be combined 
+with domain-specific extensions that describe the actual data, such as the `eo` or `sar` extensions.
 
 - [JSON Schema](json-schema/instrument.json)
 

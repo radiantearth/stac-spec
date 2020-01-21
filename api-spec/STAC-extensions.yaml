@@ -1822,6 +1822,15 @@ components:
             type: string
             description: Displayed title
             example: Thumbnail
+          description:
+            type: string
+            description: >-
+              Multi-line description to explain the asset.
+
+
+              [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for
+              rich text representation.
+            example: Small 256x256px PNG thumbnail for a preview.
           type:
             type: string
             description: Media type of the asset

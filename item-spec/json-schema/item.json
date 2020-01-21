@@ -12,7 +12,10 @@
   ],
   "definitions": {
     "common_metadata": {
-      "anyOf": [
+      "allOf": [
+        {
+          "$ref": "basics.json"
+        },
         {
           "$ref": "datetimerange.json"
         },
@@ -120,11 +123,6 @@
                       "description": "The searchable date/time of the assets, in UTC (Formatted in RFC 3339) ",
                       "type": "string",
                       "format": "date-time"
-                    },
-                    "title": {
-                      "title": "Item Title",
-                      "description": "A human-readable title describing the item.",
-                      "type": "string"
                     }
                   }
                 },

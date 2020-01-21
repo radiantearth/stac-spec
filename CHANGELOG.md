@@ -6,8 +6,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+### Added
+- [Basics](item-spec/common-metadata.md#basics) added to Common Metadata definitions with new `description` field for
+Item properties.
+
 ### Changed
+- Item `title` definition moved from core Item fields to [Common Metadata Basics](item-spec/common-metadata.md#basics) 
+fields. No change is required for STAC Items.
 - `putFeature` can return a `PreconditionFailed` to provide more explicit information when the resource has changed in the server
+
+### Fixed
+- Fixed Item JSON Schema now `allOf` optional Common Metadata properties are evaluated.
+- Clarified usage of optional Common Metadata fields for STAC Items.
+
 
 ## [v0.9.0-rc1] - 2020-01-06
 
@@ -23,6 +34,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - STAC API:
     - Added the [Item and Collection API Version extension](api-spec/extensions/version/README.md) to support versioning in the API specification
     - Run `npm run serve` or `npm run serve-ext` to quickly render development versions of the OpenAPI spec in the browser.
+    - Added new fields to the `link` object to facilitate [pagination support for POST requests](api-spec/api-spec.md#paging-extension).
 
 ### Changed
 - Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html)
@@ -62,7 +74,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - `data_type` and `unit` from the `sar:bands` object in the [SAR extension](extensions/sar/README.md)
     - Datetime Range (`dtr`) extension. Use the [Common Metadata fields](item-spec/common-metadata.md) instead.
 - STAC API:
-    - `next` from the search metadata and query parameter, added POST body and headers to the links for paging support
+    - `next` from the search metadata and query parameter
 
 ### Fixed
 
