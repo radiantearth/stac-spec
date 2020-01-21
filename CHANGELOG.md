@@ -13,16 +13,18 @@ Item properties.
 ### Changed
 - Item `title` definition moved from core Item fields to [Common Metadata Basics](item-spec/common-metadata.md#basics) 
 fields. No change is required for STAC Items.
+- `putFeature` can return a `PreconditionFailed` to provide more explicit information when the resource has changed in the server
 
 ### Fixed
 - Fixed Item JSON Schema now `allOf` optional Common Metadata properties are evaluated.
 - Clarified usage of optional Common Metadata fields for STAC Items.
 
+
 ## [v0.9.0-rc1] - 2020-01-06
 
 ### Added
 - ItemCollection requires `stac_version` field, `stac_extensions` has also been added
-- A `description` field has been added to Item assets (also Asset definitions extension). 
+- A `description` field has been added to Item assets (also Asset definitions extension).
 - Field `mission` to [Common Metadata fields](item-spec/common-metadata.md).
 - Extensions:
     - [Version Indicators extension](extensions/version/README.md), adds `version` and `deprecated` fields to STAC Items and Collections
@@ -56,7 +58,8 @@ fields. No change is required for STAC Items.
     - Sort Extension - added non-JSON query/form parameter format
     - Fields extension has a simplified format for GET parameters
     - `search` extension renamed to `context` extension. JSON object renamed from `search:metadata` to `context`
-    - Query Extension - type restrictions on query predicates are more accurate, which may require additional implementation support. 
+    - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
+    - Query Extension - type restrictions on query predicates are more accurate, which may require additional implementation support.
 
 ### Removed
 - `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead
