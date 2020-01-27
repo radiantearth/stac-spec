@@ -100,8 +100,8 @@
             }
         },
 
-        "tl:tileMatrixSet": [
-            {
+        "tl:tile_matrix_sets": {
+            "WebMercatorQuad": {
                 "type": "TileMatrixSetType",
                 "title": "Google Maps Compatible for the World",
                 "identifier": "WebMercatorQuad",
@@ -187,11 +187,11 @@
                     }
                 ]
             }
-        ]
+        }
     },
-    "assetTemplates": {
+    "asset_templates": {
         "bands": {
-            "hrefTemplate": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}.tif",
+            "href_template": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}.tif",
             "title": "",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
@@ -202,7 +202,7 @@
             ]
         },
         "B02": {
-            "hrefTemplate": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B02.tif",
+            "href_template": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B02.tif",
             "title": "",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
@@ -210,7 +210,7 @@
             ]
         },
         "B03": {
-            "hrefTemplate": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B03.tif",
+            "href_template": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B03.tif",
             "title": "",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
@@ -218,7 +218,7 @@
             ]
         },
         "B04": {
-            "hrefTemplate": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B04.tif",
+            "href_template": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B04.tif",
             "title": "",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
@@ -226,7 +226,7 @@
             ]
         },
         "B08": {
-            "hrefTemplate": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B08.tif",
+            "href_template": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B08.tif",
             "title": "",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
@@ -238,7 +238,7 @@
         "thumbnail": {
             "href": "http://cloudless.eox.at/s2cloudless_2018/0/0/0.tif",
             "title": "Overview of the whole tiled dataset.",
-            "type": "image/vnd.stac.geotiff",
+            "type": "image/tiff; application=geotiff",
             "eo:bands": [
                 2,
                 1,
