@@ -41,7 +41,7 @@
     },
     "properties": {
         "collection": "s2cloudless",
-        "datetime": "2018",
+        "datetime": "2018-01-01T00:00:00Z",
         "eo:gsd": 10,
         "eo:platform": "sentinel-2",
         "eo:instrument": "msi",
