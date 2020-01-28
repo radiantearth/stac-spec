@@ -102,7 +102,7 @@ An asset template is an object that contains a link template to data associated 
 | ------------- | ------ | ------------------------------------------------------------------------------------- |
 | href_template | string | **REQUIRED.** Link template to the asset object. Relative and absolute links are both allowed. All parts of the template within curly braces `{}` are meant to be template substitution parameters to be replaced |
 | title         | string | The displayed title for clients and users.                                            |
-| type          | string | [Media type](../README.md#media-types) of the asset.                                  |
+| type          | string | [Media type](../../item-spec/item-spec.md#media-types) of the asset.                  |
 
 **href_template**: The available template parameters are `{TileMatrixSet}`, `{TileMatrix}`, `{TileRow}`, and `{TileCol}`. Additional template substitution parameters may be present, see the next section for more details.
 Also: it is not mandatory, that all template parameters are present. If, for example, the data is only available in one specific tile matrix, then that parameter can be omitted. It is possible, for whatever reason, to have the same template parameter more than once in the same template string.
