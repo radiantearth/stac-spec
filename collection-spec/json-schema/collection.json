@@ -39,7 +39,8 @@
                   "asset",
                   "commons",
                   "checksum",
-                  "scientific"
+                  "scientific",
+                  "version"
                 ]
               }
             ]

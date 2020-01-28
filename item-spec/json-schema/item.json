@@ -71,12 +71,15 @@
                     "enum": [
                       "checksum",
                       "commons",
-                      "cube",
+                      "datacube",
                       "eo",
                       "label",
                       "pointcloud",
+                      "projection",
                       "sar",
-                      "scientific"
+                      "sat",
+                      "scientific",
+                      "version"
                     ]
                   }
                 ]
