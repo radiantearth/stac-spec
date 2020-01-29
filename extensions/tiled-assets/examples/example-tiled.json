@@ -1,5 +1,5 @@
 {
-    "stac_version": "0.8.0",
+    "stac_version": "0.9.0",
     "stac_extensions": [
         "eo",
         "tiled-assets"
@@ -43,30 +43,28 @@
         "collection": "s2cloudless",
         "datetime": "2018-01-01T00:00:00Z",
         "start_datetime": "2018-01-01T00:00:00Z",
-        "end_datetime": "2018-01-01T00:00:00Z",
+        "end_datetime": "2018-12-31T23:59:59Z",
+        "platform": "sentinel-2",
+        "instruments": [
+            "msi"
+        ],
         "eo:gsd": 10,
-        "eo:platform": "sentinel-2",
-        "eo:instrument": "msi",
         "eo:bands": [
             {
                 "name": "B2",
-                "common_name": "blue",
-                "gsd": 10
+                "common_name": "blue"
             },
             {
                 "name": "B3",
-                "common_name": "green",
-                "gsd": 10
+                "common_name": "green"
             },
             {
                 "name": "B4",
-                "common_name": "red",
-                "gsd": 10
+                "common_name": "red"
             },
             {
                 "name": "B8",
-                "common_name": "nir",
-                "gsd": 10
+                "common_name": "nir"
             }
         ],
         "tl:tile_matrix_links": {
@@ -193,8 +191,7 @@
     },
     "asset_templates": {
         "bands": {
-            "href_template": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}.tif",
-            "title": "",
+            "href": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
                 2,
@@ -204,32 +201,28 @@
             ]
         },
         "B02": {
-            "href_template": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B02.tif",
-            "title": "",
+            "href": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B02.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
                 0
             ]
         },
         "B03": {
-            "href_template": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B03.tif",
-            "title": "",
+            "href": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B03.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
                 1
             ]
         },
         "B04": {
-            "href_template": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B04.tif",
-            "title": "",
+            "href": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B04.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
                 2
             ]
         },
         "B08": {
-            "href_template": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B08.tif",
-            "title": "",
+            "href": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B08.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
                 3

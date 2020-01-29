@@ -1,5 +1,5 @@
 {
-    "stac_version": "0.8.0",
+    "stac_version": "0.9.0",
     "stac_extensions": [
         "eo",
         "tiled-assets"
@@ -40,45 +40,39 @@
         "datetime": "2018-01-01T00:00:00Z",
         "start_datetime": "2018-01-01T00:00:00Z",
         "end_datetime": "2018-12-31T23:59:59Z",
+        "platform": "sentinel-2",
+        "instruments": [
+            "msi"
+        ],
         "eo:gsd": 10,
-        "eo:platform": "sentinel-2",
-        "eo:instrument": "msi",
         "eo:bands": [
             {
                 "name": "B2",
-                "common_name": "blue",
-                "gsd": 10
+                "common_name": "blue"
             },
             {
                 "name": "B3",
-                "common_name": "green",
-                "gsd": 10
+                "common_name": "green"
             },
             {
                 "name": "B4",
-                "common_name": "red",
-                "gsd": 10
+                "common_name": "red"
             },
             {
-                "name": "B5",
-                "gsd": 20
+                "name": "B5"
             },
             {
-                "name": "B6",
-                "gsd": 20
+                "name": "B6"
             },
             {
-                "name": "B7",
-                "gsd": 20
+                "name": "B7"
             },
             {
                 "name": "B8",
-                "common_name": "nir",
-                "gsd": 10
+                "common_name": "nir"
             },
             {
-                "name": "B11",
-                "gsd": 20
+                "name": "B11"
             }
         ],
         "cube:dimensions": {
@@ -96,23 +90,21 @@
     },
     "asset_templates": {
         "B02": {
-            "href_template": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B02.tif",
-            "title": "",
+            "href": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B02.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
                 0
             ]
         },
         "B03": {
-            "href_template": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B03.tif",
-            "title": "",
+            "href": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B03.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
                 1
             ]
         },
         "B04": {
-            "href_template": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B04.tif",
+            "href": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B04.tif",
             "title": "",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
@@ -120,7 +112,7 @@
             ]
         },
         "B05": {
-            "href_template": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B05.tif",
+            "href": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B05.tif",
             "title": "",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
@@ -128,32 +120,28 @@
             ]
         },
         "B06": {
-            "href_template": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B06.tif",
-            "title": "",
+            "href": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B06.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
                 4
             ]
         },
         "B07": {
-            "href_template": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B07.tif",
-            "title": "",
+            "href": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B07.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
                 5
             ]
         },
         "B08": {
-            "href_template": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B08.tif",
-            "title": "",
+            "href": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B08.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
                 6
             ]
         },
         "B11": {
-            "href_template": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B11.tif",
-            "title": "",
+            "href": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B11.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
                 7
@@ -162,64 +150,56 @@
     },
     "assets": {
         "B02": {
-            "href_template": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B02.tif",
-            "title": "",
+            "href": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B02.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
                 0
             ]
         },
         "B03": {
-            "href_template": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B03.tif",
-            "title": "",
+            "href": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B03.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
                 1
             ]
         },
         "B04": {
-            "href_template": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B04.tif",
-            "title": "",
+            "href": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B04.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
                 2
             ]
         },
         "B05": {
-            "href_template": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B05.tif",
-            "title": "",
+            "href": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B05.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
                 3
             ]
         },
         "B06": {
-            "href_template": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B06.tif",
-            "title": "",
+            "href": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B06.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
                 4
             ]
         },
         "B07": {
-            "href_template": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B07.tif",
-            "title": "",
+            "href": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B07.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
                 5
             ]
         },
         "B08": {
-            "href_template": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B08.tif",
-            "title": "",
+            "href": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B08.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
                 6
             ]
         },
         "B11": {
-            "href_template": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B11.tif",
-            "title": "",
+            "href": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B11.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
                 7

@@ -4,7 +4,7 @@
 
 An extension to allow the specification of tiled assets within STAC Items. With this extension it is possible to allow the description of assets using template references and rules to construct those. This extension is tailored for cases where there are too many assets associated with an Item to be practically listed in the `assets` property. For this reason, the new `asset_templates` property allows to specify template URLs where components can be replaced to get the final URLs to the actual files.
 
-This extension is modelled in close alignment to the [OGC Two Dimensional Tile Matrix Set](http://docs.opengeospatial.org/is/17-083r2/17-083r2.html)
+This extension is modelled in close alignment to the [OGC Two Dimensional Tile Matrix Set](http://docs.opengeospatial.org/is/17-083r2/17-083r2.html). The templating mechanism used is defined in the [OGC WMTS Simple Profile](http://docs.opengeospatial.org/is/13-082r2/13-082r2.html).
 
 - Examples: [Tiled](examples/example-tiled.json), [Dimension](examples/example-dimension.json)
 - [JSON Schema](json-schema/schema.json)
@@ -26,8 +26,7 @@ Tile matrix sets can be directly embedded in a collection, catalog or item. Such
 | ------------------------ | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | tl:tile_matrix_set_links | Map<string, [TileMatrixSetLink Object](#tile-matrix-set-link-object)> | A mapping of tile matrix set identifier to a tile matrix set link object.                                       |
 
-The keys of the `tl:tile_matrix_set_links` mapping can be used as a substitution of the `{TileMatrixSet}` template parameters for the `href_template` field
-of the [Asset Template Object](#asset-template-object).
+The keys of the `tl:tile_matrix_set_links` mapping can be used as a substitution of the `{TileMatrixSet}` template parameters for the `href` field of the [Asset Object](../../item-spec/item-spec.md#asset-object) used as `asset_template`.
 
 ### Tile Matrix Set Link Object
 
@@ -90,24 +89,12 @@ Pixel buffer objects allow the definition of image boundarys, so that the intern
 
 ## Item fields
 
-| Field Name          | Type                                                         | Description                                                        |
-| ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------ |
-| asset_templates     | Map<string, [Asset Template Object](#asset-template-object)> | An array of Asset Template objects that denote templated arguments |
+| Field Name          | Type                                                                   | Description                                                                     |
+| ------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| asset_templates     | Map<string, [Asset Object](../../item-spec/item-spec.md#asset-object)> | An map key to Asset objects that use template parameters for later substitution |
 
-### Asset Template Object
-
-An asset template is an object that contains a link template to data associated with the Item that can be downloaded or streamed. It is allowed to add additional fields.
-
-| Field Name    | Type   | Description                                                                           |
-| ------------- | ------ | ------------------------------------------------------------------------------------- |
-| href_template | string | **REQUIRED.** Link template to the asset object. Relative and absolute links are both allowed. All parts of the template within curly braces `{}` are meant to be template substitution parameters to be replaced |
-| title         | string | The displayed title for clients and users.                                            |
-| type          | string | [Media type](../../item-spec/item-spec.md#media-types) of the asset.                  |
-
-**href_template**: The available template parameters are `{TileMatrixSet}`, `{TileMatrix}`, `{TileRow}`, and `{TileCol}`. Additional template substitution parameters may be present, see the next section for more details.
+**asset_templates**: The `href` field can make use of template parameters that can be replaced with values to generate references to actual files. The available template parameters are `{TileMatrixSet}`, `{TileMatrix}`, `{TileRow}`, and `{TileCol}`. The templating mechanism is detailed in the [OGC WMTS Simple Profile](http://docs.opengeospatial.org/is/13-082r2/13-082r2.html#17). Additional template substitution parameters may be present, see the next section for more details.
 Also: it is not mandatory, that all template parameters are present. If, for example, the data is only available in one specific tile matrix, then that parameter can be omitted. It is possible, for whatever reason, to have the same template parameter more than once in the same template string.
-
-It is intended, that all extensions targeting the `Asset Object` are also applicable to the `Asset Template Object` when useful. For example the `eo` extension can also be used in conjunction with tiled assets by specifying the `eo:bands` property in the asset template
 
 #### Template Parameters from other extensions
 
