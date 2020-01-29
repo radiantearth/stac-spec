@@ -39,6 +39,7 @@
                   "asset",
                   "commons",
                   "checksum",
+                  "datacube",
                   "scientific",
                   "version"
                 ]
