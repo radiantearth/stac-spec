@@ -38,22 +38,21 @@ STAC API.
 
 ## HTTP Request Methods and Content Types
 
-The OAFeat and STAC APIs follow a RESTful model. A core principal of this is the use of HTTP Request Methods (verbs) and
-the `Content-Type` header to drive behavior. This section describes how these are used in the OAFeat and STAC endpoints. 
+The OAFeat and STAC APIs follow a RESTful model. A core principal of this is the use of HTTP Request Methods ("verbs") and
+the `Content-Type` header to drive behavior on resources ("nouns"). This section describes how these are used in the OAFeat and STAC endpoints. 
 
-1. **Required** GET (both OAFeat and STAC)
-2. **Recommended** POST `Content-Type: application/x-www-form-urlencoded` with the corresponding content body format.
-3. **Recommended** POST `Content-Type: multipart/form-data` with the corresponding content body format.
-4. **Optional** **STAC endpoint /search only** POST `Content-Type: application/json`, where the content body is a JSON 
+1. **Required** Both OAFeat and STAC: GET using query string parameters
+1. **Recommended** Only STAC: POST `Content-Type: application/x-www-form-urlencoded` with the corresponding content body format equivalent to the parameters defined for GET.
+1. **Recommended** Only STAC `/search`: POST `Content-Type: application/json`, where the content body is a JSON 
 object representing a filter, as defined in the [STAC API OpenAPI specification document](STAC.yaml).  
-5. **Prohibited** **OAFeat endpoints only** POST `Content-Type: application/json`, where the content body is a JSON 
+1. **Prohibited** Only OAFeat: POST `Content-Type: application/json`, where the content body is a JSON 
 object representing a filter. This is prohibited due to conflict with the 
 [Transaction Extension](extensions/transaction/README.md), which defines a POST `Content-Type: application/json` 
 operation to create an Item.
 
-It is best to use POST when using the intersects query for two reasons:
+It is best to use POST when using the `intersects` query parameter for two reasons:
 
-1. the size limit for a GET request is less than that of POST, so if a complex geometry is used GET may fail.
+1. In practice, the allowed size for a GET request is significantly less than that allowed for a POST request, so if a large geometry may cause a GET request to fail.
 2. The parameters for a GET request must be escaped properly, making it more difficult to construct when using JSON 
 parameters (such as intersect)
 
