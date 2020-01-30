@@ -15,6 +15,10 @@ Item properties.
 fields. No change is required for STAC Items.
 - `putFeature` can return a `PreconditionFailed` to provide more explicit information when the resource has changed in the server
 
+### Removed
+
+- In API, removed any mention of using media type `multipart/form-data`
+
 ### Fixed
 - Fixed Item JSON Schema now `allOf` optional Common Metadata properties are evaluated.
 - Clarified usage of optional Common Metadata fields for STAC Items.
