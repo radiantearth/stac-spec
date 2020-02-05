@@ -58,7 +58,7 @@ The syntax for the `sortby` attribute is:
 {
     "sortby": [
         {
-            "field": "created",
+            "field": "properties.created",
             "direction": "asc"
         },
         {
