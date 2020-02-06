@@ -642,11 +642,9 @@ components:
       in: query
       description: >
         An array of property names, prefixed by either "+" for ascending or "-"
-        for descending. If no prefix is
-
-        provided, "+" is assumed.
+        for descending. If no prefix is provided, "+" is assumed.
       required: false
-      schema:
+      schema:ß
         type: string
         example: '+id,-properties.eo:cloud_cover'
       style: form
