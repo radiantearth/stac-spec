@@ -644,7 +644,7 @@ components:
         An array of property names, prefixed by either "+" for ascending or "-"
         for descending. If no prefix is provided, "+" is assumed.
       required: false
-      schema:ß
+      schema:
         type: string
         example: '+id,-properties.eo:cloud_cover'
       style: form
