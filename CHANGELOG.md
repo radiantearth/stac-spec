@@ -16,6 +16,7 @@ Item properties.
 fields. No change is required for STAC Items.
 - `putFeature` can return a `PreconditionFailed` to provide more explicit information when the resource has changed in the server
 - [Sort extension](api-spec/extensions/sort) now uses "+" and "-" prefixes for GET requests to denote sort order. 
+- Clarified how `/search` links must be added to `/` and changed that links to both GET and POST must be provided now that the method can be specified in links.
 
 ### Removed
 
@@ -24,6 +25,8 @@ fields. No change is required for STAC Items.
 ### Fixed
 - Fixed Item JSON Schema now `allOf` optional Common Metadata properties are evaluated.
 - Clarified usage of optional Common Metadata fields for STAC Items.
+- Fixed API spec regarding license expressions
+- Added missing schema in the API Version extension
 
 
 ## [v0.9.0-rc1] - 2020-01-06
