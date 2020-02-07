@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - [Basics](item-spec/common-metadata.md#basics) added to Common Metadata definitions with new `description` field for
 Item properties.
+- Clarification text on HTTP verbs in STAC API
 
 ### Changed
 - Item `title` definition moved from core Item fields to [Common Metadata Basics](item-spec/common-metadata.md#basics) 
@@ -16,6 +17,10 @@ fields. No change is required for STAC Items.
 - `putFeature` can return a `PreconditionFailed` to provide more explicit information when the resource has changed in the server
 - [Sort extension](api-spec/extensions/sort) now uses "+" and "-" prefixes for GET requests to denote sort order. 
 - Clarified how `/search` links must be added to `/` and changed that links to both GET and POST must be provided now that the method can be specified in links.
+
+### Removed
+
+- In API, removed any mention of using media type `multipart/form-data` and `x-www-form-urlencoded`
 
 ### Fixed
 - Fixed Item JSON Schema now `allOf` optional Common Metadata properties are evaluated.
