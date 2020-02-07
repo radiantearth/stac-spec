@@ -700,14 +700,10 @@ components:
           type: string
           example: address
         description:
-          description: >-
-            Detailed multi-line description to fully explain the collection.
-
-
-            [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for
-            rich text representation.
+          description: a description of the features in the collection
           type: string
           example: An address.
+          $ref: '#/components/schemas/description'
         links:
           type: array
           items:
@@ -1400,6 +1396,15 @@ components:
       type: string
       format: date-time
       example: '2017-08-17T08:05:32Z'
+    description:
+      type: string
+      description: >-
+        Detailed multi-line description to fully explain the catalog or
+        collection.
+
+
+        [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich
+        text representation.
     license:
       type: string
       description: >-
@@ -2078,6 +2083,30 @@ components:
       properties:
         datetime:
           $ref: '#/components/schemas/datetime'
+    catalogDefinition:
+      type: object
+      required:
+        - stac_version
+        - id
+        - description
+        - links
+      properties:
+        stac_version:
+          $ref: '#/components/schemas/stac_version'
+        stac_extensions:
+          $ref: '#/components/schemas/stac_extensions'
+        id:
+          description: 'identifier of the catalog used, for example, in URIs'
+          type: string
+        title:
+          description: human readable title of the catalog
+          type: string
+        description:
+          $ref: '#/components/schemas/description'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
   responses:
     LandingPage:
       description: >-

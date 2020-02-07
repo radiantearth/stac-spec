@@ -404,14 +404,10 @@ components:
           type: string
           example: address
         description:
-          description: >-
-            Detailed multi-line description to fully explain the collection.
-
-
-            [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for
-            rich text representation.
+          description: a description of the features in the collection
           type: string
           example: An address.
+          $ref: '#/components/schemas/description'
         links:
           type: array
           items:
@@ -1104,6 +1100,15 @@ components:
       type: string
       format: date-time
       example: '2017-08-17T08:05:32Z'
+    description:
+      type: string
+      description: >-
+        Detailed multi-line description to fully explain the catalog or
+        collection.
+
+
+        [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich
+        text representation.
     license:
       type: string
       description: >-
