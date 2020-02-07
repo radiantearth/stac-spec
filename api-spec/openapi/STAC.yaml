@@ -449,9 +449,7 @@ components:
       type: string
       description: |-
         License(s) of the data as a SPDX
-        [License identifier](https://spdx.org/licenses/) or
-        [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60).
-         Alternatively, use
+        [License identifier](https://spdx.org/licenses/). Alternatively, use
         `proprietary` if the license is not on the SPDX license list or
         `various` if multiple licenses apply. In these two cases links to the
         license texts SHOULD be added, see the `license` link relation type.
