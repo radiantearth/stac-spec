@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - [Basics](item-spec/common-metadata.md#basics) added to Common Metadata definitions with new `description` field for
 Item properties.
+- Clarification text on HTTP verbs in STAC API
 
 ### Changed
 - Item `title` definition moved from core Item fields to [Common Metadata Basics](item-spec/common-metadata.md#basics) 
@@ -18,7 +19,7 @@ fields. No change is required for STAC Items.
 
 ### Removed
 
-- In API, removed any mention of using media type `multipart/form-data`
+- In API, removed any mention of using media type `multipart/form-data` and `x-www-form-urlencoded`
 
 ### Fixed
 - Fixed Item JSON Schema now `allOf` optional Common Metadata properties are evaluated.

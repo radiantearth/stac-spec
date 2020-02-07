@@ -25,11 +25,13 @@ In OAFeat Features are the individual records within a Collection and are provid
 
 A typical OAFeat will have multiple collections, and each will just offer simple search for its particular collection at 
 `GET /collections/{collectionId}/items`.
-Due to the limited parameter support in OGC API - Features, it is recommended to use the STAC API endpoint 
-`POST /search` for advanced queries.
+The main STAC endpoint specified beyond what OAFeat offers is `/search`, which offers cross-collection search. A primary
+use case of STAC is to search diverse imagery collections (like Landsat, Sentinel, MODIS) by location and cloud cover for any
+relevant image. So the ability to do searches across Collections is required, and is not yet specified by OAFeat. Due to the 
+limited parameter support in OGC API - Features, it is recommended to use the STAC API endpoint 
+`POST /search` for advanced queries, as it supports richer options.
 The filtering is made to be compatible between STAC API and OGC API - Features whenever feasible, and the two specs seek 
-to share the general query and filtering patterns.
-The key difference is that the STAC API search endpoints will do cross collection search.
+to share the general query and filtering patterns, and STAC will align with OGC API when it offers advanced filtering.
 
 Implementations may **optionally** provide support for the full superset of STAC API query parameters to the 
 `/collections/{collectionId}/items` endpoint,
@@ -41,23 +43,36 @@ STAC API.
 The OAFeat and STAC APIs follow a RESTful model. A core principal of this is the use of HTTP Request Methods ("verbs") and
 the `Content-Type` header to drive behavior on resources ("nouns"). This section describes how these are used in the OAFeat and STAC endpoints. 
 
-1. **Required** Both OAFeat and STAC: GET using query string parameters
-1. **Recommended** Only STAC: POST `Content-Type: application/x-www-form-urlencoded` with the corresponding content body format equivalent to the parameters defined for GET.
-1. **Recommended** Only STAC `/search`: POST `Content-Type: application/json`, where the content body is a JSON 
-object representing a filter, as defined in the [STAC API OpenAPI specification document](STAC.yaml).  
-1. **Prohibited** Only OAFeat: POST `Content-Type: application/json`, where the content body is a JSON 
-object representing a filter. This is prohibited due to conflict with the 
+#### GET
+
+**Required**: OAFeat 1.0 only specifies GET query parameters, and they are all required. STAC's cross-collection `/search` also requires
+GET queries for all implementations, and generally aligns with OAFeat's single Collection search. 
+
+#### POST
+
+1. **Recommended** STAC `/search` is strongly recommended to implement POST `Content-Type: application/json`, where the content body is a JSON 
+object representing a query and filter, as defined in the [STAC API OpenAPI specification document](STAC.yaml). 
+2. **Prohibited** OAFeat: POST `Content-Type: application/json` on the `/collections/{collectionId}/items`, where the content body is a JSON 
+object representing a filter, is not allowed. This is prohibited due to conflict with the 
 [Transaction Extension](extensions/transaction/README.md), which defines a POST `Content-Type: application/json` 
-operation to create an Item.
+operation to create an Item. Any query against a single OAFeat collection endpoint should be possible against the STAC `/search` endpoint, specifying
+the collection name in the `collections` query parameter.
 
-It is best to use POST when using the `intersects` query parameter for two reasons:
+It is recommended for clients use POST for querying (if the STAC API supports it), especially when using the 
+`intersects` query parameter, for two reasons:
 
-1. In practice, the allowed size for a GET request is significantly less than that allowed for a POST request, so if a large geometry may cause a GET request to fail.
+1. In practice, the allowed size for an HTTP GET request is significantly less than that allowed for a POST request, 
+so if a large geometry is used in the query it may cause a GET request to fail.
 2. The parameters for a GET request must be escaped properly, making it more difficult to construct when using JSON 
-parameters (such as intersect)
+parameters (such as intersect).
 
 **STAC API extensions** allow for more sophisticated searching, such as the ability to search by geometries and 
 searching on specific Item properties.
+
+#### PUT / PATCH / DELETE
+
+The other HTTP verbs are not supported in the core STAC specification. The [Transaction Extension](extensions/transaction/README.md)
+does implement them, for STAC and OAFeat implementations that want to enable writing and deleting items. 
 
 ## OGC API - Features Endpoints
 
