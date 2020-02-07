@@ -640,10 +640,13 @@ components:
     sortby:
       name: sortby
       in: query
-      description: Allows sorting results by the specified properties
+      description: >
+        An array of property names, prefixed by either "+" for ascending or "-"
+        for descending. If no prefix is provided, "+" is assumed.
       required: false
       schema:
         type: string
+        example: '+id,-properties.eo:cloud_cover'
       style: form
       explode: false
     fields:
