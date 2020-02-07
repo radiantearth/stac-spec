@@ -142,6 +142,11 @@ paths:
 
         This method is optional, but you MUST implement `POST /search` if you
         want to implement this method.
+
+        If this endpoint is implemented on a server, it is required to add a
+        link referring to this endpoint with `rel` set to `search` to the
+        `links` array in `GET /`. As `GET` is the default method, the `method`
+        may not be set explicitly in the link.
       operationId: getSearchSTAC
       tags:
         - STAC
@@ -178,8 +183,8 @@ paths:
 
         This method is mandatory to implement if `GET /search` is implemented.
         If this endpoint is implemented on a server, it is required to add a
-        link with `rel` set to `search` to the `links` array in `GET /` that
-        refers to this endpoint.
+        link referring to this endpoint with `rel` set to `search` and `method`
+        set to `POST` to the `links` array in `GET /`.
       operationId: postSearchSTAC
       tags:
         - STAC
@@ -1513,8 +1518,9 @@ components:
         Collections (path `/collections`, link relation
         `data`).
 
-        A link to the search endpoint (path `/search`, link relation `search`)
-        is **required** to be specified if the API implements `/search`.
+        Links to the search endpoints (path `/search`, link relation `search`,
+        method `GET` or `POST`) are **required** to be specified if the API
+        implements `/search` for any of the specified HTTP methods.
       content:
         application/json:
           schema:
