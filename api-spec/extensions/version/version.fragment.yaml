@@ -57,6 +57,31 @@ paths:
         '200':
           $ref: '#/components/responses/Collections'
 components:
+  schemas:
+    catalogDefinition:
+      type: object
+      required:
+        - stac_version
+        - id
+        - description
+        - links
+      properties:
+        stac_version:
+          $ref: '#/components/schemas/stac_version'
+        stac_extensions:
+          $ref: '#/components/schemas/stac_extensions'
+        id:
+          description: identifier of the catalog used, for example, in URIs
+          type: string
+        title:
+          description: human readable title of the catalog
+          type: string
+        description:
+          $ref: '#/components/schemas/description'
+        links:
+          type: array
+          items:
+            $ref: "#/components/schemas/link"
   parameters:
     versionId:
       name: versionId
