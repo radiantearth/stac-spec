@@ -75,7 +75,6 @@
     "metadata": {
       "href": "http://landsat-pds.s3.amazonaws.com/L8/153/025/LC81530252014153LGN00/LC81530252014153LGN00_MTL.txt",
       "type": "mtl",
-      "role": "metadata",
       "title": "Original Metadata",
       "description": "The original MTL metadata file provided for each Landsat scene",
       "roles": ["metadata"]
