@@ -4,7 +4,7 @@
 
 This document explains the fields of the Overhead Sensor Extension to a STAC Item. Overhead Sensor adds metadata related to angles of sensors that make earth observations from above. It will often be combined with other extensions that describe the actual data, such as the `eo`, `sat` or `sar` extensions. It is not necessary, but recommended to place common fields in [STAC Collections](../../collection-spec/collection-spec.md) using the [Commons extension](../commons/).
 
-- [Example (Landsat 8)](examples/example-landsat8.json)
+- [Example (Landsat 8)](../eo/examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)
 
 ## Item fields
