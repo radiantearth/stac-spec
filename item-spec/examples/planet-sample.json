@@ -62,9 +62,9 @@
     "datetime": "2017-11-10T12:10:30.535417Z",
     "eo:cloud_cover": 23,
     "eo:gsd": 3.7,
-    "sat:sun_azimuth_angle": 101.8,
-    "sat:sun_elevation_angle": 58.8,
-    "sat:off_nadir_angle": 1,
+    "eo:sun_azimuth": 101.8,
+    "eo:sun_elevation": 58.8,
+    "os:off_nadir": 1,
     "pl:acquired": "2017-11-10T12:10:30.535417Z",
     "pl:anomalous_pixels": 0.14,
     "pl:columns": 9111,
@@ -83,7 +83,7 @@
     "pl:strip_id": "902639",
     "pl:updated": "2017-11-11T11:17:33Z",
     "pl:usable_data": 0,
-    "pl:view_angle": 1
+    "pl:view": 1
   },
   "type": "Feature",
   "assets": {

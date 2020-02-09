@@ -166,7 +166,7 @@ fields. No change is required for STAC Items.
 - `page` parameter for STAC API
 - Optional `collection` property field in Items (previously part of the Commons extension)
 - It is now required to link to `/stac/search/` from `/stac/`
-- Added new fields to SAR extension: `sar:incidence_angle`, `sar:relative_orbit`, `sar:observation_direction`
+- Added new fields to SAR extension: `sat:incidence_angle`, `sat:relative_orbit`, `sat:observation_direction`
 - Added new filter parameters `ids` and `collections` to `/stac/search/`
 
 ### Removed

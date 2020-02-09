@@ -88,7 +88,7 @@ throughout all domains. These optional fields are included for STAC Items by def
 such as EO, SAR and point clouds.
 * [Custom Extensions](../extensions/README.md#extending-stac) - It is generally allowed to add custom 
 fields but it is recommended to add multiple attributes for related values instead of a nested object, 
-e.g., two fields `eo:cloud_cover` and `sat:sun_azimuth_angle` instead of a field `eo` with an object 
+e.g., two fields `eo:cloud_cover` and `eo:sun_azimuth` instead of a field `eo` with an object 
 value containing the two fields. The convention (as used within Extensions) is for related attributes 
 to use a common prefix on the attribute names to group them, e.g. `eo`. A nested data structure should 
 only be used when the data itself is nested, as with `eo:bands`.

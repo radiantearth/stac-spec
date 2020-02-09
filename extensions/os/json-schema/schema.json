@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "schema.json#",
+  "title": "Overhead Sensor Extension",
+  "description": "STAC Overhead Sensor Extension to a STAC Item.",
+  "allOf": [
+    {
+      "$ref": "../../../item-spec/json-schema/item.json"
+    },
+    {
+      "$ref": "#/definitions/os"
+    }
+  ],
+  "definitions": {
+    "os": {
+      "type": "object",
+      "required": [
+        "properties"
+      ],
+      "properties": {
+        "properties": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "os:off_nadir": {
+              "title": "Off Nadir",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 90
+            },
+            "os:incidence": {
+              "title": "Center incidence angle",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 90
+            },
+            "os:azimuth": {
+              "title": "Azimuth angle",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 360
+            }
+          }
+        },
+      }
+    }
+  }
+}

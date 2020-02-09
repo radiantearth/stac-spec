@@ -20,6 +20,8 @@ It is not necessary, but recommended to use the [Commons extension](../commons/R
 
 If the data has been collected by a satellite, it is strongly recommended to use the [`sat` extension](../sat/README.md), which in turn requires the [Instrument Fields](../../item-spec/common-metadata.md#instrument). If the data has been collected on an airborne platform it is strongly recommended to use the [Instrument Fields](../../item-spec/common-metadata.md#instrument).
 
+If the data has been collected by an overhead sensor, it is strongly recommended to use the [`os` extension](../os/README.md).
+
 - [Example (Landsat 8)](examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)
 
@@ -30,6 +32,41 @@ If the data has been collected by a satellite, it is strongly recommended to use
 | eo:gsd           | number                   | **REQUIRED.** Ground Sample Distance at the sensor. |
 | eo:bands         | [[Band Object](#band-object)] | **REQUIRED.** This is a list of the available bands where each item is a [Band Object](#band-object). |
 | eo:cloud_cover   | number                   | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided. |
+| eo:sun_azimuth   | number                   | Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360). |
+| eo:sun_elevation | number                   | Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (0-90). |
+
+### Viewing geometry
+
+The angle `sun_elevation` is measured on a 2d plane formed: overhead sensor location, sub-sensor point on the earth, the sun, and the center of the viewed area.
+
+The angle `sun_azimuth` indicates the position of the sun by the angle from true north, as shown below.
+
+Example:
+```
+{
+  "stac_version": "0.9.0-rc1",
+  "stac_extensions": [
+    "sat"
+  ],
+  "id": "20171110",
+  "type": "Feature",
+  ...
+  "properties": {
+    "platform": "mysatellite",
+    "instruments": ["mycamera1", "mycamera2"],
+    "constellation": "allmysatellites",
+    "os:off_nadir": 0,
+    "os:azimuth": 23.9,
+    "os:incidence": 90,
+    "eo:sun_elevation": 45.0,
+    "eo:sun_azimuth": 56.4,
+    "sat:orbit_state": "descending",
+    "sat:relative_orbit": 4
+  }
+}
+```
+
+### Ground Sampling Distance
 
 **eo:gsd** is the nominal Ground Sample Distance for the data, as measured in meters on the ground. There are many
 definitions of GSD. The value of this attribute should be related to the spatial resolution at the sensor, rather
@@ -204,6 +241,7 @@ the eo:bands portion is still being fleshed out.
 The [extensions page](../README.md) gives an overview about related extensions. Of particular relevance to EO data:
 
 * the [Sat Extension Specification](../sat/README.md) to describe SAR data collected from a satellite.
+* the [Overhead Sensor Extension Specification](../os/README.md) to describe angles of sensors collecting earth observation data from above the earth.
 
 ### Placing common fields in Collections
 A lot of EO data will have common metadata across many Items. It is not necessary, but recommended	
