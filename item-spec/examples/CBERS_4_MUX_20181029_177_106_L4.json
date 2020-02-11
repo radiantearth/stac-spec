@@ -3,6 +3,7 @@
   "stac_extensions": [
     "eo",
     "proj",
+    "view",
     "https://example.com/stac/cbers-extension/1.0/schema.json"
   ],
   "id": "CBERS_4_MUX_20181029_177_106_L4",
