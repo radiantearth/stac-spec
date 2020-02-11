@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [Basics](item-spec/common-metadata.md#basics) added to Common Metadata definitions with new `description` field for
 Item properties.
 - Clarification text on HTTP verbs in STAC API
-- [Overhead Sensor Extension](extensions/view/README.md)
+- [View Geometry Extension](extensions/view/README.md)
 
 ### Changed
 - Item `title` definition moved from core Item fields to [Common Metadata Basics](item-spec/common-metadata.md#basics) 
@@ -174,7 +174,7 @@ fields. No change is required for STAC Items.
 - `page` parameter for STAC API
 - Optional `collection` property field in Items (previously part of the Commons extension)
 - It is now required to link to `/stac/search/` from `/stac/`
-- Added new fields to SAR extension: `sat:incidence_angle`, `sat:relative_orbit`, `sat:observation_direction`
+- Added new fields to SAR extension: `sar:incidence_angle`, `sar:relative_orbit`, `sar:observation_direction`
 - Added new filter parameters `ids` and `collections` to `/stac/search/`
 
 ### Removed
