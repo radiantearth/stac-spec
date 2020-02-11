@@ -52,11 +52,11 @@
     "platform": ["sentinel-2a","sentinel-2b"],
     "constellation": ["sentinel-2"],
     "instruments": ["msi"],
-    "os:off_nadir": {
+    "view:off_nadir": {
       "min": 0.0,
       "max": 100
     },
-    "eo:sun_elevation": {
+    "view:sun_elevation": {
       "min": 6.78,
       "max": 89.9
     },

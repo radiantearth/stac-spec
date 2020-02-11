@@ -41,13 +41,13 @@
     },
     "properties": {
         "datetime": "2018-10-01T01:08:32.033Z",
-        "eo:sun_azimuth": 168.8989761,
-        "eo:sun_elevation": 26.32596431,
+        "view:sun_azimuth": 168.8989761,
+        "view:sun_elevation": 26.32596431,
         "platform": "landsat-8",
         "instruments": ["oli", "tirs"],
         "constellation": "landsat",
         "sat:orbit_state": "ascending",
-        "os:off_nadir": 0
+        "view:off_nadir": 0
     },
     "assets": {
         "blue": {

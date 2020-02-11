@@ -44,9 +44,9 @@
   ],
   "properties": {
     "datetime": "2018-10-29T14:24:54Z",
-    "eo:sun_azimuth": 111.113,
-    "eo:sun_elevation": 65.8018,
-    "os:off_nadir": -0.00751271,
+    "view:sun_azimuth": 111.113,
+    "view:sun_elevation": 65.8018,
+    "view:off_nadir": -0.00751271,
     "proj:epsg": 32763,
     "cbers:data_type": "L4",
     "cbers:path": 177,

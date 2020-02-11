@@ -539,10 +539,10 @@ components:
             - sentinel-2
           instruments:
             - msi
-          'os:off_nadir':
+          'view:off_nadir':
             min: 0
             max: 100
-          'eo:sun_elevation':
+          'view:sun_elevation':
             min: 6.78
             max: 89.9
           'eo:bands':
@@ -1412,14 +1412,14 @@ components:
                 - producer
                 - licensor
               url: 'https://cool-sat.com/'
-          'eo:sun_azimuth': 168.7
+          'view:sun_azimuth': 168.7
           'eo:cloud_cover': 0.12
-          'os:off_nadir': 1.4
+          'view:off_nadir': 1.4
           platform: coolsat2
           instruments:
             - cool_sensor_v1
           'eo:bands': []
-          'eo:sun_elevation': 33.4
+          'view:sun_elevation': 33.4
           'eo:gsd': 0.512
         collection: CS3
         links:

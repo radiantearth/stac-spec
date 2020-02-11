@@ -62,7 +62,7 @@
     "properties": {
       "platform": "landsat-8",
       "instruments": ["oli", "tirs"],
-      "os:off_nadir": 0,
+      "view:off_nadir": 0,
       "eo:gsd": 30,
       "eo:bands": [
         {

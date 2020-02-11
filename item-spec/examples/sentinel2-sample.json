@@ -304,6 +304,6 @@
     "platform": "sentinel-2",
     "proj:epsg": 32635,
     "eo:cloud_cover": 88.459539,
-    "eo:sun_azimuth" : 176.091667178268
+    "view:sun_azimuth" : 176.091667178268
   }
 }

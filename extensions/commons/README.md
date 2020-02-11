@@ -16,7 +16,7 @@ In **API implementations** the Commons extension should not be used as it leads 
 
 Unlike other extensions the Commons extension does not add any fields to a STAC Item, instead it allows one to move fields out of Item and into the parent STAC Collection, from which any member Item will inherit. Any field under an Items `properties` field can be removed and added to the Collection `properties` field. Since a Collection contains no properties itself, anything under properties are metadata fields that are common across all member Items.
 
-This provides maximum flexibility to data providers, as the set of common metadata fields can vary between different types of data. For instance, Landsat and Sentinel data always has a `os:off_nadir` value of `0`, because those satellites are always pointed downward (i.e., nadir), while satellite that can be pointed will have varying `os:off_nadir` values. The Commons extension allow the data provider to define the set of metadata that defines the collection. While some metadata fields are more likely to be part of the common set, such as or `instrument` rather than `eo:cloud_cover`, it depends on how the data provider chooses to organize their data.
+This provides maximum flexibility to data providers, as the set of common metadata fields can vary between different types of data. For instance, Landsat and Sentinel data always has a `view:off_nadir` value of `0`, because those satellites are always pointed downward (i.e., nadir), while satellite that can be pointed will have varying `view:off_nadir` values. The Commons extension allow the data provider to define the set of metadata that defines the collection. While some metadata fields are more likely to be part of the common set, such as or `instrument` rather than `eo:cloud_cover`, it depends on how the data provider chooses to organize their data.
 
 If a metadata field is specified in the Collection properties, it will be ignored in any Item that links to that Collection. This is important because a Collection is the metadata that is common across all Item objects. If a field is variable at all, it should not be part of the Commons.
 
@@ -56,7 +56,7 @@ An incomplete Collection:
     "constellation": "landsat-8",
     "instruments": ["oli", "tirs"],
     "eo:gsd": 30,
-    "os:off_nadir": 0,
+    "view:off_nadir": 0,
     "eo:bands": [
       {
         "name": "B1",
@@ -84,8 +84,8 @@ An incomplete item:
   "properties": {
     "datetime": "2018-10-01T01:08:32.033Z",
     "eo:cloud_cover": 78,
-    "eo:sun_azimuth": 168.8989761,
-    "eo:sun_elevation": 26.32596431
+    "view:sun_azimuth": 168.8989761,
+    "view:sun_elevation": 26.32596431
   },
   "assets": {...},
   "links": [...]
@@ -109,10 +109,10 @@ The merged Item then looks like this:
     "constellation": "landsat-8",
     "instruments": ["oli", "tirs"],
     "eo:cloud_cover": 78,
-    "eo:sun_azimuth": 168.8989761,
-    "eo:sun_elevation": 26.32596431,
+    "view:sun_azimuth": 168.8989761,
+    "view:sun_elevation": 26.32596431,
     "eo:gsd": 30,
-    "os:off_nadir": 0,
+    "view:off_nadir": 0,
     "eo:bands": [
       {
         "name": "B1",

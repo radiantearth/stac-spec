@@ -60,18 +60,6 @@
               "minimum": 0,
               "maximum": 100
             },
-            "eo:sun_azimuth": {
-              "title": "Sun Azimuth",
-              "type": "number",
-              "minimum": 0,
-              "maximum": 360
-            },
-            "eo:sun_elevation": {
-              "title": "Sun Elevation",
-              "type": "number",
-              "minimum": 0,
-              "maximum": 90
-            }
           }
         },
         "assets": {

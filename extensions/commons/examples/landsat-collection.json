@@ -63,7 +63,7 @@
       "eo:gsd": 30,
       "platform": "landsat-8",
       "instruments": ["oli", "tirs"],
-      "os:off_nadir": 0,
+      "view:off_nadir": 0,
       "eo:bands": [
         {
           "name": "B1",
