@@ -1,7 +1,8 @@
 {
     "stac_version": "0.9.0-rc1",
     "stac_extensions": [
-      "sat"
+      "sat",
+      "view"
     ],
     "id": "LC08_L1TP_107018_20181001",
     "collection": "landsat-8-l1",
