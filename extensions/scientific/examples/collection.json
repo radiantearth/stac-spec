@@ -1,5 +1,5 @@
 {
-  "stac_version": "0.9.0-rc1",
+  "stac_version": "0.9.0-rc2",
   "stac_extensions": ["scientific"],
   "id": "MERRAclim",
   "title": "MERRAclim, a high-resolution global dataset of remotely sensed bioclimatic variables for ecological modelling.",

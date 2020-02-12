@@ -12,7 +12,10 @@
   ],
   "definitions": {
     "common_metadata": {
-      "anyOf": [
+      "allOf": [
+        {
+          "$ref": "basics.json"
+        },
         {
           "$ref": "datetimerange.json"
         },
@@ -49,7 +52,7 @@
             "stac_version": {
               "title": "STAC version",
               "type": "string",
-              "const": "0.9.0-rc1"
+              "const": "0.9.0-rc2"
             },
             "stac_extensions": {
               "title": "STAC extensions",
@@ -68,12 +71,16 @@
                     "enum": [
                       "checksum",
                       "commons",
-                      "cube",
+                      "datacube",
                       "eo",
                       "label",
                       "pointcloud",
+                      "projection",
                       "sar",
-                      "scientific"
+                      "sat",
+                      "scientific",
+                      "version",
+                      "view"
                     ]
                   }
                 ]
@@ -120,11 +127,6 @@
                       "description": "The searchable date/time of the assets, in UTC (Formatted in RFC 3339) ",
                       "type": "string",
                       "format": "date-time"
-                    },
-                    "title": {
-                      "title": "Item Title",
-                      "description": "A human-readable title describing the item.",
-                      "type": "string"
                     }
                   }
                 },

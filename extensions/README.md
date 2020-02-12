@@ -60,6 +60,7 @@ An extension can add new fields to STAC entities (content extension), or can add
 | [Scientific](scientific/README.md) (`sci`)                   | Item, Collection | Scientific metadata is considered to be data that indicate from which publication data originates and how the data itself should be cited or referenced. | *Proposal* |
 | [Single File STAC](single-file-stac/README.md) (-)           | ItemCollection   | An extension to provide a set of Collections and Items as a single file catalog. | *Proposal* |
 | [Versioning Indicators](version/README.md) (-)               | Item, Collection | Provides fields and link relation types to provide a version and indicate deprecation. | *Proposal* |
+| [View Geometry](view/README.md)                              | Item             | View Geometry adds metadata related to angles of sensors and other radiance angles that affect the view of resulting data | *Proposal* |
 
 ## Third-party / vendor extensions
 
@@ -113,10 +114,10 @@ An example of this can be seen in a Landsat example:
     "start_datetime":"2018-01-01T13:21:30Z",
     "end_datetime":"2018-01-01T13:31:30Z",
 
-    "sat:off_nadir_angle": -0.001,
+    "view:off_nadir": -0.001,
     "eo:cloud_cover": 10.31,
-    "sat:sun_azimuth_angle": 149.01607154,
-    "sat:sun_elevation_angle": 59.21424700,
+    "view:sun_azimuth": 149.01607154,
+    "view:sun_elevation": 59.21424700,
     "eo:gsd": 30,
 
     "l8:data_type": "L1T",

@@ -6,25 +6,61 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
+## [v0.9.0-rc2] - 2020-02-12
+
+### Added
+- [Basics](item-spec/common-metadata.md#basics) added to Common Metadata definitions with new `description` field for
+Item properties
+- New fields to the `link` object to facilitate [pagination support for POST requests](api-spec/api-spec.md#paging-extension)
+- Data role, as a suggestion for a common role for data files to be used in case data providers don't come up with their own names and semantics
+- Clarification text on HTTP verbs in STAC API
+- [View Geometry Extension](extensions/view/README.md)
+
+### Changed
+- Item `title` definition moved from core Item fields to [Common Metadata Basics](item-spec/common-metadata.md#basics) 
+fields. No change is required for STAC Items.
+- `putFeature` can return a `PreconditionFailed` to provide more explicit information when the resource has changed in the server
+- [Sort extension](api-spec/extensions/sort) now uses "+" and "-" prefixes for GET requests to denote sort order. 
+- Clarified how `/search` links must be added to `/` and changed that links to both GET and POST must be provided now that the method can be specified in links.
+- Moved angle definitions between extensions `view` and `sat`
+  - `sat:off_nadir_angle` -> `view:off_nadir`
+  - `sat:azimuth_angle` -> `view:azimuth`
+  - `sat:incidence_angle` -> `view:incidence_angle`
+  - `sat:sun_azimuth_angle` -> `view:sun_azimuth`
+  - `sat:sun_elevation_angle` -> `view:sun_elevation`
+
+
+### Removed
+- In API, removed any mention of using media type `multipart/form-data` and `x-www-form-urlencoded`
+
+### Fixed
+- Fixed Item JSON Schema now `allOf` optional Common Metadata properties are evaluated
+- Clarified usage of optional Common Metadata fields for STAC Items
+- Clarified usage of paging options, especially in relation to what OGC API - Features offers
+- Allow Commonmark in asset description, as it's allowed everywhere else
+- Put asset description in the API
+- Fixed API spec regarding license expressions
+- Added missing schema in the API Version extension
+
 ## [v0.9.0-rc1] - 2020-01-06
 
 ### Added
 - ItemCollection requires `stac_version` field, `stac_extensions` has also been added
-- A `description` field has been added to Item assets (also Asset definitions extension). 
+- A `description` field has been added to Item assets (also Asset definitions extension)
 - Field `mission` to [Common Metadata fields](item-spec/common-metadata.md).
 - Extensions:
     - [Version Indicators extension](extensions/version/README.md), adds `version` and `deprecated` fields to STAC Items and Collections
     - Data Cube extension can be used in Collections, added new field `description`
     - Added `description` and `roles` fields to the Asset in the [Asset Extension](extensions/asset/README.md)
-    - Projection Extension to describe Items with Assets that have an associated geospatial projection.
+    - Projection Extension to describe Items with Assets that have an associated geospatial projection
 - STAC API:
     - Added the [Item and Collection API Version extension](api-spec/extensions/version/README.md) to support versioning in the API specification
-    - Run `npm run serve` or `npm run serve-ext` to quickly render development versions of the OpenAPI spec in the browser.
+    - Run `npm run serve` or `npm run serve-ext` to quickly render development versions of the OpenAPI spec in the browser
 
 ### Changed
 - Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html)
 - Collection field `property` and the merge ability moved to a new extension 'Commons'
-- Added attribute `roles` to Item assets (also Asset definitions extension), to be used similarly to Link `rel`.
+- Added attribute `roles` to Item assets (also Asset definitions extension), to be used similarly to Link `rel`
 - Updated API yaml to clarify bbox filter should be implemented without brackets. Example: `bbox=160.6,-55.95,-170,-25.89`
 - Collection `summaries` merge array fields now.
 - Several fields have been moved from extensions or item fields to the [Common Metadata fields](item-spec/common-metadata.md):
@@ -44,7 +80,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - Fields extension has a simplified format for GET parameters
     - `search` extension renamed to `context` extension. JSON object renamed from `search:metadata` to `context`
     - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
-    - Query Extension - type restrictions on query predicates are more accurate, which may require additional implementation support. 
+    - Query Extension - type restrictions on query predicates are more accurate, which may require additional implementation support.
 
 ### Removed
 - `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead
@@ -59,7 +95,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - `data_type` and `unit` from the `sar:bands` object in the [SAR extension](extensions/sar/README.md)
     - Datetime Range (`dtr`) extension. Use the [Common Metadata fields](item-spec/common-metadata.md) instead.
 - STAC API:
-    - `next` from the search metadata and query parameter, added POST body and headers to the links for paging support
+    - `next` from the search metadata and query parameter
 
 ### Fixed
 
@@ -275,6 +311,7 @@ Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkam
 
 
 [Unreleased]: https://github.com/radiantearth/stac-spec/compare/master...dev
+[v0.9.0-rc2]: https://github.com/radiantearth/stac-spec/compare/v0.9.0-rc1...v0.9.0-rc2
 [v0.9.0-rc1]: https://github.com/radiantearth/stac-spec/compare/v0.8.0...v0.9.0-rc1
 [v0.8.1]: https://github.com/radiantearth/stac-spec/compare/v0.8.0...v0.8.1
 [v0.8.0]: https://github.com/radiantearth/stac-spec/compare/v0.7.0...v0.8.0

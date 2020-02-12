@@ -83,6 +83,16 @@ of the spec.
 - Examples: https://github.com/TDG-Platform/dg-stac/tree/master/examples
 
 ## API (Active Catalog) Examples
+
+### Radiant MLHub (0.8)
+
+Radiant MLHub is an implementation of the STAC API which hosts datasets for training machine learning algorithms. Authentication is required for this API and an access token can be acquired by visiting the [dashboard](https://dashboard.mlhub.earth).
+
+* Dashboard: https://dashboard.mlhub.earth
+* API Endpoint: https://api.radiant.earth/mlhub/v1/
+* Documentation: http://docs.mlhub.earth
+* Tutorials: https://github.com/radiantearth/mlhub-tutorials
+
 ### Boundless STAC Server (0.6)
 
 * Search endpoint: https://stac.boundlessgeo.io/search/stac
