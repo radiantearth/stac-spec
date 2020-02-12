@@ -2,6 +2,7 @@
   "stac_version": "0.9.0-rc2",
   "stac_extensions": [
     "eo",
+    "view",
     "proj"
   ],
   "type": "Feature",
@@ -304,6 +305,6 @@
     "platform": "sentinel-2",
     "proj:epsg": 32635,
     "eo:cloud_cover": 88.459539,
-    "sat:sun_azimuth_angle" : 176.091667178268
+    "view:sun_azimuth" : 176.091667178268
   }
 }

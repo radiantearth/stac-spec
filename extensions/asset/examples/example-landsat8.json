@@ -70,7 +70,7 @@
       "oli",
       "tirs"
     ],
-    "sat:off_nadir_angle": 0,
+    "view:off_nadir": 0,
     "eo:bands": [
       {
         "name": "B1",

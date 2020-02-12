@@ -1,5 +1,5 @@
 {
-    "stac_version": "0.9.0-rc2",
+    "stac_version": "0.9.0-rc1",
     "stac_extensions": [
       "sat",
       "view"
@@ -44,11 +44,13 @@
         "datetime": "2018-10-01T01:08:32.033Z",
         "view:sun_azimuth": 168.8989761,
         "view:sun_elevation": 26.32596431,
+        "view:off_nadir": 0,
+        "view:incidence_angle": 0,
+        "view:azimuth": 23.4,
         "platform": "landsat-8",
         "instruments": ["oli", "tirs"],
         "constellation": "landsat",
-        "sat:orbit_state": "ascending",
-        "view:off_nadir": 0
+        "sat:orbit_state": "ascending"
     },
     "assets": {
         "blue": {

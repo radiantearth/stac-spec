@@ -12,8 +12,7 @@ can be registered at registration agencies affiliated with the
 
 This extension applies to STAC Items and STAC Collections.
 As these scientific information are often closely bound to the collection level and therefore are shared across all items,
-it is recommended to use the [Commons extension](../commons/README.md) to add the fields to a corresponding
-[STAC Collection](../../collection-spec/README.md).
+it is recommended adding the fields to the corresponding [STAC Collection](../../collection-spec/README.md).
 
 - Examples: [Collection](examples/collection.json), [Item](examples/item.json)
 - [JSON Schema](json-schema/schema.json)
