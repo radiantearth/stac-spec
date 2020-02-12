@@ -1,7 +1,7 @@
 # Label Extension Specification
 
 - **Title: Label**
-- **Name: label**
+- **Identifier: label**
 - **Prefix: label**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

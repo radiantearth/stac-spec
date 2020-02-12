@@ -1,7 +1,7 @@
 # Commons Extension Specification
 
 - **Title: Commons**
-- **Name: commons**
+- **Identifier: commons**
 - **Prefix: -**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

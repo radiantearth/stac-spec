@@ -1,7 +1,7 @@
 # Projection Extension Specification
 
 - **Title: Projection**
-- **Name: projection**
+- **Identifier: projection**
 - **Prefix: proj**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

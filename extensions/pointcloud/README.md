@@ -1,7 +1,7 @@
 # Point Cloud Extension Specification
 
 - **Title: Point Cloud**
-- **Name: pointcloud**
+- **Identifier: pointcloud**
 - **Prefix: pc**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

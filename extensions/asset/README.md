@@ -1,7 +1,7 @@
 # Asset Definition Specification
 
 - **Title: Asset Definition**
-- **Name: asset**
+- **Identifier: asset**
 - **Prefix: -**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

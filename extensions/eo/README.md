@@ -1,7 +1,7 @@
 # EO Extension Specification
 
 - **Title: EO**
-- **Name: eo**
+- **Identifier: eo**
 - **Prefix: eo**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Pilot**
 

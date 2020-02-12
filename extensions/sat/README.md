@@ -1,7 +1,7 @@
 # Satellite Extension Specification
 
 - **Title: Satellite**
-- **Name: sat**
+- **Identifier: sat**
 - **Prefix: sat**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

@@ -45,22 +45,22 @@ stable for over a year and are used in twenty or more implementations.
 
 An extension can add new fields to STAC entities (content extension), or can add new endpoints or behavior to the API (API extension). Below is a list of content extensions, while API extensions given under [api-spec](../api-spec/) in a folder for [API extensions](../api-spec/extensions/).
 
-| Extension Title                                | Name             | Prefix   | Scope                     | Description                       | Maturity |
-| ---------------------------------------------- | ---------------- | -------- | --------------------------|---------------------------------- | -------- |
-| [Asset Definition](asset/README.md)            | asset            | -        | Collection                | Provides a way to specify details about what assets may be found in Items belonging to a collection. | *Proposal* |
-| [Checksum](checksum/README.md)                 | checksum         | checksum | Item, Catalog, Collection | Provides a way to specify file checksums for assets and links in Items, Catalogs and Collections. | *Proposal* |
-| [Commons](commons/README.md)                   | commons          | -        | Item, Collection          | Provides a way to specify data fields in a collection that are common across the STAC Items in that collection, so that each does not need to repeat all the same information. | *Proposal* |
-| [Data Cube](datacube/README.md)                | datacube         | cube     | Item, Collection          | Data Cube related metadata, especially to describe their dimensions. | *Proposal* |
-| [EO](eo/README.md)                             | eo               | eo       | Item                      | Covers electro-optical data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, gsd and more. | *Pilot* |
-| [Label](label/README.md)                       | label            | label    | Item                      | Items that relate labeled AOIs with source imagery | *Proposal* |
-| [Point Cloud](pointcloud/README.md)            | pointcloud       | pc       | Item                      | Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LiDAR or coincidence-matched imagery. | *Proposal* |
-| [Projection](projection/README.md)             | projection       | proj     | Item                      | Provides a way to describe items whose assets are in a geospatial projection. | *Proposal* |
-| [SAR](sar/README.md)                           | sar              | sar      | Item                      | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. | *Proposal* |
-| [Satellite](sat/README.md)                     | sat              | sat      | Item                      | Satellite related metadata for data collected from satellites. | *Proposal* |
-| [Scientific](scientific/README.md)             | scientific       | sci      | Item, Collection          | Scientific metadata is considered to be data that indicate from which publication data originates and how the data itself should be cited or referenced. | *Proposal* |
-| [Single File STAC](single-file-stac/README.md) | single-file-stac | -        | ItemCollection            | An extension to provide a set of Collections and Items as a single file catalog. | *Proposal* |
-| [Versioning Indicators](version/README.md)     | version          | -        | Item, Collection          | Provides fields and link relation types to provide a version and indicate deprecation. | *Proposal* |
-| [View Geometry](view/README.md)                | view             | -        | Item                      | View Geometry adds metadata related to angles of sensors and other radiance angles that affect the view of resulting data | *Proposal* |
+| Extension Title                                | Identifier       | Prefix   | Scope                     | Maturity   | Description                        |
+| ---------------------------------------------- | ---------------- | -------- | ------------------------- | ---------- | ---------------------------------- | 
+| [Asset Definition](asset/README.md)            | asset            | -        | Collection                | *Proposal* | Provides a way to specify details about what assets may be found in Items belonging to a collection. |
+| [Checksum](checksum/README.md)                 | checksum         | checksum | Item, Catalog, Collection | *Proposal* | Provides a way to specify file checksums for assets and links in Items, Catalogs and Collections. |
+| [Commons](commons/README.md)                   | commons          | -        | Item, Collection          | *Proposal* | Provides a way to specify data fields in a collection that are common across the STAC Items in that collection, so that each does not need to repeat all the same information. |
+| [Data Cube](datacube/README.md)                | datacube         | cube     | Item, Collection          | *Proposal* | Data Cube related metadata, especially to describe their dimensions. |
+| [EO](eo/README.md)                             | eo               | eo       | Item                      | *Pilot*    | Covers electro-optical data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, gsd and more. |
+| [Label](label/README.md)                       | label            | label    | Item                      | *Proposal* | Items that relate labeled AOIs with source imagery |
+| [Point Cloud](pointcloud/README.md)            | pointcloud       | pc       | Item                      | *Proposal* | Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LiDAR or coincidence-matched imagery. |
+| [Projection](projection/README.md)             | projection       | proj     | Item                      | *Proposal* | Provides a way to describe items whose assets are in a geospatial projection. |
+| [SAR](sar/README.md)                           | sar              | sar      | Item                      | *Proposal* | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. |
+| [Satellite](sat/README.md)                     | sat              | sat      | Item                      | *Proposal* | Satellite related metadata for data collected from satellites. |
+| [Scientific](scientific/README.md)             | scientific       | sci      | Item, Collection          | *Proposal* | Scientific metadata is considered to be data that indicate from which publication data originates and how the data itself should be cited or referenced. |
+| [Single File STAC](single-file-stac/README.md) | single-file-stac | -        | ItemCollection            | *Proposal* | An extension to provide a set of Collections and Items as a single file catalog. |
+| [Versioning Indicators](version/README.md)     | version          | -        | Item, Collection          | *Proposal* | Provides fields and link relation types to provide a version and indicate deprecation. |
+| [View Geometry](view/README.md)                | view             | -        | Item                      | *Proposal* | View Geometry adds metadata related to angles of sensors and other radiance angles that affect the view of resulting data |
 
 ## Third-party / vendor extensions
 
@@ -156,7 +156,7 @@ See the [EO](eo/) extension file structure as an example.
 * Specification examples should be stored in an `examples` directory. 
 * The specification schema file(s) should be stored in a `json-schema` directory. 
 
-Make sure to choose a meaningful name for the extension folder as it will be the shortcut
-that is used to reference it in the `stac_extensions` field. Also, make sure to add the
-folder name to the enum defined for the `stac_extensions` field in the
+Make sure to choose a meaningful identifier for the extension and use this value as the extension's directory name.
+The extension's identifier should be used in the `stac_extensions` field. Also, make sure to add the identifier to the 
+enum defined for the `stac_extensions` field in the
 [JSON schema of the STAC catalog specification](../catalog-spec/json-schema/catalog.json).

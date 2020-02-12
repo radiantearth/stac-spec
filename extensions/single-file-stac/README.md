@@ -1,7 +1,7 @@
 # Single File STAC Specification
 
 - **Title: Single File STAC**
-- **Name: single-file-stac**
+- **Identifier: single-file-stac**
 - **Prefix: -**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

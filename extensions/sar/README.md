@@ -1,7 +1,7 @@
 # SAR Extension Specification
 
 - **Title: SAR**
-- **Name: sar**
+- **Identifier: sar**
 - **Prefix: sar**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

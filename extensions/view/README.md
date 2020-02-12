@@ -1,7 +1,7 @@
 # View Geometry Extension Specification
 
 - **Title: View Geometry**
-- **Name: view**
+- **Identifier: view**
 - **Prefix: -**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

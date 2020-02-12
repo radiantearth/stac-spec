@@ -1,7 +1,7 @@
 # Checksum Extension Specification
 
 - **Title: Checksum**
-- **Name: checksum**
+- **Identifier: checksum**
 - **Prefix: checksum**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

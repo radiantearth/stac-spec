@@ -1,7 +1,7 @@
 # Versioning Indicators Extension Specification
 
 - **Title: Versioning Indicators**
-- **Name: version**
+- **Identifier: version**
 - **Prefix: -**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

@@ -1,7 +1,7 @@
 # Data cube Extension Specification
 
 - **Title: Data Cube**
-- **Name: datacube**
+- **Identifier: datacube**
 - **Prefix:cube-**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

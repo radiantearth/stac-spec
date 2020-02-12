@@ -1,7 +1,7 @@
 # Scientific Extension Specification
 
 - **Title: Scientific**
-- **Name: scientific**
+- **Identifier: scientific**
 - **Prefix: sci**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
