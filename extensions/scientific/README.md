@@ -1,6 +1,9 @@
-# Scientific Extension Specification (`sci`)
+# Scientific Extension Specification
 
-**Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Title: Scientific**
+- **Name: scientific**
+- **Prefix: sci**
+- **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
 Scientific metadata is considered to be data that indicate from which publication a data originates and how
 the data itself should be cited or referenced. Overall, it helps to increase reproducibility and citability.

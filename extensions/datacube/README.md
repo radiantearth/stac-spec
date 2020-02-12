@@ -1,6 +1,9 @@
-# Data cube Extension Specification (`cube`)
+# Data cube Extension Specification
 
-**Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Title: Data Cube**
+- **Name: datacube**
+- **Prefix:cube-**
+- **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
 Data cube related metadata, especially to describe their dimensions.
 

@@ -1,6 +1,9 @@
-# Checksum Extension Specification (`checksum`)
+# Checksum Extension Specification
 
-**Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Title: Checksum**
+- **Name: checksum**
+- **Prefix: checksum**
+- **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
 Provides a way to specify file checksums (e.g. BLAKE2, MD5, SHA1, SHA2, SHA3) for assets and links in STAC Items, STAC Catalogs and STAC Collections. The hashes are self-identifying hashes as described in the [Multihash specification](https://github.com/multiformats/multihash).
 
