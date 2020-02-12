@@ -45,7 +45,7 @@ stable for over a year and are used in twenty or more implementations.
 
 An extension can add new fields to STAC entities (content extension), or can add new endpoints or behavior to the API (API extension). Below is a list of content extensions, while API extensions given under [api-spec](../api-spec/) in a folder for [API extensions](../api-spec/extensions/).
 
-| Extension Title (Prefix)                       | Name             | Prefix   | Scope                     | Description                       | Maturity |
+| Extension Title                                | Name             | Prefix   | Scope                     | Description                       | Maturity |
 | ---------------------------------------------- | ---------------- | -------- | --------------------------|---------------------------------- | -------- |
 | [Asset Definition](asset/README.md)            | asset            | -        | Collection                | Provides a way to specify details about what assets may be found in Items belonging to a collection. | *Proposal* |
 | [Checksum](checksum/README.md)                 | checksum         | checksum | Item, Catalog, Collection | Provides a way to specify file checksums for assets and links in Items, Catalogs and Collections. | *Proposal* |
