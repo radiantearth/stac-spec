@@ -45,7 +45,7 @@ An incomplete Collection:
 ```
 {
   "stac_version": "0.9.0-rc1",
-  "stac_extensions": ["commons", "eo", "view"],
+  "stac_extensions": ["commons"],
   "id": "landsat-8-l1",
   "title": "Landsat 8 L1",
   "description": "Landat 8 imagery radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
