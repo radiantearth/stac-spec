@@ -2,9 +2,13 @@
 
 **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
-An extension to allow the specification of tiled assets within STAC Items. With this extension it is possible to allow the description of assets using template references and rules to construct those. This extension is tailored for cases where there are too many assets associated with an Item to be practically listed in the `assets` property. For this reason, the new `asset_templates` property allows to specify template URLs where components can be replaced to get the final URLs to the actual files.
+Some data products are too big to be handled in a single file or a small set of enumerated files and are thus split into tiles. For example, Sentinel-2 datastrips are tiled into overlapping granules, in some cases in even more than one coordinate reference system. Other very big datasets, such as continental or global mosaics can also only be handled in a tiled fashion. Usually, they go one step further and provide multiple layers of resolution to allow a quick inspection of larger areas but also retain the possibility to get to the full resolution data.
 
-This extension is modelled in close alignment to the [OGC Two Dimensional Tile Matrix Set](http://docs.opengeospatial.org/is/17-083r2/17-083r2.html). The templating mechanism used is defined in the [OGC WMTS Simple Profile](http://docs.opengeospatial.org/is/13-082r2/13-082r2.html).
+When a very large dataset is split into many tiles it is very impractical to list all possible files with the `assets` property.
+
+This extension allows the specification of tiled assets within STAC Items. With this extension it is possible to allow the description of assets using template references and rules to construct those in order to get the tiles the user is interested in. The new `asset_templates` property allows to specify template URLs where components can be replaced to get the final URLs to the actual files.
+
+This extension is modelled in close alignment to the [OGC Two Dimensional Tile Matrix Set](http://docs.opengeospatial.org/is/17-083r2/17-083r2.html). The main access approach and the templating mechanism used is defined in the [OGC WMTS Simple Profile](http://docs.opengeospatial.org/is/13-082r2/13-082r2.html).
 
 - Examples: [Tiled](examples/example-tiled.json), [Dimension](examples/example-dimension.json)
 - [JSON Schema](json-schema/schema.json)
