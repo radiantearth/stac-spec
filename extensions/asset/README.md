@@ -3,6 +3,7 @@
 - **Title: Asset Definition**
 - **Identifier: asset**
 - **Prefix: -**
+- **Scope: Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
 A Collection extension to provide details about assets that are available in member Items.

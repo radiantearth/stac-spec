@@ -3,6 +3,7 @@
 - **Title: Point Cloud**
 - **Identifier: pointcloud**
 - **Prefix: pc**
+- **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
 This document explains the fields of the Point Cloud Extension to a STAC Item,

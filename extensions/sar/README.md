@@ -3,6 +3,7 @@
 - **Title: SAR**
 - **Identifier: sar**
 - **Prefix: sar**
+- **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
 This document explains the fields of the STAC Synthetic-Aperture Radar (SAR) Extension to a STAC Item.

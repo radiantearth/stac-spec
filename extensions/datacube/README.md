@@ -3,6 +3,7 @@
 - **Title: Data Cube**
 - **Identifier: datacube**
 - **Prefix:cube-**
+- **Scope: Item, Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
 Data cube related metadata, especially to describe their dimensions.

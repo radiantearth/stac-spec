@@ -3,6 +3,7 @@
 - **Title: Scientific**
 - **Identifier: scientific**
 - **Prefix: sci**
+- **Scope: Item, Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
 Scientific metadata is considered to be data that indicate from which publication a data originates and how
