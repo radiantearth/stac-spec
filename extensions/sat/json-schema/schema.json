@@ -11,7 +11,7 @@
       "$ref": "#/definitions/sat"
     },
     {
-      "$ref": "../instrument/json-schema/schema.json"
+      "$ref": "../../../item-spec/json-schema/instrument.json"
     }
   ],
   "definitions": {

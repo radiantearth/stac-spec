@@ -9,20 +9,31 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - [Basics](item-spec/common-metadata.md#basics) added to Common Metadata definitions with new `description` field for
 Item properties.
+- Clarification text on HTTP verbs in STAC API
 
 ### Changed
 - Item `title` definition moved from core Item fields to [Common Metadata Basics](item-spec/common-metadata.md#basics) 
 fields. No change is required for STAC Items.
+- `putFeature` can return a `PreconditionFailed` to provide more explicit information when the resource has changed in the server
+- [Sort extension](api-spec/extensions/sort) now uses "+" and "-" prefixes for GET requests to denote sort order. 
+- Clarified how `/search` links must be added to `/` and changed that links to both GET and POST must be provided now that the method can be specified in links.
+
+### Removed
+
+- In API, removed any mention of using media type `multipart/form-data` and `x-www-form-urlencoded`
 
 ### Fixed
 - Fixed Item JSON Schema now `allOf` optional Common Metadata properties are evaluated.
 - Clarified usage of optional Common Metadata fields for STAC Items.
+- Fixed API spec regarding license expressions
+- Added missing schema in the API Version extension
+
 
 ## [v0.9.0-rc1] - 2020-01-06
 
 ### Added
 - ItemCollection requires `stac_version` field, `stac_extensions` has also been added
-- A `description` field has been added to Item assets (also Asset definitions extension). 
+- A `description` field has been added to Item assets (also Asset definitions extension).
 - Field `mission` to [Common Metadata fields](item-spec/common-metadata.md).
 - Extensions:
     - [Version Indicators extension](extensions/version/README.md), adds `version` and `deprecated` fields to STAC Items and Collections
@@ -32,6 +43,7 @@ fields. No change is required for STAC Items.
 - STAC API:
     - Added the [Item and Collection API Version extension](api-spec/extensions/version/README.md) to support versioning in the API specification
     - Run `npm run serve` or `npm run serve-ext` to quickly render development versions of the OpenAPI spec in the browser.
+    - Added new fields to the `link` object to facilitate [pagination support for POST requests](api-spec/api-spec.md#paging-extension).
 
 ### Changed
 - Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html)
@@ -56,7 +68,7 @@ fields. No change is required for STAC Items.
     - Fields extension has a simplified format for GET parameters
     - `search` extension renamed to `context` extension. JSON object renamed from `search:metadata` to `context`
     - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
-    - Query Extension - type restrictions on query predicates are more accurate, which may require additional implementation support. 
+    - Query Extension - type restrictions on query predicates are more accurate, which may require additional implementation support.
 
 ### Removed
 - `version` field in STAC Collections. Use [Version Extension](extensions/version/README.md) instead
@@ -71,7 +83,7 @@ fields. No change is required for STAC Items.
     - `data_type` and `unit` from the `sar:bands` object in the [SAR extension](extensions/sar/README.md)
     - Datetime Range (`dtr`) extension. Use the [Common Metadata fields](item-spec/common-metadata.md) instead.
 - STAC API:
-    - `next` from the search metadata and query parameter, added POST body and headers to the links for paging support
+    - `next` from the search metadata and query parameter
 
 ### Fixed
 
