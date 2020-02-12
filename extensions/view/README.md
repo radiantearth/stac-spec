@@ -12,7 +12,7 @@ This document explains the fields of the View Geometry Extension to a STAC Item.
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
 | view:off_nadir       | number               | The angle from the sensor between nadir (straight down) and the scene center. Measured in degrees (0-90). |
-| view:incidence_angle | number               | The incidence_angle is the angle between the vertical (normal) to the intercepting surface and the line of sight back to the satellite at the scene center. Measured in degrees (0-90). |
+| view:incidence_angle | number               | The incidence angle is the angle between the vertical (normal) to the intercepting surface and the line of sight back to the satellite at the scene center. Measured in degrees (0-90). |
 | view:azimuth         | number               | Viewing azimuth angle. The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360). |
 | view:sun_azimuth     | number               | Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360). |
 | view:sun_elevation   | number               | Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (0-90). |
