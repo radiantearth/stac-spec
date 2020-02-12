@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "schema.json#",
-  "title": "Overhead Sensor Extension",
-  "description": "STAC Overhead Sensor Extension to a STAC Item.",
+  "title": "View Geometry Extension",
+  "description": "STAC View Geometry Extension to a STAC Item.",
   "allOf": [
     {
       "$ref": "../../../item-spec/json-schema/item.json"

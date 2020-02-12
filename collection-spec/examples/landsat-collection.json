@@ -1,7 +1,9 @@
 {
     "stac_version": "0.9.0-rc1",
     "stac_extensions": [
-      "commons"
+      "commons",
+      "view",
+      "eo"
     ],
     "id": "landsat-8-l1",
     "title": "Landsat 8 L1",

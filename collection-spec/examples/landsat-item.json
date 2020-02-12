@@ -3,6 +3,7 @@
     "stac_extensions": [
         "commons",
         "eo",
+        "view",
         "https://example.com/stac/landsat-extension/1.0/schema.json"
     ],
     "id": "LC08_L1TP_107018_20181001_20181001_01_RT",

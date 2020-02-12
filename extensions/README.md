@@ -60,6 +60,7 @@ An extension can add new fields to STAC entities (content extension), or can add
 | [Scientific](scientific/README.md) (`sci`)                   | Item, Collection | Scientific metadata is considered to be data that indicate from which publication data originates and how the data itself should be cited or referenced. | *Proposal* |
 | [Single File STAC](single-file-stac/README.md) (-)           | ItemCollection   | An extension to provide a set of Collections and Items as a single file catalog. | *Proposal* |
 | [Versioning Indicators](version/README.md) (-)               | Item, Collection | Provides fields and link relation types to provide a version and indicate deprecation. | *Proposal* |
+| [View Geometry](view/README.md)                              | Item             | View Geometry adds metadata related to angles of sensors and other radiance angles that affect the view of resulting data | *Proposal* |
 
 ## Third-party / vendor extensions
 
