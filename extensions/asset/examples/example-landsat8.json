@@ -7,7 +7,7 @@
     "earth observation",
     "usgs"
   ],
-  "stac_version": "0.9.0-rc1",
+  "stac_version": "0.9.0-rc2",
   "stac_extensions": [
     "asset",
     "commons"

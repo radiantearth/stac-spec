@@ -27,7 +27,7 @@ The angles `azimuth` and `sun_azimuth` indicate the position of the viewed scene
 Example:
 ```
 {
-  "stac_version": "0.9.0-rc1",
+  "stac_version": "0.9.0-rc2",
   "stac_extensions": [
     "view",
     "sat"

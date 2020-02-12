@@ -1,5 +1,5 @@
 {
-  "stac_version": "0.9.0-rc1",
+  "stac_version": "0.9.0-rc2",
   "stac_extensions": [],
   "id": "COPERNICUS/S2",
   "title": "Sentinel-2 MSI: MultiSpectral Instrument, Level-1C",
