@@ -20,6 +20,8 @@ It is not necessary, but recommended to use the [Commons extension](../commons/R
 
 If the data has been collected by a satellite, it is strongly recommended to use the [`sat` extension](../sat/README.md), which in turn requires the [Instrument Fields](../../item-spec/common-metadata.md#instrument). If the data has been collected on an airborne platform it is strongly recommended to use the [Instrument Fields](../../item-spec/common-metadata.md#instrument).
 
+For defining view geometry of data, it is strongly recommended to use the [`view` extension](../view/README.md).
+
 - [Example (Landsat 8)](examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)
 
@@ -30,6 +32,9 @@ If the data has been collected by a satellite, it is strongly recommended to use
 | eo:gsd           | number                   | **REQUIRED.** Ground Sample Distance at the sensor. |
 | eo:bands         | [[Band Object](#band-object)] | **REQUIRED.** This is a list of the available bands where each item is a [Band Object](#band-object). |
 | eo:cloud_cover   | number                   | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided. |
+
+
+### Ground Sampling Distance
 
 **eo:gsd** is the nominal Ground Sample Distance for the data, as measured in meters on the ground. There are many
 definitions of GSD. The value of this attribute should be related to the spatial resolution at the sensor, rather
@@ -204,6 +209,7 @@ the eo:bands portion is still being fleshed out.
 The [extensions page](../README.md) gives an overview about related extensions. Of particular relevance to EO data:
 
 * the [Sat Extension Specification](../sat/README.md) to describe SAR data collected from a satellite.
+* the [View Geometry Extension Specification](../view/README.md) to describe angles of sensors collecting earth observation data from above the earth.
 
 ### Placing common fields in Collections
 A lot of EO data will have common metadata across many Items. It is not necessary, but recommended	

@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [Basics](item-spec/common-metadata.md#basics) added to Common Metadata definitions with new `description` field for
 Item properties.
 - Clarification text on HTTP verbs in STAC API
+- [View Geometry Extension](extensions/view/README.md)
 
 ### Changed
 - Item `title` definition moved from core Item fields to [Common Metadata Basics](item-spec/common-metadata.md#basics) 
@@ -17,6 +18,13 @@ fields. No change is required for STAC Items.
 - `putFeature` can return a `PreconditionFailed` to provide more explicit information when the resource has changed in the server
 - [Sort extension](api-spec/extensions/sort) now uses "+" and "-" prefixes for GET requests to denote sort order. 
 - Clarified how `/search` links must be added to `/` and changed that links to both GET and POST must be provided now that the method can be specified in links.
+- Moved angle definitions between extensions `view` and `sat`
+  - `sat:off_nadir_angle` -> `view:off_nadir`
+  - `sat:azimuth_angle` -> `view:azimuth`
+  - `sat:incidence_angle` -> `view:incidence_angle`
+  - `sat:sun_azimuth_angle` -> `view:sun_azimuth`
+  - `sat:sun_elevation_angle` -> `view:sun_elevation`
+  
 
 ### Removed
 
