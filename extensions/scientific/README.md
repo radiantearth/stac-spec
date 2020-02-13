@@ -2,7 +2,7 @@
 
 - **Title: Scientific**
 - **Identifier: scientific**
-- **Prefix: sci**
+- **Field Name Prefix: sci**
 - **Scope: Item, Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

@@ -2,7 +2,7 @@
 
 - **Title: SAR**
 - **Identifier: sar**
-- **Prefix: sar**
+- **Field Name Prefix: sar**
 - **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

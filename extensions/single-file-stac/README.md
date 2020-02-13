@@ -2,7 +2,7 @@
 
 - **Title: Single File STAC**
 - **Identifier: single-file-stac**
-- **Prefix: -**
+- **Field Name Prefix: -**
 - **Scope: ItemCollection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

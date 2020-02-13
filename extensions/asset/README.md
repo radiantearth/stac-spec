@@ -2,7 +2,7 @@
 
 - **Title: Asset Definition**
 - **Identifier: asset**
-- **Prefix: -**
+- **Field Name Prefix: -**
 - **Scope: Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

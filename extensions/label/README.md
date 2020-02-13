@@ -2,7 +2,7 @@
 
 - **Title: Label**
 - **Identifier: label**
-- **Prefix: label**
+- **Field Name Prefix: label**
 - **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

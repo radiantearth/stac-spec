@@ -2,7 +2,7 @@
 
 - **Title: Point Cloud**
 - **Identifier: pointcloud**
-- **Prefix: pc**
+- **Field Name Prefix: pc**
 - **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

@@ -2,7 +2,7 @@
 
 - **Title: Satellite**
 - **Identifier: sat**
-- **Prefix: sat**
+- **Field Name Prefix: sat**
 - **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

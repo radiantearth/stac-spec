@@ -2,7 +2,7 @@
 
 - **Title: View Geometry**
 - **Identifier: view**
-- **Prefix: view**
+- **Field Name Prefix: view**
 - **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

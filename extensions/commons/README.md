@@ -2,7 +2,7 @@
 
 - **Title: Commons**
 - **Identifier: commons**
-- **Prefix: -**
+- **Field Name Prefix: -**
 - **Scope: Item, Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

@@ -2,7 +2,7 @@
 
 - **Title: EO**
 - **Identifier: eo**
-- **Prefix: eo**
+- **Field Name Prefix: eo**
 - **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Pilot**
 

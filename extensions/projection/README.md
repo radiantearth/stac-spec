@@ -2,7 +2,7 @@
 
 - **Title: Projection**
 - **Identifier: projection**
-- **Prefix: proj**
+- **Field Name Prefix: proj**
 - **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

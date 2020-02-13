@@ -2,7 +2,7 @@
 
 - **Title: Versioning Indicators**
 - **Identifier: version**
-- **Prefix: -**
+- **Field Name Prefix: -**
 - **Scope: Item, Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 

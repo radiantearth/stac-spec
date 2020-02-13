@@ -2,7 +2,7 @@
 
 - **Title: Checksum**
 - **Identifier: checksum**
-- **Prefix: checksum**
+- **Field Name Prefix: checksum**
 - **Scope: Item, Catalog, Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
