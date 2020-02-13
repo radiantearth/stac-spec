@@ -1,6 +1,6 @@
-# EO Extension Specification
+# Electro-Optical Extension Specification
 
-- **Title: EO**
+- **Title: Electro-Optical**
 - **Identifier: eo**
 - **Field Name Prefix: eo**
 - **Scope: Item**
