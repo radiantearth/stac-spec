@@ -2,7 +2,7 @@
 
 - **Title: Data Cube**
 - **Identifier: datacube**
-- **Prefix:cube-**
+- **Prefix: cube**
 - **Scope: Item, Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
