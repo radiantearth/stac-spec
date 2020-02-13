@@ -32,7 +32,7 @@ This document explains the fields of the STAC Label Extension to a STAC Item. It
 - [Example World Bank Zanzibar Building Item 1](examples/multidataset/zanzibar/znz001.json)
 - [Example World Bank Zanzibar Building Item 2](examples/multidataset/zanzibar/znz029.json)
 ## Schema
-- [JSON Schema](schema.json)
+- [JSON Schema](json-schema/schema.json)
 
 ## Item fields
 
