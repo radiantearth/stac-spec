@@ -1,6 +1,10 @@
-# Label Extension Specification (`label`)
+# Label Extension Specification
 
-**Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Title: Label**
+- **Identifier: label**
+- **Field Name Prefix: label**
+- **Scope: Item**
+- **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
 This extension is meant to support using labeled AOIs with Machine Learning models, particularly training data sets, but can be used in any application where labeled AOIs are needed.
 
@@ -28,7 +32,7 @@ This document explains the fields of the STAC Label Extension to a STAC Item. It
 - [Example World Bank Zanzibar Building Item 1](examples/multidataset/zanzibar/znz001.json)
 - [Example World Bank Zanzibar Building Item 2](examples/multidataset/zanzibar/znz029.json)
 ## Schema
-- [JSON Schema](schema.json)
+- [JSON Schema](json-schema/schema.json)
 
 ## Item fields
 

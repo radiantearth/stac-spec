@@ -1,6 +1,10 @@
-# Satellite Extension Specification (`sat`)
+# Satellite Extension Specification
 
-**Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Title: Satellite**
+- **Identifier: sat**
+- **Field Name Prefix: sat**
+- **Scope: Item**
+- **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
 This document explains the fields of the Satellite Extension to a STAC Item. Sat adds metadata related to a satellite that carries an instrument for collecting data. It will often be combined with other extensions that describe the actual data, such as the `eo`, `os` or `sar` extensions.
 
