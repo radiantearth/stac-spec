@@ -167,15 +167,19 @@
     "links": [
         {
             "rel": "self",
-            "href": "https://<endpoint>/search?id=LC08_L1TP_107018_20181001_20181001_01_RT"
+            "href": "https://example.com/stac-api/browse/landsat-8-l1/landsat-item.json"
         },
         {
             "rel": "parent",
-            "href": "https://<endpoint>/stac/collections/landsat-8-l1"
+            "href": "https://example.com/stac-api/collections/landsat-8-l1"
         },
         {
             "rel": "root",
-            "href": "https://<endpoint>/stac"
+            "href": "https://example.com/stac-api"
+        },
+        {
+            "rel": "collection",
+            "href": "https://example.com/stac-api/collections/landsat-8-l1"
         }
     ]
 }
