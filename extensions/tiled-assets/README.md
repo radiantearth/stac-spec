@@ -17,7 +17,7 @@ This extension is modelled in close alignment to the [OGC Two Dimensional Tile M
 
 | Field Name               | Type                                                                  | Description                                                                                                     |
 | ------------------------ | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| tl:tile_matrix_sets      | Map<string, [TileMatrixSet Object](#tile-matrix-set-object)>          | A mapping of tile matrix set identifier to a tile matrix set link object.                                            |
+| tiles:tile_matrix_sets   | Map<string, [TileMatrixSet Object](#tile-matrix-set-object)>          | A mapping of tile matrix set identifier to a tile matrix set link object.                                            |
 
 ### Tile Matrix Set Object
 
@@ -26,11 +26,11 @@ Tile matrix sets can be directly embedded in a collection, catalog or item. Such
 
 ## Item properties
 
-| Field Name               | Type                                                                  | Description                                                                                                     |
-| ------------------------ | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| tl:tile_matrix_set_links | Map<string, [TileMatrixSetLink Object](#tile-matrix-set-link-object)> | A mapping of tile matrix set identifier to a tile matrix set link object.                                       |
+| Field Name                  | Type                                                                  | Description                                                                                                     |
+| --------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| tiles:tile_matrix_set_links | Map<string, [TileMatrixSetLink Object](#tile-matrix-set-link-object)> | A mapping of tile matrix set identifier to a tile matrix set link object.                                       |
 
-The keys of the `tl:tile_matrix_set_links` mapping can be used as a substitution of the `{TileMatrixSet}` template parameters for the `href` field of the [Asset Object](../../item-spec/item-spec.md#asset-object) used as `asset_template`.
+The keys of the `tiles:tile_matrix_set_links` mapping can be used as a substitution of the `{TileMatrixSet}` template parameters for the `href` field of the [Asset Object](../../item-spec/item-spec.md#asset-object) used as `asset_template`.
 
 ### Tile Matrix Set Link Object
 
@@ -46,7 +46,7 @@ This object allows to reference a tile matrix set. This concept is modelled afte
 **url**/**well_known_scale_set**: Either one of these parameters must be present.
 
 **url**: The URL must refer to a valid tile matrix set definition as defined in the Two-dimensional tile matrix set specification in any encoding (JSON, JSON-LD, or XML).
-It is also possible, to have the tile matrix set embedded in the items collection, catalog or even in the items file itself using the `tl:tile_matrix_sets` property. When refering to an embedded tile matrix set definition, the name of the map key of that tile matrix set definition must be used as a URL fragment.
+It is also possible, to have the tile matrix set embedded in the items collection, catalog or even in the items file itself using the `tiles:tile_matrix_sets` property. When refering to an embedded tile matrix set definition, the name of the map key of that tile matrix set definition must be used as a URL fragment.
 
 Example reference to an external tile matrix definition:
 

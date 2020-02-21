@@ -8,11 +8,11 @@
       "$ref": "../../../item-spec/json-schema/item.json#/definitions/core"
     },
     {
-      "$ref": "#/definitions/tl"
+      "$ref": "#/definitions/tiles"
     }
   ],
   "definitions": {
-    "tl": {
+    "tiles": {
       "type": "object",
       "required": [
         "properties"
@@ -22,7 +22,7 @@
           "type": "object",
           "required": [],
           "properties": {
-            "tl:tile_matrix_links": {
+            "tiles:tile_matrix_links": {
               "title": "A map of tile matrix identifier to its definition with possible limits.",
               "type": "object",
               "patternProperties": {

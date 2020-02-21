@@ -67,7 +67,7 @@
                 "common_name": "nir"
             }
         ],
-        "tl:tile_matrix_links": {
+        "tiles:tile_matrix_links": {
             "WebMercatorQuad": {
                 "url": "http://schemas.opengis.net/tms/1.0/json/examples/WebMercatorQuad.json",
                 "limits": {
@@ -99,8 +99,7 @@
                 }
             }
         },
-
-        "tl:tile_matrix_sets": {
+        "tiles:tile_matrix_sets": {
             "WebMercatorQuad": {
                 "type": "TileMatrixSetType",
                 "title": "Google Maps Compatible for the World",
