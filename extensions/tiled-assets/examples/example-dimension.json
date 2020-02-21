@@ -1,8 +1,9 @@
 {
     "stac_version": "0.9.0",
     "stac_extensions": [
+        "datacube",
         "eo",
-        "tiled-assets"
+        "tiles"
     ],
     "id": "sen2l2a-cog-converted",
     "type": "Feature",

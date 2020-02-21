@@ -2,7 +2,7 @@
     "stac_version": "0.9.0",
     "stac_extensions": [
         "eo",
-        "tiled-assets"
+        "tiles"
     ],
     "id": "s2cloudless_2018",
     "type": "Feature",
