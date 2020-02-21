@@ -1,7 +1,7 @@
 # Tiled Assets specification
 
 - **Title: Tiled Assets**
-- **Identifier: tiles**
+- **Identifier: tiled-assets**
 - **Field Name Prefix: tiles**
 - **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**

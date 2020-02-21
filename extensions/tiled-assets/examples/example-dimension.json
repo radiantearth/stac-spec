@@ -3,7 +3,7 @@
     "stac_extensions": [
         "datacube",
         "eo",
-        "tiles"
+        "tiled-assets"
     ],
     "id": "sen2l2a-cog-converted",
     "type": "Feature",

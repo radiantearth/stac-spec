@@ -46,7 +46,7 @@ stable for over a year and are used in twenty or more implementations.
 An extension can add new fields to STAC entities (content extension), or can add new endpoints or behavior to the API (API extension). Below is a list of content extensions, while API extensions given under [api-spec](../api-spec/) in a folder for [API extensions](../api-spec/extensions/).
 
 | Extension Title                                | Identifier       | Field Name Prefix   | Scope                     | Maturity   | Description                        |
-| ---------------------------------------------- | ---------------- | ------------------- | ------------------------- | ---------- | ---------------------------------- | 
+| ---------------------------------------------- | ---------------- | ------------------- | ------------------------- | ---------- | ---------------------------------- |
 | [Asset Definition](asset/README.md)            | asset            | -                   | Collection                | *Proposal* | Provides a way to specify details about what assets may be found in Items belonging to a collection. |
 | [Checksum](checksum/README.md)                 | checksum         | checksum            | Item, Catalog, Collection | *Proposal* | Provides a way to specify file checksums for assets and links in Items, Catalogs and Collections. |
 | [Commons](commons/README.md)                   | commons          | -                   | Item, Collection          | *Proposal* | Provides a way to specify data fields in a collection that are common across the STAC Items in that collection, so that each does not need to repeat all the same information. |
@@ -59,7 +59,7 @@ An extension can add new fields to STAC entities (content extension), or can add
 | [Satellite](sat/README.md)                     | sat              | sat                 | Item                      | *Proposal* | Satellite related metadata for data collected from satellites. |
 | [Scientific](scientific/README.md)             | scientific       | sci                 | Item, Collection          | *Proposal* | Scientific metadata is considered to be data that indicate from which publication data originates and how the data itself should be cited or referenced. |
 | [Single File STAC](single-file-stac/README.md) | single-file-stac | -                   | ItemCollection            | *Proposal* | An extension to provide a set of Collections and Items as a single file catalog. |
-| [Tiled Assets](tiled-assets/README.md)         | tiles            | tiles               | Item                      | *Proposal* | Allows to specify numerous assets using asset templates via tile matrices and dimensions. |
+| [Tiled Assets](tiled-assets/README.md)         | tiled-assets     | tiles               | Item                      | *Proposal* | Allows to specify numerous assets using asset templates via tile matrices and dimensions. |
 | [Versioning Indicators](version/README.md)     | version          | -                   | Item, Collection          | *Proposal* | Provides fields and link relation types to provide a version and indicate deprecation. |
 | [View Geometry](view/README.md)                | view             | view                | Item                      | *Proposal* | View Geometry adds metadata related to angles of sensors and other radiance angles that affect the view of resulting data |
 
@@ -158,6 +158,6 @@ See the [EO](eo/) extension file structure as an example.
 * The specification schema file(s) should be stored in a `json-schema` directory.
 
 Make sure to choose a meaningful identifier for the extension and use this value as the extension's directory name.
-The extension's identifier should be used in the `stac_extensions` field. Also, make sure to add the identifier to the 
+The extension's identifier should be used in the `stac_extensions` field. Also, make sure to add the identifier to the
 enum defined for the `stac_extensions` field in the
 [JSON schema of the STAC catalog specification](../catalog-spec/json-schema/catalog.json).
