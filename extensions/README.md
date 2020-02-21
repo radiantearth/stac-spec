@@ -2,7 +2,7 @@
 
 This folder contains extensions to the SpatioTemporal Asset Catalog specification. The specification
 is designed for extension, defining just a minimal core. It is expected that most real world
-implementations will use several extensions to fully describe their data and API. 
+implementations will use several extensions to fully describe their data and API.
 
 Extensions can be changes in functionality or new fields. This can include new JSON files that are
 linked to from the core `links`, as well as new OpenAPI fragments. Extensions should include
@@ -10,19 +10,19 @@ narrative explaining the fields, a comprehensive example and a JSON-Schema to va
 Any data provider can create an extension, and when providers work together to share fields between
 them they can create a shared extension and include it in the STAC repository.
 
-Anyone is welcome to create an extension (see section 'Extending STAC'), and is encouraged to at least link to the extension from 
-here. The third-party / vendor extension section is for the sharing of extensions. As third 
-parties create useful extensions for their implementation it is expected that others will make use 
-of it, and then evolve to make it a 'community extension', that several providers maintain 
-together. For now anyone from the community is welcome to use this extensions/ folder of the 
+Anyone is welcome to create an extension (see section 'Extending STAC'), and is encouraged to at least link to the extension from
+here. The third-party / vendor extension section is for the sharing of extensions. As third
+parties create useful extensions for their implementation it is expected that others will make use
+of it, and then evolve to make it a 'community extension', that several providers maintain
+together. For now anyone from the community is welcome to use this extensions/ folder of the
 stac-spec repository to collaborate.
 
 ## Extension Maturity
 
 Extensions in this directory are meant to evolve to maturity, and thus may be in different states
-in terms of stability and number of implementations. All extensions included must include a 
+in terms of stability and number of implementations. All extensions included must include a
 maturity classification, so that STAC spec users can easily get a sense of how much they can count
-on the extension. 
+on the extension.
 
 | Maturity Classification |  Min Impl # | Description | Stability |
 | ----------------------- | ----------- | ----------- | --------- |
@@ -37,7 +37,7 @@ column is the main gating function for an extension to mature. But extension aut
 choose to hold back the maturity advancement if they don't feel they are yet ready to commit to
 the less breaking changes of the next level.
 
-A 'mature' classification level will likely be added once there are extensions that have been 
+A 'mature' classification level will likely be added once there are extensions that have been
 stable for over a year and are used in twenty or more implementations.
 
 
@@ -60,7 +60,7 @@ An extension can add new fields to STAC entities (content extension), or can add
 | [Scientific](scientific/README.md) (`sci`)                   | Item, Collection | Scientific metadata is considered to be data that indicate from which publication data originates and how the data itself should be cited or referenced. | *Proposal* |
 | [Single File STAC](single-file-stac/README.md) (-)           | ItemCollection   | An extension to provide a set of Collections and Items as a single file catalog. | *Proposal* |
 | [Versioning Indicators](version/README.md) (-)               | Item, Collection | Provides fields and link relation types to provide a version and indicate deprecation. | *Proposal* |
-| [Tiled Assets](tiled-assets/README.md) (`tl`)                | Item             | Allows to specify numerous assets using asset templates via tile matrices and dimensions. | *Proposal* |
+| [Tiled Assets](tiled-assets/README.md) (`tiles`)             | Item             | Allows to specify numerous assets using asset templates via tile matrices and dimensions. | *Proposal* |
 
 ## Third-party / vendor extensions
 
@@ -89,14 +89,14 @@ extension, please get in touch through the referenced issues:
 ## Extending STAC
 
 Anyone is welcome to create an extension. There are several types of extensions, some just add additional fields,
-some change the behaviour of STAC and some introduce completely new functionality. New extensions should try to align 
+some change the behaviour of STAC and some introduce completely new functionality. New extensions should try to align
 with existing extensions as good as possible and may even re-use fields and their definitions until they may get split
 into a new extension that combines commonly used fields across multiple extensions.
 Best practices for extension proposals are still emerging in this section.
 
 ### Prefixes
 
-A STAC Item can combine schema information from several different sources - the core STAC item information, 
+A STAC Item can combine schema information from several different sources - the core STAC item information,
 an earth observation community extension, and a vendor specific provider. It can be difficult to distinguish exactly where each definition
 came from, and to pull out the most relevant information, especially when vendors often will dump in all the metadata they have in to the
 STAC definition.
@@ -149,12 +149,12 @@ This rules only applies to the fields defined directly for the Item's `propertie
 
 ### Directory Structure
 
-A STAC extension can have references to additional schemas within the extension schema. 
-These files should be kept together in order to preserve relative `$ref` links. 
+A STAC extension can have references to additional schemas within the extension schema.
+These files should be kept together in order to preserve relative `$ref` links.
 
 See the [EO](eo/) extension file structure as an example.
-* Specification examples should be stored in an `examples` directory. 
-* The specification schema file(s) should be stored in a `json-schema` directory. 
+* Specification examples should be stored in an `examples` directory.
+* The specification schema file(s) should be stored in a `json-schema` directory.
 
 Make sure to choose a meaningful name for the extension folder as it will be the shortcut
 that is used to reference it in the `stac_extensions` field. Also, make sure to add the
