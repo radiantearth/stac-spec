@@ -1,6 +1,10 @@
-# Point Cloud Extension Specification (`pc`)
+# Point Cloud Extension Specification
 
-**Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Title: Point Cloud**
+- **Identifier: pointcloud**
+- **Field Name Prefix: pc**
+- **Scope: Item**
+- **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
 This document explains the fields of the Point Cloud Extension to a STAC Item,
 which allows STAC to more fully describe point cloud datasets. The point clouds can

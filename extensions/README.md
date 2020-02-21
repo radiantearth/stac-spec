@@ -26,11 +26,11 @@ on the extension.
 
 | Maturity Classification |  Min Impl # | Description | Stability |
 | ----------------------- | ----------- | ----------- | --------- |
-| Proposal | 0 | An idea put forward by a community member to gather feedback | Not stable - breaking changes almost guaranteed as implementers try out the idea. |
-| Pilot | 1 | Idea is fleshed out, with examples and a JSON schema, and implemented in one or more catalogs. Additional implementations encouraged to help give feedback | Approaching stability - breaking changes are not anticipated but can easily come from additional feedback |
-| Candidate | 3 | A number of implementers are using it and are standing behind it as a solid extension. Can generally count on an extension at this maturity level | Mostly stable, breaking changes require a new version and minor changes are unlikely. |
-| Stable | 6 | Highest current level of maturity. The community of extension maintainers commits to a STAC review process for any changes, which are not made lightly. | Completely stable, all changes require a new version number and review process. |
-| Deprecated | N/A | A previous extension that has likely been superceded by a newer one or did not work out for some reason. | DO NOT USE, is not supported |
+| Proposal                | 0           | An idea put forward by a community member to gather feedback | Not stable - breaking changes almost guaranteed as implementers try out the idea. |
+| Pilot                   | 1           | Idea is fleshed out, with examples and a JSON schema, and implemented in one or more catalogs. Additional implementations encouraged to help give feedback | Approaching stability - breaking changes are not anticipated but can easily come from additional feedback |
+| Candidate               | 3           | A number of implementers are using it and are standing behind it as a solid extension. Can generally count on an extension at this maturity level | Mostly stable, breaking changes require a new version and minor changes are unlikely. |
+| Stable                  | 6           | Highest current level of maturity. The community of extension maintainers commits to a STAC review process for any changes, which are not made lightly. | Completely stable, all changes require a new version number and review process. |
+| Deprecated              | N/A         | A previous extension that has likely been superceded by a newer one or did not work out for some reason. | DO NOT USE, is not supported |
 
 Maturity mostly comes through diverse implementations, so the minimum number of implementations
 column is the main gating function for an extension to mature. But extension authors can also
@@ -45,22 +45,23 @@ stable for over a year and are used in twenty or more implementations.
 
 An extension can add new fields to STAC entities (content extension), or can add new endpoints or behavior to the API (API extension). Below is a list of content extensions, while API extensions given under [api-spec](../api-spec/) in a folder for [API extensions](../api-spec/extensions/).
 
-| Extension Name (Prefix)                                      | Scope            | Description                                                  | Maturity |
-| ------------------------------------------------------------ | ---------------- | ------------------------------------------------------------ | -------- |
-| [Asset Definition](asset/README.md) (-)                      | Collection       | Provides a way to specify details about what assets may be found in Items belonging to a collection. | *Proposal* |
-| [Checksum](checksum/README.md) (`checksum`)                  | Item, Catalog, Collection | Provides a way to specify file checksums for assets and links in Items, Catalogs and Collections. | *Proposal* |
-| [Commons](commons/README.md) (-)                             | Item, Collection | Provides a way to specify data fields in a collection that are common across the STAC Items in that collection, so that each does not need to repeat all the same information. | *Proposal* |
-| [Data Cube](datacube/README.md) (`cube`)                     | Item, Collection | Data Cube related metadata, especially to describe their dimensions. | *Proposal* |
-| [EO](eo/README.md) (`eo`)                                    | Item             | Covers electro-optical data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, gsd and more. | *Pilot* |
-| [Label](label/README.md) (`label`)                           | Item             | Items that relate labeled AOIs with source imagery | *Proposal* |
-| [Point Cloud](pointcloud/README.md) (`pc`)                   | Item             | Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LiDAR or coincidence-matched imagery. | *Proposal* |
-| [Projection](projection/README.md) (`proj`)                  | Item             | Provides a way to describe items whose assets are in a geospatial projection. | *Proposal* |
-| [SAR](sar/README.md) (`sar`)                                 | Item             | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. | *Proposal* |
-| [Satellite](sat/README.md) (`sat`)                           | Item             | Satellite related metadata for data collected from satellites. | *Proposal* |
-| [Scientific](scientific/README.md) (`sci`)                   | Item, Collection | Scientific metadata is considered to be data that indicate from which publication data originates and how the data itself should be cited or referenced. | *Proposal* |
-| [Single File STAC](single-file-stac/README.md) (-)           | ItemCollection   | An extension to provide a set of Collections and Items as a single file catalog. | *Proposal* |
-| [Versioning Indicators](version/README.md) (-)               | Item, Collection | Provides fields and link relation types to provide a version and indicate deprecation. | *Proposal* |
-| [Tiled Assets](tiled-assets/README.md) (`tiles`)             | Item             | Allows to specify numerous assets using asset templates via tile matrices and dimensions. | *Proposal* |
+| Extension Title                                | Identifier       | Field Name Prefix   | Scope                     | Maturity   | Description                        |
+| ---------------------------------------------- | ---------------- | ------------------- | ------------------------- | ---------- | ---------------------------------- | 
+| [Asset Definition](asset/README.md)            | asset            | -                   | Collection                | *Proposal* | Provides a way to specify details about what assets may be found in Items belonging to a collection. |
+| [Checksum](checksum/README.md)                 | checksum         | checksum            | Item, Catalog, Collection | *Proposal* | Provides a way to specify file checksums for assets and links in Items, Catalogs and Collections. |
+| [Commons](commons/README.md)                   | commons          | -                   | Item, Collection          | *Proposal* | Provides a way to specify data fields in a collection that are common across the STAC Items in that collection, so that each does not need to repeat all the same information. |
+| [Data Cube](datacube/README.md)                | datacube         | cube                | Item, Collection          | *Proposal* | Data Cube related metadata, especially to describe their dimensions. |
+| [Electro-Optical](eo/README.md)                | eo               | eo                  | Item                      | *Pilot*    | Covers electro-optical data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, gsd and more. |
+| [Label](label/README.md)                       | label            | label               | Item                      | *Proposal* | Items that relate labeled AOIs with source imagery |
+| [Point Cloud](pointcloud/README.md)            | pointcloud       | pc                  | Item                      | *Proposal* | Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LiDAR or coincidence-matched imagery. |
+| [Projection](projection/README.md)             | projection       | proj                | Item                      | *Proposal* | Provides a way to describe items whose assets are in a geospatial projection. |
+| [SAR](sar/README.md)                           | sar              | sar                 | Item                      | *Proposal* | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. |
+| [Satellite](sat/README.md)                     | sat              | sat                 | Item                      | *Proposal* | Satellite related metadata for data collected from satellites. |
+| [Scientific](scientific/README.md)             | scientific       | sci                 | Item, Collection          | *Proposal* | Scientific metadata is considered to be data that indicate from which publication data originates and how the data itself should be cited or referenced. |
+| [Single File STAC](single-file-stac/README.md) | single-file-stac | -                   | ItemCollection            | *Proposal* | An extension to provide a set of Collections and Items as a single file catalog. |
+| [Tiled Assets](tiled-assets/README.md)         | tiles            | tiles               | Item                      | *Proposal* | Allows to specify numerous assets using asset templates via tile matrices and dimensions. |
+| [Versioning Indicators](version/README.md)     | version          | -                   | Item, Collection          | *Proposal* | Provides fields and link relation types to provide a version and indicate deprecation. |
+| [View Geometry](view/README.md)                | view             | view                | Item                      | *Proposal* | View Geometry adds metadata related to angles of sensors and other radiance angles that affect the view of resulting data |
 
 ## Third-party / vendor extensions
 
@@ -114,10 +115,10 @@ An example of this can be seen in a Landsat example:
     "start_datetime":"2018-01-01T13:21:30Z",
     "end_datetime":"2018-01-01T13:31:30Z",
 
-    "sat:off_nadir_angle": -0.001,
+    "view:off_nadir": -0.001,
     "eo:cloud_cover": 10.31,
-    "sat:sun_azimuth_angle": 149.01607154,
-    "sat:sun_elevation_angle": 59.21424700,
+    "view:sun_azimuth": 149.01607154,
+    "view:sun_elevation": 59.21424700,
     "eo:gsd": 30,
 
     "l8:data_type": "L1T",
@@ -156,7 +157,7 @@ See the [EO](eo/) extension file structure as an example.
 * Specification examples should be stored in an `examples` directory.
 * The specification schema file(s) should be stored in a `json-schema` directory.
 
-Make sure to choose a meaningful name for the extension folder as it will be the shortcut
-that is used to reference it in the `stac_extensions` field. Also, make sure to add the
-folder name to the enum defined for the `stac_extensions` field in the
+Make sure to choose a meaningful identifier for the extension and use this value as the extension's directory name.
+The extension's identifier should be used in the `stac_extensions` field. Also, make sure to add the identifier to the 
+enum defined for the `stac_extensions` field in the
 [JSON schema of the STAC catalog specification](../catalog-spec/json-schema/catalog.json).
