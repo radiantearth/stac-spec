@@ -3,7 +3,7 @@
 - **Title: Tiled Assets**
 - **Identifier: tiled-assets**
 - **Field Name Prefix: tiles**
-- **Scope: Item**
+- **Scope: Item, Catalog, Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
 Some data products are too big to be handled in a single file or a small set of enumerated files and are thus split into tiles. For example, Sentinel-2 datastrips are tiled into overlapping granules, in some cases in even more than one coordinate reference system. Other very big datasets, such as continental or global mosaics can also only be handled in a tiled fashion. Usually, they go one step further and provide multiple layers of resolution to allow a quick inspection of larger areas but also retain the possibility to get to the full resolution data.

@@ -3,16 +3,49 @@
   "$id": "stac-extension-tiled-assets.json#",
   "title": "Tiled Assets Extension",
   "description": "Tiled Assets Extension to a STAC Item",
-  "allOf": [
+  "oneOf": [
     {
-      "$ref": "../../../item-spec/json-schema/item.json#/definitions/core"
-    },
-    {
-      "$ref": "#/definitions/tiles"
+      "allOf": [
+        {
+          "$ref": "../../../item-spec/json-schema/item.json#/definitions/core"
+        },
+        {
+          "$ref": "#/definitions/item-tiles"
+        }
+      ]
+    }, {
+      "allOf": [
+        {
+          "$ref": "../../../catalog-spec/json-schema/catalog.json"
+        },
+        {
+          "$ref": "#/definitions/catalog-collection-tiles"
+        }
+      ]
+    }, {
+      "allOf": [
+        {
+          "$ref": "../../../collection-spec/json-schema/collection.json"
+        },
+        {
+          "$ref": "#/definitions/catalog-collection-tiles"
+        }
+      ]
     }
   ],
   "definitions": {
-    "tiles": {
+    "catalog-collection-tiles": {
+      "title": "Tile matrix additions to STAC Collections and Catalogs",
+      "description": "Allows the definition of tile matrix sets on a Collection or Catalog.",
+      "type": "object",
+      "required": [],
+      "properties": {
+        "tiles:tile_matrix_set": {
+          "$ref": "#/definitions/tile_matrix_set"
+        }
+      }
+    },
+    "item-tiles": {
       "type": "object",
       "required": [
         "properties"
@@ -22,6 +55,9 @@
           "type": "object",
           "required": [],
           "properties": {
+            "tiles:tile_matrix_set": {
+              "$ref": "#/definitions/tile_matrix_set"
+            },
             "tiles:tile_matrix_links": {
               "title": "A map of tile matrix identifier to its definition with possible limits.",
               "type": "object",
@@ -42,6 +78,9 @@
           }
         }
       }
+    },
+    "tile_matrix_set": {
+      "$ref": "http://schemas.opengis.net/tms/1.0/json/tms-schema.json"
     },
     "tile_matrix_link": {
       "type": "object",
