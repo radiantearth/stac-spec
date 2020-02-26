@@ -3,17 +3,18 @@ jobs:
   build:
     working_directory: ~/stac
     docker:
-      - image: circleci/python:3.7.4
+      - image: circleci/python:3.7
 
     steps:
       - checkout
       - run: sudo chown -R circleci:circleci /usr/local/bin
-      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
       - run:
           name: install
           command: |
             pip install stac-validator
-            sudo apt-get install curl software-properties-common
+            sudo apt-get update
+            sudo apt-get install curl -y software-properties-common
             curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
             sudo apt-get install -y nodejs
             sudo npm install -g remark-cli remark-validate-links
