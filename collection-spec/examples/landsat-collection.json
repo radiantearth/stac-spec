@@ -136,19 +136,19 @@
     "links": [
       {
         "rel": "self",
-        "href": "https://example.com/stac/collections/landsat-8-l1"
+        "href": "https://landsat-stac.s3.amazonaws.com/landsat-8-l1/catalog.json"
       },
       {
         "rel": "parent",
-        "href": "https://example.com/stac"
+        "href": "https://landsat-stac.s3.amazonaws.com/catalog.json"
       },
       {
         "rel": "root",
-        "href": "https://example.com/stac"
+        "href": "https://landsat-stac.s3.amazonaws.com/catalog.json"
       },
       {
         "rel": "child",
-        "href": "https://example.com/stac/collections/landsat-8-l1/items"
+        "href": "https://landsat-stac.s3.amazonaws.com/landsat-8-l1/paths"
       }
     ]
   }
