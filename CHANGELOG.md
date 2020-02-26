@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
-## [v0.9.0-rc2] - 2020-02-12
+## [v0.9.0] - 2020-02-12
 
 ### Added
 - [Basics](item-spec/common-metadata.md#basics) added to Common Metadata definitions with new `description` field for
@@ -311,7 +311,7 @@ Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkam
 
 
 [Unreleased]: https://github.com/radiantearth/stac-spec/compare/master...dev
-[v0.9.0-rc2]: https://github.com/radiantearth/stac-spec/compare/v0.9.0-rc1...v0.9.0-rc2
+[v0.9.0]: https://github.com/radiantearth/stac-spec/compare/v0.9.0-rc1...v0.9.0
 [v0.9.0-rc1]: https://github.com/radiantearth/stac-spec/compare/v0.8.0...v0.9.0-rc1
 [v0.8.1]: https://github.com/radiantearth/stac-spec/compare/v0.8.0...v0.8.1
 [v0.8.0]: https://github.com/radiantearth/stac-spec/compare/v0.7.0...v0.8.0
