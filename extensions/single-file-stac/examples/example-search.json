@@ -346,7 +346,7 @@
                 "earth observation",
                 "usgs"
             ],
-            "stac_version": "0.9.0-rc2",
+            "stac_version": "0.9.0",
             "extent": {
                 "spatial": [
                     -180,
