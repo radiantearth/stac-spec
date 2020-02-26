@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - [Version Indicators extension](extensions/version/README.md), new `version` and `deprecated` fields in STAC Items and Collections
     - Data Cube extension can be used in Collections, added new field `description`
     - [Asset Extension](extensions/asset/README.md): new `description` and `roles` fields
-    - New [Projection Extension](extensions/proj/README.md) to describe Items with Assets that have an associated geospatial projection
+    - New [Projection Extension](extensions/projection/README.md) to describe Items with Assets that have an associated geospatial projection
     - New [View Geometry Extension](extensions/view/README.md)
 - STAC API:
     - Added the [Item and Collection API Version extension](api-spec/extensions/version/README.md) to support versioning in the API specification
