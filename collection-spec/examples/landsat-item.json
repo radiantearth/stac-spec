@@ -175,7 +175,7 @@
         },
         {
             "rel": "root",
-            "href": "https://https://landsat-stac.s3.amazonaws.com/catalog.json"
+            "href": "https://landsat-stac.s3.amazonaws.com/catalog.json"
         }
     ]
 }
