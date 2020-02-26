@@ -1,5 +1,5 @@
 {
-  "stac_version": "0.9.0-rc1",
+  "stac_version": "0.9.0-rc2",
   "stac_extensions": [
     "checksum",
     "sar",
@@ -28,7 +28,7 @@
     "constellation": "sentinel-1",
     "instruments": ["c-sar"],
     "sat:orbit_state": "ascending",
-    "relative_orbit": 33,
+    "sat:relative_orbit": 33,
     "sar:instrument_mode": "EW",
     "sar:polarizations": ["HH"],
     "sar:resolution_range": 50,

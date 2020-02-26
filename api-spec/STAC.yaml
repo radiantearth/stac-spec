@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: The SpatioTemporal Asset Catalog API
-  version: 0.9.0-rc1
+  version: 0.9.0-rc2
   license:
     name: Apache License 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0'
@@ -136,13 +136,17 @@ paths:
   /search:
     get:
       summary: Search STAC items with simple filtering.
-      description: >-
+      description: |-
         Retrieve Items matching filters. Intended as a shorthand API for simple
         queries.
 
-
         This method is optional, but you MUST implement `POST /search` if you
         want to implement this method.
+
+        If this endpoint is implemented on a server, it is required to add a
+        link referring to this endpoint with `rel` set to `search` to the
+        `links` array in `GET /`. As `GET` is the default method, the `method`
+        may not be set explicitly in the link.
       operationId: getSearchSTAC
       tags:
         - STAC
@@ -173,15 +177,14 @@ paths:
                 type: string
     post:
       summary: Search STAC items with full-featured filtering.
-      description: >-
+      description: |-
         retrieve items matching filters. Intended as the standard, full-featured
         query API.
 
-
         This method is mandatory to implement if `GET /search` is implemented.
         If this endpoint is implemented on a server, it is required to add a
-        link with `rel` set to `search` to the `links` array in `GET /` that
-        refers to this endpoint.
+        link referring to this endpoint with `rel` set to `search` and `method`
+        set to `POST` to the `links` array in `GET /`.
       operationId: postSearchSTAC
       tags:
         - STAC
@@ -219,9 +222,10 @@ components:
         selected.
 
         The bounding box is provided as four or six numbers, depending on
-        whether the
 
-        coordinate reference system includes a vertical axis (height or depth):
+        whether the coordinate reference system includes a vertical axis (height
+
+        or depth):
 
 
         * Lower left corner, coordinate axis 1
@@ -238,24 +242,23 @@ components:
 
 
         The coordinate reference system of the values is WGS 84
-        longitude/latitude
 
-        (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless a different
-        coordinate
+        longitude/latitude (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless
 
-        reference system is specified in the parameter `bbox-crs`.
+        a different coordinate reference system is specified in the parameter
+
+        `bbox-crs`.
 
 
         For WGS 84 longitude/latitude the values are in most cases the sequence
-        of
 
-        minimum longitude, minimum latitude, maximum longitude and maximum
-        latitude.
+        of minimum longitude, minimum latitude, maximum longitude and maximum
 
-        However, in cases where the box spans the antimeridian the first value
+        latitude. However, in cases where the box spans the antimeridian the
 
-        (west-most box edge) is larger than the third value (east-most box
-        edge).
+        first value (west-most box edge) is larger than the third value
+
+        (east-most box edge).
 
 
         If the vertical axis is included, the third and the sixth number are
@@ -264,21 +267,18 @@ components:
 
 
         If a feature has multiple spatial geometry properties, it is the
-        decision of the
 
-        server whether only a single spatial geometry property is used to
-        determine
+        decision of the server whether only a single spatial geometry property
 
-        the extent or all relevant geometries.
+        is used to determine the extent or all relevant geometries.
 
 
         Example: The bounding box of the New Zealand Exclusive Economic Zone in
-        WGS 84
 
-        (from 160.6°E to 170°W and from 55.95°S to 25.89°S) would be represented
-        in JSON
+        WGS 84 (from 160.6°E to 170°W and from 55.95°S to 25.89°S) would be
 
-        as `[160.6, -55.95, -170, -25.89]` and in a query as
+        represented in JSON as `[160.6, -55.95, -170, -25.89]` and in a query as
+
         `bbox=160.6,-55.95,-170,-25.89`.
       required: false
       schema:
@@ -365,11 +365,9 @@ components:
     ids:
       name: ids
       in: query
-      description: >
+      description: |-
         Array of Item ids to return. All other filter parameters that further
-        restrict the number of 
-
-        search results are ignored
+        restrict the number of search results are ignored
       required: false
       schema:
         $ref: '#/components/schemas/ids'
@@ -404,14 +402,10 @@ components:
           type: string
           example: address
         description:
-          description: >-
-            Detailed multi-line description to fully explain the collection.
-
-
-            [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for
-            rich text representation.
+          description: a description of the features in the collection
           type: string
           example: An address.
+          $ref: '#/components/schemas/description'
         links:
           type: array
           items:
@@ -454,7 +448,7 @@ components:
         providers:
           $ref: '#/components/schemas/providers'
         summaries:
-          description: >-
+          description: |-
             Summaries are either a unique set of all available values *or*
             statistics. Statistics by default only specify the range (minimum
             and maximum values), but can optionally be accompanied by additional
@@ -475,7 +469,7 @@ components:
                   description: A value of any type.
               - type: object
                 title: Statistics
-                description: >-
+                description: |-
                   By default, only ranges with a minimum and a maximum value can
                   be specified. Ranges can be specified for ordinal values only,
                   which means they need to have a rank order. Therefore, ranges
@@ -496,7 +490,7 @@ components:
                       - type: string
                       - type: number
       example:
-        stac_version: 0.9.0-rc1
+        stac_version: 0.9.0-rc2
         stac_extensions: []
         id: Sentinel-2
         title: 'Sentinel-2 MSI: MultiSpectral Instrument, Level-1C'
@@ -545,10 +539,10 @@ components:
             - sentinel-2
           instruments:
             - msi
-          'sat:off_nadir_angle':
+          'view:off_nadir':
             min: 0
             max: 100
-          'sat:sun_elevation_angle':
+          'view:sun_elevation':
             min: 6.78
             max: 89.9
           'eo:bands':
@@ -972,17 +966,18 @@ components:
         merge:
           type: boolean
           default: false
-          description: >-
+          description: |-
             This is only valid when the server is responding to POST request.
 
             If merge is true, the client is expected to merge the body value
-            into the current request body before following the link. This avoids
-            passing large post bodies back and forth when following links,
-            particularly for navigating pages through the POST /search endpoint.
+            into the current request body before following the link.
+            This avoids passing large post bodies back and forth when following
+            links, particularly for navigating pages through the `POST /search`
+            endpoint.
 
             NOTE: To support form encoding it is expected that a client be able
-            to merge in the key value pairs specified as JSON `{"next":
-            "token"}` will become `&next=token`
+            to merge in the key value pairs specified as JSON
+            `{"next": "token"}` will become `&next=token`.
       title: Link
     multilinestringGeoJSON:
       type: object
@@ -1104,22 +1099,28 @@ components:
       type: string
       format: date-time
       example: '2017-08-17T08:05:32Z'
+    description:
+      type: string
+      description: |-
+        Detailed multi-line description to fully explain the catalog or
+        collection.
+
+        [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich
+        text representation.
     license:
       type: string
-      description: >-
-        License(s) of the data as a SPDX [License
-        identifier](https://spdx.org/licenses/) or
-        [expression](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60).
-        Alternatively, use `proprietary` if the license is not on the SPDX
-        license list or `various` if multiple licenses apply. In these two cases
-        links to the license texts SHOULD be added, see the `license` link
-        relation type.
-
+      description: |-
+        License(s) of the data as a SPDX
+        [License identifier](https://spdx.org/licenses/). Alternatively, use
+        `proprietary` if the license is not on the SPDX license list or
+        `various` if multiple licenses apply. In these two cases links to the
+        license texts SHOULD be added, see the `license` link relation type.
 
         Non-SPDX licenses SHOULD add a link to the license text with the
         `license` relation in the links section. The license text MUST NOT be
         provided as a value of this field. If there is no public license URL
-        available, it is RECOMMENDED to host the license text and link to it.
+        available, it is RECOMMENDED to host the license text and
+        link to it.
       example: Apache-2.0
     providers:
       type: array
@@ -1147,26 +1148,22 @@ components:
               CommonMark 0.29 syntax MAY be used for rich text representation.
             type: string
           roles:
-            description: >-
+            description: |-
               Roles of the provider.
-
 
               The provider's role(s) can be one or more of the following
               elements:
 
               * licensor: The organization that is licensing the dataset under
-              the license specified in the collection's license field.
-
+                the license specified in the collection's license field.
               * producer: The producer of the data is the provider that
-              initially captured and processed the source data, e.g. ESA for
-              Sentinel-2 data.
-
+                initially captured and processed the source data, e.g. ESA for
+                Sentinel-2 data.
               * processor: A processor is any provider who processed data to a
-              derived product.
-
+                derived product.
               * host: The host is the actual provider offering the data on their
-              storage. There should be no more than one host, specified as last
-              element of the list.
+                storage. There should be no more than one host, specified as last
+                element of the list.
             type: array
             items:
               type: string
@@ -1199,63 +1196,37 @@ components:
       maximum: 10000
       description: The maximum number of results to return (page size). Defaults to 10
     bbox:
-      description: >-
+      description: |-
         Only features that have a geometry that intersects the bounding box are
-
         selected. The bounding box is provided as four or six numbers,
-
         depending on whether the coordinate reference system includes a
-
         vertical axis (elevation or depth):
 
-
         * Lower left corner, coordinate axis 1
-
         * Lower left corner, coordinate axis 2  
-
         * Lower left corner, coordinate axis 3 (optional) 
-
         * Upper right corner, coordinate axis 1 
-
         * Upper right corner, coordinate axis 2 
-
         * Upper right corner, coordinate axis 3 (optional)
 
-
         The coordinate reference system of the values is WGS84
-
         longitude/latitude (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless
-
         a different coordinate reference system is specified in the parameter
-
         `bbox-crs`.
 
-
         For WGS84 longitude/latitude the values are in most cases the sequence
-
         of minimum longitude, minimum latitude, maximum longitude and maximum
-
         latitude. However, in cases where the box spans the antimeridian the
-
         first value (west-most box edge) is larger than the third value
-
         (east-most box edge).
 
-
         If a feature has multiple spatial geometry properties, it is the
-
         decision of the server whether only a single spatial geometry property
-
         is used to determine the extent or all relevant geometries.
 
-
         Example: The bounding box of the New Zealand Exclusive Economic Zone in
-        WGS 84
-
-        (from 160.6°E to 170°W and from 55.95°S to 25.89°S) would be represented
-        in JSON
-
-        as `[160.6, -55.95, -170, -25.89]` and in a query as
+        WGS 84 (from 160.6°E to 170°W and from 55.95°S to 25.89°S) would be
+        represented in JSON as `[160.6, -55.95, -170, -25.89]` and in a query as
         `bbox=160.6,-55.95,-170,-25.89`.
       type: array
       minItems: 4
@@ -1275,18 +1246,16 @@ components:
           $ref: '#/components/schemas/bbox'
     collectionsArray:
       type: array
-      description: |
+      description: |-
         Array of Collection IDs to include in the search for items.
-        Only Items in one of the provided Collections will be searched
+        Only Items in one of the provided Collections will be searched.
       items:
         type: string
     ids:
       type: array
-      description: >
+      description: |-
         Array of Item ids to return. All other filter parameters that further
-        restrict the number of 
-
-        search results are ignored
+        restrict the number of search results are ignored
       items:
         type: string
     datetimeFilter:
@@ -1321,38 +1290,28 @@ components:
           $ref: '#/components/schemas/collectionsArray'
     datetime:
       type: string
-      description: >-
+      description: |-
         Either a date-time or an interval, open or closed. Date and time
-        expressions
-
-        adhere to RFC 3339. Open intervals are expressed using double-dots.
-
+        expressions adhere to RFC 3339. Open intervals are expressed using
+        double-dots.
 
         Examples:
 
-
         * A date-time: "2018-02-12T23:20:50Z"
-
         * A closed interval: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
-
         * Open intervals: "2018-02-12T00:00:00Z/.." or "../2018-03-18T12:31:12Z"
 
-
         Only features that have a temporal property that intersects the value of
-
         `datetime` are selected.
 
-
         If a feature has multiple temporal properties, it is the decision of the
-
         server whether only a single temporal property is used to determine
-
         the extent or all relevant temporal properties.
       example: '2018-02-12T00:00:00Z/2018-03-18T12:31:12Z'
     stac_version:
       title: STAC version
       type: string
-      example: 0.9.0-rc1
+      example: 0.9.0-rc2
     stac_extensions:
       title: STAC extensions
       type: array
@@ -1419,9 +1378,10 @@ components:
         assets:
           $ref: '#/components/schemas/itemAssets'
       example:
-        stac_version: 0.9.0-rc1
+        stac_version: 0.9.0-rc2
         stac_extensions:
           - eo
+          - view
           - 'https://example.com/cs-extension/1.0/schema.json'
         type: Feature
         id: CS3-20160503_132131_05
@@ -1453,14 +1413,14 @@ components:
                 - producer
                 - licensor
               url: 'https://cool-sat.com/'
-          'sat:sun_azimuth_angle': 168.7
+          'view:sun_azimuth': 168.7
           'eo:cloud_cover': 0.12
-          'sat:off_nadir_angle': 1.4
+          'view:off_nadir': 1.4
           platform: coolsat2
           instruments:
             - cool_sensor_v1
           'eo:bands': []
-          'sat:sun_elevation_angle': 33.4
+          'view:sun_elevation': 33.4
           'eo:gsd': 0.512
         collection: CS3
         links:
@@ -1509,9 +1469,8 @@ components:
             example: Thumbnail
           description:
             type: string
-            description: >-
+            description: |-
               Multi-line description to explain the asset.
-
 
               [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for
               rich text representation.
@@ -1552,24 +1511,17 @@ components:
             http://api.cool-sat.com/search?next=ANsXtp9mrqN0yrKWhf-y2PUpHRLQb1GT-mtxNcXou8TwkXhi1Jbk
   responses:
     LandingPage:
-      description: >-
+      description: |-
         The landing page provides links to the API definition
-
         (link relations `service-desc` and `service-doc`),
-
         the Conformance declaration (path `/conformance`,
-
         link relation `conformance`), and the Feature
-
         Collections (path `/collections`, link relation
-
         `data`).
 
-
-        A link to the search endpoint (path `/search`, link relation
-
-        `search`) is **required** to be specified if the API implements
-        `/search`
+        Links to the search endpoints (path `/search`, link relation `search`,
+        method `GET` or `POST`) are **required** to be specified if the API
+        implements `/search` for any of the specified HTTP methods.
       content:
         application/json:
           schema:
@@ -1602,7 +1554,7 @@ components:
                 rel: search
                 type: application/json
                 title: Search across feature collections
-            stac_version: 0.9.0-rc1
+            stac_version: 0.9.0-rc2
             id: naip
         text/html:
           schema:

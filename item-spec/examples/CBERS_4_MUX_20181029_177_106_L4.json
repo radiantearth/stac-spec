@@ -1,8 +1,9 @@
 {
-  "stac_version": "0.9.0-rc1",
+  "stac_version": "0.9.0-rc2",
   "stac_extensions": [
     "eo",
     "proj",
+    "view",
     "https://example.com/stac/cbers-extension/1.0/schema.json"
   ],
   "id": "CBERS_4_MUX_20181029_177_106_L4",
@@ -44,9 +45,9 @@
   ],
   "properties": {
     "datetime": "2018-10-29T14:24:54Z",
-    "sat:sun_azimuth_angle": 111.113,
-    "sat:sun_elevation_angle": 65.8018,
-    "sat:off_nadir_angle": -0.00751271,
+    "view:sun_azimuth": 111.113,
+    "view:sun_elevation": 65.8018,
+    "view:off_nadir": -0.00751271,
     "proj:epsg": 32763,
     "cbers:data_type": "L4",
     "cbers:path": 177,

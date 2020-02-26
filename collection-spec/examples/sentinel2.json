@@ -1,5 +1,5 @@
 {
-  "stac_version": "0.9.0-rc1",
+  "stac_version": "0.9.0-rc2",
   "stac_extensions": [],
   "id": "COPERNICUS/S2",
   "title": "Sentinel-2 MSI: MultiSpectral Instrument, Level-1C",
@@ -52,11 +52,11 @@
     "platform": ["sentinel-2a","sentinel-2b"],
     "constellation": ["sentinel-2"],
     "instruments": ["msi"],
-    "sat:off_nadir_angle": {
+    "view:off_nadir": {
       "min": 0.0,
       "max": 100
     },
-    "sat:sun_elevation_angle": {
+    "view:sun_elevation": {
       "min": 6.78,
       "max": 89.9
     },
