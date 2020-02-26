@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## Unreleased
 
-## [v0.9.0] - 2020-02-12
+## [v0.9.0-rc2] - 2020-02-12
 
 ### Added
 - [Basics](item-spec/common-metadata.md#basics) added to Common Metadata definitions with new `description` field for
