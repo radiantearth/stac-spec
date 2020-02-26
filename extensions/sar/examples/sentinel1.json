@@ -1,5 +1,5 @@
 {
-  "stac_version": "0.9.0-rc2",
+  "stac_version": "0.9.0",
   "stac_extensions": [
     "checksum",
     "sar",

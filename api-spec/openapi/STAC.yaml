@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: The SpatioTemporal Asset Catalog API
-  version: 0.9.0-rc2
+  version: 0.9.0
   description: >-
     This is an OpenAPI definition of the core SpatioTemporal Asset Catalog API
     specification. Any service that implements this endpoint to allow search of
@@ -200,7 +200,7 @@ components:
       content:
         application/json:
           example:
-            stac_version: 0.9.0-rc2
+            stac_version: 0.9.0
             id: naip
             title: NAIP Imagery
             description: Catalog of NAIP Imagery.
@@ -291,7 +291,7 @@ components:
                       - type: string
                       - type: number
       example:
-        stac_version: 0.9.0-rc2
+        stac_version: 0.9.0
         stac_extensions: []
         id: Sentinel-2
         title: 'Sentinel-2 MSI: MultiSpectral Instrument, Level-1C'
@@ -660,7 +660,7 @@ components:
     stac_version:
       title: STAC version
       type: string
-      example: 0.9.0-rc2
+      example: 0.9.0
     stac_extensions:
       title: STAC extensions
       type: array
@@ -737,7 +737,7 @@ components:
         assets:
           $ref: '#/components/schemas/itemAssets'
       example:
-        stac_version: 0.9.0-rc2
+        stac_version: 0.9.0
         stac_extensions:
           - eo
           - view

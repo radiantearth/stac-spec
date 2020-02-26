@@ -1,6 +1,10 @@
-# View Geometry Extension Specification (`view`)
+# View Geometry Extension Specification
 
-**Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Title: View Geometry**
+- **Identifier: view**
+- **Field Name Prefix: view**
+- **Scope: Item**
+- **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
 This document explains the fields of the View Geometry Extension to a STAC Item. View Geometry adds metadata related to angles of sensors and other radiance angles that affect the view of resulting data. It will often be combined with other extensions that describe the actual data, such as the `eo`, `sat` or `sar` extensions.
 
@@ -27,7 +31,7 @@ The angles `azimuth` and `sun_azimuth` indicate the position of the viewed scene
 Example:
 ```
 {
-  "stac_version": "0.9.0-rc2",
+  "stac_version": "0.9.0",
   "stac_extensions": [
     "view",
     "sat"

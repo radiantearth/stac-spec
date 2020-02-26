@@ -93,14 +93,14 @@ guidance for good recommendations when implementing.
 
 ## Catalog fields
 
-| Element      | Type          | Description                                                  |
-| ------------ | ------------- | ------------------------------------------------------------ |
-| stac_version | string        | **REQUIRED.** The STAC version the catalog implements. STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind. |
-| stac_extensions | [string]   | A list of extensions the Catalog implements.                 |
-| id           | string        | **REQUIRED.** Identifier for the catalog.                    |
-| title        | string        | A short descriptive one-line title for the catalog.          |
-| description  | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| links        | [[Link Object](#link-object)] | **REQUIRED.** A list of references to other documents.       |
+| Element         | Type          | Description                                                  |
+| --------------- | ------------- | ------------------------------------------------------------ |
+| stac_version    | string        | **REQUIRED.** The STAC version the catalog implements. STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind. |
+| stac_extensions | [string]      | A list of extension identifiers the Catalog implements.                 |
+| id              | string        | **REQUIRED.** Identifier for the catalog.                    |
+| title           | string        | A short descriptive one-line title for the catalog.          |
+| description     | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| links           | [[Link Object](#link-object)] | **REQUIRED.** A list of references to other documents.       |
 
 **stac_extensions**: A list of extensions the Catalog implements. This does NOT declare the extensions of children or Items. The list contains URLs to the JSON Schema files it can be validated against. For official [content extensions](../extensions/README.md#list-of-content-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. This does *not* apply for API extensions. If the versions of the extension and the catalog diverge, you can specify the URL of the JSON schema file.
 This list must only contain extensions that extend the Catalog itself, see the the 'Scope' column in the list of extensions.
@@ -145,7 +145,7 @@ might look something like this:
 
 ```json
 {
-  "stac_version": "0.9.0-rc2",
+  "stac_version": "0.9.0",
   "id": "NAIP",
   "description": "Catalog of NAIP Imagery",
   "links": [
@@ -163,7 +163,7 @@ A typical '_child_' sub-catalog could look similar:
 
 ```json
 {
-  "stac_version": "0.9.0-rc2",
+  "stac_version": "0.9.0",
   "id": "NAIP",
   "description": "Catalog of NAIP Imagery - 30087",
   "links": [

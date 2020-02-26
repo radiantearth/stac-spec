@@ -1,6 +1,10 @@
-# EO Extension Specification (`eo`)
+# Electro-Optical Extension Specification
 
-**Extension [Maturity Classification](../README.md#extension-maturity): Pilot**
+- **Title: Electro-Optical**
+- **Identifier: eo**
+- **Field Name Prefix: eo**
+- **Scope: Item**
+- **Extension [Maturity Classification](../README.md#extension-maturity): Pilot**
 
 This document explains the fields of the STAC Electro-Optical (EO) Extension to a STAC Item. EO
 data is considered to be data that represents a snapshot of the earth for a single date and time. It
@@ -101,7 +105,7 @@ Asset definitions that contain band data should reference the band index. Each a
 See [example-landsat8.json](examples/example-landsat8.json) for a full example.
 ```
 {
-  "stac_version": "0.9.0-rc2",
+  "stac_version": "0.9.0",
   "stac_extensions": ["eo"],
   "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
   "type": "Feature",
@@ -157,7 +161,7 @@ Planet example:
 
 ```
 {
-  "stac_version": "0.9.0-rc2",
+  "stac_version": "0.9.0",
   "stac_extensions": ["eo"],
   "id": "20171110_121030_1013",
   "type": "Feature",

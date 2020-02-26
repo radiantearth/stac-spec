@@ -1,6 +1,10 @@
 # Commons Extension Specification
 
-**Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Title: Commons**
+- **Identifier: commons**
+- **Field Name Prefix: -**
+- **Scope: Item, Collection**
+- **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
 A group of STAC Item objects from a single source can share a lot of common metadata. This is especially true with satellite imagery that uses the STAC EO Extension. Rather than including these common metadata fields on every Item, they can be provided into the [STAC Collection](../../collection-spec/README.md) that the STAC Items belong to.
 
@@ -44,7 +48,7 @@ To get the complete record of an Item (both individual and commons properties), 
 An incomplete Collection:
 ```
 {
-  "stac_version": "0.9.0-rc2",
+  "stac_version": "0.9.0",
   "stac_extensions": ["commons"],
   "id": "landsat-8-l1",
   "title": "Landsat 8 L1",
@@ -74,7 +78,7 @@ An incomplete Collection:
 An incomplete item:
 ```
 {
-  "stac_version": "0.9.0-rc2",
+  "stac_version": "0.9.0",
   "stac_extensions": ["commons", "eo", "view"],
   "type": "Feature",
   "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
@@ -96,7 +100,7 @@ The merged Item then looks like this:
 
 ```
 {
-  "stac_version": "0.9.0-rc2",
+  "stac_version": "0.9.0",
   "stac_extensions": ["eo", "view"],
   "type": "Feature",
   "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
