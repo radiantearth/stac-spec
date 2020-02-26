@@ -148,7 +148,7 @@
       },
       {
         "rel": "child",
-        "href": "https://landsat-stac.s3.amazonaws.com/landsat-8-l1/paths"
+        "href": "https://landsat-stac.s3.amazonaws.com/landsat-8-l1/paths/catalog.json"
       }
     ]
   }
