@@ -31,7 +31,7 @@ It is not necessary, but recommended to use the [Commons extension](../commons/R
 | sar:product_type          | string        | **REQUIRED.** The product type, for example `SSC`, `MGD`, or `SGC` |
 | sar:resolution_range      | number        | The range resolution, which is the maximum ability to distinguish two adjacent targets perpendicular to the flight path, in meters (m).  |
 | sar:resolution_azimuth    | number        | The azimuth resolution, which is the maximum ability to distinguish two adjacent targets parallel to the flight path, in meters (m).  |
-| sar:pixel_spacing_range   | number        | The range azimuth, which is the distance between adjacent pixels perpendicular to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`. |
+| sar:pixel_spacing_range   | number        | The range pixel spacing, which is the distance between adjacent pixels perpendicular to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`. |
 | sar:pixel_spacing_azimuth | number        | The azimuth pixel spacing, which is the distance between adjacent pixels parallel to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`. |
 | sar:looks_range           | number        | Number of range looks, which is the number of groups of signal samples (looks) perpendicular to the flight path. |
 | sar:looks_azimuth         | number        | Number of azimuth looks, which is the number of groups of signal samples (looks) parallel to the flight path. |
