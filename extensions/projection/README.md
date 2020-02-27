@@ -28,8 +28,8 @@ projections per Asset is not currently handled by this extension.
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
 | proj:epsg        | integer\|null   | **Required** [EPSG code](http://www.epsg-registry.org/) of the datasource |
-| proj:proj4       | string \|null   | PROJ4 string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
-| proj:wkt2        | string \|null   | WKT2 string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
+| proj:proj4       | string \|null   | [PROJ4 string](https://proj.org/usage/projections.html) representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
+| proj:wkt2        | string \|null   | [WKT2](http://docs.opengeospatial.org/is/12-063r5/12-063r5.html) string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
 | proj:projjson    | [PROJJSON Object](https://proj.org/usage/projjson.html) \|null   | PROJJSON object representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
 | proj:geometry    | [Polygon Object](https://geojson.org/schema/Polygon.json)  | Defines the footprint of this Item. |
 | proj:bbox        | [number]        | Bounding box of the Item in the asset CRS in 2 or 3 dimensions. |
@@ -42,13 +42,13 @@ Points, `proj:epsg` should be set to null. It should also be set to null if a CR
 there is no valid EPSG code.
 
 **proj:proj4** - A Coordinate Reference System (CRS) is the data reference system (sometimes called a
-'projection') used by the asset data. This value is a PROJ4 string.
+'projection') used by the asset data. This value is a [PROJ4 string](https://proj.org/usage/projections.html).
 If the data does not have a CRS, such as in the case of non-rectified imagery with Ground Control
 Points, `proj:proj4` should be set to null. It should also be set to null if a CRS exists, but for which
 a PROJ4 string does not exist.
 
 **proj:wkt2** - A Coordinate Reference System (CRS) is the data reference system (sometimes called a
-'projection') used by the asset data. This value is a WKT2 string.
+'projection') used by the asset data. This value is a [WKT2](http://docs.opengeospatial.org/is/12-063r5/12-063r5.html) string.
 If the data does not have a CRS, such as in the case of non-rectified imagery with Ground Control
 Points, proj:wkt2 should be set to null. It should also be set to null if a CRS exists, but for which
 a WKT2 string does not exist.
