@@ -2,6 +2,8 @@
 
 [![CircleCI](https://circleci.com/gh/radiantearth/stac-spec.svg?style=svg)](https://circleci.com/gh/radiantearth/stac-spec)
 
+**Mar 2, 2020** - The API portion of STAC has been split off into a [new repository - stac-api-spec](https://github.com/radiantearth/stac-api-spec) and will start being versioned and released separately than the core STAC spec. This is a work in progress. Links and references between STAC and the STAC API may be incorrect.
+
 ## About
 
 The SpatioTemporal Asset Catalog (STAC) specification aims to standardize the way geospatial assets are exposed online and queried. 
