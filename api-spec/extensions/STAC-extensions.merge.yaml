@@ -1,1 +1,0 @@
-!!files_merge_append ["STAC.yaml", "extensions/STAC-extensions.fragment.yaml", "extensions/query/query.fragment.yaml", "extensions/sort/sort.fragment.yaml", "extensions/fields/fields.fragment.yaml", "extensions/context/context.fragment.yaml", "extensions/transaction/transaction.fragment.yaml", "extensions/version/version.fragment.yaml"]

@@ -1,1 +1,0 @@
-!!files_merge_append ["openapi/OAFeat.yaml", "openapi/STAC.yaml"]
