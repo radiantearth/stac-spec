@@ -7,7 +7,7 @@
     {
       "allOf": [
         {
-          "$ref": "../../../item-spec/json-schema/item.json#/definitions/core"
+          "$ref": "../../../item-spec/json-schema/item.json"
         },
         {
           "$ref": "#/definitions/item-tiles"
