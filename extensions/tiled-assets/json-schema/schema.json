@@ -38,7 +38,9 @@
       "title": "Tile matrix additions to STAC Collections and Catalogs",
       "description": "Allows the definition of tile matrix sets on a Collection or Catalog.",
       "type": "object",
-      "required": [],
+      "required": [
+        "tiles:tile_matrix_set"
+      ],
       "properties": {
         "tiles:tile_matrix_set": {
           "$ref": "#/definitions/tile_matrix_set"
@@ -48,7 +50,8 @@
     "item-tiles": {
       "type": "object",
       "required": [
-        "properties"
+        "properties",
+        "asset_templates"
       ],
       "properties": {
         "properties": {
