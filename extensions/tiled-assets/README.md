@@ -19,9 +19,9 @@ This extension is modelled in close alignment to the [OGC Two Dimensional Tile M
 
 ## Item, Collection and Catalog properties
 
-| Field Name               | Type                                                                  | Description                                                                                                     |
-| ------------------------ | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| tiles:tile_matrix_sets   | Map<string, [TileMatrixSet Object](#tile-matrix-set-object)>          | A mapping of tile matrix set identifier to a tile matrix set link object.                                            |
+| Field Name               | Type                                                                  | Description                                                                                                          |
+| ------------------------ | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| tiles:tile_matrix_sets   | Map<string, [TileMatrixSet Object](#tile-matrix-set-object)>          | **REQUIRED for Collections and Catalogs.** A mapping of tile matrix set identifier to a tile matrix set link object. |
 
 ### Tile Matrix Set Object
 
@@ -97,9 +97,9 @@ Pixel buffer objects allow the definition of image boundarys, so that the intern
 
 ## Item fields
 
-| Field Name          | Type                                                                   | Description                                                                     |
-| ------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| asset_templates     | Map<string, [Asset Object](../../item-spec/item-spec.md#asset-object)> | An map key to Asset objects that use template parameters for later substitution |
+| Field Name          | Type                                                                   | Description                                                                                   |
+| ------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| asset_templates     | Map<string, [Asset Object](../../item-spec/item-spec.md#asset-object)> | **REQUIRED.** An map key to Asset objects that use template parameters for later substitution |
 
 **asset_templates**: The `href` field can make use of template parameters that can be replaced with values to generate references to actual files. The available template parameters are `{TileMatrixSet}`, `{TileMatrix}`, `{TileRow}`, and `{TileCol}`. The templating mechanism is detailed in the [OGC WMTS Simple Profile](http://docs.opengeospatial.org/is/13-082r2/13-082r2.html#17). Additional template substitution parameters may be present, see the next section for more details.
 Also: it is not mandatory, that all template parameters are present. If, for example, the data is only available in one specific tile matrix, then that parameter can be omitted. It is possible, for whatever reason, to have the same template parameter more than once in the same template string.
