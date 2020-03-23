@@ -50,7 +50,7 @@ Some additional notes are given here for some of the core STAC Item fields and w
 ### New Item properties
 | element           | type info            | name                       | description       |
 |-------------------|----------------------|----------------------------|--------------------------------------------------------------------------------------------------|
-| label:properties  | [string] \| null       | Name                       | **REQUIRED** These are the names of the property field(s) in each `Feature` of the label asset's `FeatureCollection` that contains the  classes (keywords from `label:classes` if the property defines classes). If labels are rasters, use `null`. |
+| label:properties  | [string]\|null       | Name                       | **REQUIRED** These are the names of the property field(s) in each `Feature` of the label asset's `FeatureCollection` that contains the  classes (keywords from `label:classes` if the property defines classes). If labels are rasters, use `null`. |
 | label:classes     | [[Class Object](#class-object)] | Classes           | **REQUIRED** if using categorical data. A Class Object defining the list of possible class names for each `label:properties`. (e.g., tree, building, car, hippo)|
 | label:description | string               | Description                | **REQUIRED** A description of the label, how it was created, and what it is recommended for |
 | label:type        | string               | Type                       | **REQUIRED** An ENUM of either `vector` label type or `raster` label type |
@@ -62,7 +62,7 @@ Some additional notes are given here for some of the core STAC Item fields and w
 | Field Name      | Type                 | name                       | description       |
 |-----------------|----------------------|----------------------------|--------------------------------------------------------------------------------------------------|
 | name            | string\|null         | Name                       | The property key within the asset's each `Feature` corresponding to class labels. If labels are raster-formatted, use null.|
-| classes         | [string] \| [number]     | Classes                    | The different possible class values within the property `name`. |
+| classes         | [string]\|[number]     | Classes                    | The different possible class values within the property `name`. |
 
 #### Label Overview Object
 
