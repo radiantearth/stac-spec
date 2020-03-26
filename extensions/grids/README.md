@@ -43,7 +43,7 @@ Asset definitions that contain grids data should reference the grids index. Each
 See <example-to-be-done> for a full example.
 ```
 {
-  "stac_version": "0.8.1",
+  "stac_version": "0.9.0",
   "stac_extensions": ["grids"],
   "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
   "type": "Feature",
