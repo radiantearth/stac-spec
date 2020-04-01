@@ -48,7 +48,6 @@ fields that may not apply to every STAC data type, but are shared by a certain d
 just released 'extension' for satellite imagery, in the 'EO extension', so try to use it if you
 are providing satellite imagery data. 
 
-
 The evolution of the STAC Item spec will take place in this repository, primarily informed by the 
 real world implementations that people create. The goal is for the core Item spec to remain
 quite small and stable, with most all the evolution taking place in extensions. Once there is 
