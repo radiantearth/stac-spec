@@ -1,6 +1,10 @@
-# Projection Extension Specification (`proj`)
+# Projection Extension Specification
 
-**Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Title: Projection**
+- **Identifier: projection**
+- **Field Name Prefix: proj**
+- **Scope: Item**
+- **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
 This document explains the fields of the STAC Projection (`proj`) Extension to a STAC Item. Here `proj` is short
 for "projection", and not a reference to the use of the PROJ/PROJ4 formats.

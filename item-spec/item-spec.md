@@ -8,10 +8,10 @@ granular entity in a STAC, containing the core metadata that enables any client 
 online catalogs of spatial 'assets' - satellite imagery, derived data, DEM's, etc.
 
 The same Item definition is used in both [STAC catalogs](../catalog-spec/README.md) and
-the [`/search`](../api-spec/README.md) endpoint. Catalogs are simply sets of items that are linked online,
-generally served by simple web servers and used for crawling data. The search endpoint enables dynamic
-queries, for example selecting all Items in Hawaii on June 3, 2015, but the results they return are
-FeatureCollections of items.
+the [Item-related API endpoints](https://github.com/radiantearth/stac-api-spec/blob/master/api-spec.md#ogc-api---features-endpoints).
+Catalogs are simply sets of items that are linked online, generally served by simple web servers
+and used for crawling data. The search endpoint enables dynamic queries, for example selecting all
+Items in Hawaii on June 3, 2015, but the results they return are FeatureCollections of items.
 
 Items are represented in JSON format and are very flexible. Any JSON object that contains all the
 required fields is a valid STAC Item.
@@ -66,19 +66,13 @@ Items that are linked to, but the best practices around this are still emerging.
 
 ### Properties Object
 
-The Properties object adds additional metadata to the GeoJSON Object. Additional fields can be introduced through 
-extensions. It is generally allowed to add custom fields.
-
-It is recommended to add multiple attributes for related values instead of a nested object, e.g., two fields `eo:cloud_cover` and `sat:sun_azimuth_angle` instead of a field `eo` with an object value containing the two fields. The convention (as used within Extensions) is for related attributes to use a common prefix on the attribute names to group them, e.g. `eo`. A nested data structure should only be used when the data itself is nested, as with `eo:bands`.
+Additional metadata fields can be added to the GeoJSON Object Properties. The only required field 
+is `datetime` but it is recommended to add more fields, see [Additional Fields](#additional-fields) 
+resources below.
 
 | Field Name | Type   | Description                                                  |
 | ---------- | ------ | ------------------------------------------------------------ |
 | datetime   | string | **REQUIRED.** The searchable date and time of the assets, in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
-| license    | string | Item's license(s), either a SPDX [License identifier](https://spdx.org/licenses/), `various` if multiple licenses apply or `proprietary` for all other cases. Should be defined at the Collection level if possible. |
-| providers  | [[Provider Object](#provider-object)] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. Should be defined at the Collection level if possible. |
-| title      | string | A human readable title describing the item. |
-| created    | string | Creation date and time of this metadata file. This is NOT the timestamp the asset was created. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
-| updated    | string | Date and time this metadata file was updated last. This is NOT the timestamp the asset was updated last. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
 
 **datetime** is likely the acquisition (in the case of single camera type captures) or the 'nominal'
 or representative time in the case of assets that are combined together. Though time can be a
@@ -87,25 +81,17 @@ data, so use whatever single date and time is most useful for a user to search f
 extensions may further specify the meaning of the main `datetime` field, and many will also add more
 datetime fields.
 
-**license**: Items's license(s) as a SPDX [License identifier](https://spdx.org/licenses/). Alternatively, use `proprietary` (see below) if the license is not on the SPDX license list or `various` if multiple licenses apply. In all cases links to the license texts SHOULD be added, see the [`license` link relation type](#relation-types). If no link to a license is included and the `license` field is set to `proprietary`, the collection is private, and consumers have not been granted any explicit right to use the data.
-
-### Provider Object
-
-The object provides information about a provider. A provider is any of the organizations that captured or processed the content of the collection and therefore influenced the data offered by this collection. May also include information about the final storage provider hosting the data.
-
-| Field Name  | Type      | Description                                                  |
-| ----------- | --------- | ------------------------------------------------------------ |
-| name        | string    | **REQUIRED.** The name of the organization or the individual. |
-| description | string    | Multi-line description to add further provider information such as processing details for processors and producers, hosting details for hosts or basic contact information. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| roles       | [string]  | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`. |
-| url         | string    | Homepage on which the provider describes the dataset and publishes contact information. |
-
-**roles**: The provider's role(s) can be one or more of the following elements:
-
-* *licensor*: The organization that is licensing the dataset under the license specified in the collection's `license` field.
-* *producer*: The producer of the data is the provider that initially captured and processed the source data, e.g. ESA for Sentinel-2 data.
-* *processor*: A processor is any provider who processed data to a derived product.
-* *host*: The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list. 
+#### Additional Fields
+* [STAC Common Metadata](common-metadata.md#stac-common-metadata) - A list of fields commonly used 
+throughout all domains. These optional fields are included for STAC Items by default.
+* [Content Extensions](../extensions/README.md#list-of-content-extensions) - Domain-specific fields 
+such as EO, SAR and point clouds.
+* [Custom Extensions](../extensions/README.md#extending-stac) - It is generally allowed to add custom 
+fields but it is recommended to add multiple attributes for related values instead of a nested object, 
+e.g., two fields `eo:cloud_cover` and `eo:gsd` instead of a field `eo` with an object 
+value containing the two fields. The convention (as used within Extensions) is for related attributes 
+to use a common prefix on the attribute names to group them, e.g. `eo`. A nested data structure should 
+only be used when the data itself is nested, as with `eo:bands`.
 
 ### Link Object
 
@@ -127,7 +113,7 @@ Currently, the JSON schema for links does not require them to be formatted as UR
 implementors to provide relative links. In general, Catalog APIs should aim to provide absolute links
 whenever possible. Static Catalogs are potentially more portable if they incorporate only
 relative links, so that every link doesn't need to be rewritten when the data is copied. Additional
-recommendations for particular ```rel``` types are given in the ```rel``` type description.
+recommendations for particular `rel` types are given in the `rel` type description.
 
 #### Relation types
 
@@ -139,7 +125,6 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | root         | URL to the root STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may use the use the [Commons extension](../extensions/commons/README.md) to hold common fields of this and other Items (see chapter '[Collections](#Collections)' for more explanations). _Absolute_ URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
-| license      | The license URL(s) for the item SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC Item with the license text in a separate file and link to this file. |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
 
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
@@ -172,13 +157,13 @@ using the [Commons extension](../extensions/commons/README.md) to avoid duplicat
 An asset is an object that contains a link to data associated with the Item that can be downloaded
 or streamed. It is allowed to add additional fields.
 
-| Field Name  | Type   | Description |
-| ----------- | ------ | ----------- |
-| href        | string | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
-| title       | string | The displayed title for clients and users. |
-| description | string | A description of the Asset providing additional details, such as how it was processed or created. |
-| type        | string | [Media type](#media-types) of the asset. |
-| roles       | [string] | The semantic role of the asset, similar to the use of `rel` in links. 
+| Field Name  | Type     | Description |
+| ----------- | -------- | ----------- |
+| href        | string   | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
+| title       | string   | The displayed title for clients and users. |
+| description | string   | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| type        | string   | [Media type](#media-types) of the asset. |
+| roles       | [string] | The [semantic roles](#asset-role-types) of the asset, similar to the use of `rel` in links. 
 
 #### Asset Role Types
 
@@ -186,9 +171,14 @@ Like the Link `rel` field, the `roles` field can be given any value, however her
 
 | Role Name | Description                                                                           |
 | --------- | ------------------------------------------------------------------------------------- |
-| thumbnail | STRONGLY RECOMMENDED. An asset that represents a thumbnail of the item, typically a true color image (for items with assets in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `roles` be unique tuples. For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types. |
-| overview  | An asset that represents a possibly larger view than the thumbnail of the Item , for example, a true color composite of multi-band data. |
+| thumbnail | An asset that represents a thumbnail of the item, typically a true color image (for items with assets in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `roles` be unique tuples. For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types. |
+| overview  | An asset that represents a possibly larger view than the thumbnail of the Item, for example, a true color composite of multi-band data. |
+| data      | The data itself. This is a suggestion for a common role for data files to be used in case data providers don't come up with their own names and semantics. |
 | metadata  | A metadata sidecar file describing the data in this item, for example the Landsat-8 MTL file. |
+
+It is STRONGLY RECOMMENDED to add to each STAC Item
+* a thumbnail with the role `thumbnail` for preview purposes
+* one or more data file although it doesn't need to use the suggested role `data`
 
 #### Media Types
 

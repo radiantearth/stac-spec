@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "instrument.json#",
+  "title": "Instrument Fields",
+  "type": "object",
+  "properties": {
+    "platform": {
+      "title": "Platform",
+      "type": "string"
+    },
+    "instruments": {
+      "title": "Instruments",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "constellation": {
+      "title": "Constellation",
+      "type": "string"
+    },
+    "mission": {
+      "title": "Mission",
+      "type": "string"
+    }
+  }
+}

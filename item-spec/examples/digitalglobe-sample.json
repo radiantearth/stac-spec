@@ -1,9 +1,9 @@
 {
-  "stac_version": "0.8.1",
+  "stac_version": "0.9.0",
   "stac_extensions": [
     "eo",
     "proj",
-    "instrument",
+    "view",
     "https://example.digitalglobe.com/stac/1.0/schema.json"
   ],
   "id": "103001004B316600_P002_MUL",
@@ -72,12 +72,12 @@
       "DigitalGlobeProduct",
       "1BProduct"
     ],
-    "sat:sun_azimuth_angle": 168.7,
+    "view:sun_azimuth": 168.7,
     "eo:cloud_cover": 50,
-    "sat:off_nadir_angle": 18.4,
-    "sat:azimuth_angle": 34.5,
+    "view:off_nadir": 18.4,
+    "view:azimuth": 34.5,
     "platform": "worldview02",
-    "sat:sun_elevation_angle": 33.4,
+    "view:sun_elevation": 33.4,
     "eo:gsd": 2.047,
     "proj:epsg": null,
     "dg:catalog_id": "103001004B316600",

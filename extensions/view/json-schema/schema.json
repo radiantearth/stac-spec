@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "schema.json#",
+  "title": "View Geometry Extension",
+  "description": "STAC View Geometry Extension to a STAC Item.",
+  "allOf": [
+    {
+      "$ref": "../../../item-spec/json-schema/item.json"
+    },
+    {
+      "$ref": "#/definitions/view"
+    }
+  ],
+  "definitions": {
+    "view": {
+      "type": "object",
+      "required": [
+        "properties"
+      ],
+      "properties": {
+        "properties": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "view:off_nadir": {
+              "title": "Off Nadir",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 90
+            },
+            "view:incidence_angle": {
+              "title": "Center incidence angle",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 90
+            },
+            "view:azimuth": {
+              "title": "Azimuth angle",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 360
+            },
+            "view:sun_azimuth": {
+              "title": "Sun Azimuth",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 360
+            },
+            "view:sun_elevation": {
+              "title": "Sun Elevation",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 90
+            }
+          }
+        }
+      }
+    }
+  }
+}

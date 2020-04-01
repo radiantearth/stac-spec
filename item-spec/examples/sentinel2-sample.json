@@ -1,9 +1,9 @@
 {
-  "stac_version": "0.8.1",
+  "stac_version": "0.9.0",
   "stac_extensions": [
     "eo",
-    "proj",
-    "instrument"
+    "view",
+    "proj"
   ],
   "type": "Feature",
   "id": "S2A_OPER_MSI_L2A_TL_SGS__20180524T190423_A015250_T26SKD_N02.08",
@@ -305,6 +305,6 @@
     "platform": "sentinel-2",
     "proj:epsg": 32635,
     "eo:cloud_cover": 88.459539,
-    "sat:sun_azimuth_angle" : 176.091667178268
+    "view:sun_azimuth" : 176.091667178268
   }
 }

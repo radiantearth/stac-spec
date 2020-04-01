@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "provider.json#",
+  "title": "Provider Fields",
+  "type": "object",
+  "properties": {
+    "providers": {
+      "title": "Providers",
+      "type": "array",
+      "items": {
+        "properties": {
+          "name": {
+            "title": "Organization name",
+            "type": "string"
+          },
+          "description": {
+            "title": "Organization description",
+            "type": "string"
+          },
+          "roles": {
+            "title": "Organization roles",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "producer",
+                "licensor",
+                "processor",
+                "host"
+              ]
+            }
+          },
+          "url": {
+            "title": "Organization homepage",
+            "type": "string",
+            "format": "url"
+          }
+        }
+      }
+    }
+  }
+}

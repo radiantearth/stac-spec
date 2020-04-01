@@ -39,7 +39,10 @@
                   "asset",
                   "commons",
                   "checksum",
-                  "scientific"
+                  "datacube",
+                  "scientific",
+                  "tiled-assets",
+                  "version"
                 ]
               }
             ]
@@ -54,7 +57,8 @@
         },
         "license": {
           "title": "Collection License Name",
-          "type": "string"
+          "type": "string",
+          "pattern": "^[\\w\\-\\.\\+]+$"
         },
         "providers": {
           "type": "array",
@@ -65,7 +69,7 @@
                 "type": "string"
               },
               "description": {
-                "title": "Provider description",
+                "title": "Organization description",
                 "type": "string"
               },
               "roles": {
@@ -82,7 +86,7 @@
                 }
               },
               "url": {
-                "title": "Homepage",
+                "title": "Organization homepage",
                 "type": "string",
                 "format": "url"
               }

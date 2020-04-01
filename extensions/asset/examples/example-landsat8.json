@@ -7,7 +7,7 @@
     "earth observation",
     "usgs"
   ],
-  "stac_version": "0.8.1",
+  "stac_version": "0.9.0",
   "stac_extensions": [
     "asset",
     "commons"
@@ -70,7 +70,7 @@
       "oli",
       "tirs"
     ],
-    "sat:off_nadir_angle": 0,
+    "view:off_nadir": 0,
     "eo:bands": [
       {
         "name": "B1",

@@ -1,13 +1,19 @@
-# SAR Extension Specification (`sar`)
+# SAR Extension Specification
 
-**Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Title: SAR**
+- **Identifier: sar**
+- **Field Name Prefix: sar**
+- **Scope: Item**
+- **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
 This document explains the fields of the STAC Synthetic-Aperture Radar (SAR) Extension to a STAC Item.
 SAR data is considered to be data that represents a snapshot of the earth for a single date and time taken by a synthetic-aperture radar system such as Sentinel-1, RADARSAT or EnviSAT.
 
-It is not necessary, but recommended to use the [Commons extension](../commons/README.md) (see chapter "Placing common fields in Collections").
+If the data has been collected by a satellite, it is strongly recommended to use the [`sat` extension](../sat/README.md), which in turn requires the [Instrument Fields](../../item-spec/common-metadata.md#instrument). If the data has been collected on an airborne platform it is strongly recommended to use the [Instrument Fields](../../item-spec/common-metadata.md#instrument).
 
-If the data has been collected by a satellite, it is strongly recommended to use the [`sat` extension](../sat/README.md), which in turn requires the [`instrument` extension](../instrument/README.md). If the data has been collected on an airborne platform is is strongly recommended to use the [`instrument` extension](../instrument/README.md).
+To describe frame start and end times, use the [Date and Time Range fields](../../item-spec/common-metadata.md#date-and-time-range).
+
+It is not necessary, but recommended to use the [Commons extension](../commons/README.md) (see chapter "Placing common fields in Collections").
 
 - [Examples](examples/) (for example [Sentinel-1](examples/sentinel1.json) and [Envisat](examples/envisat.json))
 - [JSON Schema](json-schema/schema.json)
@@ -25,7 +31,7 @@ If the data has been collected by a satellite, it is strongly recommended to use
 | sar:product_type          | string        | **REQUIRED.** The product type, for example `SSC`, `MGD`, or `SGC` |
 | sar:resolution_range      | number        | The range resolution, which is the maximum ability to distinguish two adjacent targets perpendicular to the flight path, in meters (m).  |
 | sar:resolution_azimuth    | number        | The azimuth resolution, which is the maximum ability to distinguish two adjacent targets parallel to the flight path, in meters (m).  |
-| sar:pixel_spacing_range   | number        | The range azimuth, which is the distance between adjacent pixels perpendicular to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`. |
+| sar:pixel_spacing_range   | number        | The range pixel spacing, which is the distance between adjacent pixels perpendicular to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`. |
 | sar:pixel_spacing_azimuth | number        | The azimuth pixel spacing, which is the distance between adjacent pixels parallel to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`. |
 | sar:looks_range           | number        | Number of range looks, which is the number of groups of signal samples (looks) perpendicular to the flight path. |
 | sar:looks_azimuth         | number        | Number of azimuth looks, which is the number of groups of signal samples (looks) parallel to the flight path. |
@@ -68,7 +74,8 @@ properties. The table below shows the common name based on the wavelength and fr
 
 ### Date and Time
 
-In SAR, you usually have frame start and end time. To describe this information it is recommended to use the [Datetime Range Extension Specification](../datetime-range/README.md). The center time of the frame should be specified with the `datetime` property for [STAC Items](../../item-spec/item-spec.md).
+In SAR, you usually have frame start and end time. To describe this information it is recommended to use the [Date and Time Range fields](../../item-spec/common-metadata.md#date-and-time-range).
+The center time of the frame should be specified with the `datetime` property for [STAC Items](../../item-spec/item-spec.md).
 
 ### Item [`Asset Object`](../../item-spec/item-spec.md#asset-object) fields
 | Field Name        | Type     | Description                                  |
@@ -79,9 +86,7 @@ In SAR, you usually have frame start and end time. To describe this information 
 
 The [extensions page](../README.md) gives an overview about related extensions. Of particular relevance to SAR data:
 
-* the [Datetime Range Extension Specification](../datetime-range/README.md) to describe frame start and end time.
 * the [Sat Extension Specification](../sat/README.md) to describe SAR data collected from a satellite.
-* the [Instrument Extension Specification](../instrument/README.md) which contains fields about the sensor and platform used to collect the data. The Instrument extension is required when using the Sat extension.
 
 ### Placing common fields in Collections
 A lot of SAR data will have common metadata across many Items. It is not necessary, but recommended	
