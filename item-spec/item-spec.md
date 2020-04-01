@@ -8,10 +8,10 @@ granular entity in a STAC, containing the core metadata that enables any client 
 online catalogs of spatial 'assets' - satellite imagery, derived data, DEM's, etc.
 
 The same Item definition is used in both [STAC catalogs](../catalog-spec/README.md) and
-the [`/search`](../api-spec/README.md) endpoint. Catalogs are simply sets of items that are linked online,
-generally served by simple web servers and used for crawling data. The search endpoint enables dynamic
-queries, for example selecting all Items in Hawaii on June 3, 2015, but the results they return are
-FeatureCollections of items.
+the [Item-related API endpoints](https://github.com/radiantearth/stac-api-spec/blob/master/api-spec.md#ogc-api---features-endpoints).
+Catalogs are simply sets of items that are linked online, generally served by simple web servers
+and used for crawling data. The search endpoint enables dynamic queries, for example selecting all
+Items in Hawaii on June 3, 2015, but the results they return are FeatureCollections of items.
 
 Items are represented in JSON format and are very flexible. Any JSON object that contains all the
 required fields is a valid STAC Item.

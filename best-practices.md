@@ -59,7 +59,7 @@ is to place the catalog file in namespaces "directories". For example:
 ### Dynamic Catalogs
 
 Dynamic STAC Catalogs are those that generate their JSON responses programmatically instead of relying on a set of
-already defined files. Typically a dynamic catalog implements the full [STAC API](api-spec/api-spec.md/) which enables 
+already defined files. Typically a dynamic catalog implements the full [STAC API](https://github.com/radiantearth/stac-api-spec) which enables 
 search of the Items indexed. The `/` endpoint returns the exact same STAC Catalog structure as a
 static catalog, enabling the same discovery from people browsing and search engines crawling. Dynamic API's that
 just seek to expose some data can also choose to not implement `/search` and only link to their data from the `/` endpoint.
@@ -143,16 +143,16 @@ Adding a single `self` link at the root is recommended for online catalogs, turn
 
 ### Versioning for Catalogs
 
-The [Items and Collections API Version Extension](./api-spec/extensions/version) provides endpoints and semantics for keeping and accessing previous versions of Collections and Items. The same semantics can be used in static catalogs to preserve previous versions of the documents and link them together.
+In the Item and Collection STAC files or API responses, versions and deprecation can be indicated with the [Versioning Indicators Extension](./extensions/version).
 
-In order to achieve this, the static catalog must make sure that for every record created, a copy of the record is also created in a separate location and it is named with the version id adopted by the catalog. See [here](/api-spec/extensions/version/README.md#version-id) for recommendations on versioning schema.
+The [Items and Collections API Version Extension](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/version/README.md) provides endpoints and semantics for keeping and accessing previous versions of Collections and Items. The same semantics can be used in static catalogs to preserve previous versions of the documents and link them together.
 
-The main record should also provide a link to the versioned record following the linking patterns described [here](/extensions/version/README.md#relation-types). For every update to the record, the same cycle is repeated:
+In order to achieve this, the static catalog must make sure that for every record created, a copy of the record is also created in a separate location and it is named with the version id adopted by the catalog. See [here](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/version/README.md#version-id) for recommendations on versioning schema.
+
+The main record should also provide a link to the versioned record following the linking patterns described [here](./extensions/version/README.md#relation-types). For every update to the record, the same cycle is repeated:
 
 1. Add link from the updated record to the previous version
 2. Create a copy of the updated record and name it correctly
-
-In the Item and Collection STAC files or API responses, versions and deprecation can be indicated with the [Versioning Indicators Extension](./extensions/version).
 
 #### Example
 

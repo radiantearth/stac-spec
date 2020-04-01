@@ -11,8 +11,8 @@ which extends Catalogs with additional fields to further describe the set of Ite
 fields with Catalogs and therefore every Collection is also a valid Catalog.
 
 Catalogs are designed so that a simple file server on the web or object store like Amazon S3 can store JSON that defines a 
-full Catalog. More dynamic services can also return a Catalog structure, and the [STAC API](../api-spec/) folder contains 
-an OpenAPI definition of the standard way to do this, at the `/` endpoint. 
+full Catalog. More dynamic services can also return a Catalog structure, and the [STAC API](https://github.com/radiantearth/stac-api-spec)
+specification contains an OpenAPI definition of the standard way to do this, at the `/` endpoint. 
 
 ## In this directory
 

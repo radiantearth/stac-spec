@@ -43,7 +43,7 @@ stable for over a year and are used in twenty or more implementations.
 
 ## List of content extensions
 
-An extension can add new fields to STAC entities (content extension), or can add new endpoints or behavior to the API (API extension). Below is a list of content extensions, while API extensions given under [api-spec](../api-spec/) in a folder for [API extensions](../api-spec/extensions/).
+An extension can add new fields to STAC entities (content extension), or can add new endpoints or behavior to the API (API extension). Below is a list of content extensions, while API extensions are published in the [STAC API repository](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/).
 
 | Extension Title                                | Identifier       | Field Name Prefix   | Scope                     | Maturity   | Description                        |
 | ---------------------------------------------- | ---------------- | ------------------- | ------------------------- | ---------- | ---------------------------------- | 

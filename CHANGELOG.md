@@ -22,11 +22,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - New [Projection Extension](extensions/projection/README.md) to describe Items with Assets that have an associated geospatial projection
     - New [View Geometry Extension](extensions/view/README.md)
 - STAC API:
-    - Added the [Item and Collection API Version extension](api-spec/extensions/version/README.md) to support versioning in the API specification
+    - Added the [Item and Collection API Version extension](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/version/README.md) to support versioning in the API specification
     - Run `npm run serve` or `npm run serve-ext` to quickly render development versions of the OpenAPI spec in the browser
 - [Basics](item-spec/common-metadata.md#basics) added to Common Metadata definitions with new `description` field for
 Item properties
-- New fields to the `link` object to facilitate [pagination support for POST requests](api-spec/api-spec.md#paging-extension)
+- New fields to the `link` object to facilitate [pagination support for POST requests](https://github.com/radiantearth/stac-api-spec/tree/master/api-spec.md#paging-extension)
 - `data` role, as a suggestion for a common role for data files to be used in case data providers don't come up with their own names and semantics
 - Clarification text on HTTP verbs in STAC API
 
@@ -63,7 +63,7 @@ Item properties
 - Item `title` definition moved from core Item fields to [Common Metadata Basics](item-spec/common-metadata.md#basics) 
 fields. No change is required for STAC Items.
 - `putFeature` can return a `PreconditionFailed` to provide more explicit information when the resource has changed in the server
-- [Sort extension](api-spec/extensions/sort) now uses "+" and "-" prefixes for GET requests to denote sort order. 
+- [Sort extension](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/sort) now uses "+" and "-" prefixes for GET requests to denote sort order. 
 - Clarified how `/search` links must be added to `/` and changed that links to both GET and POST must be provided now that the method can be specified in links
 
 ### Removed
