@@ -20,13 +20,9 @@ files online.
 
 ## WARNING
 
-The specification is currently still an early version, with the potential for some major things to change. The core is now
-fleshed out, so implementors are encouraged to try it out and give feedback. But the goal is to actually be able to act
-on that feedback, which will mean changes are quite possible. 
+The specification is reaching maturity, and the next release will be 1.0-beta1. At this point we don't anticipate any 
+major changes, but reserve the right to make them if we get feedback that something just doesn't work.
 
-But efforts will be made to maintain the core fields established in the central [Item spec](item-spec/), 
-[Catalog spec](catalog-spec/) and [Collection spec](collection-spec/).
-The minimal amount is specified right now, but best practices should emerge with implementation and more will likely be specified.
 
 ## Current version and branches
 
@@ -50,8 +46,11 @@ the specification takes place in the [issue tracker](https://github.com/radiante
 This repository contains the core specifications plus examples and validation schemas and tools. Also included are a
 few documents that provide more context and plans for the evolution of the specification. Each spec folder contains a
 README explaining the layout of the folder, the main specification document, examples, validating schemas and OpenAPI
-documents (if relevant). The four specifications detailed are meant to be used together, but are designed so each piece
-is small, self-contained and reusable in other contexts.
+documents (if relevant). And there is one more specification in the STAC 'family', which is
+the [STAC API specification](https://github.com/radiantearth/stac-api-spec/), which now lives in its own repository. It
+provides API endpoints, based on the [OGC API - Features](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html) standard,
+that enable clients to search for `item`s that match their filtering criteria. The four specifications are meant to be used 
+together, but are designed so each piece is small, self-contained and reusable in other contexts.
 
 **[item-spec/](item-spec/)** defines a STAC Item, which is a [GeoJSON](http://geojson.org) Feature
 with additional fields for things like time, links to related entities and assets (including thumbnails). This is the 
@@ -65,16 +64,11 @@ In the context of STAC it is most likely a collection of STAC Items that is made
 It includes things like the spatial and temporal extent of the data, the license, keywords, etc.
 It enables discovery at a higher level than individual items, providing a simple way to describe sets of data.
 
-**[api-spec/](api-spec/)** extends the core publishing capabilities of [OGC API - Features](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html) with  
-STAC-related endpoints. They add catalog and collection browsing and an active STAC REST search endpoint that returns
-just the Items a user requests in their query. The API is specified as a couple [OpenAPI](http://openapis.org) documents, one is just the
-[minimal core API](api-spec/STAC.yaml) and the other one [integrates the API extensions](api-spec/STAC-extensions.yaml).
-
 **Extensions:** The *[extensions/](extensions/)* folder is where extensions live. Extensions can extend the 
 functionality of the core spec or add fields for specific domains.
 
 **Additional documents** A complementary [how to help](how-to-help.md)
-document, a [list of implementations](implementations.md), 
+document, a [list of implementations](implementations.md), [best practices](best-practices.md)
 and a discussion of the collaboration [principles](principles.md) and specification approach.
 
 ## Design Overview
@@ -103,13 +97,19 @@ But it is incredibly reliable, as there are no moving parts, no clusters or data
 The goal of STAC is to expose as much asset metadata online as possible, so the static catalog offers a very lower
 barrier to entry for anyone with geospatial assets to make their data searchable.
 
-#### Dynamic Catalog API
+#### Dynamic Catalog 
 
-A dynamic catalog API is implemented in software as a RESTful API that responds to queries (like give me all imagery in Oahu gathered on January 15, 2017). 
-Its structure and responses are usually generated dynamically and are designed to mirror the static catalog, so the same client and crawler tools can consume
-it. It generally indexes data for efficient responses, and aims to be easy for existing APIs to implement as a more standard
-interface for clients to consume. It is specified in OpenAPI 3.0. An active catalog will often be populated by a static catalog,
-or at least may have a 'backup' of its fields stored as a cached static catalog.
+A dynamic catalog is implemented in software as a RESTful API, following the same specified JSON structure for Items, Catalogs
+and Collections. Its structure and responses are usually generated dynamically, but the result is the same, 
+so the same client and crawler tools can consume it. It generally indexes data for efficient responses, and aims to be easy
+for existing APIs to implement as a more standard interface for clients to consume.  An active 
+catalog will sometoimes be populated by a static catalog, or at least may have a 'backup' of its fields stored as a cached static 
+catalog.
+
+Dynamic Catalogs often also implement the [STAC API](https://github.com/radiantearth/stac-api-spec/) specification, that 
+responds to search queries (like give me all imagery in Oahu gathered on January 15, 2017). But they are not required to, one
+can have a dynamic service that only implements the core STAC specification, and is crawled by STAC API implementations that
+provide 'search'. 
 
 ### Core Metadata and Extensions
 

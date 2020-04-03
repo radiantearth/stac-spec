@@ -17,7 +17,7 @@ jobs:
             sudo apt-get install curl -y software-properties-common
             curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
             sudo apt-get install -y nodejs
-            sudo npm install -g remark-cli remark-validate-links
+            sudo npm install -g remark-cli remark-validate-links remark-lint remark-preset-lint-markdown-style-guide
       - run:
           name: validate
           command: |
@@ -30,4 +30,4 @@ jobs:
             stac_validator item-spec/examples/landsat8-sample.json
             stac_validator item-spec/examples/digitalglobe-sample.json
             stac_validator item-spec/examples/CBERS_4_MUX_20181029_177_106_L4.json
-            remark -f -u validate-links .
+            remark . -f -r .circleci/.remarkrc

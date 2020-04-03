@@ -6,10 +6,10 @@ that is augmented with [foreign members](https://tools.ietf.org/html/rfc7946#sec
 
 Similarly to the relationship between a GeoJSON Feature and a STAC Item, a STAC ItemCollection should be a valid GeoJSON FeatureCollection to allow interoperability with existing tools that support GeoJSON. 
 
-The same ItemCollection definition is currently only used by the [`/search`](../api-spec/README.md) endpoint. 
-The search endpoint enables dynamic
-queries, for example selecting all Items in Hawaii on June 3, 2015, but the results they return are an
-ItemCollection of Items.
+The same ItemCollection definition is currently only used by the
+[`/search` API endpoint](https://github.com/radiantearth/stac-api-spec/tree/master/api-spec.md#stac-endpoints) endpoint. 
+The search endpoint enables dynamic queries, for example selecting all Items in
+Hawaii on June 3, 2015, but the results they return are an ItemCollection of Items.
 
 Items are represented in JSON format and are very flexible. Any JSON object that contains all the
 required fields is a valid STAC ItemCollection.
@@ -44,5 +44,5 @@ This list must only contain extensions that extend the ItemCollection itself, se
 
 ## Extensions
 
-* The [Context Extension](../api-spec/extensions/context/README.md) adds additional fields to STAC ItemCollection relevant to their use as search results.
+* The [Context Extension](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/context/README.md) adds additional fields to STAC ItemCollection relevant to their use as search results.
 * The [Single File STAC Extension](../extensions/single-file-stac/README.md) provides a set of Collections and Items as a single file catalog.
