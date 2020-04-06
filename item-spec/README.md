@@ -11,6 +11,9 @@ endpoints of a `/search` endpoint.
 **Item Specification:** The main definition of the STAC Item specification is in 
 *[item-spec.md](item-spec.md)*. It includes an overview and an in-depth explanation of the fields.
 
+**Common Metadata:** A set of commonly used metadata fields for STAC Items is listed in 
+*[common-metadata.md](common-metadata.md)*.
+
 **ItemCollection Specification:** The main definition of the STAC ItemCollection specification is in 
 *[itemcollection-spec.md](itemcollection-spec.md)*. It includes an overview and an in-depth explanation of the fields.
 
@@ -44,7 +47,6 @@ fields were made to be flexible to a variety of assets. But there is a lot of va
 fields that may not apply to every STAC data type, but are shared by a certain domain. There is a 
 just released 'extension' for satellite imagery, in the 'EO extension', so try to use it if you
 are providing satellite imagery data. 
-
 
 The evolution of the STAC Item spec will take place in this repository, primarily informed by the 
 real world implementations that people create. The goal is for the core Item spec to remain

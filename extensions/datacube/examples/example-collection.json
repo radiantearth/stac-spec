@@ -1,5 +1,5 @@
 {
-  "stac_version": "0.8.1",
+  "stac_version": "0.9.0",
   "stac_extensions": [
     "datacube"
   ],
@@ -51,80 +51,67 @@
     "eo:platform": ["sentinel-2a","sentinel-2b"],
     "eo:constellation": ["sentinel-2"],
     "eo:instrument": ["msi"],
-    "eo:epsg": [3857],
+    "proj:epsg": [3857],
     "eo:bands": [
       [
         {
           "name": "B1",
           "common_name": "coastal",
-          "center_wavelength": 4.439,
-          "gsd": 60
+          "center_wavelength": 4.439
         },
         {
           "name": "B2",
           "common_name": "blue",
-          "center_wavelength": 4.966,
-          "gsd": 10
+          "center_wavelength": 4.966
         },
         {
           "name": "B3",
           "common_name": "green",
-          "center_wavelength": 5.6,
-          "gsd": 10
+          "center_wavelength": 5.6
         },
         {
           "name": "B4",
           "common_name": "red",
-          "center_wavelength": 6.645,
-          "gsd": 10
+          "center_wavelength": 6.645
         },
         {
           "name": "B5",
-          "center_wavelength": 7.039,
-          "gsd": 20
+          "center_wavelength": 7.039
         },
         {
           "name": "B6",
-          "center_wavelength": 7.402,
-          "gsd": 20
+          "center_wavelength": 7.402
         },
         {
           "name": "B7",
-          "center_wavelength": 7.825,
-          "gsd": 20
+          "center_wavelength": 7.825
         },
         {
           "name": "B8",
           "common_name": "nir",
-          "center_wavelength": 8.351,
-          "gsd": 10
+          "center_wavelength": 8.351
         },
         {
           "name": "B8A",
-          "center_wavelength": 8.648,
-          "gsd": 20
+          "center_wavelength": 8.648
         },
         {
           "name": "B9",
-          "center_wavelength": 9.45,
-          "gsd": 60
+          "center_wavelength": 9.45
         },
         {
           "name": "B10",
-          "center_wavelength": 1.3735,
-          "gsd": 60
+          "center_wavelength": 1.3735
         },
         {
           "name": "B11",
           "common_name": "swir16",
-          "center_wavelength": 1.6137,
-          "gsd": 20
+          "center_wavelength": 1.6137
         },
         {
           "name": "B12",
           "common_name": "swir22",
-          "center_wavelength": 2.2024,
-          "gsd": 20
+          "center_wavelength": 2.2024
         }
       ]
     ]

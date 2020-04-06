@@ -1,6 +1,10 @@
-# EO Extension Specification (`eo`)
+# Electro-Optical Extension Specification
 
-**Extension [Maturity Classification](../README.md#extension-maturity): Pilot**
+- **Title: Electro-Optical**
+- **Identifier: eo**
+- **Field Name Prefix: eo**
+- **Scope: Item**
+- **Extension [Maturity Classification](../README.md#extension-maturity): Pilot**
 
 This document explains the fields of the STAC Electro-Optical (EO) Extension to a STAC Item. EO
 data is considered to be data that represents a snapshot of the earth for a single date and time. It
@@ -18,7 +22,9 @@ A lot of EO data will have common metadata across many Items.
 It is not necessary, but recommended to use the [Commons extension](../commons/README.md)
 (see chapter "Placing common fields in Collections").
 
-If the data has been collected by a satellite, it is strongly recommended to use the [`sat` extension](../sat/README.md), which in turn requires the [`instrument` extension](../instrument/README.md). If the data has been collected on an airborne platform is is strongly recommended to use the [`instrument` extension](../instrument/README.md).
+If the data has been collected by a satellite, it is strongly recommended to use the [`sat` extension](../sat/README.md), which in turn requires the [Instrument Fields](../../item-spec/common-metadata.md#instrument). If the data has been collected on an airborne platform it is strongly recommended to use the [Instrument Fields](../../item-spec/common-metadata.md#instrument).
+
+For defining view geometry of data, it is strongly recommended to use the [`view` extension](../view/README.md).
 
 - [Example (Landsat 8)](examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)
@@ -29,8 +35,9 @@ If the data has been collected by a satellite, it is strongly recommended to use
 | ---------------- | ------------------------ | ----------- |
 | eo:gsd           | number                   | **REQUIRED.** Ground Sample Distance at the sensor. |
 | eo:bands         | [[Band Object](#band-object)] | **REQUIRED.** This is a list of the available bands where each item is a [Band Object](#band-object). |
-| eo:epsg          | integer\|null            | [EPSG code](http://www.epsg-registry.org/) of the datasource, `null` if no EPSG code. |
 | eo:cloud_cover   | number                   | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided. |
+
+### Ground Sampling Distance
 
 **eo:gsd** is the nominal Ground Sample Distance for the data, as measured in meters on the ground. There are many
 definitions of GSD. The value of this attribute should be related to the spatial resolution at the sensor, rather
@@ -43,12 +50,6 @@ PlanetScope Ortho Tile Product has an `eo:gsd` of 3.7 (or 4 if rounding), even t
 3.125.   For example, one might choose for WorldView-2 the 
 Multispectral 20° off-nadir value of 2.07 and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.
 
-**eo:epsg** - A Coordinate Reference System (CRS) is the native reference system (sometimes called a
-'projection') used by the data, and can usually be referenced using an [EPSG code](http://epsg.io).
-If the data does not have a CRS, such as in the case of non-rectified imagery with Ground Control
-Points, eo:epsg should be set to null. It should also be set to null if a CRS exists, but for which
-there is no valid EPSG code.
-
 ### Band Object
 
 | Field Name          | Type   | Description                                                  |
@@ -56,17 +57,8 @@ there is no valid EPSG code.
 | name                | string | The name of the band (e.g., "B01", "B02", "B1", "B5", "QA"). |
 | common_name         | string | The name commonly used to refer to the band to make it easier to search for bands across instruments. See the [list of accepted common names](#common-band-names). |
 | description         | string | Description to fully explain the band. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| gsd                 | number | Ground Sample Distance, the nominal distance between pixel centers available, in meters. Defaults to `eo:gsd` if not provided. |
-| accuracy            | number | The expected error between the measured location and the true location of a pixel, in meters on the ground. |
 | center_wavelength   | number | The center wavelength of the band, in micrometers (μm).      |
 | full_width_half_max | number | Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in micrometers (μm). |
-
-**eo:gsd** is the Ground Sample Distance, measured in meters on the ground. This value is the nominal distance between 
-pixel centers for the data.
-Since GSD can vary across a scene depending on projection, this should be the average or most
-commonly used GSD in the center of the image. For instance, Landsat8 optical and short-wave IR bands are 30 meters
-and the panchromatic band is 15 meters. The Planet PlanetScope Ortho Tile Product has a band `gsd` of 3.125 (3 if 
-rounding), which is different from the `eo:gsd` of 3.7 (4 if rounding).
 
 **full_width_half_max** (FWHM) is a common way to describe the size of a spectral band. It is the
 width, in micrometers (μm), of the bandpass measured at a half of the maximum transmission. Thus, if the
@@ -105,14 +97,15 @@ The difference between the `nir`, `nir08`, and `nir09` bands are that the `nir` 
 Asset definitions that contain band data should reference the band index. Each asset should provide a `eo:bands` property that is an array of 0 based indexes to the correct [Band Objects](#band-object).
 
 ### Item [`Asset Object`](../../item-spec/item-spec.md#asset-object) fields
-| Field Name | Type     | Description                                  |
-| ---------- | -------- | -------------------------------------------- |
-| eo:bands   | [number] | Lists the band names available in the asset. |
+| Field Name | Type      | Description                                  |
+| ---------- | --------- | -------------------------------------------- |
+| eo:bands   | \[number] | Lists the band names available in the asset. |
 
 See [example-landsat8.json](examples/example-landsat8.json) for a full example.
-```
+
+```js
 {
-  "stac_version": "0.8.1",
+  "stac_version": "0.9.0",
   "stac_extensions": ["eo"],
   "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
   "type": "Feature",
@@ -123,21 +116,18 @@ See [example-landsat8.json](examples/example-landsat8.json) for a full example.
       {
         "name": "B1",
         "common_name": "coastal",
-        "gsd": 30,
         "center_wavelength": 0.44,
         "full_width_half_max": 0.02
       },
       {
         "name": "B2",
         "common_name": "blue",
-        "gsd": 30,
         "center_wavelength": 0.48,
         "full_width_half_max": 0.06
       },
       {
         "name": "B3",
         "common_name": "green",
-        "gsd": 30,
         "center_wavelength": 0.56,
         "full_width_half_max": 0.06
       },
@@ -167,11 +157,12 @@ See [example-landsat8.json](examples/example-landsat8.json) for a full example.
   }
 }
 ```
+
 Planet example:
 
-```
+```js
 {
-  "stac_version": "0.8.1",
+  "stac_version": "0.9.0",
   "stac_extensions": ["eo"],
   "id": "20171110_121030_1013",
   "type": "Feature",
@@ -223,7 +214,7 @@ the eo:bands portion is still being fleshed out.
 The [extensions page](../README.md) gives an overview about related extensions. Of particular relevance to EO data:
 
 * the [Sat Extension Specification](../sat/README.md) to describe SAR data collected from a satellite.
-* the [Instrument Extension Specification](../instrument/README.md) is required when using the EO extension, which contains fields about the sensor and platform used to collect the data. It is required when using the Sat extension.
+* the [View Geometry Extension Specification](../view/README.md) to describe angles of sensors collecting earth observation data from above the earth.
 
 ### Placing common fields in Collections
 A lot of EO data will have common metadata across many Items. It is not necessary, but recommended	

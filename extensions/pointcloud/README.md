@@ -1,6 +1,10 @@
-# Point Cloud Extension Specification (`pc`)
+# Point Cloud Extension Specification
 
-**Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Title: Point Cloud**
+- **Identifier: pointcloud**
+- **Field Name Prefix: pc**
+- **Scope: Item**
+- **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
 This document explains the fields of the Point Cloud Extension to a STAC Item,
 which allows STAC to more fully describe point cloud datasets. The point clouds can
@@ -29,8 +33,8 @@ the point cloud, their types, and their sizes (in full bytes).
 | Field Name | Type    | Description |
 | ---------- | ------- | -------------------------- |
 | name       | string  | **REQUIRED.** The name of the dimension. |
-| size       | integer | **REQUIRED.** The size of the dimension in bytes. Whole bytes only are supported.|
-| type       | string  | **REQUIRED.** Dimension type. Valid values include `floating`, `unsigned`, and `signed`|
+| size       | integer | **REQUIRED.** The size of the dimension in bytes. Whole bytes only are supported. |
+| type       | string  | **REQUIRED.** Dimension type. Valid values include `floating`, `unsigned`, and `signed` |
 
 ### Stats Object
 
@@ -44,7 +48,7 @@ are optional.
 | maximum    | number  | The maximum value of the channel. |
 | minimum    | number  | The minimum value of the channel. |
 | name       | string  | The name of the channel. |
-| position   | integer | Position of the channel in the schema.|
+| position   | integer | Position of the channel in the schema. |
 | stddev     | number  | The standard deviation of the channel. |
 | variance   | number  | The variance of the channel. |
 

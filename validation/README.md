@@ -21,7 +21,7 @@ individual catalogs or items.
 
 ### Usage
 
-```
+```bash
 Description: Validate a STAC item or catalog against the STAC specification.
 
 Usage:
@@ -40,7 +40,7 @@ Options:
 E.g.
 
 ```bash
-$ stac_validator.py https://earth-stac.s3.amazonaws.com/eo/landsat-8-l1/catalog.json -v latest
+stac_validator.py https://earth-stac.s3.amazonaws.com/eo/landsat-8-l1/catalog.json -v latest
 {
     "catalogs": {
         "valid": 1,

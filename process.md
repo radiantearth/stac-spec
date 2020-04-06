@@ -48,10 +48,10 @@ in the release. And anything in 'unreleased' section should move to the version 
 * **Merge dev to master**: As there is no 'build' process, since the specification *is* the markdown files in the github
 repository, the key step in a release is to merge the `dev` branch into `master`, as `master` is the current stable state 
 of the spec.
-* **Check Online API Docs**: Check to make sure the online API docs reflect the release at https://stacspec.org/STAC-api.html 
-and https://stacspec.org/STAC-ext-api.html (this step may go away once we are confident this works well)
+* **Check Online API Docs**: Check to make sure the online API docs reflect the release at <https://stacspec.org/STAC-api.html> 
+and <https://stacspec.org/STAC-ext-api.html> (this step may go away once we are confident this works well)
 * **Release on Github**: The final step to create the release is to add a new 'release' on 
-https://github.com/radiantearth/stac-spec/releases. This should use a tag like the others, with a 'v' prefix and then the 
+<https://github.com/radiantearth/stac-spec/releases>. This should use a tag like the others, with a 'v' prefix and then the 
 release number, like v0.5.2. The changelog should be copied over to be the release notes, and then also include a link to 
 the full milestone of everything closed in the issue tracker.
 * **Promote the release**: A blog post and tweet should be composed and sent out, and then inform those in the gitter channel
@@ -69,7 +69,6 @@ updated. This provides the core sanity check. If there are changes or fixes to t
 schemas needed from their feedback then make fixes and do RC2. If it is just fixes to the examples or tooling then no 
 additional RC is needed. After there is no more changes to spec or schemas then the release process should be done on master,
 with no changes to the spec - just updating the version numbers.
-
 
 ### Governance 
 

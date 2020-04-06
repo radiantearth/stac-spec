@@ -11,6 +11,28 @@
     }
   ],
   "definitions": {
+    "common_metadata": {
+      "allOf": [
+        {
+          "$ref": "basics.json"
+        },
+        {
+          "$ref": "datetimerange.json"
+        },
+        {
+          "$ref": "instrument.json"
+        },
+        {
+          "$ref": "licensing.json"
+        },
+        {
+          "$ref": "metadata.json"
+        },
+        {
+          "$ref": "provider.json"
+        }
+      ]
+    },
     "core": {
       "allOf": [
         {
@@ -30,7 +52,7 @@
             "stac_version": {
               "title": "STAC version",
               "type": "string",
-              "const": "0.8.1"
+              "const": "0.9.0"
             },
             "stac_extensions": {
               "title": "STAC extensions",
@@ -49,13 +71,17 @@
                     "enum": [
                       "checksum",
                       "commons",
-                      "cube",
-                      "datetime-range",
+                      "datacube",
                       "eo",
                       "label",
                       "pointcloud",
+                      "projection",
                       "sar",
-                      "scientific"
+                      "sat",
+                      "scientific",
+                      "tiled-assets",
+                      "version",
+                      "view"
                     ]
                   }
                 ]
@@ -85,78 +111,30 @@
               "title": "Asset links",
               "description": "Links to assets",
               "type": "object",
-              "patternProperties": {
-                ".+": {
-                  "$ref": "#/definitions/asset"
-                }
-              },
-              "additionalProperties": false
+              "additionalProperties": {
+                "$ref": "#/definitions/asset"
+              }
             },
             "properties": {
-              "type": "object",
-              "required": [
-                "datetime"
-              ],
-              "properties": {
-                "datetime": {
-                  "title": "Date and Time",
-                  "description": "The searchable date/time of the assets, in UTC (Formatted in RFC 3339) ",
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "title": {
-                  "title": "Item Title",
-                  "description": "A human-readable title describing the item.",
-                  "type": "string"
-                },
-                "license": {
-                  "title": "Item Licenses",
-                  "type": "string"
-                },
-                "providers": {
-                  "type": "array",
-                  "items": {
-                    "properties": {
-                      "name": {
-                        "title": "Organization name",
-                        "type": "string"
-                      },
-                      "description": {
-                        "title": "Provider description",
-                        "type": "string"
-                      },
-                      "roles": {
-                        "title": "Organization roles",
-                        "type": "array",
-                        "items": {
-                          "type": "string",
-                          "enum": [
-                            "producer",
-                            "licensor",
-                            "processor",
-                            "host"
-                          ]
-                        }
-                      },
-                      "url": {
-                        "title": "Homepage",
-                        "type": "string",
-                        "format": "url"
-                      }
+              "allOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "datetime"
+                  ],
+                  "properties": {
+                    "datetime": {
+                      "title": "Date and Time",
+                      "description": "The searchable date/time of the assets, in UTC (Formatted in RFC 3339) ",
+                      "type": "string",
+                      "format": "date-time"
                     }
                   }
                 },
-                "created": {
-                  "title": "Metadata created at",
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "updated": {
-                  "title": "Metadata updated at",
-                  "type": "string",
-                  "format": "date-time"
+                {
+                  "$ref": "#/definitions/common_metadata"
                 }
-              }
+              ]
             },
             "collection": {
               "title": "Collection ID",
@@ -214,9 +192,12 @@
           "title": "Asset type",
           "type": "string"
         },
-        "role": {
-          "title": "Asset role",
-          "type": "string"
+        "roles": {
+          "title": "Asset roles",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     }

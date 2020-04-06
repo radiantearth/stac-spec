@@ -1,9 +1,9 @@
 {
-    "stac_version": "0.8.1",
+    "stac_version": "0.9.0",
     "stac_extensions": [
         "commons",
         "eo",
-        "instrument",
+        "view",
         "https://example.com/stac/landsat-extension/1.0/schema.json"
     ],
     "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
@@ -45,8 +45,8 @@
     "properties": {
         "datetime": "2018-10-01T01:08:32.033Z",
         "eo:cloud_cover": 78,
-        "sat:sun_azimuth_angle": 168.8989761,
-        "sat:sun_elevation_angle": 26.32596431,
+        "view:sun_azimuth": 168.8989761,
+        "view:sun_elevation": 26.32596431,
         "landsat:path": 107,
         "landsat:row": 18
     },
@@ -167,15 +167,15 @@
     "links": [
         {
             "rel": "self",
-            "href": "https://<endpoint>/search?id=LC08_L1TP_107018_20181001_20181001_01_RT"
+            "href": "https://landsat-stac.s3.amazonaws.com/landsat-8-l1/107/018/2018-10-01/LC08_L1TP_107018_20181001_20181001_01_RT.json"
         },
         {
             "rel": "parent",
-            "href": "https://<endpoint>/stac/collections/landsat-8-l1"
+            "href": "https://landsat-stac.s3.amazonaws.com/landsat-8-l1/107/018/catalog.json"
         },
         {
             "rel": "root",
-            "href": "https://<endpoint>/stac"
+            "href": "https://landsat-stac.s3.amazonaws.com/catalog.json"
         }
     ]
 }

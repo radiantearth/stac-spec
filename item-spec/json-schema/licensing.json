@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "licensing.json#",
+  "title": "Licensing Fields",
+  "type": "object",
+  "properties": {
+    "license": {
+      "type": "string",
+      "pattern": "^[\\w\\-\\.\\+]+$"
+    }
+  }
+}
