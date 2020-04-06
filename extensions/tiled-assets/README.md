@@ -27,7 +27,6 @@ This extension is modelled in close alignment to the [OGC Two Dimensional Tile M
 
 Tile matrix sets can be directly embedded in a collection, catalog or item. Such directly embedded tile matrix set objects must conform to the [OGC Two Dimensional Tile Matrix Set JSON schema](http://schemas.opengis.net/tms/1.0/json/tms-schema.json).
 
-
 ## Item properties
 
 | Field Name                  | Type                                                                  | Description                                                                                                     |
@@ -54,15 +53,21 @@ It is also possible, to have the tile matrix set embedded in the items collectio
 
 Example reference to an external tile matrix definition:
 
-    "url": "http://schemas.opengis.net/tms/1.0/json/examples/WebMercatorQuad.json"
+```js
+"url": "http://schemas.opengis.net/tms/1.0/json/examples/WebMercatorQuad.json"
+```
 
 Example reference to an embedded definition in a collection:
 
-    "url": "https://example.com/collections/stac.json#WebMercatorQuad"
+```js
+"url": "https://example.com/collections/stac.json#WebMercatorQuad"
+```
 
 Example reference to an embedded definition in the same item:
 
-    "url": "#WebMercatorQuad"
+```js
+"url": "#WebMercatorQuad"
+```
 
 **limits**: The keys of the map are the identifiers of the tile matrices in their respective tile matrix set. When present, only the referenced tile matrices are used
 for the assets. When the `limits` are not present, the tile matrix set in full is referenced.
@@ -104,7 +109,7 @@ Pixel buffer objects allow the definition of image boundarys, so that the intern
 **asset_templates**: The `href` field can make use of template parameters that can be replaced with values to generate references to actual files. The available template parameters are `{TileMatrixSet}`, `{TileMatrix}`, `{TileRow}`, and `{TileCol}`. The templating mechanism is detailed in the [OGC WMTS Simple Profile](http://docs.opengeospatial.org/is/13-082r2/13-082r2.html#17). Additional template substitution parameters may be present, see the next section for more details.
 Also: it is not mandatory, that all template parameters are present. If, for example, the data is only available in one specific tile matrix, then that parameter can be omitted. It is possible, for whatever reason, to have the same template parameter more than once in the same template string.
 
-#### Template Parameters from other extensions
+### Template Parameters from other extensions
 
 | Extension     | Property   | Template parameter         | Mapping description                                                                                               |
 | ------------- | ---------- | -------------------------- | ----------------------------------------------------------------------------------------------------------------- |
@@ -113,20 +118,19 @@ Also: it is not mandatory, that all template parameters are present. If, for exa
 
 This list is not exhaustive, other useful template substitutions may exist.
 
-#### Template examples
+### Template examples
 
 * Plain:
-
-    `http://example.com/data/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpeg`
+  
+  `http://example.com/data/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpeg`
 
 * Using `eo:bands`:
-
-    `http://example.com/data/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}/{eo:bands}.jpeg`
+  
+  `http://example.com/data/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}/{eo:bands}.jpeg`
 
 * Using `cube:dimensions`:
-
-    `http://example.com/data/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}/{cube:dimensions:elevation}.jpeg`
-
+  
+  `http://example.com/data/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}/{cube:dimensions:elevation}.jpeg`
 
 ## Implementations
 

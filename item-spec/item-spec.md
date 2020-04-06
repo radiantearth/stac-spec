@@ -36,13 +36,13 @@ inherited from GeoJSON.
 | Field Name | Type                                                                       | Description |
 | ---------- | -------------------------------------------------------------------------- | ----------- |
 | stac_version | string                                                                   | **REQUIRED.** The STAC version the Item implements. |
-| stac_extensions | [string]                                                              | A list of extensions the Item implements. |
+| stac_extensions | \[string]                                                             | A list of extensions the Item implements. |
 | id         | string                                                                     | **REQUIRED.** Provider identifier. As most geospatial assets are already defined by some identification scheme by the data provider it is recommended to simply use that ID. Data providers are advised to include sufficient information to make their IDs globally unique, including things like unique satellite IDs. |
 | type       | string                                                                     | **REQUIRED.** Type of the GeoJSON Object. MUST be set to `Feature`. |
 | geometry   | [GeoJSON Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) | **REQUIRED.** Defines the full footprint of the asset represented by this item, formatted according to [RFC 7946, section 3.1](https://tools.ietf.org/html/rfc7946#section-3.1). The footprint should be the default GeoJSON geometry, though additional geometries can be included. Coordinates are specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). |
-| bbox       | [number]                                                                   | **REQUIRED.** Bounding Box of the asset represented by this item, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5). |
+| bbox       | \[number]                                                                  | **REQUIRED.** Bounding Box of the asset represented by this item, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5). |
 | properties | [Properties Object](#properties-object)                                    | **REQUIRED.** A dictionary of additional metadata for the item. |
-| links      | [[Link Object](#link-object)]                                              | **REQUIRED.** List of link objects to resources and related URLs. A link with the `rel` set to `self` is strongly recommended. |
+| links      | \[[Link Object](#link-object)]                                             | **REQUIRED.** List of link objects to resources and related URLs. A link with the `rel` set to `self` is strongly recommended. |
 | assets     | Map<string, [Asset Object](#asset-object)>                                 | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key. |
 | collection | string                                                                     | The `id` of the STAC Collection this Item references to (see [`collection` relation type](#relation-types)). This field is *required* if such a relation type is present. This field provides an easy way for a user to search for any Items that belong in a specified Collection. |
 
@@ -121,10 +121,10 @@ The following types are commonly used as `rel` types in the Link Object of an It
 
 | Type         | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
-| self         | STRONGLY RECOMMENDED. _Absolute_ URL to the Item if it is available at a public URL. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
+| self         | STRONGLY RECOMMENDED. *Absolute* URL to the Item if it is available at a public URL. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root         | URL to the root STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
-| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may use the use the [Commons extension](../extensions/commons/README.md) to hold common fields of this and other Items (see chapter '[Collections](#Collections)' for more explanations). _Absolute_ URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
+| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may use the use the [Commons extension](../extensions/commons/README.md) to hold common fields of this and other Items (see chapter '[Collections](#Collections)' for more explanations). *Absolute* URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
 
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
@@ -143,11 +143,11 @@ Linking back must happen in two places:
 
 1. The field `collection` in an Item must be filled (see section 'Item fields'). It is the `id` of a STAC Collection.
 2. An Item must also provide a link to the STAC Collection using the [`collection` relation type](#relation-types):
-    ```
-    "links": [
-      { "rel": "collection", "href": "link/to/collection/record.json" }
-    ]
-    ```
+   ```js
+   "links": [
+     { "rel": "collection", "href": "link/to/collection/record.json" }
+   ]
+   ```
 
 Optionally, common information shared across items can be moved up into STAC Collections
 using the [Commons extension](../extensions/commons/README.md) to avoid duplicating information.
@@ -157,13 +157,13 @@ using the [Commons extension](../extensions/commons/README.md) to avoid duplicat
 An asset is an object that contains a link to data associated with the Item that can be downloaded
 or streamed. It is allowed to add additional fields.
 
-| Field Name  | Type     | Description |
-| ----------- | -------- | ----------- |
-| href        | string   | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
-| title       | string   | The displayed title for clients and users. |
-| description | string   | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| type        | string   | [Media type](#media-types) of the asset. |
-| roles       | [string] | The [semantic roles](#asset-role-types) of the asset, similar to the use of `rel` in links. 
+| Field Name  | Type      | Description |
+| ----------- | --------- | ----------- |
+| href        | string    | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
+| title       | string    | The displayed title for clients and users. |
+| description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| type        | string    | [Media type](#media-types) of the asset. |
+| roles       | \[string] | The [semantic roles](#asset-role-types) of the asset, similar to the use of `rel` in links. |
 
 #### Asset Role Types
 

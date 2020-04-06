@@ -27,9 +27,8 @@ The off-nadir angle and the incidence angle are related. When the off-nadir angl
 
 The angles `azimuth` and `sun_azimuth` indicate the position of the viewed scene and the sun by the angle from true north, as shown below.
 
-
 Example:
-```
+```js
 {
   "stac_version": "0.9.0",
   "stac_extensions": [

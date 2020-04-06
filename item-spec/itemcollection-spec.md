@@ -32,7 +32,7 @@ This object describes a STAC ItemCollection. The fields `type` and `features` ar
 | Field Name      | Type                                    | Description |
 | --------------- | --------------------------------------- | ----------- |
 | stac_version    | string                                  | **REQUIRED.** The STAC version the ItemCollection implements. |
-| stac_extensions | [string]                                | A list of extensions the ItemCollection implements. |
+| stac_extensions | \[string]                               | A list of extensions the ItemCollection implements. |
 | type            | string                                  | **REQUIRED.** Always "FeatureCollection" to provide compatibility with GeoJSON. |
 | features        | [STAC Item](item-spec.md)               | **REQUIRED** A possibly-empty array of Items. |
 | links           | [Link Object](item-spec.md#link-object) | An array of Links related to this ItemCollection. |

@@ -23,7 +23,6 @@ files online.
 The specification is reaching maturity, and the next release will be 1.0-beta1. At this point we don't anticipate any 
 major changes, but reserve the right to make them if we get feedback that something just doesn't work.
 
-
 ## Current version and branches
 
 The [master branch](https://github.com/radiantearth/stac-spec/tree/master) is the 'stable' version of the spec. It is currently version 
@@ -125,8 +124,3 @@ A UML diagram of the [STAC model](STAC-UML.pdf) is provided to help with navigat
 
 Anyone building software that catalogs imagery or other geospatial assets is welcome to collaborate.
 Beforehand, please review our [guidelines for contributions](CONTRIBUTING.md).
-
-
-
-
-
