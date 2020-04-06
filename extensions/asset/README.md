@@ -11,10 +11,11 @@ A Collection extension to provide details about assets that are available in mem
 - [Example](examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)
 
- This extension serves two purposes:
+This extension serves two purposes:
 
- 1. Provide a human-readable definition of assets available in any Items belonging to this Collection so that the user can determine the key(s) of assets they are interested in.
- 2. Provide a way to programmatically determine what assets are available in any member Item. Otherwise a random Item needs to be examined to determine assets available, but a random Item may not be representative of the set.
+1. Provide a human-readable definition of assets available in any Items belonging to this Collection so that the user can determine the key(s) of assets they are interested in.
+2. Provide a way to programmatically determine what assets are available in any member Item.
+   Otherwise a random Item needs to be examined to determine assets available, but a random Item may not be representative of the set.
 
 ## Collection fields
 
@@ -31,12 +32,12 @@ Additioanlly the remaining fields, `title` and `type` are required in the Asset 
 
 An asset is an object that contains details about the datafiles that will be included in member Items. Assets included at the Collection level do not imply that all assets are available from all Items. However, it is recommended that the Asset Definition is a complete set of all assets that may be available from any member Items.
 
-| Field Name  | Type     | Description |
-| ----------- | -------- | ----------- |
-| title       | string   | **REQUIRED.** The displayed title for clients and users. |
-| type        | string   | **REQUIRED.** [Media type](../../item-spec/item-spec.md#media-types) of the asset. |
-| description | string   | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| roles       | [string] | The [semantic roles](../../item-spec/item-spec.md#asset-role-types) of the asset, similar to the use of `rel` in links. |
+| Field Name  | Type      | Description |
+| ----------- | --------- | ----------- |
+| title       | string    | **REQUIRED.** The displayed title for clients and users. |
+| type        | string    | **REQUIRED.** [Media type](../../item-spec/item-spec.md#media-types) of the asset. |
+| description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| roles       | \[string] | The [semantic roles](../../item-spec/item-spec.md#asset-role-types) of the asset, similar to the use of `rel` in links. |
 
 Other custom fields, or fields from other extensions may also be included in the Asset object.
 

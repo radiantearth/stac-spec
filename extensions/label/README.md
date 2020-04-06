@@ -48,39 +48,38 @@ Some additional notes are given here for some of the core STAC Item fields and w
 - **assets**: The label assets are GeoJSON FeatureCollection assets containing the actual label features. As with the core STAC Item a thumbnail asset is also strongly encouraged.
 
 ### New Item properties
-| element           | type info            | name                       | description       |
-|-------------------|----------------------|----------------------------|--------------------------------------------------------------------------------------------------|
-| label:properties  | [string\|null]       | Name                       | **REQUIRED** These are the names of the property field(s) in each `Feature` of the label asset's `FeatureCollection` that contains the  classes (keywords from `label:classes` if the property defines classes). If labels are rasters, use `null`. |
-| label:classes     | [[Class Object](#class-object)] | Classes           | **REQUIRED** if using categorical data. A Class Object defining the list of possible class names for each `label:properties`. (e.g., tree, building, car, hippo)|
-| label:description | string               | Description                | **REQUIRED** A description of the label, how it was created, and what it is recommended for |
-| label:type        | string               | Type                       | **REQUIRED** An ENUM of either `vector` label type or `raster` label type |
-| label:tasks       | [string]             | Task                       | Recommended to be a subset of 'regression', 'classification', 'detection', or 'segmentation', but may be an arbitrary value |
-| label:methods     | [string]             | Method                     | Recommended to be a subset of 'automated' or 'manual', but may be an arbitrary value. |
-| label:overviews   | [[Label Overview Object](#label-overview-object)] | Overview | An Object storing counts (for classification-type data) or summary statistics (for continuous numerical/regression data). |
+| Field Name        | Type                             | Name                       | Description |
+| ----------------- | -------------------------------- | -------------------------- | ----------- |
+| label:properties  | \[string\|null]                  | Name                       | **REQUIRED** These are the names of the property field(s) in each `Feature` of the label asset's `FeatureCollection` that contains the  classes (keywords from `label:classes` if the property defines classes). If labels are rasters, use `null`. |
+| label:classes     | \[[Class Object](#class-object)] | Classes                    | **REQUIRED** if using categorical data. A Class Object defining the list of possible class names for each `label:properties`. (e.g., tree, building, car, hippo) |
+| label:description | string                           | Description                | **REQUIRED** A description of the label, how it was created, and what it is recommended for |
+| label:type        | string                           | Type                       | **REQUIRED** An ENUM of either `vector` label type or `raster` label type |
+| label:tasks       | \[string]                        | Task                       | Recommended to be a subset of 'regression', 'classification', 'detection', or 'segmentation', but may be an arbitrary value |
+| label:methods     | \[string]                        | Method                     | Recommended to be a subset of 'automated' or 'manual', but may be an arbitrary value. |
+| label:overviews   | \[[Label Overview Object](#label-overview-object)] | Overview | An Object storing counts (for classification-type data) or summary statistics (for continuous numerical/regression data). |
 
 #### Class Object
-| Field Name      | Type                 | name                       | description       |
-|-----------------|----------------------|----------------------------|--------------------------------------------------------------------------------------------------|
-| name            | string\|null         | Name                       | The property key within the asset's each `Feature` corresponding to class labels. If labels are raster-formatted, use null.|
-| classes         | [string\|number]     | Classes                    | The different possible class values within the property `name`. |
+| Field Name | Type              | Name    | Description |
+| ---------- | ----------------- | ------- | ----------- |
+| name       | string\|null      | Name    | The property key within the asset's each `Feature` corresponding to class labels. If labels are raster-formatted, use null. |
+| classes    | \[string\|number] | Classes | The different possible class values within the property `name`. |
 
 #### Label Overview Object
 
-| Field Name      | Type                            | name                       | description       |
-|-----------------| ------------------------------- |----------------------------|--------------------------------------------------------------------------------------------------|
-| property_key    | string                          | Property Key                       | The property key within the asset corresponding to class labels. |
-| counts          | [[Count Object](#count-object)] | Counts                     | An object containing counts for categorical data. |
-| statistics      | [[Stats Object](#stats-object)] | Statistics                 | An object containing statistics for regression/continuous numeric value data. |
+| Field Name   | Type                             | Name         | Description |
+| ------------ | -------------------------------- | ------------ | ----------- |
+| property_key | string                           | Property Key | The property key within the asset corresponding to class labels. |
+| counts       | \[[Count Object](#count-object)] | Counts       | An object containing counts for categorical data. |
+| statistics   | \[[Stats Object](#stats-object)] | Statistics   | An object containing statistics for regression/continuous numeric value data. |
 
 `label:overviews ` generally won't have both counts and statistics, but one of the two.
 
 #### Count Object
 
-| Field Name      | Type            | name                       | description       |
-|-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------|
-| name            | string          | Class Name                    | The different possible classes within the property `name`. |
-| count           | integer         | Count                      | The number of occurrences of the class.
-
+| Field Name | Type    | Name       | Description |
+| ---------- | ------- | ---------- | ----------- |
+| name       | string  | Class Name | The different possible classes within the property `name`. |
+| count      | integer | Count      | The number of occurrences of the class. |
 
 ```json
   {
@@ -101,10 +100,10 @@ Some additional notes are given here for some of the core STAC Item fields and w
 
 #### Stats Object
 
-| Field Name      | Type       | name                       | description       |
-|-----------------|------------|----------------------------|--------------------------------------------------------------------------------------------------|
-| name       | string     | Stat Name                  | The name of the statistic being reported. |
-| value           | number     | Value                      | The value of the statistic `name`. |
+| Field Name | Type   | Name      | Description |
+| ---------- | ------ | --------- | ----------- |
+| name       | string | Stat Name | The name of the statistic being reported. |
+| value      | number | Value     | The value of the statistic `name`. |
 
 ```json
   {
@@ -145,18 +144,16 @@ The raster label file (e.g. a GeoTIFF) should be included as an asset under the 
 ##### Rendered images (optional)
 The source imagery used for creating the label is linked to under `links` (see below). However the source imagery is likely to have been rendered in some way when creating the training data. For instance, a byte-scaled true color image may have been created from the source imagery. It may be useful to save this image and include it as an asset in the `Item`.
 
-
 #### Links: source imagery
 A Label Item links to any source imagery that the AOI applys to by linking to the STAC Item representing the imagery. Source imagery is indicated by using a `rel` type of "source" and providing the link to the STAC Item.
 
 In addition the source imagery link has a new label extension specific field:
 
-| element         | type info       | name                       | description       |
-|-----------------|-----------------|----------------------------|--------------------------------------------------------------------------------------------------|
-| label:assets    | [string]        | Assets                     | The keys for the assets within the `source` item to which this label item applies. |
+| Field Name   | Type      | Name   | Description |
+| ------------ | --------- | ------ | ----------- |
+| label:assets | \[string] | Assets | The keys for the assets within the `source` item to which this label item applies. |
 
 The `label:assets` field applies to situations where the labels may apply to certain assets inside the source imagery Item, but not others (e.g. if the labels were traced on top of RGB imagery, but the source item also contains assets for a Digital Elevation Model).
-
 
 ## Implementations
 

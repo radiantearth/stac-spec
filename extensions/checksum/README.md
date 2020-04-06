@@ -17,7 +17,6 @@ Provides a way to specify file checksums (e.g. BLAKE2, MD5, SHA1, SHA2, SHA3) fo
 | ------------------ | ------ | ------------------------------------------------------------ |
 | checksum:multihash | string | Multihash for the corresponding file, encoded as hexadecimal (base 16) string with lowercase letters. |
 
-
 ### Examples
 
 Checksum for a text file with file content `test`.
@@ -28,7 +27,6 @@ Checksum for a text file with file content `test`.
 | checksum:multihash | sha2 (256 bits)                       | `12209f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08` |
 | checksum:multihash | sha2 (256 bits truncated to 160 bits) | `12149f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b`                     |
 | checksum:multihash | blake2b-128                           | `90e4021044a8995dd50b6657a037a7839304535b`                             |
-
 
 ## Implementations
 
