@@ -31,13 +31,6 @@
                 "null"
               ]
             },
-            "proj:proj4":{
-              "title":"Coordinate Reference System in PROJ4 format",
-              "type":[
-                "string",
-                "null"
-              ]
-            },
             "proj:wkt2":{
               "title":"Coordinate Reference System in WKT2 format",
               "type":[

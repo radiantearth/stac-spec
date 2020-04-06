@@ -158,18 +158,14 @@ The main record should also provide a link to the versioned record following the
 
 When the record `my_item.json` is created, a copy of it is also created. `my_item.json` includes `permalink` to `my_item_01.json`. The version suffix of the file name is taken from the version field of the record when it is available.
 
-```
---- root / collections / example_collection / items / my_item / my_item.json
---- root / collections / example_collection / items / my_item / my_item_01.json
-```
+- `root / collections / example_collection / items / my_item / my_item.json`
+- `root / collections / example_collection / items / my_item / my_item_01.json`
 
 When `my_item.json` is updated, the new `my_item.json` includes a link to `my_item_01.json` and is also copied to `my_item_02.json`. This ensures that `my_item_02.json` includes a link to `my_item_01.json`
 
-```
---- root / collections / example_collection / items / my_item / my_item.json
---- root / collections / example_collection / items / my_item / my_item_01.json
---- root / collections / example_collection / items / my_item / my_item_02.json
-```
+- `root / collections / example_collection / items / my_item / my_item.json`
+- `root / collections / example_collection / items / my_item / my_item_01.json`
+- `root / collections / example_collection / items / my_item / my_item_02.json`
 
 ### Published Catalogs
 
@@ -209,7 +205,7 @@ able to specify in the core standard how to make the right HTML pages. But for n
 making data available as JSON, and then leverage tools that can evolve at the same time to make the best HTML experience. This
 enables innovation on the web generation and search engine optimization to evolve independently of the catalogs themseleves.
 
-#### Schema.org, JSON-LD, DCAT, microformats, etc
+### Schema.org, JSON-LD, DCAT, microformats, etc
 
 There is a strong desire to align STAC with the various web standards for data. These include [schema.org](http://schema.org) 
 tags, [JSON-LD](https://json-ld.org/) (particularly for Google's [dataset 
@@ -221,7 +217,7 @@ from STAC like [STAC Browser](https://github.com/radiantearth/stac-browser/). ST
 schema.org](https://github.com/radiantearth/stac-spec/issues/378) fields using JSON-LD, but the exact output is still being
 refined. It is on the roadmap to add in more mapping and do more testing of search engines crawling the HTML pages. 
 
-#### Deploying STAC Browser & stac.cloud
+### Deploying STAC Browser & stac.cloud
 
 There are a number of STAC Browser [examples on stacspec.org](https://stacspec.org/#examples), that are all deployed on 
 the [stac.cloud](http://stac.cloud) domain. Anyone with a public catalog is welcome to have a STAC Browser instance hosted
@@ -230,13 +226,12 @@ design to look and feel like your main web presence. The goal of stac.cloud is t
 not to be *the* central hub. STAC aims to be decentralized, so each catalog should have its own location and just be
 part of the wider web. 
 
-
 ## Static to Dynamic best practices
 
 Many implementors are using static catalogs to be the reliable core of their dynamic services, or layering their STAC API
 on top of any static catalog that is published. These are some recommendations on how to handle this:
 
-#### Ingestion and links
+### Ingestion and links
 
 Implementors have found that it's best to 'ingest' a static STAC into an internal datastore (often elasticsearch, but a 
 traditional database could work fine too) and then generate the full STAC API responses from that internal representation.
@@ -251,7 +246,7 @@ item should be treated as the canonical location, as the generated API is more l
 spec provides the `derived_from` rel attribute, which fits well enough, but `canonical` is likely the more appropriate one
 as everything but the links should be the same.
 
-#### Keeping static and dynamic catalogs in sync with cloud notification and queue services
+### Keep catalogs in sync with cloud notification and queue services
 
 There is a set of emerging practices to use services like Amazon's Simple Queue Service (SQS) and Simple Notification Service
 (SNS) to keep catalogs in sync. There is a great [blog post on the CBERS STAC implementation on AWS](https://aws.amazon.com/blogs/publicsector/keeping-a-spatiotemporal-asset-catalog-stac-up-to-date-with-sns-sqs/). The core 
@@ -262,6 +257,3 @@ basic geographic filtering from listeners.
 The dynamic STAC API would then listen to the notifications and update its internal datastore whenever new data comes into
 the static catalog. Implementors have had success using AWS Lambda to do a full 'serverless' updating of the elasticsearch
 database, but it could just as easily be a server-based process.
-
-
-

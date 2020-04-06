@@ -74,12 +74,3 @@ would be that assets should provide links to the data, even if a user doesn't ha
 The Landsat example shows an idea of using 'prefixes' like *eo:* or *l8:* to help differentiate metadata fields that
 would be validated by different schemas. EO could be a shared earth observation schema. Using prefixes could also help point the 
 way towards JSON-LD type validation.
-
-
-
-
-
-
-
-
-

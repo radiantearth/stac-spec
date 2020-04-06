@@ -40,7 +40,6 @@ the less breaking changes of the next level.
 A 'mature' classification level will likely be added once there are extensions that have been
 stable for over a year and are used in twenty or more implementations.
 
-
 ## List of content extensions
 
 An extension can add new fields to STAC entities (content extension), or can add new endpoints or behavior to the API (API extension). Below is a list of content extensions, while API extensions are published in the [STAC API repository](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/).
@@ -108,7 +107,7 @@ evolve to make fully resolved namespacing an option.
 
 An example of this can be seen in a Landsat example:
 
-```
+```js
   "properties": {
     "datetime":"2018-01-01T13:21:30Z",
 

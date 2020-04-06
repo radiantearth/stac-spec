@@ -116,4 +116,3 @@ languages.
 **Cool Extensions** - STAC should be a core that others build cool advanced catalog functionality on. Things like aggregation,
 both spatial (coverage maps) and fields (total stats, histograms), offline catalogs, crossfilter querying, faceted search,
 etc.
-

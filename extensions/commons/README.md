@@ -34,10 +34,10 @@ One is a field called `collection` in a STAC Item which is the `id` of a STAC Co
 
 A STAC Item must also provide a link to the STAC Collection using the `collection` rel type:
 
-```
+```js
 "links": [
+  { "rel": "collection", "href": "http://example.com/link/to/collection/record.json" },
   ...
-  { "rel": "collection", "href": "http://example.com/link/to/collection/record.json" }
 ]
 ```
 
@@ -46,7 +46,7 @@ A STAC Item must also provide a link to the STAC Collection using the `collectio
 To get the complete record of an Item (both individual and commons properties), the properties from the Collection can be merged with the Item.
 
 An incomplete Collection:
-```
+```js
 {
   "stac_version": "0.9.0",
   "stac_extensions": ["commons"],
@@ -76,7 +76,7 @@ An incomplete Collection:
 ```
 
 An incomplete item:
-```
+```js
 {
   "stac_version": "0.9.0",
   "stac_extensions": ["commons", "eo", "view"],
@@ -98,7 +98,7 @@ An incomplete item:
 
 The merged Item then looks like this:
 
-```
+```js
 {
   "stac_version": "0.9.0",
   "stac_extensions": ["eo", "view"],
