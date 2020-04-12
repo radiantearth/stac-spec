@@ -143,6 +143,7 @@ Contains a number of Landsat records:
 ### Others
 
 * [Geocatalogo](https://github.com/go-spatial/geocatalogo) is a Go implementation of STAC.
+* [pygeoapi](https://pygeoapi.io) is a Python server implementation of the OGC API suite of standards, as well as support for [serving geospatial data via STAC](https://docs.pygeoapi.io/en/latest/data-publishing/stac.html).
 * [Catalog Crawler](https://github.com/radiantearth/community-sprints/tree/master/10252017-boulder-co/catalog-crawler) was done during the [Boulder Sprint](https://github.com/radiantearth/community-sprints/tree/master/10252017-boulder-co), as an early proof of concept.
 * [py-stac](https://github.com/raster-foundry/pystac) was used to create the ISERV catalog. It is still pretty tied to that data type.
 * [go-stac](https://github.com/planetlabs/go-stac) does validation of static catalogs.
