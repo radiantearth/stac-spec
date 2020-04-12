@@ -24,13 +24,13 @@ provided before the field name, it will be assumed to be "+".
 
 Examples of `sortby` parameter:
 
-    1. GET /search?sortby=properties.created
+    1. GET /search?sortby=properties.published
     
-    2. GET /search?sortby=+properties.created
+    2. GET /search?sortby=+properties.published
     
-    3. GET /search?sortby=properties.created,-id
+    3. GET /search?sortby=properties.published,-id
     
-    4. GET /search?sortby=+properties.created,-id
+    4. GET /search?sortby=+properties.published,-id
     
     5. GET /search?sortby=-properties.eo:cloud_cover
     
@@ -58,7 +58,7 @@ The syntax for the `sortby` attribute is:
 {
     "sortby": [
         {
-            "field": "properties.created",
+            "field": "properties.published",
             "direction": "asc"
         },
         {

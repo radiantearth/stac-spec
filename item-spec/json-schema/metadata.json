@@ -4,8 +4,8 @@
   "title": "Metadata Fields",
   "type": "object",
   "properties": {
-    "created": {
-      "title": "Metadata Creation",
+    "published": {
+      "title": "Metadata Published",
       "type": "string",
       "format": "date-time"
     },
