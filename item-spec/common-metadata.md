@@ -23,7 +23,6 @@ Descriptive fields to give a basic overview of a STAC Item.
 | title       | string | A human readable title describing the Item. |
 | description | string | Detailed multi-line description to fully explain the Item. [CommonMark 0.29](https://commonmark.org/) syntax MAY be used for rich text representation. |
 
-
 ## Date and Time
 
 Fields to provide additional temporal information such as ranges with a start and an end datetime stamp.
@@ -43,7 +42,6 @@ The datetime property in a STAC item and these fields are not mutually exclusive
 | start_datetime | string | The first or start date and time for the item, in UTC. It is formatted as `date-time` according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
 | end_datetime   | string | The last or end date and time for the item, in UTC. It is formatted as `date-time` according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
 
-
 ## Licensing
 
 Information about the license(s) of the data, which is not necessarily the same license that applies to the metadata.
@@ -61,12 +59,11 @@ In all cases links to the license texts SHOULD be added, see the [`license` link
 If no link to a license is included and the `license` field is set to `proprietary`, the collection is private,
 and consumers have not been granted any explicit right to use the data.
 
-#### Relation types
+### Relation types
 
 | Type         | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
 | license      | The license URL(s) for the item SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC Item with the license text in a separate file and link to this file. |
-
 
 ## Provider
 
@@ -79,7 +76,7 @@ Information about the organizations capturing, producing, processing, hosting or
 | ---------- | ------ | ----------- |
 | providers  | [[Provider Object](#provider-object)] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list.  |
 
-#### Provider Object
+### Provider Object
 
 The object provides information about a provider. A provider is any of the organizations that captures or processes the content of the assets and therefore influences the data offered by the STAC catalog. May also include information about the final storage provider hosting the data.
 
@@ -87,7 +84,7 @@ The object provides information about a provider. A provider is any of the organ
 | ----------- | --------- | ------------------------------------------------------------ |
 | name        | string    | **REQUIRED.** The name of the organization or the individual. |
 | description | string    | Multi-line description to add further provider information such as processing details for processors and producers, hosting details for hosts or basic contact information. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| roles       | [string]  | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`. |
+| roles       | \[string] | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`. |
 | url         | string    | Homepage on which the provider describes the dataset and publishes contact information. |
 
 **roles**: The provider's role(s) can be one or more of the following elements:
@@ -97,7 +94,6 @@ The object provides information about a provider. A provider is any of the organ
 * *processor*: A processor is any provider who processed data to a derived product.
 * *host*: The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list.
 
-
 ## Instrument
 
 Adds metadata specifying a platform and instrument used in a data collection mission. These fields will often be combined 
@@ -105,12 +101,12 @@ with domain-specific extensions that describe the actual data, such as the `eo` 
 
 - [JSON Schema](json-schema/instrument.json)
 
-| Field Name    | Type     | Description |
-| ------------- | -------- | ----------- |
-| platform      | string   | Unique name of the specific platform to which the instrument is attached. |
-| instruments   | [string] | Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1). |
-| constellation | string   | Name of the constellation to which the platform belongs. |
-| mission       | string   | Name of the mission for which data is collected. |
+| Field Name    | Type      | Description |
+| ------------- | --------- | ----------- |
+| platform      | string    | Unique name of the specific platform to which the instrument is attached. |
+| instruments   | \[string] | Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1). |
+| constellation | string    | Name of the constellation to which the platform belongs. |
+| mission       | string    | Name of the mission for which data is collected. |
 
 **platform** is the unique name of the specific platform the instrument is attached to. For satellites this would 
 be the name of the satellite, whereas for drones this would be a unique name for the drone. Examples include 
@@ -137,7 +133,6 @@ part of a constellation, but these are combined to form the logical collection r
 **mission** is the name of the mission or campaign for collecting data. This could be a discrete set of data collections
 over a period of time (such as collecting drone imagery), or could be a set of tasks of related tasks from a satellite
 data collection.
-
 
 ## Metadata
 

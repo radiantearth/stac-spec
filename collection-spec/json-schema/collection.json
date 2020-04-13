@@ -41,6 +41,7 @@
                   "checksum",
                   "datacube",
                   "scientific",
+                  "tiled-assets",
                   "version"
                 ]
               }

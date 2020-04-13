@@ -22,39 +22,38 @@ It is not necessary, but recommended to use the [Commons extension](../commons/R
 
 **Note:** In the following specification *range* values are meant to be measured perpendicular to the flight path and *azimuth* values are meant to be measured parallel to the flight path.
 
-| Field Name                | Type          | Description                                                  |
-| ------------------------- | ------------- | ------------------------------------------------------------ |
-| sar:instrument_mode       | string        | **REQUIRED.** The name of the sensor acquisition mode that is commonly used. This should be the short name, if available. For example, `WV` for "Wave mode" of Sentinel-1 and Envisat ASAR satellites. |
-| sar:frequency_band        | string        | **REQUIRED.** The common name for the frequency band to make it easier to search for bands across instruments. See section "Common Frequency Band Names" for a list of accepted names. |
-| sar:center_frequency      | number        | The center frequency of the instrument, in gigahertz (GHz). |
-| sar:polarizations         | [string]      | **REQUIRED.** Any combination of polarizations. |
-| sar:product_type          | string        | **REQUIRED.** The product type, for example `SSC`, `MGD`, or `SGC` |
-| sar:resolution_range      | number        | The range resolution, which is the maximum ability to distinguish two adjacent targets perpendicular to the flight path, in meters (m).  |
-| sar:resolution_azimuth    | number        | The azimuth resolution, which is the maximum ability to distinguish two adjacent targets parallel to the flight path, in meters (m).  |
-| sar:pixel_spacing_range   | number        | The range pixel spacing, which is the distance between adjacent pixels perpendicular to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`. |
-| sar:pixel_spacing_azimuth | number        | The azimuth pixel spacing, which is the distance between adjacent pixels parallel to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`. |
-| sar:looks_range           | number        | Number of range looks, which is the number of groups of signal samples (looks) perpendicular to the flight path. |
-| sar:looks_azimuth         | number        | Number of azimuth looks, which is the number of groups of signal samples (looks) parallel to the flight path. |
-| sar:looks_equivalent_number | number      | The equivalent number of looks (ENL). |
-| sar:observation_direction | string        | Antenna pointing direction relative to the flight trajectory of the satellite, either `left` or `right`.
+| Field Name                  | Type      | Description                                                  |
+| --------------------------- | --------- | ------------------------------------------------------------ |
+| sar:instrument_mode         | string    | **REQUIRED.** The name of the sensor acquisition mode that is commonly used. This should be the short name, if available. For example, `WV` for "Wave mode" of Sentinel-1 and Envisat ASAR satellites. |
+| sar:frequency_band          | string    | **REQUIRED.** The common name for the frequency band to make it easier to search for bands across instruments. See section "Common Frequency Band Names" for a list of accepted names. |
+| sar:center_frequency        | number    | The center frequency of the instrument, in gigahertz (GHz). |
+| sar:polarizations           | \[string] | **REQUIRED.** Any combination of polarizations. |
+| sar:product_type            | string    | **REQUIRED.** The product type, for example `SSC`, `MGD`, or `SGC` |
+| sar:resolution_range        | number    | The range resolution, which is the maximum ability to distinguish two adjacent targets perpendicular to the flight path, in meters (m).  |
+| sar:resolution_azimuth      | number    | The azimuth resolution, which is the maximum ability to distinguish two adjacent targets parallel to the flight path, in meters (m).  |
+| sar:pixel_spacing_range     | number    | The range pixel spacing, which is the distance between adjacent pixels perpendicular to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`. |
+| sar:pixel_spacing_azimuth   | number    | The azimuth pixel spacing, which is the distance between adjacent pixels parallel to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`. |
+| sar:looks_range             | number    | Number of range looks, which is the number of groups of signal samples (looks) perpendicular to the flight path. |
+| sar:looks_azimuth           | number    | Number of azimuth looks, which is the number of groups of signal samples (looks) parallel to the flight path. |
+| sar:looks_equivalent_number | number    | The equivalent number of looks (ENL). |
+| sar:observation_direction   | string    | Antenna pointing direction relative to the flight trajectory of the satellite, either `left` or `right`. |
 
 **sar:polarizations** specifies a single polarization or a polarization combination. For single polarized radars one of `HH`, `VV`, `HV` or `VH` must be set. Fully polarimetric radars add all four polarizations to the array. Dual polarized radars and alternating polarization add the corresponding polarizations to the array, for instance for `HH+HV` add both `HH` and `HV`.
 
 **sar:product_type**: The product type defines the type of procesed data contained in the assets. A list of suggestions include:
 
-| sar:product_type | Data Type | Description |
-|-------------------|----------------|----------------|
-| SSC | complex | Single-look Slant-range Complex image (standard SLC) |
-| MGD | amplitude | Multilooked Ground-range Detected image |
-| GRD | amplitude | Multilooked Ground-range Detected image (used by Sentinel-1)
-| GEC | amplitude | Geocoded Ellipsoid Corrected image |
-| GTC | amplitude | Geocoded Terrain Corrected image |
-| RTC | amplitude | Geocoded Radiometrically Terrain Corrected image |
-| SGC | complex | Single-look Ground projected Complex image |
-| SLC | complex | Single-look Ground projected Complex image (used by Sentinel-1) |
+| sar:product_type  | Type      | Description |
+| ----------------- | --------- | ----------- |
+| SSC               | complex   | Single-look Slant-range Complex image (standard SLC) |
+| MGD               | amplitude | Multilooked Ground-range Detected image |
+| GRD               | amplitude | Multilooked Ground-range Detected image (used by Sentinel-1) |
+| GEC               | amplitude | Geocoded Ellipsoid Corrected image |
+| GTC               | amplitude | Geocoded Terrain Corrected image |
+| RTC               | amplitude | Geocoded Radiometrically Terrain Corrected image |
+| SGC               | complex   | Single-look Ground projected Complex image |
+| SLC               | complex   | Single-look Ground projected Complex image (used by Sentinel-1) |
 
 This can vary by data provider, who all may use slightly different names. Sentinel-1 for instance uses `GRD`, wihch is the same as the more general `MGD` and `SLC` instead of `SGC`. 
-
 
 ### Common Frequency Band Names
 
@@ -78,9 +77,9 @@ In SAR, you usually have frame start and end time. To describe this information 
 The center time of the frame should be specified with the `datetime` property for [STAC Items](../../item-spec/item-spec.md).
 
 ### Item [`Asset Object`](../../item-spec/item-spec.md#asset-object) fields
-| Field Name        | Type     | Description                                  |
-| ----------------- | -------- | -------------------------------------------- |
-| sar:polarizations | [string] | Lists the polarizations available in the asset, in order. Any of `HH`, `VV`, `HV`, `VH`. |
+| Field Name        | Type      | Description                                  |
+| ----------------- | --------- | -------------------------------------------- |
+| sar:polarizations | \[string] | Lists the polarizations available in the asset, in order. Any of `HH`, `VV`, `HV`, `VH`. |
 
 ## Extensions
 

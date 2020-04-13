@@ -10,7 +10,7 @@ A group of STAC Item objects from a single source can share a lot of common meta
 
 This extension makes most sense in **static catalogs** to move common information to a central place. This reduces duplication of metadata and makes updates to static catalogs easier. It also makes navigating a static catalog easier as user know in advance which common fields to expect although Items can better be summarized with the `summaries` field in Collections. Therefore it is recommended to use the summaries for this use case and only use the Commons extension to avoid data duplication.
 
-In **API implementations** the Commons extension should not be used as it leads to less intuitive search results. For example, a search result for Items may not include the fields a user has searched for as it has been moved to the Collection, which may lead to confusion. Also, data duplication in dynamically created responses is usually not an issue and APIs derived from static catalogs can simply merge the common fields back into the Items for the response. In this case the `stac_extensions` field should not contain the `commons` extension any longer. To reduce the size of the response body, the [Fields API Extension](../../api-spec/extensions/fields/README.md) can be used.
+In **API implementations** the Commons extension should not be used as it leads to less intuitive search results. For example, a search result for Items may not include the fields a user has searched for as it has been moved to the Collection, which may lead to confusion. Also, data duplication in dynamically created responses is usually not an issue and APIs derived from static catalogs can simply merge the common fields back into the Items for the response. In this case the `stac_extensions` field should not contain the `commons` extension any longer. To reduce the size of the response body, the [Fields API Extension](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/fields/README.md) can be used.
 
 - [Examples](examples/):
   - Landsat 8: An [Item](examples/landsat-item.json) that uses the Commons extension to place shared data in a [Collection](examples/landsat-collection.json).
@@ -34,10 +34,10 @@ One is a field called `collection` in a STAC Item which is the `id` of a STAC Co
 
 A STAC Item must also provide a link to the STAC Collection using the `collection` rel type:
 
-```
+```js
 "links": [
+  { "rel": "collection", "href": "http://example.com/link/to/collection/record.json" },
   ...
-  { "rel": "collection", "href": "http://example.com/link/to/collection/record.json" }
 ]
 ```
 
@@ -46,9 +46,9 @@ A STAC Item must also provide a link to the STAC Collection using the `collectio
 To get the complete record of an Item (both individual and commons properties), the properties from the Collection can be merged with the Item.
 
 An incomplete Collection:
-```
+```js
 {
-  "stac_version": "0.9.0-rc2",
+  "stac_version": "0.9.0",
   "stac_extensions": ["commons"],
   "id": "landsat-8-l1",
   "title": "Landsat 8 L1",
@@ -76,9 +76,9 @@ An incomplete Collection:
 ```
 
 An incomplete item:
-```
+```js
 {
-  "stac_version": "0.9.0-rc2",
+  "stac_version": "0.9.0",
   "stac_extensions": ["commons", "eo", "view"],
   "type": "Feature",
   "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
@@ -98,9 +98,9 @@ An incomplete item:
 
 The merged Item then looks like this:
 
-```
+```js
 {
-  "stac_version": "0.9.0-rc2",
+  "stac_version": "0.9.0",
   "stac_extensions": ["eo", "view"],
   "type": "Feature",
   "id": "LC08_L1TP_107018_20181001_20181001_01_RT",

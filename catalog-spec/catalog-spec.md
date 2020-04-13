@@ -45,8 +45,7 @@ of each catalog under a megabyte.
 
 A simple Catalog structure might look like this:
 
-```
-catalog (root)
+- catalog (root)
   - catalog
     - catalog
       - item
@@ -56,7 +55,6 @@ catalog (root)
     - item
       - asset
       - asset
-```
 
 This example might be considered a somewhat "typical" structure. However, catalogs and items can
 describe a number of different relationships. The following shows various relationships between
@@ -73,13 +71,13 @@ the `rel` attribute to further describe the relationship.
 
 There are a few types of catalogs that implementors occasionally refer to. These get defined by the `links` structure.
 
- * A **sub-catalog** is a Catalog that is linked to from another Catalog that is used to better organize data. For example a Landsat collection
- might have sub-catalogs for each Path and Row, so as to create a nice tree structure for users to follow.
- * A **root catalog** is a Catalog that only links to sub-catalogs. These are typically entry points for browsing data. Often
- they will contain the [STAC Collection](../collection-spec) definition, but in implementations that publish diverse information it may
- contain sub-catalogs that provide a variety of collections.
- * A **parent catalog** is the Catalog that sits directly above a sub-catalog. Following parent catalog links continuously
- will naturally end up at a root catalog definition.
+- A **sub-catalog** is a Catalog that is linked to from another Catalog that is used to better organize data. For example a Landsat collection
+  might have sub-catalogs for each Path and Row, so as to create a nice tree structure for users to follow.
+- A **root catalog** is a Catalog that only links to sub-catalogs. These are typically entry points for browsing data. Often
+  they will contain the [STAC Collection](../collection-spec) definition, but in implementations that publish diverse information it may
+  contain sub-catalogs that provide a variety of collections.
+- A **parent catalog** is the Catalog that sits directly above a sub-catalog. Following parent catalog links continuously
+  will naturally end up at a root catalog definition.
  
 It should be noted that a Catalog does not have to link back to all the other Catalogs that point to it. Thus a published 
 root catalog might be a sub-catalog of someone else's structure. The goal is for data providers to publish all the 
@@ -96,7 +94,7 @@ guidance for good recommendations when implementing.
 | Element         | Type          | Description                                                  |
 | --------------- | ------------- | ------------------------------------------------------------ |
 | stac_version    | string        | **REQUIRED.** The STAC version the catalog implements. STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind. |
-| stac_extensions | [string]      | A list of extension identifiers the Catalog implements.                 |
+| stac_extensions | \[string]     | A list of extension identifiers the Catalog implements.                 |
 | id              | string        | **REQUIRED.** Identifier for the catalog.                    |
 | title           | string        | A short descriptive one-line title for the catalog.          |
 | description     | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
@@ -129,7 +127,7 @@ The following types are commonly used as `rel` types in the Link Object of a STA
 
 | Type    | Description |
 | ------- | ----------- |
-| self    | STRONGLY RECOMMENDED. _Absolute_ URL to the location that the catalog file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
+| self    | STRONGLY RECOMMENDED. *Absolute* URL to the location that the catalog file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root    | STRONGLY RECOMMENDED. URL to the root STAC Catalog or [Collection](../collection-spec/README.md). Catalogs should include a link to their root, even if it's the root and points to itself. |
 | parent  | URL to the parent STAC Catalog or [Collection](../collection-spec/README.md). Non-root catalogs should include a link to their parent. |
 | child   | URL to a child STAC Catalog or [Collection](../collection-spec/README.md). |
@@ -145,7 +143,7 @@ might look something like this:
 
 ```json
 {
-  "stac_version": "0.9.0-rc2",
+  "stac_version": "0.9.0",
   "id": "NAIP",
   "description": "Catalog of NAIP Imagery",
   "links": [
@@ -159,11 +157,11 @@ might look something like this:
 In addition, the catalog shown above is strongly recommended to also follow the [STAC Collection specification](../collection-spec/collection-spec.md) 
 to add more information about the NAIP imagery such as the spatial and temporal extents, a license and more.
 
-A typical '_child_' sub-catalog could look similar:
+A typical *child* sub-catalog could look similar:
 
 ```json
 {
-  "stac_version": "0.9.0-rc2",
+  "stac_version": "0.9.0",
   "id": "NAIP",
   "description": "Catalog of NAIP Imagery - 30087",
   "links": [
