@@ -25,7 +25,6 @@ that is publishing a set of related spatiotemporal assets is strongly recommende
 contained in a catalog, to give contextual information to aid in discovery. Every STAC Collection is 
 also a valid STAC Catalog.
 
-
 ## Catalog fields
 
 | Element         | Type          | Description                                                  |
