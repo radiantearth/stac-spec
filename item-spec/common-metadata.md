@@ -142,5 +142,5 @@ Fields to describe the metadata file itself. These fields do NOT describe the as
 
 | Field Name | Type   | Description |
 | ---------- | ------ | ----------- |
-published    | string | Date and time the metadata file was first published. This is NOT the timestamp the asset was created. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
+| published  | string | Date and time the metadata file was first published. This is NOT the timestamp the asset was created. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
 | updated    | string | Date and time the metadata file was updated last. This is NOT the timestamp the asset was updated last. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
