@@ -12,7 +12,7 @@ few best practices to evolve and improvements to the spec that will be needed.
 ## Implementations and Feedback
 
 The best way to help out with STAC is to try to implement the specification, either a [static catalog](catalog-spec/README.md), a 
-[catalog api](api-spec/README.md) or even both. This can be done by extending existing catalog software, creating new software, or 
+[catalog api](https://github.com/radiantearth/stac-api-spec) or even both. This can be done by extending existing catalog software, creating new software, or 
 standing up a service end point that exposes data. Implementations using the specification as it stands will likely 
 have to make a number of decisions while building, as there is a lot that is left unspecified. The best thing to do 
 is to document those decisions, and share them with the core STAC group. Ideally make mini-specifications, but even just
@@ -116,4 +116,3 @@ languages.
 **Cool Extensions** - STAC should be a core that others build cool advanced catalog functionality on. Things like aggregation,
 both spatial (coverage maps) and fields (total stats, histograms), offline catalogs, crossfilter querying, faceted search,
 etc.
-

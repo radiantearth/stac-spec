@@ -37,7 +37,6 @@ For defining view geometry of data, it is strongly recommended to use the [`view
 | eo:bands         | [[Band Object](#band-object)] | **REQUIRED.** This is a list of the available bands where each item is a [Band Object](#band-object). |
 | eo:cloud_cover   | number                   | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided. |
 
-
 ### Ground Sampling Distance
 
 **eo:gsd** is the nominal Ground Sample Distance for the data, as measured in meters on the ground. There are many
@@ -98,12 +97,13 @@ The difference between the `nir`, `nir08`, and `nir09` bands are that the `nir` 
 Asset definitions that contain band data should reference the band index. Each asset should provide a `eo:bands` property that is an array of 0 based indexes to the correct [Band Objects](#band-object).
 
 ### Item [`Asset Object`](../../item-spec/item-spec.md#asset-object) fields
-| Field Name | Type     | Description                                  |
-| ---------- | -------- | -------------------------------------------- |
-| eo:bands   | [number] | Lists the band names available in the asset. |
+| Field Name | Type      | Description                                  |
+| ---------- | --------- | -------------------------------------------- |
+| eo:bands   | \[number] | Lists the band names available in the asset. |
 
 See [example-landsat8.json](examples/example-landsat8.json) for a full example.
-```
+
+```js
 {
   "stac_version": "0.9.0",
   "stac_extensions": ["eo"],
@@ -157,9 +157,10 @@ See [example-landsat8.json](examples/example-landsat8.json) for a full example.
   }
 }
 ```
+
 Planet example:
 
-```
+```js
 {
   "stac_version": "0.9.0",
   "stac_extensions": ["eo"],
