@@ -47,7 +47,7 @@ Points, proj:wkt2 should be set to null. It should also be set to null if a CRS 
 a WKT2 string does not exist.
 
 **proj:projjson** - A Coordinate Reference System (CRS) is the data reference system (sometimes called a
-'projection') used by the asset data. This value is a [PROJJSON](https://proj.org/usage/projjson.html) object.
+'projection') used by the asset data. This value is a [PROJJSON](https://proj.org/specifications/projjson.html) object.
 If the data does not have a CRS, such as in the case of non-rectified imagery with Ground Control
 Points, proj:projjson should be set to null. It should also be set to null if a CRS exists, but for which
 a PROJJSON string does not exist. The schema for this object can be found [here](https://proj.org/schemas/v0.1/projjson.schema.json).
