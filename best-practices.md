@@ -6,6 +6,7 @@
 * [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
 * [Catalog Layout](#catalog-layout)
 * [Use of Links](#use-of-links)
+* [Versioning for Catalogs](#versioning-for-catalogs)
 * [STAC on the Web](#stac-on-the-web)
 
 ---------
@@ -141,32 +142,6 @@ Self-contained catalogs are not just for offline use, however - they are designe
 on the cloud in object storage. They just aim to ease the burden of publishing, by not requiring lots of updating of links. 
 Adding a single `self` link at the root is recommended for online catalogs, turning it into a 'relative published catalog', as detailed below. This anchors it in an online location and enable provenance tracking.
 
-### Versioning for Catalogs
-
-In the Item and Collection STAC files or API responses, versions and deprecation can be indicated with the [Versioning Indicators Extension](./extensions/version).
-
-The [Items and Collections API Version Extension](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/version/README.md) provides endpoints and semantics for keeping and accessing previous versions of Collections and Items. The same semantics can be used in static catalogs to preserve previous versions of the documents and link them together.
-
-In order to achieve this, the static catalog must make sure that for every record created, a copy of the record is also created in a separate location and it is named with the version id adopted by the catalog. See [here](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/version/README.md#version-id) for recommendations on versioning schema.
-
-The main record should also provide a link to the versioned record following the linking patterns described [here](./extensions/version/README.md#relation-types). For every update to the record, the same cycle is repeated:
-
-1. Add link from the updated record to the previous version
-2. Create a copy of the updated record and name it correctly
-
-#### Example
-
-When the record `my_item.json` is created, a copy of it is also created. `my_item.json` includes `permalink` to `my_item_01.json`. The version suffix of the file name is taken from the version field of the record when it is available.
-
-- `root / collections / example_collection / items / my_item / my_item.json`
-- `root / collections / example_collection / items / my_item / my_item_01.json`
-
-When `my_item.json` is updated, the new `my_item.json` includes a link to `my_item_01.json` and is also copied to `my_item_02.json`. This ensures that `my_item_02.json` includes a link to `my_item_01.json`
-
-- `root / collections / example_collection / items / my_item / my_item.json`
-- `root / collections / example_collection / items / my_item / my_item_01.json`
-- `root / collections / example_collection / items / my_item / my_item_02.json`
-
 ### Published Catalogs
 
 A 'published catalog' is one that lives online in a stable location, and uses `self` links to establish its location and 
@@ -181,6 +156,32 @@ the root catalog, to identify its online location. This is designed so that a se
 by just adding one field (the self link) to its root catalog. All the other links should remain relative. With this, the 
 resolution of item and sub-catalog self links may be done by traversing parent and root links, but requires reading multiple 
 sources to achieve this.
+
+## Versioning for Catalogs
+
+In the Item and Collection STAC files or API responses, versions and deprecation can be indicated with the [Versioning Indicators Extension](./extensions/version).
+
+The [Items and Collections API Version Extension](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/version/README.md) provides endpoints and semantics for keeping and accessing previous versions of Collections and Items. The same semantics can be used in static catalogs to preserve previous versions of the documents and link them together.
+
+In order to achieve this, the static catalog must make sure that for every record created, a copy of the record is also created in a separate location and it is named with the version id adopted by the catalog. See [here](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/version/README.md#version-id) for recommendations on versioning schema.
+
+The main record should also provide a link to the versioned record following the linking patterns described [here](./extensions/version/README.md#relation-types). For every update to the record, the same cycle is repeated:
+
+1. Add link from the updated record to the previous version
+2. Create a copy of the updated record and name it correctly
+
+### Example
+
+When the record `my_item.json` is created, a copy of it is also created. `my_item.json` includes `permalink` to `my_item_01.json`. The version suffix of the file name is taken from the version field of the record when it is available.
+
+- `root / collections / example_collection / items / my_item / my_item.json`
+- `root / collections / example_collection / items / my_item / my_item_01.json`
+
+When `my_item.json` is updated, the new `my_item.json` includes a link to `my_item_01.json` and is also copied to `my_item_02.json`. This ensures that `my_item_02.json` includes a link to `my_item_01.json`
+
+- `root / collections / example_collection / items / my_item / my_item.json`
+- `root / collections / example_collection / items / my_item / my_item_01.json`
+- `root / collections / example_collection / items / my_item / my_item_02.json`
 
 ## STAC on the Web
 
