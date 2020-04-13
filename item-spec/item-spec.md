@@ -78,7 +78,7 @@ datetime fields.
 #### Additional Fields
 
 Providers should include metadata fields that are relevant for users in the catalog, but it is recommended
-to [select only those necessary for search](best-practices.md#field-selection-and-metadata-linking). 
+to [select only those necessary for search](../best-practices.md#field-selection-and-metadata-linking). 
 Where possible metadata fields should be mapped to the STAC Common Metadata and widely used extensions,
 to enable cross-catalog search on known fields.
 
@@ -126,7 +126,7 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may use the use the [Commons extension](../extensions/commons/README.md) to hold common fields of this and other Items (see chapter '[Collections](#Collections)' for more explanations). *Absolute* URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
-| alternate    | It is recommended that STAC Items are also available as HTML, and should use `"rel" : "alternate"` with `"type" : "text/html"` to tell clients where they can get a version of the Item to view in a browser. See [STAC on the Web in Best Practices](../best-practices.md#stac-on-the-web) for more information.
+| alternate    | It is recommended that STAC Items are also available as HTML, and should use this rel with `"type" : "text/html"` to tell clients where they can get a version of the Item to view in a browser. See [STAC on the Web in Best Practices](../best-practices.md#stac-on-the-web) for more information. |
 
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
 
