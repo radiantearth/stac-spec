@@ -35,7 +35,7 @@ people can just search for 'landsat-8', instead of thinking through all the ways
 
 ## Static and Dynamic Catalogs
 
-As mentioned in the main [Catalog specification](catalog-spec/catalog-spec.md), there are two main types of catalogs - static
+As mentioned in the main [Catalog overview](catalog-spec/catalog-overview.md), there are two main types of catalogs - static
 and dynamic. This section explains each of them in more depth and shares some best practices on each.
 
 ### Static Catalogs
