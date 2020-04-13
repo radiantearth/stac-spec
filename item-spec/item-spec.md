@@ -22,12 +22,6 @@ required fields is a valid STAC Item.
   - Real world [implementations](../implementations.md) are also available.
 - [JSON Schema](json-schema/item.json)
 
-## WARNING
-
-**This is still an early version of the STAC spec, expect that there may be some changes before everything is finalized.**
-
-Implementations are encouraged, however, as good effort will be made to not change anything too drastically. Using the specification now will ensure that needed changes can be made before everything is locked in. So now is an ideal time to implement, as your feedback will be directly incorporated. 
-
 ## Item fields
 
 This object describes a STAC Item. The fields `id`, `type`, `bbox`, `geometry` and `properties` are 
@@ -82,6 +76,12 @@ extensions may further specify the meaning of the main `datetime` field, and man
 datetime fields.
 
 #### Additional Fields
+
+Providers should include metadata fields that are relevant for users in the catalog, but it is recommended
+to [select only those necessary for search](best-practices.md#field-selection-and-metadata-linking). 
+Where possible metadata fields should be mapped to the STAC Common Metadata and widely used extensions,
+to enable cross-catalog search on known fields.
+
 * [STAC Common Metadata](common-metadata.md#stac-common-metadata) - A list of fields commonly used 
 throughout all domains. These optional fields are included for STAC Items by default.
 * [Content Extensions](../extensions/README.md#list-of-content-extensions) - Domain-specific fields 
