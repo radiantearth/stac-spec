@@ -11,8 +11,8 @@ which extends Catalogs with additional fields to further describe the set of Ite
 fields with Catalogs and therefore every Collection is also a valid Catalog.
 
 Catalogs are designed so that a simple file server on the web or object store like Amazon S3 can store JSON that defines a 
-full Catalog. More dynamic services can also return a Catalog structure, and the [STAC API](../api-spec/) folder contains 
-an OpenAPI definition of the standard way to do this, at the `/stac/` endpoint. 
+full Catalog. More dynamic services can also return a Catalog structure, and the [STAC API](https://github.com/radiantearth/stac-api-spec)
+specification contains an OpenAPI definition of the standard way to do this, at the `/` endpoint. 
 
 ## In this directory
 
@@ -20,7 +20,7 @@ an OpenAPI definition of the standard way to do this, at the `/stac/` endpoint.
 It includes an overview and in depth explanation of the structures and fields.
 
 **Best Practices:** While the main spec is designed to be quite flexible, there are a set of emerging best practices for
-how to actually manage a catalog. The *[catalog-best-practices.md](catalog-best-practices.md)* document lays out a number
+how to actually manage a catalog. The *[catalog-best-practices.md](../best-practices.md#static-and-dynamic-catalogs)* document lays out a number
 of these. In time some of these may evolve to be part of the core spec.
 
 **Examples:** For samples of how Catalogs can be implemented the *[examples/](examples/)* folder
@@ -31,8 +31,7 @@ The primary one is *[catalog.json](json-schema/catalog.json)*.
 
 ## Schema Validation
 
-Instruction on schema validation for STAC Catalog can be found in the [validation instructions](validation/README.md).
-
+Instruction on schema validation for STAC Catalog can be found in the [validation instructions](../validation/README.md).
 
 ## Catalog Evolution 
 
@@ -40,5 +39,3 @@ The Catalog specification is maturing, but it is still relatively early days. Th
 narrowly, to just describe a structure that can be followed by people or machines, so most additional functionality will
 be defined in additional specifications and extensions. The only anticipated changes to the core of Catalog are to add in
 additional extension mechanisms for others to use.
-
-

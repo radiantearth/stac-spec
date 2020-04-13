@@ -1,49 +1,62 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "stac-extension-datacube.json#",
+  "$id": "schema.json#",
   "title": "Data Cube Extension",
-  "type": "object",
-  "description": "STAC Data Cube Extension",
-  "allOf": [
+  "description": "STAC Data Cube Extension to STAC Items and STAC Collections",
+  "oneOf": [
     {
-      "$ref": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/json-schema/item.json#/definitions/core"
+      "allOf": [
+        {
+          "$ref": "../../../item-spec/json-schema/item.json"
+        },
+        {
+          "type": "object",
+          "required": [
+            "properties"
+          ],
+          "properties": {
+            "properties": {
+              "$ref": "#/definitions/datacube"
+            }
+          }
+        }
+      ]
     },
     {
-      "$ref": "#/definitions/datacube"
+      "allOf": [
+        {
+          "$ref": "../../../collection-spec/json-schema/collection.json"
+        },
+        {
+          "$ref": "#/definitions/datacube"
+        }
+      ]
     }
   ],
   "definitions": {
     "datacube": {
       "type": "object",
       "required": [
-        "properties"
+        "cube:dimensions"
       ],
       "properties": {
-        "properties": {
+        "cube:dimensions": {
           "type": "object",
-          "required": [
-            "cube:dimensions"
-          ],
-          "properties": {
-            "cube:dimensions": {
-              "type": "object",
-              "additionalProperties": {
-                "anyOf": [
-                  {
-                    "$ref": "#/definitions/objects/additional_dimension"
-                  },
-                  {
-                    "$ref": "#/definitions/objects/horizontal_spatial_dimension"
-                  },
-                  {
-                    "$ref": "#/definitions/objects/vertical_spatial_dimension"
-                  },
-                  {
-                    "$ref": "#/definitions/objects/temporal_dimension"
-                  }
-                ]
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/objects/additional_dimension"
+              },
+              {
+                "$ref": "#/definitions/objects/horizontal_spatial_dimension"
+              },
+              {
+                "$ref": "#/definitions/objects/vertical_spatial_dimension"
+              },
+              {
+                "$ref": "#/definitions/objects/temporal_dimension"
               }
-            }
+            ]
           }
         }
       }
@@ -83,6 +96,9 @@
               }
             ]
           },
+          "description": {
+            "$ref": "#/definitions/fields/description"
+          },
           "extent": {
             "$ref": "#/definitions/fields/extent_open"
           },
@@ -114,6 +130,9 @@
           },
           "axis": {
             "$ref": "#/definitions/fields/axis_xy"
+          },
+          "description": {
+            "$ref": "#/definitions/fields/description"
           },
           "extent": {
             "$ref": "#/definitions/fields/extent_closed"
@@ -155,6 +174,9 @@
           "axis": {
             "$ref": "#/definitions/fields/axis_z"
           },
+          "description": {
+            "$ref": "#/definitions/fields/description"
+          },
           "extent": {
             "$ref": "#/definitions/fields/extent_open"
           },
@@ -186,6 +208,9 @@
           "type": {
             "type": "string",
             "const": "temporal"
+          },
+          "description": {
+            "$ref": "#/definitions/fields/description"
           },
           "values": {
             "type": "array",
@@ -282,9 +307,13 @@
       "reference_system_spatial": {
         "type": [
           "string",
-          "number"
+          "number",
+          "object"
         ],
         "default": 4326
+      },
+      "description": {
+        "type": "string"
       }
     }
   }

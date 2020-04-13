@@ -1,18 +1,16 @@
 version: 2
 jobs:
-  build:
+  test_examples:
     working_directory: ~/stac
     docker:
-      - image: circleci/python:3.6.4
-
+      - image: circleci/python:3.7
     steps:
       - checkout
       - run: sudo chown -R circleci:circleci /usr/local/bin
-      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
       - run:
           name: install
-          command: |
-            pip install stac-validator
+          command: pip install stac-validator
       - run:
           name: validate
           command: |
@@ -25,3 +23,21 @@ jobs:
             stac_validator item-spec/examples/landsat8-sample.json
             stac_validator item-spec/examples/digitalglobe-sample.json
             stac_validator item-spec/examples/CBERS_4_MUX_20181029_177_106_L4.json
+  test_docs:
+    working_directory: ~/stac
+    docker:
+      - image: circleci/node:12
+    steps:
+      - checkout
+      - run:
+          name: install
+          command: npm install
+      - run:
+          name: validate
+          command: npm run check-markdown
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test_examples
+      - test_docs

@@ -1,0 +1,70 @@
+{
+  "stac_version": "0.9.0",
+  "stac_extensions": [
+    "scientific",
+    "checksum"
+  ],
+  "id": "MERRAclim.2_5m_min_80s",
+  "type": "Feature",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [-180,-90],
+        [180,-90],
+        [180,90],
+        [-180,90],
+        [-180,-90]
+      ]
+    ]
+  },
+  "bbox": [-180,-90,180,90],
+  "properties": {
+    "title": "MERRAclim. 2_5m_min_80s",
+    "description": "MERRAclim Dataset. 19 global bioclimatic variables from the 1980s decade at 2.5 arcminutes resolution in GEOtiff format. The humidity version used is the min. The variables have been built using the same protocol as WorldClim with data from MERRA. Temperature layers (BIO1-BIO11) are in degree Celsius multiplied by 10, humidity layers (BIO12-BIO19) are in kg of water/kg of air multiplied by 100000.",
+    "datetime": "1985-07-01T00:00:00Z",
+    "start_datetime": "1980-01-01T00:00:00Z",
+    "end_datetime": "1989-12-31T23:59:59Z",
+    "sci:doi": "10.5061/dryad.s2v81.2/27.2",
+    "sci:publications": [
+      {
+        "doi": "10.5061/dryad.s2v81.2",
+        "citation": "Vega GC, Pertierra LR, Olalla-Tárraga MÁ (2017) Data from: MERRAclim, a high-resolution global dataset of remotely sensed bioclimatic variables for ecological modelling. Dryad Digital Repository."
+      },
+      {
+        "doi": "10.1038/sdata.2017.78",
+        "citation": "Vega GC, Pertierra LR, Olalla-Tárraga MÁ (2017) MERRAclim, a high-resolution global dataset of remotely sensed bioclimatic variables for ecological modelling. Scientific Data 4: 170078."
+      }
+    ]
+  },
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://datadryad.org/resource/doi:10.5061/dryad.s2v81/item.json"
+    },
+    {
+      "rel": "root",
+      "href": "https://datadryad.org/resource/doi:10.5061/dryad.s2v81/catalog.json"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.5061/dryad.s2v81.2/27.2"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.5061/dryad.s2v81.2"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.1038/sdata.2017.78"
+    }
+  ],
+  "assets": {
+    "primary": {
+      "href": "https://datadryad.org/stash/downloads/file_stream/100467",
+      "type": "application/zip",
+      "title": "MERRAclim. 2_5m_min_80s",
+      "checksum:multihash": "90e4021044a8995dd50b6657a037a7839304535b"
+    }
+  }
+}

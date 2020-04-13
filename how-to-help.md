@@ -7,12 +7,12 @@ If others in the community create similar functionality with their geospatial ac
 evolve extension standards that enable increased interoperability.
 
 Right now we are in the very early days of the collaboration. So while there is a core specification there is still quite a 
-few best practices to evolve and [improvements](roadmap.md) to the spec that will be needed. 
+few best practices to evolve and improvements to the spec that will be needed. 
 
 ## Implementations and Feedback
 
 The best way to help out with STAC is to try to implement the specification, either a [static catalog](catalog-spec/README.md), a 
-[catalog api](api-spec/README.md) or even both. This can be done by extending existing catalog software, creating new software, or 
+[catalog api](https://github.com/radiantearth/stac-api-spec) or even both. This can be done by extending existing catalog software, creating new software, or 
 standing up a service end point that exposes data. Implementations using the specification as it stands will likely 
 have to make a number of decisions while building, as there is a lot that is left unspecified. The best thing to do 
 is to document those decisions, and share them with the core STAC group. Ideally make mini-specifications, but even just
@@ -27,10 +27,6 @@ This section lays out a path of implementations that will be necessary to make t
 the hoped for ecosystem of tools and data that hopefully will come to pass. Many are things anyone could help out with an 
 implement. Some depend on particular knowledge or background, like deep involvement with an open source project. And some
 only a few people are able to do, since they depend on working for a particular company.
-
-In time we may try to track these in their own project, but for now this list should be sufficient. It is a complement
-to the [roadmap](roadmap.md), which is just for the specification itself. But that roadmap will only evolve with this
-set of work on real implementations to inform it.
 
 ### Tier 1
 
@@ -66,7 +62,7 @@ well as a nice command line tool.
 **API -> Static catalog tool** - Building on top of core client and server tooling in tier one can introduce some cool value add tools.
 A client library that crawls a STAC API and can create a static STAC can be used as a 'backup' tool for an API, making a copy
 of the catalog that can't go down (ideally this would extend the spec to have a link 'rel' type that refers back to the source
-data as a [spec extension](https://github.com/radiantearth/stac-spec/blob/dev/roadmap.md#provenance--duplication-tracking). 
+data as a [spec extension](extensions/). 
 
 **Static catalog -> API tool** - The flip of the previous tool,  a STAC API could crawl a static catalog and serve as a 
 dynamic query service on top of the core.
@@ -120,4 +116,3 @@ languages.
 **Cool Extensions** - STAC should be a core that others build cool advanced catalog functionality on. Things like aggregation,
 both spatial (coverage maps) and fields (total stats, histograms), offline catalogs, crossfilter querying, faceted search,
 etc.
-

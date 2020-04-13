@@ -1,0 +1,43 @@
+{
+  "stac_version": "0.9.0",
+  "stac_extensions": [],
+  "type": "Feature",
+  "bbox": [2.23379639995, 49.0178709, 2.23730639995, 49.0213809],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[
+      [2.23379639995, 49.0178709],
+      [2.23730639995, 49.0178709],
+      [2.23730639995, 49.0213809],
+      [2.23379639995, 49.0213809]
+    ]]
+  },
+  "id": "AOI_3_Paris_img101",
+  "properties": {
+    "collection": "imagery",
+    "datetime": "2016-08-26T22:41:55.000000Z"
+  },
+  "assets": {
+    "rgb": {
+      "title": "RGB Pan Sharpened (primary)",
+      "href": "https://spacenet-dataset.s3.amazonaws.com/SpaceNet_Roads_Competition/Train/AOI_3_Paris_Roads_Train/RGB-PanSharpen/RGB-PanSharpen_AOI_3_Paris_img101.tif",
+      "type": "image/tiff; application=geotiff"
+    },
+    "multi": {
+      "title": "8 band multispectral",
+      "href": "https://spacenet-dataset.s3.amazonaws.com/SpaceNet_Roads_Competition/Train/AOI_3_Paris_Roads_Train/MUL/MUL_AOI_3_Paris_img101.tif",
+      "type": "image/tiff; application=geotiff"
+    },
+    "multi-pan": {
+      "title": "8 band pan-sharpened multispectral",
+      "href": "https://spacenet-dataset.s3.amazonaws.com/SpaceNet_Roads_Competition/Train/AOI_3_Paris_Roads_Train/MUL-PanSharpen/MUL-PanSharpen_AOI_3_Paris_img101.tif",
+      "type": "image/tiff; application=geotiff"
+    },
+    "pan": {
+      "title": "Single band panchromatic",
+      "href": "https://spacenet-dataset.s3.amazonaws.com/SpaceNet_Roads_Competition/Train/AOI_3_Paris_Roads_Train/PAN/PAN_AOI_3_Paris_img101.tif",
+      "type": "image/tiff; application=geotiff"
+    }
+  },
+  "links": []
+}

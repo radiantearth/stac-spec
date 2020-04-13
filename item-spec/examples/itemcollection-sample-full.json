@@ -1,0 +1,89 @@
+{
+  "stac_version": "0.9.0",
+  "stac_extensions": [],
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "stac_version": "0.9.0",
+      "stac_extensions": [],
+      "type": "Feature",
+      "id": "CS3-20160503_132131_05",
+      "bbox": [
+        -122.59750209,
+        37.48803556,
+        -122.2880486,
+        37.613537207
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.308150179,
+              37.488035566
+            ],
+            [
+              -122.597502109,
+              37.538869539
+            ],
+            [
+              -122.576687533,
+              37.613537207
+            ],
+            [
+              -122.288048600,
+              37.562818007
+            ],
+            [
+              -122.308150179,
+              37.488035566
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "datetime": "2016-05-03T13:22:30.040Z",
+        "title": "A CS3 item",
+        "license": "PDDL-1.0",
+        "providers": [
+          {
+            "name": "CoolSat",
+            "roles": [
+              "producer",
+              "licensor"
+            ],
+            "url": "https://cool-sat.com/"
+          }
+        ]
+      },
+      "collection": "CS3",
+      "links": [
+        {
+          "rel": "self",
+          "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json"
+        },
+        {
+          "rel": "collection",
+          "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/catalog.json"
+        }
+      ],
+      "assets": {
+        "analytic": {
+          "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/analytic.tif",
+          "title": "4-Band Analytic"
+        },
+        "thumbnail": {
+          "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png",
+          "title": "Thumbnail",
+          "roles": [ "thumbnail" ]
+        }
+      }
+    }
+  ],
+  "links": [
+    {
+      "rel": "self",
+      "href": "http://stac.example.com/search?collection=CS3"
+    }
+  ]
+}

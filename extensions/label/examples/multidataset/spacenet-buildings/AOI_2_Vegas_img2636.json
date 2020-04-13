@@ -1,0 +1,103 @@
+{
+  "stac_version": "0.9.0",
+  "stac_extensions": [
+    "label",
+    "version"
+  ],
+  "id": "AOI_2_Vegas_img2636",
+  "type": "Feature",
+  "bbox": [
+    -115.23556259985658,
+    36.12654269972625,
+    -115.23412932899998,
+    36.12829769972975
+  ],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        -115.23556259985658,
+        36.12654269972625
+      ],
+      [
+        -115.23556259985658,
+        36.12829769972975
+      ],
+      [
+        -115.23412932899998,
+        36.12829769972975
+      ],
+      [
+        -115.23412932899998,
+        36.12654269972625
+      ]
+    ]
+  },
+  "assets": {
+    "labels": {
+      "title": "AOI_2_Vegas_img2636_label",
+      "href": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN2_buildings/train/AOI_2_Vegas/geojson_buildings/SN2_buildings_train_AOI_2_Vegas_geojson_buildings_img2636.geojson",
+      "type": "application/geo+json",
+      "license": "CC-BY-SA-4.0"
+    },
+    "raster": {
+      "title": "AOI_2_Vegas_img2636_previewcog",
+      "href": "https://spacenet-dataset.s3.amazonaws.com/AOIs/AOI_2_Vegas/PS-MS/AOI_2_Vegas_PS-MS_COG.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized"
+    }
+  },
+  "properties": {
+    "datetime": "2016-08-26T22:41:55.000000Z",
+    "label:properties": [
+      "OBJECTID_1"
+    ],
+    "label:description": "building footprints manually labeled",
+    "label:tasks": [
+      "segmentation"
+    ],
+    "label:type": "vector",
+    "label:methods": [
+      "manual"
+    ],
+    "version": "1",
+    "label:classes": [
+      {
+        "name": "OBJECTID_1",
+        "classes": [
+          "0"
+        ]
+      }
+    ],
+    "label:overviews": [
+      {
+        "property_key": "OBJECTID_1",
+        "counts": [
+          {
+            "name": "0",
+            "count": 27
+          }
+        ]
+      }
+    ]
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json"
+    },
+    {
+      "rel": "parent",
+      "href": "collection.json"
+    },
+    {
+      "rel": "collection",
+      "href": "collection.json"
+    },
+    {
+      "rel": "source",
+      "href": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN2_buildings/train/AOI_2_Vegas/PS-RGB/SN2_buildings_train_AOI_2_Vegas_PS-RGB_img2636.tif",
+      "title": "The source imagery these building labels were derived from",
+      "label:assets": "OBJECTID_1"
+    }
+  ]
+}

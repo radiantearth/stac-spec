@@ -1,0 +1,104 @@
+{
+  "stac_version": "0.9.0",
+  "stac_extensions": [
+    "label",
+    "version"
+  ],
+  "id": "AOI_3_Paris_img1648",
+  "type": "Feature",
+  "bbox": [
+    2.288201399928881,
+    49.00383090002822,
+    2.289956399928177,
+    49.00558590002751
+  ],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        2.288201399928881,
+        49.00383090002822
+      ],
+      [
+        2.289956399928177,
+        49.00383090002822
+      ],
+      [
+        2.289956399928177,
+        49.00558590002751
+      ],
+      [
+        2.288201399928881,
+        49.00558590002751
+      ]
+    ]
+  },
+  "assets": {
+    "labels": {
+      "title": "AOI_3_Paris_img1648_label",
+      "href": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN2_buildings/train/AOI_3_Paris/geojson_buildings/SN2_buildings_train_AOI_3_Paris_geojson_buildings_img1648.geojson",
+      "type": "application/geo+json",
+      "license": "CC-BY-SA-4.0"
+    },
+    "raster": {
+      "title": "AOI_3_Paris_img1648_previewcog",
+      "href": "https://spacenet-dataset.s3.amazonaws.com/AOIs/AOI_3_Paris/PS-MS/AOI_3_Paris_PS-MS_COG.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "license": "CC-BY-SA-4.0"
+    }
+  },
+  "properties": {
+    "datetime": "2016-08-26T22:41:55.000000Z",
+    "label:properties": [
+      "OBJECTID_1"
+    ],
+    "label:description": "building footprints manually labeled",
+    "label:tasks": [
+      "segmentation"
+    ],
+    "label:type": "vector",
+    "label:methods": [
+      "manual"
+    ],
+    "version": "1",
+    "label:classes": [
+      {
+        "name": "OBJECTID_1",
+        "classes": [
+          "0"
+        ]
+      }
+    ],
+    "label:overviews": [
+      {
+        "property_key": "OBJECTID_1",
+        "counts": [
+          {
+            "name": "0",
+            "count": 39
+          }
+        ]
+      }
+    ]
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json"
+    },
+    {
+      "rel": "parent",
+      "href": "collection.json"
+    },
+    {
+      "rel": "collection",
+      "href": "collection.json"
+    },
+    {
+      "rel": "source",
+      "href": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN2_buildings/train/AOI_3_Paris/PS-RGB/SN2_buildings_train_AOI_3_Paris_PS-RGB_img1648.tif",
+      "title": "The source imagery these building labels were derived from",
+      "label:assets": "OBJECTID_1"
+    }
+  ]
+}

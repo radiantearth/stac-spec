@@ -1,0 +1,118 @@
+{
+  "stac_version": "0.9.0",
+  "stac_extensions": [
+    "datacube"
+  ],
+  "id": "datacube-123",
+  "type": "Feature",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -122.308150179,
+          37.488035566
+        ],
+        [
+          -122.597502109,
+          37.538869539
+        ],
+        [
+          -122.576687533,
+          37.613537207
+        ],
+        [
+          -122.2880486,
+          37.562818007
+        ],
+        [
+          -122.308150179,
+          37.488035566
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -122.59750209,
+    37.48803556,
+    -122.2880486,
+    37.613537207
+  ],
+  "properties": {
+    "title": "Multi-dimensional data cube 123 in a STAC Item.",
+    "datetime": "2016-05-03T13:21:30.040Z",
+    "cube:dimensions": {
+      "x": {
+        "type": "spatial",
+        "axis": "x",
+        "extent": [
+          -122.59750209,
+          -122.2880486
+        ],
+        "reference_system": 4326
+      },
+      "y": {
+        "type": "spatial",
+        "axis": "y",
+        "extent": [
+          37.48803556,
+          37.613537207
+        ],
+        "reference_system": 4326
+      },
+      "pressure_levels": {
+        "type": "spatial",
+        "axis": "z",
+        "extent": [
+          0,
+          1000
+        ],
+        "step": 100,
+        "unit": "Pa"
+      },
+      "metered_levels": {
+        "type": "spatial",
+        "axis": "z",
+        "values": [
+          0,
+          10,
+          25,
+          50,
+          100,
+          1000
+        ],
+        "unit": "m"
+      },
+      "time": {
+        "type": "temporal",
+        "values": ["2016-05-03T13:21:30.040Z"]
+      },
+      "spectral": {
+        "type": "bands",
+        "values": [
+          "red",
+          "green",
+          "blue"
+        ]
+      }
+    }
+  },
+  "assets": {
+    "data": {
+      "href": "http://cool-sat.com/catalog/datacube-123/data.nc",
+      "type": "application/netcdf",
+      "title": "netCDF Data cube"
+    },
+    "thumbnail": {
+      "href": "http://cool-sat.com/catalog/datacube-123/thumbnail.png",
+      "type": "image/png",
+      "title": "Thumbnail"
+    }
+  },
+  "links": [
+    {
+      "rel": "self",
+      "href": "http://cool-sat.com/catalog/datacube-123/example-item.json"
+    }
+  ]
+}

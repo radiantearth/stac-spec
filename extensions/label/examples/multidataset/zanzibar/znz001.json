@@ -1,0 +1,117 @@
+{
+  "stac_version": "0.9.0",
+  "stac_extensions": [
+    "label",
+    "version"
+  ],
+  "id": "znz001",
+  "type": "Feature",
+  "bbox": [
+    39.28919876472999,
+    -5.743028283012867,
+    39.31302874892266,
+    -5.722212794937691
+  ],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        39.28919876472999,
+        -5.743028283012867
+      ],
+      [
+        39.31302874892266,
+        -5.743028283012867
+      ],
+      [
+        39.31302874892266,
+        -5.722212794937691
+      ],
+      [
+        39.28919876472999,
+        -5.722212794937691
+      ]
+    ]
+  },
+  "assets": {
+    "labels": {
+      "title": "znz001_label",
+      "href": "https://www.dropbox.com/sh/ct3s1x2a846x3yl/AAARCAOqhcRdoU7ULOb9GJl9a/grid_001.geojson?dl=1",
+      "type": "application/geo+json",
+      "license": "CC-BY-4.0"
+    },
+    "raster": {
+      "title": "znz001_previewcog",
+      "href": "https://oin-hotosm.s3.amazonaws.com/5afeda152b6a08001185f11a/0/5afeda152b6a08001185f11b.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized"
+    },
+    "thumbnail": {
+      "title": "znz001_thumbnail",
+      "href": "https://oin-hotosm.s3.amazonaws.com/5afeda152b6a08001185f11a/0/5afeda152b6a08001185f11b.png",
+      "type": "image/png"
+    }
+  },
+  "properties": {
+    "datetime": "2019-04-23T00:00:00Z",
+    "label:properties": [
+      "building",
+      "condition"
+    ],
+    "label:description": "building footprints manually  labeled and classified according to building completion status",
+    "label:tasks": [
+      "segmentation"
+    ],
+    "label:type": "vector",
+    "label:methods": [
+      "manual"
+    ],
+    "version": "1",
+    "label:classes": [
+      {
+        "name": "building",
+        "classes": [
+          "yes"
+        ]
+      },
+      {
+        "name": "condition",
+        "classes": [
+          "Complete",
+          "Incomplete",
+          "Foundation"
+        ]
+      }
+    ],
+    "label:overviews": [
+      {
+        "property_key": "building",
+        "counts": [
+          {
+            "name": "yes",
+            "count": 4440
+          }
+        ]
+      }
+    ]
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json"
+    },
+    {
+      "rel": "parent",
+      "href": "collection.json"
+    },
+    {
+      "rel": "collection",
+      "href": "collection.json"
+    },
+    {
+      "rel": "source",
+      "href": "https://oin-hotosm.s3.amazonaws.com/5afeda152b6a08001185f11a/0/5afeda152b6a08001185f11b.tif",
+      "title": "The source imagery these building labels were derived from",
+      "label:assets": "building"
+    }
+  ]
+}

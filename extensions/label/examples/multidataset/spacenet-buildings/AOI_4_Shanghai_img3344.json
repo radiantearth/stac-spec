@@ -1,0 +1,103 @@
+{
+  "stac_version": "0.9.0",
+  "stac_extensions": [
+    "label",
+    "version"
+  ],
+  "id": "AOI_4_Shanghai_img3344",
+  "type": "Feature",
+  "bbox": [
+    121.66563419996653,
+    31.234725900085653,
+    121.66738919996575,
+    31.236480900084874
+  ],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        121.66563419996653,
+        31.234725900085653
+      ],
+      [
+        121.66563419996653,
+        31.236480900084874
+      ],
+      [
+        121.66738919996575,
+        31.236480900084874
+      ],
+      [
+        121.66738919996575,
+        31.234725900085653
+      ]
+    ]
+  },
+  "assets": {
+    "labels": {
+      "title": "AOI_4_Shanghai_img3344_label",
+      "href": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN2_buildings/train/AOI_4_Shanghai/geojson_buildings/SN2_buildings_train_AOI_4_Shanghai_geojson_buildings_img3344.geojson",
+      "type": "application/geo+json",
+      "license": "CC-BY-SA-4.0"
+    },
+    "raster": {
+      "title": "AOI_4_Shanghai_img3344_previewcog",
+      "href": "https://spacenet-dataset.s3.amazonaws.com/AOIs/AOI_4_Shanghai/PS-MS/AOI_4_Shanghai_PS-MS_COG.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized"
+    }
+  },
+  "properties": {
+    "datetime": "2016-08-26T22:41:55.000000Z",
+    "label:properties": [
+      "OBJECTID_1"
+    ],
+    "label:description": "building footprints manually labeled",
+    "label:tasks": [
+      "segmentation"
+    ],
+    "label:type": "vector",
+    "label:methods": [
+      "manual"
+    ],
+    "version": "1",
+    "label:classes": [
+      {
+        "name": "OBJECTID_1",
+        "classes": [
+          "0"
+        ]
+      }
+    ],
+    "label:overviews": [
+      {
+        "property_key": "OBJECTID_1",
+        "counts": [
+          {
+            "name": "0",
+            "count": 8
+          }
+        ]
+      }
+    ]
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json"
+    },
+    {
+      "rel": "parent",
+      "href": "collection.json"
+    },
+    {
+      "rel": "collection",
+      "href": "collection.json"
+    },
+    {
+      "rel": "source",
+      "href": "https://spacenet-dataset.s3.amazonaws.com/spacenet/SN2_buildings/train/AOI_4_Shanghai/PS-RGB/SN2_buildings_train_AOI_4_Shanghai_PS-RGB_img3344.tif",
+      "title": "The source imagery these building labels were derived from",
+      "label:assets": "OBJECTID_1"
+    }
+  ]
+}

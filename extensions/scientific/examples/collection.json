@@ -1,0 +1,47 @@
+{
+  "stac_version": "0.9.0",
+  "stac_extensions": ["scientific"],
+  "id": "MERRAclim",
+  "title": "MERRAclim, a high-resolution global dataset of remotely sensed bioclimatic variables for ecological modelling.",
+  "description": "Species Distribution Models (SDMs) combine information on the geographic occurrence of species with environmental layers to estimate distributional ranges and have been extensively implemented to answer a wide array of applied ecological questions. Unfortunately, most global datasets available to parameterize SDMs consist of spatially interpolated climate surfaces obtained from ground weather station data and have omitted the Antarctic continent, a landmass covering c. 20% of the Southern Hemisphere and increasingly showing biological effects of global change. Here we introduce MERRAclim, a global set of satellite-based bioclimatic variables including Antarctica for the first time. MERRAclim consists of three datasets of 19 bioclimatic variables that have been built for each of the last three decades (1980s, 1990s and 2000s) using hourly data of 2 m temperature and specific humidity. We provide MERRAclim at three spatial resolutions (10 arc-minutes, 5 arc-minutes and 2.5 arc-minutes). These reanalysed data are comparable to widely used datasets based on ground station interpolations, but allow extending their geographical reach and SDM building in previously uncovered regions of the globe.",
+  "keywords": ["bioclimatic","MERRAclim","macroecology","biogeography"],
+  "license": "CC0-1.0",
+  "extent": {
+    "spatial": {
+      "bbox": [[-180,-90,180,90]]
+    },
+    "temporal": {
+      "interval": [["1980-01-01T00:00:00Z","2009-12-31T23:59:59Z"]]
+    }
+  },
+  "sci:doi": "10.5061/dryad.s2v81.2",
+  "sci:citation": "Vega GC, Pertierra LR, Olalla-Tárraga MÁ (2017) Data from: MERRAclim, a high-resolution global dataset of remotely sensed bioclimatic variables for ecological modelling. Dryad Digital Repository.",
+  "sci:publications": [
+    {
+      "doi": "10.1038/sdata.2017.78",
+      "citation": "Vega GC, Pertierra LR, Olalla-Tárraga MÁ (2017) MERRAclim, a high-resolution global dataset of remotely sensed bioclimatic variables for ecological modelling. Scientific Data 4: 170078."
+    }
+  ],
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://datadryad.org/resource/doi:10.5061/dryad.s2v81/collection.json"
+    },
+    {
+      "rel": "item",
+      "href": "https://datadryad.org/resource/doi:10.5061/dryad.s2v81/item.json"
+    },
+    {
+      "rel": "root",
+      "href": "https://datadryad.org/resource/doi:10.5061/dryad.s2v81/collection.json"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.5061/dryad.s2v81.2"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.1038/sdata.2017.78"
+    }
+  ]
+}

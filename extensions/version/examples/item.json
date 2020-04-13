@@ -1,0 +1,57 @@
+{
+  "stac_version": "0.9.0",
+  "stac_extensions": [
+    "version"
+  ],
+  "id": "MERRAclim.2_5m_min_80s",
+  "version": "1",
+  "type": "Feature",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [-180,-90],
+        [180,-90],
+        [180,90],
+        [-180,90],
+        [-180,-90]
+      ]
+    ]
+  },
+  "bbox": [-180,-90,180,90],
+  "properties": {
+    "title": "MERRAclim. 2_5m_min_80s",
+    "description": "MERRAclim Dataset. 19 global bioclimatic variables from the 1980s decade at 2.5 arcminutes resolution in GEOtiff format. The humidity version used is the min. The variables have been built using the same protocol as WorldClim with data from MERRA. Temperature layers (BIO1-BIO11) are in degree Celsius multiplied by 10, humidity layers (BIO12-BIO19) are in kg of water/kg of air multiplied by 100000.",
+    "datetime": "1985-07-01T00:00:00Z"
+  },
+  "collection": "merraclim",
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://datadryad.org/resource/doi:10.5061/dryad.s2v81/v1/item.json"
+    },
+    {
+      "rel": "collection",
+      "href": "https://datadryad.org/resource/doi:10.5061/dryad.s2v81/v1/collection.json"
+    },
+    {
+      "rel": "parent",
+      "href": "https://datadryad.org/resource/doi:10.5061/dryad.s2v81/v1/collection.json"
+    },
+    {
+      "rel": "root",
+      "href": "https://datadryad.org/resource/doi:10.5061/dryad.s2v81/catalog.json"
+    },
+    {
+      "rel": "latest-version",
+      "href": "https://datadryad.org/resource/doi:10.5061/dryad.s2v81/v2/item.json"
+    }
+  ],
+  "assets": {
+    "primary": {
+      "href": "https://datadryad.org/stash/downloads/file_stream/100467",
+      "type": "application/zip",
+      "title": "MERRAclim. 2_5m_min_80s"
+    }
+  }
+}

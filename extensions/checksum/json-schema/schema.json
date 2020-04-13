@@ -1,11 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "stac-extension-checksum.json#",
-  "type": "object", 
+  "$id": "schema.json#",
   "title": "Checksum Extension Specification",
+  "description": "STAC Checksum Extension to a STAC Item",
   "allOf": [
     {
-      "$ref": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/json-schema/item.json#/definitions/core"
+      "$ref": "../../../item-spec/json-schema/item.json#/definitions/core"
     },
     {
       "$ref": "#/definitions/checksum"
@@ -36,25 +36,10 @@
     "checksums": {
       "type": "object",
       "properties": {
-        "checksum:md5": {
+        "checksum:multihash": {
           "type": "string",
-          "pattern": "^[A-Fa-f0-9]{32}$",
-          "title": "MD5 checksum"
-        },
-        "checksum:sha1": {
-          "type": "string",
-          "pattern": "^[A-Fa-f0-9]{40}$",
-          "title": "SHA1 checksum"
-        },
-        "checksum:sha2": {
-          "type": "string",
-          "pattern": "^[A-Fa-f0-9]+$",
-          "title": "SHA2 checksum"
-        },
-        "checksum:sha3": {
-          "type": "string",
-          "pattern": "^[A-Fa-f0-9]+$",
-          "title": "SHA3 checksum"
+          "pattern": "^[a-f0-9]+$",
+          "title": "Multihash"
         }
       }
     }

@@ -26,14 +26,14 @@ structures and fields.
 
 ## Schema Validation
 
-Instruction on schema validation for STAC Items can be found in the [validation instructions](validation/README.md).
+Instruction on schema validation for STAC Items can be found in the [validation instructions](../validation/README.md).
 
 ## Collection Flexibility
 
 STAC Collections are defined for flexibility. They only require a handful of fields, and
 implementors are free to add most any JSON field or object that they want via extensions.
-Many fields originating from the [STAC Item spec](../item-spec/item-spec.md) can be 
-reused with the `properties` field.
+Many fields originating from the [STAC Item spec](../item-spec/item-spec.md) can already be 
+reused using the [Commons extension](../extensions/commons/README.md).
 This flexibility and extensibility is a design goal, so that it is quite easy to implement a
 collection and be able to adapt it to most any data model.
 
@@ -47,9 +47,9 @@ The Collection specification is maturing, but it is still relatively early days.
 implementations innovate in different ways, we will update the core fields to handle.
 
 The goal of the Collection spec is not to reinvent the wheel by making yet another set of fields for metadata. The hope is to 
-align with the latest efforts of the Open Geospatial Consortium, particularly their work around WFS 3 and hopefully CSW 4. 
-Indeed the field names are chosen to fully align with WFS 3, so a WFS 3 `collections/{collectionId}` endpoint can return
-a valid STAC Collection that is also a valid WFS Collection.
+align with the latest efforts of the Open Geospatial Consortium, particularly their work around OGC API - Features (OAFeat) and hopefully OGC API - Catalogue. 
+Indeed the field names are chosen to fully align with OAFeat, so a OAFeat `collections/{collectionId}` endpoint can return
+a valid STAC Collection that is also a valid OAFeat Collection.
 
 Effort will also be made to align with Dublin Core and [DCAT](https://www.w3.org/TR/vocab-dcat/), though it is likely to
 start using it as a microformat in STAC Browser HTML output to start. But future iterations could align with a JSON-LD DCAT

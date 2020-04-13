@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "schema.json#",
+  "title": "Date and Time Range Fields",
+  "type": "object",
+  "properties": {
+    "start_datetime": {
+      "title": "Start Date and Time",
+      "description": "The searchable start date/time of the assets, in UTC (Formatted in RFC 3339) ",
+      "type": "string",
+      "format": "date-time"
+    }, 
+    "end_datetime": {
+      "title": "End Date and Time", 
+      "description": "The searchable end date/time of the assets, in UTC (Formatted in RFC 3339) ",                  
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "dependencies": {
+    "start_datetime": {
+      "required": [
+        "end_datetime"
+      ]
+    },
+    "end_datetime": {
+      "required": [
+        "start_datetime"
+      ]
+    }
+  }
+}

@@ -18,7 +18,7 @@ and improvements, to the issue tracker or (ideally) as pull requests. To merge a
 by at least two members of the STAC spec core team (who have write access to the main repository). It also must pass the
 Continuous Integration testing (right now it is minimal, but it will expand).
 
-* **Note** *The development process will continue to evolve as the specification matures. 0.6.0 will also introduce Continuous
+* **Note** *The development process will continue to evolve as the specification matures. 0.6.0 introduced Continuous
 Integration, and once it is full validating everything and the spec is more mature then we will aim to have `dev` branch
 always in a consistent state.*
 
@@ -48,10 +48,10 @@ in the release. And anything in 'unreleased' section should move to the version 
 * **Merge dev to master**: As there is no 'build' process, since the specification *is* the markdown files in the github
 repository, the key step in a release is to merge the `dev` branch into `master`, as `master` is the current stable state 
 of the spec.
-* **Check Online API Docs**: Check to make sure the online API docs reflect the release at https://stacspec.org/STAC-api.html 
-and https://stacspec.org/STAC-ext-api.html (this step may go away once we are confident this works well)
+* **Check Online API Docs**: Check to make sure the online API docs reflect the release at <https://stacspec.org/STAC-api.html> 
+and <https://stacspec.org/STAC-ext-api.html> (this step may go away once we are confident this works well)
 * **Release on Github**: The final step to create the release is to add a new 'release' on 
-https://github.com/radiantearth/stac-spec/releases. This should use a tag like the others, with a 'v' prefix and then the 
+<https://github.com/radiantearth/stac-spec/releases>. This should use a tag like the others, with a 'v' prefix and then the 
 release number, like v0.5.2. The changelog should be copied over to be the release notes, and then also include a link to 
 the full milestone of everything closed in the issue tracker.
 * **Promote the release**: A blog post and tweet should be composed and sent out, and then inform those in the gitter channel
@@ -70,10 +70,9 @@ schemas needed from their feedback then make fixes and do RC2. If it is just fix
 additional RC is needed. After there is no more changes to spec or schemas then the release process should be done on master,
 with no changes to the spec - just updating the version numbers.
 
-
 ### Governance 
 
-The goal of STAC is to to have a Project Steering Committee of core contributors, representing diverse organizations and 
+The goal of STAC is to have a Project Steering Committee of core contributors, representing diverse organizations and 
 implementations. To bootstrap Chris Holmes is the Benevolent Dictator for 
 Life or until a PSC is formed, so we don't get stuck waiting for votes when there is not enough activity. 
 

@@ -1,0 +1,54 @@
+{
+  "stac_version": "0.9.0",
+  "id": "spacenet-roads-sample",
+  "description": "A sample of the SpaceNet Roads dataset built during STAC Sprint 4. The dataset contains hand-labeled roads.",
+  "keywords": [
+    "spacenet",
+    "roads",
+    "labels"
+  ],
+  "license": "CC-BY-SA-4.0",
+  "providers": [
+    {
+      "name": "SpaceNet",
+      "roles": [
+        "licensor",
+        "host",
+        "producer",
+        "processor"
+      ],
+      "url": "https://spacenet.ai"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          2.23379639995,
+          49.0178709,
+          2.23730639995,
+          49.0213809
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2016-08-26T22:41:55.000000Z",
+          null
+        ]
+      ]
+    }
+  },
+  "links": [
+    {
+      "href": "roads_collection.json",
+      "rel": "root",
+      "title": "sample SpaceNet roads label collection"
+    },
+    {
+      "rel": "item",
+      "href": "roads_item.json"
+    }
+  ]
+}

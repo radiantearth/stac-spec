@@ -1,12 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "stac-extension-eo.json#",
+  "$id": "schema.json#",
   "title": "EO Extension",
-  "type": "object",
   "description": "STAC EO Extension to a STAC Item.",
   "allOf": [
     {
-      "$ref": "https://raw.githubusercontent.com/radiantearth/stac-spec/master/item-spec/json-schema/item.json#/definitions/core"
+      "$ref": "../../../item-spec/json-schema/item.json"
     },
     {
       "$ref": "#/definitions/eo"
@@ -16,33 +15,20 @@
     "eo": {
       "type": "object",
       "required": [
-        "properties"
+        "properties",
+        "assets"
       ],
       "properties": {
         "properties": {
           "type": "object",
           "required": [
             "eo:gsd",
-            "eo:platform",
-            "eo:instrument",
             "eo:bands"
           ],
           "properties": {
             "eo:gsd": {
               "title": "Ground Sample Distance",
               "type": "number"
-            },
-            "eo:platform": {
-              "title": "Platform",
-              "type": "string"
-            },
-            "eo:constellation": {
-              "title": "Constellation",
-              "type": "string"
-            },
-            "eo:instrument": {
-              "title": "Instrument",
-              "type": "string"
             },
             "eo:bands": {
               "title": "Bands",
@@ -57,14 +43,6 @@
                     "title": "Common Name of the band",
                     "type": "string"
                   },
-                  "gsd": {
-                    "title": "Ground Sample Distance",
-                    "type": "number"
-                  },
-                  "accuracy": {
-                    "title": "Accuracy",
-                    "type": "number"
-                  },
                   "center_wavelength": {
                     "title": "Center Wavelength",
                     "type": "number"
@@ -76,42 +54,28 @@
                 }
               }
             },
-            "eo:epsg": {
-              "title": "EPSG code",
-              "type": [
-                "integer",
-                "null"
-              ]
-            },
             "eo:cloud_cover": {
               "title": "Cloud Cover",
               "type": "number",
               "minimum": 0,
               "maximum": 100
-            },
-            "eo:off_nadir": {
-              "title": "Off Nadir",
-              "type": "number",
-              "minimum": 0,
-              "maximum": 90
-            },
-            "eo:azimuth": {
-              "title": "Azimuth",
-              "type": "number",
-              "minimum": 0,
-              "maximum": 360
-            },
-            "eo:sun_azimuth": {
-              "title": "Sun Azimuth",
-              "type": "number",
-              "minimum": 0,
-              "maximum": 360
-            },
-            "eo:sun_elevation": {
-              "title": "Sun Elevation",
-              "type": "number",
-              "minimum": 0,
-              "maximum": 90
+            }
+          }
+        },
+        "assets": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "eo:bands": {
+                "title": "Band References",
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
             }
           }
         }

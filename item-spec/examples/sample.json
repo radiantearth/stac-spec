@@ -1,4 +1,6 @@
 {
+  "stac_version": "0.9.0",
+  "stac_extensions": [],
   "type": "Feature",
   "id": "CS3-20160503_132130_04",
   "bbox": [-122.59750209, 37.48803556, -122.2880486, 37.613537207],
@@ -15,9 +17,9 @@
     ]
   },
   "properties": {
-    "datetime": "2016-05-03T13:21:30.040Z"
+    "datetime": "2016-05-03T13:21:30.040Z",
+    "collection": "CS3"
   },
-  "collection": "CS3",
   "links": [
     {
       "rel": "self",
@@ -35,7 +37,8 @@
     },
     "thumbnail": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png",
-      "title": "Thumbnail"
+      "title": "Thumbnail",
+      "roles": [ "thumbnail" ]
     }
   }
 }

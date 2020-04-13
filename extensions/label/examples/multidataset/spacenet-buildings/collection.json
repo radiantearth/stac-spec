@@ -1,0 +1,65 @@
+{
+  "stac_version": "0.9.0",
+  "id": "spacenet-buildings-collection",
+  "title": "spacenet-buildings AoI",
+  "description": "Collection of training labels for spacenet-buildings",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -115.23556259985658,
+          31.234725900085653,
+          121.66738919996575,
+          49.00558590002751
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2016-08-28T00:00:00Z",
+          null
+        ]
+      ]
+    }
+  },
+  "collection version": "1.0",
+  "keywords": [
+    "demo"
+  ],
+  "license": "CC-BY-SA-4.0",
+  "providers": [
+    {
+      "name": "SpaceNet",
+      "roles": [
+        "licensor",
+        "host",
+        "producer",
+        "processor"
+      ],
+      "url": "https://spacenet.ai"
+    }
+  ],
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json"
+    },
+    {
+      "rel": "item",
+      "href": "AOI_2_Vegas_img2636.json"
+    },
+    {
+      "rel": "item",
+      "href": "AOI_3_Paris_img1648.json"
+    },
+    {
+      "rel": "item",
+      "href": "AOI_4_Shanghai_img3344.json"
+    }
+  ]
+}

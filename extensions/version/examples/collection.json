@@ -1,0 +1,36 @@
+{
+  "stac_version": "0.9.0",
+  "stac_extensions": ["version"],
+  "id": "merraclim",
+  "title": "MERRAclim",
+  "description": "A high-resolution global dataset of remotely sensed bioclimatic variables for ecological modelling.",
+  "license": "CC0-1.0",
+  "version": "1",
+  "deprecated": true,
+  "extent": {
+    "spatial": {
+      "bbox": [[-180,-90,180,90]]
+    },
+    "temporal": {
+      "interval": [["1980-01-01T00:00:00Z","2009-12-31T23:59:59Z"]]
+    }
+  },
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://datadryad.org/resource/doi:10.5061/dryad.s2v81/v1/collection.json"
+    },
+    {
+      "rel": "item",
+      "href": "https://datadryad.org/resource/doi:10.5061/dryad.s2v81/v1/item.json"
+    },
+    {
+      "rel": "root",
+      "href": "https://datadryad.org/resource/doi:10.5061/dryad.s2v81/catalog.json"
+    },
+    {
+      "rel": "latest-version",
+      "href": "https://datadryad.org/resource/doi:10.5061/dryad.s2v81/v2/collection.json"
+    }
+  ]
+}

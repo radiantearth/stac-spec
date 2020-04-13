@@ -1,0 +1,246 @@
+{
+  "id": "landsat-8-l1",
+  "title": "Landsat 8 L1",
+  "description": "Landat 8 imagery radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
+  "keywords": [
+    "landsat",
+    "earth observation",
+    "usgs"
+  ],
+  "stac_version": "0.9.0",
+  "stac_extensions": [
+    "asset",
+    "commons"
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180,
+          -90,
+          180,
+          90
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2013-06-01T00:00:00Z",
+          null
+        ]
+      ]
+    }
+  },
+  "providers": [
+    {
+      "name": "USGS",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://landsat.usgs.gov/"
+    },
+    {
+      "name": "Planet Labs",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://github.com/landsat-pds/landsat_ingestor"
+    },
+    {
+      "name": "AWS",
+      "roles": [
+        "host"
+      ],
+      "url": "https://landsatonaws.com/"
+    },
+    {
+      "name": "Development Seed",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://github.com/sat-utils/sat-api"
+    }
+  ],
+  "license": "PDDL-1.0",
+  "properties": {
+    "eo:gsd": 15,
+    "platform": "landsat-8",
+    "instruments": [
+      "oli",
+      "tirs"
+    ],
+    "view:off_nadir": 0,
+    "eo:bands": [
+      {
+        "name": "B1",
+        "common_name": "coastal",
+        "center_wavelength": 0.44,
+        "full_width_half_max": 0.02
+      },
+      {
+        "name": "B2",
+        "common_name": "blue",
+        "center_wavelength": 0.48,
+        "full_width_half_max": 0.06
+      },
+      {
+        "name": "B3",
+        "common_name": "green",
+        "center_wavelength": 0.56,
+        "full_width_half_max": 0.06
+      },
+      {
+        "name": "B4",
+        "common_name": "red",
+        "center_wavelength": 0.65,
+        "full_width_half_max": 0.04
+      },
+      {
+        "name": "B5",
+        "common_name": "nir",
+        "center_wavelength": 0.86,
+        "full_width_half_max": 0.03
+      },
+      {
+        "name": "B6",
+        "common_name": "swir16",
+        "center_wavelength": 1.6,
+        "full_width_half_max": 0.08
+      },
+      {
+        "name": "B7",
+        "common_name": "swir22",
+        "center_wavelength": 2.2,
+        "full_width_half_max": 0.2
+      },
+      {
+        "name": "B8",
+        "common_name": "pan",
+        "center_wavelength": 0.59,
+        "full_width_half_max": 0.18
+      },
+      {
+        "name": "B9",
+        "common_name": "cirrus",
+        "center_wavelength": 1.37,
+        "full_width_half_max": 0.02
+      },
+      {
+        "name": "B10",
+        "common_name": "lwir11",
+        "center_wavelength": 10.9,
+        "full_width_half_max": 0.8
+      },
+      {
+        "name": "B11",
+        "common_name": "lwir12",
+        "center_wavelength": 12,
+        "full_width_half_max": 1
+      }
+    ]
+  },
+  "assets": {
+    "thumbnail": {
+      "type": "image/jpeg",
+      "title": "Thumbnail",
+      "description": "A medium sized thumbnail",
+      "roles": [ "thumbnail" ]
+    },
+    "metadata": {
+      "type": "mtl",
+      "roles": [ "metadata" ],
+      "title": "Original Metadata",
+      "description": "The original MTL metadata file provided for each Landsat scene"
+    },
+    "B1": {
+      "type": "image/tiff; application=geotiff",
+      "eo:bands": [
+        0
+      ],
+      "title": "Coastal Band (B1)",
+      "description": "Coastal Band Top Of the Atmosphere"
+    },
+    "B2": {
+      "type": "image/tiff; application=geotiff",
+      "eo:bands": [
+        1
+      ],
+      "title": "Blue Band (B2)",
+      "description": "Blue Band Top Of the Atmosphere"
+    },
+    "B3": {
+      "type": "image/tiff; application=geotiff",
+      "eo:bands": [
+        2
+      ],
+      "title": "Green Band (B3)",
+      "description": "Green Band (B3) Top Of the Atmosphere"
+    },
+    "B4": {
+      "type": "image/tiff; application=geotiff",
+      "eo:bands": [
+        3
+      ],
+      "title": "Red Band (B4)",
+      "description": "Red Band (B4) Top Of the Atmosphere"
+    },
+    "B5": {
+      "type": "image/tiff; application=geotiff",
+      "eo:bands": [
+        4
+      ],
+      "title": "NIR Band (B5)",
+      "description": "NIR Band (B5) Top Of the Atmosphere"
+    },
+    "B6": {
+      "type": "image/tiff; application=geotiff",
+      "eo:bands": [
+        5
+      ],
+      "title": "SWIR Band (B6)",
+      "description": "SWIR Band at 1.6um (B6) Top Of the Atmosphere"
+    },
+    "B7": {
+      "type": "image/tiff; application=geotiff",
+      "eo:bands": [
+        6
+      ],
+      "title": "SWIR Band (B7)",
+      "description": "SWIR Band at 2.2um (B7) Top Of the Atmosphere"
+    },
+    "B8": {
+      "type": "image/tiff; application=geotiff",
+      "eo:bands": [
+        7
+      ],
+      "title": "Panchromatic Band (B8)",
+      "description": "Panchromatic Band (B8) Top Of the Atmosphere"
+    },
+    "B9": {
+      "type": "image/tiff; application=geotiff",
+      "eo:bands": [
+        8
+      ],
+      "title": "Cirrus Band (B9)",
+      "description": "Cirrus Band (B9) Top Of the Atmosphere - for cirrus cloud detection"
+    },
+    "B10": {
+      "type": "image/tiff; application=geotiff",
+      "eo:bands": [
+        9
+      ],
+      "title": "LWIR Band (B10)",
+      "description": "Long-wave IR Band at 11um (B10) Top Of the Atmosphere"
+    },
+    "B11": {
+      "type": "image/tiff; application=geotiff",
+      "eo:bands": [
+        10
+      ],
+      "title": "LWIR Band (B11)",
+      "description": "Long-wave IR Band at 12um (B11) Top Of the Atmosphere"
+    },
+    "links": []
+  }
+}

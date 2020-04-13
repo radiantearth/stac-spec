@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "itemcollection.json#",
+  "title": "STAC ItemCollection",
+  "type": "object",
+  "description": "This object represents the metadata for a set of items in a SpatioTemporal Asset Catalog.",
+  "additionalProperties": true,
+  "allOf": [
+    {
+      "$ref": "#/definitions/core"
+    }
+  ],
+  "definitions": {
+    "core": {
+      "allOf": [
+        {
+          "oneOf": [
+            {
+              "$ref": "https://geojson.org/schema/FeatureCollection.json"
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "features"
+          ],
+          "properties": {
+            "stac_version": {
+              "title": "STAC version",
+              "type": "string",
+              "const": "0.9.0"
+            },
+            "stac_extensions": {
+              "title": "STAC extensions",
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "anyOf": [
+                  {
+                    "title": "Reference to a JSON Schema",
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  {
+                    "title": "Reference to a core extension",
+                    "type": "string",
+                    "enum": [
+                      "single-file-stac"
+                    ]
+                  }
+                ]
+              }
+            },
+            "type": {
+              "title": "Type",
+              "description": "Type of entity, always FeatureCollection",
+              "type": "string"
+            },
+            "features": {
+              "title": "ItemCollection features",
+              "description": "Items in this item collection",
+              "type": "array",
+              "items": {
+                "$ref": "item.json"
+              }
+            },
+            "links": {
+              "title": "Links",
+              "description": "Links to item collection relations",
+              "type": "array",
+              "items": {
+                "$ref": "item.json#/definitions/link"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

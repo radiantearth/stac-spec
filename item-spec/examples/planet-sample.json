@@ -1,4 +1,10 @@
 {
+  "stac_version": "0.9.0",
+  "stac_extensions": [
+      "eo",
+      "view",
+      "https://example.planet.com/stac/1.0/schema.json"
+  ],
   "links": [
     { "rel":"self", "href": "https://api.planet.com/data/v1/item-types/PSScene4Band/items/20171110_121030_1013"},
     { "rel":"full-assets", "href": "https://api.planet.com/data/v1/item-types/PSScene4Band/items/20171110_121030_1013/assets/"}
@@ -56,10 +62,10 @@
   "properties": {
     "datetime": "2017-11-10T12:10:30.535417Z",
     "eo:cloud_cover": 23,
-    "eo:gsd": 4,
-    "eo:sun_azimuth": 101.8,
-    "eo:sun_elevation": 58.8,
-    "eo:off_nadir": 1,
+    "eo:gsd": 3.7,
+    "view:sun_azimuth": 101.8,
+    "view:sun_elevation": 58.8,
+    "view:off_nadir": 1,
     "pl:acquired": "2017-11-10T12:10:30.535417Z",
     "pl:anomalous_pixels": 0.14,
     "pl:columns": 9111,
@@ -85,7 +91,8 @@
     "thumbnail": { 
       "href": "https://api.planet.com/data/v1/item-types/PSScene4Band/items/20171110_121030_1013/thumb",
       "title": "Thumbnail", 
-      "status": "active"
+      "status": "active",
+      "roles": [ "thumbnail" ]
     },
     "analytic": {
       "href": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcxMTEwXzEyMTAxMF8xMDEzIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWMiLCAiY3QiOiAiaXRlbS10eXBlIn0",

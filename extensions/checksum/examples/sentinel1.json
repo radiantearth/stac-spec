@@ -1,0 +1,73 @@
+{
+  "id": "S1A_EW_GRDM_1SSH_20181103T235855_20181103T235955_024430_02AD5D_5616",
+  "type": "Feature",
+  "stac_version": "0.9.0",
+  "stac_extensions": [
+      "checksum"
+    ],
+  "bbox": [-70.275032,-64.72924,-65.087479,-51.105831],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [-67.071648,-64.72924],
+        [-65.087479,-56.674374],
+        [-68.033211,-51.105831],
+        [-70.275032,-59.805672],
+        [-67.071648,-64.72924]
+      ]
+    ]
+  },
+  "properties": {
+    "datetime": "2018-11-03T23:58:55Z"
+  },
+  "assets": {
+    "noises": {
+      "href": "./annotation/calibration/noise-s1a-ew-grd-hh-20181103t235855-20181103t235955-024430-02ad5d-001.xml",
+      "title": "Calibration Schema",
+      "type": "text/xml",
+      "checksum:multihash": "90e40210a30d1711e81a4b11ef67b28744321659"
+    },
+    "calibrations": {
+      "href": "./annotation/calibration/calibration-s1a-ew-grd-hh-20181103t235855-20181103t235955-024430-02ad5d-001.xml",
+      "title": "Noise Schema",
+      "type": "text/xml",
+      "checksum:multihash": "90e402104fc5351af67db0b8f1746efe421a05e4"
+    },
+    "products": {
+      "href": "./annotation/s1a-ew-grd-hh-20181103t235855-20181103t235955-024430-02ad5d-001.xml",
+      "title": "Product Schema",
+      "type": "text/xml",
+      "checksum:multihash": "90e402107a7f2588a85362b9beea2a12d4514d45"
+    },
+    "measurement": {
+      "href": "./measurement/s1a-ew-grd-hh-20181103t235855-20181103t235955-024430-02ad5d-001.tiff",
+      "title": "Measurements",
+      "type": "image/tiff",
+      "sar:polarizations": ["HH"],
+      "checksum:multihash": "90e40210163700a8a6501eccd00b6d3b44ddaed0"
+    },
+    "thumbnail": {
+      "href": "./preview/quick-look.png",
+      "title": "Thumbnail",
+      "type": "image/png",
+      "checksum:multihash": "90e40210f52acd32b09769d3b1871b420789456c"
+    }
+  },
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://example.com/collections/sentinel-1/items/S1A_EW_GRDM_1SSH_20181103T235855_20181103T235955_024430_02AD5D_5616"
+    },
+    {
+      "rel": "parent",
+      "href": "https://example.com/collections/sentinel-1",
+      "checksum:multihash": "11146d97123fd2c02dec9a1b6d3b13136dbe600cf966"
+    },
+    {
+      "rel": "root",
+      "href": "https://example.com/collections",
+      "checksum:multihash": "1114fa4b9d69fdddc7c1be7bed9440621400b383b43f"
+    }
+  ]
+}

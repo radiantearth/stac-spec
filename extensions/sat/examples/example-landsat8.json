@@ -1,0 +1,86 @@
+{
+    "stac_version": "0.9.0",
+    "stac_extensions": [
+      "sat",
+      "view"
+    ],
+    "id": "LC08_L1TP_107018_20181001",
+    "collection": "landsat-8-l1",
+    "type": "Feature",
+    "bbox": [
+        148.13933,
+        59.51584,
+        152.52758,
+        60.63437
+    ],
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    152.52758,
+                    60.63437
+                ],
+                [
+                    149.1755,
+                    61.19016
+                ],
+                [
+                    148.13933,
+                    59.51584
+                ],
+                [
+                    151.33786,
+                    58.97792
+                ],
+                [
+                    152.52758,
+                    60.63437
+                ]
+            ]
+        ]
+    },
+    "properties": {
+        "datetime": "2018-10-01T01:08:32.033Z",
+        "view:sun_azimuth": 168.8989761,
+        "view:sun_elevation": 26.32596431,
+        "platform": "landsat-8",
+        "instruments": ["oli", "tirs"],
+        "constellation": "landsat",
+        "sat:orbit_state": "ascending",
+        "view:off_nadir": 0
+    },
+    "assets": {
+        "blue": {
+            "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B2.TIF",
+            "type": "image/tiff; application=geotiff",
+            "title": "Band 2 (blue)"
+        },
+        "green": {
+            "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B3.TIF",
+            "type": "image/tiff; application=geotiff",
+            "title": "Band 3 (green)"
+        },
+        "red": {
+            "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B4.TIF",
+            "type": "image/tiff; application=geotiff",
+            "title": "Band 4 (red)"
+        },
+        "thumbnail": {
+            "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_thumb_large.jpg",
+            "title": "Thumbnail image",
+            "type": "image/jpeg"
+        },
+        "index": {
+            "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/index.html",
+            "type": "text/html",
+            "title": "HTML index page"
+        }
+    },
+    "links": [
+        {
+            "rel": "collection",
+            "href": "http://landsat-stac.s3.amazonaws.com/landsat-8-l1/catalog.json"
+        }
+    ]
+}
