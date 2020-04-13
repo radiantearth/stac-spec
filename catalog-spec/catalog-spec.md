@@ -11,6 +11,8 @@ by machines to build a search index. A Catalog can be represented in JSON format
 that contains all the required fields is a valid STAC Catalog.
 
 - [Examples](examples/)
+  - See a [minimal example](examples/catalog.json), as well a [fuller example](examples/catalog-items.json)
+    includes links to several items. 
 - [JSON Schema](json-schema/catalog.json)
 
 This Catalog specification primarily defines a structure for information to be discoverable. Any use 
@@ -134,47 +136,6 @@ The following types are commonly used as `rel` types in the Link Object of a STA
 | item    | URL to a STAC [Item](../item-spec/item-spec.md). |
 
 **Note:** A link to at least one `item` or `child` catalog is **REQUIRED**.
-
-## Examples
-
-A catalog of
-[NAIP imagery](https://www.fsa.usda.gov/programs-and-services/aerial-photography/imagery-programs/naip-imagery/)
-might look something like this:
-
-```json
-{
-  "stac_version": "0.9.0",
-  "id": "NAIP",
-  "description": "Catalog of NAIP Imagery",
-  "links": [
-    { "rel": "self", "href": "https://www.fsa.usda.gov/naip/catalog.json" },
-    { "rel": "child", "href": "https://www.fsa.usda.gov/naip/30087/catalog.json" },
-    { "rel": "root", "href": "https://www.fsa.usda.gov/catalog.json" }
-  ]
-}
-```
-
-In addition, the catalog shown above is strongly recommended to also follow the [STAC Collection specification](../collection-spec/collection-spec.md) 
-to add more information about the NAIP imagery such as the spatial and temporal extents, a license and more.
-
-A typical *child* sub-catalog could look similar:
-
-```json
-{
-  "stac_version": "0.9.0",
-  "id": "NAIP",
-  "description": "Catalog of NAIP Imagery - 30087",
-  "links": [
-    { "rel": "self", "href": "https://www.fsa.usda.gov/naip/30087/catalog.json" },
-    { "rel": "parent", "href": "../catalog.json" },
-    { "rel": "root", "href": "https://www.fsa.usda.gov/catalog.json" },
-    { "rel": "item", "href": "https://www.fsa.usda.gov/naip/30087/m_3008718_sw_16_1_20130805.json" },
-    { "rel": "item", "href": "https://www.fsa.usda.gov/naip/30087/m_3008718_sw_16_1_20130806.json" }
-  ]
-}
-```
-
-The `root` catalog in this example could hold a set of sub-catalogs with different STAC collections, e.g. data from other satellites or processed variants of the NAIP imagery.
 
 ## Extensions
 
