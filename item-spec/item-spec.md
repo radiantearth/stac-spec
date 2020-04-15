@@ -22,12 +22,6 @@ required fields is a valid STAC Item.
   - Real world [implementations](../implementations.md) are also available.
 - [JSON Schema](json-schema/item.json)
 
-## WARNING
-
-**This is still an early version of the STAC spec, expect that there may be some changes before everything is finalized.**
-
-Implementations are encouraged, however, as good effort will be made to not change anything too drastically. Using the specification now will ensure that needed changes can be made before everything is locked in. So now is an ideal time to implement, as your feedback will be directly incorporated. 
-
 ## Item fields
 
 This object describes a STAC Item. The fields `id`, `type`, `bbox`, `geometry` and `properties` are 
@@ -82,6 +76,12 @@ extensions may further specify the meaning of the main `datetime` field, and man
 datetime fields.
 
 #### Additional Fields
+
+Providers should include metadata fields that are relevant for users in the catalog, but it is recommended
+to [select only those necessary for search](../best-practices.md#field-selection-and-metadata-linking). 
+Where possible metadata fields should be mapped to the STAC Common Metadata and widely used extensions,
+to enable cross-catalog search on known fields.
+
 * [STAC Common Metadata](common-metadata.md#stac-common-metadata) - A list of fields commonly used 
 throughout all domains. These optional fields are included for STAC Items by default.
 * [Content Extensions](../extensions/README.md#list-of-content-extensions) - Domain-specific fields 
@@ -126,6 +126,7 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may use the use the [Commons extension](../extensions/commons/README.md) to hold common fields of this and other Items (see chapter '[Collections](#Collections)' for more explanations). *Absolute* URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
+| alternate    | It is recommended that STAC Items are also available as HTML, and should use this rel with `"type" : "text/html"` to tell clients where they can get a version of the Item to view in a browser. See [STAC on the Web in Best Practices](../best-practices.md#stac-on-the-web) for more information. |
 
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
 
@@ -223,21 +224,3 @@ Optionally, common information shared across items can be split up into STAC Col
 [Commons extension](../extensions/commons/README.md).
 
 The [extensions page](../extensions/README.md) gives an overview about relevant extensions for STAC Items.
-
-## Recommendations
-
-### Metadata Linking
-
-In general STAC aims to be oriented around **search**, centered on the core fields that users will want to search on to find imagery.
-The core is space and time, but there are often other metadata attributes that are useful. While the specification is flexible enough that
-providers can fill it with tens or even hundreds of fields of metadata that is not recommended. If providers have lots of metadata then 
-that should be linked to in the [Asset Object](#asset-object) or in a [Link Object](#link-object), or even a new Asset Object could be added that is potentially easier to parse.
-There is a lot of metadata that is only of relevance to advanced processing algorithms, and while that is important it should not be in the core STAC items.
-
-### HTML versions of Items
-
-It is recommended to have a complementary HTML version of each `Item` available for easy human consumption and search 
-engine crawlability. The exact nature of the HTML is not part of the specification, but it is recommended to use common
-ecosystem tools like [STAC Browser](https://github.com/radiantearth/stac-browser) to generate it. More information on creating 
-HTML versions of STAC can be found in the [STAC on the Web section](../best-practices.md#stac-on-the-web) of the catalog 
-best practices document.
