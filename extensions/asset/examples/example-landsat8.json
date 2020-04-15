@@ -240,7 +240,7 @@
       ],
       "title": "LWIR Band (B11)",
       "description": "Long-wave IR Band at 12um (B11) Top Of the Atmosphere"
-    },
-    "links": []
-  }
+    }
+  },
+  "links": []
 }
