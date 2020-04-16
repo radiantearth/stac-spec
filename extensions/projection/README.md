@@ -71,7 +71,7 @@ of the lower left corner, followed by coordinates of upper right corner, , e.g.,
 defined in latitude and longitude, even if the data coordinate system does not use lat/long.
 
 **proj:shape** - An array of integers that represents the number of pixels in the most common grid used by the item's assets.
-The number of pixels should be specified in X and Y order. If the shape is defined in an item's properties it is used as 
+The number of pixels should be specified in Y, X order. If the shape is defined in an item's properties it is used as 
 the default shape for all assets that don't have an overriding shape.
 
 **proj:transform** - An array of affine transformation coefficientsas defined in the GDAL [`GetGeoTransform`](https://gdal.org/api/gdaldataset_cpp.html#_CPPv4N11GDALDataset15GetGeoTransformEPd) or the Rasterio [`Transform`](https://rasterio.readthedocs.io/en/stable/api/rasterio.io.html#rasterio.io.BufferedDatasetWriter.transform). If the transform is defined in an item's properties it is used as the default transform for all 
