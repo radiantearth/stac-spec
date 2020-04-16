@@ -11,11 +11,13 @@ for "projection", and not a reference to the use of the PROJ/PROJ4 formats.
 
 The field names defined herein should be added as fields in the Item Properties object. 
 
-When specified on an Item, the values are assumed to apply to all Assets in that Item.  For example, an Item may have 
+When specified on an Item, the values are assumed to apply to all Assets in that Item. For example, an Item may have 
 several related Assets each representing a band or layer for the Item, and which typically all use the same CRS, 
-e.g. a UTM Zone.  However, there may also be assets intended for display, like a preview image or thumbnail, that have 
-been reprojected to a different CRS, e.g., Web Mercator, to better accommodate that use case.  This case of differing 
-projections per Asset is not currently handled by this extension.
+e.g. a UTM Zone. However, there may also be assets intended for display, like a preview image or thumbnail, that have 
+been reprojected to a different CRS, e.g., Web Mercator, to better accommodate that use case. This case of differing 
+projections per Asset is not currently handled by this extension. The exception to this is that `proj:shape` and 
+`proj:transform` can be overridden at the asset level, where an asset has a different shape and transform from the
+default, which should be specified at the asset level, while those assets that use the defaults can remain unspecified.
 
 ## Examples
 - [Example Landsat8](examples/example-landsat8.json)
@@ -33,6 +35,8 @@ projections per Asset is not currently handled by this extension.
 | proj:geometry    | [Polygon Object](https://geojson.org/schema/Polygon.json)  | Defines the footprint of this Item. |
 | proj:bbox        | \[number]       | Bounding box of the Item in the asset CRS in 2 or 3 dimensions. |
 | proj:centroid    | Centroid Object | Coordinates representing the centroid of the Item in the asset CRS |
+| proj:shape       | [number]        | Number of pixels in x and y directions for the default grid |
+| proj:transform   | [number]        | The affine transformation coefficients for the default grid  |
 
 **proj:epsg** - A Coordinate Reference System (CRS) is the data reference system (sometimes called a
 'projection') used by the asset data, and can usually be referenced using an [EPSG code](http://epsg.io).
@@ -65,6 +69,19 @@ of the lower left corner, followed by coordinates of upper right corner, , e.g.,
 
 **proj:centroid** - Coordinates representing the centroid of the item in the asset data CRS.  Coordinates are 
 defined in latitude and longitude, even if the data coordinate system does not use lat/long.
+
+**proj:shape** - An array of integers that represents the number of pixels in the most common grid used by the item's assets.
+The number of pixels should be specified in X and Y order. If the shape is defined in an item's properties it is used as 
+the default shape for all assets that don't have an overriding shape.
+
+**proj:transform** - An array of affine transformation coefficientsas defined in the GDAL [`GetGeoTransform`](https://gdal.org/api/gdaldataset_cpp.html#_CPPv4N11GDALDataset15GetGeoTransformEPd) or the Rasterio [`Transform`](https://rasterio.readthedocs.io/en/stable/api/rasterio.io.html#rasterio.io.BufferedDatasetWriter.transform). If the transform is defined in an item's properties it is used as the default transform for all 
+assets that don't have an overriding shape.
+
+### Item [`Asset Object`](../../item-spec/item-spec.md#asset-object) fields
+| Field Name | Type     | Description                                  |
+| ---------- | -------- | -------------------------------------------- |
+| proj:shape    | [number] | See item description.  |
+| proj:transorm | [number] | See item description.  |
 
 ## Centroid Object
 
