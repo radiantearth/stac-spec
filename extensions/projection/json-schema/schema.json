@@ -98,7 +98,7 @@
             "proj:transform":{
               "title":"Transform",
               "type":"array",
-              "minItems":9,
+              "minItems":6,
               "maxItems":9,
               "items":{
                 "type":"number"

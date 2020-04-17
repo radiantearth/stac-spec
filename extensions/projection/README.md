@@ -74,7 +74,13 @@ defined in latitude and longitude, even if the data coordinate system does not u
 The number of pixels should be specified in Y, X order. If the shape is defined in an item's properties it is used as 
 the default shape for all assets that don't have an overriding shape.
 
-**proj:transform** - An array of affine transformation coefficients that are compatible with Rasterio as defined in the GDAL [`GetGeoTransform`](https://gdal.org/api/gdaldataset_cpp.html#_CPPv4N11GDALDataset15GetGeoTransformEPd) or the Rasterio [`Transform`](https://rasterio.readthedocs.io/en/stable/api/rasterio.io.html#rasterio.io.BufferedDatasetWriter.transform). If the transform is defined in an item's properties it is used as the default transform for all assets that don't have an overriding shape.
+**proj: transform** - Linear mapping from pixel coordinate space (Pixel, Line) to projection coordinate space (Xp, Yp). It is a `3x3` matrix stored as a flat array of 9 elements in row major order. Since the last row is always `0,0,1` it can be omitted, in which case only 6 elements are recorded. This mapping can be obtained from GDAL([`GetGeoTransform`](https://gdal.org/api/gdaldataset_cpp.html#_CPPv4N11GDALDataset15GetGeoTransformEPd)) or the Rasterio ([`Transform`](https://rasterio.readthedocs.io/en/stable/api/rasterio.io.html#rasterio.io.BufferedDatasetWriter.transform)).
+```
+  [Xp]   [a0, a1, a2]   [Pixel]
+  [Yp] = [a3, a4, a5] * [Line ]
+  [1 ]   [0 ,  0,  1]   [1    ]
+```
+If the transform is defined in an item's properties it is used as the default transform for all assets that don't have an overriding shape. 
 
 ### Item [`Asset Object`](../../item-spec/item-spec.md#asset-object) fields
 | Field Name | Type     | Description                                  |
