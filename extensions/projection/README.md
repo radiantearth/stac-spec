@@ -37,7 +37,7 @@ default, which should be specified at the asset level, while those assets that u
 | proj:geometry    | [Polygon Object](https://geojson.org/schema/Polygon.json)  | Defines the footprint of this Item. |
 | proj:bbox        | \[number]       | Bounding box of the Item in the asset CRS in 2 or 3 dimensions. |
 | proj:centroid    | Centroid Object | Coordinates representing the centroid of the Item in the asset CRS |
-| proj:shape       | \[number]       | Number of pixels in Y and X directions for the default grid |
+| proj:shape       | \[integer]       | Number of pixels in Y and X directions for the default grid |
 | proj:transform   | \[number]       | The affine transformation coefficients for the default grid  |
 
 **proj:epsg** - A Coordinate Reference System (CRS) is the data reference system (sometimes called a
@@ -90,7 +90,7 @@ If the transform is defined in an item's properties it is used as the default tr
 
 | Field Name | Type     | Description                                  |
 | ---------- | -------- | -------------------------------------------- |
-| proj:shape    | \[number] | See item description.  |
+| proj:shape    | \[integer] | See item description.  |
 | proj:transorm | \[number] | See item description.  |
 
 ## Centroid Object
