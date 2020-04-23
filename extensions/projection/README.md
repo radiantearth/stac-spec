@@ -86,13 +86,6 @@ the default shape for all assets that don't have an overriding shape.
 
 If the transform is defined in an item's properties it is used as the default transform for all assets that don't have an overriding transform.
 
-### Item [`Asset Object`](../../item-spec/item-spec.md#asset-object) fields
-
-| Field Name | Type     | Description                                  |
-| ---------- | -------- | -------------------------------------------- |
-| proj:shape    | \[integer] | See item description.  |
-| proj:transorm | \[number] | See item description.  |
-
 ## Centroid Object
 
 This object represents the centroid of an item's geometry.
