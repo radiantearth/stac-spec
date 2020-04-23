@@ -105,32 +105,6 @@
               }
             }
           }
-        },
-        "assets": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "object",
-            "properties": {
-              "proj:shape":{
-                "title":"Shape",
-                "type":"array",
-                "minItems":2,
-                "maxItems":2,
-                "items":{
-                  "type":"integer"
-                }
-              },
-              "proj:transform":{
-                "title":"Transform",
-                "type":"array",
-                "minItems":6,
-                "maxItems":9,
-                "items":{
-                  "type":"number"
-                }
-              }
-            }
-          }
         }
       }
     }
