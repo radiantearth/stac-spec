@@ -48,6 +48,16 @@
         0
       ],
       "title": "Band 1 (coastal)"
+    },
+    "B8": {
+      "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B8.TIF",
+      "type": "image/tiff; application=geotiff",
+      "eo:bands": [
+        1
+      ],
+      "title": "Band 8 (panchromatic)",
+      "proj:shape": [16781, 16621],
+      "proj:transform": [15.0, 0.0, 224992.5, 0.0, -15.0, 6790207.5, 0.0, 0.0, 1.0]
     }
   },
   "properties": {
@@ -209,12 +219,20 @@
       "lat": 34.595302781575604,
       "lon": -101.34448382627504
     },
+    "proj:shape": [8391, 8311],
+    "proj:transform": [30.0, 0.0, 224985.0, 0.0, -30.0, 6790215.0, 0.0, 0.0, 1.0],
     "eo:bands": [
       {
         "name": "B1",
         "common_name": "coastal",
         "center_wavelength": 0.44,
         "full_width_half_max": 0.02
+      },
+      {
+        "name": "B8",
+        "common_name": "panchromatic",
+        "center_wavelength": 0.59,
+        "full_width_half_max": 0.18
       }
     ]
   },
