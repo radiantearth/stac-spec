@@ -70,7 +70,6 @@
                     "type": "string",
                     "enum": [
                       "checksum",
-                      "commons",
                       "datacube",
                       "eo",
                       "label",

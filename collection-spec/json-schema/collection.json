@@ -37,7 +37,6 @@
                 "type": "string",
                 "enum": [
                   "asset",
-                  "commons",
                   "checksum",
                   "datacube",
                   "scientific",

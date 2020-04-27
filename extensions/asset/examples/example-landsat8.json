@@ -10,7 +10,6 @@
   "stac_version": "0.9.0",
   "stac_extensions": [
     "asset",
-    "commons"
   ],
   "extent": {
     "spatial": {
