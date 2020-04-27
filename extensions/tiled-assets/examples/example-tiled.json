@@ -49,24 +49,6 @@
             "msi"
         ],
         "eo:gsd": 10,
-        "eo:bands": [
-            {
-                "name": "B2",
-                "common_name": "blue"
-            },
-            {
-                "name": "B3",
-                "common_name": "green"
-            },
-            {
-                "name": "B4",
-                "common_name": "red"
-            },
-            {
-                "name": "B8",
-                "common_name": "nir"
-            }
-        ],
         "tiles:tile_matrix_links": {
             "WebMercatorQuad": {
                 "url": "http://schemas.opengis.net/tms/1.0/json/examples/WebMercatorQuad.json",

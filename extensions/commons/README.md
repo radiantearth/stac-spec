@@ -60,17 +60,17 @@ An incomplete Collection:
     "constellation": "landsat-8",
     "instruments": ["oli", "tirs"],
     "eo:gsd": 30,
-    "view:off_nadir": 0,
-    "eo:bands": [
-      {
-        "name": "B1",
-        "common_name": "coastal",
-        "center_wavelength": 0.44,
-        "full_width_half_max": 0.02
-      },
-      ...
-    ]
+    "view:off_nadir": 0
   },
+  "eo:bands": [
+    {
+      "name": "B1",
+      "common_name": "coastal",
+      "center_wavelength": 0.44,
+      "full_width_half_max": 0.02
+    },
+    ...
+  ],
   "links": [...]
 }
 ```

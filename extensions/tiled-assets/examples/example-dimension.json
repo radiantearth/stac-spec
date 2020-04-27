@@ -46,36 +46,6 @@
             "msi"
         ],
         "eo:gsd": 10,
-        "eo:bands": [
-            {
-                "name": "B2",
-                "common_name": "blue"
-            },
-            {
-                "name": "B3",
-                "common_name": "green"
-            },
-            {
-                "name": "B4",
-                "common_name": "red"
-            },
-            {
-                "name": "B5"
-            },
-            {
-                "name": "B6"
-            },
-            {
-                "name": "B7"
-            },
-            {
-                "name": "B8",
-                "common_name": "nir"
-            },
-            {
-                "name": "B11"
-            }
-        ],
         "cube:dimensions": {
             "timeSpan": {
                 "type": "enumeration",

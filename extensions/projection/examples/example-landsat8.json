@@ -221,20 +221,6 @@
     },
     "proj:shape": [8391, 8311],
     "proj:transform": [30.0, 0.0, 224985.0, 0.0, -30.0, 6790215.0, 0.0, 0.0, 1.0],
-    "eo:bands": [
-      {
-        "name": "B1",
-        "common_name": "coastal",
-        "center_wavelength": 0.44,
-        "full_width_half_max": 0.02
-      },
-      {
-        "name": "B8",
-        "common_name": "panchromatic",
-        "center_wavelength": 0.59,
-        "full_width_half_max": 0.18
-      }
-    ]
   },
   "links": [
     {

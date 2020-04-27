@@ -41,7 +41,6 @@
     "view:off_nadir": 1.4,
     "platform": "coolsat2",
     "instruments": ["cool_sensor_v1"],
-    "eo:bands": [],
     "view:sun_elevation": 33.4,
     "eo:gsd": 0.512,
     "cs:type": "scene",
