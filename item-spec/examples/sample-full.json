@@ -43,7 +43,7 @@
     "instruments": ["cool_sensor_v1"],
     "eo:bands": [],
     "view:sun_elevation": 33.4,
-    "eo:gsd": 0.512,
+    "gsd": 0.512,
     "cs:type": "scene",
     "cs:anomalous_pixels": 0.14,
     "cs:earth_sun_distance": 1.0141560,

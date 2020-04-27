@@ -60,7 +60,7 @@
     ],
     "license": "PDDL-1.0",
     "properties": {
-      "eo:gsd": 30,
+      "gsd": 30,
       "platform": "landsat-8",
       "instruments": ["oli", "tirs"],
       "view:off_nadir": 0,
