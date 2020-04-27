@@ -50,7 +50,7 @@
         "view:off_nadir": 0,
         "landsat:path": 107,
         "landsat:row": 18,
-        "eo:gsd": 30,
+        "gsd": 30,
         "eo:cloud_cover": 78,
         "eo:bands": [
             {

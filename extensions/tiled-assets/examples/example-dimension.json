@@ -45,7 +45,7 @@
         "instruments": [
             "msi"
         ],
-        "eo:gsd": 10,
+        "gsd": 10,
         "eo:bands": [
             {
                 "name": "B2",
