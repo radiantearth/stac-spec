@@ -26,29 +26,16 @@ If the data has been collected by a satellite, it is strongly recommended to use
 
 For defining view geometry of data, it is strongly recommended to use the [`view` extension](../view/README.md).
 
-- [Example (Landsat 8)](examples/example-landsat8.json)
+- Examples:
+  - [Landsat-8 Collection](examples/landsat8-collection.json)
+  - [Landsat-8 Item](examples/landsat8-item.json)
 - [JSON Schema](json-schema/schema.json)
 
-## Item fields
+## Collection Fields
 
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
-| eo:gsd           | number                   | **REQUIRED.** Ground Sample Distance at the sensor. |
 | eo:bands         | [[Band Object](#band-object)] | **REQUIRED.** This is a list of the available bands where each item is a [Band Object](#band-object). |
-| eo:cloud_cover   | number                   | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided. |
-
-### Ground Sampling Distance
-
-**eo:gsd** is the nominal Ground Sample Distance for the data, as measured in meters on the ground. There are many
-definitions of GSD. The value of this attribute should be related to the spatial resolution at the sensor, rather
-than the pixel size of images after orthorectification, pansharpening, or scaling.
-The GSD of a sensor can vary depending on off-nadir and wavelength, so it is at the discretion of the implementer
-to decide which value most accurately represents the GSD. For example, Landsat8 optical and short-wave IR bands 
-are all 30 meters, but the panchromatic band is 15 meters. The
-`eo:gsd` should be 30 meters in this case because that is nominal spatial resolution at the sensor. The Planet 
-PlanetScope Ortho Tile Product has an `eo:gsd` of 3.7 (or 4 if rounding), even though the pixel size of the images is 
-3.125.   For example, one might choose for WorldView-2 the 
-Multispectral 20° off-nadir value of 2.07 and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.
 
 ### Band Object
 
@@ -92,6 +79,26 @@ numbers of several popular instruments.
 
 The difference between the `nir`, `nir08`, and `nir09` bands are that the `nir` band is a wider band that covers most of the spectral range of 0.75μm to 1.0μm. `nir08` and `nir09` are narrow bands centered 0.85μm and 0.95μm respectively. The same goes for the difference between `lwir`, `lwir11` and `lwir12`. 
 
+## Item fields
+
+| Field Name       | Type                     | Description |
+| ---------------- | ------------------------ | ----------- |
+| eo:gsd           | number                   | **REQUIRED.** Ground Sample Distance at the sensor. |
+| eo:cloud_cover   | number                   | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided. |
+
+### Ground Sampling Distance
+
+**eo:gsd** is the nominal Ground Sample Distance for the data, as measured in meters on the ground. There are many
+definitions of GSD. The value of this attribute should be related to the spatial resolution at the sensor, rather
+than the pixel size of images after orthorectification, pansharpening, or scaling.
+The GSD of a sensor can vary depending on off-nadir and wavelength, so it is at the discretion of the implementer
+to decide which value most accurately represents the GSD. For example, Landsat8 optical and short-wave IR bands 
+are all 30 meters, but the panchromatic band is 15 meters. The
+`eo:gsd` should be 30 meters in this case because that is nominal spatial resolution at the sensor. The Planet 
+PlanetScope Ortho Tile Product has an `eo:gsd` of 3.7 (or 4 if rounding), even though the pixel size of the images is 
+3.125.   For example, one might choose for WorldView-2 the 
+Multispectral 20° off-nadir value of 2.07 and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.
+
 ## Associating assets with bands
 
 Asset definitions that contain band data should reference the band index. Each asset should provide a `eo:bands` property that is an array of 0 based indexes to the correct [Band Objects](#band-object).
@@ -101,59 +108,59 @@ Asset definitions that contain band data should reference the band index. Each a
 | ---------- | --------- | -------------------------------------------- |
 | eo:bands   | \[number] | Lists the band names available in the asset. |
 
-See [example-landsat8.json](examples/example-landsat8.json) for a full example.
+See the [landsat8 Item example](examples/landsat8-item.json) for a full example.
 
 ```js
 {
   "stac_version": "0.9.0",
-  "stac_extensions": ["eo"],
-  "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
-  "type": "Feature",
+  "stac_extensions": [
+    "commons",
+    "view",
+    "eo"
+  ],
+  "id": "landsat-8-l1",
+  "title": "Landsat 8 L1",
+  "description": "Landat 8 imagery radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
+  "keywords": [
+    "landsat"
+  ],
   ...
-  "properties": {
-    ...
-    "eo:bands": [
-      {
-        "name": "B1",
-        "common_name": "coastal",
-        "center_wavelength": 0.44,
-        "full_width_half_max": 0.02
-      },
-      {
-        "name": "B2",
-        "common_name": "blue",
-        "center_wavelength": 0.48,
-        "full_width_half_max": 0.06
-      },
-      {
-        "name": "B3",
-        "common_name": "green",
-        "center_wavelength": 0.56,
-        "full_width_half_max": 0.06
-      },
-      ...
-    ]
-  },
+  "eo:bands": [
+    {
+      "name": "B1",
+      "common_name": "coastal",
+      "center_wavelength": 0.44,
+      "full_width_half_max": 0.02
+    },
+    {
+      "name": "B2",
+      "common_name": "blue",
+      "center_wavelength": 0.48,
+      "full_width_half_max": 0.06
+    },
+    {
+      "name": "B3",
+      "common_name": "green",
+      "center_wavelength": 0.56,
+      "full_width_half_max": 0.06
+    }
+  ],
   "assets": {
     "B1": {
-      "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B1.TIF",
       "type": "image/tiff; application=geotiff",
       "eo:bands": [0],
       "title": "Band 1 (coastal)"
     },
     "B2": {
-      "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B2.TIF",
       "type": "image/tiff; application=geotiff",
       "eo:bands": [1],
       "title": "Band 2 (blue)"
     },
     "B3": {
-      "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B3.TIF",
       "type": "image/tiff; application=geotiff",
       "eo:bands": [2],
       "title": "Band 3 (green)"
-    },
-    ...
+    }
   }
 }
 ```
@@ -167,34 +174,31 @@ Planet example:
   "id": "20171110_121030_1013",
   "type": "Feature",
   ...
-  "properties": {
-    ...
-    "eo:bands": [
-      {
-        "full_width_half_max": 0.08,
-        "center_wavelength": 0.63,
-        "common_name": "red"
-      },
-      {
-        "full_width_half_max": 0.09,
-        "center_wavelength": 0.545,
-        "common_name": "green"
-      },
-      {
-        "full_width_half_max": 0.06,
-        "center_wavelength": 0.485,
-        "common_name": "blue"
-      },
-      {
-        "full_width_half_max": 0.08,
-        "center_wavelength": 0.82,
-        "common_name": "nir"
-      }
-    ]
+  "eo:bands": [
+    {
+      "full_width_half_max": 0.08,
+      "center_wavelength": 0.63,
+      "common_name": "red"
+    },
+    {
+      "full_width_half_max": 0.09,
+      "center_wavelength": 0.545,
+      "common_name": "green"
+    },
+    {
+      "full_width_half_max": 0.06,
+      "center_wavelength": 0.485,
+      "common_name": "blue"
+    },
+    {
+      "full_width_half_max": 0.08,
+      "center_wavelength": 0.82,
+      "common_name": "nir"
+    }
+  ]
   },
   "assets": {
     "analytic": {
-      "href": "https://api.planet.com/data/v1/assets/eyJpIjogIjIwMTcxMTEwXzEyMTAxMF8xMDEzIiwgImMiOiAiUFNTY2VuZTRCYW5kIiwgInQiOiAiYW5hbHl0aWMiLCAiY3QiOiAiaXRlbS10eXBlIn0",
       "title": "PSScene4Band GeoTIFF (COG)",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "eo:bands": [0,1,2,3]

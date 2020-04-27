@@ -3,12 +3,26 @@
   "$id": "schema.json#",
   "title": "EO Extension",
   "description": "STAC EO Extension to a STAC Item.",
-  "allOf": [
+  "oneOf": [
     {
-      "$ref": "../../../item-spec/json-schema/item.json"
+      "allOf": [
+        {
+          "$ref": "../../../item-spec/json-schema/item.json"
+        },
+        {
+          "$ref": "#/definitions/eo"
+        }
+      ]
     },
     {
-      "$ref": "#/definitions/eo"
+      "allOf": [
+        {
+          "$ref": "../../../collection-spec/json-schema/collection.json"
+        },
+        {
+          "$ref": "#/definitions/eo"
+        }
+      ]
     }
   ],
   "definitions": {
@@ -19,6 +33,30 @@
         "assets"
       ],
       "properties": {
+        "eo:bands": {
+          "title": "Bands",
+          "type": "array",
+          "items": {
+            "properties": {
+              "name": {
+                "title": "Name of the band",
+                "type": "string"
+              },
+              "common_name": {
+                "title": "Common Name of the band",
+                "type": "string"
+              },
+              "center_wavelength": {
+                "title": "Center Wavelength",
+                "type": "number"
+              },
+              "full_width_half_max": {
+                "title": "Full Width Half Max (FWHM)",
+                "type": "number"
+              }
+            }
+          }
+        },
         "properties": {
           "type": "object",
           "required": [
@@ -29,30 +67,6 @@
             "eo:gsd": {
               "title": "Ground Sample Distance",
               "type": "number"
-            },
-            "eo:bands": {
-              "title": "Bands",
-              "type": "array",
-              "items": {
-                "properties": {
-                  "name": {
-                    "title": "Name of the band",
-                    "type": "string"
-                  },
-                  "common_name": {
-                    "title": "Common Name of the band",
-                    "type": "string"
-                  },
-                  "center_wavelength": {
-                    "title": "Center Wavelength",
-                    "type": "number"
-                  },
-                  "full_width_half_max": {
-                    "title": "Full Width Half Max (FWHM)",
-                    "type": "number"
-                  }
-                }
-              }
             },
             "eo:cloud_cover": {
               "title": "Cloud Cover",
