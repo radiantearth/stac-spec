@@ -2,12 +2,16 @@
 This document outlines all commonly used fields for STAC Item properties. These fields are 
 included by default in the core [Item schema](json-schema/item.json) but implementation is not required. 
 
-* [Basics](#basics)
-* [Date and Time](#date-and-time)
-* [Licensing](#licensing)
-* [Provider](#provider)
-* [Instrument](#instrument)
-* [Metadata](#metadata)
+- [STAC Common Metadata](#stac-common-metadata)
+  - [Basics](#basics)
+  - [Date and Time](#date-and-time)
+    - [Date and Time Range](#date-and-time-range)
+  - [Licensing](#licensing)
+    - [Relation types](#relation-types)
+  - [Provider](#provider)
+    - [Provider Object](#provider-object)
+  - [Instrument](#instrument)
+  - [Metadata](#metadata)
 
 Various *examples* are available in the folder [`examples`](examples/).
 *JSON Schemas* can be found in the folder [`json-schema`](json-schema/).
@@ -107,6 +111,7 @@ with domain-specific extensions that describe the actual data, such as the `eo` 
 | instruments   | \[string] | Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1). |
 | constellation | string    | Name of the constellation to which the platform belongs. |
 | mission       | string    | Name of the mission for which data is collected. |
+| eo:gsd        | number    | Ground Sample Distance at the sensor. |
 
 **platform** is the unique name of the specific platform the instrument is attached to. For satellites this would 
 be the name of the satellite, whereas for drones this would be a unique name for the drone. Examples include 
@@ -133,6 +138,17 @@ part of a constellation, but these are combined to form the logical collection r
 **mission** is the name of the mission or campaign for collecting data. This could be a discrete set of data collections
 over a period of time (such as collecting drone imagery), or could be a set of tasks of related tasks from a satellite
 data collection.
+
+**gsd** is the nominal Ground Sample Distance for the data, as measured in meters on the ground. There are many
+definitions of GSD. The value of this attribute should be related to the spatial resolution at the sensor, rather
+than the pixel size of images after orthorectification, pansharpening, or scaling.
+The GSD of a sensor can vary depending on off-nadir and wavelength, so it is at the discretion of the implementer
+to decide which value most accurately represents the GSD. For example, Landsat8 optical and short-wave IR bands 
+are all 30 meters, but the panchromatic band is 15 meters. The
+`gsd` should be 30 meters in this case because that is nominal spatial resolution at the sensor. The Planet 
+PlanetScope Ortho Tile Product has an `gsd` of 3.7 (or 4 if rounding), even though the pixel size of the images is 3.125.   For example, one might choose for WorldView-2 the 
+Multispectral 20° off-nadir value of 2.07 and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.
+
 
 ## Metadata
 
