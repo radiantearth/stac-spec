@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 
 - proj4 string from proj extension
+- `commons` extension - Items should contain all properties and not default to a common set at the Collection level
 
 ### Fixed
 
