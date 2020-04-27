@@ -149,7 +149,6 @@ are all 30 meters, but the panchromatic band is 15 meters. The
 PlanetScope Ortho Tile Product has an `gsd` of 3.7 (or 4 if rounding), even though the pixel size of the images is 3.125.   For example, one might choose for WorldView-2 the 
 Multispectral 20° off-nadir value of 2.07 and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.
 
-
 ## Metadata
 
 Fields to describe the metadata file itself. These fields do NOT describe the assets.
