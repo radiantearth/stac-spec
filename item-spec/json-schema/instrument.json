@@ -22,6 +22,10 @@
     "mission": {
       "title": "Mission",
       "type": "string"
-    }
+    },
+    "gsd": {
+      "title": "Ground Sample Distance",
+      "type": "number"
+    },
   }
 }

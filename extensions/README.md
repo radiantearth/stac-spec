@@ -117,7 +117,7 @@ An example of this can be seen in a Landsat example:
     "eo:cloud_cover": 10.31,
     "view:sun_azimuth": 149.01607154,
     "view:sun_elevation": 59.21424700,
-    "eo:gsd": 30,
+    "gsd": 30,
 
     "l8:data_type": "L1T",
     "l8:wrs_path": 153,
