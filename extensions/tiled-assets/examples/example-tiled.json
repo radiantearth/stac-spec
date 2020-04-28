@@ -48,7 +48,7 @@
         "instruments": [
             "msi"
         ],
-        "eo:gsd": 10,
+        "gsd": 10,
         "tiles:tile_matrix_links": {
             "WebMercatorQuad": {
                 "url": "http://schemas.opengis.net/tms/1.0/json/examples/WebMercatorQuad.json",

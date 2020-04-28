@@ -65,7 +65,7 @@
       "platform": "landsat-8",
       "instruments": ["oli", "tirs"],
       "view:off_nadir": 0,
-      "eo:gsd": 30
+      "gsd": 30
     },
     "eo:bands": [
       {

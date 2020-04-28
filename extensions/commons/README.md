@@ -59,7 +59,7 @@ An incomplete Collection:
     "platform": "landsat-8",
     "constellation": "landsat-8",
     "instruments": ["oli", "tirs"],
-    "eo:gsd": 30,
+    "gsd": 30,
     "view:off_nadir": 0
   },
   "eo:bands": [
@@ -115,7 +115,7 @@ The merged Item then looks like this:
     "eo:cloud_cover": 78,
     "view:sun_azimuth": 168.8989761,
     "view:sun_elevation": 26.32596431,
-    "eo:gsd": 30,
+    "gsd": 30,
     "view:off_nadir": 0,
     "eo:bands": [
       {

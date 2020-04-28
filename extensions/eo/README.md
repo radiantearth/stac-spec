@@ -36,6 +36,7 @@ For defining view geometry of data, it is strongly recommended to use the [`view
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
 | eo:bands         | [[Band Object](#band-object)] | **REQUIRED.** This is a list of the available bands where each item is a [Band Object](#band-object). |
+| eo:cloud_cover   | number                   | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided. |
 
 ### Band Object
 

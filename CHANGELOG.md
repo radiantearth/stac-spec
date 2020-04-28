@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Moved item recommendations to best practices, and added a bit more in item spec about 'search'
 - `eo:bands` moved from Item properties to Collection (top-level)
+- Moved `eo:gsd` from `eo` extension to core `gsd` field in Item common metadata
 
 ### Removed
 

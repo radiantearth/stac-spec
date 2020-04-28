@@ -64,7 +64,7 @@
   ],
   "license": "PDDL-1.0",
   "properties": {
-    "eo:gsd": 15,
+    "gsd": 15,
     "platform": "landsat-8",
     "instruments": [
       "oli",
