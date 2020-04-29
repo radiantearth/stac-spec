@@ -315,7 +315,6 @@ Overriding or providing Item Properties only in the Assets makes discovery more 
 - `sar:polarizations`: Provide the polarization content and ordering of a specific asset, similar to `eo:bands`.
 - `sar:product_type`: If mixing multiple product types within a single Item, this can be used to specify the product_type for each asset.
 
-
 ## Extensions
 
 There are emerging best practices, which in time will evolve in to specification extensions for
