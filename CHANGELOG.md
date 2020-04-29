@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Moved item recommendations to best practices, and added a bit more in item spec about 'search'
 - Moved `eo:gsd` from `eo` extension to core `gsd` field in Item common metadata
+- `asset` extension: renamed the `assets` field in Collections to `asset_definition`
 
 ### Removed
 
