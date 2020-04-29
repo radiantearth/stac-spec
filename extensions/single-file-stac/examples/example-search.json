@@ -464,7 +464,7 @@
                     }
                 ]
             },
-            "asset_definition": {
+            "item_assets": {
                 "index": {
                     "type": "text/html",
                     "title": "HTML index page"

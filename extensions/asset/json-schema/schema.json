@@ -16,10 +16,10 @@
       "title": "Asset schemas",
       "type": "object",
       "required": [
-        "asset_definition"
+        "item_assets"
       ],
       "properties": {
-        "asset_definition": {
+        "item_assets": {
           "type": "object",
           "additionalProperties": {
             "$ref": "#/definitions/asset"
