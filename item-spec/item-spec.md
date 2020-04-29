@@ -165,14 +165,10 @@ or streamed. It is allowed to add additional fields.
 | description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | type        | string    | [Media type](#media-types) of the asset. |
 | roles       | \[string] | The [semantic roles](#asset-role-types) of the asset, similar to the use of `rel` in links. |
-
-Additionally, it is allowed to add any [additional fields](#additional-fields) to an asset that normally appears in an Item's properties:
-
-* [STAC Common Metadata](common-metadata.md#stac-common-metadata) - A list of fields commonly used throughout all domains.
-* [Content Extensions](../extensions/README.md#list-of-content-extensions) - Domain-specific fields 
+| [STAC Common Metadata](common-metadata.md#stac-common-metadata) | varies | A list of fields commonly used throughout all domains.
+| [Content Extensions](../extensions/README.md#list-of-content-extensions) | varies | Domain-specific fields 
 such as EO, SAR and point clouds.
-* [Custom Extensions](../extensions/README.md#extending-stac) - It is generally allowed to add custom 
-fields.
+| [Custom Extensions](../extensions/README.md#extending-stac) | varies | It is generally allowed to add custom fields.
 
 See [Additional Fields for Assets](#additional-fields-for-assets) below.
 
