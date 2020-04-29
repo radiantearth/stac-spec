@@ -64,7 +64,7 @@
   ],
   "license": "PDDL-1.0",
   "properties": {
-    "eo:gsd": 15,
+    "gsd": 15,
     "platform": "landsat-8",
     "instruments": [
       "oli",
@@ -240,7 +240,7 @@
       ],
       "title": "LWIR Band (B11)",
       "description": "Long-wave IR Band at 12um (B11) Top Of the Atmosphere"
-    },
-    "links": []
-  }
+    }
+  },
+  "links": []
 }

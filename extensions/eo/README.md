@@ -33,22 +33,8 @@ For defining view geometry of data, it is strongly recommended to use the [`view
 
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
-| eo:gsd           | number                   | **REQUIRED.** Ground Sample Distance at the sensor. |
 | eo:bands         | [[Band Object](#band-object)] | **REQUIRED.** This is a list of the available bands where each item is a [Band Object](#band-object). |
 | eo:cloud_cover   | number                   | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided. |
-
-### Ground Sampling Distance
-
-**eo:gsd** is the nominal Ground Sample Distance for the data, as measured in meters on the ground. There are many
-definitions of GSD. The value of this attribute should be related to the spatial resolution at the sensor, rather
-than the pixel size of images after orthorectification, pansharpening, or scaling.
-The GSD of a sensor can vary depending on off-nadir and wavelength, so it is at the discretion of the implementer
-to decide which value most accurately represents the GSD. For example, Landsat8 optical and short-wave IR bands 
-are all 30 meters, but the panchromatic band is 15 meters. The
-`eo:gsd` should be 30 meters in this case because that is nominal spatial resolution at the sensor. The Planet 
-PlanetScope Ortho Tile Product has an `eo:gsd` of 3.7 (or 4 if rounding), even though the pixel size of the images is 
-3.125.   For example, one might choose for WorldView-2 the 
-Multispectral 20° off-nadir value of 2.07 and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.
 
 ### Band Object
 

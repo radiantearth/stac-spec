@@ -2,7 +2,8 @@
 
 ## Table of Contents
 
-* [Fields and ID's](#fields-and-ids)
+* [Field and ID formatting](#field-and-id-formatting)
+* [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
 * [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
 * [Catalog Layout](#catalog-layout)
 * [Use of Links](#use-of-links)
@@ -19,7 +20,7 @@ those who are creating new catalogs or new tools to work with STAC.
 In time some of these may evolve to become part of the core specification, but while the current goal of the core is to remain 
 quite flexible and simple to meet a wide variety of use cases.
 
-## Fields and ID's
+## Field and ID formatting
 
 When defining one's STAC properties and fields there are many choices to make on how to name various aspects of one's
 data. One of the key properties is the ID. The specification is quite flexible on ID's, primarily so that existing
@@ -32,6 +33,19 @@ When defining unique fields for search, like constellation or platform, it is re
 the value consist of only lowercase characters, numbers, `_`, and `-`. Examples include `sentinel-1a` (Sentinel-1), 
 `landsat-8` (Landsat-8) and `envisat` (Envisat). This is to provide consistency for search across collections, so that
 people can just search for 'landsat-8', instead of thinking through all the ways providers might have chosen to name it.
+
+## Field selection and Metadata Linking
+
+In general STAC aims to be oriented around **search**, centered on the core fields that users will want to search on to find 
+imagery. The core is space and time, but there are often other metadata attributes that are useful. While the specification is 
+flexible enough that providers can fill it with tens or even hundreds of fields of metadata, that is not recommended. If 
+providers have lots of metadata then that can be linked to in the [Asset Object](item-spec/item-spec.md#asset-object) 
+(recommended) or in a [Link Object](item-spec/item-spec.md#link-object). There is a lot of metadata that is only of relevance 
+to loading and processing data, and while STAC does not prohibit providers from putting those type of fields in their items, 
+it is not recommended. For very large 
+catalogs (hundreds of millions of records), every additional field that is indexed will cost substantial money, so data
+providers are advised to just put the fields to be searched in STAC, so STAC API providers don't have bloated indices
+that no one actually uses.
 
 ## Static and Dynamic Catalogs
 
