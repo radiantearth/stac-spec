@@ -77,38 +77,6 @@ An important core principle of the STAC design is to embrace best practices of m
 to leverage the reliability of flat files on object stores like [AWS S3](https://aws.amazon.com/s3/) and [Google Cloud Storage](https://cloud.google.com/storage/).
 This lead to designing a static catalog at the core of the STAC spec.
 
-### Catalog Types
-
-STAC Catalogs generally fall into two different types: Static Catalogs and Dynamic Catalog APIs.
-
-The two catalog types both implement the same fields and links, and can be treated as the same by clients.
-For more details on the two types see the chapters below. Additionally, consider the [Static and Dynamic Catalogs](best-practices.md#static-and-dynamic-catalogs)
-section of the best practices document on how you might use them best.
-
-#### Static Catalog
-
-A static catalog is an implementation of the STAC specification that does not respond dynamically to requests. It is simply
-a set of files on a web server that link to one another in a way that can be crawled, often stored in an cloud storage
-service like [Amazon S3](https://aws.amazon.com/s3/) or [Google Cloud Storage](https://cloud.google.com/storage/).
-The core JSON documents and link structures are encoded in the file, and work as long as things are structured properly.
-A static catalog can only really be crawled by search engines and active catalogs; it can not respond to queries.
-But it is incredibly reliable, as there are no moving parts, no clusters or databases to maintain.
-The goal of STAC is to expose as much asset metadata online as possible, so the static catalog offers a very lower
-barrier to entry for anyone with geospatial assets to make their data searchable.
-
-#### Dynamic Catalog 
-
-A dynamic catalog is implemented in software as a RESTful API, following the same specified JSON structure for Items, Catalogs
-and Collections. Its structure and responses are usually generated dynamically, but the result is the same, 
-so the same client and crawler tools can consume it. It generally indexes data for efficient responses, and aims to be easy
-for existing APIs to implement as a more standard interface for clients to consume.  An active 
-catalog will sometoimes be populated by a static catalog, or at least may have a 'backup' of its fields stored as a cached static 
-catalog.
-
-Dynamic Catalogs often also implement the [STAC API](https://github.com/radiantearth/stac-api-spec/) specification, that 
-responds to search queries (like give me all imagery in Oahu gathered on January 15, 2017). But they are not required to, one
-can have a dynamic service that only implements the core STAC specification, and is crawled by STAC API implementations that
-provide 'search'. 
 
 ### Core Metadata and Extensions
 

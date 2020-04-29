@@ -54,10 +54,15 @@ and dynamic. This section explains each of them in more depth and shares some be
 
 ### Static Catalogs
 
-A main target for STAC has been object storage services like [Amazon S3](https://aws.amazon.com/s3/), 
-[Google Cloud Storage](https://cloud.google.com/storage/) and [Azure Storage](https://azure.microsoft.com/en-us/services/storage/), 
-so that users can stand up a full STAC implementation with static files. Implementations created with just files online
-are referred to as 'static catalogs'. These include not just the cloud services, but any type of file server that is online.
+A static catalog is an implementation of the STAC specification that does not respond dynamically to requests. It is simply
+a set of files on a web server that link to one another in a way that can be crawled, often stored in an cloud storage
+service like [Amazon S3](https://aws.amazon.com/s3/), [Azure Storage](https://azure.microsoft.com/en-us/services/storage/) and
+[Google Cloud Storage](https://cloud.google.com/storage/). But any http server could expose a static catalog as files.
+The core JSON documents and link structures are encoded in the file, and work as long as things are structured properly.
+A static catalog can only really be crawled by search engines and active catalogs; it can not respond to queries.
+But it is incredibly reliable, as there are no moving parts, no clusters or databases to maintain.
+The goal of STAC is to expose as much asset metadata online as possible, so the static catalog offers a very lower
+barrier to entry for anyone with geospatial assets to make their data searchable.
 
 Static Catalogs tend to make extensive use of *sub-catalogs* to organize their Items in to sensible browsing structures, 
 as they can only have a single representation of their catalog, since the static nature means the structure is baked in.
@@ -73,13 +78,18 @@ is to place the catalog file in namespaces "directories". For example:
 
 ### Dynamic Catalogs
 
-Dynamic STAC Catalogs are those that generate their JSON responses programmatically instead of relying on a set of
-already defined files. Typically a dynamic catalog implements the full [STAC API](https://github.com/radiantearth/stac-api-spec) which enables 
-search of the Items indexed. The `/` endpoint returns the exact same STAC Catalog structure as a
-static catalog, enabling the same discovery from people browsing and search engines crawling. Dynamic API's that
-just seek to expose some data can also choose to not implement `/search` and only link to their data from the `/` endpoint.
-For example a Content Management Service like Drupal or an Open Data Catalog like CKAN could choose to expose its content
-as linked STAC Items by implementing a dynamic catalog. 
+A dynamic catalog is implemented in software as a RESTful API, following the same specified JSON structure for Items, Catalogs
+and Collections. Its structure and responses are usually generated dynamically, instead of relying on a set of
+already defined files. But the result is the same, enabling the same discovery from people browsing and search engines crawling. 
+It generally indexes data for efficient responses, and aims to be easy for existing APIs to implement as a more standard interface 
+for clients to consume. A dynamic catalog will sometimes be populated by a static catalog, or at least may have a 'backup' of its 
+fields stored as a cached static catalog.
+
+Dynamic Catalogs often also implement the [STAC API](https://github.com/radiantearth/stac-api-spec/) specification, that 
+responds to search queries (like give me all imagery in Oahu gathered on January 15, 2017). But they are not required to, one
+can have a dynamic service that only implements the core STAC specification, and is crawled by STAC API implementations that
+provide 'search'. For example a Content Management Service like Drupal or an Open Data Catalog like CKAN could choose to expose 
+its content as linked STAC Items by implementing a dynamic catalog. 
 
 One benefit of a dynamic catalog is that it can generate various 'views' of the catalog, exposing the same `Items` in 
 different sub-catalog organization structures. For example one catalog could divide sub-catalogs by date and another by
