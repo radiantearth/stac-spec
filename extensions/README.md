@@ -46,7 +46,7 @@ An extension can add new fields to STAC entities (content extension), or can add
 
 | Extension Title                                | Identifier       | Field Name Prefix   | Scope                     | Maturity   | Description                        |
 | ---------------------------------------------- | ---------------- | ------------------- | ------------------------- | ---------- | ---------------------------------- |
-| [Asset Definition](asset/README.md)            | asset            | -                   | Collection                | *Proposal* | Provides a way to specify details about what assets may be found in Items belonging to a collection. |
+| [Item Asset Definition](item-assets/README.md)            | asset            | -                   | Collection                | *Proposal* | Provides a way to specify details about what assets may be found in Items belonging to a collection. |
 | [Checksum](checksum/README.md)                 | checksum         | checksum            | Item, Catalog, Collection | *Proposal* | Provides a way to specify file checksums for assets and links in Items, Catalogs and Collections. |
 | [Commons](commons/README.md)                   | commons          | -                   | Item, Collection          | *Proposal* | Provides a way to specify data fields in a collection that are common across the STAC Items in that collection, so that each does not need to repeat all the same information. |
 | [Data Cube](datacube/README.md)                | datacube         | cube                | Item, Collection          | *Proposal* | Data Cube related metadata, especially to describe their dimensions. |

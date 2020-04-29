@@ -13,7 +13,7 @@
   ],
   "definitions": {
     "assets": {
-      "title": "Asset schemas",
+      "title": "Item Assets Definition",
       "type": "object",
       "required": [
         "item_assets"

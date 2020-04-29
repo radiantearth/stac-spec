@@ -1,7 +1,7 @@
-# Asset Definition Specification
+# Item Assets Definition Specification
 
-- **Title: Asset Definition**
-- **Identifier: asset**
+- **Title: Item Assets Definition**
+- **Identifier: item-assets**
 - **Field Name Prefix: -**
 - **Scope: Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
