@@ -6,21 +6,23 @@ TODO: Overall introductin of the three elements and how they fit together.
 
 ## Item Overview
 
-An  is the core atomic unit, representing a single spatiotemporal asset 
-as a , plus datetime and links.
-
 Fundamental to any STAC, a [Item](item-spec/item-spec.md) represents an atomic collection of inseparable 
 data and metadata. A STAC Item is a [GeoJSON](http://geojson.org/) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)
-and can be easily read by any modern GIS or geospatial  library. The STAC Item JSON specification includes 
-additional fields for:
+and can be easily read by any modern GIS or geospatial library. The STAC [Item JSON specification](](item-spec/item-spec.md)) 
+includes additional fields for:
 
 * the time the asset represents;
 * a thumbnail for quick browsing;
 * asset links, links to the described data;
 * relationship links, allowing users to traverse other related STAC Items.
 
-A STAC Item can contain additional fields and JSON structures to enable data providers to expose rich 
-metadata and software developers to create intuitive tools.
+A STAC Item can contain additional fields and JSON structures to communicate more information about the
+asset, so it can be easily searched. STAC provides a core set of 
+[Common Metadata](https://github.com/radiantearth/stac-spec/blob/catalog-spec-evolve/item-spec/common-metadata.md)
+and there is a wider community working on a variety of [STAC Extensions](https://github.com/radiantearth/stac-spec/tree/catalog-spec-evolve/extensions) that provide shared metadata for more specific domains. Both aim to describe data with well known, well
+defined terms to enable consistent publishing and better search. For more recommendations on selecting fields
+for an Item see [this section](https://github.com/radiantearth/stac-spec/blob/catalog-spec-evolve/best-practices.md#field-selection-and-metadata-linking) of the best practices document.
+
 
 ### What is a SpatioTemporal Asset?
 
