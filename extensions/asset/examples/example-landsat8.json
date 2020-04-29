@@ -140,7 +140,7 @@
       }
     ]
   },
-  "asset_definition": {
+  "item_assets": {
     "thumbnail": {
       "type": "image/jpeg",
       "title": "Thumbnail",
