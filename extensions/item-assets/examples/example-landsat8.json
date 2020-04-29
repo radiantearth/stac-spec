@@ -9,7 +9,7 @@
   ],
   "stac_version": "0.9.0",
   "stac_extensions": [
-    "asset",
+    "item-assets",
     "commons"
   ],
   "extent": {
@@ -140,7 +140,7 @@
       }
     ]
   },
-  "assets": {
+  "item_assets": {
     "thumbnail": {
       "type": "image/jpeg",
       "title": "Thumbnail",
