@@ -165,7 +165,16 @@ or streamed. It is allowed to add additional fields.
 | description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | type        | string    | [Media type](#media-types) of the asset. |
 | roles       | \[string] | The [semantic roles](#asset-role-types) of the asset, similar to the use of `rel` in links. |
-| *Item Property* | varies | Any Item property can be defined for each asset |
+
+Additionally, it is allowed to add any [additional fields](#additional-fields) to an asset that normally appears in an Item's properties:
+
+* [STAC Common Metadata](common-metadata.md#stac-common-metadata) - A list of fields commonly used throughout all domains.
+* [Content Extensions](../extensions/README.md#list-of-content-extensions) - Domain-specific fields 
+such as EO, SAR and point clouds.
+* [Custom Extensions](../extensions/README.md#extending-stac) - It is generally allowed to add custom 
+fields.
+
+See [Additional Fields for Assets](#additional-fields-for-assets) below.
 
 #### Asset Role Types
 
@@ -216,7 +225,7 @@ Deprecation notice: GeoTiff previously used the media type `image/vnd.stac.geoti
 Cloud Optimized GeoTiffs used `image/vnd.stac.geotiff; profile=cloud-optimized`.
 Both can still appear in old catalogues, but are deprecated and should be replaced.
 
-#### Item Properties for Assets
+#### Additional Fields for Assets
 
 As detailed above, Items contain properties, which are the main source of metadata for searching across Items. Many content extensions can add further property fields as well. Any property that can be specified for an Item can also be specified for a specific asset. This can be used to override a property defined in the Item, or to specify fields for which there is no single value for all assets.
 
@@ -303,12 +312,12 @@ The Sentinel-2 overall `gsd` is 10m, because this is the best spatial resolution
 
 For `eo:bands`, it could be put in Item properties as an array of all the bands, but in this case it's not. Instead, the assets each define an array containing the spectral band information for that asset (in the order the bands appear in the file).
 
-##### Common Use Cases for Item Properties in Assets
+##### Common Use Cases of Additional Fields for Assets
 
 Overriding or providing Item Properties only in the Assets makes discovery more difficult and should generally be avoided. However, there are some core and extension fields for which providing them at at the Asset level can prove to be very useful for using the data.
 
+- `datetime`: Provide individual timestamp on an Item, in case the Item has a `start_datetime` and `end_datetime`, but an Asset is for one specific time.
 - `gsd`: Specify some assets with different spatial resolution than the overall best resolution.
-- `updated`: Provide individual timestamps on when an asset was last updated. Since the Item property only tells when any of the Item was updated, this can provide additional info for users to determine which asset(s) might have been updated.
 - `eo:bands`: Provide spectral band information, and order of bands, within an individual asset.
 - `proj:epsg`/`proj:wkt2`/`proj:projjson`: Specify different projection for some assets. If the projection is different for all assets it should probably not be provided as an Item property. If most assets are one projection, and there is a single reprojected version (such as a Web Mercator preview image), it is sensible to specify the main projection in the Item and the alternate projection for the affected asset(s).
 - `proj:shape`/`proj:transform`: If assets have different spatial resolutions and slightly different exact bounding boxes, specify these per asset to indicate the size of the asset in pixels and it's exact GeoTranform in the native projection.
