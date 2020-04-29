@@ -1,3 +1,37 @@
+# STAC Overview
+
+TODO: Overall introductin of the three elements and how they fit together.
+
+
+
+## Item Overview
+
+An  is the core atomic unit, representing a single spatiotemporal asset 
+as a , plus datetime and links.
+
+Fundamental to any STAC, a [Item](item-spec/item-spec.md) represents an atomic collection of inseparable 
+data and metadata. A STAC Item is a [GeoJSON](http://geojson.org/) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)
+and can be easily read by any modern GIS or geospatial  library. The STAC Item JSON specification includes 
+additional fields for:
+
+* the time the asset represents;
+* a thumbnail for quick browsing;
+* asset links, links to the described data;
+* relationship links, allowing users to traverse other related STAC Items.
+
+A STAC Item can contain additional fields and JSON structures to enable data providers to expose rich 
+metadata and software developers to create intuitive tools.
+
+### What is a SpatioTemporal Asset?
+
+A 'spatiotemporal asset' is any file that represents information about the earth captured in a certain 
+space and time. Examples include Imagery (from satellites, planes and drones), SAR, Point Clouds (from
+LiDAR, Structure from Motion, etc), Data Cubes, Full Motion Video, and data derived from any of those.
+The key is that the GeoJSON is not the actual 'thing', but instead references files and serves as an
+index to the 'assets'. It is not recommended to use stac to refer to traditional vector data layers
+(shapefile, geopackage) as rasters. (TODO: Create something in 'best practices' and link there)
+
+
 ## Catalog Overview
 
 There are two required element types of a Catalog: Catalog and Item. A STAC Catalog
