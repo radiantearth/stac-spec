@@ -32,6 +32,12 @@ index to the 'assets'. It is not recommended to use stac to refer to traditional
 (shapefile, geopackage) as rasters. (TODO: Create something in 'best practices' and link there)
 
 
+### Core Metadata and Extensions
+
+The Item specification defines the core fields that all assets must make available for searching in a catalog.
+In addition there are some basic fields for describing collections of data.
+Vendors can extend those core fields for the metadata they want to make available, and the community has started to define shared extensions.
+
 ## Catalog Overview
 
 There are two required element types of a Catalog: Catalog and Item. A STAC Catalog
@@ -87,6 +93,13 @@ root catalog might be a sub-catalog of someone else's structure. The goal is for
 information and links they want to, while also encouraging a natural web of information to arise as Catalogs and Items are
 linked to across the web.
 
+### Design Overview
+
+An important core principle of the STAC design is to embrace best practices of making data available on the web (like 
+[HATEOAS](https://en.wikipedia.org/wiki/HATEOAS) and [W3C Spatial Data on the Web](https://www.w3.org/TR/sdw-bp/)), and 
+to leverage the reliability of flat files on object stores like [AWS S3](https://aws.amazon.com/s3/) and [Google Cloud Storage](https://cloud.google.com/storage/).
+This lead to designing a static catalog at the core of the STAC spec.
+
 ### Static and Dynamic Catalogs
 
 The Catalog specification is designed so it can be implemented as easily as possibly. This can be as simple as
@@ -95,6 +108,8 @@ or it can be generated on the fly by a live server. The first type of implementa
 and any catalog that is not just files is called a 'dynamic catalog'. You can read more about the two types along with
 recommendations in [this section](../best-practices.md#static-and-dynamic-catalogs) of the best practices document, 
 along with how to keep a [dynamic catalog in sync](../best-practices.md#static-to-dynamic-best-practices) with a static one.
+
+
 
 ### Best Practices
 

@@ -70,19 +70,6 @@ functionality of the core spec or add fields for specific domains.
 document, a [list of implementations](implementations.md), [best practices](best-practices.md)
 and a discussion of the collaboration [principles](principles.md) and specification approach.
 
-## Design Overview
-
-An important core principle of the STAC design is to embrace best practices of making data available on the web (like 
-[HATEOAS](https://en.wikipedia.org/wiki/HATEOAS) and [W3C Spatial Data on the Web](https://www.w3.org/TR/sdw-bp/)), and 
-to leverage the reliability of flat files on object stores like [AWS S3](https://aws.amazon.com/s3/) and [Google Cloud Storage](https://cloud.google.com/storage/).
-This lead to designing a static catalog at the core of the STAC spec.
-
-
-### Core Metadata and Extensions
-
-The Item specification defines the core fields that all assets must make available for searching in a catalog.
-In addition there are some basic fields for describing collections of data.
-Vendors can extend those core fields for the metadata they want to make available, and the community has started to define shared extensions.
 
 ### UML Diagram
 
