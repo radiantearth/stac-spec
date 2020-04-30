@@ -16,9 +16,6 @@ specification contains an OpenAPI definition of the standard way to do this, at 
 
 ## In this directory
 
-**Overview:** An overview of how STAC Catalogs are structured and organized, with links to many best practices is in
-*[catalog-overview.md](catalog-overview.md)*.
-
 **The Specification:** The main Catalog specification is in *[catalog-spec.md](catalog-spec.md)*.
 It includes in depth explanation of the structures and fields.
 

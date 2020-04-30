@@ -70,7 +70,6 @@ functionality of the core spec or add fields for specific domains.
 document, a [list of implementations](implementations.md), [best practices](best-practices.md)
 and a discussion of the collaboration [principles](principles.md) and specification approach.
 
-
 ### UML Diagram
 
 A UML diagram of the [STAC model](STAC-UML.pdf) is provided to help with navigating the specification. 

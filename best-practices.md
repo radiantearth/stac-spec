@@ -56,13 +56,13 @@ as the `asset`. Though there is nothing in the specification that *prevents* thi
 abstraction. A shapefile or geopackage corresponds to a collection, not a single item. The ideal thing to do with
 one of those is to serve it with [OGC API - Features](https://github.com/opengeospatial/ogcapi-features) standard. This
 allows each feature in the shapefile/geopackage to be represented online, and enables querying of the actual data. If
-that is not possible then the appropriate way to handle collection-level search is with the [OGC API - Records] standard,
-which is a 'brother' specification of STAC API. Both are compliant with OGC API - Features, adding richer search capabilities
-to enable finding of data. 
+that is not possible then the appropriate way to handle collection-level search is with the 
+[OGC API - Records](https://github.com/opengeospatial/ogcapi-records) standard, which is a 'brother' specification of STAC API. 
+Both are compliant with OGC API - Features, adding richer search capabilities to enable finding of data. 
 
 ## Static and Dynamic Catalogs
 
-As mentioned in the main [Catalog overview](catalog-spec/catalog-overview.md), there are two main types of catalogs - static
+As mentioned in the main [overview](overview.md), there are two main types of catalogs - static
 and dynamic. This section explains each of them in more depth and shares some best practices on each.
 
 ### Static Catalogs

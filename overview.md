@@ -12,7 +12,7 @@ For more on the differences see the [section below](#catalogs-vs-collections)
 Fundamental to any SpatioTemporal Asset Catalog, an [Item](item-spec/item-spec.md) represents an atomic collection of inseparable 
 data and metadata. A STAC Item is a [GeoJSON](http://geojson.org/) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)
 and can be easily read by any modern GIS or geospatial library, and it describes a [SpatioTemporal Asset](#what-is-a-spatiotemporal-asset). 
-The STAC [Item JSON specification](](item-spec/item-spec.md)) includes additional fields for:
+The STAC [Item JSON specification](item-spec/item-spec.md) includes additional fields for:
 
 * the time the asset represents;
 * a thumbnail for quick browsing;
@@ -25,7 +25,6 @@ asset, so it can be easily searched. STAC provides a core set of
 and there is a wider community working on a variety of [STAC Extensions](https://github.com/radiantearth/stac-spec/tree/catalog-spec-evolve/extensions) that provide shared metadata for more specific domains. Both aim to describe data with well known, well
 defined terms to enable consistent publishing and better search. For more recommendations on selecting fields
 for an Item see [this section](https://github.com/radiantearth/stac-spec/blob/catalog-spec-evolve/best-practices.md#field-selection-and-metadata-linking) of the best practices document.
-
 
 ### What is a SpatioTemporal Asset?
 
@@ -92,7 +91,6 @@ root catalog might be a sub-catalog of someone else's structure. The goal is for
 information and links they want to, while also encouraging a natural web of information to arise as Catalogs and Items are
 linked to across the web.
 
-
 ### Static and Dynamic Catalogs
 
 The Catalog specification is designed so it can be implemented as easily as possibly. This can be as simple as
@@ -102,10 +100,12 @@ and any catalog that is not just files is called a 'dynamic catalog'. You can re
 recommendations in [this section](best-practices.md#static-and-dynamic-catalogs) of the best practices document, 
 along with how to keep a [dynamic catalog in sync](best-practices.md#static-to-dynamic-best-practices) with a static one.
 
+### Catalogs vs Collections
+
 ### Best Practices
 
 In addition to information about different catalog types, the [best practices document](best-practices.md) has
-a number of suggestions on how to organize and implement good catalogs. The [catalog specification](catalog-spec.md)
+a number of suggestions on how to organize and implement good catalogs. The [catalog specification](catalog-spec/catalog-spec.md)
 is designed for maximum flexbility, so none of these are required, but they provide guidance for implementors who
 want to follow what most of the STAC community is doing.
 

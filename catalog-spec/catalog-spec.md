@@ -15,7 +15,7 @@ that contains all the required fields is a valid STAC Catalog.
     includes links to several items. 
 - [JSON Schema](json-schema/catalog.json)
 
-The accompanying [Catalog Overview](catalog-overview.md) document provides background information on 
+The [Catalog section of the Overview](../overview.md#catalog-overview) document provides background information on 
 the structure of catalogs as well as links to best practices. This specification lays out the requirements
 and fields to be compliant.
 
