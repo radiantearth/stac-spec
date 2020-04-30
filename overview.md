@@ -2,7 +2,7 @@
 
 There are three component specifications that together make up the core SpatioTemporal Asset Catalog specification.
 Each can be used alone, but they work best in concert with one another. The [STAC API specification](https://github.com/radiantearth/stac-api-spec) 
-builds on top of the core, but is out of scope for this overview. Items are the core atomic unit, representing a 
+builds on top of that core, but is out of scope for this overview. Items are the core atomic unit, representing a 
 single spatiotemporal asset as GeoJSON so it can be searched. Catalogs are structural elements, used to group Items
 and Collections. Collections *are* catalogs, that add more required metadata and describe a group of related Items.
 For more on the differences see the [section below](#catalogs-vs-collections)
@@ -35,6 +35,26 @@ The key is that the GeoJSON is not the actual 'thing', but instead references fi
 index to the 'assets'. It is [not recommended](best-practices.md#representing-vector-layers-in-stac) 
 to use STAC to refer to traditional vector data layers (shapefile, geopackage) as assets, as they
 don't quite fit conceptually. 
+
+## Catalogs vs Collections
+
+Before we go deep into the Catalogs and Collections, it is worth explaining the relationship 
+between the two and when you might want to use one or the other. 
+
+A Catalog is a very simple construct - it just provides links to Items or to other Catalogs. 
+The closest analog is a folder in a file structure, it is the container for Items, but it can 
+also hold other containers (folders / catalogs). 
+
+The Collection specification extends the Catalog spec, so every Collection can serve as a catalog, 
+requiring the same fields. But it has a number of additional fields: license, extent (spatial and 
+temporal), providers, keywords and summaries. So every Item in the Collection must share those fields, 
+and if Items are in a Collection they must link back to their Collection, so clients can easily find 
+fields like the license. 
+
+TODO: Add more about what a 'collection' is, etc 
+
+https://www.w3.org/TR/vocab-dcat-2/#introduction
+http://docs.opengeospatial.org/is/17-069r3/17-069r3.html#_dataset
 
 ## Catalog Overview
 
@@ -99,8 +119,6 @@ or it can be generated on the fly by a live server. The first type of implementa
 and any catalog that is not just files is called a 'dynamic catalog'. You can read more about the two types along with
 recommendations in [this section](best-practices.md#static-and-dynamic-catalogs) of the best practices document, 
 along with how to keep a [dynamic catalog in sync](best-practices.md#static-to-dynamic-best-practices) with a static one.
-
-### Catalogs vs Collections
 
 ### Best Practices
 
