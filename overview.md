@@ -26,7 +26,7 @@ and there is a wider community working on a variety of [STAC Extensions](https:/
 defined terms to enable consistent publishing and better search. For more recommendations on selecting fields
 for an Item see [this section](https://github.com/radiantearth/stac-spec/blob/catalog-spec-evolve/best-practices.md#field-selection-and-metadata-linking) of the best practices document.
 
-### What is a SpatioTemporal Asset?
+### What is a SpatioTemporal Asset
 
 A 'spatiotemporal asset' is any file that represents information about the earth captured in a certain 
 space and time. Examples include Imagery (from satellites, planes and drones), SAR, Point Clouds (from
