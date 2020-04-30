@@ -4,6 +4,7 @@
 
 * [Field and ID formatting](#field-and-id-formatting)
 * [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
+* [Representing Vector Layers in STAC](#representing-vector-layers-in-stac)
 * [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
 * [Catalog Layout](#catalog-layout)
 * [Use of Links](#use-of-links)
@@ -46,6 +47,18 @@ it is not recommended. For very large
 catalogs (hundreds of millions of records), every additional field that is indexed will cost substantial money, so data
 providers are advised to just put the fields to be searched in STAC, so STAC API providers don't have bloated indices
 that no one actually uses.
+
+## Representing Vector Layers in STAC
+
+Many implementors are tempted to try to use STAC for 'everything', using it as a universal catalog of all their 'stuff'.
+The main route considered is to use STAC to describe vector layers, putting a shapefile or [geopackage](http://geopackage.org)
+as the `asset`. Though there is nothing in the specification that *prevents* this, it is not really the right level of 
+abstraction. A shapefile or geopackage corresponds to a collection, not a single item. The ideal thing to do with
+one of those is to serve it with [OGC API - Features](https://github.com/opengeospatial/ogcapi-features) standard. This
+allows each feature in the shapefile/geopackage to be represented online, and enables querying of the actual data. If
+that is not possible then the appropriate way to handle collection-level search is with the [OGC API - Records] standard,
+which is a 'brother' specification of STAC API. Both are compliant with OGC API - Features, adding richer search capabilities
+to enable finding of data. 
 
 ## Static and Dynamic Catalogs
 
