@@ -166,12 +166,11 @@ or streamed. It is allowed to add additional fields.
 | type        | string    | [Media type](#media-types) of the asset. |
 | roles       | \[string] | The [semantic roles](#asset-role-types) of the asset, similar to the use of `rel` in links. |
 
-
 In addition to the fields above, [additional fields](#additional-fields) may be added to the assets. (See [Additional Fields for Assets](#additional-fields-for-assets))
 
 * [STAC Common Metadata](common-metadata.md#stac-common-metadata) - A list of fields commonly used throughout all domains.
 * [Content Extensions](../extensions/README.md#list-of-content-extensions) - Domain-specific fields such as EO, SAR and point clouds.
-* [Custom Extensions](../extensions/README.md#extending-stac) - It is generally allowed to add custom fields. [See above for more information.].
+* [Custom Extensions](../extensions/README.md#extending-stac) - It is generally allowed to add custom fields.
 
 #### Asset Role Types
 
