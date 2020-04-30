@@ -51,10 +51,30 @@ temporal), providers, keywords and summaries. So every Item in the Collection mu
 and if Items are in a Collection they must link back to their Collection, so clients can easily find 
 fields like the license. 
 
-TODO: Add more about what a 'collection' is, etc 
+But what *should* go in a Collection, versus just in a Catalog?  A collection will generally consist of
+a set of assets that are defined with the same properties and share higher level metadata. In the 
+satellite world these would typically all come from the same sensor or constellation. It corresponds
+directly to what others call a 'dataset series' (ESA, ISO 19115), 'collection' (CNES, NASA), and 
+'dataset (JAXA, DCAT)'. So if all your items have the same properties, they probably belong in 
+the same Collection. But the construct is deliberately flexible, as there may be good reasons
+to 'break' the recommendation. 
 
-https://www.w3.org/TR/vocab-dcat-2/#introduction
-http://docs.opengeospatial.org/is/17-069r3/17-069r3.html#_dataset
+Catalogs in turn are used for two main things:
+
+* Split overly large collections into groups
+* Group collections into a catalog of collections (i.e. as entry point).
+
+The first case allows users to browse down into the items of big collections. A collection like
+Landsat usually would start with path and row Catalogs to group by geography, and then year, 
+month and day groups to enable deeper. [Dynamic catalogs](best-practices.md#dynamic-catalogs) can
+provide multiple grouping paths, serving as a sort of faceted search.
+
+The second case is used when one wants to represent diverse data in a single place. If an organization
+has an internal catalog with Landsat 8, Sentinel 2, NAIP data and several commercial imagery providers
+then they'd have a root catalog that would link to a number of different collections. 
+
+So in conclusion it's best to use collections for what you want user to find as starting point, and then
+catalogs are just for structuring and grouping the data.
 
 ## Catalog Overview
 
@@ -120,7 +140,7 @@ and any catalog that is not just files is called a 'dynamic catalog'. You can re
 recommendations in [this section](best-practices.md#static-and-dynamic-catalogs) of the best practices document, 
 along with how to keep a [dynamic catalog in sync](best-practices.md#static-to-dynamic-best-practices) with a static one.
 
-### Best Practices
+### Catalog Best Practices
 
 In addition to information about different catalog types, the [best practices document](best-practices.md) has
 a number of suggestions on how to organize and implement good catalogs. The [catalog specification](catalog-spec/catalog-spec.md)
@@ -135,3 +155,11 @@ relative links through out) and ones that are published in stable locations (wit
 keep a history of changes made to items and catalogs.
 - [STAC on the Web](best-practices.md#stac-on-the-web) explains how catalogs should have html versions for 
 each item and catalog, as well as ways to achieve that.
+
+## Collection Overview
+
+A STAC Collection extends the Catalog construct to provide additional metadata to describe the set of Items it
+contains. The required fields are fairly minimal - it inherits the 4 required Catalog fields (id, description,
+stac_version and links), and adds license and extents. But there are a number of other common fields, and more
+common fields are also defined in [STAC extensions](extensions/). These serve as basic metadata, and ideally
+Collections also link to fuller metadata (ISO 19115, etc) when it is available.
