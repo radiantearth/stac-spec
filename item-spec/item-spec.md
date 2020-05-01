@@ -233,85 +233,11 @@ For example, `gsd` defined for an Item represents the best Ground Sample Distanc
 However, some assets may be lower resolution and thus have a higher `gsd`. The `eo:bands` field from the EO extension defines 
 an array of spectral bands. However, it may be useful instead to specify the bands that are used in a particular asset.
 
-Here is a partial Sentinel-2 Item:
-
-```json
-{
-    "id": "S2A_30PZQ_20190713_0_L2A",
-    "collection": "sentinel-s2-l2a",
-    "properties": {
-        "datetime": "2019-07-13T10:28:48.870000+00:00",
-        "gsd": 10
-    },
-    "assets": {
-        "visual": {
-            "title": "True color image",
-            "type": "image/jp2",
-            "roles": [
-                "visual"
-            ],
-            "eo:bands": [
-                {
-                    "full_width_half_max": 0.038,
-                    "center_wavelength": 0.6645,
-                    "name": "B04",
-                    "common_name": "red"
-                },
-                {
-                    "full_width_half_max": 0.045,
-                    "center_wavelength": 0.56,
-                    "name": "B03",
-                    "common_name": "green"
-                },
-                {
-                    "full_width_half_max": 0.098,
-                    "center_wavelength": 0.4966,
-                    "name": "B02",
-                    "common_name": "blue"
-                }
-            ],
-            "href": "s3://sentinel-s2-l2a/tiles/30/P/ZQ/2019/7/13/0/R10m/TCI.jp2"
-        },
-        "B05": {
-            "title": "Band 5",
-            "type": "image/jp2",
-            "roles": [
-                "data"
-            ],
-            "gsd": 20,
-            "eo:bands": [
-                {
-                    "full_width_half_max": 0.019,
-                    "center_wavelength": 0.7039,
-                    "name": "B05"
-                }
-            ],
-            "href": "s3://sentinel-s2-l2a/tiles/30/P/ZQ/2019/7/13/0/R20m/B05.jp2"
-        },
-        "B08": {
-            "title": "Band 8 (nir)",
-            "type": "image/jp2",
-            "roles": [
-                "data"
-            ],
-            "eo:bands": [
-                {
-                    "full_width_half_max": 0.145,
-                    "center_wavelength": 0.8351,
-                    "name": "B08",
-                    "common_name": "nir"
-                },
-            ],
-            "href": "s3://sentinel-s2-l2a/tiles/30/P/ZQ/2019/7/13/0/R10m/B08.jp2"
-        }
-    }
-}
-```
-
-The Sentinel-2 overall `gsd` is 10m, because this is the best spatial resolution among all the bands and is defined in 
-Item properties so it can be searched on. However, Band 5 has a `gsd` of 20m, so that asset specifies the `gsd` as 
-well, which overrides the Item `gsd` for this one asset. Reduced resolution versions of files could also be included 
-as assets and the `gsd` correectly represented.
+For an example see the [sentinel2-sample](sentinel2-sample.json). The Sentinel-2 overall `gsd` is 10m, because this is 
+the best spatial resolution among all the bands and is defined in Item properties so it can be searched on. In the example 
+Band 5 and others have a `gsd` of 20m, so that asset specifies the `gsd` as well, which overrides the Item `gsd` for this 
+one asset. The example also includes reduced resolution versions of files included as assets, using `gsd` to represent
+the proper resolution.
 
 For `eo:bands`, it could be put in Item properties as an array of all the bands, but in this case it's not. Instead, 
 the assets each define an array containing the spectral band information for that asset (in the order the bands appear 
