@@ -233,7 +233,7 @@ For example, `gsd` defined for an Item represents the best Ground Sample Distanc
 However, some assets may be lower resolution and thus have a higher `gsd`. The `eo:bands` field from the EO extension defines 
 an array of spectral bands. However, it may be useful instead to specify the bands that are used in a particular asset.
 
-For an example see the [sentinel2-sample](sentinel2-sample.json). The Sentinel-2 overall `gsd` is 10m, because this is 
+For an example see the [sentinel2-sample](examples/sentinel2-sample.json). The Sentinel-2 overall `gsd` is 10m, because this is 
 the best spatial resolution among all the bands and is defined in Item properties so it can be searched on. In the example 
 Band 5 and others have a `gsd` of 20m, so that asset specifies the `gsd` as well, which overrides the Item `gsd` for this 
 one asset. The example also includes reduced resolution versions of files included as assets, using `gsd` to represent
