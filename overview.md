@@ -159,7 +159,22 @@ each item and catalog, as well as ways to achieve that.
 ## Collection Overview
 
 A STAC Collection extends the Catalog construct to provide additional metadata to describe the set of Items it
-contains. The required fields are fairly minimal - it inherits the 4 required Catalog fields (id, description,
-stac_version and links), and adds license and extents. But there are a number of other common fields, and more
-common fields are also defined in [STAC extensions](extensions/). These serve as basic metadata, and ideally
-Collections also link to fuller metadata (ISO 19115, etc) when it is available.
+contains. So every Collection *is* a Catalog, and can be used in the same ways. The required fields are fairly 
+minimal - it inherits the 4 required Catalog fields (id, description, stac_version and links), and adds license 
+and extents. But there are a number of other common fields defined in the spec, and more common fields are also 
+defined in [STAC extensions](extensions/). These serve as basic metadata, and ideally Collections also link to 
+fuller metadata (ISO 19115, etc) when it is available.
+
+As Collections are Catalogs, they can be used just as flexibly. They can have both parent Catalogs and Collections
+as well as child Items, Catalogs and Collections. Items are strongly recommended to have a link to the Collection
+they are a part of. Items can only belong to one collection, so if an Item is in Collections that is the child of 
+another Collection, then it must pick which one to refer to. Generally the 'closer' Collection, the more specific
+one, should be the one linked to. 
+
+The Collection specification is used standalone quite easily - it is used to just describe the collection level
+holdings, and doesn't require links down to sub-catalogs and items. This is most often used when the software
+does operations at the layer / coverage level, letting users manipulate the whole collection at once. They often
+have an optimized internal format that doesn't make sense to expose as Items. [OpenEO](https://openeo.org/) and 
+[Google Earth Engine](https://earthengine.google.com/) are two examples that only use STAC collections, and
+both would be hardpressed to expose individual Items due to their architectures. For others implementing STAC
+Collections can also be a nice way to start and achieve some level of interoperability. 
