@@ -13,13 +13,13 @@
   ],
   "definitions": {
     "assets": {
-      "title": "Asset schemas",
+      "title": "Item Assets Definition",
       "type": "object",
       "required": [
-        "assets"
+        "item_assets"
       ],
       "properties": {
-        "assets": {
+        "item_assets": {
           "type": "object",
           "additionalProperties": {
             "$ref": "#/definitions/asset"

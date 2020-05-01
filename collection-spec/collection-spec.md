@@ -158,7 +158,7 @@ The data provider is free to decide, which fields are reasoable to be used.
 
 Commonly used extensions for the STAC Collection specification:
 
-* [Asset Definition](../extensions/asset/README.md): Allows to indicate the structure of the Item assets.
+* [Asset Definition](../extensions/item-assets/README.md): Allows to indicate the structure of the Item assets.
 * [Commons extension](../extensions/commons/README.md): Allows to add shared Item metadata to Collections.
 * [Scientific extension](../extensions/scientific/README.md): Add fields to indicate citations and DOIs.
 * [Versioning Indicators extension](../extensions/version/README.md): Allows versioning by adding the fields `version` and `deprecated`.

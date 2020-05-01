@@ -347,6 +347,9 @@
                 "usgs"
             ],
             "stac_version": "0.9.0",
+            "stac_extensions": [
+                "item_assets"
+            ],
             "extent": {
                 "spatial": [
                     -180,
@@ -464,7 +467,7 @@
                     }
                 ]
             },
-            "assets": {
+            "item_assets": {
                 "index": {
                     "type": "text/html",
                     "title": "HTML index page"
