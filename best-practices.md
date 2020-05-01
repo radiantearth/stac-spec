@@ -27,8 +27,8 @@ When defining one's STAC properties and fields there are many choices to make on
 data. One of the key properties is the ID. The specification is quite flexible on ID's, primarily so that existing
 providers can easily use their same ID when they translate their data into STAC - they just need to be sure it is globally
 unique, so may need a prefix. But the use of URI reserved characters such as `:` or `/` is discouraged since this will 
-result in [percented encoded](https://tools.ietf.org/html/rfc3986#section-2) STAC API endpoints. This isn't a blocker,
-it just makes the ID's served through API's a bit less parsable. 
+result in [percented encoded](https://tools.ietf.org/html/rfc3986#section-2) [STAC API](https://github.com/radiantearth/stac-api-spec) 
+endpoints. This isn't a blocker, it just makes the ID's served through API's a bit less parsable. 
 
 When defining unique fields for search, like constellation or platform, it is recommended that 
 the value consist of only lowercase characters, numbers, `_`, and `-`. Examples include `sentinel-1a` (Sentinel-1), 
@@ -45,8 +45,8 @@ providers have lots of metadata then that can be linked to in the [Asset Object]
 to loading and processing data, and while STAC does not prohibit providers from putting those type of fields in their items, 
 it is not recommended. For very large 
 catalogs (hundreds of millions of records), every additional field that is indexed will cost substantial money, so data
-providers are advised to just put the fields to be searched in STAC, so STAC API providers don't have bloated indices
-that no one actually uses.
+providers are advised to just put the fields to be searched in STAC, so [STAC API](https://github.com/radiantearth/stac-api-spec)
+providers don't have bloated indices that no one actually uses.
 
 ## Representing Vector Layers in STAC
 
@@ -196,7 +196,7 @@ sources to achieve this.
 
 ## Versioning for Catalogs
 
-In the Item and Collection STAC files or API responses, versions and deprecation can be indicated with the [Versioning Indicators Extension](./extensions/version).
+In the Item and Collection STAC JSON, versions and deprecation can be indicated with the [Versioning Indicators Extension](./extensions/version).
 
 The [Items and Collections API Version Extension](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/version/README.md) provides endpoints and semantics for keeping and accessing previous versions of Collections and Items. The same semantics can be used in static catalogs to preserve previous versions of the documents and link them together.
 
