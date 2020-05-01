@@ -18,10 +18,14 @@ available in a slightly different way. This will enable standard library compone
 implemented in a completely 'static' manner, enabling data publishers to expose their data by simply publishing linked JSON
 files online.
 
-## WARNING
+## Stability Note
 
-The specification is reaching maturity, and the next release will be 1.0-beta1. At this point we don't anticipate any 
-major changes, but reserve the right to make them if we get feedback that something just doesn't work.
+This specification has evolved over the past couple years, and is used in production in a variety of deployments. It is currently
+in a 'beta' state, with no major changes anticipated, so implementors can expect that most things will stay fairly stable. So 
+at this point we don't anticipate any major changes, but reserve the right to make them if we get feedback that something just doesn't 
+work. Which is to say the next couple months are a great time to implement STAC, as your changes will be head. After 1.0 our goal
+is to not change the core in any backwards incompatible way for a very long time, if ever, so that people can build on this until 
+JSON is no longer relevant. 
 
 ## Current version and branches
 

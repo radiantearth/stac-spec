@@ -19,12 +19,6 @@ required fields is a valid STAC ItemCollection.
   - Real world [implementations](../implementations.md) are also available.
 - [JSON Schema](json-schema/itemcollection.json)
 
-## WARNING
-
-**This is still an early version of the STAC spec, expect that there may be some changes before everything is finalized.**
-
-Implementations are encouraged, however, as good effort will be made to not change anything too drastically. Using the specification now will ensure that needed changes can be made before everything is locked in. So now is an ideal time to implement, as your feedback will be directly incorporated. 
-
 ## ItemCollection fields
 
 This object describes a STAC ItemCollection. The fields `type` and `features` are inherited from GeoJSON FeatureCollection.
