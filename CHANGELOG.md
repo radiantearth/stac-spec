@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - 'alternate' as a listed 'rel' type with recommended 'text/html' to communicate there is an html version.
 - Added a code of conduct based on github's template.
-
+- Added the ability to define Item properties under Assets (item-spec/item-spec.md)
 - Add `proj:shape` and `proj:transform` to the projections extension.
 
 ### Changed
