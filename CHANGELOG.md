@@ -8,21 +8,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 - The API portion of STAC has been split off into a [new repository: stac-api-spec](https://github.com/radiantearth/stac-api-spec) and will start being versioned and released separately than the core STAC spec.
+- proj4 string from proj extension
+- Various warnings about how the spec is very early and likely will change.
 
 ### Added
 - 'alternate' as a listed 'rel' type with recommended 'text/html' to communicate there is an html version.
 - Added a code of conduct based on github's template.
-
+- overview document that gives a more explanatory discussion of the various parts of the spec and how they relate
 - Add `proj:shape` and `proj:transform` to the projections extension.
 
 ### Changed
 - Moved item recommendations to best practices, and added a bit more in item spec about 'search'
 - Moved `eo:gsd` from `eo` extension to core `gsd` field in Item common metadata
 - `asset` extension renamed to `item-assets` and renamed `assets` field in Collections to `item_assets`
-
-### Removed
-
-- proj4 string from proj extension
 
 ### Fixed
 
