@@ -21,8 +21,8 @@ The STAC [Item JSON specification](item-spec/item-spec.md) includes additional f
 
 A STAC Item can contain additional fields and JSON structures to communicate more information about the
 asset, so it can be easily searched. STAC provides a core set of 
-[Common Metadata](https://github.com/radiantearth/stac-spec/blob/catalog-spec-evolve/item-spec/common-metadata.md)
-and there is a wider community working on a variety of [STAC Extensions](https://github.com/radiantearth/stac-spec/tree/catalog-spec-evolve/extensions) that provide shared metadata for more specific domains. Both aim to describe data with well known, well
+[Common Metadata](item-spec/common-metadata.md)
+and there is a wider community working on a variety of [STAC Extensions](extensions/) that provide shared metadata for more specific domains. Both aim to describe data with well known, well
 defined terms to enable consistent publishing and better search. For more recommendations on selecting fields
 for an Item see [this section](best-practices.md#field-selection-and-metadata-linking) of the best practices document.
 
