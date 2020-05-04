@@ -56,14 +56,14 @@
     ]
   },
   "properties": {
-    "collection": "s2-l2a",
-    "datetime": "2018-06-05T10:00:27.464Z",
+    "datetime": "2018-06-05T10:00:27.46Z",
     "platform": "sentinel-2",
     "gsd": 10,
     "proj:epsg": 32635,
     "eo:cloud_cover": 88.459539,
     "view:sun_azimuth" : 176.091667178268
   },
+  "collection": "s2-l2a",
   "assets": {
     "metadata": {
       "href": "s3://sentinel-s2-l2a/tiles/35/V/MK/2018/6/5/0/metadata.xml",
