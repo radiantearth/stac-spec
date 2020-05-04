@@ -26,15 +26,16 @@ is not required, but any change to the actual specification should definitely ha
 * Base the PR against dev, as mentioned above - even if the branch was made off of dev this reminds
 you to change the base in GitHub's PR creation page.
 * Make a ticket in the STAC API repo if anything here affects there.
-* Make sure the PR makes no breaking changes to the specification.
+* Highlight if the PR makes breaking changes to the specification (in beta there can still be
+select breaking changes, but after 1.0 this will change)
+
+All pull requests should submit clean markdown, which is checked by the continuous integration
+system. Please use `check-markdown` locally, as described in the [next section](#using-check-markdown-locally), 
+to ensure that the checks on the pull request succeed. If it does not then you can look at the
+mistakes online, which are the same as running `check-markdown` locally would surface.
 
 All pull requests additionally require a review of two STAC core team members. Releases are cut
 from dev to master (and require 3 approvals), see the [process](process.md) document for more details.
-
-There are also two additional checks done by the continuous integration system. The one most likely
-to catch you the markdown checker, which ensures we have clean markdown throughout the specification.
-You can click through to see what it caught. If you do not want to wait till you push to see if things
-failed then you can use the same tool locally.
 
 ### Using check-markdown locally
 
