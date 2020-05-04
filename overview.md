@@ -5,7 +5,10 @@ Each can be used alone, but they work best in concert with one another. The [STA
 builds on top of that core, but is out of scope for this overview. Items are the core atomic unit, representing a 
 single spatiotemporal asset as GeoJSON so it can be searched. Catalogs are structural elements, used to group Items
 and Collections. Collections *are* catalogs, that add more required metadata and describe a group of related Items.
-For more on the differences see the [section below](#catalogs-vs-collections)
+For more on the differences see the [section below](#catalogs-vs-collections).
+
+A [UML diagram](https://en.wikipedia.org/wiki/Unified_Modeling_Language) of the [STAC model](STAC-UML.pdf) is also 
+provided to help with navigating the specification. 
 
 ## Item Overview
 

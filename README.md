@@ -51,6 +51,8 @@ provides API endpoints, based on the [OGC API - Features](http://docs.opengeospa
 that enable clients to search for `item`s that match their filtering criteria. The four specifications are meant to be used 
 together, but are designed so each piece is small, self-contained and reusable in other contexts.
 
+**[Overview.md](overview.md)** describes the three core specifications and how they relate to one another.
+
 **[item-spec/](item-spec/)** defines a STAC Item, which is a [GeoJSON](http://geojson.org) Feature
 with additional fields for things like time, links to related entities and assets (including thumbnails). This is the 
 atomic unit that describes the data to be discovered.
@@ -66,15 +68,14 @@ It enables discovery at a higher level than individual items, providing a simple
 **Extensions:** The *[extensions/](extensions/)* folder is where extensions live. Extensions can extend the 
 functionality of the core spec or add fields for specific domains.
 
-**Additional documents** A complementary [how to help](how-to-help.md)
-document, a [list of implementations](implementations.md), [best practices](best-practices.md)
-and a discussion of the collaboration [principles](principles.md) and specification approach.
-
-### UML Diagram
-
-A UML diagram of the [STAC model](STAC-UML.pdf) is provided to help with navigating the specification. 
+**Additional documents:** The supporting documents include a complementary [best practices](best-practices.md) 
+document, and information on contributing (links in the next section). We also maintain a [changelog](CHANGELOG.md) of
+what was modified in each version, as well as a [UML overview](STAC-UML.pdf) (and [source](STAC-UML.drawio)). There
+are also documents on [how to help](how-to-help.md) and a [list of implementations](implementations.md). 
 
 ## Contributing
 
 Anyone building software that catalogs imagery or other geospatial assets is welcome to collaborate.
-Beforehand, please review our [guidelines for contributions](CONTRIBUTING.md).
+Beforehand, please review our [guidelines for contributions](CONTRIBUTING.md) and [code of conduct](CODE_OF_CONDUCT.md). 
+You may also be interested in our overall [process](process.md), and the [principles](principles.md) that guide our 
+collaboration
