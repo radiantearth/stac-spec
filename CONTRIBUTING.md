@@ -39,7 +39,7 @@ failed then you can use the same tool locally.
 ### Using check-markdown locally
 
 The same check-markdown program that runs as a check on PR's is part of the repo and can be run locally. 
-To install you'll need npm, which is a standard part of any [node.js installation](https://nodejs.org/en/download/).
+To install you'll need npm, which is a standard part of any [node.js installation](https://nodejs.org/en/download/). Alternatively, you can also use [yarn](https://yarnpkg.com/) instead of npm. In this case replace all occurrences of `npm` with `yarn` below.
 
 First you'll need to install everything with npm. Just navigate to the root of the stac-spec repo and on 
 your command line run:
