@@ -62,7 +62,7 @@ to 'break' the recommendation.
 Catalogs in turn are used for two main things:
 
 * Split overly large collections into groups
-* Group collections into a catalog of collections (i.e. as entry point).
+* Group collections into a catalog of collections (e.g. as entry point).
 
 The first case allows users to browse down into the items of big collections. A collection like
 Landsat usually would start with path and row Catalogs to group by geography, and then year, 
