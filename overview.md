@@ -3,7 +3,7 @@
 There are three component specifications that together make up the core SpatioTemporal Asset Catalog specification.
 Each can be used alone, but they work best in concert with one another. The [STAC API specification](https://github.com/radiantearth/stac-api-spec) 
 builds on top of that core, but is out of scope for this overview. Items are the core atomic unit, representing a 
-single spatiotemporal asset as GeoJSON so it can be searched. Catalogs are structural elements, used to group Items
+single [spatiotemporal asset](#what-is-a-spatiotemporal-asset) as GeoJSON so it can be searched. Catalogs are structural elements, used to group Items
 and Collections. Collections *are* catalogs, that add more required metadata and describe a group of related Items.
 For more on the differences see the [section below](#catalogs-vs-collections).
 
@@ -15,17 +15,19 @@ provided to help with navigating the specification.
 Fundamental to any SpatioTemporal Asset Catalog, an [Item](item-spec/item-spec.md) represents an atomic collection of inseparable 
 data and metadata. A STAC Item is a [GeoJSON](http://geojson.org/) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)
 and can be easily read by any modern GIS or geospatial library, and it describes a [SpatioTemporal Asset](#what-is-a-spatiotemporal-asset). 
-The STAC [Item JSON specification](item-spec/item-spec.md) includes additional fields for:
+The STAC [Item JSON specification](item-spec/item-spec.md) uses the GeoJSON geometry to describe the location of the asset, and 
+then includes additional information:
 
 * the time the asset represents;
 * a thumbnail for quick browsing;
-* asset links, links to the described data;
-* relationship links, allowing users to traverse other related STAC Items.
+* asset links, to enable direct download or streaming access of the asset;
+* relationship links, allowing users to traverse other related resources and STAC Items.
 
 A STAC Item can contain additional fields and JSON structures to communicate more information about the
 asset, so it can be easily searched. STAC provides a core set of 
 [Common Metadata](item-spec/common-metadata.md)
-and there is a wider community working on a variety of [STAC Extensions](extensions/) that provide shared metadata for more specific domains. Both aim to describe data with well known, well
+and there is a wider community working on a variety of [STAC Extensions](extensions/) that provide shared metadata for 
+more specific domains. Both aim to describe data with well known, well
 defined terms to enable consistent publishing and better search. For more recommendations on selecting fields
 for an Item see [this section](best-practices.md#field-selection-and-metadata-linking) of the best practices document.
 
@@ -50,9 +52,9 @@ also hold other containers (folders / catalogs).
 
 The Collection specification extends the Catalog spec, so every Collection can serve as a catalog, 
 requiring the same fields. But it has a number of additional fields: license, extent (spatial and 
-temporal), providers, keywords and summaries. So every Item in the Collection must share those fields, 
-and if Items are in a Collection they must link back to their Collection, so clients can easily find 
-fields like the license. 
+temporal), providers, keywords and summaries. Every Item in a Collection links back to their Collection, 
+so clients can easily find fields like the license. Thus every Item implicitly shares the fields 
+described in their parent Collection.
 
 But what *should* go in a Collection, versus just in a Catalog?  A collection will generally consist of
 a set of assets that are defined with the same properties and share higher level metadata. In the 
@@ -77,7 +79,8 @@ has an internal catalog with Landsat 8, Sentinel 2, NAIP data and several commer
 then they'd have a root catalog that would link to a number of different collections. 
 
 So in conclusion it's best to use collections for what you want user to find as starting point, and then
-catalogs are just for structuring and grouping the data.
+catalogs are just for structuring and grouping the data. Future work includes a mechanism to actually
+search collection level data, hopefully in concert with other specifications.
 
 ## Catalog Overview
 
