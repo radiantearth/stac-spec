@@ -93,8 +93,8 @@ STAC makes no formal distinction between a "root" catalog and the "child" catalo
 is simply a top-most catalog (which has no parent). A nested catalog structure is useful (and
 recommended) for breaking up massive numbers of catalog items into logical groupings. For example,
 it might make sense to organize a catalog by date (year, month, day), or geography (continent,
-country, state/prov). Any scheme may be used, but it's considered a best practice to keep the size
-of each catalog under a megabyte.
+country, state/prov). See the [Catalog Layout](best-practices.md#catalog-layout) best practices
+section for more.
 
 A simple Catalog structure might look like this:
 

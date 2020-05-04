@@ -112,18 +112,26 @@ providers, and users could browse down to both. The leaf Items should just be li
 ## Catalog Layout
 
 Creating a catalog involves a number of decisions as to what folder structure to use to represent sub-catalogs, items
-and assets, and how to name them. The specification leaves this totally open, and you can link things as you want. We
-encourage people to explore new structures. But the following are what a number of implementors ended up doing. Following
-these recommendations makes for more legible catalogs.
+and assets, and how to name them. The specification leaves this totally open, and you can link things as you want. But 
+it is recommended to be thoughtful about the organization of sub-catalogs, putting them into a structure that a person
+might reasonably browse (since they likely will with [STAC on the Web](#stac-on-the-web) recommendations). For example
+start with location, like a normal grid (path+row in Landsat) or administrative boundaries (country -> state-level) and 
+then year, month, day. Or do the opposite - date and then location. Making a huge unordered list is technically allowed,
+but not helpful for discovery of data. Thus it is generally considered a best practice to make use of sub-catalogs to 
+keep the size of each sub-catalog under a megabyte. If your sub-catalog lists tens of thousands of child items then you
+should consider an additional way to break it up. 
+
+We encourage people to explore new structures of linking data, but the following list is what a number of implementors 
+ended up doing. Following these recommendations makes for more legible catalogs.
 
 1. Root documents (catalogs / collections) should be at the root of a directory tree containing the static catalog.
 2. Catalogs should be named `catalog.json` (cf. `index.html`).
 3. Collections that are distinct from catalogs should be named `collection.json`.
-4. Items should be named `<id>.json`
+4. Items should be named `<id>.json`.
 5. Sub-catalogs should be stored in subdirectories of their parent (and only 1 subdirectory deeper than a document's parent) (e.g. `.../sample/sub1/catalog.json`).
 6. Items should be stored in subdirectories of their parent catalog. 
-This means that each item and its assets are contained in a unique subdirectory
-7. Limit the number of items in a catalog or sub-catalog, grouping / partitioning as relevant to the dataset
+This means that each item and its assets are contained in a unique subdirectory.
+7. Limit the number of items in a catalog or sub-catalog, grouping / partitioning as relevant to the dataset.
 
 ### Dynamic Catalog Layout
 
