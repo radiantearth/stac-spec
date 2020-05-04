@@ -51,16 +51,16 @@ provides API endpoints, based on the [OGC API - Features](http://docs.opengeospa
 that enable clients to search for `item`s that match their filtering criteria. The four specifications are meant to be used 
 together, but are designed so each piece is small, self-contained and reusable in other contexts.
 
-**[Overview.md](overview.md)** describes the three core specifications and how they relate to one another.
+The **[Overview](overview.md)** describes the three core specifications and how they relate to one another.
 
-**[item-spec/](item-spec/)** defines a STAC Item, which is a [GeoJSON](http://geojson.org) Feature
+The **[Item Specification/](item-spec/)** defines a STAC Item, which is a [GeoJSON](http://geojson.org) Feature
 with additional fields for things like time, links to related entities and assets (including thumbnails). This is the 
 atomic unit that describes the data to be discovered.
 
-**[catalog-spec/](catalog-spec/)** specifies a structure to link various STAC Items together to be crawled or browsed. It is a
+The **[Catalog Specification](catalog-spec/)** specifies a structure to link various STAC Items together to be crawled or browsed. It is a
 simple, flexible JSON file of links to Items, Catalogs or Collections that can be used in a variety of ways.
 
-**[collection-spec/](collection-spec/)** provides additional information about a spatio-temporal collection of data.
+The **[Collection Specification/](collection-spec/)** provides additional information about a spatio-temporal collection of data.
 In the context of STAC it is most likely a collection of STAC Items that is made available by a data provider.
 It includes things like the spatial and temporal extent of the data, the license, keywords, etc.
 It enables discovery at a higher level than individual items, providing a simple way to describe sets of data.
