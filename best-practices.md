@@ -74,7 +74,7 @@ service like [Amazon S3](https://aws.amazon.com/s3/), [Azure Storage](https://az
 The core JSON documents and link structures are encoded in the file, and work as long as things are structured properly.
 A static catalog can only really be crawled by search engines and active catalogs; it can not respond to queries.
 But it is incredibly reliable, as there are no moving parts, no clusters or databases to maintain.
-The goal of STAC is to expose as much asset metadata online as possible, so the static catalog offers a very lower
+The goal of STAC is to expose as much asset metadata online as possible, so the static catalog offers a very low
 barrier to entry for anyone with geospatial assets to make their data searchable.
 
 Static Catalogs tend to make extensive use of *sub-catalogs* to organize their Items in to sensible browsing structures, 
@@ -91,7 +91,7 @@ is to place the catalog file in namespaces "directories". For example:
 
 ### Dynamic Catalogs
 
-A dynamic catalog is implemented in software as a RESTful API, following the same specified JSON structure for Items, Catalogs
+A dynamic catalog is implemented in software as an HTTP-based API, following the same specified JSON structure for Items, Catalogs
 and Collections. Its structure and responses are usually generated dynamically, instead of relying on a set of
 already defined files. But the result is the same, enabling the same discovery from people browsing and search engines crawling. 
 It generally indexes data for efficient responses, and aims to be easy for existing APIs to implement as a more standard interface 
@@ -181,7 +181,12 @@ Adding a single `self` link at the root is recommended for online catalogs, turn
 
 ### Published Catalogs
 
-A 'published catalog' is one that lives online in a stable location, and uses `self` links to establish its location and 
+While STAC is useful as a portable format to move between systems, the goal is really to enable search. While any combination
+of absolute and relative links is technically allowed by the specification, it is strongly recommended to follow one of the 
+patterns described below when publishing online. Many clients will not properly handle arbitrary mixes of absolute and relative
+href's. 
+
+We refer to a 'published catalog' as one that lives online in a stable location, and uses `self` links to establish its location and 
 enable easy provenance tracking. There are two types of published catalogs:
 
 * **Absolute Published Catalog** is a catalog that uses absolute links for everything, both in the `links` objects and in the
@@ -193,6 +198,10 @@ the root catalog, to identify its online location. This is designed so that a se
 by just adding one field (the self link) to its root catalog. All the other links should remain relative. With this, the 
 resolution of item and sub-catalog self links may be done by traversing parent and root links, but requires reading multiple 
 sources to achieve this.
+
+So if you are writing a STAC client it is recommended to start with just supporting these two types of published catalogs. In 
+turn, if your data is published online publicly or for use on an intranet then following these recommendations will ensure
+that a wider range of clients will work with it. 
 
 ## Versioning for Catalogs
 
