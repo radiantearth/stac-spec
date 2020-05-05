@@ -173,7 +173,7 @@ cases should utilize a catalog that follows the listed principles:
 * **Only relative href's in structural `links`**: The full catalog structure of links down to sub-catalogs and items, and their 
 links back to their parents and roots, should be done with relative URL's. The structural rel types include `root`, `parent`, 
 `child`, `item`, and `collection`. Other links can be absolute, especially if they describe a resource that makes less sense in
-the catalog, like [sci:doi](https://github.com/radiantearth/stac-spec/tree/master/extensions/scientific#item-and-collection-fields), 
+the catalog, like [sci:doi](extensions/scientific/README.md#item-and-collection-fields), 
 `derived_from` or even `license` (it can be nice to include the license in the catalog, but some licenses live at a canonical 
 online location which makes more sense to refer to directly). This enables the full catalog to be downloaded or
 copy to another location and to still be valid. This also implies no `self` link, as that link must be absolute.
