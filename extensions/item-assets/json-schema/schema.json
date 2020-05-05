@@ -8,11 +8,11 @@
       "$ref": "../../../collection-spec/json-schema/collection.json"
     },
     {
-      "$ref": "#/definitions/assets"
+      "$ref": "#/definitions/item_assets"
     }
   ],
   "definitions": {
-    "assets": {
+    "item_assets": {
       "title": "Item Assets Definition",
       "type": "object",
       "required": [
