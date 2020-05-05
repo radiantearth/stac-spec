@@ -14,7 +14,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - 'alternate' as a listed 'rel' type with recommended 'text/html' to communicate there is an html version.
 - Added a code of conduct based on github's template.
-- overview document that gives a more explanatory discussion of the various parts of the spec and how they relate
+- Overview document that gives a more explanatory discussion of the various parts of the spec and how they relate
+- Several new sections to 'best practices' document.
 - Added the ability to define Item properties under Assets (item-spec/item-spec.md)
 - Add `proj:shape` and `proj:transform` to the projections extension.
 
