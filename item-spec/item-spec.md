@@ -172,11 +172,8 @@ or streamed. It is allowed to add additional fields.
 | type        | string    | [Media type](#media-types) of the asset. |
 | roles       | \[string] | The [semantic roles](#asset-role-types) of the asset, similar to the use of `rel` in links. |
 
-In addition to the fields above, [additional fields](#additional-fields) may be added to the assets. (See [Additional Fields for Assets](#additional-fields-for-assets))
-
-* [STAC Common Metadata](common-metadata.md#stac-common-metadata) - A list of fields commonly used throughout all domains.
-* [Content Extensions](../extensions/README.md#list-of-content-extensions) - Domain-specific fields such as EO, SAR and point clouds.
-* [Custom Extensions](../extensions/README.md#extending-stac) - It is generally allowed to add custom fields.
+Beyond to the fields above, any of the [additional fields](#additional-fields) *may* be added to the assets. But this
+is recommended only in special cases, see [Additional Fields for Assets](#additional-fields-for-assets)) for more information.
 
 #### Asset Role Types
 
@@ -229,102 +226,31 @@ Both can still appear in old catalogues, but are deprecated and should be replac
 
 #### Additional Fields for Assets
 
-As detailed above, Items contain properties, which are the main source of metadata for searching across Items. Many content extensions can add further property fields as well. Any property that can be specified for an Item can also be specified for a specific asset. This can be used to override a property defined in the Item, or to specify fields for which there is no single value for all assets.
+As detailed above, Items contain properties, which are the main source of metadata for searching across Items. Many content
+extensions can add further property fields as well. Any property that can be specified for an Item can also be specified for 
+a specific asset. This can be used to override a property defined in the Item, or to specify fields for which there is no 
+single value for all assets.
 
-**It is important to note that the STAC API does not faciliate searching across Asset properties in this way, and this should be used sparingly.** It is primarily used to define properties at the Asset level that may be used during use of the data instead of for searching. 
+**It is important to note that the STAC API does not faciliate searching across Asset properties in this way, and this 
+should be used sparingly.** It is primarily used to define properties at the Asset level that may be used during use of 
+the data instead of for searching. 
 
-For example, `gsd` defined for an Item represents the best Ground Sample Distance (resolution) for the data within the Item. However, some assets may be lower resolution and thus have a higher `gsd`. The `eo:bands` field from the EO extension defines an array of spectral bands. However, it may be useful instead to specify the bands that are used in a particular asset.
+For example, `gsd` defined for an Item represents the best Ground Sample Distance (resolution) for the data within the Item. 
+However, some assets may be lower resolution and thus have a higher `gsd`. The `eo:bands` field from the EO extension defines 
+an array of spectral bands. However, it may be useful instead to specify the bands that are used in a particular asset.
 
-Here is a partial Sentinel-2 Item:
+For an example see the [sentinel2-sample](examples/sentinel2-sample.json). The Sentinel-2 overall `gsd` is 10m, because this is 
+the best spatial resolution among all the bands and is defined in Item properties so it can be searched on. In the example 
+Band 5 and others have a `gsd` of 20m, so that asset specifies the `gsd` as well, which overrides the Item `gsd` for this 
+one asset. The example also includes reduced resolution versions of files included as assets, using `gsd` to represent
+the proper resolution.
 
-```json
-{
-    "id": "S2A_30PZQ_20190713_0_L2A",
-    "collection": "sentinel-s2-l2a",
-    "properties": {
-        "datetime": "2019-07-13T10:28:48.870000+00:00",
-        "gsd": 10
-    },
-    "assets": {
-        "visual": {
-            "title": "True color image",
-            "type": "image/jp2",
-            "roles": [
-                "visual"
-            ],
-            "eo:bands": [
-                {
-                    "full_width_half_max": 0.038,
-                    "center_wavelength": 0.6645,
-                    "name": "B04",
-                    "common_name": "red"
-                },
-                {
-                    "full_width_half_max": 0.045,
-                    "center_wavelength": 0.56,
-                    "name": "B03",
-                    "common_name": "green"
-                },
-                {
-                    "full_width_half_max": 0.098,
-                    "center_wavelength": 0.4966,
-                    "name": "B02",
-                    "common_name": "blue"
-                }
-            ],
-            "href": "s3://sentinel-s2-l2a/tiles/30/P/ZQ/2019/7/13/0/R10m/TCI.jp2"
-        },
-        "B05": {
-            "title": "Band 5",
-            "type": "image/jp2",
-            "roles": [
-                "data"
-            ],
-            "gsd": 20,
-            "eo:bands": [
-                {
-                    "full_width_half_max": 0.019,
-                    "center_wavelength": 0.7039,
-                    "name": "B05"
-                }
-            ],
-            "href": "s3://sentinel-s2-l2a/tiles/30/P/ZQ/2019/7/13/0/R20m/B05.jp2"
-        },
-        "B08": {
-            "title": "Band 8 (nir)",
-            "type": "image/jp2",
-            "roles": [
-                "data"
-            ],
-            "eo:bands": [
-                {
-                    "full_width_half_max": 0.145,
-                    "center_wavelength": 0.8351,
-                    "name": "B08",
-                    "common_name": "nir"
-                },
-            ],
-            "href": "s3://sentinel-s2-l2a/tiles/30/P/ZQ/2019/7/13/0/R10m/B08.jp2"
-        }
-    }
-}
-```
+For `eo:bands`, it could be put in Item properties as an array of all the bands, but in this case it's not. Instead, 
+the assets each define an array containing the spectral band information for that asset (in the order the bands appear 
+in the file).
 
-The Sentinel-2 overall `gsd` is 10m, because this is the best spatial resolution among all the bands and is defined in Item properties so it can be searched on. However, Band 5 has a `gsd` of 20m, so that asset specifies the `gsd` as well, which overrides the Item `gsd` for this one asset. Reduced resolution versions of files could also be included as assets and the `gsd` correectly represented.
-
-For `eo:bands`, it could be put in Item properties as an array of all the bands, but in this case it's not. Instead, the assets each define an array containing the spectral band information for that asset (in the order the bands appear in the file).
-
-##### Common Use Cases of Additional Fields for Assets
-
-Overriding or providing Item Properties only in the Assets makes discovery more difficult and should generally be avoided. However, there are some core and extension fields for which providing them at at the Asset level can prove to be very useful for using the data.
-
-- `datetime`: Provide individual timestamp on an Item, in case the Item has a `start_datetime` and `end_datetime`, but an Asset is for one specific time.
-- `gsd`: Specify some assets with different spatial resolution than the overall best resolution.
-- `eo:bands`: Provide spectral band information, and order of bands, within an individual asset.
-- `proj:epsg`/`proj:wkt2`/`proj:projjson`: Specify different projection for some assets. If the projection is different for all assets it should probably not be provided as an Item property. If most assets are one projection, and there is a single reprojected version (such as a Web Mercator preview image), it is sensible to specify the main projection in the Item and the alternate projection for the affected asset(s).
-- `proj:shape`/`proj:transform`: If assets have different spatial resolutions and slightly different exact bounding boxes, specify these per asset to indicate the size of the asset in pixels and it's exact GeoTranform in the native projection.
-- `sar:polarizations`: Provide the polarization content and ordering of a specific asset, similar to `eo:bands`.
-- `sar:product_type`: If mixing multiple product types within a single Item, this can be used to specify the product_type for each asset.
+For examples of fields that this construct is recommended for, see the [section of STAC Best Practices](../best-practices.md#common-use-cases-of-additional-fields-for-assets)
+that talks about common use cases of additional fields for assets.
 
 ## Extensions
 

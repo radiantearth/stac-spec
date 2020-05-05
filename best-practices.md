@@ -5,6 +5,7 @@
 * [Field and ID formatting](#field-and-id-formatting)
 * [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
 * [Representing Vector Layers in STAC](#representing-vector-layers-in-stac)
+* [Common Use Cases of Additional Fields for Assets](#common-use-cases-of-additional-fields-for-assets)
 * [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
 * [Catalog Layout](#catalog-layout)
 * [Use of Links](#use-of-links)
@@ -59,6 +60,25 @@ allows each feature in the shapefile/geopackage to be represented online, and en
 that is not possible then the appropriate way to handle collection-level search is with the 
 [OGC API - Records](https://github.com/opengeospatial/ogcapi-records) standard, which is a 'brother' specification of STAC API. 
 Both are compliant with OGC API - Features, adding richer search capabilities to enable finding of data. 
+
+## Common Use Cases of Additional Fields for Assets
+
+As [described in the Item spec](item-spec/item-spec.md#additional-fields-for-assets), it is possible to use fields typically
+found in Item properties at the asset level. This mechanism of overriding or providing Item Properties only in the Assets 
+makes discovery more difficult and should generally be avoided. However, there are some core and extension fields for which 
+providing them at at the Asset level can prove to be very useful for using the data.
+
+- `datetime`: Provide individual timestamp on an Item, in case the Item has a `start_datetime` and `end_datetime`, but an Asset is for one specific time.
+- `gsd` ([Common Metadata](item-spec/common-metadata.md#instrument)): Specify some assets with different spatial resolution 
+than the overall best resolution.
+- `eo:bands` ([EO extension](extensions/eo/)): Provide spectral band information, and order of bands, within an individual asset.
+- `proj:epsg`/`proj:wkt2`/`proj:projjson` ([projection extension](extensions/projection/)): Specify different projection for some assets. If the projection is different
+ for all assets it should probably not be provided as an Item property. If most assets are one projection, and there is 
+ a single reprojected version (such as a Web Mercator preview image), it is sensible to specify the main projection in the 
+ Item and the alternate projection for the affected asset(s).
+- `proj:shape`/`proj:transform` ([projection extension](extensions/projection/)): If assets have different spatial resolutions and slightly different exact bounding boxes, specify these per asset to indicate the size of the asset in pixels and it's exact GeoTranform in the native projection.
+- `sar:polarizations` ([sar extension](extensions/sar/)): Provide the polarization content and ordering of a specific asset, similar to `eo:bands`.
+- `sar:product_type` ([sar extension](extensions/sar/)): If mixing multiple product types within a single Item, this can be used to specify the product_type for each asset.
 
 ## Static and Dynamic Catalogs
 
