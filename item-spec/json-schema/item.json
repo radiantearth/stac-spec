@@ -108,12 +108,7 @@
               }
             },
             "assets": {
-              "title": "Asset links",
-              "description": "Links to assets",
-              "type": "object",
-              "additionalProperties": {
-                "$ref": "#/definitions/asset"
-              }
+              "$ref": "#/definitions/assets"
             },
             "properties": {
               "allOf": [
@@ -168,6 +163,14 @@
           "title": "Link title",
           "type": "string"
         }
+      }
+    },
+    "assets": {
+      "title": "Asset links",
+      "description": "Links to assets",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/asset"
       }
     },
     "asset": {
