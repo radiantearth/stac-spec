@@ -64,9 +64,9 @@ Additional metadata fields can be added to the GeoJSON Object Properties. The on
 is `datetime` but it is recommended to add more fields, see [Additional Fields](#additional-fields) 
 resources below.
 
-| Field Name | Type   | Description                                                  |
-| ---------- | ------ | ------------------------------------------------------------ |
-| datetime   | string | **REQUIRED.** The searchable date and time of the assets, in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
+| Field Name | Type         | Description                                                  |
+| ---------- | ------------ | ------------------------------------------------------------ |
+| datetime   | string\|null | **REQUIRED.** The searchable date and time of the assets, in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). `null` is allowed, but requires `start_datetime` and `end_datetime` from [common metadata](common-metadata.md#date-and-time-range) to be set. |
 
 **datetime** is likely the acquisition (in the case of single camera type captures) or the 'nominal'
 or representative time in the case of assets that are combined together. Though time can be a
@@ -74,6 +74,12 @@ complex thing to capture, for this purpose keep in mind the STAC spec is primari
 data, so use whatever single date and time is most useful for a user to search for. STAC content
 extensions may further specify the meaning of the main `datetime` field, and many will also add more
 datetime fields.
+If there's clearly no meaningful single 'nominal' time, it is allowed to use `null` instead.
+In this case it is **required** to specify a temporal interval with the fields `start_datetime`
+and `end_datetime` from [common metadata](common-metadata.md#date-and-time-range). For example, if 
+your data is a time-series that covers 100 years, it's not very meaningful to set the datetime to a 
+single timestamp as it would not be found in most searches that searches for a decade of data in that
+period although the item actually covers the decade.
 
 #### Additional Fields
 

@@ -29,17 +29,21 @@ Descriptive fields to give a basic overview of a STAC Item.
 
 ## Date and Time
 
+- [JSON Schema](json-schema/datetime.json)
+
 Fields to provide additional temporal information such as ranges with a start and an end datetime stamp.
 
-### Date and Time Range
+| Field Name | Type         | Description |
+| ---------- | ------------ | ----------- |
+| datetime   | string\|null | See the [Item Spec Fields](item-spec.md#properties-object) for more information. |
 
-- [JSON Schema](json-schema/datetimerange.json)
+### Date and Time Range
 
 While a STAC item can have a nominal datetime describing the capture, these properties allow an item to have a range
 of capture datetimes. An example of this is the [MODIS 16 day vegetation index product.](https://lpdaac.usgs.gov/products/mod13q1v006/).
 The datetime property in a STAC item and these fields are not mutually exclusive.
 
-**Important:** Using one of the fields REQUIRES to include the other field as well to enable a user to search STAC records by the provided times. So if you use `start_datetime` you need to add `end_datetime` and vice-versa.
+**Important:** Using one of the fields REQUIRES to include the other field as well to enable a user to search STAC records by the provided times. So if you use `start_datetime` you need to add `end_datetime` and vice-versa. Both fields are also REQUIRED if the `datetime` field is set to `null`.
 
 | Field Name     | Type   | Description                                                  |
 | -------------- | ------ | ------------------------------------------------------------ |
