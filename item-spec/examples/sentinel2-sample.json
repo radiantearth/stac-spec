@@ -56,7 +56,7 @@
     ]
   },
   "properties": {
-    "datetime": "2018-06-05T10:00:27.46Z",
+    "datetime": "2018-06-05T10:00:27Z",
     "platform": "sentinel-2",
     "gsd": 10,
     "proj:epsg": 32635,
