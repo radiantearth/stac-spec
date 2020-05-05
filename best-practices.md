@@ -170,8 +170,12 @@ able to use it on their local computer, so all links need to be relative. Or a t
 without knowing the final location that it will live at online, so it isn't possible to set absolute 'self' URL's. These use
 cases should utilize a catalog that follows the listed principles:
 
-* **Only relative href's in `links`**: The full catalog structure of links down to sub-catalogs and items, and their 
-links back to their parents and roots, should be done with relative URL's. This enables the full catalog to be downloaded or
+* **Only relative href's in structural `links`**: The full catalog structure of links down to sub-catalogs and items, and their 
+links back to their parents and roots, should be done with relative URL's. The structural rel types include `root`, `parent`, 
+`child`, `item`, and `collection`. Other links can be absolute, especially if they describe a resource that makes less sense in
+the catalog, like [sci:doi](https://github.com/radiantearth/stac-spec/tree/master/extensions/scientific#item-and-collection-fields), 
+`derived_from` or even `license` (it can be nice to include the license in the catalog, but some licenses live at a canonical 
+online location which makes more sense to refer to directly). This enables the full catalog to be downloaded or
 copy to another location and to still be valid. This also implies no `self` link, as that link must be absolute.
 
 * **Use Asset `href` links consistently**: The links to the actual assets are allowed to be either relative or absolute. There
@@ -201,11 +205,12 @@ enable easy provenance tracking. There are two types of published catalogs:
 `asset` hrefs. It includes `self` links for every item. Generally these are implemented by dynamic catalogs, as it is quite
 easy for them to generate the proper links dynamically. But a static catalog that knows its published location could easily
 implement it.
-* **Relative Published Catalog** is a catalog that uses relative links for everything, but includes an absolute `self` link at
+* **Relative Published Catalog** is a self-contained catalog as described above, except it includes an absolute `self` link at
 the root catalog, to identify its online location. This is designed so that a self-contained catalog can be 'published' online
-by just adding one field (the self link) to its root catalog. All the other links should remain relative. With this, the 
-resolution of item and sub-catalog self links may be done by traversing parent and root links, but requires reading multiple 
-sources to achieve this.
+by just adding one field (the self link) to its root catalog. All the other links should remain the same. The resulting catalog
+is no longer compliant with the self-contained catalog recommendations, but instead transforms into a 'relative published catalog'. 
+With this, a client may resolve item and sub-catalog self links by traversing parent and root links, but requires reading 
+multiple sources to achieve this. 
 
 So if you are writing a STAC client it is recommended to start with just supporting these two types of published catalogs. In 
 turn, if your data is published online publicly or for use on an intranet then following these recommendations will ensure
