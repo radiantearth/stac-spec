@@ -15,12 +15,6 @@ STAC Collections are meant to be compatible with *OGC API - Features* Collection
   * Landsat 8: A [Collection](examples/landsat-collection.json) that holds shared data from an [Item](examples/landsat-item.json).
 * [JSON Schema](json-schema/collection.json) - please see the [validation instructions](../validation/README.md)
 
-## WARNING
-
-**This is still an early version of the STAC spec, expect that there may be some changes before everything is finalized.**
-
-Implementations are encouraged, however, as good effort will be made to not change anything too drastically. Using the specification now will ensure that needed changes can be made before everything is locked in. So now is an ideal time to implement, as your feedback will be directly incorporated. 
-
 ## Collection fields
 
 | Element         | Type                                             | Description                                      |

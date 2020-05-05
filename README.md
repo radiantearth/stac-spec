@@ -18,10 +18,14 @@ available in a slightly different way. This will enable standard library compone
 implemented in a completely 'static' manner, enabling data publishers to expose their data by simply publishing linked JSON
 files online.
 
-## WARNING
+## Stability Note
 
-The specification is reaching maturity, and the next release will be 1.0-beta1. At this point we don't anticipate any 
-major changes, but reserve the right to make them if we get feedback that something just doesn't work.
+This specification has evolved over the past couple years, and is used in production in a variety of deployments. It is currently
+in a 'beta' state, with no major changes anticipated, so implementors can expect that most things will stay fairly stable. So 
+at this point we don't anticipate any major changes, but reserve the right to make them if we get feedback that something just doesn't 
+work. Which is to say the next couple months are a great time to implement STAC, as your changes will be head. After 1.0 our goal
+is to not change the core in any backwards incompatible way for a very long time, if ever, so that people can build on this until 
+JSON is no longer relevant. 
 
 ## Current version and branches
 
@@ -51,14 +55,16 @@ provides API endpoints, based on the [OGC API - Features](http://docs.opengeospa
 that enable clients to search for `item`s that match their filtering criteria. The four specifications are meant to be used 
 together, but are designed so each piece is small, self-contained and reusable in other contexts.
 
-**[item-spec/](item-spec/)** defines a STAC Item, which is a [GeoJSON](http://geojson.org) Feature
+The **[Overview](overview.md)** describes the three core specifications and how they relate to one another.
+
+The **[Item Specification](item-spec/)** defines a STAC Item, which is a [GeoJSON](http://geojson.org) Feature
 with additional fields for things like time, links to related entities and assets (including thumbnails). This is the 
 atomic unit that describes the data to be discovered.
 
-**[catalog-spec/](catalog-spec/)** specifies a structure to link various STAC Items together to be crawled or browsed. It is a
+The **[Catalog Specification](catalog-spec/)** specifies a structure to link various STAC Items together to be crawled or browsed. It is a
 simple, flexible JSON file of links to Items, Catalogs or Collections that can be used in a variety of ways.
 
-**[collection-spec/](collection-spec/)** provides additional information about a spatio-temporal collection of data.
+The **[Collection Specification](collection-spec/)** provides additional information about a spatio-temporal collection of data.
 In the context of STAC it is most likely a collection of STAC Items that is made available by a data provider.
 It includes things like the spatial and temporal extent of the data, the license, keywords, etc.
 It enables discovery at a higher level than individual items, providing a simple way to describe sets of data.
@@ -66,61 +72,14 @@ It enables discovery at a higher level than individual items, providing a simple
 **Extensions:** The *[extensions/](extensions/)* folder is where extensions live. Extensions can extend the 
 functionality of the core spec or add fields for specific domains.
 
-**Additional documents** A complementary [how to help](how-to-help.md)
-document, a [list of implementations](implementations.md), [best practices](best-practices.md)
-and a discussion of the collaboration [principles](principles.md) and specification approach.
-
-## Design Overview
-
-An important core principle of the STAC design is to embrace best practices of making data available on the web (like 
-[HATEOAS](https://en.wikipedia.org/wiki/HATEOAS) and [W3C Spatial Data on the Web](https://www.w3.org/TR/sdw-bp/)), and 
-to leverage the reliability of flat files on object stores like [AWS S3](https://aws.amazon.com/s3/) and [Google Cloud Storage](https://cloud.google.com/storage/).
-This lead to designing a static catalog at the core of the STAC spec.
-
-### Catalog Types
-
-STAC Catalogs generally fall into two different types: Static Catalogs and Dynamic Catalog APIs.
-
-The two catalog types both implement the same fields and links, and can be treated as the same by clients.
-For more details on the two types see the chapters below. Additionally, consider the [Static and Dynamic Catalogs](best-practices.md#static-and-dynamic-catalogs)
-section of the best practices document on how you might use them best.
-
-#### Static Catalog
-
-A static catalog is an implementation of the STAC specification that does not respond dynamically to requests. It is simply
-a set of files on a web server that link to one another in a way that can be crawled, often stored in an cloud storage
-service like [Amazon S3](https://aws.amazon.com/s3/) or [Google Cloud Storage](https://cloud.google.com/storage/).
-The core JSON documents and link structures are encoded in the file, and work as long as things are structured properly.
-A static catalog can only really be crawled by search engines and active catalogs; it can not respond to queries.
-But it is incredibly reliable, as there are no moving parts, no clusters or databases to maintain.
-The goal of STAC is to expose as much asset metadata online as possible, so the static catalog offers a very lower
-barrier to entry for anyone with geospatial assets to make their data searchable.
-
-#### Dynamic Catalog 
-
-A dynamic catalog is implemented in software as a RESTful API, following the same specified JSON structure for Items, Catalogs
-and Collections. Its structure and responses are usually generated dynamically, but the result is the same, 
-so the same client and crawler tools can consume it. It generally indexes data for efficient responses, and aims to be easy
-for existing APIs to implement as a more standard interface for clients to consume.  An active 
-catalog will sometoimes be populated by a static catalog, or at least may have a 'backup' of its fields stored as a cached static 
-catalog.
-
-Dynamic Catalogs often also implement the [STAC API](https://github.com/radiantearth/stac-api-spec/) specification, that 
-responds to search queries (like give me all imagery in Oahu gathered on January 15, 2017). But they are not required to, one
-can have a dynamic service that only implements the core STAC specification, and is crawled by STAC API implementations that
-provide 'search'. 
-
-### Core Metadata and Extensions
-
-The Item specification defines the core fields that all assets must make available for searching in a catalog.
-In addition there are some basic fields for describing collections of data.
-Vendors can extend those core fields for the metadata they want to make available, and the community has started to define shared extensions.
-
-### UML Diagram
-
-A UML diagram of the [STAC model](STAC-UML.pdf) is provided to help with navigating the specification. 
+**Additional documents:** The supporting documents include a complementary [best practices](best-practices.md) 
+document, and information on contributing (links in the next section). We also maintain a [changelog](CHANGELOG.md) of
+what was modified in each version, as well as a [UML overview](STAC-UML.pdf) (and [source](STAC-UML.drawio)). There
+are also documents on [how to help](how-to-help.md) and a [list of implementations](implementations.md). 
 
 ## Contributing
 
 Anyone building software that catalogs imagery or other geospatial assets is welcome to collaborate.
-Beforehand, please review our [guidelines for contributions](CONTRIBUTING.md).
+Beforehand, please review our [guidelines for contributions](CONTRIBUTING.md) and [code of conduct](CODE_OF_CONDUCT.md). 
+You may also be interested in our overall [process](process.md), and the [principles](principles.md) that guide our 
+collaboration
