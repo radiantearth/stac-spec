@@ -4,9 +4,11 @@
 
 * [Field and ID formatting](#field-and-id-formatting)
 * [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
+* [Representing Vector Layers in STAC](#representing-vector-layers-in-stac)
 * [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
 * [Catalog Layout](#catalog-layout)
 * [Use of Links](#use-of-links)
+* [Versioning for Catalogs](#versioning-for-catalogs)
 * [STAC on the Web](#stac-on-the-web)
 
 ---------
@@ -25,8 +27,8 @@ When defining one's STAC properties and fields there are many choices to make on
 data. One of the key properties is the ID. The specification is quite flexible on ID's, primarily so that existing
 providers can easily use their same ID when they translate their data into STAC - they just need to be sure it is globally
 unique, so may need a prefix. But the use of URI reserved characters such as `:` or `/` is discouraged since this will 
-result in [percented encoded](https://tools.ietf.org/html/rfc3986#section-2) STAC API endpoints. This isn't a blocker,
-it just makes the ID's served through API's a bit less parsable. 
+result in [percented encoded](https://tools.ietf.org/html/rfc3986#section-2) [STAC API](https://github.com/radiantearth/stac-api-spec) 
+endpoints. This isn't a blocker, it just makes the ID's served through API's a bit less parsable. 
 
 When defining unique fields for search, like constellation or platform, it is recommended that 
 the value consist of only lowercase characters, numbers, `_`, and `-`. Examples include `sentinel-1a` (Sentinel-1), 
@@ -43,20 +45,37 @@ providers have lots of metadata then that can be linked to in the [Asset Object]
 to loading and processing data, and while STAC does not prohibit providers from putting those type of fields in their items, 
 it is not recommended. For very large 
 catalogs (hundreds of millions of records), every additional field that is indexed will cost substantial money, so data
-providers are advised to just put the fields to be searched in STAC, so STAC API providers don't have bloated indices
-that no one actually uses.
+providers are advised to just put the fields to be searched in STAC, so [STAC API](https://github.com/radiantearth/stac-api-spec)
+providers don't have bloated indices that no one actually uses.
+
+## Representing Vector Layers in STAC
+
+Many implementors are tempted to try to use STAC for 'everything', using it as a universal catalog of all their 'stuff'.
+The main route considered is to use STAC to describe vector layers, putting a shapefile or [geopackage](http://geopackage.org)
+as the `asset`. Though there is nothing in the specification that *prevents* this, it is not really the right level of 
+abstraction. A shapefile or geopackage corresponds to a collection, not a single item. The ideal thing to do with
+one of those is to serve it with [OGC API - Features](https://github.com/opengeospatial/ogcapi-features) standard. This
+allows each feature in the shapefile/geopackage to be represented online, and enables querying of the actual data. If
+that is not possible then the appropriate way to handle collection-level search is with the 
+[OGC API - Records](https://github.com/opengeospatial/ogcapi-records) standard, which is a 'brother' specification of STAC API. 
+Both are compliant with OGC API - Features, adding richer search capabilities to enable finding of data. 
 
 ## Static and Dynamic Catalogs
 
-As mentioned in the main [Catalog specification](catalog-spec/catalog-spec.md), there are two main types of catalogs - static
+As mentioned in the main [overview](overview.md), there are two main types of catalogs - static
 and dynamic. This section explains each of them in more depth and shares some best practices on each.
 
 ### Static Catalogs
 
-A main target for STAC has been object storage services like [Amazon S3](https://aws.amazon.com/s3/), 
-[Google Cloud Storage](https://cloud.google.com/storage/) and [Azure Storage](https://azure.microsoft.com/en-us/services/storage/), 
-so that users can stand up a full STAC implementation with static files. Implementations created with just files online
-are referred to as 'static catalogs'. These include not just the cloud services, but any type of file server that is online.
+A static catalog is an implementation of the STAC specification that does not respond dynamically to requests. It is simply
+a set of files on a web server that link to one another in a way that can be crawled, often stored in an cloud storage
+service like [Amazon S3](https://aws.amazon.com/s3/), [Azure Storage](https://azure.microsoft.com/en-us/services/storage/) and
+[Google Cloud Storage](https://cloud.google.com/storage/). But any http server could expose a static catalog as files.
+The core JSON documents and link structures are encoded in the file, and work as long as things are structured properly.
+A static catalog can only really be crawled by search engines and active catalogs; it can not respond to queries.
+But it is incredibly reliable, as there are no moving parts, no clusters or databases to maintain.
+The goal of STAC is to expose as much asset metadata online as possible, so the static catalog offers a very low
+barrier to entry for anyone with geospatial assets to make their data searchable.
 
 Static Catalogs tend to make extensive use of *sub-catalogs* to organize their Items in to sensible browsing structures, 
 as they can only have a single representation of their catalog, since the static nature means the structure is baked in.
@@ -72,13 +91,18 @@ is to place the catalog file in namespaces "directories". For example:
 
 ### Dynamic Catalogs
 
-Dynamic STAC Catalogs are those that generate their JSON responses programmatically instead of relying on a set of
-already defined files. Typically a dynamic catalog implements the full [STAC API](https://github.com/radiantearth/stac-api-spec) which enables 
-search of the Items indexed. The `/` endpoint returns the exact same STAC Catalog structure as a
-static catalog, enabling the same discovery from people browsing and search engines crawling. Dynamic API's that
-just seek to expose some data can also choose to not implement `/search` and only link to their data from the `/` endpoint.
-For example a Content Management Service like Drupal or an Open Data Catalog like CKAN could choose to expose its content
-as linked STAC Items by implementing a dynamic catalog. 
+A dynamic catalog is implemented in software as an HTTP-based API, following the same specified JSON structure for Items, Catalogs
+and Collections. Its structure and responses are usually generated dynamically, instead of relying on a set of
+already defined files. But the result is the same, enabling the same discovery from people browsing and search engines crawling. 
+It generally indexes data for efficient responses, and aims to be easy for existing APIs to implement as a more standard interface 
+for clients to consume. A dynamic catalog will sometimes be populated by a static catalog, or at least may have a 'backup' of its 
+fields stored as a cached static catalog.
+
+Dynamic Catalogs often also implement the [STAC API](https://github.com/radiantearth/stac-api-spec/) specification, that 
+responds to search queries (like give me all imagery in Oahu gathered on January 15, 2017). But they are not required to, one
+can have a dynamic service that only implements the core STAC specification, and is crawled by STAC API implementations that
+provide 'search'. For example a Content Management Service like Drupal or an Open Data Catalog like CKAN could choose to expose 
+its content as linked STAC Items by implementing a dynamic catalog. 
 
 One benefit of a dynamic catalog is that it can generate various 'views' of the catalog, exposing the same `Items` in 
 different sub-catalog organization structures. For example one catalog could divide sub-catalogs by date and another by
@@ -88,18 +112,26 @@ providers, and users could browse down to both. The leaf Items should just be li
 ## Catalog Layout
 
 Creating a catalog involves a number of decisions as to what folder structure to use to represent sub-catalogs, items
-and assets, and how to name them. The specification leaves this totally open, and you can link things as you want. We
-encourage people to explore new structures. But the following are what a number of implementors ended up doing. Following
-these recommendations makes for more legible catalogs.
+and assets, and how to name them. The specification leaves this totally open, and you can link things as you want. But 
+it is recommended to be thoughtful about the organization of sub-catalogs, putting them into a structure that a person
+might reasonably browse (since they likely will with [STAC on the Web](#stac-on-the-web) recommendations). For example
+start with location, like a normal grid (path+row in Landsat) or administrative boundaries (country -> state-level) and 
+then year, month, day. Or do the opposite - date and then location. Making a huge unordered list is technically allowed,
+but not helpful for discovery of data. Thus it is generally considered a best practice to make use of sub-catalogs to 
+keep the size of each sub-catalog under a megabyte. If your sub-catalog lists tens of thousands of child items then you
+should consider an additional way to break it up. 
+
+We encourage people to explore new structures of linking data, but the following list is what a number of implementors 
+ended up doing. Following these recommendations makes for more legible catalogs.
 
 1. Root documents (catalogs / collections) should be at the root of a directory tree containing the static catalog.
 2. Catalogs should be named `catalog.json` (cf. `index.html`).
 3. Collections that are distinct from catalogs should be named `collection.json`.
-4. Items should be named `<id>.json`
+4. Items should be named `<id>.json`.
 5. Sub-catalogs should be stored in subdirectories of their parent (and only 1 subdirectory deeper than a document's parent) (e.g. `.../sample/sub1/catalog.json`).
 6. Items should be stored in subdirectories of their parent catalog. 
-This means that each item and its assets are contained in a unique subdirectory
-7. Limit the number of items in a catalog or sub-catalog, grouping / partitioning as relevant to the dataset
+This means that each item and its assets are contained in a unique subdirectory.
+7. Limit the number of items in a catalog or sub-catalog, grouping / partitioning as relevant to the dataset.
 
 ### Dynamic Catalog Layout
 
@@ -138,8 +170,12 @@ able to use it on their local computer, so all links need to be relative. Or a t
 without knowing the final location that it will live at online, so it isn't possible to set absolute 'self' URL's. These use
 cases should utilize a catalog that follows the listed principles:
 
-* **Only relative href's in `links`**: The full catalog structure of links down to sub-catalogs and items, and their 
-links back to their parents and roots, should be done with relative URL's. This enables the full catalog to be downloaded or
+* **Only relative href's in structural `links`**: The full catalog structure of links down to sub-catalogs and items, and their 
+links back to their parents and roots, should be done with relative URL's. The structural rel types include `root`, `parent`, 
+`child`, `item`, and `collection`. Other links can be absolute, especially if they describe a resource that makes less sense in
+the catalog, like [sci:doi](https://github.com/radiantearth/stac-spec/tree/master/extensions/scientific#item-and-collection-fields), 
+`derived_from` or even `license` (it can be nice to include the license in the catalog, but some licenses live at a canonical 
+online location which makes more sense to refer to directly). This enables the full catalog to be downloaded or
 copy to another location and to still be valid. This also implies no `self` link, as that link must be absolute.
 
 * **Use Asset `href` links consistently**: The links to the actual assets are allowed to be either relative or absolute. There
@@ -155,9 +191,34 @@ Self-contained catalogs are not just for offline use, however - they are designe
 on the cloud in object storage. They just aim to ease the burden of publishing, by not requiring lots of updating of links. 
 Adding a single `self` link at the root is recommended for online catalogs, turning it into a 'relative published catalog', as detailed below. This anchors it in an online location and enable provenance tracking.
 
-### Versioning for Catalogs
+### Published Catalogs
 
-In the Item and Collection STAC files or API responses, versions and deprecation can be indicated with the [Versioning Indicators Extension](./extensions/version).
+While STAC is useful as a portable format to move between systems, the goal is really to enable search. While any combination
+of absolute and relative links is technically allowed by the specification, it is strongly recommended to follow one of the 
+patterns described below when publishing online. Many clients will not properly handle arbitrary mixes of absolute and relative
+href's. 
+
+We refer to a 'published catalog' as one that lives online in a stable location, and uses `self` links to establish its location and 
+enable easy provenance tracking. There are two types of published catalogs:
+
+* **Absolute Published Catalog** is a catalog that uses absolute links for everything, both in the `links` objects and in the
+`asset` hrefs. It includes `self` links for every item. Generally these are implemented by dynamic catalogs, as it is quite
+easy for them to generate the proper links dynamically. But a static catalog that knows its published location could easily
+implement it.
+* **Relative Published Catalog** is a self-contained catalog as described above, except it includes an absolute `self` link at
+the root catalog, to identify its online location. This is designed so that a self-contained catalog can be 'published' online
+by just adding one field (the self link) to its root catalog. All the other links should remain the same. The resulting catalog
+is no longer compliant with the self-contained catalog recommendations, but instead transforms into a 'relative published catalog'. 
+With this, a client may resolve item and sub-catalog self links by traversing parent and root links, but requires reading 
+multiple sources to achieve this. 
+
+So if you are writing a STAC client it is recommended to start with just supporting these two types of published catalogs. In 
+turn, if your data is published online publicly or for use on an intranet then following these recommendations will ensure
+that a wider range of clients will work with it. 
+
+## Versioning for Catalogs
+
+In the Item and Collection STAC JSON, versions and deprecation can be indicated with the [Versioning Indicators Extension](./extensions/version).
 
 The [Items and Collections API Version Extension](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/version/README.md) provides endpoints and semantics for keeping and accessing previous versions of Collections and Items. The same semantics can be used in static catalogs to preserve previous versions of the documents and link them together.
 
@@ -168,7 +229,7 @@ The main record should also provide a link to the versioned record following the
 1. Add link from the updated record to the previous version
 2. Create a copy of the updated record and name it correctly
 
-#### Example
+### Example
 
 When the record `my_item.json` is created, a copy of it is also created. `my_item.json` includes `permalink` to `my_item_01.json`. The version suffix of the file name is taken from the version field of the record when it is available.
 
@@ -180,21 +241,6 @@ When `my_item.json` is updated, the new `my_item.json` includes a link to `my_it
 - `root / collections / example_collection / items / my_item / my_item.json`
 - `root / collections / example_collection / items / my_item / my_item_01.json`
 - `root / collections / example_collection / items / my_item / my_item_02.json`
-
-### Published Catalogs
-
-A 'published catalog' is one that lives online in a stable location, and uses `self` links to establish its location and 
-enable easy provenance tracking. There are two types of published catalogs:
-
-* **Absolute Published Catalog** is a catalog that uses absolute links for everything, both in the `links` objects and in the
-`asset` hrefs. It includes `self` links for every item. Generally these are implemented by dynamic catalogs, as it is quite
-easy for them to generate the proper links dynamically. But a static catalog that knows its published location could easily
-implement it.
-* **Relative Published Catalog** is a catalog that uses relative links for everything, but includes an absolute `self` link at
-the root catalog, to identify its online location. This is designed so that a self-contained catalog can be 'published' online
-by just adding one field (the self link) to its root catalog. All the other links should remain relative. With this, the 
-resolution of item and sub-catalog self links may be done by traversing parent and root links, but requires reading multiple 
-sources to achieve this.
 
 ## STAC on the Web
 

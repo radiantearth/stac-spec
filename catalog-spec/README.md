@@ -17,11 +17,7 @@ specification contains an OpenAPI definition of the standard way to do this, at 
 ## In this directory
 
 **The Specification:** The main Catalog specification is in *[catalog-spec.md](catalog-spec.md)*.
-It includes an overview and in depth explanation of the structures and fields.
-
-**Best Practices:** While the main spec is designed to be quite flexible, there are a set of emerging best practices for
-how to actually manage a catalog. The *[catalog-best-practices.md](../best-practices.md#static-and-dynamic-catalogs)* document lays out a number
-of these. In time some of these may evolve to be part of the core spec.
+It includes in depth explanation of the structures and fields.
 
 **Examples:** For samples of how Catalogs can be implemented the *[examples/](examples/)* folder
 contains a full sample catalog. 
