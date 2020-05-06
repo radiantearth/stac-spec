@@ -29,10 +29,7 @@
     },
     "asset": {
       "type": "object",
-      "required": [
-        "title",
-        "type"
-      ],
+      "minProperties": 2,
       "properties": {
         "title": {
           "title": "Asset title",
