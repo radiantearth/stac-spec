@@ -36,10 +36,10 @@
                 "title": "Reference to a core extension",
                 "type": "string",
                 "enum": [
-                  "asset",
                   "commons",
                   "checksum",
                   "datacube",
+                  "item-assets",
                   "scientific",
                   "tiled-assets",
                   "version"

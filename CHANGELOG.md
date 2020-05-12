@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Moved item recommendations to best practices, and added a bit more in item spec about 'search'
 - Moved `eo:gsd` from `eo` extension to core `gsd` field in Item common metadata
 - `asset` extension renamed to `item-assets` and renamed `assets` field in Collections to `item_assets`
+- `item-assets` extension only requires any two fields to be available, not the two specific fields `title` and `type`
 - `datetime` allows `null` as value, but requires `start_datetime` and `end_datetime` then
 
 ### Fixed
