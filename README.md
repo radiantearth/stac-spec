@@ -74,8 +74,7 @@ functionality of the core spec or add fields for specific domains.
 
 **Additional documents:** The supporting documents include a complementary [best practices](best-practices.md) 
 document, and information on contributing (links in the next section). We also maintain a [changelog](CHANGELOG.md) of
-what was modified in each version, as well as a [UML overview](STAC-UML.pdf) (and [source](STAC-UML.drawio)). There
-are also documents on [how to help](how-to-help.md) and a [list of implementations](implementations.md). 
+what was modified in each version, as well as a [UML overview](STAC-UML.pdf) (and [source](STAC-UML.drawio)). 
 
 ## Contributing
 
