@@ -36,7 +36,7 @@ Organizations are encouraged to adapt the core fields to their needs, finding an
 would need to be addressed the specification.
 
 Implementors are encouraged to publish their implementations, ideally including them in the 
-[implementations list](../implementations.md) for others to lean from.
+[implementations list](https://stacspec.org/#examples) for others to lean from.
 This will enable a spreading of best practices, as organizations can see how others implemented
 similar concepts and adopt them. These should eventually evolve in to extensions that are widely 
 used.

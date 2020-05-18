@@ -19,7 +19,7 @@ required fields is a valid STAC Item.
 - Examples:
   - See the [minimal example](examples/sample.json), as well as a [more fleshed example](examples/sample-full.json) that contains a number of
     current best practices. There are more real world inspired samples in the [examples/](examples/) folder.
-  - Real world [implementations](../implementations.md) are also available.
+  - Real world [implementations](https://stacspec.org/#examples) are also available.
 - [JSON Schema](json-schema/item.json)
 
 ## Item fields
