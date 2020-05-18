@@ -4,6 +4,7 @@
 
 * [Field and ID formatting](#field-and-id-formatting)
 * [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
+* [Datetime selection](#datetime-selection)
 * [Representing Vector Layers in STAC](#representing-vector-layers-in-stac)
 * [Common Use Cases of Additional Fields for Assets](#common-use-cases-of-additional-fields-for-assets)
 * [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
@@ -48,6 +49,23 @@ it is not recommended. For very large
 catalogs (hundreds of millions of records), every additional field that is indexed will cost substantial money, so data
 providers are advised to just put the fields to be searched in STAC, so [STAC API](https://github.com/radiantearth/stac-api-spec)
 providers don't have bloated indices that no one actually uses.
+
+## Datetime selection
+
+The `datetime` field in a STAC Item's properties is one of the most important parts of a STAC Item, providing the T (temporal) of 
+STAC. And it can also be one of the most confusing, especially for data that covers a range of times. For many types of data it
+is straightforward - it is the capture or acquisition time. But often data is processed from a range of captures - drones usually
+gather a set of images over an hour and put them into a single image, mosaics combine data from several months, and data cubes
+represent slices of data over a range of time. For all these cases the recommended path is to use `start_datetime` and 
+`end_datetime` fields from [common metadata](item-spec/common-metadata.md#date-and-time-range). The specification does allow one to set the 
+`datetime` field to `null`, but it is strongly recommended to populate the single `datetime` field, as that is what many clients 
+will search on. If it is at all possible to pick a nominal or representative datetime then that should be used. 
+
+Extensions that describe particular types of data can and should define their `datetime` field to be more specific. For example
+a MODIS 8 day composite image can define the `datetime` to be the nominal date halfway between the two ranges. Another data type
+might choose to have `datetime` be the start. The key is to put in a date and time that will be useful for search, as that is
+the focus of STAC. If `datetime` is set to `null` then it is strongly recommended to use it in conjunction with a content extension
+that explains why it should not be set for that type of data. 
 
 ## Representing Vector Layers in STAC
 
