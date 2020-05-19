@@ -17,7 +17,7 @@
           "$ref": "basics.json"
         },
         {
-          "$ref": "datetimerange.json"
+          "$ref": "datetime.json"
         },
         {
           "$ref": "instrument.json"
@@ -111,25 +111,7 @@
               "$ref": "#/definitions/assets"
             },
             "properties": {
-              "allOf": [
-                {
-                  "type": "object",
-                  "required": [
-                    "datetime"
-                  ],
-                  "properties": {
-                    "datetime": {
-                      "title": "Date and Time",
-                      "description": "The searchable date/time of the assets, in UTC (Formatted in RFC 3339) ",
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  }
-                },
-                {
-                  "$ref": "#/definitions/common_metadata"
-                }
-              ]
+              "$ref": "#/definitions/common_metadata"
             },
             "collection": {
               "title": "Collection ID",

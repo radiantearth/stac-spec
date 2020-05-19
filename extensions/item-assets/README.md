@@ -19,18 +19,19 @@ This extension serves two purposes:
 
 ## Collection fields
 
-This extension introduces a single new field, `assets` at the top level of a collection.
+This extension introduces a single new field, `item_assets` at the top level of a collection.
 An Asset Object defined at the Collection level is nearly the same as the [Asset Object in Items](../../item-spec/item-spec.md#asset-object), except for two differences.
-The `href` field is not required, because collections don't point to any data by themselves.
-Additioanlly the remaining fields, `title` and `type` are required in the Asset Definition, in order for it to adequately describe Item assets.
+The `href` field is not required, because collections don't point to any data by themselves, but at least two other fields must be present.
 
-| Field Name | Type                                       | Description |
-| ---------- | ------------------------------------------ | ----------- |
-| item_assets     | Map<string, [Asset Object](#asset-object)> | **REQUIRED.** A dictionary of assets that can be found in member Items |
+| Field Name  | Type                                       | Description |
+| ----------- | ------------------------------------------ | ----------- |
+| item_assets | Map<string, [Asset Object](#asset-object)> | **REQUIRED.** A dictionary of assets that can be found in member Items |
 
 ### Asset Object
 
-An asset is an object that contains details about the datafiles that will be included in member Items. Assets included at the Collection level do not imply that all assets are available from all Items. However, it is recommended that the Asset Definition is a complete set of all assets that may be available from any member Items.
+An asset is an object that contains details about the datafiles that will be included in member Items.
+Assets included at the Collection level do not imply that all assets are available from all Items.
+However, it is recommended that the Asset Definition is a complete set of all assets that may be available from any member Items.
 
 | Field Name  | Type      | Description |
 | ----------- | --------- | ----------- |
@@ -40,6 +41,9 @@ An asset is an object that contains details about the datafiles that will be inc
 | roles       | \[string] | The [semantic roles](../../item-spec/item-spec.md#asset-role-types) of the asset, similar to the use of `rel` in links. |
 
 Other custom fields, or fields from other extensions may also be included in the Asset object.
+
+At least two fields (e.g. `title` and `type`) are required to be provided, in order for it to adequately describe Item assets.
+The two fields must not necessarily be taken from the list above and may include any custom field.
 
 ## Implementations
 
