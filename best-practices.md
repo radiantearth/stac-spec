@@ -59,7 +59,9 @@ gather a set of images over an hour and put them into a single image, mosaics co
 represent slices of data over a range of time. For all these cases the recommended path is to use `start_datetime` and 
 `end_datetime` fields from [common metadata](item-spec/common-metadata.md#date-and-time-range). The specification does allow one to set the 
 `datetime` field to `null`, but it is strongly recommended to populate the single `datetime` field, as that is what many clients 
-will search on. If it is at all possible to pick a nominal or representative datetime then that should be used. 
+will search on. If it is at all possible to pick a nominal or representative datetime then that should be used. But sometimes that 
+is not possible, like a data cube that covers a time range from 1900 to 2000. Setting the datetime as 1950 would lead to it not
+being found if you searched 1990 to 2000.
 
 Extensions that describe particular types of data can and should define their `datetime` field to be more specific. For example
 a MODIS 8 day composite image can define the `datetime` to be the nominal date halfway between the two ranges. Another data type
