@@ -61,8 +61,8 @@ Some additional notes are given here for some of the core STAC Item fields and w
 #### Class Object
 | Field Name | Type                 | Name    | Description |
 | ---------- | -------------------- | ------- | ----------- |
-| name       | string\|null         | Name    | The property key within the asset's each `Feature` corresponding to class labels. If labels are raster-formatted, use null. |
-| classes    | \[string]\|\[number] | Classes | The different possible class values within the property `name`. |
+| name       | string\|null         | Name    | **REQUIRED** The property key within the asset's each `Feature` corresponding to class labels. If labels are raster-formatted, use null. |
+| classes    | \[string]\|\[number] | Classes | **REQUIRED** The different possible class values within the property `name`. |
 
 #### Label Overview Object
 

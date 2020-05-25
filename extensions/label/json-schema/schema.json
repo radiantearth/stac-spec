@@ -32,6 +32,10 @@
           "type": "array",
           "items": {
             "type": "object",
+            "required": [
+              "name",
+              "classes"
+            ],
             "properties": {
               "name": {
                 "title": "Name",
