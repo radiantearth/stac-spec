@@ -39,7 +39,7 @@ collection and be able to adapt it to most any data model.
 
 But it is expected that some more firm recommendations and even requirements will emerge, so that clients will be able to glean
 more meaningful information. In the meantime implementors are encouraged to do what makes sense for
-them, and to check out the [examples](examples/) and [other implementations](../implementations.md) for emerging best practices.
+them, and to check out the [examples](examples/) and [other implementations](https://stacspec.org/#examples) for emerging best practices.
 
 ## Collection Evolution 
 

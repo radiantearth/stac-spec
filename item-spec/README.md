@@ -27,29 +27,3 @@ discussion of the examples.
 ## Schema Validation
 
 Instruction on schema validation for STAC Items can be found in the [validation instructions](../validation/README.md).
-
-## Item Evolution 
-
-STAC Items are still a work in progress, and feedback is very much appreciated. The core fields 
-were designed to be quite flexible, adapting to many different data organization schemes. 
-Organizations are encouraged to adapt the core fields to their needs, finding any limitations that 
-would need to be addressed the specification.
-
-Implementors are encouraged to publish their implementations, ideally including them in the 
-[implementations list](../implementations.md) for others to lean from.
-This will enable a spreading of best practices, as organizations can see how others implemented
-similar concepts and adopt them. These should eventually evolve in to extensions that are widely 
-used.
-
-There is already some first iterations of shared fields in the [extensions/](../extensions/README.md) 
-folder, which is used mostly to represent additional domain-specific information. The core STAC 
-fields were made to be flexible to a variety of assets. But there is a lot of value in shared 
-fields that may not apply to every STAC data type, but are shared by a certain domain. There is a 
-just released 'extension' for satellite imagery, in the 'EO extension', so try to use it if you
-are providing satellite imagery data. 
-
-The evolution of the STAC Item spec will take place in this repository, primarily informed by the 
-real world implementations that people create. The goal is for the core Item spec to remain
-quite small and stable, with most all the evolution taking place in extensions. Once there is 
-a critical mass of implementations utilizing different extensions the core Item spec will lock
-down to a 1.0.

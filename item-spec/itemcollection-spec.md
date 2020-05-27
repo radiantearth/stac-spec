@@ -16,7 +16,6 @@ required fields is a valid STAC ItemCollection.
 
 - Examples:
   - See the [minimal example](examples/itemcollection-sample-minimal.json), as well as a [more complete example](examples/itemcollection-sample-full.json). There are more real world inspired samples in the [examples/](examples/) folder.
-  - Real world [implementations](../implementations.md) are also available.
 - [JSON Schema](json-schema/itemcollection.json)
 
 ## ItemCollection fields

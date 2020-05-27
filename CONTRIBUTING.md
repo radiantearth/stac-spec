@@ -10,7 +10,10 @@ We consider everyone using the specification to catalog their data to be a 'cont
 really about the end result of more interoperable data, not just creating a spec for the sake of it.
 So if you want to help then the best thing you can do is make new catalogs or build software that uses
 the spec. And please do give us feedback. The best place to do so is on our 
-[gitter channel](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby).
+[gitter channel](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby). If you are interested in helping
+but aren't sure where to, then see the [stac-ecosystem](https://github.com/stac-utils/stac-ecosystem) repo
+for ideas on projects to advance STAC. The next phase of STAC's evolution will be mostly focused on
+this broader ecosystem, while keeping the core spec as stable as we can.
 
 ### Submitting Pull Requests
 
