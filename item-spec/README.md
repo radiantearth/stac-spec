@@ -18,8 +18,9 @@ endpoints of a `/search` endpoint.
 contains a number of real world examples. See the [readme](examples/README.md) for additional 
 discussion of the examples.
 
-**Schemas:** The schemas to validate the core Item definition are found in the 
-*[json-schema/](json-schema/)* folder. The two are *[item.json](json-schema/item.json)* and *[itemcollection.json](json-schema/itemcollection.json)*.
+**Schemas:** The schemas to validate the core Item definitions are found in the 
+*[json-schema/](json-schema/)* folder. The *[item.json](json-schema/item.json)* validates items overall
+and the additional schemas validate the various groups of *[Common Metadata](common-metadata.md)*.
 
 ## Schema Validation
 
