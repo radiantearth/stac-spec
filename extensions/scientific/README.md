@@ -31,6 +31,8 @@ For Items, the fields are placed in the `properties`. For Collections, the field
 | sci:citation     | string               | The recommended human-readable reference (citation) to be used by publications citing the data. No specific citation style is suggested, but the citation should contain all information required to find the publication distinctively. |
 | sci:publications | [[Publication Object](#publication-object)] | List of relevant publications referencing and describing the data. |
 
+*At least one of the fields must be specified.*
+
 ### Publication Object
 
 | Field Name | Type   | Description |

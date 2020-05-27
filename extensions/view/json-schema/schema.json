@@ -20,7 +20,13 @@
       "properties": {
         "properties": {
           "type": "object",
-          "required": [],
+          "anyOf": [
+            {"required": ["view:off_nadir"]},
+            {"required": ["view:incidence_angle"]},
+            {"required": ["view:azimuth"]},
+            {"required": ["view:sun_azimuth"]},
+            {"required": ["view:sun_elevation"]}
+          ],
           "properties": {
             "view:off_nadir": {
               "title": "Off Nadir",

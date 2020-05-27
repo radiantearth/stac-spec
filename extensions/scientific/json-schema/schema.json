@@ -36,6 +36,11 @@
   "definitions": {
     "scientific": {
       "type": "object",
+      "anyOf": [
+        {"required": ["sci:doi"]},
+        {"required": ["sci:citation"]},
+        {"required": ["sci:publications"]}
+      ],
       "properties": {
         "sci:doi": {
           "type": "string",

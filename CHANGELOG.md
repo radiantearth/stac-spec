@@ -33,8 +33,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `asset` extension renamed to `item-assets` and renamed `assets` field in Collections to `item_assets`
 - `item-assets` extension only requires any two fields to be available, not the two specific fields `title` and `type`
 - `datetime` allows `null` as value, but requires `start_datetime` and `end_datetime` then
+- Extensions `sat`, `scientific` and `view`: At least one field is required to be specified.
 
 ### Fixed
+- Datacube extension: `cube:dimensions` was not flagged as required.
 
 ## [v0.9.0] - 2020-02-26
 

@@ -26,7 +26,6 @@ plugins:
   - remark-lint-no-duplicate-headings
   - remark-lint-no-multiple-toplevel-headings
   - remark-lint-no-heading-punctuation
-  - remark-lint-no-emphasis-as-heading
   - - remark-lint-maximum-heading-length
     - 70
   - - remark-lint-heading-style
