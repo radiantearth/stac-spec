@@ -4,8 +4,6 @@ The STAC Collection Specification defines a set of common fields to describe a g
 STAC Collections Specification extends the [STAC Catalog Spec](../catalog-spec/README.md) with additional fields to describe the whole dataset and the included set of items.
 It shares the same fields and therefore every Collection is also a valid Catalog. Collections can have both parent Catalogs and Collections and child Items, Catalogs and Collections. 
 
-A group of STAC Item objects from a single source can share a lot of common metadata. This is especially true with satellite imagery that uses the STAC EO or SAR extension. Rather than including these common metadata fields on every Item, they can be provided in the `properties` of the STAC Collection that the STAC Items belong to.
-
 A STAC Collection can be represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Collection and also a valid STAC Catalog.
 
 STAC Collections are meant to be compatible with *OGC API - Features* Collections, but please be aware that OAFeat Collections and STAC Collections originate from different specifications and despite the fact that we try to align them as much as possible be there may be subtle differences in the specifications.
@@ -32,7 +30,7 @@ STAC Collections are meant to be compatible with *OGC API - Features* Collection
 | links           | \[[Link Object](#link-object)]                   | **REQUIRED.** A list of references to other documents.       |
 
 **stac_extensions**: A list of extensions the Collection implements. This does NOT declare the extensions of child Catalogs or Items. The list contains URLs to the JSON Schema files it can be validated against. For official [content extensions](../extensions/README.md#list-of-content-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `version` for the Versioning Indicators extension. This does *not* apply for API extensions. If the versions of the extension and the collection diverge, you can specify the URL of the JSON schema file.
-This list must only contain extensions that extend the Collection itself, see the the 'Scope' column in the list of extensions. If an extension such as the Commons extension has influence on multiple parts of the whole catalog structure, it must be listed in all affected parts (e.g. Collection and Item for the Commons extension). If a structure such as the summaries or the Commons extension provide fields in their JSON structure, these extensions must not be listed here as they don't extend the Collection itself. For example, if a Collection includes the field `sat:platform` in the summaries, the Collection still does not list the `sat` extension in the `stac_extensions` field.
+This list must only contain extensions that extend the Collection itself, see the the 'Scope' column in the list of extensions. If an extension as the  extension has influence on multiple parts of the whole catalog structure, it must be listed in all affected parts (e.g. Collection and Item for the `datacube` extension). If a structure such as the summaries extension provide fields in their JSON structure, these extensions must not be listed here as they don't extend the Collection itself. For example, if a Collection includes the field `sat:platform` in the summaries, the Collection still does not list the `sat` extension in the `stac_extensions` field.
 
 **license**: Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/). Alternatively, use `proprietary` (see below) if the license is not on the SPDX license list or `various` if multiple licenses apply. In all cases links to the license texts SHOULD be added, see the `license` link relation type. If no link to a license is included and the `license` field is set to `proprietary`, the collection is private, and consumers have not been granted any explicit right to use the data.
 
@@ -153,7 +151,6 @@ The data provider is free to decide, which fields are reasoable to be used.
 Commonly used extensions for the STAC Collection specification:
 
 * [Asset Definition](../extensions/item-assets/README.md): Allows to indicate the structure of the Item assets.
-* [Commons extension](../extensions/commons/README.md): Allows to add shared Item metadata to Collections.
 * [Scientific extension](../extensions/scientific/README.md): Add fields to indicate citations and DOIs.
 * [Versioning Indicators extension](../extensions/version/README.md): Allows versioning by adding the fields `version` and `deprecated`.
 

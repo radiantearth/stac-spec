@@ -13,8 +13,6 @@ If the data has been collected by a satellite, it is strongly recommended to use
 
 To describe frame start and end times, use the [Date and Time Range fields](../../item-spec/common-metadata.md#date-and-time-range).
 
-It is not necessary, but recommended to use the [Commons extension](../commons/README.md) (see chapter "Placing common fields in Collections").
-
 - [Examples](examples/) (for example [Sentinel-1](examples/sentinel1.json) and [Envisat](examples/envisat.json))
 - [JSON Schema](json-schema/schema.json)
 
@@ -86,8 +84,3 @@ The center time of the frame should be specified with the `datetime` property fo
 The [extensions page](../README.md) gives an overview about related extensions. Of particular relevance to SAR data:
 
 * the [Sat Extension Specification](../sat/README.md) to describe SAR data collected from a satellite.
-
-### Placing common fields in Collections
-A lot of SAR data will have common metadata across many Items. It is not necessary, but recommended	
-to use the [Commons extension](../commons/README.md) in combination with [STAC Collections](../../collection-spec/README.md).
-The exact metadata that would appear in a STAC Collection record will vary depending on the dataset.
