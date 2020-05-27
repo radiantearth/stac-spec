@@ -34,14 +34,6 @@ returned JSON, with minor tweaks to have it fit in to a STAC Item.
 
 **CBERS** The [CBERS sample](CBERS_4_MUX_20181029_177_106_L4.json) is copied from [CBERS static STAC catalog](https://cbers-stac-0-6.s3.amazonaws.com/catalog.json).
 
-### ItemCollection Examples
-
-**[itemcollection-sample-minimal.json](itemcollection-sample-minimal.json)** is the most minimal possible compliant ItemCollection entity. Most all data will
-include additional fields, as STAC is designed to be a minimal common subset. But it is useful for showing exactly what is
-required.
-
-**[itemcollection-sample-full.json](itemcollection-sample-full.json)** is a more realistic example.
-
 ## Example Discussion
 
 These examples demonstrate that there is a range of potential implementations of STAC Items. Most were made by adapting

@@ -17,7 +17,7 @@ Data cube related metadata, especially to describe their dimensions.
 
 | Field Name      | Type                                               | Description                                 |
 | --------------- | -------------------------------------------------- | ------------------------------------------- |
-| cube:dimensions | Map<string, [Dimension Object](#dimension-object)> | Uniquely named dimensions of the data cube. |
+| cube:dimensions | Map<string, [Dimension Object](#dimension-object)> | **REQUIRED.** Uniquely named dimensions of the data cube. |
 
 ### Dimension Object
 

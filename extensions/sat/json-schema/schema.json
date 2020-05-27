@@ -23,7 +23,10 @@
       "properties": {
         "properties": {
           "type": "object",
-          "required": [],
+          "anyOf": [
+            {"required": ["sat:relative_orbit"]},
+            {"required": ["sat:orbit_state"]}
+          ],
           "properties": {
             "sat:relative_orbit": {
               "type": "integer",

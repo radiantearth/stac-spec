@@ -31,13 +31,13 @@ default, which should be specified at the asset level, while those assets that u
 
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
-| proj:epsg        | integer \|null  | **Required** [EPSG code](http://www.epsg-registry.org/) of the datasource |
+| proj:epsg        | integer \|null  | **REQUIRED.** [EPSG code](http://www.epsg-registry.org/) of the datasource |
 | proj:wkt2        | string \|null   | [WKT2](http://docs.opengeospatial.org/is/12-063r5/12-063r5.html) string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
 | proj:projjson    | [PROJJSON Object](https://proj.org/usage/projjson.html) \|null   | PROJJSON object representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
 | proj:geometry    | [Polygon Object](https://geojson.org/schema/Polygon.json)  | Defines the footprint of this Item. |
 | proj:bbox        | \[number]       | Bounding box of the Item in the asset CRS in 2 or 3 dimensions. |
 | proj:centroid    | Centroid Object | Coordinates representing the centroid of the Item in the asset CRS |
-| proj:shape       | \[integer]       | Number of pixels in Y and X directions for the default grid |
+| proj:shape       | \[integer]      | Number of pixels in Y and X directions for the default grid |
 | proj:transform   | \[number]       | The affine transformation coefficients for the default grid  |
 
 **proj:epsg** - A Coordinate Reference System (CRS) is the data reference system (sometimes called a
