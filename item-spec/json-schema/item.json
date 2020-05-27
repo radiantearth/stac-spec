@@ -144,6 +144,12 @@
         "title": {
           "title": "Link title",
           "type": "string"
+        },
+        "created": {
+          "$ref": "datetime.json#/definitions/created"
+        },
+        "updated": {
+          "$ref": "datetime.json#/definitions/updated"
         }
       }
     },
