@@ -79,7 +79,8 @@ In this case it is **required** to specify a temporal interval with the fields `
 and `end_datetime` from [common metadata](common-metadata.md#date-and-time-range). For example, if 
 your data is a time-series that covers 100 years, it's not very meaningful to set the datetime to a 
 single timestamp as it would not be found in most searches that searches for a decade of data in that
-period although the item actually covers the decade.
+period although the item actually covers the decade. See [datetime selection](../best-practices.md#datetime-selection)
+in the best practices document for more information.
 
 #### Additional Fields
 
