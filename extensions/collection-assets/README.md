@@ -14,7 +14,7 @@ A Collection extension to provide a way to specify assets available on the colle
 This extension introduces a single new field, `assets` at the top level of a collection.
 An Asset Object defined at the Collection level is the same as the [Asset Object in Items](../../item-spec/item-spec.md#asset-object).
 
-Collection-level assets MUST NOT list any files also available in items.
+Collection-level assets SHOULD NOT list any files also available in items.
 If possible, item-level assets are always the preferable way to expose assets.
 To list what assets are available in items see the [Item Assets Definition Extension](../item-assets/README.md).
 
