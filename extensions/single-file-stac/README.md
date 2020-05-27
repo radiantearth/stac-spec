@@ -17,11 +17,11 @@ The Items in the single file catalog should not be merged with the Collection pr
 
 A Single File STAC is a complete STAC catalog contained in a single file. 
 
-A Single File STAC is an [ItemCollection Object](../../item-spec/itemcollection-spec.md). This GeoJSON FeatureCollection has Features which are Items, but the Collections are still needed.
+A Single File STAC is a GeoJSON FeatureCollection, with Features which are Items, but the Collections are still needed.
 
 | Field Name         | Type   | Description                                                  |
 | ------------------ | ------ | ------------------------------------------------------------ |
-| collections | [[Collection](../../collection-spec/collection-spec.md#collection-fields)] | An array of Collections that are used by any of the Items in the ItemCollection. |
+| collections | [[Collection](../../collection-spec/collection-spec.md#collection-fields)] | An array of Collections that are used by any of the Items in the FeatureCollection. |
 | search | [Search Object](#search-object) | An optional field containing a search endpoint and parameters used to generate this Single File STAC |
 
 ## Search Object
