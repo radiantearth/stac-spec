@@ -43,7 +43,7 @@ inherited from GeoJSON.
 **stac_version**: In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
 
 **stac_extensions**: A list of extensions the Item implements. The list contains URLs to the JSON Schema files it can be validated against. For official [content extensions](../extensions/README.md#list-of-content-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. This does *not* apply for API extensions. If the versions of the extension and the item diverge, you can specify the URL of the JSON schema file.
-This list must only contain extensions that extend the Item itself, see the the 'Scope' column in the list of extensions. If an extension such as the Commons extension has influence on multiple parts of the whole catalog structure, it must be listed in all affected parts (e.g. Collection and Item for the Commons extension).
+This list must only contain extensions that extend the Item itself, see the the 'Scope' column in the list of extensions. If an extension such as the `eo` extension has influence on multiple parts of the whole catalog structure, it must be listed in all affected parts (e.g. Collection and Item for the `eo` extension).
 
 **assets**: Dictionary of asset objects that can be downloaded, each with a unique key. 
 In general, the keys don't have any meaning and are considered to be non-descriptive unique identifiers.
@@ -131,7 +131,7 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | self         | STRONGLY RECOMMENDED. *Absolute* URL to the Item if it is available at a public URL. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root         | URL to the root STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
-| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may use the use the [Commons extension](../extensions/commons/README.md) to hold common fields of this and other Items (see chapter '[Collections](#Collections)' for more explanations). *Absolute* URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
+| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md). *Absolute* URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
 | alternate    | It is recommended that STAC Items are also available as HTML, and should use this rel with `"type" : "text/html"` to tell clients where they can get a version of the Item to view in a browser. See [STAC on the Web in Best Practices](../best-practices.md#stac-on-the-web) for more information. |
 
@@ -156,9 +156,6 @@ Linking back must happen in two places:
      { "rel": "collection", "href": "link/to/collection/record.json" }
    ]
    ```
-
-Optionally, common information shared across items can be moved up into STAC Collections
-using the [Commons extension](../extensions/commons/README.md) to avoid duplicating information.
 
 ### Asset Object
 
@@ -257,8 +254,5 @@ that talks about common use cases of additional fields for assets.
 
 There are emerging best practices, which in time will evolve in to specification extensions for
 particular domains or uses.
-
-Optionally, common information shared across items can be split up into STAC Collections using the
-[Commons extension](../extensions/commons/README.md).
 
 The [extensions page](../extensions/README.md) gives an overview about relevant extensions for STAC Items.
