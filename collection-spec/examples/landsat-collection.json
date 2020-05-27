@@ -1,7 +1,6 @@
 {
     "stac_version": "0.9.0",
     "stac_extensions": [
-      "commons",
       "view",
       "eo"
     ],
@@ -61,11 +60,11 @@
       }
     ],
     "license": "PDDL-1.0",
-    "properties": {
-      "platform": "landsat-8",
+    "summaries": {
+      "platform": ["landsat-8"],
       "instruments": ["oli", "tirs"],
-      "view:off_nadir": 0,
-      "gsd": 30,
+      "view:off_nadir": [0],
+      "gsd": [30],
       "eo:bands": [
         {
           "name": "B1",

@@ -31,15 +31,9 @@ Instruction on schema validation for STAC Items can be found in the [validation 
 ## Collection Flexibility
 
 STAC Collections are defined for flexibility. They only require a handful of fields, and
-implementors are free to add most any JSON field or object that they want via extensions.
-Many fields originating from the [STAC Item spec](../item-spec/item-spec.md) can already be 
-reused using the [Commons extension](../extensions/commons/README.md).
-This flexibility and extensibility is a design goal, so that it is quite easy to implement a
-collection and be able to adapt it to most any data model.
+implementors are free to add most any JSON field or object that they want via extensions. This flexibility and extensibility is a design goal, so that it is quite easy to implement a collection and be able to adapt it to most any data model.
 
-But it is expected that some more firm recommendations and even requirements will emerge, so that clients will be able to glean
-more meaningful information. In the meantime implementors are encouraged to do what makes sense for
-them, and to check out the [examples](examples/) and [other implementations](https://stacspec.org/#examples) for emerging best practices.
+But it is expected that some more firm recommendations and even requirements will emerge, so that clients will be able to glean more meaningful information. In the meantime implementors are encouraged to do what makes sense for them, and to check out the [examples](examples/) and [other implementations](https://stacspec.org/#examples) for emerging best practices.
 
 ## Collection Evolution 
 

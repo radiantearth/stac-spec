@@ -18,10 +18,6 @@ natural focus, and encourage other sensors to make their own extensions. Once th
 these fields will evolve to higher level extensions. In the meantime other implementations are welcome
 to reuse the names and definitions here.
 
-A lot of EO data will have common metadata across many Items. 
-It is not necessary, but recommended to use the [Commons extension](../commons/README.md)
-(see chapter "Placing common fields in Collections").
-
 If the data has been collected by a satellite, it is strongly recommended to use the [`sat` extension](../sat/README.md), which in turn requires the [Instrument Fields](../../item-spec/common-metadata.md#instrument). If the data has been collected on an airborne platform it is strongly recommended to use the [Instrument Fields](../../item-spec/common-metadata.md#instrument).
 
 For defining view geometry of data, it is strongly recommended to use the [`view` extension](../view/README.md).
@@ -191,8 +187,7 @@ Planet example:
 
 ## Implementations
 
-A number of implementations listed on [STAC Examples on stacspec.org](https://stacspec.org/#examples) are making use of the core EO 
-properties, including the SpaceNet, CBERS, sat-api and Planet implementations. This is not marked as more mature because
+A number of implementations listed on [STAC Examples on stacspec.org](https://stacspec.org/#examples) are making use of the core EO properties, including the SpaceNet, CBERS, sat-api and Planet implementations. This is not marked as more mature because
 the eo:bands portion is still being fleshed out.
 
 ## Extensions
@@ -201,8 +196,3 @@ The [extensions page](../README.md) gives an overview about related extensions. 
 
 * the [Sat Extension Specification](../sat/README.md) to describe SAR data collected from a satellite.
 * the [View Geometry Extension Specification](../view/README.md) to describe angles of sensors collecting earth observation data from above the earth.
-
-### Placing common fields in Collections
-A lot of EO data will have common metadata across many Items. It is not necessary, but recommended	
-to use the [Commons extension](../commons/README.md) in combination with [STAC Collections](../../collection-spec/README.md).
-The exact metadata that would appear in a STAC Collection record will vary depending on the dataset.
