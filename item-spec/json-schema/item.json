@@ -26,9 +26,6 @@
           "$ref": "licensing.json"
         },
         {
-          "$ref": "metadata.json"
-        },
-        {
           "$ref": "provider.json"
         }
       ]
@@ -70,7 +67,6 @@
                     "type": "string",
                     "enum": [
                       "checksum",
-                      "commons",
                       "datacube",
                       "eo",
                       "label",
@@ -80,6 +76,7 @@
                       "sat",
                       "scientific",
                       "tiled-assets",
+                      "timestamps",
                       "version",
                       "view"
                     ]
