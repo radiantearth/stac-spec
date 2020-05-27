@@ -44,6 +44,8 @@ All timestamps MUST be formatted according to [RFC 3339, section 5.6](https://to
 If those fields are available in the Item `properties`, it's referencing to the creation and update times of the metadata.
 Having those fields in the Item `assets` refers to the creation and update times of the actual data linked to in the Asset Object.
 
+There are more date and time related fields available in the [Timestamps extension](../extensions/timestamps/README.md).
+
 ### Date and Time Range
 
 While a STAC item can have a nominal datetime describing the capture, these properties allow an item to have a range
