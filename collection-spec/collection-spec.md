@@ -4,8 +4,6 @@ The STAC Collection Specification defines a set of common fields to describe a g
 STAC Collections Specification extends the [STAC Catalog Spec](../catalog-spec/README.md) with additional fields to describe the whole dataset and the included set of items.
 It shares the same fields and therefore every Collection is also a valid Catalog. Collections can have both parent Catalogs and Collections and child Items, Catalogs and Collections. 
 
-A group of STAC Item objects from a single source can share a lot of common metadata. This is especially true with satellite imagery that uses the STAC EO or SAR extension. Rather than including these common metadata fields on every Item, they can be provided in the `properties` of the STAC Collection that the STAC Items belong to.
-
 A STAC Collection can be represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Collection and also a valid STAC Catalog.
 
 STAC Collections are meant to be compatible with *OGC API - Features* Collections, but please be aware that OAFeat Collections and STAC Collections originate from different specifications and despite the fact that we try to align them as much as possible be there may be subtle differences in the specifications.
