@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - proj4 string from proj extension
 - Various warnings about how the spec is very early and likely will change.
 - implementations.md (migrated to https://stacspec.org) and how-to-help.md (migrated to https://github.com/stac-utils/stac-ecosystem).
+- `commons` extension completely removed: Items should contain all properties and not default to a common set at the Collection level
 
 ### Added
 - 'alternate' as a listed 'rel' type with recommended 'text/html' to communicate there is an html version.
