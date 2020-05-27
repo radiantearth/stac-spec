@@ -36,6 +36,7 @@
                 "title": "Reference to a core extension",
                 "type": "string",
                 "enum": [
+                  "collection-assets",
                   "commons",
                   "checksum",
                   "datacube",
