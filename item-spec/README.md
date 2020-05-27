@@ -14,9 +14,6 @@ endpoints of a `/search` endpoint.
 **Common Metadata:** A set of commonly used metadata fields for STAC Items is listed in 
 *[common-metadata.md](common-metadata.md)*.
 
-**ItemCollection Specification:** The main definition of the STAC ItemCollection specification is in 
-*[itemcollection-spec.md](itemcollection-spec.md)*. It includes an overview and an in-depth explanation of the fields.
-
 **Examples:** For samples of how STAC Items can be implemented the *[examples/](examples/)* folder 
 contains a number of real world examples. See the [readme](examples/README.md) for additional 
 discussion of the examples.
