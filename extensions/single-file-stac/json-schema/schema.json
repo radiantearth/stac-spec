@@ -15,15 +15,24 @@
     }
   ],
   "definitions": {
-    "collections": {
-      "type": "array",
-      "items": {
-        "$ref": "../../collection-spec/json-schema/collection.json"
-      },
-      "features": {
-        "type": "array",
-        "items": {
-          "$ref": "../../item-spec/json-schema/item.json"
+    "single-file-stac": {
+      "type": "object",
+      "required": [
+        "features"
+      ],
+      "properties": {
+        "collections": {
+          "type": "array",
+          "items": {
+            "$ref": "../../collection-spec/json-schema/collection.json"
+          }
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "$ref": "../../item-spec/json-schema/item.json"
+          }
+        }
       }
     }
   }
