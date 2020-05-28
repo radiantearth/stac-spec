@@ -11,7 +11,6 @@ included by default in the core [Item schema](json-schema/item.json) but impleme
   - [Provider](#provider)
     - [Provider Object](#provider-object)
   - [Instrument](#instrument)
-  - [Metadata](#metadata)
 
 Various *examples* are available in the folder [`examples`](examples/).
 *JSON Schemas* can be found in the folder [`json-schema`](json-schema/).
@@ -36,6 +35,16 @@ Fields to provide additional temporal information such as ranges with a start an
 | Field Name | Type         | Description |
 | ---------- | ------------ | ----------- |
 | datetime   | string\|null | See the [Item Spec Fields](item-spec.md#properties-object) for more information. |
+| created    | string       | Creation date and time of the corresponding data (see below). |
+| updated    | string       | Date and time the corresponding data (see below) was updated last. |
+
+All timestamps MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).
+
+**created** and **updated** have different meaning depending on where they are used.
+If those fields are available in the Item `properties`, it's referencing to the creation and update times of the metadata.
+Having those fields in the Item `assets` refers to the creation and update times of the actual data linked to in the Asset Object.
+
+There are more date and time related fields available in the [Timestamps extension](../extensions/timestamps/README.md).
 
 ### Date and Time Range
 
@@ -152,14 +161,3 @@ are all 30 meters, but the panchromatic band is 15 meters. The
 `gsd` should be 30 meters in this case because that is nominal spatial resolution at the sensor. The Planet 
 PlanetScope Ortho Tile Product has an `gsd` of 3.7 (or 4 if rounding), even though the pixel size of the images is 3.125.   For example, one might choose for WorldView-2 the 
 Multispectral 20° off-nadir value of 2.07 and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.
-
-## Metadata
-
-Fields to describe the metadata file itself. These fields do NOT describe the assets.
-
-- [JSON Schema](json-schema/metadata.json)
-
-| Field Name | Type   | Description |
-| ---------- | ------ | ----------- |
-| created    | string | Creation date and time of the metadata file. This is NOT the timestamp the asset was created. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
-| updated    | string | Date and time the metadata file was updated last. This is NOT the timestamp the asset was updated last. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |

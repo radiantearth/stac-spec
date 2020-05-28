@@ -26,9 +26,6 @@
           "$ref": "licensing.json"
         },
         {
-          "$ref": "metadata.json"
-        },
-        {
           "$ref": "provider.json"
         }
       ]
@@ -79,6 +76,7 @@
                       "sat",
                       "scientific",
                       "tiled-assets",
+                      "timestamps",
                       "version",
                       "view"
                     ]
@@ -143,6 +141,12 @@
         "title": {
           "title": "Link title",
           "type": "string"
+        },
+        "created": {
+          "$ref": "datetime.json#/definitions/created"
+        },
+        "updated": {
+          "$ref": "datetime.json#/definitions/updated"
         }
       }
     },
