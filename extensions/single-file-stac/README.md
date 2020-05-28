@@ -21,7 +21,7 @@ A Single File STAC is a complete [Catalog Object](../../catalog-spec/catalog-spe
 | ------------------ | ------ | ------------------------------------------------------------ |
 | type               | string | **REQUIRED.** Type of the GeoJSON Object. MUST be set to `FeatureCollection`. |
 | collections | \[[Collection](../../collection-spec/collection-spec.md#collection-fields)] | An array of STAC Collections that are used by any of the Items in the catalog. |
-| features    | \[[Item](../../item-spec/item-spec.md#item-fields)] | An array of STAC Items |
+| features    | **REQUIRED.** \[[Item](../../item-spec/item-spec.md#item-fields)] | An array of STAC Items |
 
 ## Implementations
 
