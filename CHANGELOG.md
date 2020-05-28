@@ -38,6 +38,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `item-assets` extension only requires any two fields to be available, not the two specific fields `title` and `type`
 - `datetime` allows `null` as value, but requires `start_datetime` and `end_datetime` then
 - Extensions `sat`, `scientific` and `view`: At least one field is required to be specified.
+- [Single File STAC extension](extensions/single-file-stac/README.md) changed to be a complete STAC catalog + GeoJSON FeatureCollection that contains collections and items.
 
 ### Fixed
 - Datacube extension: `cube:dimensions` was not flagged as required.

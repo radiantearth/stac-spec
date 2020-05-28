@@ -5,6 +5,9 @@
   "description": "Single File STAC Extension to combine Collections and Items in single file catalog",
   "allOf": [
     {
+      "$ref": "../../catalog-spec/json-schema/catalog.json"
+    },
+    {
       "$ref": "https://geojson.org/schema/FeatureCollection.json"
     },
     {
@@ -12,25 +15,23 @@
     }
   ],
   "definitions": {
-    "collections": {
-      "type": "array",
-      "items": {
-        "$ref": "../../collection-spec/json-schema/collection.json"
-      }
-    },
-    "search": {
+    "single-file-stac": {
       "type": "object",
       "required": [
-          "endpoint"
+        "features"
       ],
       "properties": {
-        "endpoint": {
-          "title": "STAC compliant endpoint",
-          "type": "string"
+        "collections": {
+          "type": "array",
+          "items": {
+            "$ref": "../../collection-spec/json-schema/collection.json"
+          }
         },
-        "parameters": {
-          "title": "Search parameters",
-          "type": "object"
+        "features": {
+          "type": "array",
+          "items": {
+            "$ref": "../../item-spec/json-schema/item.json"
+          }
         }
       }
     }
