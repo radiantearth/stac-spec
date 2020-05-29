@@ -1,6 +1,6 @@
 {
     "id": "mysearchresults",
-    "stac_version": "0.9.0",
+    "stac_version": "1.0.0-beta.1",
     "stac_extensions": [
         "single-file-stac"
     ],
@@ -352,7 +352,7 @@
                 "earth observation",
                 "usgs"
             ],
-            "stac_version": "0.9.0",
+            "stac_version": "1.0.0-beta.1",
             "stac_extensions": [
                 "item_assets"
             ],

@@ -8,7 +8,8 @@ additional metadata to further describe its holdings. It is defined in full in t
 
 While STAC Catalogs mostly describe a structure of links and Items, a key related specification is the [STAC Collection Specification](../collection-spec/),
 which extends Catalogs with additional fields to further describe the set of Items in a Catalog. STAC Collections share the same 
-fields with Catalogs and therefore every Collection is also a valid Catalog.
+fields with Catalogs and therefore every Collection is also a valid Catalog. For more information on how the parts of STAC fit
+together see the [overview](../overview.md) document.
 
 Catalogs are designed so that a simple file server on the web or object store like Amazon S3 can store JSON that defines a 
 full Catalog. More dynamic services can also return a Catalog structure, and the [STAC API](https://github.com/radiantearth/stac-api-spec)

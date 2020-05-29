@@ -2,8 +2,6 @@
 
 [![CircleCI](https://circleci.com/gh/radiantearth/stac-spec.svg?style=svg)](https://circleci.com/gh/radiantearth/stac-spec)
 
-**Mar 2, 2020** - The API portion of STAC has been split off into a [new repository - stac-api-spec](https://github.com/radiantearth/stac-api-spec) and will start being versioned and released separately than the core STAC spec. This is a work in progress, to advance us to 1.0-beta releases. Links and references between STAC and the STAC API may be incorrect, and the testing requirement to merge is temporarily disabled so we can collaboratively get it working.
-
 ## About
 
 The SpatioTemporal Asset Catalog (STAC) specification aims to standardize the way geospatial assets are exposed online and queried. 
@@ -30,7 +28,7 @@ JSON is no longer relevant.
 ## Current version and branches
 
 The [master branch](https://github.com/radiantearth/stac-spec/tree/master) is the 'stable' version of the spec. It is currently version 
-**0.9.0** of the specification. The 
+**1.0.0-beta.1** of the specification. The 
 [dev](https://github.com/radiantearth/stac-spec/tree/dev) branch is where active development takes place, and may have inconsistent examples. 
 Whenever dev stabilizes a release is cut and we merge dev in to master. So master should be stable at any given time.
 It is possible that there may be small releases in quick succession, especially if they are nice improvements that do 
@@ -48,9 +46,9 @@ the specification takes place in the [issue tracker](https://github.com/radiante
 
 This repository contains the core specifications plus examples and validation schemas and tools. Also included are a
 few documents that provide more context and plans for the evolution of the specification. Each spec folder contains a
-README explaining the layout of the folder, the main specification document, examples, validating schemas and OpenAPI
-documents (if relevant). And there is one more specification in the STAC 'family', which is
-the [STAC API specification](https://github.com/radiantearth/stac-api-spec/), which now lives in its own repository. It
+README explaining the layout of the folder, the main specification document, examples, and validating schemas. And 
+there is one more specification in the STAC 'family', which is
+the [STAC API specification](https://github.com/radiantearth/stac-api-spec/), now living in its own repository. It
 provides API endpoints, based on the [OGC API - Features](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html) standard,
 that enable clients to search for `item`s that match their filtering criteria. The four specifications are meant to be used 
 together, but are designed so each piece is small, self-contained and reusable in other contexts.

@@ -4,7 +4,8 @@ The core of a SpatioTemporal Asset Catalog (STAC) is a set of JSON fields define
 [STAC Item spec](item-spec.md). These fields define an Item - the atomic units that contain 
 metadata for search as plus links to the actual assets that they represent. Their main function 
 is as the leaf nodes of a [Catalog](../catalog-spec/README.md), and are also returned from the search
-endpoints of a `/search` endpoint.
+endpoints of a `/search` endpoint. See the [overview](../overview.md) document for more information on how all the
+pieces fit together.
 
 ## In this directory
 
