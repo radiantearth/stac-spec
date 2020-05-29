@@ -1,10 +1,11 @@
 # STAC Collections
 
-[STAC Items](../item-spec/README.md) are focused on search within a collection*. Another topic of 
+[STAC Items](../item-spec/README.md) are focused on search within a collection\*. Another topic of 
 interest is the search of collections, instead of within a collection. The [STAC Collection specification](collection-spec.md)
 is independent of STAC Items and 
 [STAC Catalogs](../catalog-spec/README.md). Items are required to provide a link back to their collection definition. Other parties 
-can also use this specification standalone, as a way to describe collections in a lightweight way.
+can also use this specification standalone, as a way to describe collections in a lightweight way. For more details on how the STAC
+specs fit together see the [overview](../overview.md) document.
 
 The STAC Collection specification is a set of JSON fields to describe a set of Items in a STAC Catalog, to help enable discovery. It builds on 
 the [Catalog Spec](../catalog-spec/README.md), using the flexible structure specified there to further define and explain logical 
