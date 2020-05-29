@@ -18,10 +18,6 @@ natural focus, and encourage other sensors to make their own extensions. Once th
 these fields will evolve to higher level extensions. In the meantime other implementations are welcome
 to reuse the names and definitions here.
 
-A lot of EO data will have common metadata across many Items. 
-It is not necessary, but recommended to use the [Commons extension](../commons/README.md)
-(see chapter "Placing common fields in Collections").
-
 If the data has been collected by a satellite, it is strongly recommended to use the [`sat` extension](../sat/README.md), which in turn requires the [Instrument Fields](../../item-spec/common-metadata.md#instrument). If the data has been collected on an airborne platform it is strongly recommended to use the [Instrument Fields](../../item-spec/common-metadata.md#instrument).
 
 For defining view geometry of data, it is strongly recommended to use the [`view` extension](../view/README.md).
@@ -33,23 +29,8 @@ For defining view geometry of data, it is strongly recommended to use the [`view
 
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
-| eo:gsd           | number                   | **REQUIRED.** Ground Sample Distance at the sensor. |
 | eo:bands         | [[Band Object](#band-object)] | **REQUIRED.** This is a list of the available bands where each item is a [Band Object](#band-object). |
 | eo:cloud_cover   | number                   | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided. |
-
-
-### Ground Sampling Distance
-
-**eo:gsd** is the nominal Ground Sample Distance for the data, as measured in meters on the ground. There are many
-definitions of GSD. The value of this attribute should be related to the spatial resolution at the sensor, rather
-than the pixel size of images after orthorectification, pansharpening, or scaling.
-The GSD of a sensor can vary depending on off-nadir and wavelength, so it is at the discretion of the implementer
-to decide which value most accurately represents the GSD. For example, Landsat8 optical and short-wave IR bands 
-are all 30 meters, but the panchromatic band is 15 meters. The
-`eo:gsd` should be 30 meters in this case because that is nominal spatial resolution at the sensor. The Planet 
-PlanetScope Ortho Tile Product has an `eo:gsd` of 3.7 (or 4 if rounding), even though the pixel size of the images is 
-3.125.   For example, one might choose for WorldView-2 the 
-Multispectral 20° off-nadir value of 2.07 and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.
 
 ### Band Object
 
@@ -98,14 +79,15 @@ The difference between the `nir`, `nir08`, and `nir09` bands are that the `nir` 
 Asset definitions that contain band data should reference the band index. Each asset should provide a `eo:bands` property that is an array of 0 based indexes to the correct [Band Objects](#band-object).
 
 ### Item [`Asset Object`](../../item-spec/item-spec.md#asset-object) fields
-| Field Name | Type     | Description                                  |
-| ---------- | -------- | -------------------------------------------- |
-| eo:bands   | [number] | Lists the band names available in the asset. |
+| Field Name | Type      | Description                                  |
+| ---------- | --------- | -------------------------------------------- |
+| eo:bands   | \[number] | Lists the band names available in the asset. |
 
 See [example-landsat8.json](examples/example-landsat8.json) for a full example.
-```
+
+```js
 {
-  "stac_version": "0.9.0",
+  "stac_version": "1.0.0-beta.1",
   "stac_extensions": ["eo"],
   "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
   "type": "Feature",
@@ -157,11 +139,12 @@ See [example-landsat8.json](examples/example-landsat8.json) for a full example.
   }
 }
 ```
+
 Planet example:
 
-```
+```js
 {
-  "stac_version": "0.9.0",
+  "stac_version": "1.0.0-beta.1",
   "stac_extensions": ["eo"],
   "id": "20171110_121030_1013",
   "type": "Feature",
@@ -204,8 +187,7 @@ Planet example:
 
 ## Implementations
 
-A number of implementations listed on [STAC Implementations page](../../implementations.md) are making use of the core EO 
-properties, including the SpaceNet, CBERS, sat-api and Planet implementations. This is not marked as more mature because
+A number of implementations listed on [STAC Examples on stacspec.org](https://stacspec.org/#examples) are making use of the core EO properties, including the SpaceNet, CBERS, sat-api and Planet implementations. This is not marked as more mature because
 the eo:bands portion is still being fleshed out.
 
 ## Extensions
@@ -214,8 +196,3 @@ The [extensions page](../README.md) gives an overview about related extensions. 
 
 * the [Sat Extension Specification](../sat/README.md) to describe SAR data collected from a satellite.
 * the [View Geometry Extension Specification](../view/README.md) to describe angles of sensors collecting earth observation data from above the earth.
-
-### Placing common fields in Collections
-A lot of EO data will have common metadata across many Items. It is not necessary, but recommended	
-to use the [Commons extension](../commons/README.md) in combination with [STAC Collections](../../collection-spec/README.md).
-The exact metadata that would appear in a STAC Collection record will vary depending on the dataset.

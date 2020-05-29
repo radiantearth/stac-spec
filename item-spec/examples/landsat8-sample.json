@@ -1,5 +1,5 @@
 {
-  "stac_version": "0.9.0",
+  "stac_version": "1.0.0-beta.1",
   "stac_extensions": [
       "eo",
       "view",
@@ -39,7 +39,7 @@
   "properties": {
     "datetime": "2014-06-02T09:22:02Z",
     "collection": "L1T",
-    "eo:gsd": 30.0,
+    "gsd": 30.0,
     "eo:cloud_cover" : 10,
     "view:off_nadir" : 0.000,
     "view:azimuth": 0.00,

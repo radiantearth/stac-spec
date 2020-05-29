@@ -1,5 +1,5 @@
 {
-  "stac_version": "0.9.0",
+  "stac_version": "1.0.0-beta.1",
   "stac_extensions": [
     "eo",
     "proj"
@@ -48,12 +48,21 @@
         0
       ],
       "title": "Band 1 (coastal)"
+    },
+    "B8": {
+      "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B8.TIF",
+      "type": "image/tiff; application=geotiff",
+      "eo:bands": [
+        1
+      ],
+      "title": "Band 8 (panchromatic)",
+      "proj:shape": [16781, 16621],
+      "proj:transform": [15.0, 0.0, 224992.5, 0.0, -15.0, 6790207.5, 0.0, 0.0, 1.0]
     }
   },
   "properties": {
     "datetime": "2018-10-01T01:08:32.033Z",
     "proj:epsg": 32614,
-    "proj:proj4": "+proj=utm +zone=14 +datum=WGS84 +units=m +no_defs",
     "proj:wkt2": "PROJCS[\"WGS 84 / UTM zone 14N\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.01745329251994328,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",-99],PARAMETER[\"scale_factor\",0.9996],PARAMETER[\"false_easting\",500000],PARAMETER[\"false_northing\",0],AUTHORITY[\"EPSG\",\"32614\"],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
     "proj:projjson": {
       "$schema": "https://proj.org/schemas/v0.1/projjson.schema.json",
@@ -210,12 +219,20 @@
       "lat": 34.595302781575604,
       "lon": -101.34448382627504
     },
+    "proj:shape": [8391, 8311],
+    "proj:transform": [30.0, 0.0, 224985.0, 0.0, -30.0, 6790215.0, 0.0, 0.0, 1.0],
     "eo:bands": [
       {
         "name": "B1",
         "common_name": "coastal",
         "center_wavelength": 0.44,
         "full_width_half_max": 0.02
+      },
+      {
+        "name": "B8",
+        "common_name": "panchromatic",
+        "center_wavelength": 0.59,
+        "full_width_half_max": 0.18
       }
     ]
   },

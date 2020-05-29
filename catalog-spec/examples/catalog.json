@@ -1,11 +1,10 @@
 {
-  "stac_version": "0.9.0",
-  "id": "sample",
-  "description": "This is a very basic sample catalog.",
+  "stac_version": "1.0.0-beta.1",
+  "id": "NAIP",
+  "description": "Catalog of NAIP Imagery",
   "links": [
-    {
-      "href": "item.json",
-      "rel": "item"
-    }
+    { "rel": "self", "href": "https://www.fsa.usda.gov/naip/catalog.json" },
+    { "rel": "child", "href": "https://www.fsa.usda.gov/naip/30087/catalog.json" },
+    { "rel": "root", "href": "https://www.fsa.usda.gov/catalog.json" }
   ]
 }

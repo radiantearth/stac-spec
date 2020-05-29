@@ -1,4 +1,10 @@
 {
+    "id": "mysearchresults",
+    "stac_version": "1.0.0-beta.1",
+    "stac_extensions": [
+        "single-file-stac"
+    ],
+    "description": "A bunch of results from a search",
     "type": "FeatureCollection",
     "features": [
         {
@@ -346,7 +352,10 @@
                 "earth observation",
                 "usgs"
             ],
-            "stac_version": "0.9.0",
+            "stac_version": "1.0.0-beta.1",
+            "stac_extensions": [
+                "item_assets"
+            ],
             "extent": {
                 "spatial": [
                     -180,
@@ -390,11 +399,11 @@
                 }
             ],
             "license": "PDDL-1.0",
-            "properties": {
-                "eo:gsd": 15,
-                "platform": "landsat-8",
+            "summaries": {
+                "gsd": [15],
+                "platform": ["landsat-8"],
                 "instruments": ["oli", "tirs"],
-                "view:off_nadir": 0,
+                "view:off_nadir": [0],
                 "eo:bands": [
                     {
                         "name": "B1",
@@ -464,7 +473,7 @@
                     }
                 ]
             },
-            "assets": {
+            "item_assets": {
                 "index": {
                     "type": "text/html",
                     "title": "HTML index page"
@@ -583,22 +592,5 @@
             ]
         }
     ],
-    "search": {
-        "endpoint": "https://sat-api.developmentseed.org/",
-        "parameters": {
-            "bbox": [
-                -110,
-                39.5,
-                -105,
-                40.5
-            ],
-            "collections": ["landsat-8-l1"],
-            "datetime": "2018-02-01/2018-02-10",
-            "query": {
-                "eo:cloud_cover": {
-                    "lt": "50"
-                }
-            }
-        }
-    }
+    "links": []
 }

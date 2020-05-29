@@ -1,0 +1,97 @@
+{
+  "stac_version": "1.0.0-beta.1",
+  "stac_extensions": [
+    "collection-assets",
+    "https://github.com/NCAR/esm-collection-spec/tree/v0.2.0/schema.json"
+  ],
+  "id": "pangeo-cmip6",
+  "title": "Google CMIP6",
+  "description": "This is an ESM collection for CMIP6 Zarr data residing in Pangeo's Google Storage.",
+  "extent": {
+    "spatial": {
+      "bbox": [[-180, -90, 180, 90]]
+    },
+    "temporal": {
+      "interval": [["1850-01-15T12:00:00Z", "2014-12-15T12:00:00Z"]]
+    }
+  },
+  "providers": [
+    {
+      "name": " World Climate Research Programme",
+      "roles": ["producer","licensor"],
+      "url": "https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6"
+    },
+    {
+      "name": "The Pangeo Project",
+      "roles": ["processor"],
+      "url": "https://console.cloud.google.com/pangeo.io"
+    },
+    {
+      "name": "Google",
+      "roles": ["host"],
+      "url": "https://console.cloud.google.com/marketplace/details/noaa-public/cmip6"
+    }
+  ],
+  "license": "proprietary",
+  "links": [
+    {
+      "href": "https://pcmdi.llnl.gov/CMIP6/TermsOfUse/TermsOfUse6-1.html",
+      "type": "text/html",
+      "rel": "license",
+      "title": "CMIP6: Terms of Use"
+    }
+  ],
+  "assets": {
+    "thumbnail": {
+      "href": "logo.png",
+      "title": "A preview image for visualization.",
+      "type": "image/png",
+      "roles": ["thumbnail"]
+    },
+    "catalog": {
+      "href": "sample-pangeo-cmip6-zarr-stores.csv",
+      "title": "Catalog",
+      "description": "Path to a the CSV file with the catalog contents.",
+      "type": "text/csv",
+      "roles": ["esm-catalog"],
+      "esm:column_name": "path"
+    },
+    "activity_id": {
+      "href": "https://raw.githubusercontent.com/WCRP-CMIP/CMIP6_CVs/master/CMIP6_activity_id.json",
+      "type": "application/json",
+      "roles": ["esm-vocabulary"],
+      "esm:column_name": "activity_id"
+    },
+    "source_id": {
+      "href": "https://raw.githubusercontent.com/WCRP-CMIP/CMIP6_CVs/master/CMIP6_source_id.json",
+      "type": "application/json",
+      "roles": ["esm-vocabulary"],
+      "esm:column_name": "source_id"
+    },
+    "institution_id": {
+      "href": "https://raw.githubusercontent.com/WCRP-CMIP/CMIP6_CVs/master/CMIP6_institution_id.json",
+      "type": "application/json",
+      "roles": ["esm-vocabulary"],
+      "esm:column_name": "institution_id"
+    },
+    "experiment_id": {
+      "href": "https://raw.githubusercontent.com/WCRP-CMIP/CMIP6_CVs/master/CMIP6_experiment_id.json",
+      "type": "application/json",
+      "roles": ["esm-vocabulary"],
+      "esm:column_name": "experiment_id"
+    },
+    "table_id": {
+      "href": "https://raw.githubusercontent.com/WCRP-CMIP/CMIP6_CVs/master/CMIP6_table_id.json",
+      "type": "application/json",
+      "roles": ["esm-vocabulary"],
+      "esm:column_name": "table_id"
+    },
+    "grid_label": {
+      "href": "https://raw.githubusercontent.com/WCRP-CMIP/CMIP6_CVs/master/CMIP6_grid_label.json",
+      "type": "application/json",
+      "roles": ["esm-vocabulary"],
+      "esm:column_name": "grid_label"
+    }
+  },
+  "esm:attributes": ["activity_id", "source_id", "institution_id", "experiment_id", "member_id", "table_id", "variable_id", "grid_label"]
+}

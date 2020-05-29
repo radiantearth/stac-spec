@@ -2,12 +2,15 @@
 This document outlines all commonly used fields for STAC Item properties. These fields are 
 included by default in the core [Item schema](json-schema/item.json) but implementation is not required. 
 
-* [Basics](#basics)
-* [Date and Time](#date-and-time)
-* [Licensing](#licensing)
-* [Provider](#provider)
-* [Instrument](#instrument)
-* [Metadata](#metadata)
+- [STAC Common Metadata](#stac-common-metadata)
+  - [Basics](#basics)
+  - [Date and Time](#date-and-time)
+    - [Date and Time Range](#date-and-time-range)
+  - [Licensing](#licensing)
+    - [Relation types](#relation-types)
+  - [Provider](#provider)
+    - [Provider Object](#provider-object)
+  - [Instrument](#instrument)
 
 Various *examples* are available in the folder [`examples`](examples/).
 *JSON Schemas* can be found in the folder [`json-schema`](json-schema/).
@@ -23,26 +26,38 @@ Descriptive fields to give a basic overview of a STAC Item.
 | title       | string | A human readable title describing the Item. |
 | description | string | Detailed multi-line description to fully explain the Item. [CommonMark 0.29](https://commonmark.org/) syntax MAY be used for rich text representation. |
 
-
 ## Date and Time
+
+- [JSON Schema](json-schema/datetime.json)
 
 Fields to provide additional temporal information such as ranges with a start and an end datetime stamp.
 
-### Date and Time Range
+| Field Name | Type         | Description |
+| ---------- | ------------ | ----------- |
+| datetime   | string\|null | See the [Item Spec Fields](item-spec.md#properties-object) for more information. |
+| created    | string       | Creation date and time of the corresponding data (see below). |
+| updated    | string       | Date and time the corresponding data (see below) was updated last. |
 
-- [JSON Schema](json-schema/datetimerange.json)
+All timestamps MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).
+
+**created** and **updated** have different meaning depending on where they are used.
+If those fields are available in the Item `properties`, it's referencing to the creation and update times of the metadata.
+Having those fields in the Item `assets` refers to the creation and update times of the actual data linked to in the Asset Object.
+
+There are more date and time related fields available in the [Timestamps extension](../extensions/timestamps/README.md).
+
+### Date and Time Range
 
 While a STAC item can have a nominal datetime describing the capture, these properties allow an item to have a range
 of capture datetimes. An example of this is the [MODIS 16 day vegetation index product.](https://lpdaac.usgs.gov/products/mod13q1v006/).
 The datetime property in a STAC item and these fields are not mutually exclusive.
 
-**Important:** Using one of the fields REQUIRES to include the other field as well to enable a user to search STAC records by the provided times. So if you use `start_datetime` you need to add `end_datetime` and vice-versa.
+**Important:** Using one of the fields REQUIRES to include the other field as well to enable a user to search STAC records by the provided times. So if you use `start_datetime` you need to add `end_datetime` and vice-versa. Both fields are also REQUIRED if the `datetime` field is set to `null`.
 
 | Field Name     | Type   | Description                                                  |
 | -------------- | ------ | ------------------------------------------------------------ |
 | start_datetime | string | The first or start date and time for the item, in UTC. It is formatted as `date-time` according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
 | end_datetime   | string | The last or end date and time for the item, in UTC. It is formatted as `date-time` according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
-
 
 ## Licensing
 
@@ -61,12 +76,11 @@ In all cases links to the license texts SHOULD be added, see the [`license` link
 If no link to a license is included and the `license` field is set to `proprietary`, the collection is private,
 and consumers have not been granted any explicit right to use the data.
 
-#### Relation types
+### Relation types
 
 | Type         | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
 | license      | The license URL(s) for the item SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC Item with the license text in a separate file and link to this file. |
-
 
 ## Provider
 
@@ -79,7 +93,7 @@ Information about the organizations capturing, producing, processing, hosting or
 | ---------- | ------ | ----------- |
 | providers  | [[Provider Object](#provider-object)] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list.  |
 
-#### Provider Object
+### Provider Object
 
 The object provides information about a provider. A provider is any of the organizations that captures or processes the content of the assets and therefore influences the data offered by the STAC catalog. May also include information about the final storage provider hosting the data.
 
@@ -87,7 +101,7 @@ The object provides information about a provider. A provider is any of the organ
 | ----------- | --------- | ------------------------------------------------------------ |
 | name        | string    | **REQUIRED.** The name of the organization or the individual. |
 | description | string    | Multi-line description to add further provider information such as processing details for processors and producers, hosting details for hosts or basic contact information. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| roles       | [string]  | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`. |
+| roles       | \[string] | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`. |
 | url         | string    | Homepage on which the provider describes the dataset and publishes contact information. |
 
 **roles**: The provider's role(s) can be one or more of the following elements:
@@ -97,7 +111,6 @@ The object provides information about a provider. A provider is any of the organ
 * *processor*: A processor is any provider who processed data to a derived product.
 * *host*: The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list.
 
-
 ## Instrument
 
 Adds metadata specifying a platform and instrument used in a data collection mission. These fields will often be combined 
@@ -105,12 +118,13 @@ with domain-specific extensions that describe the actual data, such as the `eo` 
 
 - [JSON Schema](json-schema/instrument.json)
 
-| Field Name    | Type     | Description |
-| ------------- | -------- | ----------- |
-| platform      | string   | Unique name of the specific platform to which the instrument is attached. |
-| instruments   | [string] | Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1). |
-| constellation | string   | Name of the constellation to which the platform belongs. |
-| mission       | string   | Name of the mission for which data is collected. |
+| Field Name    | Type      | Description |
+| ------------- | --------- | ----------- |
+| platform      | string    | Unique name of the specific platform to which the instrument is attached. |
+| instruments   | \[string] | Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1). |
+| constellation | string    | Name of the constellation to which the platform belongs. |
+| mission       | string    | Name of the mission for which data is collected. |
+| gsd        | number    | Ground Sample Distance at the sensor. |
 
 **platform** is the unique name of the specific platform the instrument is attached to. For satellites this would 
 be the name of the satellite, whereas for drones this would be a unique name for the drone. Examples include 
@@ -138,14 +152,12 @@ part of a constellation, but these are combined to form the logical collection r
 over a period of time (such as collecting drone imagery), or could be a set of tasks of related tasks from a satellite
 data collection.
 
-
-## Metadata
-
-Fields to describe the metadata file itself. These fields do NOT describe the assets.
-
-- [JSON Schema](json-schema/metadata.json)
-
-| Field Name | Type   | Description |
-| ---------- | ------ | ----------- |
-| created    | string | Creation date and time of the metadata file. This is NOT the timestamp the asset was created. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
-| updated    | string | Date and time the metadata file was updated last. This is NOT the timestamp the asset was updated last. MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
+**gsd** is the nominal Ground Sample Distance for the data, as measured in meters on the ground. There are many
+definitions of GSD. The value of this attribute should be related to the spatial resolution at the sensor, rather
+than the pixel size of images after orthorectification, pansharpening, or scaling.
+The GSD of a sensor can vary depending on off-nadir and wavelength, so it is at the discretion of the implementer
+to decide which value most accurately represents the GSD. For example, Landsat8 optical and short-wave IR bands 
+are all 30 meters, but the panchromatic band is 15 meters. The
+`gsd` should be 30 meters in this case because that is nominal spatial resolution at the sensor. The Planet 
+PlanetScope Ortho Tile Product has an `gsd` of 3.7 (or 4 if rounding), even though the pixel size of the images is 3.125.   For example, one might choose for WorldView-2 the 
+Multispectral 20° off-nadir value of 2.07 and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.

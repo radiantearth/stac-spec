@@ -20,6 +20,8 @@ The Satellite extension requires the [Instrument Fields](../../item-spec/common-
 | sat:orbit_state        | string        | The state of the orbit. Either `ascending` or `descending` for polar orbiting satellites, or `geostationary` for geosynchronous satellites |
 | sat:relative_orbit     | integer       | The relative orbit number at the time of acquisition. |
 
+*At least one of the fields must be specified.*
+
 **sat:orbit_state** indicates the type and current state of orbit. Satellites are either geosynchronous in which case they have one state: `geostationary`, or they are sun synchronous (i.e., polar orbiting satellites) in which case they are either `ascending` or `descending`. For sun synchronous satellites it is daytime during one of these states, and nighttime during the other.
 
 **sat:relative_orbit** is a count of orbits from 1 to the number of orbits contained in a repeat cycle, where relative orbit 1 starts from a specific reference location of the sub-satellite point (the point on the earth directly below the satellite). It resets to 1 when the sub-satellite point revisits the refernece location.

@@ -1,5 +1,5 @@
 {
-    "stac_version": "0.9.0",
+    "stac_version": "1.0.0-beta.1",
     "stac_extensions": [
       "eo",
       "view",
@@ -45,12 +45,12 @@
         "platform": "landsat-8",
         "instrument": ["oli", "tirs"],
         "datetime": "2018-10-01T01:08:32.033Z",
+        "gsd": 30,
         "view:sun_azimuth": 168.8989761,
         "view:sun_elevation": 26.32596431,
         "view:off_nadir": 0,
         "landsat:path": 107,
         "landsat:row": 18,
-        "eo:gsd": 30,
         "eo:cloud_cover": 78,
         "eo:bands": [
             {

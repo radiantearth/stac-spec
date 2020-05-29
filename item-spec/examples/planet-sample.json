@@ -1,5 +1,5 @@
 {
-  "stac_version": "0.9.0",
+  "stac_version": "1.0.0-beta.1",
   "stac_extensions": [
       "eo",
       "view",
@@ -62,7 +62,7 @@
   "properties": {
     "datetime": "2017-11-10T12:10:30.535417Z",
     "eo:cloud_cover": 23,
-    "eo:gsd": 3.7,
+    "gsd": 3.7,
     "view:sun_azimuth": 101.8,
     "view:sun_elevation": 58.8,
     "view:off_nadir": 1,

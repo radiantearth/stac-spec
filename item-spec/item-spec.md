@@ -8,10 +8,10 @@ granular entity in a STAC, containing the core metadata that enables any client 
 online catalogs of spatial 'assets' - satellite imagery, derived data, DEM's, etc.
 
 The same Item definition is used in both [STAC catalogs](../catalog-spec/README.md) and
-the [`/search`](../api-spec/README.md) endpoint. Catalogs are simply sets of items that are linked online,
-generally served by simple web servers and used for crawling data. The search endpoint enables dynamic
-queries, for example selecting all Items in Hawaii on June 3, 2015, but the results they return are
-FeatureCollections of items.
+the [Item-related API endpoints](https://github.com/radiantearth/stac-api-spec/blob/master/api-spec.md#ogc-api---features-endpoints).
+Catalogs are simply sets of items that are linked online, generally served by simple web servers
+and used for crawling data. The search endpoint enables dynamic queries, for example selecting all
+Items in Hawaii on June 3, 2015, but the results they return are FeatureCollections of items.
 
 Items are represented in JSON format and are very flexible. Any JSON object that contains all the
 required fields is a valid STAC Item.
@@ -19,14 +19,8 @@ required fields is a valid STAC Item.
 - Examples:
   - See the [minimal example](examples/sample.json), as well as a [more fleshed example](examples/sample-full.json) that contains a number of
     current best practices. There are more real world inspired samples in the [examples/](examples/) folder.
-  - Real world [implementations](../implementations.md) are also available.
+  - Real world [implementations](https://stacspec.org/#examples) are also available.
 - [JSON Schema](json-schema/item.json)
-
-## WARNING
-
-**This is still an early version of the STAC spec, expect that there may be some changes before everything is finalized.**
-
-Implementations are encouraged, however, as good effort will be made to not change anything too drastically. Using the specification now will ensure that needed changes can be made before everything is locked in. So now is an ideal time to implement, as your feedback will be directly incorporated. 
 
 ## Item fields
 
@@ -36,20 +30,20 @@ inherited from GeoJSON.
 | Field Name | Type                                                                       | Description |
 | ---------- | -------------------------------------------------------------------------- | ----------- |
 | stac_version | string                                                                   | **REQUIRED.** The STAC version the Item implements. |
-| stac_extensions | [string]                                                              | A list of extensions the Item implements. |
+| stac_extensions | \[string]                                                             | A list of extensions the Item implements. |
 | id         | string                                                                     | **REQUIRED.** Provider identifier. As most geospatial assets are already defined by some identification scheme by the data provider it is recommended to simply use that ID. Data providers are advised to include sufficient information to make their IDs globally unique, including things like unique satellite IDs. |
 | type       | string                                                                     | **REQUIRED.** Type of the GeoJSON Object. MUST be set to `Feature`. |
 | geometry   | [GeoJSON Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) | **REQUIRED.** Defines the full footprint of the asset represented by this item, formatted according to [RFC 7946, section 3.1](https://tools.ietf.org/html/rfc7946#section-3.1). The footprint should be the default GeoJSON geometry, though additional geometries can be included. Coordinates are specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). |
-| bbox       | [number]                                                                   | **REQUIRED.** Bounding Box of the asset represented by this item, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5). |
+| bbox       | \[number]                                                                  | **REQUIRED.** Bounding Box of the asset represented by this item, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5). |
 | properties | [Properties Object](#properties-object)                                    | **REQUIRED.** A dictionary of additional metadata for the item. |
-| links      | [[Link Object](#link-object)]                                              | **REQUIRED.** List of link objects to resources and related URLs. A link with the `rel` set to `self` is strongly recommended. |
+| links      | \[[Link Object](#link-object)]                                             | **REQUIRED.** List of link objects to resources and related URLs. A link with the `rel` set to `self` is strongly recommended. |
 | assets     | Map<string, [Asset Object](#asset-object)>                                 | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key. |
 | collection | string                                                                     | The `id` of the STAC Collection this Item references to (see [`collection` relation type](#relation-types)). This field is *required* if such a relation type is present. This field provides an easy way for a user to search for any Items that belong in a specified Collection. |
 
 **stac_version**: In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
 
 **stac_extensions**: A list of extensions the Item implements. The list contains URLs to the JSON Schema files it can be validated against. For official [content extensions](../extensions/README.md#list-of-content-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. This does *not* apply for API extensions. If the versions of the extension and the item diverge, you can specify the URL of the JSON schema file.
-This list must only contain extensions that extend the Item itself, see the the 'Scope' column in the list of extensions. If an extension such as the Commons extension has influence on multiple parts of the whole catalog structure, it must be listed in all affected parts (e.g. Collection and Item for the Commons extension).
+This list must only contain extensions that extend the Item itself, see the the 'Scope' column in the list of extensions. If an extension such as the `eo` extension has influence on multiple parts of the whole catalog structure, it must be listed in all affected parts (e.g. Collection and Item for the `eo` extension).
 
 **assets**: Dictionary of asset objects that can be downloaded, each with a unique key. 
 In general, the keys don't have any meaning and are considered to be non-descriptive unique identifiers.
@@ -70,9 +64,9 @@ Additional metadata fields can be added to the GeoJSON Object Properties. The on
 is `datetime` but it is recommended to add more fields, see [Additional Fields](#additional-fields) 
 resources below.
 
-| Field Name | Type   | Description                                                  |
-| ---------- | ------ | ------------------------------------------------------------ |
-| datetime   | string | **REQUIRED.** The searchable date and time of the assets, in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
+| Field Name | Type         | Description                                                  |
+| ---------- | ------------ | ------------------------------------------------------------ |
+| datetime   | string\|null | **REQUIRED.** The searchable date and time of the assets, in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). `null` is allowed, but requires `start_datetime` and `end_datetime` from [common metadata](common-metadata.md#date-and-time-range) to be set. |
 
 **datetime** is likely the acquisition (in the case of single camera type captures) or the 'nominal'
 or representative time in the case of assets that are combined together. Though time can be a
@@ -80,17 +74,30 @@ complex thing to capture, for this purpose keep in mind the STAC spec is primari
 data, so use whatever single date and time is most useful for a user to search for. STAC content
 extensions may further specify the meaning of the main `datetime` field, and many will also add more
 datetime fields.
+If there's clearly no meaningful single 'nominal' time, it is allowed to use `null` instead.
+In this case it is **required** to specify a temporal interval with the fields `start_datetime`
+and `end_datetime` from [common metadata](common-metadata.md#date-and-time-range). For example, if 
+your data is a time-series that covers 100 years, it's not very meaningful to set the datetime to a 
+single timestamp as it would not be found in most searches that searches for a decade of data in that
+period although the item actually covers the decade. See [datetime selection](../best-practices.md#datetime-selection)
+in the best practices document for more information.
 
 #### Additional Fields
+
+Providers should include metadata fields that are relevant for users in the catalog, but it is recommended
+to [select only those necessary for search](../best-practices.md#field-selection-and-metadata-linking). 
+Where possible metadata fields should be mapped to the STAC Common Metadata and widely used extensions,
+to enable cross-catalog search on known fields.
+
 * [STAC Common Metadata](common-metadata.md#stac-common-metadata) - A list of fields commonly used 
 throughout all domains. These optional fields are included for STAC Items by default.
 * [Content Extensions](../extensions/README.md#list-of-content-extensions) - Domain-specific fields 
 such as EO, SAR and point clouds.
 * [Custom Extensions](../extensions/README.md#extending-stac) - It is generally allowed to add custom 
 fields but it is recommended to add multiple attributes for related values instead of a nested object, 
-e.g., two fields `eo:cloud_cover` and `eo:gsd` instead of a field `eo` with an object 
+e.g., two fields `view:azimuth` and `view:off_nadir` instead of a field `view` with an object 
 value containing the two fields. The convention (as used within Extensions) is for related attributes 
-to use a common prefix on the attribute names to group them, e.g. `eo`. A nested data structure should 
+to use a common prefix on the attribute names to group them, e.g. `view`. A nested data structure should 
 only be used when the data itself is nested, as with `eo:bands`.
 
 ### Link Object
@@ -121,11 +128,12 @@ The following types are commonly used as `rel` types in the Link Object of an It
 
 | Type         | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
-| self         | STRONGLY RECOMMENDED. _Absolute_ URL to the Item if it is available at a public URL. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
+| self         | STRONGLY RECOMMENDED. *Absolute* URL to the Item if it is available at a public URL. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root         | URL to the root STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
-| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md), which may use the use the [Commons extension](../extensions/commons/README.md) to hold common fields of this and other Items (see chapter '[Collections](#Collections)' for more explanations). _Absolute_ URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
+| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md). *Absolute* URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
+| alternate    | It is recommended that STAC Items are also available as HTML, and should use this rel with `"type" : "text/html"` to tell clients where they can get a version of the Item to view in a browser. See [STAC on the Web in Best Practices](../best-practices.md#stac-on-the-web) for more information. |
 
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
 
@@ -143,27 +151,27 @@ Linking back must happen in two places:
 
 1. The field `collection` in an Item must be filled (see section 'Item fields'). It is the `id` of a STAC Collection.
 2. An Item must also provide a link to the STAC Collection using the [`collection` relation type](#relation-types):
-    ```
-    "links": [
-      { "rel": "collection", "href": "link/to/collection/record.json" }
-    ]
-    ```
-
-Optionally, common information shared across items can be moved up into STAC Collections
-using the [Commons extension](../extensions/commons/README.md) to avoid duplicating information.
+   ```js
+   "links": [
+     { "rel": "collection", "href": "link/to/collection/record.json" }
+   ]
+   ```
 
 ### Asset Object
 
 An asset is an object that contains a link to data associated with the Item that can be downloaded
 or streamed. It is allowed to add additional fields.
 
-| Field Name  | Type     | Description |
-| ----------- | -------- | ----------- |
-| href        | string   | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
-| title       | string   | The displayed title for clients and users. |
-| description | string   | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| type        | string   | [Media type](#media-types) of the asset. |
-| roles       | [string] | The [semantic roles](#asset-role-types) of the asset, similar to the use of `rel` in links. 
+| Field Name  | Type      | Description |
+| ----------- | --------- | ----------- |
+| href        | string    | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
+| title       | string    | The displayed title for clients and users. |
+| description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| type        | string    | [Media type](#media-types) of the asset. |
+| roles       | \[string] | The [semantic roles](#asset-role-types) of the asset, similar to the use of `rel` in links. |
+
+Beyond to the fields above, any of the [additional fields](#additional-fields) *may* be added to the assets. But this
+is recommended only in special cases, see [Additional Fields for Assets](#additional-fields-for-assets)) for more information.
 
 #### Asset Role Types
 
@@ -214,30 +222,37 @@ Deprecation notice: GeoTiff previously used the media type `image/vnd.stac.geoti
 Cloud Optimized GeoTiffs used `image/vnd.stac.geotiff; profile=cloud-optimized`.
 Both can still appear in old catalogues, but are deprecated and should be replaced.
 
+#### Additional Fields for Assets
+
+As detailed above, Items contain properties, which are the main source of metadata for searching across Items. Many content
+extensions can add further property fields as well. Any property that can be specified for an Item can also be specified for 
+a specific asset. This can be used to override a property defined in the Item, or to specify fields for which there is no 
+single value for all assets.
+
+**It is important to note that the STAC API does not faciliate searching across Asset properties in this way, and this 
+should be used sparingly.** It is primarily used to define properties at the Asset level that may be used during use of 
+the data instead of for searching. 
+
+For example, `gsd` defined for an Item represents the best Ground Sample Distance (resolution) for the data within the Item. 
+However, some assets may be lower resolution and thus have a higher `gsd`. The `eo:bands` field from the EO extension defines 
+an array of spectral bands. However, it may be useful instead to specify the bands that are used in a particular asset.
+
+For an example see the [sentinel2-sample](examples/sentinel2-sample.json). The Sentinel-2 overall `gsd` is 10m, because this is 
+the best spatial resolution among all the bands and is defined in Item properties so it can be searched on. In the example 
+Band 5 and others have a `gsd` of 20m, so that asset specifies the `gsd` as well, which overrides the Item `gsd` for this 
+one asset. The example also includes reduced resolution versions of files included as assets, using `gsd` to represent
+the proper resolution.
+
+For `eo:bands`, it could be put in Item properties as an array of all the bands, but in this case it's not. Instead, 
+the assets each define an array containing the spectral band information for that asset (in the order the bands appear 
+in the file).
+
+For examples of fields that this construct is recommended for, see the [section of STAC Best Practices](../best-practices.md#common-use-cases-of-additional-fields-for-assets)
+that talks about common use cases of additional fields for assets.
+
 ## Extensions
 
 There are emerging best practices, which in time will evolve in to specification extensions for
 particular domains or uses.
 
-Optionally, common information shared across items can be split up into STAC Collections using the
-[Commons extension](../extensions/commons/README.md).
-
 The [extensions page](../extensions/README.md) gives an overview about relevant extensions for STAC Items.
-
-## Recommendations
-
-### Metadata Linking
-
-In general STAC aims to be oriented around **search**, centered on the core fields that users will want to search on to find imagery.
-The core is space and time, but there are often other metadata attributes that are useful. While the specification is flexible enough that
-providers can fill it with tens or even hundreds of fields of metadata that is not recommended. If providers have lots of metadata then 
-that should be linked to in the [Asset Object](#asset-object) or in a [Link Object](#link-object), or even a new Asset Object could be added that is potentially easier to parse.
-There is a lot of metadata that is only of relevance to advanced processing algorithms, and while that is important it should not be in the core STAC items.
-
-### HTML versions of Items
-
-It is recommended to have a complementary HTML version of each `Item` available for easy human consumption and search 
-engine crawlability. The exact nature of the HTML is not part of the specification, but it is recommended to use common
-ecosystem tools like [STAC Browser](https://github.com/radiantearth/stac-browser) to generate it. More information on creating 
-HTML versions of STAC can be found in the [STAC on the Web section](../best-practices.md#stac-on-the-web) of the catalog 
-best practices document.

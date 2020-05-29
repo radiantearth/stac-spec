@@ -17,16 +17,13 @@
           "$ref": "basics.json"
         },
         {
-          "$ref": "datetimerange.json"
+          "$ref": "datetime.json"
         },
         {
           "$ref": "instrument.json"
         },
         {
           "$ref": "licensing.json"
-        },
-        {
-          "$ref": "metadata.json"
         },
         {
           "$ref": "provider.json"
@@ -52,7 +49,7 @@
             "stac_version": {
               "title": "STAC version",
               "type": "string",
-              "const": "0.9.0"
+              "const": "1.0.0-beta.1"
             },
             "stac_extensions": {
               "title": "STAC extensions",
@@ -70,7 +67,6 @@
                     "type": "string",
                     "enum": [
                       "checksum",
-                      "commons",
                       "datacube",
                       "eo",
                       "label",
@@ -79,6 +75,8 @@
                       "sar",
                       "sat",
                       "scientific",
+                      "tiled-assets",
+                      "timestamps",
                       "version",
                       "view"
                     ]
@@ -107,33 +105,10 @@
               }
             },
             "assets": {
-              "title": "Asset links",
-              "description": "Links to assets",
-              "type": "object",
-              "additionalProperties": {
-                "$ref": "#/definitions/asset"
-              }
+              "$ref": "#/definitions/assets"
             },
             "properties": {
-              "allOf": [
-                {
-                  "type": "object",
-                  "required": [
-                    "datetime"
-                  ],
-                  "properties": {
-                    "datetime": {
-                      "title": "Date and Time",
-                      "description": "The searchable date/time of the assets, in UTC (Formatted in RFC 3339) ",
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  }
-                },
-                {
-                  "$ref": "#/definitions/common_metadata"
-                }
-              ]
+              "$ref": "#/definitions/common_metadata"
             },
             "collection": {
               "title": "Collection ID",
@@ -166,7 +141,21 @@
         "title": {
           "title": "Link title",
           "type": "string"
+        },
+        "created": {
+          "$ref": "datetime.json#/definitions/created"
+        },
+        "updated": {
+          "$ref": "datetime.json#/definitions/updated"
         }
+      }
+    },
+    "assets": {
+      "title": "Asset links",
+      "description": "Links to assets",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/asset"
       }
     },
     "asset": {
