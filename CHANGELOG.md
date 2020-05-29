@@ -32,6 +32,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Instructions on how to run check-markdown locally
 - Timestamps extensions (adds fields `published`, `expires` and `unpublished`)
 - `created` and `updated` can be used in the assets to specify the creation / update times of the assets.
+- [Tiled Assets extension](extensions/tiled-assets/README.md), for representing data that has been split into tiles
 
 ### Changed
 - Moved item recommendations to best practices, and added a bit more in item spec about 'search'
