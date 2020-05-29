@@ -1,6 +1,6 @@
 {
   "name": "stac-spec",
-  "version": "0.9.0",
+  "version": "1.0.0-beta.1",
   "description": "STAC spec helpers to check the spec.",
   "repository": "https://github.com/radiantearth/stac-spec",
   "license": "Apache-2.0",
