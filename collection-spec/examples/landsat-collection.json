@@ -60,7 +60,6 @@
     "summaries": {
       "platform": ["landsat-8"],
       "instruments": ["oli", "tirs"],
-      "view:off_nadir": [0],
       "gsd": [30],
       "eo:bands": [
         {

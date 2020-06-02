@@ -49,24 +49,6 @@
             "msi"
         ],
         "gsd": 10,
-        "eo:bands": [
-            {
-                "name": "B2",
-                "common_name": "blue"
-            },
-            {
-                "name": "B3",
-                "common_name": "green"
-            },
-            {
-                "name": "B4",
-                "common_name": "red"
-            },
-            {
-                "name": "B8",
-                "common_name": "nir"
-            }
-        ],
         "tiles:tile_matrix_links": {
             "WebMercatorQuad": {
                 "url": "http://schemas.opengis.net/tms/1.0/json/examples/WebMercatorQuad.json",
@@ -193,38 +175,62 @@
             "href": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                2,
-                1,
-                0,
-                3
+                {
+                    "name": "B4",
+                    "common_name": "red"
+                },
+                {
+                    "name": "B3",
+                    "common_name": "green"
+                },
+                {
+                    "name": "B2",
+                    "common_name": "blue"
+                },
+                {
+                    "name": "B8",
+                    "common_name": "nir"
+                }
             ]
         },
         "B02": {
             "href": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B02.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                0
+                {
+                    "name": "B2",
+                    "common_name": "blue"
+                }
             ]
         },
         "B03": {
             "href": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B03.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                1
+                {
+                    "name": "B3",
+                    "common_name": "green"
+                }
             ]
         },
         "B04": {
             "href": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B04.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                2
+                {
+                    "name": "B4",
+                    "common_name": "red"
+                }
             ]
         },
         "B08": {
             "href": "http://cloudless.eox.at/s2cloudless_2018/{TileMatrixSet}/{TileRow}/{TileCol}_B08.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                3
+                {
+                    "name": "B8",
+                    "common_name": "nir"
+                }
             ]
         }
     },
@@ -234,10 +240,22 @@
             "title": "Overview of the whole tiled dataset.",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                2,
-                1,
-                0,
-                3
+                {
+                    "name": "B4",
+                    "common_name": "red"
+                },
+                {
+                    "name": "B3",
+                    "common_name": "green"
+                },
+                {
+                    "name": "B2",
+                    "common_name": "blue"
+                },
+                {
+                    "name": "B8",
+                    "common_name": "nir"
+                }
             ]
         }
     },

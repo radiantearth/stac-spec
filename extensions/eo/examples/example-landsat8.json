@@ -51,75 +51,7 @@
         "view:off_nadir": 0,
         "landsat:path": 107,
         "landsat:row": 18,
-        "eo:cloud_cover": 78,
-        "eo:bands": [
-            {
-                "name": "B1",
-                "common_name": "coastal",
-                "center_wavelength": 0.44,
-                "full_width_half_max": 0.02
-            },
-            {
-                "name": "B2",
-                "common_name": "blue",
-                "center_wavelength": 0.48,
-                "full_width_half_max": 0.06
-            },
-            {
-                "name": "B3",
-                "common_name": "green",
-                "center_wavelength": 0.56,
-                "full_width_half_max": 0.06
-            },
-            {
-                "name": "B4",
-                "common_name": "red",
-                "center_wavelength": 0.65,
-                "full_width_half_max": 0.04
-            },
-            {
-                "name": "B5",
-                "common_name": "nir",
-                "center_wavelength": 0.86,
-                "full_width_half_max": 0.03
-            },
-            {
-                "name": "B6",
-                "common_name": "swir16",
-                "center_wavelength": 1.6,
-                "full_width_half_max": 0.08
-            },
-            {
-                "name": "B7",
-                "common_name": "swir22",
-                "center_wavelength": 2.2,
-                "full_width_half_max": 0.2
-            },
-            {
-                "name": "B8",
-                "common_name": "pan",
-                "center_wavelength": 0.59,
-                "full_width_half_max": 0.18
-            },
-            {
-                "name": "B9",
-                "common_name": "cirrus",
-                "center_wavelength": 1.37,
-                "full_width_half_max": 0.02
-            },
-            {
-                "name": "B10",
-                "common_name": "lwir11",
-                "center_wavelength": 10.9,
-                "full_width_half_max": 0.8
-            },
-            {
-                "name": "B11",
-                "common_name": "lwir12",
-                "center_wavelength": 12,
-                "full_width_half_max": 1
-            }
-        ]
+        "eo:cloud_cover": 78
     },
     "assets": {
         "ANG": {
@@ -131,7 +63,12 @@
             "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B1.TIF",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                0
+                {
+                    "name": "B1",
+                    "common_name": "coastal",
+                    "center_wavelength": 0.44,
+                    "full_width_half_max": 0.02
+                }
             ],
             "title": "Band 1 (coastal)"
         },
@@ -139,7 +76,12 @@
             "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B2.TIF",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                1
+                {
+                    "name": "B2",
+                    "common_name": "blue",
+                    "center_wavelength": 0.48,
+                    "full_width_half_max": 0.06
+                }
             ],
             "title": "Band 2 (blue)"
         },
@@ -147,7 +89,12 @@
             "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B3.TIF",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                2
+                {
+                    "name": "B3",
+                    "common_name": "green",
+                    "center_wavelength": 0.56,
+                    "full_width_half_max": 0.06
+                }
             ],
             "title": "Band 3 (green)"
         },
@@ -155,7 +102,12 @@
             "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B4.TIF",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                3
+                {
+                    "name": "B4",
+                    "common_name": "red",
+                    "center_wavelength": 0.65,
+                    "full_width_half_max": 0.04
+                }
             ],
             "title": "Band 4 (red)"
         },
@@ -163,7 +115,12 @@
             "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B5.TIF",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                4
+                {
+                    "name": "B5",
+                    "common_name": "nir",
+                    "center_wavelength": 0.86,
+                    "full_width_half_max": 0.03
+                }
             ],
             "title": "Band 5 (nir)"
         },
@@ -171,7 +128,12 @@
             "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B6.TIF",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                5
+                {
+                    "name": "B6",
+                    "common_name": "swir16",
+                    "center_wavelength": 1.6,
+                    "full_width_half_max": 0.08
+                }
             ],
             "title": "Band 6 (swir16)"
         },
@@ -179,7 +141,12 @@
             "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B7.TIF",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                6
+                {
+                    "name": "B7",
+                    "common_name": "swir22",
+                    "center_wavelength": 2.2,
+                    "full_width_half_max": 0.2
+                }
             ],
             "title": "Band 7 (swir22)"
         },
@@ -187,7 +154,12 @@
             "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B8.TIF",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                7
+                {
+                    "name": "B8",
+                    "common_name": "pan",
+                    "center_wavelength": 0.59,
+                    "full_width_half_max": 0.18
+                }
             ],
             "title": "Band 8 (pan)"
         },
@@ -195,7 +167,12 @@
             "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B9.TIF",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                8
+                {
+                    "name": "B9",
+                    "common_name": "cirrus",
+                    "center_wavelength": 1.37,
+                    "full_width_half_max": 0.02
+                }
             ],
             "title": "Band 9 (cirrus)"
         },
@@ -203,7 +180,12 @@
             "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B10.TIF",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                9
+                {
+                    "name": "B10",
+                    "common_name": "lwir11",
+                    "center_wavelength": 10.9,
+                    "full_width_half_max": 0.8
+                }
             ],
             "title": "Band 10 (lwir)"
         },
@@ -211,7 +193,12 @@
             "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B11.TIF",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                10
+                {
+                    "name": "B11",
+                    "common_name": "lwir12",
+                    "center_wavelength": 12,
+                    "full_width_half_max": 1
+                }
             ],
             "title": "Band 11 (lwir)"
         },

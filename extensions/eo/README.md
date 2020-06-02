@@ -4,7 +4,7 @@
 - **Identifier: eo**
 - **Field Name Prefix: eo**
 - **Scope: Item**
-- **Extension [Maturity Classification](../README.md#extension-maturity): Pilot**
+- **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
 This document explains the fields of the STAC Electro-Optical (EO) Extension to a STAC Item. EO
 data is considered to be data that represents a snapshot of the earth for a single date and time. It
@@ -12,30 +12,29 @@ could consist of multiple spectral bands in any part of the electromagnetic spec
 data include sensors with visible, short-wave and mid-wave IR bands (e.g., the OLI instrument on
 Landsat-8), long-wave IR bands (e.g. TIRS aboard Landsat-8).
 
-**Note:** This extension used to be called Earth Observation with a much broader scope (including
-Synthetic Aperture Radar (SAR), etc). The decision was made to limit this to what was already its 
-natural focus, and encourage other sensors to make their own extensions. Once that happens some of
-these fields will evolve to higher level extensions. In the meantime other implementations are welcome
-to reuse the names and definitions here.
-
 If the data has been collected by a satellite, it is strongly recommended to use the [`sat` extension](../sat/README.md), which in turn requires the [Instrument Fields](../../item-spec/common-metadata.md#instrument). If the data has been collected on an airborne platform it is strongly recommended to use the [Instrument Fields](../../item-spec/common-metadata.md#instrument).
 
 For defining view geometry of data, it is strongly recommended to use the [`view` extension](../view/README.md).
 
-- [Example (Landsat 8)](examples/example-landsat8.json)
+- Examples:
+  - [Landsat 8 with bands in assets](examples/example-landsat8.json)
+  - [Example with bands in Item properties](../../item-spec/examples/sample-full.json)
+  - [Landsat 8 with bands in Item Asset Definition and Collection Summaries](../item-assets/examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)
 
 ## Item fields
 
-| Field Name       | Type                     | Description |
-| ---------------- | ------------------------ | ----------- |
-| eo:bands         | [[Band Object](#band-object)] | **REQUIRED.** This is a list of the available bands where each item is a [Band Object](#band-object). |
-| eo:cloud_cover   | number                   | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided. |
+| Field Name     | Type                           | Description |
+| -------------- | ------------------------------ | ----------- |
+| eo:bands       | \[[Band Object](#band-object)] | This is a list of the available bands where each item is a [Band Object](#band-object). |
+| eo:cloud_cover | number                         | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided. |
+
+**eo:bands**: In previous versions `eo:bands` was allowed to be used on the asset-level referencing via array indices to the actual bands in Item `properties`. Starting with STAC 1.0.0-beta.1 you are now allowed to place the full `eo:bands` array with all Band Object information in Item `assets` as described in general in the [STAC Item](../../item-spec/item-spec.md#additional-fields-for-assets).
 
 ### Band Object
 
-| Field Name          | Type   | Description                                                  |
-| ------------------- | ------ | ------------------------------------------------------------ |
+| Field Name          | Type   | Description |
+| ------------------- | ------ | ----------- |
 | name                | string | The name of the band (e.g., "B01", "B02", "B1", "B5", "QA"). |
 | common_name         | string | The name commonly used to refer to the band to make it easier to search for bands across instruments. See the [list of accepted common names](#common-band-names). |
 | description         | string | Description to fully explain the band. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
@@ -60,7 +59,7 @@ numbers of several popular instruments.
 | green       | 0.50 - 0.60     | 2           | 3         | 3          | 4     |
 | red         | 0.60 - 0.70     | 3           | 4         | 4          | 1     |
 | yellow      | 0.58 - 0.62     |             |           |            |       |
-| pan         | 0.50 - 0.70     | 8 (*L7 only*) | 8         |            |       |
+| pan         | 0.50 - 0.70     | 8 (*L7 only*) | 8       |            |       |
 | rededge     | 0.70 - 0.75     |             |           |            |       |
 | nir         | 0.75 - 1.00     | 4           |           | 8          | 2     |
 | nir08       | 0.75 - 0.90     |             | 5         | 8a         |       |
