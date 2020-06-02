@@ -16,9 +16,16 @@
       "title": "Item Assets Definition",
       "type": "object",
       "required": [
+        "stac_extensions",
         "item_assets"
       ],
       "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "const": "item-assets"
+          }
+        },
         "item_assets": {
           "type": "object",
           "additionalProperties": {

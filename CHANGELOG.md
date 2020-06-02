@@ -8,11 +8,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [v1.0.0-beta.1] - 2020-05-29
 
-### Changed
-
-- Extensions:
-  - [Label extension](extensions/label/README.md) types were clarified and types in README and JSON schema were brought into alignment
-
 ### Removed
 - The API portion of STAC has been split off into a [new repository: stac-api-spec](https://github.com/radiantearth/stac-api-spec) and will start being versioned and released separately than the core STAC spec.
 - proj4 string from proj extension
@@ -35,6 +30,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - [Tiled Assets extension](extensions/tiled-assets/README.md), for representing data that has been split into tiles
 
 ### Changed
+- [Label extension](extensions/label/README.md) types were clarified and types in README and JSON schema were brought into alignment
 - Moved item recommendations to best practices, and added a bit more in item spec about 'search'
 - Moved `eo:gsd` from `eo` extension to core `gsd` field in Item common metadata
 - `asset` extension renamed to `item-assets` and renamed `assets` field in Collections to `item_assets`
@@ -42,6 +38,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `datetime` allows `null` as value, but requires `start_datetime` and `end_datetime` then
 - Extensions `sat`, `scientific` and `view`: At least one field is required to be specified.
 - [Single File STAC extension](extensions/single-file-stac/README.md) changed to be a complete STAC catalog + GeoJSON FeatureCollection that contains collections and items.
+- Improved several JSON Schemas
 
 ### Fixed
 - Datacube extension: `cube:dimensions` was not flagged as required.

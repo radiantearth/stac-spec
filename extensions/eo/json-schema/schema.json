@@ -15,10 +15,17 @@
     "eo": {
       "type": "object",
       "required": [
+        "stac_extensions",
         "properties",
         "assets"
       ],
       "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "const": "eo"
+          }
+        },
         "properties": {
           "type": "object",
           "required": [
