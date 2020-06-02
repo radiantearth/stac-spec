@@ -10,10 +10,17 @@
     {
       "type": "object",
       "required": [
+        "stac_extensions",
         "properties",
         "assets"
       ],
       "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "const": "timestamps"
+          }
+        },
         "properties": {
           "$ref": "#/definitions/all"
         },

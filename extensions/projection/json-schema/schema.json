@@ -15,9 +15,16 @@
     "proj":{
       "type": "object",
       "required": [
+        "stac_extensions",
         "properties"
       ],
       "properties":{
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "const": "projection"
+          }
+        },
         "properties":{
           "type":"object",
           "required":[

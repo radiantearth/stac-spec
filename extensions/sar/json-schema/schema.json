@@ -15,10 +15,17 @@
     "sar": {
       "type": "object",
       "required": [
+        "stac_extensions",
         "properties",
         "assets"
       ],
       "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "const": "sar"
+          }
+        },
         "properties": {
           "type": "object",
           "required": [

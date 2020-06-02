@@ -18,9 +18,16 @@
     "single-file-stac": {
       "type": "object",
       "required": [
+        "stac_extensions",
         "features"
       ],
       "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "const": "single-file-stac"
+          }
+        },
         "collections": {
           "type": "array",
           "items": {

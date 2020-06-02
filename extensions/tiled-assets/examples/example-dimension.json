@@ -46,36 +46,6 @@
             "msi"
         ],
         "gsd": 10,
-        "eo:bands": [
-            {
-                "name": "B2",
-                "common_name": "blue"
-            },
-            {
-                "name": "B3",
-                "common_name": "green"
-            },
-            {
-                "name": "B4",
-                "common_name": "red"
-            },
-            {
-                "name": "B5"
-            },
-            {
-                "name": "B6"
-            },
-            {
-                "name": "B7"
-            },
-            {
-                "name": "B8",
-                "common_name": "nir"
-            },
-            {
-                "name": "B11"
-            }
-        ],
         "cube:dimensions": {
             "timeSpan": {
                 "type": "enumeration",
@@ -94,14 +64,20 @@
             "href": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B02.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                0
+                {
+                    "name": "B2",
+                    "common_name": "blue"
+                }
             ]
         },
         "B03": {
             "href": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B03.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                1
+                {
+                    "name": "B3",
+                    "common_name": "green"
+                }
             ]
         },
         "B04": {
@@ -109,7 +85,10 @@
             "title": "",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                2
+                {
+                    "name": "B4",
+                    "common_name": "red"
+                }
             ]
         },
         "B05": {
@@ -117,35 +96,46 @@
             "title": "",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                3
+                {
+                    "name": "B5"
+                }
             ]
         },
         "B06": {
             "href": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B06.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                4
+                {
+                    "name": "B6"
+                }
             ]
         },
         "B07": {
             "href": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B07.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                5
+                {
+                    "name": "B7"
+                }
             ]
         },
         "B08": {
             "href": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B08.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                6
+                {
+                    "name": "B8",
+                    "common_name": "nir"
+                }
             ]
         },
         "B11": {
             "href": "http://cloudless.eox.at/sen2l2a-cog-converted/{cube:dimensions:timeSpan}_s2_l2a/{cube:dimensions:timeSpan}_s2_l2a_B11.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                7
+                {
+                    "name": "B11"
+                }
             ]
         }
     },
@@ -154,56 +144,76 @@
             "href": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B02.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                0
+                {
+                    "name": "B2",
+                    "common_name": "blue"
+                }
             ]
         },
         "B03": {
             "href": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B03.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                1
+                {
+                    "name": "B3",
+                    "common_name": "green"
+                }
             ]
         },
         "B04": {
             "href": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B04.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                2
+                {
+                    "name": "B4",
+                    "common_name": "red"
+                }
             ]
         },
         "B05": {
             "href": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B05.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                3
+                {
+                    "name": "B5"
+                }
             ]
         },
         "B06": {
             "href": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B06.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                4
+                {
+                    "name": "B6"
+                }
             ]
         },
         "B07": {
             "href": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B07.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                5
+                {
+                    "name": "B7"
+                }
             ]
         },
         "B08": {
             "href": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B08.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                6
+                {
+                    "name": "B8",
+                    "common_name": "nir"
+                }
             ]
         },
         "B11": {
             "href": "http://cloudless.eox.at/sen2l2a-cog-converted/2018-02-26_2018-03-11_s2_l2a/2018-02-26_2018-03-11_s2_l2a_B11.tif",
             "type": "image/tiff; application=geotiff",
             "eo:bands": [
-                7
+                {
+                    "name": "B11"
+                }
             ]
         }
     },

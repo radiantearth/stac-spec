@@ -10,6 +10,9 @@
           "$ref": "../../../item-spec/json-schema/item.json"
         },
         {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
           "type": "object",
           "required": [
             "properties"
@@ -28,12 +31,29 @@
           "$ref": "../../../collection-spec/json-schema/collection.json"
         },
         {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
           "$ref": "#/definitions/datacube"
         }
       ]
     }
   ],
   "definitions": {
+    "stac_extensions": {
+      "type": "object",
+      "required": [
+        "stac_extensions"
+      ],
+      "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "const": "datacube"
+          }
+        }
+      }
+    },
     "datacube": {
       "type": "object",
       "required": [

@@ -3,27 +3,83 @@
   "$id": "schema.json#",
   "title": "Checksum Extension Specification",
   "description": "STAC Checksum Extension to a STAC Item",
-  "allOf": [
+  "oneOf": [
     {
-      "$ref": "../../../item-spec/json-schema/item.json#/definitions/core"
+      "allOf": [
+        {
+          "$ref": "../../../item-spec/json-schema/item.json"
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
+          "$ref": "#/definitions/checksum_links"
+        },
+        {
+          "$ref": "#/definitions/checksum_assets"
+        }
+      ]
     },
     {
-      "$ref": "#/definitions/checksum"
+      "allOf": [
+        {
+          "$ref": "../../../catalog-spec/json-schema/catalog.json"
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
+          "$ref": "#/definitions/checksum_links"
+        }
+      ]
+    },
+    {
+      "allOf": [
+        {
+          "$ref": "../../../collection-spec/json-schema/collection.json"
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
+          "$ref": "#/definitions/checksum_links"
+        },
+        {
+          "$ref": "#/definitions/checksum_assets"
+        }
+      ]
     }
   ],
   "definitions": {
-    "checksum": {
+    "stac_extensions": {
+      "type": "object",
+      "required": [
+        "stac_extensions"
+      ],
+      "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "const": "checksum"
+          }
+        }
+      }
+    },
+    "checksum_links": {
       "type": "object",
       "properties": {
         "links": {
-          "title": "Links",
           "type": "array",
           "items": {
             "$ref": "#/definitions/checksums"
           }
-        },
+        }
+      }
+    },
+    "checksum_assets": {
+      "type": "object",
+      "properties": {
         "assets": {
-          "title": "Assets",
           "type": "object",
           "patternProperties": {
             ".+": {

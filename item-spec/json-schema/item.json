@@ -64,22 +64,7 @@
                   },
                   {
                     "title": "Reference to a core extension",
-                    "type": "string",
-                    "enum": [
-                      "checksum",
-                      "datacube",
-                      "eo",
-                      "label",
-                      "pointcloud",
-                      "projection",
-                      "sar",
-                      "sat",
-                      "scientific",
-                      "tiled-assets",
-                      "timestamps",
-                      "version",
-                      "view"
-                    ]
+                    "type": "string"
                   }
                 ]
               }

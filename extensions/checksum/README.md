@@ -17,6 +17,8 @@ Provides a way to specify file checksums (e.g. BLAKE2, MD5, SHA1, SHA2, SHA3) fo
 | ------------------ | ------ | ------------------------------------------------------------ |
 | checksum:multihash | string | Multihash for the corresponding file, encoded as hexadecimal (base 16) string with lowercase letters. |
 
+This extension can OPTIONALLY be used with the [Collection Assets Extension](../collection-assets/README.md). Checksums MUST NOT be part of the [Item Assets Definition](../item-assets/README.md) in Collections.
+
 ### Examples
 
 Checksum for a text file with file content `test`.
