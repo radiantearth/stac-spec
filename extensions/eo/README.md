@@ -29,6 +29,8 @@ For defining view geometry of data, it is strongly recommended to use the [`view
 | eo:bands       | \[[Band Object](#band-object)] | This is a list of the available bands where each item is a [Band Object](#band-object). |
 | eo:cloud_cover | number                         | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided. |
 
+**eo:bands**: In previous versions `eo:bands` was allowed to be used on the asset-level referencing via array indices to the actual bands in Item `properties`. Starting with STAC 1.0.0-beta.1 you are now allowed to place the full `eo:bands` array with all Band Object information in Item `assets` as described in general in the [STAC Item](../../item-spec/item-spec.md#additional-fields-for-assets).
+
 ### Band Object
 
 | Field Name          | Type   | Description |
