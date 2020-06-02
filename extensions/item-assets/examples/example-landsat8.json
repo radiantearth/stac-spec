@@ -155,7 +155,12 @@
     "B1": {
       "type": "image/tiff; application=geotiff",
       "eo:bands": [
-        0
+        {
+          "name": "B1",
+          "common_name": "coastal",
+          "center_wavelength": 0.44,
+          "full_width_half_max": 0.02
+        }
       ],
       "title": "Coastal Band (B1)",
       "description": "Coastal Band Top Of the Atmosphere"
@@ -163,7 +168,12 @@
     "B2": {
       "type": "image/tiff; application=geotiff",
       "eo:bands": [
-        1
+        {
+          "name": "B2",
+          "common_name": "blue",
+          "center_wavelength": 0.48,
+          "full_width_half_max": 0.06
+        }
       ],
       "title": "Blue Band (B2)",
       "description": "Blue Band Top Of the Atmosphere"
@@ -171,7 +181,12 @@
     "B3": {
       "type": "image/tiff; application=geotiff",
       "eo:bands": [
-        2
+        {
+          "name": "B3",
+          "common_name": "green",
+          "center_wavelength": 0.56,
+          "full_width_half_max": 0.06
+        }
       ],
       "title": "Green Band (B3)",
       "description": "Green Band (B3) Top Of the Atmosphere"
@@ -179,7 +194,12 @@
     "B4": {
       "type": "image/tiff; application=geotiff",
       "eo:bands": [
-        3
+        {
+          "name": "B4",
+          "common_name": "red",
+          "center_wavelength": 0.65,
+          "full_width_half_max": 0.04
+        }
       ],
       "title": "Red Band (B4)",
       "description": "Red Band (B4) Top Of the Atmosphere"
@@ -187,7 +207,12 @@
     "B5": {
       "type": "image/tiff; application=geotiff",
       "eo:bands": [
-        4
+        {
+          "name": "B5",
+          "common_name": "nir",
+          "center_wavelength": 0.86,
+          "full_width_half_max": 0.03
+        }
       ],
       "title": "NIR Band (B5)",
       "description": "NIR Band (B5) Top Of the Atmosphere"
@@ -195,7 +220,12 @@
     "B6": {
       "type": "image/tiff; application=geotiff",
       "eo:bands": [
-        5
+        {
+          "name": "B6",
+          "common_name": "swir16",
+          "center_wavelength": 1.6,
+          "full_width_half_max": 0.08
+        }
       ],
       "title": "SWIR Band (B6)",
       "description": "SWIR Band at 1.6um (B6) Top Of the Atmosphere"
@@ -203,7 +233,12 @@
     "B7": {
       "type": "image/tiff; application=geotiff",
       "eo:bands": [
-        6
+        {
+          "name": "B7",
+          "common_name": "swir22",
+          "center_wavelength": 2.2,
+          "full_width_half_max": 0.2
+        }
       ],
       "title": "SWIR Band (B7)",
       "description": "SWIR Band at 2.2um (B7) Top Of the Atmosphere"
@@ -211,7 +246,12 @@
     "B8": {
       "type": "image/tiff; application=geotiff",
       "eo:bands": [
-        7
+        {
+          "name": "B8",
+          "common_name": "pan",
+          "center_wavelength": 0.59,
+          "full_width_half_max": 0.18
+        }
       ],
       "title": "Panchromatic Band (B8)",
       "description": "Panchromatic Band (B8) Top Of the Atmosphere"
@@ -219,7 +259,12 @@
     "B9": {
       "type": "image/tiff; application=geotiff",
       "eo:bands": [
-        8
+        {
+          "name": "B9",
+          "common_name": "cirrus",
+          "center_wavelength": 1.37,
+          "full_width_half_max": 0.02
+        }
       ],
       "title": "Cirrus Band (B9)",
       "description": "Cirrus Band (B9) Top Of the Atmosphere - for cirrus cloud detection"
@@ -227,7 +272,12 @@
     "B10": {
       "type": "image/tiff; application=geotiff",
       "eo:bands": [
-        9
+        {
+          "name": "B10",
+          "common_name": "lwir11",
+          "center_wavelength": 10.9,
+          "full_width_half_max": 0.8
+        }
       ],
       "title": "LWIR Band (B10)",
       "description": "Long-wave IR Band at 11um (B10) Top Of the Atmosphere"
@@ -235,7 +285,12 @@
     "B11": {
       "type": "image/tiff; application=geotiff",
       "eo:bands": [
-        10
+        {
+          "name": "B11",
+          "common_name": "lwir12",
+          "center_wavelength": 12,
+          "full_width_half_max": 1
+        }
       ],
       "title": "LWIR Band (B11)",
       "description": "Long-wave IR Band at 12um (B11) Top Of the Atmosphere"
