@@ -10,9 +10,16 @@
     {
       "type": "object",
       "required": [
+        "stac_extensions",
         "assets"
       ],
       "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "const": "collection-assets"
+          }
+        },
         "assets": {
           "$ref": "../../../item-spec/json-schema/item.json#/definitions/assets"
         }

@@ -18,9 +18,16 @@
     "sat": {
       "type": "object",
       "required": [
+        "stac_extensions",
         "properties"
       ],
       "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "const": "sat"
+          }
+        },
         "properties": {
           "type": "object",
           "anyOf": [

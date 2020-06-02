@@ -37,12 +37,7 @@
               },
               {
                 "title": "Reference to a core extension",
-                "type": "string",
-                "enum": [
-                  "checksum",
-                  "single-file-stac",
-                  "tiled-assets"
-                ]
+                "type": "string"
               }
             ]
           }

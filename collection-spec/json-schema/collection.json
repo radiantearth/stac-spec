@@ -34,16 +34,7 @@
               },
               {
                 "title": "Reference to a core extension",
-                "type": "string",
-                "enum": [
-                  "collection-assets",
-                  "checksum",
-                  "datacube",
-                  "item-assets",
-                  "scientific",
-                  "tiled-assets",
-                  "version"
-                ]
+                "type": "string"
               }
             ]
           }

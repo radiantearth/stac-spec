@@ -10,6 +10,9 @@
           "$ref": "../../../item-spec/json-schema/item.json"
         },
         {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
           "$ref": "#/definitions/item-tiles"
         }
       ]
@@ -17,6 +20,9 @@
       "allOf": [
         {
           "$ref": "../../../catalog-spec/json-schema/catalog.json"
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
         },
         {
           "$ref": "#/definitions/catalog-collection-tiles"
@@ -28,12 +34,29 @@
           "$ref": "../../../collection-spec/json-schema/collection.json"
         },
         {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
           "$ref": "#/definitions/catalog-collection-tiles"
         }
       ]
     }
   ],
   "definitions": {
+    "stac_extensions": {
+      "type": "object",
+      "required": [
+        "stac_extensions"
+      ],
+      "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "const": "tiled-assets"
+          }
+        }
+      }
+    },
     "catalog-collection-tiles": {
       "title": "Tile matrix additions to STAC Collections and Catalogs",
       "description": "Allows the definition of tile matrix sets on a Collection or Catalog.",

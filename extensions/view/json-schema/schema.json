@@ -15,9 +15,16 @@
     "view": {
       "type": "object",
       "required": [
+        "stac_extensions",
         "properties"
       ],
       "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "const": "view"
+          }
+        },
         "properties": {
           "type": "object",
           "anyOf": [
