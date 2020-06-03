@@ -5,7 +5,7 @@
   "description": "Single File STAC Extension to combine Collections and Items in single file catalog",
   "allOf": [
     {
-      "$ref": "../../catalog-spec/json-schema/catalog.json"
+      "$ref": "../../../catalog-spec/json-schema/catalog.json"
     },
     {
       "$ref": "https://geojson.org/schema/FeatureCollection.json"
