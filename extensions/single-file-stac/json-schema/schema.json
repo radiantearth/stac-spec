@@ -31,13 +31,13 @@
         "collections": {
           "type": "array",
           "items": {
-            "$ref": "../../collection-spec/json-schema/collection.json"
+            "$ref": "../../../collection-spec/json-schema/collection.json"
           }
         },
         "features": {
           "type": "array",
           "items": {
-            "$ref": "../../item-spec/json-schema/item.json"
+            "$ref": "../../../item-spec/json-schema/item.json"
           }
         }
       }
