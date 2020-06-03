@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+### Changes
+
+### Removed
+
+### Fixed
+- Fixed several JSON Schemas
+
 ## [v1.0.0-beta.1] - 2020-05-29
 
 ### Removed
