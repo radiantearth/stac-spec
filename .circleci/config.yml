@@ -3,26 +3,15 @@ jobs:
   test_examples:
     working_directory: ~/stac
     docker:
-      - image: circleci/python:3.7
+      - image: circleci/node:12
     steps:
       - checkout
-      - run: sudo chown -R circleci:circleci /usr/local/bin
-      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
       - run:
           name: install
-          command: pip install stac-validator
+          command: sudo npm install -g stac-node-validator
       - run:
           name: validate
-          command: |
-            stac_validator catalog-spec/examples/catalog.json
-            stac_validator collection-spec/examples/sentinel2.json
-            stac_validator item-spec/examples/sample.json
-            stac_validator item-spec/examples/sample-full.json
-            stac_validator item-spec/examples/sentinel2-sample.json
-            stac_validator item-spec/examples/planet-sample.json
-            stac_validator item-spec/examples/landsat8-sample.json
-            stac_validator item-spec/examples/digitalglobe-sample.json
-            stac_validator item-spec/examples/CBERS_4_MUX_20181029_177_106_L4.json
+          command: stac-node-validator .
   test_docs:
     working_directory: ~/stac
     docker:
