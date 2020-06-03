@@ -2,7 +2,7 @@
   "stac_version": "1.0.0-beta.1",
   "stac_extensions": [
     "eo",
-    "proj"
+    "projection"
   ],
   "id": "LC81530252014153LGN00",
   "type": "Feature",

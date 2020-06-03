@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 - Fixed several JSON Schemas
+- Fixed examples
 
 ## [v1.0.0-beta.1] - 2020-05-29
 
