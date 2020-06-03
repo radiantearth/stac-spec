@@ -56,7 +56,7 @@ a WKT2 string does not exist.
 'projection') used by the asset data. This value is a [PROJJSON](https://proj.org/specifications/projjson.html) object.
 If the data does not have a CRS, such as in the case of non-rectified imagery with Ground Control
 Points, proj:projjson should be set to null. It should also be set to null if a CRS exists, but for which
-a PROJJSON string does not exist. The schema for this object can be found [here](https://proj.org/schemas/v0.1/projjson.schema.json).
+a PROJJSON string does not exist. The schema for this object can be found [here](https://proj.org/schemas/v0.2/projjson.schema.json).
 
 **proj:geometry** - A Polygon object representing the footprint of this item, formatted according the Polygon
 object format specified in [RFC 7946, sections 3.1.6](https://tools.ietf.org/html/rfc7946), except not necessarily
