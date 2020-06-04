@@ -4,7 +4,6 @@
   "title": "STAC Item",
   "type": "object",
   "description": "This object represents the metadata for an item in a SpatioTemporal Asset Catalog.",
-  "additionalProperties": true,
   "allOf": [
     {
       "$ref": "#/definitions/core"

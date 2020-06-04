@@ -26,6 +26,6 @@
     "gsd": {
       "title": "Ground Sample Distance",
       "type": "number"
-    },
+    }
   }
 }
