@@ -146,8 +146,8 @@
                 }
               }
             },
-            "label:color": {
-              "title": "Color",
+            "label:color_field": {
+              "title": "Color Field",
               "type": "string",
               "minLength": 1
             }

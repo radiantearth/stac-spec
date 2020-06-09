@@ -64,7 +64,7 @@ Some additional notes are given here for some of the core STAC Item fields and w
 | label:tasks       | \[string]                                          | Task        | Recommended to be a subset of 'regression', 'classification', 'detection', or 'segmentation', but may be an arbitrary value                                                                                                                        |
 | label:methods     | \[string]                                          | Method      | Recommended to be a subset of 'automated' or 'manual', but may be an arbitrary value.                                                                                                                                                              |
 | label:overviews   | \[[Label Overview Object](#label-overview-object)] | Overview    | An Object storing counts (for classification-type data) or summary statistics (for continuous numerical/regression data).                                                                                                                          |
-| label:color       | string                                             | Color       | The top-level field in each `Feature` of the label asset's `FeatureCollection` that contains a six-digit color hex code (e.g. `"color"`, for features with a top-level `color` field with values like `#ABC123`)                                   |
+| label:color_field | string                                             | Color       | The top-level field in each `Feature` of the label asset's `FeatureCollection` that contains a six-digit color hex code (e.g. `"color"`, for features with a top-level `color` field with values like `#ABC123`)                                   |
 
 #### Class Object
 
