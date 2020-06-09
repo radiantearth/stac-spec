@@ -14,10 +14,7 @@
   "definitions": {
     "label": {
       "type": "object",
-      "required": [
-        "stac_extensions",
-        "properties"
-      ],
+      "required": ["stac_extensions", "properties"],
       "properties": {
         "stac_extensions": {
           "type": "array",
@@ -53,10 +50,7 @@
               "type": "array",
               "items": {
                 "type": "object",
-                "required": [
-                  "name",
-                  "classes"
-                ],
+                "required": ["name", "classes"],
                 "properties": {
                   "name": {
                     "title": "Name",
@@ -89,10 +83,7 @@
             "label:type": {
               "title": "Type",
               "type": "string",
-              "enum": [
-                "raster",
-                "vector"
-              ]
+              "enum": ["raster", "vector"]
             },
             "label:tasks": {
               "title": "Task",
@@ -154,6 +145,10 @@
                   }
                 }
               }
+            },
+            "label:color": {
+              "title": "Color",
+              "type": "string"
             }
           }
         }
