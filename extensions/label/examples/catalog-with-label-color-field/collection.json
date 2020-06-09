@@ -1,0 +1,34 @@
+{
+  "id": "example-collection",
+  "stac_version": "0.9.0",
+  "description": "A collection that exists just to be a parent",
+  "license": "CC-BY-SA-4.0",
+  "stac_extensions": ["label"],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.330610521659846,
+          52.363530645448044,
+          13.756192207996433,
+          52.64467528345354
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [["2018-01-01T00:00:00Z", "2018-12-31T23:59:59Z"]]
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "./catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "./label-item.json",
+      "type": "application/json"
+    }
+  ]
+}

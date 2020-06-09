@@ -1,0 +1,58 @@
+{
+  "type": "Feature",
+  "stac_version": "0.9.0",
+  "id": "example-label-item",
+  "collection": "example-collection",
+  "properties": {
+    "datetime": "2018-01-01T00:00:00Z",
+    "label:description": "random-colorful-boxes",
+    "label:type": "vector",
+    "label:color_field": "whatColorAmI",
+    "label:classes": [{ "classes": ["foo", "bar", "baz"], "name": "class" }],
+    "label:properties": ["class"]
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [13.742925226720015, 52.64467528345354],
+        [13.330610521659846, 52.63948385599755],
+        [13.340993376571825, 52.363530645448044],
+        [13.756192207996433, 52.36860670784946],
+        [13.742925226720015, 52.64467528345354]
+      ]
+    ]
+  },
+  "bbox": [
+    13.330610521659846,
+    52.363530645448044,
+    13.756192207996433,
+    52.64467528345354
+  ],
+  "links": [
+    {
+      "rel": "source",
+      "href": "../link/to/a/bogus/item.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "root",
+      "href": "./catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "./collection.json",
+      "type": "application/json"
+    }
+  ],
+  "assets": {
+    "random_boxes": {
+      "href": "./some-random-boxes.json",
+      "type": "application/geo+json",
+      "title": "Random Boxes",
+      "roles": ["data"]
+    }
+  },
+  "stac_extensions": ["label"]
+}

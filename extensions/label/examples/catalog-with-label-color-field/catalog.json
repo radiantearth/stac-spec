@@ -1,0 +1,19 @@
+{
+  "id": "example-catalog-with-color-field",
+  "stac_version": "0.9.0",
+  "description": "Example labels with colorful asset",
+  "stac_extensions": ["label"],
+  "links": [
+    {
+      "rel": "child",
+      "href": "./collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "root",
+      "href": "./catalog.json",
+      "type": "application/json"
+    }
+  ],
+  "title": "Example Catalog"
+}
