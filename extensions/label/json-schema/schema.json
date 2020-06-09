@@ -148,7 +148,8 @@
             },
             "label:color": {
               "title": "Color",
-              "type": "string"
+              "type": "string",
+              "minLength": 1
             }
           }
         }
