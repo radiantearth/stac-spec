@@ -5,6 +5,7 @@
 * [Field and ID formatting](#field-and-id-formatting)
 * [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
 * [Datetime selection](#datetime-selection)
+* [Null Geometries](#null-geometries)
 * [Representing Vector Layers in STAC](#representing-vector-layers-in-stac)
 * [Common Use Cases of Additional Fields for Assets](#common-use-cases-of-additional-fields-for-assets)
 * [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
@@ -68,6 +69,23 @@ a MODIS 8 day composite image can define the `datetime` to be the nominal date h
 might choose to have `datetime` be the start. The key is to put in a date and time that will be useful for search, as that is
 the focus of STAC. If `datetime` is set to `null` then it is strongly recommended to use it in conjunction with a content extension
 that explains why it should not be set for that type of data. 
+
+## Null Geometries
+
+Though the [GeoJSON standard](https://tools.ietf.org/html/rfc7946) allows null geometries, in STAC we strongly recommend
+that every item have a geometry, since the general expectation one using a SpatioTemporal Catalog is to be able to query
+all data by space and time. But there are some use cases where it can make sense to create a STAC Item before it gets
+a geometry. The most common of these is 'level 1' satellite data, which is a picture downlinked before it has been 
+geospatially located. 
+
+These follow the GeoJSON concept that it is an ['unlocated' feature](https://tools.ietf.org/html/rfc7946#section-3.2). 
+So if the catalog has data that is not located then it can follow GeoJSON and set the geometry to null.
+
+TODO: we have to figure out what to do with BBOX, it needs to not be required to make this work, since the GeoJSON schema
+says a BBOX has minItems: 4. This waters down what is required in STAC even more, and potentially makes it so 
+validation won't catch if someone has filled out a geometry and not a bbox.
+
+
 
 ## Representing Vector Layers in STAC
 
