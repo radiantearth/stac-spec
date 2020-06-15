@@ -5,6 +5,7 @@
 * [Field and ID formatting](#field-and-id-formatting)
 * [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
 * [Datetime selection](#datetime-selection)
+* [Unlocated Items](#unlocated-items)
 * [Representing Vector Layers in STAC](#representing-vector-layers-in-stac)
 * [Common Use Cases of Additional Fields for Assets](#common-use-cases-of-additional-fields-for-assets)
 * [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
@@ -68,6 +69,45 @@ a MODIS 8 day composite image can define the `datetime` to be the nominal date h
 might choose to have `datetime` be the start. The key is to put in a date and time that will be useful for search, as that is
 the focus of STAC. If `datetime` is set to `null` then it is strongly recommended to use it in conjunction with a content extension
 that explains why it should not be set for that type of data. 
+
+## Unlocated Items
+
+A fairly common request of STAC is to use it for data that does not have a location, and thus does not have a geometry. 
+The [GeoJSON specification](https://tools.ietf.org/html/rfc7946#section-3.2) technically allows this, for 'unlocated 
+features', but STAC requires a Bounding Box, which the GeoJSON Schemas require to be at least 4 dimensions. For a 
+SpatioTemporal catalog we believe it is important that users can search by at least bounding box, and that providing 
+a bounding box is the core 'contract' we have with users. There are two commonly requested uses for unlocated features in 
+STAC, each with different recommendations:
+
+### Unrectified Satellite Data
+
+Most satellite data is downlinked without information that precisely describes where it is located on earth. A satellite 
+imagery processing pipeline will always attempt to locate it, but often that process takes a number of hours, or never
+quite completes (like when it is too cloudy). It can be useful to start to populate the Item before it has a geometry. 
+In this case the recommendation is to use the 'estimated' position from the satellite, to populate at least the bounding box,
+and using the same broad bounds for the geometry (or leaving it null) until there is precise ground lock. This estimation is 
+usually done by onboard equipment, like GPS or star trackers, but can be off by kilometers or more. But it is very useful for 
+STAC users to be able to at least find approximate area in their searches. If there is no way to provide an estimate then the
+data can still be STAC-like, as described in the next use. Once the precise location is established then the geometry and 
+bbox should be updated, but if it never updates then it can just leave the estimated one. Though this section is written with 
+satellite data in mind, one can easily imagine other data types that start with a less precise geometry but have it 
+refined after processing.
+
+### Non-STAC Items
+
+The other case that often comes up is people who love STAC and want to use it to catalog everything they have, even if its
+not spatial. In this case our recommendation is to re-use the STAC structures, creating Items that have everything the same,
+except they do not have a geometry. We want to support this use case by having 'mixed' catalogs work with all the STAC 
+tooling, but we also want to be in line with our 'contract' with users of always being able to expect a geometry. So the key
+thing to do is to adjust the mime-type in the Catalog and Collection links, to be `application/json` and not 
+`application/geo+json`. They can still use the `rel` to be `Item`, but should hint to clients and validators that the Item
+in the link is not going to have a geometry. This enables validation of all STAC-compliant Items in a catalog, while also 
+allowing 'mixed' catalogs with non-spatial items. One could also include non-STAC Items that don't have any time, which is
+another part of the 'contract' of STAC, but for which there are many valid cataloging use cases. 
+
+In time it may make sense to standardize 'spatial' Items (without time) and 'temporal' Items (without geometries), and even a 
+base Item that specifies links and assets. But this should be done outside the scope of the STAC specification.
+
 
 ## Representing Vector Layers in STAC
 
