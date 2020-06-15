@@ -83,7 +83,7 @@ This object allows to specify subset region of the source tileset. This concept 
 | min_tile_row  | number  | Minimum tile row index valid for this layer. If not specified it uses the the one from the referenced tile matrix.    |
 | max_tile_row  | number  | Maximum tile row index valid for this layer. If not specified it uses the the one from the referenced tile matrix.    |
 | min_tile_col  | number  | Minimum tile column index valid for this layer. If not specified it uses the the one from the referenced tile matrix. |
-| max_tile_rol  | number  | Maximum tile column index valid for this layer. If not specified it uses the the one from the referenced tile matrix. |
+| max_tile_col  | number  | Maximum tile column index valid for this layer. If not specified it uses the the one from the referenced tile matrix. |
 
 ### Pixel Buffer Object
 
