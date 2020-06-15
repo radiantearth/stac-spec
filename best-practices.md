@@ -108,7 +108,6 @@ another part of the 'contract' of STAC, but for which there are many valid catal
 In time it may make sense to standardize 'spatial' Items (without time) and 'temporal' Items (without geometries), and even a 
 base Item that specifies links and assets. But this should be done outside the scope of the STAC specification.
 
-
 ## Representing Vector Layers in STAC
 
 Many implementors are tempted to try to use STAC for 'everything', using it as a universal catalog of all their 'stuff'.

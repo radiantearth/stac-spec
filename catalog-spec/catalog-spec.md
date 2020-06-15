@@ -67,7 +67,7 @@ The following types are commonly used as `rel` types in the Link Object of a STA
 | root    | STRONGLY RECOMMENDED. URL to the root STAC Catalog or [Collection](../collection-spec/README.md). Catalogs should include a link to their root, even if it's the root and points to itself. |
 | parent  | URL to the parent STAC Catalog or [Collection](../collection-spec/README.md). Non-root catalogs should include a link to their parent. |
 | child   | URL to a child STAC Catalog or [Collection](../collection-spec/README.md). |
-| item    | URL to a STAC [Item](../item-spec/item-spec.md). Links with a `rel` of item have a default `type` of `application/geo+json`. This `rel` can also be used with '[unlocated items](../best-practices.md#unlocated-items)' by explicitly setting the `type` to `application/json`.|
+| item    | URL to a STAC [Item](../item-spec/item-spec.md). Links with a `rel` of item have a default `type` of `application/geo+json`. This `rel` can also be used with '[unlocated items](../best-practices.md#unlocated-items)' by explicitly setting the `type` to `application/json`. |
 
 **Note:** A link to at least one `item` or `child` catalog is **REQUIRED**.
 
