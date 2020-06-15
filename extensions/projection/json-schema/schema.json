@@ -67,8 +67,16 @@
             "proj:bbox":{
               "title":"Extent",
               "type":"array",
-              "minItems":4,
-              "maxItems":6,
+              "oneOf": [
+                {
+                  "minItems":4,
+                  "maxItems":4
+                },
+                {
+                  "minItems":6,
+                  "maxItems":6
+                }
+              ],
               "items":{
                 "type":"number"
               }
@@ -105,8 +113,16 @@
             "proj:transform":{
               "title":"Transform",
               "type":"array",
-              "minItems":6,
-              "maxItems":9,
+              "oneOf": [
+                {
+                  "minItems":6,
+                  "maxItems":6
+                },
+                {
+                  "minItems":9,
+                  "maxItems":9
+                }
+              ],
               "items":{
                 "type":"number"
               }
