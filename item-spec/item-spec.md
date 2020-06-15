@@ -211,7 +211,7 @@ Common STAC Item Media Types:
 | `image/png`                                             | Visual PNGs (e.g. thumbnails)                                |
 | `image/jpeg`                                            | Visual JPEGs (e.g. thumbnails, oblique)                      |
 | `text/xml` or `application/xml`                         | XML metadata [RFC 7303](https://www.ietf.org/rfc/rfc7303.txt) |
-| `application/json`                                      | JSON metadata                                                |
+| `application/json`                                      | JSON metadata. Also used to link to '[unlocated items](../best-practices.md#unlocated-items)'|                                              |
 | `text/plain`                                            | Plain text metadata                                          |
 | `application/geo+json`                                  | GeoJSON                                                      |
 | `application/geopackage+sqlite3`                        | GeoPackage                                                   |
