@@ -5,7 +5,7 @@
   "description":"STAC Projection Extension to a STAC Item",
   "allOf":[
     {
-      "$ref": "../../../item-spec/json-schema/item.json"
+      "$ref": "https://schemas.stacspec.org/v1.0.0-beta.1/item-spec/item.json"
     },
     {
       "$ref":"#/definitions/proj"

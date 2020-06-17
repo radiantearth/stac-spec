@@ -13,19 +13,19 @@
     "common_metadata": {
       "allOf": [
         {
-          "$ref": "basics.json"
+          "$ref": "https://schemas.stacspec.org/v1.0.0-beta.1/item-spec/basics.json"
         },
         {
-          "$ref": "datetime.json"
+          "$ref": "https://schemas.stacspec.org/v1.0.0-beta.1/item-spec/datetime.json"
         },
         {
-          "$ref": "instrument.json"
+          "$ref": "https://schemas.stacspec.org/v1.0.0-beta.1/item-spec/instrument.json"
         },
         {
-          "$ref": "licensing.json"
+          "$ref": "https://schemas.stacspec.org/v1.0.0-beta.1/item-spec/licensing.json"
         },
         {
-          "$ref": "provider.json"
+          "$ref": "https://schemas.stacspec.org/v1.0.0-beta.1/item-spec/provider.json"
         }
       ]
     },
@@ -136,10 +136,10 @@
           "type": "string"
         },
         "created": {
-          "$ref": "datetime.json#/definitions/created"
+          "$ref": "https://schemas.stacspec.org/v1.0.0-beta.1/item-spec/datetime.json#/definitions/created"
         },
         "updated": {
-          "$ref": "datetime.json#/definitions/updated"
+          "$ref": "https://schemas.stacspec.org/v1.0.0-beta.1/item-spec/datetime.json#/definitions/updated"
         }
       }
     },

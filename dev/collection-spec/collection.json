@@ -5,7 +5,7 @@
   "description": "This object represents Collections in a SpatioTemporal Asset Catalog.",
   "allOf": [
     {
-      "$ref": "../../catalog-spec/json-schema/catalog.json"
+      "$ref": "https://schemas.stacspec.org/v1.0.0-beta.1/catalog-spec/catalog.json"
     },
     {
       "$ref": "#/definitions/collection"

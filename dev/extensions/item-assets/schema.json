@@ -5,7 +5,7 @@
   "description": "STAC Asset Definition Extension to a STAC Collection",
   "allOf": [
     {
-      "$ref": "../../../collection-spec/json-schema/collection.json"
+      "$ref": "https://schemas.stacspec.org/v1.0.0-beta.1/collection-spec/collection.json"
     },
     {
       "$ref": "#/definitions/item_assets"
