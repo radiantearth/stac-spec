@@ -5,7 +5,7 @@
 * [Field and ID formatting](#field-and-id-formatting)
 * [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
 * [Datetime selection](#datetime-selection)
-* [Null Geometries](#null-geometries)
+* [Unlocated Items](#unlocated-items)
 * [Representing Vector Layers in STAC](#representing-vector-layers-in-stac)
 * [Common Use Cases of Additional Fields for Assets](#common-use-cases-of-additional-fields-for-assets)
 * [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
@@ -70,7 +70,7 @@ might choose to have `datetime` be the start. The key is to put in a date and ti
 the focus of STAC. If `datetime` is set to `null` then it is strongly recommended to use it in conjunction with a content extension
 that explains why it should not be set for that type of data. 
 
-## Null Geometries
+## Unlocated Items
 
 Though the [GeoJSON standard](https://tools.ietf.org/html/rfc7946) allows null geometries, in STAC we strongly recommend
 that every item have a geometry, since the general expectation of someone using a SpatioTemporal Catalog is to be able to query
@@ -100,15 +100,14 @@ show up in STAC API searches, as most will at least implicitly use a geometry. T
 satellite data in mind, one can easily imagine other data types that start with a less precise geometry but have it 
 refined after processing.
 
-### Non-STAC Items
+### Data that is not spatial
 
-The other case that often comes up is people who love STAC and want to use it to catalog everything they have, even if its
-not spatial. In this case our recommendation is to re-use the STAC structures, creating Items that have everything the same,
-except they do not have a geometry. We have discussed mechanisms to make these 'non-spatial' Items differentiated in the
-specification, like using an alternate link structure in catalogs. But there are no actual implementations of this, so if
-you have one please get in touch and we can figure out how to support it. We likely will not consider these to be actually
-STAC-compliant, as the contract in STAC is that Items should be those that represent an asset in space and time. But we
-hope to design a solution that enables 'mixed' catalogs with compliant and non-compliant STAC items.
+The other case that often comes up is people who love STAC and want to use it to catalog everything they have, even if it is
+not spatial. This use case is not currently supported by STAC, as we are focused on data that is both temporal and spatial
+in nature. The [OGC API - Records](https://github.com/opengeospatial/ogcapi-records) is an emerging standard that likely
+will be able to handle a wider range of data to catalog than STAC. It builds on [OGC API - 
+Features](https://github.com/opengeospatial/ogcapi-features) just like [STAC API](https://github.com/radiantearth/stac-api-spec/)
+does.
 
 ## Representing Vector Layers in STAC
 
