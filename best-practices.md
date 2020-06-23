@@ -107,7 +107,7 @@ not spatial. This use case is not currently supported by STAC, as we are focused
 in nature. The [OGC API - Records](https://github.com/opengeospatial/ogcapi-records) is an emerging standard that likely
 will be able to handle a wider range of data to catalog than STAC. It builds on [OGC API - 
 Features](https://github.com/opengeospatial/ogcapi-features) just like [STAC API](https://github.com/radiantearth/stac-api-spec/)
-does.
+does. The [collection assets extension](extensions/collection-assets) may also provide an option for some use cases.
 
 ## Representing Vector Layers in STAC
 
