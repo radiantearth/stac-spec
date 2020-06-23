@@ -4,7 +4,6 @@
   "title": "STAC Item",
   "type": "object",
   "description": "This object represents the metadata for an item in a SpatioTemporal Asset Catalog.",
-  "additionalProperties": true,
   "allOf": [
     {
       "$ref": "#/definitions/core"
@@ -76,7 +75,16 @@
             },
             "bbox": {
               "type": "array",
-              "minItems": 4,
+              "oneOf": [
+                {
+                  "minItems": 4,
+                  "maxItems": 4
+                },
+                {
+                  "minItems": 6,
+                  "maxItems": 6
+                }
+              ],
               "items": {
                 "type": "number"
               }

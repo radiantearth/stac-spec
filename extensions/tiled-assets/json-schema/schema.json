@@ -161,7 +161,7 @@
           "type": "integer",
           "description": "Minimum tile column index valid for this layer. If not specified it uses the the one from the referenced tile matrix."
         },
-        "max_tile_rol": {
+        "max_tile_col": {
           "type": "integer",
           "description": "Maximum tile column index valid for this layer. If not specified it uses the the one from the referenced tile matrix."
         }
