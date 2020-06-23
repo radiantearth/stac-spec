@@ -73,19 +73,42 @@ that explains why it should not be set for that type of data.
 ## Null Geometries
 
 Though the [GeoJSON standard](https://tools.ietf.org/html/rfc7946) allows null geometries, in STAC we strongly recommend
-that every item have a geometry, since the general expectation one using a SpatioTemporal Catalog is to be able to query
+that every item have a geometry, since the general expectation of someone using a SpatioTemporal Catalog is to be able to query
 all data by space and time. But there are some use cases where it can make sense to create a STAC Item before it gets
-a geometry. The most common of these is 'level 1' satellite data, which is a picture downlinked before it has been 
-geospatially located. 
+a geometry. The most common of these is 'level 1' satellite data, where an image is downlinked and cataloged before it has 
+been geospatially located. 
 
-These follow the GeoJSON concept that it is an ['unlocated' feature](https://tools.ietf.org/html/rfc7946#section-3.2). 
-So if the catalog has data that is not located then it can follow GeoJSON and set the geometry to null.
+The recommendation for data that does not yet have a location is to follow the GeoJSON concept that it is an ['unlocated' 
+feature](https://tools.ietf.org/html/rfc7946#section-3.2). So if the catalog has data that is not located then it can follow 
+GeoJSON and set the geometry to null. Though normally required, in this case the `bbox` field should not be included.
 
-TODO: we have to figure out what to do with BBOX, it needs to not be required to make this work, since the GeoJSON schema
-says a BBOX has minItems: 4. This waters down what is required in STAC even more, and potentially makes it so 
-validation won't catch if someone has filled out a geometry and not a bbox.
+Note that this recommendation is only for cases where data does not yet have a geometry and it cannot be estimated. There
+are further details on the two most commonly requested desired use cases for setting geometry to null:
 
+### Unrectified Satellite Data
 
+Most satellite data is downlinked without information that precisely describes where it is located on earth. A satellite 
+imagery processing pipeline will always attempt to locate it, but often that process takes a number of hours, or never
+quite completes (like when it is too cloudy). It can be useful to start to populate the Item before it has a geometry. 
+In this case the recommendation is to use the 'estimated' position from the satellite, to populate at least the bounding box,
+and use the same broad bounds for the geometry (or leaving it null) until there is precise ground lock. This estimation is 
+usually done by onboard equipment, like GPS or star trackers, but can be off by kilometers or more. But it is very useful for 
+STAC users to be able to at least find approximate area in their searches. A commonly used field for communicating ground lock 
+is not yet established, but likely should be (an extension proposal would be appreciated).  If there is no way to provide an 
+estimate then the data then a null geometry with no `bbox` can be used, as described above. But the data will likely not
+show up in STAC API searches, as most will at least implicitly use a geometry. Though this section is written with 
+satellite data in mind, one can easily imagine other data types that start with a less precise geometry but have it 
+refined after processing.
+
+### Non-STAC Items
+
+The other case that often comes up is people who love STAC and want to use it to catalog everything they have, even if its
+not spatial. In this case our recommendation is to re-use the STAC structures, creating Items that have everything the same,
+except they do not have a geometry. We have discussed mechanisms to make these 'non-spatial' Items differentiated in the
+specification, like using an alternate link structure in catalogs. But there are no actual implementations of this, so if
+you have one please get in touch and we can figure out how to support it. We likely will not consider these to be actually
+STAC-compliant, as the contract in STAC is that Items should be those that represent an asset in space and time. But we
+hope to design a solution that enables 'mixed' catalogs with compliant and non-compliant STAC items.
 
 ## Representing Vector Layers in STAC
 
