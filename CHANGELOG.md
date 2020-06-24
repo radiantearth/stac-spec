@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changes
 - Clarification on null geometries, making bbox not required if a null geometry is used.
+
 ### Removed
 
 ### Fixed
