@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "schema.json#",
+  "$id": "https://schemas.stacspec.org/dev/extensions/datacube/json-schema/schema.json#",
   "title": "Data Cube Extension",
   "description": "STAC Data Cube Extension to STAC Items and STAC Collections",
   "oneOf": [
@@ -49,7 +49,10 @@
         "stac_extensions": {
           "type": "array",
           "contains": {
-            "const": "datacube"
+            "enum": [
+              "datacube",
+              "https://schemas.stacspec.org/dev/extensions/datacube/json-schema/schema.json"
+            ]
           }
         }
       }

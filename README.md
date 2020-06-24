@@ -44,7 +44,7 @@ the specification takes place in the [issue tracker](https://github.com/radiante
 
 ## In this Repository
 
-This repository contains the core specifications plus examples and validation schemas and tools. Also included are a
+This repository contains the core specifications plus examples and validation schemas. Also included are a
 few documents that provide more context and plans for the evolution of the specification. Each spec folder contains a
 README explaining the layout of the folder, the main specification document, examples, and validating schemas. And 
 there is one more specification in the STAC 'family', which is

@@ -11,7 +11,7 @@ STAC Collections are meant to be compatible with *OGC API - Features* Collection
 * [Examples](examples/):
   * Sentinel 2: A basic standalone example of a [Collection](examples/sentinel2.json) without items.
   * Landsat 8: A [Collection](examples/landsat-collection.json) with corresponding Item [Item](../item-spec/examples/landsat8-sample.json).
-* [JSON Schema](json-schema/collection.json) - please see the [validation instructions](../validation/README.md)
+* [JSON Schema](json-schema/collection.json)
 
 ## Collection fields
 

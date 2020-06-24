@@ -22,7 +22,3 @@ discussion of the examples.
 **Schemas:** The schemas to validate the core Item definitions are found in the 
 *[json-schema/](json-schema/)* folder. The *[item.json](json-schema/item.json)* validates items overall
 and the additional schemas validate the various groups of *[Common Metadata](common-metadata.md)*.
-
-## Schema Validation
-
-Instruction on schema validation for STAC Items can be found in the [validation instructions](../validation/README.md).

@@ -40,9 +40,10 @@ someone should still review that all the schemas have been updated and align wit
 can not happen automatically.
 * **Final Spec Read Through**: There should be a final read through of the core specification to make sure it makes sense
 and there are no typos, errors, etc.
-* **Update the version numbers**: There are several places in the spec that use the version number in text or a link. These
-include the readme, and the openapi specs. Right now the best thing to do is just a search & replace. Hopefully in the future
-there will be scripts or continuous integration to do this. 
+* **Update the version numbers**: There are several places in the spec that use the version number or a branch name in text
+or a link. These include the markdown files and the JSON schemas. Right now the best thing to do is just a search & replace
+for the last version number and `https://schemas.stacspec.org/dev/` (in JSON Schemas, don't replace it here).
+Hopefully in the future there will be scripts to do this. 
 * **Update the Changelog**: The [changelog](CHANGELOG.md) should be reviewed to make sure it includes all major improvements
 in the release. And anything in 'unreleased' section should move to the version of the spec to be released.
 * **Merge dev to master**: As there is no 'build' process, since the specification *is* the markdown files in the github
