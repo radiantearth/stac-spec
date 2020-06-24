@@ -1,6 +1,9 @@
 # STAC Common Metadata
-This document outlines all commonly used fields for STAC Item properties. These fields are 
-included by default in the core [Item schema](json-schema/item.json) but implementation is not required. 
+
+This document outlines commonly used fields in STAC.
+They are often used in [STAC Item properties](item-spec.md#properties-object),
+but can also be used in other places, e.g. [Item Assets](item-spec.md#asset-object)
+or [Collection Assets](../extensions/collection-assets/README.md).
 
 - [STAC Common Metadata](#stac-common-metadata)
   - [Basics](#basics)
@@ -14,6 +17,11 @@ included by default in the core [Item schema](json-schema/item.json) but impleme
 
 Various *examples* are available in the folder [`examples`](examples/).
 *JSON Schemas* can be found in the folder [`json-schema`](json-schema/).
+
+By default, these fields are only included and validated against in the core [Item schema](json-schema/item.json).
+Implementation of any of the fields is not required,
+if the specifications allowing these fields to be used don't say differently.
+For example, `datetime` is required in STAC Items.
 
 ## Basics
 
