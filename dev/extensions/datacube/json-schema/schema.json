@@ -1,13 +1,13 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.stacspec.org/v1.0.0-beta.1/extensions/datacube/schema.json#",
+  "$id": "https://schemas.stacspec.org/dev/extensions/datacube/json-schema/schema.json#",
   "title": "Data Cube Extension",
   "description": "STAC Data Cube Extension to STAC Items and STAC Collections",
   "oneOf": [
     {
       "allOf": [
         {
-          "$ref": "https://schemas.stacspec.org/v1.0.0-beta.1/item-spec/item.json"
+          "$ref": "../../../item-spec/json-schema/item.json"
         },
         {
           "$ref": "#/definitions/stac_extensions"
@@ -28,7 +28,7 @@
     {
       "allOf": [
         {
-          "$ref": "https://schemas.stacspec.org/v1.0.0-beta.1/collection-spec/collection.json"
+          "$ref": "../../../collection-spec/json-schema/collection.json"
         },
         {
           "$ref": "#/definitions/stac_extensions"
@@ -51,7 +51,7 @@
           "contains": {
             "enum": [
               "datacube",
-              "https://schemas.stacspec.org/v1.0.0-beta.1/extensions/datacube/schema.json"
+              "https://schemas.stacspec.org/dev/extensions/datacube/json-schema/schema.json"
             ]
           }
         }

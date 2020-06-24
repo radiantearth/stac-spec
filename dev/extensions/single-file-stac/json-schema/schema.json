@@ -1,11 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.stacspec.org/v1.0.0-beta.1/extensions/single-file-stac/schema.json#",
+  "$id": "https://schemas.stacspec.org/dev/extensions/single-file-stac/json-schema/schema.json#",
   "title": "Single File STAC Extension",
   "description": "Single File STAC Extension to combine Collections and Items in single file catalog",
   "allOf": [
     {
-      "$ref": "https://schemas.stacspec.org/v1.0.0-beta.1/catalog-spec/catalog.json"
+      "$ref": "../../../catalog-spec/json-schema/catalog.json"
     },
     {
       "$ref": "https://geojson.org/schema/FeatureCollection.json"
@@ -27,20 +27,20 @@
           "contains": {
             "enum": [
               "single-file-stac",
-              "https://schemas.stacspec.org/v1.0.0-beta.1/extensions/single-file-stac/schema.json"
+              "https://schemas.stacspec.org/dev/extensions/single-file-stac/json-schema/schema.json"
             ]
           }
         },
         "collections": {
           "type": "array",
           "items": {
-            "$ref": "https://schemas.stacspec.org/v1.0.0-beta.1/collection-spec/collection.json"
+            "$ref": "../../../collection-spec/json-schema/collection.json"
           }
         },
         "features": {
           "type": "array",
           "items": {
-            "$ref": "https://schemas.stacspec.org/v1.0.0-beta.1/item-spec/item.json"
+            "$ref": "../../../item-spec/json-schema/item.json"
           }
         }
       }

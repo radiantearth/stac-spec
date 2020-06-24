@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.stacspec.org/v1.0.0-beta.1/item-spec/instrument.json#",
+  "$id": "https://schemas.stacspec.org/dev/item-spec/json-schema/instrument.json#",
   "title": "Instrument Fields",
   "type": "object",
   "properties": {

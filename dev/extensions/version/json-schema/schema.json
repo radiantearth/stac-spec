@@ -1,13 +1,13 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.stacspec.org/v1.0.0-beta.1/extensions/version/schema.json#",
+  "$id": "https://schemas.stacspec.org/dev/extensions/version/json-schema/schema.json#",
   "title": "Versioning Indicators Extension",
   "description": "STAC Versioning Indicators Extension for STAC Items or STAC Collections.",
   "oneOf": [
     {
       "allOf": [
         {
-          "$ref": "https://schemas.stacspec.org/v1.0.0-beta.1/item-spec/item.json"
+          "$ref": "../../../item-spec/json-schema/item.json"
         },
         {
           "$ref": "#/definitions/stac_extensions"
@@ -28,7 +28,7 @@
     {
       "allOf": [
         {
-          "$ref": "https://schemas.stacspec.org/v1.0.0-beta.1/collection-spec/collection.json"
+          "$ref": "../../../collection-spec/json-schema/collection.json"
         },
         {
           "$ref": "#/definitions/stac_extensions"
@@ -51,7 +51,7 @@
           "contains": {
             "enum": [
               "version",
-              "https://schemas.stacspec.org/v1.0.0-beta.1/extensions/version/schema.json"
+              "https://schemas.stacspec.org/dev/extensions/version/json-schema/schema.json"
             ]
           }
         }
