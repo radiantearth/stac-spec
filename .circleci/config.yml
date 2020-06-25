@@ -36,13 +36,6 @@ jobs:
           name: validate
           command: npm run check-markdown
   publish_schemas:
-    filters:
-      tags:
-        # All (future) tags
-        only: /.*/
-      branches:
-        # Only dev branch, not PRs
-        only: dev
     working_directory: ~/stac
     docker:
       - image: circleci/node:12
@@ -59,8 +52,17 @@ jobs:
           command: npm run publish-schemas -- $CIRCLE_TAG
 workflows:
   version: 2
-  test:
+  ci:
     jobs:
       - test_examples
       - test_docs
-      - publish_schemas
+      - publish_schemas:
+          requires:
+            - test_examples
+          filters:
+            tags:
+              # All (future) tags
+              only: /.+/
+            branches:
+              # Only dev branch, not PRs
+              only: dev
