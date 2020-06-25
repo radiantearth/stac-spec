@@ -42,7 +42,7 @@ jobs:
         only: /.*/
       branches:
         # Only dev branch, not PRs
-        only: /^(?!pull\/)dev$/
+        only: dev
     working_directory: ~/stac
     docker:
       - image: circleci/node:12
