@@ -12,7 +12,7 @@ come from either active or passive sensors, and data is frequently acquired usin
 tools such as LiDAR or coincidence-matched imagery.
 
 - [Example](examples/example-autzen.json)
-- JSON Schema is missing. PRs are welcome.
+- [JSON Schema](json-schema/schema.json)
 
 ## Item Fields
 

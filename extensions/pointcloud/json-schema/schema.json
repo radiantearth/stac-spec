@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/dev/extensions/pointcloud/json-schema/schema.json#",
+  "title": "Point Cloud Extension",
+  "description": "STAC Point Cloud Extension to a STAC Item",
+  "allOf": [
+    {
+      "$ref": "../../../item-spec/json-schema/item.json"
+    },
+    {
+      "$ref": "#/definitions/stac_extensions"
+    },
+    {
+      "$ref": "#/definitions/pointcloud"
+    }
+  ],
+  "definitions": {
+    "pointcloud": {
+      "type": "object",
+      "required": [
+        "stac_extensions",
+        "properties"
+      ],
+      "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "const": "pointcloud"
+          }
+        },
+        "properties": {
+          "type": "object",
+          "required": [
+            "pc:count",
+            "pc:type",
+            "pc:encoding",
+            "pc:schemas"
+          ],
+          "properties": {
+            "pc:count": {
+              "type": "number",
+              "multipleOf": 1.0
+            },
+            "pc:type": { "type": "string" },
+            "pc:encoding": { "type": "string" },
+            "pc:schemas": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/schema" }
+            },
+            "pc:density": { "type": "number"},
+            "pc:statistics": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/stats" }
+            }
+          }
+        }
+      }
+    },
+    "schema":{
+      "type": "object",
+      "properties": {
+        "name": {"type": "string" },
+        "size": {"type": "number", "multipleOf": 1.0 },
+        "type": {"type": "string" },
+        "required": ["name", "size", "type"]
+      }
+    },
+    "stats":{
+      "type": "object",
+      "properties": {
+        "average":  {"type": "number"},
+        "count":    {"type": "number", "multipleOf": 1.0 },
+        "maximum":  {"type": "number"},
+        "minimum":  {"type": "number"},
+        "name":     {"type": "string"},
+        "position": {"type": "number", "multipleOf": 1.0 },
+        "stddev":   {"type": "number"},
+        "variance": {"type": "number"}
+      }
+    }
+  }
+}
