@@ -37,7 +37,7 @@ system. Please use `check-markdown` locally, as described in the [next section](
 to ensure that the checks on the pull request succeed. If it does not then you can look at the
 mistakes online, which are the same as running `check-markdown` locally would surface.
 
-All pull requests that modify or create JSON schema files should use https://jsonformatter.org/ to keep files consistent across the repo. 
+All pull requests that modify or create JSON schema files should use [JSON formatter](https://jsonformatter.org/) to keep files consistent across the repo. 
 
 All pull requests additionally require a review of two STAC core team members. Releases are cut
 from dev to master (and require 3 approvals), see the [process](process.md) document for more details.
