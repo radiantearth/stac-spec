@@ -34,7 +34,7 @@ the point cloud, their types, and their sizes (in full bytes).
 | ---------- | ------- | -------------------------- |
 | name       | string  | **REQUIRED.** The name of the dimension. |
 | size       | integer | **REQUIRED.** The size of the dimension in bytes. Whole bytes only are supported. |
-| type       | string  | **REQUIRED.** Dimension type. Valid values include `floating`, `unsigned`, and `signed` |
+| type       | string  | **REQUIRED.** Dimension type. Valid values are `floating`, `unsigned`, and `signed` |
 
 ### Stats Object
 
