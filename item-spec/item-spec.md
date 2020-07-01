@@ -229,7 +229,7 @@ extensions can add further property fields as well. Any property that can be spe
 a specific asset. This can be used to override a property defined in the Item, or to specify fields for which there is no 
 single value for all assets.
 
-**It is important to note that the STAC API does not faciliate searching across Asset properties in this way, and this 
+**It is important to note that the STAC API does not facilitate searching across Asset properties in this way, and this 
 should be used sparingly.** It is primarily used to define properties at the Asset level that may be used during use of 
 the data instead of for searching. 
 
