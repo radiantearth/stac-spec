@@ -47,22 +47,20 @@ It is recommended to list as many properties as reasonable so that consumers get
 
 The object describes the spatio-temporal extents of the Collection. Both spatial and temporal extents are required to be specified.
 
-| Element  | Type                                              | Description                                                         |
-| -------- | ------------------------------------------------- | ------------------------------------------------------------------- |
-| spatial  | [Spatial Extent Object](#spatial-extent-object)   | **REQUIRED.** Potential *spatial extent* covered by the collection. |
-| temporal | [Temporal Extent Object](#temporal-extent-object) | **REQUIRED.** Potential *temporal extent* covered by the collection. |
+| Element  | Type                                              | Description                                                           |
+| -------- | ------------------------------------------------- | --------------------------------------------------------------------- |
+| spatial  | [Spatial Extent Object](#spatial-extent-object)   | **REQUIRED.** Potential *spatial extents* covered by the collection.  |
+| temporal | [Temporal Extent Object](#temporal-extent-object) | **REQUIRED.** Potential *temporal extents* covered by the collection. |
 
 #### Spatial Extent Object
 
 The object describes the spatial extents of the Collection.
 
-| Element | Type         | Description                                                         |
-| ------- | ------------ | ------------------------------------------------------------------- |
-| bbox    | \[\[number]] | **REQUIRED.** Potential *spatial extent* covered by the collection. |
+| Element | Type         | Description                                                          |
+| ------- | ------------ | -------------------------------------------------------------------- |
+| bbox    | \[\[number]] | **REQUIRED.** Potential *spatial extents* covered by the collection. |
 
-**bbox**: Bounding Box of the assets represented by this collection using either 2D or 3D geometries. 
-
-This is a single-element array containing an array representing a single bounding box.  This is to potentially support multiple bounding boxes later or with an extension.
+**bbox**: Bounding Boxes of the assets represented by this collection using either 2D or 3D geometries. Each outer array element can be a separate bounding box, but it is recommended to only use multiple bounding boxes if a union of them would then include a large uncovered area (e.g. the union of Germany and Chile).
 
 The length of the inner array must be 2*n where n is the number of dimensions. The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). When using 3D geometries, the elevation of the southwesterly most extent is the minimum depth/height in meters and the elevation of the northeasterly most extent is the maximum.
 
@@ -72,11 +70,15 @@ The coordinate reference system of the values is WGS 84 longitude/latitude. Exam
 
 The object describes the temporal extents of the Collection.
 
-| Element  | Type               | Description                                                          |
-| -------- | ------------------ | -------------------------------------------------------------------- |
-| interval | \[\[string\|null]] | **REQUIRED.** Potential *temporal extent* covered by the collection. |
+| Element  | Type               | Description                                                           |
+| -------- | ------------------ | --------------------------------------------------------------------- |
+| interval | \[\[string\|null]] | **REQUIRED.** Potential *temporal extents* covered by the collection. |
 
-**interval**: A list of a list of two datetimes. The wrapped list is to potentially support multiple extents later or with an extension. The datetimes MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). Open date ranges are supported by setting either the start or the end time to `null`. Example for data from the beginning of 2019 until now: `[["2009-01-01T00:00:00Z", null]]`. The temporal reference system is the Gregorian calendar. 
+**interval**: Each outer array element can be a separate temporal extent, but it is recommended to only use multiple temporal extents if a union of them would then include a large uncovered time span (e.g. only having data for the years 2000, 2010 and 2020).
+
+Each inner array consists of exactly two dates and times. Each date and time MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). The temporal reference system is the Gregorian calendar.
+
+Open date ranges are supported by setting either the start or the end time to `null`. Example for data from the beginning of 2019 until now: `[["2009-01-01T00:00:00Z", null]]`. 
 
 ### Provider Object
 

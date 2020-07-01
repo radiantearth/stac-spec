@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - JSON-schema file in the Point Cloud extension.
 
 ### Changes
+- Multiple extents (bounding boxes / intervals) are allowed per Collection
 
 ### Removed
 
