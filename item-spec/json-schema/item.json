@@ -35,13 +35,58 @@
           "$ref": "https://geojson.org/schema/Feature.json"
         },
         {
+          "oneOf": [
+            {
+              "type": "object",
+              "required": [
+                "geometry",
+                "bbox"
+              ],
+              "properties": {
+                "geometry": {
+                  "$ref": "https://geojson.org/schema/Geometry.json"
+                },
+                "bbox": {
+                  "type": "array",
+                  "oneOf": [
+                    {
+                      "minItems": 4,
+                      "maxItems": 4
+                    },
+                    {
+                      "minItems": 6,
+                      "maxItems": 6
+                    }
+                  ],
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "geometry"
+              ],
+              "properties": {
+                "geometry": {
+                  "type": "null"
+                },
+                "bbox": {
+                  "not": {}
+                }
+              }
+            }
+          ]
+        },
+        {
           "type": "object",
           "required": [
             "stac_version",
             "id",
             "links",
             "assets",
-            "bbox",
             "properties"
           ],
           "properties": {
@@ -72,22 +117,6 @@
               "title": "Provider ID",
               "description": "Provider item ID",
               "type": "string"
-            },
-            "bbox": {
-              "type": "array",
-              "oneOf": [
-                {
-                  "minItems": 4,
-                  "maxItems": 4
-                },
-                {
-                  "minItems": 6,
-                  "maxItems": 6
-                }
-              ],
-              "items": {
-                "type": "number"
-              }
             },
             "links": {
               "title": "Item links",
