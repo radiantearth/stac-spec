@@ -23,7 +23,8 @@ in a 'beta' state, with no major changes anticipated, so implementors can expect
 at this point we don't anticipate any major changes, but reserve the right to make them if we get feedback that something just doesn't 
 work. Which is to say the next couple months are a great time to implement STAC, as your changes will be head. After 1.0 our goal
 is to not change the core in any backwards incompatible way for a very long time, if ever, so that people can build on this until 
-JSON is no longer relevant. 
+JSON is no longer relevant. The STAC specification follows [Semantic Versioning](https://semver.org/), so once 1.0.0 is reached any breaking
+change will require the spec to go to 2.0.0. 
 
 ## Current version and branches
 

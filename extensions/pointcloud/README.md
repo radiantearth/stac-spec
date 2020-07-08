@@ -12,7 +12,7 @@ come from either active or passive sensors, and data is frequently acquired usin
 tools such as LiDAR or coincidence-matched imagery.
 
 - [Example](examples/example-autzen.json)
-- JSON Schema is missing. PRs are welcome.
+- [JSON Schema](json-schema/schema.json)
 
 ## Item Fields
 
@@ -34,21 +34,20 @@ the point cloud, their types, and their sizes (in full bytes).
 | ---------- | ------- | -------------------------- |
 | name       | string  | **REQUIRED.** The name of the dimension. |
 | size       | integer | **REQUIRED.** The size of the dimension in bytes. Whole bytes only are supported. |
-| type       | string  | **REQUIRED.** Dimension type. Valid values include `floating`, `unsigned`, and `signed` |
+| type       | string  | **REQUIRED.** Dimension type. Valid values are `floating`, `unsigned`, and `signed` |
 
 ### Stats Object
 
-A sequential array of items mapping to `pc:schemas` defines per-channel statistics. All fields
-are optional.
+A sequential array of items mapping to `pc:schemas` defines per-channel statistics. The channel name is required and at least one statistic.
 
 | Field Name | Type    | Description |
 | ---------- | ------- | ----------- |
+| name       | string  | **REQUIRED.** The name of the channel. |
+| position   | integer | Position of the channel in the schema. |
 | average    | number  | The average of the channel. |
 | count      | integer | The number of elements in the channel. |
 | maximum    | number  | The maximum value of the channel. |
 | minimum    | number  | The minimum value of the channel. |
-| name       | string  | The name of the channel. |
-| position   | integer | Position of the channel in the schema. |
 | stddev     | number  | The standard deviation of the channel. |
 | variance   | number  | The variance of the channel. |
 
