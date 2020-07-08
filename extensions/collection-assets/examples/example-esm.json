@@ -1,5 +1,5 @@
 {
-  "stac_version": "1.0.0-beta.1",
+  "stac_version": "1.0.0-beta.2",
   "stac_extensions": [
     "collection-assets",
     "https://github.com/NCAR/esm-collection-spec/tree/v0.2.0/schema.json"

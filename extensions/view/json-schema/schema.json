@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.stacspec.org/dev/extensions/view/json-schema/schema.json#",
+  "$id": "https://schemas.stacspec.org/1.0.0-beta.2/extensions/view/json-schema/schema.json#",
   "title": "View Geometry Extension",
   "description": "STAC View Geometry Extension to a STAC Item.",
   "allOf": [
@@ -24,7 +24,7 @@
           "contains": {
             "enum": [
               "view",
-              "https://schemas.stacspec.org/dev/extensions/view/json-schema/schema.json"
+              "https://schemas.stacspec.org/1.0.0-beta.2/extensions/view/json-schema/schema.json"
             ]
           }
         },

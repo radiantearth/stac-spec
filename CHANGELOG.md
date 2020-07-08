@@ -7,9 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
+
+### Changed
+
+### Removed
+
+### Fixed
+
+
+## [v1.0.0-beta.2] - 2020-07-08
+
+### Added
 - JSON-schema file in the Point Cloud extension.
 
-### Changes
+### Changed
 - Clarification on null geometries, making bbox not required if a null geometry is used.
 - Multiple extents (bounding boxes / intervals) are allowed per Collection
 
@@ -347,6 +358,7 @@ Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkam
 
 
 [Unreleased]: <https://github.com/radiantearth/stac-spec/compare/master...dev>
+[v1.0.0-beta.2]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-beta.1..v1.0.0-beta.2>
 [v1.0.0-beta.1]: <https://github.com/radiantearth/stac-spec/compare/v0.9.0...v1.0.0-beta.1>
 [v0.9.0]: <https://github.com/radiantearth/stac-spec/compare/v0.8.1...v0.9.0>
 [v0.8.1]: <https://github.com/radiantearth/stac-spec/compare/v0.8.0...v0.8.1>
