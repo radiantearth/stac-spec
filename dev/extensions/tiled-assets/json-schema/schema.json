@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.stacspec.org/dev/extensions/tiled-assets/json-schema/schema.json#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/tiled-assets/json-schema/schema.json#",
   "title": "Tiled Assets Extension",
   "description": "Tiled Assets Extension to a STAC Item",
   "oneOf": [
@@ -54,7 +54,7 @@
           "contains": {
             "enum": [
               "tiled-assets",
-              "https://schemas.stacspec.org/dev/extensions/tiled-assets/json-schema/schema.json"
+              "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/tiled-assets/json-schema/schema.json"
             ]
           }
         }
