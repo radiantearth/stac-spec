@@ -36,7 +36,7 @@ also a valid STAC Catalog.
 | description     | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | links           | [[Link Object](#link-object)] | **REQUIRED.** A list of references to other documents.       |
 
-**stac_extensions**: A list of extensions the Catalog implements. This does NOT declare the extensions of children or Items. The list contains URLs to the JSON Schema files it can be validated against. For official [content extensions](../extensions/README.md#list-of-content-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. This does *not* apply for API extensions. If the versions of the extension and the catalog diverge, you can specify the URL of the JSON schema file.
+**stac_extensions**: A list of extensions the Catalog implements. This does NOT declare the extensions of children or Items. The list contains URLs to the JSON Schema files it can be validated against. For official [content extensions](../extensions/README.md#list-of-content-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `single-file-stac` for the Point Cloud extension. If the versions of the extension and the catalog diverge, you can specify the URL of the JSON schema file.
 This list must only contain extensions that extend the Catalog itself, see the the 'Scope' column in the list of extensions.
 
 ### Link Object

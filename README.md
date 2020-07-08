@@ -23,12 +23,13 @@ in a 'beta' state, with no major changes anticipated, so implementors can expect
 at this point we don't anticipate any major changes, but reserve the right to make them if we get feedback that something just doesn't 
 work. Which is to say the next couple months are a great time to implement STAC, as your changes will be head. After 1.0 our goal
 is to not change the core in any backwards incompatible way for a very long time, if ever, so that people can build on this until 
-JSON is no longer relevant. 
+JSON is no longer relevant. The STAC specification follows [Semantic Versioning](https://semver.org/), so once 1.0.0 is reached any breaking
+change will require the spec to go to 2.0.0. 
 
 ## Current version and branches
 
 The [master branch](https://github.com/radiantearth/stac-spec/tree/master) is the 'stable' version of the spec. It is currently version 
-**1.0.0-beta.1** of the specification. The 
+**1.0.0-beta.2** of the specification. The 
 [dev](https://github.com/radiantearth/stac-spec/tree/dev) branch is where active development takes place, and may have inconsistent examples. 
 Whenever dev stabilizes a release is cut and we merge dev in to master. So master should be stable at any given time.
 It is possible that there may be small releases in quick succession, especially if they are nice improvements that do 
@@ -44,7 +45,7 @@ the specification takes place in the [issue tracker](https://github.com/radiante
 
 ## In this Repository
 
-This repository contains the core specifications plus examples and validation schemas and tools. Also included are a
+This repository contains the core specifications plus examples and validation schemas. Also included are a
 few documents that provide more context and plans for the evolution of the specification. Each spec folder contains a
 README explaining the layout of the folder, the main specification document, examples, and validating schemas. And 
 there is one more specification in the STAC 'family', which is

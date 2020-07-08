@@ -64,3 +64,6 @@ typings/
 # IntelliJ IDEA files
 .idea/
 *.iml
+
+# Folder created when CI puhlishes JSON Schemas
+schemas/

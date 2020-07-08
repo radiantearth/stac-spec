@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "schema.json#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/timestamps/json-schema/schema.json#",
   "title": "Timestamps Extension",
   "description": "STAC Timestamps Extension to a STAC Item.",
   "allOf": [
@@ -18,7 +18,10 @@
         "stac_extensions": {
           "type": "array",
           "contains": {
-            "const": "timestamps"
+            "enum": [
+              "timestamps",
+              "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/timestamps/json-schema/schema.json"
+            ]
           }
         },
         "properties": {

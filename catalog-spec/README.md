@@ -26,10 +26,6 @@ contains a full sample catalog.
 **Schemas:** The schemas to validate the core Catalog definition are found in the *[json-schema/](json-schema/)* folder.
 The primary one is *[catalog.json](json-schema/catalog.json)*.
 
-## Schema Validation
-
-Instruction on schema validation for STAC Catalog can be found in the [validation instructions](../validation/README.md).
-
 ## Catalog Evolution 
 
 The Catalog specification is maturing, but it is still relatively early days. The core of Catalog has been defined very

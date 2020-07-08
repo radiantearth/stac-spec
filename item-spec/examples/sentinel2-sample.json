@@ -1,8 +1,8 @@
 {
-  "stac_version": "1.0.0-beta.1",
+  "stac_version": "1.0.0-beta.2",
   "stac_extensions": [
     "view",
-    "proj"
+    "projection"
   ],
   "type": "Feature",
   "id": "S2A_OPER_MSI_L2A_TL_SGS__20180524T190423_A015250_T26SKD_N02.08",

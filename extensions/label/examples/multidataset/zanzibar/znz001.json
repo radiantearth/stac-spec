@@ -1,5 +1,5 @@
 {
-  "stac_version": "1.0.0-beta.1",
+  "stac_version": "1.0.0-beta.2",
   "stac_extensions": [
     "label",
     "version"
@@ -14,7 +14,7 @@
   ],
   "geometry": {
     "type": "Polygon",
-    "coordinates": [
+    "coordinates": [[
       [
         39.28919876472999,
         -5.743028283012867
@@ -31,7 +31,7 @@
         39.28919876472999,
         -5.722212794937691
       ]
-    ]
+    ]]
   },
   "assets": {
     "labels": {

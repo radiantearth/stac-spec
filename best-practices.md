@@ -5,6 +5,7 @@
 * [Field and ID formatting](#field-and-id-formatting)
 * [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
 * [Datetime selection](#datetime-selection)
+* [Unlocated Items](#unlocated-items)
 * [Representing Vector Layers in STAC](#representing-vector-layers-in-stac)
 * [Common Use Cases of Additional Fields for Assets](#common-use-cases-of-additional-fields-for-assets)
 * [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
@@ -68,6 +69,45 @@ a MODIS 8 day composite image can define the `datetime` to be the nominal date h
 might choose to have `datetime` be the start. The key is to put in a date and time that will be useful for search, as that is
 the focus of STAC. If `datetime` is set to `null` then it is strongly recommended to use it in conjunction with a content extension
 that explains why it should not be set for that type of data. 
+
+## Unlocated Items
+
+Though the [GeoJSON standard](https://tools.ietf.org/html/rfc7946) allows null geometries, in STAC we strongly recommend
+that every item have a geometry, since the general expectation of someone using a SpatioTemporal Catalog is to be able to query
+all data by space and time. But there are some use cases where it can make sense to create a STAC Item before it gets
+a geometry. The most common of these is 'level 1' satellite data, where an image is downlinked and cataloged before it has 
+been geospatially located. 
+
+The recommendation for data that does not yet have a location is to follow the GeoJSON concept that it is an ['unlocated' 
+feature](https://tools.ietf.org/html/rfc7946#section-3.2). So if the catalog has data that is not located then it can follow 
+GeoJSON and set the geometry to null. Though normally required, in this case the `bbox` field should not be included.
+
+Note that this recommendation is only for cases where data does not yet have a geometry and it cannot be estimated. There
+are further details on the two most commonly requested desired use cases for setting geometry to null:
+
+### Unrectified Satellite Data
+
+Most satellite data is downlinked without information that precisely describes where it is located on earth. A satellite 
+imagery processing pipeline will always attempt to locate it, but often that process takes a number of hours, or never
+quite completes (like when it is too cloudy). It can be useful to start to populate the Item before it has a geometry. 
+In this case the recommendation is to use the 'estimated' position from the satellite, to populate at least the bounding box,
+and use the same broad bounds for the geometry (or leaving it null) until there is precise ground lock. This estimation is 
+usually done by onboard equipment, like GPS or star trackers, but can be off by kilometers or more. But it is very useful for 
+STAC users to be able to at least find approximate area in their searches. A commonly used field for communicating ground lock 
+is not yet established, but likely should be (an extension proposal would be appreciated).  If there is no way to provide an 
+estimate then the data then a null geometry with no `bbox` can be used, as described above. But the data will likely not
+show up in STAC API searches, as most will at least implicitly use a geometry. Though this section is written with 
+satellite data in mind, one can easily imagine other data types that start with a less precise geometry but have it 
+refined after processing.
+
+### Data that is not spatial
+
+The other case that often comes up is people who love STAC and want to use it to catalog everything they have, even if it is
+not spatial. This use case is not currently supported by STAC, as we are focused on data that is both temporal and spatial
+in nature. The [OGC API - Records](https://github.com/opengeospatial/ogcapi-records) is an emerging standard that likely
+will be able to handle a wider range of data to catalog than STAC. It builds on [OGC API - 
+Features](https://github.com/opengeospatial/ogcapi-features) just like [STAC API](https://github.com/radiantearth/stac-api-spec/)
+does. The [collection assets extension](extensions/collection-assets) may also provide an option for some use cases.
 
 ## Representing Vector Layers in STAC
 

@@ -34,15 +34,13 @@ open issues against the milestone.
 * **Agreement from core team**: The core STAC team should meet (on phone or on gitter) and decided that the release is ready.
 This should include review of the issues, as well as looking at the spec holistically, to make sure the new changes keep
 with a coherent whole.
-* **Validate Examples**: All examples given in the specification should be programmatically validated against their relevant
-schema. For 0.6.0-RC1 and before this is a manual process, but with CirclCI in place this should happen automatically. But
-someone should still review that all the schemas have been updated and align with the current state of the spec, as that
-can not happen automatically.
 * **Final Spec Read Through**: There should be a final read through of the core specification to make sure it makes sense
 and there are no typos, errors, etc.
-* **Update the version numbers**: There are several places in the spec that use the version number in text or a link. These
-include the readme, and the openapi specs. Right now the best thing to do is just a search & replace. Hopefully in the future
-there will be scripts or continuous integration to do this. 
+* **Update the version numbers**: There are several places in the spec that use the version number or a branch name in text
+or a link. These include the markdown files and the JSON schemas. Right now the best thing to do is just a search & replace
+for the last version number and `https://schemas.stacspec.org/dev/` with `https://schemas.stacspec.org/<release-version>/`
+(in JSON Schemas, don't replace it here). `<release-version>` must correspond with the tag on GitHub, usually including a leading `v`.
+Hopefully in the future there will be scripts to do this. 
 * **Update the Changelog**: The [changelog](CHANGELOG.md) should be reviewed to make sure it includes all major improvements
 in the release. And anything in 'unreleased' section should move to the version of the spec to be released.
 * **Merge dev to master**: As there is no 'build' process, since the specification *is* the markdown files in the github

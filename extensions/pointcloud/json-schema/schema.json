@@ -1,0 +1,130 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/pointcloud/json-schema/schema.json#",
+  "title": "Point Cloud Extension",
+  "description": "STAC Point Cloud Extension to a STAC Item",
+  "allOf": [
+    {
+      "$ref": "../../../item-spec/json-schema/item.json"
+    },
+    {
+      "$ref": "#/definitions/pointcloud"
+    }
+  ],
+  "definitions": {
+    "pointcloud": {
+      "type": "object",
+      "required": [
+        "stac_extensions",
+        "properties"
+      ],
+      "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "enum": [
+              "pointcloud",
+              "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/pointcloud/json-schema/schema.json"
+            ]
+          }
+        },
+        "properties": {
+          "type": "object",
+          "required": [
+            "pc:count",
+            "pc:type",
+            "pc:encoding",
+            "pc:schemas"
+          ],
+          "properties": {
+            "pc:count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "pc:type": {
+              "type": "string"
+            },
+            "pc:encoding": {
+              "type": "string"
+            },
+            "pc:schemas": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/definitions/schema"
+              }
+            },
+            "pc:density": {
+              "type": "number",
+              "minimum": 0
+            },
+            "pc:statistics": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/definitions/stats"
+              }
+            }
+          }
+        }
+      }
+    },
+    "schema": {
+      "type": "object",
+      "required": [
+        "name",
+        "size",
+        "type"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "floating",
+            "unsigned",
+            "signed"
+          ]
+        }
+      }
+    },
+    "stats": {
+      "type": "object",
+      "minProperties": 2,
+      "required": [
+        "name",
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "position": {
+          "type": "integer"
+        },
+        "average": {
+          "type": "number"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "maximum": {
+          "type": "number"
+        },
+        "minimum": {
+          "type": "number"
+        },
+        "stddev": {
+          "type": "number"
+        },
+        "variance": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}

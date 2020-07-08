@@ -1,10 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "item.json#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json#",
   "title": "STAC Item",
   "type": "object",
   "description": "This object represents the metadata for an item in a SpatioTemporal Asset Catalog.",
-  "additionalProperties": true,
   "allOf": [
     {
       "$ref": "#/definitions/core"
@@ -36,20 +35,65 @@
           "$ref": "https://geojson.org/schema/Feature.json"
         },
         {
+          "oneOf": [
+            {
+              "type": "object",
+              "required": [
+                "geometry",
+                "bbox"
+              ],
+              "properties": {
+                "geometry": {
+                  "$ref": "https://geojson.org/schema/Geometry.json"
+                },
+                "bbox": {
+                  "type": "array",
+                  "oneOf": [
+                    {
+                      "minItems": 4,
+                      "maxItems": 4
+                    },
+                    {
+                      "minItems": 6,
+                      "maxItems": 6
+                    }
+                  ],
+                  "items": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "geometry"
+              ],
+              "properties": {
+                "geometry": {
+                  "type": "null"
+                },
+                "bbox": {
+                  "not": {}
+                }
+              }
+            }
+          ]
+        },
+        {
           "type": "object",
           "required": [
             "stac_version",
             "id",
             "links",
             "assets",
-            "bbox",
             "properties"
           ],
           "properties": {
             "stac_version": {
               "title": "STAC version",
               "type": "string",
-              "const": "1.0.0-beta.1"
+              "const": "1.0.0-beta.2"
             },
             "stac_extensions": {
               "title": "STAC extensions",
@@ -73,13 +117,6 @@
               "title": "Provider ID",
               "description": "Provider item ID",
               "type": "string"
-            },
-            "bbox": {
-              "type": "array",
-              "minItems": 4,
-              "items": {
-                "type": "number"
-              }
             },
             "links": {
               "title": "Item links",

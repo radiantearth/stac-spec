@@ -1,5 +1,5 @@
 {
-  "stac_version": "1.0.0-beta.1",
+  "stac_version": "1.0.0-beta.2",
   "stac_extensions": [
     "pointcloud"
   ],
@@ -47,7 +47,7 @@
     }
   ],
   "properties": {
-    "datetime": "2013-07-17T00:00:00-05:00Z",
+    "datetime": "2013-07-17T00:00:00Z",
     "pc:count": 10653336,
     "pc:density": 0,
     "pc:encoding": "LASzip",

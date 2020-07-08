@@ -1,13 +1,19 @@
 {
-  "stac_version": "1.0.0-beta.1",
+  "stac_version": "1.0.0-beta.2",
   "stac_extensions": [
     "eo",
-    "proj",
+    "projection",
     "view",
     "https://example.digitalglobe.com/stac/1.0/schema.json"
   ],
   "id": "103001004B316600_P002_MUL",
   "type": "Feature",
+  "bbox": [
+    -105.161151214,
+    39.0436821016,
+    -104.947574355,
+    39.1750024943
+  ],
   "geometry": {
     "type": "Polygon",
     "coordinates": [
@@ -62,7 +68,9 @@
     },
     "thumbnail": {
       "href": "https://15NOV09180446-M1BS-056823192010_01_P002.JPG",
-      "roles": [ "thumbnail" ]
+      "roles": [
+        "thumbnail"
+      ]
     }
   },
   "properties": {
@@ -86,17 +94,17 @@
     "dg:platform": "worldview02",
     "dg:product_level": "LV1B",
     "dg:product": "worldview02_lv1b",
-    "datetime": "2015-11-09T18:04:46.000Z"
+    "datetime": "2015-11-09T18:04:46Z"
   },
   "collection": "dg_worldview02",
-   "links": [
-      {
-        "rel": "self",
-        "href": "https://s3.amazonaws.com/digitalglobe-catalog-spec/collections/dg_worldview02_lv1b/103001004B316600_P002_MUL"
-      },
-      {
-        "rel": "collection",
-        "href": "https://s3.amazonaws.com/digitalglobe-catalog-spec/collections/dg_worldview02_lv1b.json"
-      }
-    ]
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://s3.amazonaws.com/digitalglobe-catalog-spec/collections/dg_worldview02_lv1b/103001004B316600_P002_MUL"
+    },
+    {
+      "rel": "collection",
+      "href": "https://s3.amazonaws.com/digitalglobe-catalog-spec/collections/dg_worldview02_lv1b.json"
+    }
+  ]
 }

@@ -8,8 +8,6 @@
 
 An extension to provide a set of Collections and Items within a single file catalog. The single file is a STAC catalog that contains everything that would normally be in a linked set of STAC files. This format is useful to save a portion of a catalog, or when creating a small catalog from derived data that should remain portable. It is most useful for saving the results of a search from a STAC API, as the Items, Collections, and optionally the search parameters are all saved within the single file. Hierarchical links have no meaning in a single file STAC, and so, if present, should be removed when creating a single file catalog.
 
-The Items in the single file catalog should not be merged with the Collection properties (i.e., common properties). The Collections are all included in the file as well, so there is no need to duplicate the common properties for every Item in the catalog.
-
 - [Example](examples/example-search.json)
 - [JSON Schema](json-schema/schema.json)
 

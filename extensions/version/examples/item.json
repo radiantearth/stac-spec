@@ -1,10 +1,9 @@
 {
-  "stac_version": "1.0.0-beta.1",
+  "stac_version": "1.0.0-beta.2",
   "stac_extensions": [
     "version"
   ],
   "id": "MERRAclim.2_5m_min_80s",
-  "version": "1",
   "type": "Feature",
   "geometry": {
     "type": "Polygon",
@@ -20,6 +19,7 @@
   },
   "bbox": [-180,-90,180,90],
   "properties": {
+    "version": "1",
     "title": "MERRAclim. 2_5m_min_80s",
     "description": "MERRAclim Dataset. 19 global bioclimatic variables from the 1980s decade at 2.5 arcminutes resolution in GEOtiff format. The humidity version used is the min. The variables have been built using the same protocol as WorldClim with data from MERRA. Temperature layers (BIO1-BIO11) are in degree Celsius multiplied by 10, humidity layers (BIO12-BIO19) are in kg of water/kg of air multiplied by 100000.",
     "datetime": "1985-07-01T00:00:00Z"
