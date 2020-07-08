@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "schema.json#",
+  "$id": "https://stacspec.org/schemas/v1.0.0-beta.1/extensions/scientific/json-schema/schema.json#",
   "title": "Scientific Extension",
   "description": "STAC Scientific Extension to STAC Items or STAC Collections.",
   "oneOf": [
@@ -49,7 +49,10 @@
         "stac_extensions": {
           "type": "array",
           "contains": {
-            "const": "scientific"
+            "enum": [
+              "scientific",
+              "https://schemas.stacspec.org/dev/extensions/scientific/json-schema/schema.json"
+            ]
           }
         }
       }

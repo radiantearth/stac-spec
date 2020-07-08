@@ -5,9 +5,12 @@
   "repository": "https://github.com/radiantearth/stac-spec",
   "license": "Apache-2.0",
   "scripts": {
-    "check-markdown": "remark . -f -r .circleci/rc.yaml"
+    "check-markdown": "remark . -f -r .circleci/rc.yaml",
+    "publish-schemas": "node .circleci/publish-schemas.js"
   },
   "dependencies": {
+    "gh-pages": "^3.0.0",
+    "klaw-sync": "^6.0.0",
     "remark-cli": "^8.0.0",
     "remark-lint": "^7.0.0",
     "remark-lint-no-html": "^2.0.0",

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "basics.json#",
+  "$id": "https://schemas.stacspec.org/dev/item-spec/json-schema/basics.json#",
   "title": "Basic Descriptive Fields",
   "type": "object",
   "properties": {

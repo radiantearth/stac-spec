@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Multiple extents (bounding boxes / intervals) are allowed per Collection
 
 ### Removed
+- Validation instructions
 
 ### Fixed
 - Fixed several JSON Schemas
