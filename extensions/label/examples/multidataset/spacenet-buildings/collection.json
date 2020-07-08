@@ -1,5 +1,5 @@
 {
-  "stac_version": "1.0.0-beta.1",
+  "stac_version": "1.0.0-beta.2",
   "id": "spacenet-buildings-collection",
   "title": "spacenet-buildings AoI",
   "description": "Collection of training labels for spacenet-buildings",

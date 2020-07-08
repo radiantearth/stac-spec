@@ -1,6 +1,6 @@
 {
     "id": "mysearchresults",
-    "stac_version": "1.0.0-beta.1",
+    "stac_version": "1.0.0-beta.2",
     "stac_extensions": [
         "single-file-stac"
     ],
@@ -8,7 +8,7 @@
     "type": "FeatureCollection",
     "features": [
         {
-            "stac_version": "1.0.0-beta.1",
+            "stac_version": "1.0.0-beta.2",
             "stac_extensions": [
                 "projection",
                 "view",
@@ -145,7 +145,7 @@
             "links": []
         },
         {
-            "stac_version": "1.0.0-beta.1",
+            "stac_version": "1.0.0-beta.2",
             "stac_extensions": [
                 "projection",
                 "view",
@@ -292,7 +292,7 @@
                 "earth observation",
                 "usgs"
             ],
-            "stac_version": "1.0.0-beta.1",
+            "stac_version": "1.0.0-beta.2",
             "stac_extensions": [
                 "item_assets"
             ],
