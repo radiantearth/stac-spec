@@ -38,7 +38,7 @@ with a coherent whole.
 and there are no typos, errors, etc.
 * **Update the version numbers**: There are several places in the spec that use the version number in text or a link. These
 include the readme and various examples. The schemas also need to be updated, so they can auto-deploy to schemas.stacspec.org, 
-replacing `/dev/` with `/v<release-version>/` - corresponding with the tag on github. Right now the best thing to do is just a 
+replacing `https://schemas.stacspec.org/dev/` with `https://schemas.stacspec.org/<release-version>/` - corresponding with the tag on GitHub, usually including a leading `v`. Right now the best thing to do is just a 
 search & replace. 
 * **Update the Changelog**: The [changelog](CHANGELOG.md) should be reviewed to make sure it includes all major improvements
 in the release. And anything in 'unreleased' section should move to the version of the spec to be released.
