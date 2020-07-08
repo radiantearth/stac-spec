@@ -25,10 +25,6 @@ structures and fields.
 **Schemas:** The schemas to validate the STAC Collection definition are found in the 
 *[json-schema/](json-schema/)* folder. The primary one is *[collection.json](json-schema/collection.json)*.
 
-## Schema Validation
-
-Instruction on schema validation for STAC Items can be found in the [validation instructions](../validation/README.md).
-
 ## Collection Flexibility
 
 STAC Collections are defined for flexibility. They only require a handful of fields, and

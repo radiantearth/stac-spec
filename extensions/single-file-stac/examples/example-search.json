@@ -297,16 +297,24 @@
                 "item_assets"
             ],
             "extent": {
-                "spatial": [
-                    -180,
-                    -90,
-                    180,
-                    90
-                ],
-                "temporal": [
-                    "2013-06-01",
-                    null
-                ]
+                "spatial": {
+                  "bbox": [
+                    [
+                      -180,
+                      -90,
+                      180,
+                      90
+                    ]
+                  ]
+                },
+                "temporal": {
+                  "interval": [
+                    [
+                      "2013-06-01T00:00:00Z",
+                      null
+                    ]
+                  ]
+                }
             },
             "providers": [
                 {

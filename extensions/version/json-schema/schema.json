@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "schema.json#",
+  "$id": "https://schemas.stacspec.org/dev/extensions/version/json-schema/schema.json#",
   "title": "Versioning Indicators Extension",
   "description": "STAC Versioning Indicators Extension for STAC Items or STAC Collections.",
   "oneOf": [
@@ -49,7 +49,10 @@
         "stac_extensions": {
           "type": "array",
           "contains": {
-            "const": "version"
+            "enum": [
+              "version",
+              "https://schemas.stacspec.org/dev/extensions/version/json-schema/schema.json"
+            ]
           }
         }
       }

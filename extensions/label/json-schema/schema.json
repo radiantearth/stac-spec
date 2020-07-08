@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "schema.json#",
+  "$id": "https://schemas.stacspec.org/dev/extensions/label/json-schema/schema.json#",
   "title": "Label Extension",
   "description": "STAC Label Data Item Extension Spec",
   "allOf": [
@@ -22,7 +22,10 @@
         "stac_extensions": {
           "type": "array",
           "contains": {
-            "const": "label"
+            "enum": [
+              "label",
+              "https://schemas.stacspec.org/dev/extensions/label/json-schema/schema.json"
+            ]
           }
         },
         "properties": {
