@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/timestamps/json-schema/schema.json#",
+  "title": "Timestamps Extension",
+  "description": "STAC Timestamps Extension to a STAC Item.",
+  "allOf": [
+    {
+      "$ref": "../../../item-spec/json-schema/item.json"
+    },
+    {
+      "type": "object",
+      "required": [
+        "stac_extensions",
+        "properties",
+        "assets"
+      ],
+      "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "enum": [
+              "timestamps",
+              "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/timestamps/json-schema/schema.json"
+            ]
+          }
+        },
+        "properties": {
+          "$ref": "#/definitions/all"
+        },
+        "assets": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/all"
+          }
+        }
+      }
+    }
+  ],
+  "definitions": {
+    "all": {
+      "type": "object",
+      "properties": {
+        "published": {
+          "$ref": "#/definitions/published"
+        },
+        "unpublished": {
+          "$ref": "#/definitions/unpublished"
+        },
+        "expires": {
+          "$ref": "#/definitions/expires"
+        }
+      }
+    },
+    "published": {
+      "title": "Publish Time",
+      "type": "string",
+      "format": "date-time"
+    },
+    "unpublished": {
+      "title": "Removal Time",
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires": {
+      "title": "Expiry Time",
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

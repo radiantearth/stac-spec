@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/version/json-schema/schema.json#",
+  "title": "Versioning Indicators Extension",
+  "description": "STAC Versioning Indicators Extension for STAC Items or STAC Collections.",
+  "oneOf": [
+    {
+      "allOf": [
+        {
+          "$ref": "../../../item-spec/json-schema/item.json"
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
+          "type": "object",
+          "required": [
+            "properties"
+          ],
+          "properties": {
+            "properties": {
+              "$ref": "#/definitions/version_extension"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "allOf": [
+        {
+          "$ref": "../../../collection-spec/json-schema/collection.json"
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
+          "$ref": "#/definitions/version_extension"
+        }
+      ]
+    }
+  ],
+  "definitions": {
+    "stac_extensions": {
+      "type": "object",
+      "required": [
+        "stac_extensions"
+      ],
+      "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "enum": [
+              "version",
+              "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/version/json-schema/schema.json"
+            ]
+          }
+        }
+      }
+    },
+    "version_extension": {
+      "type": "object",
+      "required": [
+        "version"
+      ],
+      "properties": {
+        "version": {
+          "type": "string",
+          "title": "Version"
+        }, 
+        "deprecated": {
+          "type": "boolean", 
+          "title": "Deprecated",
+          "default": false
+        }
+      }
+    }
+  }
+}

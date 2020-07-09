@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/item-assets/json-schema/schema.json#",
+  "title": "Asset Definition Extension Specification",
+  "description": "STAC Asset Definition Extension to a STAC Collection",
+  "allOf": [
+    {
+      "$ref": "../../../collection-spec/json-schema/collection.json"
+    },
+    {
+      "$ref": "#/definitions/item_assets"
+    }
+  ],
+  "definitions": {
+    "item_assets": {
+      "title": "Item Assets Definition",
+      "type": "object",
+      "required": [
+        "stac_extensions",
+        "item_assets"
+      ],
+      "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "enum": [
+              "item-assets",
+              "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/item-assets/json-schema/schema.json"
+            ]
+          }
+        },
+        "item_assets": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/asset"
+          }
+        }
+      }
+    },
+    "asset": {
+      "type": "object",
+      "minProperties": 2,
+      "properties": {
+        "title": {
+          "title": "Asset title",
+          "type": "string"
+        },
+        "description": {
+          "title": "Asset description",
+          "type": "string"
+        },
+        "type": {
+          "title": "Asset type",
+          "type": "string"
+        },
+        "roles": {
+          "title": "Asset roles",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

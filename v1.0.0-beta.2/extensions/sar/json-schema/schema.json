@@ -1,0 +1,159 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/sar/json-schema/schema.json#",
+  "title": "SAR Extension",
+  "description": "STAC SAR Extension to a STAC Item",
+  "allOf": [
+    {
+      "$ref": "../../../item-spec/json-schema/item.json"
+    },
+    {
+      "$ref": "#/definitions/sar"
+    }
+  ],
+  "definitions": {
+    "sar": {
+      "type": "object",
+      "required": [
+        "stac_extensions",
+        "properties",
+        "assets"
+      ],
+      "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "enum": [
+              "sar",
+              "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/sar/json-schema/schema.json"
+            ]
+          }
+        },
+        "properties": {
+          "type": "object",
+          "required": [
+            "sar:instrument_mode",
+            "sar:frequency_band",
+            "sar:polarizations",
+            "sar:product_type"
+          ],
+          "properties": {
+            "sar:instrument_mode": {
+              "title": "Instrument Mode",
+              "type": "string",
+              "example": "WV"
+            },
+            "sar:frequency_band": {
+              "title": "Frequency Band",
+              "type": "string",
+              "enum": [
+                "P",
+                "L",
+                "S",
+                "C",
+                "X",
+                "Ku",
+                "K",
+                "Ka"
+              ]
+            },
+            "sar:center_frequency": {
+              "title": "Center Frequency (GHz)",
+              "type": "number"
+            },
+            "sar:polarizations": {
+              "title": "Polarizations",
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 4,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "HH",
+                  "VV",
+                  "HV",
+                  "VH"
+                ]
+              }
+            },
+            "sar:product_type": {
+              "title": "Product type",
+              "type": "string",
+              "examples": [
+                "SSC",
+                "MGD",
+                "SGC"
+              ]
+            },
+            "sar:resolution_range": {
+              "title": "Resolution range (m)",
+              "type": "number",
+              "minimum": 0
+            },
+            "sar:resolution_azimuth": {
+              "title": "Resolution azimuth (m)",
+              "type": "number",
+              "minimum": 0
+            },
+            "sar:pixel_spacing_range": {
+              "title": "Pixel spacing range (m)",
+              "type": "number",
+              "minimum": 0
+            },
+            "sar:pixel_spacing_azimuth": {
+              "title": "Pixel spacing azimuth (m)",
+              "type": "number",
+              "minimum": 0
+            },
+            "sar:looks_range": {
+              "title": "Looks range",
+              "type": "integer",
+              "minimum": 0
+            },
+            "sar:looks_azimuth": {
+              "title": "Looks azimuth",
+              "type": "integer",
+              "minimum": 0
+            },
+            "sar:looks_equivalent_number": {
+              "title": "Equivalent number of looks (ENL)",
+              "type": "number",
+              "minimum": 0
+            },
+            "sar:observation_direction": {
+              "title": "Antenna pointing direction",
+              "type": "string",
+              "enum": [
+                "left",
+                "right"
+              ]
+            }
+          }
+        },
+        "assets": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "sar:polarizations": {
+                "title": "Polarizations",
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "HH",
+                    "VV",
+                    "HV",
+                    "VH"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

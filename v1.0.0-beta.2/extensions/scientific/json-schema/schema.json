@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/scientific/json-schema/schema.json#",
+  "title": "Scientific Extension",
+  "description": "STAC Scientific Extension to STAC Items or STAC Collections.",
+  "oneOf": [
+    {
+      "allOf": [
+        {
+          "$ref": "../../../item-spec/json-schema/item.json"
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
+          "type": "object",
+          "required": [
+            "properties"
+          ],
+          "properties": {
+            "properties": {
+              "$ref": "#/definitions/scientific"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "allOf": [
+        {
+          "$ref": "../../../collection-spec/json-schema/collection.json"
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
+          "$ref": "#/definitions/scientific"
+        }
+      ]
+    }
+  ],
+  "definitions": {
+    "stac_extensions": {
+      "type": "object",
+      "required": [
+        "stac_extensions"
+      ],
+      "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "enum": [
+              "scientific",
+              "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/scientific/json-schema/schema.json"
+            ]
+          }
+        }
+      }
+    },
+    "scientific": {
+      "type": "object",
+      "anyOf": [
+        {"required": ["sci:doi"]},
+        {"required": ["sci:citation"]},
+        {"required": ["sci:publications"]}
+      ],
+      "properties": {
+        "sci:doi": {
+          "type": "string",
+          "title": "Data DOI",
+          "pattern": "^(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![%\"#? ])\\S)+)$"
+        }, 
+        "sci:citation": {
+          "type": "string", 
+          "title": "Proposed Data Citation"
+        },
+        "sci:publications": {
+          "type": "array",
+          "title": "Publications",
+          "items": {
+            "type": "object",
+            "properties": {
+              "doi": {
+                "type": "string",
+                "title": "Publication DOI",
+                "pattern": "^(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![%\"#? ])\\S)+)$"
+              }, 
+              "citation": { 
+                "type": "string", 
+                "title": "Publication Citation"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

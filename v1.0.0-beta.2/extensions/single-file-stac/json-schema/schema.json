@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/single-file-stac/json-schema/schema.json#",
+  "title": "Single File STAC Extension",
+  "description": "Single File STAC Extension to combine Collections and Items in single file catalog",
+  "allOf": [
+    {
+      "$ref": "../../../catalog-spec/json-schema/catalog.json"
+    },
+    {
+      "$ref": "https://geojson.org/schema/FeatureCollection.json"
+    },
+    {
+      "$ref": "#/definitions/single-file-stac"
+    }
+  ],
+  "definitions": {
+    "single-file-stac": {
+      "type": "object",
+      "required": [
+        "stac_extensions",
+        "features"
+      ],
+      "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "enum": [
+              "single-file-stac",
+              "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/single-file-stac/json-schema/schema.json"
+            ]
+          }
+        },
+        "collections": {
+          "type": "array",
+          "items": {
+            "$ref": "../../../collection-spec/json-schema/collection.json"
+          }
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "$ref": "../../../item-spec/json-schema/item.json"
+          }
+        }
+      }
+    }
+  }
+}

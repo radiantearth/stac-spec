@@ -1,0 +1,341 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/datacube/json-schema/schema.json#",
+  "title": "Data Cube Extension",
+  "description": "STAC Data Cube Extension to STAC Items and STAC Collections",
+  "oneOf": [
+    {
+      "allOf": [
+        {
+          "$ref": "../../../item-spec/json-schema/item.json"
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
+          "type": "object",
+          "required": [
+            "properties"
+          ],
+          "properties": {
+            "properties": {
+              "$ref": "#/definitions/datacube"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "allOf": [
+        {
+          "$ref": "../../../collection-spec/json-schema/collection.json"
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
+          "$ref": "#/definitions/datacube"
+        }
+      ]
+    }
+  ],
+  "definitions": {
+    "stac_extensions": {
+      "type": "object",
+      "required": [
+        "stac_extensions"
+      ],
+      "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "enum": [
+              "datacube",
+              "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/datacube/json-schema/schema.json"
+            ]
+          }
+        }
+      }
+    },
+    "datacube": {
+      "type": "object",
+      "required": [
+        "cube:dimensions"
+      ],
+      "properties": {
+        "cube:dimensions": {
+          "type": "object",
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/objects/additional_dimension"
+              },
+              {
+                "$ref": "#/definitions/objects/horizontal_spatial_dimension"
+              },
+              {
+                "$ref": "#/definitions/objects/vertical_spatial_dimension"
+              },
+              {
+                "$ref": "#/definitions/objects/temporal_dimension"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "objects": {
+      "additional_dimension": {
+        "title": "Additional Dimension Object",
+        "type": "object",
+        "anyOf": [
+          {
+            "required": [
+              "type",
+              "extent"
+            ]
+          },
+          {
+            "required": [
+              "type",
+              "values"
+            ]
+          }
+        ],
+        "not": {
+          "required": ["axis"]
+        },
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "type": "string"
+              },
+              {
+                "not": {
+                  "type": "string",
+                  "const": "spatial"
+                }
+              }
+            ]
+          },
+          "description": {
+            "$ref": "#/definitions/description"
+          },
+          "extent": {
+            "$ref": "#/definitions/extent_open"
+          },
+          "values": {
+            "$ref": "#/definitions/values"
+          },
+          "step": {
+            "$ref": "#/definitions/step"
+          },
+          "unit": {
+            "$ref": "#/definitions/unit"
+          },
+          "reference_system": {
+            "type": "string"
+          }
+        }
+      },
+      "horizontal_spatial_dimension": {
+        "title": "Horizontal Spatial Dimension Object",
+        "type": "object",
+        "required": [
+          "type",
+          "axis",
+          "extent"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/definitions/type_spatial"
+          },
+          "axis": {
+            "$ref": "#/definitions/axis_xy"
+          },
+          "description": {
+            "$ref": "#/definitions/description"
+          },
+          "extent": {
+            "$ref": "#/definitions/extent_closed"
+          },
+          "values": {
+            "$ref": "#/definitions/values_numeric"
+          },
+          "step": {
+            "$ref": "#/definitions/step"
+          },
+          "reference_system": {
+            "$ref": "#/definitions/reference_system_spatial"
+          }
+        }
+      },
+      "vertical_spatial_dimension": {
+        "title": "Vertical Spatial Dimension Object",
+        "type": "object",
+        "anyOf": [
+          {
+            "required": [
+              "type",
+              "axis",
+              "extent"
+            ]
+          },
+          {
+            "required": [
+              "type",
+              "axis",
+              "values"
+            ]
+          }
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/definitions/type_spatial"
+          },
+          "axis": {
+            "$ref": "#/definitions/axis_z"
+          },
+          "description": {
+            "$ref": "#/definitions/description"
+          },
+          "extent": {
+            "$ref": "#/definitions/extent_open"
+          },
+          "values": {
+            "$ref": "#/definitions/values"
+          },
+          "step": {
+            "$ref": "#/definitions/step"
+          },
+          "unit": {
+            "$ref": "#/definitions/unit"
+          },
+          "reference_system": {
+            "$ref": "#/definitions/reference_system_spatial"
+          }
+        }
+      },
+      "temporal_dimension": {
+        "title": "Temporal Dimension Object",
+        "type": "object",
+        "required": [
+          "type",
+          "extent"
+        ],
+        "not": {
+          "required": ["axis"]
+        },
+        "properties": {
+          "type": {
+            "type": "string",
+            "const": "temporal"
+          },
+          "description": {
+            "$ref": "#/definitions/description"
+          },
+          "values": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "extent": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "step": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "type_spatial": {
+      "type": "string",
+      "const": "spatial"
+    },
+    "axis_xy": {
+      "type": "string",
+      "enum": [
+        "x",
+        "y"
+      ]
+    },
+    "axis_z": {
+      "type": "string",
+      "const": "z"
+    },
+    "extent_closed": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "number"
+      }
+    },
+    "extent_open": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": [
+          "number",
+          "null"
+        ]
+      }
+    },
+    "values_numeric": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "number"
+      }
+    },
+    "values": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "step": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "unit": {
+      "type": "string"
+    },
+    "reference_system_spatial": {
+      "type": [
+        "string",
+        "number",
+        "object"
+      ],
+      "default": 4326
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

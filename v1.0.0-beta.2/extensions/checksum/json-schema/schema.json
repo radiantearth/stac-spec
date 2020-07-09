@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/checksum/json-schema/schema.json#",
+  "title": "Checksum Extension Specification",
+  "description": "STAC Checksum Extension to a STAC Item",
+  "oneOf": [
+    {
+      "allOf": [
+        {
+          "$ref": "../../../item-spec/json-schema/item.json"
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
+          "$ref": "#/definitions/checksum_links"
+        },
+        {
+          "$ref": "#/definitions/checksum_assets"
+        }
+      ]
+    },
+    {
+      "allOf": [
+        {
+          "$ref": "../../../catalog-spec/json-schema/catalog.json"
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
+          "$ref": "#/definitions/checksum_links"
+        }
+      ]
+    },
+    {
+      "allOf": [
+        {
+          "$ref": "../../../collection-spec/json-schema/collection.json"
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
+          "$ref": "#/definitions/checksum_links"
+        },
+        {
+          "$ref": "#/definitions/checksum_assets"
+        }
+      ]
+    }
+  ],
+  "definitions": {
+    "stac_extensions": {
+      "type": "object",
+      "required": [
+        "stac_extensions"
+      ],
+      "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "enum": [
+              "checksum",
+              "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/checksum/json-schema/schema.json"
+            ]
+          }
+        }
+      }
+    },
+    "checksum_links": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/checksums"
+          }
+        }
+      }
+    },
+    "checksum_assets": {
+      "type": "object",
+      "properties": {
+        "assets": {
+          "type": "object",
+          "patternProperties": {
+            ".+": {
+              "$ref": "#/definitions/checksums"
+            }
+          }
+        }
+      }
+    },
+    "checksums": {
+      "type": "object",
+      "properties": {
+        "checksum:multihash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]+$",
+          "title": "Multihash"
+        }
+      }
+    }
+  }
+}

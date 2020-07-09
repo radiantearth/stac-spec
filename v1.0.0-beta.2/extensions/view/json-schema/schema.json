@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/view/json-schema/schema.json#",
+  "title": "View Geometry Extension",
+  "description": "STAC View Geometry Extension to a STAC Item.",
+  "allOf": [
+    {
+      "$ref": "../../../item-spec/json-schema/item.json"
+    },
+    {
+      "$ref": "#/definitions/view"
+    }
+  ],
+  "definitions": {
+    "view": {
+      "type": "object",
+      "required": [
+        "stac_extensions",
+        "properties"
+      ],
+      "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "enum": [
+              "view",
+              "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/view/json-schema/schema.json"
+            ]
+          }
+        },
+        "properties": {
+          "type": "object",
+          "anyOf": [
+            {"required": ["view:off_nadir"]},
+            {"required": ["view:incidence_angle"]},
+            {"required": ["view:azimuth"]},
+            {"required": ["view:sun_azimuth"]},
+            {"required": ["view:sun_elevation"]}
+          ],
+          "properties": {
+            "view:off_nadir": {
+              "title": "Off Nadir",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 90
+            },
+            "view:incidence_angle": {
+              "title": "Center incidence angle",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 90
+            },
+            "view:azimuth": {
+              "title": "Azimuth angle",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 360
+            },
+            "view:sun_azimuth": {
+              "title": "Sun Azimuth",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 360
+            },
+            "view:sun_elevation": {
+              "title": "Sun Elevation",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 90
+            }
+          }
+        }
+      }
+    }
+  }
+}

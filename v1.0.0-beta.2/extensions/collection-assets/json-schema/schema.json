@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/collection-assets/json-schema/schema.json#",
+  "title": "Collection Assets Extension Specification",
+  "description": "STAC Collection-level assets Extension to a STAC Collection",
+  "allOf": [
+    {
+      "$ref": "../../../collection-spec/json-schema/collection.json"
+    },
+    {
+      "type": "object",
+      "required": [
+        "stac_extensions",
+        "assets"
+      ],
+      "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "enum": [
+              "collection-assets",
+              "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/collection-assets/json-schema/schema.json"
+            ]
+          }
+        },
+        "assets": {
+          "$ref": "../../../item-spec/json-schema/item.json#/definitions/assets"
+        }
+      }
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/checksum/json-schema/schema.json#",
+  "$id": "https://schemas.stacspec.org/dev/extensions/checksum/json-schema/schema.json#",
   "title": "Checksum Extension Specification",
   "description": "STAC Checksum Extension to a STAC Item",
   "oneOf": [
@@ -62,7 +62,7 @@
           "contains": {
             "enum": [
               "checksum",
-              "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/checksum/json-schema/schema.json"
+              "https://schemas.stacspec.org/dev/extensions/checksum/json-schema/schema.json"
             ]
           }
         }

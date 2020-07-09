@@ -1,0 +1,166 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/label/json-schema/schema.json#",
+  "title": "Label Extension",
+  "description": "STAC Label Data Item Extension Spec",
+  "allOf": [
+    {
+      "$ref": "../../../item-spec/json-schema/item.json"
+    },
+    {
+      "$ref": "#/definitions/label"
+    }
+  ],
+  "definitions": {
+    "label": {
+      "type": "object",
+      "required": [
+        "stac_extensions",
+        "properties"
+      ],
+      "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "enum": [
+              "label",
+              "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/label/json-schema/schema.json"
+            ]
+          }
+        },
+        "properties": {
+          "type": "object",
+          "required": [
+            "label:properties",
+            "label:classes",
+            "label:description",
+            "label:type"
+          ],
+          "properties": {
+            "label:properties": {
+              "title": "Property",
+              "oneOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "label:classes": {
+              "title": "Classes",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "classes"
+                ],
+                "properties": {
+                  "name": {
+                    "title": "Name",
+                    "type": "string"
+                  },
+                  "classes": {
+                    "title": "Classes",
+                    "oneOf": [
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "label:description": {
+              "title": "Description",
+              "type": "string"
+            },
+            "label:type": {
+              "title": "Type",
+              "type": "string",
+              "enum": [
+                "raster",
+                "vector"
+              ]
+            },
+            "label:tasks": {
+              "title": "Task",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "label:methods": {
+              "title": "Method",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "label:overviews": {
+              "title": "Overview",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "property_key": {
+                    "title": "Property Key",
+                    "type": "string"
+                  },
+                  "counts": {
+                    "title": "Counts",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "title": "Class Name",
+                          "type": "string"
+                        },
+                        "count": {
+                          "title": "Count",
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  },
+                  "statistics": {
+                    "title": "Statistics",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "title": "Stat Name",
+                          "type": "string"
+                        },
+                        "value": {
+                          "title": "Value",
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

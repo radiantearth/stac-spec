@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/sat/json-schema/schema.json#",
+  "title": "Sat Extension",
+  "description": "STAC Sat Extension to a STAC Item.",
+  "allOf": [
+    {
+      "$ref": "../../../item-spec/json-schema/item.json"
+    },
+    {
+      "$ref": "#/definitions/sat"
+    },
+    {
+      "$ref": "../../../item-spec/json-schema/instrument.json"
+    }
+  ],
+  "definitions": {
+    "sat": {
+      "type": "object",
+      "required": [
+        "stac_extensions",
+        "properties"
+      ],
+      "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "enum": [
+              "sat",
+              "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/sat/json-schema/schema.json"
+            ]
+          }
+        },
+        "properties": {
+          "type": "object",
+          "anyOf": [
+            {"required": ["sat:relative_orbit"]},
+            {"required": ["sat:orbit_state"]}
+          ],
+          "properties": {
+            "sat:relative_orbit": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sat:orbit_state": {
+              "title": "Orbit State",
+              "type": "string",
+              "enum": [
+                "ascending",
+                "descending",
+                "geostationary"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
