@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- Clarified the role of geometries on items in the label extension
+
 ### Removed
 
 ### Fixed
