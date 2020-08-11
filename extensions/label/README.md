@@ -145,7 +145,7 @@ The raster label file (e.g. a GeoTIFF) should be included as an asset under the 
 The source imagery used for creating the label is linked to under `links` (see below). However the source imagery is likely to have been rendered in some way when creating the training data. For instance, a byte-scaled true color image may have been created from the source imagery. It may be useful to save this image and include it as an asset in the `Item`.
 
 #### Links: source imagery
-A Label Item links to any source imagery that the AOI applys to by linking to the STAC Item representing the imagery. Source imagery is indicated by using a `rel` type of "source" and providing the link to the STAC Item.
+A Label Item links to any source imagery that the AOI applies to by linking to the STAC Item representing the imagery. Source imagery is indicated by using a `rel` type of "source" and providing the link to the STAC Item.
 
 In addition the source imagery link has a new label extension specific field:
 

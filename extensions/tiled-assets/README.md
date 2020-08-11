@@ -49,7 +49,7 @@ This object allows to reference a tile matrix set. This concept is modelled afte
 **url**/**well_known_scale_set**: Either one of these parameters must be present.
 
 **url**: The URL must refer to a valid tile matrix set definition as defined in the Two-dimensional tile matrix set specification in any encoding (JSON, JSON-LD, or XML).
-It is also possible, to have the tile matrix set embedded in the items collection, catalog or even in the items file itself using the `tiles:tile_matrix_sets` property. When refering to an embedded tile matrix set definition, the name of the map key of that tile matrix set definition must be used as a URL fragment.
+It is also possible, to have the tile matrix set embedded in the items collection, catalog or even in the items file itself using the `tiles:tile_matrix_sets` property. When referring to an embedded tile matrix set definition, the name of the map key of that tile matrix set definition must be used as a URL fragment.
 
 Example reference to an external tile matrix definition:
 
@@ -87,7 +87,7 @@ This object allows to specify subset region of the source tileset. This concept 
 
 ### Pixel Buffer Object
 
-Pixel buffer objects allow the definition of image boundarys, so that the internal tiles may overlap. When using this information, the clients may be able to reduce the number of requests.
+Pixel buffer objects allow the definition of image boundaries, so that the internal tiles may overlap. When using this information, the clients may be able to reduce the number of requests.
 
 | Field Name    | Type    | Description                                                                                                        |
 | ------------- | ------- | ------------------------------------------------------------------------------------------------------------------ |
