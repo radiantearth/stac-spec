@@ -1,0 +1,41 @@
+{
+  "stac_version": "1.0.0-beta.2",
+  "stac_extensions": [
+    "anonymized-location"
+  ],
+  "id": "su_african_crops_source",
+  "title": "Stanford University African Crop Dataset Source Imagery",
+  "description": "Source imagery for the labeled African crop dataset from Stanford University",
+  "license": "proprietary",
+  "extent": {
+    "spatial": {
+      "bbox":[
+        148,
+        59,
+        149,
+        60
+      ]
+    },
+    "temporal": {
+      "interval": [
+        ["2015-06-23T00:00:00Z","2019-07-10T13:44:56Z"]
+      ]
+    }
+  },
+  "anon:size": 1,
+  "anon:warning": "WARNING: The item geometries in this collection have been anonymized such that they exist somewhere within the 1 degree x 1 degree bounding box extent listed within that item's geometry.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json"
+    },
+    {
+      "rel": "item",
+      "href": "su_african_crops_source_s2_ghana_000000_2016_01_03.json"
+    }
+  ]
+}

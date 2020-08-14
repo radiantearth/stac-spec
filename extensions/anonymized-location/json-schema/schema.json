@@ -1,70 +1,61 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "schema.json#",
-  "title": "Anonymized Location Extension",
-  "description": "STAC Anonymized Location Extension to STAC Items or STAC Collections.",
-  "oneOf": [
-    {
-      "allOf": [
-        {
-          "$ref": "../../../item-spec/json-schema/item.json"
-        },
-        {
-          "$ref": "#/definitions/stac_extensions"
-        },
-        {
-          "type": "object",
-          "required": [
+   "$schema":"http://json-schema.org/draft-07/schema#",
+   "$id":"https://schemas.stacspec.org/v1.0.0-beta.2/extensions/anonymized-location/json-schema/schema.json#",
+   "title":"Anonymized Location Extension",
+   "description":"STAC Anonymized Location Extension to STAC Items or STAC Collections.",
+   "allOf":[
+      {
+         "$ref":"../../../item-spec/json-schema/item.json"
+      },
+      {
+         "$ref":"#/definitions/stac_extensions"
+      },
+      {
+         "type":"object",
+         "required":[
             "properties"
-          ],
-          "properties": {
-            "properties": {
-              "$ref": "#/definitions/anonymized-location"
+         ],
+         "properties":{
+            "properties":{
+               "$ref":"#/definitions/anonymized-location"
             }
-          }
-        }
-      ]
-    },
-    {
-      "allOf": [
-        {
-          "$ref": "../../../collection-spec/json-schema/collection.json"
-        },
-        {
-          "$ref": "#/definitions/stac_extensions"
-        },
-        {
-          "$ref": "#/definitions/anonymized-location"
-        }
-      ]
-    }
-  ],
-  "definitions": {
-    "stac_extensions": {
-      "type": "object",
-      "required": [
-        "stac_extensions"
-      ],
-      "properties": {
-        "stac_extensions": {
-          "type": "array",
-          "contains": {
-            "const": "anon"
-          }
-        }
+         }
       }
-    },
-    "anon": {
-      "type": "object",
-      "anyOf": [
-        {"required": ["anon:precision"]}
-      ],
-      "properties": {
-        "anon:precision": {
-          "type": "number",
-          "title": "Bounding Box Precision"
-        }
+   ],
+   "definitions":{
+      "stac_extensions":{
+         "type":"object",
+         "required":[
+            "stac_extensions"
+         ],
+         "properties":{
+            "stac_extensions":{
+               "type":"array",
+               "contains":{
+                  "enum":[
+                     "anonymized-location",
+                     "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/anonymized-location/json-schema/schema.json"
+                  ]
+               }
+            }
+         }
+      },
+      "anonymized-location":{
+         "type":"object",
+         "required":[
+            "anon:size",
+            "anon:warning"
+         ],
+         "properties":{
+            "anon:size":{
+               "type":"number",
+               "title":"Bounding Box Size"
+            },
+            "anon:warning":{
+               "type":"string",
+               "title":"Anonymization Warning"
+            }
+         }
       }
-    }
-  }
+   }
 }

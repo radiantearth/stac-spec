@@ -1,0 +1,21 @@
+{
+    "id": "su_african_crops",
+    "title": "Stanford University African Crop Training Dataset",
+    "description": "Labeled crops within Ghana with Sentinel-2 L1C source imagery",
+    "stac_version": "1.0.0-beta.2",
+    "links":
+    [
+        {
+            "rel": "root",
+            "href": "./catalog.json"
+        },
+        {
+            "rel": "child",
+            "href": "su_african_crops_source/collection.json"
+        },
+        {
+            "rel": "child",
+            "href": "su_african_crops_labels/collection.json"
+        }
+    ]
+}

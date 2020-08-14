@@ -1,0 +1,51 @@
+{
+   "stac_version":"1.0.0-beta.2",
+   "stac_extensions":[
+     "anonymized-location",
+     "label"
+   ],
+   "id":"su_african_crops_labels_ghana_000000",
+   "collection":"su_african_crops_labels",
+   "type":"Feature",
+   "bbox":[
+      148,
+      59,
+      149,
+      60
+   ],
+   "geometry":null,
+   "properties":{
+      "datetime":"2016-01-03T00:00:00.000Z",
+      "title": "Ghana tile 000000 crop type labels",
+      "label:type": "raster",
+      "label:properties": null,
+      "label:description": "sample crop type labels",
+      "anon:size":1,
+      "anon:warning":"WARNING: The item geometries in this collection have been anonymized such that they exist somewhere within the bounding box listed within that item's geometry."
+   },
+   "assets":{
+      "labels":{
+         "href":"https://radiant-mlhub.s3-us-west-2.amazonaws.com/african-crops-02/converted/ghana/truth/truth_ghana_000000/truth_ghana_000000_label.tif",
+         "type":"image/tiff",
+         "title":"Crop Type Labels"
+      }
+   },
+   "links":[
+      {
+         "rel":"parent",
+         "href":"collection.json"
+      },
+      {
+         "rel":"root",
+         "href":"../catalog.json"
+      },
+      {
+         "rel":"collection",
+         "href":"collection.json"
+      },
+      {
+         "rel":"source",
+         "href":"../su_african_crops_source/su_african_crops_source_ghana_000000_2016_01_03.json"
+      }
+   ]
+}

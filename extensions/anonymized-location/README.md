@@ -24,9 +24,8 @@ For Items, the fields are placed in the `properties`. For Collections, the field
 
 | Field Name       | Type                 | Description |
 | ---------------- | -------------------- | ----------- |
-| anon:precision   | number               | The maximum precision of the latitude and longitude coordinates present in the bbox and geometry properties. |
-
-*At least one of the fields must be specified.*
+| anon:size        | number               | **REQUIRED.** The size of one side of the anonymized bounding box in degrees. For example, if this value is set to 2 then the bounding box for the items should be 2 degrees latitude by 2 degrees longitude.   |
+| anon:warning     | string               | **REQUIRED.** A brief warning that the geometry of the item is not accurate and a description of how it has been anonymized. |
 
 ## Implementations
 
