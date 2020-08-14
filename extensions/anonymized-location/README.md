@@ -15,7 +15,7 @@ This extension applies to STAC Items and STAC Collections.
 As these anonymized location information are often closely bound to the collection level and therefore are shared across all items,
 it is recommended adding the fields to the corresponding [STAC Collection](../../collection-spec/README.md).
 
-- Examples: [Collection](examples/collection.json), [Item](examples/item.json)
+- Examples: [Collection](examples/su_african_crops/su_african_crops_source/collection.json), [Item](examples/su_african_crops/su_african_crops_labels/su_african_crops_labels_ghana_000000.json)
 - [JSON Schema](json-schema/schema.json)
 
 ## Item and Collection Fields
