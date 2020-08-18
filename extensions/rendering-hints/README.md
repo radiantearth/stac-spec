@@ -29,8 +29,7 @@ the values are assumed to apply to all non-thumbnail Assets in that Item.
 
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
-| render:max_zoom  | integer | **REQUIRED.** The maximum [zoom level](https://wiki.openstreetmap.org/wiki/Zoom_levels), expressed as an integer, that corresponds with the highest resolution of the data. Specified as
-[Web Mercator](https://en.wikipedia.org/wiki/Web_Mercator_projection) zoom levels.|
+| render:max_zoom  | integer | **REQUIRED.** The maximum [zoom level](https://wiki.openstreetmap.org/wiki/Zoom_levels), expressed as an integer, that corresponds with the highest resolution of the data. Specified as [Web Mercator](https://en.wikipedia.org/wiki/Web_Mercator_projection) zoom levels. |
 | render:min_zoom  | integer  | The minimum [zoom level](https://wiki.openstreetmap.org/wiki/Zoom_levels), expressed as an integer, that tells renderers where the overviews of the data stop. |
 | render:type    | string | The data `type` (float, int, complex, etc) to let the renderer apply any needed rescaling up front. The full set of options is listed below. |
 
@@ -62,6 +61,3 @@ for the type in STAC are specified in the table below.
 | `cint32`  | 32-bit complex integer |
 | `cfloat32` | 32-bit complex float |
 | `cfloat64` | 64-bit complex float |
-
-
-
