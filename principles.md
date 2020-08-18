@@ -31,7 +31,7 @@ for data in a different projection.
 * **Working code required.** Proposed changes should be accompanied by working code
 (ideally with a link to an online service running the code). A reference implementation should be available
 online to power the interactive documentation. Fully accepted specifications should have at least 3 implementations
-that cover the entire specification. Extensions have their own[Extension Maturity](./extensions/README.md#extension-maturity) model.
+that cover the entire specification. Extensions have their own [Extension Maturity](./extensions/README.md#extension-maturity) model.
 
 * **Design for scale.** The design should work great with more data than can be imagined right now.
 Ideally implementations are built with large test data sets to validate that they will work.
