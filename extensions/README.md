@@ -30,7 +30,7 @@ on the extension.
 | Pilot                   | 1           | Idea is fleshed out, with examples and a JSON schema, and implemented in one or more catalogs. Additional implementations encouraged to help give feedback | Approaching stability - breaking changes are not anticipated but can easily come from additional feedback |
 | Candidate               | 3           | A number of implementers are using it and are standing behind it as a solid extension. Can generally count on an extension at this maturity level | Mostly stable, breaking changes require a new version and minor changes are unlikely. |
 | Stable                  | 6           | Highest current level of maturity. The community of extension maintainers commits to a STAC review process for any changes, which are not made lightly. | Completely stable, all changes require a new version number and review process. |
-| Deprecated              | N/A         | A previous extension that has likely been superceded by a newer one or did not work out for some reason. | DO NOT USE, is not supported |
+| Deprecated              | N/A         | A previous extension that has likely been superseded by a newer one or did not work out for some reason. | DO NOT USE, is not supported |
 
 Maturity mostly comes through diverse implementations, so the minimum number of implementations
 column is the main gating function for an extension to mature. But extension authors can also
