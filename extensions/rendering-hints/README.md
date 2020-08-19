@@ -29,21 +29,21 @@ the values are assumed to apply to all non-thumbnail Assets in that Item.
 
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
-| render:max_zoom  | integer | **REQUIRED.** The maximum [zoom level](https://wiki.openstreetmap.org/wiki/Zoom_levels), expressed as an integer, that corresponds with the highest resolution of the data. Specified as [Web Mercator](https://en.wikipedia.org/wiki/Web_Mercator_projection) zoom levels. |
+| render:max_zoom  | integer | The maximum [zoom level](https://wiki.openstreetmap.org/wiki/Zoom_levels), expressed as an integer, that corresponds with the highest resolution of the data. Specified as [Web Mercator](https://en.wikipedia.org/wiki/Web_Mercator_projection) zoom levels. |
 | render:min_zoom  | integer  | The minimum [zoom level](https://wiki.openstreetmap.org/wiki/Zoom_levels), expressed as an integer, that tells renderers where the overviews of the data stop. |
-| render:type    | string | The data `type` (float, int, complex, etc) to let the renderer apply any needed rescaling up front. The full set of options is listed below. |
+| render:data_type    | string | The data `type` (float, int, complex, etc) to let the renderer apply any needed rescaling up front. The full set of options is listed below. |
 
 **render:max_zoom**: This field informs renderers of the resolution of the data, using 
 [Web Mercator](https://en.wikipedia.org/wiki/Web_Mercator_projection) zoom levels (since it is used in the majority
 of web tile maps). Some renderers will not use web mercator, but most should be able to use the hint in web mercator 
-and translate to the appropriate zoom level. The easiest way to get the zoom levels for data is to use [rio-cogeo](https://pypi.org/project/rio-cogeo/): `[get_zooms()](https://github.com/cogeotiff/rio-cogeo/blob/master/rio_cogeo/utils.py#L69)` in python or using `[rio info](https://github.com/cogeotiff/rio-cogeo/#examples)` on the command line. Generally will
-be between 
+and translate to the appropriate zoom level. The easiest way to get the zoom levels for data is to use [rio-cogeo](https://pypi.org/project/rio-cogeo/): `[get_zooms()](https://github.com/cogeotiff/rio-cogeo/blob/master/rio_cogeo/utils.py#L69)` in python or using `[rio info](https://github.com/cogeotiff/rio-cogeo/#examples)` on the command line. Should be between
+0 and 30. 
 
 **render:min_zoom** - This field informs renderers of the minimum level supported by the data, generally corresponding
 to the resolution for which overviews were generated. It works just like max zoom: specified in web mercator and 
 rio-cogeo can be used to easily get the value. If not specified then renderers will assume the minimum zoom is 0.
 
-**render:type** - Specifies the data storage `type` of the assets. Can be used at the asset level if the assets are of
+**render:data_type** - Specifies the data storage `type` of the assets. Can be used at the asset level if the assets are of
 different types. This is used to let the renderer know if any type of rescaling is needed up front. The possible values
 for the type in STAC are specified in the table below.
 
