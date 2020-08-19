@@ -13,6 +13,7 @@
 * [Use of Links](#use-of-links)
 * [Versioning for Catalogs](#versioning-for-catalogs)
 * [STAC on the Web](#stac-on-the-web)
+* [Provenance](#provenance)
 
 ---------
 
@@ -397,3 +398,15 @@ basic geographic filtering from listeners.
 The dynamic STAC API would then listen to the notifications and update its internal datastore whenever new data comes into
 the static catalog. Implementors have had success using AWS Lambda to do a full 'serverless' updating of the elasticsearch
 database, but it could just as easily be a server-based process.
+
+## Provenance
+
+A full provenance model is far beyond the scope of STAC, and the goal is to align with any good independent spec 
+that comes along for that. The [`derived_from` relation type in links](item-spec/item-spec.md#relation-types) is seen as
+a way to encourage fuller specs and at least start a linking structure that can be used as a jumping off point for more
+experiments in provenance tracking.
+
+Providers can provide [lineage](https://github.com/radiantearth/stac-spec/issues/863) information in the `providers` property,
+available for both [Collections](collection-spec/collection-spec.md#provider-object) and [Items](item-spec/common-metadata.md#provider).
+For the provider with the `role` set to `processor` lineage information can be put in the provider's `description` field.
+To not repeat information, it is recommended to put the lineage information in Collections if the information are the same across all items in the Collection.

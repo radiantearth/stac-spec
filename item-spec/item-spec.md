@@ -132,14 +132,10 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | root         | URL to the root STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md). *Absolute* URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
-| derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
+| derived_from | URL to a STAC Item that was used as input data in the creation of this Item. See [Provenance in Best Practices](../best-practices.md#provenance) for more context. |
 | alternate    | It is recommended that STAC Items are also available as HTML, and should use this rel with `"type" : "text/html"` to tell clients where they can get a version of the Item to view in a browser. See [STAC on the Web in Best Practices](../best-practices.md#stac-on-the-web) for more information. |
 
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
-
-*Note regarding the type `derived_from`: A full provenance model is far beyond the scope of STAC, and the goal is to align with any good independent spec 
-that comes along for that. But the derived_from field is seen as a way to encourage fuller specs and at least start a linking
-structure that can be used as a jumping off point for more experiments in provenance tracking*
 
 #### Collections
 
