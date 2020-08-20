@@ -31,7 +31,7 @@ inherited from GeoJSON.
 | ---------- | -------------------------------------------------------------------------- | ----------- |
 | stac_version | string                                                                   | **REQUIRED.** The STAC version the Item implements. |
 | stac_extensions | \[string]                                                             | A list of extensions the Item implements. |
-| id         | string                                                                     | **REQUIRED.** Provider identifier. As most geospatial assets are already defined by some identification scheme by the data provider it is recommended to simply use that ID. Data providers are advised to include sufficient information to make their IDs globally unique, including things like unique satellite IDs. |
+| id         | string                                                                     | **REQUIRED.** Provider identifier. If the item is part of a [Collection](../collection-spec/README.md) its ID should be unique within that collection. |
 | type       | string                                                                     | **REQUIRED.** Type of the GeoJSON Object. MUST be set to `Feature`. |
 | geometry   | [GeoJSON Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) \| [null](https://tools.ietf.org/html/rfc7946#section-3.2) | **REQUIRED.** Defines the full footprint of the asset represented by this item, formatted according to [RFC 7946, section 3.1](https://tools.ietf.org/html/rfc7946#section-3.1). The footprint should be the default GeoJSON geometry, though additional geometries can be included. Coordinates are specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). |
 | bbox       | \[number]                                                                  | **REQUIRED if `geometry` is not `null`.** Bounding Box of the asset represented by this item, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5). |
@@ -41,6 +41,12 @@ inherited from GeoJSON.
 | collection | string                                                                     | The `id` of the STAC Collection this Item references to (see [`collection` relation type](#relation-types)). This field is *required* if such a relation type is present. This field provides an easy way for a user to search for any Items that belong in a specified Collection. |
 
 **stac_version**: In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
+
+**id**: It is important that an ID is unique within a collection, as the item ID plus the collection (ID plus the 
+[Provider](../collection-spec/collection-spec.md#provider-object)) gives us a globally unique ID. As most geospatial assets are already uniquely defined by some 
+identification scheme from the data provider it is recommended to simply use that ID. Data providers are advised to include sufficient information to make their 
+IDs globally unique, including things like unique satellite IDs. See the [id section of best practices](../best-practices.md#field-and-id-formatting) for 
+additional recommendations.
 
 **stac_extensions**: A list of extensions the Item implements. The list contains URLs to the JSON Schema files it can be validated against. For official [content extensions](../extensions/README.md#list-of-content-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. This does *not* apply for API extensions. If the versions of the extension and the item diverge, you can specify the URL of the JSON schema file.
 This list must only contain extensions that extend the Item itself, see the the 'Scope' column in the list of extensions. If an extension such as the `eo` extension has influence on multiple parts of the whole catalog structure, it must be listed in all affected parts (e.g. Collection and Item for the `eo` extension).
