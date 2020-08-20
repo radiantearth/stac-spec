@@ -38,7 +38,7 @@ would want to show, and then the maximum zoom level is calculated from the `gsd`
 is based on the highest level of overview (also known as a [pyramid](https://en.wikipedia.org/wiki/Pyramid_(image_processing)))
 contained in the asset. 
 
-![Image Pyramid](https://user-images.githubusercontent.com/407017/90821250-75ce5280-e2e7-11ea-9008-6c073e083be0.png)
+<img src="https://user-images.githubusercontent.com/407017/90821250-75ce5280-e2e7-11ea-9008-6c073e083be0.png" alt="image pyramid" width="300">
 
 So in the above image it would be the ground sample distance of 'level 4', which will be a much higher gsd than the image,
 as each pixel is greatly down-sampled. Dynamic tile servers (like [titiler](https://github.com/developmentseed/titiler)) will
