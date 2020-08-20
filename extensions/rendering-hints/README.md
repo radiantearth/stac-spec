@@ -29,19 +29,22 @@ the values are assumed to apply to all non-thumbnail Assets in that Item.
 
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
-| render:max_zoom  | integer | The maximum [zoom level](https://wiki.openstreetmap.org/wiki/Zoom_levels), expressed as an integer, that corresponds with the highest resolution of the data. Specified as [Web Mercator](https://en.wikipedia.org/wiki/Web_Mercator_projection) zoom levels. |
-| render:min_zoom  | integer  | The minimum [zoom level](https://wiki.openstreetmap.org/wiki/Zoom_levels), expressed as an integer, that tells renderers where the overviews of the data stop. |
+| render:overview_max_gsd  | number | The maximum Ground Sample Distance represented in an overview. This should be the GSD of the highest level overview, generally of a [Cloud Optimized GeoTIFF](http://cogeo.org), but should work with any format. |
 | render:data_type    | string | The data `type` (float, int, complex, etc) to let the renderer apply any needed rescaling up front. The full set of options is listed below. |
 
-**render:max_zoom**: This field informs renderers of the resolution of the data, using 
-[Web Mercator](https://en.wikipedia.org/wiki/Web_Mercator_projection) zoom levels (since it is used in the majority
-of web tile maps). Some renderers will not use web mercator, but most should be able to use the hint in web mercator 
-and translate to the appropriate zoom level. The easiest way to get the zoom levels for data is to use [rio-cogeo](https://pypi.org/project/rio-cogeo/): `[get_zooms()](https://github.com/cogeotiff/rio-cogeo/blob/master/rio_cogeo/utils.py#L69)` in python or using `[rio info](https://github.com/cogeotiff/rio-cogeo/#examples)` on the command line. Should be between
-0 and 30. 
+**render:overview_max_gsd**: This field helps renderers of understand what zoom levels they can efficiently show. It is 
+generally used in conjunction with `gsd` (from [common metadata](https://github.com/radiantearth/stac-spec/blob/master/item-spec/common-metadata.md#instrument)). `overview_max_gsd` enables the calculuation of the 'minimum' zoom level that a renderer
+would want to show, and then the maximum zoom level is calculated from the `gsd` - the resolution of the image. The former
+is based on the highest level of overview (also known as a [pyramid](https://en.wikipedia.org/wiki/Pyramid_(image_processing)))
+contained in the asset. 
 
-**render:min_zoom** - This field informs renderers of the minimum level supported by the data, generally corresponding
-to the resolution for which overviews were generated. It works just like max zoom: specified in web mercator and 
-rio-cogeo can be used to easily get the value. If not specified then renderers will assume the minimum zoom is 0.
+![Image Pyramid](https://en.wikipedia.org/wiki/Pyramid_(image_processing)#/media/File:Image_pyramid.svg)
+
+So in the above image it would be the ground sample distance of 'level 4', which will be a much higher gsd than the image,
+as each pixel is greatly down-sampled. Dynamic tile servers (like [titiler](https://github.com/developmentseed/titiler)) will
+generally convert the gsd to [zoom 
+levels](https://wiki.openstreetmap.org/wiki/Zoom_levels), [Web Mercator](https://en.wikipedia.org/wiki/Web_Mercator_projection) 
+or others, which is easily done (example python [to webmercator](https://github.com/cogeotiff/rio-cogeo/blob/b9b57301c2b7a4be560c887176c282e68ca63c27/rio_cogeo/utils.py#L62-L66) or arbitrary [TileMatrixSet](https://github.com/cogeotiff/rio-tiler-crs/blob/834bcf3d39cdc555b3ce930439ab186d00fd5fc5/rio_tiler_crs/cogeo.py#L98-L105))
 
 **render:data_type** - Specifies the data storage `type` of the assets. Can be used at the asset level if the assets are of
 different types. This is used to let the renderer know if any type of rescaling is needed up front. The possible values
@@ -50,9 +53,10 @@ for the type in STAC are specified in the table below.
 | Type Name | Description |
 |-----------|-------------|
 | `unknown` | Not known   |
-| `byte`    | An unsigned 8-bit integer (common for 8-bit rgb png's) |
+| `int8`    | 8-bit integer  |
 | `int16`   | 16-bit integer |
 | `int32`   | 32-bit integer |
+| `uint8`   | unsigned 8-bit integer (common for 8-bit rgb png's)
 | `unit16`  | unsigned 16-bit integer |
 | `uint32`  | unsigned 32-bit integer |
 | `float32` | 32-bit float |
