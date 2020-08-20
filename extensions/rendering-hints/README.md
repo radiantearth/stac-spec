@@ -56,7 +56,7 @@ for the type in STAC are specified in the table below.
 | `int8`    | 8-bit integer  |
 | `int16`   | 16-bit integer |
 | `int32`   | 32-bit integer |
-| `uint8`   | unsigned 8-bit integer (common for 8-bit rgb png's)
+| `uint8`   | unsigned 8-bit integer (common for 8-bit rgb png's) |
 | `unit16`  | unsigned 16-bit integer |
 | `uint32`  | unsigned 32-bit integer |
 | `float32` | 32-bit float |
