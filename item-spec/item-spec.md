@@ -217,6 +217,7 @@ Common STAC Item Media Types:
 | `application/geopackage+sqlite3`                        | GeoPackage                                                   |
 | `application/x-hdf5`                                    | Hierarchical Data Format version 5                           |
 | `application/x-hdf`                                     | Hierarchical Data Format versions 4 and earlier.             |
+| `application/x-tiledb`                                  | TileDB                                                       |
 
 Deprecation notice: GeoTiff previously used the media type `image/vnd.stac.geotiff` and
 Cloud Optimized GeoTiffs used `image/vnd.stac.geotiff; profile=cloud-optimized`.
