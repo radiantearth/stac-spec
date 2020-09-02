@@ -8,9 +8,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-### Changes
+- Added clarification about how collection-level assset object properties do not remove the need for item-level asset object properties in the `item-assets` extension ([#880](https://github.com/radiantearth/stac-spec/pull/880))
+
+### Changed
+
+- Clarified the role of geometries on items in the label extension
 
 ### Removed
+
+### Fixed
+
+
+## [v1.0.0-beta.2] - 2020-07-08
+
+### Added
+- JSON-schema file in the Point Cloud extension.
+
+### Changed
+- Clarification on null geometries, making bbox not required if a null geometry is used.
+- Multiple extents (bounding boxes / intervals) are allowed per Collection
+
+### Removed
+- Validation instructions
 
 ### Fixed
 - Fixed several JSON Schemas
@@ -104,10 +123,10 @@ Item properties
   - `search` extension renamed to `context` extension. JSON object renamed from `search:metadata` to `context`
   - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
   - Query Extension - type restrictions on query predicates are more accurate, which may require additional implementation support
-- Item `title` definition moved from core Item fields to [Common Metadata Basics](item-spec/common-metadata.md#basics) 
+- Item `title` definition moved from core Item fields to [Common Metadata Basics](item-spec/common-metadata.md#basics)
 fields. No change is required for STAC Items.
 - `putFeature` can return a `PreconditionFailed` to provide more explicit information when the resource has changed in the server
-- [Sort extension](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/sort) now uses "+" and "-" prefixes for GET requests to denote sort order. 
+- [Sort extension](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/sort) now uses "+" and "-" prefixes for GET requests to denote sort order.
 - Clarified how `/search` links must be added to `/` and changed that links to both GET and POST must be provided now that the method can be specified in links
 
 ### Removed
@@ -343,6 +362,7 @@ Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkam
 
 
 [Unreleased]: <https://github.com/radiantearth/stac-spec/compare/master...dev>
+[v1.0.0-beta.2]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-beta.1..v1.0.0-beta.2>
 [v1.0.0-beta.1]: <https://github.com/radiantearth/stac-spec/compare/v0.9.0...v1.0.0-beta.1>
 [v0.9.0]: <https://github.com/radiantearth/stac-spec/compare/v0.8.1...v0.9.0>
 [v0.8.1]: <https://github.com/radiantearth/stac-spec/compare/v0.8.0...v0.8.1>

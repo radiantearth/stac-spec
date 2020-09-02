@@ -1,5 +1,5 @@
 {
-  "stac_version": "1.0.0-beta.1",
+  "stac_version": "1.0.0-beta.2",
   "stac_extensions": [
     "checksum",
     "sar",
@@ -65,7 +65,7 @@
       "href": "./measurement/s1a-ew-grd-hh-20181103t235855-20181103t235955-024430-02ad5d-001.tiff",
       "title": "Measurements",
       "type": "image/tiff",
-      "sar:bands": ["HH"],
+      "sar:polarizations": ["HH"],
       "checksum:multihash": "90e40210163700a8a6501eccd00b6d3b44ddaed0"
     },
     "thumbnail": {

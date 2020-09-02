@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "collection.json#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/collection-spec/json-schema/collection.json#",
   "title": "STAC Collection Specification",
   "description": "This object represents Collections in a SpatioTemporal Asset Catalog.",
   "allOf": [
@@ -106,8 +106,16 @@
                   "items": {
                     "title": "Spatial extent",
                     "type": "array",
-                    "minItems": 4,
-                    "maxItems": 6,
+                    "oneOf": [
+                      {
+                        "minItems":4,
+                        "maxItems":4
+                      },
+                      {
+                        "minItems":6,
+                        "maxItems":6
+                      }
+                    ],
                     "items": {
                       "type": "number"
                     }

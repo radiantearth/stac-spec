@@ -1,6 +1,9 @@
 # STAC Common Metadata
-This document outlines all commonly used fields for STAC Item properties. These fields are 
-included by default in the core [Item schema](json-schema/item.json) but implementation is not required. 
+
+This document outlines commonly used fields in STAC.
+They are often used in [STAC Item properties](item-spec.md#properties-object),
+but can also be used in other places, e.g. [Item Assets](item-spec.md#asset-object)
+or [Collection Assets](../extensions/collection-assets/README.md).
 
 - [STAC Common Metadata](#stac-common-metadata)
   - [Basics](#basics)
@@ -14,6 +17,11 @@ included by default in the core [Item schema](json-schema/item.json) but impleme
 
 Various *examples* are available in the folder [`examples`](examples/).
 *JSON Schemas* can be found in the folder [`json-schema`](json-schema/).
+
+By default, these fields are only included and validated against in the core [Item schema](json-schema/item.json).
+Implementation of any of the fields is not required,
+if the specifications allowing these fields to be used don't say differently.
+For example, `datetime` is required in STAC Items.
 
 ## Basics
 
@@ -49,7 +57,7 @@ There are more date and time related fields available in the [Timestamps extensi
 ### Date and Time Range
 
 While a STAC item can have a nominal datetime describing the capture, these properties allow an item to have a range
-of capture datetimes. An example of this is the [MODIS 16 day vegetation index product.](https://lpdaac.usgs.gov/products/mod13q1v006/).
+of capture dates and times. An example of this is the [MODIS 16 day vegetation index product.](https://lpdaac.usgs.gov/products/mod13q1v006/).
 The datetime property in a STAC item and these fields are not mutually exclusive.
 
 **Important:** Using one of the fields REQUIRES to include the other field as well to enable a user to search STAC records by the provided times. So if you use `start_datetime` you need to add `end_datetime` and vice-versa. Both fields are also REQUIRED if the `datetime` field is set to `null`.
