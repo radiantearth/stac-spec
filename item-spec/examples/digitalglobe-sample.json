@@ -3,8 +3,7 @@
   "stac_extensions": [
     "eo",
     "projection",
-    "view",
-    "https://example.digitalglobe.com/stac/1.0/schema.json"
+    "view"
   ],
   "id": "103001004B316600_P002_MUL",
   "type": "Feature",

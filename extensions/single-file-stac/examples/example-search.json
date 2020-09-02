@@ -294,7 +294,7 @@
             ],
             "stac_version": "1.0.0-beta.2",
             "stac_extensions": [
-                "item_assets"
+                "item-assets"
             ],
             "extent": {
                 "spatial": {

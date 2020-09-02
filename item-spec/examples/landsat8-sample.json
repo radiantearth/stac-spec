@@ -3,7 +3,7 @@
   "stac_extensions": [
     "eo",
     "view",
-    "https://example.com/stac/landsat-extension/1.0/schema.json"
+    "https://landsat.usgs.gov/stac/landsat-extension/schema.json"
   ],
   "id": "LC81530252014153LGN00",
   "type": "Feature",
