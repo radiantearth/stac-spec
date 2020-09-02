@@ -11,7 +11,7 @@ jobs:
           command: sudo npm install -g stac-node-validator
       - run:
           name: validate
-          command: stac-node-validator .
+          command: stac-node-validator . --schemas .
   test_docs:
     working_directory: ~/stac
     docker:
