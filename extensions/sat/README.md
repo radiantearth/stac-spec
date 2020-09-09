@@ -23,8 +23,8 @@ The Satellite extension requires the [Instrument Fields](../../item-spec/common-
 | sat:absolute_orbit     | integer       | The obsolute orbit number at the time of acquisition. |
 | sat:relative_orbit     | integer       | The relative orbit number at the time of acquisition. |
 | sat:anx_date_time     | date_time    | The Ascending Node Crossing (ANX) UTC time |
-| sat:along_track_incidence_angle | double | The along track incidence angle |
-| sat:across_track_incidence_angle | double | The across track incidence angle |
+| sat:along_track_incidence_angle | number | The along track incidence angle |
+| sat:across_track_incidence_angle | number | The across track incidence angle |
 
 *At least one of the fields must be specified.*
 
