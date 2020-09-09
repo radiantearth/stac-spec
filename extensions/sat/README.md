@@ -23,8 +23,6 @@ The Satellite extension requires the [Instrument Fields](../../item-spec/common-
 | sat:absolute_orbit     | integer       | The obsolute orbit number at the time of acquisition. |
 | sat:relative_orbit     | integer       | The relative orbit number at the time of acquisition. |
 | sat:anx_date_time     | date_time    | The Ascending Node Crossing (ANX) UTC time |
-| sat:along_track_incidence_angle | number | The along track incidence angle |
-| sat:across_track_incidence_angle | number | The across track incidence angle |
 
 *At least one of the fields must be specified.*
 
@@ -37,10 +35,6 @@ The Satellite extension requires the [Instrument Fields](../../item-spec/common-
 **sat:relative_orbit** is a count of orbits from 1 to the number of orbits contained in a repeat cycle, where relative orbit 1 starts from a specific reference location of the sub-satellite point (the point on the earth directly below the satellite). It resets to 1 when the sub-satellite point revisits the reference location.
 
 **sat:anx_date_time** is the UTC time when the satellite crosses the [Ascending Node](https://en.wikipedia.org/wiki/Orbital_node). For geocentric and heliocentric orbits, the ascending node (or north node) is where the orbiting object moves north through the plane of reference.
-
-**sat:along_track_incidence_angle** is the angle (in degrees) between the vertical position of the satellite and its forward or backward viewing direction. If viewed from the ground point corresponding to the scene center, the along track incidence angle has a positive value if the viewing direction is northward.
-
-**sat:across_track_incidence_angle** is the angle (in degrees) between the vertical position of the satellite and its side-viewing direction when the sensor is scanning along the side. If viewed from the ground point corresponding to the scene center, the across track incidence angle has a positive value if the viewing direction is eastward.
 
 ## Implementations
 

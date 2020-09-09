@@ -33,17 +33,9 @@
         },
         "properties": {
           "type": "object",
-          "anyOf": [
-            {"required": ["sat:platform_serial_identifier"]},
-            {"required": ["sat:orbit_state"]},
-            {"required": ["sat:absolute_orbit"]},
-            {"required": ["sat:relative_orbit"]},
-            {"required": ["sat:anx_date_time"]},
-            {"required": ["sat:along_track_incidence_angle"]},
-            {"required": ["sat:across_track_incidence_angle"]}
-          ],
+          "minProperties": 1,
           "properties": {
-            "sat:platform_serial_identifier": {
+            "sat:platform_international_designator": {
               "type": "string",
               "minimum": 1
             },
@@ -67,14 +59,6 @@
             "sat:anx_date_time": {
               "type": "string",
               "format": "date-time"
-            },
-            "sat:along_track_incidence_angle": {
-              "type": "number",
-              "minimum": 1
-            },
-            "sat:across_track_incidence_angle": {
-              "type": "number",
-              "minimum": 1
             }
           }
         }
