@@ -6,8 +6,13 @@
 - **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 
-This document explains the fields of the STAC Electro-Optical (EO) Extension to a STAC Item. EO
-data is considered to be data that represents a snapshot of the earth for a single date and time. It
+This document explains the fields of the STAC Electro-Optical (EO) Extension to a STAC Item. 
+
+These fields defined by this extension follow the convention for 
+[additional fields for a STAC Item](../../item-spec/item-spec.md#additional-fields-for-assets) and are 
+allowed in either Item Properties or Item Assets.  
+
+EO data is considered to be data that represents a snapshot of the Earth for a single date and time. It
 could consist of multiple spectral bands in any part of the electromagnetic spectrum. Examples of EO
 data include sensors with visible, short-wave and mid-wave IR bands (e.g., the OLI instrument on
 Landsat-8), long-wave IR bands (e.g. TIRS aboard Landsat-8).
@@ -22,22 +27,16 @@ For defining view geometry of data, it is strongly recommended to use the [`view
   - [Landsat 8 with bands in Item Asset Definition and Collection Summaries](../item-assets/examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)
 
-## Item Asset fields
+## Item Properties or Item Asset fields
 
 | Field Name     | Type                           | Description |
 | -------------- | ------------------------------ | ----------- |
-| eo:bands       | \[[Band Object](#band-object)] | An array of available bands where each entity is a [Band Object](#band-object). |
+| eo:cloud_cover | number                         | Estimate of cloud cover |
+| eo:bands       | \[[Band Object](#band-object)] | An array of available bands where each object is a [Band Object](#band-object). |
 
-**eo:bands**: In STAC versions 0.9.x and prior, `eo:bands` was only allowed to be used in an Asset by referencing the Band Object definitions in Item Properties via array index. Starting with STAC 1.0.0-beta.1, an Asset must have an `eo:bands` array containing Band Object entities, as described in general in the [STAC Item](../../item-spec/item-spec.md#additional-fields-for-assets).  
+**eo:cloud_cover**: Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available, the field should not be provided. Generally, this value should be used in Item Properties rather than Item Assets, as an Item from an electro-optical source is a single snapshot of the Earth, so the cloud cover value would apply to all assets. 
 
-## Item Properties fields
-
-| Field Name     | Type                           | Description |
-| -------------- | ------------------------------ | ----------- |
-| eo:cloud_cover | number                         | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available, the field should not be provided. |
-| eo:bands       | \[[Band Object](#band-object)] | An array of available bands where each entity is a [Band Object](#band-object). |
-
-**eo:bands**: This is the same as the attribute for Item Asset. As of STAC 1.0.0-beta.1, there is no way to reference these Band Objects from an Asset, so their primary use is simply to advertise a set of bands that may be available in some of the Assets in this Item. These can also be rolled up into Collection `summaries` object.
+**eo:bands**: In STAC versions 0.9.x and prior, `eo:bands` could only be used by an Asset putting the the Band Object definitions in an Item Properties and referencing these via array index. **Starting with STAC 1.0.0-beta.1, an Asset may only have an `eo:bands` array containing Band Object entities.** Since `eo:bands` definitions in Item Properties can no longer be referenced by array index from an Asset, their primary use now is only to advertise a set of bands that may be available in some of the Assets in this Item, which may be aggregated into Collection `summaries` object.
 
 ### Band Object
 
