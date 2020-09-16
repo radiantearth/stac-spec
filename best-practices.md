@@ -41,7 +41,7 @@ people can just search for 'landsat-8', instead of thinking through all the ways
 ## Field selection and Metadata Linking
 
 In general STAC aims to be oriented around **search**, centered on the core fields that users will want to search on to find 
-imagery. The core is space and time, but there are often other metadata attributes that are useful. While the specification is 
+imagery. The core is space and time, but there are often other metadata fields that are useful. While the specification is 
 flexible enough that providers can fill it with tens or even hundreds of fields of metadata, that is not recommended. If 
 providers have lots of metadata then that can be linked to in the [Asset Object](item-spec/item-spec.md#asset-object) 
 (recommended) or in a [Link Object](item-spec/item-spec.md#link-object). There is a lot of metadata that is only of relevance 
@@ -383,7 +383,7 @@ to the static catalog, or can follow the 'dynamic catalog layout' recommendation
 
 Ideally each `Item` would use its `links` to provide a reference back to the static location. The location of the static
 item should be treated as the canonical location, as the generated API is more likely to move or be temporarily down. The
-spec provides the `derived_from` rel attribute, which fits well enough, but `canonical` is likely the more appropriate one
+spec provides the `derived_from` rel field, which fits well enough, but `canonical` is likely the more appropriate one
 as everything but the links should be the same.
 
 ### Keep catalogs in sync with cloud notification and queue services
@@ -391,7 +391,7 @@ as everything but the links should be the same.
 There is a set of emerging practices to use services like Amazon's Simple Queue Service (SQS) and Simple Notification Service
 (SNS) to keep catalogs in sync. There is a great [blog post on the CBERS STAC implementation on AWS](https://aws.amazon.com/blogs/publicsector/keeping-a-spatiotemporal-asset-catalog-stac-up-to-date-with-sns-sqs/). The core 
 idea is that a static catalog should emit a notification whenever it changes. The recommendation for SNS is to use the STAC 
-item JSON as the message body, with some attributes such as a scene’s datetime and geographic bounding box that allows 
+item JSON as the message body, with some fields such as a scene’s datetime and geographic bounding box that allows 
 basic geographic filtering from listeners. 
 
 The dynamic STAC API would then listen to the notifications and update its internal datastore whenever new data comes into

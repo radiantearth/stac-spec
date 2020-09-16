@@ -161,7 +161,7 @@ over a period of time (such as collecting drone imagery), or could be a set of t
 data collection.
 
 **gsd** is the nominal Ground Sample Distance for the data, as measured in meters on the ground. There are many
-definitions of GSD. The value of this attribute should be related to the spatial resolution at the sensor, rather
+definitions of GSD. The value of this field should be related to the spatial resolution at the sensor, rather
 than the pixel size of images after orthorectification, pansharpening, or scaling.
 The GSD of a sensor can vary depending on off-nadir and wavelength, so it is at the discretion of the implementer
 to decide which value most accurately represents the GSD. For example, Landsat8 optical and short-wave IR bands 
