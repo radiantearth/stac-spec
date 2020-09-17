@@ -56,7 +56,7 @@
               "type": "integer",
               "minimum": 1
             },
-            "sat:anx_date_time": {
+            "sat:anx_datetime": {
               "type": "string",
               "format": "date-time"
             }
