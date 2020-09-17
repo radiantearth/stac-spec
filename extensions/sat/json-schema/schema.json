@@ -36,8 +36,7 @@
           "minProperties": 1,
           "properties": {
             "sat:platform_international_designator": {
-              "type": "string",
-              "minimum": 1
+              "type": "string"
             },
             "sat:orbit_state": {
               "title": "Orbit State",

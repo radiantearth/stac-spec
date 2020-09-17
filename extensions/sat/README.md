@@ -30,17 +30,17 @@ The Satellite extension requires the [Instrument Fields](../../item-spec/common-
 
 **sat:orbit_state** indicates the type and current state of orbit. Satellites are either geosynchronous in which case they have one state: `geostationary`, or they are sun synchronous (i.e., polar orbiting satellites) in which case they are either `ascending` or `descending`. For sun synchronous satellites it is daytime during one of these states, and nighttime during the other.
 
-**sat:absolute_orbit** is a count of orbits from 1 to the number of orbits made in the total satellite lifecycle
+**sat:absolute_orbit** is a count of orbits from 1 to the number of orbits made in the total satellite lifecycle. In mission planning and tasking, the absolute orbit may be used as a reference in the non systematic acquisition missions. The resulting item can be tagged with the absolute orbit and thus searchable as such. In the case of orbital changes during the mission modifying the ground track and thus the repeat cycle and thus the number or relative orbits, the combination of cycle and relative orbit is not sufficient to derive an absolute orbit.
 
 **sat:relative_orbit** is a count of orbits from 1 to the number of orbits contained in a repeat cycle, where relative orbit 1 starts from a specific reference location of the sub-satellite point (the point on the earth directly below the satellite). It resets to 1 when the sub-satellite point revisits the reference location.
 
-**sat:anx_datetime** is the UTC time when the satellite crosses the [Ascending Node](https://en.wikipedia.org/wiki/Orbital_node). For geocentric and heliocentric orbits, the ascending node (or north node) is where the orbiting object moves north through the plane of reference.
-```suggestion
-Used to quickly compute orbital parameters without having to download the product. For instance to compute on the fly a baseline between 2 satellite acquisition, to find the best candidate in the archive from a post-disaster event (e.g earthquake) scene acquisition for a DInSAR processing.
+**sat:anx_datetime** is the UTC time when the satellite crosses the [Ascending Node](https://en.wikipedia.org/wiki/Orbital_node). For geocentric and heliocentric orbits, the ascending node (or north node) is where the orbiting object moves north through the plane of reference. Used to quickly compute orbital parameters without having to download the product. For instance to compute on the fly a baseline between 2 satellite acquisition, to find the best candidate in the archive from a post-disaster event (e.g earthquake) scene acquisition for a DInSAR processing.
+
 ## Implementations
 
 [DotNetStac](https://github.com/Terradue/DotNetStac) uses this extension specification for the satellite extension plugin with accessor to the value specified of this extension and allowing orbital computation from orbital state vectors.
-Some document examples are available for Sentinel-1.
+
+Some document examples are available for [Sentinel-1](examples/example-sentinel1.json).
 
 ## Extensions
 

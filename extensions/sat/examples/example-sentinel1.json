@@ -42,7 +42,7 @@
   },
   "properties": {
     "title": "Sentinel-1A SLC IW SDV T95 2015-03-05T05:19:37/2015-03-05T05:20:05",
-    "datetime": null,
+    "datetime": "2015-03-05T05:19:37.9237880Z",
     "start_datetime": "2015-03-05T05:19:37.9237880Z",
     "end_datetime": "2015-03-05T05:20:05.2359650Z",
     "platform": "sentinel-1a",
@@ -60,11 +60,6 @@
     "sar:polarizations": [
       "VV",
       "VH"
-    ],
-    "sar:swaths": [
-      "IW1",
-      "IW2",
-      "IW3"
     ],
     "sar:resolution_range": 3.5,
     "sar:resolution_azimuth": 22,
