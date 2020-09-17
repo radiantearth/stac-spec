@@ -34,7 +34,7 @@ The Satellite extension requires the [Instrument Fields](../../item-spec/common-
 
 **sat:relative_orbit** is a count of orbits from 1 to the number of orbits contained in a repeat cycle, where relative orbit 1 starts from a specific reference location of the sub-satellite point (the point on the earth directly below the satellite). It resets to 1 when the sub-satellite point revisits the reference location.
 
-**sat:anx_date_time** is the UTC time when the satellite crosses the [Ascending Node](https://en.wikipedia.org/wiki/Orbital_node). For geocentric and heliocentric orbits, the ascending node (or north node) is where the orbiting object moves north through the plane of reference.
+**sat:anx_datetime** is the UTC time when the satellite crosses the [Ascending Node](https://en.wikipedia.org/wiki/Orbital_node). For geocentric and heliocentric orbits, the ascending node (or north node) is where the orbiting object moves north through the plane of reference.
 ```suggestion
 Used to quickly compute orbital parameters without having to download the product. For instance to compute on the fly a baseline between 2 satellite acquisition, to find the best candidate in the archive from a post-disaster event (e.g earthquake) scene acquisition for a DInSAR processing.
 ## Implementations
