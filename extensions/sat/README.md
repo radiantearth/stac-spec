@@ -40,7 +40,7 @@ The Satellite extension requires the [Instrument Fields](../../item-spec/common-
 
 [DotNetStac](https://github.com/Terradue/DotNetStac) uses this extension specification for the satellite extension plugin with accessor to the value specified of this extension and allowing orbital computation from orbital state vectors.
 
-Some document examples are available for [Sentinel-1](examples/example-sentinel1.json).
+Some documented examples are available for [Sentinel-1](examples/example-sentinel1.json).
 
 ## Extensions
 
