@@ -70,10 +70,7 @@
     "sar:looks_equivalent_number": 1,
     "sar:frequency_band": "C",
     "sar:center_frequency": 5.405,
-    "sar:product_type": "SLC",
-    
-    
-
+    "sar:product_type": "SLC"
   },
   "assets": {
     "noises_iw1_vh": {
@@ -82,9 +79,6 @@
       "type": "text/xml",
       "sar:polarizations": [
         "VH"
-      ],
-      "sar:swath": [
-        "IW1"
       ]
     },
     "calibrations_iw1_vh": {
@@ -93,9 +87,6 @@
       "type": "text/xml",
       "sar:polarizations": [
         "VH"
-      ],
-      "sar:swath": [
-        "IW1"
       ]
     },
     "products_iw1_vh": {
@@ -104,9 +95,6 @@
       "type": "text/xml",
       "sar:polarizations": [
         "VH"
-      ],
-      "sar:swath": [
-        "IW1"
       ]
     },
     "measurement_iw1_vh": {
@@ -115,9 +103,6 @@
       "type": "image/tiff",
       "sar:polarizations": [
         "VH"
-      ],
-      "sar:swath": [
-        "IW1"
       ]
     },
     "thumbnail": {
