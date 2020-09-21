@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+- Label extension: `label:classes` was flagged as required when not always required.
 
 ## [v1.0.0-beta.2] - 2020-07-08
 
