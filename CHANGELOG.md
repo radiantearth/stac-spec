@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Clarified the role of geometries on items in the label extension
+- Data Cube Extension: Units for STAC dimensions in should now be compliant to UDUNITS-2 units (singular) whenever available.
 
 ### Removed
 
