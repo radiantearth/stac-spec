@@ -38,7 +38,7 @@ To describe frame start and end times, use the [Date and Time Range fields](../.
 
 **sar:polarizations** specifies a single polarization or a polarization combination. For single polarized radars one of `HH`, `VV`, `HV` or `VH` must be set. Fully polarimetric radars add all four polarizations to the array. Dual polarized radars and alternating polarization add the corresponding polarizations to the array, for instance for `HH+HV` add both `HH` and `HV`.
 
-**sar:product_type**: The product type defines the type of procesed data contained in the assets. A list of suggestions include:
+**sar:product_type**: The product type defines the type of processed data contained in the assets. A list of suggestions include:
 
 | sar:product_type  | Type      | Description |
 | ----------------- | --------- | ----------- |

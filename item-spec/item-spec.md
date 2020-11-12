@@ -1,7 +1,7 @@
 # STAC Item Specification
 
-This document explains the structure and content of a SpatioTemporal Asset Catalog (STAC) Item. An **Item** is a 
-[GeoJSON](http://geojson.org/) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) augmented with 
+This document explains the structure and content of a SpatioTemporal Asset Catalog (STAC) Item. An **Item** is a
+[GeoJSON](http://geojson.org/) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) augmented with
 [foreign members](https://tools.ietf.org/html/rfc7946#section-6) relevant to a STAC entity.
 These attributes include fields that identify the time range and assets of the Item. An Item is the core
 granular entity in a STAC, containing the core metadata that enables any client to search or crawl
@@ -24,7 +24,7 @@ required fields is a valid STAC Item.
 
 ## Item fields
 
-This object describes a STAC Item. The fields `id`, `type`, `bbox`, `geometry` and `properties` are 
+This object describes a STAC Item. The fields `id`, `type`, `bbox`, `geometry` and `properties` are
 inherited from GeoJSON.
 
 | Field Name | Type                                                                       | Description |
@@ -43,9 +43,9 @@ inherited from GeoJSON.
 **stac_version**: In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
 
 **stac_extensions**: A list of extensions the Item implements. The list contains URLs to the JSON Schema files it can be validated against. For official [content extensions](../extensions/README.md#list-of-content-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. This does *not* apply for API extensions. If the versions of the extension and the item diverge, you can specify the URL of the JSON schema file.
-This list must only contain extensions that extend the Item itself, see the the 'Scope' column in the list of extensions. If an extension such as the `eo` extension has influence on multiple parts of the whole catalog structure, it must be listed in all affected parts (e.g. Collection and Item for the `eo` extension).
+This list must only contain extensions that extend the Item itself, see the the 'Scope' column in the list of extensions. If an extension such as the `tiled-assets` extension has influence on multiple parts of the whole catalog structure, it must be listed in all affected parts (e.g. Catalog, Collection and Item for the `tiled-assets` extension).
 
-**assets**: Dictionary of asset objects that can be downloaded, each with a unique key. 
+**assets**: Dictionary of asset objects that can be downloaded, each with a unique key.
 In general, the keys don't have any meaning and are considered to be non-descriptive unique identifiers.
 Providers may assign any meaning to the keys for their respective use cases, but must not expect that clients understand them.
 To communicate the purpose of an asset better use the `roles` field in the [Asset Object](#asset-object).
@@ -60,8 +60,8 @@ Items that are linked to, but the best practices around this are still emerging.
 
 ### Properties Object
 
-Additional metadata fields can be added to the GeoJSON Object Properties. The only required field 
-is `datetime` but it is recommended to add more fields, see [Additional Fields](#additional-fields) 
+Additional metadata fields can be added to the GeoJSON Object Properties. The only required field
+is `datetime` but it is recommended to add more fields, see [Additional Fields](#additional-fields)
 resources below.
 
 | Field Name | Type         | Description                                                  |
@@ -76,8 +76,8 @@ extensions may further specify the meaning of the main `datetime` field, and man
 datetime fields.
 If there's clearly no meaningful single 'nominal' time, it is allowed to use `null` instead.
 In this case it is **required** to specify a temporal interval with the fields `start_datetime`
-and `end_datetime` from [common metadata](common-metadata.md#date-and-time-range). For example, if 
-your data is a time-series that covers 100 years, it's not very meaningful to set the datetime to a 
+and `end_datetime` from [common metadata](common-metadata.md#date-and-time-range). For example, if
+your data is a time-series that covers 100 years, it's not very meaningful to set the datetime to a
 single timestamp as it would not be found in most searches that searches for a decade of data in that
 period although the item actually covers the decade. See [datetime selection](../best-practices.md#datetime-selection)
 in the best practices document for more information.
@@ -85,19 +85,19 @@ in the best practices document for more information.
 #### Additional Fields
 
 Providers should include metadata fields that are relevant for users in the catalog, but it is recommended
-to [select only those necessary for search](../best-practices.md#field-selection-and-metadata-linking). 
+to [select only those necessary for search](../best-practices.md#field-selection-and-metadata-linking).
 Where possible metadata fields should be mapped to the STAC Common Metadata and widely used extensions,
 to enable cross-catalog search on known fields.
 
-* [STAC Common Metadata](common-metadata.md#stac-common-metadata) - A list of fields commonly used 
+* [STAC Common Metadata](common-metadata.md#stac-common-metadata) - A list of fields commonly used
 throughout all domains. These optional fields are included for STAC Items by default.
-* [Content Extensions](../extensions/README.md#list-of-content-extensions) - Domain-specific fields 
+* [Content Extensions](../extensions/README.md#list-of-content-extensions) - Domain-specific fields
 such as EO, SAR and point clouds.
-* [Custom Extensions](../extensions/README.md#extending-stac) - It is generally allowed to add custom 
-fields but it is recommended to add multiple attributes for related values instead of a nested object, 
-e.g., two fields `view:azimuth` and `view:off_nadir` instead of a field `view` with an object 
-value containing the two fields. The convention (as used within Extensions) is for related attributes 
-to use a common prefix on the attribute names to group them, e.g. `view`. A nested data structure should 
+* [Custom Extensions](../extensions/README.md#extending-stac) - It is generally allowed to add custom
+fields but it is recommended to add multiple attributes for related values instead of a nested object,
+e.g., two fields `view:azimuth` and `view:off_nadir` instead of a field `view` with an object
+value containing the two fields. The convention (as used within Extensions) is for related attributes
+to use a common prefix on the attribute names to group them, e.g. `view`. A nested data structure should
 only be used when the data itself is nested, as with `eo:bands`.
 
 ### Link Object
@@ -136,6 +136,7 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | alternate    | It is recommended that STAC Items are also available as HTML, and should use this rel with `"type" : "text/html"` to tell clients where they can get a version of the Item to view in a browser. See [STAC on the Web in Best Practices](../best-practices.md#stac-on-the-web) for more information. |
 
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+
 
 #### Collections
 
@@ -186,14 +187,14 @@ It is STRONGLY RECOMMENDED to add to each STAC Item
 
 #### Media Types
 
-The media type of an Asset can be used by STAC browsers to better determine what to render and display 
+The media type of an Asset can be used by STAC browsers to better determine what to render and display
 to users searching and browsing the catalog.  Media types are often referred to by the now-deprecated term "MIME types".
 
 [Registered](https://www.iana.org/assignments/media-types/media-types.xhtml) Media Types are
 preferred. In cases where custom vendor-specific media types are necessary, they should
-use the `vnd.` prefix. 
+use the `vnd.` prefix.
 
-STAC Items that have sidecar metadata files associated with a data asset (e.g, `.tfw`, Landsat 8 MTL files) 
+STAC Items that have sidecar metadata files associated with a data asset (e.g, `.tfw`, Landsat 8 MTL files)
 should use media types appropriate for the the metadata file.  For example, if it is a plain text file, then `text/plain`
 would be appropriate; if it is an XML, then `text/xml` is appropriate.
 
@@ -221,26 +222,26 @@ Both can still appear in old catalogues, but are deprecated and should be replac
 #### Additional Fields for Assets
 
 As detailed above, Items contain properties, which are the main source of metadata for searching across Items. Many content
-extensions can add further property fields as well. Any property that can be specified for an Item can also be specified for 
-a specific asset. This can be used to override a property defined in the Item, or to specify fields for which there is no 
+extensions can add further property fields as well. Any property that can be specified for an Item can also be specified for
+a specific asset. This can be used to override a property defined in the Item, or to specify fields for which there is no
 single value for all assets.
 
-**It is important to note that the STAC API does not facilitate searching across Asset properties in this way, and this 
-should be used sparingly.** It is primarily used to define properties at the Asset level that may be used during use of 
-the data instead of for searching. 
+**It is important to note that the STAC API does not facilitate searching across Asset properties in this way, and this
+should be used sparingly.** It is primarily used to define properties at the Asset level that may be used during use of
+the data instead of for searching.
 
-For example, `gsd` defined for an Item represents the best Ground Sample Distance (resolution) for the data within the Item. 
-However, some assets may be lower resolution and thus have a higher `gsd`. The `eo:bands` field from the EO extension defines 
+For example, `gsd` defined for an Item represents the best Ground Sample Distance (resolution) for the data within the Item.
+However, some assets may be lower resolution and thus have a higher `gsd`. The `eo:bands` field from the EO extension defines
 an array of spectral bands. However, it may be useful instead to specify the bands that are used in a particular asset.
 
-For an example see the [sentinel2-sample](examples/sentinel2-sample.json). The Sentinel-2 overall `gsd` is 10m, because this is 
-the best spatial resolution among all the bands and is defined in Item properties so it can be searched on. In the example 
-Band 5 and others have a `gsd` of 20m, so that asset specifies the `gsd` as well, which overrides the Item `gsd` for this 
+For an example see the [sentinel2-sample](examples/sentinel2-sample.json). The Sentinel-2 overall `gsd` is 10m, because this is
+the best spatial resolution among all the bands and is defined in Item properties so it can be searched on. In the example
+Band 5 and others have a `gsd` of 20m, so that asset specifies the `gsd` as well, which overrides the Item `gsd` for this
 one asset. The example also includes reduced resolution versions of files included as assets, using `gsd` to represent
 the proper resolution.
 
-For `eo:bands`, it could be put in Item properties as an array of all the bands, but in this case it's not. Instead, 
-the assets each define an array containing the spectral band information for that asset (in the order the bands appear 
+For `eo:bands`, it could be put in Item properties as an array of all the bands, but in this case it's not. Instead,
+the assets each define an array containing the spectral band information for that asset (in the order the bands appear
 in the file).
 
 For examples of fields that this construct is recommended for, see the [section of STAC Best Practices](../best-practices.md#common-use-cases-of-additional-fields-for-assets)
