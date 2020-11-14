@@ -1,0 +1,25 @@
+{
+  "sld:UserStyle": {
+    "SourceUrl": "https://docs.geoserver.org/stable/en/user/_downloads/8facef1de97a48e86ea71ec99dbb297d/raster_twocolorgradient.sld",
+    "sld:Title": "Two color gradient",
+    "sld:FeatureTypeStyle": [
+      {
+        "sld:Rule": [
+          {
+            "sld:RasterSymbolizer": [
+              {
+                "sld:ColorMap": [
+                  {
+                    "sld:ColorMapEntry": {
+                      "sld:quantity": 256
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

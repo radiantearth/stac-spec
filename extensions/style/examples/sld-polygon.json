@@ -1,0 +1,70 @@
+{
+  "sld:UserStyle": {
+    "SourceUrl": "https://docs.geoserver.org/stable/en/user/_downloads/cc69fdedd3ea662ad685fc168bf10797/polygon_attributebasedpolygon.sld",
+    "sld:Title": "Attribute-based polygon",
+    "sld:FeatureTypeStyle": [
+      {
+        "sld:Rule": [
+          {
+            "sld:Name": "SmallPop",
+            "sld:ogc:Filter": {
+              "sld:ogc:PropertyIsLessThan": {
+                "sld:ogc:PropertyName": "pop",
+                "sld:ogc:Literal": 200000
+              }
+            },
+            "sld:PolygonSymbolizer": {
+              "sld:Fill": {
+                "sld:CssParameter": {
+                  "sld:name": "fill",
+                  "sld:text": "#66FF66"
+                }
+              }
+            }
+          },
+          {
+            "sld:Name": "MediumPop",
+            "sld:ogc:Filter": {
+              "sld:ogc:And": {
+                "sld:ogc:PropertyIsGreaterThanOrEqualTo": {
+                  "sld:ogc:PropertyName": "pop",
+                  "sld:ogc:Literal": 200000
+                },
+                "sld:ogc:PropertyIsLessThan": {
+                  "sld:ogc:PropertyName": "pop",
+                  "sld:ogc:Literal": 500000
+                }
+              }
+            },
+            "sld:PolygonSymbolizer": {
+              "sld:Fill": {
+                "sld:CssParameter": {
+                  "sld:name": "fill",
+                  "sld:text": "#33cc33"
+                }
+              }
+            }
+          },
+          {
+            "sld:Name": "LargePop",
+            "sld:ogc:Filter": {
+              "sld:ogc:PropertyIsGreaterThan": {
+                "sld:ogc:PropertyName": "pop",
+                "sld:ogc:Literal": 500000
+              }
+            },
+            "sld:PolygonSymbolizer": {
+              "sld:Fill": {
+                "sld:CssParameter": {
+                  "sld:name": "fill",
+                  "sld:text": "#009900"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+

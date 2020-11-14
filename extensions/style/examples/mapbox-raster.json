@@ -1,0 +1,5 @@
+"mapbox:layers": [
+  {
+    "mapbox:type": "raster",
+  },
+], 

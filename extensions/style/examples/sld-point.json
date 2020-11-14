@@ -1,0 +1,28 @@
+{
+  "sld:UserStyle": {
+    "SourceUrl": "https://docs.geoserver.org/stable/en/user/_downloads/734cc880c145b4d96a3d17fc6eb9b0c8/point_simplepoint.sld", 
+    "sld:Title": "Simple Point",
+    "sld:FeatureTypeStyle": [
+      {
+        "sld:Rule": [
+          {
+            "sld:PointSymbolizer": {
+              "sld:Graphic": {
+                "sld:Size": 6,
+                "sld:Mark": {
+                  "sld:WellKnownName": "circle",
+                  "sld:Fill": {
+                    "sld:CssParameter": {
+                      "sld:name": "fill",
+                      "sld:text": "#ff0000"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
