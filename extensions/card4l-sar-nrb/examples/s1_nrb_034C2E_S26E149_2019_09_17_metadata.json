@@ -1,0 +1,191 @@
+{
+    "stac_version": "1.0.0-beta.2",
+    "stac_extensions": [
+        "sat",
+        "sar",
+        "projection"
+    ],
+    "type": "Feature",
+    "id": "S26E149_2019_09_17_034C2E",
+    "properties": {
+        "datetime": "2019-09-17T08:33:31.300452Z",
+        "start_datetime": "2019-09-17T08:33:31.300452Z",
+        "end_datetime": "2019-09-17T08:33:56.299305Z",
+        "instruments": [
+            "c-sar"
+        ],
+        "constellation": "sentinel-1",
+        "platform": "sentinel-1a",
+        "proj:epsg": 4326,
+        "sar:instrument_mode": "IW",
+        "sar:frequency_band": "C",
+        "sar:center_frequency": 5.405,
+        "sar:polarizations": [
+            "HH"
+        ],
+        "sar:product_type": "NRB",
+        "sar:observation_direction": "right",
+        "sat:orbit_state": "ascending",
+        "sat:relative_orbit": 111,
+        "sat:absolute_orbit": 29058
+    },
+    "bbox": [
+        149.0,
+        -26.0,
+        150.0,
+        -25.0
+    ],
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    149.58352036193028,
+                    -26.0
+                ],
+                [
+                    149.5480411843381,
+                    -25.871964449591008
+                ],
+                [
+                    149.49899165210655,
+                    -25.691959175180486
+                ],
+                [
+                    149.3537401966439,
+                    -25.151584547452607
+                ],
+                [
+                    149.31237461749706,
+                    -25.0
+                ],
+                [
+                    150.0,
+                    -25.0
+                ],
+                [
+                    150.0,
+                    -26.0
+                ],
+                [
+                    149.58352036193028,
+                    -26.0
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "type": "application/json",
+            "rel": "root",
+            "href": "s3://<s3-bucket>/s1_nrb/s1_nrb_catalog.json"
+        },
+        {
+            "rel": "derived_from",
+            "href": "s3://sentinel-s1-l1c/GRD/2019/9/17/IW/SH/S1A_IW_GRDH_1SSH_20190917T083331_20190917T083356_029058_034C2E_07F6"
+        },
+        {
+            "type": "application/json",
+            "rel": "self",
+            "href": "s3://<s3-bucket>/s1_nrb/S26E149/2019/09/17/034C2E/s1_nrb_034C2E_S26E149_2019_09_17_metadata.json"
+        }
+    ],
+    "assets": {
+        "angle": {
+            "title": "s1_nrb_034C2E_S26E149_2019_09_17_ANGLE",
+            "description": "local incidence angle",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "roles": [
+                "data"
+            ],
+            "proj:shape": [
+                5000,
+                5000
+            ],
+            "proj:transform": [
+                149.0,
+                0.0002,
+                0.0,
+                -25.0,
+                0.0,
+                -0.0002
+            ],
+            "href": "s3://<s3-bucket>/s1_nrb/S26E149/2019/09/17/034C2E/s1_nrb_034C2E_S26E149_2019_09_17_ANGLE.tif"
+        },
+        "area": {
+            "title": "s1_nrb_034C2E_S26E149_2019_09_17_AREA",
+            "description": "normalized scattering area",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "roles": [
+                "data"
+            ],
+            "proj:shape": [
+                5000,
+                5000
+            ],
+            "proj:transform": [
+                149.0,
+                0.0002,
+                0.0,
+                -25.0,
+                0.0,
+                -0.0002
+            ],
+            "href": "s3://<s3-bucket>/s1_nrb/S26E149/2019/09/17/034C2E/s1_nrb_034C2E_S26E149_2019_09_17_AREA.tif"
+        },
+        "hh": {
+            "title": "s1_nrb_034C2E_S26E149_2019_09_17_HH",
+            "description": "Polarization HH",
+            "sar:polarizations": [
+                "HH"
+            ],
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "roles": [
+                "data"
+            ],
+            "proj:shape": [
+                5000,
+                5000
+            ],
+            "proj:transform": [
+                149.0,
+                0.0002,
+                0.0,
+                -25.0,
+                0.0,
+                -0.0002
+            ],
+            "href": "s3://<s3-bucket>/s1_nrb/S26E149/2019/09/17/034C2E/s1_nrb_034C2E_S26E149_2019_09_17_HH.tif"
+        },
+        "mask": {
+            "title": "s1_nrb_034C2E_S26E149_2019_09_17_MASK",
+            "description": "data mask",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "roles": [
+                "data"
+            ],
+            "proj:shape": [
+                5000,
+                5000
+            ],
+            "proj:transform": [
+                149.0,
+                0.0002,
+                0.0,
+                -25.0,
+                0.0,
+                -0.0002
+            ],
+            "href": "s3://<s3-bucket>/s1_nrb/S26E149/2019/09/17/034C2E/s1_nrb_034C2E_S26E149_2019_09_17_MASK.tif"
+        },
+        "metadata": {
+            "title": "s1_nrb_034C2E_S26E149_2019_09_17_metadata",
+            "type": "application/xml",
+            "roles": [
+                "metadata",
+                "card4l"
+            ],
+            "href": "s3://<s3-bucket>/s1_nrb/S26E149/2019/09/17/034C2E/s1_nrb_034C2E_S26E149_2019_09_17_metadata.xml"
+        }
+    }
+}
