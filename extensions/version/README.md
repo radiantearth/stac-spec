@@ -34,4 +34,4 @@ The following types should be used as applicable `rel` types for the [Link Objec
 
 ## Implementations
 
-None yet, still in proposal stage.
+- [pystac](https://github.com/stac-utils/pystac/blob/develop/pystac/extensions/version.py)

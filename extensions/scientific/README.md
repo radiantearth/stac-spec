@@ -60,4 +60,4 @@ This extension adds the following types as applicable `rel` types for the [Link 
 
 ## Implementations
 
-None yet, still in proposal stage.
+- [pystac](https://github.com/stac-utils/pystac/blob/develop/pystac/extensions/scientific.py)

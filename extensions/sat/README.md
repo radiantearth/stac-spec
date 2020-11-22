@@ -28,7 +28,7 @@ The Satellite extension requires the [Instrument Fields](../../item-spec/common-
 
 ## Implementations
 
-- No implementations yet
+- [pystac](https://github.com/stac-utils/pystac/blob/develop/pystac/extensions/sat.py)
 
 ## Extensions
 
