@@ -16,51 +16,55 @@ This extension requires to use the following STAC extensions:
 ## STAC Item 
 
 
-| Field Name      | XML Tag | Description                                                  |
-| --------------- | ------- | ------------------------------------------------------------ |
-| stac_extensions |         | Must contain at least the following values: `projection`, `sar`, `sat` |
-| id              |         |                                                              |
-| geometry        |         |                                                              |
-| bbox            |         |                                                              |
+| Field Name      | XML Tag                   | Description                                                  |
+| --------------- | ------------------------- | ------------------------------------------------------------ |
+| stac_extensions | *n/a*                     | Must contain at least the following values: `projection`, `sar`, `sat` |
+| id              | `ProductID`               |                                                              |
+| geometry        |                           |                                                              |
+| bbox            | `GeographicalBoundingBox` |                                                              |
 
 
 ## STAC Item Properties
 
 ### Common Metadata
 
-| Field Name     | XML Tag | Description |
-| -------------- | ------- | ----------- |
-| datetime       | ``      |             |
-| start_datetime | ``      |             |
-| end_datetime   | ``      |             |
-| instruments    | ``      |             |
-| constellation  | ``      |             |
-| platform       | ``      |             |
+| Field Name     | XML Tag                | Description                                                  |
+| -------------- | ---------------------- | ------------------------------------------------------------ |
+| datetime       | ``                     |                                                              |
+| start_datetime | `FirstAcquistionDate`  |                                                              |
+| end_datetime   | `LastAcquistitionDate` |                                                              |
+| instruments    | `Instrument`           | Check STAC for potential values, example: `c-sar` for Sentinel-1 |
+| constellation  | `SatelliteName`        | If part of a constellation (e.g. `sentinel-1` for Sentinel 1A and 1B), lower-case |
+| platform       | `SatelliteName`        | If part of constellation, use specific name, e.g. `sentinel-1a`. Should not duplicate `constellation`, lower-case |
 
 ### Projection
 
-| Field Name                            | XML Tag | Description                                            |
-| ------------------------------------- | ------- | ------------------------------------------------------ |
-| proj:epsg / proj:wkt2 / proj:projjson | ``      | At least one of the three fields needs to be populated |
+| Field Name                            | XML Tag                     | Description                                                  |
+| ------------------------------------- | --------------------------- | ------------------------------------------------------------ |
+| proj:epsg / proj:wkt2 / proj:projjson | `CoordinateReferenceSystem` | At least one of the three fields needs to be populated, preferably `proj:epsg`. |
 
 ### SAR
 
-| Field Name                | XML Tag | Description  |
-| ------------------------- | ------- | ------------ |
-| sar:instrument_mode       | ``      |              |
-| sar:frequency_band        | ``      |              |
-| sar:center_frequency      | ``      |              |
-| sar:polarizations         | ``      |              |
-| sar:product_type          | ``      | Always `NRB` |
-| sar:observation_direction | ``      |              |
+| Field Name                | XML Tag                | Description                |
+| ------------------------- | ---------------------- | -------------------------- |
+| sar:instrument_mode       | `ObservationMode`      |                            |
+| sar:frequency_band        | `RadarBand`            |                            |
+| sar:center_frequency      | `RadarCenterFrequency` | Convert to GHz if required |
+| sar:polarizations         | `Polarizations`        |                            |
+| sar:product_type          | ``                     | Always `NRB`               |
+| sar:observation_direction | `AntennaPointing`      | Lower-case                 |
 
 ### Satelite
 
-| Field Name         | XML Tag | Description |
-| ------------------ | ------- | ----------- |
-| sat:orbit_state    | ``      |             |
-| sat:relative_orbit | ``      |             |
-| sat:absolute_orbit | ``      |             |
+| Field Name         | XML Tag         | Description |
+| ------------------ | --------------- | ----------- |
+| sat:orbit_state    | `PassDirection` | Lower-case  |
+| sat:relative_orbit | ``              |             |
+| sat:absolute_orbit | ``              |             |
+
+Use PlatformHeading?
+
+Use new proc extension for ProductAttributes?
 
 ## STAC Item Links
 
