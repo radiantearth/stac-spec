@@ -31,9 +31,7 @@
         "sar:product_type": "GRD",
         "proc:name": "GRD Post Processing",
         "proc:level": "L1",
-        "proc:datetime": "2016-08-23T00:30:33.319454",
         "proc:facility": "Copernicus S1 Core Ground Segment - DPA",
-        "proc:organisation": "ESA",
         "proc:software_name": "Sentinel-1 IPF",
         "proc:software_version": "002.71"
     },
@@ -45,7 +43,8 @@
                 "metadata"
             ],
             "title": "SAFE Manifest",
-            "href": "data/S1A_IW_GRDH_1SDV_20160822T182823_20160822T182848_012717_013FFE_90AF.SAFE/manifest.safe"
+            "href": "data/S1A_IW_GRDH_1SDV_20160822T182823_20160822T182848_012717_013FFE_90AF.SAFE/manifest.safe",
+            "created": "2016-08-23T00:30:33.319454"
         },
         "quick-look": {
             "type": "image/png",

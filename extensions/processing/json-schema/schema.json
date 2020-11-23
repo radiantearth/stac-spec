@@ -72,11 +72,6 @@
               "type": "string",
               "example": "Copernicus S1 Core Ground Segment - DPA"
             },
-            "proc:organisation": {
-              "title": "Processing Organisation",
-              "type": "string",
-              "example": "ESA"
-            },
             "proc:software_name": {
               "title": "Processing Software Name",
               "type": "string",
@@ -86,11 +81,6 @@
               "title": "Processing Software Version",
               "type": "string",
               "example": "002.71"
-            },
-            "proc:datetime": {
-              "title": "Processing Date",
-              "type": "string",
-              "format": "datetime"
             }
           }
         }

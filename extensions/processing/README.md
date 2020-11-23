@@ -26,8 +26,10 @@ For Items, the fields are placed in the properties. For Collections, the fields 
 | proc:facility     | string    | The name of the facility that produced the data. For example, `Copernicus S1 Core Ground Segment - DPA` for product of Sentinel-1 satellites. |
 | proc:software     | string    | The name of the software that produced the data. For example, `Sentinel-1 IPF` for the software that produces Sentinel-1 satellites data. |
 | proc:version      | string | The version of the software that produced the data. For example, `002.71` for the software that produces Sentinel-1 satellites data. |
-| proc:organisation | string | The name of the organisation that produced the data. Preferably, the short name. For example, `ESA` for the European SPace Agency that produces Sentinel-1 satellites data. |
-| proc:datetime            | datetime    | The product processing date |
+
+### Processing Date Time
+
+The time of the processing is directly specified via the `created` properties of the target asset as specified in the [STAC Common metadata](https://github.com/radiantearth/stac-spec/blob/master/item-spec/common-metadata.md#date-and-time)
 
 ### Suggested Processing Levels
 
