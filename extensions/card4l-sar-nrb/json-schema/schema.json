@@ -1,0 +1,200 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/card4l-sar-nrb/json-schema/schema.json#",
+	"title": "CARD4L SAR NRB Extension",
+	"description": "STAC CARD4L SAR Normalized Radar Backscatter (NRB) Extension SAR Extension to a STAC Item",
+	"allOf": [
+		{
+			"$ref": "../../../item-spec/json-schema/item.json"
+		},
+		{
+			"$ref": "../../projection/json-schema/schema.json"
+		},
+		{
+			"$ref": "../../sar/json-schema/schema.json"
+		},
+		{
+			"$ref": "../../sat/json-schema/schema.json"
+		},
+		{
+			"$ref": "#/definitions/card4l"
+		}
+	],
+	"definitions": {
+		"card4l": {
+			"type": "object",
+			"required": [
+				"stac_extensions",
+				"id",
+				"geometry",
+				"properties",
+				"links",
+				"assets"
+			],
+			"properties": {
+				"stac_extensions": {
+					"type": "array",
+					"contains": {
+						"enum": [
+							"card4l-sar-nrb",
+							"https://schemas.stacspec.org/v1.0.0-beta.2/extensions/card4l-sar-nrb/json-schema/schema.json"
+						]
+					}
+				},
+				"properties": {
+					"type": "object",
+					"required": [
+						"datetime",
+						"start_datetime",
+						"end_datetime",
+						"instruments",
+						"platform",
+						"sar:instrument_mode",
+						"sar:frequency_band",
+						"sar:center_frequency",
+						"sar:polarizations",
+						"sar:product_type",
+						"sar:observation_direction",
+						"sat:orbit_state",
+						"sat:relative_orbit"
+					],
+					"anyOf": [
+						{
+							"required": [
+								"proj:epsg"
+							]
+						},
+						{
+							"required": [
+								"proj:wkt2"
+							]
+						},
+						{
+							"required": [
+								"proj:projjson"
+							]
+						}
+					],
+					"properties": {
+						"sar:product_type": {
+							"title": "Product type",
+							"type": "string",
+							"const": "NRB"
+						}
+					}
+				},
+				"links": {
+					"allOf": [
+						{
+							"type": "array",
+							"contains": {
+								"type": "object",
+								"properties": {
+									"rel": {
+										"const": "derived_from"
+									}
+								}
+							}
+						}
+					]
+				},
+				"assets": {
+					"type": "object",
+					"required": [
+						"angle",
+						"area",
+						"mask",
+						"metadata"
+					],
+					"anyOf": [
+						{
+							"required": [
+								"hh"
+							]
+						},
+						{
+							"required": [
+								"hv"
+							]
+						},
+						{
+							"required": [
+								"vh"
+							]
+						},
+						{
+							"required": [
+								"vv"
+							]
+						}
+					],
+					"properties": {
+						"angle": {
+							"$ref": "#/definitions/data_asset"
+						},
+						"area": {
+							"$ref": "#/definitions/data_asset"
+						},
+						"mask": {
+							"$ref": "#/definitions/data_asset"
+						},
+						"metadata": {
+							"type": "object",
+							"required": [
+								"href",
+								"type",
+								"roles"
+							],
+							"properties": {
+								"type": {
+									"const": "application/xml"
+								},
+								"roles": {
+									"type": "array",
+									"uniqueItems": true,
+									"items": {
+										"enum": [
+											"metadata",
+											"card4l"
+										]
+									}
+								}
+							}
+						}
+					},
+					"patternProperties": {
+						"^(hh|hv|vh|vv)$": {
+							"type": "object",
+							"required": [
+								"sar:polarizations"
+							],
+							"properties": {
+								"sar:polarizations": {
+									"$ref": "../../sar/json-schema/schema.json#/definitions/polarizations"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"data_asset": {
+			"type": "object",
+			"required": [
+				"href",
+				"type",
+				"roles",
+				"proj:shape",
+				"proj:transform"
+			],
+			"properties": {
+				"roles": {
+					"type": "array",
+					"contains": {
+						"const": "data"
+					}
+				}
+			}
+		}
+	}
+}

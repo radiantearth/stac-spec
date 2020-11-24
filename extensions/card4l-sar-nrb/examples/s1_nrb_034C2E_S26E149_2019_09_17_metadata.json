@@ -1,6 +1,7 @@
 {
     "stac_version": "1.0.0-beta.2",
     "stac_extensions": [
+        "card4l-sar-nrb",
         "sat",
         "sar",
         "projection"
