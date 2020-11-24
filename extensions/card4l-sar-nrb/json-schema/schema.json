@@ -55,8 +55,7 @@
 						"sar:polarizations",
 						"sar:product_type",
 						"sar:observation_direction",
-						"sat:orbit_state",
-						"sat:relative_orbit"
+						"sat:orbit_state"
 					],
 					"anyOf": [
 						{
@@ -84,19 +83,15 @@
 					}
 				},
 				"links": {
-					"allOf": [
-						{
-							"type": "array",
-							"contains": {
-								"type": "object",
-								"properties": {
-									"rel": {
-										"const": "derived_from"
-									}
-								}
+					"type": "array",
+					"contains": {
+						"type": "object",
+						"properties": {
+							"rel": {
+								"const": "source"
 							}
 						}
-					]
+					}
 				},
 				"assets": {
 					"type": "object",

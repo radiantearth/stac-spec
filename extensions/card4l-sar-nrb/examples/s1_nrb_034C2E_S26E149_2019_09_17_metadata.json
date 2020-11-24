@@ -82,7 +82,7 @@
             "href": "s3://<s3-bucket>/s1_nrb/s1_nrb_catalog.json"
         },
         {
-            "rel": "derived_from",
+            "rel": "source",
             "href": "s3://sentinel-s1-l1c/GRD/2019/9/17/IW/SH/S1A_IW_GRDH_1SSH_20190917T083331_20190917T083356_029058_034C2E_07F6"
         },
         {
