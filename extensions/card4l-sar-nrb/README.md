@@ -11,7 +11,7 @@ This extension requires to use the following STAC extensions:
 
 - [Projection](../projection/README.md)
 - [SAR](../sar/README.md)
-- [Satelitle](../sat/README.md)
+- [Satellite](../sat/README.md)
 
 **To be discussed:**
 
