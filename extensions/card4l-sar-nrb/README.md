@@ -24,6 +24,7 @@ This extension requires to use the following STAC extensions:
 
 * Use new [proc extension](https://github.com/radiantearth/stac-spec/pull/907) once available, for `ProductAttributes`
 * Make recommendations for STAC Collections.
+* Check whether all fields required here are also required by CARD4L. Otherwise, don't require them.
 
 ## STAC Item 
 
