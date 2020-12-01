@@ -1,7 +1,8 @@
 {
     "stac_extensions": [
         "sat",
-        "sar"
+        "sar",
+        "processing"
     ],
     "stac_version": "1.0.0-beta.2",
     "id": "S1A_IW_GRDH_1SDV_20160822T182823_20160822T182848_012717_013FFE_90AF",
@@ -29,11 +30,12 @@
             "VH"
         ],
         "sar:product_type": "GRD",
-        "proc:name": "GRD Post Processing",
-        "proc:level": "L1",
-        "proc:facility": "Copernicus S1 Core Ground Segment - DPA",
-        "proc:software_name": "Sentinel-1 IPF",
-        "proc:software_version": "002.71"
+        "processing:lineage": "GRD Post Processing",
+        "processing:level": "L1C",
+        "processing:facility": "Copernicus S1 Core Ground Segment - DPA",
+        "processing:software": {
+            "Sentinel-1 IPF": "002.71"
+        }
     },
     "links": [],
     "assets": {

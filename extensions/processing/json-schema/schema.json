@@ -8,7 +8,7 @@
       "$ref": "../../../item-spec/json-schema/item.json"
     },
     {
-      "$ref": "#/definitions/proc"
+      "$ref": "#/definitions/processing"
     },
     {
       "allOf": [
@@ -19,40 +19,38 @@
           "$ref": "#/definitions/stac_extensions"
         },
         {
-          "$ref": "#/definitions/scientific"
+          "$ref": "#/definitions/processing"
         }
       ]
     }
   ],
   "definitions": {
-    "proc": {
+    "processing": {
       "type": "object",
       "required": [
         "stac_extensions",
         "properties"
       ],
+      "minProperties": 1,
       "properties": {
         "stac_extensions": {
           "type": "array",
           "contains": {
             "enum": [
-              "proc",
-              "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/proc/json-schema/schema.json"
+              "processing",
+              "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/processing/json-schema/schema.json"
             ]
           }
         },
         "properties": {
           "type": "object",
-          "required": [
-            "proc:level"
-          ],
           "properties": {
-            "proc:name": {
-              "title": "Processing Name",
+            "processing:lineage": {
+              "title": "Processing Lineage Information",
               "type": "string",
               "example": "Post Processing GRD"
             },
-            "proc:level": {
+            "processing:level": {
               "title": "Processing Level",
               "type": "string",
               "examples": [
@@ -67,20 +65,22 @@
                 "L4"
               ]
             },
-            "proc:facility": {
+            "processing:facility": {
               "title": "Processing Facility",
               "type": "string",
               "example": "Copernicus S1 Core Ground Segment - DPA"
             },
-            "proc:software_name": {
-              "title": "Processing Software Name",
-              "type": "string",
-              "example": "Sentinel-1 IPF"
-            },
-            "proc:software_version": {
-              "title": "Processing Software Version",
-              "type": "string",
-              "example": "002.71"
+            "processing:software": {
+              "title": "Processing Software Name / version",
+              "type": "object",
+              "patternProperties": {
+                ".{1,}": {
+                  "type": "string"
+                }
+              },
+              "example": {
+                "Sentinel-1 IPF": "002.71"
+              }
             }
           }
         }

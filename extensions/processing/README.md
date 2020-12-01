@@ -15,17 +15,16 @@ This extension applies to STAC Items and STAC Collections. As these processing i
 - [Examples](examples/): [Sentinel-1 Item](examples/sentinel1-item.json),  [Sentinel-2 Level 1C Collection](examples/sentinel2-collection.json)
 - [JSON Schema](json-schema/schema.json)
 
-## Item and Collection fields
+## Asset, Item and Collection fields
 
-For Items, the fields are placed in the properties. For Collections, the fields are placed in the summaries of the Collection.
+For Asset, the fields are placed in the asset object. For Items, the fields are placed in the properties. For Collections, the fields are placed in the summaries of the Collection.
 
 | Field Name                  | Type      | Description                                                  |
 | --------------------------- | --------- | ------------------------------------------------------------ |
-| proc:name         | string | The name of the processing of the data that is commonly used. For example, `GRD Post Processing` for "GRD" product of Sentinel-1 satellites. |
-| proc:level        | string | **REQUIRED.** The name commonly used to refer to the processing level to make it easier to search for product level across collections or items. The short name must be used (only `L`, not `Level`). See the [list of suggested processing levels](#suggested-processing-levels). |
+| proc:lineage       | string | Lineage Information provided as free text information about the how observations were processed or models that were used to create the resource being described [NASA ISO](https://wiki.earthdata.nasa.gov/display/NASAISO/Lineage+Information). For example, `GRD Post Processing` for "GRD" product of Sentinel-1 satellites. |
+| proc:level        | string | The name commonly used to refer to the processing level to make it easier to search for product level across collections or items. The short name must be used (only `L`, not `Level`). See the [list of suggested processing levels](#suggested-processing-levels). |
 | proc:facility     | string    | The name of the facility that produced the data. For example, `Copernicus S1 Core Ground Segment - DPA` for product of Sentinel-1 satellites. |
-| proc:software     | string    | The name of the software that produced the data. For example, `Sentinel-1 IPF` for the software that produces Sentinel-1 satellites data. |
-| proc:version      | string | The version of the software that produced the data. For example, `002.71` for the software that produces Sentinel-1 satellites data. |
+| proc:software     | dictionary    | A dictionary with name/version for key/value describing one or more softwares that produced the data. For example, `"Sentinel-1 IPF":"002.71"` for the software that produces Sentinel-1 satellites data. |
 
 ### Processing Date Time
 

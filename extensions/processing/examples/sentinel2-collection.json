@@ -4,7 +4,7 @@
     "eo",
     "sci",
     "proj",
-    "proc",
+    "processing",
     "view"
   ],
   "id": "COPERNICUS/S2",
@@ -64,24 +64,19 @@
     "instruments": [
       "msi"
     ],
-    "proc:name": [
+    "processing:lineage": [
       "Generation of Level-1C User Product"
     ],
-    "proc:level": [
+    "processing:level": [
       "L1C"
     ],
-    "proc:datetime": {
-      "min": "2015-06-25T00:00:00Z",
-      "max": "2019-07-12T13:44:56Z"
-    },
-    "proc:organisation": [
-      "ESA"
-    ],
-    "proc:facility": [
+    "processing:facility": [
       "Copernicus S2 Processing and Archiving Facility"
     ],
-    "proc:software_version": [
-      "02.06"
+    "processing:software_version": [
+      {
+        "IPF-S2L1C": "02.06"
+      }
     ],
     "view:off_nadir": {
       "min": 0.0,
