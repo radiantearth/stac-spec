@@ -1,14 +1,21 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/proc/json-schema/schema.json#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/processing/json-schema/schema.json#",
   "title": "Processing Extension",
   "description": "STAC Processing Extension to a STAC Item or STAC Collections",
-  "allOf": [
+  "oneOf": [
     {
-      "$ref": "../../../item-spec/json-schema/item.json"
-    },
-    {
-      "$ref": "#/definitions/processing"
+      "allOf": [
+        {
+          "$ref": "../../../item-spec/json-schema/item.json"
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
+          "$ref": "#/definitions/item_processing"
+        }
+      ]
     },
     {
       "allOf": [
@@ -19,19 +26,17 @@
           "$ref": "#/definitions/stac_extensions"
         },
         {
-          "$ref": "#/definitions/processing"
+          "$ref": "#/definitions/collection_processing"
         }
       ]
     }
   ],
   "definitions": {
-    "processing": {
+    "stac_extensions": {
       "type": "object",
       "required": [
-        "stac_extensions",
-        "properties"
+        "stac_extensions"
       ],
-      "minProperties": 1,
       "properties": {
         "stac_extensions": {
           "type": "array",
@@ -41,47 +46,87 @@
               "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/processing/json-schema/schema.json"
             ]
           }
-        },
+        }
+      }
+    },
+    "item_processing": {
+      "type": "object",
+      "required": [
+        "properties"
+      ],
+      "properties": {
         "properties": {
+          "$refs": "#/definitions/fields"
+        }
+      }
+    },
+    "collection_processing": {
+      "type": "object",
+      "required": [
+        "providers"
+      ],
+      "properties": {
+        "providers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$refs": "#/definitions/fields"
+          }
+        }
+      }
+    },
+    "fields": {
+      "type": "object",
+      "required": [
+        "roles"
+      ],
+      "minProperties": 2,
+      "properties": {
+        "roles": {
+          "type": "array",
+          "contains": {
+            "type": "string",
+            "enum": [
+              "producer",
+              "processor"
+            ]
+          }
+        },
+        "processing:lineage": {
+          "title": "Processing Lineage Information",
+          "type": "string",
+          "example": "Post Processing GRD"
+        },
+        "processing:level": {
+          "title": "Processing Level",
+          "type": "string",
+          "examples": [
+            "RAW",
+            "L1",
+            "L1A",
+            "L1B",
+            "L1C",
+            "L2",
+            "L2A",
+            "L3",
+            "L4"
+          ]
+        },
+        "processing:facility": {
+          "title": "Processing Facility",
+          "type": "string",
+          "example": "Copernicus S1 Core Ground Segment - DPA"
+        },
+        "processing:software": {
+          "title": "Processing Software Name / version",
           "type": "object",
-          "properties": {
-            "processing:lineage": {
-              "title": "Processing Lineage Information",
-              "type": "string",
-              "example": "Post Processing GRD"
-            },
-            "processing:level": {
-              "title": "Processing Level",
-              "type": "string",
-              "examples": [
-                "RAW",
-                "L1",
-                "L1A",
-                "L1B",
-                "L1C",
-                "L2",
-                "L2A",
-                "L3",
-                "L4"
-              ]
-            },
-            "processing:facility": {
-              "title": "Processing Facility",
-              "type": "string",
-              "example": "Copernicus S1 Core Ground Segment - DPA"
-            },
-            "processing:software": {
-              "title": "Processing Software Name / version",
-              "type": "object",
-              "patternProperties": {
-                ".{1,}": {
-                  "type": "string"
-                }
-              },
-              "example": {
-                "Sentinel-1 IPF": "002.71"
-              }
+          "patternProperties": {
+            ".{1,}": {
+              "type": "string"
             }
+          },
+          "example": {
+            "Sentinel-1 IPF": "002.71"
           }
         }
       }
