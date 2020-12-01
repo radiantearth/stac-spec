@@ -56,7 +56,7 @@ This extension adds the following types as applicable `rel` types for the [Link 
 
 | Type    | Description |
 | ------- | ----------- |
-| cite-as | For all DOI names specified the respective DOI links SHOULD be added to the links section with the `rel` type `cite-as` (see the [IETF draft](https://tools.ietf.org/id/draft-vandesompel-citeas-03.html)). |
+| cite-as | For all DOI names specified the respective DOI links SHOULD be added to the links section with the `rel` type `cite-as` (see the [RFC 8574](https://tools.ietf.org/html/rfc8574)). |
 
 ## Implementations
 
