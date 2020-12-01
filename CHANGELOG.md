@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Label extension: `label:classes` was flagged as required in JSON Schema, but is only required for categorical data.
+- Fixed JSON Schema for `providers` (Collections and Items) to be an object and require a `name`.
 
 ## [v1.0.0-beta.2] - 2020-07-08
 
