@@ -17,8 +17,6 @@
         "instruments": [
             "c-sar"
         ],
-        "title": "dummy",
-        "description": "dummy",
         "sat:absolute_orbit": 12717,
         "sat:orbit_state": "ascending",
         "sat:relative_orbit": 45,
@@ -67,7 +65,7 @@
             ]
         },
         "amplitude-vv-iw": {
-            "type": "application/x-geotiff",
+            "type": "image/tiff; application=geotiff",
             "roles": [
                 "data"
             ],
@@ -90,7 +88,7 @@
             ]
         },
         "amplitude-vh-iw": {
-            "type": "application/x-geotiff",
+            "type": "image/tiff; application=geotiff",
             "roles": [
                 "data"
             ],
