@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Label extension: `label:classes` was flagged as required in JSON Schema, but is only required for categorical data.
 - Fixed JSON Schema for `providers` (Collections and Items) to be an object and require a `name`.
+- JSON Schema for `sar:polarizations` in `assets` fixed
 
 ## [v1.0.0-beta.2] - 2020-07-08
 
@@ -90,7 +91,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - New [View Geometry Extension](extensions/view/README.md)
 - STAC API:
   - Added the [Item and Collection API Version extension](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/version/README.md) to support versioning in the API specification
-  - Run `npm run serve` or `npm run serve-ext` to quickly render development versions of the OpenAPI spec in the browser
+  - Run `npm run serve` or `npm run serve-ext` to quickly render development versions of the OpenAPI spec in the browser
 - [Basics](item-spec/common-metadata.md#basics) added to Common Metadata definitions with new `description` field for
 Item properties
 - New fields to the `link` object to facilitate [pagination support for POST requests](https://github.com/radiantearth/stac-api-spec/tree/master/api-spec.md#paging-extension)
