@@ -33,6 +33,10 @@ This extension applies to STAC Items and STAC Collections. As these processing i
 
 The time of the processing is directly specified via the `created` properties of the target asset as specified in the [STAC Common metadata](https://github.com/radiantearth/stac-spec/blob/master/item-spec/common-metadata.md#date-and-time)
 
+### Linking the items
+
+In items declaring this `processing` extension, it is recommended to add one or more [links](https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#link-object) with `derived-fom` or `via` relationships to the eventual source items used in the processing. They could be used to trace back the processing history of the dataset.
+
 ### Suggested Processing Levels
 
 The `processing:level` is the name that is commonly used to refer to that processing level properties. The table below shows some processing level used by the industry for some data product.
@@ -43,21 +47,16 @@ This list is not exhaustive and can be extended with the processing level specif
 
 | Level Name | Description | Typical data product |
 | ---------- | ----------- | -------------------- |
-| RAW        |  Data in their original packets, as received from the instrument. | [Sentinel-1 RAW](https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-1-sar/products-algorithms/level-0-products/raw) |
-| L0         | Reconstructed unprocessed instrument data at full space time resolution with all available supplemental information to be used in subsequent processing (e.g., ephemeris, health and safety) appended. | [Landat Level 0](https://www.usgs.gov/media/files/landsat-8-level-0-reformatted-data-format-control-book)  |
+| RAW        | Data in their original packets, as received from the instrument. | [Sentinel-1 RAW](https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-1-sar/products-algorithms/level-0-products/raw) |
+| L0         | Reconstructed unprocessed instrument data at full space time resolution with all available supplemental information to be used in subsequent processing (e.g., ephemeris, health and safety) appended. | [Landsat Level 0](https://www.usgs.gov/media/files/landsat-8-level-0-reformatted-data-format-control-book)  |
 | L1         | Unpacked, reformatted level 0 data, with all supplemental information to be used in subsequent processing appended. Optional radiometric and geometric correction applied to produce parameters in physical units. Data generally presented as full time/space resolution. A wide variety of sub level products are possible (see below). | [Sentinel-1 Level 1](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-1-sar/product-types-processing-levels/level-1) |
-| L1A        | Reconstructed, unprocessed instrument data at full resolution, time-referenced, and annotated with ancillary information, including radiometric and geometric calibration coefficients and georeferencing parameters (e.g., platform ephemeris) computed and appended but not applied to Level 0 data. | [Sentinel-2 L1A](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi/product-types/level-1a) |
-| L1B         | Level 1A data that have been processed to sensor units (not all instruments have Level 1B source data). | [Sentinel-2 L1B](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi/product-types/level-1b) |
-| L1C         | Level 1B data that have been processed on a on the reference ellipsoid and represented in a uniform preselected cartographic presentation. | [Sentinel-2 L1C](https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi/product-types/level-1c) |
-| L1D         | Level 1C data that have been processed to generate a geocoded terrain corrected product which is fully calibrated through the use of a terrain model, then detected, geolocated on a DEM (Digital Elevation Model), and represented in a uniform pre-selected cartographic projection. | [KOMPSAT-5 L1D](https://directory.eoportal.org/web/eoportal/satellite-missions/k/kompsat-5) |
-| L1TP        | Radiometrically calibrated and orthorectified product using ground control points (GCPs) and digital elevation model (DEM) data to correct for relief displacement. | Landsat7/8 L1TP |
-| L1GT        | Radiometrically calibrated product with systematic geometric corrections applied using the spacecraft ephemeris data and DEM data to correct for relief displacement. | Landsat7/8 L1GT |
-| L1GS        | Radiometrically calibrated product with only systematic geometric corrections applied using the spacecraft ephemeris data. | Landsat7/8 L1GS |
 | L2          | Retrieved environmental variables (e.g., ocean wave height, soil-moisture, ice concentration) at the same resolution and location as the level 1 source data. A wide variety of sub-level products are possible (see below). | |
-| L2A         | Derived geophysical variables at the same resolution and location as Level 1 source data applying specific algorithm such as scene classification and atmospheric correction | [Sentinel-2 L2A](https://earth.esa.int/web/sentinel/technical-guides/sentinel-2-msi/level-2a-processing) |
-| L2SP        | Surface reflectance and surface temperature science products | [Landsat Level 2 science products](https://www.usgs.gov/core-science-systems/nli/landsat/landsat-collection-2-level-2-science-products) |
 | L3          | Data or retrieved environmental variables which have been spatiallyand/or temporally re-sampled (i.e., derived from level 1 or 2 products). Such re-sampling may include averaging and compositing.  A wide variety of sub-level products are possible (see below). | [ENVISAT Level-3](http://envisat.esa.int/level3/), [Sentinel-2 L3](https://s2gm.sentinel-hub.com/) |
 | L4          | Model output or results from analyses of lower level data (i.e.,variables that are not directly measured by the instruments, but are derived fromthese measurements) |
+
+## Implementations
+
+[DotNetStac](https://github.com/Terradue/DotNetStac) uses this extension specification for the processing extension plugin with accessor to the value specified of this extension.
 
 ## Extensions
 
