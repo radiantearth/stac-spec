@@ -35,7 +35,7 @@ The time of the processing is directly specified via the `created` properties of
 
 ### Linking the items
 
-In items declaring this `processing` extension, it is recommended to add one or more [links](https://github.com/radiantearth/stac-spec/blob/master/item-spec/item-spec.md#link-object) with `derived-fom` or `via` relationships to the eventual source items used in the processing. They could be used to trace back the processing history of the dataset.
+In items declaring this `processing` extension, it is recommended to add one or more [links](../../item-spec/item-spec.md#relation-types) with `derived_from` or `via` relationships to the eventual source items used in the processing. They could be used to trace back the processing history of the dataset.
 
 ### Suggested Processing Levels
 
