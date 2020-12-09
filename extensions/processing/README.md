@@ -54,10 +54,6 @@ This list is not exhaustive and can be extended with the processing level specif
 | L3          | Data or retrieved environmental variables which have been spatiallyand/or temporally re-sampled (i.e., derived from level 1 or 2 products). Such re-sampling may include averaging and compositing.  A wide variety of sub-level products are possible (see below). | [ENVISAT Level-3](http://envisat.esa.int/level3/), [Sentinel-2 L3](https://s2gm.sentinel-hub.com/) |
 | L4          | Model output or results from analyses of lower level data (i.e.,variables that are not directly measured by the instruments, but are derived from these measurements) |  |
 
-## Implementations
-
-[DotNetStac](https://github.com/Terradue/DotNetStac) uses this extension specification for the processing extension plugin with accessor to the value specified of this extension.
-
 ## Extensions
 
 The [extensions page](../README.md) gives an overview about related extensions. Of particular relevance to processing levels:
