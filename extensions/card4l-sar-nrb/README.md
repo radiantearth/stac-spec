@@ -9,28 +9,29 @@ This extension doesn't define new fields for STAC Items, but specifies which ext
 
 This extension requires to use the following STAC extensions:
 
+- [Processing](../processing/README.md)
 - [Projection](../projection/README.md)
 - [SAR](../sar/README.md)
 - [Satellite](../sat/README.md)
+- [View](../view/README.md)
 
 **To be discussed:**
 
-+ Does view:azimuth correspond to PlatformHeading?
-+ [Does it make sense to fill  view:incidence_angle with the central angle between IncAngleNearRange and IncAngleFarRange?](https://github.com/radiantearth/stac-spec/issues/912)
-+ Replace the Asset role `card4l` to `card4l-sar-nrb`?
-+ Should product type be `NRB` or `RTC`?
++ Replace the Asset role `card4l` with `card4l-sar-nrb`?
++ Should product type be `NRB` or `RTC`?
 
 **To do:**
 
-* Use new [proc extension](https://github.com/radiantearth/stac-spec/pull/907) once available, for `ProductAttributes`
 * Make recommendations for STAC Collections.
-* Check whether all fields required here are also required by CARD4L. Otherwise, don't require them.
+* Check whether all fields required here are also required by CARD4L. Otherwise, don't require them if STAC allows it.
+* Add optional fields from CARD4L whenever possible in STAC
+* Update JSON Schema
 
 ## STAC Item 
 
 | Field Name      | XML Tag                   | Description                                                  |
 | --------------- | ------------------------- | ------------------------------------------------------------ |
-| stac_extensions | *n/a*                     | **REQUIRED.** Must contain at least the following values: `card4l-sar-nrb`, `projection`, `sar`, `sat` |
+| stac_extensions | *n/a*                     | **REQUIRED.** Must contain at least the following values: `card4l-sar-nrb`, `processing`, `projection`, `sar`, `sat`, `view` |
 | id              | `ProductID`               | **REQUIRED.**                                                |
 | geometry        | *n/a*                     | **REQUIRED.** The geometry of the acquisition.               |
 | bbox            | `GeographicalBoundingBox` | **REQUIRED.** The bounding box of the acquisition.           |
@@ -47,6 +48,13 @@ This extension requires to use the following STAC extensions:
 | instruments    | `Instrument`                        | **REQUIRED.** Check STAC for potential values, example: `c-sar` for Sentinel-1 |
 | constellation  | *n/a*, derived from `SatelliteName` | If part of a constellation (e.g. `sentinel-1` for Sentinel 1A and 1B), lower-case |
 | platform       | `SatelliteName`                     | **REQUIRED.** If part of constellation, use specific name, e.g. `sentinel-1a`. *Must not* duplicate `constellation`, lower-case |
+
+### Processing
+
+| Field Name     | XML Tag in `DataAccess`         | Description                                                  |
+| -------------- | ----------------------------------- | ------------------------------------------------------------ |
+| processing:facility | `ProcessingFacility` | **REQUIRED.** |
+| processing:software | `SoftwareVersion` | **REQUIRED.** String likely needs to be split into software name and version number. |
 
 ### Projection
 
@@ -65,29 +73,46 @@ This extension requires to use the following STAC extensions:
 | sar:product_type          | *n/a*                  | **REQUIRED.** Always `NRB`               |
 | sar:observation_direction | `AntennaPointing`      | **REQUIRED.** Lower-case                 |
 
-### Satelite
+### Satellite
 
 | Field Name         | XML Tag         | Description              |
 | ------------------ | --------------- | ------------------------ |
 | sat:orbit_state    | `PassDirection` | **REQUIRED.** Lower-case |
-| sat:relative_orbit | *n/a*           | *Recommended.*           |
-| sat:absolute_orbit | *n/a*           | *Recommended.*           |
+| sat:relative_orbit | *n/a*           |                          |
+| sat:absolute_orbit | *n/a*           |                          |
+
+### View
+
+| Field Name         | XML Tag         | Description              |
+| ------------------ | --------------- | ------------------------ |
+| view:azimuth | `PlatformHeading` |  |
+| view:incidence_angle | `IncAngleNearRange` / `IncAngleFarRange` | **REQUIRED.** Center between `IncAngleNearRange` and `IncAngleFarRange`. This is the sensor incidence angle. For per-pixel incidence angles, refer to the asset with the key `angle`. |
 
 ## STAC Item Links
 
 | Relation Type      | XML Tag       | Description              |
 | ------------------ | ------------------------ | ------------------ |
-| derived_from  | *n/a* | *Recommended.* Points back to the source's STAC Item. The STAC Item *should* contain a representation of the metadata from the `SourceAttributes` XML tag. |
+| derived_from  | *n/a* | Points back to the source's STAC Item. The STAC Item *should* contain a representation of the metadata from the `SourceAttributes` XML tag. |
 | source | based on `SourceDataRepository` | **REQUIRED.** Points back to the source data. |
-| about | `NRAlgorithm`, `RTCAlgorithm`, `DEMReference`, `EGMReference`, `AccuracyReference` | *Recommended.* Links from the given XML tags can be added as additional information about the product. |
-| related | `SensorCalibration`, `PerformanceIndicators` | *Recommended.* Links from the given XML tags can be added as additional information about the source data. |
+| about | `NRAlgorithm`, `RTCAlgorithm`, `DEMReference`, `EGMReference`, `AccuracyReference`, `RepositoryURL` | Links from the given XML tags can be added as additional information about the product. |
+| related | `SensorCalibration`, `PerformanceIndicators` | Links from the given XML tags can be added as additional information about the source data. |
 
 ## STAC Item Assets
 
 | Asset Key | Role Name(s) | Additional properties | XML Tag       | Description              |
 | ------------------ | --------------- | --------------- | --------------- | --------------- |
-| angle | data | `proj:shape`, `proj:transform` | `LocalIncAngle` | **REQUIRED.** Points to the local incidence angle file. |
-| area | data | `proj:shape`, `proj:transform` | `LocalContributingArea` | **REQUIRED.** Points to the normalized scattering area file. |
-| hh / hv / vh / vv | data | `proj:shape`, `proj:transform`, `sar:polarizations` | `BackscatterMeasurementData` | **REQUIRED.** Points to the polarization file. |
-| mask | data | `proj:shape`, `proj:transform` | `DataMask` | **REQUIRED.** Points to the data mask file. |
+| angle | data | `proj:shape`, `proj:transform`, `created` | `LocalIncAngle` | **REQUIRED.** Points to the local incidence angle file. |
+| area | data | `proj:shape`, `proj:transform`, `created` | `LocalContributingArea` | **REQUIRED.** Points to the normalized scattering area file. |
+| hh / hv / vh / vv | data | `proj:shape`, `proj:transform`, `sar:polarizations`, `created` | `BackscatterMeasurementData` | **REQUIRED.** Points to the polarization file. |
+| mask | data | `proj:shape`, `proj:transform`, `created` | `DataMask` | **REQUIRED.** Points to the data mask file. |
 | metadata | metadata *and* card4l | - | *n/a* | **REQUIRED.** Points to the CARD4L metadata XML file. Media type: `application/xml` |
+
+### Additional properties
+
+**`proj:shape`**: tbd
+
+**`proj:transform`**: tbd
+
+**`sar:polarizations`**: **REQUIRED**. The polarization(s) of the asset.
+
+**`created`**: **REQUIRED.** The time of the processing is specified via the `created` property of the asset as specified in the [STAC Common metadata](../../item-spec/common-metadata.md#date-and-time). The corresponding XML Tag is `ProcessingTime` in `DataAccesss`.
