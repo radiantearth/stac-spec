@@ -205,8 +205,8 @@ We encourage people to explore new structures of linking data, but the following
 ended up doing. Following these recommendations makes for more legible catalogs.
 
 1. Root documents (catalogs / collections) should be at the root of a directory tree containing the static catalog.
-2. Catalogs should be named `catalog.json` (cf. `index.html`).
-3. Collections that are distinct from catalogs should be named `collection.json`.
+2. Catalogs should be named `catalog.json` and Collections should be named `collection.json`.
+3. Collections at the root of a Catalog should be named `collection.json`.
 4. Items should be named `<id>.json`.
 5. Sub-catalogs should be stored in subdirectories of their parent (and only 1 subdirectory deeper than a document's parent) (e.g. `.../sample/sub1/catalog.json`).
 6. Items should be stored in subdirectories of their parent catalog. 
