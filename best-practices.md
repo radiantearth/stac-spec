@@ -357,14 +357,14 @@ from STAC like [STAC Browser](https://github.com/radiantearth/stac-browser/). ST
 schema.org](https://github.com/radiantearth/stac-spec/issues/378) fields using JSON-LD, but the exact output is still being
 refined. It is on the roadmap to add in more mapping and do more testing of search engines crawling the HTML pages. 
 
-### Deploying STAC Browser & stac.cloud
+### Deploying STAC Browser
 
-There are a number of STAC Browser [examples on stacspec.org](https://stacspec.org/#examples), that are all deployed on 
-the [stac.cloud](http://stac.cloud) domain. Anyone with a public catalog is welcome to have a STAC Browser instance hosted
-for free. But the stronger recommendation is to host your catalog's STAC Browser on your own domain, and to customize its 
-design to look and feel like your main web presence. The goal of stac.cloud is to bootstrap live web pages for catalogs, but
-not to be *the* central hub. STAC aims to be decentralized, so each catalog should have its own location and just be
-part of the wider web. 
+Most public catalogs have a STAC Browser hosted at [stacindex.org](https://stacindex.org/catalogs).
+Anyone with a public catalog is welcome to have a STAC Browser instance hosted for free,
+just submit it to [stacindex.org](https://stacindex.org/add).
+But the stronger recommendation is to host your catalog's STAC Browser on your own domain, and to customize its 
+design to look and feel like your main web presence. STAC aims to be decentralized, so each catalog should have its own location and just be
+part of the wider web.
 
 ## Static to Dynamic best practices
 
