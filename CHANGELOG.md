@@ -7,9 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
- - 'via' and 'canonical' rel types as options in items.
-
-- Added clarification about how collection-level assset object properties do not remove the need for item-level asset object properties in the `item-assets` extension ([#880](https://github.com/radiantearth/stac-spec/pull/880))
+- 'via' and 'canonical' rel types as options in items.
+- Added clarification about how collection-level asset object properties do not remove the need for item-level asset object properties in the `item-assets` extension ([#880](https://github.com/radiantearth/stac-spec/pull/880))
 - Added [processing extension](extensions/processing/README.md)
 - Added additional acquisition parameters in the `sat` extension: sat:platform_international_designator, sat:absolute_orbit, sat:anx_datetime* ([#894](https://github.com/radiantearth/stac-spec/pull/894))
 
@@ -34,6 +33,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Clarification on null geometries, making bbox not required if a null geometry is used.
 - Multiple extents (bounding boxes / intervals) are allowed per Collection
+- In the scientific extension, a link with the rel-type 'cite-as' SHOULD be used for the main publication of the dataset (the same as the one described in `sci:doi`), and not for the DOIs referenced in the `sci:publications` property.
 
 ### Removed
 - Validation instructions
