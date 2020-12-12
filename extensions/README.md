@@ -46,7 +46,7 @@ An extension can add new fields to STAC entities (content extension), or can add
 
 | Extension Title                                  | Identifier        | Field Name Prefix   | Scope                     | Maturity   | Description |
 | ------------------------------------------------ | ----------------- | ------------------- | ------------------------- | ---------- | ----------- |
-| [CARD4L SAR NRB](card4l-sar-nrb/README.md)       | card4l-sar-nrb    | -                   | Item                      | *Proposal* | How to comply to the CEOS CARD4L product family specification for SAR Normalized Radar Backscatter products in version 5.0 |
+| [CARD4L SAR](card4l-sar/README.md)               | card4l-sar        | -                   | Item                      | *Proposal* | How to comply to the CEOS CARD4L product family specification for SAR NRB and POL products |
 | [Checksum](checksum/README.md)                   | checksum          | checksum            | Item, Catalog, Collection | *Proposal* | Provides a way to specify file checksums for assets and links in Items, Catalogs and Collections. |
 | [Collection Assets](collection-assets/README.md) | collection-assets | -                   | Collection                | *Proposal* | Provides a way to specify assets available on the collection-level. |
 | [Data Cube](datacube/README.md)                  | datacube          | cube                | Item, Collection          | *Proposal* | Data Cube related metadata, especially to describe their dimensions. |

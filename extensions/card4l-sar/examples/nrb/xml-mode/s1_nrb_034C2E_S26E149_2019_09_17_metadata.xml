@@ -8,7 +8,7 @@
    </DataCollectionTime>
    <SourceAttributes acqID="1">
       <SourceDataRepository type="URL">s3://sentinel-s1-l1c/GRD/2019/9/17/IW/SH/S1A_IW_GRDH_1SSH_20190917T083331_20190917T083356_029058_034C2E_07F6</SourceDataRepository>
-      <SatelliteName>Sentinel-1</SatelliteName>
+      <Satellite>Sentinel-1</Satellite>
       <Instrument>Synthetic Aperture Radar</Instrument>
       <SourceDataAcquistionTime>
          <StartTime>2019-09-17T08:33:31.300452</StartTime>

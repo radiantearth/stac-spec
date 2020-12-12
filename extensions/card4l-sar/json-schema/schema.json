@@ -1,8 +1,8 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
-	"$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/card4l-sar-nrb/json-schema/schema.json#",
-	"title": "CARD4L SAR NRB Extension",
-	"description": "STAC CARD4L SAR Normalized Radar Backscatter (NRB) Extension SAR Extension to a STAC Item",
+	"$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/card4l-sar/json-schema/schema.json#",
+	"title": "CARD4L SAR Extension",
+	"description": "STAC CARD4L SAR Extension to a STAC Item",
 	"allOf": [
 		{
 			"$ref": "../../../item-spec/json-schema/item.json"
@@ -36,8 +36,8 @@
 					"type": "array",
 					"contains": {
 						"enum": [
-							"card4l-sar-nrb",
-							"https://schemas.stacspec.org/v1.0.0-beta.2/extensions/card4l-sar-nrb/json-schema/schema.json"
+							"card4l-sar",
+							"https://schemas.stacspec.org/v1.0.0-beta.2/extensions/card4l-sar/json-schema/schema.json"
 						]
 					}
 				},
@@ -78,7 +78,10 @@
 						"sar:product_type": {
 							"title": "Product type",
 							"type": "string",
-							"const": "NRB"
+							"enum": [
+								"NRB",
+								"POL"
+							]
 						}
 					}
 				},
