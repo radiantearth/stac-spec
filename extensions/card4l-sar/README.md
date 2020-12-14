@@ -89,9 +89,12 @@ All these fields are **required** in **STAC mode** only! In XML Mode they are ex
 | card4l:ionosphere_indicator            | boolean                                                 | `IonosphereIndicator`                        | Flag indicating whether the backscatter imagery is “significantly impacted” by the ionosphere (`false` - no, `true` – yes). | ✓ 1.6.12 | ✗       |
 | card4l:speckle_filtering               | [Speckle Filter Object](#speckle-filter-object) \| null | `Filtering`, `FilterApplied`                 | **REQUIRED.** Set to `null` if `FilterApplied` would be set to `false`. Otherwise make it an Speckle Filter Object. | ✗        | ✓ 1.7.4 |
 | card4l:border_pixels                   | integer                                                 | `NumBorderPixels`                            | Number of border pixels (**required** if applicable). To be specified either globally for all assets with role `data` or individually [per asset](#stac-item-assets). | ✗        | ✓ 1.7.7 |
-| card4l:pixel_coordinate_convention     | string                                                  | `PixelCoordinateConvention`                  | **REQUIRED.** One of `center` (pixel centre), `upper-left` (pixel ULC) or `lower-left` (`pixel LLC`) | ✗        | ✓ 1.7.7 |
+| card4l:pixel_coordinate_convention     | string                                                  | `PixelCoordinateConvention`                  | **REQUIRED.** One of `center` (pixel center), `upper-left` (pixel ULC) or `lower-left` (pixel LLC) | ✗        | ✓ 1.7.7 |
 | card4l:relative_rtc_accuracy           | number                                                  | `Relative` in `RTCAccuracy`                  | Relative accuracy of the Radiometric Terrain Correction in decibel. | ✗        | ✓ 3.5   |
 | card4l:absolute_rtc_accuracy           | number                                                  | `Absolute` in `RTCAccuracy`                  | Absolute accuracy of the Radiometric Terrain Correction in decibel. | ✗        | ✓ 3.5   |
+| card4l:northern_geometric_accuracy     | number                                                  | `NorthernRMSE` in `GeoCorrAccuracy`          | **REQUIRED.** An estimate of the northern geometric accuracy in meters. | ✗        | ✓ 4.3   |
+| card4l:eastern_geometric_accuracy      | number                                                  | `EasternRMSE` in `GeoCorrAccuracy`           | **REQUIRED.** An estimate of the eastern geometric accuracy in meters. | ✗        | ✓ 4.3   |
+| card4l:gridding_convention             | string                                                  | `GriddingConvention`                         | **REQUIRED.** One of `center` (center), `upper-left` (UL) or `lower-right` (LR) | ✗        | ✓ 4.4   |
 
 ##### Speckle Filter Object
 
@@ -118,11 +121,11 @@ The following fields are all specified in CARD4L requirement 1.7.4. It is **requ
 
 #### Processing
 
-| Field Name          | XML Tag                                                     | Description                                                  | Src     | Prod    |
-| ------------------- | ----------------------------------------------------------- | ------------------------------------------------------------ | ------- | ------- |
-| processing:facility | `ProcessingFacility`                                        | **REQUIRED.**                                                | ✓ 1.6.6 | ✓ 1.7.1 |
-| processing:software | `SoftwareVersion`                                           | **REQUIRED.** String likely needs to be split into software name and version number. | ✓ 1.6.6 | ✓ 1.7.1 |
-| processing:lineage  | `RangeLookBandwidth`,  `AzimuthLookBandwidth`, `lutApplied` | Additional processing information and parameters, e.g. Range- and Azimuth Look Bandwidth and LUT applied (Src only) | ✓ 1.6.6 |         |
+| Field Name          | XML Tag                                                      | Description                                                  | Src     | Prod    |
+| ------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------- | ------- |
+| processing:facility | `ProcessingFacility`                                         | **REQUIRED.**                                                | ✓ 1.6.6 | ✓ 1.7.1 |
+| processing:software | `SoftwareVersion`                                            | **REQUIRED.** String likely needs to be split into software name and version number. | ✓ 1.6.6 | ✓ 1.7.1 |
+| processing:lineage  | `RangeLookBandwidth`,  `AzimuthLookBandwidth`, `lutApplied` (1.6.6), `ResamplingMethod` (4.1) | Additional processing information and parameters, e.g. Range- and Azimuth Look Bandwidth and LUT applied (Src only) or the resampling method for geometric correction. | ✓ 1.6.6 | ✓ 4.1   |
 
 #### Projection
 
@@ -181,7 +184,10 @@ The following fields are all specified in CARD4L requirement 1.7.4. It is **requ
 | referenced-faraday-rotation    | `ReferenceFaradayRotation` | Link to the method or paper used to derive the estimate for the mean Faraday rotation angle. | ✓ 1.6.11 | ✗       |
 | ancillary-data                 | `AncillaryData`            | Link to the sources of ancillary data such as DEMs used in the generation process. | ✗        | ✓ 1.7.2 |
 | noise-removal                  | `NRAlgorithm`              | **REQUIRED,** if noise removal has been applied. Link to the noise removal algorithm details. | ✗        | ✓ 3.3   |
-| radiometric-terrain-correction | `RTCAlgorithm`             | **REQUIRED.** Link to the Radiometric Terrain Correction algorithms details. | ✗        | ✓ 3.4   |
+| radiometric-terrain-correction | `RTCAlgorithm`             | **REQUIRED.** Link to the Radiometric Terrain Correction algorithm details. | ✗        | ✓ 3.4   |
+| geometric-correction           | `GeoCorrAlgorithm`         | Link to the Geometric Correction algorithm details.          | ✗        | ✓ 4.1   |
+| elevation-model                | `DigitalElevationModel`    | Links to the Digital Elevation Models, both for elevation and surface. Preferably links to a STAC Item with additional metadata for the DEMs such as the line-spacing, column-spacing, horizontal and vertical accuracy. | ✗        | ✓ 4.2   |
+| geometric-accuracy             | `GeometricCorrAccuracy`    | Link to documentation of estimate of absolute localization error. | ✗        | ✓ 4.3   |
 
 ### STAC Item Assets
 
