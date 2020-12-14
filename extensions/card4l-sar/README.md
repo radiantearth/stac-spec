@@ -84,11 +84,14 @@ All these fields are **required** in **STAC mode** only! In XML Mode they are ex
 | card4l:incidence_angle_far_range       | number                                                  | `IncAngleFarRange`                           | **REQUIRED.** Convert to degree, if required.                | ✓ 1.6.7  | ✗       |
 | card4l:noise_equivalent_intensity      | float                                                   | `NoiseEquivalentIntensity`                   | **REQUIRED.** Convert to decibel, if required.               | ✓ 1.6.9  | ✗       |
 | card4l:noise_equivalent_intensity_type | string                                                  | `NoiseEquivalentIntensity`, attribute `type` | **REQUIRED.** One of `Beta0` or `Sigma0`                     | ✓ 1.6.9  | ✗       |
+| card4l:noise_removal_applied           | boolean                                                 | `NoiseRemovalApplied`                        | **REQUIRED.** Specifies whether noise removal has been applied (`true`) or not (`false`). If set to `true`, a [link with relation type](#stac-item-links) `noise-removal` is **required**, too. | ✗        | ✓ 3.3   |
 | card4l:mean_faraday_rotation_angle     | float                                                   | `MeanFaradayRotationAngle`                   | Convert to degree, if required.                              | ✓ 1.6.11 | ✗       |
 | card4l:ionosphere_indicator            | boolean                                                 | `IonosphereIndicator`                        | Flag indicating whether the backscatter imagery is “significantly impacted” by the ionosphere (`false` - no, `true` – yes). | ✓ 1.6.12 | ✗       |
 | card4l:speckle_filtering               | [Speckle Filter Object](#speckle-filter-object) \| null | `Filtering`, `FilterApplied`                 | **REQUIRED.** Set to `null` if `FilterApplied` would be set to `false`. Otherwise make it an Speckle Filter Object. | ✗        | ✓ 1.7.4 |
 | card4l:border_pixels                   | integer                                                 | `NumBorderPixels`                            | Number of border pixels (**required** if applicable). To be specified either globally for all assets with role `data` or individually [per asset](#stac-item-assets). | ✗        | ✓ 1.7.7 |
 | card4l:pixel_coordinate_convention     | string                                                  | `PixelCoordinateConvention`                  | **REQUIRED.** One of `center` (pixel centre), `upper-left` (pixel ULC) or `lower-left` (`pixel LLC`) | ✗        | ✓ 1.7.7 |
+| card4l:relative_rtc_accuracy           | number                                                  | `Relative` in `RTCAccuracy`                  | Relative accuracy of the Radiometric Terrain Correction in decibel. | ✗        | ✓ 3.5   |
+| card4l:absolute_rtc_accuracy           | number                                                  | `Absolute` in `RTCAccuracy`                  | Absolute accuracy of the Radiometric Terrain Correction in decibel. | ✗        | ✓ 3.5   |
 
 ##### Speckle Filter Object
 
@@ -166,34 +169,40 @@ The following fields are all specified in CARD4L requirement 1.7.4. It is **requ
 
 ### STAC Item Links
 
-| Relation Type               | XML Tag                                                      | Description                                                  | Src      | Prod    |
-| --------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- | ------- |
-| card4l-document             | `DocumentIdentifier`                                         | **REQUIRED.** Instead of the document identifier, provide links to the Word (media type: `application/vnd.openxmlformats-officedocument.wordprocessingml.document`) and PDF (media type: `application/pdf`) document. | ✗        | ✓ 1.5   |
-| derived_from                | *n/a*                                                        | **REQUIRED in *STAC Mode*.** Points back to the source's STAC Item, which must comply to the *Src* requirements. May be multiple items, if the product is derived from multiple acquisitions. The number of acquisitions (`NumberOfAcquisitions`) is the number of links with this relation type. | ✗        | ✓ 1.6   |
-| via                         | *n/a*                                                        | **REQUIRED in *XML Mode*.** Points back to the CARD4L compliant XML file as it is proposed in the CARD4L metadata specification (see the XSLX file). | ✗        | ✓       |
-| about                       | `NRAlgorithm`, `RTCAlgorithm`, `DEMReference`, `EGMReference`, `AccuracyReference`, `Filtering` (1.7.10) | Links from the given XML tags can be added as additional information about the product. |          |         |
-| performance-indicators      | `PerformanceIndicators`                                      | Link to performance indicators on data intensity mean noise level. | ✓ 1.6.9  | ✗       |
-| orbit-data-file             | `OrbitDataFile`                                              | Link to orbit data file containing state vectors.            | ✓ 1.6.5  | ✗       |
-| sensor-calibration          | `SensorCalibration`                                          | Link to the sensor calibration parameters.                   | ✓ 1.6.8  | ✗       |
-| pol-cal-matrices            | `PolCalMatrices`                                             | Link to the complex-valued polarimetric distortion matrices with the channel imbalance and the cross-talk applied for the polarimetric calibration. | ✓ 1.6.10 | ✗       |
-| referenced-faraday-rotation | `ReferenceFaradayRotation`                                   | Link to the method or paper used to derive the estimate for the mean Faraday rotation angle. | ✓ 1.6.11 | ✗       |
-| ancillary-data              | `AncillaryData`                                              | Link to the sources of ancillary data such as DEMs used in the generation process. | ✗        | ✓ 1.7.2 |
-
-ToDo: Male relation types from XML Tags
+| Relation Type                  | XML Tag                    | Description                                                  | Src      | Prod    |
+| ------------------------------ | -------------------------- | ------------------------------------------------------------ | -------- | ------- |
+| card4l-document                | `DocumentIdentifier`       | **REQUIRED.** Instead of the document identifier, provide links to the Word (media type: `application/vnd.openxmlformats-officedocument.wordprocessingml.document`) and PDF (media type: `application/pdf`) document. | ✗        | ✓ 1.5   |
+| derived_from                   | *n/a*                      | **REQUIRED in *STAC Mode*.** Points back to the source's STAC Item, which must comply to the *Src* requirements. May be multiple items, if the product is derived from multiple acquisitions. The number of acquisitions (`NumberOfAcquisitions`) is the number of links with this relation type. | ✗        | ✓ 1.6   |
+| via                            | *n/a*                      | **REQUIRED in *XML Mode*.** Points back to the CARD4L compliant XML file as it is proposed in the CARD4L metadata specification (see the XSLX file). | ✗        | ✓       |
+| performance-indicators         | `PerformanceIndicators`    | Link to performance indicators on data intensity mean noise level. | ✓ 1.6.9  | ✗       |
+| orbit-data-file                | `OrbitDataFile`            | Link to orbit data file containing state vectors.            | ✓ 1.6.5  | ✗       |
+| sensor-calibration             | `SensorCalibration`        | Link to the sensor calibration parameters.                   | ✓ 1.6.8  | ✗       |
+| pol-cal-matrices               | `PolCalMatrices`           | Link to the complex-valued polarimetric distortion matrices with the channel imbalance and the cross-talk applied for the polarimetric calibration. | ✓ 1.6.10 | ✗       |
+| referenced-faraday-rotation    | `ReferenceFaradayRotation` | Link to the method or paper used to derive the estimate for the mean Faraday rotation angle. | ✓ 1.6.11 | ✗       |
+| ancillary-data                 | `AncillaryData`            | Link to the sources of ancillary data such as DEMs used in the generation process. | ✗        | ✓ 1.7.2 |
+| noise-removal                  | `NRAlgorithm`              | **REQUIRED,** if noise removal has been applied. Link to the noise removal algorithm details. | ✗        | ✓ 3.3   |
+| radiometric-terrain-correction | `RTCAlgorithm`             | **REQUIRED.** Link to the Radiometric Terrain Correction algorithms details. | ✗        | ✓ 3.4   |
 
 ### STAC Item Assets
 
-| Asset Key           | Role Name(s)          | Additional properties          | XML Tag                      | Description                                                  | Src  | Prod  |
-| ------------------- | --------------------- | ------------------------------ | ---------------------------- | ------------------------------------------------------------ | ---- | ----- |
-| local-inc-angle     | data *and* metadata              | `created`                      | `LocalIncAngle`              | **REQUIRED.** Points to the local incidence angle file.      | ✗    | ✓ 2.4 |
-| area                | data *and* metadata              | `created`                      | `LocalContributingArea`      | **REQUIRED.** Points to the normalized scattering area file. | ✗    | ✓ 2.3 |
-| hh / hv / vh / vv   | data                  | `sar:polarizations`, `created` | `BackscatterMeasurementData` | **REQUIRED.** Points to the polarization file.               | ✗    | ✓ 3.1 |
-| mask                | data *and* metadata              | `created`                      | `DataMask`                   | **REQUIRED.** Points to the data mask file.                  | ✗    | ✓ 2.2 |
-| metadata            | metadata *and* card4l | -                              | *n/a*                        | **REQUIRED in *XML Mode*.** Points to the CARD4L metadata XML file. Media type: `application/xml` | ✗    | ✓ 2.1 |
-| ellipsoid-inc-angle | data *and* metadata   |                                | `EllipsoidIncAngle`          |                                                              | ✗    | ✓ 2.5 |
-| noise-power         | data *and* metadata              |                                | `NoisePower`                 |                                                              | ✗    | ✓ 2.6 |
-| gamma-sigma         | data *and* metadata              |                                | `GammaToSigmaRatio`          |                                                              | ✗    | ✓ 2.7 |
-| date                | data *and* metadata              |                                | `AcquisitionDate`            |                                                              | ✗    | ✓ 2.8 |
+Whether the metadata are provided in a single record relevant to all pixels, or separately for each pixel, is at the discretion of the data provider. 
+
+Each of the assets can either be exposed individually or grouped together in any form. In the latter case the role names can simply be merged to a set of unique role names. 
+
+The italic role names are proposed to be the asset's key.
+
+| Role Name(s)          | Additional properties | XML Tag                      | Description                                                  | Src  | Prod  |
+| --------------------- | ------------------------------ | ---------------------------- | ------------------------------------------------------------ | ---- | ----- |
+| *card4l*, metadata | `type` | *n/a*                        | **REQUIRED in *XML Mode*.** Points to the CARD4L metadata XML file. Media type: `application/xml` | ✗    | ✓ 2.1 |
+| *mask*, metadata | `type`, `card4l:valid`, `card4l:invalid`, `card4l:nodata`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | `DataMask`                   | **REQUIRED.** Points to the data mask file.                  | ✗    | ✓ 2.2 |
+| *area*, metadata | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | `LocalContributingArea`      | **REQUIRED.** Points to the normalized scattering area file. | ✗    | ✓ 2.3 |
+| *local-inc-angle*,  metadata | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | `LocalIncAngle`              | **REQUIRED.** Points to the local incidence angle file.      | ✗    | ✓ 2.4 |
+| *ellipsoid-inc-angle*, metadata | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | `EllipsoidIncAngle`          |                                                              | ✗    | ✓ 2.5 |
+| *noise-power*, card4l, metadata | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | `NoisePower`                 |                                                              | ✗    | ✓ 2.6 |
+| *gamma-sigma*, metadata | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | `GammaToSigmaRatio`          |                                                              | ✗    | ✓ 2.7 |
+| *date*, metadata | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | `AcquisitionDate`            |                                                              | ✗    | ✓ 2.8 |
+| backscatter-measurements, data | `type`, `created`, `sar:polarizations`, `card4l:conversion_eq`, `card4l:header_size`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | `BackscatterMeasurementData` | **REQUIRED for *NRB*.** Points to the backscatter measurements for the polarizations specified in `sar:polarizations`. | ✗    | ✓ 3.1 (NRB) |
+| (covmat *or* prd), data | `type`, `created`, `sar:polarizations` (CovMat only), `card4l:conversion_eq`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | `Measurements` | **REQUIRED for *POL*.** Points to the Normalized Polarimetric Radar Covariance Matrix (CovMat) *or* the Polarimetric Radar Decomposition (PRD) | ✗ | ✓ 3.1 (POL) |
 
 #### Additional Asset Properties
 
@@ -201,11 +210,34 @@ For all assets of with the role set to `data`, the following additional properti
 
 Some additional properties are always specified per asset: 
 
-| Field Name         | XML Tag                                         | Description                                                  | Src     | Prod    |
-| ------------------ | ----------------------------------------------- | ------------------------------------------------------------ | ------- | ------- |
-| created            | `ProcessingDate` (Src), `ProcessingTime` (Prod) | **REQUIRED.** The time of the processing is specified via the `created` property of the asset as specified in the [STAC Common metadata](../../item-spec/common-metadata.md#date-and-time). | ✓ 1.6.6 | ✓ 1.7.1 |
-| sar:polarizations  | *n/a*                                           | **REQUIRED**. The polarization(s) of the asset.              | (✓)     | ✓       |
-| card4l:header_size | `HeaderSize`                                    | File header size in bytes (**required** if applicable).      | ✗       | ✓ 1.7.7 |
+| Field Name             | Data Type  | XML Tag                                                      | Description                                                  | Src     | Prod    |
+| ---------------------- | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------- | ------- |
+| type                   | string     | `DataFormat`                                                 | **REQUIRED.** The media type of the file format.             | (✓)     | ✓       |
+| created                | string     | `ProcessingDate` (Src), `ProcessingTime` (Prod)              | **REQUIRED.** The time of the processing is specified via the `created` property of the asset as specified in the [STAC Common metadata](../../item-spec/common-metadata.md#date-and-time). | ✓ 1.6.6 | ✓ 1.7.1 |
+| sar:polarizations      | \[string\] | *n/a*                                                        | **REQUIRED**. The polarization(s) of the asset.              | (✓)     | ✓       |
+| card4l:header_size     | integer    | `HeaderSize`                                                 | File header size in bytes (**required** if applicable).      | ✗       | ✓ 1.7.7 |
+| card4l:conversion_eq   | string     | `BackscatterConversionEq` (NRB), `ScalingConversionEq` (POL) | **REQUIRED.** Indicate equation to convert from the data to logarithmic decibel scale, see the CARD4L specification (#3.2) for details. | ✗       | ✓ 3.2   |
+| file:data_type         | string     | `DataType`                                                   | **REQUIRED.** One of the [Data Types](#data-types).          | ✗       | ✓       |
+| file:byte_order        | string     | `ByteOrder`                                                  | **REQUIRED.** One of `big-endian` or `little-endian`         | ✗       | ✓       |
+| card4l:bits_per_sample | integer    | `BitsPerSample`                                              | **REQUIRED.** Bits per sample, e.g. 8, 16, 32, ...           | ✗       | ✓       |
+| card4l:valid           | [any]      | `ValidData` in `BitValues`                                   | **REQUIRED** for the data mask. Value(s) for valid data.     | ✗       | ✓ 2.2   |
+| card4l:invalid         | [any]      | `InvalidData` in `BitValues`                                 | **REQUIRED** for the data mask. Value(s) for invalid data.   | ✗       | ✓ 2.2   |
+| card4l:nodata          | [any]      | `NoData` in `BitValues`                                      | **REQUIRED** for the data mask. Value(s) for no-data.        | ✗       | ✓ 2.2   |
+
+##### Data Types
+
+- `int8`: 8-bit integer
+- `int16`: 16-bit integer
+- `int32`: 32-bit integer
+- `uint8`: unsigned 8-bit integer
+- `unit16`: unsigned 16-bit integer
+- `uint32`: unsigned 32-bit integer
+- `float32`: 32-bit float
+- `float64`: 64-big float
+- `cint16`: 16-bit complex integer
+- `cint32`: 32-bit complex integer
+- `cfloat32`: 32-bit complex float
+- `cfloat64`: 64-bit complex float
 
 ## Notes
 
