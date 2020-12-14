@@ -18,7 +18,7 @@
 
 This document makes a number of recommendations for creating real world SpatioTemporal Asset Catalogs. None of them
 are required to meet the core specification, but following these practices will make life easier for client tooling
-and for users. They come about from practical experience of implementors, and introduce a bit more 'constraint' for
+and for users. They come about from practical experience of implementors and introduce a bit more 'constraint' for
 those who are creating new catalogs or new tools to work with STAC.
 
 While the current goal of the core is to remain quite flexible and simple to meet a wide variety of use cases, in time some of these may evolve to become part of the core specification.
