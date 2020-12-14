@@ -18,7 +18,7 @@
 
 This document makes a number of recommendations for creating real world SpatioTemporal Asset Catalogs. None of them 
 are required to meet the core specification, but following these practices will make life easier for client tooling
-and for users. They come about from practical experience of implementors and introduce a bit more 'constraint' for 
+and for users. They come about from practical experience of implementors and introduce a bit more 'constraint' for
 those who are creating new catalogs or new tools to work with STAC. 
 
 While the current goal of the core is to remain quite flexible and simple to meet a wide variety of use cases,
@@ -66,7 +66,7 @@ Extensions that describe particular types of data can and should define their `d
 a MODIS 8 day composite image can define the `datetime` to be the nominal date halfway between the two ranges. Another data type
 might choose to have `datetime` be the start. The key is to put in a date and time that will be useful for search, as that is
 the focus of STAC. If `datetime` is set to `null` then it is strongly recommended to use it in conjunction with a content extension
-that explains why it should not be set for that type of data.
+that explains why it should not be set for that type of data. 
 
 ## Unlocated Items
 
@@ -180,7 +180,7 @@ Dynamic Catalogs often also implement the [STAC API](https://github.com/radiante
 responds to search queries (like give me all imagery in Oahu gathered on January 15, 2017). But they are not required to.  One
 can have a dynamic service that only implements the core STAC specification, and is crawled by STAC API implementations that
 provide 'search'. For example a Content Management Service like Drupal or an Open Data Catalog like CKAN could choose to expose 
-its content as linked STAC Items by implementing a dynamic catalog.
+its content as linked STAC Items by implementing a dynamic catalog. 
 
 One benefit of a dynamic catalog is that it can generate various 'views' of the catalog, exposing the same `Items` in 
 different sub-catalog organization structures. For example one catalog could divide sub-catalogs by date and another by
@@ -197,17 +197,17 @@ start with location, like a normal grid (path+row in Landsat) or administrative 
 then year, month, day. Or do the opposite - date and then location. Making a huge unordered list is technically allowed,
 but not helpful for discovery of data. Thus it is generally considered a best practice to make use of sub-catalogs to 
 keep the size of each sub-catalog under a megabyte. If your sub-catalog lists tens of thousands of child items then you
-should consider an additional way to break it up.
+should consider an additional way to break it up. 
 
 We encourage people to explore new structures of linking data, but the following list is what a number of implementors 
 ended up doing. Following these recommendations makes for more legible catalogs.
 
-1. Root documents (catalogs / collections) should be at the root of a directory tree containing the static catalog. 
+1. Root documents (catalogs / collections) should be at the root of a directory tree containing the static catalog.  
 2. Catalogs should be named `catalog.json` (cf. `index.html`).
 3. Collections that are distinct from catalogs should be named `collection.json`.
 4. Items should be named `<id>.json`.
 5. Sub-catalogs should be stored in subdirectories of their parent (and only 1 subdirectory deeper than a document's parent) (e.g. `.../sample/sub1/catalog.json`).
-6. Items should be stored in subdirectories of their parent catalog.
+6. Items should be stored in subdirectories of their parent catalog. 
 This means that each item and its assets are contained in a unique subdirectory.
 7. Limit the number of items in a catalog or sub-catalog, grouping / partitioning as relevant to the dataset.
 
@@ -274,7 +274,7 @@ Adding a single `self` link at the root is recommended for online catalogs, turn
 While STAC is useful as a portable format to move between systems, the goal is really to enable search. While any combination
 of absolute and relative links is technically allowed by the specification, it is strongly recommended to follow one of the 
 patterns described below when publishing online. Many clients will not properly handle arbitrary mixes of absolute and relative
-href's.
+href's. 
 
 We refer to a 'published catalog' as one that lives online in a stable location, and uses `self` links to establish its location and 
 enable easy provenance tracking. There are two types of published catalogs:
@@ -346,7 +346,7 @@ enables innovation on the web generation and search engine optimization to evolv
 ### Schema.org, JSON-LD, DCAT, microformats, etc
 
 There is a strong desire to align STAC with the various web standards for data. These include [schema.org](http://schema.org) 
-tags, [JSON-LD](https://json-ld.org/) (particularly for Google's [dataset
+tags, [JSON-LD](https://json-ld.org/) (particularly for Google's [dataset 
 search](https://developers.google.com/search/docs/data-types/dataset)), [DCAT](https://www.w3.org/TR/vocab-dcat/)
 and [microformats](http://microformats.org/wiki/about). STAC aims to work with as many as possible. Thusfar it has not seemed
 to make sense to include any of them directly in the core STAC standard. They are all more intended to be a part of the HTML
