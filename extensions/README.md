@@ -46,6 +46,7 @@ An extension can add new fields to STAC entities (content extension), or can add
 
 | Extension Title                                  | Identifier        | Field Name Prefix   | Scope                     | Maturity   | Description |
 | ------------------------------------------------ | ----------------- | ------------------- | ------------------------- | ---------- | ----------- |
+| [CARD4L Optical](card4l-eo/README.md)            | card4l-eo         | card4l              | Item                      | *Proposal* | How to comply to the CEOS CARD4L product family specification for Optical Surface Reflectance and Temperature products |
 | [Checksum](checksum/README.md)                   | checksum          | checksum            | Item, Catalog, Collection | *Proposal* | Provides a way to specify file checksums for assets and links in Items, Catalogs and Collections. |
 | [Collection Assets](collection-assets/README.md) | collection-assets | -                   | Collection                | *Proposal* | Provides a way to specify assets available on the collection-level. |
 | [Data Cube](datacube/README.md)                  | datacube          | cube                | Item, Collection          | *Proposal* | Data Cube related metadata, especially to describe their dimensions. |
