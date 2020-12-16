@@ -42,8 +42,9 @@ The column *XML Tag* refers to the XML tag proposed in the CARD4L metadata speci
 - (✓) = Not mentioned in CEOS CARD4L requirements, but recommended by STAC for better data discovery, especially in XML Mode.
 - ✗ = Does not apply
 
-**STAC Extensions:** This extension requires a number of existing STAC extensions and, for *STAC mode*, adds additional fields:
+**STAC Extensions:** This extension makes use of a number of existing STAC extensions and adds additional fields for *STAC mode*:
 
+- [File](../file/README.md)
 - [Processing](../processing/README.md)
 - [Projection](../projection/README.md)
 - [SAR](../sar/README.md)
@@ -64,7 +65,7 @@ STAC Items must always be valid, but not all STAC Item requirements are covered 
 
 | Field Name      | XML Tag                                                      | Description                                                  | Src     | Prod    |
 | --------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------- | ------- |
-| stac_extensions | *n/a*                                                        | **REQUIRED.** Must contain all extensions used, for the product at least the following values: `card4l-sar`, `processing`, `projection`, `sar`, `sat`, `view` | ✓       | ✓       |
+| stac_extensions | *n/a*                                                        | **REQUIRED.** Must contain all extensions used, for the product at least the following values: `card4l-sar`, `file`, `processing`, `projection`, `sar`, `sat`, `view`. | ✓       | ✓       |
 | id              | `ProductID`                                                  | **REQUIRED.**                                                | ✓ 1.6.6 | ✗       |
 | geometry        | `GeodeticCoordinates`, `Latitude`, `Longitude`, `Height` (Src), `GeographicalExtent` (Prod) | **REQUIRED.** The geometry of the acquisition. May include the height as every third element. | ✓ 1.6.7 | ✓ 1.7.5 |
 | bbox            | derived from `geometry` (Src), `GeographicalBoundingBox` (Prod) | **REQUIRED.** The bounding box of the acquisition. May include the height as every third element. | ✓ 1.6.7 | ✓ 1.7.4 |
@@ -201,15 +202,15 @@ The italic role names are proposed to be the asset's key.
 | Role Name(s)                          | Additional properties                                        | XML Tag                      | Description                                                  | Src  | Prod        |
 | ------------------------------------- | ------------------------------------------------------------ | ---------------------------- | ------------------------------------------------------------ | ---- | ----------- |
 | *card4l*, metadata                    | `type`                                                       | *n/a*                        | **REQUIRED in *XML Mode*.** Points to the CARD4L metadata XML file. Media type: `application/xml` | ✗    | ✓ 2.1       |
-| *mask*, metadata                      | `type`, `card4l:valid`, `card4l:invalid`, `card4l:nodata`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | `DataMask`                   | **REQUIRED.** Points to the data mask file.                  | ✗    | ✓ 2.2       |
-| *area*, metadata                      | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | `LocalContributingArea`      | **REQUIRED.** Points to the normalized scattering area file. | ✗    | ✓ 2.3       |
-| *incidence-angle*,  metadata          | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | `LocalIncAngle`              | **REQUIRED.** Points to the local incidence angle file.      | ✗    | ✓ 2.4       |
-| *ellipsoid-incidence-angle*, metadata | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | `EllipsoidIncAngle`          |                                                              | ✗    | ✓ 2.5       |
-| *noise-power*, card4l, metadata       | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | `NoisePower`                 |                                                              | ✗    | ✓ 2.6       |
-| *gamma-sigma*, metadata               | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | `GammaToSigmaRatio`          |                                                              | ✗    | ✓ 2.7       |
-| *date*, metadata                      | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | `AcquisitionDate`            |                                                              | ✗    | ✓ 2.8       |
-| *backscatter*, data                   | `type`, `created`, `sar:polarizations`, `card4l:conversion_eq`, `card4l:header_size`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | `BackscatterMeasurementData` | **REQUIRED for *NRB*.** Points to the backscatter measurements for the polarizations specified in `sar:polarizations`. | ✗    | ✓ 3.1 (NRB) |
-| (*covmat* or *prd*), data             | `type`, `created`, `sar:polarizations` (CovMat only), `card4l:conversion_eq`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | `Measurements`               | **REQUIRED for *POL*.** Points to the Normalized Polarimetric Radar Covariance Matrix (CovMat) *or* the Polarimetric Radar Decomposition (PRD) | ✗    | ✓ 3.1 (POL) |
+| *mask*, metadata                      | `type`, `card4l:valid`, `card4l:invalid`, `card4l:nodata`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `DataMask`                   | **REQUIRED.** Points to the data mask file.                  | ✗    | ✓ 2.2       |
+| *area*, metadata                      | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `LocalContributingArea`      | **REQUIRED.** Points to the normalized scattering area file. | ✗    | ✓ 2.3       |
+| *incidence-angle*,  metadata          | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `LocalIncAngle`              | **REQUIRED.** Points to the local incidence angle file.      | ✗    | ✓ 2.4       |
+| *ellipsoid-incidence-angle*, metadata | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `EllipsoidIncAngle`          |                                                              | ✗    | ✓ 2.5       |
+| *noise-power*, card4l, metadata       | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `NoisePower`                 |                                                              | ✗    | ✓ 2.6       |
+| *gamma-sigma*, metadata               | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `GammaToSigmaRatio`          |                                                              | ✗    | ✓ 2.7       |
+| *date*, metadata                      | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `AcquisitionDate`            |                                                              | ✗    | ✓ 2.8       |
+| *backscatter*, data                   | `type`, `created`, `sar:polarizations`, `card4l:conversion_eq`, `card4l:header_size`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `BackscatterMeasurementData` | **REQUIRED for *NRB*.** Points to the backscatter measurements for the polarizations specified in `sar:polarizations`. | ✗    | ✓ 3.1 (NRB) |
+| (*covmat* or *prd*), data             | `type`, `created`, `sar:polarizations` (CovMat only), `card4l:conversion_eq`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `Measurements`               | **REQUIRED for *POL*.** Points to the Normalized Polarimetric Radar Covariance Matrix (CovMat) *or* the Polarimetric Radar Decomposition (PRD) | ✗    | ✓ 3.1 (POL) |
 
 #### Additional Asset Properties
 
@@ -222,29 +223,14 @@ Some additional properties are always specified per asset:
 | type                   | string     | `DataFormat`                                                 | **REQUIRED.** The media type of the file format.             | (✓)     | ✓       |
 | created                | string     | `ProcessingDate` (Src), `ProcessingTime` (Prod)              | **REQUIRED.** The time of the processing is specified via the `created` property of the asset as specified in the [STAC Common metadata](../../item-spec/common-metadata.md#date-and-time). | ✓ 1.6.6 | ✓ 1.7.1 |
 | sar:polarizations      | \[string\] | *n/a*                                                        | **REQUIRED**. The polarization(s) of the asset.              | (✓)     | ✓       |
-| card4l:header_size     | integer    | `HeaderSize`                                                 | File header size in bytes (**required** if applicable).      | ✗       | ✓ 1.7.7 |
-| card4l:conversion_eq   | string     | `BackscatterConversionEq` (NRB), `ScalingConversionEq` (POL) | **REQUIRED.** Indicate equation to convert from the data to logarithmic decibel scale, see the CARD4L specification (#3.2) for details. | ✗       | ✓ 3.2   |
-| file:data_type         | string     | `DataType`                                                   | **REQUIRED.** One of the [Data Types](#data-types).          | ✗       | ✓       |
+| file:header_size       | integer    | `HeaderSize`                                                 | File header size in bytes (**required** if applicable).      | ✗       | ✓ 1.7.7 |
+| file:data_type         | string     | `DataType`                                                   | **REQUIRED.** One of the [Data Types](../file/README.md#data-types). | ✗       | ✓       |
 | file:byte_order        | string     | `ByteOrder`                                                  | **REQUIRED.** One of `big-endian` or `little-endian`         | ✗       | ✓       |
 | card4l:bits_per_sample | integer    | `BitsPerSample`                                              | **REQUIRED.** Bits per sample, e.g. 8, 16, 32, ...           | ✗       | ✓       |
 | card4l:valid           | \[any\]    | `ValidData` in `BitValues`                                   | **REQUIRED** for the data mask. Value(s) for valid data.     | ✗       | ✓ 2.2   |
 | card4l:invalid         | \[any\]    | `InvalidData` in `BitValues`                                 | **REQUIRED** for the data mask. Value(s) for invalid data.   | ✗       | ✓ 2.2   |
 | card4l:nodata          | \[any\]    | `NoData` in `BitValues`                                      | **REQUIRED** for the data mask. Value(s) for no-data.        | ✗       | ✓ 2.2   |
-
-##### Data Types
-
-- `int8`: 8-bit integer
-- `int16`: 16-bit integer
-- `int32`: 32-bit integer
-- `uint8`: unsigned 8-bit integer
-- `unit16`: unsigned 16-bit integer
-- `uint32`: unsigned 32-bit integer
-- `float32`: 32-bit float
-- `float64`: 64-big float
-- `cint16`: 16-bit complex integer
-- `cint32`: 32-bit complex integer
-- `cfloat32`: 32-bit complex float
-- `cfloat64`: 64-bit complex float
+| card4l:conversion_eq   | string     | `BackscatterConversionEq` (NRB), `ScalingConversionEq` (POL) | **REQUIRED.** Indicate equation to convert from the data to logarithmic decibel scale, see the CARD4L specification (#3.2) for details. | ✗       | ✓ 3.2   |
 
 ## Notes
 
