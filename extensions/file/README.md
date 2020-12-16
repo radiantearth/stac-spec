@@ -42,6 +42,7 @@ The allowed values for `file:data_type` are:
 - `unit16`: unsigned 16-bit integer
 - `uint32`: unsigned 32-bit integer
 - `uint64`: unsigned 64-bit integer
+- `float16`: 16-bit float
 - `float32`: 32-bit float
 - `float64`: 64-big float
 - `cint16`: 16-bit complex integer
