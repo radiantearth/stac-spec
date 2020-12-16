@@ -7,9 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
-
-- Added clarification about how collection-level assset object properties do not remove the need for item-level asset object properties in the `item-assets` extension ([#880](https://github.com/radiantearth/stac-spec/pull/880))
+- 'via' and 'canonical' rel types as options in items.
+- Added clarification about how collection-level asset object properties do not remove the need for item-level asset object properties in the `item-assets` extension ([#880](https://github.com/radiantearth/stac-spec/pull/880))
 - Added [processing extension](extensions/processing/README.md)
+- Added [file info extension](extensions/file/README.md) ([#879](https://github.com/radiantearth/stac-spec/pull/879), [#921](https://github.com/radiantearth/stac-spec/issues/921))
 - Added additional acquisition parameters in the `sat` extension: sat:platform_international_designator, sat:absolute_orbit, sat:anx_datetime* ([#894](https://github.com/radiantearth/stac-spec/pull/894))
 - Added STAC CARD4L SAR Normalized Radar Backscatter (NRB) Extension
 
@@ -20,11 +21,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 
+- Checksum extension (field `checksum:multihash`). Use File Info extension (field `file:checksum`) instead.
+
 ### Fixed
 
 - Label extension: `label:classes` was flagged as required in JSON Schema, but is only required for categorical data.
 - Fixed JSON Schema for `providers` (Collections and Items) to be an object and require a `name`.
-- JSON Schema for `sar:polarizations` in `assets` fixed
+- JSON Schema for `sar:polarizations` in `assets` fixed
 
 ## [v1.0.0-beta.2] - 2020-07-08
 
@@ -34,6 +37,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Clarification on null geometries, making bbox not required if a null geometry is used.
 - Multiple extents (bounding boxes / intervals) are allowed per Collection
+- In the scientific extension, a link with the rel-type 'cite-as' SHOULD be used for the main publication of the dataset (the same as the one described in `sci:doi`), and not for the DOIs referenced in the `sci:publications` property.
 
 ### Removed
 - Validation instructions
