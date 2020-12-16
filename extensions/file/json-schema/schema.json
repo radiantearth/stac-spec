@@ -125,7 +125,8 @@
             "cint16",
             "cint32",
             "cfloat32",
-            "cfloat64"
+            "cfloat64",
+            "other"
           ],
           "title": "File Data Type"
         },

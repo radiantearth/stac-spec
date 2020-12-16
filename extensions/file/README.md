@@ -32,6 +32,15 @@ Please be aware that the integer values (always unsigned) given for the sizes (e
 
 ### Data Types
 
+The data type gives information about the values in the file.
+This can be used to indicate the (maximum) range of numerical values expected.
+For example `unit8` indicates that the numbers are in a range between 0 and 255, 
+they can never be smaller or larger. This can help to pick the optimal numerical
+data type when reading the files to keep memory consumption low.
+Nevertheless, it doesn't necessarily mean that the expected values fill the whole range.
+For example, there can be use cases for `unit8` that just use the numbers 0 to 10 for example.
+Through other extensions it might be possible to specify an exact value range so 
+that visualizations can be optimized.
 The allowed values for `file:data_type` are:
 
 - `int8`: 8-bit integer
@@ -39,7 +48,7 @@ The allowed values for `file:data_type` are:
 - `int32`: 32-bit integer
 - `int64`: 64-bit integer
 - `uint8`: unsigned 8-bit integer (common for 8-bit RGB PNG's)
-- `unit16`: unsigned 16-bit integer
+- `uint16`: unsigned 16-bit integer
 - `uint32`: unsigned 32-bit integer
 - `uint64`: unsigned 64-bit integer
 - `float16`: 16-bit float
@@ -49,6 +58,7 @@ The allowed values for `file:data_type` are:
 - `cint32`: 32-bit complex integer
 - `cfloat32`: 32-bit complex float
 - `cfloat64`: 64-bit complex float
+- `other`: Other data type than the ones listed above (e.g. boolean, string, higher precision numbers)
 
 ### Checksums
 
