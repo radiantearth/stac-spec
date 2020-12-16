@@ -19,10 +19,11 @@ This extension specifies how to create STAC Items that comply to the [CEOS CARD4
 
 The column *Field Name* refers to the STAC field names. The column *Req.* refers to the requirement number in the CARD4L specification.
 
-**STAC Extensions:** This extension requires a number of existing STAC extensions and, for *STAC mode*, adds additional fields:
+**STAC Extensions:** This extension makes use of a number of existing STAC extensions:
 
 - [EO](../eo/README.md)
-- [Processing](../processing/README.md)
+- [File](../file/README.md) (optional)
+- [Processing](../processing/README.md) (optional)
 - [Projection](../projection/README.md)
 - [View](../view/README.md)
 
@@ -37,7 +38,7 @@ STAC Items must always be valid, but not all STAC Item requirements are covered 
 
 | Field Name      | Description                                                  | Req.  |
 | --------------- | ------------------------------------------------------------ | ----- |
-| stac_extensions | **REQUIRED.** Must contain all extensions used, for the product at least the following values: `card4l-eo`, `eo`, `processing`, `projection`, `view`. | *n/a* |
+| stac_extensions | **REQUIRED.** Must contain all extensions used, for the product at least the following values: `card4l-eo`, `eo`, `projection`, `view`. You may add `processing` and `file` if used. | *n/a* |
 | geometry        | **REQUIRED.** The geometry of the acquisition.               | 1.4   |
 | bbox            | **REQUIRED.** The bounding box of the acquisition.           | 1.4   |
 
@@ -103,7 +104,7 @@ See also the [notes](#notes) regarding the requirements 1.13 and 1.15 for a bett
 | Relation Type        | Description                                                  | Req.  |
 | -------------------- | ------------------------------------------------------------ | ----- |
 | card4l-document      | **REQUIRED.** Provides at least one link to the CARD4L specification document. Word (media type: `application/vnd.openxmlformats-officedocument.wordprocessingml.document`) and/or PDF (media type: `application/pdf`). | *n/a* |
-| derived_from         | Points back to the source's STAC Item. May be multiple items, if the product is derived from multiple acquisitions. | *n/a* |
+| derived_from         | Points back to the source's STAC Item. May be multiple items, if the product is derived from multiple acquisitions. | 1.15  |
 | about                | Link to algorithms used in the generation process. See also the [notes](#notes) regarding req. 1.13. | 1.13  |
 | related              | Link to the sources of ancillary or auxiliary data used in the generation process. Excludes DEMs, which use the relation `elevation-model` instead. | 1.14  |
 | access               | Link to data access information.                             | 1.16  |
@@ -139,24 +140,9 @@ The italic role names are proposed to be the asset's key.
 | type                   | string     | **REQUIRED.** The media type of the file format.             | *n/a* |
 | created                | string     | The time of the processing is specified via the `created` property of the asset as specified in the [STAC Common metadata](../../item-spec/common-metadata.md#date-and-time). | *n/a* |
 | eo:bands               | \[[Band Object](../eo/README.md#band-object)\] | **REQUIRED.** Bands with at least the following fields included: `name` and `center_wavelength`. Add additional fields such as `full_width_half_max` to better meet the *target (desired) requirements*. See the CARD4L requirement 1.10 for further details. | 1.10 |
-| file:data_type         | string     | One of the [Data Types](#data-types). | *n/a*     |
-| file:byte_order        | string     | One of `big-endian` or `little-endian` | *n/a*    |
+| file:data_type         | string     | One of the [Data Types](../file/README.md#data-types). | *n/a*     |
+| file:byte_order        | string     | One of `big-endian` or `little-endian`. | *n/a*    |
 | card4l:bits_per_sample | integer    | Bits per sample, e.g. 8, 16, 32, ... | *n/a*      |
-
-##### Data Types
-
-- `int8`: 8-bit integer
-- `int16`: 16-bit integer
-- `int32`: 32-bit integer
-- `uint8`: unsigned 8-bit integer
-- `unit16`: unsigned 16-bit integer
-- `uint32`: unsigned 32-bit integer
-- `float32`: 32-bit float
-- `float64`: 64-big float
-- `cint16`: 16-bit complex integer
-- `cint32`: 32-bit complex integer
-- `cfloat32`: 32-bit complex float
-- `cfloat64`: 64-bit complex float
 
 ## Notes
 
