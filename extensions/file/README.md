@@ -32,6 +32,8 @@ Please be aware that the integer values (always unsigned) given for the sizes (e
 
 ### Data Types
 
+The allowed values for `file:data_type` are:
+
 - `int8`: 8-bit integer
 - `int16`: 16-bit integer
 - `int32`: 32-bit integer
@@ -49,9 +51,9 @@ Please be aware that the integer values (always unsigned) given for the sizes (e
 
 ### Checksums
 
-`file:checksum` was previously defined in the `checksum` extension and the field name was `checksum:multihash` before STAC v1.0.0-beta.3. The specification of the field has not changed.
+`file:checksum` was previously defined in the [`checksum` extension](https://github.com/radiantearth/stac-spec/blob/v1.0.0-beta.2/extensions/checksum/README.md) and the field name was `checksum:multihash` before STAC v1.0.0-beta.3. The specification of the field has not changed.
 
-Checksum examples for some algorithms supported by Multihash in `file:checksum`. The examples are given for a text file with file content `test`.
+Checksum examples for some algorithms supported by [Multihash](https://github.com/multiformats/multihash) in `file:checksum`. The examples are given for a text file with file content `test`.
 
 - Algorithm `sha1` (160 bits): `1114a94a8fe5ccb19ba61c4c0873d391e987982fbbd3`
 - Algorithm `sha2` (256 bits): `12209f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08`
