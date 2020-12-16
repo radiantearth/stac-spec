@@ -1,8 +1,8 @@
 {
   "stac_version": "1.0.0-beta.2",
   "stac_extensions": [
-    "scientific",
-    "checksum"
+    "file",
+    "scientific"
   ],
   "id": "MERRAclim.2_5m_min_80s",
   "type": "Feature",
@@ -56,7 +56,7 @@
       "href": "https://datadryad.org/stash/downloads/file_stream/100467",
       "type": "application/zip",
       "title": "MERRAclim. 2_5m_min_80s",
-      "checksum:multihash": "90e4021044a8995dd50b6657a037a7839304535b"
+      "file:checksum": "90e4021044a8995dd50b6657a037a7839304535b"
     }
   }
 }
