@@ -3,8 +3,8 @@
   "type": "Feature",
   "stac_version": "1.0.0-beta.2",
   "stac_extensions": [
-      "checksum"
-    ],
+    "file"
+  ],
   "bbox": [-70.275032,-64.72924,-65.087479,-51.105831],
   "geometry": {
     "type": "Polygon",
@@ -26,32 +26,39 @@
       "href": "./annotation/calibration/noise-s1a-ew-grd-hh-20181103t235855-20181103t235955-024430-02ad5d-001.xml",
       "title": "Calibration Schema",
       "type": "text/xml",
-      "checksum:multihash": "90e40210a30d1711e81a4b11ef67b28744321659"
+      "file:checksum": "90e40210a30d1711e81a4b11ef67b28744321659"
     },
     "calibrations": {
       "href": "./annotation/calibration/calibration-s1a-ew-grd-hh-20181103t235855-20181103t235955-024430-02ad5d-001.xml",
       "title": "Noise Schema",
       "type": "text/xml",
-      "checksum:multihash": "90e402104fc5351af67db0b8f1746efe421a05e4"
+      "file:checksum": "90e402104fc5351af67db0b8f1746efe421a05e4"
     },
     "products": {
       "href": "./annotation/s1a-ew-grd-hh-20181103t235855-20181103t235955-024430-02ad5d-001.xml",
       "title": "Product Schema",
       "type": "text/xml",
-      "checksum:multihash": "90e402107a7f2588a85362b9beea2a12d4514d45"
+      "file:checksum": "90e402107a7f2588a85362b9beea2a12d4514d45"
     },
     "measurement": {
       "href": "./measurement/s1a-ew-grd-hh-20181103t235855-20181103t235955-024430-02ad5d-001.tiff",
       "title": "Measurements",
       "type": "image/tiff",
       "sar:polarizations": ["HH"],
-      "checksum:multihash": "90e40210163700a8a6501eccd00b6d3b44ddaed0"
+      "file:byte_order": "little-endian",
+      "file:data_type": "uint16",
+      "file:size": 209715200,
+      "file:header_size": 4096,
+      "file:checksum": "90e40210163700a8a6501eccd00b6d3b44ddaed0"
     },
     "thumbnail": {
       "href": "./preview/quick-look.png",
       "title": "Thumbnail",
       "type": "image/png",
-      "checksum:multihash": "90e40210f52acd32b09769d3b1871b420789456c"
+      "file:byte_order": "big-endian",
+      "file:data_type": "uint8",
+      "file:size": 146484,
+      "file:checksum": "90e40210f52acd32b09769d3b1871b420789456c"
     }
   },
   "links": [
@@ -62,12 +69,12 @@
     {
       "rel": "parent",
       "href": "https://example.com/collections/sentinel-1",
-      "checksum:multihash": "11146d97123fd2c02dec9a1b6d3b13136dbe600cf966"
+      "file:checksum": "11146d97123fd2c02dec9a1b6d3b13136dbe600cf966"
     },
     {
       "rel": "root",
       "href": "https://example.com/collections",
-      "checksum:multihash": "1114fa4b9d69fdddc7c1be7bed9440621400b383b43f"
+      "file:checksum": "1114fa4b9d69fdddc7c1be7bed9440621400b383b43f"
     }
   ]
 }
