@@ -52,7 +52,7 @@ The allowed values for `file:data_type` are:
 
 ### Checksums
 
-`file:checksum` was previously defined in the [`checksum` extension](https://github.com/radiantearth/stac-spec/blob/v1.0.0-beta.2/extensions/checksum/README.md) and the field name was `checksum:multihash` before STAC v1.0.0-beta.3. The specification of the field has not changed.
+`file:checksum` was previously defined in the [`checksum` extension](https://github.com/radiantearth/stac-spec/tree/v1.0.0-beta.2/extensions/checksum/README.md) and the field name was `checksum:multihash` before STAC v1.0.0-beta.3. The specification of the field has not changed.
 
 Checksum examples for some algorithms supported by [Multihash](https://github.com/multiformats/multihash) in `file:checksum`. The examples are given for a text file with file content `test`.
 
