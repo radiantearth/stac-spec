@@ -46,8 +46,6 @@ STAC Items must always be valid, but not all STAC Item requirements are covered 
 
 #### CARD4L
 
-All these fields are **required** in **STAC mode** only! In XML Mode they are expected to be in the XML file.
-
 | Field Name                         | Data Type | Description                                               | Req. |
 | ---------------------------------- | --------- | --------------------------------------------------------- | ---- |
 | card4l:northern_geometric_accuracy | number    | An estimate of the northern geometric accuracy in meters. | 1.8  |
