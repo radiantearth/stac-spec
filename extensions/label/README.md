@@ -43,7 +43,10 @@ Like other content extensions, the Label extension adds additional fields to a S
 ### Core Item fields
 Some additional notes are given here for some of the core STAC Item fields and what they represent for label.
 
-- **bbox** and **geometry**: The bounding box and the geometry of a Label Item represents the region for which the label(s) is/are valid. This could be the extent of all the AOIs in the dataset, or could be the region the provider believes the label is representative.
+- **bbox** and **geometry**: The bounding box and the geometry of a Label Item represents the region for which the label(s) is/are valid. The geometry _must_ include areas for which labeling was attempted but no features were identified, if such areas exist. For example, consider a cloud labeling object detection task for this chip taken from a Sentinel-2 image, which happens not to have any clouds. The geometry for the label item with this item as its `source` must be the geometry of the image (or whatever area within the image was considered), even though the label item's asset won't have any features.
+
+![](./images/cuba-island.png)
+
 - **properties.datetime**: The datetime of a Label Item is the nominal datetime for which the label applies, typically this is the datetime of the source imagery used to generate the labels. If the label applies over a range of datetimes (e.g., generated from multiple source images) then use the [Date and Time Range fields](../../item-spec/common-metadata.md#date-and-time-range) to indicate start and end datetimes.
 - **assets**: The label assets are GeoJSON FeatureCollection assets containing the actual label features. As with the core STAC Item a thumbnail asset is also strongly encouraged.
 
@@ -145,7 +148,7 @@ The raster label file (e.g. a GeoTIFF) should be included as an asset under the 
 The source imagery used for creating the label is linked to under `links` (see below). However the source imagery is likely to have been rendered in some way when creating the training data. For instance, a byte-scaled true color image may have been created from the source imagery. It may be useful to save this image and include it as an asset in the `Item`.
 
 #### Links: source imagery
-A Label Item links to any source imagery that the AOI applys to by linking to the STAC Item representing the imagery. Source imagery is indicated by using a `rel` type of "source" and providing the link to the STAC Item.
+A Label Item links to any source imagery that the AOI applies to by linking to the STAC Item representing the imagery. Source imagery is indicated by using a `rel` type of "source" and providing the link to the STAC Item.
 
 In addition the source imagery link has a new label extension specific field:
 

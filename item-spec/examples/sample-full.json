@@ -43,16 +43,20 @@
     "instruments": ["cool_sensor_v1"],
     "eo:bands": [
       {
-        "name": "band1"
+        "name": "band1",
+        "common_name": "red"
       },
       {
-        "name": "band1"
+        "name": "band2",
+        "common_name": "green"
       },
       {
-        "name": "band2"
+        "name": "band3",
+        "common_name": "blue"
       },
       {
-        "name": "band3"
+        "name": "band4",
+        "common_name": "nir"
       }
     ],
     "view:sun_elevation": 33.4,
@@ -74,7 +78,25 @@
   "assets": {
     "analytic": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/analytic.tif",
-      "title": "4-Band Analytic"
+      "title": "4-Band Analytic",
+      "eo:bands": [
+        {
+          "name": "band1",
+          "common_name": "red"
+        },
+        {
+          "name": "band2",
+          "common_name": "green"
+        },
+        {
+          "name": "band3",
+          "common_name": "blue"
+        },
+        {
+          "name": "band4",
+          "common_name": "nir"
+        }
+      ]
     },
     "thumbnail": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png",

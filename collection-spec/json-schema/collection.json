@@ -54,6 +54,10 @@
         "providers": {
           "type": "array",
           "items": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
             "properties": {
               "name": {
                 "title": "Organization name",

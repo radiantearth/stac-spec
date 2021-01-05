@@ -33,14 +33,10 @@
         },
         "properties": {
           "type": "object",
-          "anyOf": [
-            {"required": ["sat:relative_orbit"]},
-            {"required": ["sat:orbit_state"]}
-          ],
+          "minProperties": 1,
           "properties": {
-            "sat:relative_orbit": {
-              "type": "integer",
-              "minimum": 1
+            "sat:platform_international_designator": {
+              "type": "string"
             },
             "sat:orbit_state": {
               "title": "Orbit State",
@@ -50,6 +46,18 @@
                 "descending",
                 "geostationary"
               ]
+            },
+            "sat:absolute_orbit": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sat:relative_orbit": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sat:anx_datetime": {
+              "type": "string",
+              "format": "date-time"
             }
           }
         }

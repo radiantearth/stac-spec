@@ -97,7 +97,7 @@
       "type": "object",
       "minProperties": 2,
       "required": [
-        "name",
+        "name"
       ],
       "properties": {
         "name": {
