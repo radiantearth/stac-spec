@@ -5,6 +5,7 @@
 - **Field Name Prefix: -**
 - **Scope: Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Owner**: @m-mohr
 
 A Collection extension to provide a way to specify assets available on the collection-level.
 

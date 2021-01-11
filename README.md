@@ -69,7 +69,7 @@ It includes things like the spatial and temporal extent of the data, the license
 It enables discovery at a higher level than individual items, providing a simple way to describe sets of data.
 
 **Extensions:** The *[extensions/](extensions/)* folder is where extensions live. Extensions can extend the 
-functionality of the core spec or add fields for specific domains.
+functionality of the core spec or add fields for specific domains. Each extension has at least one *owner*. You can find extension owners in each extension's README or in the [`CODEOWNERS`](.github/CODEOWNERS) file.
 
 **Additional documents:** The supporting documents include a complementary [best practices](best-practices.md) 
 document, and information on contributing (links in the next section). We also maintain a [changelog](CHANGELOG.md) of
