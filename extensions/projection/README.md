@@ -5,6 +5,7 @@
 - **Field Name Prefix: proj**
 - **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Owner**: @matthewhanson
 
 This document explains the fields of the STAC Projection (`proj`) Extension to a STAC Item. Here `proj` is short
 for "projection", and not a reference to the use of the PROJ/PROJ4 formats.
@@ -33,7 +34,7 @@ default, which should be specified at the asset level, while those assets that u
 | ---------------- | ------------------------ | ----------- |
 | proj:epsg        | integer \|null  | **REQUIRED.** [EPSG code](http://www.epsg-registry.org/) of the datasource |
 | proj:wkt2        | string \|null   | [WKT2](http://docs.opengeospatial.org/is/12-063r5/12-063r5.html) string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
-| proj:projjson    | [PROJJSON Object](https://proj.org/usage/projjson.html) \|null   | PROJJSON object representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
+| proj:projjson    | [PROJJSON Object](https://proj.org/specifications/projjson.html) \|null   | PROJJSON object representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
 | proj:geometry    | [Polygon Object](https://geojson.org/schema/Polygon.json)  | Defines the footprint of this Item. |
 | proj:bbox        | \[number]       | Bounding box of the Item in the asset CRS in 2 or 3 dimensions. |
 | proj:centroid    | Centroid Object | Coordinates representing the centroid of the Item in the asset CRS |
