@@ -2,6 +2,7 @@
 
 ## Table of Contents
 
+* [Enable CORS](#enable-cross-origin-resource-sharing-cors)
 * [Field and ID formatting](#field-and-id-formatting)
 * [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
 * [Datetime selection](#datetime-selection)
@@ -23,6 +24,23 @@ those who are creating new catalogs or new tools to work with STAC.
 
 In time some of these may evolve to become part of the core specification, but while the current goal of the core is to remain 
 quite flexible and simple to meet a wide variety of use cases.
+
+## Enable Cross-origin resource sharing (CORS)
+
+STAC strives to make geospatial information more accessible, by putting it on the web. Fundamental to STAC's vision is that
+different tools will be able to load and display public-facing STAC data. But the web runs on a [Same origin 
+policy](https://en.wikipedia.org/wiki/Same-origin_policy), preventing web pages from loading information from other web locations
+to prevent malicious scripts from accessing sensitive data. This means that by default a web page would only be able to load STAC
+Items from the same server the page is on. [Cross-origin resource sharing](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing),
+also known as 'CORS' is a protocol to enable safe communication across origins. But most web services turn it off by default. This
+is generally a good thing, but unfortunately if CORS is not enabled then any browser-based STAC tool will not work. 
+
+So to enable all the great web tools (like [stacindex.org](http://stacindex.org)) to work with your STAC catalog it is essential to
+'enable CORS'. Most services have good resources on how to do this, like on [AWS S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html),
+[Google Cloud Storage](https://cloud.google.com/storage/docs/cross-origin), or [Apache Server](https://enable-cors.org/server_apache.html). 
+Many more are listed on [enable-cors.org](https://enable-cors.org/server.html). We recommend enabling CORS for all requests ('\*'),
+so that diverse online tools can access your data. If you aren't sure if your server has CORS enabled you can use 
+[test-cors.org](https://www.test-cors.org/). Enter the URL of your STAC catalog JSON and make sure it gets a response.
 
 ## Field and ID formatting
 
