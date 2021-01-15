@@ -202,14 +202,13 @@ should consider an additional way to break it up.
 We encourage people to explore new structures of linking data, but the following list is what a number of implementors 
 ended up doing. Following these recommendations makes for more legible catalogs.
 
-1. Root documents (catalogs / collections) should be at the root of a directory tree containing the static catalog.  
-2. Catalogs should be named `catalog.json` (cf. `index.html`).
-3. Collections that are distinct from catalogs should be named `collection.json`.
-4. Items should be named `<id>.json`.
-5. Sub-catalogs should be stored in subdirectories of their parent (and only 1 subdirectory deeper than a document's parent) (e.g. `.../sample/sub1/catalog.json`).
-6. Items should be stored in subdirectories of their parent catalog. 
+1. Root documents (catalogs / collections) should be at the root of a directory tree containing the static catalog.
+2. Catalogs that are not also Collections should be named `catalog.json` and Collections should be named `collection.json`.
+3. Items should be named `<id>.json`.
+4. Sub-catalogs should be stored in subdirectories of their parent (and only 1 subdirectory deeper than a document's parent) (e.g. `.../sample/sub1/catalog.json`).
+5. Items should be stored in subdirectories of their parent catalog. 
 This means that each item and its assets are contained in a unique subdirectory.
-7. Limit the number of items in a catalog or sub-catalog, grouping / partitioning as relevant to the dataset.
+6. Limit the number of items in a catalog or sub-catalog, grouping / partitioning as relevant to the dataset.
 
 ### Dynamic Catalog Layout
 
