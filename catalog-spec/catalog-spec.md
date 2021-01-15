@@ -40,13 +40,16 @@ also a valid STAC Catalog.
 ### Additional Field Information
 
 #### stac_extensions
+
 A list of extensions the Catalog implements. This does NOT declare the extensions of children or Items. The list contains URLs to the JSON Schema files it can be validated against. For official [content extensions](../extensions/README.md#list-of-content-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `single-file-stac` for the Point Cloud extension. If the versions of the extension and the catalog diverge, you can specify the URL of the JSON schema file.
 This list must only contain extensions that extend the Catalog itself, see the the 'Scope' column in the list of extensions.
 
 #### summaries
-You can optionally summarize the potential values that are available as part of the `properties` in STAC Items.
-Summaries are used to inform users about values they can expect from items without having to crawl through them. It also helps do fully define collections, especially if they don't link to any Items.
-A summary for a field  can be specified in two ways:
+
+Provides an overview of the potential values that are available as part of the `properties` in the set STAC Items that are underneath this catalog (including 
+those in any sub-catalog). Summaries are used to inform users about values they can expect from items without having to crawl through them. It also helps to 
+fully define collections, especially if they don't link to any Items.
+A summary for a field can be specified in two ways:
 
 1. A set of all distinct values in an array: The set of values must contain at least one element and it is strongly recommended to list all values. If the field summarizes an array (e.g. `instruments`), the field's array elements of each Item must be merged to a single array with unique elements.
 2. Statistics in a [Stats Object](#stats-object): Statistics by default only specify the range (minimum and maximum values), but can optionally be accompanied by additional statistical values. The range specified by the minimum and maximum can specify the potential range of values, but it is recommended to be as precise as possible.
