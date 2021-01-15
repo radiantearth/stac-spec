@@ -24,7 +24,7 @@
     25.0815883093,
     62.1306897126,
     27.1935425597,
-    63.1293872370
+    63.129387237
   ],
   "geometry": {
     "type": "Polygon",
@@ -59,7 +59,7 @@
     "gsd": 10,
     "proj:epsg": 32635,
     "eo:cloud_cover": 88.459539,
-    "view:sun_azimuth" : 176.091667178268
+    "view:sun_azimuth": 176.091667178268
   },
   "collection": "s2-l2a",
   "assets": {
@@ -67,7 +67,9 @@
       "href": "s3://sentinel-s2-l2a/tiles/35/V/MK/2018/6/5/0/metadata.xml",
       "title": "Tile metadata",
       "type": "application/xml",
-      "roles": [ "metadata" ]
+      "roles": [
+        "metadata"
+      ]
     },
     "tileInfo": {
       "href": "s3://sentinel-s2-l2a/tiles/35/V/MK/2018/6/5/0/tileInfo.json",
@@ -83,7 +85,9 @@
       "href": "s3://sentinel-s2-l2a/tiles/35/V/MK/2018/6/5/0/qi/L2A_PVI.jp2",
       "title": "True color thumbnail",
       "type": "image/jp2",
-      "roles": [ "thumbnail" ]
+      "roles": [
+        "thumbnail"
+      ]
     },
     "B02_10m": {
       "href": "s3://sentinel-s2-l2a/tiles/35/V/MK/2018/6/5/0/R10m/B02.jp2",
@@ -131,7 +135,6 @@
       "title": "Band 3 - Green 0.560 (20m)",
       "type": "image/jp2",
       "gsd": 20
-
     },
     "B04_20m": {
       "href": "s3://sentinel-s2-l2a/tiles/35/V/MK/2018/6/5/0/R20m/B04.jp2",
@@ -141,7 +144,7 @@
     },
     "B05_20m": {
       "href": "s3://sentinel-s2-l2a/tiles/35/V/MK/2018/6/5/0/R20m/B05.jp2",
-      "title" : "Band 5 - Vegetation Red Edge 0.705 (20m)",
+      "title": "Band 5 - Vegetation Red Edge 0.705 (20m)",
       "type": "image/jp2",
       "gsd": 20
     },

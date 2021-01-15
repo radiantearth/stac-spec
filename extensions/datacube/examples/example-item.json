@@ -85,7 +85,9 @@
       },
       "time": {
         "type": "temporal",
-        "values": ["2016-05-03T13:21:30.040Z"]
+        "values": [
+          "2016-05-03T13:21:30.040Z"
+        ]
       },
       "spectral": {
         "type": "bands",
