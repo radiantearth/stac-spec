@@ -71,6 +71,13 @@ The following types are commonly used as `rel` types in the Link Object of a STA
 
 **Note:** A link to at least one `item` or `child` catalog is **REQUIRED**.
 
+## Media Type for STAC Catalogs
+
+A STAC Catalog is a JSON file ([RFC 8259](https://tools.ietf.org/html/rfc8259)), and thus should use the 
+`[application/json](https://tools.ietf.org/html/rfc8259#section-11)` as the [Media Type](https://en.wikipedia.org/wiki/Media_type) 
+(previously known as the MIME Type). STAC Catalogs are recommended to additional specify a `profile` equal to `stac-catalog` to
+give a further hint to clients that they are dealing with a STAC Catalog. The full media type is thus: `application/json; profile=stac-catalog`.
+
 ## Extensions
 
 The [extensions page](../extensions/) gives an overview about relevant extensions for STAC Catalogs.

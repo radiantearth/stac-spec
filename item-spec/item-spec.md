@@ -252,6 +252,13 @@ in the file).
 For examples of fields that this construct is recommended for, see the [section of STAC Best Practices](../best-practices.md#common-use-cases-of-additional-fields-for-assets)
 that talks about common use cases of additional fields for assets.
 
+## Media Type for STAC Items
+
+A STAC Item is a GeoJSON file ([RFC 7946](https://tools.ietf.org/html/rfc7946)), and thus should use the 
+`[application/geo+json](https://tools.ietf.org/html/rfc7946#section-12)` as the [Media Type](https://en.wikipedia.org/wiki/Media_type) 
+(previously known as the MIME Type). STAC Items are recommended to additional specify a `profile` equal to `stac-item` to
+give a further hint to clients that they are dealing with a STAC Item. The full media type is thus: `application/geo+json; profile=stac-item`.
+
 ## Extensions
 
 There are emerging best practices, which in time will evolve in to specification extensions for

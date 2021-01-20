@@ -141,6 +141,13 @@ Implementors are free to add other derived statistical values to the object, for
 | min        | number\|string | **REQUIRED.** Minimum value. |
 | max        | number\|string | **REQUIRED.** Maximum value. |
 
+## Media Type for STAC Collections
+
+A STAC Collection is a JSON file ([RFC 8259](https://tools.ietf.org/html/rfc8259)), and thus should use the 
+`[application/json](https://tools.ietf.org/html/rfc8259#section-11)` as the [Media Type](https://en.wikipedia.org/wiki/Media_type) 
+(previously known as the MIME Type). STAC Collections are recommended to additional specify a `profile` equal to `stac-collections` to
+give a further hint to clients that they are dealing with a STAC Collections. The full media type is thus: `application/json; profile=stac-collection`.
+
 ## Standalone Collections
 
 STAC Collections which don't link to any Item are called **standalone Collections**.
