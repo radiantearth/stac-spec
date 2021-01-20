@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added [file info extension](extensions/file/README.md) ([#879](https://github.com/radiantearth/stac-spec/pull/879), [#921](https://github.com/radiantearth/stac-spec/issues/921))
 - Added additional acquisition parameters in the `sat` extension: sat:platform_international_designator, sat:absolute_orbit, sat:anx_datetime* ([#894](https://github.com/radiantearth/stac-spec/pull/894))
 - Recommendation to enable CORS
+- Media types: `application/geo+json; profile=stac-item` for Items, `application/json; profile=stac-catalog` for Catalogs, and `application/json; profile=stac-collection` for Collection.
 
 ### Changed
 
