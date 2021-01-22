@@ -185,6 +185,7 @@ Like the Link `rel` field, the `roles` field can be given any value, however her
 | overview  | An asset that represents a possibly larger view than the thumbnail of the Item, for example, a true color composite of multi-band data. |
 | data      | The data itself. This is a suggestion for a common role for data files to be used in case data providers don't come up with their own names and semantics. |
 | metadata  | A metadata sidecar file describing the data in this item, for example the Landsat-8 MTL file. |
+| visual    | An asset that is a full resolution version of the data, processed for visual use (RGB only, often sharpened ([pan-sharpened](https://en.wikipedia.org/wiki/Pansharpened_image) and/or using an [unsharp mask](https://en.wikipedia.org/wiki/Unsharp_masking))). |
 
 It is STRONGLY RECOMMENDED to add to each STAC Item
 * a thumbnail with the role `thumbnail` for preview purposes
