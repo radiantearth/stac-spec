@@ -3,8 +3,17 @@
   "id": "NAIP",
   "description": "Catalog of NAIP Imagery",
   "links": [
-    { "rel": "self", "href": "https://www.fsa.usda.gov/naip/catalog.json" },
-    { "rel": "child", "href": "https://www.fsa.usda.gov/naip/30087/catalog.json" },
-    { "rel": "root", "href": "https://www.fsa.usda.gov/catalog.json" }
+    {
+      "rel": "self",
+      "href": "https://www.fsa.usda.gov/naip/catalog.json"
+    },
+    {
+      "rel": "child",
+      "href": "https://www.fsa.usda.gov/naip/30087/catalog.json"
+    },
+    {
+      "rel": "root",
+      "href": "https://www.fsa.usda.gov/catalog.json"
+    }
   ]
 }
