@@ -222,7 +222,7 @@ that talks about common use cases of additional fields for assets.
 
 One of the best ways to help inform web clients about the content in a link is to use a common [Media 
 Type](https://en.wikipedia.org/wiki/Media_type) in the `type` field. In STAC the `type` field is used in both the 
-`[link](#link-object)` and `[asset](asset-object)` objects. It is quite useful for STAC browsers to better determine
+`[Link](#link-object)` and `[Asset](#asset-object)` Objects. It is quite useful for STAC browsers to better determine
 what to render and display to users searching and browsing the catalog.  Media types are often referred to by the 
 now-deprecated term "MIME types". 
 
