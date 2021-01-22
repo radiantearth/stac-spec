@@ -190,40 +190,6 @@ It is STRONGLY RECOMMENDED to add to each STAC Item
 * a thumbnail with the role `thumbnail` for preview purposes
 * one or more data file although it doesn't need to use the suggested role `data`
 
-#### Media Types
-
-The media type of an Asset can be used by STAC browsers to better determine what to render and display
-to users searching and browsing the catalog.  Media types are often referred to by the now-deprecated term "MIME types".
-
-[Registered](https://www.iana.org/assignments/media-types/media-types.xhtml) Media Types are
-preferred. In cases where custom vendor-specific media types are necessary, they should
-use the `vnd.` prefix.
-
-STAC Items that have sidecar metadata files associated with a data asset (e.g, `.tfw`, Landsat 8 MTL files)
-should use media types appropriate for the the metadata file.  For example, if it is a plain text file, then `text/plain`
-would be appropriate; if it is an XML, then `text/xml` is appropriate.
-
-Common STAC Item Media Types:
-
-| Media Type                                              | Description                                                  |
-| ------------------------------------------------------- | ------------------------------------------------------------ |
-| `image/tiff; application=geotiff`                       | GeoTIFF with standardized georeferencing metadata            |
-| `image/tiff; application=geotiff; profile=cloud-optimized` | Cloud Optimized GeoTIFF (unofficial). Once there is an [official media type](http://osgeo-org.1560.x6.nabble.com/Media-type-tc5411498.html) it will be added and the proprietary media type here will be deprecated. |
-| `image/jp2`                                             | JPEG 2000                                                    |
-| `image/png`                                             | Visual PNGs (e.g. thumbnails)                                |
-| `image/jpeg`                                            | Visual JPEGs (e.g. thumbnails, oblique)                      |
-| `text/xml` or `application/xml`                         | XML metadata [RFC 7303](https://www.ietf.org/rfc/rfc7303.txt) |
-| `application/json`                                      | JSON metadata                                                |
-| `text/plain`                                            | Plain text metadata                                          |
-| `application/geo+json`                                  | GeoJSON                                                      |
-| `application/geopackage+sqlite3`                        | GeoPackage                                                   |
-| `application/x-hdf5`                                    | Hierarchical Data Format version 5                           |
-| `application/x-hdf`                                     | Hierarchical Data Format versions 4 and earlier.             |
-
-Deprecation notice: GeoTiff previously used the media type `image/vnd.stac.geotiff` and
-Cloud Optimized GeoTiffs used `image/vnd.stac.geotiff; profile=cloud-optimized`.
-Both can still appear in old catalogues, but are deprecated and should be replaced.
-
 #### Additional Fields for Assets
 
 As detailed above, Items contain properties, which are the main source of metadata for searching across Items. Many content
@@ -252,7 +218,47 @@ in the file).
 For examples of fields that this construct is recommended for, see the [section of STAC Best Practices](../best-practices.md#common-use-cases-of-additional-fields-for-assets)
 that talks about common use cases of additional fields for assets.
 
-## Media Type for STAC Items
+## Media Types
+
+One of the best ways to help inform web clients about the content in a link is to use a common [Media 
+Type](https://en.wikipedia.org/wiki/Media_type) in the `type` field. In STAC the `type` field is used in both the 
+`[link](#link-object)` and `[asset](asset-object)` objects. It is quite useful for STAC browsers to better determine
+what to render and display to users searching and browsing the catalog.  Media types are often referred to by the 
+now-deprecated term "MIME types". 
+
+Any media type can be used in STAC, and [registered](https://www.iana.org/assignments/media-types/media-types.xhtml) 
+Media Types are preferred. In cases where custom vendor-specific media types are necessary, they should
+use the `vnd.` prefix.
+
+STAC Items that have sidecar metadata files associated with a data asset (e.g, `.tfw`, Landsat 8 MTL files)
+should use media types appropriate for the the metadata file.  For example, if it is a plain text file, then `text/plain`
+would be appropriate; if it is an XML, then `text/xml` is appropriate.
+
+### Common STAC Media Types
+
+| Media Type                                              | Description                                                  |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
+| `application/geo+json; profile=stac-item`	              | A STAC [Item](#stac-item-specification)                      |
+| `application/json; profile=stac-catalog`                | A STAC [Catalog](../catalog-spec/README.md)                  |
+| `application/json; profile=stac-collection`             | A STAC [Collection](../collection-spec/README.md)            |
+| `image/tiff; application=geotiff`                       | GeoTIFF with standardized georeferencing metadata            |
+| `image/tiff; application=geotiff; profile=cloud-optimized` | [Cloud Optimized GeoTIFF](https://www.cogeo.org/) (unofficial). Once there is an [official media type](http://osgeo-org.1560.x6.nabble.com/Media-type-tc5411498.html) it will be added and the proprietary media type here will be deprecated. |
+| `image/jp2`                                             | JPEG 2000                                                    |
+| `image/png`                                             | Visual PNGs (e.g. thumbnails)                                |
+| `image/jpeg`                                            | Visual JPEGs (e.g. thumbnails, oblique)                      |
+| `text/xml` or `application/xml`                         | XML metadata [RFC 7303](https://www.ietf.org/rfc/rfc7303.txt) |
+| `application/json`                                      | A JSON file (often metadata, or [labels](https://github.com/radiantearth/stac-spec/tree/master/extensions/label#labels-required)) |                   
+| `text/plain`                                            | Plain text (often metadata)                                  |
+| `application/geo+json`                                  | [GeoJSON](https://geojson.org/)                              |
+| `application/geopackage+sqlite3`                        | [GeoPackage](https://www.geopackage.org/)                    |
+| `application/x-hdf5`                                    | Hierarchical Data Format version 5                           |
+| `application/x-hdf`                                     | Hierarchical Data Format versions 4 and earlier.             |
+
+Deprecation notice: GeoTiff previously used the media type `image/vnd.stac.geotiff` and
+Cloud Optimized GeoTiffs used `image/vnd.stac.geotiff; profile=cloud-optimized`.
+Both can still appear in old catalogues, but are deprecated and should be replaced.
+
+### Media Type for STAC Item
 
 A STAC Item is a GeoJSON file ([RFC 7946](https://tools.ietf.org/html/rfc7946)), and thus should use the 
 `[application/geo+json](https://tools.ietf.org/html/rfc7946#section-12)` as the [Media Type](https://en.wikipedia.org/wiki/Media_type) 
