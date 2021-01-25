@@ -135,4 +135,4 @@ This list is not exhaustive, other useful template substitutions may exist.
 
 ## Implementations
 
-None. Still in proposal stage
+[GDAL (since version 3.3)](https://gdal.org/drivers/raster/stacta.html) provides read support of tiled assets.
