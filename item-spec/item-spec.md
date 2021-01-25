@@ -228,13 +228,17 @@ now-deprecated term "MIME types".
 
 Any media type can be used in STAC, and [registered](https://www.iana.org/assignments/media-types/media-types.xhtml) 
 Media Types are preferred. In cases where custom vendor-specific media types are necessary, they should
-use the `vnd.` prefix.
-
-STAC Items that have sidecar metadata files associated with a data asset (e.g, `.tfw`, Landsat 8 MTL files)
+use the `vnd.` prefix, see [RFC 6838 section-3.2](https://tools.ietf.org/html/rfc6838#section-3.2). STAC Items that 
+have sidecar metadata files associated with a data asset (e.g, `.tfw`, Landsat 8 MTL files)
 should use media types appropriate for the the metadata file.  For example, if it is a plain text file, then `text/plain`
-would be appropriate; if it is an XML, then `text/xml` is appropriate.
+would be appropriate; if it is an XML, then `text/xml` is appropriate. For more information on media types as well as a 
+list of [common media types](../best-practices.md#common-media-types-in-stac) used in STAC see the [best practice on 
+working with media types](../best-practices.md#working-with-media-types).
 
-### Common STAC Media Types
+### STAC Media Types
+
+The following table lists the Media Types for STAC, as well as the way [GeoTIFF](https://en.wikipedia.org/wiki/GeoTIFF)'s 
+(and [COG](https://www.cogeo.org)'s) are referenced in STAC.
 
 | Media Type                                              | Description                                                  |
 | ------------------------------------------------------- | ------------------------------------------------------------ |
@@ -243,20 +247,11 @@ would be appropriate; if it is an XML, then `text/xml` is appropriate.
 | `application/json; profile=stac-collection`             | A STAC [Collection](../collection-spec/README.md)            |
 | `image/tiff; application=geotiff`                       | GeoTIFF with standardized georeferencing metadata            |
 | `image/tiff; application=geotiff; profile=cloud-optimized` | [Cloud Optimized GeoTIFF](https://www.cogeo.org/) (unofficial). Once there is an [official media type](http://osgeo-org.1560.x6.nabble.com/Media-type-tc5411498.html) it will be added and the proprietary media type here will be deprecated. |
-| `image/jp2`                                             | JPEG 2000                                                    |
-| `image/png`                                             | Visual PNGs (e.g. thumbnails)                                |
-| `image/jpeg`                                            | Visual JPEGs (e.g. thumbnails, oblique)                      |
-| `text/xml` or `application/xml`                         | XML metadata [RFC 7303](https://www.ietf.org/rfc/rfc7303.txt) |
-| `application/json`                                      | A JSON file (often metadata, or [labels](https://github.com/radiantearth/stac-spec/tree/master/extensions/label#labels-required)) |                   
-| `text/plain`                                            | Plain text (often metadata)                                  |
-| `application/geo+json`                                  | [GeoJSON](https://geojson.org/)                              |
-| `application/geopackage+sqlite3`                        | [GeoPackage](https://www.geopackage.org/)                    |
-| `application/x-hdf5`                                    | Hierarchical Data Format version 5                           |
-| `application/x-hdf`                                     | Hierarchical Data Format versions 4 and earlier.             |
 
 Deprecation notice: GeoTiff previously used the media type `image/vnd.stac.geotiff` and
 Cloud Optimized GeoTiffs used `image/vnd.stac.geotiff; profile=cloud-optimized`.
-Both can still appear in old catalogues, but are deprecated and should be replaced.
+Both can still appear in old catalogues, but are deprecated and should be replaced. This may also shift in the future as
+[OGC sorts out the media types](https://github.com/opengeospatial/geotiff/issues/34).
 
 ### Media Type for STAC Item
 

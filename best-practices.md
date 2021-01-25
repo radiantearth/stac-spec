@@ -9,6 +9,7 @@
 * [Unlocated Items](#unlocated-items)
 * [Representing Vector Layers in STAC](#representing-vector-layers-in-stac)
 * [Common Use Cases of Additional Fields for Assets](#common-use-cases-of-additional-fields-for-assets)
+* [Working with Media Types](#working-with-media-types)
 * [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
 * [Catalog Layout](#catalog-layout)
 * [Use of Links](#use-of-links)
@@ -155,6 +156,38 @@ than the overall best resolution.
 - `proj:shape`/`proj:transform` ([projection extension](extensions/projection/)): If assets have different spatial resolutions and slightly different exact bounding boxes, specify these per asset to indicate the size of the asset in pixels and its exact GeoTransform in the native projection.
 - `sar:polarizations` ([sar extension](extensions/sar/)): Provide the polarization content and ordering of a specific asset, similar to `eo:bands`.
 - `sar:product_type` ([sar extension](extensions/sar/)): If mixing multiple product types within a single Item, this can be used to specify the product_type for each asset.
+
+## Working with Media Types
+
+### Common Media Types in STAC
+
+In addition to the GeoTIFF ([standard](https://en.wikipedia.org/wiki/GeoTIFF) and [cloud optimized](http://cogeo.org)) 
+media types listed in [STAC Media Types](item-spec/item-spec.md#stac-media-types), there are many more of the IANA 
+[registered](https://www.iana.org/assignments/media-types/media-types.xhtml) that commonly show up in STAC. The 
+following table lists some of the most common ones you may encounter or use.
+
+| Media Type                                              | Description                                                  |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
+| `image/jp2`                                             | JPEG 2000                                                    |
+| `image/png`                                             | Visual PNGs (e.g. thumbnails)                                |
+| `image/jpeg`                                            | Visual JPEGs (e.g. thumbnails, oblique)                      |
+| `text/xml` or `application/xml`                         | XML metadata [RFC 7303](https://www.ietf.org/rfc/rfc7303.txt) |
+| `application/json`                                      | A JSON file (often metadata, or [labels](https://github.com/radiantearth/stac-spec/tree/master/extensions/label#labels-required)) |                   
+| `text/plain`                                            | Plain text (often metadata)                                  |
+| `application/geo+json`                                  | [GeoJSON](https://geojson.org/)                              |
+| `application/geopackage+sqlite3`                        | [GeoPackage](https://www.geopackage.org/)                    |
+| `application/x-hdf5`                                    | Hierarchical Data Format version 5                           |
+| `application/x-hdf`                                     | Hierarchical Data Format versions 4 and earlier.             |
+
+Ideally every media type used is on the [IANA registry](https://www.iana.org/assignments/media-types/media-types.xhtml). If
+you are using a format that is not on that list we recommend you use a [custom content 
+type](https://restcookbook.com/Resources/using-custom-content-types/), ideally working with the format provider to actually
+register the media type with IANA, so that other STAC clients can find it. But if you are only using it internally it is 
+[acceptable to not register](https://stackoverflow.com/questions/29121241/custom-content-type-is-registering-with-iana-mandatory) 
+it. It is relatively easy to [register](https://www.iana.org/form/media-types) a 
+`[vnd](https://tools.ietf.org/html/rfc6838#section-3.2)` media type. You can also use the `profile` parameter like STAC and
+COG do if you wish to further specify an existing type. Please do not create completely custom types that don't use 
+`vnd` properly (it goes after the media type 'name' - `text`, `application`, `images`, etc.)
 
 ## Static and Dynamic Catalogs
 
