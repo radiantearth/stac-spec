@@ -1,7 +1,7 @@
 # Rendering Hints Extension Specification
 
 - **Title: Rendering Hints**
-- **Identifier: rendering_hints**
+- **Identifier: rendering-hints**
 - **Field Name Prefix: render**
 - **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
