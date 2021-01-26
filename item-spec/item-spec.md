@@ -116,11 +116,9 @@ It is allowed to add additional fields such as a `title` and `type`.
 
 #### Relative vs Absolute links
 
-Currently, the JSON schema for links does not require them to be formatted as URIs, to allow
-implementors to provide relative links. In general, Catalog APIs should aim to provide absolute links
-whenever possible. Static Catalogs are potentially more portable if they incorporate only
-relative links, so that every link doesn't need to be rewritten when the data is copied. Additional
-recommendations for particular `rel` types are given in the `rel` type description.
+Currently, the JSON schema for links does not require them to be formatted as URIs, to allow implementors 
+to provide relative links. For a full discussion of the situations where each are recommended see 
+[this section](../best-practices.md#use-of-links) of the STAC best practices.
 
 #### Relation types
 
