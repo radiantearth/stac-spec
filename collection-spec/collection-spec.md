@@ -129,7 +129,7 @@ STAC uses an official type but adds additional meaning for the STAC context.
 | license | The license URL(s) for the collection SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file. |
 | derived_from | URL to a STAC Collection that was used as input data in the creation of this collection. See the note in [STAC Item](../item-spec/item-spec.md#derived_from) for more info. |
 
-A more complete list of possible 'rel' types and their meaning in STAC can be found in the [Using Relation 
+A more complete list of possible `rel` types and their meaning in STAC can be found in the [Using Relation 
 Types](../best-practices.md#using-relation-types) best practice. 
 
 **Note:** The [STAC Catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is *not* a requirement for collections, but *recommended*. In contrast to catalogs, it is **REQUIRED** that items linked from a Collection MUST refer back to its Collection with the [`collection` relation type](../item-spec/item-spec.md#relation-types).

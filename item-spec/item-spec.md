@@ -138,7 +138,7 @@ STAC uses an official type but adds additional meaning for the STAC context.
 | collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md). *Absolute* URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
 
-A more complete list of potential 'rel' types and their meaning in STAC can be found in the [Using Relation 
+A more complete list of potential `rel` types and their meaning in STAC can be found in the [Using Relation 
 Types](../best-practices.md#using-relation-types) best practice. 
 
 ##### derived_from

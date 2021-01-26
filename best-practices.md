@@ -12,7 +12,7 @@
 * [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
 * [Catalog Layout](#catalog-layout)
 * [Use of Links](#use-of-links)
-* [Using Relation TYpes](#using-relation-types)
+* [Using Relation Types](#using-relation-types)
 * [Versioning for Catalogs](#versioning-for-catalogs)
 * [STAC on the Web](#stac-on-the-web)
 
