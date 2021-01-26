@@ -105,17 +105,19 @@ This object describes a relationship with another entity. Data providers are adv
 | Field Name | Type   | Description                                                  |
 | ---------- | ------ | ------------------------------------------------------------ |
 | href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. |
-| rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information. |
+| rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "[Relation types](#relation-types)" for more information. |
 | type       | string | [Media type](../item-spec/item-spec.md#media-types) of the referenced entity. |
 | title      | string | A human readable title to be used in rendered displays of the link. |
-
-A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
 
 Please see the chapter 'relative vs absolute links' in the [Item spec](../item-spec/item-spec.md#relative-vs-absolute-links) for a discussion on that topic. 
 
 #### Relation types
 
-The following types are commonly used as `rel` types in the Link Object of a Collection:
+STAC Collections use a variety of `rel` types in the link object, to describe the exact nature of the link between this collection
+and the entity it is linking to. It is recommended to use the official [IANA Link Relation 
+Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) where possible. The following table explains places
+where custom STAC `rel` types are used for collections. This is done where there is not a clear official option, or where 
+STAC uses an official type but adds additional meaning for the STAC context.
 
 | Type    | Description                                                  |
 | ------- | ------------------------------------------------------------ |
@@ -125,7 +127,10 @@ The following types are commonly used as `rel` types in the Link Object of a Col
 | child   | URL to a child STAC [Catalog](../catalog-spec/) or Collection. |
 | item    | URL to a STAC [Item](../item-spec/item-spec.md). All items linked from a collection MUST refer back to its collection with the [`collection` relation type](../item-spec/item-spec.md#relation-types). |
 | license | The license URL(s) for the collection SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file. |
-| derived_from | URL to a STAC Collection that was used as input data in the creation of this collection. See the note in [STAC Item](../item-spec/item-spec.md#relation-types) for more info. |
+| derived_from | URL to a STAC Collection that was used as input data in the creation of this collection. See the note in [STAC Item](../item-spec/item-spec.md#derived_from) for more info. |
+
+A more complete list of possible 'rel' types and their meaning in STAC can be found in the [Using Relation 
+Types](../best-practices.md#using-relation-types) best practice. 
 
 **Note:** The [STAC Catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is *not* a requirement for collections, but *recommended*. In contrast to catalogs, it is **REQUIRED** that items linked from a Collection MUST refer back to its Collection with the [`collection` relation type](../item-spec/item-spec.md#relation-types).
 

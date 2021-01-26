@@ -124,7 +124,11 @@ recommendations for particular `rel` types are given in the `rel` type descripti
 
 #### Relation types
 
-The following types are commonly used as `rel` types in the Link Object of an Item:
+STAC Items use a variety of `rel` types in the link object, to describe the exact nature of the link between this item
+and the entity it is linking to. It is recommended to use the official [IANA Link Relation 
+Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) where possible. The following table explains places
+where STAC use custom `rel` types are used with items. This happens where there is not a clear official option, or where 
+STAC uses an official type but adds additional meaning for the STAC context.
 
 | Type         | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
@@ -133,11 +137,11 @@ The following types are commonly used as `rel` types in the Link Object of an It
 | parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
 | collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md). *Absolute* URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
-| alternate    | It is recommended that STAC Items are also available as HTML, and should use this rel with `"type" : "text/html"` to tell clients where they can get a version of the Item to view in a browser. See [STAC on the Web in Best Practices](../best-practices.md#stac-on-the-web) for more information. |
-| canonical    | The URL of the [canonical](https://en.wikipedia.org/wiki/Canonical_link_element) version of the Item. API responses and copies of catalogs should use this to inform users that they are direct copy of another STAC Item, using the canonical rel to refer back to the primary location. |
-| via          | The URL of the metadata that this STAC Item is created from. Used similarly to canonical, but refers back to a non-STAC record (Landsat MTL, Sentinel tileInfo.json, etc) |
 
-A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+A more complete list of potential 'rel' types and their meaning in STAC can be found in the [Using Relation 
+Types](../best-practices.md#using-relation-types) best practice. 
+
+##### derived_from
 
 *Note regarding the type `derived_from`: A full provenance model is far beyond the scope of STAC, and the goal is to align with any good independent spec
 that comes along for that. But the derived_from field is seen as a way to encourage fuller specs and at least start a linking
