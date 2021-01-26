@@ -169,7 +169,7 @@ The following fields are all specified in CARD4L requirement 1.7.4. It is **requ
 | Field Name           | XML Tag           | Description                                                  | Src     | Prod |
 | -------------------- | ----------------- | ------------------------------------------------------------ | ------- | ---- |
 | view:azimuth         | `PlatformHeading` | Convert to degree, if required.                              | ✓ 1.6.5 | ✗    |
-| view:incidence_angle | *n/a*             | Center between `card4l:incidence_angle_near_range` and `card4l:incidence_angle_far_range`. This is the sensor incidence angle. For per-pixel incidence angles, refer to the asset with the key `incidence-angle`. | ✓ 1.6.5 | ✗    |
+| view:incidence_angle | *n/a*             | Center between `card4l:incidence_angle_near_range` and `card4l:incidence_angle_far_range`. This is the sensor incidence angle. For per-pixel incidence angles, refer to the asset with the role `local-incidence-angle`. | ✓ 1.6.5 | ✗    |
 
 ### STAC Item Links
 
@@ -203,12 +203,12 @@ The italic role names are proposed to be the asset's key.
 | ------------------------------------- | ------------------------------------------------------------ | ---------------------------- | ------------------------------------------------------------ | ---- | ----------- |
 | *card4l*, metadata                    | `type`                                                       | *n/a*                        | **REQUIRED in *XML Mode*.** Points to the CARD4L metadata XML file. Media type: `application/xml` | ✗    | ✓ 2.1       |
 | *mask*, metadata                      | `type`, `card4l:valid`, `card4l:invalid`, `card4l:nodata`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `DataMask`                   | **REQUIRED.** Points to the data mask file.                  | ✗    | ✓ 2.2       |
-| *area*, metadata                      | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `LocalContributingArea`      | **REQUIRED.** Points to the normalized scattering area file. | ✗    | ✓ 2.3       |
-| *incidence-angle*,  metadata          | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `LocalIncAngle`              | **REQUIRED.** Points to the local incidence angle file.      | ✗    | ✓ 2.4       |
+| *contributing-area*, metadata         | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `LocalContributingArea`      | **REQUIRED.** Points to the normalized scattering area file. | ✗    | ✓ 2.3       |
+| *local-incidence-angle*,  metadata    | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `LocalIncAngle`              | **REQUIRED.** Points to the local incidence angle file.      | ✗    | ✓ 2.4       |
 | *ellipsoid-incidence-angle*, metadata | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `EllipsoidIncAngle`          |                                                              | ✗    | ✓ 2.5       |
 | *noise-power*, card4l, metadata       | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `NoisePower`                 |                                                              | ✗    | ✓ 2.6       |
 | *gamma-sigma*, metadata               | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `GammaToSigmaRatio`          |                                                              | ✗    | ✓ 2.7       |
-| *date*, metadata                      | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `AcquisitionDate`            |                                                              | ✗    | ✓ 2.8       |
+| *date-offset*, metadata               | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `AcquisitionDate`            |                                                              | ✗    | ✓ 2.8       |
 | *backscatter*, data                   | `type`, `created`, `sar:polarizations`, `card4l:conversion_eq`, `card4l:header_size`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `BackscatterMeasurementData` | **REQUIRED for *NRB*.** Points to the backscatter measurements for the polarizations specified in `sar:polarizations`. | ✗    | ✓ 3.1 (NRB) |
 | (*covmat* or *prd*), data             | `type`, `created`, `sar:polarizations` (CovMat only), `card4l:conversion_eq`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `Measurements`               | **REQUIRED for *POL*.** Points to the Normalized Polarimetric Radar Covariance Matrix (CovMat) *or* the Polarimetric Radar Decomposition (PRD) | ✗    | ✓ 3.1 (POL) |
 
