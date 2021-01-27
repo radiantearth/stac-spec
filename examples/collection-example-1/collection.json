@@ -201,7 +201,7 @@
   "links": [
     {
       "rel": "self",
-      "href": "https://storage.cloud.google.com/earthengine-test/catalog/COPERNICUS_S2.json"
+      "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/examples-refresh/examples/collection-example-1/collection.json"
     },
     {
       "rel": "parent",
