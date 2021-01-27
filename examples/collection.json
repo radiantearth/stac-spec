@@ -1,0 +1,62 @@
+{
+  "id": "simple-collection",
+  "stac_version": "1.0.0-beta.2",
+  "description": "A simple collection demonstrating core catalog fields with links to a couple of items",
+  "title": "Simple Example Collection",
+  "providers": [
+    {
+      "name": "Remote Data, Inc",
+      "description": "Producers of awesome spatiotemporal assets",
+      "roles": [
+        "producer",
+        "processor"
+      ],
+      "url": "http://remotedata.com"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -111.6622,
+          -23.0433,
+          172.9552,
+          35.7274
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-12-11T09:06:43.312000Z",
+          "2020-12-14T18:02:31.437000Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "links": [
+    {
+      "rel": "root",
+      "href": "./collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "./simple-item.json",
+      "type": "application/geo+json; profile=stac-item",
+      "title": "Simple Item"
+    },
+    {
+      "rel": "item",
+      "href": "full-item",
+      "type": "application/geo+json; profile=stac-item",
+      "title": "Full Item"
+    },
+    {
+      "rel": "self",
+      "href": "https://raw.githubusercontent.com/stac-spec/examples-refresh/examples/collection.json",
+      "type": "application/json"
+    }
+  ],
+}
