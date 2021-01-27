@@ -5,7 +5,7 @@
   "links": [
     {
       "rel": "self",
-      "href": "https://raw.githubusercontent.com/stac-spec/examples-refresh/examples/catalog.json",
+      "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/examples-refresh/examples/catalog.json",
       "type": "application/json; profile=stac-catalog"
     },
     {

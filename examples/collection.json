@@ -49,13 +49,13 @@
     },
     {
       "rel": "item",
-      "href": "full-item",
+      "href": "./full-item.json",
       "type": "application/geo+json; profile=stac-item",
       "title": "Full Item"
     },
     {
       "rel": "self",
-      "href": "https://raw.githubusercontent.com/stac-spec/examples-refresh/examples/collection.json",
+      "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/examples-refresh/examples/collection.json",
       "type": "application/json"
     }
   ],
