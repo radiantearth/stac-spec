@@ -77,7 +77,7 @@ One of the best ways to help inform web clients about the content in a link is t
 Type](https://en.wikipedia.org/wiki/Media_type) in the `type` field. In STAC the `type` field is used in both the 
 '[Link](#link-object)'' and '[Asset](../item-spec/item-spec.md#asset-object)' Objects. It is quite useful for STAC browsers to better determine
 what to render and display to users searching and browsing the catalog.  Media types are often referred to by the 
-now-deprecated term "MIME types". 
+now deprecated term "MIME types". 
 
 ### STAC Media Types
 
