@@ -42,7 +42,6 @@ Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses
 
 #### summaries
 
-
 Provides an overview of the potential values that are available as part of the `properties` in the set STAC Items that are underneath this catalog (including 
 those in any sub-catalog). Summaries are used to inform users about values they can expect from items without having to crawl through them. It also helps to 
 fully define collections, especially if they don't link to any Items.
