@@ -159,15 +159,22 @@ than the overall best resolution.
 
 ## Working with Media Types
 
+[Media Types](https://en.wikipedia.org/wiki/Media_type) are a key element that enables STAC to be a rich source of information for
+clients. The best practice is to use as specific of a media type as is possible (so if a file is a GeoJSON then don't use a JSON
+media type), and to use [registered](https://www.iana.org/assignments/media-types/media-types.xhtml) IANA types as much as possible.
+The following table lists types that commonly show up in STAC assets. And the the [section](#formats-with-no-registered-media-type)
+past that gives recommendations on what to do if you have a format in your asset that does not have an IANA registered type.
+
 ### Common Media Types in STAC
 
-In addition to the GeoTIFF ([standard](https://en.wikipedia.org/wiki/GeoTIFF) and [cloud optimized](http://cogeo.org)) 
-media types listed in [STAC Media Types](item-spec/item-spec.md#stac-media-types), there are many more of the IANA 
-[registered](https://www.iana.org/assignments/media-types/media-types.xhtml) that commonly show up in STAC. The 
+The following table lists a number of commonly used media types in STAC. The first two (GeoTIFF and COG) are not fully standardized 
+yet, but reflect the community consensus direction. There are many IANA registered types that commonly show up in STAC. The 
 following table lists some of the most common ones you may encounter or use.
 
 | Media Type                                              | Description                                                  |
 | ------------------------------------------------------- | ------------------------------------------------------------ |
+| `image/tiff; application=geotiff`                       | GeoTIFF with standardized georeferencing metadata            |
+| `image/tiff; application=geotiff; profile=cloud-optimized` | [Cloud Optimized GeoTIFF](https://www.cogeo.org/) (unofficial). Once there is an [official media type](http://osgeo-org.1560.x6.nabble.com/Media-type-tc5411498.html) it will be added and the custom media type here will be deprecated. |
 | `image/jp2`                                             | JPEG 2000                                                    |
 | `image/png`                                             | Visual PNGs (e.g. thumbnails)                                |
 | `image/jpeg`                                            | Visual JPEGs (e.g. thumbnails, oblique)                      |
@@ -178,6 +185,13 @@ following table lists some of the most common ones you may encounter or use.
 | `application/geopackage+sqlite3`                        | [GeoPackage](https://www.geopackage.org/)                    |
 | `application/x-hdf5`                                    | Hierarchical Data Format version 5                           |
 | `application/x-hdf`                                     | Hierarchical Data Format versions 4 and earlier.             |
+
+*Deprecation notice: GeoTiff previously used the media type `image/vnd.stac.geotiff` and
+Cloud Optimized GeoTiffs used `image/vnd.stac.geotiff; profile=cloud-optimized`.
+Both can still appear in old catalogues, but are deprecated and should be replaced. This may also shift in the future as
+[OGC sorts out the media types](https://github.com/opengeospatial/geotiff/issues/34).*
+
+### Formats with no registered media type
 
 Ideally every media type used is on the [IANA registry](https://www.iana.org/assignments/media-types/media-types.xhtml). If
 you are using a format that is not on that list we recommend you use a [custom content 

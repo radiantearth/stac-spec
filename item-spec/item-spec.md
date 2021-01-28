@@ -111,7 +111,7 @@ It is allowed to add additional fields such as a `title` and `type`.
 | ---------- | ------ | ----------- |
 | href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information. |
-| type       | string | [Media type](../catalog-spec/catalog#media-types) of the referenced entity. |
+| type       | string | [Media type](../catalog-spec/catalog-spec.md#media-types) of the referenced entity. |
 | title      | string | A human readable title to be used in rendered displays of the link. |
 
 #### Relative vs Absolute links
@@ -169,11 +169,22 @@ or streamed. It is allowed to add additional fields.
 | href        | string    | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
 | title       | string    | The displayed title for clients and users. |
 | description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| type        | string    | [Media type](../catalog-spec/catalog-spec.md#media-types) of the asset. See the [common media types](../best-practices#common-media-types-in-stac) in the best practice doc for commonly used asset types.|
+| type        | string    | [Media type](../catalog-spec/catalog-spec.md#media-types) of the asset. See the [common media types](../best-practices.md#common-media-types-in-stac) in the best practice doc for commonly used asset types. |
 | roles       | \[string] | The [semantic roles](#asset-role-types) of the asset, similar to the use of `rel` in links. |
 
 Beyond to the fields above, any of the [additional fields](#additional-fields) *may* be added to the assets. But this
 is recommended only in special cases, see [Additional Fields for Assets](#additional-fields-for-assets)) for more information.
+
+#### Asset Media Type
+
+Any media type can be used in an Item's asset `type` field, and [registered](https://www.iana.org/assignments/media-types/media-types.xhtml) 
+Media Types are preferred. In cases where custom vendor-specific media types are necessary, they should
+use the `vnd.` prefix, see [RFC 6838 section-3.2](https://tools.ietf.org/html/rfc6838#section-3.2). STAC Items that 
+have sidecar metadata files associated with a data asset (e.g, `.tfw`, Landsat 8 MTL files)
+should use media types appropriate for the the metadata file.  For example, if it is a plain text file, then `text/plain`
+would be appropriate; if it is an XML, then `text/xml` is appropriate. For more information on media types as well as a 
+list of [common media types](../best-practices.md#common-media-types-in-stac) used in STAC see the [best practice on 
+working with media types](../best-practices.md#working-with-media-types).
 
 #### Asset Role Types
 
