@@ -75,7 +75,7 @@ Note that the following fields aligned with the CARD4L SAR extension: card4l:nor
 
 | Field Name          | Description                                                  | Req.        |
 | ------------------- | ------------------------------------------------------------ | ----------- |
-| processing:facility | **REQUIRED.**                                                |             |
+| processing:facility |                                                              | 1.15        |
 | processing:software | String likely needs to be split into software name and version number. | 1.13 / 1.15 |
 | processing:lineage  | Additional processing information and parameters, e.g. a description of the processing chain. | 1.15        |
 
