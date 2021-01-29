@@ -17,9 +17,9 @@ Items are represented in JSON format and are very flexible. Any JSON object that
 required fields is a valid STAC Item.
 
 - Examples:
-  - See the [minimal example](examples/sample.json), as well as a [more fleshed example](examples/sample-full.json) that contains a number of
-    current best practices. There are more real world inspired samples in the [examples/](examples/) folder.
-  - Real world [implementations](https://stacspec.org/#examples) are also available.
+  - See the [minimal example](../examples/simple-item.json), as well as a [more fleshed example](../examples/full-item.json) that contains a number of
+    current best practices.
+  - Real world [implementations](https://stacindex.org/catalogs) are also available.
 - [JSON Schema](json-schema/item.json)
 
 ## Item fields
@@ -239,7 +239,7 @@ For example, `gsd` defined for an Item represents the best Ground Sample Distanc
 However, some assets may be lower resolution and thus have a higher `gsd`. The `eo:bands` field from the EO extension defines
 an array of spectral bands. However, it may be useful instead to specify the bands that are used in a particular asset.
 
-For an example see the [sentinel2-sample](examples/sentinel2-sample.json). The Sentinel-2 overall `gsd` is 10m, because this is
+For an example see the [sentinel2-sample](https://github.com/stac-utils/stac-examples/blob/main/sentinel2/sentinel2-sample.json). The Sentinel-2 overall `gsd` is 10m, because this is
 the best spatial resolution among all the bands and is defined in Item properties so it can be searched on. In the example
 Band 5 and others have a `gsd` of 20m, so that asset specifies the `gsd` as well, which overrides the Item `gsd` for this
 one asset. The example also includes reduced resolution versions of files included as assets, using `gsd` to represent

@@ -22,7 +22,7 @@ default, which should be specified at the asset level, while those assets that u
 
 ## Examples
 
-- [Example Landsat8](examples/example-landsat8.json)
+- [Example Landsat8](../../examples/extensions-collection/proj-example/proj-example.json)
 
 ## Schema
 

@@ -9,7 +9,7 @@
 
 Provides a way to specify file related details such as checksum, data type and size for assets and links in [STAC Items](../../item-spec/item-spec.md), [STAC Catalogs](../../catalog-spec/catalog-spec.md) and [STAC Collections](../../collection-spec/collection-spec.md).
 
-- [Example](examples/sentinel1.json)
+- [Example](../../examples/extensions-collection/sentinel-1-example/sentinel-1-example.json)
 - [JSON Schema](json-schema/schema.json)
 
 ## *Link Object* and *Asset Object* fields
