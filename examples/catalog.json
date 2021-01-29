@@ -1,27 +1,30 @@
 {
-  "stac_version": "1.0.0-beta.2",
-  "id": "examples",
-  "description": "This catalog is a simple demonstration of an example catalog that is used to organize a hierarchy of collections and their items.",
-  "links": [
-    {
-      "rel": "self",
-      "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/examples-refresh/examples/catalog.json",
-      "type": "application/json; profile=stac-catalog"
-    },
-    {
-      "rel": "child",
-      "href": "./collection-example-1/collection.json",
-      "type": "application/json; profile=stac-collection"
-    },
-    {
-      "rel": "child",
-      "href": "./collection-example-2/collection.json",
-      "type": "application/json; profile=stac-collection"
-    },
-    {
-      "rel": "root",
-      "href": "./catalog.json",
-      "type": "application/json; profile=stac-catalog"
-    }
-  ]
+    "id": "examples",
+    "stac_version": "1.0.0-beta.2",
+    "description": "This catalog is a simple demonstration of an example catalog that is used to organize a hierarchy of collections and their items.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "./catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "./extensions-collection/collection.json",
+            "type": "application/json; profile=stac-collection",
+            "title": "Collection Demonstrating STAC Extensions"
+        },
+        {
+            "rel": "child",
+            "href": "./collection-only/collection.json",
+            "type": "application/json; profile=stac-collection",
+            "title": "Collection with no items (standalone)"
+
+        },
+        {
+            "rel": "self",
+            "href": "/Users/cholmes/Repos/scratch/catalog.json",
+            "type": "application/json"
+        }
+    ]
 }

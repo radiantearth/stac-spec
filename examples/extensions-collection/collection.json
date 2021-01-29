@@ -1,0 +1,75 @@
+{
+    "id": "extensions-collection",
+    "stac_version": "1.0.0-beta.2",
+    "description": "A heterogenous collection containing deeper examples of various extensions",
+    "links": [
+        {
+            "rel": "root",
+            "href": "../catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./sentinel-1-example/sentinel-1-example.json",
+            "title": "Sentinel extension example (demonstrates SAR and File extensions)"
+        },
+        {
+            "rel": "item",
+            "href": "./proj-example/proj-example.json",
+            "title": "Proj extension example"
+        },
+        {
+            "rel": "item",
+            "href": "./sar-envisat-example/sar-envisat-example.json",
+            "title": "SAR extension sample (envisat)"
+        },
+        {
+            "rel": "license",
+            "href": "https://remotedata.io/license.html",
+            "title": "Remote Data License Terms"
+        },
+        {
+            "rel": "parent",
+            "href": "../catalog.json",
+            "type": "application/json"
+        }
+    ],
+    "stac_extensions": [],
+    "title": "Collection of Extension Items",
+    "keywords": [
+        "examples",
+        "sar",
+        "projection"
+    ],
+    "providers": [
+        {
+            "name": "Remote Data, Inc.",
+            "roles": [
+                "producer",
+                "licensor"
+            ],
+            "url": "https://remotedata.io"
+        }
+    ],
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180,
+                    -56,
+                    180,
+                    83
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-06-23T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "PDDL-1.0"
+}

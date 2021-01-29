@@ -4,7 +4,7 @@
     "eo",
     "projection"
   ],
-  "id": "LC81530252014153LGN00",
+  "id": "proj-example",
   "type": "Feature",
   "collection": "landsat-8-l1",
   "bbox": [

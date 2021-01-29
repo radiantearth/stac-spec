@@ -1,8 +1,8 @@
 {
   "stac_version": "1.0.0-beta.2",
   "stac_extensions": [],
-  "id": "landsat-8-l1",
-  "title": "Landsat 8 L1",
+  "id": "no-item-collection",
+  "title": "Landsat 8 L1 collection (no items)",
   "description": "Landat 8 imagery radiometrically calibrated and orthorectified using gound points and Digital Elevation Model (DEM) data to correct relief displacement.",
   "keywords": [
     "landsat"
