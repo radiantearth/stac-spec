@@ -23,43 +23,32 @@ We will refer to the included XML Tags throughout this document:
 - *SAR Polarimetric Radar* (POl) metadata specification
   ([XLSX](http://ceos.org/ard/files/PFS/POL/v3.0/CARD4L_METADATA-spec_POL-v3.0.xlsx)).
 
-**Modes:** This extension can be used in two different variants:
-
-1. *XML mode*: A STAC entry without CARD4L specific fields is published in addition to the complete XML file proposed by CEOS. This is recommended if no STAC Item exists for the source file. Also, CARD4L (2.1) has in the *threshold (minimum) requirements* that 
-
-   > metadata is formatted in accordance with CARD4L \[...\] Metadata Specifications, v.5.0.
-   
-    The CARD4L Metadata Specification is XML-based.
-
-2. *STAC mode*: Two STAC files are published (one for the source file, one for the product file). No additional XML file is required. This is recommended if you derive the CARD4L compliant product from a STAC Item.
-
 **Document structure:** In general, the fields required in this extension are required to either meet the *threshold (minimum) requirements* by the CEOS CARD4L metadata specification *or* are required fields in STAC. Any additional optional field provided will lead to a higher percentage for the CARD4L *target (desired) requirements*.
 
 The column *Field Name* refers to the STAC field names.
 The column *XML Tag* refers to the XML tag proposed in the CARD4L metadata specification documents. *Src* and *Prod* define whether they apply for the STAC Item of the Source and Product respectively and give the requirement number in the CARD4L documents.
 
 - ✓ = Applies
-- (✓) = Not mentioned in CEOS CARD4L requirements, but recommended by STAC for better data discovery, especially in XML Mode.
+- (✓) = Not mentioned in CEOS CARD4L requirements, but recommended by STAC for better data discovery.
 - ✗ = Does not apply
 
-**STAC Extensions:** This extension makes use of a number of existing STAC extensions and adds additional fields for *STAC mode*:
+**STAC Extensions:** This extension makes use of a number of existing STAC extensions:
 
 - [File](../file/README.md)
 - [Processing](../processing/README.md)
 - [Projection](../projection/README.md)
 - [SAR](../sar/README.md)
 - [Satellite](../sat/README.md)
-- [View](../view/README.md)
+- [View](../view/README.md) (optional)
 
 **Additional resources:**
 
-- [Examples](examples/)
-  - [NRB in XML Mode](examples/nrb/xml-mode/)
-- [JSON Schema](json-schema/schema.json) (ToDo: update)
+- [Examples](examples/) (ToDo)
+- [JSON Schema](json-schema/schema.json) (ToDo)
 
 ## STAC Items
 
-A STAC Item for the Source (*Src*) is only required in STAC mode. Otherwise a XML file can be provided.
+CARD4L requires metadata for both source data (*Src*) and the product (*Prod*) which STAC can better deliver in two separate files. This extension assumes that a STAC Item for the source is available and follows this extension or a new STAC Item for the source data will be created following this extension. In principle, all metadata for the source data could also be provided in a (proprietary) format like XML and linked to from the product STAC Item, but this case will not be explained in-depth in this extension.
 
 STAC Items must always be valid, but not all STAC Item requirements are covered here, only additional requirements and mappings to fulfill the CARD4L requirements are listed here:
 
@@ -74,8 +63,6 @@ STAC Items must always be valid, but not all STAC Item requirements are covered 
 
 #### CARD4L
 
-All these fields are **required** in **STAC mode** only! In XML Mode they are expected to be in the XML file.
-
 | Field Name                             | Data Type                                               | XML Tag                                      | Description                                                  | Src      | Prod    |
 | -------------------------------------- | ------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------------------ | -------- | ------- |
 | card4l:beam_id                         | string                                                  | `BeamID`                                     | **REQUIRED.**                                                | ✓ 1.6.4  | ✗       |
@@ -84,11 +71,11 @@ All these fields are **required** in **STAC mode** only! In XML Mode they are ex
 | card4l:incidence_angle_near_range      | number                                                  | `IncAngleNearRange`                          | **REQUIRED.** Convert to degree, if required.                | ✓ 1.6.7  | ✗       |
 | card4l:incidence_angle_far_range       | number                                                  | `IncAngleFarRange`                           | **REQUIRED.** Convert to degree, if required.                | ✓ 1.6.7  | ✗       |
 | card4l:noise_equivalent_intensity      | float                                                   | `NoiseEquivalentIntensity`                   | **REQUIRED.** Convert to decibel, if required.               | ✓ 1.6.9  | ✗       |
-| card4l:noise_equivalent_intensity_type | string                                                  | `NoiseEquivalentIntensity`, attribute `type` | **REQUIRED.** One of `Beta0` or `Sigma0`                     | ✓ 1.6.9  | ✗       |
+| card4l:noise_equivalent_intensity_type | string                                                  | `NoiseEquivalentIntensity`, attribute `type` | **REQUIRED.** One of `beta0` or `sigma0`                     | ✓ 1.6.9  | ✗       |
 | card4l:noise_removal_applied           | boolean                                                 | `NoiseRemovalApplied`                        | **REQUIRED.** Specifies whether noise removal has been applied (`true`) or not (`false`). If set to `true`, a [link with relation type](#stac-item-links) `noise-removal` is **required**, too. | ✗        | ✓ 3.3   |
 | card4l:mean_faraday_rotation_angle     | float                                                   | `MeanFaradayRotationAngle`                   | Convert to degree, if required.                              | ✓ 1.6.11 | ✗       |
 | card4l:ionosphere_indicator            | boolean                                                 | `IonosphereIndicator`                        | Flag indicating whether the backscatter imagery is “significantly impacted” by the ionosphere (`false` - no, `true` – yes). | ✓ 1.6.12 | ✗       |
-| card4l:speckle_filtering               | [Speckle Filter Object](#speckle-filter-object) \| null | `Filtering`, `FilterApplied`                 | **REQUIRED.** Set to `null` if `FilterApplied` would be set to `false`. Otherwise make it an Speckle Filter Object. | ✗        | ✓ 1.7.4 |
+| card4l:speckle_filtering               | [Speckle Filter Object](#speckle-filter-object) \| null | `Filtering`, `FilterApplied`                 | **REQUIRED.** Set to `null` if `FilterApplied` would be set to `false`. Otherwise make it an [Speckle Filter Object](#speckle-filter-object). | ✗        | ✓ 1.7.4 |
 | card4l:border_pixels                   | integer                                                 | `NumBorderPixels`                            | Number of border pixels (**required** if applicable). To be specified either globally for all assets with role `data` or individually [per asset](#stac-item-assets). | ✗        | ✓ 1.7.7 |
 | card4l:pixel_coordinate_convention     | string                                                  | `PixelCoordinateConvention`                  | **REQUIRED.** One of `center` (pixel center), `upper-left` (pixel ULC) or `lower-left` (pixel LLC) | ✗        | ✓ 1.7.7 |
 | card4l:relative_rtc_accuracy           | number                                                  | `Relative` in `RTCAccuracy`                  | Relative accuracy of the Radiometric Terrain Correction in decibel. | ✗        | ✓ 3.5   |
@@ -176,7 +163,7 @@ The following fields are all specified in CARD4L requirement 1.7.4. It is **requ
 | Relation Type                  | XML Tag                    | Description                                                  | Src      | Prod    |
 | ------------------------------ | -------------------------- | ------------------------------------------------------------ | -------- | ------- |
 | card4l-document                | `DocumentIdentifier`       | **REQUIRED.** Instead of the document identifier, provide links to the Word (media type: `application/vnd.openxmlformats-officedocument.wordprocessingml.document`) and PDF (media type: `application/pdf`) document. | ✗        | ✓ 1.5   |
-| derived_from                   | *n/a*                      | **REQUIRED in *STAC Mode*.** Points back to the source's STAC Item, which must comply to the *Src* requirements. May be multiple items, if the product is derived from multiple acquisitions. The number of acquisitions (`NumberOfAcquisitions`) is the number of links with this relation type. | ✗        | ✓ 1.6   |
+| derived_from                   | *n/a*                      | **REQUIRED.** Points back to the source's STAC Item, which must comply to the *Src* requirements. May be multiple items, if the product is derived from multiple acquisitions. The number of acquisitions (`NumberOfAcquisitions`) is the number of links with this relation type. | ✗        | ✓ 1.6   |
 | about                          | *n/a*                      | Link to other algorithms used in the generation process.     | ✗        | (✓)     |
 | related                        | `AncillaryData`            | Link to the sources of ancillary or auxiliary data used in the generation process. Excludes DEMs, which use the relation `elevation-model` instead. | ✗        | ✓ 1.7.2 |
 | access                         | *n/a*                      | Link to data access details.                                 | ✗        | (✓)     |
@@ -201,7 +188,7 @@ The italic role names are proposed to be the asset's key.
 
 | Role Name(s)                          | Additional properties                                        | XML Tag                      | Description                                                  | Src  | Prod        |
 | ------------------------------------- | ------------------------------------------------------------ | ---------------------------- | ------------------------------------------------------------ | ---- | ----------- |
-| *card4l*, metadata                    | `type`                                                       | *n/a*                        | **REQUIRED in *XML Mode*.** Points to the CARD4L metadata XML file. Media type: `application/xml` | ✗    | ✓ 2.1       |
+| *card4l*, metadata                    | `type`                                                       | *n/a*                        | Points to a metadata XML file that follows the CARD4L metadata specification. Media type: `application/xml` | ✗    | ✓ 2.1       |
 | *mask*, metadata                      | `type`, `card4l:valid`, `card4l:invalid`, `card4l:nodata`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `DataMask`                   | **REQUIRED.** Points to the data mask file.                  | ✗    | ✓ 2.2       |
 | *contributing-area*, metadata         | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `LocalContributingArea`      | **REQUIRED.** Points to the normalized scattering area file. | ✗    | ✓ 2.3       |
 | *local-incidence-angle*,  metadata    | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `card4l:bits_per_sample` | `LocalIncAngle`              | **REQUIRED.** Points to the local incidence angle file.      | ✗    | ✓ 2.4       |
