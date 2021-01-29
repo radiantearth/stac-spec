@@ -14,8 +14,20 @@ practices. And you should also explore the various catalogs listed on [STAC Inde
 
 TODO: Describe the structure and what each example represents
 
+extended-item - all extension fields
+collectionless-item - demonstrate the common metadata that is only used when an Item does not have a collection. It is recommended to organize items in collections, but we wanted to show how this works. 
+
+Notes - remotedata.io has not been set up, so any of those links will not work. At some point we might try to populate it so everything truly works. 
+
+rd: prefix doesn't have a schema. We should make one and then put it in a location where it can be downloaded to demonstrate how that works.
+
 ## Best Practices differences
 
 TODO: Describe how this differs from best practices. Especially discussion of rel vs absolute links, self links, etc.
 
 TODO: Keep the self links in the files up to date with the tags, so that they work.
+
+
+
+
+

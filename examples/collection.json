@@ -11,7 +11,7 @@
         "producer",
         "processor"
       ],
-      "url": "http://remotedata.com"
+      "url": "http://remotedata.io"
     }
   ],
   "extent": {
@@ -52,6 +52,12 @@
       "href": "./full-item.json",
       "type": "application/geo+json; profile=stac-item",
       "title": "Full Item"
+    },
+    {
+      "rel": "item",
+      "href": "./extended-item.json",
+      "type": "application/geo+json; profile=stac-item",
+      "title": "Extended Item"
     },
     {
       "rel": "self",
