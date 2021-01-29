@@ -1,4 +1,3 @@
-
 {
   "stac_version": "1.0.0-beta.2",
   "stac_extensions": [],
@@ -142,20 +141,12 @@
   },
   "links": [
     {
-      "rel": "self",
-      "href": "https://landsat-stac.s3.amazonaws.com/landsat-8-l1/catalog.json"
-    },
-    {
       "rel": "parent",
-      "href": "https://landsat-stac.s3.amazonaws.com/catalog.json"
+      "href": "../catalog.json"
     },
     {
       "rel": "root",
-      "href": "https://landsat-stac.s3.amazonaws.com/catalog.json"
-    },
-    {
-      "rel": "child",
-      "href": "https://landsat-stac.s3.amazonaws.com/landsat-8-l1/paths/catalog.json"
+      "href": "../catalog.json"
     }
   ]
 }
