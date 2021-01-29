@@ -166,7 +166,7 @@ The following fields are all specified in CARD4L requirement 1.7.4. It is **requ
 | derived_from                   | *n/a*                      | **REQUIRED.** Points back to the source's STAC Item, which must comply to the *Src* requirements. May be multiple items, if the product is derived from multiple acquisitions. The number of acquisitions (`NumberOfAcquisitions`) is the number of links with this relation type. | ✗        | ✓ 1.6   |
 | about                          | *n/a*                      | Link to other algorithms used in the generation process.     | ✗        | (✓)     |
 | related                        | `AncillaryData`            | Link to the sources of ancillary or auxiliary data used in the generation process. Excludes DEMs, which use the relation `elevation-model` instead. | ✗        | ✓ 1.7.2 |
-| access                         | *n/a*                      | Link to data access details.                                 | ✗        | (✓)     |
+| access                         | *n/a*                      | Link to data access information.                             | ✓ 1.7.1  | ✓ 1.6.1 |
 | performance-indicators         | `PerformanceIndicators`    | Link to performance indicators on data intensity mean noise level. | ✓ 1.6.9  | ✗       |
 | orbit-data-file                | `OrbitDataFile`            | Link to orbit data file containing state vectors.            | ✓ 1.6.5  | ✗       |
 | sensor-calibration             | `SensorCalibration`        | Link to the sensor calibration parameters.                   | ✓ 1.6.8  | ✗       |
