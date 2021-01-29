@@ -38,22 +38,33 @@
   },
   "properties": {
     "datetime": "2016-05-03T13:21:30.040Z",
-    "collection": "CS3"
+    "collection": "simple-collection"
   },
   "links": [
     {
       "rel": "self",
-      "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json"
+      "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/examples-refresh/examples/simple-item.json",
+      "type": "application/geo+json; profile=stac-item"
     },
     {
       "rel": "collection",
-      "href": "http://cool-sat.com/catalog.json"
+      "href": "./collection.json",
+      "type": "application/json; profile=stac-collection",
+      "title": "Simple Example Collection"
+    },
+    {
+      "rel": "root",
+      "href": "./collection.json",
+      "type": "application/json; profile=stac-collection"
     }
   ],
   "assets": {
     "analytic": {
       "href": "relative-path/to/analytic.tif",
-      "title": "4-Band Analytic"
+      "title": "4-Band Analytic",
+      "roles": [
+        "data"
+      ]
     },
     "thumbnail": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png",

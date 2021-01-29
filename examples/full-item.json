@@ -2,8 +2,7 @@
   "stac_version": "1.0.0-beta.2",
   "stac_extensions": [
     "eo",
-    "view",
-    "https://example.com/cs-extension/1.0/schema.json"
+    "view"
   ],
   "type": "Feature",
   "id": "CS3-20160503_132131_05",
@@ -41,19 +40,10 @@
     ]
   },
   "properties": {
-    "datetime": "2016-05-03T13:22:30Z",
-    "title": "A CS3 item",
-    "license": "PDDL-1.0",
-    "providers": [
-      {
-        "name": "CoolSat",
-        "roles": [
-          "producer",
-          "licensor"
-        ],
-        "url": "https://cool-sat.com/"
-      }
-    ],
+    "datetime": null,
+    "start_datetime": "2016-05-03T13:22:30Z",
+    "end_datetime": "2016-05-03T13:27:30Z",
+    "title": "Full Item",
     "created": "2016-05-04T00:00:01Z",
     "updated": "2017-01-01T00:30:55Z",
     "view:sun_azimuth": 168.7,
@@ -66,19 +56,27 @@
     "eo:bands": [
       {
         "name": "band1",
-        "common_name": "red"
+        "common_name": "red",
+        "center_wavelength": 668,
+        "full_width_half_max": 16
       },
       {
         "name": "band2",
-        "common_name": "green"
+        "common_name": "green",
+        "center_wavelength": 560,
+        "full_width_half_max": 28
       },
       {
         "name": "band3",
-        "common_name": "blue"
+        "common_name": "blue",
+        "center_wavelength": 475,
+        "full_width_half_max": 36
       },
       {
         "name": "band4",
-        "common_name": "nir"
+        "common_name": "nir",
+        "center_wavelength": 842,
+        "full_width_half_max": 55
       }
     ],
     "view:sun_elevation": 33.4,
@@ -93,19 +91,24 @@
   "links": [
     {
       "rel": "self",
-      "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json"
-    },
-    {
-      "rel": "root",
-      "href": "http://cool-sat.com/catalog/catalog.json"
-    },
-    {
-      "rel": "parent",
-      "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/catalog.json"
+      "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/examples-refresh/examples/simple-item.json",
+      "type": "application/geo+json; profile=stac-item"
     },
     {
       "rel": "collection",
-      "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/catalog.json"
+      "href": "./collection.json",
+      "type": "application/json; profile=stac-collection",
+      "title": "Simple Example Collection"
+    },
+    {
+      "rel": "root",
+      "href": "./collection.json",
+      "type": "application/json; profile=stac-collection"
+    },
+    {
+      "rel": "root",
+      "href": "./collection.json",
+      "type": "application/json; profile=stac-collection"
     },
     {
       "rel": "alternate",

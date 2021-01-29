@@ -58,5 +58,5 @@
       "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/examples-refresh/examples/collection.json",
       "type": "application/json"
     }
-  ],
+  ]
 }
