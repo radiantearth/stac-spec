@@ -106,8 +106,8 @@ See also the [notes](#notes) regarding the requirements 1.13 and 1.15 for a bett
 | card4l-document          | **REQUIRED.** Provides at least one link to the CARD4L specification document. Word (media type: `application/vnd.openxmlformats-officedocument.wordprocessingml.document`) and/or PDF (media type: `application/pdf`). | *n/a*               |
 | derived_from             | Points back to the source's STAC Item. May be multiple items, if the product is derived from multiple acquisitions. | 1.15                |
 | about                    | Link to algorithms used in the generation process. See also the [notes](#notes) regarding req. 1.13. | 1.13                |
-| related                  | Link to the sources of ancillary or auxiliary data used in the generation process. Excludes DEMs, which use the relation `elevation-model` instead. | 1.14                |
-| access                   | Link to data access information.                             | 1.16                |
+| related                  | **REQUIRED.** Link to the sources of ancillary or auxiliary data used in the generation process. Excludes DEMs, which use the relation `elevation-model` instead. | 1.14                |
+| access                   | STRONGLY RECOMMENDED. Link to data access information.       | 1.16                |
 | sensor-calibration       | Link to the sensor calibration parameters.                   | 1.11                |
 | radiometric-accuracy     | Link describing the assessed absolute radiometric uncertainty of the version of the data or product. | 1.12                |
 | geometric-correction     | Link to the Geometric Correction algorithm details.          | 1.7                 |
@@ -117,10 +117,10 @@ See also the [notes](#notes) regarding the requirements 1.13 and 1.15 for a bett
 | cloud-shadow             | Link to documentation about the cloud shadow detection.      | 2.6                 |
 | snow-ice                 | Link to documentation about the snow and ice mask.           | 2.7 (ST) / 2.8 (SR) |
 | land-water               | Link to documentation about the land and water mask (SR only). | 2.7 (SR)            |
-| atmosphere-emissivity    | Link to documentation about corrections for atmosphere and emissivity (ST only). | 3.2 (ST)            |
+| atmosphere-emissivity    | **REQUIRED.** Link to documentation about corrections for atmosphere and emissivity (ST only). | 3.2 (ST)            |
 | measurement-nomalisation | Link to documentation about measurement normalisation (SR only). | 3.3 (SR)            |
-| atmospheric-scattering   | Link to documentation about the directional atmospheric scattering algorithms (SR only). | 3.4 (SR)            |
-| water-vapor              | Link to documentation about the water vapour corrections (SR only). | 3.5 (SR)            |
+| atmospheric-scattering   | **REQUIRED.** Link to documentation about the directional atmospheric scattering algorithms (SR only). | 3.4 (SR)            |
+| water-vapor              | **REQUIRED.** Link to documentation about the water vapour corrections (SR only). | 3.5 (SR)            |
 | ozone                    | Link to documentation about the ozone corrections (SR only). | 3.6 (SR)            |
 
 ### STAC Item Assets
@@ -148,7 +148,7 @@ The italic role names are proposed to be the asset's key.
 | *sun-elevation*, metadata              | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | Points to a file with per-pixel sun elevation angles.        | 2.8 (ST) / 2.11 (SR) |
 | *terrain-shadow*, metadata | `type`, `card4l:values` | Points to a file that indicates whether a pixel is not directly illuminated due to terrain shadowing. | 2.9 (SR) |
 | *terrain-occlusion*, metadata | `type`, `card4l:values` | Points to a file that indicates whether a pixel is not visible to the sensor due to terrain occlusion during off-nadir viewing. | 2.10 (SR) |
-| *terrain-illumination*, metadata | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_samplePoints to a file with | Points to a file with coefficients used for terrain illumination correction are provided for each pixel. | 2.12 (SR) |
+| *terrain-illumination*, metadata | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | Points to a file with coefficients used for terrain illumination correction are provided for each pixel. | 2.12 (SR) |
 
 
 #### Additional Asset Properties
