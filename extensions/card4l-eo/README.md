@@ -141,11 +141,11 @@ The italic role names are proposed to be the asset's key.
 | *cloud-shadow*, metadata | `type`, `card4l:values` | **REQUIRED.** Points to a file that indicates whether a pixel is assessed as being cloud shadow. | 2.6 |
 | *snow-ice*, metadata | `type`, `card4l:values`                                      | Points to a file that indicates whether a pixel is assessed as being snow/ice or not. | 2.7 (ST) / 2.8 (SR) |
 | *land-water*, metadata | `type`, `card4l:values` | Points to a file that indicates whether a pixel is assessed as being snow/ice or not land or water. | 2.7 (SR) |
-| *off-nadir*, metadata                  | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | Points to a file with per-pixel off-nadir angles.            | 2.8 (ST) / 2.11 (SR) |
-| *incidence-angle*, metadata            | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | Points to a file with per-pixel incidence angles.            | 2.8 (ST) / 2.11 (SR) |
-| *azimuth*, metadata                    | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | Points to a file with per-pixel azimuth angles.              | 2.8 (ST) / 2.11 (SR) |
-| *sun-azimuth*, metadata                | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | Points to a file with per-pixel sun azimuth angles.          | 2.8 (ST) / 2.11 (SR) |
-| *sun-elevation*, metadata              | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | Points to a file with per-pixel sun elevation angles.        | 2.8 (ST) / 2.11 (SR) |
+| *off-nadir*, metadata                  | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample`, `card4l:unit` | Points to a file with per-pixel off-nadir angles. `card4l:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
+| *incidence-angle*, metadata            | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample`, `card4l:unit` | Points to a file with per-pixel incidence angles. `card4l:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
+| *azimuth*, metadata                    | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample`, `card4l:unit` | Points to a file with per-pixel azimuth angles. `card4l:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
+| *sun-azimuth*, metadata                | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample`, `card4l:unit` | Points to a file with per-pixel sun azimuth angles. `card4l:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
+| *sun-elevation*, metadata              | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample`, `card4l:unit` | Points to a file with per-pixel sun elevation angles. `card4l:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
 | *terrain-shadow*, metadata | `type`, `card4l:values` | Points to a file that indicates whether a pixel is not directly illuminated due to terrain shadowing. | 2.9 (SR) |
 | *terrain-occlusion*, metadata | `type`, `card4l:values` | Points to a file that indicates whether a pixel is not visible to the sensor due to terrain occlusion during off-nadir viewing. | 2.10 (SR) |
 | *terrain-illumination*, metadata | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | Points to a file with coefficients used for terrain illumination correction are provided for each pixel. | 2.12 (SR) |
@@ -160,6 +160,7 @@ The italic role names are proposed to be the asset's key.
 | eo:bands               | \[[Band Object](../eo/README.md#band-object)\] | **REQUIRED** for data. Bands with at least the following fields included: `name` and `center_wavelength`. Add additional fields such as `full_width_half_max` to better meet the *target (desired) requirements*. See the CARD4L requirement 1.10 for further details. | 1.10  |
 | file:data_type         | string                                         | One of the [Data Types](../file/README.md#data-types).       | *n/a* |
 | file:byte_order        | string                                         | One of `big-endian` or `little-endian`.                      | *n/a* |
+| card4l:unit            | string                                         | **REQUIRED.** The unit of the values in the asset.           | *n/a* |
 | card4l:bits_per_sample | integer                                        | Bits per sample, e.g. 8, 16, 32, ...                         | *n/a* |
 | card4l:nodata          | \[any\]                                        | **REQUIRED** for data. Value(s) for no-data.                 | 2.2   |
 | card4l:values          | \[[Value Map Object](#value-map-object)\]      | **REQUIRED.** Lists the value that are in the file and describes their meaning. See the Value Map Object chapter for an example. | n/a   |
