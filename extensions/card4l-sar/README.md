@@ -20,7 +20,7 @@ We will refer to the included XML Tags throughout this document:
 
 - *SAR Normalized Radar Backscatter* (NRB) metadata specification
   ([XLSX](http://ceos.org/ard/files/PFS/NRB/v5.0/CARD4L_METADATA-spec_NRB-v5.0.xlsx))
-- *SAR Polarimetric Radar* (POl) metadata specification
+- *SAR Polarimetric Radar* (POL) metadata specification
   ([XLSX](http://ceos.org/ard/files/PFS/POL/v3.0/CARD4L_METADATA-spec_POL-v3.0.xlsx)).
 
 **Document structure:** In general, the fields required in this extension are required to either meet the *threshold (minimum) requirements* by the CEOS CARD4L metadata specification *or* are required fields in STAC. Any additional optional field provided will lead to a higher percentage for the CARD4L *target (desired) requirements*.
@@ -65,6 +65,8 @@ STAC Items must always be valid, but not all STAC Item requirements are covered 
 
 | Field Name                             | Data Type                                               | XML Tag                                                      | Description                                                  | Src      | Prod    |
 | -------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- | ------- |
+| card4l:specification                   | string                                                  | *n/a*                                                        | **REQUIRED.** The CARD4L specification implemented, either `NRB` (SAR, Normalized Radar Backscatter) or `POL` (SAR, Polarimetric Radar). | ✓        | ✓       |
+| card4l:specification_version           | string                                                  | *n/a*                                                        | **REQUIRED.** The CARD4L specification version. Currently always `5.0` for `NRB` and `3.0` for `POL`. | ✓        | ✓       |
 | card4l:beam_id                         | string                                                  | `BeamID`                                                     | **REQUIRED.**                                                | ✓ 1.6.4  | ✗       |
 | card4l:orbit_data_source               | string                                                  | `OrbitDataSource`                                            | **REQUIRED.** One of `predicted`, `definitive`, `downlinked`. Applies to *Prod*, if additional orbit correction has been applied. | ✓ 1.6.5  | (✓)     |
 | card4l:orbit_mean_altitude             | number                                                  | `OrbitMeanAltitude`                                          | Platform (mean) altitude in meters.                          | ✓ 1.6.5  | ✗       |
