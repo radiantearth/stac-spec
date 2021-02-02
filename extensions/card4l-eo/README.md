@@ -150,7 +150,6 @@ The italic role names are proposed to be the asset's key.
 | *terrain-occlusion*, metadata | `type`, `card4l:values` | Points to a file that indicates whether a pixel is not visible to the sensor due to terrain occlusion during off-nadir viewing. | 2.10 (SR) |
 | *terrain-illumination*, metadata | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | Points to a file with coefficients used for terrain illumination correction are provided for each pixel. | 2.12 (SR) |
 
-
 #### Additional Asset Properties
 
 | Field Name             | Data Type                                      | Description                                                  | Req.  |
@@ -194,7 +193,7 @@ Value maps are used by assets that are used as classification layers and give de
 
 2.13 (SR): CARD4L lists no specific requirements thus it's missing in this document, too.
 
-3.2 (SR) / 3.3 (ST): Measurement Uncertainty is not required and it was not clear in which form this should be provided. Also the CARD4L specification states for SR that "[i]n current practice, users determine fitness for purpose based on knowledge of the lineage of the data, rather than on a specific estimate of measurement uncertainty." Thus this requirement is not captured in this document.
+3.2 (SR) / 3.3 (ST): Measurement Uncertainty is not required and it was not clear in which form this should be provided. Also the CARD4L specification states for SR that "\[i]n current practice, users determine fitness for purpose based on knowledge of the lineage of the data, rather than on a specific estimate of measurement uncertainty." Thus this requirement is not captured in this document.
 
 3.3 (SR): Measurement Normalisation is not required and it was not clear in which form this should be provided. Thus this requirement is not captured in this document, but we have added a link relation type to link to information on measurement normalisation.
 
