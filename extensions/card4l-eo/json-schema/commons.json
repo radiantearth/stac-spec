@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/card4l-eo/json-schema/schema.json#",
+  "title": "CARD4L Commons",
+  "description": "STAC CARD4L Extension commonly used schemas for SAR and Optical",
+  "allOf": [
+    {
+      "$ref": "../../../item-spec/json-schema/item.json"
+    }
+  ],
+  "definitions": {
+    "item": {
+      "type": "object",
+      "required": [
+        "properties",
+        "links"
+      ],
+      "properties": {
+        "properties": {
+          "type": "object",
+          "required": [
+            "card4l:specification",
+            "card4l:specification_version"
+          ],
+          "properties": {
+            "card4l:specification": {
+              "type": "string"
+            },
+            "card4l:specification_version": {
+              "type": "string"
+            },
+            "card4l:northern_geometric_accuracy": {
+              "type": "number",
+              "minimum": 0
+            },
+            "card4l:eastern_geometric_accuracy": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "links": {
+          "type": "array",
+          "contains": {
+            "type": "object",
+            "required": [
+              "href",
+              "rel",
+              "type"
+            ],
+            "properties": {
+              "rel": {
+                "const": "card4l-document"
+              },
+              "type": {
+                "enum": [
+                  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                  "application/pdf"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "card4l-bits-per-sample": {},
+    "card4l-unit": {},
+    "card4l-valid": {},
+    "card4l-invalid": {},
+    "card4l-nodata": {}
+  }
+}

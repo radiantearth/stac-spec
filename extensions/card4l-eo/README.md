@@ -38,7 +38,7 @@ STAC Items must always be valid, but not all STAC Item requirements are covered 
 
 | Field Name      | Description                                                  | Req.  |
 | --------------- | ------------------------------------------------------------ | ----- |
-| stac_extensions | **REQUIRED.** Must contain all extensions used, for the product at least the following values: `card4l-eo`, `eo`, `projection`, `view`. You may add `processing` and `file` if used. | *n/a* |
+| stac_extensions | **REQUIRED.** Must contain all extensions used, for the product at least the following values: `card4l-eo`, `eo`, `projection` and  `view`. You may add `processing` and `file` if used. | *n/a* |
 | geometry        | **REQUIRED.** The geometry of the acquisition.               | 1.4   |
 | bbox            | **REQUIRED.** The bounding box of the acquisition.           | 1.4   |
 
@@ -46,18 +46,20 @@ STAC Items must always be valid, but not all STAC Item requirements are covered 
 
 #### CARD4L
 
-| Field Name                         | Data Type | Description                                               | Req. |
-| ---------------------------------- | --------- | --------------------------------------------------------- | ---- |
-| card4l:northern_geometric_accuracy | number    | An estimate of the northern geometric accuracy in meters. | 1.8  |
-| card4l:eastern_geometric_accuracy  | number    | An estimate of the eastern geometric accuracy in meters.  | 1.8  |
+| Field Name                         | Data Type | Description                                                  | Req.  |
+| ---------------------------------- | --------- | ------------------------------------------------------------ | ----- |
+| card4l:specification               | string    | **REQUIRED.** The CARD4L specification implemented, either `SR` (Optical, Surface Reflectance) or `ST` (Optical, Surface Temperature). | *n/a* |
+| card4l:specification_version       | string    | **REQUIRED.** The CARD4L specification version. Currently always `5.0`. | *n/a* |
+| card4l:northern_geometric_accuracy | number    | An estimate of the northern geometric accuracy in meters.    | 1.8   |
+| card4l:eastern_geometric_accuracy  | number    | An estimate of the eastern geometric accuracy in meters.     | 1.8   |
 
-Note that the following fields aligned with the CARD4L SAR extension: card4l:northern/eastern_geometric_accuracy
+Note that all these fields here are aligned with the CARD4L SAR extension.
 
 #### Common Metadata
 
 | Field Name     | Description                                                  | Req.  |
 | -------------- | ------------------------------------------------------------ | ----- |
-| license        | Recommended to be specified in a STAC Collection.            |       |
+| license        | Recommended to be specified in a STAC Collection.            | *n/a* |
 | datetime       | **REQUIRED.** The time of the acquisition, usually the central timestamp between `start_datetime` and `end_datetime`. | 1.3   |
 | start_datetime | Start time of the acquisition.                               | 1.3   |
 | end_datetime   | End time of the acquisition.                                 | 1.3   |
@@ -67,9 +69,10 @@ Note that the following fields aligned with the CARD4L SAR extension: card4l:nor
 
 #### EO (Electro-Optical)
 
-| Field Name     | Description | Req. |
-| -------------- | ----------- | ---- |
-| eo:cloud_cover |             | 1.17 |
+| Field Name     | Description                                                  | Req.   |
+| -------------- | ------------------------------------------------------------ | ------ |
+| eo:cloud_cover |                                                              | 1.17   |
+| eo:bands       | You may include all bands specified in the assets again as an overview. | (1.10) |
 
 #### Processing
 
