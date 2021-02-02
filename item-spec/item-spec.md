@@ -114,11 +114,8 @@ It is allowed to add additional fields such as a `title` and `type`.
 | type       | string | [Media type](#media-types) of the referenced entity. |
 | title      | string | A human readable title to be used in rendered displays of the link. |
 
-#### Relative vs Absolute links
-
-Currently, the JSON schema for links does not require them to be formatted as URIs, to allow implementors 
-to provide relative links. For a full discussion of the situations where each are recommended see 
-[this section](../best-practices.md#use-of-links) of the STAC best practices.
+For a full discussion of the situations where relative and absolute links are recommended see the
+['Use of links'](../best-practices.md#use-of-links) section of the STAC best practices.
 
 #### Relation types
 
