@@ -115,6 +115,24 @@
                 "left",
                 "right"
               ]
+            },
+            "sar:measurement_type": {
+              "title": "Product measurement type",
+              "type": "string",
+              "enum": [
+                "beta0",
+                "gamma0",
+                "sigma0"
+              ]
+            },
+            "sar:measurment_convention": {
+              "title": "Product measurement convention",
+              "type": "string",
+              "enum": [
+                "amplitude",
+                "power",
+                "angle"
+              ]
             }
           }
         },
