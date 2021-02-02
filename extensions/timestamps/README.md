@@ -5,6 +5,7 @@
 - **Field Name Prefix: -**
 - **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Owner**: @m-mohr
 
 This document explains the fields of the Timestamps Extension to a STAC Item.
 Allows to specify numerous timestamps for assets and metadata in addition to [`created`, `updated` and `datetime` (incl. start and end)](../../item-spec/common-metadata.md#date-and-time).

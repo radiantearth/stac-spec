@@ -5,6 +5,7 @@
 - **Field Name Prefix: processing**
 - **Scope: Item, Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Owner**: @emmanuelmathot
 
 Processing metadata is considered to be data that indicate from which processing chain a data originates and how the data itself has been produced. Overall, it helps to increase traceability and search among processing levels and multiple algorithm versions.
 

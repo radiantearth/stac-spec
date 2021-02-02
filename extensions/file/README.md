@@ -5,6 +5,7 @@
 - **Field Name Prefix: file**
 - **Scope: Item, Catalog, Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Owner**: @m-mohr
 
 Provides a way to specify file related details such as checksum, data type and size for assets and links in [STAC Items](../../item-spec/item-spec.md), [STAC Catalogs](../../catalog-spec/catalog-spec.md) and [STAC Collections](../../collection-spec/collection-spec.md).
 

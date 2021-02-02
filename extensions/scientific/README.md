@@ -5,6 +5,7 @@
 - **Field Name Prefix: sci**
 - **Scope: Item, Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Owner**: @m-mohr
 
 Scientific metadata is considered to be data that indicate from which publication a data originates and how
 the data itself should be cited or referenced. Overall, it helps to increase reproducibility and citability.

@@ -5,6 +5,7 @@
 - **Field Name Prefix: eo**
 - **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Owner**: @matthewhanson
 
 This document explains the fields of the STAC Electro-Optical (EO) Extension to a STAC Item. 
 

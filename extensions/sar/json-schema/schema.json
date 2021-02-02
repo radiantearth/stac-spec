@@ -93,6 +93,16 @@
               "type": "number",
               "minimum": 0
             },
+            "sar:product_pixel_spacing": {
+              "title": "Product pixel spacing (m)",
+              "type": "number",
+              "minimum": 0
+            },
+            "sar:product_line_spacing": {
+              "title": "Product line spacing (m)",
+              "type": "number",
+              "minimum": 0
+            },
             "sar:looks_range": {
               "title": "Looks range",
               "type": "integer",
@@ -114,6 +124,24 @@
               "enum": [
                 "left",
                 "right"
+              ]
+            },
+            "sar:measurement_type": {
+              "title": "Product measurement type",
+              "type": "string",
+              "enum": [
+                "beta0",
+                "gamma0",
+                "sigma0"
+              ]
+            },
+            "sar:measurment_convention": {
+              "title": "Product measurement convention",
+              "type": "string",
+              "enum": [
+                "amplitude",
+                "power",
+                "angle"
               ]
             }
           }
