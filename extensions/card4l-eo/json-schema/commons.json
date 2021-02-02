@@ -62,11 +62,6 @@
           }
         }
       }
-    },
-    "card4l-bits-per-sample": {},
-    "card4l-unit": {},
-    "card4l-valid": {},
-    "card4l-invalid": {},
-    "card4l-nodata": {}
+    }
   }
 }

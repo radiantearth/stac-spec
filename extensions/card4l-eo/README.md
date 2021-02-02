@@ -22,7 +22,7 @@ The column *Field Name* refers to the STAC field names. The column *Req.* refers
 **STAC Extensions:** This extension makes use of a number of existing STAC extensions:
 
 - [EO](../eo/README.md)
-- [File](../file/README.md) (optional)
+- [File](../file/README.md)
 - [Processing](../processing/README.md) (optional)
 - [Projection](../projection/README.md)
 - [View](../view/README.md)
@@ -130,61 +130,42 @@ See also the [notes](#notes) regarding the requirements 1.13 and 1.15 for a bett
 
 Whether the metadata are provided in a single record relevant to all pixels, or separately for each pixel, is at the discretion of the data provider. 
 
-Each of the assets can either be exposed individually or grouped together in any form. In the latter case the role names can simply be merged to a set of unique role names. Roles can also be combined for a single file. For example, a cloud mask which is also including cloud shadows can use the roles `cloud` and `cloud-shadow` for a single file. The `card4l:values` property can the contain which value(s) correspond to clouds and which value(s) correspond to cloud shadows respectively.
+Each of the assets can either be exposed individually or grouped together in any form. In the latter case the role names can simply be merged to a set of unique role names. Roles can also be combined for a single file. For example, a cloud mask which is also including cloud shadows can use the roles `cloud` and `cloud-shadow` for a single file. The `file:values` property can the contain which value(s) correspond to clouds and which value(s) correspond to cloud shadows respectively.
 
 The italic role names are proposed to be the asset's key.
 
-| Role Name(s)                           | Additional properties                                        | Description                                                  | Req.      |
-| -------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | --------- |
-| (*reflectance* or *temperature*), data | `type`, `created`, `eo:bands`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample`, `card4l:nodata` | **REQUIRED.** Points to the actual measurements. The value(s) for pixels that do not correspond to an observation must be provided in the property `card4l:nodata`. | 3.1 / 2.2 |
-| *date*, metadata                       | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | Points to a file with per-pixel acquisition timestamps.      | 1.3   |
-| *incomplete-testing*, metadata | `type`, `card4l:values` | **REQUIRED.** Points to a file that identifies pixels for which the per-pixel tests have not all been successfully completed. See CARD4L req. 2.3 for details. | 2.3 |
-| *saturation*, metadata | `type`, `card4l:values`, `eo:bands` | **REQUIRED.** Points to a file that indicates where pixels in the input spectral bands are saturated. `card4l:values` can also be embedded into `eo:bands` to indicate which pixels are saturated for each spectral band. | 2.4 |
-| *cloud*, metadata | `type`, `card4l:values` | **REQUIRED.** Points to a file that indicates whether a pixel is assessed as being cloud. | 2.5 |
-| *cloud-shadow*, metadata | `type`, `card4l:values` | **REQUIRED.** Points to a file that indicates whether a pixel is assessed as being cloud shadow. | 2.6 |
-| *snow-ice*, metadata | `type`, `card4l:values`                                      | Points to a file that indicates whether a pixel is assessed as being snow/ice or not. | 2.7 (ST) / 2.8 (SR) |
-| *land-water*, metadata | `type`, `card4l:values` | Points to a file that indicates whether a pixel is assessed as being snow/ice or not land or water. | 2.7 (SR) |
-| *off-nadir*, metadata                  | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample`, `card4l:unit` | Points to a file with per-pixel off-nadir angles. `card4l:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
-| *incidence-angle*, metadata            | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample`, `card4l:unit` | Points to a file with per-pixel incidence angles. `card4l:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
-| *azimuth*, metadata                    | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample`, `card4l:unit` | Points to a file with per-pixel azimuth angles. `card4l:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
-| *sun-azimuth*, metadata                | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample`, `card4l:unit` | Points to a file with per-pixel sun azimuth angles. `card4l:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
-| *sun-elevation*, metadata              | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample`, `card4l:unit` | Points to a file with per-pixel sun elevation angles. `card4l:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
-| *terrain-shadow*, metadata | `type`, `card4l:values` | Points to a file that indicates whether a pixel is not directly illuminated due to terrain shadowing. | 2.9 (SR) |
-| *terrain-occlusion*, metadata | `type`, `card4l:values` | Points to a file that indicates whether a pixel is not visible to the sensor due to terrain occlusion during off-nadir viewing. | 2.10 (SR) |
-| *terrain-illumination*, metadata | `type`, `file:data_type`, `file:byte_order`, `card4l:bits_per_sample` | Points to a file with coefficients used for terrain illumination correction are provided for each pixel. | 2.12 (SR) |
+| Role Name(s)                           | Additional properties                                        | Description                                                  | Req.                 |
+| -------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------------------- |
+| (*reflectance* or *temperature*), data | `type`, `created`, `eo:bands`, `file:data_type`, `file:byte_order`, `file:bits_per_sample`, `file:nodata` | **REQUIRED.** Points to the actual measurements. The value(s) for pixels that do not correspond to an observation must be provided in the property `file:nodata`. | 3.1 / 2.2            |
+| *date*, metadata                       | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample` | Points to a file with per-pixel acquisition timestamps.      | 1.3                  |
+| *incomplete-testing*, metadata         | `type`, `file:values`                                        | **REQUIRED.** Points to a file that identifies pixels for which the per-pixel tests have not all been successfully completed. See CARD4L req. 2.3 for details. | 2.3                  |
+| *saturation*, metadata                 | `type`, `file:values`, `eo:bands`                            | **REQUIRED.** Points to a file that indicates where pixels in the input spectral bands are saturated. `file:values` can also be embedded into `eo:bands` to indicate which pixels are saturated for each spectral band. | 2.4                  |
+| *cloud*, metadata                      | `type`, `file:values`                                        | **REQUIRED.** Points to a file that indicates whether a pixel is assessed as being cloud. | 2.5                  |
+| *cloud-shadow*, metadata               | `type`, `file:values`                                        | **REQUIRED.** Points to a file that indicates whether a pixel is assessed as being cloud shadow. | 2.6                  |
+| *snow-ice*, metadata                   | `type`, `file:values`                                        | Points to a file that indicates whether a pixel is assessed as being snow/ice or not. | 2.7 (ST) / 2.8 (SR)  |
+| *land-water*, metadata                 | `type`, `file:values`                                        | Points to a file that indicates whether a pixel is assessed as being snow/ice or not land or water. | 2.7 (SR)             |
+| *off-nadir*, metadata                  | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample`, `file:unit` | Points to a file with per-pixel off-nadir angles. `file:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
+| *incidence-angle*, metadata            | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample`, `file:unit` | Points to a file with per-pixel incidence angles. `file:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
+| *azimuth*, metadata                    | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample`, `file:unit` | Points to a file with per-pixel azimuth angles. `file:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
+| *sun-azimuth*, metadata                | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample`, `file:unit` | Points to a file with per-pixel sun azimuth angles. `file:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
+| *sun-elevation*, metadata              | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample`, `file:unit` | Points to a file with per-pixel sun elevation angles. `file:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
+| *terrain-shadow*, metadata             | `type`, `file:values`                                        | Points to a file that indicates whether a pixel is not directly illuminated due to terrain shadowing. | 2.9 (SR)             |
+| *terrain-occlusion*, metadata          | `type`, `file:values`                                        | Points to a file that indicates whether a pixel is not visible to the sensor due to terrain occlusion during off-nadir viewing. | 2.10 (SR)            |
+| *terrain-illumination*, metadata       | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample` | Points to a file with coefficients used for terrain illumination correction are provided for each pixel. | 2.12 (SR)            |
 
 #### Additional Asset Properties
 
-| Field Name             | Data Type                                      | Description                                                  | Req.  |
-| ---------------------- | ---------------------------------------------- | ------------------------------------------------------------ | ----- |
-| type                   | string                                         | **REQUIRED.** The media type of the file format.             | *n/a* |
-| created                | string                                         | The time of the processing is specified via the `created` property of the asset as specified in the [STAC Common metadata](../../item-spec/common-metadata.md#date-and-time). | *n/a* |
-| eo:bands               | \[[Band Object](../eo/README.md#band-object)\] | **REQUIRED** for data. Bands with at least the following fields included: `name` and `center_wavelength`. Add additional fields such as `full_width_half_max` to better meet the *target (desired) requirements*. See the CARD4L requirement 1.10 for further details. | 1.10  |
-| file:data_type         | string                                         | One of the [Data Types](../file/README.md#data-types).       | *n/a* |
-| file:byte_order        | string                                         | One of `big-endian` or `little-endian`.                      | *n/a* |
-| card4l:unit            | string                                         | **REQUIRED.** The unit of the values in the asset.           | *n/a* |
-| card4l:bits_per_sample | integer                                        | Bits per sample, e.g. 8, 16, 32, ...                         | *n/a* |
-| card4l:nodata          | \[any\]                                        | **REQUIRED** for data. Value(s) for no-data.                 | 2.2   |
-| card4l:values          | \[[Value Map Object](#value-map-object)\]      | **REQUIRED.** Lists the value that are in the file and describes their meaning. See the Value Map Object chapter for an example. | n/a   |
-
-##### Value Map Object
-
-Value maps are used by assets that are used as classification layers and give details about the values in the asset and their meanings.
-
-| Field Name | Data Type | Description                       |
-| ---------- | --------- | --------------------------------- |
-| value      | any       | The value in the file.            |
-| summary    | string    | A short description of the value. |
-
- For example for a cloud cover mask, `card4l:values` property could contain the following data:
-
-```json
-[
-	{"value": 0, "summary": "clear"},
-	{"value": 1, "summary": "clouds"},
-	{"value": 2, "summary": "cloud shadows"}
-]
-```
+| Field Name           | Data Type | Description                                                  | Req.  |
+| -------------------- | --------- | ------------------------------------------------------------ | ----- |
+| type                 | string    | **REQUIRED.** The media type of the file format.             | *n/a* |
+| created              | string    | The time of the processing is specified via the `created` property of the asset as specified in the [STAC Common metadata](../../item-spec/common-metadata.md#date-and-time). | *n/a* |
+| eo:bands             | \[[Band Object](../eo/README.md#band-object)\] | **REQUIRED** for data. Bands with at least the following fields included: `name` and `center_wavelength`. Add additional fields such as `full_width_half_max` to better meet the *target (desired) requirements*. See the CARD4L requirement 1.10 for further details. | 1.10  |
+| file:data_type       | string    | One of the [Data Types](../file/README.md#data-types).       | *n/a* |
+| file:byte_order      | string    | One of `big-endian` or `little-endian`.                      | *n/a* |
+| file:unit            | string    | **REQUIRED.** The unit of the values in the asset.           | *n/a* |
+| file:bits_per_sample | integer   | Bits per sample                                              | *n/a* |
+| file:nodata          | \[any]    | **REQUIRED** for data. Value(s) for no-data.                 | 2.2   |
+| file:values          | \[[Mapping Object](../file/README.md#mapping-object)\] | **REQUIRED.** Lists the value that are in the file and describes their meaning. | n/a   |
 
 ## Notes
 

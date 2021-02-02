@@ -11,6 +11,9 @@
       "$ref": "../../eo/json-schema/schema.json"
     },
     {
+      "$ref": "../../file/json-schema/schema.json"
+    },
+    {
       "$ref": "../../projection/json-schema/schema.json"
     },
     {
@@ -32,9 +35,6 @@
     }
   ],
   "anyOf": [
-    {
-      "$ref": "../../file/json-schema/schema.json"
-    },
     {
       "$ref": "../../processing/json-schema/schema.json"
     }
