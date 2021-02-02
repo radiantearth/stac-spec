@@ -2,6 +2,7 @@
 
 ## Table of Contents
 
+* [Enable CORS](#enable-cross-origin-resource-sharing-cors)
 * [Field and ID formatting](#field-and-id-formatting)
 * [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
 * [Datetime selection](#datetime-selection)
@@ -23,6 +24,23 @@ those who are creating new catalogs or new tools to work with STAC.
 
 While the current goal of the core is to remain quite flexible and simple to meet a wide variety of use cases,
 in time some of these may evolve to become part of the core specification.
+
+## Enable Cross-origin resource sharing (CORS)
+
+STAC strives to make geospatial information more accessible, by putting it on the web. Fundamental to STAC's vision is that
+different tools will be able to load and display public-facing STAC data. But the web runs on a [Same origin 
+policy](https://en.wikipedia.org/wiki/Same-origin_policy), preventing web pages from loading information from other web locations
+to prevent malicious scripts from accessing sensitive data. This means that by default a web page would only be able to load STAC
+Items from the same server the page is on. [Cross-origin resource sharing](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing),
+also known as 'CORS' is a protocol to enable safe communication across origins. But most web services turn it off by default. This
+is generally a good thing, but unfortunately if CORS is not enabled then any browser-based STAC tool will not work. 
+
+So to enable all the great web tools (like [stacindex.org](http://stacindex.org)) to work with your STAC catalog it is essential to
+'enable CORS'. Most services have good resources on how to do this, like on [AWS S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html),
+[Google Cloud Storage](https://cloud.google.com/storage/docs/cross-origin), or [Apache Server](https://enable-cors.org/server_apache.html). 
+Many more are listed on [enable-cors.org](https://enable-cors.org/server.html). We recommend enabling CORS for all requests ('\*'),
+so that diverse online tools can access your data. If you aren't sure if your server has CORS enabled you can use 
+[test-cors.org](https://www.test-cors.org/). Enter the URL of your STAC catalog JSON and make sure it gets a response.
 
 ## Field and ID formatting
 
@@ -202,14 +220,13 @@ should consider an additional way to break it up.
 We encourage people to explore new structures of linking data, but the following list is what a number of implementors 
 ended up doing. Following these recommendations makes for more legible catalogs.
 
-1. Root documents (catalogs / collections) should be at the root of a directory tree containing the static catalog.  
-2. Catalogs should be named `catalog.json` (cf. `index.html`).
-3. Collections that are distinct from catalogs should be named `collection.json`.
-4. Items should be named `<id>.json`.
-5. Sub-catalogs should be stored in subdirectories of their parent (and only 1 subdirectory deeper than a document's parent) (e.g. `.../sample/sub1/catalog.json`).
-6. Items should be stored in subdirectories of their parent catalog. 
+1. Root documents (catalogs / collections) should be at the root of a directory tree containing the static catalog.
+2. Catalogs that are not also Collections should be named `catalog.json` and Collections should be named `collection.json`.
+3. Items should be named `<id>.json`.
+4. Sub-catalogs should be stored in subdirectories of their parent (and only 1 subdirectory deeper than a document's parent) (e.g. `.../sample/sub1/catalog.json`).
+5. Items should be stored in subdirectories of their parent catalog. 
 This means that each item and its assets are contained in a unique subdirectory.
-7. Limit the number of items in a catalog or sub-catalog, grouping / partitioning as relevant to the dataset.
+6. Limit the number of items in a catalog or sub-catalog, grouping / partitioning as relevant to the dataset.
 
 ### Dynamic Catalog Layout
 

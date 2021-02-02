@@ -63,13 +63,19 @@
   ],
   "license": "PDDL-1.0",
   "summaries": {
-    "gsd": [15],
-    "platform": ["landsat-8"],
+    "gsd": [
+      15
+    ],
+    "platform": [
+      "landsat-8"
+    ],
     "instruments": [
       "oli",
       "tirs"
     ],
-    "view:off_nadir": [0],
+    "view:off_nadir": [
+      0
+    ],
     "eo:bands": [
       {
         "name": "B1",
@@ -144,11 +150,15 @@
       "type": "image/jpeg",
       "title": "Thumbnail",
       "description": "A medium sized thumbnail",
-      "roles": [ "thumbnail" ]
+      "roles": [
+        "thumbnail"
+      ]
     },
     "metadata": {
       "type": "mtl",
-      "roles": [ "metadata" ],
+      "roles": [
+        "metadata"
+      ],
       "title": "Original Metadata",
       "description": "The original MTL metadata file provided for each Landsat scene"
     },

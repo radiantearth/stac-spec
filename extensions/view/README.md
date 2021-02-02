@@ -5,6 +5,7 @@
 - **Field Name Prefix: view**
 - **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Owner**: @matthewhanson
 
 This document explains the fields of the View Geometry Extension to a STAC Item. View Geometry adds metadata related to angles of sensors and other radiance angles that affect the view of resulting data. It will often be combined with other extensions that describe the actual data, such as the `eo`, `sat` or `sar` extensions.
 
