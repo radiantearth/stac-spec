@@ -89,18 +89,6 @@ Each inner array consists of exactly two dates and times. Each date and time MUS
 
 Open date ranges are supported by setting either the start or the end time to `null`. Example for data from the beginning of 2019 until now: `[["2009-01-01T00:00:00Z", null]]`. 
 
-### Stats Object
-
-For a good understanding of the summarized field, statistics can be added. By default, only ranges with a minimum and a maximum value can be specified.
-Ranges can be specified for [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values only, which means they need to have a rank order.
-Therefore, ranges can only be specified for numbers and some special types of strings. Examples: grades (A to F), dates or times.
-Implementors are free to add other derived statistical values to the object, for example `mean` or `stddev`.
-
-| Field Name | Type           | Description |
-| ---------- | -------------- | ----------- |
-| min        | number\|string | **REQUIRED.** Minimum value. |
-| max        | number\|string | **REQUIRED.** Maximum value. |
-
 ### Provider Object
 
 The object provides information about a provider. A provider is any of the organizations that captures or processes the content of the collection and therefore influences the data offered by this collection. May also include information about the final storage provider hosting the data.
@@ -132,7 +120,7 @@ This object describes a relationship with another entity. Data providers are adv
 
 A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
 
-Please see the chapter 'relative vs absolute links' in the [Item spec](../item-spec/item-spec.md#relative-vs-absolute-links) for a discussion on that topic. 
+Please see the chapter 'relative vs absolute links' in the [Item spec](../item-spec/item-spec.md#relative-vs-absolute-links) for a discussion on that topic.
 
 #### Relation types
 
@@ -149,6 +137,18 @@ The following types are commonly used as `rel` types in the Link Object of a Col
 | derived_from | URL to a STAC Collection that was used as input data in the creation of this collection. See the note in [STAC Item](../item-spec/item-spec.md#relation-types) for more info. |
 
 **Note:** The [STAC Catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is *not* a requirement for collections, but *recommended*. In contrast to catalogs, it is **REQUIRED** that items linked from a Collection MUST refer back to its Collection with the [`collection` relation type](../item-spec/item-spec.md#relation-types).
+
+### Stats Object
+
+For a good understanding of the summarized field, statistics can be added. By default, only ranges with a minimum and a maximum value can be specified.
+Ranges can be specified for [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values only, which means they need to have a rank order.
+Therefore, ranges can only be specified for numbers and some special types of strings. Examples: grades (A to F), dates or times.
+Implementors are free to add other derived statistical values to the object, for example `mean` or `stddev`.
+
+| Field Name | Type           | Description |
+| ---------- | -------------- | ----------- |
+| min        | number\|string | **REQUIRED.** Minimum value. |
+| max        | number\|string | **REQUIRED.** Maximum value. |
 
 ## Standalone Collections
 
