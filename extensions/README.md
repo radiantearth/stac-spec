@@ -1,4 +1,4 @@
-# Content Extensions
+# Extensions
 
 This folder contains content extensions to the SpatioTemporal Asset Catalog specification. The core STAC specification 
 defines only a minimal core, but is designed for extension. It is expected that most real-world
