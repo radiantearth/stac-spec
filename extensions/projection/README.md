@@ -5,6 +5,7 @@
 - **Field Name Prefix: proj**
 - **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Owner**: @matthewhanson
 
 This document explains the fields of the STAC Projection (`projection`) Extension to a STAC Item.
 

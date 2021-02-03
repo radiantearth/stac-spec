@@ -5,6 +5,7 @@
 - **Field Name Prefix: sar**
 - **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Owner**: @m-mohr, @emmanuelmathot
 
 This document explains the fields of the STAC Synthetic-Aperture Radar (SAR) Extension to a STAC Item.
 SAR data is considered to be data that represents a snapshot of the earth for a single date and time taken by a synthetic-aperture radar system such as Sentinel-1, RADARSAT or EnviSAT.

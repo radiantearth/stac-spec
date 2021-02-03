@@ -5,6 +5,7 @@
 - **Field Name Prefix: -**
 - **Scope: Item, Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Owner**: @m-mohr
 
 This extension allows to version STAC Collections and STAC Items. Therefore, it also allows to deprecate legacy versions. Only fields and possible link relation types are defined in this extension, but it does NOT suggest any versioning best practices to structure static or dynamic catalogs. Instead check the [Versioning Best Practices for Catalogs](../../best-practices.md#versioning-for-catalogs).
 
