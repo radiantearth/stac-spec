@@ -27,10 +27,22 @@ The column *Field Name* refers to the STAC field names. The column *Req.* refers
 - [Projection](../projection/README.md)
 - [View](../view/README.md)
 
+You have to read the STAC extensions in combination with this extension as this extension just provides the mapping between the STAC fields and the CARD4L requirements, but this extension doesn't give information on the data type or an actual detailed description about the fields.
+
 **Additional resources:**
 
 - [Examples](examples/) (ToDo)
 - [JSON Schema](json-schema/) (ToDo)
+
+## STAC Collections
+
+CARD4L lists a lot of requirements (and fields) that have common values across all generated STAC Items and assets.
+Thus, it is **recommended** to provide a STAC Collection for the Items and put common fields (in the STAC Item `properties`)
+into [Collection `summaries`](../../collection-spec/collection-spec.md#collection-fields).
+While the STAC Item fields still need to be in the Item, too, you can de-duplicate links and assets by putting common
+links once into the STAC Collection links. Also, common assets can be just put once into the STAC Collection using the
+STAC extension [Collection Assets](../collection-assets/README.md).
+All this is still CARD4L compliant as CARD4L doesn't require all information to be in a single file.
 
 ## STAC Items
 
@@ -104,27 +116,27 @@ See also the [notes](#notes) regarding the requirements 1.13 and 1.15 for a bett
 
 ### STAC Item Links
 
-| Relation Type            | Description                                                  | Req.                |
-| ------------------------ | ------------------------------------------------------------ | ------------------- |
-| card4l-document          | **REQUIRED.** Provides at least one link to the CARD4L specification document. Word (media type: `application/vnd.openxmlformats-officedocument.wordprocessingml.document`) and/or PDF (media type: `application/pdf`). | *n/a*               |
-| derived_from             | Points back to the source's STAC Item. May be multiple items, if the product is derived from multiple acquisitions. | 1.15                |
-| about                    | Link to algorithms used in the generation process. See also the [notes](#notes) regarding req. 1.13. | 1.13                |
-| related                  | **REQUIRED.** Link to the sources of ancillary or auxiliary data used in the generation process. Excludes DEMs, which use the relation `elevation-model` instead. | 1.14                |
-| access                   | STRONGLY RECOMMENDED. Link to data access information.       | 1.16                |
-| sensor-calibration       | Link to the sensor calibration parameters.                   | 1.11                |
-| radiometric-accuracy     | Link describing the assessed absolute radiometric uncertainty of the version of the data or product. | 1.12                |
-| geometric-correction     | Link to the Geometric Correction algorithm details.          | 1.7                 |
-| elevation-model          | Links to the Digital Elevation Models. Preferably links to a STAC Item with additional metadata for the DEMs. | 1.14                |
-| geometric-accuracy       | Link to documentation of estimate of absolute localization error. | 1.8                 |
-| cloud                    | Link to documentation about the cloud detection.             | 2.5                 |
-| cloud-shadow             | Link to documentation about the cloud shadow detection.      | 2.6                 |
-| snow-ice                 | Link to documentation about the snow and ice mask.           | 2.7 (ST) / 2.8 (SR) |
-| land-water               | Link to documentation about the land and water mask (SR only). | 2.7 (SR)            |
-| atmosphere-emissivity    | **REQUIRED.** Link to documentation about corrections for atmosphere and emissivity (ST only). | 3.2 (ST)            |
-| measurement-nomalisation | Link to documentation about measurement normalisation (SR only). | 3.3 (SR)            |
-| atmospheric-scattering   | **REQUIRED.** Link to documentation about the directional atmospheric scattering algorithms (SR only). | 3.4 (SR)            |
-| water-vapor              | **REQUIRED.** Link to documentation about the water vapour corrections (SR only). | 3.5 (SR)            |
-| ozone                    | Link to documentation about the ozone corrections (SR only). | 3.6 (SR)            |
+| Relation Type             | Description                                                  | Req.                |
+| ------------------------- | ------------------------------------------------------------ | ------------------- |
+| card4l-document           | **REQUIRED.** Provides at least one link to the CARD4L specification document. Word (media type: `application/vnd.openxmlformats-officedocument.wordprocessingml.document`) and/or PDF (media type: `application/pdf`). | *n/a*               |
+| derived_from              | Points back to the source's STAC Item. May be multiple items, if the product is derived from multiple acquisitions. | 1.15                |
+| about                     | Link to algorithms used in the generation process. See also the [notes](#notes) regarding req. 1.13. | 1.13                |
+| related                   | **REQUIRED.** Link to the sources of ancillary or auxiliary data used in the generation process. Excludes DEMs, which use the relation `elevation-model` instead. | 1.14                |
+| access                    | STRONGLY RECOMMENDED. Link to data access information.       | 1.16                |
+| sensor-calibration        | Link to the sensor calibration parameters.                   | 1.11                |
+| radiometric-accuracy      | Link describing the assessed absolute radiometric uncertainty of the version of the data or product. | 1.12                |
+| geometric-correction      | Link to the Geometric Correction algorithm details.          | 1.7                 |
+| elevation-model           | Links to the Digital Elevation Models. Preferably links to a STAC Item with additional metadata for the DEMs. | 1.14                |
+| geometric-accuracy        | Link to documentation of estimate of absolute localization error. | 1.8                 |
+| cloud                     | Link to documentation about the cloud detection.             | 2.5                 |
+| cloud-shadow              | Link to documentation about the cloud shadow detection.      | 2.6                 |
+| snow-ice                  | Link to documentation about the snow and ice mask.           | 2.7 (ST) / 2.8 (SR) |
+| land-water                | Link to documentation about the land and water mask (SR only). | 2.7 (SR)            |
+| atmosphere-emissivity     | **REQUIRED.** Link to documentation about corrections for atmosphere and emissivity (ST only). | 3.2 (ST)            |
+| measurement-normalization | Link to documentation about measurement normalization (SR only). | 3.3 (SR)            |
+| atmospheric-scattering    | **REQUIRED.** Link to documentation about the directional atmospheric scattering algorithms (SR only). | 3.4 (SR)            |
+| water-vapor               | **REQUIRED.** Link to documentation about the water vapour corrections (SR only). | 3.5 (SR)            |
+| ozone                     | Link to documentation about the ozone corrections (SR only). | 3.6 (SR)            |
 
 ### STAC Item Assets
 
@@ -132,38 +144,38 @@ Whether the metadata are provided in a single record relevant to all pixels, or 
 
 Each of the assets can either be exposed individually or grouped together in any form. In the latter case the role names can simply be merged to a set of unique role names. Roles can also be combined for a single file. For example, a cloud mask which is also including cloud shadows can use the roles `cloud` and `cloud-shadow` for a single file. The `file:values` property can the contain which value(s) correspond to clouds and which value(s) correspond to cloud shadows respectively.
 
-The italic role names are proposed to be the asset's key.
+The *italic* role names are proposed to be the asset's key. The **bold** additional properties are required.
 
 | Role Name(s)                           | Additional properties                                        | Description                                                  | Req.                 |
 | -------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------------------- |
-| (*reflectance* or *temperature*), data | `type`, `created`, `eo:bands`, `file:data_type`, `file:byte_order`, `file:bits_per_sample`, `file:nodata` | **REQUIRED.** Points to the actual measurements. The value(s) for pixels that do not correspond to an observation must be provided in the property `file:nodata`. | 3.1 / 2.2            |
+| (*reflectance* or *temperature*), data | `type`, `created`, **`eo:bands`**, `file:data_type`, `file:byte_order`, `file:bits_per_sample`, **`file:nodata`** | **REQUIRED.** Points to the actual measurements. The value(s) for pixels that do not correspond to an observation must be provided in the property `file:nodata`. | 3.1 / 2.2            |
 | *date*, metadata                       | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample` | Points to a file with per-pixel acquisition timestamps.      | 1.3                  |
-| *incomplete-testing*, metadata         | `type`, `file:values`                                        | **REQUIRED.** Points to a file that identifies pixels for which the per-pixel tests have not all been successfully completed. See CARD4L req. 2.3 for details. | 2.3                  |
-| *saturation*, metadata                 | `type`, `file:values`, `eo:bands`                            | **REQUIRED.** Points to a file that indicates where pixels in the input spectral bands are saturated. `file:values` can also be embedded into `eo:bands` to indicate which pixels are saturated for each spectral band. | 2.4                  |
-| *cloud*, metadata                      | `type`, `file:values`                                        | **REQUIRED.** Points to a file that indicates whether a pixel is assessed as being cloud. | 2.5                  |
-| *cloud-shadow*, metadata               | `type`, `file:values`                                        | **REQUIRED.** Points to a file that indicates whether a pixel is assessed as being cloud shadow. | 2.6                  |
-| *snow-ice*, metadata                   | `type`, `file:values`                                        | Points to a file that indicates whether a pixel is assessed as being snow/ice or not. | 2.7 (ST) / 2.8 (SR)  |
-| *land-water*, metadata                 | `type`, `file:values`                                        | Points to a file that indicates whether a pixel is assessed as being snow/ice or not land or water. | 2.7 (SR)             |
-| *incidence-angle*, metadata            | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample`, `file:unit` | Points to a file with per-pixel incidence angles. `file:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
-| *azimuth*, metadata                    | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample`, `file:unit` | Points to a file with per-pixel azimuth angles. `file:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
-| *sun-azimuth*, metadata                | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample`, `file:unit` | Points to a file with per-pixel sun azimuth angles. `file:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
-| *sun-elevation*, metadata              | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample`, `file:unit` | Points to a file with per-pixel sun elevation angles. `file:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
-| *terrain-shadow*, metadata             | `type`, `file:values`                                        | Points to a file that indicates whether a pixel is not directly illuminated due to terrain shadowing. | 2.9 (SR)             |
-| *terrain-occlusion*, metadata          | `type`, `file:values`                                        | Points to a file that indicates whether a pixel is not visible to the sensor due to terrain occlusion during off-nadir viewing. | 2.10 (SR)            |
+| *incomplete-testing*, metadata         | `type`, **`file:values`**                                    | **REQUIRED.** Points to a file that identifies pixels for which the per-pixel tests have not all been successfully completed. See CARD4L req. 2.3 for details. | 2.3                  |
+| *saturation*, metadata                 | `type`, **`file:values`**, **`eo:bands`**                    | **REQUIRED.** Points to a file that indicates where pixels in the input spectral bands are saturated. `file:values` can also be embedded into `eo:bands` to indicate which pixels are saturated for each spectral band. | 2.4                  |
+| *cloud*, metadata                      | `type`, **`file:values`**                                    | **REQUIRED.** Points to a file that indicates whether a pixel is assessed as being cloud. | 2.5                  |
+| *cloud-shadow*, metadata               | `type`, **`file:values`**                                    | **REQUIRED.** Points to a file that indicates whether a pixel is assessed as being cloud shadow. | 2.6                  |
+| *snow-ice*, metadata                   | `type`, **`file:values`**                                    | Points to a file that indicates whether a pixel is assessed as being snow/ice or not. | 2.7 (ST) / 2.8 (SR)  |
+| *land-water*, metadata                 | `type`, **`file:values`**                                    | Points to a file that indicates whether a pixel is assessed as being snow/ice or not land or water. | 2.7 (SR)             |
+| *incidence-angle*, metadata            | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample`, **`file:unit`** | Points to a file with per-pixel incidence angles. `file:unit` is usually `degree`. | 2.8 (ST) / 2.11 (SR) |
+| *azimuth*, metadata                    | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample`, **`file:unit`** | Points to a file with per-pixel azimuth angles. `file:unit` is usually `degree`. | 2.8 (ST) / 2.11 (SR) |
+| *sun-azimuth*, metadata                | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample`, **`file:unit`** | Points to a file with per-pixel sun azimuth angles. `file:unit` is usually `degree`. | 2.8 (ST) / 2.11 (SR) |
+| *sun-elevation*, metadata              | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample`, **`file:unit`** | Points to a file with per-pixel sun elevation angles. `file:unit` is usually `degree`. | 2.8 (ST) / 2.11 (SR) |
+| *terrain-shadow*, metadata             | `type`, **`file:values`**                                    | Points to a file that indicates whether a pixel is not directly illuminated due to terrain shadowing. | 2.9 (SR)             |
+| *terrain-occlusion*, metadata          | `type`, **`file:values`**                                    | Points to a file that indicates whether a pixel is not visible to the sensor due to terrain occlusion during off-nadir viewing. | 2.10 (SR)            |
 | *terrain-illumination*, metadata       | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample` | Points to a file with coefficients used for terrain illumination correction are provided for each pixel. | 2.12 (SR)            |
 
 #### Additional Asset Properties
 
-| Field Name           | Data Type | Description                                                  | Req.  |
-| -------------------- | --------- | ------------------------------------------------------------ | ----- |
-| type                 | string    | **REQUIRED.** The media type of the file format.             | *n/a* |
-| created              | string    | The time of the processing is specified via the `created` property of the asset as specified in the [STAC Common metadata](../../item-spec/common-metadata.md#date-and-time). | *n/a* |
-| eo:bands             | \[[Band Object](../eo/README.md#band-object)\] | **REQUIRED** for data. Bands with at least the following fields included: `name` and `center_wavelength`. Add additional fields such as `full_width_half_max` to better meet the *target (desired) requirements*. See the CARD4L requirement 1.10 for further details. | 1.10  |
-| file:data_type       | string    | One of the [Data Types](../file/README.md#data-types).       | *n/a* |
-| file:byte_order      | string    | One of `big-endian` or `little-endian`.                      | *n/a* |
-| file:unit            | string    | **REQUIRED.** The unit of the values in the asset.           | *n/a* |
-| file:bits_per_sample | integer   | Bits per sample                                              | *n/a* |
-| file:nodata          | \[any]    | **REQUIRED** for data. Value(s) for no-data.                 | 2.2   |
+| Field Name           | Data Type                                              | Description                                                  | Req.  |
+| -------------------- | ------------------------------------------------------ | ------------------------------------------------------------ | ----- |
+| type                 | string                                                 | STRONGLY RECOMMENDED. The media type of the file format.     | *n/a* |
+| created              | string                                                 | The time of the processing is specified via the `created` property of the asset as specified in the [STAC Common metadata](../../item-spec/common-metadata.md#date-and-time). | *n/a* |
+| eo:bands             | \[[Band Object](../eo/README.md#band-object)\]         | **REQUIRED** for data. Bands with at least the following fields included: `name` and `center_wavelength`. Add additional fields such as `full_width_half_max` to better meet the *target (desired) requirements*. See the CARD4L requirement 1.10 for further details. | 1.10  |
+| file:data_type       | string                                                 | One of the [Data Types](../file/README.md#data-types).       | *n/a* |
+| file:byte_order      | string                                                 | One of `big-endian` or `little-endian`.                      | *n/a* |
+| file:unit            | string                                                 | **REQUIRED.** The unit of the values in the asset, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/). | *n/a* |
+| file:bits_per_sample | integer                                                | Bits per sample                                              | *n/a* |
+| file:nodata          | \[any]                                                 | **REQUIRED** for data. Value(s) for no-data.                 | 2.2   |
 | file:values          | \[[Mapping Object](../file/README.md#mapping-object)\] | **REQUIRED.** Lists the value that are in the file and describes their meaning. | n/a   |
 
 ## Notes
