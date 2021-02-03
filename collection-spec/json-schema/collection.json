@@ -164,15 +164,15 @@
                 "title": "Stats",
                 "type": "object",
                 "required": [
-                  "min",
-                  "max"
+                  "minimum",
+                  "maximum"
                 ],
                 "properties": {
-                  "min": {
+                  "minimum": {
                     "title": "Minimum value",
                     "type": ["number", "string"]
                   },
-                  "max": {
+                  "maximum": {
                     "title": "Maximum value",
                     "type": ["number", "string"]
                   }
