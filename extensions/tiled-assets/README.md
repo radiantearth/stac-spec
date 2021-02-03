@@ -18,7 +18,7 @@ This extension is modelled in close alignment to the [OGC Two Dimensional Tile M
 - Examples: [Tiled](examples/example-tiled.json), [Dimension](examples/example-dimension.json)
 - [JSON Schema](json-schema/schema.json)
 
-## Item, Collection and Catalog properties
+## Item Properties, Collection, and Catalog Fields
 
 | Field Name               | Type                                                                  | Description                                                                                                          |
 | ------------------------ | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
@@ -28,7 +28,7 @@ This extension is modelled in close alignment to the [OGC Two Dimensional Tile M
 
 Tile matrix sets can be directly embedded in a collection, catalog or item. Such directly embedded tile matrix set objects must conform to the [OGC Two Dimensional Tile Matrix Set JSON schema](http://schemas.opengis.net/tms/1.0/json/tms-schema.json).
 
-## Item properties
+## Item Properties fields
 
 | Field Name                  | Type                                                                  | Description                                                                                                     |
 | --------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
@@ -101,7 +101,7 @@ Pixel buffer objects allow the definition of image boundaries, so that the inter
 | border_bottom | boolean | Whether or not the pixel-buffer is included images on the bottom border of the last tile row. Default is `true`.   |
 | border_right  | boolean | Whether or not the pixel-buffer is included images on the right border of the last tile column. Default is `true`. |
 
-## Item fields
+## Item Properties fields
 
 | Field Name          | Type                                                                   | Description                                                                                   |
 | ------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |

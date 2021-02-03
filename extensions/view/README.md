@@ -12,7 +12,7 @@ This document explains the fields of the View Geometry Extension to a STAC Item.
 - [Example (Landsat 8)](../eo/examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)
 
-## Item fields
+## Item Properties and Item Asset fields
 
 | Field Name           | Type                     | Description |
 | -------------------- | ------------------------ | ----------- |

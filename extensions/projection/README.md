@@ -15,7 +15,7 @@ When specified in Item Properties, the values are assumed to apply to all Assets
 several related Assets each representing a band or layer for the Item, and which typically all use the same CRS,
 e.g., a UTM Zone. However, there may also be Assets intended for display, like a preview image or thumbnail, that have
 been reprojected to a different CRS, e.g., Web Mercator, or resized to better accommodate that use case. In this case, the 
-fields should be specified at the Item Asset level, while those Item Assets that use the defaults can remain unspecified.
+fields should be specified at the Item Asset level, while those Item Asset objects that use the defaults can remain unspecified.
 
 ## Examples
 
@@ -72,7 +72,7 @@ of the lower left corner, followed by coordinates of upper right corner, , e.g.,
 **proj:centroid** - Coordinates representing the centroid of the item in the asset data CRS.  Coordinates are
 defined in latitude and longitude, even if the data coordinate system does not use lat/long.
 
-**proj:shape** - An array of integers that represents the number of pixels in the most common pixel grid used by the Item Assets.
+**proj:shape** - An array of integers that represents the number of pixels in the most common pixel grid used by the Item Asset objects.
 The number of pixels should be specified in Y, X order. If the shape is defined in Item Properties, it is used as
 the default shape for all assets that don't have an overriding shape.
 

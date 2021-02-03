@@ -15,7 +15,7 @@ tools such as LiDAR or coincidence-matched imagery.
 - [Example](examples/example-autzen.json)
 - [JSON Schema](json-schema/schema.json)
 
-## Item Fields
+## Item Properties fields
 
 | Field Name    | Type                              | Description |
 | ------------- | --------------------------------- | ----------- |
