@@ -51,7 +51,7 @@ the less breaking changes of the next level.
 A 'mature' classification level will likely be added once there are extensions that have been
 stable for over a year and are used in twenty or more implementations.
 
-## List of Extensions
+## List of Content Extensions
 
 These extensions add new fields or semantics to STAC objects.
 
