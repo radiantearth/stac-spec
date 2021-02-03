@@ -2,8 +2,7 @@
     "stac_version": "1.0.0-beta.2",
     "stac_extensions": [
       "eo",
-      "view",
-      "https://landsat.usgs.gov/stac/landsat-extension/schema.json"
+      "view"
     ],
     "id": "LC08_L1TP_107018_20181001_20181001_01_RT",
     "collection": "landsat-8-l1",
