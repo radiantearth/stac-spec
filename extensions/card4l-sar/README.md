@@ -41,10 +41,22 @@ The column *XML Tag* refers to the XML tag proposed in the CARD4L metadata speci
 - [Satellite](../sat/README.md)
 - [View](../view/README.md) (optional)
 
+You have to read the STAC extensions in combination with this extension as this extension just provides the mapping between the STAC fields and the CARD4L requirements, but this extension doesn't give information on the data type or an actual detailed description about the fields.
+
 **Additional resources:**
 
 - [Examples](examples/) (ToDo)
 - [JSON Schema](json-schema/schema.json) (ToDo)
+
+## STAC Collections
+
+CARD4L lists a lot of requirements (and fields) that have common values across all generated STAC Items and assets.
+Thus, it is **recommended** to provide a STAC Collection for the Items and put common fields (in the STAC Item `properties`)
+into [Collection `summaries`](../../collection-spec/collection-spec.md#collection-fields).
+While the STAC Item fields still need to be in the Item, too, you can de-duplicate links and assets by putting common
+links once into the STAC Collection links. Also, common assets can be just put once into the STAC Collection using the
+STAC extension [Collection Assets](../collection-assets/README.md).
+All this is still CARD4L compliant as CARD4L doesn't require all information to be in a single file.
 
 ## STAC Items
 
@@ -65,8 +77,8 @@ STAC Items must always be valid, but not all STAC Item requirements are covered 
 
 | Field Name                             | Data Type                                               | XML Tag                                                      | Description                                                  | Src      | Prod    |
 | -------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- | ------- |
-| card4l:specification                   | string                                                  | *n/a*                                                        | **REQUIRED.** The CARD4L specification implemented, either `NRB` (SAR, Normalized Radar Backscatter) or `POL` (SAR, Polarimetric Radar). | ✓        | ✓       |
-| card4l:specification_version           | string                                                  | *n/a*                                                        | **REQUIRED.** The CARD4L specification version. Currently always `5.0` for `NRB` and `3.0` for `POL`. | ✓        | ✓       |
+| card4l:specification                   | string                                                  | `DocumentIdentifier`                                         | **REQUIRED.** The CARD4L specification implemented, either `NRB` (SAR, Normalized Radar Backscatter) or `POL` (SAR, Polarimetric Radar). | ✓ 1.4    | ✓ 1.4   |
+| card4l:specification_version           | string                                                  | `DocumentIdentifier`                                         | **REQUIRED.** The CARD4L specification version. Currently always `5.0` for `NRB` and `3.0` for `POL`. | ✓ 1.4    | ✓ 1.4   |
 | card4l:beam_id                         | string                                                  | `BeamID`                                                     | **REQUIRED.**                                                | ✓ 1.6.4  | ✗       |
 | card4l:orbit_data_source               | string                                                  | `OrbitDataSource`                                            | **REQUIRED.** One of `predicted`, `definitive`, `downlinked`. Applies to *Prod*, if additional orbit correction has been applied. | ✓ 1.6.5  | (✓)     |
 | card4l:orbit_mean_altitude             | number                                                  | `OrbitMeanAltitude`                                          | Platform (mean) altitude in meters.                          | ✓ 1.6.5  | ✗       |
@@ -191,20 +203,20 @@ Whether the metadata are provided in a single record relevant to all pixels, or 
 
 Each of the assets can either be exposed individually or grouped together in any form. In the latter case the role names can simply be merged to a set of unique role names. 
 
-The italic role names are proposed to be the asset's key.
+The italic role names are proposed to be the asset's key. All additional properties are required, except the once in *italic*.
 
 | Role Name(s)                          | Additional properties                                        | XML Tag                      | Description                                                  | Src  | Prod        |
 | ------------------------------------- | ------------------------------------------------------------ | ---------------------------- | ------------------------------------------------------------ | ---- | ----------- |
 | *card4l*, metadata                    | `type`                                                       | *n/a*                        | Points to a metadata XML file that follows the CARD4L metadata specification. Media type: `application/xml` | ✗    | ✓ 2.1       |
-| *mask*, metadata                      | `type`, `file:values`, `file:nodata`, `file:data_type`, `file:byte_order`, `file:header_size`, `file:bits_per_sample` | `DataMask`                   | **REQUIRED.** Points to the data mask file.                  | ✗    | ✓ 2.2       |
-| *contributing-area*, metadata         | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `file:bits_per_sample`, `file:unit` | `LocalContributingArea`      | **REQUIRED.** Points to the normalized scattering area file. `file:unit` is usually `deg` (degree). | ✗    | ✓ 2.3       |
-| *local-incidence-angle*,  metadata    | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `file:bits_per_sample`, `file:unit` | `LocalIncAngle`              | **REQUIRED.** Points to the local incidence angle file. `file:unit` is usually `deg` (degree). | ✗    | ✓ 2.4       |
-| *ellipsoid-incidence-angle*, metadata | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `file:bits_per_sample`, `card4l:ellipsoidal_height`, `file:unit` | `EllipsoidIncAngle`          | `file:unit` is usually `deg` (degree).                       | ✗    | ✓ 2.5       |
-| *noise-power*, card4l, metadata       | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `file:bits_per_sample`, `file:unit` | `NoisePower`                 | `file:unit` is usually NESZ or NEBZ.                         | ✗    | ✓ 2.6       |
-| *gamma-sigma*, metadata               | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `file:bits_per_sample` | `GammaToSigmaRatio`          |                                                              | ✗    | ✓ 2.7       |
-| *date-offset*, metadata               | `type`, `file:data_type`, `file:byte_order`, `file:header_size`, `file:bits_per_sample` | `AcquisitionDate`            | **REQUIRED for multi -source products only.**                | ✗    | ✓ 2.8       |
-| *backscatter*, data                   | `type`, `created`, `sar:polarizations`, `file:header_size`, `file:data_type`, `file:byte_order`, `file:header_size`, `file:bits_per_sample` | `BackscatterMeasurementData` | **REQUIRED for *NRB*.** Points to the backscatter measurements for the polarizations specified in `sar:polarizations`. | ✗    | ✓ 3.1 (NRB) |
-| (*covmat* or *prd*), data             | `type`, `created`, `sar:polarizations` (CovMat only), `file:data_type`, `file:byte_order`, `file:header_size`, `file:bits_per_sample` | `Measurements`               | **REQUIRED for *POL*.** Points to the Normalized Polarimetric Radar Covariance Matrix (CovMat) *or* the Polarimetric Radar Decomposition (PRD) | ✗    | ✓ 3.1 (POL) |
+| *mask*, metadata                      | `type`, `file:values`, `file:nodata`, `file:data_type`, `file:byte_order`, *`file:header_size`*, `file:bits_per_sample` | `DataMask`                   | **REQUIRED.** Points to the data mask file.                  | ✗    | ✓ 2.2       |
+| *contributing-area*, metadata         | `type`, `file:data_type`, `file:byte_order`, *`file:header_size`*, `file:bits_per_sample`, `file:unit` | `LocalContributingArea`      | **REQUIRED.** Points to the normalized scattering area file. `file:unit` is usually `degree`. | ✗    | ✓ 2.3       |
+| *local-incidence-angle*,  metadata    | `type`, `file:data_type`, `file:byte_order`, *`file:header_size`*, `file:bits_per_sample`, `file:unit` | `LocalIncAngle`              | **REQUIRED.** Points to the local incidence angle file. `file:unit` is usually `degree`. | ✗    | ✓ 2.4       |
+| *ellipsoid-incidence-angle*, metadata | `type`, `file:data_type`, `file:byte_order`, *`file:header_size`*, `file:bits_per_sample`, *`card4l:ellipsoidal_height`*, `file:unit` | `EllipsoidIncAngle`          | `file:unit` is usually `degree`.                             | ✗    | ✓ 2.5       |
+| *noise-power*, card4l, metadata       | `type`, `file:data_type`, `file:byte_order`, *`file:header_size`*, `file:bits_per_sample`, `file:unit` | `NoisePower`                 | `file:unit` is usually NESZ or NEBZ.                         | ✗    | ✓ 2.6       |
+| *gamma-sigma*, metadata               | `type`, `file:data_type`, `file:byte_order`, *`file:header_size`*, `file:bits_per_sample` | `GammaToSigmaRatio`          |                                                              | ✗    | ✓ 2.7       |
+| *date-offset*, metadata               | `type`, `file:data_type`, `file:byte_order`, *`file:header_size`*, `file:bits_per_sample` | `AcquisitionDate`            | **REQUIRED for multi -source products only.**                | ✗    | ✓ 2.8       |
+| *backscatter*, data                   | `type`, `created`, `sar:polarizations`, *`file:header_size`*, `file:data_type`, `file:byte_order`, *`file:header_size`*, `file:bits_per_sample` | `BackscatterMeasurementData` | **REQUIRED for *NRB*.** Points to the backscatter measurements for the polarizations specified in `sar:polarizations`. | ✗    | ✓ 3.1 (NRB) |
+| (*covmat* or *prd*), data             | `type`, `created`, `sar:polarizations` (CovMat only), `file:data_type`, `file:byte_order`, *`file:header_size`*, `file:bits_per_sample` | `Measurements`               | **REQUIRED for *POL*.** Points to the Normalized Polarimetric Radar Covariance Matrix (CovMat) *or* the Polarimetric Radar Decomposition (PRD) | ✗    | ✓ 3.1 (POL) |
 
 #### Additional Asset Properties
 
@@ -217,11 +229,11 @@ Some additional properties are always specified per asset:
 | type                      | string                                                 | `DataFormat`                                    | **REQUIRED.** The media type of the file format.             | (✓)     | ✓       |
 | created                   | string                                                 | `ProcessingDate` (Src), `ProcessingTime` (Prod) | **REQUIRED.** The time of the processing is specified via the `created` property of the asset as specified in the [STAC Common metadata](../../item-spec/common-metadata.md#date-and-time). | ✓ 1.6.6 | ✓ 1.7.1 |
 | sar:polarizations         | \[string\]                                             | *n/a*                                           | **REQUIRED**. The polarization(s) of the asset.              | (✓)     | ✓       |
-| file:header_size          | integer                                                | `HeaderSize`                                    | File header size in bytes (**required** if applicable).      | ✗       | ✓ 1.7.7 |
+| file:header_size          | integer                                                | `HeaderSize`                                    | File header size in bytes (**required** if applicable to the file format). | ✗       | ✓ 1.7.7 |
 | file:data_type            | string                                                 | `DataType`                                      | **REQUIRED.** One of the [Data Types](../file/README.md#data-types). | ✗       | ✓       |
 | file:byte_order           | string                                                 | `ByteOrder`                                     | **REQUIRED.** One of `big-endian` or `little-endian`         | ✗       | ✓       |
 | file:bits_per_sample      | integer                                                | `BitsPerSample`                                 | **REQUIRED.** Bits per sample, e.g. 8, 16, 32, ...           | ✗       | ✓       |
-| file:unit                 | string                                                 | `SampleType`                                    | **REQUIRED.** The unit of the values in the asset.           | ✗       | ✓       |
+| file:unit                 | string                                                 | `SampleType`                                    | **REQUIRED.** The unit of the values in the asset, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/). | ✗       | ✓       |
 | file:values               | \[[Mapping Object](../file/README.md#mapping-object)\] | `ValidData` and `InvalidData` in `BitValues`    | **REQUIRED** for the data mask. Specify value(s) for valid and invalid data separately. | ✗       | ✓ 2.2   |
 | file:nodata               | \[any]                                                 | `NoData` in `BitValues`                         | **REQUIRED** for the data mask. Value(s) for no-data.        | ✗       | ✓ 2.2   |
 | card4l:ellipsoidal_height | number                                                 | `EllipsoidalHeight`                             | Indicate which ellipsoidal height was used, in meters.       | ✗       | ✓       |
