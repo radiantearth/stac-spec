@@ -30,10 +30,10 @@ To describe frame start and end times, use the [Date and Time Range fields](../.
 | sar:product_type            | string    | **REQUIRED.** The product type, for example `SSC`, `MGD`, or `SGC` |
 | sar:resolution_range        | number    | The range resolution, which is the maximum ability to distinguish two adjacent targets perpendicular to the flight path, in meters (m).  |
 | sar:resolution_azimuth      | number    | The azimuth resolution, which is the maximum ability to distinguish two adjacent targets parallel to the flight path, in meters (m).  |
-| sar:pixel_spacing_range     | number    | The range pixel spacing, which is the distance between adjacent pixels perpendicular to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`. |
-| sar:pixel_spacing_azimuth   | number    | The azimuth pixel spacing, which is the distance between adjacent pixels parallel to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type `GRD`. |
-| sar:product_pixel_spacing   | number    | The actual product pixel (column) spacing, in meters (m). While `sar:pixel_spacing_range` is given in in radar geometry, this property is in ground geometry. |
-| sar:product_line_spacing    | number    | The actual product line (row) spacing, in meters (m). While `sar:pixel_spacing_azimuth` is given in in radar geometry, this property is in ground geometry. |
+| sar:pixel_spacing_range     | number    | The range pixel spacing, which is the distance between adjacent pixels perpendicular to the flight path, in meters (m). Strongly RECOMMENDED to be specified for 'ground-range detected' products. |
+| sar:pixel_spacing_azimuth   | number    | The azimuth pixel spacing, which is the distance between adjacent pixels parallel to the flight path, in meters (m). Strongly RECOMMENDED to be specified for products of type 'ground-range detected' products. |
+| sar:product_pixel_spacing   | number    | The actual product pixel (column) spacing, in meters (m). While `sar:pixel_spacing_range` is given in in radar geometry, this property is in ground geometry. The two properties are usually mutually exlusive. |
+| sar:product_line_spacing    | number    | The actual product line (row) spacing, in meters (m). While `sar:pixel_spacing_azimuth` is given in in radar geometry, this property is in ground geometry.  The two properties are usually mutually exlusive. |
 | sar:looks_range             | number    | Number of range looks, which is the number of groups of signal samples (looks) perpendicular to the flight path. |
 | sar:looks_azimuth           | number    | Number of azimuth looks, which is the number of groups of signal samples (looks) parallel to the flight path. |
 | sar:looks_equivalent_number | number    | The equivalent number of looks (ENL). |
