@@ -94,7 +94,7 @@ See also the [notes](#notes) regarding the requirements 1.13 and 1.15 for a bett
 
 | Field Name           | Description                                                  | Req. |
 | -------------------- | ------------------------------------------------------------ | ---- |
-| view:off_nadir       | **REQUIRED.** The average off-nadir angle, for per-pixel angles, refer to the asset with the key `off-nadir`. Convert to degree, if required. | \*   |
+| view:off_nadir       | The average off-nadir angle, for per-pixel angles. Convert to degree, if required. | *n/a* |
 | view:incidence_angle | **REQUIRED.** The average incidence angle, for per-pixel angles, refer to the asset with the key `incidence-angle`. Convert to degree, if required. | \*   |
 | view:azimuth         | **REQUIRED.** The average azimuth angle, for per-pixel angles, refer to the asset with the key `azimuth`. Convert to degree, if required. | \*   |
 | view:sun_azimuth     | **REQUIRED.** The average sun azimuth angle, for per-pixel angles, refer to the asset with the key `sun-azimuth`. Convert to degree, if required. | \*   |
@@ -144,7 +144,6 @@ The italic role names are proposed to be the asset's key.
 | *cloud-shadow*, metadata               | `type`, `file:values`                                        | **REQUIRED.** Points to a file that indicates whether a pixel is assessed as being cloud shadow. | 2.6                  |
 | *snow-ice*, metadata                   | `type`, `file:values`                                        | Points to a file that indicates whether a pixel is assessed as being snow/ice or not. | 2.7 (ST) / 2.8 (SR)  |
 | *land-water*, metadata                 | `type`, `file:values`                                        | Points to a file that indicates whether a pixel is assessed as being snow/ice or not land or water. | 2.7 (SR)             |
-| *off-nadir*, metadata                  | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample`, `file:unit` | Points to a file with per-pixel off-nadir angles. `file:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
 | *incidence-angle*, metadata            | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample`, `file:unit` | Points to a file with per-pixel incidence angles. `file:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
 | *azimuth*, metadata                    | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample`, `file:unit` | Points to a file with per-pixel azimuth angles. `file:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
 | *sun-azimuth*, metadata                | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample`, `file:unit` | Points to a file with per-pixel sun azimuth angles. `file:unit` is usually `deg` (degree). | 2.8 (ST) / 2.11 (SR) |
