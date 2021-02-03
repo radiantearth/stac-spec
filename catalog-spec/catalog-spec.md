@@ -71,6 +71,10 @@ The following types are commonly used as `rel` types in the Link Object of a STA
 
 **Note:** A link to at least one `item` or `child` catalog is **REQUIRED**.
 
+There are additional `rel` types in the [Using Relation Types](../best-practices.md#using-relation-types) best practice, but as 
+they are more typically used in Collections, as catalogs tend to just be used to structure STAC organization, so tend to just use
+the ones above.
+
 ## Extensions
 
 The [extensions page](../extensions/) gives an overview about relevant extensions for STAC Catalogs.
