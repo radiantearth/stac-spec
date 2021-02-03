@@ -7,8 +7,8 @@
   "scripts": {
     "check": "npm run check-markdown && npm run check-examples",
     "check-markdown": "remark . -f -r .circleci/rc.yaml",
-    "check-examples": "stac-node-validator . --lint --verbose",
-    "format-examples": "stac-node-validator . --format",
+    "check-examples": "stac-node-validator schemas . --lint --verbose",
+    "format-examples": "stac-node-validator schemas . --format",
     "publish-schemas": "node .circleci/publish-schemas.js"
   },
   "dependencies": {
