@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - 'via' and 'canonical' rel types as options in items.
 - Added clarification about how collection-level asset object properties do not remove the need for item-level asset object properties in the `item-assets` extension ([#880](https://github.com/radiantearth/stac-spec/pull/880))
 - Added [processing extension](extensions/processing/README.md)
-- Added [file info extension](extensions/file/README.md) ([#879](https://github.com/radiantearth/stac-spec/pull/879), [#921](https://github.com/radiantearth/stac-spec/issues/921))
+- Added [file info extension](extensions/file/README.md) ([#879](https://github.com/radiantearth/stac-spec/pull/879), [#921](https://github.com/radiantearth/stac-spec/issues/921))
 - Added additional acquisition parameters in the `sat` extension: sat:platform_international_designator, sat:absolute_orbit, sat:anx_datetime* ([#894](https://github.com/radiantearth/stac-spec/pull/894))
 - Recommendation to enable CORS
 
@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 
-- Checksum extension (field `checksum:multihash`). Use File Info extension (field `file:checksum`) instead.
+- Checksum extension (field `checksum:multihash`). Use File Info extension (field `file:checksum`) instead for assets. There's no replacement for links.
 
 ### Fixed
 

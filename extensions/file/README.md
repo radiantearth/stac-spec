@@ -7,14 +7,14 @@
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 - **Owner**: @m-mohr
 
-Provides a way to specify file related details such as checksum, data type and size for assets and links in [STAC Items](../../item-spec/item-spec.md), [STAC Catalogs](../../catalog-spec/catalog-spec.md) and [STAC Collections](../../collection-spec/collection-spec.md).
+Provides a way to specify file related details such as checksum, data type and size for assets in [STAC Items](../../item-spec/item-spec.md) and [STAC Collections](../../collection-spec/collection-spec.md) implementing the [Collection Assets](../collection-assets/README.md) extension.
 
 - [Example](examples/sentinel1.json)
 - [JSON Schema](json-schema/schema.json)
 
-## *Link Object* and *Asset Object* fields
+## *Asset Object* fields
 
-The following fields can be used for Links (in the [`Link Object`](../../item-spec/item-spec.md#link-object)) and assets (in the [`Asset Object`](../../item-spec/item-spec.md#asset-object)) although most of these fields make more sense for assets and are usually not very useful for links.
+The following fields can be used for assets (in the [`Asset Object`](../../item-spec/item-spec.md#asset-object)).
 
 | Field Name           | Type                                    | Description                                                  |
 | -------------------- | --------------------------------------- | ------------------------------------------------------------ |
@@ -28,8 +28,7 @@ The following fields can be used for Links (in the [`Link Object`](../../item-sp
 | file:unit            | string                                  | The unit of measurement for the values in the file, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) units (singular). |
 | file:values          | \[[Mapping Object](#mapping-object)\] | Lists the value that are in the file and describes their meaning. See the [Mapping Object](#mapping-object) chapter for an example. If given, at least one array element is required. |
 
-This extension can OPTIONALLY be used with the [Collection Assets Extension](../collection-assets/README.md).
-File specific details should not be part of the [Item Assets Definition](../item-assets/README.md) in Collections.
+**Note:** File specific details should not be part of the [Item Assets Definition](../item-assets/README.md) in Collections.
 
 ### Mapping Object
 
@@ -40,7 +39,7 @@ Value maps are used by assets that are used as classification layers and give de
 | values     | \[any]    | **REQUIRED.** The value(s) in the file. At least one array element is required. |
 | summary    | string    | **REQUIRED.** A short description of the value(s).           |
 
- For example for a cloud cover mask, `card4l:values` property could contain the following data:
+ For example for a cloud cover mask, `file:values` property could contain the following data:
 
 ```json
 [
