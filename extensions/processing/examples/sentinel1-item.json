@@ -1,0 +1,161 @@
+{
+  "stac_extensions": [
+    "sat",
+    "sar",
+    "processing"
+  ],
+  "stac_version": "1.0.0-beta.2",
+  "id": "S1A_IW_GRDH_1SDV_20160822T182823_20160822T182848_012717_013FFE_90AF",
+  "properties": {
+    "datetime": "2016-08-22T18:28:23.368922Z",
+    "start_datetime": "2016-08-22T18:28:23.368922Z",
+    "end_datetime": "2016-08-22T18:28:48.368201Z",
+    "created": "2016-08-23T00:38:22Z",
+    "platform": "sentinel-1a",
+    "constellation": "sentinel-1",
+    "mission": "sentinel-1",
+    "instruments": [
+      "c-sar"
+    ],
+    "sat:absolute_orbit": 12717,
+    "sat:orbit_state": "ascending",
+    "sat:relative_orbit": 45,
+    "sat:anx_datetime": "2016-08-22T18:24:52.513706Z",
+    "sar:instrument_mode": "IW",
+    "sar:frequency_band": "C",
+    "sar:polarizations": [
+      "VV",
+      "VH"
+    ],
+    "sar:product_type": "GRD",
+    "processing:lineage": "GRD Post Processing",
+    "processing:level": "L1C",
+    "processing:facility": "Copernicus S1 Core Ground Segment - DPA",
+    "processing:software": {
+      "Sentinel-1 IPF": "002.71"
+    }
+  },
+  "links": [],
+  "assets": {
+    "manifest": {
+      "type": "text/xml",
+      "roles": [
+        "metadata"
+      ],
+      "title": "SAFE Manifest",
+      "href": "data/S1A_IW_GRDH_1SDV_20160822T182823_20160822T182848_012717_013FFE_90AF.SAFE/manifest.safe",
+      "created": "2016-08-23T00:30:33.319454"
+    },
+    "quick-look": {
+      "type": "image/png",
+      "roles": [
+        "overview"
+      ],
+      "href": "data/S1A_IW_GRDH_1SDV_20160822T182823_20160822T182848_012717_013FFE_90AF.SAFE/preview/quick-look.png"
+    },
+    "annotation-vv-iw": {
+      "type": "text/xml",
+      "roles": [
+        "metadata"
+      ],
+      "title": "Annotation VV IW",
+      "href": "data/S1A_IW_GRDH_1SDV_20160822T182823_20160822T182848_012717_013FFE_90AF.SAFE/annotation/s1a-iw-grd-vv-20160822t182823-20160822t182848-012717-013ffe-001.xml",
+      "sar:polarizations": [
+        "VV"
+      ]
+    },
+    "amplitude-vv-iw": {
+      "type": "image/tiff; application=geotiff",
+      "roles": [
+        "data"
+      ],
+      "title": "IW VV Amplitude pixel values",
+      "href": "data/S1A_IW_GRDH_1SDV_20160822T182823_20160822T182848_012717_013FFE_90AF.SAFE/annotation/s1a-iw-grd-vv-20160822t182823-20160822t182848-012717-013ffe-001.tiff",
+      "gsd": 0,
+      "sar:polarizations": [
+        "VV"
+      ]
+    },
+    "annotation-vh-iw": {
+      "type": "text/xml",
+      "roles": [
+        "metadata"
+      ],
+      "title": "Annotation VH IW",
+      "href": "data/S1A_IW_GRDH_1SDV_20160822T182823_20160822T182848_012717_013FFE_90AF.SAFE/annotation/s1a-iw-grd-vh-20160822t182823-20160822t182848-012717-013ffe-002.xml",
+      "sar:polarizations": [
+        "VH"
+      ]
+    },
+    "amplitude-vh-iw": {
+      "type": "image/tiff; application=geotiff",
+      "roles": [
+        "data"
+      ],
+      "title": "IW VH Amplitude pixel values",
+      "href": "data/S1A_IW_GRDH_1SDV_20160822T182823_20160822T182848_012717_013FFE_90AF.SAFE/annotation/s1a-iw-grd-vh-20160822t182823-20160822t182848-012717-013ffe-002.tiff",
+      "gsd": 0,
+      "sar:polarizations": [
+        "VH"
+      ]
+    },
+    "calibration-vv-iw": {
+      "type": "text/xml",
+      "roles": [
+        "data"
+      ],
+      "title": "Calibration VV IW",
+      "href": "data/S1A_IW_GRDH_1SDV_20160822T182823_20160822T182848_012717_013FFE_90AF.SAFE/annotation/calibration/calibration-s1a-iw-grd-vv-20160822t182823-20160822t182848-012717-013ffe-001.xml",
+      "gsd": 0,
+      "sar:polarizations": [
+        "VV"
+      ]
+    },
+    "calibration-vh-iw": {
+      "type": "text/xml",
+      "roles": [
+        "data"
+      ],
+      "title": "Calibration VH IW",
+      "href": "data/S1A_IW_GRDH_1SDV_20160822T182823_20160822T182848_012717_013FFE_90AF.SAFE/annotation/calibration/calibration-s1a-iw-grd-vh-20160822t182823-20160822t182848-012717-013ffe-002.xml",
+      "gsd": 0,
+      "sar:polarizations": [
+        "VH"
+      ]
+    }
+  },
+  "type": "Feature",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -5.730959,
+          14.953436
+        ],
+        [
+          -3.431006,
+          15.388663
+        ],
+        [
+          -3.136116,
+          13.880572
+        ],
+        [
+          -5.419919,
+          13.441674
+        ],
+        [
+          -5.730959,
+          14.953436
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -5.730959,
+    13.441674,
+    -3.136116,
+    15.388663
+  ]
+}

@@ -7,17 +7,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
-
-- Added clarification about how collection-level assset object properties do not remove the need for item-level asset object properties in the `item-assets` extension ([#880](https://github.com/radiantearth/stac-spec/pull/880))
+- 'via' and 'canonical' rel types as options in items.
+- Added clarification about how collection-level asset object properties do not remove the need for item-level asset object properties in the `item-assets` extension ([#880](https://github.com/radiantearth/stac-spec/pull/880))
+- Added [processing extension](extensions/processing/README.md)
+- Added [file info extension](extensions/file/README.md) ([#879](https://github.com/radiantearth/stac-spec/pull/879), [#921](https://github.com/radiantearth/stac-spec/issues/921))
+- Added additional acquisition parameters in the `sat` extension: sat:platform_international_designator, sat:absolute_orbit, sat:anx_datetime* ([#894](https://github.com/radiantearth/stac-spec/pull/894))
 
 ### Changed
 
 - Clarified the role of geometries on items in the label extension
+- Data Cube Extension: Units for STAC dimensions in should now be compliant to UDUNITS-2 units (singular) whenever available.
 
 ### Removed
 
+- Checksum extension (field `checksum:multihash`). Use File Info extension (field `file:checksum`) instead.
+
 ### Fixed
 
+- Label extension: `label:classes` was flagged as required in JSON Schema, but is only required for categorical data.
+- Fixed JSON Schema for `providers` (Collections and Items) to be an object and require a `name`.
+- JSON Schema for `sar:polarizations` in `assets` fixed
 
 ## [v1.0.0-beta.2] - 2020-07-08
 
@@ -27,6 +36,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Clarification on null geometries, making bbox not required if a null geometry is used.
 - Multiple extents (bounding boxes / intervals) are allowed per Collection
+- In the scientific extension, a link with the rel-type 'cite-as' SHOULD be used for the main publication of the dataset (the same as the one described in `sci:doi`), and not for the DOIs referenced in the `sci:publications` property.
 
 ### Removed
 - Validation instructions
@@ -86,7 +96,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - New [View Geometry Extension](extensions/view/README.md)
 - STAC API:
   - Added the [Item and Collection API Version extension](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/version/README.md) to support versioning in the API specification
-  - Run `npm run serve` or `npm run serve-ext` to quickly render development versions of the OpenAPI spec in the browser
+  - Run `npm run serve` or `npm run serve-ext` to quickly render development versions of the OpenAPI spec in the browser
 - [Basics](item-spec/common-metadata.md#basics) added to Common Metadata definitions with new `description` field for
 Item properties
 - New fields to the `link` object to facilitate [pagination support for POST requests](https://github.com/radiantearth/stac-api-spec/tree/master/api-spec.md#paging-extension)

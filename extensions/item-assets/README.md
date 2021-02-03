@@ -5,6 +5,7 @@
 - **Field Name Prefix: -**
 - **Scope: Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Owner**: @matthewhanson
 
 A Collection extension to provide details about assets that are available in member Items.
 

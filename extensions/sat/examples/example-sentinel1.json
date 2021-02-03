@@ -1,0 +1,127 @@
+{
+  "stac_version": "1.0.0-beta.2",
+  "stac_extensions": [
+    "sar",
+    "sat"
+  ],
+  "id": "S1A_IW_SLC__1SDV_20150305T051937_20150305T052005_004892_006196_ABBB",
+  "type": "Feature",
+  "bbox": [
+    9.768469,
+    40.479584,
+    13.182633,
+    42.516747
+  ],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          12.756503,
+          40.479584
+        ],
+        [
+          9.768469,
+          40.877575
+        ],
+        [
+          10.115331,
+          42.516747
+        ],
+        [
+          13.182633,
+          42.119347
+        ],
+        [
+          12.756503,
+          40.479584
+        ]
+      ]
+    ]
+  },
+  "properties": {
+    "title": "Sentinel-1A SLC IW SDV T95 2015-03-05T05:19:37/2015-03-05T05:20:05",
+    "datetime": "2015-03-05T05:19:37.9237880Z",
+    "start_datetime": "2015-03-05T05:19:37.9237880Z",
+    "end_datetime": "2015-03-05T05:20:05.2359650Z",
+    "platform": "sentinel-1a",
+    "constellation": "sentinel-1",
+    "instruments": [
+      "c-sar"
+    ],
+    "sat:platform_serial_identifier": "2014-016A",
+    "sat:orbit_state": "descending",
+    "sat:absolute_orbit": 4892,
+    "sat:relative_orbit": 95,
+    "sat:anx_datetime": "2015-03-05T04:41:46.5788740Z",
+    "sat:across_track_incidence_angle": 33.05,
+    "sar:instrument_mode": "IW",
+    "sar:polarizations": [
+      "VV",
+      "VH"
+    ],
+    "sar:resolution_range": 3.5,
+    "sar:resolution_azimuth": 22,
+    "sar:pixel_spacing_range": 2.3,
+    "sar:pixel_spacing_azimuth": 14.1,
+    "sar:looks_range": 1,
+    "sar:looks_azimuth": 1,
+    "sar:looks_equivalent_number": 1,
+    "sar:frequency_band": "C",
+    "sar:center_frequency": 5.405,
+    "sar:product_type": "SLC"
+  },
+  "assets": {
+    "noises_iw1_vh": {
+      "href": "./annotation/calibration/noise-s1a-iw1-slc-vh-20150305t051939-20150305t052005-004892-006196-001.xml",
+      "title": "Calibration Schema",
+      "type": "text/xml",
+      "sar:polarizations": [
+        "VH"
+      ]
+    },
+    "calibrations_iw1_vh": {
+      "href": "./annotation/calibration/calibration-s1a-iw1-slc-vh-20150305t051939-20150305t052005-004892-006196-001.xml",
+      "title": "Noise Schema",
+      "type": "text/xml",
+      "sar:polarizations": [
+        "VH"
+      ]
+    },
+    "products_iw1_vh": {
+      "href": "./annotation/s1a-iw1-slc-vh-20150305t051939-20150305t052005-004892-006196-001.xml",
+      "title": "Product Schema",
+      "type": "text/xml",
+      "sar:polarizations": [
+        "VH"
+      ]
+    },
+    "measurement_iw1_vh": {
+      "href": "./measurement/s1a-iw1-slc-vh-20150305t051939-20150305t052005-004892-006196-001.tiff",
+      "title": "Measurements",
+      "type": "image/tiff",
+      "sar:polarizations": [
+        "VH"
+      ]
+    },
+    "thumbnail": {
+      "href": "./preview/quick-look.png",
+      "title": "Thumbnail",
+      "type": "image/png"
+    }
+  },
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://example.com/collections/sentinel-1/items/S1A_EW_GRDM_1SSH_20181103T235855_20181103T235955_024430_02AD5D_5616"
+    },
+    {
+      "rel": "parent",
+      "href": "https://example.com/collections/sentinel-1"
+    },
+    {
+      "rel": "root",
+      "href": "https://example.com/collections"
+    }
+  ]
+}

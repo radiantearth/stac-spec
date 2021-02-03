@@ -1,6 +1,8 @@
 {
   "stac_version": "1.0.0-beta.2",
-  "stac_extensions": ["version"],
+  "stac_extensions": [
+    "version"
+  ],
   "id": "merraclim",
   "title": "MERRAclim",
   "description": "A high-resolution global dataset of remotely sensed bioclimatic variables for ecological modelling.",
@@ -9,10 +11,22 @@
   "deprecated": true,
   "extent": {
     "spatial": {
-      "bbox": [[-180,-90,180,90]]
+      "bbox": [
+        [
+          -180,
+          -90,
+          180,
+          90
+        ]
+      ]
     },
     "temporal": {
-      "interval": [["1980-01-01T00:00:00Z","2009-12-31T23:59:59Z"]]
+      "interval": [
+        [
+          "1980-01-01T00:00:00Z",
+          "2009-12-31T23:59:59Z"
+        ]
+      ]
     }
   },
   "links": [

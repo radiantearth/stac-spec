@@ -8,10 +8,10 @@ jobs:
       - checkout
       - run:
           name: install
-          command: sudo npm install -g stac-node-validator
+          command: npm install
       - run:
           name: validate
-          command: stac-node-validator . --schemas .
+          command: npm run check-examples
   test_docs:
     working_directory: ~/stac
     docker:

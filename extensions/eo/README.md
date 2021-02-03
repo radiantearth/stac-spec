@@ -5,9 +5,15 @@
 - **Field Name Prefix: eo**
 - **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Owner**: @matthewhanson
 
-This document explains the fields of the STAC Electro-Optical (EO) Extension to a STAC Item. EO
-data is considered to be data that represents a snapshot of the earth for a single date and time. It
+This document explains the fields of the STAC Electro-Optical (EO) Extension to a STAC Item. 
+
+These fields defined by this extension follow the convention for 
+[additional fields for a STAC Item](../../item-spec/item-spec.md#additional-fields-for-assets) and are 
+allowed in either Item Properties or Item Assets.  
+
+EO data is considered to be data that represents a snapshot of the Earth for a single date and time. It
 could consist of multiple spectral bands in any part of the electromagnetic spectrum. Examples of EO
 data include sensors with visible, short-wave and mid-wave IR bands (e.g., the OLI instrument on
 Landsat-8), long-wave IR bands (e.g. TIRS aboard Landsat-8).
@@ -22,20 +28,22 @@ For defining view geometry of data, it is strongly recommended to use the [`view
   - [Landsat 8 with bands in Item Asset Definition and Collection Summaries](../item-assets/examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)
 
-## Item fields
+## Item Properties or Item Asset fields
 
 | Field Name     | Type                           | Description |
 | -------------- | ------------------------------ | ----------- |
-| eo:bands       | \[[Band Object](#band-object)] | This is a list of the available bands where each item is a [Band Object](#band-object). |
-| eo:cloud_cover | number                         | Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available the field should not be provided. |
+| eo:bands       | \[[Band Object](#band-object)] | An array of available bands where each object is a [Band Object](#band-object). |
+| eo:cloud_cover | number                         | Estimate of cloud cover |
 
-**eo:bands**: In previous versions `eo:bands` was allowed to be used on the asset-level referencing via array indices to the actual bands in Item `properties`. Starting with STAC 1.0.0-beta.1 you are now allowed to place the full `eo:bands` array with all Band Object information in Item `assets` as described in general in the [STAC Item](../../item-spec/item-spec.md#additional-fields-for-assets).
+**eo:bands**: In STAC versions 0.9.x and prior, `eo:bands` could only be used by an Asset putting the the Band Object definitions in an Item Properties and referencing these via array index. **Starting with STAC 1.0.0-beta.1, an Asset may only have an `eo:bands` array containing Band Object entities.** Since `eo:bands` definitions in Item Properties can no longer be referenced by array index from an Asset, their primary use now is only to advertise a set of bands that may be available in some of the Assets in this Item, which may be aggregated into Collection `summaries` object.
+
+**eo:cloud_cover**: Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available, the field should not be provided. Generally, this value should be used in Item Properties rather than Item Assets, as an Item from an electro-optical source is a single snapshot of the Earth, so the cloud cover value would apply to all assets. 
 
 ### Band Object
 
 | Field Name          | Type   | Description |
 | ------------------- | ------ | ----------- |
-| name                | string | The name of the band (e.g., "B01", "B02", "B1", "B5", "QA"). |
+| name                | string | The name of the band (e.g., "B01", "B8", "band2", "red"). |
 | common_name         | string | The name commonly used to refer to the band to make it easier to search for bands across instruments. See the [list of accepted common names](#common-band-names). |
 | description         | string | Description to fully explain the band. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | center_wavelength   | number | The center wavelength of the band, in micrometers (μm).      |
@@ -52,24 +60,24 @@ The band's common_name is the name that is commonly used to refer to that band's
 properties. The table below shows the common name based on the average band range for the band
 numbers of several popular instruments.
 
-| Common Name | Band Range (μm) | Landsat 5/7 | Landsat 8 | Sentinel 2 | MODIS |
-| ----------- | --------------- | ----------- | --------- | ---------- | ----- |
-| coastal     | 0.40 - 0.45     |             | 1         | 1          |       |
-| blue        | 0.45 - 0.50     | 1           | 2         | 2          | 3     |
-| green       | 0.50 - 0.60     | 2           | 3         | 3          | 4     |
-| red         | 0.60 - 0.70     | 3           | 4         | 4          | 1     |
-| yellow      | 0.58 - 0.62     |             |           |            |       |
-| pan         | 0.50 - 0.70     | 8 (*L7 only*) | 8       |            |       |
-| rededge     | 0.70 - 0.75     |             |           |            |       |
-| nir         | 0.75 - 1.00     | 4           |           | 8          | 2     |
-| nir08       | 0.75 - 0.90     |             | 5         | 8a         |       |
-| nir09       | 0.85 - 1.05     |             |           | 9          |       |
-| cirrus      | 1.35 - 1.40     |             | 9         | 10         | 26    |
-| swir16      | 1.55 - 1.75     | 5           | 6         | 11         | 6     |
-| swir22      | 2.10 - 2.30     | 7           | 7         | 12         | 7     |
-| lwir        | 10.5 - 12.5     | 6           |           |            |       |
-| lwir11      | 10.5 - 11.5     |             | 10        |            | 31    |
-| lwir12      | 11.5 - 12.5     |             | 11        |            | 32    |
+| Common Name | Band Range (μm) | Landsat 5/7 | Landsat 8 | Sentinel 2 | MODIS | NAIP |
+| ----------- | --------------- | ----------- | --------- | ---------- | ----- | ---- |
+| coastal     | 0.40 - 0.45     |             | 1         | 1          |       |      |
+| blue        | 0.45 - 0.50     | 1           | 2         | 2          | 3     | 3    |
+| green       | 0.50 - 0.60     | 2           | 3         | 3          | 4     | 2    |
+| red         | 0.60 - 0.70     | 3           | 4         | 4          | 1     | 1    |
+| yellow      | 0.58 - 0.62     |             |           |            |       |      |
+| pan         | 0.50 - 0.70     | 8 (*L7 only*) | 8       |            |       |      |
+| rededge     | 0.70 - 0.79     |             |           | 5, 6, 7    |       |      |
+| nir         | 0.75 - 1.00     | 4           |           | 8          | 2     | 4    |
+| nir08       | 0.75 - 0.90     |             | 5         | 8a         |       |      |
+| nir09       | 0.85 - 1.05     |             |           | 9          |       |      |
+| cirrus      | 1.35 - 1.40     |             | 9         | 10         | 26    |      |
+| swir16      | 1.55 - 1.75     | 5           | 6         | 11         | 6     |      |
+| swir22      | 2.10 - 2.30     | 7           | 7         | 12         | 7     |      |
+| lwir        | 10.5 - 12.5     | 6           |           |            |       |      |
+| lwir11      | 10.5 - 11.5     |             | 10        |            | 31    |      |
+| lwir12      | 11.5 - 12.5     |             | 11        |            | 32    |      |
 
 The difference between the `nir`, `nir08`, and `nir09` bands are that the `nir` band is a wider band that covers most of the spectral range of 0.75μm to 1.0μm. `nir08` and `nir09` are narrow bands centered 0.85μm and 0.95μm respectively. The same goes for the difference between `lwir`, `lwir11` and `lwir12`.
 
