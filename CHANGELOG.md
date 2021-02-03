@@ -23,7 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 
-- Checksum extension (field `checksum:multihash`). Use File Info extension (field `file:checksum`) instead.
+- Checksum extension (field `checksum:multihash`). Use File Info extension (field `file:checksum`) instead for assets. There's no replacement for links.
 
 ### Fixed
 
