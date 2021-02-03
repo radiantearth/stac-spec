@@ -1,12 +1,12 @@
 # Extensions
 
-This folder contains content extensions to the SpatioTemporal Asset Catalog specification. The core STAC specification 
+This folder contains extensions to the SpatioTemporal Asset Catalog specification. The core STAC specification 
 defines only a minimal core, but is designed for extension. It is expected that most real-world
 implementations will use several extensions to fully describe their data and API.  
 
 The extensions described here are Content Extensions, which typically add additional fields and semantics to STAC objects. API Extensions that add new endpoints or behavior to the API are published in the [STAC API repository](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/).
 
-Content Extensions can be changes in functionality or additional fields. This can include new JSON files that are
+Extensions can be changes in functionality or additional fields. This can include new JSON files that are
 linked to from the core `links`, as well as new OpenAPI fragments. Extensions should include
 narrative explaining the fields, a comprehensive example, and a JSON-Schema to validate compliance.
 Any data provider can create a proprietary extension, and when providers work together to share fields between
@@ -51,7 +51,7 @@ the less breaking changes of the next level.
 A 'mature' classification level will likely be added once there are extensions that have been
 stable for over a year and are used in twenty or more implementations.
 
-## List of Content Extensions
+## List of Extensions
 
 These extensions add new fields or semantics to STAC objects.
 
@@ -59,7 +59,7 @@ These extensions add new fields or semantics to STAC objects.
 | ------------------------------------------------ | ----------------- | ------------------- | ------------------------- | ---------- | ----------- |
 | [Collection Assets](collection-assets/README.md) | collection-assets | -                   | Collection                | *Proposal* | Provides a way to specify assets available on the collection-level. |
 | [Data Cube](datacube/README.md)                  | datacube          | cube                | Item, Collection          | *Proposal* | Data Cube related metadata, especially to describe their dimensions. |
-| [Electro-Optical](eo/README.md)                  | eo                | eo                  | Item                      | *Proposal* | Covers electro-optical data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, gsd and more. |
+| [Electro-Optical](eo/README.md)                  | eo                | eo                  | Item                      | *Proposal* | Covers electro-optical data that represents a snapshot of the Earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, gsd and more. |
 | [File Info](file/README.md)                      | file              | file                | Item, Catalog, Collection | *Proposal* | Provides a way to specify file details such as size, data type and checksum for assets and links in Items, Catalogs and Collections. |
 | [Item Asset Definition](item-assets/README.md)   | item-assets       | -                   | Collection                | *Proposal* | Provides a way to specify details about what assets may be found in Items belonging to a collection. |
 | [Label](label/README.md)                         | label             | label               | Item                      | *Proposal* | Items that relate labeled AOIs with source imagery |
