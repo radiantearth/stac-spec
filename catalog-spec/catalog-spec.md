@@ -34,9 +34,14 @@ also a valid STAC Catalog.
 | id              | string        | **REQUIRED.** Identifier for the catalog.                    |
 | title           | string        | A short descriptive one-line title for the catalog.          |
 | description     | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| summaries       | Map<string, \[*]\|[Stats Object](../collection-spec/collection-spec.md#stats-object)> | A map of property summaries, either a set of values or statistics such as a range. More info in the [Collection spec](../collection-spec/collection-spec.md#summaries). |
 | links           | [[Link Object](#link-object)] | **REQUIRED.** A list of references to other documents.       |
 
-**stac_extensions**: A list of extensions the Catalog implements. This does NOT declare the extensions of children or Items. The list contains URLs to the JSON Schema files it can be validated against. For official [content extensions](../extensions/README.md#list-of-content-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `single-file-stac` for the Point Cloud extension. If the versions of the extension and the catalog diverge, you can specify the URL of the JSON schema file.
+### Additional Field Information
+
+#### stac_extensions
+
+A list of extensions the Catalog implements. This does NOT declare the extensions of children or Items. The list contains URLs to the JSON Schema files it can be validated against. For official [content extensions](../extensions/README.md#list-of-content-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `single-file-stac` for the Point Cloud extension. If the versions of the extension and the catalog diverge, you can specify the URL of the JSON schema file.
 This list must only contain extensions that extend the Catalog itself, see the the 'Scope' column in the list of extensions.
 
 ### Link Object
@@ -51,11 +56,8 @@ with links.
 | type       | string | [Media type](#media-types) of the referenced entity.                               |
 | title      | string | A human readable title to be used in rendered displays of the link.                                         |
 
-A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
-
-Please see the chapter 'relative vs absolute links' in the [Item spec](../item-spec/item-spec.md#relative-vs-absolute-links)
-for a discussion on that topic, as well as the [use of links](../best-practices.md#use-of-links) section of the 
-catalog best practices document.
+For a full discussion of the situations where relative and absolute links are recommended see the
+['Use of links'](../best-practices.md#use-of-links) section of the STAC best practices.
 
 #### Relation types
 
@@ -70,6 +72,10 @@ The following types are commonly used as `rel` types in the Link Object of a STA
 | item    | URL to a STAC [Item](../item-spec/item-spec.md). |
 
 **Note:** A link to at least one `item` or `child` catalog is **REQUIRED**.
+
+There are additional `rel` types in the [Using Relation Types](../best-practices.md#using-relation-types) best practice, but as 
+they are more typically used in Collections, as catalogs tend to just be used to structure STAC organization, so tend to just use
+the ones above.
 
 ## Media Types
 

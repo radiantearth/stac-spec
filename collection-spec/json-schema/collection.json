@@ -30,7 +30,7 @@
               {
                 "title": "Reference to a JSON Schema",
                 "type": "string",
-                "format": "uri"
+                "format": "iri"
               },
               {
                 "title": "Reference to a core extension",
@@ -83,7 +83,7 @@
               "url": {
                 "title": "Organization homepage",
                 "type": "string",
-                "format": "url"
+                "format": "iri"
               }
             }
           }

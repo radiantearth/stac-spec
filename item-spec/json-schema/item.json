@@ -104,7 +104,7 @@
                   {
                     "title": "Reference to a JSON Schema",
                     "type": "string",
-                    "format": "uri"
+                    "format": "iri"
                   },
                   {
                     "title": "Reference to a core extension",
@@ -150,7 +150,8 @@
       "properties": {
         "href": {
           "title": "Link reference",
-          "type": "string"
+          "type": "string",
+          "format": "iri-reference"
         },
         "rel": {
           "title": "Link relation type",
@@ -188,7 +189,8 @@
       "properties": {
         "href": {
           "title": "Asset reference",
-          "type": "string"
+          "type": "string",
+          "format": "iri-reference"
         },
         "title": {
           "title": "Asset title",

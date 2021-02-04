@@ -65,7 +65,7 @@
             "view:sun_elevation": {
               "title": "Sun Elevation",
               "type": "number",
-              "minimum": 0,
+              "minimum": -90,
               "maximum": 90
             }
           }
