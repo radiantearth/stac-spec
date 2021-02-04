@@ -254,7 +254,7 @@ STAC version. Otherwise some behaviour of functionality may be unpredictable (e.
 
 ## Use of links
 
-The main STAC specifications allow both relative and absolute links, and says that `self` links are not required, but are 
+The STAC specifications allow both relative and absolute links, and says that `self` links are not required, but are 
 strongly recommended. This is what the spec must say to enable the various use cases, but there is more subtlety for when it 
 is essential to use different link types. The best practice is to use one of the below catalog types, applying the link 
 recommendations consistently, instead of just haphazardly applying relative links in some places and absolute ones in other places.
