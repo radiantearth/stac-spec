@@ -167,7 +167,7 @@ or streamed. It is allowed to add additional fields.
 | href        | string    | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
 | title       | string    | The displayed title for clients and users. |
 | description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| type        | string    | [Media type](../catalog-spec/catalog-spec.md#media-types) of the asset. See the [common media types](../best-practices.md#common-media-types-in-stac) in the best practice doc for commonly used asset types. |
+| type        | string    | [Media type](#asset-media-type) of the asset. See the [common media types](../best-practices.md#common-media-types-in-stac) in the best practice doc for commonly used asset types. |
 | roles       | \[string] | The [semantic roles](#asset-role-types) of the asset, similar to the use of `rel` in links. |
 
 Beyond to the fields above, any of the [additional fields](#additional-fields) *may* be added to the assets. But this

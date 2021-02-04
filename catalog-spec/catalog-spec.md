@@ -87,21 +87,19 @@ now deprecated term "MIME types".
 
 ### STAC Media Types
 
-The following table lists the Media Types for STAC, as well as the way [GeoTIFF](https://en.wikipedia.org/wiki/GeoTIFF)'s 
-(and [COG](https://www.cogeo.org)'s) are referenced in STAC.
+The following table lists the Media Types to use for STAC structures.
 
-| Media Type                                              | Description                                                  |
-| ------------------------------------------------------- | ------------------------------------------------------------ |
-| `application/geo+json; profile=stac-item`	              | A STAC [Item](../item-spec/README.md)                      |
-| `application/json; profile=stac-catalog`                | A STAC [Catalog](#stac-catalog-specification)                  |
-| `application/json; profile=stac-collection`             | A STAC [Collection](../collection-spec/README.md)            |
+| Media Type                     | Description                                                  |
+| ------------------------------ | ------------------------------------------------------------ |
+| `application/geo+json`	     | A STAC [Item](../item-spec/README.md)                        |
+| `application/json`             | A STAC [Catalog](#stac-catalog-specification)                |
+| `application/json`             | A STAC [Collection](../collection-spec/README.md)            |
 
 ### Media Type for STAC Catalogs
 
 A STAC Catalog is a JSON file ([RFC 8259](https://tools.ietf.org/html/rfc8259)), and thus should use the 
 `[application/json](https://tools.ietf.org/html/rfc8259#section-11)` as the [Media Type](https://en.wikipedia.org/wiki/Media_type) 
-(previously known as the MIME Type). STAC Catalogs are recommended to add the parameter `profile` with the value `stac-catalog` to
-give a further hint to clients that they are dealing with a STAC Catalog. The full media type is thus: `application/json; profile=stac-catalog`.
+(previously known as the MIME Type). 
 
 ## Extensions
 

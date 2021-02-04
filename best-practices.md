@@ -189,7 +189,7 @@ following table lists some of the most common ones you may encounter or use.
 
 *Deprecation notice: GeoTiff previously used the media type `image/vnd.stac.geotiff` and
 Cloud Optimized GeoTiffs used `image/vnd.stac.geotiff; profile=cloud-optimized`.
-Both can still appear in old catalogues, but are deprecated and should be replaced. This may also shift in the future as
+Both can still appear in old catalogues, but are deprecated and should be replaced. This will, unfortunately, likely shift in the future as
 [OGC sorts out the media types](https://github.com/opengeospatial/geotiff/issues/34).*
 
 ### Formats with no registered media type
@@ -200,9 +200,7 @@ type](https://restcookbook.com/Resources/using-custom-content-types/), ideally w
 register the media type with IANA, so that other STAC clients can find it. But if you are only using it internally it is 
 [acceptable to not register](https://stackoverflow.com/questions/29121241/custom-content-type-is-registering-with-iana-mandatory) 
 it. It is relatively easy to [register](https://www.iana.org/form/media-types) a 
-`[vnd](https://tools.ietf.org/html/rfc6838#section-3.2)` media type. You can also use the `profile` parameter like STAC and
-COG do if you wish to further specify an existing type. Please do not create completely custom types that don't use 
-`vnd` properly (it goes after the media type 'name' - `text`, `application`, `images`, etc.)
+`[vnd](https://tools.ietf.org/html/rfc6838#section-3.2)` media type. 
 
 ## Static and Dynamic Catalogs
 

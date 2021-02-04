@@ -158,8 +158,7 @@ Implementors are free to add other derived statistical values to the object, for
 
 A STAC Collection is a JSON file ([RFC 8259](https://tools.ietf.org/html/rfc8259)), and thus should use the 
 `[application/json](https://tools.ietf.org/html/rfc8259#section-11)` as the [Media Type](https://en.wikipedia.org/wiki/Media_type) 
-(previously known as the MIME Type). STAC Collections are recommended to add the parameter `profile` with the value `stac-collections` to
-give a further hint to clients that they are dealing with a STAC Collections. The full media type is thus: `application/json; profile=stac-collection`.
+(previously known as the MIME Type). 
 
 ## Standalone Collections
 
