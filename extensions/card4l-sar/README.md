@@ -112,15 +112,16 @@ The following fields are all specified in CARD4L requirement 1.7.4. It is **requ
 
 #### Common Metadata
 
-| Field Name     | XML Tag                                         | Description                                                  | Src     | Prod  |
-| -------------- | ----------------------------------------------- | ------------------------------------------------------------ | ------- | ----- |
-| license        | `Product`, attribute `Copyright`                | Recommended to be specified in a STAC Collection.            | ✓ 1.3   | ✓ 1.3 |
-| datetime       | *n/a*                                           | **REQUIRED.** Recommended to set to the central timestamp between `start_datetime` and `end_datetime`. | ✓       | ✓     |
-| start_datetime | `FirstAcquistionDate` (Prod), `StartTime` (Src) | **REQUIRED.** Start time of the first acquisition.           | ✓ 1.6.3 | ✓ 1.5 |
-| end_datetime   | `LastAcquistitionDate` (Prod), `EndTime` (Src)  | **REQUIRED.** End time of the last acquisition.              | ✓ 1.6.3 | ✓ 1.5 |
-| instruments    | `Instrument`                                    | **REQUIRED.** Check STAC for potential values, example: `c-sar` for Sentinel-1 | ✓ 1.6.2 | (✓)   |
-| constellation  | *n/a*                                           | Constellation name in lower-case. Only if part of a constellation, e.g. `sentinel-1` for Sentinel 1A and 1B. Can often be derived from `platform`. | ✓ 1.6.2 | (✓)   |
-| platform       | `Satellite`                                     | **REQUIRED.** Platform name in lower-case. Use a specific name such as `sentinel-1a` if part of constellation. MUST NOT duplicate `constellation`. | ✓ 1.6.2 | (✓)   |
+| Field Name     | XML Tag                                         | Description                                                  | Src     | Prod    |
+| -------------- | ----------------------------------------------- | ------------------------------------------------------------ | ------- | ------- |
+| license        | `Product`, attribute `Copyright`                | Recommended to be specified in a STAC Collection.            | ✓ 1.3   | ✓ 1.3   |
+| datetime       | *n/a*                                           | **REQUIRED.** Recommended to set to the central timestamp between `start_datetime` and `end_datetime`. | ✓       | ✓       |
+| start_datetime | `FirstAcquistionDate` (Prod), `StartTime` (Src) | **REQUIRED.** Start time of the first acquisition.           | ✓ 1.6.3 | ✓ 1.5   |
+| end_datetime   | `LastAcquistitionDate` (Prod), `EndTime` (Src)  | **REQUIRED.** End time of the last acquisition.              | ✓ 1.6.3 | ✓ 1.5   |
+| instruments    | `Instrument`                                    | **REQUIRED.** Check STAC for potential values, example: `c-sar` for Sentinel-1 | ✓ 1.6.2 | (✓)     |
+| constellation  | *n/a*                                           | Constellation name in lower-case. Only if part of a constellation, e.g. `sentinel-1` for Sentinel 1A and 1B. Can often be derived from `platform`. | ✓ 1.6.2 | (✓)     |
+| platform       | `Satellite`                                     | **REQUIRED.** Platform name in lower-case. Use a specific name such as `sentinel-1a` if part of constellation. MUST NOT duplicate `constellation`. | ✓ 1.6.2 | (✓)     |
+| gsd            | `ProductColumnSpacing` / `ProductRowSpacing`    | **REQUIRED.** Convert to meters, if required. Currently, there's no way to express separate ground sample distances for x and y. | ✗       | ✓ 1.7.3 |
 
 #### Processing
 
@@ -155,8 +156,6 @@ The following fields are all specified in CARD4L requirement 1.7.4. It is **requ
 | sar:looks_range           | `RangeNumberOfLooks`                                         | **REQUIRED.**                                                | ✓ 1.6.6 | ✗       |
 | sar:pixel_spacing_azimuth | `AzimuthPixelSpacing`                                        | **REQUIRED.** Convert to meters, if required.                | ✓ 1.6.7 | ✗       |
 | sar:pixel_spacing_range   | `RangePixelSpacing`                                          | **REQUIRED.** Convert to meters, if required.                | ✓ 1.6.7 | ✗       |
-| sar:product_pixel_spacing | `ProductColumnSpacing`                                       | **REQUIRED.** Convert to meters, if required.                | ✗       | ✓ 1.7.3 |
-| sar:product_line_spacing  | `ProductRowSpacing`                                          | **REQUIRED.** Convert to meters, if required.                | ✗       | ✓ 1.7.3 |
 | sar:resolution_azimuth    | `AzimuthResolution`                                          | **REQUIRED.** Convert to meters, if required.                | ✓ 1.6.7 | ✗       |
 | sar:resolution_range      | `RangeResolution`                                            | **REQUIRED.** Convert to meters, if required.                | ✓ 1.6.7 | ✗       |
 | sar:measurement_type      | `BackscatterMeasurement` (NRB)                               | **REQUIRED.** Must be set to `gamma0`.                       | ✗       | ✓ 3.1   |
