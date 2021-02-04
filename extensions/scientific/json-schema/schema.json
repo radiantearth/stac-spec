@@ -68,7 +68,7 @@
         "sci:doi": {
           "type": "string",
           "title": "Data DOI",
-          "pattern": "^(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![%\"#? ])\\S)+)$"
+          "pattern": "^10\\.[0-9a-zA-Z]{4,}/[^\\s]+$"
         }, 
         "sci:citation": {
           "type": "string", 
@@ -83,7 +83,7 @@
               "doi": {
                 "type": "string",
                 "title": "Publication DOI",
-                "pattern": "^(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![%\"#? ])\\S)+)$"
+                "pattern": "^10\\.[0-9a-zA-Z]{4,}/[^\\s]+$"
               }, 
               "citation": { 
                 "type": "string", 
