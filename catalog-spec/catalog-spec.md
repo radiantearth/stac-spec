@@ -56,8 +56,6 @@ with links.
 | type       | string | [Media type](../item-spec/item-spec.md#media-types) of the referenced entity.                               |
 | title      | string | A human readable title to be used in rendered displays of the link.                                         |
 
-A more complete list of possible 'rel' types can be seen at the [IANA page of Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
-
 For a full discussion of the situations where relative and absolute links are recommended see the
 ['Use of links'](../best-practices.md#use-of-links) section of the STAC best practices.
 

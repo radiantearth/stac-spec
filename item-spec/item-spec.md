@@ -119,11 +119,10 @@ For a full discussion of the situations where relative and absolute links are re
 
 #### Relation types
 
-STAC Items use a variety of `rel` types in the link object, to describe the exact nature of the link between this item
-and the entity it is linking to. It is recommended to use the official [IANA Link Relation 
-Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) where possible. The following table explains places
-where STAC use custom `rel` types are used with items. This happens where there is not a clear official option, or where 
-STAC uses an official type but adds additional meaning for the STAC context.
+STAC Items use a variety of `rel` types in the link object, to describe the exact nature of the link between this item and the entity it is linking to.
+It is recommended to use the official [IANA Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) where possible.
+The following table explains places where STAC use custom `rel` types are used with items.
+This happens where there is not a clear official option, or where STAC uses an official type but adds additional meaning for the STAC context.
 
 | Type         | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
