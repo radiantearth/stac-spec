@@ -135,14 +135,9 @@
                 "sigma0"
               ]
             },
-            "sar:measurment_convention": {
+            "sar:measurement_convention": {
               "title": "Product measurement convention",
-              "type": "string",
-              "enum": [
-                "amplitude",
-                "power",
-                "angle"
-              ]
+              "type": "string"
             }
           }
         },

@@ -39,7 +39,7 @@ To describe frame start and end times, use the [Date and Time Range fields](../.
 | sar:looks_equivalent_number | number    | The equivalent number of looks (ENL). |
 | sar:observation_direction   | string    | Antenna pointing direction relative to the flight trajectory of the satellite, either `left` or `right`. |
 | sar:measurement_type        | string    | The product's type of measurement. One of `beta0`, `gamma0` or `sigma0`. |
-| sar:measurment_convention   | string    | The product's measurement convention. One of `amplitude` (linear amplitude), `power` (linear power) or `angle`. |
+| sar:measurement_convention  | string    | The product's measurement convention. For example, `amplitude` (linear amplitude), `power` (linear power) or `angle`. |
 
 **sar:polarizations** specifies a single polarization or a polarization combination. For single polarized radars one of `HH`, `VV`, `HV` or `VH` must be set. Fully polarimetric radars add all four polarizations to the array. Dual polarized radars and alternating polarization add the corresponding polarizations to the array, for instance for `HH+HV` add both `HH` and `HV`.
 
