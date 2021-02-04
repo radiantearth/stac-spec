@@ -118,15 +118,15 @@ This object describes a relationship with another entity. Data providers are adv
 | type       | string | [Media type](../item-spec/item-spec.md#media-types) of the referenced entity. |
 | title      | string | A human readable title to be used in rendered displays of the link. |
 
-Please see the chapter 'relative vs absolute links' in the [Item spec](../item-spec/item-spec.md#relative-vs-absolute-links) for a discussion on that topic.
+For a full discussion of the situations where relative and absolute links are recommended see the
+['Use of links'](../best-practices.md#use-of-links) section of the STAC best practices.
 
 #### Relation types
 
-STAC Collections use a variety of `rel` types in the link object, to describe the exact nature of the link between this collection
-and the entity it is linking to. It is recommended to use the official [IANA Link Relation 
-Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) where possible. The following table explains places
-where custom STAC `rel` types are used for collections. This is done where there is not a clear official option, or where 
-STAC uses an official type but adds additional meaning for the STAC context.
+STAC Collections use a variety of `rel` types in the link object, to describe the exact nature of the link between this collection and the entity it is linking to.
+It is recommended to use the official [IANA Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) where possible.
+The following table explains places where custom STAC `rel` types are used for collections.
+This is done where there is not a clear official option, or where STAC uses an official type but adds additional meaning for the STAC context.
 
 | Type    | Description                                                  |
 | ------- | ------------------------------------------------------------ |
@@ -138,8 +138,7 @@ STAC uses an official type but adds additional meaning for the STAC context.
 | license | The license URL(s) for the collection SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC catalog with the license text in a separate file and link to this file. |
 | derived_from | URL to a STAC Collection that was used as input data in the creation of this collection. See the note in [STAC Item](../item-spec/item-spec.md#derived_from) for more info. |
 
-A more complete list of possible `rel` types and their meaning in STAC can be found in the [Using Relation 
-Types](../best-practices.md#using-relation-types) best practice. 
+A more complete list of possible `rel` types and their meaning in STAC can be found in the [Using Relation Types](../best-practices.md#using-relation-types) best practice. 
 
 **Note:** The [STAC Catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is *not* a requirement for collections, but *recommended*. In contrast to catalogs, it is **REQUIRED** that items linked from a Collection MUST refer back to its Collection with the [`collection` relation type](../item-spec/item-spec.md#relation-types).
 
