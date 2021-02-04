@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added additional acquisition parameters in the `sat` extension: sat:platform_international_designator, sat:absolute_orbit, sat:anx_datetime* ([#894](https://github.com/radiantearth/stac-spec/pull/894))
 - 'summaries' are now available in the Catalog spec, so both catalogs and collections can make use of it. ([#903](https://github.com/radiantearth/stac-spec/issues/903))
 - Recommendation to enable CORS
+- A 'visual' option as an asset role.
 
 ### Changed
 
