@@ -29,14 +29,23 @@ STAC Collections are meant to be compatible with *OGC API - Features* Collection
 | summaries       | Map<string, \[*]\|[Stats Object](#stats-object)> | A map of property summaries, either a set of values or statistics such as a range. |
 | links           | \[[Link Object](#link-object)]                   | **REQUIRED.** A list of references to other documents.       |
 
-**stac_extensions**: A list of extensions the Collection implements. This does NOT declare the extensions of child Catalogs or Items. The list contains URLs to the JSON Schema files it can be validated against. For official [content extensions](../extensions/README.md#list-of-content-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `version` for the Versioning Indicators extension. If the versions of the extension and the collection diverge, you can specify the URL of the JSON schema file.
+### Additional Field Information
+
+#### stac_extensions
+
+A list of extensions the Collection implements. This does NOT declare the extensions of child Catalogs or Items. The list contains URLs to the JSON Schema files it can be validated against. For official [content extensions](../extensions/README.md#list-of-content-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `version` for the Versioning Indicators extension. If the versions of the extension and the collection diverge, you can specify the URL of the JSON schema file.
 This list must only contain extensions that extend the Collection itself, see the the 'Scope' column in the list of extensions. If an extension as the  extension has influence on multiple parts of the whole catalog structure, it must be listed in all affected parts (e.g. Collection and Item for the `datacube` extension). If a structure such as the summaries extension provide fields in their JSON structure, these extensions must not be listed here as they don't extend the Collection itself. For example, if a Collection includes the field `sat:platform` in the summaries, the Collection still does not list the `sat` extension in the `stac_extensions` field.
 
-**license**: Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/). Alternatively, use `proprietary` (see below) if the license is not on the SPDX license list or `various` if multiple licenses apply. In all cases links to the license texts SHOULD be added, see the `license` link relation type. If no link to a license is included and the `license` field is set to `proprietary`, the collection is private, and consumers have not been granted any explicit right to use the data.
+#### license
 
-**summaries**: You can optionally summarize the potential values that are available as part of the `properties` in STAC Items.
-Summaries are used to inform users about values they can expect from items without having to crawl through them. It also helps to fully define collections, especially if they don't link to any Items.
-A summary for a field  can be specified in two ways:
+Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/). Alternatively, use `proprietary` (see below) if the license is not on the SPDX license list or `various` if multiple licenses apply. In all cases links to the license texts SHOULD be added, see the `license` link relation type. If no link to a license is included and the `license` field is set to `proprietary`, the collection is private, and consumers have not been granted any explicit right to use the data.
+
+#### summaries
+
+Provides an overview of the potential values that are available as part of the `properties` in the set STAC Items that are underneath this catalog (including 
+those in any sub-catalog). Summaries are used to inform users about values they can expect from items without having to crawl through them. It also helps to 
+fully define collections, especially if they don't link to any Items.
+A summary for a field can be specified in two ways:
 
 1. A set of all distinct values in an array: The set of values must contain at least one element and it is strongly recommended to list all values. If the field summarizes an array (e.g. `instruments`), the field's array elements of each Item must be merged to a single array with unique elements.
 2. Statistics in a [Stats Object](#stats-object): Statistics by default only specify the range (minimum and maximum values), but can optionally be accompanied by additional statistical values. The range specified by the minimum and maximum can specify the potential range of values, but it is recommended to be as precise as possible.
