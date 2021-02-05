@@ -35,9 +35,27 @@ For defining view geometry of data, it is strongly recommended to use the [`view
 | eo:bands       | \[[Band Object](#band-object)] | An array of available bands where each object is a [Band Object](#band-object). |
 | eo:cloud_cover | number                         | Estimate of cloud cover |
 
-**eo:bands**: In STAC versions 0.9.x and prior, `eo:bands` could only be used by an Asset putting the the Band Object definitions in an Item Properties and referencing these via array index. **Starting with STAC 1.0.0-beta.1, an Asset may only have an `eo:bands` array containing Band Object entities.** Since `eo:bands` definitions in Item Properties can no longer be referenced by array index from an Asset, their primary use now is only to advertise a set of bands that may be available in some of the Assets in this Item, which may be aggregated into Collection `summaries` object.
+### Additional Field Information
 
-**eo:cloud_cover**: Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available, the field should not be provided. Generally, this value should be used in Item Properties rather than Item Assets, as an Item from an electro-optical source is a single snapshot of the Earth, so the cloud cover value would apply to all assets. 
+#### eo:bands
+
+The `eo:bands` array is used to describe the available [spectral 
+bands](https://www.sciencedirect.com/topics/earth-and-planetary-sciences/spectral-band) in an Asset. This enables clients to read  
+the file and understand which band is 'red' and which is 'nir' (near infrared) so that it can perform an 
+[NDVI](https://en.wikipedia.org/wiki/Normalized_difference_vegetation_index) operation, for example. Each Asset should specify
+its own band object. If the individual bands are repeated in different assets they should all use the same values and 
+include the optional [`name`](#name) field to enable clients to easily combine and summarize the bands.
+
+The `eo:bands` array may optionally be used in the Item Properties to summarize the available bands in the assets. This should
+be a 'union' of all the possible bands represented in assets. It should be considered merely informative - clients should rely
+on the `eo:bands` of each asset. An Item is only allowed to use `eo:bands` in its Properties if it has at least one asset with 
+a defined bands array.
+
+**NOTE**: In STAC versions 0.9.x and prior, `eo:bands` could only be used by an Asset putting the the Band Object definitions in an Item Properties and referencing these via array index. 1.0.0-beta.1 introduced the current behavior.
+
+#### eo:cloud_cover
+
+ Estimate of cloud cover as a percentage (0-100) of the entire scene. If not available, the field should not be provided. Generally, this value should be used in Item Properties rather than Item Assets, as an Item from an electro-optical source is a single snapshot of the Earth, so the cloud cover value would apply to all assets. 
 
 ### Band Object
 
@@ -49,7 +67,13 @@ For defining view geometry of data, it is strongly recommended to use the [`view
 | center_wavelength   | number | The center wavelength of the band, in micrometers (μm).      |
 | full_width_half_max | number | Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in micrometers (μm). |
 
-**full_width_half_max** (FWHM) is a common way to describe the size of a spectral band. It is the
+#### name
+
+This is typically the name the data provider uses for the band. It should be treated like an 'id', to identify that a particular
+band used in several assets represents the same band (all the other fields should be the same as well). It is also recommended that
+clients use this name for display, potentially in conjunction with the common name.
+
+#### full_width_half_max (FWHM) is a common way to describe the size of a spectral band. It is the
 width, in micrometers (μm), of the bandpass measured at a half of the maximum transmission. Thus, if the
 maximum transmission of the bandpass was 80%, the FWHM is measured as the width of the bandpass at
 40% transmission.
