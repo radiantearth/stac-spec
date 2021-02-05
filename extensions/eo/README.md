@@ -73,7 +73,9 @@ This is typically the name the data provider uses for the band. It should be tre
 band used in several assets represents the same band (all the other fields should be the same as well). It is also recommended that
 clients use this name for display, potentially in conjunction with the common name.
 
-#### full_width_half_max (FWHM) is a common way to describe the size of a spectral band. It is the
+#### full_width_half_max (FWHM) 
+
+This is a common way to describe the size of a spectral band. It is the
 width, in micrometers (μm), of the bandpass measured at a half of the maximum transmission. Thus, if the
 maximum transmission of the bandpass was 80%, the FWHM is measured as the width of the bandpass at
 40% transmission.
