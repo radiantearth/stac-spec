@@ -195,12 +195,16 @@ Both can still appear in old catalogues, but are deprecated and should be replac
 ### Formats with no registered media type
 
 Ideally every media type used is on the [IANA registry](https://www.iana.org/assignments/media-types/media-types.xhtml). If
-you are using a format that is not on that list we recommend you use a [custom content 
-type](https://restcookbook.com/Resources/using-custom-content-types/), ideally working with the format provider to actually
-register the media type with IANA, so that other STAC clients can find it. But if you are only using it internally it is 
+you are using a format that is not on that list we recommend you use [custom content 
+type](https://restcookbook.com/Resources/using-custom-content-types/). These typically use the `vnd.` prefix, see [RFC 6838 
+section-3.2](https://tools.ietf.org/html/rfc6838#section-3.2). Ideally the format provider will actually
+register the media type with IANA, so that other STAC clients can find it easily. But if you are only using it internally it is 
 [acceptable to not register](https://stackoverflow.com/questions/29121241/custom-content-type-is-registering-with-iana-mandatory) 
-it. It is relatively easy to [register](https://www.iana.org/form/media-types) a 
-`[vnd](https://tools.ietf.org/html/rfc6838#section-3.2)` media type. 
+it. It is relatively easy to [register](https://www.iana.org/form/media-types) a `vnd` media type.
+
+
+ In cases where custom vendor-specific media types are necessary, they should
+
 
 ## Static and Dynamic Catalogs
 

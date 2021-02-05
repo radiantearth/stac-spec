@@ -85,6 +85,12 @@ Type](https://en.wikipedia.org/wiki/Media_type) in the `type` field. In STAC the
 what to render and display to users searching and browsing the catalog.  Media types are often referred to by the 
 now deprecated term "MIME types". 
 
+### Media Type for STAC Catalogs
+
+A STAC Catalog is a JSON file ([RFC 8259](https://tools.ietf.org/html/rfc8259)), and thus should use the 
+`[application/json](https://tools.ietf.org/html/rfc8259#section-11)` as the [Media Type](https://en.wikipedia.org/wiki/Media_type) 
+(previously known as the MIME Type). 
+
 ### STAC Media Types
 
 The following table lists the Media Types to use for STAC structures.
@@ -94,12 +100,6 @@ The following table lists the Media Types to use for STAC structures.
 | `application/geo+json`	     | A STAC [Item](../item-spec/README.md)                        |
 | `application/json`             | A STAC [Catalog](#stac-catalog-specification)                |
 | `application/json`             | A STAC [Collection](../collection-spec/README.md)            |
-
-### Media Type for STAC Catalogs
-
-A STAC Catalog is a JSON file ([RFC 8259](https://tools.ietf.org/html/rfc8259)), and thus should use the 
-`[application/json](https://tools.ietf.org/html/rfc8259#section-11)` as the [Media Type](https://en.wikipedia.org/wiki/Media_type) 
-(previously known as the MIME Type). 
 
 ## Extensions
 

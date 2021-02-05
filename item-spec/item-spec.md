@@ -176,9 +176,7 @@ is recommended only in special cases, see [Additional Fields for Assets](#additi
 #### Asset Media Type
 
 Any media type can be used in an Item's asset `type` field, and [registered](https://www.iana.org/assignments/media-types/media-types.xhtml) 
-Media Types are preferred. In cases where custom vendor-specific media types are necessary, they should
-use the `vnd.` prefix, see [RFC 6838 section-3.2](https://tools.ietf.org/html/rfc6838#section-3.2). STAC Items that 
-have sidecar metadata files associated with a data asset (e.g, `.tfw`, Landsat 8 MTL files)
+Media Types are preferred. STAC Items that have sidecar metadata files associated with a data asset (e.g, `.tfw`, Landsat 8 MTL files)
 should use media types appropriate for the the metadata file.  For example, if it is a plain text file, then `text/plain`
 would be appropriate; if it is an XML, then `text/xml` is appropriate. For more information on media types as well as a 
 list of [common media types](../best-practices.md#common-media-types-in-stac) used in STAC see the [best practice on 
@@ -232,8 +230,7 @@ that talks about common use cases of additional fields for assets.
 
 A STAC Item is a GeoJSON file ([RFC 7946](https://tools.ietf.org/html/rfc7946)), and thus should use the 
 `[application/geo+json](https://tools.ietf.org/html/rfc7946#section-12)` as the [Media Type](https://en.wikipedia.org/wiki/Media_type) 
-(previously known as the MIME Type). STAC Items are recommended to add the parameter `profile` with the value `stac-item` to
-give a further hint to clients that they are dealing with a STAC Item. The full media type is thus: `application/geo+json; profile=stac-item`.
+(previously known as the MIME Type). 
 
 ## Extensions
 
