@@ -202,10 +202,6 @@ register the media type with IANA, so that other STAC clients can find it easily
 [acceptable to not register](https://stackoverflow.com/questions/29121241/custom-content-type-is-registering-with-iana-mandatory) 
 it. It is relatively easy to [register](https://www.iana.org/form/media-types) a `vnd` media type.
 
-
- In cases where custom vendor-specific media types are necessary, they should
-
-
 ## Static and Dynamic Catalogs
 
 As mentioned in the main [overview](overview.md), there are two main types of catalogs - static
