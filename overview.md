@@ -120,7 +120,7 @@ catalogs and items:
 As all STAC Collections are also valid STAC Catalogs, all Catalogs described here could also be Collections.
 
 The relationships are all described by a common `links` object structure, making use of
-the `rel` attribute to further describe the relationship. 
+the `rel` field to further describe the relationship. 
 
 There are a few types of catalogs that implementors occasionally refer to. These get defined by the `links` structure.
 

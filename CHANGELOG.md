@@ -112,7 +112,7 @@ Item properties
 ### Changed
 - Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html)
 - Collection field `property` and the merge ability moved to a new extension 'Commons'
-- Added attribute `roles` to Item assets (also Asset definitions extension), to be used similarly to Link `rel`
+- Added field `roles` to Item assets (also Asset definitions extension), to be used similarly to Link `rel`
 - Updated API yaml to clarify bbox filter should be implemented without brackets. Example: `bbox=160.6,-55.95,-170,-25.89`
 - Collection `summaries` merge array fields now
 - Several fields have been moved from extensions or item fields to the [Common Metadata fields](item-spec/common-metadata.md):

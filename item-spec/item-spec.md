@@ -2,10 +2,10 @@
 
 This document explains the structure and content of a SpatioTemporal Asset Catalog (STAC) Item. An **Item** is a
 [GeoJSON](http://geojson.org/) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) augmented with
-[foreign members](https://tools.ietf.org/html/rfc7946#section-6) relevant to a STAC entity.
-These attributes include fields that identify the time range and assets of the Item. An Item is the core
-granular entity in a STAC, containing the core metadata that enables any client to search or crawl
-online catalogs of spatial 'assets' - satellite imagery, derived data, DEM's, etc.
+[foreign members](https://tools.ietf.org/html/rfc7946#section-6) relevant to a STAC object.
+These include fields that identify the time range and assets of the Item. An Item is the core
+object in a STAC catalog, containing the core metadata that enables any client to search or crawl
+online catalogs of spatial 'assets' (e.g., satellite imagery, derived data, DEMs).
 
 The same Item definition is used in both [STAC catalogs](../catalog-spec/README.md) and
 the [Item-related API endpoints](https://github.com/radiantearth/stac-api-spec/blob/master/api-spec.md#ogc-api---features-endpoints).
@@ -94,10 +94,10 @@ throughout all domains. These optional fields are included for STAC Items by def
 * [Content Extensions](../extensions/README.md#list-of-content-extensions) - Domain-specific fields
 such as EO, SAR and point clouds.
 * [Custom Extensions](../extensions/README.md#extending-stac) - It is generally allowed to add custom
-fields but it is recommended to add multiple attributes for related values instead of a nested object,
+fields but it is recommended to add multiple fields for related values instead of a nested object,
 e.g., two fields `view:azimuth` and `view:off_nadir` instead of a field `view` with an object
-value containing the two fields. The convention (as used within Extensions) is for related attributes
-to use a common prefix on the attribute names to group them, e.g. `view`. A nested data structure should
+value containing the two fields. The convention (as used within Extensions) is for related fields 
+to use a common prefix on the field names to group them, e.g. `view`. A nested data structure should
 only be used when the data itself is nested, as with `eo:bands`.
 
 ### Link Object
@@ -159,19 +159,19 @@ Linking back must happen in two places:
 
 ### Asset Object
 
-An asset is an object that contains a link to data associated with the Item that can be downloaded
+An Asset is an object that contains a URI to data associated with the Item that can be downloaded
 or streamed. It is allowed to add additional fields.
 
 | Field Name  | Type      | Description |
 | ----------- | --------- | ----------- |
-| href        | string    | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
+| href        | string    | **REQUIRED.** URI to the asset object. Relative and absolute URI are both allowed. |
 | title       | string    | The displayed title for clients and users. |
 | description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | type        | string    | [Media type](#media-types) of the asset. |
 | roles       | \[string] | The [semantic roles](#asset-role-types) of the asset, similar to the use of `rel` in links. |
 
-Beyond to the fields above, any of the [additional fields](#additional-fields) *may* be added to the assets. But this
-is recommended only in special cases, see [Additional Fields for Assets](#additional-fields-for-assets)) for more information.
+[Additional fields](#additional-fields) *may* be added to the assets, though this
+is recommended only in special cases. See [Additional Fields for Assets](#additional-fields-for-assets)) for more information.
 
 #### Asset Role Types
 
