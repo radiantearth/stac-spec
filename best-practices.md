@@ -40,7 +40,8 @@
   - [Static to Dynamic best practices](#static-to-dynamic-best-practices)
     - [Ingestion and links](#ingestion-and-links)
     - [Keep catalogs in sync with cloud notification and queue services](#keep-catalogs-in-sync-with-cloud-notification-and-queue-services)
-
+  - [How to Differentiate STAC Files](#how-to-differentiate-stac-files)
+  
 This document makes a number of recommendations for creating real world SpatioTemporal Asset Catalogs. None of them 
 are required to meet the core specification, but following these practices will make life easier for client tooling
 and for users. They come about from practical experience of implementors and introduce a bit more 'constraint' for
@@ -623,3 +624,34 @@ basic geographic filtering from listeners.
 The dynamic STAC API would then listen to the notifications and update its internal datastore whenever new data comes into
 the static catalog. Implementors have had success using AWS Lambda to do a full 'serverless' updating of the elasticsearch
 database, but it could just as easily be a server-based process.
+
+## How to Differentiate STAC Files
+
+Any tool that crawls a STAC implementation or encounters a STAC file in the wild needs a clear way to determine if it is an Item, 
+Collection, Catalog or [ItemCollection](https://github.com/radiantearth/stac-api-spec/tree/v1.0.0-beta.1/fragments/itemcollection) 
+(part of the [STAC API spec](https://github.com/radiantearth/stac-api-spec/tree/v1.0.0-beta.1). As of 1.0.0 this is done primarily with the `type` field, and secondarily in Items with `stac_version`, or optionally the `rel` of the link to it.
+
+```shell
+if type is defined
+  if type is 'Feature' and stac_version is defined // stac_version in items is only available since 0.8, check for (stac_version or assets) to support pre-0.8 data
+    => Item
+  else if type is 'FeatureCollection' and stac_version is defined
+    => ItemCollection
+  else if type is `Collection`
+    => Collection
+  else if type is `Catalog`
+    => Catalog
+  else
+    => Invalid (GeoJSON)
+else
+  => Invalid (JSON)
+```
+
+When actually crawling a STAC implementation one can also make use of the [relation type](catalog-spec/catalog-spec.md#relation-types
+) (`rel` field) when following a link. If it is an `item` rel type then the file must be a STAC Item. If it is `child`, `parent` or
+`root` then it must be a Catalog or a Collection, and thus can be treated as a Catalog (as a Collection is a Catalog), and then the
+`type` field can be used to distinguish if it is a Collection.
+
+In versions of STAC prior to 1.0 the process was a bit more complicated, as there was no `type` field for catalogs and collections.
+See [this issue comment](https://github.com/radiantearth/stac-spec/issues/889#issuecomment-684529444) for a heuristic that works
+for older STAC versions (to 0.8.0, older than that should not be needed).
