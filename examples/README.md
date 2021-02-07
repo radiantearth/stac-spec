@@ -7,24 +7,39 @@ from an ideal catalog.
 
 The various fields are all fictional, to be able to demonstrate the various aspects of the spec as tersely as possible. To get a sense
 of real world STAC implementations we recommend exploring the [stac-examples](http://github.com/stac-utils/stac-examples) repo, which 
-gathers in one place copies of STAC Items and Collections from a number of different production catalogs that all follow good STAC
-practices. And you should also explore the various catalogs listed on [STAC Index](http://stacindex.org), to see full catalogs in production.
+gathers in one place copies of STAC [Items](item-spec/item-spec.md) and [Collection](collection-spec/collection-spec.md) from a number
+of different production catalogs that all follow good STAC practices. And you should also explore the various catalogs listed on 
+[STAC Index](http://stacindex.org), to see full catalogs in production.
 
 ## Organization
 
-TODO: Describe the structure and what each example represents
+This directory contains two STAC implementations, both valid, but simplified a bit from following all the best practices. 
+
+### Simple Collection
+
+This STAC implementation consists of three files, all contained at the root of the examples directory
+
+**[collection.json](collection.json)** is a minimal Collection, that links to three items. 
 
 **[simple-item.json](simple-item.json)** is the most minimal possible compliant Item record. Most all data will
 include additional fields, as STAC is designed to be a minimal common subset. But it is useful for showing exactly what is
 required.
 
 **[full-item.json](full-item.json)** is a more realistic example, for a hypothetical analytic image 
-acquisition from a satellite company called 'Remote Data'. It includes additional fields covering the common metadata (TODO - add a link)
-It also links to a variety of assets that is typical for
+acquisition from a satellite company called 'Remote Data'. It includes additional fields covering the [common 
+metadata](item-spec/common-metadata.md). It also links to a variety of assets that is typical for
 satellite imagery, as most providers include a number of complementary files.
 
-extended-item - all extension fields
+**[extended-item.json](extended-item.json)** - is arguably an even more realistic example, as it includes a number of the
+[extensions](../extensions/) that are commonly used, to demonstrate how implementations tend to start with the core, and add in
+a number of the core extensions. 
+
 collectionless-item - demonstrate the common metadata that is only used when an Item does not have a collection. It is recommended to organize items in collections, but we wanted to show how this works. 
+
+### Nested Catalog
+
+This STAC implementation shows a common pattern, starting with a catalog that links to a number of distinct collections, which may
+link down to a number of items.
 
 Notes - remotedata.io has not been set up, so any of those links will not work. At some point we might try to populate it so everything truly works. 
 
