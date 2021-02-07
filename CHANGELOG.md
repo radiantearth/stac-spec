@@ -15,11 +15,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added additional acquisition parameters in the `sat` extension: sat:platform_international_designator, sat:absolute_orbit, sat:anx_datetime* ([#894](https://github.com/radiantearth/stac-spec/pull/894))
 - 'summaries' are now available in the Catalog spec, so both catalogs and collections can make use of it. ([#903](https://github.com/radiantearth/stac-spec/issues/903))
 - Recommendation to enable CORS
+- A 'visual' option as an asset role.
 
 ### Changed
 
 - Clarified the role of geometries on items in the label extension
 - Data Cube Extension: Units for STAC dimensions in should now be compliant to UDUNITS-2 units (singular) whenever available.
+- URIs (usually found int properties like `href`, `url`) are now validated using the `iri-reference` format in JSON Schema (allows international characters in URIs)
 - Relaxed the regular expression for DOIs in the scientific extension ([#910](https://github.com/radiantearth/stac-spec/issues/910))
 
 ### Removed
