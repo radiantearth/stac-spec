@@ -20,6 +20,8 @@ This extension is modelled in close alignment to the [OGC Two Dimensional Tile M
 
 ## Item Properties, Collection, and Catalog Fields
 
+These fields can be applied to Item Properties, Collection, or Catalog objects.
+
 | Field Name               | Type                                                                  | Description                                                                                                          |
 | ------------------------ | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | tiles:tile_matrix_sets   | Map<string, [TileMatrixSet Object](#tile-matrix-set-object)>          | **REQUIRED for Collections and Catalogs.** A mapping of tile matrix set identifier to a tile matrix set link object. |
@@ -101,7 +103,7 @@ Pixel buffer objects allow the definition of image boundaries, so that the inter
 | border_bottom | boolean | Whether or not the pixel-buffer is included images on the bottom border of the last tile row. Default is `true`.   |
 | border_right  | boolean | Whether or not the pixel-buffer is included images on the right border of the last tile column. Default is `true`. |
 
-## Item Properties fields
+## Item fields
 
 | Field Name          | Type                                                                   | Description                                                                                   |
 | ------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
