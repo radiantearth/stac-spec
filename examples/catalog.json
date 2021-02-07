@@ -23,7 +23,7 @@
         },
         {
             "rel": "self",
-            "href": "/Users/cholmes/Repos/scratch/catalog.json",
+            "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/examples-refresh/examples/catalog.json",
             "type": "application/json"
         }
     ]
