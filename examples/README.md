@@ -7,9 +7,9 @@ from an ideal catalog.
 
 The various fields are all fictional, to be able to demonstrate the various aspects of the spec as tersely as possible. To get a sense
 of real world STAC implementations we recommend exploring the [stac-examples](http://github.com/stac-utils/stac-examples) repo, which 
-gathers in one place copies of STAC [Items](item-spec/item-spec.md) and [Collection](collection-spec/collection-spec.md) from a number
-of different production catalogs that all follow good STAC practices. And you should also explore the various catalogs listed on 
-[STAC Index](http://stacindex.org), to see full catalogs in production.
+gathers in one place copies of STAC [Items](../item-spec/item-spec.md) and [Collection](../collection-spec/collection-spec.md) 
+from a number of different production catalogs that all follow good STAC practices. And you should also explore the various catalogs
+listed on [STAC Index](http://stacindex.org), to see full catalogs in production.
 
 ## Organization
 
@@ -27,7 +27,7 @@ required.
 
 **[full-item.json](full-item.json)** is a more realistic example, for a hypothetical analytic image 
 acquisition from a satellite company called 'Remote Data'. It includes additional fields covering the [common 
-metadata](item-spec/common-metadata.md). It also links to a variety of assets that is typical for
+metadata](../item-spec/common-metadata.md). It also links to a variety of assets that is typical for
 satellite imagery, as most providers include a number of complementary files.
 
 **[extended-item.json](extended-item.json)** - is arguably an even more realistic example, as it includes a number of the
