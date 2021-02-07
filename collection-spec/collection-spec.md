@@ -109,7 +109,7 @@ The object provides information about a provider. A provider is any of the organ
 
 ### Link Object
 
-This object describe a relationship with another entity. Data providers are advised to be liberal with links.
+This object describes a relationship with another entity. Data providers are advised to be liberal with links.
 
 | Field Name | Type   | Description                                                  |
 | ---------- | ------ | ------------------------------------------------------------ |
