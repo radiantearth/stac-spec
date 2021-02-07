@@ -30,16 +30,20 @@ acquisition from a satellite company called 'Remote Data'. It includes additiona
 metadata](../item-spec/common-metadata.md). It also links to a variety of assets that is typical for
 satellite imagery, as most providers include a number of complementary files.
 
-**[extended-item.json](extended-item.json)** - is arguably an even more realistic example, as it includes a number of the
+**[extended-item.json](extended-item.json)** is arguably an even more realistic example, as it includes a number of the
 [extensions](../extensions/) that are commonly used, to demonstrate how implementations tend to start with the core, and add in
 a number of the core extensions. 
 
-collectionless-item - demonstrate the common metadata that is only used when an Item does not have a collection. It is recommended to organize items in collections, but we wanted to show how this works. 
+**[collectionless-item.json](collectionless-item.json)** demonstrates the common metadata that is only used when an Item does not have 
+a collection. It is recommended to organize items in collections, but we wanted to show how this works. This is not technically in the
+'simple collection', but it follows the same pattern, so is included here.
 
 ### Nested Catalog
 
 This STAC implementation shows a common pattern, starting with a catalog that links to a number of distinct collections, which may
 link down to a number of items.
+
+**[catalog.json](catalog.json)** is a minimal catalog implementation, linking to two other collections.
 
 Notes - remotedata.io has not been set up, so any of those links will not work. At some point we might try to populate it so everything truly works. 
 
