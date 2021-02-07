@@ -11,13 +11,13 @@
         {
             "rel": "child",
             "href": "./extensions-collection/collection.json",
-            "type": "application/json; profile=stac-collection",
+            "type": "application/json",
             "title": "Collection Demonstrating STAC Extensions"
         },
         {
             "rel": "child",
             "href": "./collection-only/collection.json",
-            "type": "application/json; profile=stac-collection",
+            "type": "application/json",
             "title": "Collection with no items (standalone)"
 
         },

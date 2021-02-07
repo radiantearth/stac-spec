@@ -98,7 +98,7 @@
     {
       "rel": "self",
       "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/examples-refresh/examples/simple-item.json",
-      "type": "application/geo+json; profile=stac-item"
+      "type": "application/geo+json"
     },
     {
       "rel": "collection",
@@ -109,12 +109,12 @@
     {
       "rel": "root",
       "href": "./collection.json",
-      "type": "application/json; profile=stac-collection"
+      "type": "application/json"
     },
     {
       "rel": "root",
       "href": "./collection.json",
-      "type": "application/json; profile=stac-collection"
+      "type": "application/json"
     },
     {
       "rel": "alternate",

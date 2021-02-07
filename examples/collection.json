@@ -44,19 +44,19 @@
     {
       "rel": "item",
       "href": "./simple-item.json",
-      "type": "application/geo+json; profile=stac-item",
+      "type": "application/geo+json",
       "title": "Simple Item"
     },
     {
       "rel": "item",
       "href": "./full-item.json",
-      "type": "application/geo+json; profile=stac-item",
+      "type": "application/geo+json",
       "title": "Full Item"
     },
     {
       "rel": "item",
       "href": "./extended-item.json",
-      "type": "application/geo+json; profile=stac-item",
+      "type": "application/geo+json",
       "title": "Extended Item"
     },
     {
