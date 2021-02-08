@@ -25,8 +25,7 @@ stac-spec repository to collaborate.
 1. Additional attributes relating to an Item should be added into the Item Properties object, rather than directly in the Item object. 
 2. In general, additional attributes that apply to an Item Asset should also be allowed in Item Properties and vice-versa.
 For example, the `eo:bands` attribute may be used in Item Properties to describe the aggregation of all bands available in 
-the Item Assets for the Item, but may also be used in an individual Item Asset to describe only the bands available in 
-that asset.
+the Item Asset objects contained in the Item, but may also be used in an individual Item Asset to describe only the bands available in that asset.
 
 ## Extension Maturity
 
