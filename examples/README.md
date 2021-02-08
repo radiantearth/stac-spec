@@ -45,27 +45,50 @@ link down to a number of items.
 
 **[catalog.json](catalog.json)** is a minimal catalog implementation, linking to two other collections.
 
-Notes - remotedata.io has not been set up, so any of those links will not work. At some point we might try to populate it so everything truly works. 
+**[collection-only/collection.json](collection-only/collection.json)** is a collection that does not link to any items. This
+demonstrates how is is possible to make use of STAC Collections without needing items, to serve as nice summarizing metadata for 
+tools that work with full layers / collections.
 
-rd: prefix doesn't have a schema. We should make one and then put it in a location where it can be downloaded to demonstrate how that works.
+**[extensions-collection/collection.json](extensions-collection/collection.json)** contains a small number of items, that demonstrate
+more functionality available in STAC [extensions](../extensions/). These are linked to directly from the individual extensions. These
+items follow the recommendations for [Catalog Layout Best Practices](../best-practices.md#catalog-layout).
 
-## Best Practices differences
+## In Depth
 
-TODO: Describe how this differs from best practices. Especially discussion of rel vs absolute links, self links, etc.
+As mentioned above, the files in this examples directory form valid STAC implementations. They are all based on a 
+fictional remote sensing company called 'Remote Data', with a URL at remotedata.io. This domain has not been set up, so those links
+will not work, but any valid data provider should provide valid links to their homepage. 
 
-TODO: Keep the self links in the files up to date with the tags, so that they work.
+The examples use the `rd:` prefix to show how providers can use custom fields when there are not set fields. In the examples these
+do not link to a schema which is completely valid, but it is recommended that providers do write a JSON schema that can validate 
+their custom fields (we will work to add a schema in the future). 
 
-## Example Discussion
+### Differences with STAC Best Practices
 
-These examples demonstrate that there is a range of potential implementations of STAC Items. Most were made by adapting
-the current implementations as minimally as possible. The hope is that there will emerge more consensus and best practices
-on the things outside of the core fields, to increase interoperability. 
+One of the most important documents in this repository is the one about [best practices](../best-practices.md). It describes a number
+of practical recommendations gained by people actually implementing STAC. The core spec is designed to be as flexible as possible, so
+that it is not too rigid and unable to handle unanticipated needs. But we recommend following as many of the best practices as is 
+feasible, as it will help ensure various STAC tools work much better. The examples in this folder don't align with all the best
+practices, mostly because they are meant to demonstrate things as tersely as possible, and also because they live directly inside
+a github repository. As many people will look at these examples and take them as 'how things should be' we felt its important to
+highlight where things here differ from the actual best practices.
 
-### Asset definition
+#### Relative vs Absolute Links
 
-Currently the additional metadata on assets is quite minimal - only a link is required. 'title' and 'type' are the only other specified
-fields.
+One of the [main recommendations](../best-practices.md#use-of-links) of the best practices document is to aim for consistency in 
+the use of relative versus absolute links. STAC implementations should use relative and absolute links as recommended by one of
+the 'catalog types': '[self-contained](../best-practices.md#self-contained-catalogs)', or '[published](../best-practices.md#published-catalogs)' - absolute or relative. 
 
-### Prefixes & Schemas
+The catalogs contained here don't follow any of the recommendations in full. They are closest to a 'relative published catalog',
+as they use a self link at the root and then mostly have relative links. This enables them to be mostly portable, while also having
+a stable online location that can be referenced. But they use absolute links to their assets, due to the fact that they are stored in 
+github and we do not want to replicate the large asset files in every branch in github. A true relative published catalog will only
+have absolute links for the self, so that the rest is completely portable. 
 
-todo
+#### Catalog Layout
+
+Another important recommendations concerns the [layout of STAC catalogs](../best-practices.md#catalog-layout). This is important
+for tools to be able to expect a certain layout, and most tools will follow the described layout. The simple collection that consists
+of the collection.json and its 3 linked items violates this. This is done to be able to show item examples directly in the root of
+the 'examples' folder, so people don't have to dig deep into folders to get a quick example. But a proper catalog layout would
+put the items in sub-directories, along with their assets.
