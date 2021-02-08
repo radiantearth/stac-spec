@@ -2,42 +2,42 @@
   "stac_version": "1.0.0-beta.2",
   "stac_extensions": [],
   "type": "Feature",
-  "id": "CS3-20160503_132130_04",
+  "id": "20201211_223832_CS2",
   "bbox": [
-    -122.59750209,
-    37.48803556,
-    -122.2880486,
-    37.613537207
+    172.91173669923782,
+    1.3438851951615003,
+    172.95469614953714,
+    1.3690476620161975
   ],
   "geometry": {
     "type": "Polygon",
     "coordinates": [
       [
         [
-          -122.308150179,
-          37.488035566
+          172.91173669923782,
+          1.3438851951615003
         ],
         [
-          -122.597502109,
-          37.538869539
+          172.95469614953714,
+          1.3438851951615003
         ],
         [
-          -122.576687533,
-          37.613537207
+          172.95469614953714,
+          1.3690476620161975
         ],
         [
-          -122.2880486,
-          37.562818007
+          172.91173669923782,
+          1.3690476620161975
         ],
         [
-          -122.308150179,
-          37.488035566
+          172.91173669923782,
+          1.3438851951615003
         ]
       ]
     ]
   },
   "properties": {
-    "datetime": "2016-05-03T13:21:30.040Z",
+    "datetime": "2020-12-11T22:38:32.125000Z",
     "collection": "simple-collection"
   },
   "links": [
@@ -60,14 +60,15 @@
   ],
   "assets": {
     "analytic": {
-      "href": "relative-path/to/analytic.tif",
-      "title": "4-Band Analytic",
+      "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "3-Band Visual",
       "roles": [
         "data"
       ]
     },
     "thumbnail": {
-      "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png",
+      "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2.jpg",
       "title": "Thumbnail",
       "roles": [
         "thumbnail"
