@@ -54,6 +54,8 @@
     "gsd": 0.66,
     "eo:cloud_cover": 1.2,
     "proj:epsg": 32659,
+    "proj:shape": [5558, 9559],
+    "proj:transform": [0.5, 0.0, 712710.0, 0.0, -0.5, 151406.0, 0.0, 0.0, 1.0],
     "sat:orbit_state": "ascending",
     "sat:relative_orbit": 34523,
     "view:sun_elevation": 54.9,
