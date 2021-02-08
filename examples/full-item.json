@@ -2,36 +2,36 @@
   "stac_version": "1.0.0-beta.2",
   "stac_extensions": [ ],
   "type": "Feature",
-  "id": "CS3-20160503_132131_05",
+  "id": "20201211_223832_CS2",
   "bbox": [
-    -122.59750209,
-    37.48803556,
-    -122.2880486,
-    37.613537207
+    172.91173669923782,
+    1.3438851951615003,
+    172.95469614953714,
+    1.3690476620161975
   ],
   "geometry": {
     "type": "Polygon",
     "coordinates": [
       [
         [
-          -122.308150179,
-          37.488035566
+          172.91173669923782,
+          1.3438851951615003
         ],
         [
-          -122.597502109,
-          37.538869539
+          172.95469614953714,
+          1.3438851951615003
         ],
         [
-          -122.576687533,
-          37.613537207
+          172.95469614953714,
+          1.3690476620161975
         ],
         [
-          -122.2880486,
-          37.562818007
+          172.91173669923782,
+          1.3690476620161975
         ],
         [
-          -122.308150179,
-          37.488035566
+          172.91173669923782,
+          1.3438851951615003
         ]
       ]
     ]
@@ -40,10 +40,10 @@
     "title": "Full Item",
     "description": "A sample STAC Item that includes examples of all common metadata",
     "datetime": null,
-    "start_datetime": "2016-05-03T13:22:30Z",
-    "end_datetime": "2016-05-03T13:27:30Z",
-    "created": "2016-05-04T00:00:01Z",
-    "updated": "2017-01-01T00:30:55Z",
+    "start_datetime": "2020-12-11T22:38:32.125Z",
+    "end_datetime": "2020-12-11T22:38:32.327Z",
+    "created": "2020-12-12T01:48:13.725Z",
+    "updated": "2020-12-12T01:48:13.725Z",
     "platform": "cool_sat2",
     "instruments": [
       "cool_sensor_v1"
@@ -71,35 +71,43 @@
       "type": "application/json"
     },
     {
-      "rel": "root",
-      "href": "./collection.json",
-      "type": "application/json"
-    },
-    {
       "rel": "alternate",
       "type": "text/html",
-      "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.html"
+      "href": "http://remotedata.io/catalog/20201211_223832_CS2/index.html"
     }
   ],
   "assets": {
     "analytic": {
-      "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/analytic.tif",
-      "title": "4-Band Analytic"
+      "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_analytic.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "4-Band Analytic",
+      "roles": [
+        "data"
+      ]
     },
     "thumbnail": {
-      "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png",
+      "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2.jpg",
       "title": "Thumbnail",
       "type": "image/png",
       "roles": [
         "thumbnail"
       ]
     },
+    "visual": {
+      "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "3-Band Visual",
+      "roles": [
+        "visual"
+      ]
+    },
     "udm": {
-      "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/UDM.tif",
-      "title": "Unusable Data Mask"
+      "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_analytic_udm.tif",
+      "title": "Unusable Data Mask",
+      "type": "image/tiff; application=geotiff;"
     },
     "json-metadata": {
-      "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/extended-metadata.json",
+      "href": "http://remotedata.io/catalog/20201211_223832_CS2/extended-metadata.json",
       "title": "Extended Metadata",
       "type": "application/json",
       "roles": [
@@ -107,7 +115,7 @@
       ]
     },
     "ephemeris": {
-      "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/S3-20160503_132130_04.EPH",
+      "href": "http://cool-sat.com/catalog/20201211_223832_CS2/20201211_223832_CS2.EPH",
       "title": "Satellite Ephemeris Metadata"
     }
   }
