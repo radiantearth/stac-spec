@@ -32,7 +32,7 @@ For defining view geometry of data, it is strongly recommended to use the [`view
 
 | Field Name     | Type                           | Description |
 | -------------- | ------------------------------ | ----------- |
-| eo:bands       | \[[Band Object](#band-object)] | An array of available bands where each object is a [Band Object](#band-object). |
+| eo:bands       | \[[Band Object](#band-object)] | An array of available bands where each object is a [Band Object](#band-object). If given, requires at least one band. |
 | eo:cloud_cover | number                         | Estimate of cloud cover |
 
 ### Additional Field Information
@@ -64,8 +64,10 @@ a defined bands array.
 | name                | string | The name of the band (e.g., "B01", "B8", "band2", "red"). |
 | common_name         | string | The name commonly used to refer to the band to make it easier to search for bands across instruments. See the [list of accepted common names](#common-band-names). |
 | description         | string | Description to fully explain the band. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| center_wavelength   | number | The center wavelength of the band, in micrometers (μm).      |
+| center_wavelength   | number | The center wavelength of the band, in micrometers (μm). |
 | full_width_half_max | number | Full width at half maximum (FWHM). The width of the band, as measured at half the maximum transmission, in micrometers (μm). |
+
+*At least one of the fields must be specified.*
 
 #### name
 
