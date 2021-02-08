@@ -151,8 +151,8 @@ Implementors are free to add other derived statistical values to the object, for
 
 | Field Name | Type           | Description |
 | ---------- | -------------- | ----------- |
-| min        | number\|string | **REQUIRED.** Minimum value. |
-| max        | number\|string | **REQUIRED.** Maximum value. |
+| minimum    | number\|string | **REQUIRED.** Minimum value. |
+| maximum    | number\|string | **REQUIRED.** Maximum value. |
 
 ## Standalone Collections
 
