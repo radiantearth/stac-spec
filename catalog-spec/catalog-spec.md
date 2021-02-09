@@ -53,7 +53,7 @@ with links.
 | ---------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------- |
 | href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed.        |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter ["Relation types"](#relation-types) for more information. |
-| type       | string | [Media type](../item-spec/item-spec.md#media-types) of the referenced entity.                               |
+| type       | string | [Media type](#media-types) of the referenced entity.                               |
 | title      | string | A human readable title to be used in rendered displays of the link.                                         |
 
 For a full discussion of the situations where relative and absolute links are recommended see the
@@ -76,6 +76,30 @@ The following types are commonly used as `rel` types in the Link Object of a STA
 There are additional `rel` types in the [Using Relation Types](../best-practices.md#using-relation-types) best practice, but as 
 they are more typically used in Collections, as catalogs tend to just be used to structure STAC organization, so tend to just use
 the ones above.
+
+## Media Types
+
+One of the best ways to help inform web clients about the content in a link is to use a common [Media 
+Type](https://en.wikipedia.org/wiki/Media_type) in the `type` field. In STAC the `type` field is used in both the 
+'[Link](#link-object)'' and '[Asset](../item-spec/item-spec.md#asset-object)' Objects. It is quite useful for STAC browsers to better determine
+what to render and display to users searching and browsing the catalog.  Media types are often referred to by the 
+now deprecated term "MIME types". 
+
+### Media Type for STAC Catalogs
+
+A STAC Catalog is a JSON file ([RFC 8259](https://tools.ietf.org/html/rfc8259)), and thus should use the 
+`[application/json](https://tools.ietf.org/html/rfc8259#section-11)` as the [Media Type](https://en.wikipedia.org/wiki/Media_type) 
+(previously known as the MIME Type). 
+
+### STAC Media Types
+
+The following table lists the Media Types to use for STAC structures.
+
+| Media Type                     | Description                                                  |
+| ------------------------------ | ------------------------------------------------------------ |
+| `application/geo+json`	     | A STAC [Item](../item-spec/README.md)                        |
+| `application/json`             | A STAC [Catalog](#stac-catalog-specification)                |
+| `application/json`             | A STAC [Collection](../collection-spec/README.md)            |
 
 ## Extensions
 

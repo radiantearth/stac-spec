@@ -115,7 +115,7 @@ This object describes a relationship with another entity. Data providers are adv
 | ---------- | ------ | ------------------------------------------------------------ |
 | href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "[Relation types](#relation-types)" for more information. |
-| type       | string | [Media type](../item-spec/item-spec.md#media-types) of the referenced entity. |
+| type       | string | [Media type](../catalog-spec/catalog-spec.md#media-types) of the referenced entity. |
 | title      | string | A human readable title to be used in rendered displays of the link. |
 
 For a full discussion of the situations where relative and absolute links are recommended see the
@@ -153,6 +153,12 @@ Implementors are free to add other derived statistical values to the object, for
 | ---------- | -------------- | ----------- |
 | minimum    | number\|string | **REQUIRED.** Minimum value. |
 | maximum    | number\|string | **REQUIRED.** Maximum value. |
+
+## Media Type for STAC Collections
+
+A STAC Collection is a JSON file ([RFC 8259](https://tools.ietf.org/html/rfc8259)), and thus should use the 
+`[application/json](https://tools.ietf.org/html/rfc8259#section-11)` as the [Media Type](https://en.wikipedia.org/wiki/Media_type) 
+(previously known as the MIME Type). 
 
 ## Standalone Collections
 

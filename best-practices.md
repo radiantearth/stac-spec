@@ -9,6 +9,7 @@
 * [Unlocated Items](#unlocated-items)
 * [Representing Vector Layers in STAC](#representing-vector-layers-in-stac)
 * [Common Use Cases of Additional Fields for Assets](#common-use-cases-of-additional-fields-for-assets)
+* [Working with Media Types](#working-with-media-types)
 * [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
 * [Catalog Layout](#catalog-layout)
 * [Use of Links](#use-of-links)
@@ -156,6 +157,50 @@ than the overall best resolution.
 - `proj:shape`/`proj:transform` ([projection extension](extensions/projection/)): If assets have different spatial resolutions and slightly different exact bounding boxes, specify these per asset to indicate the size of the asset in pixels and its exact GeoTransform in the native projection.
 - `sar:polarizations` ([sar extension](extensions/sar/)): Provide the polarization content and ordering of a specific asset, similar to `eo:bands`.
 - `sar:product_type` ([sar extension](extensions/sar/)): If mixing multiple product types within a single Item, this can be used to specify the product_type for each asset.
+
+## Working with Media Types
+
+[Media Types](https://en.wikipedia.org/wiki/Media_type) are a key element that enables STAC to be a rich source of information for
+clients. The best practice is to use as specific of a media type as is possible (so if a file is a GeoJSON then don't use a JSON
+media type), and to use [registered](https://www.iana.org/assignments/media-types/media-types.xhtml) IANA types as much as possible.
+The following table lists types that commonly show up in STAC assets. And the the [section](#formats-with-no-registered-media-type)
+past that gives recommendations on what to do if you have a format in your asset that does not have an IANA registered type.
+
+### Common Media Types in STAC
+
+The following table lists a number of commonly used media types in STAC. The first two (GeoTIFF and COG) are not fully standardized 
+yet, but reflect the community consensus direction. There are many IANA registered types that commonly show up in STAC. The 
+following table lists some of the most common ones you may encounter or use.
+
+| Media Type                                              | Description                                                  |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
+| `image/tiff; application=geotiff`                       | GeoTIFF with standardized georeferencing metadata            |
+| `image/tiff; application=geotiff; profile=cloud-optimized` | [Cloud Optimized GeoTIFF](https://www.cogeo.org/) (unofficial). Once there is an [official media type](http://osgeo-org.1560.x6.nabble.com/Media-type-tc5411498.html) it will be added and the custom media type here will be deprecated. |
+| `image/jp2`                                             | JPEG 2000                                                    |
+| `image/png`                                             | Visual PNGs (e.g. thumbnails)                                |
+| `image/jpeg`                                            | Visual JPEGs (e.g. thumbnails, oblique)                      |
+| `text/xml` or `application/xml`                         | XML metadata [RFC 7303](https://www.ietf.org/rfc/rfc7303.txt) |
+| `application/json`                                      | A JSON file (often metadata, or [labels](https://github.com/radiantearth/stac-spec/tree/master/extensions/label#labels-required)) |                   
+| `text/plain`                                            | Plain text (often metadata)                                  |
+| `application/geo+json`                                  | [GeoJSON](https://geojson.org/)                              |
+| `application/geopackage+sqlite3`                        | [GeoPackage](https://www.geopackage.org/)                    |
+| `application/x-hdf5`                                    | Hierarchical Data Format version 5                           |
+| `application/x-hdf`                                     | Hierarchical Data Format versions 4 and earlier.             |
+
+*Deprecation notice: GeoTiff previously used the media type `image/vnd.stac.geotiff` and
+Cloud Optimized GeoTiffs used `image/vnd.stac.geotiff; profile=cloud-optimized`.
+Both can still appear in old catalogues, but are deprecated and should be replaced. This will, unfortunately, likely shift in the future as
+[OGC sorts out the media types](https://github.com/opengeospatial/geotiff/issues/34).*
+
+### Formats with no registered media type
+
+Ideally every media type used is on the [IANA registry](https://www.iana.org/assignments/media-types/media-types.xhtml). If
+you are using a format that is not on that list we recommend you use [custom content 
+type](https://restcookbook.com/Resources/using-custom-content-types/). These typically use the `vnd.` prefix, see [RFC 6838 
+section-3.2](https://tools.ietf.org/html/rfc6838#section-3.2). Ideally the format provider will actually
+register the media type with IANA, so that other STAC clients can find it easily. But if you are only using it internally it is 
+[acceptable to not register](https://stackoverflow.com/questions/29121241/custom-content-type-is-registering-with-iana-mandatory) 
+it. It is relatively easy to [register](https://www.iana.org/form/media-types) a `vnd` media type.
 
 ## Static and Dynamic Catalogs
 
