@@ -100,24 +100,31 @@
         "data"
       ],
       "eo:bands": [
-        {
-          "name": "band1",
-          "common_name": "blue"
-        },
-        {
-          "name": "band2",
-          "common_name": "green"
-        },
-        {
-          "name": "band3",
-          "common_name": "red"
-        },
-        {
-          "name": "band4",
-          "common_name": "nir"
-        }
-      ]
-    },
+          {
+            "name": "band1",
+            "common_name": "blue",
+            "center_wavelength": 470,
+            "full_width_half_max": 70
+          },
+          {
+            "name": "band2",
+            "common_name": "green",
+            "center_wavelength": 560,
+            "full_width_half_max": 80
+          },
+          {
+            "name": "band3",
+            "common_name": "red",
+            "center_wavelength": 645,
+            "full_width_half_max": 90
+          },
+          {
+            "name": "band4",
+            "common_name": "nir",
+            "center_wavelength": 800,
+            "full_width_half_max": 152
+          }
+        ],
     "thumbnail": {
       "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2.jpg",
       "title": "Thumbnail",
@@ -135,16 +142,22 @@
       ],
       "eo:bands": [
         {
-          "name": "band1",
-          "common_name": "red"
+          "name": "band3",
+          "common_name": "red",
+          "center_wavelength": 645,
+          "full_width_half_max": 90
         },
         {
           "name": "band2",
-          "common_name": "green"
+          "common_name": "green",
+          "center_wavelength": 560,
+          "full_width_half_max": 80
         },
         {
-          "name": "band3",
-          "common_name": "blue"
+          "name": "band1",
+          "common_name": "blue",
+          "center_wavelength": 470,
+          "full_width_half_max": 70
         }
       ]
     },

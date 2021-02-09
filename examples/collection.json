@@ -18,10 +18,10 @@
     "spatial": {
       "bbox": [
         [
-          -111.6622,
-          -23.0433,
-          172.9552,
-          35.7274
+          172.911,
+          1.343,
+          172.955,
+          1.3691
         ]
       ]
     },
@@ -35,6 +35,30 @@
     }
   },
   "license": "CC-BY-4.0",
+  "summaries": {
+    "platform": [
+      "cool_sat2",
+      "cool_sat1"
+    ],
+    "constellation": [
+      "ion"
+    ],
+    "instruments": [
+      "cool_sensor_v1"
+    ],
+    "gsd": {
+      "min": 0.512,
+      "max": 0.7
+    },
+    "view:off_nadir": {
+      "min": 0,
+      "max": 15
+    },
+    "view:sun_elevation": {
+      "min": 6.78,
+      "max": 40
+    }
+  },
   "links": [
     {
       "rel": "root",

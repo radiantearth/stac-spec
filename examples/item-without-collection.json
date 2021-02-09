@@ -5,89 +5,62 @@
     "view"
   ],
   "type": "Feature",
-  "id": "CS3-20160503_132131_08",
+  "id": "20201211_223832_CS2",
   "bbox": [
-    -122.59750209,
-    37.48803556,
-    -122.2880486,
-    37.613537207
+    172.91173669923782,
+    1.3438851951615003,
+    172.95469614953714,
+    1.3690476620161975
   ],
   "geometry": {
     "type": "Polygon",
     "coordinates": [
       [
         [
-          -122.308150179,
-          37.488035566
+          172.91173669923782,
+          1.3438851951615003
         ],
         [
-          -122.597502109,
-          37.538869539
+          172.95469614953714,
+          1.3438851951615003
         ],
         [
-          -122.576687533,
-          37.613537207
+          172.95469614953714,
+          1.3690476620161975
         ],
         [
-          -122.2880486,
-          37.562818007
+          172.91173669923782,
+          1.3690476620161975
         ],
         [
-          -122.308150179,
-          37.488035566
+          172.91173669923782,
+          1.3438851951615003
         ]
       ]
     ]
   },
   "properties": {
-    "title": "Full Item",
+    "title": "Standalone Item",
     "description": "A sample STAC Item demonstrates an Item that does not have a collection, which is not recommended, but allowed by the spec.",
-    "datetime": null,
-    "start_datetime": "2016-05-03T13:22:30Z",
-    "end_datetime": "2016-05-03T13:27:30Z",
-    "created": "2016-05-04T00:00:01Z",
-    "updated": "2017-01-01T00:30:55Z",
-    "license": "various",
+    "datetime": "2020-12-11T22:38:32.125Z",
+    "created": "2020-12-12T01:48:13.725Z",
+    "updated": "2020-12-12T01:48:13.725Z",
+    "license": "proprietary",
     "providers": [
-    {
-      "name": "Remote Data, Inc",
-      "description": "Producers of awesome spatiotemporal assets",
-      "roles": [
-        "producer",
-        "processor"
-      ],
-      "url": "http://remotedata.it"
-    }
-  ],
+      {
+        "name": "Remote Data, Inc",
+        "description": "Producers of awesome spatiotemporal assets",
+        "roles": [
+          "producer",
+          "processor",
+          "licensor"
+        ],
+        "url": "http://remotedata.io"
+      }
+    ],
     "platform": "cool_sat2",
     "instruments": [
       "cool_sensor_v1"
-    ],
-    "eo:bands": [
-      {
-        "name": "band1",
-        "common_name": "red",
-        "center_wavelength": 668,
-        "full_width_half_max": 16
-      },
-      {
-        "name": "band2",
-        "common_name": "green",
-        "center_wavelength": 560,
-        "full_width_half_max": 28
-      },
-      {
-        "name": "band3",
-        "common_name": "blue",
-        "center_wavelength": 475,
-        "full_width_half_max": 36
-      },
-      {
-        "name": "band4",
-        "common_name": "nir",
-        "center_wavelength": 842,
-        "full_width_half_max": 55
-      }
     ],
     "view:sun_elevation": 33.4,
     "gsd": 0.512,
@@ -133,50 +106,58 @@
   ],
   "assets": {
     "analytic": {
-      "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/analytic.tif",
+      "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_analytic.tif",
       "title": "4-Band Analytic",
       "eo:bands": [
         {
           "name": "band1",
-          "common_name": "red"
+          "common_name": "blue",
+          "center_wavelength": 470,
+          "full_width_half_max": 70
         },
         {
           "name": "band2",
-          "common_name": "green"
+          "common_name": "green",
+          "center_wavelength": 560,
+          "full_width_half_max": 80
         },
         {
           "name": "band3",
-          "common_name": "blue"
+          "common_name": "red",
+          "center_wavelength": 645,
+          "full_width_half_max": 90
         },
         {
           "name": "band4",
-          "common_name": "nir"
+          "common_name": "nir",
+          "center_wavelength": 800,
+          "full_width_half_max": 152
         }
-      ]
-    },
-    "thumbnail": {
-      "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/thumbnail.png",
-      "title": "Thumbnail",
-      "type": "image/png",
-      "roles": [
-        "thumbnail"
-      ]
-    },
-    "udm": {
-      "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/UDM.tif",
-      "title": "Unusable Data Mask"
-    },
-    "json-metadata": {
-      "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/extended-metadata.json",
-      "title": "Extended Metadata",
-      "type": "application/json",
-      "roles": [
-        "metadata"
-      ]
-    },
-    "ephemeris": {
-      "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/S3-20160503_132130_04.EPH",
-      "title": "Satellite Ephemeris Metadata"
+      ],
+      "thumbnail": {
+        "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2.jpg",
+        "title": "Thumbnail",
+        "type": "image/png",
+        "roles": [
+          "thumbnail"
+        ]
+      },
+      "udm": {
+        "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_analytic_udm.tif",
+        "title": "Unusable Data Mask"
+      },
+      "json-metadata": {
+        "href": "http://remotedata.io/catalog/20201211_223832_CS2/extended-metadata.json",
+        "title": "Extended Metadata",
+        "type": "application/json",
+        "roles": [
+          "metadata"
+        ]
+      },
+      "ephemeris": {
+        "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/S3-20160503_132130_04.EPH",
+        "title": "Satellite Ephemeris Metadata"
+      }
     }
   }
 }

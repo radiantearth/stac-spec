@@ -5,7 +5,7 @@ it should successfully load in various tools. It does not follow *all* the [best
 due to the fact that it's a necessarily contrived example to show the spec, and to do it in github. But we note below where it differs
 from an ideal catalog.
 
-The various fields are all fictional, to be able to demonstrate the various aspects of the spec as tersely as possible. To get a sense
+The various fields are mostly fictional, to be able to demonstrate the various aspects of the spec as tersely as possible. To get a sense
 of real world STAC implementations we recommend exploring the [stac-examples](http://github.com/stac-utils/stac-examples) repo, which 
 gathers in one place copies of STAC [Items](../item-spec/item-spec.md) and [Collection](../collection-spec/collection-spec.md) 
 from a number of different production catalogs that all follow good STAC practices. And you should also explore the various catalogs
@@ -47,7 +47,8 @@ link down to a number of items.
 
 **[collection-only/collection.json](collection-only/collection.json)** is a collection that does not link to any items. This
 demonstrates how is is possible to make use of STAC Collections without needing items, to serve as nice summarizing metadata for 
-tools that work with full layers / collections.
+tools that work with full layers / collections. This example collection is based on real Sentinel-2 values, so is not quite fictional,
+but should be taken as just an example.
 
 **[extensions-collection/collection.json](extensions-collection/collection.json)** contains a small number of items, that demonstrate
 more functionality available in STAC [extensions](../extensions/). These are linked to directly from the individual extensions. These
