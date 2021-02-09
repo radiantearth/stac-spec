@@ -131,11 +131,25 @@ This is most typically done for projections that aren't available or fully descr
 in lat/long (EPSG:4326). But most remote sensing data does not come in that projection, so it is often useful for clients to have 
 the geometry information ([geometry](#projgeometry), [bbox](#projbbox), [centroid](#projcentroid)) in the coordinate reference system
 of the asset's data, so it doesn't have to reproject (which can be lossy and takes time). 
-- **
+- **Information to enable cataloging of data without opening assets:** Often it is useful to be able to construct a 'virtual layer',
+like GDAL's [VRT](https://gdal.org/drivers/raster/vrt.html) without having to open the actual imagery file. [shape](#projshape) and
+[transform](#projtransform) together with the core description of the CRS provide enough information about the size and shape of
+the data in the file so that tools don't have to open it.
 
+None of these is truly necessary for 'search' of data, the main use case of STAC. But all enable more 'cloud native' use of data,
+as they describe the metadata needed to stream data for processing and/or display on the web. We do recommend including at least the
+EPSG code if it's available, as it's a fairly standard piece of metadata, and [see below](#crs-description-recommendations) for more
+information about when to use WKT and PROJJSON. We do recommend including the shape and transform fields if you have cloud
+optimized geotiff's or some other cloud native format, to enable online tools to work with the assets more efficiently. This is
+especially useful if the data is likely to be mosaiced or otherwise processed together, so that tools don't have to open every 
+single file to show or process aggregates of hundreds or thousands. Finally, the descriptions of the native geometry information 
+are useful when STAC is the complete metadata for an item. If other metadata is also included it likely has this information, but
+we provide it because some modern systems are just using STAC for their entire metadata description.
 
 ### CRS Description Recommendations
 
-WKT2 and PROJJSON are equivalent to one another - more clients understand WKT2, but PROJJSON fits more nicely in the STAC JSON structure, since
-they are both JSON. For now it's probably best to use both for maximum interoperability, but just using PROJJSON is likely ok if
-you aren't worried about legacy client support. If you are using one not
+WKT2 and PROJJSON are mostly recommended when you have data that is not part of the standard EPSG registry. Providing one of them
+supplies the exact information for projection software to do the exact projection transform.
+WKT2 and PROJJSON are equivalent to one another - more clients understand WKT2, but PROJJSON fits more nicely in the STAC JSON 
+structure, since they are both JSON. For now it's probably best to use both for maximum interoperability, but just using PROJJSON 
+is likely ok if you aren't worried about legacy client support. 
