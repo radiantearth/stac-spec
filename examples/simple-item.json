@@ -1,6 +1,6 @@
 {
   "stac_version": "1.0.0-beta.2",
-  "stac_extensions": [ ],
+  "stac_extensions": [],
   "type": "Feature",
   "id": "20201211_223832_CS2",
   "bbox": [
