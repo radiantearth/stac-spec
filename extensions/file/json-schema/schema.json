@@ -95,6 +95,11 @@
     "file": {
       "type": "object",
       "properties": {
+        "file:bits_per_sample": {
+          "type": "integer",
+          "minimum": 0,
+          "title": "Bits per Sample"
+        },
         "file:byte_order": {
           "type": "string",
           "enum": [
@@ -135,10 +140,45 @@
           "minimum": 0,
           "title": "File Header Size"
         },
+        "file:nodata": {
+          "type": "array",
+          "items": {
+            "description": "Any data type is allowed"
+          },
+          "title": "No data values"
+        },
         "file:size": {
           "type": "integer",
           "minimum": 0,
           "title": "File Size"
+        },
+        "file:unit": {
+          "type": "string",
+          "title": "Unit"
+        },
+        "file:values": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "values",
+              "summary"
+            ],
+            "properties": {
+              "values": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "description": "Any data type is allowed"
+                }
+              },
+              "summary": {
+                "type": "string"
+              }
+            }
+          },
+          "title": "Value Map"
         }
       }
     }

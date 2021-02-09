@@ -7,18 +7,15 @@
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 - **Owner**: @matthewhanson
 
-This document explains the fields of the STAC Projection (`proj`) Extension to a STAC Item. Here `proj` is short
-for "projection", and not a reference to the use of the PROJ/PROJ4 formats.
+This document explains the fields of the STAC Projection (`projection`) Extension to a STAC Item.
 
-The field names defined herein should be added as fields in the Item Properties object.
+The fields defined here may be added to the Item Properties object or an Item Asset object.
 
-When specified on an Item, the values are assumed to apply to all Assets in that Item. For example, an Item may have
+When specified in Item Properties, the values are assumed to apply to all Assets in that Item. For example, an Item may have
 several related Assets each representing a band or layer for the Item, and which typically all use the same CRS,
-e.g. a UTM Zone. However, there may also be assets intended for display, like a preview image or thumbnail, that have
-been reprojected to a different CRS, e.g., Web Mercator, to better accommodate that use case. This case of differing
-projections per Asset is not currently handled by this extension. The exception to this is that `proj:shape` and
-`proj:transform` can be overridden at the asset level, where an asset has a different shape and transform from the
-default, which should be specified at the asset level, while those assets that use the defaults can remain unspecified.
+e.g., a UTM Zone. However, there may also be Assets intended for display, like a preview image or thumbnail, that have
+been reprojected to a different CRS, e.g., Web Mercator, or resized to better accommodate that use case. In this case, the 
+fields should be specified at the Item Asset level, while those Item Asset objects that use the defaults can remain unspecified.
 
 ## Examples
 
@@ -28,7 +25,9 @@ default, which should be specified at the asset level, while those assets that u
 
 - [JSON Schema](json-schema/schema.json)
 
-## Item Properties fields
+## Item Asset or Item Properties fields
+
+The `proj` prefix is short for "projection", and is not a reference to the PROJ/PROJ4 formats.
 
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
@@ -73,8 +72,8 @@ of the lower left corner, followed by coordinates of upper right corner, , e.g.,
 **proj:centroid** - Coordinates representing the centroid of the item in the asset data CRS.  Coordinates are
 defined in latitude and longitude, even if the data coordinate system does not use lat/long.
 
-**proj:shape** - An array of integers that represents the number of pixels in the most common pixel grid used by the item's assets.
-The number of pixels should be specified in Y, X order. If the shape is defined in an item's properties it is used as
+**proj:shape** - An array of integers that represents the number of pixels in the most common pixel grid used by the Item Asset objects.
+The number of pixels should be specified in Y, X order. If the shape is defined in Item Properties, it is used as
 the default shape for all assets that don't have an overriding shape.
 
 **proj:transform** - Linear mapping from pixel coordinate space (Pixel, Line) to projection coordinate space (Xp, Yp). It is a `3x3` matrix stored as a flat array of 9 elements in row major order. Since the last row is always `0,0,1` it can be omitted, in which case only 6 elements are recorded. This mapping can be obtained from GDAL([`GetGeoTransform`](https://gdal.org/api/gdaldataset_cpp.html#_CPPv4N11GDALDataset15GetGeoTransformEPd)) or the Rasterio ([`Transform`](https://rasterio.readthedocs.io/en/stable/api/rasterio.io.html#rasterio.io.BufferedDatasetWriter.transform)).
@@ -85,11 +84,11 @@ the default shape for all assets that don't have an overriding shape.
   [1 ]   [0 ,  0,  1]   [1    ]
 ```
 
-If the transform is defined in an item's properties it is used as the default transform for all assets that don't have an overriding transform.
+If the transform is defined in Item Properties, it is used as the default transform for all assets that don't have an overriding transform.
 
 ## Centroid Object
 
-This object represents the centroid of an item's geometry.
+This object represents the centroid of the Item Geometry.
 
 | Field Name          | Type   | Description                                                  |
 | ------------------- | ------ | ------------------------------------------------------------ |

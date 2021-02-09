@@ -63,32 +63,6 @@
     "instruments": [
       "cool_sensor_v1"
     ],
-    "eo:bands": [
-      {
-        "name": "band1",
-        "common_name": "red",
-        "center_wavelength": 668,
-        "full_width_half_max": 16
-      },
-      {
-        "name": "band2",
-        "common_name": "green",
-        "center_wavelength": 560,
-        "full_width_half_max": 28
-      },
-      {
-        "name": "band3",
-        "common_name": "blue",
-        "center_wavelength": 475,
-        "full_width_half_max": 36
-      },
-      {
-        "name": "band4",
-        "common_name": "nir",
-        "center_wavelength": 842,
-        "full_width_half_max": 55
-      }
-    ],
     "view:sun_elevation": 33.4,
     "gsd": 0.512,
     "cs:type": "scene",
@@ -137,20 +111,16 @@
       "title": "4-Band Analytic",
       "eo:bands": [
         {
-          "name": "band1",
-          "common_name": "red"
+          "name": "band1"
         },
         {
-          "name": "band2",
-          "common_name": "green"
+          "name": "band1"
         },
         {
-          "name": "band3",
-          "common_name": "blue"
+          "name": "band2"
         },
         {
-          "name": "band4",
-          "common_name": "nir"
+          "name": "band3"
         }
       ]
     },

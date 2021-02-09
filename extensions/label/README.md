@@ -35,13 +35,13 @@ This document explains the fields of the STAC Label Extension to a STAC Item. It
 ## Schema
 - [JSON Schema](json-schema/schema.json)
 
-## Item fields
+## Fields
 
 A Label Item represents a polygon, set of polygons, or raster data defining labels and label metadata and should be part of a Collection. See the [raster label notes](#raster-label-notes) section below for details on raster-formatted labels. It is up to the data provider how to group their catalog, but a typical use might have a Collection of a series of label sets (Items) that are related. For example a "Building" collection might have 50 Items, each one was a set of building AOIs for a single country. The Collection holds details on the data providers and the license.
 
 Like other content extensions, the Label extension adds additional fields to a STAC Item, which are detailed after some additional clarification on what the core fields mean with respect to a Label Item.
 
-### Core Item fields
+### Item fields
 Some additional notes are given here for some of the core STAC Item fields and what they represent for label.
 
 - **bbox** and **geometry**: The bounding box and the geometry of a Label Item represents the region for which the label(s) is/are valid. The geometry _must_ include areas for which labeling was attempted but no features were identified, if such areas exist. For example, consider a cloud labeling object detection task for this chip taken from a Sentinel-2 image, which happens not to have any clouds. The geometry for the label item with this item as its `source` must be the geometry of the image (or whatever area within the image was considered), even though the label item's asset won't have any features.
@@ -51,7 +51,7 @@ Some additional notes are given here for some of the core STAC Item fields and w
 - **properties.datetime**: The datetime of a Label Item is the nominal datetime for which the label applies, typically this is the datetime of the source imagery used to generate the labels. If the label applies over a range of datetimes (e.g., generated from multiple source images) then use the [Date and Time Range fields](../../item-spec/common-metadata.md#date-and-time-range) to indicate start and end datetimes.
 - **assets**: The label assets are GeoJSON FeatureCollection assets containing the actual label features. As with the core STAC Item a thumbnail asset is also strongly encouraged.
 
-### New Item properties
+### Item Properties fields
 | Field Name        | Type                             | Name                       | Description |
 | ----------------- | -------------------------------- | -------------------------- | ----------- |
 | label:properties  | \[string]\|null                  | Name                       | **REQUIRED** These are the names of the property field(s) in each `Feature` of the label asset's `FeatureCollection` that contains the  classes (keywords from `label:classes` if the property defines classes). If labels are rasters, use `null`. |

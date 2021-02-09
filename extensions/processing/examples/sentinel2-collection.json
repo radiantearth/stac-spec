@@ -64,8 +64,8 @@
   },
   "summaries": {
     "datetime": {
-      "min": "2015-06-23T00:00:00Z",
-      "max": "2019-07-10T13:44:56Z"
+      "minimum": "2015-06-23T00:00:00Z",
+      "maximum": "2019-07-10T13:44:56Z"
     },
     "platform": [
       "sentinel-2a",
