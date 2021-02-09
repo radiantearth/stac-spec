@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - URIs (usually found int properties like `href`, `url`) are now validated using the `iri-reference` format in JSON Schema (allows international characters in URIs)
 - Relaxed the regular expression for DOIs in the scientific extension ([#910](https://github.com/radiantearth/stac-spec/issues/910))
 - The [Stats Object](collection-spec/collection-spec.md#stats-object) for Collection `summaries` changed `min` to `minimum` and `max` to `maximum` to align with JSON Schema.
+- Moved examples from individual directories into a single /examples folder at the root, and evolved them to be more representative.
 
 ### Removed
 

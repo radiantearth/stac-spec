@@ -49,16 +49,16 @@
     "updated": "2017-01-01T00:30:55Z",
     "license": "various",
     "providers": [
-    {
-      "name": "Remote Data, Inc",
-      "description": "Producers of awesome spatiotemporal assets",
-      "roles": [
-        "producer",
-        "processor"
-      ],
-      "url": "http://remotedata.it"
-    }
-  ],
+      {
+        "name": "Remote Data, Inc",
+        "description": "Producers of awesome spatiotemporal assets",
+        "roles": [
+          "producer",
+          "processor"
+        ],
+        "url": "http://remotedata.it"
+      }
+    ],
     "platform": "cool_sat2",
     "instruments": [
       "cool_sensor_v1"
