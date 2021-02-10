@@ -12,7 +12,7 @@
 * [Working with Media Types](#working-with-media-types)
 * [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
 * [Catalog Layout](#catalog-layout)
-* [Using Summaries in Collections](using-summaries-in-collections)
+* [Using Summaries in Collections](#using-summaries-in-collections)
 * [Use of Links](#use-of-links)
 * [Using Relation Types](#using-relation-types)
 * [Versioning for Catalogs](#versioning-for-catalogs)
