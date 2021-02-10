@@ -124,7 +124,7 @@ This object represents the centroid of the Item Geometry.
 
 ## Best Practices
 
-There are clearly a number of projection extension fields, with potentially overlapping functionality. This section attempts to 
+There are several projection extension fields with potentially overlapping functionality. This section attempts to 
 give an overview of which ones you should consider using. They fit into three general categories:
 
 - **Description of the coordinate reference system:** [EPSG code](#projepsg) is the default, but it is just a reference to known
