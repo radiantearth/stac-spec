@@ -129,7 +129,7 @@ give an overview of which ones you should consider using. They fit into three ge
 
 - **Description of the coordinate reference system:** [EPSG code](#projepsg) is the default, but it is just a reference to known
 projection information. [WKT2](#projwkt2) and [PROJJSON](#projprojjson) are two options to fully describe the projection information.
-This is most typically done for projections that aren't available or fully described in the [EPSG Registry](https://epsg.org/). 
+This is typically done for projections that aren't available or fully described in the [EPSG Registry](https://epsg.org/). 
 - **Description of the native geometry information:** STAC requires the geometry and bounding box, but they are only available
 in lat/long (EPSG:4326). But most remote sensing data does not come in that projection, so it is often useful for clients to have 
 the geometry information ([geometry](#projgeometry), [bbox](#projbbox), [centroid](#projcentroid)) in the coordinate reference system
