@@ -5,6 +5,7 @@
 - **Field Name Prefix: tiles**
 - **Scope: Item, Catalog, Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Owner**: @constantinius
 
 Some data products are too big to be handled in a single file or a small set of enumerated files and are thus split into tiles. For example, Sentinel-2 datastrips are tiled into overlapping granules, in some cases in even more than one coordinate reference system. Other very big datasets, such as continental or global mosaics can also only be handled in a tiled fashion. Usually, they go one step further and provide multiple layers of resolution to allow a quick inspection of larger areas but also retain the possibility to get to the full resolution data.
 
@@ -17,7 +18,9 @@ This extension is modelled in close alignment to the [OGC Two Dimensional Tile M
 - Examples: [Tiled](examples/example-tiled.json), [Dimension](examples/example-dimension.json)
 - [JSON Schema](json-schema/schema.json)
 
-## Item, Collection and Catalog properties
+## Item Properties, Collection, and Catalog Fields
+
+These fields can be applied to Item Properties, Collection, or Catalog objects.
 
 | Field Name               | Type                                                                  | Description                                                                                                          |
 | ------------------------ | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
@@ -27,7 +30,7 @@ This extension is modelled in close alignment to the [OGC Two Dimensional Tile M
 
 Tile matrix sets can be directly embedded in a collection, catalog or item. Such directly embedded tile matrix set objects must conform to the [OGC Two Dimensional Tile Matrix Set JSON schema](http://schemas.opengis.net/tms/1.0/json/tms-schema.json).
 
-## Item properties
+## Item Properties fields
 
 | Field Name                  | Type                                                                  | Description                                                                                                     |
 | --------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |

@@ -1,21 +1,31 @@
 # Extensions
 
-This folder contains extensions to the SpatioTemporal Asset Catalog specification. The specification
-is designed for extension, defining just a minimal core. It is expected that most real world
-implementations will use several extensions to fully describe their data and API.
+This folder contains extensions to the SpatioTemporal Asset Catalog specification. The core STAC specification 
+defines only a minimal core, but is designed for extension. It is expected that most real-world
+implementations will use several extensions to fully describe their data and API.  
 
-Extensions can be changes in functionality or new fields. This can include new JSON files that are
+The extensions described here are Content Extensions, which typically add additional fields and semantics to STAC objects. API Extensions that add new endpoints or behavior to the API are published in the [STAC API repository](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/).
+
+Extensions can be changes in functionality or additional fields. This can include new JSON files that are
 linked to from the core `links`, as well as new OpenAPI fragments. Extensions should include
-narrative explaining the fields, a comprehensive example and a JSON-Schema to validate compliance.
-Any data provider can create an extension, and when providers work together to share fields between
+narrative explaining the fields, a comprehensive example, and a JSON-Schema to validate compliance.
+Any data provider can create a proprietary extension, and when providers work together to share fields between
 them they can create a shared extension and include it in the STAC repository.
 
-Anyone is welcome to create an extension (see section 'Extending STAC'), and is encouraged to at least link to the extension from
-here. The third-party / vendor extension section is for the sharing of extensions. As third
-parties create useful extensions for their implementation it is expected that others will make use
+Anyone is welcome to create an extension (see section 'Extending STAC'), and is encouraged to at least link 
+to the extension from here. The [third-party / vendor extensions](#third-party--vendor-extensions) section is 
+for the sharing of extensions. As third-parties create useful extensions for their implementation, it is 
+expected that others will make use
 of it, and then evolve to make it a 'community extension', that several providers maintain
 together. For now anyone from the community is welcome to use this extensions/ folder of the
 stac-spec repository to collaborate.
+
+## General Conventions
+
+1. Additional attributes relating to an Item should be added into the Item Properties object, rather than directly in the Item object. 
+2. In general, additional attributes that apply to an Item Asset should also be allowed in Item Properties and vice-versa.
+For example, the `eo:bands` attribute may be used in Item Properties to describe the aggregation of all bands available in 
+the Item Asset objects contained in the Item, but may also be used in an individual Item Asset to describe only the bands available in that asset.
 
 ## Extension Maturity
 
@@ -28,7 +38,7 @@ on the extension.
 | ----------------------- | ----------- | ----------- | --------- |
 | Proposal                | 0           | An idea put forward by a community member to gather feedback | Not stable - breaking changes almost guaranteed as implementers try out the idea. |
 | Pilot                   | 1           | Idea is fleshed out, with examples and a JSON schema, and implemented in one or more catalogs. Additional implementations encouraged to help give feedback | Approaching stability - breaking changes are not anticipated but can easily come from additional feedback |
-| Candidate               | 3           | A number of implementers are using it and are standing behind it as a solid extension. Can generally count on an extension at this maturity level | Mostly stable, breaking changes require a new version and minor changes are unlikely. |
+| Candidate               | 3           | A number of implementers are using it and are standing behind it as a solid extension. Can generally count on an extension at this maturity level | Mostly stable, breaking changes require a new version and minor changes are unlikely. The extension has a [code owner](../.github/CODEOWNERS). |
 | Stable                  | 6           | Highest current level of maturity. The community of extension maintainers commits to a STAC review process for any changes, which are not made lightly. | Completely stable, all changes require a new version number and review process. |
 | Deprecated              | N/A         | A previous extension that has likely been superseded by a newer one or did not work out for some reason. | DO NOT USE, is not supported |
 
@@ -40,15 +50,15 @@ the less breaking changes of the next level.
 A 'mature' classification level will likely be added once there are extensions that have been
 stable for over a year and are used in twenty or more implementations.
 
-## List of content extensions
+## List of Content Extensions
 
-An extension can add new fields to STAC entities (content extension), or can add new endpoints or behavior to the API (API extension). Below is a list of content extensions, while API extensions are published in the [STAC API repository](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/).
+These extensions add new fields or semantics to STAC objects.
 
 | Extension Title                                  | Identifier        | Field Name Prefix   | Scope                     | Maturity   | Description |
 | ------------------------------------------------ | ----------------- | ------------------- | ------------------------- | ---------- | ----------- |
 | [Collection Assets](collection-assets/README.md) | collection-assets | -                   | Collection                | *Proposal* | Provides a way to specify assets available on the collection-level. |
 | [Data Cube](datacube/README.md)                  | datacube          | cube                | Item, Collection          | *Proposal* | Data Cube related metadata, especially to describe their dimensions. |
-| [Electro-Optical](eo/README.md)                  | eo                | eo                  | Item                      | *Proposal* | Covers electro-optical data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, gsd and more. |
+| [Electro-Optical](eo/README.md)                  | eo                | eo                  | Item                      | *Proposal* | Covers electro-optical data that represents a snapshot of the Earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, gsd and more. |
 | [File Info](file/README.md)                      | file              | file                | Item, Catalog, Collection | *Proposal* | Provides a way to specify file details such as size, data type and checksum for assets and links in Items, Catalogs and Collections. |
 | [Item Asset Definition](item-assets/README.md)   | item-assets       | -                   | Collection                | *Proposal* | Provides a way to specify details about what assets may be found in Items belonging to a collection. |
 | [Label](label/README.md)                         | label             | label               | Item                      | *Proposal* | Items that relate labeled AOIs with source imagery |
@@ -66,7 +76,7 @@ An extension can add new fields to STAC entities (content extension), or can add
 
 ## Third-party / vendor extensions
 
-The following extensions are provided by third parties (vendors). They tackle very specific
+The following extensions are provided by third parties (vendors). They address specific
 use-cases and may be less stable than the official extensions. Once stable and adopted by multiple
 parties, extensions may be made official and incorporated in the STAC repository.
 
@@ -92,7 +102,7 @@ extension, please get in touch through the referenced issues:
 
 Anyone is welcome to create an extension. There are several types of extensions, some just add additional fields,
 some change the behaviour of STAC and some introduce completely new functionality. New extensions should try to align
-with existing extensions as good as possible and may even re-use fields and their definitions until they may get split
+with existing extensions as well as possible and may even re-use fields and their definitions until they may get split
 into a new extension that combines commonly used fields across multiple extensions.
 Best practices for extension proposals are still emerging in this section.
 

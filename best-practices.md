@@ -2,15 +2,18 @@
 
 ## Table of Contents
 
+* [Enable CORS](#enable-cross-origin-resource-sharing-cors)
 * [Field and ID formatting](#field-and-id-formatting)
 * [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
 * [Datetime selection](#datetime-selection)
 * [Unlocated Items](#unlocated-items)
 * [Representing Vector Layers in STAC](#representing-vector-layers-in-stac)
 * [Common Use Cases of Additional Fields for Assets](#common-use-cases-of-additional-fields-for-assets)
+* [Working with Media Types](#working-with-media-types)
 * [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
 * [Catalog Layout](#catalog-layout)
 * [Use of Links](#use-of-links)
+* [Using Relation Types](#using-relation-types)
 * [Versioning for Catalogs](#versioning-for-catalogs)
 * [STAC on the Web](#stac-on-the-web)
 
@@ -23,6 +26,23 @@ those who are creating new catalogs or new tools to work with STAC.
 
 While the current goal of the core is to remain quite flexible and simple to meet a wide variety of use cases,
 in time some of these may evolve to become part of the core specification.
+
+## Enable Cross-origin resource sharing (CORS)
+
+STAC strives to make geospatial information more accessible, by putting it on the web. Fundamental to STAC's vision is that
+different tools will be able to load and display public-facing STAC data. But the web runs on a [Same origin 
+policy](https://en.wikipedia.org/wiki/Same-origin_policy), preventing web pages from loading information from other web locations
+to prevent malicious scripts from accessing sensitive data. This means that by default a web page would only be able to load STAC
+Items from the same server the page is on. [Cross-origin resource sharing](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing),
+also known as 'CORS' is a protocol to enable safe communication across origins. But most web services turn it off by default. This
+is generally a good thing, but unfortunately if CORS is not enabled then any browser-based STAC tool will not work. 
+
+So to enable all the great web tools (like [stacindex.org](http://stacindex.org)) to work with your STAC catalog it is essential to
+'enable CORS'. Most services have good resources on how to do this, like on [AWS S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html),
+[Google Cloud Storage](https://cloud.google.com/storage/docs/cross-origin), or [Apache Server](https://enable-cors.org/server_apache.html). 
+Many more are listed on [enable-cors.org](https://enable-cors.org/server.html). We recommend enabling CORS for all requests ('\*'),
+so that diverse online tools can access your data. If you aren't sure if your server has CORS enabled you can use 
+[test-cors.org](https://www.test-cors.org/). Enter the URL of your STAC catalog JSON and make sure it gets a response.
 
 ## Field and ID formatting
 
@@ -41,7 +61,7 @@ people can just search for 'landsat-8', instead of thinking through all the ways
 ## Field selection and Metadata Linking
 
 In general STAC aims to be oriented around **search**, centered on the core fields that users will want to search on to find 
-imagery. The core is space and time, but there are often other metadata attributes that are useful. While the specification is 
+imagery. The core is space and time, but there are often other metadata fields that are useful. While the specification is 
 flexible enough that providers can fill it with tens or even hundreds of fields of metadata, that is not recommended. If 
 providers have lots of metadata then that can be linked to in the [Asset Object](item-spec/item-spec.md#asset-object) 
 (recommended) or in a [Link Object](item-spec/item-spec.md#link-object). There is a lot of metadata that is only of relevance 
@@ -138,6 +158,50 @@ than the overall best resolution.
 - `sar:polarizations` ([sar extension](extensions/sar/)): Provide the polarization content and ordering of a specific asset, similar to `eo:bands`.
 - `sar:product_type` ([sar extension](extensions/sar/)): If mixing multiple product types within a single Item, this can be used to specify the product_type for each asset.
 
+## Working with Media Types
+
+[Media Types](https://en.wikipedia.org/wiki/Media_type) are a key element that enables STAC to be a rich source of information for
+clients. The best practice is to use as specific of a media type as is possible (so if a file is a GeoJSON then don't use a JSON
+media type), and to use [registered](https://www.iana.org/assignments/media-types/media-types.xhtml) IANA types as much as possible.
+The following table lists types that commonly show up in STAC assets. And the the [section](#formats-with-no-registered-media-type)
+past that gives recommendations on what to do if you have a format in your asset that does not have an IANA registered type.
+
+### Common Media Types in STAC
+
+The following table lists a number of commonly used media types in STAC. The first two (GeoTIFF and COG) are not fully standardized 
+yet, but reflect the community consensus direction. There are many IANA registered types that commonly show up in STAC. The 
+following table lists some of the most common ones you may encounter or use.
+
+| Media Type                                              | Description                                                  |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
+| `image/tiff; application=geotiff`                       | GeoTIFF with standardized georeferencing metadata            |
+| `image/tiff; application=geotiff; profile=cloud-optimized` | [Cloud Optimized GeoTIFF](https://www.cogeo.org/) (unofficial). Once there is an [official media type](http://osgeo-org.1560.x6.nabble.com/Media-type-tc5411498.html) it will be added and the custom media type here will be deprecated. |
+| `image/jp2`                                             | JPEG 2000                                                    |
+| `image/png`                                             | Visual PNGs (e.g. thumbnails)                                |
+| `image/jpeg`                                            | Visual JPEGs (e.g. thumbnails, oblique)                      |
+| `text/xml` or `application/xml`                         | XML metadata [RFC 7303](https://www.ietf.org/rfc/rfc7303.txt) |
+| `application/json`                                      | A JSON file (often metadata, or [labels](https://github.com/radiantearth/stac-spec/tree/master/extensions/label#labels-required)) |                   
+| `text/plain`                                            | Plain text (often metadata)                                  |
+| `application/geo+json`                                  | [GeoJSON](https://geojson.org/)                              |
+| `application/geopackage+sqlite3`                        | [GeoPackage](https://www.geopackage.org/)                    |
+| `application/x-hdf5`                                    | Hierarchical Data Format version 5                           |
+| `application/x-hdf`                                     | Hierarchical Data Format versions 4 and earlier.             |
+
+*Deprecation notice: GeoTiff previously used the media type `image/vnd.stac.geotiff` and
+Cloud Optimized GeoTiffs used `image/vnd.stac.geotiff; profile=cloud-optimized`.
+Both can still appear in old catalogues, but are deprecated and should be replaced. This will, unfortunately, likely shift in the future as
+[OGC sorts out the media types](https://github.com/opengeospatial/geotiff/issues/34).*
+
+### Formats with no registered media type
+
+Ideally every media type used is on the [IANA registry](https://www.iana.org/assignments/media-types/media-types.xhtml). If
+you are using a format that is not on that list we recommend you use [custom content 
+type](https://restcookbook.com/Resources/using-custom-content-types/). These typically use the `vnd.` prefix, see [RFC 6838 
+section-3.2](https://tools.ietf.org/html/rfc6838#section-3.2). Ideally the format provider will actually
+register the media type with IANA, so that other STAC clients can find it easily. But if you are only using it internally it is 
+[acceptable to not register](https://stackoverflow.com/questions/29121241/custom-content-type-is-registering-with-iana-mandatory) 
+it. It is relatively easy to [register](https://www.iana.org/form/media-types) a `vnd` media type.
+
 ## Static and Dynamic Catalogs
 
 As mentioned in the main [overview](overview.md), there are two main types of catalogs - static
@@ -202,14 +266,13 @@ should consider an additional way to break it up.
 We encourage people to explore new structures of linking data, but the following list is what a number of implementors 
 ended up doing. Following these recommendations makes for more legible catalogs.
 
-1. Root documents (catalogs / collections) should be at the root of a directory tree containing the static catalog.  
-2. Catalogs should be named `catalog.json` (cf. `index.html`).
-3. Collections that are distinct from catalogs should be named `collection.json`.
-4. Items should be named `<id>.json`.
-5. Sub-catalogs should be stored in subdirectories of their parent (and only 1 subdirectory deeper than a document's parent) (e.g. `.../sample/sub1/catalog.json`).
-6. Items should be stored in subdirectories of their parent catalog. 
+1. Root documents (catalogs / collections) should be at the root of a directory tree containing the static catalog.
+2. Catalogs that are not also Collections should be named `catalog.json` and Collections should be named `collection.json`.
+3. Items should be named `<id>.json`.
+4. Sub-catalogs should be stored in subdirectories of their parent (and only 1 subdirectory deeper than a document's parent) (e.g. `.../sample/sub1/catalog.json`).
+5. Items should be stored in subdirectories of their parent catalog. 
 This means that each item and its assets are contained in a unique subdirectory.
-7. Limit the number of items in a catalog or sub-catalog, grouping / partitioning as relevant to the dataset.
+6. Limit the number of items in a catalog or sub-catalog, grouping / partitioning as relevant to the dataset.
 
 ### Dynamic Catalog Layout
 
@@ -236,10 +299,10 @@ STAC version. Otherwise some behaviour of functionality may be unpredictable (e.
 
 ## Use of links
 
-The main catalog specification allows both relative and absolute links, and says that `self` links are not required, but are 
+The STAC specifications allow both relative and absolute links, and says that `self` links are not required, but are 
 strongly recommended. This is what the spec must say to enable the various use cases, but there is more subtlety for when it 
-is essential to use different link types. The best practice is to use one of the below 
-catalog types, applying the link recommendations consistently, instead of just haphazardly applying anything the spec allows.
+is essential to use different link types. The best practice is to use one of the below catalog types, applying the link 
+recommendations consistently, instead of just haphazardly applying relative links in some places and absolute ones in other places.
 
 ### Self-contained Catalogs
 
@@ -293,6 +356,22 @@ multiple sources to achieve this.
 So if you are writing a STAC client it is recommended to start with just supporting these two types of published catalogs. In 
 turn, if your data is published online publicly or for use on an intranet then following these recommendations will ensure
 that a wider range of clients will work with it. 
+
+## Using Relation Types
+
+Implementors of STAC are highly recommended to be quite liberal with their `links`, and to use the `rel` field (in conjunction
+with the `type` field) to communicate the structure and content of related entities. While each STAC spec describes some of the 
+'custom' relations STAC has set, the ideal is to reuse official [IANA Link Relation 
+Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) as much as possible. The following table describes
+a number of the common official relations that are used in production STAC implementations.
+
+| Type         | Description                                                  |
+| ------------ | ------------------------------------------------------------ |
+| alternate | It is recommended that STAC Items are also available as HTML, and should use this rel with `"type" : "text/html"` to tell clients where they can get a version of the Item or Collection to view in a browser. See [STAC on the Web in Best Practices](#stac-on-the-web) for more information. |
+| canonical | The URL of the [canonical](https://en.wikipedia.org/wiki/Canonical_link_element) version of the Item or Collection. API responses and copies of catalogs should use this to inform users that they are direct copy of another STAC Item, using the canonical rel to refer back to the primary location. |
+| via       | The URL of the source metadata that this STAC Item or Collection is created from. Used similarly to canonical, but refers back to a non-STAC record (Landsat MTL, Sentinel tileInfo.json, etc) |
+| prev      | Indicates that the link's context is a part of a series, and that the previous in the series is the link target. Typically used in STAC by API's, to return smaller groups of items or catalogs. |
+| next      | Indicates that the link's context is a part of a series, and that the next in the series is the link target. Typically used in STAC by API's, to return smaller groups of items or catalogs. |
 
 ## Versioning for Catalogs
 
@@ -381,7 +460,7 @@ to the static catalog, or can follow the 'dynamic catalog layout' recommendation
 
 Ideally each `Item` would use its `links` to provide a reference back to the static location. The location of the static
 item should be treated as the canonical location, as the generated API is more likely to move or be temporarily down. The
-spec provides the `derived_from` rel attribute, which fits well enough, but `canonical` is likely the more appropriate one
+spec provides the `derived_from` rel field, which fits well enough, but `canonical` is likely the more appropriate one
 as everything but the links should be the same.
 
 ### Keep catalogs in sync with cloud notification and queue services
@@ -389,7 +468,7 @@ as everything but the links should be the same.
 There is a set of emerging practices to use services like Amazon's Simple Queue Service (SQS) and Simple Notification Service
 (SNS) to keep catalogs in sync. There is a great [blog post on the CBERS STAC implementation on AWS](https://aws.amazon.com/blogs/publicsector/keeping-a-spatiotemporal-asset-catalog-stac-up-to-date-with-sns-sqs/). The core 
 idea is that a static catalog should emit a notification whenever it changes. The recommendation for SNS is to use the STAC 
-item JSON as the message body, with some attributes such as a scene’s datetime and geographic bounding box that allows 
+item JSON as the message body, with some fields such as a scene’s datetime and geographic bounding box that allows 
 basic geographic filtering from listeners. 
 
 The dynamic STAC API would then listen to the notifications and update its internal datastore whenever new data comes into

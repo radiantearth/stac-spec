@@ -5,6 +5,7 @@
 - **Field Name Prefix: sat**
 - **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Owner**: @emmanuelmathot
 
 This document explains the fields of the Satellite Extension to a STAC Item. Sat adds metadata related to a satellite that carries an instrument for collecting data. It will often be combined with other extensions that describe the actual data, such as the `eo`, `os` or `sar` extensions.
 
@@ -14,7 +15,7 @@ The Satellite extension requires the [Instrument Fields](../../item-spec/common-
 - [Example (Sentinel 1)](examples/example-sentinel1.json)
 - [JSON Schema](json-schema/schema.json)
 
-## Item fields
+## Item Properties or Item Asset fields
 
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |

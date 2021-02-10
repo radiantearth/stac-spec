@@ -5,26 +5,49 @@
 - **Field Name Prefix: file**
 - **Scope: Item, Catalog, Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Owner**: @m-mohr
 
-Provides a way to specify file related details such as checksum, data type and size for assets and links in [STAC Items](../../item-spec/item-spec.md), [STAC Catalogs](../../catalog-spec/catalog-spec.md) and [STAC Collections](../../collection-spec/collection-spec.md).
+Provides a way to specify file related details such as checksum, data type and size for assets in [STAC Items](../../item-spec/item-spec.md) and [STAC Collections](../../collection-spec/collection-spec.md) implementing the [Collection Assets](../collection-assets/README.md) extension.
 
 - [Example](examples/sentinel1.json)
 - [JSON Schema](json-schema/schema.json)
 
-## *Link Object* and *Asset Object* fields
+## *Asset Object* fields
 
-The following fields can be used for Links (in the [`Link Object`](../../item-spec/item-spec.md#link-object)) and assets (in the [`Asset Object`](../../item-spec/item-spec.md#asset-object)).
+The following fields can be used for assets (in the [`Asset Object`](../../item-spec/item-spec.md#asset-object)).
 
-| Field Name         | Type   | Description                                                  |
-| ------------------ | ------ | ------------------------------------------------------------ |
-| file:byte_order | string | The byte order of integer values in the file. One of `big-endian` or `little-endian`. |
-| file:checksum | string | Provides a way to specify file [checksums](#checksums) (e.g. BLAKE2, MD5, SHA1, SHA2, SHA3). The hashes are self-identifying hashes as described in the [Multihash specification](https://github.com/multiformats/multihash) and must be encoded as hexadecimal (base 16) string with lowercase letters. |
-| file:data_type | string | The data type of the file. One of the [data types](#data-types) below. |
-| file:header_size | integer | The header [size](#sizes) of the file, specified in bytes. |
-| file:size | integer | The file [size](#sizes), specified in bytes. |
+| Field Name           | Type                                    | Description                                                  |
+| -------------------- | --------------------------------------- | ------------------------------------------------------------ |
+| file:bits_per_sample | integer                                 | Bits per sample, e.g. 8, 16, 32, ...                         |
+| file:byte_order      | string                                  | The byte order of integer values in the file. One of `big-endian` or `little-endian`. |
+| file:checksum        | string                                  | Provides a way to specify file [checksums](#checksums) (e.g. BLAKE2, MD5, SHA1, SHA2, SHA3). The hashes are self-identifying hashes as described in the [Multihash specification](https://github.com/multiformats/multihash) and must be encoded as hexadecimal (base 16) string with lowercase letters. |
+| file:data_type       | string                                  | The data type of the file. One of the [data types](#data-types) below. |
+| file:header_size     | integer                                 | The header [size](#sizes) of the file, specified in bytes.   |
+| file:nodata          | \[any]                                  | Value(s) for no-data.                                        |
+| file:size            | integer                                 | The file [size](#sizes), specified in bytes.                 |
+| file:unit            | string                                  | The unit of measurement for the values in the file, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) units (singular). |
+| file:values          | \[[Mapping Object](#mapping-object)\] | Lists the value that are in the file and describes their meaning. See the [Mapping Object](#mapping-object) chapter for an example. If given, at least one array element is required. |
 
-This extension can OPTIONALLY be used with the [Collection Assets Extension](../collection-assets/README.md).
-File specific details should not be part of the [Item Assets Definition](../item-assets/README.md) in Collections.
+**Note:** File specific details should not be part of the [Item Assets Definition](../item-assets/README.md) in Collections.
+
+### Mapping Object
+
+Value maps are used by assets that are used as classification layers and give details about the values in the asset and their meanings.
+
+| Field Name | Data Type | Description                                                  |
+| ---------- | --------- | ------------------------------------------------------------ |
+| values     | \[any]    | **REQUIRED.** The value(s) in the file. At least one array element is required. |
+| summary    | string    | **REQUIRED.** A short description of the value(s).           |
+
+ For example for a cloud cover mask, `file:values` property could contain the following data:
+
+```json
+[
+	{"value": [0], "summary": "clear"},
+	{"value": [1], "summary": "clouds"},
+	{"value": [2], "summary": "cloud shadows"}
+]
+```
 
 ### Sizes
 

@@ -5,6 +5,7 @@
 - **Field Name Prefix: pc**
 - **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Owner**: @matthewhanson
 
 This document explains the fields of the Point Cloud Extension to a STAC Item,
 which allows STAC to more fully describe point cloud datasets. The point clouds can
@@ -14,7 +15,7 @@ tools such as LiDAR or coincidence-matched imagery.
 - [Example](examples/example-autzen.json)
 - [JSON Schema](json-schema/schema.json)
 
-## Item Fields
+## Item Properties fields
 
 | Field Name    | Type                              | Description |
 | ------------- | --------------------------------- | ----------- |
