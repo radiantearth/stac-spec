@@ -2,13 +2,13 @@
 
 This folder contains extensions to the SpatioTemporal Asset Catalog specification. The core STAC specification 
 defines only a minimal core, but is designed for extension. It is expected that most real-world
-implementations will use several extensions to fully describe their data and API.  
+implementations will use several extensions to fully describe their data.  
 
-The extensions described here are Content Extensions, which typically add additional fields and semantics to STAC objects. API Extensions that add new endpoints or behavior to the API are published in the [STAC API repository](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/).
+Extensions to the core STAC specification provide additional JSON fields that can be used to better describe
+the data. Most tend to be about describing a particular data type or domain, but some bring in additional
+functionality. 
 
-Extensions can be changes in functionality or additional fields. This can include new JSON files that are
-linked to from the core `links`, as well as new OpenAPI fragments. Extensions should include
-narrative explaining the fields, a comprehensive example, and a JSON-Schema to validate compliance.
+Extensions should include narrative explaining the fields, a comprehensive example, and a JSON-Schema to validate compliance.
 Any data provider can create a proprietary extension, and when providers work together to share fields between
 them they can create a shared extension and include it in the STAC repository.
 
@@ -50,7 +50,7 @@ the less breaking changes of the next level.
 A 'mature' classification level will likely be added once there are extensions that have been
 stable for over a year and are used in twenty or more implementations.
 
-## List of Content Extensions
+## List of STAC Extensions
 
 These extensions add new fields or semantics to STAC objects.
 
@@ -93,8 +93,8 @@ The following extensions are proposed through the
 implemented. If you would find any of these helpful or are considering to implement a similar
 extension, please get in touch through the referenced issues:
 
-- [Drone content Extension](https://github.com/radiantearth/stac-spec/issues/149)
-- [Full Motion Video Content Extension](https://github.com/radiantearth/stac-spec/issues/156)
+- [Drone Extension](https://github.com/radiantearth/stac-spec/issues/149)
+- [Full Motion Video Extension](https://github.com/radiantearth/stac-spec/issues/156)
 - [Storage Extensions](https://github.com/radiantearth/stac-spec/issues/148)
 - [gRPC STAC Extensions](https://github.com/radiantearth/stac-spec/issues/575)
 
@@ -149,7 +149,7 @@ An example of this can be seen in a Landsat example:
 
 ### Use of arrays and objects
 
-For content extensions, it is recommended to use use arrays only as true (potentially sorted) enumerations/lists without having additional meaning and to avoid objects whenever possible.
+For extensions it is recommended to use use arrays only as true (potentially sorted) enumerations/lists without having additional meaning and to avoid objects whenever possible.
 
 For example, if one would like to define an extension to contain a start and a end date, there are multiple options (tl;dr: option **3** is recommended):
 
