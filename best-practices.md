@@ -314,9 +314,9 @@ a collection with lots of different look angles.
 Fields that have only one or a handful of values are also great to summarize. Collections with a single satellite may
 use a single [`gsd`](item-spec/common-metadata.md#instrument) field in the summary, and it's quite useful for users to know
 that all data is going to be the same resolution. Similarly it's useful to know the names of all the 
-[`platform`s](item-spec/common-metadata.md#instrument) that are used in the collection. 
+[`platform` values](item-spec/common-metadata.md#instrument) that are used in the collection. 
 
-It makes much less sense to summarize fields that have numerous different discrete values that can't easily be represented
+It is less useful to summarize fields that have numerous different discrete values that can't easily be represented
 in a range. These will mostly be string values, when there aren't just a handful of options. For example if you had a 
 'location' field that gave 3 levels of administrative region (like 'San Francisco, California, United States') to help people
 understand more intuitively where a shot was taken. If your collection has millions of items, or even hundreds, you don't want
@@ -324,9 +324,9 @@ to include all those values as a summary.
 
 We do highly recommend including an [`eo:bands`](extensions/eo/README.md#eobands) summary if your Items implement `eo:bands`, 
 especially if it represents just one satellite or constellation. This should be a union of all the potential bands that you 
-have in assets. It is ok to just put the summary at the Collection level without putting an explicit `eo:bands` summary at the 
+have in assets. It is ok to only add the summary at the Collection level without putting an explicit `eo:bands` summary at the 
 `properties` level, since that is optional. This gives users of the Collection a sense of the sensor capabilities without having
-to dig into particular items. 
+to examine specific items or aggregate across every item.
 
 Note that the ranges of summaries don't have to be exact. If you are publishing a catalog that is constantly updating with
 data from a high agility satellite you can put the `view:off_nadir` range to be the expected values, based on the satellite
