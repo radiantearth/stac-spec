@@ -139,7 +139,7 @@ like GDAL's [VRT](https://gdal.org/drivers/raster/vrt.html) without having to op
 [transform](#projtransform) together with the core description of the CRS provide enough information about the size and shape of
 the data in the file so that tools don't have to open it.
 
-None of these is truly necessary for 'search' of data, the main use case of STAC. But all enable more 'cloud native' use of data,
+None of these are necessary for 'search' of data, the main use case of STAC. But all enable more 'cloud native' use of data,
 as they describe the metadata needed to stream data for processing and/or display on the web. We do recommend including at least the
 EPSG code if it's available, as it's a fairly standard piece of metadata, and [see below](#crs-description-recommendations) for more
 information about when to use WKT and PROJJSON. We do recommend including the shape and transform fields if you have cloud
