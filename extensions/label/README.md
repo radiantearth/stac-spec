@@ -39,7 +39,7 @@ This document explains the fields of the STAC Label Extension to a STAC Item. It
 
 A Label Item represents a polygon, set of polygons, or raster data defining labels and label metadata and should be part of a Collection. See the [raster label notes](#raster-label-notes) section below for details on raster-formatted labels. It is up to the data provider how to group their catalog, but a typical use might have a Collection of a series of label sets (Items) that are related. For example a "Building" collection might have 50 Items, each one was a set of building AOIs for a single country. The Collection holds details on the data providers and the license.
 
-Like other content extensions, the Label extension adds additional fields to a STAC Item, which are detailed after some additional clarification on what the core fields mean with respect to a Label Item.
+Like other extensions, the Label extension adds additional fields to a STAC Item, which are detailed after some additional clarification on what the core fields mean with respect to a Label Item.
 
 ### Item fields
 Some additional notes are given here for some of the core STAC Item fields and what they represent for label.
