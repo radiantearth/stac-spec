@@ -8,7 +8,7 @@ Extensions to the core STAC specification provide additional JSON fields that ca
 the data. Most tend to be about describing a particular domain or type of data, but some imply
 functionality. 
 
-Extensions should include narrative explaining the fields, a comprehensive example, and a JSON-Schema to validate compliance.
+Extensions should include a JSON Schema precisely describing the structure, a natural language description of the fields, and thorough examples.
 Any data provider can create a proprietary extension, and when providers work together to share fields between
 them they can create a shared extension and include it in the STAC repository.
 
