@@ -326,7 +326,7 @@ to include all those values as a summary.
 
 * Fields that consist of arrays are more of a judgement call. For example [`instruments`](item-spec/common-metadata.md#instrument)
 is straightforward and recommended, as the elements of the array are a discrete set of options. On the other hand 
-[proj:transform](extensions/projection/README.md#projtransform) makes no sense to summarize, as the union of all the values
+[`proj:transform`](extensions/projection/README.md#projtransform) makes no sense to summarize, as the union of all the values
 in the array are meaningless, as each Item is describing its transform, so combining them would just be a bunch of random numbers.
 So if the values contained in the array are independently meaningful (not interconnected) and there aren't hundreds of potential
 values then it is likely a good candidate to summarize.
