@@ -182,6 +182,13 @@ would be appropriate; if it is an XML, then `text/xml` is appropriate. For more 
 list of [common media types](../best-practices.md#common-media-types-in-stac) used in STAC see the [best practice on 
 working with media types](../best-practices.md#working-with-media-types).
 
+#### Asset Roles
+
+The `roles` field is used to describe the purpose of each asset. It is recommended to include one for every asset, to give users
+a sense of why they might want to make use of the asset. There are some emerging standards that enable clients to take particular
+action when they encounter particular roles, listed below. But implementors are encouraged to come up with their own terms to 
+describe the role.
+
 #### Asset Role Types
 
 Like the Link `rel` field, the `roles` field can be given any value, however here are a few standardized role names.
