@@ -5,7 +5,7 @@ defines only a minimal core, but is designed for extension. It is expected that 
 implementations will use several extensions to fully describe their data.  
 
 Extensions to the core STAC specification provide additional JSON fields that can be used to better describe
-the data. Most tend to be about describing a particular data type or domain, but some bring in additional
+the data. Most tend to be about describing a particular domain or type of data, but some imply
 functionality. 
 
 Extensions should include narrative explaining the fields, a comprehensive example, and a JSON-Schema to validate compliance.
