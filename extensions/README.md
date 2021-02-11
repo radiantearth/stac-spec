@@ -149,7 +149,10 @@ An example of this can be seen in a Landsat example:
 
 ### Use of arrays and objects
 
-For extensions it is recommended to use use arrays only as true (potentially sorted) enumerations/lists without having additional meaning and to avoid objects whenever possible.
+For extensions, it is recommended to 
+
+1. Use arrays only as enumerations/lists (possibly sorted), without implying additional meaning (such as order)
+2. To avoid using nested objects, in favor of multiple attributes with a similar naming scheme.
 
 For example, if one would like to define an extension to contain a start and a end date, there are multiple options (tl;dr: option **3** is recommended):
 
