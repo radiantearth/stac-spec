@@ -3,23 +3,23 @@
 ## Table of Contents
 
 * **[Web Best Practices](#web-practices)**
-* [Enable CORS](#enable-cross-origin-resource-sharing-cors)
-* [STAC on the Web](#stac-on-the-web)
+  * [Enable CORS](#enable-cross-origin-resource-sharing-cors)
+  * [STAC on the Web](#stac-on-the-web)
 * **[Item Best Practices](#item-practices)**
-* [Field and ID formatting](#field-and-id-formatting)
-* [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
-* [Datetime selection](#datetime-selection)
-* [Unlocated Items](#unlocated-items)
-* [Representing Vector Layers in STAC](#representing-vector-layers-in-stac)
+  * [Field and ID formatting](#field-and-id-formatting)
+  * [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
+  * [Datetime selection](#datetime-selection)
+  * [Unlocated Items](#unlocated-items)
+  * [Representing Vector Layers in STAC](#representing-vector-layers-in-stac)
 * **[Asset Best Practices](#asset-practices)**
-* [Common Use Cases of Additional Fields for Assets](#common-use-cases-of-additional-fields-for-assets)
-* [Working with Media Types](#working-with-media-types)
+  * [Common Use Cases of Additional Fields for Assets](#common-use-cases-of-additional-fields-for-assets)
+  * [Working with Media Types](#working-with-media-types)
 * **[Catalog Best Practices](#catalog-practices)**
-* [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
-* [Catalog Layout](#catalog-layout)
-* [Use of Links](#use-of-links)
-* [Using Relation Types](#using-relation-types)
-* [Versioning for Catalogs](#versioning-for-catalogs)
+  * [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
+  * [Catalog Layout](#catalog-layout)
+  * [Use of Links](#use-of-links)
+  * [Using Relation Types](#using-relation-types)
+  * [Versioning for Catalogs](#versioning-for-catalogs)
 
 ---------
 
