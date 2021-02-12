@@ -324,7 +324,7 @@ you want to re-use other roles then try to find them on the list below, and also
 | mask | Points to a data mask file | 
 | contributing-area | Points to the normalized scattering area file (typically used in SAR). |
 | local-incidence-angle | Points to the local incidence angle file (typically used in SAR). |
-| ellipsoid-incidence-angle | Points to the ellipsoid incidence angle file (typically used in SAR).|
+| ellipsoid-incidence-angle | Points to the ellipsoid incidence angle file (typically used in SAR). |
 | noise-power | Points to the noise power file (typically used in SAR). |
 | gamma-sigma | Points to the gamma-sigma file (typically used in SAR). |
 | date-offset | Points to the date-offset file (typically used in SAR). |

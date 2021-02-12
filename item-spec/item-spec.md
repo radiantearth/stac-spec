@@ -206,7 +206,7 @@ It is STRONGLY RECOMMENDED to add to each STAC Item
 Note that it multiple roles per asset are encouraged, pick all the ones that apply. So many should have the 'data' role, and then
 another role to describe how the data is used. For more information on how to use roles see the [Asset 
 Roles](../best-practices.md#asset-roles) section of the Best Practices document. It includes a [list of asset 
-roles](../best-practices.md#list-ofasset-roles) that include many more ideas on roles to use. As they reach more widespread 
+roles](../best-practices.md#list-of-asset-roles) that include many more ideas on roles to use. As they reach more widespread 
 adoption we will include them here.
 
 #### Additional Fields for Assets
