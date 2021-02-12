@@ -191,19 +191,23 @@ describe the role.
 
 #### Asset Role Types
 
-Like the Link `rel` field, the `roles` field can be given any value, however here are a few standardized role names.
+Like the Link `rel` field, the `roles` field can be given any value, however here are a few standardized role names. 
 
 | Role Name | Description                                                                           |
 | --------- | ------------------------------------------------------------------------------------- |
 | thumbnail | An asset that represents a thumbnail of the item, typically a true color image (for items with assets in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `roles` be unique tuples. For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types. |
-| overview  | An asset that represents a possibly larger view than the thumbnail of the Item, for example, a true color composite of multi-band data. |
 | data      | The data itself. This is a suggestion for a common role for data files to be used in case data providers don't come up with their own names and semantics. |
 | metadata  | A metadata sidecar file describing the data in this item, for example the Landsat-8 MTL file. |
-| visual    | An asset that is a full resolution version of the data, processed for visual use (RGB only, often sharpened ([pan-sharpened](https://en.wikipedia.org/wiki/Pansharpened_image) and/or using an [unsharp mask](https://en.wikipedia.org/wiki/Unsharp_masking))). |
 
 It is STRONGLY RECOMMENDED to add to each STAC Item
 * a thumbnail with the role `thumbnail` for preview purposes
 * one or more data file although it doesn't need to use the suggested role `data`
+
+Note that it multiple roles per asset are encouraged, pick all the ones that apply. So many should have the 'data' role, and then
+another role to describe how the data is used. For more information on how to use roles see the [Asset 
+Roles](../best-practices.md#asset-roles) section of the Best Practices document. It includes a [list of asset 
+roles](../best-practices.md#list-ofasset-roles) that include many more ideas on roles to use. As they reach more widespread 
+adoption we will include them here.
 
 #### Additional Fields for Assets
 

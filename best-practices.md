@@ -296,6 +296,42 @@ visual asset, a downsampled overview, and an cloud mask, all stored as Cloud Opt
 for every asset available, and just pick a sensible name for the role if there is not a clear one in the [Asset Role 
 Types](item-spec/item-spec.md#asset-role-types). You can also propose new roles to the specification by raising an issue/PR. 
 
+In addition to the thumbnail, data and overview [roles listed](item-spec/item-spec.md#asset-role-types) in the Item spec, there
+are a number of roles that are emerging in practice, but don't have enough widespread use to justify standardizing them. So if
+you want to re-use other roles then try to find them on the list below, and also feel free to suggest more to include here.
+
+#### List of Asset Roles
+
+| Role Name | Description                                                                           |
+| --------- | ------------------------------------------------------------------------------------- |
+| overview  | An asset that represents a possibly larger view than the thumbnail of the Item, for example, a true color composite of multi-band data. |
+| visual    | An asset that is a full resolution version of the data, processed for visual use (RGB only, often sharpened ([pan-sharpened](https://en.wikipedia.org/wiki/Pansharpened_image) and/or using an [unsharp mask](https://en.wikipedia.org/wiki/Unsharp_masking))). |
+| reflectance | An asset the provides [reflectance](https://www.l3harrisgeospatial.com/Support/Self-Help-Tools/Help-Articles/Help-Articles-Detail/ArtMID/10220/ArticleID/19247/3377) values, instead of just radiance. |
+| temperature | An asset that provides actual temperature measurements. |
+| date | An asset that provides per-pixel acquisition timestamps, typically serving as metadata to another asset |
+| saturation | Points to a file that indicates where pixels in the input spectral bands are saturated. |
+| cloud | Points to a file that indicates whether a pixel is assessed as being cloud |
+| cloud-shadow | Points to a file that indicates whether a pixel is assessed as being cloud shadow. |
+| snow-ice | Points to a file that indicates whether a pixel is assessed as being snow/ice or not. |
+| land-water | Points to a file that indicates whether a pixel is assessed as being snow/ice or not land or water. |
+| incidence-angle | Points to a file with per-pixel incidence angles. |
+| azimuth | Points to a file with per-pixel azimuth angles. |
+| sun-azimuth | Points to a file with per-pixel sun azimuth angles. |
+| sun-elevation | Points to a file with per-pixel sun elevation angles. |
+| terrain-shadow | Points to a file that indicates whether a pixel is not directly illuminated due to terrain shadowing. |
+| terrain-occlusion | Points to a file that indicates whether a pixel is not visible to the sensor due to terrain occlusion during off-nadir viewing. |
+| terrain-illumination | Points to a file with coefficients used for terrain illumination correction are provided for each pixel. |
+| mask | Points to a data mask file | 
+| contributing-area | Points to the normalized scattering area file (typically used in SAR). |
+| local-incidence-angle | Points to the local incidence angle file (typically used in SAR). |
+| ellipsoid-incidence-angle | Points to the ellipsoid incidence angle file (typically used in SAR).|
+| noise-power | Points to the noise power file (typically used in SAR). |
+| gamma-sigma | Points to the gamma-sigma file (typically used in SAR). |
+| date-offset | Points to the date-offset file (typically used in SAR). |
+| backscatter | Points to the backscatter file (typically used in SAR). |
+| covmat | Points to the Points to the Normalized Polarimetric Radar Covariance Matrix (CovMat) file (typically used in SAR). |
+| prd | Points to the Polarimetric Radar Decomposition (PRD) file (typically used in SAR). |
+
 Some of the particular asset roles also have some best practices.
 
 #### Thumbnails
