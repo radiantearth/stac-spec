@@ -92,6 +92,8 @@ STAC Items must always be valid, but not all STAC Item requirements are covered 
 | card4l:speckle_filtering               | [Speckle Filter Object](#speckle-filter-object) \| null | `Filtering`, `FilterApplied`                                 | **REQUIRED.** Set to `null` if `FilterApplied` would be set to `false`. Otherwise make it an [Speckle Filter Object](#speckle-filter-object). | ✗           | ✓ 1.7.4     |
 | card4l:border_pixels                   | integer                                                 | `NumBorderPixels`                                            | Number of border pixels (**required** if applicable). To be specified either globally for all assets with role `data` or individually [per asset](#stac-item-assets). | ✗           | ✓ 1.7.7     |
 | card4l:pixel_coordinate_convention     | string                                                  | `PixelCoordinateConvention`                                  | **REQUIRED.** One of `center` (pixel center), `upper-left` (pixel ULC) or `lower-left` (pixel LLC) | ✗           | ✓ 1.7.8     |
+| card4l:measurement_type                | string                                                  | `BackscatterMeasurement` (NRB)                               | **REQUIRED.** Must be set to `gamma0`.                       | ✗           | ✓ 3.1       |
+| card4l:measurment_convention           | string                                                  | `BackscatterConvention` (NRB)                                | **REQUIRED.** Must be set to `amplitude`, `power` (both NRB + POL) or `angle` (POL only). | ✗           | ✓ 3.1       |
 | card4l:conversion_eq                   | string                                                  | `BackscatterConversionEq` (NRB), `ScalingConversionEq` (POL) | **REQUIRED.** Indicate equation to convert from the data to logarithmic decibel scale, see the CARD4L specification (3.2) for details. | ✗           | ✓ 3.2       |
 | card4l:relative_rtc_accuracy           | number                                                  | `Relative` in `RTCAccuracy`                                  | Relative accuracy of the Radiometric Terrain Correction in decibel. | ✗           | ✓ 3.5       |
 | card4l:absolute_rtc_accuracy           | number                                                  | `Absolute` in `RTCAccuracy`                                  | Absolute accuracy of the Radiometric Terrain Correction in decibel. | ✗           | ✓ 3.5       |
@@ -158,8 +160,6 @@ The following fields are all specified in CARD4L requirement 1.7.4. It is **requ
 | sar:pixel_spacing_range   | `RangePixelSpacing`                                          | **REQUIRED.** Convert to meters, if required.                | ✓ 1.6.7 | ✗       |
 | sar:resolution_azimuth    | `AzimuthResolution`                                          | **REQUIRED.** Convert to meters, if required.                | ✓ 1.6.7 | ✗       |
 | sar:resolution_range      | `RangeResolution`                                            | **REQUIRED.** Convert to meters, if required.                | ✓ 1.6.7 | ✗       |
-| sar:measurement_type      | `BackscatterMeasurement` (NRB)                               | **REQUIRED.** Must be set to `gamma0`.                       | ✗       | ✓ 3.1   |
-| sar:measurment_convention | `BackscatterConvention` (NRB)                                | **REQUIRED.** Must be set to `amplitude`, `power` or `angle` (POL only). | ✗       | ✓ 3.1   |
 
 #### Satellite
 
