@@ -31,9 +31,9 @@ This document explains the fields of the Object Storage Extension to a STAC Item
 
 | Field Name  | Type   | Description |
 | ----------- | ------ | ----------- |
-| storage:tier_duration_range   | [string]  | 2 member array of Date and timestamp type describing the restrictions on access of assets. First index is the lowest durationed item, the second is the highest durationed item. If storage:archive_thumb is true than exclude thumbnails and other small overviews from calculation |
-| storage:archive_thumb         | bool      | Are thumbnails or other small data archived |
-| storage:archived              | bool      | a boolean descriptor for whether the data is "properly" archived according to whatever details the STAC service maintainer defines
+| storage:tier_duration_range   | [string]  | 2 member array of Date and timestamp type describing the restrictions on access of assets. First index is the lowest durationed item, the second is the highest durationed item. If `storage:archive_thumb` is true then exclude thumbnails and other small overviews (implementer's discretion) from `tier_duration_range` calculation |
+| storage:archive_thumb         | bool      | Should the thumbnails or other small data be archived when the larger assets are archived |
+| storage:archived              | bool      | descriptor for whether the data is "properly" archived according to implementers discretion |
 
 ## Providers
 Currently this document is arranged to support object storage users of the following PaaS solutions:
