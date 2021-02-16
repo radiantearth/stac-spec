@@ -25,7 +25,7 @@ This document explains the fields of the Object Storage Extension to a STAC Item
 | storage:tier                  | string    | The title for the tier type (as defined by PaaS provider) |
 | storage:tier_duration         | integer   | Minimum storage duration required before additional fees |
 | storage:date_stored           | string    | Date and time the corresponding asset placed into the current storage tier (relevant for tier_duration > 0) |
-| storage:first_byte_latency    | string    | time unit for accessing first byte of data |
+| storage:first_byte_latency    | string    | time unit (milliseconds, minutes or hours) for accessing first byte of data |
 
 ## Item fields
 
@@ -34,6 +34,16 @@ This document explains the fields of the Object Storage Extension to a STAC Item
 | storage:tier_duration_range   | [string]  | 2 member array of Date and timestamp type describing the restrictions on access of assets. First index is the lowest durationed item, the second is the highest durationed item. If storage:archive_thumb is true than exclude thumbnails and other small overviews from calculation |
 | storage:archive_thumb         | bool      | Are thumbnails or other small data archived |
 | storage:archived              | bool      | a boolean descriptor for whether the data is "properly" archived according to whatever details the STAC service maintainer defines
+
+## Providers
+Currently this document is arranged to support object storage users of the following PaaS solutions:
+
+- Alibaba
+- AWS
+- Azure
+- Google Cloud Platform
+- IBM
+- Oracle
 
 ## Cloud Provider Storage Tiers
 
@@ -46,7 +56,7 @@ This document explains the fields of the Object Storage Extension to a STAC Item
 | 180 days      | N/A           | Glacier Deep Archive  | Archive Tier  | N/A           | N/A       | Cold Archive |
 | 365 days      | ARCHIVE       | N/A                   | N/A           | N/A           | N/A       | N/A |
 
-References for above table:
+References for the above table:
 
 IBM: https://cloud.ibm.com/objectstorage/create#pricing
 
