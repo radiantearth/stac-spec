@@ -292,7 +292,7 @@ it. It is relatively easy to [register](https://www.iana.org/form/media-types) a
 
 [Asset roles](item-spec/item-spec.md#asset-roles) are used to describe what each asset is used for. They are particular useful 
 when several assets have the same media type, such as when an Item has a multispectral analytic asset, a 3-band full resolution 
-visual asset, a downsampled overview, and an cloud mask, all stored as Cloud Optimized GeoTIFF's. It is recommended to use a role
+visual asset, a down-sampled preview asset, and a cloud mask asset, all stored as Cloud Optimized GeoTIFF (COG) images. It is recommended to use a role
 for every asset available, and just pick a sensible name for the role if there is not a clear one in the [Asset Role 
 Types](item-spec/item-spec.md#asset-role-types). You can also propose new roles to the specification by raising an issue/PR. 
 
