@@ -1,0 +1,49 @@
+# Object Storage Extension Specification
+
+- **Title: Object Storage**
+- **Identifier: storage**
+- **Field Name Prefix: -**
+- **Scope: Item, Assets**
+- **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Owner**: @davidraleigh
+
+This document explains the fields of the Object Storage Extension to a STAC Item and an Asset. This does not cover NFS solutions provided by PaaS cloud companies. Allows user to specify details related to cloud storage access and costs for assets and their STAC item.
+
+- [Example (Landsat 8)](examples/example-landsat8.json)
+- [JSON Schema](json-schema/schema.json)
+
+## Asset fields
+
+| Field Name  | Type   | Description |
+| ----------- | ------ | ----------- |
+| storage:cloud_platform        | string    | The [cloud provider](#providers) where data is stored |
+| storage:manager               | string    | The entity in charge of managing the data. |
+| storage:region                | string    | The region where the data is stored. Relevant to speed of access and inter region egress costs (as defined by PaaS provider) |
+| storage:bucket                | string    | The bucket for the asset, used along with object path |
+| storage:object_path           | string    | The object_path for the asset, used along with bucket |
+| storage:payer                 | string    | Is the data requester pays or is it data manager/cloud provider pays |
+| storage:tier                  | integer   | The title for the tier type (as defined by PaaS provider) |
+| storage:tier_duration         | integer   | Minimum storage duration required before additional fees |
+| storage:date_stored           | string    | Date and time the corresponding asset placed into storage (relevant for tier_duration > 0) |
+| storage:first_byte_latency    | string    | time unit for accessing first byte of data |
+
+## Item fields
+
+| Field Name  | Type   | Description |
+| ----------- | ------ | ----------- |
+| storage:tier_duration_range   | [string]  | 2 member array of Date and timestamp for the restrictions on access of assets. If storage:archive_thumb is true than exclude thumbnails and other small overviews from calculation |
+| storage:archive_thumb         | bool      | Are thumbnails or other small data archived |
+| storage:archived              | bool      | a boolean descriptor for whether the data is "properly" archived according to whatever details the STAC service maintainer defines
+
+## Cloud Provider Storage Tiers
+
+| Duration      | Google Cloud  | AWS                   | Azure         |
+| ------------- | ------------- | --------------------- | ------------- |
+| 0 days        | STANDARD      | Standard              | Hot Tier |
+| 30 days       | NEARLINE      | Standard-IA           | Cool Tier |
+| 90 days       | COLDLINE      | Glacier               | N/A |
+| 180 days      | N/A           | Glacier Deep Archive  | Archive Tier |
+| 365 days      | ARCHIVE       | N/A                   | N/A |
+
+
+All timestamps MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).
