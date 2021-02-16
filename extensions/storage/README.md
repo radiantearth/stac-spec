@@ -18,20 +18,20 @@ This document explains the fields of the Object Storage Extension to a STAC Item
 | ----------- | ------ | ----------- |
 | storage:cloud_platform        | string    | The [cloud provider](#providers) where data is stored |
 | storage:manager               | string    | The entity in charge of managing the data. |
-| storage:region                | string    | The region where the data is stored. Relevant to speed of access and inter region egress costs (as defined by PaaS provider) |
+| storage:regions               | [string]  | The region(s) where the data is stored. Relevant to speed of access and inter region egress costs (as defined by PaaS provider) |
 | storage:bucket                | string    | The bucket for the asset, used along with object path |
 | storage:object_path           | string    | The object_path for the asset, used along with bucket |
-| storage:payer                 | string    | Is the data requester pays or is it data manager/cloud provider pays |
-| storage:tier                  | integer   | The title for the tier type (as defined by PaaS provider) |
+| storage:requester_pays        | bool      | Is the data requester pays or is it data manager/cloud provider pays |
+| storage:tier                  | string    | The title for the tier type (as defined by PaaS provider) |
 | storage:tier_duration         | integer   | Minimum storage duration required before additional fees |
-| storage:date_stored           | string    | Date and time the corresponding asset placed into storage (relevant for tier_duration > 0) |
+| storage:date_stored           | string    | Date and time the corresponding asset placed into the current storage tier (relevant for tier_duration > 0) |
 | storage:first_byte_latency    | string    | time unit for accessing first byte of data |
 
 ## Item fields
 
 | Field Name  | Type   | Description |
 | ----------- | ------ | ----------- |
-| storage:tier_duration_range   | [string]  | 2 member array of Date and timestamp for the restrictions on access of assets. If storage:archive_thumb is true than exclude thumbnails and other small overviews from calculation |
+| storage:tier_duration_range   | [string]  | 2 member array of Date and timestamp type describing the restrictions on access of assets. First index is the lowest durationed item, the second is the highest durationed item. If storage:archive_thumb is true than exclude thumbnails and other small overviews from calculation |
 | storage:archive_thumb         | bool      | Are thumbnails or other small data archived |
 | storage:archived              | bool      | a boolean descriptor for whether the data is "properly" archived according to whatever details the STAC service maintainer defines
 
