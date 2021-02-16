@@ -313,7 +313,7 @@ you want to re-use other roles then try to find them on the list below, and also
 | cloud | Points to a file that indicates whether a pixel is assessed as being cloud |
 | cloud-shadow | Points to a file that indicates whether a pixel is assessed as being cloud shadow. |
 | snow-ice | Points to a file that indicates whether a pixel is assessed as being snow/ice or not. |
-| land-water | Points to a file that indicates whether a pixel is assessed as being snow/ice or not land or water. |
+| land-water | Points to a file that indicates whether a pixel is assessed as being land or water. |
 | incidence-angle | Points to a file with per-pixel incidence angles. |
 | azimuth | Points to a file with per-pixel azimuth angles. |
 | sun-azimuth | Points to a file with per-pixel sun azimuth angles. |
