@@ -37,13 +37,31 @@ This document explains the fields of the Object Storage Extension to a STAC Item
 
 ## Cloud Provider Storage Tiers
 
-| Duration      | Google Cloud  | AWS                   | Azure         |
-| ------------- | ------------- | --------------------- | ------------- |
-| 0 days        | STANDARD      | Standard              | Hot Tier |
-| 30 days       | NEARLINE      | Standard-IA           | Cool Tier |
-| 90 days       | COLDLINE      | Glacier               | N/A |
-| 180 days      | N/A           | Glacier Deep Archive  | Archive Tier |
-| 365 days      | ARCHIVE       | N/A                   | N/A |
+| Duration      | Google Cloud  | AWS                   | Azure         | IBM           | Oracle    | Alibaba           |
+| ------------- | ------------- | --------------------- | ------------- |-------------  | --------- | ---------         |
+| 0 days        | STANDARD      | Standard              | Hot Tier      | Standard      | Standard  | Standard          |
+| 30 days       | NEARLINE      | Standard-IA           | Cool Tier     | Vault         | N/A       | Infrequent Access |
+| 60 days       | N/A           | N/A                   | N/A           | N/A           | N/A       | Archive           |
+| 90 days       | COLDLINE      | Glacier               | N/A           | Cold Vault    | Archive   | N/A |
+| 180 days      | N/A           | Glacier Deep Archive  | Archive Tier  | N/A           | N/A       | Cold Archive |
+| 365 days      | ARCHIVE       | N/A                   | N/A           | N/A           | N/A       | N/A |
 
+References for above table:
+
+IBM: https://cloud.ibm.com/objectstorage/create#pricing
+
+Google Cloud: https://cloud.google.com/storage/docs/storage-classes
+
+Microsoft: https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-storage-tiers
+
+AWS: https://aws.amazon.com/s3/storage-classes/
+
+Oracle: 
+ - https://www.oracle.com/cloud/storage/pricing.html
+ - https://www.oracle.com/cloud/storage/archive-storage-faq.html
+
+Alibaba: 
+ - https://www.alibabacloud.com/product/oss/pricing
+ - https://www.alibabacloud.com/help/doc-detail/51374.htm
 
 All timestamps MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).
