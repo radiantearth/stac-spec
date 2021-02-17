@@ -1,6 +1,11 @@
 {
   "type": "Feature",
   "stac_version": "1.0.0-beta.2",
+  "stac_extensions": [
+    "sar",
+    "sat",
+    "file"
+  ],
   "id": "sentinel-1-example",
   "properties": {
     "datetime": "2018-11-03T23:58:55.617217Z",
