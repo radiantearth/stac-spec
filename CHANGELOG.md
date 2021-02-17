@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - 'summaries' are now available in the Catalog spec, so both catalogs and collections can make use of it. ([#903](https://github.com/radiantearth/stac-spec/issues/903))
 - Recommendation to enable CORS
 - A 'visual' option as an asset role.
+- Docker with npm for CONTRIBUTING.md
 
 ### Changed
 
@@ -34,6 +35,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Label extension: `label:classes` was flagged as required in JSON Schema, but is only required for categorical data.
 - Fixed JSON Schema for `providers` (Collections and Items) to be an object and require a `name`.
 - JSON Schema for `sar:polarizations` in `assets` fixed
+- `proj:projjson` url
 
 ## [v1.0.0-beta.2] - 2020-07-08
 
