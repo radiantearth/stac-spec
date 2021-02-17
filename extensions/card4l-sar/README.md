@@ -202,7 +202,7 @@ Whether the metadata are provided in a single record relevant to all pixels, or 
 
 Each of the assets can either be exposed individually or grouped together in any form. In the latter case the role names can simply be merged to a set of unique role names. 
 
-The italic role names are proposed to be the asset's key. All additional properties are required, except the once in *italic*.
+The italic role names are proposed to be the asset's key. **All additional properties are required, except the once in *italic*.**
 
 | Role Name(s)                          | Additional properties                                        | XML Tag                      | Description                                                  | Src  | Prod        |
 | ------------------------------------- | ------------------------------------------------------------ | ---------------------------- | ------------------------------------------------------------ | ---- | ----------- |
@@ -212,30 +212,30 @@ The italic role names are proposed to be the asset's key. All additional propert
 | *local-incidence-angle*,  metadata    | `type`, `file:data_type`, `file:byte_order`, *`file:header_size`*, `file:bits_per_sample`, `file:unit` | `LocalIncAngle`              | **REQUIRED.** Points to the local incidence angle file. `file:unit` is usually `degree`. | ✗    | ✓ 2.4       |
 | *ellipsoid-incidence-angle*, metadata | `type`, `file:data_type`, `file:byte_order`, *`file:header_size`*, `file:bits_per_sample`, *`card4l:ellipsoidal_height`*, `file:unit` | `EllipsoidIncAngle`          | `file:unit` is usually `degree`.                             | ✗    | ✓ 2.5       |
 | *noise-power*, card4l, metadata       | `type`, `file:data_type`, `file:byte_order`, *`file:header_size`*, `file:bits_per_sample`, `file:unit` | `NoisePower`                 | `file:unit` is usually NESZ or NEBZ.                         | ✗    | ✓ 2.6       |
-| *gamma-sigma*, metadata               | `type`, `file:data_type`, `file:byte_order`, *`file:header_size`*, `file:bits_per_sample` | `GammaToSigmaRatio`          |                                                              | ✗    | ✓ 2.7       |
-| *date-offset*, metadata               | `type`, `file:data_type`, `file:byte_order`, *`file:header_size`*, `file:bits_per_sample` | `AcquisitionDate`            | **REQUIRED for multi -source products only.**                | ✗    | ✓ 2.8       |
+| *gamma-sigma-ratio*, metadata         | `type`, `file:data_type`, `file:byte_order`, *`file:header_size`*, `file:bits_per_sample` | `GammaToSigmaRatio`          |                                                              | ✗    | ✓ 2.7       |
+| *date-offset*, metadata               | `type`, `file:data_type`, `file:byte_order`, *`file:header_size`*, `file:bits_per_sample` | `AcquisitionDate`            | **REQUIRED for multi-source products only.**                 | ✗    | ✓ 2.8       |
 | *backscatter*, data                   | `type`, `created`, `sar:polarizations`, *`file:header_size`*, `file:data_type`, `file:byte_order`, *`file:header_size`*, `file:bits_per_sample` | `BackscatterMeasurementData` | **REQUIRED for *NRB*.** Points to the backscatter measurements for the polarizations specified in `sar:polarizations`. | ✗    | ✓ 3.1 (NRB) |
 | (*covmat* or *prd*), data             | `type`, `created`, `sar:polarizations` (CovMat only), `file:data_type`, `file:byte_order`, *`file:header_size`*, `file:bits_per_sample` | `Measurements`               | **REQUIRED for *POL*.** Points to the Normalized Polarimetric Radar Covariance Matrix (CovMat) *or* the Polarimetric Radar Decomposition (PRD) | ✗    | ✓ 3.1 (POL) |
 
 #### Additional Asset Properties
 
-For all assets of with the role set to `data`, the following additional properties can be specified globally (in [STAC Item Properties](#stac-item-properties)) or individually per asset: `proj:shape`, `proj:transform`, `card4l:num_border_pixels`. See the respective field specifications above.
-
-Some additional properties are always specified per asset: 
+The following table lists properties that may occur in the assets. The list doesn't specify which fields apply to which asset and it also doesn't specify which fields are required. For those details please refer to the ["Additional properties" column in the table above](#stac-item-assets).
 
 | Field Name                | Data Type                                              | XML Tag                                         | Description                                                  | Src     | Prod    |
 | ------------------------- | ------------------------------------------------------ | ----------------------------------------------- | ------------------------------------------------------------ | ------- | ------- |
-| type                      | string                                                 | `DataFormat`                                    | **REQUIRED.** The media type of the file format.             | (✓)     | ✓       |
-| created                   | string                                                 | `ProcessingDate` (Src), `ProcessingTime` (Prod) | **REQUIRED.** The time of the processing is specified via the `created` property of the asset as specified in the [STAC Common metadata](../../item-spec/common-metadata.md#date-and-time). | ✓ 1.6.6 | ✓ 1.7.1 |
-| sar:polarizations         | \[string\]                                             | *n/a*                                           | **REQUIRED**. The polarization(s) of the asset.              | (✓)     | ✓       |
+| type                      | string                                                 | `DataFormat`                                    | The media type of the file format.             | (✓)     | ✓       |
+| created                   | string                                                 | `ProcessingDate` (Src), `ProcessingTime` (Prod) | The time of the processing is specified via the `created` property of the asset as specified in the [STAC Common metadata](../../item-spec/common-metadata.md#date-and-time). | ✓ 1.6.6 | ✓ 1.7.1 |
+| sar:polarizations         | \[string\]                                             | *n/a*                                           | The polarization(s) of the asset.              | (✓)     | ✓       |
 | file:header_size          | integer                                                | `HeaderSize`                                    | File header size in bytes (**required** if applicable to the file format). | ✗       | ✓ 1.7.7 |
-| file:data_type            | string                                                 | `DataType`                                      | **REQUIRED.** One of the [Data Types](../file/README.md#data-types). | ✗       | ✓       |
-| file:byte_order           | string                                                 | `ByteOrder`                                     | **REQUIRED.** One of `big-endian` or `little-endian`         | ✗       | ✓       |
-| file:bits_per_sample      | integer                                                | `BitsPerSample`                                 | **REQUIRED.** Bits per sample, e.g. 8, 16, 32, ...           | ✗       | ✓       |
-| file:unit                 | string                                                 | `SampleType`                                    | **REQUIRED.** The unit of the values in the asset, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/). | ✗       | ✓       |
-| file:values               | \[[Mapping Object](../file/README.md#mapping-object)\] | `ValidData` and `InvalidData` in `BitValues`    | **REQUIRED** for the data mask. Specify value(s) for valid and invalid data separately. | ✗       | ✓ 2.2   |
-| file:nodata               | \[any]                                                 | `NoData` in `BitValues`                         | **REQUIRED** for the data mask. Value(s) for no-data.        | ✗       | ✓ 2.2   |
+| file:data_type            | string                                                 | `DataType`                                      | One of the [Data Types](../file/README.md#data-types). | ✗       | ✓       |
+| file:byte_order           | string                                                 | `ByteOrder`                                     | One of `big-endian` or `little-endian`         | ✗       | ✓       |
+| file:bits_per_sample      | integer                                                | `BitsPerSample`                                 | Bits per sample, e.g. 8, 16, 32, ...           | ✗       | ✓       |
+| file:unit                 | string                                                 | `SampleType`                                    | The unit of the values in the asset, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/). | ✗       | ✓       |
+| file:values               | \[[Mapping Object](../file/README.md#mapping-object)\] | `ValidData` and `InvalidData` in `BitValues`    | Specify value(s) for valid and invalid data separately. | ✗       | ✓ 2.2   |
+| file:nodata               | \[any]                                                 | `NoData` in `BitValues`                         | Value(s) for no-data.        | ✗       | ✓ 2.2   |
 | card4l:ellipsoidal_height | number                                                 | `EllipsoidalHeight`                             | Indicate which ellipsoidal height was used, in meters.       | ✗       | ✓       |
+
+For all assets of with the role set to `data`, the following additional properties can be specified globally (in [STAC Item Properties](#stac-item-properties)) or individually per asset: `proj:shape`, `proj:transform`, `card4l:num_border_pixels`. See the respective field specifications above.
 
 ## Notes
 
