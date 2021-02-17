@@ -79,3 +79,10 @@ To automatically format / pretty-print the examples run:
 ```bash
 npm run format-examples
 ```
+
+#### If You Prefer Docker
+
+To run npm without installing it locally
+```bash
+docker run -it -v $(pwd):/usr/local/src node:erbium-buster /bin/bash -c "cd /usr/local/src; npm install; npm run check"
+```
