@@ -151,7 +151,7 @@ The *italic* role names are proposed to be the asset's key. The **bold** additio
 | (*reflectance* or *temperature*), data | `type`, `created`, **`eo:bands`**, `file:data_type`, `file:byte_order`, `file:bits_per_sample`, **`file:nodata`** | **REQUIRED.** Points to the actual measurements. The value(s) for pixels that do not correspond to an observation must be provided in the property `file:nodata`. | 3.1 / 2.2            |
 | *date*, metadata                       | `type`, `file:data_type`, `file:byte_order`, `file:bits_per_sample` | Points to a file with per-pixel acquisition timestamps.      | 1.3                  |
 | *incomplete-testing*, metadata         | `type`, **`file:values`**                                    | **REQUIRED.** Points to a file that identifies pixels for which the per-pixel tests have not all been successfully completed. See CARD4L req. 2.3 for details. | 2.3                  |
-| *saturation*, metadata                 | `type`, **`file:values`**, **`eo:bands`**                    | **REQUIRED.** Points to a file that indicates where pixels in the input spectral bands are saturated. `file:values` can also be embedded into `eo:bands` to indicate which pixels are saturated for each spectral band. | 2.4                  |
+| *saturation*, metadata                 | `type`, **`file:values`**, `eo:bands`                        | **REQUIRED.** Points to a file that indicates where pixels in the input spectral bands are saturated. If the saturation is given per band, either `eo:bands` or `file:values` is **required** to indicate which pixels are saturated for each spectral band. | 2.4                  |
 | *cloud*, metadata                      | `type`, **`file:values`**                                    | **REQUIRED.** Points to a file that indicates whether a pixel is assessed as being cloud. | 2.5                  |
 | *cloud-shadow*, metadata               | `type`, **`file:values`**                                    | **REQUIRED.** Points to a file that indicates whether a pixel is assessed as being cloud shadow. | 2.6                  |
 | *snow-ice*, metadata                   | `type`, **`file:values`**                                    | Points to a file that indicates whether a pixel is assessed as being snow/ice or not. | 2.7 (ST) / 2.8 (SR)  |
@@ -166,17 +166,19 @@ The *italic* role names are proposed to be the asset's key. The **bold** additio
 
 #### Additional Asset Properties
 
+The following table lists properties that may occur in the assets. The list doesn't specify which fields apply to which asset and it also doesn't specify which fields are required. For those details please refer to the ["Additional properties" column in the table above](#stac-item-assets).
+
 | Field Name           | Data Type                                              | Description                                                  | Req.  |
 | -------------------- | ------------------------------------------------------ | ------------------------------------------------------------ | ----- |
 | type                 | string                                                 | STRONGLY RECOMMENDED. The media type of the file format.     | *n/a* |
 | created              | string                                                 | The time of the processing is specified via the `created` property of the asset as specified in the [STAC Common metadata](../../item-spec/common-metadata.md#date-and-time). | *n/a* |
-| eo:bands             | \[[Band Object](../eo/README.md#band-object)\]         | **REQUIRED** for data. Bands with at least the following fields included: `name` and `center_wavelength`. Add additional fields such as `full_width_half_max` to better meet the *target (desired) requirements*. See the CARD4L requirement 1.10 for further details. | 1.10  |
+| eo:bands             | \[[Band Object](../eo/README.md#band-object)\]         | Bands with at least the following fields included: `name` and `center_wavelength`. Add additional fields such as `full_width_half_max` to better meet the *target (desired) requirements*. See the CARD4L requirement 1.10 for further details. | 1.10  |
 | file:data_type       | string                                                 | One of the [Data Types](../file/README.md#data-types).       | *n/a* |
 | file:byte_order      | string                                                 | One of `big-endian` or `little-endian`.                      | *n/a* |
-| file:unit            | string                                                 | **REQUIRED.** The unit of the values in the asset, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/). | *n/a* |
+| file:unit            | string                                                 | The unit of the values in the asset, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/). | *n/a* |
 | file:bits_per_sample | integer                                                | Bits per sample                                              | *n/a* |
-| file:nodata          | \[any]                                                 | **REQUIRED** for data. Value(s) for no-data.                 | 2.2   |
-| file:values          | \[[Mapping Object](../file/README.md#mapping-object)\] | **REQUIRED.** Lists the value that are in the file and describes their meaning. | n/a   |
+| file:nodata          | \[any]                                                 | for data. Value(s) for no-data.                 | 2.2   |
+| file:values          | \[[Mapping Object](../file/README.md#mapping-object)\] | Lists the value that are in the file and describes their meaning. | n/a   |
 
 ## Notes
 
