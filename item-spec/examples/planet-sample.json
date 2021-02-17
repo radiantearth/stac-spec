@@ -2,8 +2,7 @@
   "stac_version": "1.0.0-beta.2",
   "stac_extensions": [
     "eo",
-    "view",
-    "https://example.planet.com/stac/1.0/schema.json"
+    "view"
   ],
   "links": [
     {

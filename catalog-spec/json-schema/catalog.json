@@ -33,7 +33,7 @@
               {
                 "title": "Reference to a JSON Schema",
                 "type": "string",
-                "format": "uri"
+                "format": "iri"
               },
               {
                 "title": "Reference to a core extension",
@@ -60,6 +60,9 @@
           "items": {
             "$ref": "#/definitions/link"
           }
+        },
+        "summaries": {
+          "$ref": "#/definitions/summaries"
         }
       }
     },
@@ -72,7 +75,8 @@
       "properties": {
         "href": {
           "title": "Link reference",
-          "type": "string"
+          "type": "string",
+          "format": "iri-reference"
         },
         "rel": {
           "title": "Link relation type",
@@ -86,6 +90,39 @@
           "title": "Link title",
           "type": "string"
         }
+      }
+    },
+    "summaries": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "title": "Stats",
+            "type": "object",
+            "required": [
+              "minimum",
+              "maximum"
+            ],
+            "properties": {
+              "minimum": {
+                "title": "Minimum value",
+                "type": ["number", "string"]
+              },
+              "maximum": {
+                "title": "Maximum value",
+                "type": ["number", "string"]
+              }
+            }
+          },
+          {
+            "title": "Set of values",
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "description": "Any data type could occur."
+            }
+          }
+        ]
       }
     }
   }

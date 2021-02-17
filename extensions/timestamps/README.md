@@ -13,7 +13,7 @@ Allows to specify numerous timestamps for assets and metadata in addition to [`c
 - [Example (Landsat 8)](examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)
 
-## Item fields
+## Item Properties or Asset fields
 
 | Field Name  | Type   | Description |
 | ----------- | ------ | ----------- |

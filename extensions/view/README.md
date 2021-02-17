@@ -12,7 +12,7 @@ This document explains the fields of the View Geometry Extension to a STAC Item.
 - [Example (Landsat 8)](../eo/examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)
 
-## Item fields
+## Item Properties and Item Asset fields
 
 | Field Name           | Type                     | Description |
 | -------------------- | ------------------------ | ----------- |
@@ -20,7 +20,7 @@ This document explains the fields of the View Geometry Extension to a STAC Item.
 | view:incidence_angle | number               | The incidence angle is the angle between the vertical (normal) to the intercepting surface and the line of sight back to the satellite at the scene center. Measured in degrees (0-90). |
 | view:azimuth         | number               | Viewing azimuth angle. The angle measured from the sub-satellite point (point on the ground below the platform) between the scene center and true north. Measured clockwise from north in degrees (0-360). |
 | view:sun_azimuth     | number               | Sun azimuth angle. From the scene center point on the ground, this is the angle between truth north and the sun. Measured clockwise in degrees (0-360). |
-| view:sun_elevation   | number               | Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (0-90). |
+| view:sun_elevation   | number               | Sun elevation angle. The angle from the tangent of the scene center point to the sun. Measured from the horizon in degrees (`-90`-`90`). Negative values indicate the sun is below the horizon, Negative values indicate the sun is below the horizon, e.g. sun elevation of -10° means the data was captured during [nautical twilight](https://www.timeanddate.com/astronomy/different-types-twilight.html). |
 
 *At least one of the fields must be specified.*
 

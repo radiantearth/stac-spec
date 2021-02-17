@@ -15,7 +15,7 @@ The Satellite extension requires the [Instrument Fields](../../item-spec/common-
 - [Example (Sentinel 1)](examples/example-sentinel1.json)
 - [JSON Schema](json-schema/schema.json)
 
-## Item fields
+## Item Properties or Item Asset fields
 
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
