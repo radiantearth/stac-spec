@@ -2,8 +2,7 @@
   "stac_version": "1.0.0-beta.2",
   "stac_extensions": [
     "projection",
-    "view",
-    "https://example.com/stac/cbers-extension/1.0/schema.json"
+    "view"
   ],
   "id": "CBERS_4_MUX_20181029_177_106_L4",
   "type": "Feature",

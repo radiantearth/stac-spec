@@ -9,6 +9,7 @@
 * [Unlocated Items](#unlocated-items)
 * [Representing Vector Layers in STAC](#representing-vector-layers-in-stac)
 * [Common Use Cases of Additional Fields for Assets](#common-use-cases-of-additional-fields-for-assets)
+* [Working with Media Types](#working-with-media-types)
 * [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
 * [Catalog Layout](#catalog-layout)
 * [Use of Links](#use-of-links)
@@ -60,7 +61,7 @@ people can just search for 'landsat-8', instead of thinking through all the ways
 ## Field selection and Metadata Linking
 
 In general STAC aims to be oriented around **search**, centered on the core fields that users will want to search on to find 
-imagery. The core is space and time, but there are often other metadata attributes that are useful. While the specification is 
+imagery. The core is space and time, but there are often other metadata fields that are useful. While the specification is 
 flexible enough that providers can fill it with tens or even hundreds of fields of metadata, that is not recommended. If 
 providers have lots of metadata then that can be linked to in the [Asset Object](item-spec/item-spec.md#asset-object) 
 (recommended) or in a [Link Object](item-spec/item-spec.md#link-object). There is a lot of metadata that is only of relevance 
@@ -84,7 +85,7 @@ being found if you searched 1990 to 2000.
 Extensions that describe particular types of data can and should define their `datetime` field to be more specific. For example
 a MODIS 8 day composite image can define the `datetime` to be the nominal date halfway between the two ranges. Another data type
 might choose to have `datetime` be the start. The key is to put in a date and time that will be useful for search, as that is
-the focus of STAC. If `datetime` is set to `null` then it is strongly recommended to use it in conjunction with a content extension
+the focus of STAC. If `datetime` is set to `null` then it is strongly recommended to use it in conjunction with an extension
 that explains why it should not be set for that type of data. 
 
 ## Unlocated Items
@@ -156,6 +157,50 @@ than the overall best resolution.
 - `proj:shape`/`proj:transform` ([projection extension](extensions/projection/)): If assets have different spatial resolutions and slightly different exact bounding boxes, specify these per asset to indicate the size of the asset in pixels and its exact GeoTransform in the native projection.
 - `sar:polarizations` ([sar extension](extensions/sar/)): Provide the polarization content and ordering of a specific asset, similar to `eo:bands`.
 - `sar:product_type` ([sar extension](extensions/sar/)): If mixing multiple product types within a single Item, this can be used to specify the product_type for each asset.
+
+## Working with Media Types
+
+[Media Types](https://en.wikipedia.org/wiki/Media_type) are a key element that enables STAC to be a rich source of information for
+clients. The best practice is to use as specific of a media type as is possible (so if a file is a GeoJSON then don't use a JSON
+media type), and to use [registered](https://www.iana.org/assignments/media-types/media-types.xhtml) IANA types as much as possible.
+The following table lists types that commonly show up in STAC assets. And the the [section](#formats-with-no-registered-media-type)
+past that gives recommendations on what to do if you have a format in your asset that does not have an IANA registered type.
+
+### Common Media Types in STAC
+
+The following table lists a number of commonly used media types in STAC. The first two (GeoTIFF and COG) are not fully standardized 
+yet, but reflect the community consensus direction. There are many IANA registered types that commonly show up in STAC. The 
+following table lists some of the most common ones you may encounter or use.
+
+| Media Type                                              | Description                                                  |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
+| `image/tiff; application=geotiff`                       | GeoTIFF with standardized georeferencing metadata            |
+| `image/tiff; application=geotiff; profile=cloud-optimized` | [Cloud Optimized GeoTIFF](https://www.cogeo.org/) (unofficial). Once there is an [official media type](http://osgeo-org.1560.x6.nabble.com/Media-type-tc5411498.html) it will be added and the custom media type here will be deprecated. |
+| `image/jp2`                                             | JPEG 2000                                                    |
+| `image/png`                                             | Visual PNGs (e.g. thumbnails)                                |
+| `image/jpeg`                                            | Visual JPEGs (e.g. thumbnails, oblique)                      |
+| `text/xml` or `application/xml`                         | XML metadata [RFC 7303](https://www.ietf.org/rfc/rfc7303.txt) |
+| `application/json`                                      | A JSON file (often metadata, or [labels](https://github.com/radiantearth/stac-spec/tree/master/extensions/label#labels-required)) |                   
+| `text/plain`                                            | Plain text (often metadata)                                  |
+| `application/geo+json`                                  | [GeoJSON](https://geojson.org/)                              |
+| `application/geopackage+sqlite3`                        | [GeoPackage](https://www.geopackage.org/)                    |
+| `application/x-hdf5`                                    | Hierarchical Data Format version 5                           |
+| `application/x-hdf`                                     | Hierarchical Data Format versions 4 and earlier.             |
+
+*Deprecation notice: GeoTiff previously used the media type `image/vnd.stac.geotiff` and
+Cloud Optimized GeoTiffs used `image/vnd.stac.geotiff; profile=cloud-optimized`.
+Both can still appear in old catalogues, but are deprecated and should be replaced. This will, unfortunately, likely shift in the future as
+[OGC sorts out the media types](https://github.com/opengeospatial/geotiff/issues/34).*
+
+### Formats with no registered media type
+
+Ideally every media type used is on the [IANA registry](https://www.iana.org/assignments/media-types/media-types.xhtml). If
+you are using a format that is not on that list we recommend you use [custom content 
+type](https://restcookbook.com/Resources/using-custom-content-types/). These typically use the `vnd.` prefix, see [RFC 6838 
+section-3.2](https://tools.ietf.org/html/rfc6838#section-3.2). Ideally the format provider will actually
+register the media type with IANA, so that other STAC clients can find it easily. But if you are only using it internally it is 
+[acceptable to not register](https://stackoverflow.com/questions/29121241/custom-content-type-is-registering-with-iana-mandatory) 
+it. It is relatively easy to [register](https://www.iana.org/form/media-types) a `vnd` media type.
 
 ## Static and Dynamic Catalogs
 
@@ -254,10 +299,10 @@ STAC version. Otherwise some behaviour of functionality may be unpredictable (e.
 
 ## Use of links
 
-The main catalog specification allows both relative and absolute links, and says that `self` links are not required, but are 
+The STAC specifications allow both relative and absolute links, and says that `self` links are not required, but are 
 strongly recommended. This is what the spec must say to enable the various use cases, but there is more subtlety for when it 
-is essential to use different link types. The best practice is to use one of the below 
-catalog types, applying the link recommendations consistently, instead of just haphazardly applying anything the spec allows.
+is essential to use different link types. The best practice is to use one of the below catalog types, applying the link 
+recommendations consistently, instead of just haphazardly applying relative links in some places and absolute ones in other places.
 
 ### Self-contained Catalogs
 
@@ -415,7 +460,7 @@ to the static catalog, or can follow the 'dynamic catalog layout' recommendation
 
 Ideally each `Item` would use its `links` to provide a reference back to the static location. The location of the static
 item should be treated as the canonical location, as the generated API is more likely to move or be temporarily down. The
-spec provides the `derived_from` rel attribute, which fits well enough, but `canonical` is likely the more appropriate one
+spec provides the `derived_from` rel field, which fits well enough, but `canonical` is likely the more appropriate one
 as everything but the links should be the same.
 
 ### Keep catalogs in sync with cloud notification and queue services
@@ -423,7 +468,7 @@ as everything but the links should be the same.
 There is a set of emerging practices to use services like Amazon's Simple Queue Service (SQS) and Simple Notification Service
 (SNS) to keep catalogs in sync. There is a great [blog post on the CBERS STAC implementation on AWS](https://aws.amazon.com/blogs/publicsector/keeping-a-spatiotemporal-asset-catalog-stac-up-to-date-with-sns-sqs/). The core 
 idea is that a static catalog should emit a notification whenever it changes. The recommendation for SNS is to use the STAC 
-item JSON as the message body, with some attributes such as a scene’s datetime and geographic bounding box that allows 
+item JSON as the message body, with some fields such as a scene’s datetime and geographic bounding box that allows 
 basic geographic filtering from listeners. 
 
 The dynamic STAC API would then listen to the notifications and update its internal datastore whenever new data comes into

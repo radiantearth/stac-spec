@@ -2,8 +2,7 @@
   "stac_version": "1.0.0-beta.2",
   "stac_extensions": [
     "eo",
-    "view",
-    "https://example.com/cs-extension/1.0/schema.json"
+    "view"
   ],
   "type": "Feature",
   "id": "CS3-20160503_132131_05",
@@ -63,24 +62,6 @@
     "instruments": [
       "cool_sensor_v1"
     ],
-    "eo:bands": [
-      {
-        "name": "band1",
-        "common_name": "red"
-      },
-      {
-        "name": "band2",
-        "common_name": "green"
-      },
-      {
-        "name": "band3",
-        "common_name": "blue"
-      },
-      {
-        "name": "band4",
-        "common_name": "nir"
-      }
-    ],
     "view:sun_elevation": 33.4,
     "gsd": 0.512,
     "cs:type": "scene",
@@ -119,20 +100,16 @@
       "title": "4-Band Analytic",
       "eo:bands": [
         {
-          "name": "band1",
-          "common_name": "red"
+          "name": "band1"
         },
         {
-          "name": "band2",
-          "common_name": "green"
+          "name": "band1"
         },
         {
-          "name": "band3",
-          "common_name": "blue"
+          "name": "band2"
         },
         {
-          "name": "band4",
-          "common_name": "nir"
+          "name": "band3"
         }
       ]
     },

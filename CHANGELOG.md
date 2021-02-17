@@ -12,19 +12,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added clarification about how collection-level asset object properties do not remove the need for item-level asset object properties in the `item-assets` extension ([#880](https://github.com/radiantearth/stac-spec/pull/880))
 - Added [processing extension](extensions/processing/README.md)
 - Added [file info extension](extensions/file/README.md) ([#879](https://github.com/radiantearth/stac-spec/pull/879), [#921](https://github.com/radiantearth/stac-spec/issues/921))
-- Added additional acquisition parameters in the `sat` extension: `sat:platform_international_designator`, `sat:absolute_orbit`, `sat:anx_datetime` ([#894](https://github.com/radiantearth/stac-spec/pull/894))
+- Added additional acquisition parameters in the `sat` extension: sat:platform_international_designator, sat:absolute_orbit, sat:anx_datetime* ([#894](https://github.com/radiantearth/stac-spec/pull/894))
+- 'summaries' are now available in the Catalog spec, so both catalogs and collections can make use of it. ([#903](https://github.com/radiantearth/stac-spec/issues/903))
 - Recommendation to enable CORS
+- A 'visual' option as an asset role.
 - Added STAC CARD4L SAR (NRB + POL) Extension
 
 ### Changed
 
 - Clarified the role of geometries on items in the label extension
 - Data Cube Extension: Units for STAC dimensions in should now be compliant to UDUNITS-2 units (singular) whenever available.
+- URIs (usually found int properties like `href`, `url`) are now validated using the `iri-reference` format in JSON Schema (allows international characters in URIs)
 - Relaxed the regular expression for DOIs in the scientific extension ([#910](https://github.com/radiantearth/stac-spec/issues/910))
+- The [Stats Object](collection-spec/collection-spec.md#stats-object) for Collection `summaries` changed `min` to `minimum` and `max` to `maximum` to align with JSON Schema.
 
 ### Removed
 
-- Checksum extension (field `checksum:multihash`). Use File Info extension (field `file:checksum`) instead.
+- Checksum extension (field `checksum:multihash`). Use File Info extension (field `file:checksum`) instead for assets. There's no replacement for links.
 
 ### Fixed
 
@@ -110,7 +114,7 @@ Item properties
 ### Changed
 - Support for [CommonMark 0.29 instead of CommonMark 0.28](https://spec.commonmark.org/0.29/changes.html)
 - Collection field `property` and the merge ability moved to a new extension 'Commons'
-- Added attribute `roles` to Item assets (also Asset definitions extension), to be used similarly to Link `rel`
+- Added field `roles` to Item assets (also Asset definitions extension), to be used similarly to Link `rel`
 - Updated API yaml to clarify bbox filter should be implemented without brackets. Example: `bbox=160.6,-55.95,-170,-25.89`
 - Collection `summaries` merge array fields now
 - Several fields have been moved from extensions or item fields to the [Common Metadata fields](item-spec/common-metadata.md):

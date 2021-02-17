@@ -2,10 +2,10 @@
 
 This document explains the structure and content of a SpatioTemporal Asset Catalog (STAC) Item. An **Item** is a
 [GeoJSON](http://geojson.org/) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) augmented with
-[foreign members](https://tools.ietf.org/html/rfc7946#section-6) relevant to a STAC entity.
-These attributes include fields that identify the time range and assets of the Item. An Item is the core
-granular entity in a STAC, containing the core metadata that enables any client to search or crawl
-online catalogs of spatial 'assets' - satellite imagery, derived data, DEM's, etc.
+[foreign members](https://tools.ietf.org/html/rfc7946#section-6) relevant to a STAC object.
+These include fields that identify the time range and assets of the Item. An Item is the core
+object in a STAC catalog, containing the core metadata that enables any client to search or crawl
+online catalogs of spatial 'assets' (e.g., satellite imagery, derived data, DEMs).
 
 The same Item definition is used in both [STAC catalogs](../catalog-spec/README.md) and
 the [Item-related API endpoints](https://github.com/radiantearth/stac-api-spec/blob/master/api-spec.md#ogc-api---features-endpoints).
@@ -42,7 +42,7 @@ inherited from GeoJSON.
 
 **stac_version**: In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
 
-**stac_extensions**: A list of extensions the Item implements. The list contains URLs to the JSON Schema files it can be validated against. For official [content extensions](../extensions/README.md#list-of-content-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. This does *not* apply for API extensions. If the versions of the extension and the item diverge, you can specify the URL of the JSON schema file.
+**stac_extensions**: A list of extensions the Item implements. The list contains URLs to the JSON Schema files it can be validated against. For official [extensions](../extensions/README.md#list-of-stac-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. This does *not* apply for API extensions. If the versions of the extension and the item diverge, you can specify the URL of the JSON schema file.
 This list must only contain extensions that extend the Item itself, see the the 'Scope' column in the list of extensions. If an extension such as the `tiled-assets` extension has influence on multiple parts of the whole catalog structure, it must be listed in all affected parts (e.g. Catalog, Collection and Item for the `tiled-assets` extension).
 
 **assets**: Dictionary of asset objects that can be downloaded, each with a unique key.
@@ -91,13 +91,13 @@ to enable cross-catalog search on known fields.
 
 * [STAC Common Metadata](common-metadata.md#stac-common-metadata) - A list of fields commonly used
 throughout all domains. These optional fields are included for STAC Items by default.
-* [Content Extensions](../extensions/README.md#list-of-content-extensions) - Domain-specific fields
+* [Extensions](../extensions/README.md#list-of-stac-extensions) - Domain-specific fields
 such as EO, SAR and point clouds.
 * [Custom Extensions](../extensions/README.md#extending-stac) - It is generally allowed to add custom
-fields but it is recommended to add multiple attributes for related values instead of a nested object,
+fields but it is recommended to add multiple fields for related values instead of a nested object,
 e.g., two fields `view:azimuth` and `view:off_nadir` instead of a field `view` with an object
-value containing the two fields. The convention (as used within Extensions) is for related attributes
-to use a common prefix on the attribute names to group them, e.g. `view`. A nested data structure should
+value containing the two fields. The convention (as used within Extensions) is for related fields 
+to use a common prefix on the field names to group them, e.g. `view`. A nested data structure should
 only be used when the data itself is nested, as with `eo:bands`.
 
 ### Link Object
@@ -111,24 +111,18 @@ It is allowed to add additional fields such as a `title` and `type`.
 | ---------- | ------ | ----------- |
 | href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information. |
-| type       | string | [Media type](#media-types) of the referenced entity. |
+| type       | string | [Media type](../catalog-spec/catalog-spec.md#media-types) of the referenced entity. |
 | title      | string | A human readable title to be used in rendered displays of the link. |
 
-#### Relative vs Absolute links
-
-Currently, the JSON schema for links does not require them to be formatted as URIs, to allow
-implementors to provide relative links. In general, Catalog APIs should aim to provide absolute links
-whenever possible. Static Catalogs are potentially more portable if they incorporate only
-relative links, so that every link doesn't need to be rewritten when the data is copied. Additional
-recommendations for particular `rel` types are given in the `rel` type description.
+For a full discussion of the situations where relative and absolute links are recommended see the
+['Use of links'](../best-practices.md#use-of-links) section of the STAC best practices.
 
 #### Relation types
 
-STAC Items use a variety of `rel` types in the link object, to describe the exact nature of the link between this item
-and the entity it is linking to. It is recommended to use the official [IANA Link Relation 
-Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) where possible. The following table explains places
-where STAC use custom `rel` types are used with items. This happens where there is not a clear official option, or where 
-STAC uses an official type but adds additional meaning for the STAC context.
+STAC Items use a variety of `rel` types in the link object, to describe the exact nature of the link between this item and the entity it is linking to.
+It is recommended to use the official [IANA Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) where possible.
+The following table explains places where STAC use custom `rel` types are used with items.
+This happens where there is not a clear official option, or where STAC uses an official type but adds additional meaning for the STAC context.
 
 | Type         | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
@@ -165,19 +159,28 @@ Linking back must happen in two places:
 
 ### Asset Object
 
-An asset is an object that contains a link to data associated with the Item that can be downloaded
+An Asset is an object that contains a URI to data associated with the Item that can be downloaded
 or streamed. It is allowed to add additional fields.
 
 | Field Name  | Type      | Description |
 | ----------- | --------- | ----------- |
-| href        | string    | **REQUIRED.** Link to the asset object. Relative and absolute links are both allowed. |
+| href        | string    | **REQUIRED.** URI to the asset object. Relative and absolute URI are both allowed. |
 | title       | string    | The displayed title for clients and users. |
 | description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| type        | string    | [Media type](#media-types) of the asset. |
+| type        | string    | [Media type](#asset-media-type) of the asset. See the [common media types](../best-practices.md#common-media-types-in-stac) in the best practice doc for commonly used asset types. |
 | roles       | \[string] | The [semantic roles](#asset-role-types) of the asset, similar to the use of `rel` in links. |
 
-Beyond to the fields above, any of the [additional fields](#additional-fields) *may* be added to the assets. But this
-is recommended only in special cases, see [Additional Fields for Assets](#additional-fields-for-assets)) for more information.
+[Additional fields](#additional-fields) *may* be added to the assets, though this
+is recommended only in special cases. See [Additional Fields for Assets](#additional-fields-for-assets)) for more information.
+
+#### Asset Media Type
+
+Any media type can be used in an Item's asset `type` field, and [registered](https://www.iana.org/assignments/media-types/media-types.xhtml) 
+Media Types are preferred. STAC Items that have sidecar metadata files associated with a data asset (e.g, `.tfw`, Landsat 8 MTL files)
+should use media types appropriate for the the metadata file.  For example, if it is a plain text file, then `text/plain`
+would be appropriate; if it is an XML, then `text/xml` is appropriate. For more information on media types as well as a 
+list of [common media types](../best-practices.md#common-media-types-in-stac) used in STAC see the [best practice on 
+working with media types](../best-practices.md#working-with-media-types).
 
 #### Asset Role Types
 
@@ -189,44 +192,11 @@ Like the Link `rel` field, the `roles` field can be given any value, however her
 | overview  | An asset that represents a possibly larger view than the thumbnail of the Item, for example, a true color composite of multi-band data. |
 | data      | The data itself. This is a suggestion for a common role for data files to be used in case data providers don't come up with their own names and semantics. |
 | metadata  | A metadata sidecar file describing the data in this item, for example the Landsat-8 MTL file. |
+| visual    | An asset that is a full resolution version of the data, processed for visual use (RGB only, often sharpened ([pan-sharpened](https://en.wikipedia.org/wiki/Pansharpened_image) and/or using an [unsharp mask](https://en.wikipedia.org/wiki/Unsharp_masking))). |
 
 It is STRONGLY RECOMMENDED to add to each STAC Item
 * a thumbnail with the role `thumbnail` for preview purposes
 * one or more data file although it doesn't need to use the suggested role `data`
-
-#### Media Types
-
-The media type of an Asset can be used by STAC browsers to better determine what to render and display
-to users searching and browsing the catalog.  Media types are often referred to by the now-deprecated term "MIME types".
-
-[Registered](https://www.iana.org/assignments/media-types/media-types.xhtml) Media Types are
-preferred. In cases where custom vendor-specific media types are necessary, they should
-use the `vnd.` prefix.
-
-STAC Items that have sidecar metadata files associated with a data asset (e.g, `.tfw`, Landsat 8 MTL files)
-should use media types appropriate for the the metadata file.  For example, if it is a plain text file, then `text/plain`
-would be appropriate; if it is an XML, then `text/xml` is appropriate.
-
-Common STAC Item Media Types:
-
-| Media Type                                              | Description                                                  |
-| ------------------------------------------------------- | ------------------------------------------------------------ |
-| `image/tiff; application=geotiff`                       | GeoTIFF with standardized georeferencing metadata            |
-| `image/tiff; application=geotiff; profile=cloud-optimized` | Cloud Optimized GeoTIFF (unofficial). Once there is an [official media type](http://osgeo-org.1560.x6.nabble.com/Media-type-tc5411498.html) it will be added and the proprietary media type here will be deprecated. |
-| `image/jp2`                                             | JPEG 2000                                                    |
-| `image/png`                                             | Visual PNGs (e.g. thumbnails)                                |
-| `image/jpeg`                                            | Visual JPEGs (e.g. thumbnails, oblique)                      |
-| `text/xml` or `application/xml`                         | XML metadata [RFC 7303](https://www.ietf.org/rfc/rfc7303.txt) |
-| `application/json`                                      | JSON metadata                                                |
-| `text/plain`                                            | Plain text metadata                                          |
-| `application/geo+json`                                  | GeoJSON                                                      |
-| `application/geopackage+sqlite3`                        | GeoPackage                                                   |
-| `application/x-hdf5`                                    | Hierarchical Data Format version 5                           |
-| `application/x-hdf`                                     | Hierarchical Data Format versions 4 and earlier.             |
-
-Deprecation notice: GeoTiff previously used the media type `image/vnd.stac.geotiff` and
-Cloud Optimized GeoTiffs used `image/vnd.stac.geotiff; profile=cloud-optimized`.
-Both can still appear in old catalogues, but are deprecated and should be replaced.
 
 #### Additional Fields for Assets
 
@@ -255,6 +225,12 @@ in the file).
 
 For examples of fields that this construct is recommended for, see the [section of STAC Best Practices](../best-practices.md#common-use-cases-of-additional-fields-for-assets)
 that talks about common use cases of additional fields for assets.
+
+## Media Type for STAC Item
+
+A STAC Item is a GeoJSON file ([RFC 7946](https://tools.ietf.org/html/rfc7946)), and thus should use the 
+`[application/geo+json](https://tools.ietf.org/html/rfc7946#section-12)` as the [Media Type](https://en.wikipedia.org/wiki/Media_type) 
+(previously known as the MIME Type). 
 
 ## Extensions
 

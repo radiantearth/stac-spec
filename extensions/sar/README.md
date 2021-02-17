@@ -17,7 +17,7 @@ To describe frame start and end times, use the [Date and Time Range fields](../.
 - [Examples](examples/) (for example [Sentinel-1](examples/sentinel1.json) and [Envisat](examples/envisat.json))
 - [JSON Schema](json-schema/schema.json)
 
-## Item fields
+## Item Properties or Item Asset fields
 
 **Note:** In the following specification *range* values are meant to be measured perpendicular to the flight path and *azimuth* values are meant to be measured parallel to the flight path.
 
