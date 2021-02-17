@@ -33,7 +33,7 @@ The `proj` prefix is short for "projection", and is not a reference to the PROJ/
 | ---------------- | ------------------------ | ----------- |
 | proj:epsg        | integer \|null  | **REQUIRED.** [EPSG code](http://www.epsg-registry.org/) of the datasource |
 | proj:wkt2        | string \|null   | [WKT2](http://docs.opengeospatial.org/is/12-063r5/12-063r5.html) string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
-| proj:projjson    | [PROJJSON Object](https://proj.org/specifications/projjson.html) \|null   | PROJJSON object representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
+| proj:projjson    | [PROJJSON Object](https://proj.org/schemas/v0.2/projjson.schema.json) \|null   | PROJJSON object representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
 | proj:geometry    | [Polygon Object](https://geojson.org/schema/Polygon.json)  | Defines the footprint of this Item. |
 | proj:bbox        | \[number]       | Bounding box of the Item in the asset CRS in 2 or 3 dimensions. |
 | proj:centroid    | Centroid Object | Coordinates representing the centroid of the Item (in lat/long) |
