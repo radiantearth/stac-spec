@@ -7,7 +7,9 @@
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 - **Owner**: @davidraleigh
 
-This document explains the fields of the Object Storage Extension to a STAC Item and an Asset. This does not cover NFS solutions provided by PaaS cloud companies. Allows user to specify details related to cloud storage access and costs for assets and their STAC item.
+This document describes the Object Storage Extension. This extension adds fields to STAC Item and Asset objects. This allows for details related to cloud storage access and costs for assets to be associated with a STAC Item.
+
+This extension does not cover NFS solutions provided by PaaS cloud companies. 
 
 - [Example (Landsat 8)](examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)
