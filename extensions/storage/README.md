@@ -10,7 +10,7 @@
 This document explains the fields of the Object Storage Extension to a STAC Item and an Asset. This does not cover NFS solutions provided by PaaS cloud companies. Allows user to specify details related to cloud storage access and costs for assets and their STAC item.
 
 - [Example (NAIP)](examples/example-naip.json)
-- [Example (Landsat)](examples/example-landsat8.json)
+- [Example (Near Space Labs Swift)](examples/example-nsl.json)
 - [JSON Schema](json-schema/schema.json)
 
 ## Asset fields
