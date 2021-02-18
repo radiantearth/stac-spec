@@ -26,7 +26,7 @@ This extension does not cover NFS solutions provided by PaaS cloud companies.
 | storage:requester_pays        | bool      | Is the data requester pays or is it data manager/cloud provider pays |
 | storage:tier                  | string    | The title for the tier type (as defined by PaaS provider) |
 | storage:tier_duration         | integer   | Minimum storage duration required before additional fees |
-| storage:date_stored           | string    | Date and time the corresponding asset placed into the current storage tier (relevant for tier_duration > 0) |
+| storage:date_stored           | string    | Date and time the corresponding asset placed into the current storage tier (relevant for tier_duration > 0). Format is RFC 3339. |
 | storage:first_byte_latency    | string    | time unit (milliseconds, minutes or hours) for accessing first byte of data |
 
 ## Item fields
