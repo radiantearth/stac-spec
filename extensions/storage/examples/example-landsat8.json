@@ -1,7 +1,8 @@
 {
   "stac_version": "1.0.0-beta.2",
   "stac_extensions": [
-    "view"
+    "view",
+    "storage"
   ],
   "id": "20190822T183518Z_746_POM1_ST2_P",
   "collection": "NSL_SCENE",
@@ -41,7 +42,11 @@
     "platform": "SWIFT_2",
     "instrument": "POM_1",
     "gsd": 0.20000000298023224,
-    "view:off_nadir": 9.42326831817627
+    "view:off_nadir": 9.42326831817627,
+    "storage:min_tier_duration": 0,
+    "storage:max_tier_duration": 90,
+    "storage:archived_small": false,
+    "storage:archived": true
   },
   "assets": {
     "GEOTIFF_RGB_GCP": {
