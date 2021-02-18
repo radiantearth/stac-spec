@@ -28,7 +28,7 @@ This extension does not cover NFS solutions provided by PaaS cloud companies.
 | storage:tier                  | string    | The title for the tier type (as defined by PaaS provider) |
 | storage:tier_duration         | integer   | Minimum storage duration (in days) required before additional fees |
 | storage:date_stored           | string    | Date and time the corresponding asset placed into the current storage tier (relevant for tier_duration > 0). Format is RFC 3339. |
-| storage:first_byte_latency    | string    | time unit (milliseconds, minutes or hours) for accessing first byte of data |
+| storage:first_byte_latency    | string    | approximate time unit (milliseconds, minutes or hours) for accessing first byte of data |
 
 ## Item fields
 
