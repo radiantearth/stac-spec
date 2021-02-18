@@ -31,43 +31,79 @@
         },
         "properties": {
           "type": "object",
-          "anyOf": [
-            {"required": ["view:off_nadir"]},
-            {"required": ["view:incidence_angle"]},
-            {"required": ["view:azimuth"]},
-            {"required": ["view:sun_azimuth"]},
-            {"required": ["view:sun_elevation"]}
+          "required": [
+            "storage:platform",
+            "storage:region",
+            "storage:requester_pays"
           ],
           "properties": {
-            "view:off_nadir": {
-              "title": "Off Nadir",
-              "type": "number",
-              "minimum": 0,
-              "maximum": 90
+            "storage:platform": {
+              "title": "Platform",
+              "type": "string",
+              "enum": [
+                "UNKNOWN_CLOUD_PLATFORM",
+                "AWS",
+                "GCP",
+                "AZURE",
+                "IBM",
+                "ALIBABA",
+                "ORACLE"
+              ],
+              "default": "UNKNOWN_CLOUD_PLATFORM"
             },
-            "view:incidence_angle": {
-              "title": "Center incidence angle",
-              "type": "number",
-              "minimum": 0,
-              "maximum": 90
+            "storage:manager": {
+              "title": "Manager",
+              "type": "string"
             },
-            "view:azimuth": {
-              "title": "Azimuth angle",
-              "type": "number",
-              "minimum": 0,
-              "maximum": 360
+            "storage:region": {
+              "title": "Region",
+              "type": "string"
             },
-            "view:sun_azimuth": {
-              "title": "Sun Azimuth",
-              "type": "number",
-              "minimum": 0,
-              "maximum": 360
+            "storage:bucket": {
+              "title": "Bucket",
+              "type": "string"
             },
-            "view:sun_elevation": {
-              "title": "Sun Elevation",
-              "type": "number",
-              "minimum": -90,
-              "maximum": 90
+            "storage:object_path": {
+              "title": "Object Path",
+              "type": "string"
+            },
+            "storage:requester_pays": {
+              "type": "boolean",
+              "title": "Requester pays",
+              "default": true
+            },
+            "storage:tier": {
+              "title": "Tier",
+              "type": "string"
+            },
+            "storage:tier_duration": {
+              "title": "Tier Duration",
+              "type": "integer",
+              "default": 0
+            },
+            "storage:first_byte_latency": {
+              "title": "Tier",
+              "type": "string"
+            },
+            "storage:date_stored": {
+              "title": "Date Stored",
+              "type": "string",
+              "format": "date-time"
+            },
+            "storage:min_tier_duration": {
+              "title": "Minimum Duration for Tier",
+              "type": "integer",
+              "default": 0
+            },
+            "storage:max_tier_duration": {
+              "title": "Maxiumum Duration for Tier",
+              "type": "integer",
+              "default": 0
+            },
+            "storage:archived": {
+              "title": "Archived",
+              "type": "boolean",
+              "default": false
             }
           }
         }

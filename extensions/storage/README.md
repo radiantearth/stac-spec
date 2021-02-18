@@ -21,7 +21,7 @@ This extension does not cover NFS solutions provided by PaaS cloud companies.
 | ----------- | ------ | ----------- |
 | storage:platform              | string    | (REQUIRED) The [cloud provider](#providers) where data is stored |
 | storage:manager               | string    | The entity in charge of managing the data. |
-| storage:regions               | \[string] | (REQUIRED) The region(s) where the data is stored. Relevant to speed of access and inter region egress costs (as defined by PaaS provider) |
+| storage:region                | string    | (REQUIRED) The region where the data is stored. Relevant to speed of access and inter region egress costs (as defined by PaaS provider) |
 | storage:bucket                | string    | The bucket for the asset, used along with object path |
 | storage:object_path           | string    | The object_path for the asset, used along with bucket |
 | storage:requester_pays        | bool      | (REQUIRED) Is the data requester pays or is it data manager/cloud provider pays |
