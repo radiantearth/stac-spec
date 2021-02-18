@@ -34,8 +34,8 @@ This extension does not cover NFS solutions provided by PaaS cloud companies.
 
 | Field Name  | Type   | Description |
 | ----------- | ------ | ----------- |
-| storage:min_tier_duration   | string  | number of days for the shortest time tier restriction on access of an asset. |
-| storage:max_tier_duration   | string  | number of days for the longest time tier restrictions on access of an asset. |
+| storage:min_tier_duration   | integer  | number of days for the shortest time tier restriction on access of an asset. |
+| storage:max_tier_duration   | integer  | number of days for the longest time tier restrictions on access of an asset. |
 | storage:archived            | bool    | descriptor for whether the data is "properly" archived according to implementers discretion |
 
 ## Providers
