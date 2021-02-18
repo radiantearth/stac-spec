@@ -2,7 +2,7 @@
 
 - **Title: Object Storage**
 - **Identifier: storage**
-- **Field Name Prefix: -**
+- **Field Name Prefix: storage**
 - **Scope: Item, Assets**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 - **Owner**: @davidraleigh
