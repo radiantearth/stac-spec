@@ -9,7 +9,7 @@
 
 This document explains the fields of the Object Storage Extension to a STAC Item and an Asset. This does not cover NFS solutions provided by PaaS cloud companies. Allows user to specify details related to cloud storage access and costs for assets and their STAC item.
 
-- [Example (Landsat 8)](examples/example-landsat8.json)
+- [Example (NAIP)](examples/example-naip.json)
 - [JSON Schema](json-schema/schema.json)
 
 ## Asset fields
@@ -18,7 +18,7 @@ This document explains the fields of the Object Storage Extension to a STAC Item
 | ----------- | ------ | ----------- |
 | storage:cloud_platform        | string    | The [cloud provider](#providers) where data is stored |
 | storage:manager               | string    | The entity in charge of managing the data. |
-| storage:regions               | [string]  | The region(s) where the data is stored. Relevant to speed of access and inter region egress costs (as defined by PaaS provider) |
+| storage:regions               | \[string]  | The region(s) where the data is stored. Relevant to speed of access and inter region egress costs (as defined by PaaS provider) |
 | storage:bucket                | string    | The bucket for the asset, used along with object path |
 | storage:object_path           | string    | The object_path for the asset, used along with bucket |
 | storage:requester_pays        | bool      | Is the data requester pays or is it data manager/cloud provider pays |
@@ -59,20 +59,20 @@ Currently this document is arranged to support object storage users of the follo
 
 References for the above table:
 
-IBM: https://cloud.ibm.com/objectstorage/create#pricing
+IBM: <https://cloud.ibm.com/objectstorage/create#pricing>
 
-Google Cloud: https://cloud.google.com/storage/docs/storage-classes
+Google Cloud: <https://cloud.google.com/storage/docs/storage-classes>
 
-Microsoft: https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-storage-tiers
+Microsoft: <https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-storage-tiers>
 
-AWS: https://aws.amazon.com/s3/storage-classes/
+AWS: <https://aws.amazon.com/s3/storage-classes/>
 
 Oracle: 
- - https://www.oracle.com/cloud/storage/pricing.html
- - https://www.oracle.com/cloud/storage/archive-storage-faq.html
+- <https://www.oracle.com/cloud/storage/pricing.html>
+- <https://www.oracle.com/cloud/storage/archive-storage-faq.html>
 
 Alibaba: 
- - https://www.alibabacloud.com/product/oss/pricing
- - https://www.alibabacloud.com/help/doc-detail/51374.htm
+- <https://www.alibabacloud.com/product/oss/pricing>
+- <https://www.alibabacloud.com/help/doc-detail/51374.htm>
 
 All timestamps MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).

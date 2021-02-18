@@ -73,6 +73,7 @@ These extensions add new fields or semantics to STAC objects.
 | [Timestamps](timestamps/README.md)               | timestamps        | -                   | Item                      | *Proposal* | Allows to specify numerous timestamps for assets and metadata. |
 | [Versioning Indicators](version/README.md)       | version           | -                   | Item, Collection          | *Proposal* | Provides fields and link relation types to provide a version and indicate deprecation. |
 | [View Geometry](view/README.md)                  | view              | view                | Item                      | *Proposal* | View Geometry adds metadata related to angles of sensors and other radiance angles that affect the view of resulting data |
+| [Storage Geometry](storage/README.md)            | storage           | storage             | Item, Asset               | *Proposal* | Storage Object allows for details related to cloud storage access and costs for assets to be associated with a STAC Item and Assets. |
 
 ## Third-party / vendor extensions
 
