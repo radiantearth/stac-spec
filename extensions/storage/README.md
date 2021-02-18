@@ -2,12 +2,14 @@
 
 - **Title: Object Storage**
 - **Identifier: storage**
-- **Field Name Prefix: -**
+- **Field Name Prefix: storage**
 - **Scope: Item, Assets**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 - **Owner**: @davidraleigh
 
-This document explains the fields of the Object Storage Extension to a STAC Item and an Asset. This does not cover NFS solutions provided by PaaS cloud companies. Allows user to specify details related to cloud storage access and costs for assets and their STAC item.
+This document describes the Object Storage Extension. This extension adds fields to STAC Item and Asset objects. This allows for details related to cloud storage access and costs for assets to be associated with a STAC Item.
+
+This extension does not cover NFS solutions provided by PaaS cloud companies. 
 
 - [Example (NAIP)](examples/example-naip.json)
 - [Example (Near Space Labs Swift)](examples/example-nsl.json)
@@ -25,7 +27,7 @@ This document explains the fields of the Object Storage Extension to a STAC Item
 | storage:requester_pays        | bool      | Is the data requester pays or is it data manager/cloud provider pays |
 | storage:tier                  | string    | The title for the tier type (as defined by PaaS provider) |
 | storage:tier_duration         | integer   | Minimum storage duration required before additional fees |
-| storage:date_stored           | string    | Date and time the corresponding asset placed into the current storage tier (relevant for tier_duration > 0) |
+| storage:date_stored           | string    | Date and time the corresponding asset placed into the current storage tier (relevant for tier_duration > 0). Format is RFC 3339. |
 | storage:first_byte_latency    | string    | time unit (milliseconds, minutes or hours) for accessing first byte of data |
 
 ## Item fields
