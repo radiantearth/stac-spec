@@ -77,10 +77,12 @@ clients use this name for display, potentially in conjunction with the common na
 
 #### full_width_half_max (FWHM) 
 
-This is a common way to describe the size of a spectral band. It is the
-width, in micrometers (μm), of the bandpass measured at a half of the maximum transmission. Thus, if the
-maximum transmission of the bandpass was 80%, the FWHM is measured as the width of the bandpass at
+Along with `center_wavelength`, this is a common way to describe a spectral band. It is the
+width, in micrometers (μm), of the band measured at a half of the maximum transmission. Thus, if the
+maximum transmission of the bandpass was 80%, the FWHM is measured as the width of the band at
 40% transmission.
+
+Another simple way to describe spectral bands is by a min and max wavelength (i.e., 0.50um - 0.60um). Assuming the band is a "top-hat filter" (i.e., it goes straight from 0% to it's maximum) than `center_wavelength` is simply the halfway point between the min and max, while the `full_width_half_max` is just the distance between them (max_wavelength - min_wavelength).
 
 #### Common Band Names
 
