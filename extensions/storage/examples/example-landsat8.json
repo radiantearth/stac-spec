@@ -1,91 +1,101 @@
 {
   "stac_version": "1.0.0-beta.2",
   "stac_extensions": [
-    "sat",
     "view"
   ],
-  "id": "LC08_L1TP_107018_20181001",
-  "collection": "landsat-8-l1",
+  "id": "20190822T183518Z_746_POM1_ST2_P",
+  "collection": "NSL_SCENE",
   "type": "Feature",
-  "bbox": [
-    148.13933,
-    59.51584,
-    152.52758,
-    60.63437
-  ],
   "geometry": {
-    "type": "Polygon",
+    "type": "MultiPolygon",
     "coordinates": [
       [
         [
-          152.52758,
-          60.63437
-        ],
-        [
-          149.1755,
-          61.19016
-        ],
-        [
-          148.13933,
-          59.51584
-        ],
-        [
-          151.33786,
-          58.97792
-        ],
-        [
-          152.52758,
-          60.63437
+          [
+            -97.7466867683867,
+            30.28754662370266
+          ],
+          [
+            -97.74555747279238,
+            30.278398961994966
+          ],
+          [
+            -97.72990596574927,
+            30.27972380176124
+          ],
+          [
+            -97.73085242627444,
+            30.288621181865743
+          ],
+          [
+            -97.7466867683867,
+            30.28754662370266
+          ]
         ]
       ]
     ]
   },
   "properties": {
-    "datetime": "2018-10-01T01:08:32.033Z",
-    "view:sun_azimuth": 168.8989761,
-    "view:sun_elevation": 26.32596431,
-    "view:off_nadir": 0,
-    "view:incidence_angle": 0,
-    "view:azimuth": 23.4,
-    "platform": "landsat-8",
-    "instruments": [
-      "oli",
-      "tirs"
-    ],
-    "constellation": "landsat",
-    "sat:orbit_state": "ascending"
+    "datetime": "2019-08-22T18:35:18+00:00",
+    "mission": "SWIFT",
+    "platform": "SWIFT_2",
+    "instrument": "POM_1",
+    "gsd": 0.20000000298023224,
+    "view:off_nadir": 9.42326831817627
   },
   "assets": {
-    "blue": {
-      "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B2.TIF",
-      "type": "image/tiff; application=geotiff",
-      "title": "Band 2 (blue)"
+    "GEOTIFF_RGB_GCP": {
+      "href": "https://api.nearspacelabs.net/download/20190822T162258Z_TRAVIS_COUNTY/Published/REGION_0/20190822T183518Z_746_POM1_ST2_P.tif",
+      "type": "image/vnd.stac.geotiff",
+      "storage:bucket": "swiftera-processed-data",
+      "storage:object_path": "20190822T162258Z_TRAVIS_COUNTY/Published/REGION_0/20190822T183518Z_746_POM1_ST2_P.tif",
+      "storage:cloud_platform": "GCP",
+      "storage:manager": "Near Space Labs",
+      "storage:regions": "us-central1",
+      "storage:requester_pays": true,
+      "storage:tier": "Standard",
+      "storage:tier_duration": 0,
+      "storage:first_byte_latency": "milliseconds"
     },
-    "green": {
-      "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B3.TIF",
-      "type": "image/tiff; application=geotiff",
-      "title": "Band 3 (green)"
+    "THUMBNAIL_RGB_GCP": {
+      "href": "https://api.nearspacelabs.net/download/20190822T162258Z_TRAVIS_COUNTY/Published/REGION_0/20190822T183518Z_746_POM1_ST2_P.png",
+      "type": "image/png",
+      "storage:bucket": "swiftera-processed-data",
+      "storage:object_path": "20190822T162258Z_TRAVIS_COUNTY/Published/REGION_0/20190822T183518Z_746_POM1_ST2_P.png",
+      "storage:cloud_platform": "GCP",
+      "storage:manager": "Near Space Labs",
+      "storage:regions": "us-central1",
+      "storage:requester_pays": true,
+      "storage:tier": "Standard",
+      "storage:tier_duration": 0,
+      "storage:first_byte_latency": "milliseconds"
     },
-    "red": {
-      "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B4.TIF",
-      "type": "image/tiff; application=geotiff",
-      "title": "Band 4 (red)"
+    "GEOTIFF_RGB_AWS": {
+      "href": "https://aws.api.nearspacelabs.net/download/20190822T162258Z_TRAVIS_COUNTY/Published/REGION_0/20190822T183518Z_746_POM1_ST2_P.tif",
+      "type": "image/vnd.stac.geotiff",
+      "storage:bucket": "nsl-data-archive",
+      "storage:object_path": "20190822T162258Z_TRAVIS_COUNTY/Published/REGION_0/20190822T183518Z_746_POM1_ST2_P.tif",
+      "storage:cloud_platform": "AWS",
+      "storage:manager": "Near Space Labs",
+      "storage:regions": "us-central1",
+      "storage:requester_pays": true,
+      "storage:tier": "Glacier",
+      "storage:date_stored": "2021-02-02T00:00:00+00:00",
+      "storage:tier_duration": 90,
+      "storage:first_byte_latency": "milliseconds"
     },
-    "thumbnail": {
-      "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_thumb_large.jpg",
-      "title": "Thumbnail image",
-      "type": "image/jpeg"
-    },
-    "index": {
-      "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/index.html",
-      "type": "text/html",
-      "title": "HTML index page"
+    "THUMBNAIL_RGB_AWS": {
+      "href": "https://aws.api.nearspacelabs.net/download/20190822T162258Z_TRAVIS_COUNTY/Published/REGION_0/20190822T183518Z_746_POM1_ST2_P.png",
+      "type": "image/png",
+      "storage:bucket": "nsl-data-archive",
+      "storage:object_path": "20190822T162258Z_TRAVIS_COUNTY/Published/REGION_0/20190822T183518Z_746_POM1_ST2_P.png",
+      "storage:cloud_platform": "AWS",
+      "storage:manager": "Near Space Labs",
+      "storage:regions": "us-central1",
+      "storage:requester_pays": true,
+      "storage:tier": "Standard",
+      "storage:tier_duration": 0,
+      "storage:first_byte_latency": "hours"
     }
-  },
-  "links": [
-    {
-      "rel": "collection",
-      "href": "http://landsat-stac.s3.amazonaws.com/landsat-8-l1/catalog.json"
-    }
-  ]
+  }
 }
