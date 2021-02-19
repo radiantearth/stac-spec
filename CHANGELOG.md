@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Relaxed the regular expression for DOIs in the scientific extension ([#910](https://github.com/radiantearth/stac-spec/issues/910))
 - The [Stats Object](collection-spec/collection-spec.md#stats-object) for Collection `summaries` changed `min` to `minimum` and `max` to `maximum` to align with JSON Schema.
 - `proj:geometry` allows all GeoJSON geometries instead of just a polygon.
+- `label:description` and `processing:lineage` allow CommonMark for rich-text representation ([#950](https://github.com/radiantearth/stac-spec/issues/950))
 
 ### Removed
 
