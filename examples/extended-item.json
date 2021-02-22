@@ -54,8 +54,21 @@
     "gsd": 0.66,
     "eo:cloud_cover": 1.2,
     "proj:epsg": 32659,
-    "proj:shape": [5558, 9559],
-    "proj:transform": [0.5, 0.0, 712710.0, 0.0, -0.5, 151406.0, 0.0, 0.0, 1.0],
+    "proj:shape": [
+      5558,
+      9559
+    ],
+    "proj:transform": [
+      0.5,
+      0.0,
+      712710.0,
+      0.0,
+      -0.5,
+      151406.0,
+      0.0,
+      0.0,
+      1.0
+    ],
     "sat:orbit_state": "ascending",
     "sat:relative_orbit": 34523,
     "view:sun_elevation": 54.9,
@@ -100,52 +113,11 @@
         "data"
       ],
       "eo:bands": [
-          {
-            "name": "band1",
-            "common_name": "blue",
-            "center_wavelength": 470,
-            "full_width_half_max": 70
-          },
-          {
-            "name": "band2",
-            "common_name": "green",
-            "center_wavelength": 560,
-            "full_width_half_max": 80
-          },
-          {
-            "name": "band3",
-            "common_name": "red",
-            "center_wavelength": 645,
-            "full_width_half_max": 90
-          },
-          {
-            "name": "band4",
-            "common_name": "nir",
-            "center_wavelength": 800,
-            "full_width_half_max": 152
-          }
-        ],
-    "thumbnail": {
-      "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2.jpg",
-      "title": "Thumbnail",
-      "type": "image/png",
-      "roles": [
-        "thumbnail"
-      ]
-    },
-    "visual": {
-      "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2.tif",
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "title": "3-Band Visual",
-      "roles": [
-        "visual"
-      ],
-      "eo:bands": [
         {
-          "name": "band3",
-          "common_name": "red",
-          "center_wavelength": 645,
-          "full_width_half_max": 90
+          "name": "band1",
+          "common_name": "blue",
+          "center_wavelength": 470,
+          "full_width_half_max": 70
         },
         {
           "name": "band2",
@@ -154,29 +126,71 @@
           "full_width_half_max": 80
         },
         {
-          "name": "band1",
-          "common_name": "blue",
-          "center_wavelength": 470,
-          "full_width_half_max": 70
+          "name": "band3",
+          "common_name": "red",
+          "center_wavelength": 645,
+          "full_width_half_max": 90
+        },
+        {
+          "name": "band4",
+          "common_name": "nir",
+          "center_wavelength": 800,
+          "full_width_half_max": 152
         }
-      ]
-    },
-    "udm": {
-      "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_analytic_udm.tif",
-      "title": "Unusable Data Mask",
-      "type": "image/tiff; application=geotiff;"
-    },
-    "json-metadata": {
-      "href": "http://remotedata.io/catalog/20201211_223832_CS2/extended-metadata.json",
-      "title": "Extended Metadata",
-      "type": "application/json",
-      "roles": [
-        "metadata"
-      ]
-    },
-    "ephemeris": {
-      "href": "http://cool-sat.com/catalog/20201211_223832_CS2/20201211_223832_CS2.EPH",
-      "title": "Satellite Ephemeris Metadata"
+      ],
+      "thumbnail": {
+        "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2.jpg",
+        "title": "Thumbnail",
+        "type": "image/png",
+        "roles": [
+          "thumbnail"
+        ]
+      },
+      "visual": {
+        "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2.tif",
+        "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+        "title": "3-Band Visual",
+        "roles": [
+          "visual"
+        ],
+        "eo:bands": [
+          {
+            "name": "band3",
+            "common_name": "red",
+            "center_wavelength": 645,
+            "full_width_half_max": 90
+          },
+          {
+            "name": "band2",
+            "common_name": "green",
+            "center_wavelength": 560,
+            "full_width_half_max": 80
+          },
+          {
+            "name": "band1",
+            "common_name": "blue",
+            "center_wavelength": 470,
+            "full_width_half_max": 70
+          }
+        ]
+      },
+      "udm": {
+        "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_analytic_udm.tif",
+        "title": "Unusable Data Mask",
+        "type": "image/tiff; application=geotiff;"
+      },
+      "json-metadata": {
+        "href": "http://remotedata.io/catalog/20201211_223832_CS2/extended-metadata.json",
+        "title": "Extended Metadata",
+        "type": "application/json",
+        "roles": [
+          "metadata"
+        ]
+      },
+      "ephemeris": {
+        "href": "http://cool-sat.com/catalog/20201211_223832_CS2/20201211_223832_CS2.EPH",
+        "title": "Satellite Ephemeris Metadata"
+      }
     }
   }
 }
