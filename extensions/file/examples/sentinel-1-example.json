@@ -2,9 +2,9 @@
   "type": "Feature",
   "stac_version": "1.0.0-beta.2",
   "stac_extensions": [
+    "file",
     "sar",
-    "sat",
-    "file"
+    "sat"
   ],
   "id": "sentinel-1-example",
   "properties": {
@@ -112,10 +112,5 @@
     -64.72924,
     -65.087479,
     -51.105831
-  ],
-  "stac_extensions": [
-    "file",
-    "sar",
-    "sat"
   ]
 }

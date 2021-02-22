@@ -14,8 +14,8 @@ If the data has been collected by a satellite, it is strongly recommended to use
 
 To describe frame start and end times, use the [Date and Time Range fields](../../item-spec/common-metadata.md#date-and-time-range).
 
-- Examples: [Envisat](../../examples/extensions-collection/sar-envisat-example/sar-envisat-example.json) and 
-  [Sentinel-1](../../examples/extensions-collection/sentinel-1-example/sentinel-1-example.json ))
+- Examples: [Envisat](examples/sar-envisat-example.json) and 
+  [Sentinel-1](examples/sentinel-1-example.json ))
 - [JSON Schema](json-schema/schema.json)
 
 ## Item Properties or Item Asset fields

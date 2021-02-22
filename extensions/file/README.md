@@ -9,7 +9,7 @@
 
 Provides a way to specify file related details such as checksum, data type and size for assets in [STAC Items](../../item-spec/item-spec.md) and [STAC Collections](../../collection-spec/collection-spec.md) implementing the [Collection Assets](../collection-assets/README.md) extension.
 
-- [Example](../../examples/extensions-collection/sentinel-1-example/sentinel-1-example.json)
+- [Example](examples/sentinel-1-example.json)
 - [JSON Schema](json-schema/schema.json)
 
 ## *Asset Object* fields
