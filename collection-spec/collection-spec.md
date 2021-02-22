@@ -171,8 +171,9 @@ The data provider is free to decide, which fields are reasonable to be used.
 
 Commonly used extensions for the STAC Collection specification:
 
-* [Asset Definition](../extensions/item-assets/README.md): Allows to indicate the structure of the Item assets.
-* [Scientific extension](../extensions/scientific/README.md): Add fields to indicate citations and DOIs.
+* [Collection Assets](../extensions/collection-assets/README.md): Adds downloadable assets to Collections.
+* [Item Assets Definition](../extensions/item-assets/README.md): Allows to indicate the structure of the Item assets.
+* [Scientific Citation extension](../extensions/scientific/README.md): Add fields to indicate citations and DOIs.
 * [Versioning Indicators extension](../extensions/version/README.md): Allows versioning by adding the fields `version` and `deprecated`.
 
 The [extensions page](../extensions/README.md) gives a full overview about relevant extensions for STAC Collections.
