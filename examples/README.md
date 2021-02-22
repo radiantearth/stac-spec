@@ -1,9 +1,7 @@
 # STAC Examples
 
-This directory contains various examples for all parts of the STAC specification. It is structured to be a valid STAC, meaning
-it should successfully load in various tools. It does not follow *all* the [best practices](../best-practices.md) for STAC, mostly
-due to the fact that it's a necessarily contrived example to show the spec, and to do it in github. But we note below where it differs
-from an ideal catalog.
+This directory contains various examples for all parts of the STAC specification. It is structured to be two valid STACs, meaning both [catalog.json](catalog.json) and [collection.json](collection.json) should successfully load in various tools. They do not follow *all* the [best practices](../best-practices.md) for STAC, mostly
+due to the fact that they contrive examples to show the spec and we are hosting in GitHub. But we note below where they differ from an ideal catalog.
 
 The various fields are mostly fictional, to be able to demonstrate the various aspects of the spec as tersely as possible. To get a sense
 of real world STAC implementations we recommend exploring the [stac-examples](http://github.com/stac-utils/stac-examples) repo, which 
