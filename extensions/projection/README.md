@@ -31,10 +31,10 @@ The `proj` prefix is short for "projection", and is not a reference to the PROJ/
 
 | Field Name       | Type                     | Description |
 | ---------------- | ------------------------ | ----------- |
-| proj:epsg        | integer \|null  | **REQUIRED.** [EPSG code](http://www.epsg-registry.org/) of the datasource |
-| proj:wkt2        | string \|null   | [WKT2](http://docs.opengeospatial.org/is/12-063r5/12-063r5.html) string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
-| proj:projjson    | [PROJJSON Object](https://proj.org/specifications/projjson.html) \|null   | PROJJSON object representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
-| proj:geometry    | [Polygon Object](https://geojson.org/schema/Polygon.json)  | Defines the footprint of this Item. |
+| proj:epsg        | integer\|null   | **REQUIRED.** [EPSG code](http://www.epsg-registry.org/) of the datasource |
+| proj:wkt2        | string\|null    | [WKT2](http://docs.opengeospatial.org/is/12-063r5/12-063r5.html) string representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
+| proj:projjson    | [PROJJSON Object](https://proj.org/specifications/projjson.html)\|null | PROJJSON object representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
+| proj:geometry    | [GeoJSON Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) | Defines the footprint of this Item. |
 | proj:bbox        | \[number]       | Bounding box of the Item in the asset CRS in 2 or 3 dimensions. |
 | proj:centroid    | Centroid Object | Coordinates representing the centroid of the Item (in lat/long) |
 | proj:shape       | \[integer]      | Number of pixels in Y and X directions for the default grid |
@@ -68,10 +68,10 @@ a PROJJSON string does not exist. The schema for this object can be found [here]
 
 #### proj:geometry
 
-A Polygon object representing the footprint of this Item, formatted according the Polygon
-object format specified in [RFC 7946, sections 3.1.6](https://tools.ietf.org/html/rfc7946), except not necessarily
-in EPSG:4326 as required by RFC7946.  Specified based on the `proj:epsg`, `proj:projjson` or `proj:wkt2` fields (not necessarily EPSG:4326).
-Ideally, this will be represented by a Polygon with five coordinates, as the item in the asset data CRS should be
+A GeoJSON Geometry object as defined in [RFC 7946, sections 3.1](https://tools.ietf.org/html/rfc7946)
+representing the footprint of this Item, except not necessarily in EPSG:4326 as required by RFC7946.
+Specified based on the `proj:epsg`, `proj:projjson` or `proj:wkt2` fields (not necessarily EPSG:4326).
+Usually, this will be represented by a Polygon with five coordinates, as the item in the asset data CRS should be
 a square aligned to the original CRS grid.
 
 #### proj:bbox
