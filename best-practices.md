@@ -243,8 +243,10 @@ In addition to the thumbnail, data and overview [roles listed](item-spec/item-sp
 are a number of roles that are emerging in practice, but don't have enough widespread use to justify standardizing them. So if
 you want to re-use other roles then try to find them on the list below, and also feel free to suggest more to include here.
 
-The 'source' field lists where the role comes from. Those that say 'best practice' are just from this doc, the listing is the 
-table below. The ones from extensions are mostly just 'best practices' in the extensions, as there are few actual role requirements.
+The 'source' field lists where the role comes from. The ones the say Item Spec are the only 'official' roles that are fully
+standardized. In time others on this list may migrate to a more 'official' list. Those that say 'best practice' are just from this 
+doc, the listing is the table below. The ones from extensions are mostly just 'best practices' in the extensions, as there are few
+actual role requirements.
 
 | Role Name | Source | Description                                                            |
 | --------- | -------------|----------------------------------------------------------------------- |
@@ -258,31 +260,30 @@ table below. The ones from extensions are mostly just 'best practices' in the ex
 | data-mask | Best Practice | File indicating if corresponding pixels have Valid data and various types of invalid data |
 | snow-ice | Best Practice | Points to a file that indicates whether a pixel is assessed as being snow/ice or not. |
 | land-water | Best Practice | Points to a file that indicates whether a pixel is assessed as being land or water. |
-| water-mask | Best Practice | Points to a file that indicates whether a pixel is assessed to be water (e.g. flooding map). |
-| reflectance | [EO Extension](extensions/eo) | An asset the provides [reflectance](https://www.l3harrisgeospatial.com/Support/Self-Help-Tools/Help-Articles/Help-Articles-Detail/ArtMID/10220/ArticleID/19247/3377) values, instead of just radiance. |
-| temperature | [EO Extension](extensions/eo) | An asset that provides actual temperature measurements. |
-| saturation | [EO Extension](extensions/eo) | Points to a file that indicates where pixels in the input spectral bands are saturated. |
-| cloud | [EO Extension](extensions/eo) | Points to a file that indicates whether a pixel is assessed as being cloud |
-| cloud-shadow | [EO Extension](extensions/eo) | Points to a file that indicates whether a pixel is assessed as being cloud shadow. |
-| incidence-angle | [View Extension](extensions/view) | Points to a file with per-pixel incidence angles. |
-| azimuth | [View Extension](extensions/view) | Points to a file with per-pixel azimuth angles. |
-| sun-azimuth | [View Extension](extensions/view) | Points to a file with per-pixel sun azimuth angles. |
-| sun-elevation | [View Extension](extensions/view) | Points to a file with per-pixel sun elevation angles. |
-| terrain-shadow | [View Extension](extensions/view) | Points to a file that indicates whether a pixel is not directly illuminated due to terrain shadowing. |
-| terrain-occlusion | [View Extension](extensions/view) | Points to a file that indicates whether a pixel is not visible to the sensor due to terrain occlusion during off-nadir viewing. |
-| terrain-illumination | [View Extension](extensions/view) | Points to a file with coefficients used for terrain illumination correction are provided for each pixel. |
-| contributing-area | [SAR Extension](extensions/sar) | Points to the normalized scattering area file |
-| local-incidence-angle | [SAR Extension](extensions/sar) | Points to the local incidence angle file. |
-| ellipsoid-incidence-angle | [SAR Extension](extensions/sar) | Points to the ellipsoid incidence angle file. |
-| noise-power | [SAR Extension](extensions/sar) | Points to the noise power file. |
-| amplitude | [SAR Extension](extensions/sar) | Points to the intensity file with focused SAR data that has been ground range detected (e.g. GRD). |
-| magnitude | [SAR Extension](extensions/sar) | Points to the intensity file where data are represented as complex numbers containing amplitude and phase information (e.g SLC). |
-| sigma0 | [SAR Extension](extensions/sar) | Points to the radar backscatter file where data is referenced in ground surface. It is often derived from an `amplitude` or a `magnitude` role asset. |
-| beta0 | [SAR Extension](extensions/sar) | Points to the radar backscatter file where data is referenced in the slant range plane and is radiometrically calibrated.  It is often derived from an `amplitude` or a `magnitude` role asset. |
-| gamma0 | [SAR Extension](extensions/sar) | Points to the radar backscatter file where data is referenced in the plane perpendicular to the line of sight. It is often derived from an `amplitude` or a `magnitude` role asset. |
-| date-offset | [SAR Extension](extensions/sar) | Points to the date-offset file. |
-| covmat | [SAR Extension](extensions/sar) | Points to the Points to the Normalized Polarimetric Radar Covariance Matrix (CovMat) file. |
-| prd | [SAR Extension](extensions/sar) | Points to the Polarimetric Radar Decomposition (PRD) file. |
+| water-mask | Best Practice | Points to a file that indicates whether a pixel is assessed as being water (e.g. flooding map). |
+| reflectance | [EO Extension](extensions/eo/README.md#best-practices) | An asset the provides [reflectance](https://www.l3harrisgeospatial.com/Support/Self-Help-Tools/Help-Articles/Help-Articles-Detail/ArtMID/10220/ArticleID/19247/3377) values, instead of just radiance. |
+| temperature | [EO Extension](extensions/eo/README.md#best-practices) | An asset that provides actual temperature measurements. |
+| saturation | [EO Extension](extensions/eo/README.md#best-practices) | Points to a file that indicates where pixels in the input spectral bands are saturated. |
+| cloud | [EO Extension](extensions/eo/README.md#best-practices) | Points to a file that indicates whether a pixel is assessed as being cloud |
+| cloud-shadow | [EO Extension](extensions/eo/README.md#best-practices) | Points to a file that indicates whether a pixel is assessed as being cloud shadow. |
+| incidence-angle | [View Extension](extensions/view/README.md#best-practices) | Points to a file with per-pixel incidence angles. |
+| azimuth | [View Extension](extensions/view/README.md#best-practices) | Points to a file with per-pixel azimuth angles. |
+| sun-azimuth | [View Extension](extensions/view/README.md#best-practices) | Points to a file with per-pixel sun azimuth angles. |
+| sun-elevation | [View Extension](extensions/view/README.md#best-practices) | Points to a file with per-pixel sun elevation angles. |
+| terrain-shadow | [View Extension](extensions/view/README.md#best-practices) | Points to a file that indicates whether a pixel is not directly illuminated due to terrain shadowing. |
+| terrain-occlusion | [View Extension](extensions/view/README.md#best-practices) | Points to a file that indicates whether a pixel is not visible to the sensor due to terrain occlusion during off-nadir viewing. |
+| terrain-illumination | [View Extension](extensions/view/README.md#best-practices) | Points to a file with coefficients used for terrain illumination correction are provided for each pixel. |
+| local-incidence-angle | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the local incidence angle file. |
+| ellipsoid-incidence-angle | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the ellipsoid incidence angle file. |
+| noise-power | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the noise power file. |
+| amplitude | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the intensity file with focused SAR data that has been ground range detected (e.g. GRD). |
+| magnitude | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the intensity file where data are represented as complex numbers containing amplitude and phase information (e.g SLC). |
+| sigma0 | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the radar backscatter file where data is referenced in ground surface. It is often derived from an `amplitude` or a `magnitude` role asset. |
+| beta0 | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the radar backscatter file where data is referenced in the slant range plane and is radiometrically calibrated.  It is often derived from an `amplitude` or a `magnitude` role asset. |
+| gamma0 | [SAR Extension](extensions/sar/README.md#best-practices)  | Points to the radar backscatter file where data is referenced in the plane perpendicular to the line of sight. It is often derived from an `amplitude` or a `magnitude` role asset. |
+| date-offset | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the date-offset file. |
+| covmat | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the Points to the Normalized Polarimetric Radar Covariance Matrix (CovMat) file. |
+| prd | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the Polarimetric Radar Decomposition (PRD) file. |
 
 Some of the particular asset roles also have some best practices.
 
@@ -295,8 +296,8 @@ of thumbnails - using something like thumbnail-small and thumbnail-large, with a
 fast rendering in a small image. Be sure to name one just 'thumbnail' though, as that's the default most STAC clients will look for.
 
 If your data for the Item does not come with a thumbnail already we do recommend generating one, which can be done quite easily. 
-
-TODO: GDAL and Rasterio commands
+[GDAL](https://gdal.org/) and [Rasterio](https://rasterio.readthedocs.io/en/latest/) both make this very easy - if you need help
+just ask on the [STAC Gitter](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby).
 
 ## Static and Dynamic Catalogs
 
