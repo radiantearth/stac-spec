@@ -169,7 +169,7 @@ being found if you searched 1990 to 2000.
 Extensions that describe particular types of data can and should define their `datetime` field to be more specific. For example
 a MODIS 8 day composite image can define the `datetime` to be the nominal date halfway between the two ranges. Another data type
 might choose to have `datetime` be the start. The key is to put in a date and time that will be useful for search, as that is
-the focus of STAC. If `datetime` is set to `null` then it is strongly recommended to use it in conjunction with a content extension
+the focus of STAC. If `datetime` is set to `null` then it is strongly recommended to use it in conjunction with an extension
 that explains why it should not be set for that type of data. 
 
 ### Unlocated Items
