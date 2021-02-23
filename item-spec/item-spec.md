@@ -17,7 +17,7 @@ Items are represented in JSON format and are very flexible. Any JSON object that
 required fields is a valid STAC Item.
 
 - Examples:
-  - See the [minimal example](../examples/simple-item.json), as well as a [more fleshed example](../examples/full-item.json) that contains a number of
+  - See the [minimal example](../examples/simple-item.json), as well as a [more fleshed example](../examples/core-item.json) that contains a number of
     current best practices.
   - Real world [implementations](https://stacindex.org/catalogs) are also available.
 - [JSON Schema](json-schema/item.json)
