@@ -207,18 +207,26 @@ it. It is relatively easy to [register](https://www.iana.org/form/media-types) a
 
 [Asset roles](item-spec/item-spec.md#asset-roles) are used to describe what each asset is used for. They are particular useful 
 when several assets have the same media type, such as when an Item has a multispectral analytic asset, a 3-band full resolution 
-visual asset, a down-sampled preview asset, and a cloud mask asset, all stored as Cloud Optimized GeoTIFF (COG) images. It is recommended to use a role
-for every asset available, and just pick a sensible name for the role if there is not a clear one in the [Asset Role 
-Types](item-spec/item-spec.md#asset-role-types). You can also propose new roles to the specification by raising an issue/PR. 
+visual asset, a down-sampled preview asset, and a cloud mask asset, all stored as Cloud Optimized GeoTIFF (COG) images. It is 
+recommended to use at least one role for every asset available, and using multiple roles often makes sense. For example you'd use
+both `data` and `reflectance` if your main data asset is processed to reflectance, or `metadata` and `cloud` for an asset that 
+is a cloud mask, since a mask is considered a form of metadata (it's information about the data). Or if a single asset represents
+several types of 'unusable data' it might include `metadata`, `cloud`, `cloud-shadow` and `snow-ice`. If there is not a clear
+role in the [Asset Role Types](item-spec/item-spec.md#asset-role-types) or the following list then just pick a sensible name for 
+the role. And you are encouraged to add it to the list below and/or in an extension if you think the new role will have broader 
+applicability. 
+
+### List of Asset Roles
 
 In addition to the thumbnail, data and overview [roles listed](item-spec/item-spec.md#asset-role-types) in the Item spec, there
 are a number of roles that are emerging in practice, but don't have enough widespread use to justify standardizing them. So if
 you want to re-use other roles then try to find them on the list below, and also feel free to suggest more to include here.
 
-### List of Asset Roles
+The 'source' field lists where the role comes from. Those that say 'best practice' are just from this doc, the listing is the 
+table below. The ones from extensions are mostly just 'best practices' in the extensions, as there are few actual role requirements.
 
-| Role Name | Specified In | Description                                                            |
-| --------- | ------------------------------------------------------------------------------------- |
+| Role Name | Source | Description                                                            |
+| --------- | -------------|----------------------------------------------------------------------- |
 | thumbnail | [Item Spec](item-spec/item-spec.md#asset-role-types) | An asset that represents a thumbnail of the item, typically a true color image (for items with assets in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `roles` be unique tuples. For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types. |
 | data      | [Item Spec](item-spec/item-spec.md#asset-role-types) |  The data itself. This is a suggestion for a common role for data files to be used in case data providers don't come up with their own names and semantics. |
 | metadata  | [Item Spec](item-spec/item-spec.md#asset-role-types) |  A metadata sidecar file describing the data in this item, for example the Landsat-8 MTL file. |
@@ -231,7 +239,6 @@ you want to re-use other roles then try to find them on the list below, and also
 | land-water | Best Practice | Points to a file that indicates whether a pixel is assessed as being land or water. |
 | reflectance | [EO Extension](extensions/eo) | An asset the provides [reflectance](https://www.l3harrisgeospatial.com/Support/Self-Help-Tools/Help-Articles/Help-Articles-Detail/ArtMID/10220/ArticleID/19247/3377) values, instead of just radiance. |
 | temperature | [EO Extension](extensions/eo) | An asset that provides actual temperature measurements. |
-
 | saturation | [EO Extension](extensions/eo) | Points to a file that indicates where pixels in the input spectral bands are saturated. |
 | cloud | [EO Extension](extensions/eo) | Points to a file that indicates whether a pixel is assessed as being cloud |
 | cloud-shadow | [EO Extension](extensions/eo) | Points to a file that indicates whether a pixel is assessed as being cloud shadow. |
