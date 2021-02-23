@@ -2,21 +2,42 @@
 
 ## Table of Contents
 
-* [Enable CORS](#enable-cross-origin-resource-sharing-cors)
-* [Field and ID formatting](#field-and-id-formatting)
-* [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
-* [Datetime selection](#datetime-selection)
-* [Unlocated Items](#unlocated-items)
-* [Representing Vector Layers in STAC](#representing-vector-layers-in-stac)
-* [Common Use Cases of Additional Fields for Assets](#common-use-cases-of-additional-fields-for-assets)
-* [Working with Media Types](#working-with-media-types)
-* [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
-* [Catalog Layout](#catalog-layout)
-* [Using Summaries in Collections](#using-summaries-in-collections)
-* [Use of Links](#use-of-links)
-* [Using Relation Types](#using-relation-types)
-* [Versioning for Catalogs](#versioning-for-catalogs)
-* [STAC on the Web](#stac-on-the-web)
+- [STAC Best Practices](#stac-best-practices)
+  - [Table of Contents](#table-of-contents)
+  - [Enable Cross-origin resource sharing (CORS)](#enable-cross-origin-resource-sharing-cors)
+  - [Field and ID formatting](#field-and-id-formatting)
+  - [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
+  - [Datetime selection](#datetime-selection)
+  - [Unlocated Items](#unlocated-items)
+    - [Unrectified Satellite Data](#unrectified-satellite-data)
+    - [Data that is not spatial](#data-that-is-not-spatial)
+  - [Representing Vector Layers in STAC](#representing-vector-layers-in-stac)
+  - [Common Use Cases of Additional Fields for Assets](#common-use-cases-of-additional-fields-for-assets)
+  - [Working with Media Types](#working-with-media-types)
+    - [Common Media Types in STAC](#common-media-types-in-stac)
+    - [Formats with no registered media type](#formats-with-no-registered-media-type)
+  - [Asset Roles](#asset-roles)
+    - [List of Asset Roles](#list-of-asset-roles)
+    - [Thumbnails](#thumbnails)
+  - [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
+    - [Static Catalogs](#static-catalogs)
+    - [Dynamic Catalogs](#dynamic-catalogs)
+  - [Catalog Layout](#catalog-layout)
+    - [Dynamic Catalog Layout](#dynamic-catalog-layout)
+    - [Mixing STAC Versions](#mixing-stac-versions)
+  - [Using Summaries in Collections](#using-summaries-in-collections)
+  - [Use of links](#use-of-links)
+    - [Self-contained Catalogs](#self-contained-catalogs)
+    - [Published Catalogs](#published-catalogs)
+  - [Using Relation Types](#using-relation-types)
+  - [Versioning for Catalogs](#versioning-for-catalogs)
+    - [Example](#example)
+  - [STAC on the Web](#stac-on-the-web)
+    - [Schema.org, JSON-LD, DCAT, microformats, etc](#schemaorg-json-ld-dcat-microformats-etc)
+    - [Deploying STAC Browser](#deploying-stac-browser)
+  - [Static to Dynamic best practices](#static-to-dynamic-best-practices)
+    - [Ingestion and links](#ingestion-and-links)
+    - [Keep catalogs in sync with cloud notification and queue services](#keep-catalogs-in-sync-with-cloud-notification-and-queue-services)
 
 ---------
 
@@ -237,6 +258,7 @@ table below. The ones from extensions are mostly just 'best practices' in the ex
 | data-mask | Best Practice | File indicating if corresponding pixels have Valid data and various types of invalid data |
 | snow-ice | Best Practice | Points to a file that indicates whether a pixel is assessed as being snow/ice or not. |
 | land-water | Best Practice | Points to a file that indicates whether a pixel is assessed as being land or water. |
+| water-mask | Best Practice | Points to a file that indicates whether a pixel is assessed to be water (e.g. flooding map). |
 | reflectance | [EO Extension](extensions/eo) | An asset the provides [reflectance](https://www.l3harrisgeospatial.com/Support/Self-Help-Tools/Help-Articles/Help-Articles-Detail/ArtMID/10220/ArticleID/19247/3377) values, instead of just radiance. |
 | temperature | [EO Extension](extensions/eo) | An asset that provides actual temperature measurements. |
 | saturation | [EO Extension](extensions/eo) | Points to a file that indicates where pixels in the input spectral bands are saturated. |
@@ -253,9 +275,12 @@ table below. The ones from extensions are mostly just 'best practices' in the ex
 | local-incidence-angle | [SAR Extension](extensions/sar) | Points to the local incidence angle file. |
 | ellipsoid-incidence-angle | [SAR Extension](extensions/sar) | Points to the ellipsoid incidence angle file. |
 | noise-power | [SAR Extension](extensions/sar) | Points to the noise power file. |
-| gamma-sigma-ratio | [SAR Extension](extensions/sar) | Points to the gamma-sigma file. |
+| amplitude | [SAR Extension](extensions/sar) | Points to the intensity file with focused SAR data that has been ground range detected (e.g. GRD). |
+| magnitude | [SAR Extension](extensions/sar) | Points to the intensity file where data are represented as complex numbers containing amplitude and phase information (e.g SLC). |
+| sigma0 | [SAR Extension](extensions/sar) | Points to the radar backscatter file where data is referenced in ground surface. It is often derived from an `amplitude` or a `magnitude` role asset. |
+| beta0 | [SAR Extension](extensions/sar) | Points to the radar backscatter file where data is referenced in the slant range plane and is radiometrically calibrated.  It is often derived from an `amplitude` or a `magnitude` role asset. |
+| gamma0 | [SAR Extension](extensions/sar) | Points to the radar backscatter file where data is referenced in the plane perpendicular to the line of sight. It is often derived from an `amplitude` or a `magnitude` role asset. |
 | date-offset | [SAR Extension](extensions/sar) | Points to the date-offset file. |
-| backscatter | [SAR Extension](extensions/sar) | Points to the backscatter file. |
 | covmat | [SAR Extension](extensions/sar) | Points to the Points to the Normalized Polarimetric Radar Covariance Matrix (CovMat) file. |
 | prd | [SAR Extension](extensions/sar) | Points to the Polarimetric Radar Decomposition (PRD) file. |
 
