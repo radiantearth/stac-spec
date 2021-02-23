@@ -28,7 +28,7 @@ STAC Collections are meant to be compatible with *OGC API - Features* Collection
 | license         | string                                           | **REQUIRED.** Collection's license(s), either a SPDX [License identifier](https://spdx.org/licenses/), `various` if multiple licenses apply or `proprietary` for all other cases. |
 | providers       | \[[Provider Object](#provider-object)]           | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | extent          | [Extent Object](#extent-object)                  | **REQUIRED.** Spatial and temporal extents.    |
-| summaries       | Map<string, \[*]\|[Stats Object](#stats-object)> | A map of property summaries, either a set of values or statistics such as a range. |
+| summaries       | Map<string, \[*]\|[Stats Object](#stats-object)> | STRONGLY RECOMMENDED. A map of property summaries, either a set of values or statistics such as a range. |
 | links           | \[[Link Object](#link-object)]                   | **REQUIRED.** A list of references to other documents.       |
 
 ### Additional Field Information
@@ -44,15 +44,21 @@ Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses
 
 #### summaries
 
-Provides an overview of the potential values that are available as part of the `properties` in the set STAC Items that are underneath this catalog (including 
-those in any sub-catalog). Summaries are used to inform users about values they can expect from items without having to crawl through them. It also helps to 
-fully define collections, especially if they don't link to any Items.
+Collections are are *strongly recommended* to provide summaries of the values of fields that they can expect from the `properties` 
+of STAC Items contained  in this collection. This enables users to get a good sense of what the ranges and potential values of 
+different fields in the collection are, without to inspect a number of items (or crawl them exhaustively to get a definitive answer). 
+Summaries help to fully define collections, especially if they don't link to any Items. They also give clients enough information to 
+build tailored user interfaces for querying the data, by presenting the potential values that are available. Summaries can be used in 
+collections or catalogs, and they should summarize all values in every item underneath it, including in nested sub-catalogs. 
+
 A summary for a field can be specified in two ways:
 
-1. A set of all distinct values in an array: The set of values must contain at least one element and it is strongly recommended to list all values. If the field summarizes an array (e.g. `instruments`), the field's array elements of each Item must be merged to a single array with unique elements.
+1. A set of all distinct values in an array: The set of values must contain at least one element and it is strongly recommended to list all values. If the field summarizes an array (e.g. [`instruments`](../item-spec/common-metadata.md#instrument)), the field's array elements of each Item must be merged to a single array with unique elements.
 2. Statistics in a [Stats Object](#stats-object): Statistics by default only specify the range (minimum and maximum values), but can optionally be accompanied by additional statistical values. The range specified by the minimum and maximum can specify the potential range of values, but it is recommended to be as precise as possible.
 
 It is recommended to list as many properties as reasonable so that consumers get a full overview about the properties included in the Items. Nevertheless, it is not very useful to list all potential `title` values of the Items. Also, a range for the `datetime` property may be better suited to be included in the STAC Collection's `extent` field. In general, properties that are covered by the Collection specification should not be repeated in the summaries.
+
+See the examples folder for collections with summaries to get a sense of how to use them. 
 
 ### Extent Object
 
