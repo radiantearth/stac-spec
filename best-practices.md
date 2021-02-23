@@ -271,8 +271,8 @@ of thumbnails - using something like thumbnail-small and thumbnail-large, with a
 fast rendering in a small image. Be sure to name one just 'thumbnail' though, as that's the default most STAC clients will look for.
 
 If your data for the Item does not come with a thumbnail already we do recommend generating one, which can be done quite easily. 
-
-TODO: GDAL and Rasterio commands
+[GDAL](https://gdal.org/) and [Rasterio](https://rasterio.readthedocs.io/en/latest/) both make this very easy - if you need help
+just ask on the [STAC Gitter](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby).
 
 ## Static and Dynamic Catalogs
 
