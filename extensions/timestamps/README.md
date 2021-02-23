@@ -52,4 +52,4 @@ An overview over the lifecycle of data and their corresponding timestamps:
 Once these fields get broadly adopted, it is planned to move them to Common Metadata and place them together with `created` and `updated`.
 As this extension doesn't have a prefix, it doesn't lead to any breaking changes and the thus it is only a structural change for the specification.
 
-This fields - together with `created` and `updated` - also seem relevant for STAC Collections and may be adopted there, too, for both metadata and [collection-level assets](../collection-assets/README.md).
+This fields - together with `created` and `updated` - also seem relevant for STAC Collections and may be adopted there, too, for both metadata and [collection-level assets](../../collection-spec/collection-spec.md#asset-object).

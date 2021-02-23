@@ -153,7 +153,7 @@ A more complete list of possible `rel` types and their meaning in STAC can be fo
 
 An Asset is an object that contains a URI to data associated with the Collection that can be downloaded
 or streamed. The definition provided here, at the Collection level, is the same as the [Asset Object in 
-Items](../../item-spec/item-spec.md#asset-object). This provides an optional mechanism to expose assets 
+Items](../item-spec/item-spec.md#asset-object). This provides an optional mechanism to expose assets 
 that don't make sense at the Item level. 
 
 There are a few guidelines for using the asset construct at the Collection level:
@@ -177,7 +177,7 @@ option.
 | title       | string    | The displayed title for clients and users. |
 | description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | type        | string    | [Media type](../item-spec/item-spec.md#asset-media-type) of the asset. See the [common media types](../best-practices.md#common-media-types-in-stac) in the best practice doc for commonly used asset types. |
-| roles       | \[string] | The [semantic roles](../item-spec/item-spec.md#asset-roles) of the asset, similar to the use of `rel` in links. |
+| roles       | \[string] | The [semantic roles](../item-spec/item-spec.md#asset-role-types) of the asset, similar to the use of `rel` in links. |
 
 ### Stats Object
 
@@ -208,7 +208,6 @@ The data provider is free to decide, which fields are reasonable to be used.
 
 Commonly used extensions for the STAC Collection specification:
 
-* [Collection Assets](../extensions/collection-assets/README.md): Adds downloadable assets to Collections.
 * [Item Assets Definition](../extensions/item-assets/README.md): Allows to indicate the structure of the Item assets.
 * [Scientific Citation extension](../extensions/scientific/README.md): Add fields to indicate citations and DOIs.
 * [Versioning Indicators extension](../extensions/version/README.md): Allows versioning by adding the fields `version` and `deprecated`.
