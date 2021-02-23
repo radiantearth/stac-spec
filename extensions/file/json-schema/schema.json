@@ -20,7 +20,7 @@
     {
       "allOf": [
         {
-          "$ref": "../../collection-assets/json-schema/schema.json"
+          "$ref": "../../../collection-spec/json-schema/collection.json"
         },
         {
           "$ref": "#/definitions/stac_extensions"
