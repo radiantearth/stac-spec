@@ -12,6 +12,7 @@
 * [Working with Media Types](#working-with-media-types)
 * [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
 * [Catalog Layout](#catalog-layout)
+* [Using Summaries in Collections](#using-summaries-in-collections)
 * [Use of Links](#use-of-links)
 * [Using Relation Types](#using-relation-types)
 * [Versioning for Catalogs](#versioning-for-catalogs)
@@ -296,6 +297,51 @@ is a common use case when multiple data source are combined. Client developers s
 is strongly recommended that Catalogs don't contain differently versioned Items so that users/clients can at least use and/or download
 consistent (Sub-)Catalogs containing either all or no data. Collections that are referenced from Items should always use the same
 STAC version. Otherwise some behaviour of functionality may be unpredictable (e.g. merging common fields into Items or reading summaries).
+
+## Using Summaries in Collections
+
+One of the strongest recommendations for STAC is to always provide [summaries](collection-spec/collection-spec.md#summaries) in
+your collections. The core team decided to not require them, in case there are future situations where providing a summary
+is too difficult. The idea behind them is not to exhaustively summarize every single field in the collection, but to provide
+a bit of a 'curated' view. 
+
+Some general thinking on what to summarize is as follows:
+
+* Any field that is a range of data (like numbers or dates) is a great candidate to summarize, to give people a sense what values
+the data might be. For example in overhead imagery, a 
+[`view:off_nadir`](extensions/view/README.md#item-properties-and-item-asset-fields) with a range of 0 to 3 would tell people this 
+imagery is all pretty much straight down, while a value of 15 to 40 would tell them that it's oblique imagery, or 0 to 60 that it's 
+a collection with lots of different look angles. 
+
+* Fields that have only one or a handful of values are also great to summarize. Collections with a single satellite may
+use a single [`gsd`](item-spec/common-metadata.md#instrument) field in the summary, and it's quite useful for users to know
+that all data is going to be the same resolution. Similarly it's useful to know the names of all the 
+[`platform` values](item-spec/common-metadata.md#instrument) that are used in the collection. 
+
+* It is less useful to summarize fields that have numerous different discrete values that can't easily be represented
+in a range. These will mostly be string values, when there aren't just a handful of options. For example if you had a 
+'location' field that gave 3 levels of administrative region (like 'San Francisco, California, United States') to help people
+understand more intuitively where a shot was taken. If your collection has millions of items, or even hundreds, you don't want
+to include all those values as a summary. 
+
+* Fields that consist of arrays are more of a judgement call. For example [`instruments`](item-spec/common-metadata.md#instrument)
+is straightforward and recommended, as the elements of the array are a discrete set of options. On the other hand 
+[`proj:transform`](extensions/projection/README.md#projtransform) makes no sense to summarize, as the union of all the values
+in the array are meaningless, as each Item is describing its transform, so combining them would just be a bunch of random numbers.
+So if the values contained in the array are independently meaningful (not interconnected) and there aren't hundreds of potential
+values then it is likely a good candidate to summarize.
+
+We do highly recommend including an [`eo:bands`](extensions/eo/README.md#eobands) summary if your Items implement `eo:bands`, 
+especially if it represents just one satellite or constellation. This should be a union of all the potential bands that you 
+have in assets. It is ok to only add the summary at the Collection level without putting an explicit `eo:bands` summary at the 
+`properties` level of an Item, since that is optional. This gives users of the Collection a sense of the sensor capabilities without 
+having to examine specific items or aggregate across every item.
+
+Note that the ranges of summaries don't have to be exact. If you are publishing a catalog that is constantly updating with
+data from a high agility satellite you can put the `view:off_nadir` range to be the expected values, based on the satellite
+design, instead of having it only represent the off nadir angles that are Items for assets already captured in the catalog.
+We don't want growing catalogs to have to constantly check and recalculate their summaries whenever new data comes in - its
+just meant to give users a sense of what types of values they could expect. 
 
 ## Use of links
 
