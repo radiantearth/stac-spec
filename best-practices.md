@@ -223,8 +223,10 @@ In addition to the thumbnail, data and overview [roles listed](item-spec/item-sp
 are a number of roles that are emerging in practice, but don't have enough widespread use to justify standardizing them. So if
 you want to re-use other roles then try to find them on the list below, and also feel free to suggest more to include here.
 
-The 'source' field lists where the role comes from. Those that say 'best practice' are just from this doc, the listing is the 
-table below. The ones from extensions are mostly just 'best practices' in the extensions, as there are few actual role requirements.
+The 'source' field lists where the role comes from. The ones the say Item Spec are the only 'official' roles that are fully
+standardized. In time others on this list may migrate to a more 'official' list. Those that say 'best practice' are just from this 
+doc, the listing is the table below. The ones from extensions are mostly just 'best practices' in the extensions, as there are few
+actual role requirements.
 
 | Role Name | Source | Description                                                            |
 | --------- | -------------|----------------------------------------------------------------------- |
