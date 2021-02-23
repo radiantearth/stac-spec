@@ -82,9 +82,9 @@ parties, extensions may be made official and incorporated in the STAC repository
 
 Please contact a STAC maintainer or open a Pull Request to add your extension to this table.
 
-| Name     | Scope | Description | Vendor |
-| -------- | ----- | ----------- | ------ |
-| None yet |       |             |        |
+| Name                                                | Field Name Prefix | Scope | Description                                                  | Vendor                                         |
+| --------------------------------------------------- | ----------------- | ----- | ------------------------------------------------------------ | ---------------------------------------------- |
+| [CARD4L](https://github.com/stac-extensions/card4l) | card4l            | Item  | How to comply to the CEOS CARD4L product family specifications (Optical and SAR) | [openEO Platform](https://platform.openeo.org) |
 
 ## Proposed extensions
 
