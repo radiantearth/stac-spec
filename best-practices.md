@@ -10,6 +10,7 @@
 * [Representing Vector Layers in STAC](#representing-vector-layers-in-stac)
 * [Common Use Cases of Additional Fields for Assets](#common-use-cases-of-additional-fields-for-assets)
 * [Working with Media Types](#working-with-media-types)
+* [Asset Roles](#asset-roles)
 * [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
 * [Catalog Layout](#catalog-layout)
 * [Using Summaries in Collections](#using-summaries-in-collections)
@@ -237,27 +238,27 @@ table below. The ones from extensions are mostly just 'best practices' in the ex
 | data-mask | Best Practice | File indicating if corresponding pixels have Valid data and various types of invalid data |
 | snow-ice | Best Practice | Points to a file that indicates whether a pixel is assessed as being snow/ice or not. |
 | land-water | Best Practice | Points to a file that indicates whether a pixel is assessed as being land or water. |
-| reflectance | [EO Extension](extensions/eo) | An asset the provides [reflectance](https://www.l3harrisgeospatial.com/Support/Self-Help-Tools/Help-Articles/Help-Articles-Detail/ArtMID/10220/ArticleID/19247/3377) values, instead of just radiance. |
-| temperature | [EO Extension](extensions/eo) | An asset that provides actual temperature measurements. |
-| saturation | [EO Extension](extensions/eo) | Points to a file that indicates where pixels in the input spectral bands are saturated. |
-| cloud | [EO Extension](extensions/eo) | Points to a file that indicates whether a pixel is assessed as being cloud |
-| cloud-shadow | [EO Extension](extensions/eo) | Points to a file that indicates whether a pixel is assessed as being cloud shadow. |
-| incidence-angle | [View Extension](extensions/view) | Points to a file with per-pixel incidence angles. |
-| azimuth | [View Extension](extensions/view) | Points to a file with per-pixel azimuth angles. |
-| sun-azimuth | [View Extension](extensions/view) | Points to a file with per-pixel sun azimuth angles. |
-| sun-elevation | [View Extension](extensions/view) | Points to a file with per-pixel sun elevation angles. |
-| terrain-shadow | [View Extension](extensions/view) | Points to a file that indicates whether a pixel is not directly illuminated due to terrain shadowing. |
-| terrain-occlusion | [View Extension](extensions/view) | Points to a file that indicates whether a pixel is not visible to the sensor due to terrain occlusion during off-nadir viewing. |
-| terrain-illumination | [View Extension](extensions/view) | Points to a file with coefficients used for terrain illumination correction are provided for each pixel. |
-| contributing-area | [SAR Extension](extensions/sar) | Points to the normalized scattering area file |
-| local-incidence-angle | [SAR Extension](extensions/sar) | Points to the local incidence angle file. |
-| ellipsoid-incidence-angle | [SAR Extension](extensions/sar) | Points to the ellipsoid incidence angle file. |
-| noise-power | [SAR Extension](extensions/sar) | Points to the noise power file. |
-| gamma-sigma-ratio | [SAR Extension](extensions/sar) | Points to the gamma-sigma file. |
-| date-offset | [SAR Extension](extensions/sar) | Points to the date-offset file. |
-| backscatter | [SAR Extension](extensions/sar) | Points to the backscatter file. |
-| covmat | [SAR Extension](extensions/sar) | Points to the Points to the Normalized Polarimetric Radar Covariance Matrix (CovMat) file. |
-| prd | [SAR Extension](extensions/sar) | Points to the Polarimetric Radar Decomposition (PRD) file. |
+| reflectance | [EO Extension](extensions/eo/README.md#best-practices) | An asset the provides [reflectance](https://www.l3harrisgeospatial.com/Support/Self-Help-Tools/Help-Articles/Help-Articles-Detail/ArtMID/10220/ArticleID/19247/3377) values, instead of just radiance. |
+| temperature | [EO Extension](extensions/eo/README.md#best-practices) | An asset that provides actual temperature measurements. |
+| saturation | [EO Extension](extensions/eo/README.md#best-practices) | Points to a file that indicates where pixels in the input spectral bands are saturated. |
+| cloud | [EO Extension](extensions/eo/README.md#best-practices) | Points to a file that indicates whether a pixel is assessed as being cloud |
+| cloud-shadow | [EO Extension](extensions/eo/README.md#best-practices) | Points to a file that indicates whether a pixel is assessed as being cloud shadow. |
+| incidence-angle | [View Extension](extensions/view/README.md#best-practices) | Points to a file with per-pixel incidence angles. |
+| azimuth | [View Extension](extensions/view/README.md#best-practices) | Points to a file with per-pixel azimuth angles. |
+| sun-azimuth | [View Extension](extensions/view/README.md#best-practices) | Points to a file with per-pixel sun azimuth angles. |
+| sun-elevation | [View Extension](extensions/view/README.md#best-practices) | Points to a file with per-pixel sun elevation angles. |
+| terrain-shadow | [View Extension](extensions/view/README.md#best-practices) | Points to a file that indicates whether a pixel is not directly illuminated due to terrain shadowing. |
+| terrain-occlusion | [View Extension](extensions/view/README.md#best-practices) | Points to a file that indicates whether a pixel is not visible to the sensor due to terrain occlusion during off-nadir viewing. |
+| terrain-illumination | [View Extension](extensions/view/README.md#best-practices) | Points to a file with coefficients used for terrain illumination correction are provided for each pixel. |
+| contributing-area | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the normalized scattering area file |
+| local-incidence-angle | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the local incidence angle file. |
+| ellipsoid-incidence-angle | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the ellipsoid incidence angle file. |
+| noise-power | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the noise power file. |
+| gamma-sigma-ratio | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the gamma-sigma file. |
+| date-offset | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the date-offset file. |
+| backscatter | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the backscatter file. |
+| covmat | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the Points to the Normalized Polarimetric Radar Covariance Matrix (CovMat) file. |
+| prd | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the Polarimetric Radar Decomposition (PRD) file. |
 
 Some of the particular asset roles also have some best practices.
 
