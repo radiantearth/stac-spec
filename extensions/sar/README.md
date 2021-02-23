@@ -95,12 +95,14 @@ these role names then they will be specified in the future as more standard than
 
 | Role Name | Description                                                            |
 | --------- | ---------------------------------------------------------------------- |
-| contributing-area | Points to the normalized scattering area file |
 | local-incidence-angle | Points to the local incidence angle file. |
 | ellipsoid-incidence-angle | Points to the ellipsoid incidence angle file. |
 | noise-power | Points to the noise power file. |
-| gamma-sigma-ratio | Points to the gamma-sigma file. |
+| amplitude | Points to the intensity file with focused SAR data that has been ground range detected (e.g. GRD). |
+| magnitude | Points to the intensity file where data are represented as complex numbers containing amplitude and phase information (e.g SLC). |
+| sigma0 | Points to the radar backscatter file where data is referenced in ground surface. It is often derived from an `amplitude` or a `magnitude` role asset. |
+| beta0 | Points to the radar backscatter file where data is referenced in the slant range plane and is radiometrically calibrated.  It is often derived from an `amplitude` or a `magnitude` role asset. |
+| gamma0 | Points to the radar backscatter file where data is referenced in the plane perpendicular to the line of sight. It is often derived from an `amplitude` or a `magnitude` role asset. |
 | date-offset | Points to the date-offset file. |
-| backscatter | Points to the backscatter file. |
 | covmat | Points to the Points to the Normalized Polarimetric Radar Covariance Matrix (CovMat) file. |
 | prd | Points to the Polarimetric Radar Decomposition (PRD) file. |
