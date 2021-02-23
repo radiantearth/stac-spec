@@ -168,7 +168,7 @@ or streamed. It is allowed to add additional fields.
 | title       | string    | The displayed title for clients and users. |
 | description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | type        | string    | [Media type](#asset-media-type) of the asset. See the [common media types](../best-practices.md#common-media-types-in-stac) in the best practice doc for commonly used asset types. |
-| roles       | \[string] | The [semantic roles](#asset-role-types) of the asset, similar to the use of `rel` in links. |
+| roles       | \[string] | The [semantic roles](#asset-roles) of the asset, similar to the use of `rel` in links. |
 
 [Additional fields](#additional-fields) *may* be added to the assets, though this
 is recommended only in special cases. See [Additional Fields for Assets](#additional-fields-for-assets)) for more information.
@@ -189,7 +189,7 @@ a sense of why they might want to make use of the asset. There are some emerging
 action when they encounter particular roles, listed below. But implementors are encouraged to come up with their own terms to 
 describe the role.
 
-#### Asset Role Types
+##### Asset Role Types
 
 Like the Link `rel` field, the `roles` field can be given any value, however here are a few standardized role names. 
 
