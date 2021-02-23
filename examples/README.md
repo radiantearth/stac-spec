@@ -11,19 +11,20 @@ listed on [STAC Index](http://stacindex.org), to see full catalogs in production
 
 ## Organization
 
-This directory contains two STAC implementations, both valid, but simplified a bit from following all the best practices. 
+This directory contains two STAC implementations, both valid, but simplified a bit to be illustrative of the key concepts, so 
+they do not quite follow all the best practices. 
 
 ### Simple Collection
 
 This STAC implementation consists of three files, all contained at the root of the examples directory
 
-**[collection.json](collection.json)** is a minimal Collection, that links to three items. 
+**[collection.json](collection.json)** is a minimal 'simple collection', that links to three items. 
 
 **[simple-item.json](simple-item.json)** is the most minimal possible compliant Item record. Most all data will
 include additional fields, as STAC is designed to be a minimal common subset. But it is useful for showing exactly what is
 required.
 
-**[full-item.json](full-item.json)** is a more realistic example, for a hypothetical analytic image 
+**[core-item.json](core-item.json)** is a more realistic example, for a hypothetical analytic image 
 acquisition from a satellite company called 'Remote Data'. It includes additional fields covering the [common 
 metadata](../item-spec/common-metadata.md). It also links to a variety of assets that is typical for
 satellite imagery, as most providers include a number of complementary files.
@@ -34,7 +35,7 @@ a number of the core extensions.
 
 **[collectionless-item.json](collectionless-item.json)** demonstrates the common metadata that is only used when an Item does not have 
 a collection. It is recommended to organize items in collections, but we wanted to show how this works. This is not technically in the
-'simple collection', but it follows the same pattern, so is included here.
+'simple collection' of this section, but it follows the same pattern, so is included here.
 
 ### Nested Catalog
 
@@ -60,7 +61,7 @@ will not work, but any valid data provider should provide valid links to their h
 
 The examples use the `rd:` prefix to show how providers can use custom fields when there are not set fields. In the examples these
 do not link to a schema which is completely valid, but it is recommended that providers do write a JSON schema that can validate 
-their custom fields (we will work to add a schema in the future). 
+their custom fields (we will work to add an example schema for the `rd:` fields in the future). 
 
 ### Differences with STAC Best Practices
 
