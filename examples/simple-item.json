@@ -42,11 +42,6 @@
   },
   "links": [
     {
-      "rel": "self",
-      "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/examples-refresh/examples/simple-item.json",
-      "type": "application/geo+json"
-    },
-    {
       "rel": "collection",
       "href": "./collection.json",
       "type": "application/json",

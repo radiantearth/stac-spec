@@ -200,10 +200,6 @@
   },
   "links": [
     {
-      "rel": "self",
-      "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/examples-refresh/examples/collection-example-1/collection.json"
-    },
-    {
       "rel": "parent",
       "href": "../catalog.json"
     },

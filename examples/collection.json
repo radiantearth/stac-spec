@@ -85,7 +85,7 @@
     },
     {
       "rel": "self",
-      "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/examples-refresh/examples/collection.json",
+      "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0-RC.1/examples/collection.json",
       "type": "application/json"
     }
   ]
