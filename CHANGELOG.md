@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Made `summaries` to be *strongly recommended* - everyone should strive to implement them, as they are very useful.
 - `proj:geometry` allows all GeoJSON geometries instead of just a polygon.
 - `label:description` and `processing:lineage` allow CommonMark for rich-text representation ([#950](https://github.com/radiantearth/stac-spec/issues/950))
+- Renamed "Scientific Extension" to "Scientific Citation Extension" ([#990](https://github.com/radiantearth/stac-spec/issues/990))
 
 ### Removed
 
