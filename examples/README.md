@@ -63,6 +63,13 @@ The examples use the `rd:` prefix to show how providers can use custom fields wh
 do not link to a schema which is completely valid, but it is recommended that providers do write a JSON schema that can validate 
 their custom fields (we will work to add an example schema for the `rd:` fields in the future). 
 
+### Catalog Type
+
+One of the most important STAC Best Practices is to [use links consistently](../best-practices.md#use-of-links), following one of the
+described 'catalog types'. The catalogs described here are [Relative Published Catalogs](../best-practices.md#relative-published-catalog),
+that use absolute URL's to refer to their assets (so would be an example of a [Self-contained Metadata 
+Only](../best-practices.md#self-contained-metadata-only) catalog that is published).
+
 ### Differences with STAC Best Practices
 
 One of the most important documents in this repository is the one about [best practices](../best-practices.md). It describes a number
@@ -72,18 +79,6 @@ feasible, as it will help ensure various STAC tools work much better. The exampl
 practices, mostly because they are meant to demonstrate things as tersely as possible, and also because they live directly inside
 a github repository. As many people will look at these examples and take them as 'how things should be' we felt its important to
 highlight where things here differ from the actual best practices.
-
-#### Relative vs Absolute Links
-
-One of the [main recommendations](../best-practices.md#use-of-links) of the best practices document is to aim for consistency in 
-the use of relative versus absolute links. STAC implementations should use relative and absolute links as recommended by one of
-the 'catalog types': '[self-contained](../best-practices.md#self-contained-catalogs)', or '[published](../best-practices.md#published-catalogs)' - absolute or relative. 
-
-The catalogs contained here don't follow any of the recommendations in full. They are closest to a 'relative published catalog',
-as they use a self link at the root and then mostly have relative links. This enables them to be mostly portable, while also having
-a stable online location that can be referenced. But they use absolute links to their assets, due to the fact that they are stored in 
-github and we do not want to replicate the large asset files in every branch in github. A true relative published catalog will only
-have absolute links for the self, so that the rest is completely portable. 
 
 #### Catalog Layout
 
