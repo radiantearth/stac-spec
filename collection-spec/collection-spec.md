@@ -28,6 +28,7 @@ STAC Collections are meant to be compatible with *OGC API - Features* Collection
 | extent          | [Extent Object](#extent-object)                  | **REQUIRED.** Spatial and temporal extents.    |
 | summaries       | Map<string, \[*]\|[Stats Object](#stats-object)> | STRONGLY RECOMMENDED. A map of property summaries, either a set of values or statistics such as a range. |
 | links           | \[[Link Object](#link-object)]                   | **REQUIRED.** A list of references to other documents.       |
+| assets     | Map<string, [Asset Object](#asset-object)>                                 | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key. |
 
 ### Additional Field Information
 
@@ -147,6 +148,36 @@ This is done where there is not a clear official option, or where STAC uses an o
 A more complete list of possible `rel` types and their meaning in STAC can be found in the [Using Relation Types](../best-practices.md#using-relation-types) best practice. 
 
 **Note:** The [STAC Catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is *not* a requirement for collections, but *recommended*. In contrast to catalogs, it is **REQUIRED** that items linked from a Collection MUST refer back to its Collection with the [`collection` relation type](../item-spec/item-spec.md#relation-types).
+
+### Asset Object
+
+An Asset is an object that contains a URI to data associated with the Collection that can be downloaded
+or streamed. The definition provided here, at the Collection level, is the same as the [Asset Object in 
+Items](../../item-spec/item-spec.md#asset-object). This provides an optional mechanism to expose assets 
+that don't make sense at the Item level. 
+
+There are a few guidelines for using the asset construct at the Collection level:
+
+* Collection-level assets SHOULD NOT list any files also available in items.
+* If possible, item-level assets are always the preferable way to expose assets.
+* To list what assets are available in items see the [Item Assets Definition Extension](../extensions/item-assets/README.md).
+
+Collection-level assets can be useful in some scenarios, for example:
+1. Exposing additional data that applies collection-wide and you don't want to expose it in each Item. This can be collection-level metadata or a thumbnail for visualization purposes.
+2. Individual items can't properly be distinguished for some data structures, e.g. [Zarr](https://zarr.readthedocs.io/) as it's a data structure not contained in single files.
+3. Exposing assets for "[Standalone Collections](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#standalone-collections)".
+
+Oftentimes it is possible to model data and assets with either a Collection or an Item. In those scenarios we *recommend* to use
+Items as much as is feasible, as they designed for assets. Using collection-level assets should only be used if there is not another
+option. 
+
+| Field Name  | Type      | Description |
+| ----------- | --------- | ----------- |
+| href        | string    | **REQUIRED.** URI to the asset object. Relative and absolute URI are both allowed. |
+| title       | string    | The displayed title for clients and users. |
+| description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| type        | string    | [Media type](../item-spec/item-spec.md#asset-media-type) of the asset. See the [common media types](../best-practices.md#common-media-types-in-stac) in the best practice doc for commonly used asset types. |
+| roles       | \[string] | The [semantic roles](../item-spec/item-spec.md#asset-roles) of the asset, similar to the use of `rel` in links. |
 
 ### Stats Object
 
