@@ -19,7 +19,7 @@ fields should be specified at the Item Asset level, while those Item Asset objec
 
 ## Examples
 
-- [Example Landsat8](examples/example-landsat8.json)
+- [Example Landsat8](../../examples/extensions-collection/proj-example/proj-example.json)
 
 ## Schema
 

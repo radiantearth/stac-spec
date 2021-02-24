@@ -15,7 +15,7 @@ or [Collection Assets](../extensions/collection-assets/README.md).
     - [Provider Object](#provider-object)
   - [Instrument](#instrument)
 
-Various *examples* are available in the folder [`examples`](examples/).
+Various *examples* are available in the folder [`examples`](../examples/).
 *JSON Schemas* can be found in the folder [`json-schema`](json-schema/).
 
 By default, these fields are only included and validated against in the core [Item schema](json-schema/item.json).

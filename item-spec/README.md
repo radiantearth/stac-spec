@@ -14,10 +14,6 @@ See the [overview](../overview.md) document for more information on how all the 
 **Common Metadata:** A set of commonly used metadata fields for STAC Items is listed in 
 *[common-metadata.md](common-metadata.md)*.
 
-**Examples:** For samples of how STAC Items can be implemented the *[examples/](examples/)* folder 
-contains a number of real world examples. See the [readme](examples/README.md) for additional 
-discussion of the examples.
-
 **Schemas:** The schemas to validate the core Item definitions are found in the 
 *[json-schema/](json-schema/)* folder. The *[item.json](json-schema/item.json)* validates items overall
 and the additional schemas validate the various groups of *[Common Metadata](common-metadata.md)*.

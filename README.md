@@ -45,7 +45,7 @@ the specification takes place in the [issue tracker](https://github.com/radiante
 
 ## In this Repository
 
-This repository contains the core specifications plus examples and validation schemas. Also included are a
+This repository contains the core specifications plus [examples](examples/) and validation schemas. Also included are a
 few documents that provide more context and plans for the evolution of the specification. Each spec folder contains a
 README explaining the layout of the folder, the main specification document, examples, and validating schemas. And 
 there is one more specification in the STAC 'family', which is
@@ -67,6 +67,9 @@ The **[Collection Specification](collection-spec/)** provides additional informa
 In the context of STAC it is most likely a collection of STAC Items that is made available by a data provider.
 It includes things like the spatial and temporal extent of the data, the license, keywords, etc.
 It enables discovery at a higher level than individual items, providing a simple way to describe sets of data.
+
+**Examples:** The *[examples/](examples)* folder contains examples for all three specifications, linked together to form two 
+complete examples. Each spec and extension links in to highlight particular files that demonstrate key concepts.
 
 **Extensions:** The *[extensions/](extensions/)* folder is where extensions live. Extensions can extend the 
 functionality of the core spec or add fields for specific domains. Each extension has at least one *owner*. You can find extension owners in each extension's README or in the [`CODEOWNERS`](.github/CODEOWNERS) file.
