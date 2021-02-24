@@ -155,6 +155,9 @@
               }
             }
           }
+        },
+        "assets": {
+          "$ref": "../../item-spec/json-schema/item.json#/definitions/assets"
         }
       }
     }
