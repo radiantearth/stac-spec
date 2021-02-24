@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added
-
+- 'target' to the instrument.json specification.
 - 'via' and 'canonical' rel types as options in items.
 - Assets on Collections are now defined in the core Collection specification ([#1008](https://github.com/radiantearth/stac-spec/pull/1008))
 - Added clarification about how collection-level asset object properties do not remove the need for item-level asset object properties in the `item-assets` extension ([#880](https://github.com/radiantearth/stac-spec/pull/880))
