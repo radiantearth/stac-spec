@@ -83,13 +83,13 @@ However, spectral transmission for a filter does not go from 0% to a constant ma
 
 The `center_wavelength` of a band is the midpoint between the min and max wavelengths:
 
-```
+```python
 center_wavelength = (min_wavelength + max_wavelength) / 2
 ```
 
 The `full_width_half_max` (FWHM) is the difference between the min and max wavelengths, thus representing the width of the band at half it's maximum transmission.
 
-```
+```python
 full_width_half_max = max_wavelength - min_wavelength
 ```
 
