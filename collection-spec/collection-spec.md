@@ -8,9 +8,11 @@ A STAC Collection can be represented in JSON format. Any JSON object that contai
 
 STAC Collections are meant to be compatible with *OGC API - Features* Collections, but please be aware that OAFeat Collections and STAC Collections originate from different specifications and despite the fact that we try to align them as much as possible be there may be subtle differences in the specifications.
 
-* [Examples](examples/):
-  * Sentinel 2: A basic standalone example of a [Collection](examples/sentinel2.json) without items.
-  * Landsat 8: A [Collection](examples/landsat-collection.json) with corresponding Item [Item](../item-spec/examples/landsat8-sample.json).
+* [Examples](../examples/):
+  * Sentinel 2: A basic standalone example of a [Collection](../examples/collection-only/collection.json) without items.
+  * Simple Example: A [Collection](../examples/collection.json) that links to 3 example items.
+  * Extension Collection: An additional [Collection](../examples/extensions-collection/collection.json), which is used to highlight
+  various [extension](../extensions) functionality, but serves as another example.
 * [JSON Schema](json-schema/collection.json)
 
 ## Collection fields

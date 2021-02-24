@@ -5,7 +5,7 @@
     "view"
   ],
   "type": "Feature",
-  "id": "CS3-20160503_132131_05",
+  "id": "CS3-20160503_132131_08",
   "bbox": [
     -122.59750209,
     37.48803556,
@@ -40,25 +40,26 @@
     ]
   },
   "properties": {
-    "datetime": "2016-05-03T13:22:30Z",
-    "title": "A CS3 item",
-    "license": "PDDL-1.0",
-    "providers": [
-      {
-        "name": "CoolSat",
-        "roles": [
-          "producer",
-          "licensor"
-        ],
-        "url": "https://cool-sat.com/"
-      }
-    ],
+    "title": "Full Item",
+    "description": "A sample STAC Item demonstrates an Item that does not have a collection, which is not recommended, but allowed by the spec.",
+    "datetime": null,
+    "start_datetime": "2016-05-03T13:22:30Z",
+    "end_datetime": "2016-05-03T13:27:30Z",
     "created": "2016-05-04T00:00:01Z",
     "updated": "2017-01-01T00:30:55Z",
-    "view:sun_azimuth": 168.7,
-    "eo:cloud_cover": 0.12,
-    "view:off_nadir": 1.4,
-    "platform": "coolsat2",
+    "license": "various",
+    "providers": [
+      {
+        "name": "Remote Data, Inc",
+        "description": "Producers of awesome spatiotemporal assets",
+        "roles": [
+          "producer",
+          "processor"
+        ],
+        "url": "http://remotedata.it"
+      }
+    ],
+    "platform": "cool_sat2",
     "instruments": [
       "cool_sensor_v1"
     ],
@@ -73,25 +74,30 @@
   "collection": "CS3",
   "links": [
     {
-      "rel": "self",
-      "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.json"
+      "rel": "collection",
+      "href": "./collection.json",
+      "type": "application/json",
+      "title": "Simple Example Collection"
     },
     {
       "rel": "root",
-      "href": "http://cool-sat.com/catalog/catalog.json"
+      "href": "./collection.json",
+      "type": "application/json"
     },
     {
-      "rel": "parent",
-      "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/catalog.json"
-    },
-    {
-      "rel": "collection",
-      "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/catalog.json"
+      "rel": "root",
+      "href": "./collection.json",
+      "type": "application/json"
     },
     {
       "rel": "alternate",
       "type": "text/html",
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.html"
+    },
+    {
+      "rel": "license",
+      "type": "text/html",
+      "href": "http://remotedata.io/license.html"
     }
   ],
   "assets": {

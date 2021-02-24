@@ -10,9 +10,9 @@ Catalogs are not intended to be queried. Their purpose is discovery: to be brows
 by machines to build a search index. A Catalog can be represented in JSON format. Any JSON object 
 that contains all the required fields is a valid STAC Catalog.
 
-- [Examples](examples/)
-  - See a [minimal example](examples/catalog.json), as well a [fuller example](examples/catalog-items.json)
-    includes links to several items. 
+- [Examples](../examples/)
+  - See an example [catalog.json](../examples/catalog.json). The [collection.json](../examples/collection.json) is also a valid
+  catalog file, demonstrating linking to items (it is also a collection, so has additional fields)
 - [JSON Schema](json-schema/catalog.json)
 
 The [Catalog section of the Overview](../overview.md#catalog-overview) document provides background information on 
