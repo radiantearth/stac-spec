@@ -8,26 +8,29 @@ A STAC Collection can be represented in JSON format. Any JSON object that contai
 
 STAC Collections are meant to be compatible with *OGC API - Features* Collections, but please be aware that OAFeat Collections and STAC Collections originate from different specifications and despite the fact that we try to align them as much as possible be there may be subtle differences in the specifications.
 
-* [Examples](examples/):
-  * Sentinel 2: A basic standalone example of a [Collection](examples/sentinel2.json) without items.
-  * Landsat 8: A [Collection](examples/landsat-collection.json) with corresponding Item [Item](../item-spec/examples/landsat8-sample.json).
+* [Examples](../examples/):
+  * Sentinel 2: A basic standalone example of a [Collection](../examples/collection-only/collection.json) without items.
+  * Simple Example: A [Collection](../examples/collection.json) that links to 3 example items.
+  * Extension Collection: An additional [Collection](../examples/extensions-collection/collection.json), which is used to highlight
+  various [extension](../extensions) functionality, but serves as another example.
 * [JSON Schema](json-schema/collection.json)
 
 ## Collection fields
 
-| Element         | Type                                             | Description                                      |
-| --------------- | ------------------------------------------------ | ------------------------------------------------ |
+| Element         | Type                                             | Description                                                  |
+| --------------- | ------------------------------------------------ | ------------------------------------------------------------ |
 | stac_version    | string                                           | **REQUIRED.** The STAC version the Collection implements. STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind. |
-| stac_extensions | \[string]                                        | A list of extension identifiers the Collection implements. |
+| stac_extensions | \[string]                                        | A list of extension identifiers the Collection implements.   |
 | id              | string                                           | **REQUIRED.** Identifier for the collection that is unique across the provider. |
 | title           | string                                           | A short descriptive one-line title for the collection.       |
 | description     | string                                           | **REQUIRED.** Detailed multi-line description to fully explain the collection. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | keywords        | \[string]                                        | List of keywords describing the collection.                  |
 | license         | string                                           | **REQUIRED.** Collection's license(s), either a SPDX [License identifier](https://spdx.org/licenses/), `various` if multiple licenses apply or `proprietary` for all other cases. |
 | providers       | \[[Provider Object](#provider-object)]           | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
-| extent          | [Extent Object](#extent-object)                  | **REQUIRED.** Spatial and temporal extents.    |
-| summaries       | Map<string, \[*]\|[Stats Object](#stats-object)> | A map of property summaries, either a set of values or statistics such as a range. |
+| extent          | [Extent Object](#extent-object)                  | **REQUIRED.** Spatial and temporal extents.                  |
+| summaries       | Map<string, \[*]\|[Stats Object](#stats-object)> | STRONGLY RECOMMENDED. A map of property summaries, either a set of values or statistics such as a range. |
 | links           | \[[Link Object](#link-object)]                   | **REQUIRED.** A list of references to other documents.       |
+| assets          | Map<string, [Asset Object](#asset-object)>       | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key. |
 
 ### Additional Field Information
 
@@ -42,15 +45,47 @@ Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses
 
 #### summaries
 
-Provides an overview of the potential values that are available as part of the `properties` in the set STAC Items that are underneath this catalog (including 
-those in any sub-catalog). Summaries are used to inform users about values they can expect from items without having to crawl through them. It also helps to 
-fully define collections, especially if they don't link to any Items.
+Collections are are *strongly recommended* to provide summaries of the values of fields that they can expect from the `properties` 
+of STAC Items contained  in this collection. This enables users to get a good sense of what the ranges and potential values of 
+different fields in the collection are, without to inspect a number of items (or crawl them exhaustively to get a definitive answer). 
+Summaries help to fully define collections, especially if they don't link to any Items. They also give clients enough information to 
+build tailored user interfaces for querying the data, by presenting the potential values that are available. Summaries can be used in 
+collections or catalogs, and they should summarize all values in every item underneath it, including in nested sub-catalogs. 
+
 A summary for a field can be specified in two ways:
 
-1. A set of all distinct values in an array: The set of values must contain at least one element and it is strongly recommended to list all values. If the field summarizes an array (e.g. `instruments`), the field's array elements of each Item must be merged to a single array with unique elements.
+1. A set of all distinct values in an array: The set of values must contain at least one element and it is strongly recommended to list all values. If the field summarizes an array (e.g. [`instruments`](../item-spec/common-metadata.md#instrument)), the field's array elements of each Item must be merged to a single array with unique elements.
 2. Statistics in a [Stats Object](#stats-object): Statistics by default only specify the range (minimum and maximum values), but can optionally be accompanied by additional statistical values. The range specified by the minimum and maximum can specify the potential range of values, but it is recommended to be as precise as possible.
 
 It is recommended to list as many properties as reasonable so that consumers get a full overview about the properties included in the Items. Nevertheless, it is not very useful to list all potential `title` values of the Items. Also, a range for the `datetime` property may be better suited to be included in the STAC Collection's `extent` field. In general, properties that are covered by the Collection specification should not be repeated in the summaries.
+
+See the examples folder for collections with summaries to get a sense of how to use them. 
+
+#### assets
+
+This provides an optional mechanism to expose assets that don't make sense at the Item level.
+It is a dictionary of [Asset Objects](#asset-object) associated with the Collection that can be
+downloaded or streamed, each with a unique key.
+In general, the keys don't have any meaning and are considered to be non-descriptive unique identifiers.
+Providers may assign any meaning to the keys for their respective use cases, but must not expect that clients understand them.
+To communicate the purpose of an asset better use the `roles` field in the [Asset Object](#asset-object).
+The definition provided here, at the Collection level, is the same as the
+[Asset Object in Items](../item-spec/item-spec.md#asset-object).
+
+There are a few guidelines for using the asset construct at the Collection level:
+
+* Collection-level assets SHOULD NOT list any files also available in items.
+* If possible, item-level assets are always the preferable way to expose assets.
+* To list what assets are available in items see the [Item Assets Definition Extension](../extensions/item-assets/README.md).
+
+Collection-level assets can be useful in some scenarios, for example:
+1. Exposing additional data that applies collection-wide and you don't want to expose it in each Item. This can be collection-level metadata or a thumbnail for visualization purposes.
+2. Individual items can't properly be distinguished for some data structures, e.g. [Zarr](https://zarr.readthedocs.io/) as it's a data structure not contained in single files.
+3. Exposing assets for "[Standalone Collections](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#standalone-collections)".
+
+Oftentimes it is possible to model data and assets with either a Collection or an Item. In those scenarios we *recommend* to use
+Items as much as is feasible, as they designed for assets. Using collection-level assets should only be used if there is not another
+option.
 
 ### Extent Object
 
@@ -142,6 +177,20 @@ A more complete list of possible `rel` types and their meaning in STAC can be fo
 
 **Note:** The [STAC Catalog specification](../catalog-spec/catalog-spec.md) requires a link to at least one `item` or `child` catalog. This is *not* a requirement for collections, but *recommended*. In contrast to catalogs, it is **REQUIRED** that items linked from a Collection MUST refer back to its Collection with the [`collection` relation type](../item-spec/item-spec.md#relation-types).
 
+### Asset Object
+
+An Asset is an object that contains a URI to data associated with the Collection that can be downloaded
+or streamed. The definition provided here, at the Collection level, is the same as the
+[Asset Object in Items](../item-spec/item-spec.md#asset-object). It is allowed to add additional fields.
+
+| Field Name  | Type      | Description |
+| ----------- | --------- | ----------- |
+| href        | string    | **REQUIRED.** URI to the asset object. Relative and absolute URI are both allowed. |
+| title       | string    | The displayed title for clients and users. |
+| description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| type        | string    | [Media type](../item-spec/item-spec.md#asset-media-type) of the asset. See the [common media types](../best-practices.md#common-media-types-in-stac) in the best practice doc for commonly used asset types. |
+| roles       | \[string] | The [semantic roles](../item-spec/item-spec.md#asset-role-types) of the asset, similar to the use of `rel` in links. |
+
 ### Stats Object
 
 For a good understanding of the summarized field, statistics can be added. By default, only ranges with a minimum and a maximum value can be specified.
@@ -171,8 +220,8 @@ The data provider is free to decide, which fields are reasonable to be used.
 
 Commonly used extensions for the STAC Collection specification:
 
-* [Asset Definition](../extensions/item-assets/README.md): Allows to indicate the structure of the Item assets.
-* [Scientific extension](../extensions/scientific/README.md): Add fields to indicate citations and DOIs.
+* [Item Assets Definition](../extensions/item-assets/README.md): Allows to indicate the structure of the Item assets.
+* [Scientific Citation extension](../extensions/scientific/README.md): Add fields to indicate citations and DOIs.
 * [Versioning Indicators extension](../extensions/version/README.md): Allows versioning by adding the fields `version` and `deprecated`.
 
 The [extensions page](../extensions/README.md) gives a full overview about relevant extensions for STAC Collections.

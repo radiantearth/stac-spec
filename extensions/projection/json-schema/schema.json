@@ -60,12 +60,7 @@
               ]
             },
             "proj:geometry":{
-              "title":"Geometry",
-              "oneOf": [
-                {
-                  "$ref": "https://geojson.org/schema/Polygon.json"
-                }
-              ]
+              "$ref": "https://geojson.org/schema/Geometry.json"
             },
             "proj:bbox":{
               "title":"Extent",

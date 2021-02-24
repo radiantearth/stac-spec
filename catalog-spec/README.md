@@ -20,9 +20,6 @@ specification contains an OpenAPI definition of the standard way to do this, at 
 **The Specification:** The main Catalog specification is in *[catalog-spec.md](catalog-spec.md)*.
 It includes in depth explanation of the structures and fields.
 
-**Examples:** For samples of how Catalogs can be implemented the *[examples/](examples/)* folder
-contains a full sample catalog. 
-
 **Schemas:** The schemas to validate the core Catalog definition are found in the *[json-schema/](json-schema/)* folder.
 The primary one is *[catalog.json](json-schema/catalog.json)*.
 

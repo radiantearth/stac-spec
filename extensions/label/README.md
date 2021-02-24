@@ -56,7 +56,7 @@ Some additional notes are given here for some of the core STAC Item fields and w
 | ----------------- | -------------------------------- | -------------------------- | ----------- |
 | label:properties  | \[string]\|null                  | Name                       | **REQUIRED** These are the names of the property field(s) in each `Feature` of the label asset's `FeatureCollection` that contains the  classes (keywords from `label:classes` if the property defines classes). If labels are rasters, use `null`. |
 | label:classes     | \[[Class Object](#class-object)] | Classes                    | **REQUIRED** if using categorical data. A Class Object defining the list of possible class names for each `label:properties`. (e.g., tree, building, car, hippo) |
-| label:description | string                           | Description                | **REQUIRED** A description of the label, how it was created, and what it is recommended for |
+| label:description | string                           | Description                | **REQUIRED** A description of the label, how it was created, and what it is recommended for. [CommonMark 0.29](https://commonmark.org/) syntax MAY be used for rich text representation. |
 | label:type        | string                           | Type                       | **REQUIRED** An ENUM of either `vector` label type or `raster` label type |
 | label:tasks       | \[string]                        | Task                       | Recommended to be a subset of 'regression', 'classification', 'detection', or 'segmentation', but may be an arbitrary value |
 | label:methods     | \[string]                        | Method                     | Recommended to be a subset of 'automated' or 'manual', but may be an arbitrary value. |

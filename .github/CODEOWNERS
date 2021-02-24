@@ -13,7 +13,6 @@
 #
 # https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/about-code-owners
 
-/extensions/collection-assets/ @m-mohr
 /extensions/datacube/ @m-mohr
 /extensions/eo/ @matthewhanson
 /extensions/file/ @m-mohr
