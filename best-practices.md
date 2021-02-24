@@ -20,7 +20,7 @@
   - [Working with Media Types](#working-with-media-types)
     - [Common Media Types in STAC](#common-media-types-in-stac)
     - [Formats with no registered media type](#formats-with-no-registered-media-type)
-- **[Catalog Best Practices](#catalog-practices)**
+- **[Catalog & Collection Best Practices](#catalog--collection-practices)**
   - [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
     - [Static Catalogs](#static-catalogs)
     - [Dynamic Catalogs](#dynamic-catalogs)
@@ -273,7 +273,7 @@ register the media type with IANA, so that other STAC clients can find it easily
 [acceptable to not register](https://stackoverflow.com/questions/29121241/custom-content-type-is-registering-with-iana-mandatory) 
 it. It is relatively easy to [register](https://www.iana.org/form/media-types) a `vnd` media type.
 
-## Catalog Practices
+## Catalog & Collection Practices
 
 ### Static and Dynamic Catalogs
 
