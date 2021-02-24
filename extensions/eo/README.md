@@ -76,7 +76,9 @@ clients use this name for display, potentially in conjunction with the common na
 
 #### center_wavelength and full_width_half_max
 
-These fields are a common way to approximately describe a spectral band. Another common practice is to define a spectral band with a minimum and maximum wavelength, where outside these bounds the transmission is 0%, and non-zero inside the bounds (e.g., 80%). The maximum transmission of a band is not captured in any of these metrics, nor is it important in most cases.
+These fields are a common way to approximately describe a spectral band. In most cases even these numbers are not as useful as the `common_name` that should be supplied with the spectral bands, where they exist. For non-standard bands (such as with hyperspectral sensors) the wavelength fields indicate where the band is.
+
+Another common way to define a spectral band with a minimum and maximum wavelength, where outside these bounds the transmission is 0%, and non-zero inside the bounds (e.g., 80%). The maximum transmission of a band is not captured in any of these metrics, nor is it important in most cases.
 
 However, spectral transmission for a filter does not go from 0% to a constant max value (e.g., 80%) then back to 0%. Such a filter is referred to as a "top-hat" filter due to it's shape, but does not exist in reality. Thus, the minimum and maximum wavelengths are typically selected to be the point at which transmission drops below some threshold, and this threshold is often half of the maximum transmission. Thus is a filter's maximum transmision is 80%, the min and max thresholds would be the points where the transmission drops below 40%.
 
@@ -93,8 +95,6 @@ full_width_half_max = max_wavelength - min_wavelength
 ```
 
 For example, if we were given a band described as (0.4um - 0.5um) the `center_wavelength` would be 0.45um and the `full_width_half_max` would be 0.1um.
-
-In most cases even these numbers are not as useful as the `common_name` that should be supplied with the spectral bands, where they exist. For non-standard bands (such as with hyperspectral sensors) the wavelength fields indicate where the band is.
 
 In some cases the full transmission profile is needed, such as when harmonizing between two sensor modalities. It is recommended that the full spectral profile be included as a link or an asset (preferably at the Collection level).
 
