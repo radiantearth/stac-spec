@@ -73,9 +73,9 @@
     },
     {
       "rel": "item",
-      "href": "./full-item.json",
+      "href": "./core-item.json",
       "type": "application/geo+json",
-      "title": "Full Item"
+      "title": "Core Item"
     },
     {
       "rel": "item",
