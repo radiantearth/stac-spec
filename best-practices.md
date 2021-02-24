@@ -2,7 +2,6 @@
 
 ## Table of Contents
 
-
 - **[Web Best Practices](#web-practices)**
   - [Enable Cross-origin resource sharing (CORS)](#enable-cross-origin-resource-sharing-cors)
   - [STAC on the Web](#stac-on-the-web)
@@ -21,7 +20,7 @@
   - [Working with Media Types](#working-with-media-types)
     - [Common Media Types in STAC](#common-media-types-in-stac)
     - [Formats with no registered media type](#formats-with-no-registered-media-type)
- - **[Catalog Best Practices](#catalog-practices)**
+- **[Catalog Best Practices](#catalog-practices)**
   - [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
     - [Static Catalogs](#static-catalogs)
     - [Dynamic Catalogs](#dynamic-catalogs)
