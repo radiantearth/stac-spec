@@ -3,7 +3,7 @@
 This document outlines commonly used fields in STAC.
 They are often used in [STAC Item properties](item-spec.md#properties-object),
 but can also be used in other places, e.g. an [Item Asset](item-spec.md#asset-object)
-or [Collection Assets](../extensions/collection-assets/README.md).
+or [Collection Asset](../collection-spec/collection-spec.md#asset-object).
 
 - [STAC Common Metadata](#stac-common-metadata)
   - [Basics](#basics)
