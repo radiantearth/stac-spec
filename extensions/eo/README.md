@@ -75,14 +75,29 @@ This is typically the name the data provider uses for the band. It should be tre
 band used in several assets represents the same band (all the other fields should be the same as well). It is also recommended that
 clients use this name for display, potentially in conjunction with the common name.
 
-#### full_width_half_max (FWHM) 
+#### center_wavelength and full_width_half_max
 
-Along with `center_wavelength`, this is a common way to describe a spectral band. It is the
-width, in micrometers (μm), of the band measured at a half of the maximum transmission. Thus, if the
-maximum transmission of the bandpass was 80%, the FWHM is measured as the width of the band at
-40% transmission.
+These fields are a common way to approximately describe a spectral band. Another common practice is to define a spectral band with a minimum and maximum wavelength, where outside these bounds the transmission is 0%, and non-zero inside the bounds (e.g., 80%). The maximum transmission of a band is not captured in any of these metrics, nor is it important in most cases.
 
-Another simple way to describe spectral bands is by a min and max wavelength (i.e., 0.50um - 0.60um). Assuming the band is a "top-hat filter" (i.e., it goes straight from 0% to it's maximum) than `center_wavelength` is simply the halfway point between the min and max, while the `full_width_half_max` is just the distance between them (max_wavelength - min_wavelength).
+However, spectral transmission for a filter does not go from 0% to a constant max value (e.g., 80%) then back to 0%. Such a filter is referred to as a "top-hat" filter due to it's shape, but does not exist in reality. Thus, the minimum and maximum wavelengths are typically selected to be the point at which transmission drops below some threshold, and this threshold is often half of the maximum transmission. Thus is a filter's maximum transmision is 80%, the min and max thresholds would be the points where the transmission drops below 40%.
+
+The `center_wavelength` of a band is the midpoint between the min and max wavelengths:
+
+```
+center_wavelength = (min_wavelength + max_wavelength) / 2
+```
+
+The `full_width_half_max` (FWHM) is the difference between the min and max wavelengths, thus representing the width of the band at half it's maximum transmission.
+
+```
+full_width_half_max = max_wavelength - min_wavelength
+```
+
+For example, if we were given a band described as (0.4um - 0.5um) the `center_wavelength` would be 0.45um and the `full_width_half_max` would be 0.1um.
+
+In most cases even these numbers are not as useful as the `common_name` that should be supplied with the spectral bands, where they exist. For non-standard bands (such as with hyperspectral sensors) the wavelength fields indicate where the band is.
+
+In some cases the full transmission profile is needed, such as when harmonizing between two sensor modalities. It is recommended that the full spectral profile be included as a link or an asset (preferably at the Collection level).
 
 #### Common Band Names
 
