@@ -19,7 +19,7 @@ STAC Collections are meant to be compatible with *OGC API - Features* Collection
 | --------------- | ------------------------------------------------ | ------------------------------------------------ |
 | stac_version    | string                                           | **REQUIRED.** The STAC version the Collection implements. STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind. |
 | stac_extensions | \[string]                                        | A list of extension identifiers the Collection implements. |
-| id              | string                                           | **REQUIRED.** Identifier for the collection that is unique across the provider. |
+| id              | string                                           | **REQUIRED.** Identifier for the collection that is unique across the provider, ideally globally unique. |
 | title           | string                                           | A short descriptive one-line title for the collection.       |
 | description     | string                                           | **REQUIRED.** Detailed multi-line description to fully explain the collection. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | keywords        | \[string]                                        | List of keywords describing the collection.                  |
@@ -30,6 +30,12 @@ STAC Collections are meant to be compatible with *OGC API - Features* Collection
 | links           | \[[Link Object](#link-object)]                   | **REQUIRED.** A list of references to other documents.       |
 
 ### Additional Field Information
+
+#### id
+
+It is important that collection identifiers are unique across the provider. And providers should strive as much as possible to make
+their collection ids 'globally' unique, prefixing any common information with a unique string. This could be the provider's name if
+it is a fairly unique name, or their name combined with the domain they operate in.
 
 #### stac_extensions
 
