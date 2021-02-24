@@ -26,6 +26,10 @@
     "gsd": {
       "title": "Ground Sample Distance",
       "type": "number"
+    },
+    "target": {
+      "title" : "Body targeted by the observation",
+      "type" "string"
     }
   }
 }
