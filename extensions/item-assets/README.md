@@ -5,6 +5,7 @@
 - **Field Name Prefix: -**
 - **Scope: Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Owner**: @matthewhanson
 
 A Collection extension to provide details about assets that are available in member Items.
 
@@ -37,10 +38,13 @@ However, it is recommended that the Asset Definition is a complete set of all as
 | ----------- | --------- | ----------- |
 | title       | string    | The displayed title for clients and users. |
 | description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| type        | string    | [Media type](../../item-spec/item-spec.md#media-types) of the asset. |
+| type        | string    | [Media type](../../catalog-spec/catalog-spec.md#media-types) of the asset. |
 | roles       | \[string] | The [semantic roles](../../item-spec/item-spec.md#asset-role-types) of the asset, similar to the use of `rel` in links. |
 
 Other custom fields, or fields from other extensions may also be included in the Asset object.
+
+Any property that exists for a collection-level asset object must also exist in the corresponding assets object in each item. If a collection's asset object contains properties that are not explicitly stated in the item's asset object then that property does not apply to the item's asset. Item asset objects at the collection-level can describe any of the properties of an asset, but those assets properties and values must also reside in the item's asset object.
+To consolidate item-level asset object properties in an API setting, consider storing the STAC items without the larger properties internally as 'invalid' STAC items, and merge in the desired properties at serving time from the collection-level.
 
 At least two fields (e.g. `title` and `type`) are required to be provided, in order for it to adequately describe Item assets.
 The two fields must not necessarily be taken from the list above and may include any custom field.

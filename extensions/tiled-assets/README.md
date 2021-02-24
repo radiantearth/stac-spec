@@ -5,6 +5,7 @@
 - **Field Name Prefix: tiles**
 - **Scope: Item, Catalog, Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Owner**: @constantinius
 
 Some data products are too big to be handled in a single file or a small set of enumerated files and are thus split into tiles. For example, Sentinel-2 datastrips are tiled into overlapping granules, in some cases in even more than one coordinate reference system. Other very big datasets, such as continental or global mosaics can also only be handled in a tiled fashion. Usually, they go one step further and provide multiple layers of resolution to allow a quick inspection of larger areas but also retain the possibility to get to the full resolution data.
 
@@ -17,7 +18,9 @@ This extension is modelled in close alignment to the [OGC Two Dimensional Tile M
 - Examples: [Tiled](examples/example-tiled.json), [Dimension](examples/example-dimension.json)
 - [JSON Schema](json-schema/schema.json)
 
-## Item, Collection and Catalog properties
+## Item Properties, Collection, and Catalog Fields
+
+These fields can be applied to Item Properties, Collection, or Catalog objects.
 
 | Field Name               | Type                                                                  | Description                                                                                                          |
 | ------------------------ | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
@@ -27,7 +30,7 @@ This extension is modelled in close alignment to the [OGC Two Dimensional Tile M
 
 Tile matrix sets can be directly embedded in a collection, catalog or item. Such directly embedded tile matrix set objects must conform to the [OGC Two Dimensional Tile Matrix Set JSON schema](http://schemas.opengis.net/tms/1.0/json/tms-schema.json).
 
-## Item properties
+## Item Properties fields
 
 | Field Name                  | Type                                                                  | Description                                                                                                     |
 | --------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
@@ -49,7 +52,7 @@ This object allows to reference a tile matrix set. This concept is modelled afte
 **url**/**well_known_scale_set**: Either one of these parameters must be present.
 
 **url**: The URL must refer to a valid tile matrix set definition as defined in the Two-dimensional tile matrix set specification in any encoding (JSON, JSON-LD, or XML).
-It is also possible, to have the tile matrix set embedded in the items collection, catalog or even in the items file itself using the `tiles:tile_matrix_sets` property. When refering to an embedded tile matrix set definition, the name of the map key of that tile matrix set definition must be used as a URL fragment.
+It is also possible, to have the tile matrix set embedded in the items collection, catalog or even in the items file itself using the `tiles:tile_matrix_sets` property. When referring to an embedded tile matrix set definition, the name of the map key of that tile matrix set definition must be used as a URL fragment.
 
 Example reference to an external tile matrix definition:
 
@@ -87,7 +90,7 @@ This object allows to specify subset region of the source tileset. This concept 
 
 ### Pixel Buffer Object
 
-Pixel buffer objects allow the definition of image boundarys, so that the internal tiles may overlap. When using this information, the clients may be able to reduce the number of requests.
+Pixel buffer objects allow the definition of image boundaries, so that the internal tiles may overlap. When using this information, the clients may be able to reduce the number of requests.
 
 | Field Name    | Type    | Description                                                                                                        |
 | ------------- | ------- | ------------------------------------------------------------------------------------------------------------------ |

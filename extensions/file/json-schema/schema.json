@@ -1,0 +1,156 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/file/json-schema/schema.json#",
+  "title": "File Info Extension Specification",
+  "description": "STAC File Info Extension to a STAC Item, Catalog or Collection",
+  "oneOf": [
+    {
+      "allOf": [
+        {
+          "$ref": "../../../item-spec/json-schema/item.json"
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
+          "$ref": "#/definitions/file_assets"
+        }
+      ]
+    },
+    {
+      "allOf": [
+        {
+          "$ref": "../../collection-assets/json-schema/schema.json"
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
+          "$ref": "#/definitions/file_assets"
+        }
+      ]
+    }
+  ],
+  "definitions": {
+    "stac_extensions": {
+      "type": "object",
+      "required": [
+        "stac_extensions"
+      ],
+      "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "enum": [
+              "file",
+              "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/file/json-schema/schema.json"
+            ]
+          }
+        }
+      }
+    },
+    "file_assets": {
+      "type": "object",
+      "properties": {
+        "assets": {
+          "type": "object",
+          "patternProperties": {
+            ".+": {
+              "$ref": "#/definitions/file"
+            }
+          }
+        }
+      }
+    },
+    "file": {
+      "type": "object",
+      "properties": {
+        "file:bits_per_sample": {
+          "type": "integer",
+          "minimum": 0,
+          "title": "Bits per Sample"
+        },
+        "file:byte_order": {
+          "type": "string",
+          "enum": [
+            "big-endian",
+            "little-endian"
+          ],
+          "title": "File Byte Order"
+        },
+        "file:checksum": {
+          "type": "string",
+          "pattern": "^[a-f0-9]+$",
+          "title": "File Checksum (Multihash)"
+        },
+        "file:data_type": {
+          "type": "string",
+          "enum": [
+            "int8",
+            "int16",
+            "int32",
+            "int64",
+            "uint8",
+            "uint16",
+            "uint32",
+            "uint64",
+            "float16",
+            "float32",
+            "float64",
+            "cint16",
+            "cint32",
+            "cfloat32",
+            "cfloat64",
+            "other"
+          ],
+          "title": "File Data Type"
+        },
+        "file:header_size": {
+          "type": "integer",
+          "minimum": 0,
+          "title": "File Header Size"
+        },
+        "file:nodata": {
+          "type": "array",
+          "items": {
+            "description": "Any data type is allowed"
+          },
+          "title": "No data values"
+        },
+        "file:size": {
+          "type": "integer",
+          "minimum": 0,
+          "title": "File Size"
+        },
+        "file:unit": {
+          "type": "string",
+          "title": "Unit"
+        },
+        "file:values": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "values",
+              "summary"
+            ],
+            "properties": {
+              "values": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "description": "Any data type is allowed"
+                }
+              },
+              "summary": {
+                "type": "string"
+              }
+            }
+          },
+          "title": "Value Map"
+        }
+      }
+    }
+  }
+}

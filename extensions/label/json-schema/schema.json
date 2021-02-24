@@ -32,7 +32,6 @@
           "type": "object",
           "required": [
             "label:properties",
-            "label:classes",
             "label:description",
             "label:type"
           ],

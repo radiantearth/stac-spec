@@ -32,14 +32,8 @@
         "properties": {
           "type": "object",
           "properties": {
-            "eo:bands": {
-              "$ref": "#/definitions/bands"
-            },
             "eo:cloud_cover": {
-              "title": "Cloud Cover",
-              "type": "number",
-              "minimum": 0,
-              "maximum": 100
+              "$ref": "#/definitions/cloud_cover"
             }
           }
         },
@@ -50,17 +44,65 @@
             "properties": {
               "eo:bands": {
                 "$ref": "#/definitions/bands"
+              },
+              "eo:cloud_cover": {
+                "$ref": "#/definitions/cloud_cover"
+              }
+            }
+          }
+        }
+      },
+      "$comment": "The if-then-else below checks whether the eo:bands is given in assets or not. If yes, allows eo:bands in properties (else), otherwise, disallows eo:bands in properties (then).",
+      "if": {
+        "required": [
+          "assets"
+        ],
+        "properties": {
+          "assets": {
+            "type": "object",
+            "additionalProperties": {
+              "properties": {
+                "eo:bands": false
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "properties": {
+            "properties": {
+              "eo:bands": false
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "properties": {
+            "properties": {
+              "eo:bands": {
+                "$ref": "#/definitions/bands"
               }
             }
           }
         }
       }
     },
+    "cloud_cover": {
+      "title": "Cloud Cover",
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
     "bands": {
       "title": "Bands",
       "type": "array",
       "minItems": 1,
       "items": {
+        "title": "Band",
+        "type": "object",
+        "minProperties": 1,
         "properties": {
           "name": {
             "title": "Name of the band",

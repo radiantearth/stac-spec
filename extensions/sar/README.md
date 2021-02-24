@@ -5,6 +5,7 @@
 - **Field Name Prefix: sar**
 - **Scope: Item**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
+- **Owner**: @m-mohr, @emmanuelmathot
 
 This document explains the fields of the STAC Synthetic-Aperture Radar (SAR) Extension to a STAC Item.
 SAR data is considered to be data that represents a snapshot of the earth for a single date and time taken by a synthetic-aperture radar system such as Sentinel-1, RADARSAT or EnviSAT.
@@ -16,7 +17,7 @@ To describe frame start and end times, use the [Date and Time Range fields](../.
 - [Examples](examples/) (for example [Sentinel-1](examples/sentinel1.json) and [Envisat](examples/envisat.json))
 - [JSON Schema](json-schema/schema.json)
 
-## Item fields
+## Item Properties or Item Asset fields
 
 **Note:** In the following specification *range* values are meant to be measured perpendicular to the flight path and *azimuth* values are meant to be measured parallel to the flight path.
 
@@ -38,7 +39,7 @@ To describe frame start and end times, use the [Date and Time Range fields](../.
 
 **sar:polarizations** specifies a single polarization or a polarization combination. For single polarized radars one of `HH`, `VV`, `HV` or `VH` must be set. Fully polarimetric radars add all four polarizations to the array. Dual polarized radars and alternating polarization add the corresponding polarizations to the array, for instance for `HH+HV` add both `HH` and `HV`.
 
-**sar:product_type**: The product type defines the type of procesed data contained in the assets. A list of suggestions include:
+**sar:product_type**: The product type defines the type of processed data contained in the assets. A list of suggestions include:
 
 | sar:product_type  | Type      | Description |
 | ----------------- | --------- | ----------- |
