@@ -29,7 +29,7 @@
     },
     "target": {
       "title" : "Body targeted by the observation",
-      "type" "string"
+      "type": "string"
     }
   }
 }
