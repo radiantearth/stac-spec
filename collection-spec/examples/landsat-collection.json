@@ -59,6 +59,16 @@
     }
   ],
   "license": "PDDL-1.0",
+  "assets": {
+    "thumbnail": {
+      "href": "thumbnail.png",
+      "title": "Preview",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  },
   "summaries": {
     "platform": [
       "landsat-8"

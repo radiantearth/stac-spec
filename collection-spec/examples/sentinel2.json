@@ -43,6 +43,16 @@
       ]
     }
   },
+  "assets": {
+    "thumbnail": {
+      "href": "thumbnail.png",
+      "title": "Preview",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  },
   "summaries": {
     "datetime": {
       "minimum": "2015-06-23T00:00:00Z",

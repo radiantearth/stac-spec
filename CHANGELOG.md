@@ -33,7 +33,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 
 - Checksum extension (field `checksum:multihash`). Use File Info extension (field `file:checksum`) instead for assets. There's no replacement for links.
-- Collection Assets extension, as the core construct of Assets in a Collection is now part of the core Collection spec.
+- Collection Assets extension, as the core construct of Assets in a Collection is now part of the core Collection spec. No change is required except removing `collection-assets` from the list of `stac_extensions`.
 
 ### Fixed
 
