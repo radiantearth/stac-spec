@@ -51,8 +51,7 @@ In general, STAC versions can be mixed, but please keep the [recommended best pr
 It is important that an Item identifier is unique within a collection, and that the 
 [Collection identifier](../collection-spec/collection-spec.md#id) in turn is unique globally. Then the two can be combined to
 give a globally unique identifier. Items are *[strongly recommended](#collections)* to have collections, and not having one makes
-it more difficult to be used in the wider STAC ecosystem. If an Item does not have a collection then it should strive to provide
-a globally unique identifier, with a long, unique prefix, to have a better chance of being globally unique.
+it more difficult to be used in the wider STAC ecosystem. If an Item does not have a Collection, then the Item identifier should be unique within its root Catalog.
 
 As most geospatial assets are already uniquely defined by some 
 identification scheme from the data provider it is recommended to simply use that ID. Data providers are advised to include sufficient information to make their 
