@@ -23,8 +23,7 @@ If the data has been collected by a satellite, it is strongly recommended to use
 For defining view geometry of data, it is strongly recommended to use the [`view` extension](../view/README.md).
 
 - Examples:
-  - [Landsat 8 with bands in assets](examples/example-landsat8.json)
-  - [Example with bands in Item properties](../../item-spec/examples/sample-full.json)
+  - [Example using bands and cloud_cover](../../examples/extended-item.json)
   - [Landsat 8 with bands in Item Asset Definition and Collection Summaries](../item-assets/examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)
 
@@ -75,12 +74,29 @@ This is typically the name the data provider uses for the band. It should be tre
 band used in several assets represents the same band (all the other fields should be the same as well). It is also recommended that
 clients use this name for display, potentially in conjunction with the common name.
 
-#### full_width_half_max (FWHM) 
+#### center_wavelength and full_width_half_max
 
-This is a common way to describe the size of a spectral band. It is the
-width, in micrometers (μm), of the bandpass measured at a half of the maximum transmission. Thus, if the
-maximum transmission of the bandpass was 80%, the FWHM is measured as the width of the bandpass at
-40% transmission.
+These fields are a common way to approximately describe a spectral band. In most cases even these numbers are not as useful as the `common_name` that should be supplied with the spectral bands, where they exist. For non-standard bands (such as with hyperspectral sensors) the wavelength fields indicate where the band is.
+
+Another common way to define a spectral band with a minimum and maximum wavelength, where outside these bounds the transmission is 0%, and non-zero inside the bounds (e.g., 80%). The maximum transmission of a band is not captured in any of these metrics, nor is it important in most cases.
+
+However, spectral transmission for a filter does not go from 0% to a constant max value (e.g., 80%) then back to 0%. Such a filter is referred to as a "top-hat" filter due to it's shape, but does not exist in reality. Thus, the minimum and maximum wavelengths are typically selected to be the point at which transmission drops below some threshold, and this threshold is often half of the maximum transmission. Thus if a filter's maximum transmission is 80%, the min and max thresholds would be the points where the transmission drops below 40%.
+
+The `center_wavelength` of a band is the midpoint between the min and max wavelengths:
+
+```python
+center_wavelength = (min_wavelength + max_wavelength) / 2
+```
+
+The `full_width_half_max` (FWHM) is the difference between the min and max wavelengths, thus representing the width of the band at half it's maximum transmission.
+
+```python
+full_width_half_max = max_wavelength - min_wavelength
+```
+
+For example, if we were given a band described as (0.4um - 0.5um) the `center_wavelength` would be 0.45um and the `full_width_half_max` would be 0.1um.
+
+In some cases the full transmission profile is needed, such as when harmonizing between two sensor modalities. It is recommended that the full spectral profile be included as a link or an asset (preferably at the Collection level).
 
 #### Common Band Names
 
