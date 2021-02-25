@@ -132,7 +132,7 @@ with domain-specific extensions that describe the actual data, such as the `eo` 
 | instruments   | \[string] | Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1). |
 | constellation | string    | Name of the constellation to which the platform belongs. |
 | mission       | string    | Name of the mission for which data is collected. |
-| gsd        | number    | Ground Sample Distance at the sensor. |
+| gsd        | number    | Ground Sample Distance at the sensor, in meters (m). |
 
 **platform** is the unique name of the specific platform the instrument is attached to. For satellites this would 
 be the name of the satellite, whereas for drones this would be a unique name for the drone. Examples include 
