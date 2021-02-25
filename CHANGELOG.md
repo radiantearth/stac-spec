@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - 'via' and 'canonical' rel types as options in items.
+- Assets on Collections are now defined in the core Collection specification ([#1008](https://github.com/radiantearth/stac-spec/pull/1008))
 - Added clarification about how collection-level asset object properties do not remove the need for item-level asset object properties in the `item-assets` extension ([#880](https://github.com/radiantearth/stac-spec/pull/880))
 - Added [processing extension](extensions/processing/README.md)
 - Added [file info extension](extensions/file/README.md) ([#879](https://github.com/radiantearth/stac-spec/pull/879), [#921](https://github.com/radiantearth/stac-spec/issues/921))
@@ -24,13 +25,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - URIs (usually found int properties like `href`, `url`) are now validated using the `iri-reference` format in JSON Schema (allows international characters in URIs)
 - Relaxed the regular expression for DOIs in the scientific extension ([#910](https://github.com/radiantearth/stac-spec/issues/910))
 - The [Stats Object](collection-spec/collection-spec.md#stats-object) for Collection `summaries` changed `min` to `minimum` and `max` to `maximum` to align with JSON Schema.
+- Moved examples from individual directories into a single /examples folder at the root, and evolved them to be more representative.
 - Made `summaries` to be *strongly recommended* - everyone should strive to implement them, as they are very useful.
 - `proj:geometry` allows all GeoJSON geometries instead of just a polygon.
 - `label:description` and `processing:lineage` allow CommonMark for rich-text representation ([#950](https://github.com/radiantearth/stac-spec/issues/950))
+- Renamed "Scientific Extension" to "Scientific Citation Extension" ([#990](https://github.com/radiantearth/stac-spec/issues/990))
 
 ### Removed
 
 - Checksum extension (field `checksum:multihash`). Use File Info extension (field `file:checksum`) instead for assets. There's no replacement for links.
+- Collection Assets extension, as the core construct of Assets in a Collection is now part of the core Collection spec. No change is required except removing `collection-assets` from the list of `stac_extensions`.
 
 ### Fixed
 

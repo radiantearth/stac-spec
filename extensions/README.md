@@ -56,7 +56,6 @@ These extensions add new fields or semantics to STAC objects.
 
 | Extension Title                                  | Identifier        | Field Name Prefix   | Scope                     | Maturity   | Description |
 | ------------------------------------------------ | ----------------- | ------------------- | ------------------------- | ---------- | ----------- |
-| [Collection Assets](collection-assets/README.md) | collection-assets | -                   | Collection                | *Proposal* | Provides a way to specify assets available on the collection-level. |
 | [Data Cube](datacube/README.md)                  | datacube          | cube                | Item, Collection          | *Proposal* | Data Cube related metadata, especially to describe their dimensions. |
 | [Electro-Optical](eo/README.md)                  | eo                | eo                  | Item                      | *Proposal* | Covers electro-optical data that represents a snapshot of the Earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, gsd and more. |
 | [File Info](file/README.md)                      | file              | file                | Item, Catalog, Collection | *Proposal* | Provides a way to specify file details such as size, data type and checksum for assets and links in Items, Catalogs and Collections. |
@@ -67,7 +66,7 @@ These extensions add new fields or semantics to STAC objects.
 | [Projection](projection/README.md)               | projection        | proj                | Item                      | *Proposal* | Provides a way to describe items whose assets are in a geospatial projection. |
 | [SAR](sar/README.md)                             | sar               | sar                 | Item                      | *Proposal* | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. |
 | [Satellite](sat/README.md)                       | sat               | sat                 | Item                      | *Proposal* | Satellite related metadata for data collected from satellites. |
-| [Scientific](scientific/README.md)               | scientific        | sci                 | Item, Collection          | *Proposal* | Scientific metadata is considered to be data that indicate from which publication data originates and how the data itself should be cited or referenced. |
+| [Scientific Citation](scientific/README.md)      | scientific        | sci                 | Item, Collection          | *Proposal* | Metadata that indicate from which publication data originates and how the data itself should be cited or referenced. |
 | [Single File STAC](single-file-stac/README.md)   | single-file-stac  | -                   | Catalog                   | *Proposal* | An extension to provide a set of Collections and Items within a single file catalog. |
 | [Tiled Assets](tiled-assets/README.md)           | tiled-assets      | tiles               | Item, Catalog, Collection | *Proposal* | Allows to specify numerous assets using asset templates via tile matrices and dimensions. |
 | [Timestamps](timestamps/README.md)               | timestamps        | -                   | Item                      | *Proposal* | Allows to specify numerous timestamps for assets and metadata. |
@@ -82,9 +81,9 @@ parties, extensions may be made official and incorporated in the STAC repository
 
 Please contact a STAC maintainer or open a Pull Request to add your extension to this table.
 
-| Name     | Scope | Description | Vendor |
-| -------- | ----- | ----------- | ------ |
-| None yet |       |             |        |
+| Name                                                | Field Name Prefix | Scope | Description                                                  | Vendor                                         |
+| --------------------------------------------------- | ----------------- | ----- | ------------------------------------------------------------ | ---------------------------------------------- |
+| [CARD4L](https://github.com/stac-extensions/card4l) | card4l            | Item  | How to comply to the CEOS CARD4L product family specifications (Optical and SAR) | [openEO Platform](https://platform.openeo.org) |
 
 ## Proposed extensions
 

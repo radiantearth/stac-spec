@@ -17,9 +17,9 @@ Items are represented in JSON format and are very flexible. Any JSON object that
 required fields is a valid STAC Item.
 
 - Examples:
-  - See the [minimal example](examples/sample.json), as well as a [more fleshed example](examples/sample-full.json) that contains a number of
-    current best practices. There are more real world inspired samples in the [examples/](examples/) folder.
-  - Real world [implementations](https://stacspec.org/#examples) are also available.
+  - See the [minimal example](../examples/simple-item.json), as well as a [more fleshed example](../examples/core-item.json) that contains a number of
+    current best practices.
+  - Real world [implementations](https://stacindex.org/catalogs) are also available.
 - [JSON Schema](json-schema/item.json)
 
 ## Item fields
@@ -40,15 +40,25 @@ inherited from GeoJSON.
 | assets     | Map<string, [Asset Object](#asset-object)>                                 | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key. |
 | collection | string                                                                     | The `id` of the STAC Collection this Item references to (see [`collection` relation type](#relation-types)). This field is *required* if such a relation type is present. This field provides an easy way for a user to search for any Items that belong in a specified Collection. |
 
-**stac_version**: In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
+### Additional Field Information
 
-**stac_extensions**: A list of extensions the Item implements. The list contains URLs to the JSON Schema files it can be validated against. For official [extensions](../extensions/README.md#list-of-stac-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. This does *not* apply for API extensions. If the versions of the extension and the item diverge, you can specify the URL of the JSON schema file.
+#### stac_version
+
+In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
+
+#### stac_extensions
+
+A list of extensions the Item implements. The list contains URLs to the JSON Schema files it can be validated against. For official [extensions](../extensions/README.md#list-of-stac-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. This does *not* apply for API extensions. If the versions of the extension and the item diverge, you can specify the URL of the JSON schema file.
 This list must only contain extensions that extend the Item itself, see the the 'Scope' column in the list of extensions. If an extension such as the `tiled-assets` extension has influence on multiple parts of the whole catalog structure, it must be listed in all affected parts (e.g. Catalog, Collection and Item for the `tiled-assets` extension).
 
-**assets**: Dictionary of asset objects that can be downloaded, each with a unique key.
+#### assets
+
+This is a dictionary of [Asset Objects](#asset-object) data associated with the Item that can be
+downloaded or streamed, each with a unique key.
 In general, the keys don't have any meaning and are considered to be non-descriptive unique identifiers.
 Providers may assign any meaning to the keys for their respective use cases, but must not expect that clients understand them.
 To communicate the purpose of an asset better use the `roles` field in the [Asset Object](#asset-object).
+
 Assets should include the main asset, as well as any 'sidecar' files that are related and help a
 client make sense of the data. Examples of this include extended metadata (in XML, JSON, etc.),
 unusable data masks, satellite ephemeris data, etc. Some assets (like Landsat data) are represented
@@ -56,7 +66,9 @@ by multiple files - all should be linked to. It is generally recommended that di
 levels or formats are not exhaustively listed in an Item, but instead are represented by related
 Items that are linked to, but the best practices around this are still emerging.
 
-**bbox**: Bounding Box of the asset represented by this item using either 2D or 3D geometries, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5). The length of the array must be 2*n where n is the number of dimensions. The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). When using 3D geometries, the elevation of the southwesterly most extent is the minimum depth/height in meters and the elevation of the northeasterly most extent is the maximum.  This field enables more naive clients to easily index and search geospatially. STAC compliant APIs are required to compute intersection operations with the item's geometry field, not its bbox.
+#### bbox
+
+Bounding Box of the asset represented by this item using either 2D or 3D geometries, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5). The length of the array must be 2*n where n is the number of dimensions. The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). When using 3D geometries, the elevation of the southwesterly most extent is the minimum depth/height in meters and the elevation of the northeasterly most extent is the maximum.  This field enables more naive clients to easily index and search geospatially. STAC compliant APIs are required to compute intersection operations with the item's geometry field, not its bbox.
 
 ### Properties Object
 
@@ -224,7 +236,7 @@ For example, `gsd` defined for an Item represents the best Ground Sample Distanc
 However, some assets may be lower resolution and thus have a higher `gsd`. The `eo:bands` field from the EO extension defines
 an array of spectral bands. However, it may be useful instead to specify the bands that are used in a particular asset.
 
-For an example see the [sentinel2-sample](examples/sentinel2-sample.json). The Sentinel-2 overall `gsd` is 10m, because this is
+For an example see the [sentinel2-sample](https://github.com/stac-utils/stac-examples/blob/main/sentinel2/sentinel2-sample.json). The Sentinel-2 overall `gsd` is 10m, because this is
 the best spatial resolution among all the bands and is defined in Item properties so it can be searched on. In the example
 Band 5 and others have a `gsd` of 20m, so that asset specifies the `gsd` as well, which overrides the Item `gsd` for this
 one asset. The example also includes reduced resolution versions of files included as assets, using `gsd` to represent
