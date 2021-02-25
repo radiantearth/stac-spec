@@ -34,6 +34,12 @@ STAC Collections are meant to be compatible with *OGC API - Features* Collection
 
 ### Additional Field Information
 
+#### id
+
+It is important that collection identifiers are unique across the provider. And providers should strive as much as possible to make
+their collection ids 'globally' unique, prefixing any common information with a unique string. This could be the provider's name if
+it is a fairly unique name, or their name combined with the domain they operate in.
+
 #### stac_extensions
 
 A list of extensions the Collection implements. This does NOT declare the extensions of child Catalogs or Items. The list contains URLs to the JSON Schema files it can be validated against. For official [extensions](../extensions/README.md#list-of-stac-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `version` for the Versioning Indicators extension. If the versions of the extension and the collection diverge, you can specify the URL of the JSON schema file.

@@ -31,7 +31,7 @@ inherited from GeoJSON.
 | ---------- | -------------------------------------------------------------------------- | ----------- |
 | stac_version | string                                                                   | **REQUIRED.** The STAC version the Item implements. |
 | stac_extensions | \[string]                                                             | A list of extensions the Item implements. |
-| id         | string                                                                     | **REQUIRED.** Provider identifier. As most geospatial assets are already defined by some identification scheme by the data provider it is recommended to simply use that ID. Data providers are advised to include sufficient information to make their IDs globally unique, including things like unique satellite IDs. |
+| id         | string                                                                     | **REQUIRED.** Provider identifier. The ID should be unique within the  [Collection](../collection-spec/README.md) that contains the item. |
 | type       | string                                                                     | **REQUIRED.** Type of the GeoJSON Object. MUST be set to `Feature`. |
 | geometry   | [GeoJSON Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) \| [null](https://tools.ietf.org/html/rfc7946#section-3.2) | **REQUIRED.** Defines the full footprint of the asset represented by this item, formatted according to [RFC 7946, section 3.1](https://tools.ietf.org/html/rfc7946#section-3.1). The footprint should be the default GeoJSON geometry, though additional geometries can be included. Coordinates are specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). |
 | bbox       | \[number]                                                                  | **REQUIRED if `geometry` is not `null`.** Bounding Box of the asset represented by this item, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5). |
@@ -45,6 +45,18 @@ inherited from GeoJSON.
 #### stac_version
 
 In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
+
+#### id
+
+It is important that an Item identifier is unique within a collection, and that the 
+[Collection identifier](../collection-spec/collection-spec.md#id) in turn is unique globally. Then the two can be combined to
+give a globally unique identifier. Items are *[strongly recommended](#collections)* to have collections, and not having one makes
+it more difficult to be used in the wider STAC ecosystem. If an Item does not have a Collection, then the Item identifier should be unique within its root Catalog.
+
+As most geospatial assets are already uniquely defined by some 
+identification scheme from the data provider it is recommended to simply use that ID. Data providers are advised to include sufficient information to make their 
+IDs globally unique, including things like unique satellite IDs. See the [id section of best practices](../best-practices.md#field-and-id-formatting) for 
+additional recommendations.
 
 #### stac_extensions
 
