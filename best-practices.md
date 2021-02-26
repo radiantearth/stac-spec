@@ -312,31 +312,11 @@ actual role requirements.
 | snow-ice | Best Practice | Points to a file that indicates whether a pixel is assessed as being snow/ice or not. |
 | land-water | Best Practice | Points to a file that indicates whether a pixel is assessed as being land or water. |
 | water-mask | Best Practice | Points to a file that indicates whether a pixel is assessed as being water (e.g. flooding map). |
-| reflectance | [EO Extension](extensions/eo/README.md#best-practices) | An asset the provides [reflectance](https://www.l3harrisgeospatial.com/Support/Self-Help-Tools/Help-Articles/Help-Articles-Detail/ArtMID/10220/ArticleID/19247/3377) values, instead of just radiance. |
-| temperature | [EO Extension](extensions/eo/README.md#best-practices) | An asset that provides actual temperature measurements. |
-| saturation | [EO Extension](extensions/eo/README.md#best-practices) | Points to a file that indicates where pixels in the input spectral bands are saturated. |
-| cloud | [EO Extension](extensions/eo/README.md#best-practices) | Points to a file that indicates whether a pixel is assessed as being cloud |
-| cloud-shadow | [EO Extension](extensions/eo/README.md#best-practices) | Points to a file that indicates whether a pixel is assessed as being cloud shadow. |
-| incidence-angle | [View Extension](extensions/view/README.md#best-practices) | Points to a file with per-pixel incidence angles. |
-| azimuth | [View Extension](extensions/view/README.md#best-practices) | Points to a file with per-pixel azimuth angles. |
-| sun-azimuth | [View Extension](extensions/view/README.md#best-practices) | Points to a file with per-pixel sun azimuth angles. |
-| sun-elevation | [View Extension](extensions/view/README.md#best-practices) | Points to a file with per-pixel sun elevation angles. |
-| terrain-shadow | [View Extension](extensions/view/README.md#best-practices) | Points to a file that indicates whether a pixel is not directly illuminated due to terrain shadowing. |
-| terrain-occlusion | [View Extension](extensions/view/README.md#best-practices) | Points to a file that indicates whether a pixel is not visible to the sensor due to terrain occlusion during off-nadir viewing. |
-| terrain-illumination | [View Extension](extensions/view/README.md#best-practices) | Points to a file with coefficients used for terrain illumination correction are provided for each pixel. |
-| local-incidence-angle | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the local incidence angle file. |
-| ellipsoid-incidence-angle | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the ellipsoid incidence angle file. |
-| noise-power | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the noise power file. |
-| amplitude | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the intensity file with focused SAR data that has been ground range detected (e.g. GRD). |
-| magnitude | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the intensity file where data are represented as complex numbers containing amplitude and phase information (e.g SLC). |
-| sigma0 | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the radar backscatter file where data is referenced in ground surface. It is often derived from an `amplitude` or a `magnitude` role asset. |
-| beta0 | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the radar backscatter file where data is referenced in the slant range plane and is radiometrically calibrated.  It is often derived from an `amplitude` or a `magnitude` role asset. |
-| gamma0 | [SAR Extension](extensions/sar/README.md#best-practices)  | Points to the radar backscatter file where data is referenced in the plane perpendicular to the line of sight. It is often derived from an `amplitude` or a `magnitude` role asset. |
-| date-offset | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the date-offset file. |
-| covmat | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the Points to the Normalized Polarimetric Radar Covariance Matrix (CovMat) file. |
-| prd | [SAR Extension](extensions/sar/README.md#best-practices) | Points to the Polarimetric Radar Decomposition (PRD) file. |
+| reflectance, temperature, saturation, cloud, cloud-shadow | [EO Extension](extensions/eo/README.md#best-practices) | See the [table](extensions/eo/README.md#best-practices) in EO for more information. |
+| incidence-angle, azimuth, sun-azimuth, sun-elevation, terrain-shadow, terrain-occlusion, terrain-illumination | [View Extension](extensions/view/README.md#best-practices) | See the [table](extensions/view/README.md#best-practices) in View for more information. |
+| local-incidence-angle, noise-power, amplitude, magnitude, sigma0, beta0, gamma0, date-offset, covmat, prd | [SAR Extension](extensions/sar/README.md#best-practices) | See the [table](extensions/sar/README.md#best-practices) in SAR for more information. |
 
-Some of the particular asset roles also have some best practices.
+Some of the particular asset roles also have some best practices:
 
 ### Thumbnails
 
