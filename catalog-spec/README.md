@@ -6,7 +6,7 @@ the sets of Items. A Catalog consists of links to other Catalogs and Items, and 
 additional metadata to further describe its holdings. It is defined in full in the 
 [STAC Catalog Specification](catalog-spec.md).
 
-While STAC Catalogs mostly describe a structure of links and Items, a key related specification is the [STAC Collection Specification](../collection-spec/),
+While STAC Catalogs mostly describe a structure of links and Items, a key related specification is the [STAC Collection Specification](../collection-spec/collection-spec.md),
 which extends Catalogs with additional fields to further describe the set of Items in a Catalog. STAC Collections share the same 
 fields with Catalogs and therefore every Collection is also a valid Catalog. For more information on how the parts of STAC fit
 together see the [overview](../overview.md) document.

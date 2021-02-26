@@ -1,9 +1,19 @@
 # STAC Catalog Specification
 
+- [Catalog fields](#catalog-fields)
+  - [Additional Field Information](#additional-field-information)
+    - [stac_extensions](#stac-extensions)
+  - [Link Object](#link-object)
+    - [Relation types](#relation-types)
+- [Media Types](#media-types)
+  - [Media Type for STAC Catalogs](#media-type-for-stac-catalogs)
+  - [STAC Media Types](#stac-media-types)
+- [Extensions](#extensions)
+
 This document explains the structure and content of a STAC Catalog. A STAC Catalog is a 
-collection of [STAC Items](../item-spec/). These Items can be linked to directly from a Catalog,
-or the Catalog can link to other Catalogs (often called sub-Catalogs) that contain links to Items.
-The division of sub-catalogs is up to the implementor, but is generally done to aid the ease of 
+[Collection](../collection-spec/collection-spec.md) of [STAC Items](../item-spec/item-spec.md). These Items can be 
+linked to directly from a Catalog, or the Catalog can link to other Catalogs (often called sub-Catalogs) that contain 
+links to Items. The division of sub-catalogs is up to the implementor, but is generally done to aid the ease of 
 online browsing by people.
 
 Catalogs are not intended to be queried. Their purpose is discovery: to be browsed by people and crawled
@@ -12,28 +22,28 @@ that contains all the required fields is a valid STAC Catalog.
 
 - [Examples](../examples/)
   - See an example [catalog.json](../examples/catalog.json). The [collection.json](../examples/collection.json) is also a valid
-  catalog file, demonstrating linking to items (it is also a collection, so has additional fields)
+  catalog file, demonstrating linking to items (it is also a Collection, so has additional fields)
 - [JSON Schema](json-schema/catalog.json)
 
 The [Catalog section of the Overview](../overview.md#catalog-overview) document provides background information on 
-the structure of catalogs as well as links to best practices. This specification lays out the requirements
+the structure of Catalogs as well as links to best practices. This specification lays out the requirements
 and fields to be compliant.
 
 This Catalog specification primarily defines a structure for information to be discoverable. Any use 
 that is publishing a set of related spatiotemporal assets is strongly recommended to also use the 
-[STAC Collection specification](../collection-spec/) to provide additional information about a set of Items 
-contained in a catalog, to give contextual information to aid in discovery. Every STAC Collection is 
+STAC Collection specification to provide additional information about the set of Items 
+contained in a Catalog, in order to give contextual information to aid in discovery. Every STAC Collection is 
 also a valid STAC Catalog.
 
 ## Catalog fields
 
 | Element         | Type          | Description                                                  |
 | --------------- | ------------- | ------------------------------------------------------------ |
-| stac_version    | string        | **REQUIRED.** The STAC version the catalog implements. STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind. |
+| stac_version    | string        | **REQUIRED.** The STAC version the Catalog implements. STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind. |
 | stac_extensions | \[string]     | A list of extension identifiers the Catalog implements.                 |
-| id              | string        | **REQUIRED.** Identifier for the catalog.                    |
-| title           | string        | A short descriptive one-line title for the catalog.          |
-| description     | string        | **REQUIRED.** Detailed multi-line description to fully explain the catalog. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| id              | string        | **REQUIRED.** Identifier for the Catalog.                    |
+| title           | string        | A short descriptive one-line title for the Catalog.          |
+| description     | string        | **REQUIRED.** Detailed multi-line description to fully explain the Catalog. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | summaries       | Map<string, \[*]\|[Stats Object](../collection-spec/collection-spec.md#stats-object)> | A map of property summaries, either a set of values or statistics such as a range. More info in the [Collection spec](../collection-spec/collection-spec.md#summaries). |
 | links           | [[Link Object](#link-object)] | **REQUIRED.** A list of references to other documents.       |
 
@@ -41,7 +51,7 @@ also a valid STAC Catalog.
 
 #### stac_extensions
 
-A list of extensions the Catalog implements. This does NOT declare the extensions of children or Items. The list contains URLs to the JSON Schema files it can be validated against. For official [content extensions](../extensions/README.md#list-of-stac-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `single-file-stac` for the Point Cloud extension. If the versions of the extension and the catalog diverge, you can specify the URL of the JSON schema file.
+A list of extensions the Catalog implements. This does NOT declare the extensions of children or Items. The list contains URLs to the JSON Schema files it can be validated against. For official [content extensions](../extensions/README.md#list-of-stac-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `single-file-stac` for the Point Cloud extension. If the versions of the extension and the Catalog diverge, you can specify the URL of the JSON schema file.
 This list must only contain extensions that extend the Catalog itself, see the the 'Scope' column in the list of extensions.
 
 ### Link Object
@@ -67,14 +77,14 @@ The following types are commonly used as `rel` types in the Link Object of a STA
 | ------- | ----------- |
 | self    | STRONGLY RECOMMENDED. *Absolute* URL to the location that the catalog file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root    | STRONGLY RECOMMENDED. URL to the root STAC Catalog or [Collection](../collection-spec/README.md). Catalogs should include a link to their root, even if it's the root and points to itself. |
-| parent  | URL to the parent STAC Catalog or [Collection](../collection-spec/README.md). Non-root catalogs should include a link to their parent. |
-| child   | URL to a child STAC Catalog or [Collection](../collection-spec/README.md). |
-| item    | URL to a STAC [Item](../item-spec/item-spec.md). |
+| parent  | URL to the parent STAC Catalog or Collection. Non-root Catalogs should include a link to their parent. |
+| child   | URL to a child STAC Catalog or Collection. |
+| item    | URL to a STAC Item. |
 
-**Note:** A link to at least one `item` or `child` catalog is **REQUIRED**.
+**Note:** A link to at least one `item` or `child` Catalog is **REQUIRED**.
 
 There are additional `rel` types in the [Using Relation Types](../best-practices.md#using-relation-types) best practice, but as 
-they are more typically used in Collections, as catalogs tend to just be used to structure STAC organization, so tend to just use
+they are more typically used in Collections, as Catalogs tend to just be used to structure STAC organization, so tend to just use
 the ones above.
 
 ## Media Types
@@ -82,7 +92,7 @@ the ones above.
 One of the best ways to help inform web clients about the content in a link is to use a common [Media 
 Type](https://en.wikipedia.org/wiki/Media_type) in the `type` field. In STAC the `type` field is used in both the 
 '[Link](#link-object)'' and '[Asset](../item-spec/item-spec.md#asset-object)' Objects. It is quite useful for STAC browsers to better determine
-what to render and display to users searching and browsing the catalog.  Media types are often referred to by the 
+what to render and display to users searching and browsing the Catalog.  Media types are often referred to by the 
 now deprecated term "MIME types". 
 
 ### Media Type for STAC Catalogs
@@ -97,9 +107,9 @@ The following table lists the Media Types to use for STAC structures.
 
 | Media Type                     | Description                                                  |
 | ------------------------------ | ------------------------------------------------------------ |
-| `application/geo+json`	     | A STAC [Item](../item-spec/README.md)                        |
+| `application/geo+json`	     | A STAC [Item](../item-spec/item-spec.md)                        |
 | `application/json`             | A STAC [Catalog](#stac-catalog-specification)                |
-| `application/json`             | A STAC [Collection](../collection-spec/README.md)            |
+| `application/json`             | A STAC [Collection](../collection-spec/catalog-spec.md)            |
 
 ## Extensions
 
