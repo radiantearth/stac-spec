@@ -2,7 +2,7 @@
 
 - [Catalog fields](#catalog-fields)
   - [Additional Field Information](#additional-field-information)
-    - [stac_extensions](#stac-extensions)
+    - [stac_extensions](#stac_extensions)
   - [Link Object](#link-object)
     - [Relation types](#relation-types)
 - [Media Types](#media-types)
@@ -109,7 +109,7 @@ The following table lists the Media Types to use for STAC structures.
 | ------------------------------ | ------------------------------------------------------------ |
 | `application/geo+json`	     | A STAC [Item](../item-spec/item-spec.md)                        |
 | `application/json`             | A STAC [Catalog](#stac-catalog-specification)                |
-| `application/json`             | A STAC [Collection](../collection-spec/catalog-spec.md)            |
+| `application/json`             | A STAC [Collection](../collection-spec/collection-spec.md)            |
 
 ## Extensions
 
