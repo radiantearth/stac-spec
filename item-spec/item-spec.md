@@ -28,10 +28,10 @@ This document explains the structure and content of a SpatioTemporal Asset Catal
 [GeoJSON](http://geojson.org/) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) augmented with
 [foreign members](https://tools.ietf.org/html/rfc7946#section-6) relevant to a STAC object.
 These include fields that identify the time range and assets of the Item. An Item is the core
-object in a STAC catalog, containing the core metadata that enables any client to search or crawl
+object in a STAC Catalog, containing the core metadata that enables any client to search or crawl
 online catalogs of spatial 'assets' (e.g., satellite imagery, derived data, DEMs).
 
-The same Item definition is used in both [STAC catalogs](../catalog-spec/README.md) and
+The same Item definition is used in both [STAC Catalogs](../catalog-spec/README.md) and
 the [Item-related API endpoints](https://github.com/radiantearth/stac-api-spec/blob/master/api-spec.md#ogc-api---features-endpoints).
 Catalogs are simply sets of Items that are linked online, generally served by simple web servers
 and used for crawling data. The search endpoint enables dynamic queries, for example selecting all
@@ -55,7 +55,7 @@ inherited from GeoJSON.
 | ---------- | -------------------------------------------------------------------------- | ----------- |
 | stac_version | string                                                                   | **REQUIRED.** The STAC version the Item implements. |
 | stac_extensions | \[string]                                                             | A list of extensions the Item implements. |
-| id         | string                                                                     | **REQUIRED.** Provider identifier. The ID should be unique within the  [Collection](../collection-spec/README.md) that contains the Item. |
+| id         | string                                                                     | **REQUIRED.** Provider identifier. The ID should be unique within the  [Collection](../collection-spec/collection-spec) that contains the Item. |
 | type       | string                                                                     | **REQUIRED.** Type of the GeoJSON Object. MUST be set to `Feature`. |
 | geometry   | [GeoJSON Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) \| [null](https://tools.ietf.org/html/rfc7946#section-3.2) | **REQUIRED.** Defines the full footprint of the asset represented by this item, formatted according to [RFC 7946, section 3.1](https://tools.ietf.org/html/rfc7946#section-3.1). The footprint should be the default GeoJSON geometry, though additional geometries can be included. Coordinates are specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). |
 | bbox       | \[number]                                                                  | **REQUIRED if `geometry` is not `null`.** Bounding Box of the asset represented by this Item, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5). |
@@ -72,9 +72,9 @@ In general, STAC versions can be mixed, but please keep the [recommended best pr
 
 #### id
 
-It is important that an Item identifier is unique within a collection, and that the 
+It is important that an Item identifier is unique within a Collection, and that the 
 [Collection identifier](../collection-spec/collection-spec.md#id) in turn is unique globally. Then the two can be combined to
-give a globally unique identifier. Items are *[strongly recommended](#collections)* to have collections, and not having one makes
+give a globally unique identifier. Items are *[strongly recommended](#collections)* to have Collections, and not having one makes
 it more difficult to be used in the wider STAC ecosystem. If an Item does not have a Collection, then the Item identifier should be unique within its root Catalog.
 
 As most geospatial assets are already uniquely defined by some 
@@ -134,7 +134,7 @@ in the best practices document for more information.
 
 #### Additional Fields
 
-Providers should include metadata fields that are relevant for users in the catalog, but it is recommended
+Providers should include metadata fields that are relevant for users of STAC, but it is recommended
 to [select only those necessary for search](../best-practices.md#field-selection-and-metadata-linking).
 Where possible metadata fields should be mapped to the STAC Common Metadata and widely used extensions,
 to enable cross-catalog search on known fields.
@@ -153,7 +153,7 @@ only be used when the data itself is nested, as with `eo:bands`.
 ### Link Object
 
 This object describes a relationship with another entity. Data providers are advised to be liberal
-with the links section, to describe things like the catalog an Item is in, related Items, parent or
+with the links section, to describe things like the Catalog an Item is in, related Items, parent or
 child Items (modeled in different ways, like an 'acquisition' or derived data).
 It is allowed to add additional fields such as a `title` and `type`.
 
@@ -177,9 +177,9 @@ This happens where there is not a clear official option, or where STAC uses an o
 | Type         | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
 | self         | STRONGLY RECOMMENDED. *Absolute* URL to the Item if it is available at a public URL. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root         | URL to the root STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
-| parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
-| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md). *Absolute* URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
+| root         | URL to the root STAC Catalog or Collection. |
+| parent       | URL to the parent STAC Catalog or Collection. |
+| collection   | STRONGLY RECOMMENDED. URL to a Collection. *Absolute* URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
 
 A more complete list of potential `rel` types and their meaning in STAC can be found in the [Using Relation 
