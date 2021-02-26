@@ -312,9 +312,9 @@ actual role requirements.
 | snow-ice | Best Practice | Points to a file that indicates whether a pixel is assessed as being snow/ice or not. |
 | land-water | Best Practice | Points to a file that indicates whether a pixel is assessed as being land or water. |
 | water-mask | Best Practice | Points to a file that indicates whether a pixel is assessed as being water (e.g. flooding map). |
-| reflectance, temperature, saturation, cloud, cloud-shadow | [EO Extension](extensions/eo/README.md#best-practices) | See the [table](extensions/eo/README.md#best-practices) in EO for more information. |
-| incidence-angle, azimuth, sun-azimuth, sun-elevation, terrain-shadow, terrain-occlusion, terrain-illumination | [View Extension](extensions/view/README.md#best-practices) | See the [table](extensions/view/README.md#best-practices) in View for more information. |
-| local-incidence-angle, noise-power, amplitude, magnitude, sigma0, beta0, gamma0, date-offset, covmat, prd | [SAR Extension](extensions/sar/README.md#best-practices) | See the [table](extensions/sar/README.md#best-practices) in SAR for more information. |
+| reflectance, temperature, saturation, cloud, cloud-shadow | [EO Extension](extensions/eo/README.md#best-practices) | See the [table](extensions/eo/README.md#best-practices) in EO for more information, and the definitive list of roles related to EO. |
+| incidence-angle, azimuth, sun-azimuth, sun-elevation, terrain-shadow, terrain-occlusion, terrain-illumination | [View Extension](extensions/view/README.md#best-practices) | See the [table](extensions/view/README.md#best-practices) in View for more information, and the definitive list of roles related to viewing angles. |
+| local-incidence-angle, noise-power, amplitude, magnitude, sigma0, beta0, gamma0, date-offset, covmat, prd | [SAR Extension](extensions/sar/README.md#best-practices) | See the [table](extensions/sar/README.md#best-practices) in SAR for more information. , and the definitive list of roles related to SAR. |
 
 Some of the particular asset roles also have some best practices:
 
