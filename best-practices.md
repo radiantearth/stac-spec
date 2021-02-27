@@ -43,7 +43,7 @@
 This document makes a number of recommendations for creating real world SpatioTemporal Asset Catalogs. None of them 
 are required to meet the core specification, but following these practices will make life easier for client tooling
 and for users. They come about from practical experience of implementors and introduce a bit more 'constraint' for
-those who are creating new catalogs or new tools to work with STAC. 
+those who are putting their data into STAC or creating new tools to work with STAC. 
 
 While the current goal of the core is to remain quite flexible and simple to meet a wide variety of use cases,
 in time some of these may evolve to become part of the core specification.
@@ -56,16 +56,17 @@ STAC strives to make geospatial information more accessible, by putting it on th
 different tools will be able to load and display public-facing STAC data. But the web runs on a [Same origin 
 policy](https://en.wikipedia.org/wiki/Same-origin_policy), preventing web pages from loading information from other web locations
 to prevent malicious scripts from accessing sensitive data. This means that by default a web page would only be able to load STAC
-Items from the same server the page is on. [Cross-origin resource sharing](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing),
+[Items](item-spec/item-spec.md) from the same server the page is on. [Cross-origin resource sharing](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing),
 also known as 'CORS' is a protocol to enable safe communication across origins. But most web services turn it off by default. This
 is generally a good thing, but unfortunately if CORS is not enabled then any browser-based STAC tool will not work. 
 
-So to enable all the great web tools (like [stacindex.org](http://stacindex.org)) to work with your STAC catalog it is essential to
+So to enable all the great web tools (like [stacindex.org](http://stacindex.org)) to work with your STAC implementation it is essential to
 'enable CORS'. Most services have good resources on how to do this, like on [AWS S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html),
 [Google Cloud Storage](https://cloud.google.com/storage/docs/cross-origin), or [Apache Server](https://enable-cors.org/server_apache.html). 
 Many more are listed on [enable-cors.org](https://enable-cors.org/server.html). We recommend enabling CORS for all requests ('\*'),
 so that diverse online tools can access your data. If you aren't sure if your server has CORS enabled you can use 
-[test-cors.org](https://www.test-cors.org/). Enter the URL of your STAC catalog JSON and make sure it gets a response.
+[test-cors.org](https://www.test-cors.org/). Enter the URL of your STAC root [Catalog](catalog-spec/catalog-spec.md) JSON 
+and make sure it gets a response.
 
 ### STAC on the Web
 
@@ -74,10 +75,10 @@ surprised that there is nothing about HTML in the entire specification. This is 
 should be on web pages without ending up with very bad looking pages. But the importance of having web-accessible versions
 of every STAC Item is paramount.
 
-The main recommendation is to have an HTML page for every single STAC `Item` and `Catalog`. They should be visually pleasing, 
+The main recommendation is to have an HTML page for every single STAC Item and Catalog. They should be visually pleasing, 
 crawlable by search engines and ideally interactive. The current best practice is to use a tool in the STAC ecosystem called
-[STAC Browser](https://github.com/radiantearth/stac-browser/). It can crawl most any valid catalog and generate unique web
-pages for each `Item` and `Catalog` (or `Collection`). While it has a default look and feel, the design can easily be 
+[STAC Browser](https://github.com/radiantearth/stac-browser/). It can crawl most any valid STAC implementation and generate unique web
+pages for each Item and Catalog (or Collection). While it has a default look and feel, the design can easily be 
 modified to match an existing web presence. And it will automatically turn any Item with a [Cloud Optimized 
 GeoTIFF](http://cogeo.org) asset into an interactive, zoomable web map (using [tiles.rdnt.io](http://tiles.rdnt.io/) to render
 the tiles on a [leaflet](https://leafletjs.com/) map). It also attempts to encapsulate a number of best practices that enable 
@@ -86,9 +87,9 @@ are welcome!
 
 Implementors are welcome to generate their own web pages, and additional tools that automatically transform STAC JSON into 
 html sites are encouraged. In time there will likely emerge a set of best practices from an array of tools, and we may be
-able to specify in the core standard how to make the right HTML pages. But for now it is useful for catalogs to focus on 
+able to specify in the core standard how to make the right HTML pages. But for now it is useful for STAC implementations to focus on 
 making data available as JSON, and then leverage tools that can evolve at the same time to make the best HTML experience. This
-enables innovation on the web generation and search engine optimization to evolve independently of the catalogs themseleves.
+enables innovation on the web generation and search engine optimization to evolve independently from the core data.
 
 #### Schema.org, JSON-LD, DCAT, microformats, etc
 
@@ -104,12 +105,12 @@ refined. It is on the roadmap to add in more mapping and do more testing of sear
 
 #### Deploying STAC Browser
 
-Most public catalogs have a STAC Browser hosted at [stacindex.org](https://stacindex.org/catalogs).
-Anyone with a public catalog is welcome to have a STAC Browser instance hosted for free,
+Most public STAC implementations have a STAC Browser hosted at [stacindex.org](https://stacindex.org/catalogs).
+Anyone with a public STAC implementation is welcome to have a STAC Browser instance hosted for free,
 just submit it to [stacindex.org](https://stacindex.org/add).
-But the stronger recommendation is to host your catalog's STAC Browser on your own domain, and to customize its 
-design to look and feel like your main web presence. STAC aims to be decentralized, so each catalog should have its own location and just be
-part of the wider web.
+But the stronger recommendation is to host a STAC Browser on your own domain, and to customize its 
+design to look and feel like your main web presence. STAC aims to be decentralized, so each STAC-compliant data catalog 
+should have its own location and just be part of the wider web.
 
 ## Item Practices
 
@@ -124,7 +125,7 @@ endpoints. This isn't a blocker, it just makes the ID's served through API's a b
 
 When defining unique fields for search, like constellation or platform, it is recommended that 
 the value consist of only lowercase characters, numbers, `_`, and `-`. Examples include `sentinel-1a` (Sentinel-1), 
-`landsat-8` (Landsat-8) and `envisat` (Envisat). This is to provide consistency for search across collections, so that
+`landsat-8` (Landsat-8) and `envisat` (Envisat). This is to provide consistency for search across Collections, so that
 people can just search for 'landsat-8', instead of thinking through all the ways providers might have chosen to name it.
 
 ### Field selection and Metadata Linking
@@ -192,9 +193,9 @@ refined after processing.
 The other case that often comes up is people who love STAC and want to use it to catalog everything they have, even if it is
 not spatial. This use case is not currently supported by STAC, as we are focused on data that is both temporal and spatial
 in nature. The [OGC API - Records](https://github.com/opengeospatial/ogcapi-records) is an emerging standard that likely
-will be able to handle a wider range of data to catalog than STAC. It builds on [OGC API - 
+will be able to handle a wider range of data than STAC. It builds on [OGC API - 
 Features](https://github.com/opengeospatial/ogcapi-features) just like [STAC API](https://github.com/radiantearth/stac-api-spec/)
-does. Using [collection assets](collection-spec/collection-spec.md#asset-object) may also provide an option for some 
+does. Using [Collection Assets](collection-spec/collection-spec.md#asset-object) may also provide an option for some 
 use cases.
 
 ### Representing Vector Layers in STAC
@@ -202,10 +203,10 @@ use cases.
 Many implementors are tempted to try to use STAC for 'everything', using it as a universal catalog of all their 'stuff'.
 The main route considered is to use STAC to describe vector layers, putting a shapefile or [geopackage](http://geopackage.org)
 as the `asset`. Though there is nothing in the specification that *prevents* this, it is not really the right level of 
-abstraction. A shapefile or geopackage corresponds to a collection, not a single item. The ideal thing to do with
+abstraction. A shapefile or geopackage corresponds to a Collection, not a single Item. The ideal thing to do with
 one of those is to serve it with [OGC API - Features](https://github.com/opengeospatial/ogcapi-features) standard. This
 allows each feature in the shapefile/geopackage to be represented online, and enables querying of the actual data. If
-that is not possible then the appropriate way to handle collection-level search is with the 
+that is not possible then the appropriate way to handle Collection-level search is with the 
 [OGC API - Records](https://github.com/opengeospatial/ogcapi-records) standard, which is a 'brother' specification of STAC API. 
 Both are compliant with OGC API - Features, adding richer search capabilities to enable finding of data. 
 
@@ -261,7 +262,7 @@ following table lists some of the most common ones you may encounter or use.
 
 *Deprecation notice: GeoTiff previously used the media type `image/vnd.stac.geotiff` and
 Cloud Optimized GeoTiffs used `image/vnd.stac.geotiff; profile=cloud-optimized`.
-Both can still appear in old catalogues, but are deprecated and should be replaced. This will, unfortunately, likely shift in the future as
+Both can still appear in old STAC implementations, but are deprecated and should be replaced. This will, unfortunately, likely shift in the future as
 [OGC sorts out the media types](https://github.com/opengeospatial/geotiff/issues/34).*
 
 #### Formats with no registered media type
@@ -293,14 +294,14 @@ But it is incredibly reliable, as there are no moving parts, no clusters or data
 The goal of STAC is to expose as much asset metadata online as possible, so the static catalog offers a very low
 barrier to entry for anyone with geospatial assets to make their data searchable.
 
-Static Catalogs tend to make extensive use of *sub-catalogs* to organize their Items into sensible browsing structures, 
+Static catalogs tend to make extensive use of *sub-catalogs* to organize their Items into sensible browsing structures, 
 as they can only have a single representation of their catalog, since the static nature means the structure is baked in.
 While it is up to the implementor to organize the catalog, it is recommended to arrange it in a way that would make sense 
 for a human to browse a set of STAC Items in an intuitive matter.
 
 The recommendation for static catalogs is to define them using the file name `catalog.json` or `collection.json` to distinguish 
-the catalog from other JSON type files. In order to support multiple catalogs, the recommended practice 
-is to place the catalog file in namespaces "directories". For example:
+the Catalog from other JSON type files. In order to support multiple catalogs, the recommended practice 
+is to place the Catalog file in namespaces "directories". For example:
 
 - current/catalog.json
 - archive/catalog.json
@@ -314,13 +315,13 @@ It generally indexes data for efficient responses, and aims to be easy for exist
 for clients to consume. A dynamic catalog will sometimes be populated by a static catalog, or at least may have a 'backup' of its 
 fields stored as a cached static catalog.
 
-Dynamic Catalogs often also implement the [STAC API](https://github.com/radiantearth/stac-api-spec/) specification, that 
+Dynamic catalogs often also implement the [STAC API](https://github.com/radiantearth/stac-api-spec/) specification, that 
 responds to search queries (like give me all imagery in Oahu gathered on January 15, 2017). But they are not required to.  One
 can have a dynamic service that only implements the core STAC specification, and is crawled by STAC API implementations that
-provide 'search'. For example a Content Management Service like Drupal or an Open Data Catalog like CKAN could choose to expose 
+provide 'search'. For example a Content Management Service like Drupal or an open data catalog like CKAN could choose to expose 
 its content as linked STAC Items by implementing a dynamic catalog. 
 
-One benefit of a dynamic catalog is that it can generate various 'views' of the catalog, exposing the same `Items` in 
+One benefit of a dynamic catalog is that it can generate various 'views' of the catalog, exposing the same Items in 
 different sub-catalog organization structures. For example one catalog could divide sub-catalogs by date and another by
 providers, and users could browse down to both. The leaf Items should just be linked to in a single canonical location
 (or at least use a `rel` link that indicates the location of the canonical one).
@@ -340,13 +341,13 @@ should consider an additional way to break it up.
 We encourage people to explore new structures of linking data, but the following list is what a number of implementors 
 ended up doing. Following these recommendations makes for more legible catalogs.
 
-1. Root documents (catalogs / collections) should be at the root of a directory tree containing the static catalog.
+1. Root documents (Catalogs / Collections) should be at the root of a directory tree containing the static catalog.
 2. Catalogs that are not also Collections should be named `catalog.json` and Collections should be named `collection.json`.
 3. Items should be named `<id>.json`.
-4. Sub-catalogs should be stored in subdirectories of their parent (and only 1 subdirectory deeper than a document's parent) (e.g. `.../sample/sub1/catalog.json`).
-5. Items should be stored in subdirectories of their parent catalog. 
-This means that each item and its assets are contained in a unique subdirectory.
-6. Limit the number of items in a catalog or sub-catalog, grouping / partitioning as relevant to the dataset.
+4. Sub-Catalogs should be stored in subdirectories of their parent (and only 1 subdirectory deeper than a document's parent) (e.g. `.../sample/sub1/catalog.json`).
+5. Items should be stored in subdirectories of their parent Catalog. 
+This means that each Item and its assets are contained in a unique subdirectory.
+6. Limit the number of Items in a Catalog or sub-Catalog, grouping / partitioning as relevant to the dataset.
 
 #### Dynamic Catalog Layout
 
@@ -359,8 +360,8 @@ different sub-catalog organization structures. For example one catalog could div
 by providers, and users could browse down to both. The leaf Items should just be linked to in a single canonical location 
 (or at least use a rel link that indicates the location of the canonical one). It is recommended that dynamic catalogs 
 provide multiple 'views' to allow users to navigate in a way that makes sense to them, providing multiple 'sub-catalogs'
-from the root catalog that enable different paths to browse (country/state, date/time, constellation/satellite, etc). But the 
-canonical 'rel' link should be used to designate the primary location of the item to search engine crawlers.
+from the root Catalog that enable different paths to browse (country/state, date/time, constellation/satellite, etc). But the 
+canonical 'rel' link should be used to designate the primary location of the Item to search engine crawlers.
 
 #### Mixing STAC Versions
 
@@ -374,8 +375,8 @@ STAC version. Otherwise some behaviour of functionality may be unpredictable (e.
 ### Using Summaries in Collections
 
 One of the strongest recommendations for STAC is to always provide [summaries](collection-spec/collection-spec.md#summaries) in
-your collections. The core team decided to not require them, in case there are future situations where providing a summary
-is too difficult. The idea behind them is not to exhaustively summarize every single field in the collection, but to provide
+your Collections. The core team decided to not require them, in case there are future situations where providing a summary
+is too difficult. The idea behind them is not to exhaustively summarize every single field in the Collection, but to provide
 a bit of a 'curated' view. 
 
 Some general thinking on what to summarize is as follows:
@@ -384,18 +385,18 @@ Some general thinking on what to summarize is as follows:
 the data might be. For example in overhead imagery, a 
 [`view:off_nadir`](extensions/view/README.md#item-properties-and-item-asset-fields) with a range of 0 to 3 would tell people this 
 imagery is all pretty much straight down, while a value of 15 to 40 would tell them that it's oblique imagery, or 0 to 60 that it's 
-a collection with lots of different look angles. 
+a Collection with lots of different look angles. 
 
 * Fields that have only one or a handful of values are also great to summarize. Collections with a single satellite may
 use a single [`gsd`](item-spec/common-metadata.md#instrument) field in the summary, and it's quite useful for users to know
 that all data is going to be the same resolution. Similarly it's useful to know the names of all the 
-[`platform` values](item-spec/common-metadata.md#instrument) that are used in the collection. 
+[`platform` values](item-spec/common-metadata.md#instrument) that are used in the Collection. 
 
 * It is less useful to summarize fields that have numerous different discrete values that can't easily be represented
 in a range. These will mostly be string values, when there aren't just a handful of options. For example if you had a 
 'location' field that gave 3 levels of administrative region (like 'San Francisco, California, United States') to help people
-understand more intuitively where a shot was taken. If your collection has millions of items, or even hundreds, you don't want
-to include all those values as a summary. 
+understand more intuitively where a shot was taken. If your Collection has millions of Items, or even hundreds, you don't want
+to include all the different location string values in a summary. 
 
 * Fields that consist of arrays are more of a judgement call. For example [`instruments`](item-spec/common-metadata.md#instrument)
 is straightforward and recommended, as the elements of the array are a discrete set of options. On the other hand 
@@ -408,7 +409,7 @@ We do highly recommend including an [`eo:bands`](extensions/eo/README.md#eobands
 especially if it represents just one satellite or constellation. This should be a union of all the potential bands that you 
 have in assets. It is ok to only add the summary at the Collection level without putting an explicit `eo:bands` summary at the 
 `properties` level of an Item, since that is optional. This gives users of the Collection a sense of the sensor capabilities without 
-having to examine specific items or aggregate across every item.
+having to examine specific Items or aggregate across every Item.
 
 Note that the ranges of summaries don't have to be exact. If you are publishing a catalog that is constantly updating with
 data from a high agility satellite you can put the `view:off_nadir` range to be the expected values, based on the satellite
@@ -430,7 +431,7 @@ able to use it on their local computer, so all links need to be relative. Or a t
 without knowing the final location that it will live at online, so it isn't possible to set absolute 'self' URL's. These use
 cases should utilize a catalog that follows the listed principles:
 
-* **Only relative href's in structural `links`**: The full catalog structure of links down to sub-catalogs and items, and their 
+* **Only relative href's in structural `links`**: The full catalog structure of links down to sub-catalogs and Items, and their 
 links back to their parents and roots, should be done with relative URL's. The structural rel types include `root`, `parent`, 
 `child`, `item`, and `collection`. Other links can be absolute, especially if they describe a resource that makes less sense in
 the catalog, like [sci:doi](extensions/scientific/README.md#item-and-collection-fields), 
@@ -472,7 +473,7 @@ enable easy provenance tracking. There are two types of published catalogs:
 #### Absolute Published Catalog
 
 This is a catalog that uses absolute links for everything, both in the `links` objects and in the
-`asset` hrefs. It includes `self` links for every item. Generally these are implemented by dynamic catalogs, as it is quite
+`asset` hrefs. It includes `self` links for every Item. Generally these are implemented by dynamic catalogs, as it is quite
 easy for them to generate the proper links dynamically. But a static catalog that knows its published location could easily
 implement it.
 
@@ -483,7 +484,7 @@ the root catalog, to identify its online location. This is designed so that a se
 assets or just metadata) can be 'published' online
 by just adding one field (the self link) to its root catalog. All the other links should remain the same. The resulting catalog
 is no longer compliant with the self-contained catalog recommendations, but instead transforms into a 'relative published catalog'. 
-With this, a client may resolve item and sub-catalog self links by traversing parent and root links, but requires reading 
+With this, a client may resolve Item and sub-catalog self links by traversing parent and root links, but requires reading 
 multiple sources to achieve this. 
 
 So if you are writing a STAC client it is recommended to start with just supporting these two types of published catalogs. In 
@@ -503,8 +504,8 @@ a number of the common official relations that are used in production STAC imple
 | alternate | It is recommended that STAC Items are also available as HTML, and should use this rel with `"type" : "text/html"` to tell clients where they can get a version of the Item or Collection to view in a browser. See [STAC on the Web in Best Practices](#stac-on-the-web) for more information. |
 | canonical | The URL of the [canonical](https://en.wikipedia.org/wiki/Canonical_link_element) version of the Item or Collection. API responses and copies of catalogs should use this to inform users that they are direct copy of another STAC Item, using the canonical rel to refer back to the primary location. |
 | via       | The URL of the source metadata that this STAC Item or Collection is created from. Used similarly to canonical, but refers back to a non-STAC record (Landsat MTL, Sentinel tileInfo.json, etc) |
-| prev      | Indicates that the link's context is a part of a series, and that the previous in the series is the link target. Typically used in STAC by API's, to return smaller groups of items or catalogs. |
-| next      | Indicates that the link's context is a part of a series, and that the next in the series is the link target. Typically used in STAC by API's, to return smaller groups of items or catalogs. |
+| prev      | Indicates that the link's context is a part of a series, and that the previous in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs. |
+| next      | Indicates that the link's context is a part of a series, and that the next in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs. |
 
 ### Versioning for Catalogs
 
@@ -547,8 +548,8 @@ published catalog, or to create new absolute links for the STAC search/ endpoint
 responses, with the API's location at the base url. The `/` endpoint with the catalog could either link directly
 to the static catalog, or can follow the 'dynamic catalog layout' recommendations above with a new set of URL's.
 
-Ideally each `Item` would use its `links` to provide a reference back to the static location. The location of the static
-item should be treated as the canonical location, as the generated API is more likely to move or be temporarily down. The
+Ideally each Item would use its `links` to provide a reference back to the static location. The location of the static
+Item should be treated as the canonical location, as the generated API is more likely to move or be temporarily down. The
 spec provides the `derived_from` rel field, which fits well enough, but `canonical` is likely the more appropriate one
 as everything but the links should be the same.
 
@@ -557,7 +558,7 @@ as everything but the links should be the same.
 There is a set of emerging practices to use services like Amazon's Simple Queue Service (SQS) and Simple Notification Service
 (SNS) to keep catalogs in sync. There is a great [blog post on the CBERS STAC implementation on AWS](https://aws.amazon.com/blogs/publicsector/keeping-a-spatiotemporal-asset-catalog-stac-up-to-date-with-sns-sqs/). The core 
 idea is that a static catalog should emit a notification whenever it changes. The recommendation for SNS is to use the STAC 
-item JSON as the message body, with some fields such as a scene’s datetime and geographic bounding box that allows 
+Item JSON as the message body, with some fields such as a scene’s datetime and geographic bounding box that allows 
 basic geographic filtering from listeners. 
 
 The dynamic STAC API would then listen to the notifications and update its internal datastore whenever new data comes into
