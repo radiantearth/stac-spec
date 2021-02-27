@@ -7,7 +7,7 @@
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 - **Owner**: @matthewhanson
 
-This document explains the fields of the STAC Electro-Optical (EO) Extension to a STAC Item. 
+This document explains the fields of the STAC Electro-Optical (EO) Extension to a STAC [Item](../../item-spec/item-spec.md). 
 
 These fields defined by this extension follow the convention for 
 [additional fields for a STAC Item](../../item-spec/item-spec.md#additional-fields-for-assets) and are 
@@ -96,7 +96,7 @@ full_width_half_max = max_wavelength - min_wavelength
 
 For example, if we were given a band described as (0.4um - 0.5um) the `center_wavelength` would be 0.45um and the `full_width_half_max` would be 0.1um.
 
-In some cases the full transmission profile is needed, such as when harmonizing between two sensor modalities. It is recommended that the full spectral profile be included as a link or an asset (preferably at the Collection level).
+In some cases the full transmission profile is needed, such as when harmonizing between two sensor modalities. It is recommended that the full spectral profile be included as a link or an asset (preferably at the [Collection](../../collection-spec/collection-spec.md) level).
 
 #### Common Band Names
 

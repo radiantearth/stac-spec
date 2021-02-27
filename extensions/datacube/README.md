@@ -1,4 +1,4 @@
-# Data cube Extension Specification
+# Data Cube Extension Specification
 
 - **Title: Data Cube**
 - **Identifier: datacube**
@@ -10,13 +10,13 @@
 Data cube related metadata, especially to describe their dimensions.
 
 - Examples:
-  - [Item](examples/example-item.json)
-  - [Collection](examples/example-collection.json)
+  - [Item example](examples/example-item.json)
+  - [Collection example](examples/example-collection.json)
 - [JSON Schema](json-schema/schema.json)
 
 ## Item Properties and Collection Fields
 
-These fields may be added to either Item Properties or Collection.
+These fields may be added to either [Item](../../item-spec/item-spec.md) Properties or [Collection](../../collection-spec/collection-spec.md).
 
 | Field Name      | Type                                               | Description                                 |
 | --------------- | -------------------------------------------------- | ------------------------------------------- |
@@ -87,6 +87,6 @@ An Additional Dimension Object MUST specify an `extent` or a set of `values`. It
 
 ## Implementations
 
-openEO has multiple implementations. Some example collections: 
-- [Sentinel-2 collection on openEO Google Earth Engine driver](https://earthengine.openeo.org/v0.4/collections/COPERNICUS/S2) (STAC 0.7.0)
-- [MODIS ST Drought collection on EURAC WCPS driver](https://openeo.eurac.edu/collections/MODIS_ST_DROUGHT) (STAC 0.7.0)
+openEO has multiple implementations. Some example Collections: 
+- [Sentinel-2 Collection on openEO Google Earth Engine driver](https://earthengine.openeo.org/v0.4/collections/COPERNICUS/S2) (STAC 0.7.0)
+- [MODIS ST Drought Collection on EURAC WCPS driver](https://openeo.eurac.edu/collections/MODIS_ST_DROUGHT) (STAC 0.7.0)
