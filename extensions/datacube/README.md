@@ -88,5 +88,5 @@ An Additional Dimension Object MUST specify an `extent` or a set of `values`. It
 ## Implementations
 
 openEO has multiple implementations. Some example Collections: 
-- [Sentinel-2 Collection on openEO Google Earth Engine driver](https://earthengine.openeo.org/v0.4/collections/COPERNICUS/S2) (STAC 0.7.0)
-- [MODIS ST Drought Collection on EURAC WCPS driver](https://openeo.eurac.edu/collections/MODIS_ST_DROUGHT) (STAC 0.7.0)
+- [Sentinel-2 Collection on openEO Google Earth Engine](https://earthengine.openeo.org/v1.0/collections/COPERNICUS/S2) (STAC 1.0.0-beta.2)
+- [AGERA5 Collection on openEO VITO](https://openeo.vito.be/openeo/1.0/collections/AGERA5) (STAC 0.9.0)
