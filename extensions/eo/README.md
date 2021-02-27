@@ -136,3 +136,18 @@ The [extensions page](../README.md) gives an overview about related extensions. 
 
 * the [Sat Extension Specification](../sat/README.md) to describe SAR data collected from a satellite.
 * the [View Geometry Extension Specification](../view/README.md) to describe angles of sensors collecting earth observation data from above the earth.
+
+## Best Practices
+
+One of the emerging best practices is to use [Asset Roles](../../item-spec/item-spec.md#asset-roles) to provide clients with more 
+information about the assets in an item. The following list includes a shared vocabulary for some common EO assets. This list should
+not be considered definitive, and implementors are welcome to use other asset roles. If consensus and tooling consolidates around
+these role names then they will be specified in the future as more standard than just 'best practices'.
+
+| Role Name | Description                                                            |
+| --------- | ---------------------------------------------------------------------- |
+| reflectance | An asset the provides [reflectance](https://www.l3harrisgeospatial.com/Support/Self-Help-Tools/Help-Articles/Help-Articles-Detail/ArtMID/10220/ArticleID/19247/3377) values, instead of just radiance. |
+| temperature | An asset that provides actual temperature measurements. |
+| saturation |  Points to a file that indicates where pixels in the input spectral bands are saturated. |
+| cloud | Points to a file that indicates whether a pixel is assessed as being cloud |
+| cloud-shadow | Points to a file that indicates whether a pixel is assessed as being cloud shadow. |

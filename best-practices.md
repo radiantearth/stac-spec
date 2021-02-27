@@ -20,6 +20,9 @@
   - [Working with Media Types](#working-with-media-types)
     - [Common Media Types in STAC](#common-media-types-in-stac)
     - [Formats with no registered media type](#formats-with-no-registered-media-type)
+  - [Asset Roles](#asset-roles)
+    - [List of Asset Roles](#list-of-asset-roles)
+    - [Thumbnails](#thumbnails)
 - **[Catalog & Collection Best Practices](#catalog--collection-practices)**
   - [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
     - [Static Catalogs](#static-catalogs)
@@ -37,8 +40,6 @@
   - [Static to Dynamic best practices](#static-to-dynamic-best-practices)
     - [Ingestion and links](#ingestion-and-links)
     - [Keep catalogs in sync with cloud notification and queue services](#keep-catalogs-in-sync-with-cloud-notification-and-queue-services)
-
----------
 
 This document makes a number of recommendations for creating real world SpatioTemporal Asset Catalogs. None of them 
 are required to meet the core specification, but following these practices will make life easier for client tooling
@@ -274,6 +275,61 @@ section-3.2](https://tools.ietf.org/html/rfc6838#section-3.2). Ideally the forma
 register the media type with IANA, so that other STAC clients can find it easily. But if you are only using it internally it is 
 [acceptable to not register](https://stackoverflow.com/questions/29121241/custom-content-type-is-registering-with-iana-mandatory) 
 it. It is relatively easy to [register](https://www.iana.org/form/media-types) a `vnd` media type.
+
+## Asset Roles
+
+[Asset roles](item-spec/item-spec.md#asset-roles) are used to describe what each asset is used for. They are particular useful 
+when several assets have the same media type, such as when an Item has a multispectral analytic asset, a 3-band full resolution 
+visual asset, a down-sampled preview asset, and a cloud mask asset, all stored as Cloud Optimized GeoTIFF (COG) images. It is 
+recommended to use at least one role for every asset available, and using multiple roles often makes sense. For example you'd use
+both `data` and `reflectance` if your main data asset is processed to reflectance, or `metadata` and `cloud` for an asset that 
+is a cloud mask, since a mask is considered a form of metadata (it's information about the data). Or if a single asset represents
+several types of 'unusable data' it might include `metadata`, `cloud`, `cloud-shadow` and `snow-ice`. If there is not a clear
+role in the [Asset Role Types](item-spec/item-spec.md#asset-role-types) or the following list then just pick a sensible name for 
+the role. And you are encouraged to add it to the list below and/or in an extension if you think the new role will have broader 
+applicability. 
+
+### List of Asset Roles
+
+In addition to the thumbnail, data and overview [roles listed](item-spec/item-spec.md#asset-role-types) in the Item spec, there
+are a number of roles that are emerging in practice, but don't have enough widespread use to justify standardizing them. So if
+you want to re-use other roles then try to find them on the list below, and also feel free to suggest more to include here.
+
+The 'source' field lists where the role comes from. The ones the say Item Spec are the only 'official' roles that are fully
+standardized. In time others on this list may migrate to a more 'official' list. Those that say 'best practice' are just from this 
+doc, the listing is the table below. The ones from extensions are mostly just 'best practices' in the extensions, as there are few
+actual role requirements.
+
+| Role Name | Source | Description                                                            |
+| --------- | -------------|----------------------------------------------------------------------- |
+| thumbnail | [Item Spec](item-spec/item-spec.md#asset-role-types) | An asset that represents a thumbnail of the item, typically a true color image (for items with assets in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `roles` be unique tuples. For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types. |
+| data      | [Item Spec](item-spec/item-spec.md#asset-role-types) |  The data itself. This is a suggestion for a common role for data files to be used in case data providers don't come up with their own names and semantics. |
+| metadata  | [Item Spec](item-spec/item-spec.md#asset-role-types) |  A metadata sidecar file describing the data in this item, for example the Landsat-8 MTL file. |
+| overview  | Best Practice | An asset that represents a possibly larger view than the thumbnail of the Item, for example, a true color composite of multi-band data. |
+| visual    | Best Practice |  An asset that is a full resolution version of the data, processed for visual use (RGB only, often sharpened ([pan-sharpened](https://en.wikipedia.org/wiki/Pansharpened_image) and/or using an [unsharp mask](https://en.wikipedia.org/wiki/Unsharp_masking))). |
+| date | Best Practice | An asset that provides per-pixel acquisition timestamps, typically serving as metadata to another asset |
+| graphic | Best Practice | Supporting plot, illustration, or graph associated with the Item |
+| data-mask | Best Practice | File indicating if corresponding pixels have Valid data and various types of invalid data |
+| snow-ice | Best Practice | Points to a file that indicates whether a pixel is assessed as being snow/ice or not. |
+| land-water | Best Practice | Points to a file that indicates whether a pixel is assessed as being land or water. |
+| water-mask | Best Practice | Points to a file that indicates whether a pixel is assessed as being water (e.g. flooding map). |
+| reflectance, temperature, saturation, cloud, cloud-shadow | [EO Extension](extensions/eo/README.md#best-practices) | See the [table](extensions/eo/README.md#best-practices) in EO for more information, and the definitive list of roles related to EO. |
+| incidence-angle, azimuth, sun-azimuth, sun-elevation, terrain-shadow, terrain-occlusion, terrain-illumination | [View Extension](extensions/view/README.md#best-practices) | See the [table](extensions/view/README.md#best-practices) in View for more information, and the definitive list of roles related to viewing angles. |
+| local-incidence-angle, noise-power, amplitude, magnitude, sigma0, beta0, gamma0, date-offset, covmat, prd | [SAR Extension](extensions/sar/README.md#best-practices) | See the [table](extensions/sar/README.md#best-practices) in SAR for more information. , and the definitive list of roles related to SAR. |
+
+Some of the particular asset roles also have some best practices:
+
+### Thumbnails
+
+Thumbnails are typically used to give quick overview, often embedded in a list of items. So think small with these, as 
+keeping the size down helps it load fast, and the typical display of a thumbnail won't benefit from a large size. Often 256 by
+256 pixels is used as a default. Generally they should be no more than 1000 by 1000 pixels. Some implementors provide different sizes 
+of thumbnails - using something like thumbnail-small and thumbnail-large, with a small one being 100x100 pixels or less, for truly 
+fast rendering in a small image. Be sure to name one just 'thumbnail' though, as that's the default most STAC clients will look for.
+
+If your data for the Item does not come with a thumbnail already we do recommend generating one, which can be done quite easily. 
+[GDAL](https://gdal.org/) and [Rasterio](https://rasterio.readthedocs.io/en/latest/) both make this very easy - if you need help
+just ask on the [STAC Gitter](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby).
 
 ## Catalog & Collection Practices
 

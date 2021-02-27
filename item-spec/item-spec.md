@@ -218,7 +218,7 @@ or streamed. It is allowed to add additional fields.
 | title       | string    | The displayed title for clients and users. |
 | description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | type        | string    | [Media type](#asset-media-type) of the asset. See the [common media types](../best-practices.md#common-media-types-in-stac) in the best practice doc for commonly used asset types. |
-| roles       | \[string] | The [semantic roles](#asset-role-types) of the asset, similar to the use of `rel` in links. |
+| roles       | \[string] | The [semantic roles](#asset-roles) of the asset, similar to the use of `rel` in links. |
 
 [Additional fields](#additional-fields) *may* be added to the assets, though this
 is recommended only in special cases. See [Additional Fields for Assets](#additional-fields-for-assets)) for more information.
@@ -232,9 +232,16 @@ would be appropriate; if it is an XML, then `text/xml` is appropriate. For more 
 list of [common media types](../best-practices.md#common-media-types-in-stac) used in STAC see the [best practice on 
 working with media types](../best-practices.md#working-with-media-types).
 
-#### Asset Role Types
+#### Asset Roles
 
-Like the Link `rel` field, the `roles` field can be given any value, however here are a few standardized role names.
+The `roles` field is used to describe the purpose of each asset. It is recommended to include one for every asset, to give users
+a sense of why they might want to make use of the asset. There are some emerging standards that enable clients to take particular
+action when they encounter particular roles, listed below. But implementors are encouraged to come up with their own terms to 
+describe the role.
+
+##### Asset Role Types
+
+Like the Link `rel` field, the `roles` field can be given any value, however here are a few standardized role names. 
 
 | Role Name | Description                                                                           |
 | --------- | ------------------------------------------------------------------------------------- |
@@ -242,11 +249,16 @@ Like the Link `rel` field, the `roles` field can be given any value, however her
 | overview  | An asset that represents a possibly larger view than the thumbnail of the Item, for example, a true color composite of multi-band data. |
 | data      | The data itself. This is a suggestion for a common role for data files to be used in case data providers don't come up with their own names and semantics. |
 | metadata  | A metadata sidecar file describing the data in this Item, for example the Landsat-8 MTL file. |
-| visual    | An asset that is a full resolution version of the data, processed for visual use (RGB only, often sharpened ([pan-sharpened](https://en.wikipedia.org/wiki/Pansharpened_image) and/or using an [unsharp mask](https://en.wikipedia.org/wiki/Unsharp_masking))). |
 
 It is STRONGLY RECOMMENDED to add to each STAC Item
 * a thumbnail with the role `thumbnail` for preview purposes
 * one or more data file although it doesn't need to use the suggested role `data`
+
+Note that multiple roles per asset are encouraged: pick all the ones that apply. So many should have the 'data' role, and then
+another role to describe how the data is used. For more information on how to use roles see the [Asset 
+Roles](../best-practices.md#asset-roles) section of the Best Practices document. It includes a [list of asset 
+roles](../best-practices.md#list-of-asset-roles) that include many more ideas on roles to use. As they reach more widespread 
+adoption we will include them here.
 
 #### Additional Fields for Assets
 

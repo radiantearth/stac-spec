@@ -86,3 +86,24 @@ The center time of the frame should be specified with the `datetime` property fo
 The [extensions page](../README.md) gives an overview about related extensions. Of particular relevance to SAR data:
 
 * the [Sat Extension Specification](../sat/README.md) to describe SAR data collected from a satellite.
+
+## Best Practices
+
+One of the emerging best practices is to use [Asset Roles](../../item-spec/item-spec.md#asset-roles) to provide clients with more 
+information about the assets in an item. The following list includes a shared vocabulary for some common EO assets. This list should
+not be considered definitive, and implementors are welcome to use other asset roles. If consensus and tooling consolidates around
+these role names then they will be specified in the future as more standard than just 'best practices'.
+
+| Role Name | Description                                                            |
+| --------- | ---------------------------------------------------------------------- |
+| local-incidence-angle | Points to the local incidence angle file. |
+| ellipsoid-incidence-angle | Points to the ellipsoid incidence angle file. |
+| noise-power | Points to the noise power file. |
+| amplitude | Points to the intensity file with focused SAR data that has been ground range detected (e.g. GRD). |
+| magnitude | Points to the intensity file where data are represented as complex numbers containing amplitude and phase information (e.g SLC). |
+| sigma0 | Points to the radar backscatter file where data is referenced in ground surface. It is often derived from an `amplitude` or a `magnitude` role asset. |
+| beta0 | Points to the radar backscatter file where data is referenced in the slant range plane and is radiometrically calibrated.  It is often derived from an `amplitude` or a `magnitude` role asset. |
+| gamma0 | Points to the radar backscatter file where data is referenced in the plane perpendicular to the line of sight. It is often derived from an `amplitude` or a `magnitude` role asset. |
+| date-offset | Points to the date-offset file. |
+| covmat | Points to the Points to the Normalized Polarimetric Radar Covariance Matrix (CovMat) file. |
+| prd | Points to the Polarimetric Radar Decomposition (PRD) file. |
