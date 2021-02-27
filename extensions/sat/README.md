@@ -9,7 +9,7 @@
 
 This document explains the fields of the Satellite Extension to a STAC [Item](../../item-spec/item-spec.md). Sat adds 
 metadata related to a satellite that carries an instrument for collecting data. It will often be combined with other 
-extensions that describe the actual data, such as the `eo`, `os` or `sar` extensions.
+extensions that describe the actual data, such as the `eo` or `sar` extensions.
 
 The Satellite extension requires the [Instrument Fields](../../item-spec/common-metadata.md#instrument).
 
