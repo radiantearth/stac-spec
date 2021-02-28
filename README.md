@@ -64,7 +64,7 @@ The **[Catalog Specification](catalog-spec/)** specifies a structure to link var
 simple, flexible JSON file of links to Items, Catalogs or Collections that can be used in a variety of ways.
 
 The **[Collection Specification](collection-spec/)** provides additional information about a spatio-temporal collection of data.
-In the context of STAC it is most likely a related set of STAC Items that is made available by a data provider.
+In the context of STAC it is most likely a related group of STAC Items that is made available by a data provider.
 It includes things like the spatial and temporal extent of the data, the license, keywords, etc.
 It enables discovery at a higher level than individual Items, providing a simple way to describe sets of data.
 
