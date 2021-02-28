@@ -57,7 +57,7 @@ STAC strives to make geospatial information more accessible, by putting it on th
 different tools will be able to load and display public-facing STAC data. But the web runs on a [Same origin 
 policy](https://en.wikipedia.org/wiki/Same-origin_policy), preventing web pages from loading information from other web locations
 to prevent malicious scripts from accessing sensitive data. This means that by default a web page would only be able to load STAC
-[Items](item-spec/item-spec.md) from the same server the page is on. [Cross-origin resource sharing](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing),
+[Item](item-spec/item-spec.md) objects from the same server the page is on. [Cross-origin resource sharing](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing),
 also known as 'CORS' is a protocol to enable safe communication across origins. But most web services turn it off by default. This
 is generally a good thing, but unfortunately if CORS is not enabled then any browser-based STAC tool will not work. 
 
