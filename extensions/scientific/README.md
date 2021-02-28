@@ -15,9 +15,9 @@ persistent digital interoperable identifier that uniquely identify for digital p
 can be registered at registration agencies affiliated with the
 [International DOI Foundation](https://www.doi.org/).
 
-This extension applies to STAC Items and STAC Collections.
-As these citation information are often closely bound to the collection level and therefore are shared across all items,
-it is recommended adding the fields to the corresponding [STAC Collection](../../collection-spec/README.md).
+This extension applies to STAC [Item](../../item-spec/item-spec.md) and STAC [Collections](../../collection-spec/collection-spec.md).
+As these citation information are often closely bound to the Collection level and therefore are shared across all items,
+it is recommended adding the fields to the corresponding Collection.
 
 - Examples: [Collection](examples/collection.json), [Item](examples/item.json)
 - [JSON Schema](json-schema/schema.json)

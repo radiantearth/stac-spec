@@ -7,7 +7,7 @@
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 - **Owner**: @matthewhanson
 
-This document explains the fields of the STAC Projection (`projection`) Extension to a STAC Item.
+This document explains the fields of the STAC Projection (`projection`) Extension to a STAC [Item](../../item-spec/item-spec.md).
 
 The fields defined here may be added to the Item Properties object or an Item Asset object.
 

@@ -74,7 +74,7 @@ properties. The table below shows the common name based on the wavelength and fr
 ### Date and Time
 
 In SAR, you usually have frame start and end time. To describe this information it is recommended to use the [Date and Time Range fields](../../item-spec/common-metadata.md#date-and-time-range).
-The center time of the frame should be specified with the `datetime` property for [STAC Items](../../item-spec/item-spec.md).
+The center time of the frame should be specified with the `datetime` property for STAC Items.
 
 ### Item [`Asset Object`](../../item-spec/item-spec.md#asset-object) fields
 | Field Name        | Type      | Description                                  |

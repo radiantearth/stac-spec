@@ -1,17 +1,41 @@
 # STAC Item Specification
 
+- [Overview](#overview)
+- [Item fields](#item-fields)
+  - [Additional Field Information](#additional-field-information)
+    - [stac_version](#stac_version)
+    - [id](#id)
+    - [stac_extensions](#stac_extensions)
+    - [assets](#assets)
+    - [bbox](#bbox)
+- [Properties Object](#properties-object)
+  - [datetime](#datetime)
+  - [Additional Fields](#additional-fields)
+- [Link Object](#link-object)
+  - [Relation types](#relation-types)
+    - [derived_from](#derived_from)
+  - [Collections](#collections)
+- [Asset Object](#asset-object)
+  - [Asset Media Type](#asset-media-type)
+  - [Asset Role Types](#asset-role-types)
+  - [Additional Fields for Assets](#additional-fields-for-assets)
+- [Media Type for STAC Item](#media-type-for-stac-item)
+- [Extensions](#extensions)
+
+## Overview
+
 This document explains the structure and content of a SpatioTemporal Asset Catalog (STAC) Item. An **Item** is a
 [GeoJSON](http://geojson.org/) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) augmented with
 [foreign members](https://tools.ietf.org/html/rfc7946#section-6) relevant to a STAC object.
 These include fields that identify the time range and assets of the Item. An Item is the core
-object in a STAC catalog, containing the core metadata that enables any client to search or crawl
+object in a STAC Catalog, containing the core metadata that enables any client to search or crawl
 online catalogs of spatial 'assets' (e.g., satellite imagery, derived data, DEMs).
 
-The same Item definition is used in both [STAC catalogs](../catalog-spec/README.md) and
+The same Item definition is used in both [STAC Catalogs](../catalog-spec/README.md) and
 the [Item-related API endpoints](https://github.com/radiantearth/stac-api-spec/blob/master/api-spec.md#ogc-api---features-endpoints).
-Catalogs are simply sets of items that are linked online, generally served by simple web servers
+Catalogs are simply sets of Items that are linked online, generally served by simple web servers
 and used for crawling data. The search endpoint enables dynamic queries, for example selecting all
-Items in Hawaii on June 3, 2015, but the results they return are FeatureCollections of items.
+Items in Hawaii on June 3, 2015, but the results they return are FeatureCollections of Items.
 
 Items are represented in JSON format and are very flexible. Any JSON object that contains all the
 required fields is a valid STAC Item.
@@ -31,11 +55,11 @@ inherited from GeoJSON.
 | ---------- | -------------------------------------------------------------------------- | ----------- |
 | stac_version | string                                                                   | **REQUIRED.** The STAC version the Item implements. |
 | stac_extensions | \[string]                                                             | A list of extensions the Item implements. |
-| id         | string                                                                     | **REQUIRED.** Provider identifier. The ID should be unique within the  [Collection](../collection-spec/README.md) that contains the item. |
+| id         | string                                                                     | **REQUIRED.** Provider identifier. The ID should be unique within the  [Collection](../collection-spec/collection-spec.md) that contains the Item. |
 | type       | string                                                                     | **REQUIRED.** Type of the GeoJSON Object. MUST be set to `Feature`. |
 | geometry   | [GeoJSON Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) \| [null](https://tools.ietf.org/html/rfc7946#section-3.2) | **REQUIRED.** Defines the full footprint of the asset represented by this item, formatted according to [RFC 7946, section 3.1](https://tools.ietf.org/html/rfc7946#section-3.1). The footprint should be the default GeoJSON geometry, though additional geometries can be included. Coordinates are specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). |
-| bbox       | \[number]                                                                  | **REQUIRED if `geometry` is not `null`.** Bounding Box of the asset represented by this item, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5). |
-| properties | [Properties Object](#properties-object)                                    | **REQUIRED.** A dictionary of additional metadata for the item. |
+| bbox       | \[number]                                                                  | **REQUIRED if `geometry` is not `null`.** Bounding Box of the asset represented by this Item, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5). |
+| properties | [Properties Object](#properties-object)                                    | **REQUIRED.** A dictionary of additional metadata for the Item. |
 | links      | \[[Link Object](#link-object)]                                             | **REQUIRED.** List of link objects to resources and related URLs. A link with the `rel` set to `self` is strongly recommended. |
 | assets     | Map<string, [Asset Object](#asset-object)>                                 | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key. |
 | collection | string                                                                     | The `id` of the STAC Collection this Item references to (see [`collection` relation type](#relation-types)). This field is *required* if such a relation type is present. This field provides an easy way for a user to search for any Items that belong in a specified Collection. |
@@ -48,9 +72,9 @@ In general, STAC versions can be mixed, but please keep the [recommended best pr
 
 #### id
 
-It is important that an Item identifier is unique within a collection, and that the 
+It is important that an Item identifier is unique within a Collection, and that the 
 [Collection identifier](../collection-spec/collection-spec.md#id) in turn is unique globally. Then the two can be combined to
-give a globally unique identifier. Items are *[strongly recommended](#collections)* to have collections, and not having one makes
+give a globally unique identifier. Items are *[strongly recommended](#collections)* to have Collections, and not having one makes
 it more difficult to be used in the wider STAC ecosystem. If an Item does not have a Collection, then the Item identifier should be unique within its root Catalog.
 
 As most geospatial assets are already uniquely defined by some 
@@ -60,7 +84,7 @@ additional recommendations.
 
 #### stac_extensions
 
-A list of extensions the Item implements. The list contains URLs to the JSON Schema files it can be validated against. For official [extensions](../extensions/README.md#list-of-stac-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. This does *not* apply for API extensions. If the versions of the extension and the item diverge, you can specify the URL of the JSON schema file.
+A list of extensions the Item implements. The list contains URLs to the JSON Schema files it can be validated against. For official [extensions](../extensions/README.md#list-of-stac-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. This does *not* apply for API extensions. If the versions of the extension and the Item diverge, you can specify the URL of the JSON schema file.
 This list must only contain extensions that extend the Item itself, see the the 'Scope' column in the list of extensions. If an extension such as the `tiled-assets` extension has influence on multiple parts of the whole catalog structure, it must be listed in all affected parts (e.g. Catalog, Collection and Item for the `tiled-assets` extension).
 
 #### assets
@@ -80,7 +104,7 @@ Items that are linked to, but the best practices around this are still emerging.
 
 #### bbox
 
-Bounding Box of the asset represented by this item using either 2D or 3D geometries, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5). The length of the array must be 2*n where n is the number of dimensions. The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). When using 3D geometries, the elevation of the southwesterly most extent is the minimum depth/height in meters and the elevation of the northeasterly most extent is the maximum.  This field enables more naive clients to easily index and search geospatially. STAC compliant APIs are required to compute intersection operations with the item's geometry field, not its bbox.
+Bounding Box of the asset represented by this Item using either 2D or 3D geometries, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5). The length of the array must be 2\*n where n is the number of dimensions. The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). When using 3D geometries, the elevation of the southwesterly most extent is the minimum depth/height in meters and the elevation of the northeasterly most extent is the maximum.  This field enables more naive clients to easily index and search geospatially. STAC compliant APIs are required to compute intersection operations with the Item's geometry field, not its bbox.
 
 ### Properties Object
 
@@ -92,7 +116,9 @@ resources below.
 | ---------- | ------------ | ------------------------------------------------------------ |
 | datetime   | string\|null | **REQUIRED.** The searchable date and time of the assets, in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). `null` is allowed, but requires `start_datetime` and `end_datetime` from [common metadata](common-metadata.md#date-and-time-range) to be set. |
 
-**datetime** is likely the acquisition (in the case of single camera type captures) or the 'nominal'
+#### datetime
+
+This is likely the acquisition (in the case of single camera type captures) or the 'nominal'
 or representative time in the case of assets that are combined together. Though time can be a
 complex thing to capture, for this purpose keep in mind the STAC spec is primarily searching for
 data, so use whatever single date and time is most useful for a user to search for. STAC content
@@ -103,12 +129,12 @@ In this case it is **required** to specify a temporal interval with the fields `
 and `end_datetime` from [common metadata](common-metadata.md#date-and-time-range). For example, if
 your data is a time-series that covers 100 years, it's not very meaningful to set the datetime to a
 single timestamp as it would not be found in most searches that searches for a decade of data in that
-period although the item actually covers the decade. See [datetime selection](../best-practices.md#datetime-selection)
+period although the Item actually covers the decade. See [datetime selection](../best-practices.md#datetime-selection)
 in the best practices document for more information.
 
 #### Additional Fields
 
-Providers should include metadata fields that are relevant for users in the catalog, but it is recommended
+Providers should include metadata fields that are relevant for users of STAC, but it is recommended
 to [select only those necessary for search](../best-practices.md#field-selection-and-metadata-linking).
 Where possible metadata fields should be mapped to the STAC Common Metadata and widely used extensions,
 to enable cross-catalog search on known fields.
@@ -127,8 +153,8 @@ only be used when the data itself is nested, as with `eo:bands`.
 ### Link Object
 
 This object describes a relationship with another entity. Data providers are advised to be liberal
-with the links section, to describe things like the catalog an item is in, related items, parent or
-child items (modeled in different ways, like an 'acquisition' or derived data).
+with the links section, to describe things like the Catalog an Item is in, related Items, parent or
+child Items (modeled in different ways, like an 'acquisition' or derived data).
 It is allowed to add additional fields such as a `title` and `type`.
 
 | Field Name | Type   | Description |
@@ -143,17 +169,17 @@ For a full discussion of the situations where relative and absolute links are re
 
 #### Relation types
 
-STAC Items use a variety of `rel` types in the link object, to describe the exact nature of the link between this item and the entity it is linking to.
+STAC Items use a variety of `rel` types in the link object, to describe the exact nature of the link between this Item and the entity it is linking to.
 It is recommended to use the official [IANA Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) where possible.
-The following table explains places where STAC use custom `rel` types are used with items.
+The following table explains places where STAC use custom `rel` types are used with Items.
 This happens where there is not a clear official option, or where STAC uses an official type but adds additional meaning for the STAC context.
 
 | Type         | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
 | self         | STRONGLY RECOMMENDED. *Absolute* URL to the Item if it is available at a public URL. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root         | URL to the root STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
-| parent       | URL to the parent STAC [Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md). |
-| collection   | STRONGLY RECOMMENDED. URL to a [Collection](../collection-spec/README.md). *Absolute* URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
+| root         | URL to the root STAC Catalog or Collection. |
+| parent       | URL to the parent STAC Catalog or Collection. |
+| collection   | STRONGLY RECOMMENDED. URL to a Collection. *Absolute* URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
 
 A more complete list of potential `rel` types and their meaning in STAC can be found in the [Using Relation 
@@ -219,9 +245,10 @@ Like the Link `rel` field, the `roles` field can be given any value, however her
 
 | Role Name | Description                                                                           |
 | --------- | ------------------------------------------------------------------------------------- |
-| thumbnail | An asset that represents a thumbnail of the item, typically a true color image (for items with assets in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `roles` be unique tuples. For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types. |
+| thumbnail | An asset that represents a thumbnail of the Item, typically a true color image (for Items with assets in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `roles` be unique tuples. For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types. |
+| overview  | An asset that represents a possibly larger view than the thumbnail of the Item, for example, a true color composite of multi-band data. |
 | data      | The data itself. This is a suggestion for a common role for data files to be used in case data providers don't come up with their own names and semantics. |
-| metadata  | A metadata sidecar file describing the data in this item, for example the Landsat-8 MTL file. |
+| metadata  | A metadata sidecar file describing the data in this Item, for example the Landsat-8 MTL file. |
 
 It is STRONGLY RECOMMENDED to add to each STAC Item
 * a thumbnail with the role `thumbnail` for preview purposes
