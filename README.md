@@ -51,7 +51,7 @@ README explaining the layout of the folder, the main specification document, exa
 there is one more specification in the STAC 'family', which is
 the [STAC API specification](https://github.com/radiantearth/stac-api-spec/), now living in its own repository. It
 provides API endpoints, based on the [OGC API - Features](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html) standard,
-that enable clients to search for Items that match their filtering criteria. The four specifications are meant to be used 
+that enable clients to search for Item objects that match their filtering criteria. The four specifications are meant to be used 
 together, but are designed so each piece is small, self-contained and reusable in other contexts.
 
 The **[Overview](overview.md)** describes the three core specifications and how they relate to one another.
