@@ -3,7 +3,7 @@
 - **Title: File Info** 
 - **Identifier: file**
 - **Field Name Prefix: file**
-- **Scope: Item, Catalog, Collection**
+- **Scope: Item, Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 - **Owner**: @m-mohr
 

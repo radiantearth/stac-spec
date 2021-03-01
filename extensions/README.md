@@ -26,6 +26,7 @@ stac-spec repository to collaborate.
 2. In general, additional attributes that apply to an Item Asset should also be allowed in Item Properties and vice-versa.
 For example, the `eo:bands` attribute may be used in Item Properties to describe the aggregation of all bands available in 
 the Item Asset objects contained in the Item, but may also be used in an individual Item Asset to describe only the bands available in that asset.
+3. Additional attributes relating to a [Catalog](../catalog-spec/catalog-spec.md) or [Collection](../collection-spec/collection-spec.md) should be added to the root of the object. 
 
 ## Extension Maturity
 
@@ -56,9 +57,9 @@ These extensions add new fields or semantics to STAC objects.
 
 | Extension Title                                  | Identifier        | Field Name Prefix   | Scope                     | Maturity   | Description |
 | ------------------------------------------------ | ----------------- | ------------------- | ------------------------- | ---------- | ----------- |
-| [Data Cube](datacube/README.md)                  | datacube          | cube                | Item, [Collection](../collection-spec/collection-spec.md)          | *Proposal* | Data Cube related metadata, especially to describe their dimensions. |
+| [Data Cube](datacube/README.md)                  | datacube          | cube                | Item, Collection          | *Proposal* | Data Cube related metadata, especially to describe their dimensions. |
 | [Electro-Optical](eo/README.md)                  | eo                | eo                  | Item                      | *Proposal* | Covers electro-optical data that represents a snapshot of the Earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, gsd and more. |
-| [File Info](file/README.md)                      | file              | file                | Item, [Catalog](../catalog-spec/catalog-spec.md), Collection | *Proposal* | Provides a way to specify file details such as size, data type and checksum for assets and links in Items, Catalogs and Collections. |
+| [File Info](file/README.md)                      | file              | file                | Item, Collection          | *Proposal* | Provides a way to specify file details such as size, data type and checksum for assets in Items and Collections. |
 | [Item Asset Definition](item-assets/README.md)   | item-assets       | -                   | Collection                | *Proposal* | Provides a way to specify details about what assets may be found in Items belonging to a Collection. |
 | [Label](label/README.md)                         | label             | label               | Item                      | *Proposal* | Items that relate labeled AOIs with source imagery |
 | [Point Cloud](pointcloud/README.md)              | pointcloud        | pc                  | Item                      | *Proposal* | Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LiDAR or coincidence-matched imagery. |
