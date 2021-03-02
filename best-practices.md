@@ -125,7 +125,7 @@ less data would be available if the cost of distribution was always on the data 
 
 For data providers using STAC with requester pays buckets, there are two main recommendations:
 
-1) Put the STAC JSON in a separate bucket that is public for everyone, not requestor pays. This enables the STAC metadata
+1) Put the STAC JSON in a separate bucket that is public for everyone and **not** requestor pays. This enables the STAC metadata
 to be far more crawlable and searchable, but the cost of the egress of STAC files should be miniscule compared to that of
 the actual data. The STAC community can help you work with cloud providers for potential free hosting if you are doing open
 data as requestor pays and aren't able to pay the costs of a completely open STAC bucket, as they are most all supportive of
