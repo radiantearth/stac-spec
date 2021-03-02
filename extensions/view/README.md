@@ -7,7 +7,7 @@
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 - **Owner**: @matthewhanson
 
-This document explains the fields of the View Geometry Extension to a STAC Item. View Geometry adds metadata related to angles of sensors and other radiance angles that affect the view of resulting data. It will often be combined with other extensions that describe the actual data, such as the `eo`, `sat` or `sar` extensions.
+This document explains the fields of the View Geometry Extension to a STAC [Item](../../item-spec/item-spec.md). View Geometry adds metadata related to angles of sensors and other radiance angles that affect the view of resulting data. It will often be combined with other extensions that describe the actual data, such as the `eo`, `sat` or `sar` extensions.
 
 - [Example (Landsat 8)](../eo/examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)
@@ -63,3 +63,22 @@ Example:
 ## Extensions
 
 The [extensions page](../README.md) gives an overview about related extensions. Of particular relevance to View Geometry data.
+
+## Best Practices
+
+One of the emerging best practices is to use [Asset Roles](../../item-spec/item-spec.md#asset-roles) to provide clients with more 
+information about the assets in an item. The following list includes a shared vocabulary for some common EO assets. This list should
+not be considered definitive, and implementors are welcome to use other asset roles. If consensus and tooling consolidates around
+these role names then they will be specified in the future as more standard than just 'best practices'. The roles listed below
+all tend to be additional files that contain specific values for every single pixel. It is recommended to use them all with the role
+of 'metadata'.
+
+| Role Name | Description                                                            |
+| --------- | ---------------------------------------------------------------------- |
+| incidence-angle | Points to a file with per-pixel incidence angles. |
+| azimuth | Points to a file with per-pixel azimuth angles. |
+| sun-azimuth | Points to a file with per-pixel sun azimuth angles. |
+| sun-elevation | Points to a file with per-pixel sun elevation angles. |
+| terrain-shadow | Points to a file that indicates whether a pixel is not directly illuminated due to terrain shadowing. |
+| terrain-occlusion | Points to a file that indicates whether a pixel is not visible to the sensor due to terrain occlusion during off-nadir viewing. |
+| terrain-illumination | Points to a file with coefficients used for terrain illumination correction are provided for each pixel. |

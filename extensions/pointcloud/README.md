@@ -19,16 +19,16 @@ tools such as LiDAR or coincidence-matched imagery.
 
 | Field Name    | Type                              | Description |
 | ------------- | --------------------------------- | ----------- |
-| pc:count      | integer                           | **REQUIRED.** The number of points in the item. |
+| pc:count      | integer                           | **REQUIRED.** The number of points in the Item. |
 | pc:type       | string                            | **REQUIRED.** Phenomenology type for the point cloud. Possible valid values might include `lidar`, `eopc`, `radar`, `sonar`, or `other` |
 | pc:encoding   | string                            | **REQUIRED.** Content encoding or format of the data. |
-| pc:schemas    | [[Schema Object](#schema-object)] | **REQUIRED.** A sequential array of items that define the dimensions and their types. |
+| pc:schemas    | [[Schema Object](#schema-object)] | **REQUIRED.** A sequential array of Items that define the dimensions and their types. |
 | pc:density    | number                            | Number of points per square unit area. |
-| pc:statistics | [[Stats Object](#stats-object)]   | A sequential array of items mapping to `pc:schemas` defines per-channel statistics. |
+| pc:statistics | [[Stats Object](#stats-object)]   | A sequential array of Items mapping to `pc:schemas` defines per-channel statistics. |
 
 ### Schema Object
 
-A sequential array of items that define the dimensions or channels of
+A sequential array of Items that define the dimensions or channels of
 the point cloud, their types, and their sizes (in full bytes).
 
 | Field Name | Type    | Description |
@@ -39,7 +39,7 @@ the point cloud, their types, and their sizes (in full bytes).
 
 ### Stats Object
 
-A sequential array of items mapping to `pc:schemas` defines per-channel statistics. The channel name is required and at least one statistic.
+A sequential array of Items mapping to `pc:schemas` defines per-channel statistics. The channel name is required and at least one statistic.
 
 | Field Name | Type    | Description |
 | ---------- | ------- | ----------- |

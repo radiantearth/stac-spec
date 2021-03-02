@@ -3,11 +3,13 @@
 - **Title: File Info** 
 - **Identifier: file**
 - **Field Name Prefix: file**
-- **Scope: Item, Catalog, Collection**
+- **Scope: Item, Collection**
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 - **Owner**: @m-mohr
 
-Provides a way to specify file related details such as checksum, data type and size for assets in [STAC Items](../../item-spec/item-spec.md) and [STAC Collections](../../collection-spec/collection-spec.md) implementing the [Collection Assets](../collection-assets/README.md) extension.
+Provides a way to specify file related details such as checksum, data type and size for assets in 
+[STAC Items](../../item-spec/item-spec.md) as well as [STAC Collections](../../collection-spec/collection-spec.md) 
+that implement [collection-level assets](../../collection-spec/collection-spec.md#asset-object).
 
 - Examples:
   - [Item Assets](examples/item.json)

@@ -28,7 +28,7 @@ These fields can be applied to Item Properties, Collection, or Catalog objects.
 
 ### Tile Matrix Set Object
 
-Tile matrix sets can be directly embedded in a collection, catalog or item. Such directly embedded tile matrix set objects must conform to the [OGC Two Dimensional Tile Matrix Set JSON schema](http://schemas.opengis.net/tms/1.0/json/tms-schema.json).
+Tile matrix sets can be directly embedded in a Collection, Catalog or Item. Such directly embedded tile matrix set objects must conform to the [OGC Two Dimensional Tile Matrix Set JSON schema](http://schemas.opengis.net/tms/1.0/json/tms-schema.json).
 
 ## Item Properties fields
 
@@ -52,7 +52,7 @@ This object allows to reference a tile matrix set. This concept is modelled afte
 **url**/**well_known_scale_set**: Either one of these parameters must be present.
 
 **url**: The URL must refer to a valid tile matrix set definition as defined in the Two-dimensional tile matrix set specification in any encoding (JSON, JSON-LD, or XML).
-It is also possible, to have the tile matrix set embedded in the items collection, catalog or even in the items file itself using the `tiles:tile_matrix_sets` property. When referring to an embedded tile matrix set definition, the name of the map key of that tile matrix set definition must be used as a URL fragment.
+It is also possible, to have the tile matrix set embedded in the Item's Collection, Catalog or even in the Item's file itself using the `tiles:tile_matrix_sets` property. When referring to an embedded tile matrix set definition, the name of the map key of that tile matrix set definition must be used as a URL fragment.
 
 Example reference to an external tile matrix definition:
 
@@ -60,13 +60,13 @@ Example reference to an external tile matrix definition:
 "url": "http://schemas.opengis.net/tms/1.0/json/examples/WebMercatorQuad.json"
 ```
 
-Example reference to an embedded definition in a collection:
+Example reference to an embedded definition in a Collection:
 
 ```js
 "url": "https://example.com/collections/stac.json#WebMercatorQuad"
 ```
 
-Example reference to an embedded definition in the same item:
+Example reference to an embedded definition in the same Item:
 
 ```js
 "url": "#WebMercatorQuad"
