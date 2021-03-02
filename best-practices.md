@@ -395,7 +395,8 @@ keep the size of each sub-catalog under a megabyte. If your sub-catalog lists te
 should consider an additional way to break it up. 
 
 We encourage people to explore new structures of linking data, but the following list is what a number of implementors 
-ended up doing. Following these recommendations makes for more legible catalogs.
+ended up doing. Following these recommendations makes for more legible catalogs, and many tools operate more efficiently
+if you follow these recommendations.
 
 1. Root documents (Catalogs / Collections) should be at the root of a directory tree containing the static catalog.
 2. Catalogs that are not also Collections should be named `catalog.json` and Collections should be named `collection.json`.
@@ -404,6 +405,8 @@ ended up doing. Following these recommendations makes for more legible catalogs.
 5. Items should be stored in subdirectories of their parent Catalog. 
 This means that each Item and its assets are contained in a unique subdirectory.
 6. Limit the number of Items in a Catalog or sub-Catalog, grouping / partitioning as relevant to the dataset.
+7. Use structural elements (Catalog and Collection) consistently across each 'level' of your hierarchy. For example, if levels 2 and 4 of the hierarchy only contain Collections, 
+don't add a Catalog at levels 2 and 4.
 
 #### Dynamic Catalog Layout
 
