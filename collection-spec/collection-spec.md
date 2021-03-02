@@ -10,8 +10,8 @@ STAC Collections are compatible with the [Collection](http://docs.opengeospatial
 specified in [*OGC API - Features*](https://ogcapi.ogc.org/features/), but it is extended with additional fields.  
 
 * [Examples](../examples/):
-  * Sentinel 2: A basic standalone example of a [Collection](../examples/Collection-only/Collection.json) without Items.
-  * Simple Example: A [Collection](../examples/Collection.json) that links to 3 example Items.
+  * Sentinel 2: A basic standalone example of a [Collection](../examples/collection-only/collection.json) without Items.
+  * Simple Example: A [Collection](../examples/collection.json) that links to 3 example Items.
   * Extension Collection: An additional [Collection](../examples/extensions-Collection/Collection.json), which is used to highlight
   various [extension](../extensions) functionality, but serves as another example.
 * [JSON Schema](json-schema/Collection.json)
@@ -89,7 +89,7 @@ There are a few guidelines for using the asset construct at the Collection level
 Collection-level assets can be useful in some scenarios, for example:
 1. Exposing additional data that applies Collection-wide and you don't want to expose it in each Item. This can be Collection-level metadata or a thumbnail for visualization purposes.
 2. Individual Items can't properly be distinguished for some data structures, e.g. [Zarr](https://zarr.readthedocs.io/) as it's a data structure not contained in single files.
-3. Exposing assets for "[Standalone Collections](https://github.com/radiantearth/stac-spec/blob/master/Collection-spec/Collection-spec.md#standalone-Collections)".
+3. Exposing assets for "[Standalone Collections](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#standalone-collections)".
 
 Oftentimes it is possible to model data and assets with either a Collection or an Item. In those scenarios we *recommend* to use
 Items as much as is feasible, as they designed for assets. Using Collection-level assets should only be used if there is not another
