@@ -130,7 +130,7 @@ to be far more crawlable and searchable, but the cost of the egress of STAC file
 the actual data. The STAC community can help you work with cloud providers for potential free hosting if you are doing open
 data as requestor pays and aren't able to pay the costs of a completely open STAC bucket, as they are most all supportive of
 STAC.
-2) Don't use `http://` style urls if the provider has a specific protocol (specifically `s3://` on AWS and `gs://` on Google
+2) For Asset href values to resources in a requestor pays bucket, use the cloud provider-specific protocol (e.g., `s3://` on AWS and `gs://` on Google Cloud) instead of an `https://` url. 
 Cloud). Most every client will just fail on an `http://` link that is requestor pays, but most clients that understand
 the cloud-specific protocols will at least have an option to register a paid account and properly charge for access. 
 STAC-specific tools in turn can look for the cloud-specific protocols and know to use requestor pays. 
