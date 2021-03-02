@@ -117,7 +117,7 @@ should have its own location and just be part of the wider web.
 ### Requester Pays
 
 It is very common that large, freely available datasets are set up with a 'requester pays' configuration. This is an option 
-[on AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html)) and [on 
+[on AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html) and [on 
 Google Cloud](https://cloud.google.com/storage/docs/requester-pays), that enables data providers to make their data
 available to everyone, while the cloud platform charges access costs (such as per-request and data '[egress](https://www.hostdime.com/blog/data-egress-fees-cloud/)') to the user accessing the data.
 For popular datasets that are large in size the egress costs can be substantial, to the point where much
