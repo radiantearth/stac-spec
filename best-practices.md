@@ -357,7 +357,7 @@ While it is up to the implementor to organize the catalog, it is recommended to 
 for a human to browse a set of STAC Items in an intuitive matter.
 
 Users indicate their intent for a file to be parsed as a Collection or Catalog using the required `type` field on
-each entity. For Collections, this field must have the value `"Collection"`, while for Catalogs, it must have the
+each entity. For Collections, this field must have the value `Collection`, while for Catalogs, it must have the
 value `Catalog`. Additionally, we recommend for static STACs indicate contents using the filenames `catalog.json`
 or `collection.json` to distinguish the Catalog from other JSON type files. In order to support multiple catalogs, the recommended practice 
 is to place the Catalog file in namespaces "directories". For example:
