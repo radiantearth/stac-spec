@@ -405,8 +405,8 @@ if you follow these recommendations.
 5. Items should be stored in subdirectories of their parent Catalog. 
 This means that each Item and its assets are contained in a unique subdirectory.
 6. Limit the number of Items in a Catalog or sub-Catalog, grouping / partitioning as relevant to the dataset.
-7. Use structural elements (Catalog and Collection) consistently across each 'level' of your hierarchy. If levels 2 and 4
-have are both only Collections then don't add a Catalog there (and vice versa), or else change every element at that level.
+7. Use structural elements (Catalog and Collection) consistently across each 'level' of your hierarchy. For example, if levels 2 and 4 of the hierarchy only contain Collections, 
+don't add a Catalog at levels 2 and 4.
 
 #### Dynamic Catalog Layout
 
