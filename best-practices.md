@@ -405,9 +405,8 @@ if you follow these recommendations.
 5. Items should be stored in subdirectories of their parent Catalog. 
 This means that each Item and its assets are contained in a unique subdirectory.
 6. Limit the number of Items in a Catalog or sub-Catalog, grouping / partitioning as relevant to the dataset.
-7. In a nested hierarchy of catalogs and collections make the different levels 'homogeneous' - all catalogs or all collections. 
-This means if you have a catalog (level 1) that links to 5 collections (level 2) that each link to more catalogs (level 3) that 
-link to items and catalogs then you should only add more collections at level 2, and only catalogs at level 1, 3 and beyond.
+7. Use structural elements (Catalog and Collection) consistently across each 'level' of your hierarchy. If levels 2 and 4
+have are both only Collections then don't add a Catalog there (and vice versa), or else change every element at that level.
 
 #### Dynamic Catalog Layout
 
