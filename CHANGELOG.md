@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Recommendation to enable CORS
 - A 'visual' option as an asset role.
 - Best Practice section on requester pays.
+- Added a best practice recommendation to keep collections at consistent levels. 
+
 
 ### Changed
 
