@@ -356,8 +356,10 @@ as they can only have a single representation of their catalog, since the static
 While it is up to the implementor to organize the catalog, it is recommended to arrange it in a way that would make sense 
 for a human to browse a set of STAC Items in an intuitive matter.
 
-The recommendation for static catalogs is to define them using the file name `catalog.json` or `collection.json` to distinguish 
-the Catalog from other JSON type files. In order to support multiple catalogs, the recommended practice 
+Users indicate their intent for a file to be parsed as a Collection or Catalog using the required `type` field on
+each entity. For Collections, this field must have the value `"Collection"`, while for Catalogs, it must have the
+value `"Catalog"`. Additionally, we recommend for static STACs indicate contents using the filenames `catalog.json`
+or `collection.json` to distinguish the Catalog from other JSON type files. In order to support multiple catalogs, the recommended practice 
 is to place the Catalog file in namespaces "directories". For example:
 
 - current/catalog.json
@@ -373,7 +375,7 @@ for clients to consume. A dynamic catalog will sometimes be populated by a stati
 fields stored as a cached static catalog.
 
 Dynamic catalogs often also implement the [STAC API](https://github.com/radiantearth/stac-api-spec/) specification, that 
-responds to search queries (like give me all imagery in Oahu gathered on January 15, 2017). But they are not required to.  One
+responds to search queries (like "give me all imagery in Oahu gathered on January 15, 2017"). But they are not required to.  One
 can have a dynamic service that only implements the core STAC specification, and is crawled by STAC API implementations that
 provide 'search'. For example a Content Management Service like Drupal or an open data catalog like CKAN could choose to expose 
 its content as linked STAC Items by implementing a dynamic catalog. 
@@ -400,7 +402,7 @@ ended up doing. Following these recommendations makes for more legible catalogs,
 if you follow these recommendations.
 
 1. Root documents (Catalogs / Collections) should be at the root of a directory tree containing the static catalog.
-2. Catalogs that are not also Collections should be named `catalog.json` and Collections should be named `collection.json`.
+2. Catalogs should be named `catalog.json` and Collections should be named `collection.json`.
 3. Items should be named `<id>.json`.
 4. Sub-Catalogs should be stored in subdirectories of their parent (and only 1 subdirectory deeper than a document's parent) (e.g. `.../sample/sub1/catalog.json`).
 5. Items should be stored in subdirectories of their parent Catalog. 
@@ -632,25 +634,21 @@ Collection, Catalog or [ItemCollection](https://github.com/radiantearth/stac-api
 (part of the [STAC API spec](https://github.com/radiantearth/stac-api-spec/tree/v1.0.0-beta.1). As of 1.0.0 this is done primarily with the `type` field, and secondarily in Items with `stac_version`, or optionally the `rel` of the link to it.
 
 ```shell
-if type is defined
-  if type is 'Feature' and stac_version is defined // stac_version in items is only available since 0.8, check for (stac_version or assets) to support pre-0.8 data
-    => Item
-  else if type is 'FeatureCollection' and stac_version is defined
-    => ItemCollection
-  else if type is `Collection`
-    => Collection
-  else if type is `Catalog`
-    => Catalog
-  else
-    => Invalid (GeoJSON)
+if type is `Collection`
+  => Collection
+else if type is `Catalog`
+  => Catalog
+else if type is 'Feature' and stac_version is defined // stac_version in items is only available since 0.8, check for (stac_version or assets) to support pre-0.8 data
+  => Item
+else if type is 'FeatureCollection' and stac_version is defined
+  => ItemCollection
 else
-  => Invalid (JSON)
+  => Invalid (GeoJSON)
 ```
 
 When actually crawling a STAC implementation one can also make use of the [relation type](catalog-spec/catalog-spec.md#relation-types
 ) (`rel` field) when following a link. If it is an `item` rel type then the file must be a STAC Item. If it is `child`, `parent` or
-`root` then it must be a Catalog or a Collection, and thus can be treated as a Catalog (as a Collection is a Catalog), and then the
-`type` field can be used to distinguish if it is a Collection.
+`root` then it must be a Catalog or a Collection, and the `type` field can be used to distinguish which one.
 
 In versions of STAC prior to 1.0 the process was a bit more complicated, as there was no `type` field for catalogs and collections.
 See [this issue comment](https://github.com/radiantearth/stac-spec/issues/889#issuecomment-684529444) for a heuristic that works
