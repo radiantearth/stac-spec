@@ -132,7 +132,7 @@ data as requestor pays and aren't able to pay the costs of a completely open STA
 STAC (but no guarantees and it may be on an alternate cloud).
 2) For Asset href values to resources in a requestor pays bucket, use the cloud provider-specific protocol (e.g., `s3://` on AWS and `gs://` on Google Cloud) instead of an `https://` url. Most clients do not have special handling for `https://` links to cloud provider resources that require a requestor pays flag and authentication, so they simply fail. Many clients have special handling for `s3://` or `gs://` URLs that will add a requestor pays parameter and will apply appropriate authentication to the request.
 the cloud-specific protocols will at least have an option to register a paid account and properly charge for access. 
-STAC-specific tools in turn can look for the cloud-specific protocols and know to use requestor pays. 
+STAC-specific tools in turn can look for the cloud-specific protocols and know to use the requestor pays feature for that specific cloud platform.
 
 ## Item Practices
 
