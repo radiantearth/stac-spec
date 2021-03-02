@@ -120,7 +120,7 @@ It is very common that large, freely available datasets are set up with a 'reque
 [on AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html)) and [on 
 Google Cloud](https://cloud.google.com/storage/docs/requester-pays), that enables data providers to make their data
 available to everyone, while the cloud platform charges access costs (such as per-request and data '[egress](https://www.hostdime.com/blog/data-egress-fees-cloud/)') to the user accessing the data.
-on to the user. For popular datasets that are large in size the egress costs can be substantial, to the point where much
+For popular datasets that are large in size the egress costs can be substantial, to the point where much
 less data would be available if the cost of distribution was always on the data provider.
 
 For data providers using STAC with requester pays buckets there are two main recommendations:
