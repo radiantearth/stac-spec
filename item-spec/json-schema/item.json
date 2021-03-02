@@ -130,7 +130,34 @@
               "$ref": "#/definitions/assets"
             },
             "properties": {
-              "$ref": "#/definitions/common_metadata"
+              "allOf": [
+                {
+                  "$ref": "#/definitions/common_metadata"
+                },
+                {
+                  "anyOf": [
+                    {
+                      "required": [
+                        "datetime"
+                      ],
+                      "properties": {
+                        "datetime": {
+                          "not": {
+                            "type": "null"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "required": [
+                        "datetime",
+                        "start_datetime",
+                        "end_datetime"
+                      ]
+                    }
+                  ]
+                }
+              ]
             },
             "collection": {
               "title": "Collection ID",
@@ -164,12 +191,6 @@
         "title": {
           "title": "Link title",
           "type": "string"
-        },
-        "created": {
-          "$ref": "datetime.json#/definitions/created"
-        },
-        "updated": {
-          "$ref": "datetime.json#/definitions/updated"
         }
       }
     },
@@ -182,36 +203,43 @@
       }
     },
     "asset": {
-      "type": "object",
-      "required": [
-        "href"
-      ],
-      "properties": {
-        "href": {
-          "title": "Asset reference",
-          "type": "string",
-          "format": "iri-reference"
-        },
-        "title": {
-          "title": "Asset title",
-          "type": "string"
-        },
-        "description": {
-          "title": "Asset description",
-          "type": "string"
-        },
-        "type": {
-          "title": "Asset type",
-          "type": "string"
-        },
-        "roles": {
-          "title": "Asset roles",
-          "type": "array",
-          "items": {
-            "type": "string"
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "title": "Asset reference",
+              "type": "string",
+              "format": "iri-reference"
+            },
+            "title": {
+              "title": "Asset title",
+              "type": "string"
+            },
+            "description": {
+              "title": "Asset description",
+              "type": "string"
+            },
+            "type": {
+              "title": "Asset type",
+              "type": "string"
+            },
+            "roles": {
+              "title": "Asset roles",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
           }
+        },
+        {
+          "$ref": "#/definitions/common_metadata"
         }
-      }
+      ]
     }
   }
 }
