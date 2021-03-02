@@ -631,7 +631,8 @@ database, but it could just as easily be a server-based process.
 
 Any tool that crawls a STAC implementation or encounters a STAC file in the wild needs a clear way to determine if it is an Item, 
 Collection, Catalog or [ItemCollection](https://github.com/radiantearth/stac-api-spec/tree/v1.0.0-beta.1/fragments/itemcollection) 
-(part of the [STAC API spec](https://github.com/radiantearth/stac-api-spec/tree/v1.0.0-beta.1). As of 1.0.0 this is done primarily with the `type` field, and secondarily in Items with `stac_version`, or optionally the `rel` of the link to it.
+(part of the [STAC API spec](https://github.com/radiantearth/stac-api-spec/tree/v1.0.0-beta.1)). As of 1.0.0 this is done primarily
+with the `type` field, and secondarily in Items with `stac_version`, or optionally the `rel` of the link to it.
 
 ```shell
 if type is `Collection`
