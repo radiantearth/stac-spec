@@ -123,7 +123,7 @@ available to everyone, while the cloud platform charges access costs (such as pe
 For popular datasets that are large in size the egress costs can be substantial, to the point where much
 less data would be available if the cost of distribution was always on the data provider.
 
-For data providers using STAC with requester pays buckets there are two main recommendations:
+For data providers using STAC with requester pays buckets, there are two main recommendations:
 
 1) Put the STAC JSON in a separate bucket that is public for everyone, not requestor pays. This enables the STAC metadata
 to be far more crawlable and searchable, but the cost of the egress of STAC files should be miniscule compared to that of
