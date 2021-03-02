@@ -7,6 +7,7 @@
   - [STAC on the Web](#stac-on-the-web)
     - [Schema.org, JSON-LD, DCAT, microformats, etc](#schemaorg-json-ld-dcat-microformats-etc)
     - [Deploying STAC Browser](#deploying-stac-browser)
+  - [Requester Pays](#requester-pays)
 - **[Item Best Practices](#item-practices)**
   - [Field and ID formatting](#field-and-id-formatting)
   - [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
@@ -112,6 +113,27 @@ just submit it to [stacindex.org](https://stacindex.org/add).
 But the stronger recommendation is to host a STAC Browser on your own domain, and to customize its 
 design to look and feel like your main web presence. STAC aims to be decentralized, so each STAC-compliant data catalog 
 should have its own location and just be part of the wider web.
+
+### Requester Pays
+
+It is very common that large, freely available datasets are set up with a 'requester pays' configuration. This is an option 
+[on AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html)) and [on 
+Google Cloud](https://cloud.google.com/storage/docs/requester-pays), that enables data providers to make their data freely
+available to everyone, while placing the cost of '[egress](https://www.hostdime.com/blog/data-egress-fees-cloud/)' 
+on to the user. For popular datasets that are large in size the egress costs can be substantial, to the point where much
+less data would be available if the cost of distribution was always on the data provider.
+
+For data providers using STAC with requester pays buckets there are two main recommendations:
+
+1) Put the STAC JSON in a separate bucket that is public for everyone, not requestor pays. This enables the STAC metadata
+to be far more crawlable and searchable, but the cost of the egress of STAC files should be miniscule compared to that of
+the actual data. The STAC community can help you work with cloud providers for potential free hosting if you are doing open
+data as requestor pays and aren't able to pay the costs of a completely open STAC bucket, as they are most all supportive of
+STAC.
+2) Don't use `http://` style urls if the provider has a specific protocol (specifically `s3://` on AWS and `gs://` on Google
+Cloud). Most every client will just fail on an `http://` link that is requestor pays, but most clients that understand
+the cloud-specific protocols will at least have an option to register a paid account and properly charge for access. 
+STAC-specific tools in turn can look for the cloud-specific protocols and know to use requestor pays. 
 
 ## Item Practices
 
