@@ -57,8 +57,7 @@ Collections are are *strongly recommended* to provide summaries of the values of
 of STAC Items contained in this Collection. This enables users to get a good sense of what the ranges and potential values of 
 different fields in the Collection are, without to inspect a number of Items (or crawl them exhaustively to get a definitive answer). 
 Summaries help to fully define Collections, especially if they don't link to any Items. They also give clients enough information to 
-build tailored user interfaces for querying the data, by presenting the potential values that are available. Summaries can be used in 
-Collections or Catalogs, and they should summarize all values in every Item underneath it, including in nested sub-Catalogs. 
+build tailored user interfaces for querying the data, by presenting the potential values that are available. Summaries should summarize all values in every Item underneath the collection, including in any nested sub-Catalogs.
 
 A summary for a field can be specified in two ways:
 
