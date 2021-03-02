@@ -1,20 +1,20 @@
 # STAC Collection Specification
 
 The STAC Collection Specification defines a set of common fields to describe a group of Items that share properties and metadata. The 
-Collection Specification extends the STAC [Catalog Specification](../catalog-spec/catalog-spec.md) with additional fields to 
-describe the whole dataset and the included set of Items. It shares the same fields and therefore every Collection is also a valid Catalog. Collections can have both parent Catalogs and Collections and child Items, Catalogs and Collections. 
+Collection Specification shares some fields with the STAC [Catalog Specification](../catalog-spec/catalog-spec.md) with additional fields to 
+describe the whole dataset and the included set of Items. Collections can have both parent Catalogs and Collections and child Items, Catalogs and Collections. 
 
 A STAC Collection is represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Collection and also a valid STAC Catalog.
 
 STAC Collections are compatible with the [Collection](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html#example_4) JSON 
-specified in [*OGC API - Features*](https://ogcapi.ogc.org/features/), but it is extended with additional fields.  
+specified in [*OGC API - Features*](https://ogcapi.ogc.org/features/), but they are extended with additional fields.  
 
 * [Examples](../examples/):
   * Sentinel 2: A basic standalone example of a [Collection](../examples/collection-only/collection.json) without Items.
   * Simple Example: A [Collection](../examples/collection.json) that links to 3 example Items.
-  * Extension Collection: An additional [Collection](../examples/extensions-Collection/Collection.json), which is used to highlight
+  * Extension Collection: An additional [Collection](../examples/extensions-collection/collection.json), which is used to highlight
   various [extension](../extensions) functionality, but serves as another example.
-* [JSON Schema](json-schema/Collection.json)
+* [JSON Schema](json-schema/collection.json)
 
 ## Collection fields
 
