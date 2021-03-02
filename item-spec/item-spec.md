@@ -291,7 +291,7 @@ that talks about common use cases of additional fields for assets.
 ## Media Type for STAC Item
 
 A STAC Item is a GeoJSON file ([RFC 7946](https://tools.ietf.org/html/rfc7946)), and thus should use the 
-`[application/geo+json](https://tools.ietf.org/html/rfc7946#section-12)` as the [Media Type](https://en.wikipedia.org/wiki/Media_type) 
+[`application/geo+json`](https://tools.ietf.org/html/rfc7946#section-12) as the [Media Type](https://en.wikipedia.org/wiki/Media_type) 
 (previously known as the MIME Type). 
 
 ## Extensions
