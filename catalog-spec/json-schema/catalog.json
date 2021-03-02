@@ -20,7 +20,7 @@
       ],
       "properties": {
         "type": {
-          "title": "Type of STAC entityt",
+          "title": "Type of STAC entity",
           "const": "Catalog"
         }
       }
