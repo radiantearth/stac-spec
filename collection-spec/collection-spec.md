@@ -213,7 +213,7 @@ Implementors are free to add other derived statistical values to the object, for
 ## Media Type for STAC Collections
 
 A STAC Collection is a JSON file ([RFC 8259](https://tools.ietf.org/html/rfc8259)), and thus should use the 
-`[application/json](https://tools.ietf.org/html/rfc8259#section-11)` as the [Media Type](https://en.wikipedia.org/wiki/Media_type) 
+[`application/json`](https://tools.ietf.org/html/rfc8259#section-11) as the [Media Type](https://en.wikipedia.org/wiki/Media_type) 
 (previously known as the MIME Type). 
 
 ## Standalone Collections

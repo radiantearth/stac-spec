@@ -98,7 +98,7 @@ now deprecated term "MIME types".
 ### Media Type for STAC Catalogs
 
 A STAC Catalog is a JSON file ([RFC 8259](https://tools.ietf.org/html/rfc8259)), and thus should use the 
-`[application/json](https://tools.ietf.org/html/rfc8259#section-11)` as the [Media Type](https://en.wikipedia.org/wiki/Media_type) 
+[`application/json`](https://tools.ietf.org/html/rfc8259#section-11) as the [Media Type](https://en.wikipedia.org/wiki/Media_type) 
 (previously known as the MIME Type). 
 
 ### STAC Media Types
