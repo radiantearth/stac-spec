@@ -44,13 +44,14 @@
     }
   },
   "assets": {
-    "thumbnail": {
-      "href": "thumbnail.png",
-      "title": "Preview",
-      "type": "image/png",
+    "metadata_iso_19139": {
       "roles": [
-        "thumbnail"
-      ]
+        "metadata",
+        "iso-19139"
+      ],
+      "href": "https://storage.googleapis.com/open-cogs/stac-examples/sentinel-2-iso-19139.xml",
+      "title": "ISO 19139 metadata",
+      "type": "vnd.iso.19139+xml"
     }
   },
   "summaries": {
