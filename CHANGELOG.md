@@ -17,7 +17,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - 'summaries' are now available in the Catalog spec, so both catalogs and collections can make use of it. ([#903](https://github.com/radiantearth/stac-spec/issues/903))
 - Recommendation to enable CORS
 - A 'visual' option as an asset role.
+- Best Practice section on requester pays.
 - Added a best practice recommendation to keep collections at consistent levels. 
+
 
 ### Changed
 
