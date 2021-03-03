@@ -1,7 +1,7 @@
 {
   "id": "simple-collection",
   "type": "Collection",
-  "stac_version": "1.0.0-beta.2",
+  "stac_version": "1.0.0-rc.1",
   "description": "A simple collection demonstrating core catalog fields with links to a couple of items",
   "title": "Simple Example Collection",
   "providers": [
