@@ -40,7 +40,7 @@ also a valid STAC Catalog.
 | Element         | Type          | Description                                                  |
 | --------------- | ------------- | ------------------------------------------------------------ |
 | stac_version    | string        | **REQUIRED.** The STAC version the Catalog implements. STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind. |
-| type            | string        | **REQUIRED.** Set to `Catalog` if this Catalog only implements the Catalog spec, or `Collection` if it additional meets the [collection](../collection-spec/collection-spec.md) requirements and should be treated by clients as such. |
+| type            | string        | **REQUIRED.** Set to `Catalog` if this Catalog only implements the Catalog spec. |
 | stac_extensions | \[string]     | A list of extension identifiers the Catalog implements.                 |
 | id              | string        | **REQUIRED.** Identifier for the Catalog.                    |
 | title           | string        | A short descriptive one-line title for the Catalog.          |
