@@ -59,9 +59,9 @@ simple, flexible JSON file of links to Items, Catalogs or Collections that can b
 In the context of STAC it is most likely a related group of STAC Items that is made available by a data provider.
 It includes things like the spatial and temporal extent of the data, the license, keywords, etc.
 It enables discovery at a higher level than individual Item objects, providing a simple way to describe sets of data.
-* **Examples:** The *[examples/](examples)* folder contains examples for all three specifications, linked together to form two 
+* **[Examples](examples/):** The *[examples/](examples/)* folder contains examples for all three specifications, linked together to form two 
 complete examples. Each spec and extension links in to highlight particular files that demonstrate key concepts.
-* **Extensions:** The *[extensions/](extensions/)* folder is where extensions live. Extensions can extend the 
+* **[Extensions](extensions/):** The *[extensions/](extensions/)* folder is where extensions live. Extensions can extend the 
 functionality of the core spec or add fields for specific domains. Each extension has at least one *owner*. You can find extension owners in each extension's README or in the [`CODEOWNERS`](.github/CODEOWNERS) file.
 * **Additional documents:** The supporting documents include a complementary [best practices](best-practices.md) 
 document, and information on contributing (links in the next section). We also maintain a [changelog](CHANGELOG.md) of
