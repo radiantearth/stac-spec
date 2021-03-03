@@ -1,7 +1,7 @@
 {
   "id": "extensions-collection",
   "type": "Collection",
-  "stac_version": "1.0.0-beta.2",
+  "stac_version": "1.0.0-rc.1",
   "description": "A heterogenous collection containing deeper examples of various extensions",
   "links": [
     {

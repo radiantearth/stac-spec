@@ -1,7 +1,7 @@
 {
   "id": "examples",
   "type": "Catalog",
-  "stac_version": "1.0.0-beta.2",
+  "stac_version": "1.0.0-rc.1",
   "description": "This catalog is a simple demonstration of an example catalog that is used to organize a hierarchy of collections and their items.",
   "links": [
     {
