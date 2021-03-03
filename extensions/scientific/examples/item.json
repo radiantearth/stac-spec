@@ -1,7 +1,6 @@
 {
   "stac_version": "1.0.0-beta.2",
   "stac_extensions": [
-    "file",
     "scientific"
   ],
   "id": "MERRAclim.2_5m_min_80s",

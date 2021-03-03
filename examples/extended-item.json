@@ -3,7 +3,7 @@
   "stac_extensions": [
     "eo",
     "projection",
-    "sat",
+    "scientific",
     "view"
   ],
   "type": "Feature",
@@ -69,8 +69,6 @@
       0,
       1
     ],
-    "sat:orbit_state": "ascending",
-    "sat:relative_orbit": 34523,
     "view:sun_elevation": 54.9,
     "view:off_nadir": 3.8,
     "view:sun_azimuth": 135.7,
@@ -78,7 +76,8 @@
     "rd:anomalous_pixels": 0.14,
     "rd:earth_sun_distance": 1.014156,
     "rd:sat_id": "cool_sat2",
-    "rd:product_level": "LV3A"
+    "rd:product_level": "LV3A",
+    "sci:doi": "10.5061/dryad.s2v81.2/27.2"
   },
   "collection": "simple-collection",
   "links": [
