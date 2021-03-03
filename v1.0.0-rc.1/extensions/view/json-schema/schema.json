@@ -1,0 +1,138 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-rc.1/extensions/view/json-schema/schema.json#",
+  "title": "View Geometry Extension",
+  "description": "STAC View Geometry Extension for STAC Items and STAC Collections.",
+  "oneOf": [
+    {
+      "$comment": "This is the schema for STAC Items.",
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "properties",
+            "assets"
+          ],
+          "properties": {
+            "type": {
+              "const": "Feature"
+            },
+            "properties": {
+              "allOf": [
+                {
+                  "anyOf": [
+                    {"required": ["view:off_nadir"]},
+                    {"required": ["view:incidence_angle"]},
+                    {"required": ["view:azimuth"]},
+                    {"required": ["view:sun_azimuth"]},
+                    {"required": ["view:sun_elevation"]}
+                  ]
+                },
+                {
+                  "$ref": "#/definitions/fields"
+                }
+              ]
+            },
+            "assets": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/fields"
+              }
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
+        }
+      ]
+    },
+    {
+      "$comment": "This is the schema for STAC Collections.",
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "const": "Collection"
+            },
+            "assets": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/fields"
+              }
+            },
+            "item_assets": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/fields"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "definitions": {
+    "stac_extensions": {
+      "type": "object",
+      "required": [
+        "stac_extensions"
+      ],
+      "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "enum": [
+              "view",
+              "https://schemas.stacspec.org/v1.0.0-rc.1/extensions/view/json-schema/schema.json"
+            ]
+          }
+        }
+      }
+    },
+    "fields": {
+      "$comment": "Add your new fields here. Don't require them here, do that above in the item schema.",
+      "type": "object",
+      "properties": {
+        "view:off_nadir": {
+          "title": "Off Nadir",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 90
+        },
+        "view:incidence_angle": {
+          "title": "Center incidence angle",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 90
+        },
+        "view:azimuth": {
+          "title": "Azimuth angle",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 360
+        },
+        "view:sun_azimuth": {
+          "title": "Sun Azimuth",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 360
+        },
+        "view:sun_elevation": {
+          "title": "Sun Elevation",
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        }
+      },
+      "patternProperties": {
+        "^(?!view:)": {}
+      },
+      "additionalProperties": false
+    }
+  }
+}

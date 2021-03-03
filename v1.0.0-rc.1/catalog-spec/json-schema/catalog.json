@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-rc.1/catalog-spec/json-schema/catalog.json#",
+  "title": "STAC Catalog Specification",
+  "description": "This object represents Catalogs in a SpatioTemporal Asset Catalog.",
+  "allOf": [
+    {
+      "$ref": "catalog-core.json"
+    },
+    {
+      "$ref": "#/definitions/catalog"
+    }
+  ],
+  "definitions": {
+    "catalog": {
+      "title": "Catalog",
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "title": "Type of STAC entity",
+          "const": "Catalog"
+        }
+      }
+    }
+  }
+}

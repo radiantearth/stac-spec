@@ -1,0 +1,145 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-rc.1/extensions/scientific/json-schema/schema.json#",
+  "title": "Scientific Citation Extension",
+  "description": "STAC Scientific Citation Extension for STAC Items and STAC Collections.",
+  "oneOf": [
+    {
+      "$comment": "This is the schema for STAC Items.",
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "properties",
+            "assets"
+          ],
+          "properties": {
+            "type": {
+              "const": "Feature"
+            },
+            "properties": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/requirements"
+                },
+                {
+                  "$ref": "#/definitions/fields"
+                }
+              ]
+            },
+            "assets": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/fields"
+              }
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
+        }
+      ]
+    },
+    {
+      "$comment": "This is the schema for STAC Collections.",
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "const": "Collection"
+            },
+            "assets": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/fields"
+              }
+            },
+            "item_assets": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/fields"
+              }
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
+        },
+        {
+          "$ref": "#/definitions/requirements"
+        },
+        {
+          "$ref": "#/definitions/fields"
+        }
+      ]
+    }
+  ],
+  "definitions": {
+    "stac_extensions": {
+      "type": "object",
+      "required": [
+        "stac_extensions"
+      ],
+      "properties": {
+        "stac_extensions": {
+          "type": "array",
+          "contains": {
+            "enum": [
+              "scientific",
+              "https://schemas.stacspec.org/v1.0.0-rc.1/extensions/scientific/json-schema/schema.json"
+            ]
+          }
+        }
+      }
+    },
+    "fields": {
+      "$comment": "Add your new fields here. Don't require them here, do that above in the item schema.",
+      "type": "object",
+      "properties": {
+        "sci:doi": {
+          "type": "string",
+          "title": "Data DOI",
+          "pattern": "^10\\.[0-9a-zA-Z]{4,}/[^\\s]+$"
+        }, 
+        "sci:citation": {
+          "type": "string", 
+          "title": "Proposed Data Citation"
+        },
+        "sci:publications": {
+          "type": "array",
+          "title": "Publications",
+          "items": {
+            "type": "object",
+            "properties": {
+              "doi": {
+                "type": "string",
+                "title": "Publication DOI",
+                "pattern": "^10\\.[0-9a-zA-Z]{4,}/[^\\s]+$"
+              }, 
+              "citation": { 
+                "type": "string", 
+                "title": "Publication Citation"
+              }
+            }
+          }
+        }
+      },
+      "patternProperties": {
+        "^(?!sci:)": {}
+      },
+      "additionalProperties": false
+    },
+    "requirements": {
+      "anyOf": [
+        {"required": ["sci:doi"]},
+        {"required": ["sci:citation"]},
+        {"required": ["sci:publications"]}
+      ]
+    }
+  }
+}
