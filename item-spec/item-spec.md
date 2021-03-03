@@ -84,8 +84,13 @@ additional recommendations.
 
 #### stac_extensions
 
-A list of extensions the Item implements. The list contains URLs to the JSON Schema files it can be validated against. For official [extensions](../extensions/README.md#list-of-stac-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `pointcloud` for the Point Cloud extension. This does *not* apply for API extensions. If the versions of the extension and the Item diverge, you can specify the URL of the JSON schema file.
-This list must only contain extensions that extend the Item itself, see the the 'Scope' column in the list of extensions. If an extension such as the `tiled-assets` extension has influence on multiple parts of the whole catalog structure, it must be listed in all affected parts (e.g. Catalog, Collection and Item for the `tiled-assets` extension).
+A list of extensions the Item implements. The list contains URLs to the JSON Schema files it can be validated against. For 
+[official extensions](../extensions/README.md#core-stac-extensions), a "shortcut" can be used. This means you can specify the 
+folder name of the extension, for example `view` for the View extension. This does *not* apply for API extensions. If the
+versions of the extension and the Item diverge, you can specify the URL of the JSON schema file.
+This list must only contain extensions that extend the Item itself, see the the 'Scope' column in the list of extensions. 
+If an extension such as the `tiled-assets` extension has influence on multiple parts of the whole catalog structure, it 
+must be listed in all affected parts (e.g. Catalog, Collection and Item for the `tiled-assets` extension).
 
 #### assets
 
@@ -141,8 +146,8 @@ to enable cross-catalog search on known fields.
 
 * [STAC Common Metadata](common-metadata.md#stac-common-metadata) - A list of fields commonly used
 throughout all domains. These optional fields are included for STAC Items by default.
-* [Extensions](../extensions/README.md#list-of-stac-extensions) - Domain-specific fields
-such as EO, SAR and point clouds.
+* [Extensions](../extensions/README.md#core-stac-extensions) - Additional fields that are more specific,
+such as [EO](../extensions/eo), [View](../extensions/view) and more.
 * [Custom Extensions](../extensions/README.md#extending-stac) - It is generally allowed to add custom
 fields but it is recommended to add multiple fields for related values instead of a nested object,
 e.g., two fields `view:azimuth` and `view:off_nadir` instead of a field `view` with an object
