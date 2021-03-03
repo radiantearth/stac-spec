@@ -7,6 +7,7 @@
   - [STAC on the Web](#stac-on-the-web)
     - [Schema.org, JSON-LD, DCAT, microformats, etc](#schemaorg-json-ld-dcat-microformats-etc)
     - [Deploying STAC Browser](#deploying-stac-browser)
+  - [Requester Pays](#requester-pays)
 - **[Item Best Practices](#item-practices)**
   - [Field and ID formatting](#field-and-id-formatting)
   - [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
@@ -113,6 +114,26 @@ just submit it to [stacindex.org](https://stacindex.org/add).
 But the stronger recommendation is to host a STAC Browser on your own domain, and to customize its 
 design to look and feel like your main web presence. STAC aims to be decentralized, so each STAC-compliant data catalog 
 should have its own location and just be part of the wider web.
+
+### Requester Pays
+
+It is very common that large, freely available datasets are set up with a 'requester pays' configuration. This is an option 
+[on AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html) and [on 
+Google Cloud](https://cloud.google.com/storage/docs/requester-pays), that enables data providers to make their data
+available to everyone, while the cloud platform charges access costs (such as per-request and data '[egress](https://www.hostdime.com/blog/data-egress-fees-cloud/)') to the user accessing the data.
+For popular datasets that are large in size the egress costs can be substantial, to the point where much
+less data would be available if the cost of distribution was always on the data provider.
+
+For data providers using STAC with requester pays buckets, there are two main recommendations:
+
+1) Put the STAC JSON in a separate bucket that is public for everyone and **not** requestor pays. This enables the STAC metadata
+to be far more crawlable and searchable, but the cost of the egress of STAC files should be miniscule compared to that of
+the actual data. The STAC community can help you work with cloud providers for potential free hosting if you are doing open
+data as requestor pays and aren't able to pay the costs of a completely open STAC bucket, as they are most all supportive of
+STAC (but no guarantees and it may be on an alternate cloud).
+2) For Asset href values to resources in a requestor pays bucket, use the cloud provider-specific protocol (e.g., `s3://` on AWS and `gs://` on Google Cloud) instead of an `https://` url. Most clients do not have special handling for `https://` links to cloud provider resources that require a requestor pays flag and authentication, so they simply fail. Many clients have special handling for `s3://` or `gs://` URLs that will add a requestor pays parameter and will apply appropriate authentication to the request.
+Using cloud-specific protocols will at least give users an option to register a paid account and allow the data provider to properly charge for access. 
+STAC-specific tools in turn can look for the cloud-specific protocols and know to use the requestor pays feature for that specific cloud platform.
 
 ## Item Practices
 
@@ -313,7 +334,8 @@ actual role requirements.
 | data-mask | Best Practice | File indicating if corresponding pixels have Valid data and various types of invalid data |
 | snow-ice | Best Practice | Points to a file that indicates whether a pixel is assessed as being snow/ice or not. |
 | land-water | Best Practice | Points to a file that indicates whether a pixel is assessed as being land or water. |
-| water-mask | Best Practice | Points to a file that indicates whether a pixel is assessed as being water (e.g. flooding map). |
+| water-mask | Best Practice | Points to a file that indicates whether a pixel is assessed as being water (e.g. flooding map). | iso-19139 | Best Practice | Points to an [ISO 19139](https://www.iso.org/standard/67253.html) metadata xml file |
+| iso-19115 | Best Practice | Points to an [ISO 19115](https://www.iso.org/standard/53798.html) metadata file |
 | reflectance, temperature, saturation, cloud, cloud-shadow | [EO Extension](extensions/eo/README.md#best-practices) | See the [table](extensions/eo/README.md#best-practices) in EO for more information, and the definitive list of roles related to EO. |
 | incidence-angle, azimuth, sun-azimuth, sun-elevation, terrain-shadow, terrain-occlusion, terrain-illumination | [View Extension](extensions/view/README.md#best-practices) | See the [table](extensions/view/README.md#best-practices) in View for more information, and the definitive list of roles related to viewing angles. |
 | local-incidence-angle, noise-power, amplitude, magnitude, sigma0, beta0, gamma0, date-offset, covmat, prd | [SAR Extension](extensions/sar/README.md#best-practices) | See the [table](extensions/sar/README.md#best-practices) in SAR for more information. , and the definitive list of roles related to SAR. |
