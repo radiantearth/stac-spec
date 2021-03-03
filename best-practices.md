@@ -635,7 +635,7 @@ Collection, Catalog or [ItemCollection](https://github.com/radiantearth/stac-api
 with the `type` field, and secondarily in Items with `stac_version`, or optionally the `rel` of the link to it.
 
 ```shell
-if type is `Collection`
+if type is 'Collection'
   => Collection
 else if type is `Catalog`
   => Catalog
