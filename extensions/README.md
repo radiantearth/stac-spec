@@ -6,12 +6,12 @@
 - [Community Extensions](#community-extensions)
   - [Extension Maturity](#extension-maturity)
   - [List of STAC Community Extensions](#list-of-stac-community-extensions)
-- [Proposed extensions](#proposed-extensions)
+  - [Proposed extensions](#proposed-extensions)
 - [Extending STAC](#extending-stac)
-  + [Proposing new extensions](#proposing-new-extensions)
-  + [Prefixes](#prefixes)
-  + [Use of arrays and objects](#use-of-arrays-and-objects)
-    + [Directory Structure](#directory-structure)
+  - [Proposing new extensions](#proposing-new-extensions)
+  - [Prefixes](#prefixes)
+  - [Use of arrays and objects](#use-of-arrays-and-objects)
+    - [Directory Structure](#directory-structure)
 
 ## Overview
 
@@ -98,7 +98,7 @@ is encouraged to list here.
 | [Versioning Indicators](https://github.com/stac-extensions/version)       | version           | -                   | Item, Collection          | *Proposal* | Provides fields and link relation types to provide a version and indicate deprecation. |
 | [CARD4L](https://github.com/stac-extensions/card4l) | card4l            | card4l | Item  | *Proposal* | How to comply to the CEOS CARD4L product family specifications (Optical and SAR), from [openEO Platform](https://platform.openeo.org) |
 
-## Proposed extensions
+### Proposed extensions
 
 Beyond the list above there have been a number of extensions that people have proposed to the STAC community. These
 can be found in the STAC [Issue Tracker](https://github.com/radiantearth/stac-spec/issues) under the 
