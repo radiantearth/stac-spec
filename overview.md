@@ -164,7 +164,7 @@ each Item and Catalog, as well as ways to achieve that.
 
 A STAC Collection extends the core fields of the Catalog construct to provide additional metadata to describe the set of Items it
 contains. The required fields are fairly 
-minimal - it inherits the 4 required Catalog fields (id, description, stac_version and links), and adds license 
+minimal - it includes the 4 required Catalog fields (id, description, stac_version and links), and adds license 
 and extents. But there are a number of other common fields defined in the spec, and more common fields are also 
 defined in [STAC extensions](extensions/). These serve as basic metadata, and ideally Collections also link to 
 fuller metadata (ISO 19115, etc) when it is available.
