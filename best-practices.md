@@ -644,7 +644,7 @@ else if type is 'Feature' and stac_version is defined
 else if type is 'FeatureCollection' and stac_version is defined
   => ItemCollection
 else
-  => Invalid (GeoJSON)
+  => Invalid (JSON)
 ```
 
 When actually crawling a STAC implementation one can also make use of the [relation type](catalog-spec/catalog-spec.md#relation-types
