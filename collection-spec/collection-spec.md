@@ -182,7 +182,7 @@ This is done where there is not a clear official option, or where STAC uses an o
 
 A more complete list of possible `rel` types and their meaning in STAC can be found in the [Using Relation Types](../best-practices.md#using-relation-types) best practice. 
 
-**Note:** The STAC Catalog specification requires a link to at least one `item` or `child` Catalog. This is *not* a requirement for Collections, but *recommended*. In contrast to Catalogs, it is **REQUIRED** that Items linked from a Collection MUST refer back to its Collection with the [`Collection` relation type](../item-spec/item-spec.md#relation-types).
+**Note:** The STAC Catalog specification requires a link to at least one `item` or `child` Catalog. This is *not* a requirement for Collections, but *recommended*. In contrast to Catalogs, it is **REQUIRED** that Items linked from a Collection MUST refer back to its Collection with the [`collection` relation type](../item-spec/item-spec.md#relation-types).
 
 ### Asset Object
 
