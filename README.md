@@ -30,7 +30,7 @@ between these objects, a STAC catalog can be implemented in a completely 'static
 manner as a group of hyperlinked Catalog, Collection, and Item URLs, enabling data 
 publishers to expose their data as a browsable set of files. If more complex query 
 abilities are desired, such as spatial or temporal predicates, the 
-[STAC API specification](https://github.com/radiantearth/stac-api-spec/) can be 
+**STAC API** [specification](https://github.com/radiantearth/stac-api-spec/) can be 
 implemented as a web service interface to query over a group of STAC objects, usually 
 held in a database.
 
