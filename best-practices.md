@@ -639,7 +639,7 @@ if type is 'Collection'
   => Collection
 else if type is 'Catalog'
   => Catalog
-else if type is 'Feature' and stac_version is defined // stac_version in items is only available since 0.8, check for (stac_version or assets) to support pre-0.8 data
+else if type is 'Feature' and stac_version is defined
   => Item
 else if type is 'FeatureCollection' and stac_version is defined
   => ItemCollection
