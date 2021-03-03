@@ -4,35 +4,65 @@
 
 ## About
 
-The SpatioTemporal Asset Catalog (STAC) family of specifications aims to standardize the way
-geospatial asset metadata is structured and queried. A "spatiotemporal asset" is any file 
-that represents information about the Earth at a certain place and time. The original focus was on scenes of satellite
-imagery, but now covers a broad variety of uses, including sources such as aircraft and drone, and data such as hyperspectral optical, synthetic aperture radar (SAR), video, point clouds, lidar, digital elevation models (DEM), vector, machine learning labels, and composites like NDVI and mosaics. STAC is intentionally designed with a minimal core and flexible extension semantics to support a broad set of use cases.
+The SpatioTemporal Asset Catalog (STAC) family of specifications aims to 
+standardize the way geospatial asset metadata is structured and queried. 
+A "spatiotemporal asset" is any file that represents information about 
+the Earth at a certain place and time. The original focus was on scenes 
+of satellite imagery, but now covers a broad variety of uses, including 
+sources such as aircraft and drone, and data such as hyperspectral optical, 
+synthetic aperture radar (SAR), video, point clouds, lidar, digital elevation 
+models (DEM), vector, machine learning labels, and composites like NDVI and 
+mosaics. STAC is intentionally designed with a minimal core and flexible 
+extension semantics to support a broad set of use cases.
 
-STAC defines a common format (object types) and interface (web service API) to be used by providers and consumers of geospatial data.  This is advantageous to providers, as they can simply use a well-designed, standard format without needing to design their own proprietary one. This is advantageous to consumer because they can use existing libraries and tools to access metadata, instead of needing to write new code to interact with each data provider's proprietary formats and APIs. 
+The STAC specifications define JSON object types and hypermedia interface to be used 
+by providers and consumers of geospatial data.  
+This is advantageous to providers, as they can simply use a well-designed, 
+standard format without needing to design their own proprietary one. This 
+is advantageous to consumers because they can use existing libraries and 
+tools to access metadata, instead of needing to write new code to interact 
+with each data provider's proprietary formats and APIs. 
 
-Typically, several STAC specifications are composed together to create a catalog. The **Item**, **Catalog**, and **Collection** specifications define a minimal core of the most frequently used JSON object types. Because of the hierarchical structure between these objects, a STAC catalog can be implemented in a completely 'static' manner as a group of hyperlinked Catalog, Collection, and Item URLs, enabling data publishers to expose their data as a browsable set of files. If more complex query abilities are desired, such as spatial or temporal predicates, the [STAC API specification](https://github.com/radiantearth/stac-api-spec/) can be implemented as a web service interface to query over a group of STAC objects, usually held in a database.
+Typically, several STAC specifications are composed together to create a catalog. 
+The **Item**, **Catalog**, and **Collection** specifications define a minimal core 
+of the most frequently used JSON object types. Because of the hierarchical structure 
+between these objects, a STAC catalog can be implemented in a completely 'static' 
+manner as a group of hyperlinked Catalog, Collection, and Item URLs, enabling data 
+publishers to expose their data as a browsable set of files. If more complex query 
+abilities are desired, such as spatial or temporal predicates, the 
+[STAC API specification](https://github.com/radiantearth/stac-api-spec/) can be 
+implemented as a web service interface to query over a group of STAC objects, usually 
+held in a database.
 
-To the greatest extent possible, STAC uses and extends existing specifications. The most important object in STAC is an **Item**, which is simply a GeoJSON **Feature** with a well-defined set of additional attributes ("foreign members"). The **STAC API** extends the **OGC API - Features - Part 1: Core** with additional web service endpoints and object attributes.
+To the greatest extent possible, STAC uses and extends existing specifications. 
+The most important object in STAC is an **Item**, which is simply a [GeoJSON](http://geojson.org) **Feature** 
+with a well-defined set of additional attributes ("foreign members"). The **STAC API** 
+extends the **[OGC API - Features - Part 1: Core](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html)** 
+with additional web service endpoints and object attributes.
 
 ## Stability Note
 
-This specification has matured over the past several years, and is used in [numerous production deployments](https://stacindex.org/catalogs). 
+This specification has matured over the past several years, and is used in 
+[numerous production deployments](https://stacindex.org/catalogs). 
 With the 1.0 release, implementors should expect that most definitions will remain stable. Our goal
-is to not change the core in any backwards-incompatible way for a long time. The STAC specification follows [Semantic Versioning](https://semver.org/), so once 1.0.0 is reached, any breaking change will require the spec to go to 2.0.0. 
+is to not change the core in any backwards-incompatible way for a long time. 
+The STAC specification follows [Semantic Versioning](https://semver.org/), so once 
+1.0.0 is reached, any breaking change will require the spec to go to 2.0.0. 
 
 ## Current version and branches
 
 The [master branch](https://github.com/radiantearth/stac-spec/tree/master) is the 'stable' 
 version of the spec. It is currently version **1.0.0** of the specification. The 
-[dev](https://github.com/radiantearth/stac-spec/tree/dev) branch is where active development takes place, and may have inconsistent examples. 
-Whenever dev stabilizes, a release is cut and we merge `dev` in to `master`. So `master` should be stable at any given time. 
+[dev](https://github.com/radiantearth/stac-spec/tree/dev) branch is where active development takes place, 
+and may have inconsistent examples. Whenever dev stabilizes, a release is cut and we 
+merge `dev` in to `master`. So `master` should be stable at any given time. 
 More information on how the STAC development process works can be found in 
 [process.md](process.md).
 
 ## Communication
 
-Our [gitter channel](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby) is the best place to ask questions or provide feedback. The majority of communication about the evolution of 
+Our [gitter channel](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby) is 
+the best place to ask questions or provide feedback. The majority of communication about the evolution of 
 the specification takes place in the [issue tracker](https://github.com/radiantearth/stac-spec/issues) and in 
 [pull requests](https://github.com/radiantearth/stac-spec/pulls).
 
@@ -40,9 +70,11 @@ the specification takes place in the [issue tracker](https://github.com/radiante
 
 This repository contains the core object type specifications, [examples](examples/), 
 validation schemas, and documentation about the context and plans for the evolution of the 
-specification. Each folder contains a README explaining the layout of the folder, the main specification document, examples, and validating schemas. 
+specification. Each folder contains a README explaining the layout of the folder, 
+the main specification document, examples, and validating schemas. 
 
-Additionally, the [STAC API specification](https://github.com/radiantearth/stac-api-spec/) provides API endpoints, based on the [OGC API - Features](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html) standard,
+Additionally, the [STAC API specification](https://github.com/radiantearth/stac-api-spec/) 
+provides API endpoints, based on the [OGC API - Features](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html) standard,
 that enable clients to search for Item objects that match their filtering criteria. 
 
 The 
