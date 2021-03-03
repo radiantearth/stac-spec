@@ -647,7 +647,7 @@ else
   => Invalid (JSON)
 ```
 
-When actually crawling a STAC implementation one can also make use of the [relation type](catalog-spec/catalog-spec.md#relation-types
+When crawling a STAC implementation, one can also make use of the [relation type](catalog-spec/catalog-spec.md#relation-types
 ) (`rel` field) when following a link. If it is an `item` rel type then the file must be a STAC Item. If it is `child`, `parent` or
 `root` then it must be a Catalog or a Collection, and the `type` field can be used to distinguish which one.
 
