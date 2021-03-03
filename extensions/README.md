@@ -22,10 +22,11 @@ stac-spec repository to collaborate.
 
 ## General Conventions
 
-1. Additional attributes relating to an Item should be added into the Item Properties object, rather than directly in the Item object. 
+1. Additional attributes relating to an [Item](../item-spec/item-spec.md) should be added into the Item Properties object, rather than directly in the Item object. 
 2. In general, additional attributes that apply to an Item Asset should also be allowed in Item Properties and vice-versa.
 For example, the `eo:bands` attribute may be used in Item Properties to describe the aggregation of all bands available in 
 the Item Asset objects contained in the Item, but may also be used in an individual Item Asset to describe only the bands available in that asset.
+3. Additional attributes relating to a [Catalog](../catalog-spec/catalog-spec.md) or [Collection](../collection-spec/collection-spec.md) should be added to the root of the object. 
 
 ## Extension Maturity
 
@@ -56,19 +57,18 @@ These extensions add new fields or semantics to STAC objects.
 
 | Extension Title                                  | Identifier        | Field Name Prefix   | Scope                     | Maturity   | Description |
 | ------------------------------------------------ | ----------------- | ------------------- | ------------------------- | ---------- | ----------- |
-| [Collection Assets](collection-assets/README.md) | collection-assets | -                   | Collection                | *Proposal* | Provides a way to specify assets available on the collection-level. |
 | [Data Cube](datacube/README.md)                  | datacube          | cube                | Item, Collection          | *Proposal* | Data Cube related metadata, especially to describe their dimensions. |
 | [Electro-Optical](eo/README.md)                  | eo                | eo                  | Item                      | *Proposal* | Covers electro-optical data that represents a snapshot of the Earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, gsd and more. |
-| [File Info](file/README.md)                      | file              | file                | Item, Catalog, Collection | *Proposal* | Provides a way to specify file details such as size, data type and checksum for assets and links in Items, Catalogs and Collections. |
-| [Item Asset Definition](item-assets/README.md)   | item-assets       | -                   | Collection                | *Proposal* | Provides a way to specify details about what assets may be found in Items belonging to a collection. |
+| [File Info](file/README.md)                      | file              | file                | Item, Collection          | *Proposal* | Provides a way to specify file details such as size, data type and checksum for assets in Items and Collections. |
+| [Item Asset Definition](item-assets/README.md)   | item-assets       | -                   | Collection                | *Proposal* | Provides a way to specify details about what assets may be found in Items belonging to a Collection. |
 | [Label](label/README.md)                         | label             | label               | Item                      | *Proposal* | Items that relate labeled AOIs with source imagery |
 | [Point Cloud](pointcloud/README.md)              | pointcloud        | pc                  | Item                      | *Proposal* | Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LiDAR or coincidence-matched imagery. |
 | [Processing](processing/README.md)               | processing        | processing          | Item, Collection          | *Proposal* | Indicates from which processing chain data originates and how the data itself has been produced. |
-| [Projection](projection/README.md)               | projection        | proj                | Item                      | *Proposal* | Provides a way to describe items whose assets are in a geospatial projection. |
+| [Projection](projection/README.md)               | projection        | proj                | Item                      | *Proposal* | Provides a way to describe Items whose assets are in a geospatial projection. |
 | [SAR](sar/README.md)                             | sar               | sar                 | Item                      | *Proposal* | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. |
 | [Satellite](sat/README.md)                       | sat               | sat                 | Item                      | *Proposal* | Satellite related metadata for data collected from satellites. |
-| [Scientific](scientific/README.md)               | scientific        | sci                 | Item, Collection          | *Proposal* | Scientific metadata is considered to be data that indicate from which publication data originates and how the data itself should be cited or referenced. |
-| [Single File STAC](single-file-stac/README.md)   | single-file-stac  | -                   | Catalog                   | *Proposal* | An extension to provide a set of Collections and Items within a single file catalog. |
+| [Scientific Citation](scientific/README.md)      | scientific        | sci                 | Item, Collection          | *Proposal* | Metadata that indicate from which publication data originates and how the data itself should be cited or referenced. |
+| [Single File STAC](single-file-stac/README.md)   | single-file-stac  | -                   | Catalog                   | *Proposal* | An extension to provide a set of Collections and Items within a single file STAC. |
 | [Tiled Assets](tiled-assets/README.md)           | tiled-assets      | tiles               | Item, Catalog, Collection | *Proposal* | Allows to specify numerous assets using asset templates via tile matrices and dimensions. |
 | [Timestamps](timestamps/README.md)               | timestamps        | -                   | Item                      | *Proposal* | Allows to specify numerous timestamps for assets and metadata. |
 | [Versioning Indicators](version/README.md)       | version           | -                   | Item, Collection          | *Proposal* | Provides fields and link relation types to provide a version and indicate deprecation. |
@@ -82,9 +82,9 @@ parties, extensions may be made official and incorporated in the STAC repository
 
 Please contact a STAC maintainer or open a Pull Request to add your extension to this table.
 
-| Name     | Scope | Description | Vendor |
-| -------- | ----- | ----------- | ------ |
-| None yet |       |             |        |
+| Name                                                | Field Name Prefix | Scope | Description                                                  | Vendor                                         |
+| --------------------------------------------------- | ----------------- | ----- | ------------------------------------------------------------ | ---------------------------------------------- |
+| [CARD4L](https://github.com/stac-extensions/card4l) | card4l            | Item  | How to comply to the CEOS CARD4L product family specifications (Optical and SAR) | [openEO Platform](https://platform.openeo.org) |
 
 ## Proposed extensions
 
@@ -108,7 +108,7 @@ Best practices for extension proposals are still emerging in this section.
 
 ### Prefixes
 
-A STAC Item can combine schema information from several different sources - the core STAC item information,
+A STAC Item can combine schema information from several different sources - the core STAC Item information,
 an earth observation community extension, and a vendor specific provider. It can be difficult to distinguish exactly where each definition
 came from, and to pull out the most relevant information, especially when vendors often will dump in all the metadata they have in to the
 STAC definition.

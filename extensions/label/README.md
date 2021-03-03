@@ -37,14 +37,14 @@ This document explains the fields of the STAC Label Extension to a STAC Item. It
 
 ## Fields
 
-A Label Item represents a polygon, set of polygons, or raster data defining labels and label metadata and should be part of a Collection. See the [raster label notes](#raster-label-notes) section below for details on raster-formatted labels. It is up to the data provider how to group their catalog, but a typical use might have a Collection of a series of label sets (Items) that are related. For example a "Building" collection might have 50 Items, each one was a set of building AOIs for a single country. The Collection holds details on the data providers and the license.
+A Label Item represents a polygon, set of polygons, or raster data defining labels and label metadata and should be part of a Collection. See the [raster label notes](#raster-label-notes) section below for details on raster-formatted labels. It is up to the data provider how to group their catalog, but a typical use might have a Collection of a series of label sets (Items) that are related. For example a "Building" Collection might have 50 Items, each one was a set of building AOIs for a single country. The Collection holds details on the data providers and the license.
 
 Like other extensions, the Label extension adds additional fields to a STAC Item, which are detailed after some additional clarification on what the core fields mean with respect to a Label Item.
 
 ### Item fields
 Some additional notes are given here for some of the core STAC Item fields and what they represent for label.
 
-- **bbox** and **geometry**: The bounding box and the geometry of a Label Item represents the region for which the label(s) is/are valid. The geometry _must_ include areas for which labeling was attempted but no features were identified, if such areas exist. For example, consider a cloud labeling object detection task for this chip taken from a Sentinel-2 image, which happens not to have any clouds. The geometry for the label item with this item as its `source` must be the geometry of the image (or whatever area within the image was considered), even though the label item's asset won't have any features.
+- **bbox** and **geometry**: The bounding box and the geometry of a Label Item represents the region for which the label(s) is/are valid. The geometry _must_ include areas for which labeling was attempted but no features were identified, if such areas exist. For example, consider a cloud labeling object detection task for this chip taken from a Sentinel-2 image, which happens not to have any clouds. The geometry for the label Item with this Item as its `source` must be the geometry of the image (or whatever area within the image was considered), even though the label Item's asset won't have any features.
 
 ![](./images/cuba-island.png)
 
@@ -56,7 +56,7 @@ Some additional notes are given here for some of the core STAC Item fields and w
 | ----------------- | -------------------------------- | -------------------------- | ----------- |
 | label:properties  | \[string]\|null                  | Name                       | **REQUIRED** These are the names of the property field(s) in each `Feature` of the label asset's `FeatureCollection` that contains the  classes (keywords from `label:classes` if the property defines classes). If labels are rasters, use `null`. |
 | label:classes     | \[[Class Object](#class-object)] | Classes                    | **REQUIRED** if using categorical data. A Class Object defining the list of possible class names for each `label:properties`. (e.g., tree, building, car, hippo) |
-| label:description | string                           | Description                | **REQUIRED** A description of the label, how it was created, and what it is recommended for |
+| label:description | string                           | Description                | **REQUIRED** A description of the label, how it was created, and what it is recommended for. [CommonMark 0.29](https://commonmark.org/) syntax MAY be used for rich text representation. |
 | label:type        | string                           | Type                       | **REQUIRED** An ENUM of either `vector` label type or `raster` label type |
 | label:tasks       | \[string]                        | Task                       | Recommended to be a subset of 'regression', 'classification', 'detection', or 'segmentation', but may be an arbitrary value |
 | label:methods     | \[string]                        | Method                     | Recommended to be a subset of 'automated' or 'manual', but may be an arbitrary value. |
@@ -160,17 +160,17 @@ In addition the source imagery link has a new label extension specific field:
 
 | Field Name   | Type      | Name   | Description |
 | ------------ | --------- | ------ | ----------- |
-| label:assets | \[string] | Assets | The keys for the assets within the `source` item to which this label item applies. |
+| label:assets | \[string] | Assets | The keys for the assets within the `source` Item to which this label Item applies. |
 
-The `label:assets` field applies to situations where the labels may apply to certain assets inside the source imagery Item, but not others (e.g. if the labels were traced on top of RGB imagery, but the source item also contains assets for a Digital Elevation Model).
+The `label:assets` field applies to situations where the labels may apply to certain assets inside the source imagery Item, but not others (e.g. if the labels were traced on top of RGB imagery, but the source Item also contains assets for a Digital Elevation Model).
 
 ## Implementations
 
-The SpaceNet Challenge Round 2 dataset has a [STAC catalog](https://spacenet-dataset.s3.amazonaws.com/spacenet-stac/SN2_buildings/catalog.json) generated using [PySTAC](https://pystac.readthedocs.io/en/latest) containing Label Items. Further example implementations can be found in [Examples](#Examples). The Roads implementation provides an example item for labels from the [SpaceNet Road Network Extraction Challenge Dataset](https://spacenet.ai/spacenet-roads-dataset/), providing segmentation labels for road networks. The Misc Samples implementation provides an example catalog of collections with sample label items from several training datasets, [SpaceNet Buildings](https://spacenet.ai/spacenet-buildings-dataset-v2/) and [Open AI Tanzania Building Footprint Segmentation Challenge](https://competitions.codalab.org/competitions/20100) for now, providing segmentation labels for buildings.
+The SpaceNet Challenge Round 2 dataset has a [STAC catalog](https://spacenet-dataset.s3.amazonaws.com/spacenet-stac/SN2_buildings/catalog.json) generated using [PySTAC](https://pystac.readthedocs.io/en/latest) containing Label Items. Further example implementations can be found in [Examples](#Examples). The Roads implementation provides an example item for labels from the [SpaceNet Road Network Extraction Challenge Dataset](https://spacenet.ai/spacenet-roads-dataset/), providing segmentation labels for road networks. The Misc Samples implementation provides an example catalog of Collections with sample label items from several training datasets, [SpaceNet Buildings](https://spacenet.ai/spacenet-buildings-dataset-v2/) and [Open AI Tanzania Building Footprint Segmentation Challenge](https://competitions.codalab.org/competitions/20100) for now, providing segmentation labels for buildings.
 
 [Raster Foundry](https://rasterfoundry.azavea.com/) supports exporting STAC-compliant training data label items, assets, and sources in a self-contained `zip` file and as an s3 directory when initiated from an internal annotation and labeling tool.
 
-[PySTAC](https://pystac.readthedocs.io/en/latest/) supports [reading/writing](https://pystac.readthedocs.io/en/latest/tutorials/how-to-create-stac-catalogs.html#Adding-label-items-to-the-Spacenet-5-catalog) STAC collections according to this extension.
+[PySTAC](https://pystac.readthedocs.io/en/latest/) supports [reading/writing](https://pystac.readthedocs.io/en/latest/tutorials/how-to-create-stac-catalogs.html#Adding-label-items-to-the-Spacenet-5-catalog) STAC Collections according to this extension.
 
 ## Extensions
 While the EO extension doesn't make sense within a Label Item itself, most Label Items will link to source data which will frequently use the EO Extension.

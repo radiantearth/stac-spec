@@ -6,7 +6,7 @@ the sets of Items. A Catalog consists of links to other Catalogs and Items, and 
 additional metadata to further describe its holdings. It is defined in full in the 
 [STAC Catalog Specification](catalog-spec.md).
 
-While STAC Catalogs mostly describe a structure of links and Items, a key related specification is the [STAC Collection Specification](../collection-spec/),
+While STAC Catalogs mostly describe a structure of links and Items, a key related specification is the [STAC Collection Specification](../collection-spec/collection-spec.md),
 which extends Catalogs with additional fields to further describe the set of Items in a Catalog. STAC Collections share the same 
 fields with Catalogs and therefore every Collection is also a valid Catalog. For more information on how the parts of STAC fit
 together see the [overview](../overview.md) document.
@@ -19,9 +19,6 @@ specification contains an OpenAPI definition of the standard way to do this, at 
 
 **The Specification:** The main Catalog specification is in *[catalog-spec.md](catalog-spec.md)*.
 It includes in depth explanation of the structures and fields.
-
-**Examples:** For samples of how Catalogs can be implemented the *[examples/](examples/)* folder
-contains a full sample catalog. 
 
 **Schemas:** The schemas to validate the core Catalog definition are found in the *[json-schema/](json-schema/)* folder.
 The primary one is *[catalog.json](json-schema/catalog.json)*.

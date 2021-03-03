@@ -7,7 +7,7 @@
 - **Extension [Maturity Classification](../README.md#extension-maturity): Proposal**
 - **Owner**: @matthewhanson
 
-This document explains the fields of the STAC Projection (`projection`) Extension to a STAC Item.
+This document explains the fields of the STAC Projection (`projection`) Extension to a STAC [Item](../../item-spec/item-spec.md).
 
 The fields defined here may be added to the Item Properties object or an Item Asset object.
 
@@ -19,7 +19,7 @@ fields should be specified at the Item Asset level, while those Item Asset objec
 
 ## Examples
 
-- [Example Landsat8](examples/example-landsat8.json)
+- [Example Landsat8](../../examples/extensions-collection/proj-example/proj-example.json)
 
 ## Schema
 

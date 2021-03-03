@@ -45,13 +45,13 @@ the specification takes place in the [issue tracker](https://github.com/radiante
 
 ## In this Repository
 
-This repository contains the core specifications plus examples and validation schemas. Also included are a
+This repository contains the core specifications plus [examples](examples/) and validation schemas. Also included are a
 few documents that provide more context and plans for the evolution of the specification. Each spec folder contains a
 README explaining the layout of the folder, the main specification document, examples, and validating schemas. And 
 there is one more specification in the STAC 'family', which is
 the [STAC API specification](https://github.com/radiantearth/stac-api-spec/), now living in its own repository. It
 provides API endpoints, based on the [OGC API - Features](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html) standard,
-that enable clients to search for `item`s that match their filtering criteria. The four specifications are meant to be used 
+that enable clients to search for Item objects that match their filtering criteria. The four specifications are meant to be used 
 together, but are designed so each piece is small, self-contained and reusable in other contexts.
 
 The **[Overview](overview.md)** describes the three core specifications and how they relate to one another.
@@ -64,9 +64,12 @@ The **[Catalog Specification](catalog-spec/)** specifies a structure to link var
 simple, flexible JSON file of links to Items, Catalogs or Collections that can be used in a variety of ways.
 
 The **[Collection Specification](collection-spec/)** provides additional information about a spatio-temporal collection of data.
-In the context of STAC it is most likely a collection of STAC Items that is made available by a data provider.
+In the context of STAC it is most likely a related group of STAC Items that is made available by a data provider.
 It includes things like the spatial and temporal extent of the data, the license, keywords, etc.
-It enables discovery at a higher level than individual items, providing a simple way to describe sets of data.
+It enables discovery at a higher level than individual Item objects, providing a simple way to describe sets of data.
+
+**Examples:** The *[examples/](examples)* folder contains examples for all three specifications, linked together to form two 
+complete examples. Each spec and extension links in to highlight particular files that demonstrate key concepts.
 
 **Extensions:** The *[extensions/](extensions/)* folder is where extensions live. Extensions can extend the 
 functionality of the core spec or add fields for specific domains. Each extension has at least one *owner*. You can find extension owners in each extension's README or in the [`CODEOWNERS`](.github/CODEOWNERS) file.

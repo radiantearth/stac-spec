@@ -9,9 +9,9 @@
 
 Processing metadata is considered to be data that indicate from which processing chain a data originates and how the data itself has been produced. Overall, it helps to increase traceability and search among processing levels and multiple algorithm versions.
 
-Often, data items are the result of one or more waterfall processing pipeline. Tracing information such as the processing facility , the algorithm version or the processing date helps in the data version management.
+Often, data items are the result of one or more waterfall processing pipeline. Tracing information such as the processing facility, the algorithm version or the processing date helps in the data version management.
 
-This extension applies to STAC Items and STAC Collections. As these processing information are often closely bound to the collection level and therefore are shared across all items, it is recommended adding the fields to the corresponding STAC Collection.
+This extension applies to STAC Items and STAC Collections. As these processing information are often closely bound to the Collection level and therefore are shared across all items, it is recommended adding the fields to the corresponding STAC Collection.
 
 - [Examples](examples/): [Sentinel-1 Item](examples/sentinel1-item.json),  [Sentinel-2 Level 1C Collection](examples/sentinel2-collection.json)
 - [JSON Schema](json-schema/schema.json)
@@ -23,7 +23,7 @@ This extension applies to STAC Items and STAC Collections. As these processing i
 
 | Field Name              | Type                | Description |
 | ----------------------- | ------------------- | ----------- |
-| processing:lineage      | string              | Lineage Information provided as free text information about the how observations were processed or models that were used to create the resource being described [NASA ISO](https://wiki.earthdata.nasa.gov/display/NASAISO/Lineage+Information). For example, `GRD Post Processing` for "GRD" product of Sentinel-1 satellites. |
+| processing:lineage      | string              | Lineage Information provided as free text information about the how observations were processed or models that were used to create the resource being described [NASA ISO](https://wiki.earthdata.nasa.gov/display/NASAISO/Lineage+Information). For example, `GRD Post Processing` for "GRD" product of Sentinel-1 satellites. [CommonMark 0.29](https://commonmark.org/) syntax MAY be used for rich text representation. |
 | processing:level        | string              | The name commonly used to refer to the processing level to make it easier to search for product level across collections or items. The short name must be used (only `L`, not `Level`). See the [list of suggested processing levels](#suggested-processing-levels). |
 | processing:facility     | string              | The name of the facility that produced the data. For example, `Copernicus S1 Core Ground Segment - DPA` for product of Sentinel-1 satellites. |
 | processing:software     | Map<string, string> | A dictionary with name/version for key/value describing one or more softwares that produced the data. For example, `"Sentinel-1 IPF":"002.71"` for the software that produces Sentinel-1 satellites data. |
@@ -34,9 +34,9 @@ This extension applies to STAC Items and STAC Collections. As these processing i
 
 The time of the processing is directly specified via the `created` properties of the target asset as specified in the [STAC Common metadata](https://github.com/radiantearth/stac-spec/blob/master/item-spec/common-metadata.md#date-and-time)
 
-### Linking the items
+### Linking the Items
 
-In items declaring this `processing` extension, it is recommended to add one or more [links](../../item-spec/item-spec.md#relation-types) with `derived_from` or `via` relationships to the eventual source items used in the processing. They could be used to trace back the processing history of the dataset.
+In Items that declare this `processing` extension, it is recommended to add one or more [Links](../../item-spec/item-spec.md#relation-types) with `derived_from` or `via` relationships to the eventual source metadata & data used in the processing. They could be used to trace back the processing history of the dataset.
 
 ### Suggested Processing Levels
 

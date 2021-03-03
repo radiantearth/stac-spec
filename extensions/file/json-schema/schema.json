@@ -13,23 +13,7 @@
           "$ref": "#/definitions/stac_extensions"
         },
         {
-          "$ref": "#/definitions/file_links"
-        },
-        {
           "$ref": "#/definitions/file_assets"
-        }
-      ]
-    },
-    {
-      "allOf": [
-        {
-          "$ref": "../../../catalog-spec/json-schema/catalog.json"
-        },
-        {
-          "$ref": "#/definitions/stac_extensions"
-        },
-        {
-          "$ref": "#/definitions/file_links"
         }
       ]
     },
@@ -40,9 +24,6 @@
         },
         {
           "$ref": "#/definitions/stac_extensions"
-        },
-        {
-          "$ref": "#/definitions/file_links"
         },
         {
           "$ref": "#/definitions/file_assets"
@@ -64,17 +45,6 @@
               "file",
               "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/file/json-schema/schema.json"
             ]
-          }
-        }
-      }
-    },
-    "file_links": {
-      "type": "object",
-      "properties": {
-        "links": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/file"
           }
         }
       }
