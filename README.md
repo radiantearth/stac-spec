@@ -57,8 +57,8 @@ together, but are designed so each piece is small, self-contained and reusable i
 The **[Overview](overview.md)** describes the three core specifications and how they relate to one another.
 
 The **[Item Specification](item-spec/)** defines a STAC Item, which is a [GeoJSON](http://geojson.org) Feature
-with additional fields for things like time, links to related entities and assets (including thumbnails). This is the 
-atomic unit that describes the data to be discovered.
+with additional fields for things like time, links to related entities and assets (including thumbnails). This 
+is the entity that describes the data to be discovered.
 
 The **[Catalog Specification](catalog-spec/)** specifies a structure to link various STAC Items together to be crawled or browsed. It is a
 simple, flexible JSON file of links to Items, Catalogs or Collections that can be used in a variety of ways.
