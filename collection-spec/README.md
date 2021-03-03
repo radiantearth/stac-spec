@@ -1,12 +1,11 @@
 # STAC Collections
 
 The STAC [Collection specification](collection-spec.md) provides JSON fields to describe a set of Items, to help enable discovery. 
-It builds on the [Catalog Specification](../catalog-spec/catalog-spec.md), using the flexible structure detailed there to 
-further define and explain logical groups of [Items](../item-spec/item-spec.md). It shares the same fields and therefore every 
-Collection is also a valid Catalog - the JSON structure extends the core Catalog definition. Collections can have both parent Catalogs 
-and Collections as well as child Items, Catalogs and Collections. 
+It builds on fields from the [Catalog Specification](../catalog-spec/catalog-spec.md), using the flexible structure detailed there to 
+further define and explain logical groups of [Items](../item-spec/item-spec.md). Collections can have both parent Catalogs 
+and Collections as well as child Items, Catalogs and Collections.
 
-The Collection concept can be used very flexibly - it just provides additional metadata about a set of Items. But it generally
+The Collection concept can be used very flexibly - it provides additional metadata about a set of Items. But it generally
 is used to describe a set of assets that are defined with the same properties and share higher level metadata. There is no standardized 
 name for this, and others called it: dataset series (ESA, ISO 19115), collection (CNES, NASA), dataset (JAXA), product (JAXA). Or
 viewed in GIS terms, the Items are '[features](https://en.wikipedia.org/wiki/Simple_Features)' (that link to assets) and a 

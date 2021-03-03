@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - A 'visual' option as an asset role.
 - Best Practice section on requester pays.
 - Added a best practice recommendation to keep collections at consistent levels. 
+- Catalog and Collection now require a `type` parameter, to be set to `Catalog` or `Collection` for clients to more easily distinguish them easily.
 
 
 ### Changed
