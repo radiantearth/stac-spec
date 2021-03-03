@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/item-spec/json-schema/item.json#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-rc.1/item-spec/json-schema/item.json#",
   "title": "STAC Item",
   "type": "object",
   "description": "This object represents the metadata for an item in a SpatioTemporal Asset Catalog.",
@@ -93,7 +93,7 @@
             "stac_version": {
               "title": "STAC version",
               "type": "string",
-              "const": "1.0.0-beta.2"
+              "const": "1.0.0-rc.1"
             },
             "stac_extensions": {
               "title": "STAC extensions",
@@ -104,7 +104,7 @@
                   {
                     "title": "Reference to a JSON Schema",
                     "type": "string",
-                    "format": "uri"
+                    "format": "iri"
                   },
                   {
                     "title": "Reference to a core extension",
@@ -130,7 +130,34 @@
               "$ref": "#/definitions/assets"
             },
             "properties": {
-              "$ref": "#/definitions/common_metadata"
+              "allOf": [
+                {
+                  "$ref": "#/definitions/common_metadata"
+                },
+                {
+                  "anyOf": [
+                    {
+                      "required": [
+                        "datetime"
+                      ],
+                      "properties": {
+                        "datetime": {
+                          "not": {
+                            "type": "null"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "required": [
+                        "datetime",
+                        "start_datetime",
+                        "end_datetime"
+                      ]
+                    }
+                  ]
+                }
+              ]
             },
             "collection": {
               "title": "Collection ID",
@@ -150,7 +177,8 @@
       "properties": {
         "href": {
           "title": "Link reference",
-          "type": "string"
+          "type": "string",
+          "format": "iri-reference"
         },
         "rel": {
           "title": "Link relation type",
@@ -163,12 +191,6 @@
         "title": {
           "title": "Link title",
           "type": "string"
-        },
-        "created": {
-          "$ref": "datetime.json#/definitions/created"
-        },
-        "updated": {
-          "$ref": "datetime.json#/definitions/updated"
         }
       }
     },
@@ -181,35 +203,43 @@
       }
     },
     "asset": {
-      "type": "object",
-      "required": [
-        "href"
-      ],
-      "properties": {
-        "href": {
-          "title": "Asset reference",
-          "type": "string"
-        },
-        "title": {
-          "title": "Asset title",
-          "type": "string"
-        },
-        "description": {
-          "title": "Asset description",
-          "type": "string"
-        },
-        "type": {
-          "title": "Asset type",
-          "type": "string"
-        },
-        "roles": {
-          "title": "Asset roles",
-          "type": "array",
-          "items": {
-            "type": "string"
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "title": "Asset reference",
+              "type": "string",
+              "format": "iri-reference"
+            },
+            "title": {
+              "title": "Asset title",
+              "type": "string"
+            },
+            "description": {
+              "title": "Asset description",
+              "type": "string"
+            },
+            "type": {
+              "title": "Asset type",
+              "type": "string"
+            },
+            "roles": {
+              "title": "Asset roles",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
           }
+        },
+        {
+          "$ref": "#/definitions/common_metadata"
         }
-      }
+      ]
     }
   }
 }

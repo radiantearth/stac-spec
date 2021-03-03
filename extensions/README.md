@@ -1,36 +1,74 @@
 # Extensions
 
-This folder contains extensions to the SpatioTemporal Asset Catalog specification. The specification
-is designed for extension, defining just a minimal core. It is expected that most real world
-implementations will use several extensions to fully describe their data and API.
+- [Overview](#overview)
+- [General Conventions](#general-conventions)
+- [Core STAC Extensions](#core-stac-extensions)
+- [Community Extensions](#community-extensions)
+  - [Extension Maturity](#extension-maturity)
+  - [List of STAC Community Extensions](#list-of-stac-community-extensions)
+  - [Proposed extensions](#proposed-extensions)
+- [Extending STAC](#extending-stac)
+  - [Proposing new extensions](#proposing-new-extensions)
+  - [Prefixes](#prefixes)
+  - [Use of arrays and objects](#use-of-arrays-and-objects)
+    - [Directory Structure](#directory-structure)
 
-Extensions can be changes in functionality or new fields. This can include new JSON files that are
-linked to from the core `links`, as well as new OpenAPI fragments. Extensions should include
-narrative explaining the fields, a comprehensive example and a JSON-Schema to validate compliance.
-Any data provider can create an extension, and when providers work together to share fields between
-them they can create a shared extension and include it in the STAC repository.
+## Overview
 
-Anyone is welcome to create an extension (see section 'Extending STAC'), and is encouraged to at least link to the extension from
-here. The third-party / vendor extension section is for the sharing of extensions. As third
-parties create useful extensions for their implementation it is expected that others will make use
-of it, and then evolve to make it a 'community extension', that several providers maintain
-together. For now anyone from the community is welcome to use this extensions/ folder of the
-stac-spec repository to collaborate.
+One of the most important aspects of the SpatioTemporal Asset Catalog specification is its extensibility. The core
+STAC specification defines only a minimal core, but is designed for extension. It is expected that most real-world
+implementations will use several 'extensions' to fully describe their data. This document describes how extensions
+work, and links to the 'core' extensions included in this repo, as well as to a variety of 'community' extensions.
 
-## Extension Maturity
+Extensions to the core STAC specification provide additional JSON fields that can be used to better describe
+the data. Most tend to be about describing a particular domain or type of data, but some imply
+functionality.
 
-Extensions in this directory are meant to evolve to maturity, and thus may be in different states
-in terms of stability and number of implementations. All extensions included must include a
-maturity classification, so that STAC spec users can easily get a sense of how much they can count
-on the extension.
+Extensions include a JSON Schema precisely describing the structure, a natural language description of the fields, and thorough examples.
+
+Anybody can create an extension for their data, and data providers often work together to share
+fields between them to create a shared community extensions. See the section below on '[Extending STAC](#extending-stac)')
+for information on how to get started. And everyone is encouraged to link to the extension in the table below, so others
+can be aware of it.
+
+## General Conventions
+
+1. Additional attributes relating to an [Item](../item-spec/item-spec.md) should be added into the Item Properties object, rather than directly in the Item object.
+2. In general, additional attributes that apply to an Item Asset should also be allowed in Item Properties and vice-versa.
+For example, the `eo:bands` attribute may be used in Item Properties to describe the aggregation of all bands available in
+the Item Asset objects contained in the Item, but may also be used in an individual Item Asset to describe only the bands available in that asset.
+3. Additional attributes relating to a [Catalog](../catalog-spec/catalog-spec.md) or [Collection](../collection-spec/collection-spec.md) should be added to the root of the object.
+
+## Core STAC Extensions
+
+These extensions are considered stable, and are included directly in this repository.
+
+| Extension Title                             | Identifier | Field Name Prefix | Scope            | Description |
+|---------------------------------------------|------------|-------------------|------------------|-------------|
+| [Electro-Optical](eo/README.md)             | eo         | eo                | Item             | Covers electro-optical data that represents a snapshot of the Earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, gsd and more. |
+| [Projection](projection/README.md)          | projection | proj              | Item             | Provides a way to describe Items whose assets are in a geospatial projection. |
+| [Scientific Citation](scientific/README.md) | scientific | sci               | Item, Collection | Metadata that indicate from which publication data originates and how the data itself should be cited or referenced. |
+| [View Geometry](view/README.md)             | view       | view              | Item             | View Geometry adds metadata related to angles of sensors and other radiance angles that affect the view of resulting data |
+
+## Community Extensions
+
+There are many more extensions that the broader STAC community is working on. These aren't included directly in the
+main repository as many are still evolving through active usage. But they are listed here.
+
+### Extension Maturity
+
+There are many extensions being built with STAC, but they have varying degrees of maturity. All community extensions
+listed here included must include a maturity classification, so that STAC spec users can easily get a sense of how
+much they can count on the extension. Extension creators are encouraged to list their extensions here, even if it is just
+an rough proposal, so others can potentially collaborate.
 
 | Maturity Classification |  Min Impl # | Description | Stability |
 | ----------------------- | ----------- | ----------- | --------- |
 | Proposal                | 0           | An idea put forward by a community member to gather feedback | Not stable - breaking changes almost guaranteed as implementers try out the idea. |
 | Pilot                   | 1           | Idea is fleshed out, with examples and a JSON schema, and implemented in one or more catalogs. Additional implementations encouraged to help give feedback | Approaching stability - breaking changes are not anticipated but can easily come from additional feedback |
-| Candidate               | 3           | A number of implementers are using it and are standing behind it as a solid extension. Can generally count on an extension at this maturity level | Mostly stable, breaking changes require a new version and minor changes are unlikely. |
+| Candidate               | 3           | A number of implementers are using it and are standing behind it as a solid extension. Can generally count on an extension at this maturity level | Mostly stable, breaking changes require a new version and minor changes are unlikely. The extension has a [code owner](../.github/CODEOWNERS). |
 | Stable                  | 6           | Highest current level of maturity. The community of extension maintainers commits to a STAC review process for any changes, which are not made lightly. | Completely stable, all changes require a new version number and review process. |
-| Deprecated              | N/A         | A previous extension that has likely been superceded by a newer one or did not work out for some reason. | DO NOT USE, is not supported |
+| Deprecated              | N/A         | A previous extension that has likely been superseded by a newer one or did not work out for some reason. | DO NOT USE, is not supported |
 
 Maturity mostly comes through diverse implementations, so the minimum number of implementations
 column is the main gating function for an extension to mature. But extension authors can also
@@ -40,64 +78,61 @@ the less breaking changes of the next level.
 A 'mature' classification level will likely be added once there are extensions that have been
 stable for over a year and are used in twenty or more implementations.
 
-## List of content extensions
+### List of STAC Community Extensions
 
-An extension can add new fields to STAC entities (content extension), or can add new endpoints or behavior to the API (API extension). Below is a list of content extensions, while API extensions are published in the [STAC API repository](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/).
+This is a list of all known STAC Community extensions. It is currently more oriented to general domains, but it will include
+more data provider specific extensions in the future as well. Any extension with documentation and a published schema
+is encouraged to list here.
 
 | Extension Title                                  | Identifier        | Field Name Prefix   | Scope                     | Maturity   | Description |
 | ------------------------------------------------ | ----------------- | ------------------- | ------------------------- | ---------- | ----------- |
-| [Checksum](checksum/README.md)                   | checksum          | checksum            | Item, Catalog, Collection | *Proposal* | Provides a way to specify file checksums for assets and links in Items, Catalogs and Collections. |
-| [Collection Assets](collection-assets/README.md) | collection-assets | -                   | Collection                | *Proposal* | Provides a way to specify assets available on the collection-level. |
-| [Data Cube](datacube/README.md)                  | datacube          | cube                | Item, Collection          | *Proposal* | Data Cube related metadata, especially to describe their dimensions. |
-| [Electro-Optical](eo/README.md)                  | eo                | eo                  | Item                      | *Proposal* | Covers electro-optical data that represents a snapshot of the earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, gsd and more. |
-| [Item Asset Definition](item-assets/README.md)   | item-assets       | -                   | Collection                | *Proposal* | Provides a way to specify details about what assets may be found in Items belonging to a collection. |
-| [Label](label/README.md)                         | label             | label               | Item                      | *Proposal* | Items that relate labeled AOIs with source imagery |
-| [Point Cloud](pointcloud/README.md)              | pointcloud        | pc                  | Item                      | *Proposal* | Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LiDAR or coincidence-matched imagery. |
-| [Projection](projection/README.md)               | projection        | proj                | Item                      | *Proposal* | Provides a way to describe items whose assets are in a geospatial projection. |
-| [SAR](sar/README.md)                             | sar               | sar                 | Item                      | *Proposal* | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. |
-| [Satellite](sat/README.md)                       | sat               | sat                 | Item                      | *Proposal* | Satellite related metadata for data collected from satellites. |
-| [Scientific](scientific/README.md)               | scientific        | sci                 | Item, Collection          | *Proposal* | Scientific metadata is considered to be data that indicate from which publication data originates and how the data itself should be cited or referenced. |
-| [Single File STAC](single-file-stac/README.md)   | single-file-stac  | -                   | Catalog                   | *Proposal* | An extension to provide a set of Collections and Items within a single file catalog. |
-| [Tiled Assets](tiled-assets/README.md)           | tiled-assets      | tiles               | Item, Catalog, Collection | *Proposal* | Allows to specify numerous assets using asset templates via tile matrices and dimensions. |
-| [Timestamps](timestamps/README.md)               | timestamps        | -                   | Item                      | *Proposal* | Allows to specify numerous timestamps for assets and metadata. |
-| [Versioning Indicators](version/README.md)       | version           | -                   | Item, Collection          | *Proposal* | Provides fields and link relation types to provide a version and indicate deprecation. |
-| [View Geometry](view/README.md)                  | view              | view                | Item                      | *Proposal* | View Geometry adds metadata related to angles of sensors and other radiance angles that affect the view of resulting data |
+| [Data Cube](https://github.com/stac-extensions/datacube)                  | datacube          | cube                | Item, Collection          | *Proposal* | Data Cube related metadata, especially to describe their dimensions. |
+| [File Info](https://github.com/stac-extensions/file)                      | file              | file                | Item, Collection          | *Pilot* | Provides a way to specify file details such as size, data type and checksum for assets in Items and Collections. |
+| [Item Asset Definition](https://github.com/stac-extensions/item-assets)   | item-assets       | -                   | Collection                | *Proposal* | Provides a way to specify details about what assets may be found in Items belonging to a Collection. |
+| [Point Cloud](https://github.com/stac-extensions/pointcloud)              | pointcloud        | pc                  | Item                      | *Pilot* | Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LiDAR or coincidence-matched imagery. |
+| [Processing](https://github.com/stac-extensions/processing)               | processing        | processing          | Item, Collection          | *Pilot* | Indicates from which processing chain data originates and how the data itself has been produced. |
+| [SAR](https://github.com/stac-extensions/sar)                             | sar               | sar                 | Item                      | *Pilot* | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. |
+| [Single File STAC](https://github.com/stac-extensions/single-file-stac)   | single-file-stac  | -                   | Catalog                   | *Pilot* | An extension to provide a set of Collections and Items within a single file STAC. |
+| [Tiled Assets](https://github.com/stac-extensions/tiled-assets)           | tiled-assets      | tiles               | Item, Catalog, Collection | *Proposal* | Allows to specify numerous assets using asset templates via tile matrices and dimensions. |
+| [Timestamps](https://github.com/stac-extensions/timestamps)               | timestamps        | -                   | Item                      | *Proposal* | Allows to specify numerous timestamps for assets and metadata. |
+| [Versioning Indicators](https://github.com/stac-extensions/version)       | version           | -                   | Item, Collection          | *Proposal* | Provides fields and link relation types to provide a version and indicate deprecation. |
+| [CARD4L](https://github.com/stac-extensions/card4l) | card4l            | card4l | Item  | *Proposal* | How to comply to the CEOS CARD4L product family specifications (Optical and SAR), from [openEO Platform](https://platform.openeo.org) |
 
-## Third-party / vendor extensions
+### Proposed extensions
 
-The following extensions are provided by third parties (vendors). They tackle very specific
-use-cases and may be less stable than the official extensions. Once stable and adopted by multiple
-parties, extensions may be made official and incorporated in the STAC repository.
-
-Please contact a STAC maintainer or open a Pull Request to add your extension to this table.
-
-| Name     | Scope | Description | Vendor |
-| -------- | ----- | ----------- | ------ |
-| None yet |       |             |        |
-
-## Proposed extensions
-
-The following extensions are proposed through the
-[STAC issue tracker](https://github.com/radiantearth/stac-spec/issues) and are considered to be
-implemented. If you would find any of these helpful or are considering to implement a similar
-extension, please get in touch through the referenced issues:
-
-- [Drone content Extension](https://github.com/radiantearth/stac-spec/issues/149)
-- [Full Motion Video Content Extension](https://github.com/radiantearth/stac-spec/issues/156)
-- [Storage Extensions](https://github.com/radiantearth/stac-spec/issues/148)
-- [gRPC STAC Extensions](https://github.com/radiantearth/stac-spec/issues/575)
+Beyond the list above there have been a number of extensions that people have proposed to the STAC community. These
+can be found in the STAC [Issue Tracker](https://github.com/radiantearth/stac-spec/issues) under the 
+[new extension](https://github.com/radiantearth/stac-spec/issues?q=is%3Aissue+is%3Aopen+label%3A%22new+extension%22) label.
+These are ideas that others would likely use and potentially collaborate on. Anyone is free to add new
+ideas there, and see the section below on [proposing new extensions](#proposing-new-extensions) for the
+workflow to advance ideas into full-fledged community extensions.
 
 ## Extending STAC
 
 Anyone is welcome to create an extension. There are several types of extensions, some just add additional fields,
-some change the behaviour of STAC and some introduce completely new functionality. New extensions should try to align
-with existing extensions as good as possible and may even re-use fields and their definitions until they may get split
+some change the behavior of STAC and some introduce completely new functionality. New extensions should try to align
+with existing extensions as well as possible and may even re-use fields and their definitions until they may get split
 into a new extension that combines commonly used fields across multiple extensions.
 Best practices for extension proposals are still emerging in this section.
 
+### Proposing new extensions
+
+Extensions can be hosted anywhere, but should use the [extension template](https://github.com/stac-extensions/stac-extensions.github.io#using-the-stac-extensions-template) 
+as a starting point. If you'd like to add a repository to the [stac-extensions](https://github.com/stac-extensions) 
+GitHub organization, just ask on [Gitter](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby)! This is fine for 
+work-in-progress extensions. You can also host the extension repository in your own GitHub account, and optionally 
+transfer it to the stac-extensions org later.
+
+For new extensions that require community discussion, we recommend the following workflow:
+
+- Use the stac-extensions template to sketch out your proposed extension
+- Open an issue on this repository with the prefix "New Extension: " and describe the extension. Include a link to the extension repository.
+- Discussion can occur on that issue, or discussion can move to issues/pull requests on the extension repository directly.
+- Once the extension has an initial release, the issue on stac-spec will be closed.
+
 ### Prefixes
 
-A STAC Item can combine schema information from several different sources - the core STAC item information,
+A STAC Item can combine schema information from several different sources - the core STAC Item information,
 an earth observation community extension, and a vendor specific provider. It can be difficult to distinguish exactly where each definition
 came from, and to pull out the most relevant information, especially when vendors often will dump in all the metadata they have in to the
 STAC definition.
@@ -138,7 +173,10 @@ An example of this can be seen in a Landsat example:
 
 ### Use of arrays and objects
 
-For content extensions, it is recommended to use use arrays only as true (potentially sorted) enumerations/lists without having additional meaning and to avoid objects whenever possible.
+For extensions, it is recommended to
+
+1. Use arrays only as enumerations/lists (possibly sorted), without implying additional meaning (such as order)
+2. To avoid using nested objects, in favor of multiple attributes with a similar naming scheme.
 
 For example, if one would like to define an extension to contain a start and a end date, there are multiple options (tl;dr: option **3** is recommended):
 

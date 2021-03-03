@@ -1,0 +1,19 @@
+# This file tells GitHub who should "own" different extensions.
+# Ownership for us means:
+# - owners are (automatically) requested for review on any PR touching code in
+#   the extensions that they own
+# - owners are shown in the UI in GitHub when someone is browsing files
+#
+# For more information about this file format see an example in the GitHub
+# documentation:
+# https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/about-code-owners#example-of-a-codeowners-file
+#
+# For more information about code owners in general, start at the beginning of that page'
+# instead of at the example file:
+#
+# https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/about-code-owners
+
+/extensions/eo/ @matthewhanson
+/extensions/projection/ @matthewhanson
+/extensions/scientific/ @m-mohr
+/extensions/view/ @matthewhanson

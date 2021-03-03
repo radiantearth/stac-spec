@@ -1,0 +1,93 @@
+{
+  "id": "simple-collection",
+  "type": "Collection",
+  "stac_version": "1.0.0-rc.1",
+  "description": "A simple collection demonstrating core catalog fields with links to a couple of items",
+  "title": "Simple Example Collection",
+  "providers": [
+    {
+      "name": "Remote Data, Inc",
+      "description": "Producers of awesome spatiotemporal assets",
+      "roles": [
+        "producer",
+        "processor"
+      ],
+      "url": "http://remotedata.io"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          172.911,
+          1.343,
+          172.955,
+          1.3691
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-12-11T09:06:43.312000Z",
+          "2020-12-14T18:02:31.437000Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "summaries": {
+    "platform": [
+      "cool_sat2",
+      "cool_sat1"
+    ],
+    "constellation": [
+      "ion"
+    ],
+    "instruments": [
+      "cool_sensor_v1"
+    ],
+    "gsd": {
+      "minimum": 0.512,
+      "maximum": 0.7
+    },
+    "view:off_nadir": {
+      "minimum": 0,
+      "maximum": 15
+    },
+    "view:sun_elevation": {
+      "minimum": 6.78,
+      "maximum": 40
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "./collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "./simple-item.json",
+      "type": "application/geo+json",
+      "title": "Simple Item"
+    },
+    {
+      "rel": "item",
+      "href": "./core-item.json",
+      "type": "application/geo+json",
+      "title": "Core Item"
+    },
+    {
+      "rel": "item",
+      "href": "./extended-item.json",
+      "type": "application/geo+json",
+      "title": "Extended Item"
+    },
+    {
+      "rel": "self",
+      "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0-RC.1/examples/collection.json",
+      "type": "application/json"
+    }
+  ]
+}

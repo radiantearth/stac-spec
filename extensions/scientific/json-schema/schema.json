@@ -1,40 +1,80 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/scientific/json-schema/schema.json#",
-  "title": "Scientific Extension",
-  "description": "STAC Scientific Extension to STAC Items or STAC Collections.",
+  "$id": "https://schemas.stacspec.org/v1.0.0-rc.1/extensions/scientific/json-schema/schema.json#",
+  "title": "Scientific Citation Extension",
+  "description": "STAC Scientific Citation Extension for STAC Items and STAC Collections.",
   "oneOf": [
     {
+      "$comment": "This is the schema for STAC Items.",
       "allOf": [
-        {
-          "$ref": "../../../item-spec/json-schema/item.json"
-        },
-        {
-          "$ref": "#/definitions/stac_extensions"
-        },
         {
           "type": "object",
           "required": [
-            "properties"
+            "type",
+            "properties",
+            "assets"
           ],
           "properties": {
+            "type": {
+              "const": "Feature"
+            },
             "properties": {
-              "$ref": "#/definitions/scientific"
+              "allOf": [
+                {
+                  "$ref": "#/definitions/requirements"
+                },
+                {
+                  "$ref": "#/definitions/fields"
+                }
+              ]
+            },
+            "assets": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/fields"
+              }
             }
           }
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
         }
       ]
     },
     {
+      "$comment": "This is the schema for STAC Collections.",
       "allOf": [
         {
-          "$ref": "../../../collection-spec/json-schema/collection.json"
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "const": "Collection"
+            },
+            "assets": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/fields"
+              }
+            },
+            "item_assets": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/fields"
+              }
+            }
+          }
         },
         {
           "$ref": "#/definitions/stac_extensions"
         },
         {
-          "$ref": "#/definitions/scientific"
+          "$ref": "#/definitions/requirements"
+        },
+        {
+          "$ref": "#/definitions/fields"
         }
       ]
     }
@@ -51,24 +91,20 @@
           "contains": {
             "enum": [
               "scientific",
-              "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/scientific/json-schema/schema.json"
+              "https://schemas.stacspec.org/v1.0.0-rc.1/extensions/scientific/json-schema/schema.json"
             ]
           }
         }
       }
     },
-    "scientific": {
+    "fields": {
+      "$comment": "Add your new fields here. Don't require them here, do that above in the item schema.",
       "type": "object",
-      "anyOf": [
-        {"required": ["sci:doi"]},
-        {"required": ["sci:citation"]},
-        {"required": ["sci:publications"]}
-      ],
       "properties": {
         "sci:doi": {
           "type": "string",
           "title": "Data DOI",
-          "pattern": "^(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![%\"#? ])\\S)+)$"
+          "pattern": "^10\\.[0-9a-zA-Z]{4,}/[^\\s]+$"
         }, 
         "sci:citation": {
           "type": "string", 
@@ -83,7 +119,7 @@
               "doi": {
                 "type": "string",
                 "title": "Publication DOI",
-                "pattern": "^(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![%\"#? ])\\S)+)$"
+                "pattern": "^10\\.[0-9a-zA-Z]{4,}/[^\\s]+$"
               }, 
               "citation": { 
                 "type": "string", 
@@ -92,7 +128,18 @@
             }
           }
         }
-      }
+      },
+      "patternProperties": {
+        "^(?!sci:)": {}
+      },
+      "additionalProperties": false
+    },
+    "requirements": {
+      "anyOf": [
+        {"required": ["sci:doi"]},
+        {"required": ["sci:citation"]},
+        {"required": ["sci:publications"]}
+      ]
     }
   }
 }
