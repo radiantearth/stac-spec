@@ -653,4 +653,4 @@ When actually crawling a STAC implementation one can also make use of the [relat
 
 In versions of STAC prior to 1.0 the process was a bit more complicated, as there was no `type` field for catalogs and collections.
 See [this issue comment](https://github.com/radiantearth/stac-spec/issues/889#issuecomment-684529444) for a heuristic that works
-for older STAC versions (to 0.8.0, older than that should not be needed).
+for older STAC versions.
