@@ -13,19 +13,7 @@
 #
 # https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/about-code-owners
 
-/extensions/datacube/ @m-mohr
 /extensions/eo/ @matthewhanson
-/extensions/file/ @m-mohr
-/extensions/item-assets/ @matthewhanson
-/extensions/label/ @jisantuc
-/extensions/pointcloud/ @matthewhanson
-/extensions/processing/ @emmanuelmathot
 /extensions/projection/ @matthewhanson
-/extensions/sar/ @emmanuelmathot @m-mohr
-/extensions/sat/ @emmanuelmathot
 /extensions/scientific/ @m-mohr
-/extensions/single-file-stac/ @matthewhanson
-/extensions/tiled-assets/ @constantinius
-/extensions/timestamps/ @m-mohr
-/extensions/version/ @m-mohr
 /extensions/view/ @matthewhanson

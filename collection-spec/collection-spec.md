@@ -45,8 +45,16 @@ it is a fairly unique name, or their name combined with the domain they operate 
 
 #### stac_extensions
 
-A list of extensions the Collection implements. This does NOT declare the extensions of child Catalogs or Items. The list contains URLs to the JSON Schema files it can be validated against. For official [extensions](../extensions/README.md#list-of-stac-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `version` for the Versioning Indicators extension. If the versions of the extension and the Collection diverge, you can specify the URL of the JSON schema file.
-This list must only contain extensions that extend the Collection itself, see the the 'Scope' column in the list of extensions. If an extension has influence on multiple parts of the whole STAC structure, it must be listed in all affected parts (e.g. Collection and Item for the `datacube` extension). If a structure such as the summaries extension provide fields in their JSON structure, these extensions must not be listed here as they don't extend the Collection itself. For example, if a Collection includes the field `sat:platform` in the summaries, the Collection still does not list the `sat` extension in the `stac_extensions` field.
+A list of extensions the Collection implements. This does NOT declare the extensions of child Catalogs or Items. The list 
+contains URLs to the JSON Schema files it can be validated against. For official 
+[extensions](../extensions/README.md#core-stac-extensions), a "shortcut" can be used. This means you can specify the folder 
+name of the extension, for example `view` for the View extension. If the versions of the extension and 
+the Collection diverge, you can specify the URL of the JSON schema file. This list must only contain extensions that extend 
+the Collection itself, see the the 'Scope' column in the list of extensions. If an extension has influence on multiple parts 
+of the whole STAC structure, it must be listed in all affected parts (e.g. Collection and Item for the `datacube` extension). 
+If a structure such as the summaries extension provide fields in their JSON structure, these extensions must not be listed 
+here as they don't extend the Collection itself. For example, if a Collection includes the field `sat:platform` in the 
+summaries, the Collection still does not list the `sat` extension in the `stac_extensions` field.
 
 #### license
 
@@ -84,7 +92,6 @@ There are a few guidelines for using the asset construct at the Collection level
 
 * Collection-level assets SHOULD NOT list any files also available in Items.
 * If possible, item-level assets are always the preferable way to expose assets.
-* To list what assets are available in Items see the [Item Assets Definition Extension](../extensions/item-assets/README.md).
 
 Collection-level assets can be useful in some scenarios, for example:
 1. Exposing additional data that applies Collection-wide and you don't want to expose it in each Item. This can be Collection-level metadata or a thumbnail for visualization purposes.
@@ -223,13 +230,3 @@ STAC Collections which don't link to any Item are called **standalone Collection
 To describe them with more fields than the Collection fields has to offer, it is allowed to re-use the metadata fields defined by extensions for Items in the `summaries` field.
 This makes much sense for fields such as `platform` or `proj:epsg`, which are often the same for a whole Collection, but doesn't make much sense for `eo:cloud_cover`, which usually varies heavily across a Collection.
 The data provider is free to decide, which fields are reasonable to be used.
-
-## Extensions
-
-Commonly used extensions for the STAC Collection specification:
-
-* [Item Assets Definition](../extensions/item-assets/README.md): Allows to indicate the structure of the Item assets.
-* [Scientific Citation extension](../extensions/scientific/README.md): Add fields to indicate citations and DOIs.
-* [Versioning Indicators extension](../extensions/version/README.md): Allows versioning by adding the fields `version` and `deprecated`.
-
-The [extensions page](../extensions/README.md) gives a full overview about relevant extensions for STAC Collections.

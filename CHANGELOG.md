@@ -11,9 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - 'via' and 'canonical' rel types as options in items.
 - Assets on Collections are now defined in the core Collection specification ([#1008](https://github.com/radiantearth/stac-spec/pull/1008))
 - Added clarification about how collection-level asset object properties do not remove the need for item-level asset object properties in the `item-assets` extension ([#880](https://github.com/radiantearth/stac-spec/pull/880))
-- Added [processing extension](extensions/processing/README.md)
-- Added [file info extension](extensions/file/README.md) ([#879](https://github.com/radiantearth/stac-spec/pull/879), [#921](https://github.com/radiantearth/stac-spec/issues/921))
-- Added additional acquisition parameters in the `sat` extension: sat:platform_international_designator, sat:absolute_orbit, sat:anx_datetime* ([#894](https://github.com/radiantearth/stac-spec/pull/894))
+- Added reference to three new (non-core) extensions: [processing](https://github.com/stac-extensions/processing), [file info](https://github.com/stac-extensions/file) and [card4l](https://github.com/stac-extensions/card4l).
 - 'summaries' are now available in the Catalog spec, so both catalogs and collections can make use of it. ([#903](https://github.com/radiantearth/stac-spec/issues/903))
 - Recommendation to enable CORS
 - A 'visual' option as an asset role.
@@ -40,6 +38,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Checksum extension (field `checksum:multihash`). Use File Info extension (field `file:checksum`) instead for assets. There's no replacement for links.
 - Collection Assets extension, as the core construct of Assets in a Collection is now part of the core Collection spec. No change is required except removing `collection-assets` from the list of `stac_extensions`.
+- Numerous extensions (Data Cube, Item Assets, Point Cloud, SAR, Single File STAC, Tiled Assets, Timestamps & Versioning) have been moved out of the core specification, into their own repos in the [stac-extensions](https://github.com/stac-extensions/) GitHub organization. They must now be referred to by their schemas directly - the name shortcuts for them are no longer valid.
 
 ### Fixed
 
