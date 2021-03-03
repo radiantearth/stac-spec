@@ -4,8 +4,8 @@
 
 ## About
 
-The SpatioTemporal Asset Catalog (STAC) family of specifications aim to standardize the way
-geospatial asset metadata is structured and queried. A 'spatiotemporal asset' is any URL resource 
+The SpatioTemporal Asset Catalog (STAC) family of specifications aims to standardize the way
+geospatial asset metadata is structured and queried. A "spatiotemporal asset" is any file 
 that represents information about the Earth at a certain place and time. The original focus was on scenes of satellite
 imagery, but now covers a broad variety of uses, including sources such as aircraft and drone and imagery such as hyperspectral optical, synthetic aperture radar, video, point clouds, lidar, digital elevation models, vector, machine learning labels, and composites like NDVI and mosaics. STAC is intentionally designed with a minimal core and flexible extension semantics to support a broad set of use cases.
 
