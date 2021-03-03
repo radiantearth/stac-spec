@@ -26,7 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - There is a new recommendation to enable CORS. ([#940](https://github.com/radiantearth/stac-spec/pull/940))
 - A Best Practice section on 'requester pays' cloud buckets was added. ([#1021](https://github.com/radiantearth/stac-spec/pull/1021))
 - A new Best Practice section explains Asset Roles, plus some lists of potential roles for people to use (in best practices, sar and eo). ([#989](https://github.com/radiantearth/stac-spec/pull/989))
-- There is a new Best Practice recommendation to keep collections at consistent levels. ([#](https://github.com/radiantearth/stac-spec/pull/))
+- There is a new Best Practice recommendation to keep collections at consistent levels. ([#1009](https://github.com/radiantearth/stac-spec/pull/1009))
 
 ### Changed
 
