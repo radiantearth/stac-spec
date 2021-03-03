@@ -53,7 +53,8 @@ also hold other containers (folders / catalogs).
 
 The Collection specification shares some fields with the catalog spec but has a number of additional fields:
 license, extent (spatial and temporal), providers, keywords and summaries. Every Item in a Collection links
-back to their Collection, so clients can easily find fields like the license.
+back to their Collection, so clients can easily find fields like the license. Thus every Item implicitly 
+shares the fields described in their parent Collection.
 
 But what *should* go in a Collection, versus just in a Catalog?  A Collection will generally consist of
 a set of assets that are defined with the same properties and share higher level metadata. In the 
