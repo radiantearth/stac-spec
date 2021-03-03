@@ -5,7 +5,7 @@
   "description": "This object represents Collections in a SpatioTemporal Asset Catalog.",
   "allOf": [
     {
-      "$ref": "../../catalog-spec/json-schema/catalog.json"
+      "$ref": "../../catalog-spec/json-schema/catalog-core.json"
     },
     {
       "$ref": "#/definitions/collection"
@@ -17,10 +17,15 @@
       "description": "These are the fields specific to a STAC Collection. All other fields are inherited from STAC Catalog.",
       "type": "object",
       "required": [
+        "type",
         "license",
         "extent"
       ],
       "properties": {
+        "type": {
+          "title": "Type of STAC entity",
+          "const": "Collection"
+        },
         "stac_extensions": {
           "title": "STAC extensions",
           "type": "array",

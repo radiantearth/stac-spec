@@ -2,20 +2,19 @@
 
 There are three component specifications that together make up the core SpatioTemporal Asset Catalog specification.
 Each can be used alone, but they work best in concert with one another. The [STAC API specification](https://github.com/radiantearth/stac-api-spec) 
-builds on top of that core, but is out of scope for this overview. An [Item](item-spec/item-spec.md) is the core atomic unit, 
-representing a single [spatiotemporal asset](#what-is-a-spatiotemporal-asset) as GeoJSON so it can be searched. 
+builds on top of that core, but is out of scope for this overview. An [Item](item-spec/item-spec.md) represents a 
+single [spatiotemporal asset](#what-is-a-spatiotemporal-asset) as GeoJSON so it can be searched. 
 The [Catalog](catalog-spec/catalog-spec.md) specification provides structural elements, to group Items
 and [Collections](collection-spec/collection-spec.md). Collections *are* catalogs, that add more required metadata and 
 describe a group of related Items. For more on the differences see the [section below](#catalogs-vs-collections).
 
-A [UML diagram](https://en.wikipedia.org/wiki/Unified_Modeling_Language) of the [STAC model](STAC-UML.pdf) is also 
-provided to help with navigating the specification. 
-
 ## Item Overview
 
-Fundamental to any SpatioTemporal Asset Catalog, an [Item](item-spec/item-spec.md) represents an atomic collection of inseparable 
-data and metadata. A STAC Item is a [GeoJSON](http://geojson.org/) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)
-and can be easily read by any modern GIS or geospatial library, and it describes a [SpatioTemporal Asset](#what-is-a-spatiotemporal-asset). 
+Fundamental to any SpatioTemporal Asset Catalog, an [Item](item-spec/item-spec.md) object represents a unit of
+data and metadata, typically representing a single scene of data at one place and time.   A STAC Item is a 
+[GeoJSON](http://geojson.org/) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)
+and can be easily read by any modern GIS or geospatial library, and it describes a 
+[SpatioTemporal Asset](#what-is-a-spatiotemporal-asset). 
 The STAC Item JSON specification uses the GeoJSON geometry to describe the location of the asset, and 
 then includes additional information:
 
@@ -51,19 +50,18 @@ A Catalog is a very simple construct - it just provides links to Items or to oth
 The closest analog is a folder in a file structure, it is the container for Items, but it can 
 also hold other containers (folders / catalogs). 
 
-The Collection specification extends the Catalog spec, so every Collection can serve as a catalog, 
-requiring the same fields. But it has a number of additional fields: license, extent (spatial and 
-temporal), providers, keywords and summaries. Every Item in a Collection links back to their Collection, 
-so clients can easily find fields like the license. Thus every Item implicitly shares the fields 
-described in their parent Collection.
+The Collection specification shares some fields with the catalog spec but has a number of additional fields:
+license, extent (spatial and temporal), providers, keywords and summaries. Every Item in a Collection links
+back to their Collection, so clients can easily find fields like the license. Thus every Item implicitly 
+shares the fields described in their parent Collection.
 
 But what *should* go in a Collection, versus just in a Catalog?  A Collection will generally consist of
 a set of assets that are defined with the same properties and share higher level metadata. In the 
 satellite world these would typically all come from the same sensor or constellation. It corresponds
-directly to what others call a 'dataset series' (ESA, ISO 19115), 'collection' (CNES, NASA), and 
-'dataset (JAXA, DCAT)'. So if all your Items have the same properties, they probably belong in 
+directly to what others call a "dataset series" (ESA, ISO 19115), "collection" (CNES, NASA), and 
+"dataset" (JAXA, DCAT). So if all your Items have the same properties, they probably belong in 
 the same Collection. But the construct is deliberately flexible, as there may be good reasons
-to 'break' the recommendation. 
+to break the recommendation.
 
 Catalogs in turn are used for two main things:
 
@@ -72,7 +70,7 @@ Catalogs in turn are used for two main things:
 
 The first case allows users to browse down into the Items of large collections. A collection like
 Landsat usually would start with path and row Catalogs to group by geography, and then year, 
-month and day groups to enable deeper. [Dynamic catalogs](best-practices.md#dynamic-catalogs) can
+month and day groups to enable deeper grouping. [Dynamic catalogs](best-practices.md#dynamic-catalogs) can
 provide multiple grouping paths, serving as a sort of faceted search.
 
 The second case is used when one wants to represent diverse data in a single place. If an organization
@@ -91,7 +89,7 @@ linking structure that can be used recursively so that many Items can be include
 a single Catalog, organized however the implementor desires. 
 
 STAC makes no formal distinction between a "root" catalog and the "child" catalogs. A root catalog
-is simply a top-most catalog (which has no parent). A nested catalog structure is useful (and
+is simply the top-most catalog -- it has no parent. A nested catalog structure is useful (and
 recommended) for breaking up massive numbers of catalog Items into logical groupings. For example,
 it might make sense to organize a catalog by date (year, month, day), or geography (continent,
 country, state/prov). See the [Catalog Layout](best-practices.md#catalog-layout) best practices
@@ -117,8 +115,6 @@ catalogs and items:
 - `Catalog` -> `Item` (this is a common structure for a catalog to list links to Items)
 - `Catalog` -> `Catalog` (this is a common tree structure to group sets of Items. Each catalog in
   this relationship may also include Item links as well as catalog links)
-
-As all STAC Collections are also valid STAC Catalogs, all Catalogs described here could also be Collections.
 
 The relationships are all described by a common `links` object structure, making use of
 the `rel` field to further describe the relationship. 
@@ -165,20 +161,20 @@ each Item and Catalog, as well as ways to achieve that.
 
 ## Collection Overview
 
-A STAC Collection extends the Catalog construct to provide additional metadata to describe the set of Items it
-contains. So every Collection *is* a Catalog, and can be used in the same ways. The required fields are fairly 
-minimal - it inherits the 4 required Catalog fields (id, description, stac_version and links), and adds license 
+A STAC Collection extends the core fields of the Catalog construct to provide additional metadata to describe the set of Items it
+contains. The required fields are fairly 
+minimal - it includes the 4 required Catalog fields (id, description, stac_version and links), and adds license 
 and extents. But there are a number of other common fields defined in the spec, and more common fields are also 
 defined in [STAC extensions](extensions/). These serve as basic metadata, and ideally Collections also link to 
 fuller metadata (ISO 19115, etc) when it is available.
 
-As Collections are Catalogs, they can be used just as flexibly. They can have both parent Catalogs and Collections
+As Collections contain all of Catalogs' core fields, they can be used just as flexibly. They can have both parent Catalogs and Collections
 as well as child Items, Catalogs and Collections. Items are strongly recommended to have a link to the Collection
-they are a part of. Items can only belong to one Collection, so if an Item is in Collections that is the child of 
+they are a part of. Items can only belong to one Collection, so if an Item is in a Collection that is the child of 
 another Collection, then it must pick which one to refer to. Generally the 'closer' Collection, the more specific
-one, should be the one linked to. 
+one, should be the one linked to.
 
-The Collection specification is used standalone quite easily - it is used to just describe an aggregation of data, 
+The Collection specification is used standalone quite easily - it is used to describe an aggregation of data, 
 and doesn't require links down to sub-catalogs and Items. This is most often used when the software
 does operations at the layer / coverage level, letting users manipulate a whole collection of assets at once. They often
 have an optimized internal format that doesn't make sense to expose as Items. [OpenEO](https://openeo.org/) and 

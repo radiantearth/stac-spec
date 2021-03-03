@@ -77,8 +77,7 @@ Additionally, the [STAC API specification](https://github.com/radiantearth/stac-
 provides API endpoints, based on the [OGC API - Features](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html) standard,
 that enable clients to search for Item objects that match their filtering criteria. 
 
-The 
-**Item**, **Catalog**, **Collection**, and **STAC API** specifications are intended to be 
+The **Item**, **Catalog**, **Collection**, and **STAC API** specifications are intended to be 
 used together, but are designed so each piece is small, self-contained, and reusable in other contexts.
 
 * **[Overview](overview.md)** describes the three core object type specifications and how they relate to one another.
@@ -97,7 +96,7 @@ complete examples. Each spec and extension links in to highlight particular file
 functionality of the core spec or add fields for specific domains. Each extension has at least one *owner*. You can find extension owners in each extension's README or in the [`CODEOWNERS`](.github/CODEOWNERS) file.
 * **Additional documents:** The supporting documents include a complementary [best practices](best-practices.md) 
 document, and information on contributing (links in the next section). We also maintain a [changelog](CHANGELOG.md) of
-what was modified in each version, as well as a [UML overview](STAC-UML.pdf) (and [source](STAC-UML.drawio)). 
+what was modified in each version. 
 
 ## Contributing
 

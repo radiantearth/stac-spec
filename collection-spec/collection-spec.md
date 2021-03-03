@@ -1,13 +1,14 @@
 # STAC Collection Specification
 
 The STAC Collection Specification defines a set of common fields to describe a group of Items that share properties and metadata. The 
-Collection Specification extends the STAC [Catalog Specification](../catalog-spec/catalog-spec.md) with additional fields to 
-describe the whole dataset and the included set of Items. It shares the same fields and therefore every Collection is also a valid Catalog. Collections can have both parent Catalogs and Collections and child Items, Catalogs and Collections. 
+Collection Specification shares all fields with the STAC [Catalog Specification](../catalog-spec/catalog-spec.md) (with different allowed 
+values for `type` and `stac_extensions`) and adds fields to describe the whole dataset and the included set of Items. Collections 
+can have both parent Catalogs and Collections and child Items, Catalogs and Collections. 
 
 A STAC Collection is represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Collection and also a valid STAC Catalog.
 
 STAC Collections are compatible with the [Collection](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html#example_4) JSON 
-specified in [*OGC API - Features*](https://ogcapi.ogc.org/features/), but it is extended with additional fields.  
+specified in [*OGC API - Features*](https://ogcapi.ogc.org/features/), but they are extended with additional fields.  
 
 * [Examples](../examples/):
   * Sentinel 2: A basic standalone example of a [Collection](../examples/collection-only/collection.json) without Items.
@@ -21,10 +22,11 @@ specified in [*OGC API - Features*](https://ogcapi.ogc.org/features/), but it is
 | Element         | Type                                             | Description                                                  |
 | --------------- | ------------------------------------------------ | ------------------------------------------------------------ |
 | stac_version    | string                                           | **REQUIRED.** The STAC version the Collection implements. STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind. |
-| stac_extensions | \[string]                                        | A list of extension identifiers the Collection implements.   |
+| type            | string                                           | **REQUIRED.** Must be set to `Collection` to be a valid Collection. |
+| stac_extensions | \[string]                                        | A list of extension identifiers the Collection implements. |
 | id              | string                                           | **REQUIRED.** Identifier for the Collection that is unique across the provider. |
 | title           | string                                           | A short descriptive one-line title for the Collection.       |
-| description     | string                                           | **REQUIRED.** Detailed multi-line description to fully explain the collection. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| description     | string                                           | **REQUIRED.** Detailed multi-line description to fully explain the Collection. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | keywords        | \[string]                                        | List of keywords describing the Collection.                  |
 | license         | string                                           | **REQUIRED.** Collection's license(s), either a SPDX [License identifier](https://spdx.org/licenses/), `various` if multiple licenses apply or `proprietary` for all other cases. |
 | providers       | \[[Provider Object](#provider-object)]           | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
@@ -43,7 +45,7 @@ it is a fairly unique name, or their name combined with the domain they operate 
 
 #### stac_extensions
 
-A list of extensions the Collection implements. This does NOT declare the extensions of child Catalogs or Items. The list contains URLs to the JSON Schema files it can be validated against. For official [extensions](../extensions/README.md#list-of-stac-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `version` for the Versioning Indicators extension. If the versions of the extension and the collection diverge, you can specify the URL of the JSON schema file.
+A list of extensions the Collection implements. This does NOT declare the extensions of child Catalogs or Items. The list contains URLs to the JSON Schema files it can be validated against. For official [extensions](../extensions/README.md#list-of-stac-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `version` for the Versioning Indicators extension. If the versions of the extension and the Collection diverge, you can specify the URL of the JSON schema file.
 This list must only contain extensions that extend the Collection itself, see the the 'Scope' column in the list of extensions. If an extension has influence on multiple parts of the whole STAC structure, it must be listed in all affected parts (e.g. Collection and Item for the `datacube` extension). If a structure such as the summaries extension provide fields in their JSON structure, these extensions must not be listed here as they don't extend the Collection itself. For example, if a Collection includes the field `sat:platform` in the summaries, the Collection still does not list the `sat` extension in the `stac_extensions` field.
 
 #### license
@@ -56,8 +58,7 @@ Collections are are *strongly recommended* to provide summaries of the values of
 of STAC Items contained in this Collection. This enables users to get a good sense of what the ranges and potential values of 
 different fields in the Collection are, without to inspect a number of Items (or crawl them exhaustively to get a definitive answer). 
 Summaries help to fully define Collections, especially if they don't link to any Items. They also give clients enough information to 
-build tailored user interfaces for querying the data, by presenting the potential values that are available. Summaries can be used in 
-Collections or Catalogs, and they should summarize all values in every Item underneath it, including in nested sub-Catalogs. 
+build tailored user interfaces for querying the data, by presenting the potential values that are available. Summaries should summarize all values in every Item underneath the collection, including in any nested sub-Catalogs.
 
 A summary for a field can be specified in two ways:
 
@@ -86,7 +87,7 @@ There are a few guidelines for using the asset construct at the Collection level
 * To list what assets are available in Items see the [Item Assets Definition Extension](../extensions/item-assets/README.md).
 
 Collection-level assets can be useful in some scenarios, for example:
-1. Exposing additional data that applies collection-wide and you don't want to expose it in each Item. This can be Collection-level metadata or a thumbnail for visualization purposes.
+1. Exposing additional data that applies Collection-wide and you don't want to expose it in each Item. This can be Collection-level metadata or a thumbnail for visualization purposes.
 2. Individual Items can't properly be distinguished for some data structures, e.g. [Zarr](https://zarr.readthedocs.io/) as it's a data structure not contained in single files.
 3. Exposing assets for "[Standalone Collections](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#standalone-collections)".
 
@@ -123,7 +124,7 @@ The object describes the temporal extents of the Collection.
 
 | Element  | Type               | Description                                                           |
 | -------- | ------------------ | --------------------------------------------------------------------- |
-| interval | \[\[string\|null]] | **REQUIRED.** Potential *temporal extents* covered by the collection. |
+| interval | \[\[string\|null]] | **REQUIRED.** Potential *temporal extents* covered by the Collection. |
 
 **interval**: Each outer array element can be a separate temporal extent, but it is recommended to only use multiple temporal extents if a union of them would then include a large uncovered time span (e.g. only having data for the years 2000, 2010 and 2020).
 
@@ -133,7 +134,7 @@ Open date ranges are supported by setting either the start or the end time to `n
 
 ### Provider Object
 
-The object provides information about a provider. A provider is any of the organizations that captures or processes the content of the collection and therefore influences the data offered by this collection. May also include information about the final storage provider hosting the data.
+The object provides information about a provider. A provider is any of the organizations that captures or processes the content of the Collection and therefore influences the data offered by this Collection. May also include information about the final storage provider hosting the data.
 
 | Field Name  | Type      | Description                                                  |
 | ----------- | --------- | ------------------------------------------------------------ |
@@ -172,7 +173,7 @@ This is done where there is not a clear official option, or where STAC uses an o
 
 | Type    | Description                                                  |
 | ------- | ------------------------------------------------------------ |
-| self    | STRONGLY RECOMMENDED. *Absolute* URL to the location that the collection file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
+| self    | STRONGLY RECOMMENDED. *Absolute* URL to the location that the Collection file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root    | URL to the root STAC Catalog or Collection. Collections should include a link to their root, even if it's the root and points to itself. |
 | parent  | URL to the parent STAC Catalog or Collection. Non-root Collections should include a link to their parent. |
 | child   | URL to a child STAC Catalog or Collection. |

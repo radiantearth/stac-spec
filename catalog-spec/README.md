@@ -1,6 +1,6 @@
 # STAC Catalogs
 
-While a [STAC Item](../item-spec/item-spec.md) is the atomic unit of a SpatioTemporal Asset Catalog,
+While a [STAC Item](../item-spec/item-spec.md) is the most important entity in a SpatioTemporal Asset Catalog,
 the Catalog JSON definition is the core structure that enables browsers and crawlers to access
 the sets of Items. A Catalog consists of links to other Catalogs and Items, and can include
 additional metadata to further describe its holdings. It is defined in full in the 
