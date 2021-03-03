@@ -650,7 +650,9 @@ else
 When crawling a STAC implementation, one can also make use of the [relation type](catalog-spec/catalog-spec.md#relation-types
 ) (`rel` field) when following a link. If it is an `item` rel type then the file must be a STAC Item. If it is `child`, `parent` or
 `root` then it must be a Catalog or a Collection, though the final determination between the two requires looking at the the `type` field
-in the Catalog or Collection JSON that is linked to.
+in the Catalog or Collection JSON that is linked to. Note that there is also a `type` field in STAC Link and Asset objects, but that
+is for the Media Type, but there are not specific media types for Catalog and Collection. See the sections on [STAC media 
+types](catalog-spec/catalog-spec.md#media-types), and [Asset media types](item-spec/item-spec.md#asset-media-type) for more information.
 
 In versions of STAC prior to 1.0 the process was a bit more complicated, as there was no `type` field for catalogs and collections.
 See [this issue comment](https://github.com/radiantearth/stac-spec/issues/889#issuecomment-684529444) for a heuristic that works
