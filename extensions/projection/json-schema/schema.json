@@ -188,7 +188,7 @@
         }
       },
       "patternProperties": {
-        "^(?!projection:)": {}
+        "^(?!proj:)": {}
       },
       "additionalProperties": false
     }
