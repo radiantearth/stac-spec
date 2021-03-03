@@ -2,8 +2,8 @@
 
 There are three component specifications that together make up the core SpatioTemporal Asset Catalog specification.
 Each can be used alone, but they work best in concert with one another. The [STAC API specification](https://github.com/radiantearth/stac-api-spec) 
-builds on top of that core, but is out of scope for this overview. An [Item](item-spec/item-spec.md) is the core atomic unit, 
-representing a single [spatiotemporal asset](#what-is-a-spatiotemporal-asset) as GeoJSON so it can be searched. 
+builds on top of that core, but is out of scope for this overview. An [Item](item-spec/item-spec.md) represents a 
+single [spatiotemporal asset](#what-is-a-spatiotemporal-asset) as GeoJSON so it can be searched. 
 The [Catalog](catalog-spec/catalog-spec.md) specification provides structural elements, to group Items
 and [Collections](collection-spec/collection-spec.md). Collections *are* catalogs, that add more required metadata and 
 describe a group of related Items. For more on the differences see the [section below](#catalogs-vs-collections).
@@ -13,9 +13,11 @@ provided to help with navigating the specification.
 
 ## Item Overview
 
-Fundamental to any SpatioTemporal Asset Catalog, an [Item](item-spec/item-spec.md) represents an atomic collection of inseparable 
-data and metadata. A STAC Item is a [GeoJSON](http://geojson.org/) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)
-and can be easily read by any modern GIS or geospatial library, and it describes a [SpatioTemporal Asset](#what-is-a-spatiotemporal-asset). 
+Fundamental to any SpatioTemporal Asset Catalog, an [Item](item-spec/item-spec.md) object represents a unit of
+data and metadata, typically representing a single scene of data at one place and time.   A STAC Item is a 
+[GeoJSON](http://geojson.org/) [Feature](https://tools.ietf.org/html/rfc7946#section-3.2)
+and can be easily read by any modern GIS or geospatial library, and it describes a 
+[SpatioTemporal Asset](#what-is-a-spatiotemporal-asset). 
 The STAC Item JSON specification uses the GeoJSON geometry to describe the location of the asset, and 
 then includes additional information:
 
