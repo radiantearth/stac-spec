@@ -1,8 +1,9 @@
 # STAC Collection Specification
 
 The STAC Collection Specification defines a set of common fields to describe a group of Items that share properties and metadata. The 
-Collection Specification shares some fields with the STAC [Catalog Specification](../catalog-spec/catalog-spec.md) with additional fields to 
-describe the whole dataset and the included set of Items. Collections can have both parent Catalogs and Collections and child Items, Catalogs and Collections. 
+Collection Specification shares all fields with the STAC [Catalog Specification](../catalog-spec/catalog-spec.md) (with different allowed 
+values for `type` and `stac_extensions`) and adds fields to describe the whole dataset and the included set of Items. Collections 
+can have both parent Catalogs and Collections and child Items, Catalogs and Collections. 
 
 A STAC Collection is represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Collection and also a valid STAC Catalog.
 
