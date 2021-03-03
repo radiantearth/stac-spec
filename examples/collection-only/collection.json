@@ -51,7 +51,7 @@
       ],
       "href": "https://storage.googleapis.com/open-cogs/stac-examples/sentinel-2-iso-19139.xml",
       "title": "ISO 19139 metadata",
-      "type": "vnd.iso.19139+xml"
+      "type": "application/vnd.iso.19139+xml"
     }
   },
   "summaries": {
