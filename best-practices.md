@@ -251,8 +251,8 @@ than the overall best resolution.
  a single reprojected version (such as a Web Mercator preview image), it is sensible to specify the main projection in the 
  Item and the alternate projection for the affected asset(s).
 - `proj:shape`/`proj:transform` ([projection extension](extensions/projection/)): If assets have different spatial resolutions and slightly different exact bounding boxes, specify these per asset to indicate the size of the asset in pixels and its exact GeoTransform in the native projection.
-- `sar:polarizations` ([sar extension](extensions/sar/)): Provide the polarization content and ordering of a specific asset, similar to `eo:bands`.
-- `sar:product_type` ([sar extension](extensions/sar/)): If mixing multiple product types within a single Item, this can be used to specify the product_type for each asset.
+- `sar:polarizations` ([sar extension](https://github.com/stac-extensions/sar)): Provide the polarization content and ordering of a specific asset, similar to `eo:bands`.
+- `sar:product_type` ([sar extension](https://github.com/stac-extensions/sar)): If mixing multiple product types within a single Item, this can be used to specify the product_type for each asset.
 
 ### Working with Media Types
 
@@ -338,7 +338,7 @@ actual role requirements.
 | iso-19115 | Best Practice | Points to an [ISO 19115](https://www.iso.org/standard/53798.html) metadata file |
 | reflectance, temperature, saturation, cloud, cloud-shadow | [EO Extension](extensions/eo/README.md#best-practices) | See the [table](extensions/eo/README.md#best-practices) in EO for more information, and the definitive list of roles related to EO. |
 | incidence-angle, azimuth, sun-azimuth, sun-elevation, terrain-shadow, terrain-occlusion, terrain-illumination | [View Extension](extensions/view/README.md#best-practices) | See the [table](extensions/view/README.md#best-practices) in View for more information, and the definitive list of roles related to viewing angles. |
-| local-incidence-angle, noise-power, amplitude, magnitude, sigma0, beta0, gamma0, date-offset, covmat, prd | [SAR Extension](extensions/sar/README.md#best-practices) | See the [table](extensions/sar/README.md#best-practices) in SAR for more information. , and the definitive list of roles related to SAR. |
+| local-incidence-angle, noise-power, amplitude, magnitude, sigma0, beta0, gamma0, date-offset, covmat, prd | [SAR Extension](https://github.com/stac-extensions/sar/README.md#best-practices) | See the [table](https://github.com/stac-extensions/sar/README.md#best-practices) in SAR for more information. , and the definitive list of roles related to SAR. |
 
 Some of the particular asset roles also have some best practices:
 
@@ -593,13 +593,19 @@ a number of the common official relations that are used in production STAC imple
 
 ### Versioning for Catalogs
 
-In the Item and Collection STAC JSON, versions and deprecation can be indicated with the [Versioning Indicators Extension](./extensions/version).
+In the Item and Collection STAC JSON, versions and deprecation can be indicated with the [Versioning Indicators Extension](https://github.com/stac-extensions/version).
 
-The [Items and Collections API Version Extension](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/version/README.md) provides endpoints and semantics for keeping and accessing previous versions of Collections and Items. The same semantics can be used in static catalogs to preserve previous versions of the documents and link them together.
+The [Items and Collections API Version Extension](https://github.com/stac-extensions/version/) provides endpoints and 
+semantics for keeping and accessing previous versions of Collections and Items. The same semantics can be used in static 
+catalogs to preserve previous versions of the documents and link them together.
 
-In order to achieve this, the static catalog must make sure that for every record created, a copy of the record is also created in a separate location and it is named with the version id adopted by the catalog. See [here](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/version/README.md#version-id) for recommendations on versioning schema.
+In order to achieve this, the static catalog must make sure that for every record created, a copy of the record is also 
+created in a separate location and it is named with the version id adopted by the catalog. See 
+[here](https://github.com/stac-extensions/version/README.md#version-id) for recommendations on versioning schema.
 
-The main record should also provide a link to the versioned record following the linking patterns described [here](./extensions/version/README.md#relation-types). For every update to the record, the same cycle is repeated:
+The main record should also provide a link to the versioned record following the linking patterns described 
+[here](https://github.com/stac-extensions/version/README.md#relation-types). For every update to the record, the same 
+cycle is repeated:
 
 1. Add link from the updated record to the previous version
 2. Create a copy of the updated record and name it correctly

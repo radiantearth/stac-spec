@@ -10,7 +10,7 @@
 This document explains the fields of the STAC Electro-Optical (EO) Extension to a STAC [Item](../../item-spec/item-spec.md). 
 
 These fields defined by this extension follow the convention for 
-[additional fields for a STAC Item](../../item-spec/item-spec.md#additional-fields-for-assets) and are 
+[additional asset fields for a STAC Item](../../item-spec/item-spec.md#additional-fields-for-assets) and are 
 allowed in either Item Properties or Item Assets.  
 
 EO data is considered to be data that represents a snapshot of the Earth for a single date and time. It
@@ -18,13 +18,13 @@ could consist of multiple spectral bands in any part of the electromagnetic spec
 data include sensors with visible, short-wave and mid-wave IR bands (e.g., the OLI instrument on
 Landsat-8), long-wave IR bands (e.g. TIRS aboard Landsat-8).
 
-If the data has been collected by a satellite, it is strongly recommended to use the [`sat` extension](../sat/README.md), which in turn requires the [Instrument Fields](../../item-spec/common-metadata.md#instrument). If the data has been collected on an airborne platform it is strongly recommended to use the [Instrument Fields](../../item-spec/common-metadata.md#instrument).
+It is strongly recommended to use [Instrument Fields](../../item-spec/common-metadata.md#instrument) with the EO extension,
+to provide information about the platform (satellite, aerial, etc) used to capture the images.
 
 For defining view geometry of data, it is strongly recommended to use the [`view` extension](../view/README.md).
 
 - Examples:
   - [Example using bands and cloud_cover](../../examples/extended-item.json)
-  - [Landsat 8 with bands in Item Asset Definition and Collection Summaries](../item-assets/examples/example-landsat8.json)
 - [JSON Schema](json-schema/schema.json)
 
 ## Item Properties or Item Asset fields
@@ -129,13 +129,6 @@ The difference between the `nir`, `nir08`, and `nir09` bands are that the `nir` 
 
 A number of implementations listed on [STAC Examples on stacspec.org](https://stacspec.org/#examples) are making use of the core EO properties, including the SpaceNet, CBERS, sat-api and Planet implementations. This is not marked as more mature because
 the eo:bands portion is still being fleshed out.
-
-## Extensions
-
-The [extensions page](../README.md) gives an overview about related extensions. Of particular relevance to EO data:
-
-* the [Sat Extension Specification](../sat/README.md) to describe SAR data collected from a satellite.
-* the [View Geometry Extension Specification](../view/README.md) to describe angles of sensors collecting earth observation data from above the earth.
 
 ## Best Practices
 
