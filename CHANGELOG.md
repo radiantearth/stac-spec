@@ -8,43 +8,47 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- 'via' and 'canonical' rel types as options in items.
-- Assets on Collections are now defined in the core Collection specification ([#1008](https://github.com/radiantearth/stac-spec/pull/1008))
-- Added clarification about how collection-level asset object properties do not remove the need for item-level asset object properties in the `item-assets` extension ([#880](https://github.com/radiantearth/stac-spec/pull/880))
-- Added reference to three new (non-core) extensions: [processing](https://github.com/stac-extensions/processing), [file info](https://github.com/stac-extensions/file) and [card4l](https://github.com/stac-extensions/card4l).
-- 'summaries' are now available in the Catalog spec, so both catalogs and collections can make use of it. ([#903](https://github.com/radiantearth/stac-spec/issues/903))
-- Recommendation to enable CORS
-- A 'visual' option as an asset role.
-- Best Practice section on requester pays.
-- Added a best practice recommendation to keep collections at consistent levels. 
-- Catalog and Collection now require a `type` parameter, to be set to `Catalog` or `Collection` for clients to more easily distinguish them easily.
-
-
 ### Changed
-
-- Clarified the role of geometries on items in the label extension
-- Data Cube Extension: Units for STAC dimensions in should now be compliant to UDUNITS-2 units (singular) whenever available.
-- URIs (usually found int properties like `href`, `url`) are now validated using the `iri-reference` format in JSON Schema (allows international characters in URIs)
-- Relaxed the regular expression for DOIs in the scientific extension ([#910](https://github.com/radiantearth/stac-spec/issues/910))
-- The [Stats Object](collection-spec/collection-spec.md#stats-object) for Collection `summaries` changed `min` to `minimum` and `max` to `maximum` to align with JSON Schema.
-- Moved examples from individual directories into a single /examples folder at the root, and evolved them to be more representative.
-- Made `summaries` to be *strongly recommended* - everyone should strive to implement them, as they are very useful.
-- `proj:geometry` allows all GeoJSON geometries instead of just a polygon.
-- `label:description` and `processing:lineage` allow CommonMark for rich-text representation ([#950](https://github.com/radiantearth/stac-spec/issues/950))
-- Renamed "Scientific Extension" to "Scientific Citation Extension" ([#990](https://github.com/radiantearth/stac-spec/issues/990))
-- Enhanced the way the spec talks about ID's to encourage more global uniqueness.
 
 ### Removed
 
-- Checksum extension (field `checksum:multihash`). Use File Info extension (field `file:checksum`) instead for assets. There's no replacement for links.
-- Collection Assets extension, as the core construct of Assets in a Collection is now part of the core Collection spec. No change is required except removing `collection-assets` from the list of `stac_extensions`.
-- Numerous extensions (Data Cube, Item Assets, Point Cloud, SAR, Single File STAC, Tiled Assets, Timestamps & Versioning) have been moved out of the core specification, into their own repos in the [stac-extensions](https://github.com/stac-extensions/) GitHub organization. They must now be referred to by their schemas directly - the name shortcuts for them are no longer valid.
+### Fixed
+
+## [v1.0.0-RC.1] - 2021-03-03
+
+### Added
+
+- Catalog and Collection now require a `type` parameter, to be set to `Catalog` or `Collection` for clients to more easily distinguish them easily. ([#971](https://github.com/radiantearth/stac-spec/pull/971))
+- Collection specification adds Assets (previously needed Collections Asset extension to do that). ([#1008](https://github.com/radiantearth/stac-spec/pull/1008))
+- 'via' and 'canonical' rel types are now options in Items. ([#884](https://github.com/radiantearth/stac-spec/pull/884))
+- In Extensions list there is now reference to three new (non-core) extensions: [processing](https://github.com/stac-extensions/processing), [file info](https://github.com/stac-extensions/file) and [card4l](https://github.com/stac-extensions/card4l). These would have been added to the stac-spec repo, except all non-core extensions were moved to [stac-extensions](https://github.com/stac-extensions/) org. ([#1024](https://github.com/radiantearth/stac-spec/pull/1024))
+- 'summaries' are now available in the Catalog spec, so both catalogs and collections can make use of it. ([#903](https://github.com/radiantearth/stac-spec/issues/903))
+- There is a new recommendation to enable CORS. ([#940](https://github.com/radiantearth/stac-spec/pull/940))
+- A Best Practice section on 'requester pays' cloud buckets was added. ([#1021](https://github.com/radiantearth/stac-spec/pull/1021))
+- A new Best Practice section explains Asset Roles, plus some lists of potential roles for people to use (in best practices, sar and eo). ([#989](https://github.com/radiantearth/stac-spec/pull/989))
+- There is a new Best Practice recommendation to keep collections at consistent levels. ([#](https://github.com/radiantearth/stac-spec/pull/))
+
+### Changed
+
+- The [Stats Object](collection-spec/collection-spec.md#stats-object) for Collection `summaries` changed `min` to `minimum` and `max` to `maximum` to align with JSON Schema. ([#967](https://github.com/radiantearth/stac-spec/pull/967))
+- URIs (usually found int properties like `href`, `url`) are now validated using the `iri-reference` format in JSON Schema (allows international characters in URIs) ([#953](https://github.com/radiantearth/stac-spec/pull/953))
+- Enhanced the way the spec talks about ID's to encourage more global uniqueness. ([#883](https://github.com/radiantearth/stac-spec/pull/883))
+- Clarified how collection-level asset object properties do not remove the need for item-level asset object properties in the `item-assets` extension ([#880](https://github.com/radiantearth/stac-spec/pull/880))
+- Made `summaries` to be *strongly recommended* - everyone should strive to implement them, as they are very useful. ([#985](https://github.com/radiantearth/stac-spec/pull/985))
+- Moved examples from individual directories into a single /examples folder at the root, and evolved them to be more representative. ([#955](https://github.com/radiantearth/stac-spec/pull/955))
+- Renamed "Scientific Extension" to "Scientific Citation Extension" ([#990](https://github.com/radiantearth/stac-spec/issues/990))
+- Relaxed the regular expression for DOIs in the scientific extension ([#910](https://github.com/radiantearth/stac-spec/issues/910))
+- `proj:geometry` allows all GeoJSON geometries instead of just a polygon. ([#995](https://github.com/radiantearth/stac-spec/pull/995))
+
+### Removed
+
+- Checksum extension (field `checksum:multihash`). Use File Info extension (field `file:checksum`) instead for assets. There's no replacement for links. ([#934](https://github.com/radiantearth/stac-spec/pull/934))
+- Collection Assets extension, as the core construct of Assets in a Collection is now part of the core Collection spec. No change is required except removing `collection-assets` from the list of `stac_extensions`. ([#1008](https://github.com/radiantearth/stac-spec/pull/1008))
+- Numerous extensions (Data Cube, Item Assets, Point Cloud, SAR, Single File STAC, Tiled Assets, Timestamps & Versioning) have been moved out of the core specification, into their own repos in the [stac-extensions](https://github.com/stac-extensions/) GitHub organization. They must now be referred to by their schemas directly - the name shortcuts for them are no longer valid. ([#1024](https://github.com/radiantearth/stac-spec/pull/1024))
 
 ### Fixed
 
-- Label extension: `label:classes` was flagged as required in JSON Schema, but is only required for categorical data.
-- Fixed JSON Schema for `providers` (Collections and Items) to be an object and require a `name`.
-- JSON Schema for `sar:polarizations` in `assets` fixed
+- Fixed JSON Schema for `providers` (Collections and Items) to be an object and require a `name`. ([#924](https://github.com/radiantearth/stac-spec/pull/924))
 
 ## [v1.0.0-beta.2] - 2020-07-08
 
@@ -390,6 +394,7 @@ Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkam
 
 
 [Unreleased]: <https://github.com/radiantearth/stac-spec/compare/master...dev>
+[v1.0.0-RC.1]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-beta.2..v1.0.0-RC.1>
 [v1.0.0-beta.2]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-beta.1..v1.0.0-beta.2>
 [v1.0.0-beta.1]: <https://github.com/radiantearth/stac-spec/compare/v0.9.0...v1.0.0-beta.1>
 [v0.9.0]: <https://github.com/radiantearth/stac-spec/compare/v0.8.1...v0.9.0>
