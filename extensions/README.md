@@ -1,19 +1,22 @@
 # Extensions
 
-- [Overview](#overview)
-- [General Conventions](#general-conventions)
-- [Extension Maturity](#extension-maturity)
-- [List of STAC Extensions](#list-of-stac-extensions)
-- [Third-party / vendor extensions](#third-party---vendor-extensions)
-- [Proposed extensions](#proposed-extensions)
-- [Extending STAC](#extending-stac)
-  - [Prefixes](#prefixes)
-  - [Use of arrays and objects](#use-of-arrays-and-objects)
-  - [Directory Structure](#directory-structure)
+- [Extensions](#extensions)
+  - [Overview](#overview)
+  - [General Conventions](#general-conventions)
+  - [Core STAC Extensions](#core-stac-extensions)
+  - [Community Extensions](#community-extensions)
+    - [Extension Maturity](#extension-maturity)
+  - [List of STAC Extensions](#list-of-stac-extensions)
+  - [Proposed extensions](#proposed-extensions)
+  - [Extending STAC](#extending-stac)
+    - [Proposing new extensions](#proposing-new-extensions)
+    - [Prefixes](#prefixes)
+    - [Use of arrays and objects](#use-of-arrays-and-objects)
+    - [Directory Structure](#directory-structure)
 
 ## Overview
 
-One of the most important aspects of the SpatioTemporal Asset Catalog specification is its extensibility. The core 
+One of the most important aspects of the SpatioTemporal Asset Catalog specification is its extensibility. The core
 STAC specification defines only a minimal core, but is designed for extension. It is expected that most real-world
 implementations will use several 'extensions' to fully describe their data. This document describes how extensions
 work, and links to the 'core' extensions included in this repo, as well as to a variety of 'community' extensions.
@@ -25,18 +28,18 @@ functionality.
 Extensions include a JSON Schema precisely describing the structure, a natural language description of the fields, and thorough examples.
 
 
-Anybody can create an extension for their data, and data providers often work together to share 
-fields between them to create a shared community extensions. See the section below on '[Extending STAC](#extending-stac)') 
+Anybody can create an extension for their data, and data providers often work together to share
+fields between them to create a shared community extensions. See the section below on '[Extending STAC](#extending-stac)')
 for information on how to get started. And everyone is encouraged to link to the extension in the table below, so others
-can be aware of it. 
+can be aware of it.
 
 ## General Conventions
 
-1. Additional attributes relating to an [Item](../item-spec/item-spec.md) should be added into the Item Properties object, rather than directly in the Item object. 
+1. Additional attributes relating to an [Item](../item-spec/item-spec.md) should be added into the Item Properties object, rather than directly in the Item object.
 2. In general, additional attributes that apply to an Item Asset should also be allowed in Item Properties and vice-versa.
-For example, the `eo:bands` attribute may be used in Item Properties to describe the aggregation of all bands available in 
+For example, the `eo:bands` attribute may be used in Item Properties to describe the aggregation of all bands available in
 the Item Asset objects contained in the Item, but may also be used in an individual Item Asset to describe only the bands available in that asset.
-3. Additional attributes relating to a [Catalog](../catalog-spec/catalog-spec.md) or [Collection](../collection-spec/collection-spec.md) should be added to the root of the object. 
+3. Additional attributes relating to a [Catalog](../catalog-spec/catalog-spec.md) or [Collection](../collection-spec/collection-spec.md) should be added to the root of the object.
 
 ## Core STAC Extensions
 
@@ -56,8 +59,8 @@ main repository as many are still evolving through active usage. But they are li
 
 ### Extension Maturity
 
-There are many extensions being built with STAC, but they have varying degrees of maturity. All community extensions 
-listed here included must include a maturity classification, so that STAC spec users can easily get a sense of how 
+There are many extensions being built with STAC, but they have varying degrees of maturity. All community extensions
+listed here included must include a maturity classification, so that STAC spec users can easily get a sense of how
 much they can count on the extension. Extension creators are encouraged to list their extensions here, even if it is just
 an rough proposal, so others can potentially collaborate.
 
@@ -110,10 +113,21 @@ extension, please get in touch through the referenced issues:
 ## Extending STAC
 
 Anyone is welcome to create an extension. There are several types of extensions, some just add additional fields,
-some change the behaviour of STAC and some introduce completely new functionality. New extensions should try to align
+some change the behavior of STAC and some introduce completely new functionality. New extensions should try to align
 with existing extensions as well as possible and may even re-use fields and their definitions until they may get split
 into a new extension that combines commonly used fields across multiple extensions.
 Best practices for extension proposals are still emerging in this section.
+
+### Proposing new extensions
+
+Extensions can be hosted anywhere, but should use the [extension template](https://github.com/stac-extensions/stac-extensions.github.io#using-the-stac-extensions-template) as a starting point. If you'd like to add a repository to the [stac-extensions](https://github.com/stac-extensions) GitHub organization, just ask on [Gitter](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby)! This is fine for work-in-progress extensions. You can also host the extension repository in your own GitHub account, and optionally transfer it to the stac-extensions org later.
+
+For new extensions that require community discussion, we recommend the following workflow:
+
+- Use the stac-extensions template to sketch out your proposed extension
+- Open an issue on this repository with the prefix "New Extension: " and describe the extension. Include a link to the extension repository.
+- Discussion can occur on that issue, or discussion can move to issues/pull requests on the extension repository directly.
+- Once the extension has an initial release, the issue on stac-spec will be closed.
 
 ### Prefixes
 
@@ -158,7 +172,7 @@ An example of this can be seen in a Landsat example:
 
 ### Use of arrays and objects
 
-For extensions, it is recommended to 
+For extensions, it is recommended to
 
 1. Use arrays only as enumerations/lists (possibly sorted), without implying additional meaning (such as order)
 2. To avoid using nested objects, in favor of multiple attributes with a similar naming scheme.
