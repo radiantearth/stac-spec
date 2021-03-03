@@ -2,22 +2,108 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/eo/json-schema/schema.json#",
   "title": "EO Extension",
-  "description": "STAC EO Extension to a STAC Item.",
-  "allOf": [
+  "description": "STAC EO Extension for STAC Items.",
+  "oneOf": [
     {
-      "$ref": "../../../item-spec/json-schema/item.json"
+      "$comment": "This is the schema for STAC Items.",
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "properties",
+            "assets"
+          ],
+          "properties": {
+            "type": {
+              "const": "Feature"
+            },
+            "properties": {
+              "$ref": "#/definitions/fields"
+            },
+            "assets": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/fields"
+              }
+            }
+          },
+          "$comment": "The if-then-else below checks whether the eo:bands is given in assets or not. If yes, allows eo:bands in properties (else), otherwise, disallows eo:bands in properties (then).",
+          "if": {
+            "required": [
+              "assets"
+            ],
+            "properties": {
+              "assets": {
+                "type": "object",
+                "additionalProperties": {
+                  "properties": {
+                    "eo:bands": false
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "eo:bands": false
+                }
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "eo:bands": {
+                    "$ref": "#/definitions/bands"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/stac_extensions"
+        }
+      ]
     },
     {
-      "$ref": "#/definitions/eo"
+      "$comment": "This is the schema for STAC Collections.",
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "const": "Collection"
+            },
+            "assets": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/fields"
+              }
+            },
+            "item_assets": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/definitions/fields"
+              }
+            }
+          }
+        }
+      ]
     }
   ],
   "definitions": {
-    "eo": {
+    "stac_extensions": {
       "type": "object",
       "required": [
-        "stac_extensions",
-        "properties",
-        "assets"
+        "stac_extensions"
       ],
       "properties": {
         "stac_extensions": {
@@ -28,72 +114,26 @@
               "https://schemas.stacspec.org/v1.0.0-beta.2/extensions/eo/json-schema/schema.json"
             ]
           }
-        },
-        "properties": {
-          "type": "object",
-          "properties": {
-            "eo:cloud_cover": {
-              "$ref": "#/definitions/cloud_cover"
-            }
-          }
-        },
-        "assets": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "object",
-            "properties": {
-              "eo:bands": {
-                "$ref": "#/definitions/bands"
-              },
-              "eo:cloud_cover": {
-                "$ref": "#/definitions/cloud_cover"
-              }
-            }
-          }
-        }
-      },
-      "$comment": "The if-then-else below checks whether the eo:bands is given in assets or not. If yes, allows eo:bands in properties (else), otherwise, disallows eo:bands in properties (then).",
-      "if": {
-        "required": [
-          "assets"
-        ],
-        "properties": {
-          "assets": {
-            "type": "object",
-            "additionalProperties": {
-              "properties": {
-                "eo:bands": false
-              }
-            }
-          }
-        }
-      },
-      "then": {
-        "properties": {
-          "properties": {
-            "properties": {
-              "eo:bands": false
-            }
-          }
-        }
-      },
-      "else": {
-        "properties": {
-          "properties": {
-            "properties": {
-              "eo:bands": {
-                "$ref": "#/definitions/bands"
-              }
-            }
-          }
         }
       }
     },
-    "cloud_cover": {
-      "title": "Cloud Cover",
-      "type": "number",
-      "minimum": 0,
-      "maximum": 100
+    "fields": {
+      "type": "object",
+      "properties": {
+        "eo:cloud_cover": {
+          "title": "Cloud Cover",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "eo:bands": {
+          "$ref": "#/definitions/bands"
+        }
+      },
+      "patternProperties": {
+        "^(?!eo:)": {}
+      },
+      "additionalProperties": false
     },
     "bands": {
       "title": "Bands",
