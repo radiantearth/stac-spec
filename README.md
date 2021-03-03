@@ -2,7 +2,6 @@
 
 [![CircleCI](https://circleci.com/gh/radiantearth/stac-spec.svg?style=svg)](https://circleci.com/gh/radiantearth/stac-spec)
 
-
 ## About
 
 The SpatioTemporal Asset Catalog (STAC) family of specifications aim to standardize the way
@@ -16,13 +15,11 @@ Typically, several STAC specifications are composed together to create a catalog
 
 To the greatest extent possible, STAC uses and extends existing specifications. The most important object in STAC is an **Item**, which is simply a GeoJSON **Feature** with a well-defined set of additional attributes ("foreign members"). The **STAC API** extends the **OGC API - Features - Part 1: Core** with additional web service endpoints and object attributes.
 
-
 ## Stability Note
 
 This specification has matured over the past several years, and is used in [numerous production deployments](https://stacindex.org/catalogs). 
 With the 1.0 release, implementors should expect that most definitions will remain stable. Our goal
 is to not change the core in any backwards-incompatible way for a long time. The STAC specification follows [Semantic Versioning](https://semver.org/), so once 1.0.0 is reached, any breaking change will require the spec to go to 2.0.0. 
-
 
 ## Current version and branches
 
@@ -33,13 +30,11 @@ Whenever dev stabilizes, a release is cut and we merge `dev` in to `master`. So 
 More information on how the STAC development process works can be found in 
 [process.md](process.md).
 
-
 ## Communication
 
 Our [gitter channel](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby) is the best place to ask questions or provide feedback. The majority of communication about the evolution of 
 the specification takes place in the [issue tracker](https://github.com/radiantearth/stac-spec/issues) and in 
 [pull requests](https://github.com/radiantearth/stac-spec/pulls).
-
 
 ## In this Repository
 
@@ -71,7 +66,6 @@ functionality of the core spec or add fields for specific domains. Each extensio
 * **Additional documents:** The supporting documents include a complementary [best practices](best-practices.md) 
 document, and information on contributing (links in the next section). We also maintain a [changelog](CHANGELOG.md) of
 what was modified in each version, as well as a [UML overview](STAC-UML.pdf) (and [source](STAC-UML.drawio)). 
-
 
 ## Contributing
 
