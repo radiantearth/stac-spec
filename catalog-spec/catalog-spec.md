@@ -22,7 +22,7 @@ that contains all the required fields is a valid STAC Catalog.
 
 - [Examples](../examples/)
   - See an example [catalog.json](../examples/catalog.json). The [collection.json](../examples/collection.json) is also a valid
-  catalog file, demonstrating linking to items (it is also a Collection, so has additional fields)
+  Catalog file, demonstrating linking to items (it is also a Collection, so has additional fields)
 - [JSON Schema](json-schema/catalog.json)
 
 The [Catalog section of the Overview](../overview.md#catalog-overview) document provides background information on 
@@ -40,6 +40,7 @@ also a valid STAC Catalog.
 | Element         | Type          | Description                                                  |
 | --------------- | ------------- | ------------------------------------------------------------ |
 | stac_version    | string        | **REQUIRED.** The STAC version the Catalog implements. STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind. |
+| type            | string        | **REQUIRED.** Set to `Catalog` if this Catalog only implements the Catalog spec. |
 | stac_extensions | \[string]     | A list of extension identifiers the Catalog implements.                 |
 | id              | string        | **REQUIRED.** Identifier for the Catalog.                    |
 | title           | string        | A short descriptive one-line title for the Catalog.          |
@@ -75,7 +76,7 @@ The following types are commonly used as `rel` types in the Link Object of a STA
 
 | Type    | Description |
 | ------- | ----------- |
-| self    | STRONGLY RECOMMENDED. *Absolute* URL to the location that the catalog file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
+| self    | STRONGLY RECOMMENDED. *Absolute* URL to the location that the Catalog file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root    | STRONGLY RECOMMENDED. URL to the root STAC Catalog or [Collection](../collection-spec/README.md). Catalogs should include a link to their root, even if it's the root and points to itself. |
 | parent  | URL to the parent STAC Catalog or Collection. Non-root Catalogs should include a link to their parent. |
 | child   | URL to a child STAC Catalog or Collection. |
