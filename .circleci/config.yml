@@ -51,7 +51,7 @@ workflows:
           filters:
             tags:
               # All (future) tags
-              only: /.+/
+              only: /^v.*/
             branches:
               # Only dev branch, not PRs
               only: dev
