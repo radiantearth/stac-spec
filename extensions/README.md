@@ -55,48 +55,26 @@ These extensions are considered stable, and are included directly in this reposi
 There are many more extensions that the broader STAC community is working on. These aren't included directly in the
 main repository as many are still evolving through active usage. But they are listed here.
 
-### Extension Maturity
-
-There are many extensions being built with STAC, but they have varying degrees of maturity. All community extensions
-listed here included must include a maturity classification, so that STAC spec users can easily get a sense of how
-much they can count on the extension. Extension creators are encouraged to list their extensions here, even if it is just
-an rough proposal, so others can potentially collaborate.
-
-| Maturity Classification |  Min Impl # | Description | Stability |
-| ----------------------- | ----------- | ----------- | --------- |
-| Proposal                | 0           | An idea put forward by a community member to gather feedback | Not stable - breaking changes almost guaranteed as implementers try out the idea. |
-| Pilot                   | 1           | Idea is fleshed out, with examples and a JSON schema, and implemented in one or more catalogs. Additional implementations encouraged to help give feedback | Approaching stability - breaking changes are not anticipated but can easily come from additional feedback |
-| Candidate               | 3           | A number of implementers are using it and are standing behind it as a solid extension. Can generally count on an extension at this maturity level | Mostly stable, breaking changes require a new version and minor changes are unlikely. The extension has a [code owner](../.github/CODEOWNERS). |
-| Stable                  | 6           | Highest current level of maturity. The community of extension maintainers commits to a STAC review process for any changes, which are not made lightly. | Completely stable, all changes require a new version number and review process. |
-| Deprecated              | N/A         | A previous extension that has likely been superseded by a newer one or did not work out for some reason. | DO NOT USE, is not supported |
-
-Maturity mostly comes through diverse implementations, so the minimum number of implementations
-column is the main gating function for an extension to mature. But extension authors can also
-choose to hold back the maturity advancement if they don't feel they are yet ready to commit to
-the less breaking changes of the next level.
-
-A 'mature' classification level will likely be added once there are extensions that have been
-stable for over a year and are used in twenty or more implementations.
-
 ### List of STAC Community Extensions
 
 This is a list of all known STAC Community extensions. It is currently more oriented to general domains, but it will include
 more data provider specific extensions in the future as well. Any extension with documentation and a published schema
 is encouraged to list here.
 
-| Extension Title                                  | Identifier        | Field Name Prefix   | Scope                     | Maturity   | Description |
-| ------------------------------------------------ | ----------------- | ------------------- | ------------------------- | ---------- | ----------- |
-| [Data Cube](https://github.com/stac-extensions/datacube)                  | datacube          | cube                | Item, Collection          | *Proposal* | Data Cube related metadata, especially to describe their dimensions. |
-| [File Info](https://github.com/stac-extensions/file)                      | file              | file                | Item, Collection          | *Pilot* | Provides a way to specify file details such as size, data type and checksum for assets in Items and Collections. |
-| [Item Asset Definition](https://github.com/stac-extensions/item-assets)   | item-assets       | -                   | Collection                | *Proposal* | Provides a way to specify details about what assets may be found in Items belonging to a Collection. |
-| [Point Cloud](https://github.com/stac-extensions/pointcloud)              | pointcloud        | pc                  | Item                      | *Pilot* | Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LiDAR or coincidence-matched imagery. |
-| [Processing](https://github.com/stac-extensions/processing)               | processing        | processing          | Item, Collection          | *Pilot* | Indicates from which processing chain data originates and how the data itself has been produced. |
-| [SAR](https://github.com/stac-extensions/sar)                             | sar               | sar                 | Item                      | *Pilot* | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. |
-| [Single File STAC](https://github.com/stac-extensions/single-file-stac)   | single-file-stac  | -                   | Catalog                   | *Pilot* | An extension to provide a set of Collections and Items within a single file STAC. |
-| [Tiled Assets](https://github.com/stac-extensions/tiled-assets)           | tiled-assets      | tiles               | Item, Catalog, Collection | *Proposal* | Allows to specify numerous assets using asset templates via tile matrices and dimensions. |
-| [Timestamps](https://github.com/stac-extensions/timestamps)               | timestamps        | -                   | Item                      | *Proposal* | Allows to specify numerous timestamps for assets and metadata. |
-| [Versioning Indicators](https://github.com/stac-extensions/version)       | version           | -                   | Item, Collection          | *Proposal* | Provides fields and link relation types to provide a version and indicate deprecation. |
-| [CARD4L](https://github.com/stac-extensions/card4l) | card4l            | card4l | Item  | *Proposal* | How to comply to the CEOS CARD4L product family specifications (Optical and SAR), from [openEO Platform](https://platform.openeo.org) |
+| Extension Title                                  | Identifier        | Field Name Prefix   | Scope                     | Description |
+| ------------------------------------------------ | ----------------- | ------------------- | ------------------------- | ----------- |
+| [CARD4L](https://github.com/stac-extensions/card4l) | card4l            | card4l | Item  | How to comply to the CEOS CARD4L product family specifications (Optical and SAR) |
+| [Data Cube](https://github.com/stac-extensions/datacube)                  | datacube          | cube                | Item, Collection          | Data Cube related metadata, especially to describe their dimensions. |
+| [File Info](https://github.com/stac-extensions/file)                      | file              | file                | Item, Collection          | Provides a way to specify file details such as size, data type and checksum for assets in Items and Collections. |
+| [Item Asset Definition](https://github.com/stac-extensions/item-assets)   | item-assets       | -                   | Collection                | Provides a way to specify details about what assets may be found in Items belonging to a Collection. |
+| [Label](https://github.com/stac-extensions/label) | label | label | Item, Collection | Items that relate labeled AOIs with source imagery |
+| [Point Cloud](https://github.com/stac-extensions/pointcloud)              | pointcloud        | pc                  | Item, Collection          | Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LiDAR or coincidence-matched imagery. |
+| [Processing](https://github.com/stac-extensions/processing)               | processing        | processing          | Item, Collection          | Indicates from which processing chain data originates and how the data itself has been produced. |
+| [SAR](https://github.com/stac-extensions/sar)                             | sar               | sar                 | Item, Collection          | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. |
+| [Single File STAC](https://github.com/stac-extensions/single-file-stac)   | single-file-stac  | -                   | Catalog                   | An extension to provide a set of Collections and Items within a single file STAC. |
+| [Tiled Assets](https://github.com/stac-extensions/tiled-assets)           | tiled-assets      | tiles               | Item, Catalog, Collection | Allows to specify numerous assets using asset templates via tile matrices and dimensions. |
+| [Timestamps](https://github.com/stac-extensions/timestamps)               | timestamps        | -                   | Item, Collection          | Allows to specify numerous timestamps for assets and metadata. |
+| [Versioning Indicators](https://github.com/stac-extensions/version)       | version           | -                   | Item, Collection          | Provides fields and link relation types to provide a version and indicate deprecation. |
 
 ### Proposed extensions
 
@@ -129,6 +107,29 @@ For new extensions that require community discussion, we recommend the following
 - Open an issue on this repository with the prefix "New Extension: " and describe the extension. Include a link to the extension repository.
 - Discussion can occur on that issue, or discussion can move to issues/pull requests on the extension repository directly.
 - Once the extension has an initial release, the issue on stac-spec will be closed.
+
+### Extension Maturity
+
+There are many extensions being built with STAC, but they have varying degrees of maturity. All community extensions
+listed here included must include a maturity classification, so that STAC spec users can easily get a sense of how
+much they can count on the extension. Extension creators are encouraged to list their extensions here, even if it is just
+an rough proposal, so others can potentially collaborate.
+
+| Maturity Classification |  Min Impl # | Description | Stability |
+| ----------------------- | ----------- | ----------- | --------- |
+| Proposal                | 0           | An idea put forward by a community member to gather feedback | Not stable - breaking changes almost guaranteed as implementers try out the idea. |
+| Pilot                   | 1           | Idea is fleshed out, with examples and a JSON schema, and implemented in one or more catalogs. Additional implementations encouraged to help give feedback | Approaching stability - breaking changes are not anticipated but can easily come from additional feedback |
+| Candidate               | 3           | A number of implementers are using it and are standing behind it as a solid extension. Can generally count on an extension at this maturity level | Mostly stable, breaking changes require a new version and minor changes are unlikely. The extension has a [code owner](../.github/CODEOWNERS). |
+| Stable                  | 6           | Highest current level of maturity. The community of extension maintainers commits to a STAC review process for any changes, which are not made lightly. | Completely stable, all changes require a new version number and review process. |
+| Deprecated              | N/A         | A previous extension that has likely been superseded by a newer one or did not work out for some reason. | DO NOT USE, is not supported |
+
+Maturity mostly comes through diverse implementations, so the minimum number of implementations
+column is the main gating function for an extension to mature. But extension authors can also
+choose to hold back the maturity advancement if they don't feel they are yet ready to commit to
+the less breaking changes of the next level.
+
+A 'mature' classification level will likely be added once there are extensions that have been
+stable for over a year and are used in twenty or more implementations.
 
 ### Prefixes
 
