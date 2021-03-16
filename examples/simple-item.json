@@ -37,9 +37,9 @@
     ]
   },
   "properties": {
-    "datetime": "2020-12-11T22:38:32.125000Z",
-    "collection": "simple-collection"
+    "datetime": "2020-12-11T22:38:32.125000Z"
   },
+  "collection": "simple-collection",
   "links": [
     {
       "rel": "collection",
