@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+* New common band name `mwir38` (PR#1054)
+
 ### Changed
 
 ### Removed
