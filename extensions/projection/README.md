@@ -36,7 +36,7 @@ The `proj` prefix is short for "projection", and is not a reference to the PROJ/
 | proj:projjson    | [PROJJSON Object](https://proj.org/specifications/projjson.html)\|null | PROJJSON object representing the Coordinate Reference System (CRS) that the `proj:geometry` and `proj:bbox` fields represent |
 | proj:geometry    | [GeoJSON Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) | Defines the footprint of this Item. |
 | proj:bbox        | \[number]       | Bounding box of the Item in the asset CRS in 2 or 3 dimensions. |
-| proj:centroid    | Centroid Object | Coordinates representing the centroid of the Item (in lat/long) |
+| proj:centroid    | [Centroid Object](#centroid-object) | Coordinates representing the centroid of the Item (in lat/long) |
 | proj:shape       | \[integer]      | Number of pixels in Y and X directions for the default grid |
 | proj:transform   | \[number]       | The affine transformation coefficients for the default grid  |
 
