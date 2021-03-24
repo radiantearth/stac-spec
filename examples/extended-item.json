@@ -4,7 +4,8 @@
     "eo",
     "projection",
     "scientific",
-    "view"
+    "view",
+    "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json"
   ],
   "type": "Feature",
   "id": "20201211_223832_CS2",
