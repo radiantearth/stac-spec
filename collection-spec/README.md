@@ -1,26 +1,33 @@
-# STAC Collections
+# STAC Collection Specification
 
-The STAC [Collection specification](collection-spec.md) provides JSON fields to describe a set of Items, to help enable discovery. 
-It builds on fields from the [Catalog Specification](../catalog-spec/catalog-spec.md), using the flexible structure detailed there to 
-further define and explain logical groups of [Items](../item-spec/item-spec.md). Collections can have both parent Catalogs 
-and Collections as well as child Items, Catalogs and Collections.
+A STAC [Collection](collection-spec.md) object is used to describe a group of related 
+Items. It builds on fields defined for a [Catalog](../catalog-spec/catalog-spec.md) object
+by further defining and explaining logical groups of [Items](../item-spec/item-spec.md). A
+Collection can have parent Catalogs and Collections, as well as child Items, Catalogs, 
+and Collections.
 
-The Collection concept can be used very flexibly - it provides additional metadata about a set of Items. But it generally
-is used to describe a set of assets that are defined with the same properties and share higher level metadata. There is no standardized 
-name for this, and others called it: dataset series (ESA, ISO 19115), collection (CNES, NASA), dataset (JAXA), product (JAXA). Or
-viewed in GIS terms, the Items are '[features](https://en.wikipedia.org/wiki/Simple_Features)' (that link to assets) and a 
-Collection is the 'layer'. STAC uses the same terms as the [OGC Features API](https://ogcapi.ogc.org/features/), and indeed
-a STAC Collection is a valid [Feature API Collection](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html#example_4), extending
-it with additional fields.
+A Collection provides a flexible mechanism to provide additional metadata about a set of Items.  
+Generally, is used to describe a set of assets that 
+are defined with the same properties and share higher-level metadata. There is no 
+standardized name for this sort of logical grouping, but other places it is called a "
+dataset series" (ESA, ISO 19115), "collection" (CNES, NASA), "dataset" (JAXA), or "product"
+(JAXA). In GIS terms, the Items are
+'[features](https://en.wikipedia.org/wiki/Simple_Features)' (that link to assets) and 
+a Collection is the 'layer'. STAC uses the same terms as the
+[OGC Features API](https://ogcapi.ogc.org/features/). A STAC Collection is a valid 
+[Feature API Collection](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html#example_4), 
+extending it with additional fields.
 
-Thus the additional fields in a Collection detail the type of information a user would want to know about the set of Items it
-contains. Items are required to provide a link back to their collection definition. But the Collection is independent of STAC Items and 
-STAC Catalogs, and thus other parties can also use this specification standalone, as a way to describe collections in a lightweight way. 
-For more details on how the STAC specs fit together see the [overview](../overview.md) document. 
+Thus, the additional fields in a Collection detail the type of information a user would want to 
+know about the group of Items it contains. Items are required to provide a link back to their 
+collection definition. But the Collection is independent of STAC Items and STAC Catalogs, and thus 
+other parties can also use this specification standalone, as a way to describe collections in a 
+lightweight way. For more details on how the STAC specs fit together see the [overview](../overview.md) 
+document. 
 
 ## In this directory
 
-**The Specification:** The main STAC Collection specification is in *[collection-spec.md](collection-spec.md)*. It includes an overview and in depth explanation of the 
+**Specification:** The main STAC Collection specification is in *[collection-spec.md](collection-spec.md)*. It includes an overview and in depth explanation of the 
 structures and fields.
 
 **Schemas:** The schemas to validate the STAC Collection definition are found in the 

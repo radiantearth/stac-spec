@@ -1,23 +1,28 @@
 # STAC Catalog Specification
 
-- [Catalog fields](#catalog-fields)
-  - [Additional Field Information](#additional-field-information)
-    - [stac_extensions](#stac_extensions)
-  - [Link Object](#link-object)
-    - [Relation types](#relation-types)
-- [Media Types](#media-types)
-  - [Media Type for STAC Catalogs](#media-type-for-stac-catalogs)
-  - [STAC Media Types](#stac-media-types)
-- [Extensions](#extensions)
+- [STAC Catalog Specification](#stac-catalog-specification)
+  - [Catalog fields](#catalog-fields)
+    - [Additional Field Information](#additional-field-information)
+      - [stac_extensions](#stac_extensions)
+    - [Link Object](#link-object)
+      - [Relation types](#relation-types)
+  - [Media Types](#media-types)
+    - [Media Type for STAC Catalogs](#media-type-for-stac-catalogs)
+    - [STAC Media Types](#stac-media-types)
+  - [Extensions](#extensions)
 
-This document explains the structure and content of a STAC Catalog. A STAC Catalog is a 
-[Collection](../collection-spec/collection-spec.md) of [STAC Items](../item-spec/item-spec.md). These Items can be 
-linked to directly from a Catalog, or the Catalog can link to other Catalogs (often called sub-Catalogs) that contain 
-links to Items. The division of sub-catalogs is up to the implementor, but is generally done to aid the ease of 
-online browsing by people.
+This document explains the structure and content of a STAC **Catalog** object. A STAC Catalog object 
+represents a logical group of other Catalog, 
+[Collection](../collection-spec/collection-spec.md), and [Item](../item-spec/item-spec.md) objects. 
+These Items can be linked to directly from a Catalog, or the Catalog can link to other Catalogs (often called 
+sub-catalogs) that contain links to Collections and Items. The division of sub-catalogs is up to the implementor,
+but is generally done to aid the ease of online browsing by people.
 
-Catalogs are not intended to be queried. Their purpose is discovery: to be browsed by people and crawled
-by machines to build a search index. A Catalog can be represented in JSON format. Any JSON object 
+A Catalog object will typically be the entry point into a STAC catalog. Their 
+purpose is discovery: to be browsed by people or be crawled
+by clients to build a searchable index.  
+
+Any JSON object 
 that contains all the required fields is a valid STAC Catalog.
 
 - [Examples](../examples/)
@@ -60,12 +65,12 @@ This list must only contain extensions that extend the Catalog itself, see the t
 This object describes a relationship with another entity. Data providers are advised to be liberal
 with links.
 
-| Field Name | Type   | Description                                                                                                                         |
-| ---------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed.        |
+| Field Name | Type   | Description |
+| ---------- | ------ | ----------- |
+| href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter ["Relation types"](#relation-types) for more information. |
-| type       | string | [Media type](#media-types) of the referenced entity.                               |
-| title      | string | A human readable title to be used in rendered displays of the link.                                         |
+| type       | string | [Media type](#media-types) of the referenced entity. |
+| title      | string | A human readable title to be used in rendered displays of the link. |
 
 For a full discussion of the situations where relative and absolute links are recommended see the
 ['Use of links'](../best-practices.md#use-of-links) section of the STAC best practices.
@@ -106,11 +111,11 @@ A STAC Catalog is a JSON file ([RFC 8259](https://tools.ietf.org/html/rfc8259)),
 
 The following table lists the Media Types to use for STAC structures.
 
-| Media Type                     | Description                                                  |
-| ------------------------------ | ------------------------------------------------------------ |
-| `application/geo+json`	     | A STAC [Item](../item-spec/item-spec.md)                        |
-| `application/json`             | A STAC [Catalog](#stac-catalog-specification)                |
-| `application/json`             | A STAC [Collection](../collection-spec/collection-spec.md)            |
+| Media Type             | Description                                                |
+| ---------------------- | ---------------------------------------------------------- |
+| `application/geo+json` | A STAC [Item](../item-spec/item-spec.md)                   |
+| `application/json`     | A STAC [Catalog](#stac-catalog-specification)              |
+| `application/json`     | A STAC [Collection](../collection-spec/collection-spec.md) |
 
 ## Extensions
 

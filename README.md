@@ -4,26 +4,27 @@
 
 ## About
 
-The SpatioTemporal Asset Catalog (STAC) family of specifications aims to 
+The SpatioTemporal Asset Catalog (STAC) family of specifications aim to 
 standardize the way geospatial asset metadata is structured and queried. 
 A "spatiotemporal asset" is any file that represents information about 
 the Earth at a certain place and time. The original focus was on scenes 
-of satellite imagery, but now covers a broad variety of uses, including 
-sources such as aircraft and drone, and data such as hyperspectral optical, 
+of satellite imagery, but the specifications now cover a broad variety of uses, 
+including sources such as aircraft and drone and data such as hyperspectral optical, 
 synthetic aperture radar (SAR), video, point clouds, lidar, digital elevation 
 models (DEM), vector, machine learning labels, and composites like NDVI and 
 mosaics. STAC is intentionally designed with a minimal core and flexible 
-extension semantics to support a broad set of use cases.
+extension mechanism to support a broad set of use cases.
 
-The STAC specifications define JSON object types and hypermedia interface to be used 
-by providers and consumers of geospatial data.  
-This is advantageous to providers, as they can simply use a well-designed, 
-standard format without needing to design their own proprietary one. This 
-is advantageous to consumers because they can use existing libraries and 
-tools to access metadata, instead of needing to write new code to interact 
+This is advantageous to providers of geospatial data, as they can simply use a
+well-designed, standard format and API without needing to design their own proprietary one.
+This is advantageous to consumers  of geospatial data, as they can use existing libraries 
+and tools to access metadata, instead of needing to write new code to interact 
 with each data provider's proprietary formats and APIs. 
 
-Typically, several STAC specifications are composed together to create a catalog. 
+The STAC specifications define related JSON object types connected by link 
+relations to support a "browse" style of traversable interface and a RESTful/HATEOAS
+API providing additional browse and search interfaces. 
+Typically, several STAC specifications are composed together to create an implementation. 
 The **Item**, **Catalog**, and **Collection** specifications define a minimal core 
 of the most frequently used JSON object types. Because of the hierarchical structure 
 between these objects, a STAC catalog can be implemented in a completely 'static' 
@@ -44,8 +45,9 @@ with additional web service endpoints and object attributes.
 
 This specification has matured over the past several years, and is used in 
 [numerous production deployments](https://stacindex.org/catalogs). 
-With the 1.0 release, implementors should expect that most definitions will remain stable. Our goal
-is to not change the core in any backwards-incompatible way for a long time. 
+With the 1.0.0 release, implementors should expect that most definitions will remain 
+stable. Our goal
+is to maintain backwards-compatiblity within the core for a long time. 
 The STAC specification follows [Semantic Versioning](https://semver.org/), so once 
 1.0.0 is reached, any breaking change will require the spec to go to 2.0.0. 
 

@@ -1,19 +1,24 @@
 # STAC Items
 
-The core of a SpatioTemporal Asset Catalog (STAC) is a set of JSON fields defined by the 
-[STAC Item spec](item-spec.md). These fields define an **Item** - the entity that contains 
-metadata for search as well as links to the actual assets that they represent. Their main function 
-is as the leaf nodes of a [Catalog](../catalog-spec/catalog-spec.md).
-See the [overview](../overview.md) document for more information on how all the pieces fit together.
+The [STAC Item spec](item-spec.md) defines the most important object in a STAC system. An
+**Item** is the entity that contains metadata for a scene and links to the assets. 
+
+Item objects are the leaf nodes for a graph of [Catalog](../catalog-spec/catalog-spec.md) 
+and [Collection](../collection-spec/collection-spec.md) objects. See the 
+[overview](../overview.md) document for more information about how these objects relate 
+to each other.
 
 ## In this directory
 
-**Item Specification:** The main definition of the STAC Item specification is in 
+**Specification:** The STAC Item specification is in 
 *[item-spec.md](item-spec.md)*. It includes an overview and an in-depth explanation of the fields.
 
-**Common Metadata:** A set of commonly used metadata fields for STAC Items is listed in 
+**Schemas:** The OpenAPI specification in *[item.json](json-schema/item.json)* 
+defines an **Item** object. The [basics](json-schema/basics.json), 
+[datetime](json-schema/datetime.json), [instrument](json-schema/instrument.json), 
+[licensing](json-schema/licensing.json), and [provider](json-schema/provider.json)
+schemas validate additional fields defined in *[Common Metadata](common-metadata.md)*.
+
+**Common Metadata:** A set of commonly-used fields for STAC Items is listed in 
 *[common-metadata.md](common-metadata.md)*.
 
-**Schemas:** The schemas to validate the core Item definitions are found in the 
-*[json-schema/](json-schema/)* folder. The *[item.json](json-schema/item.json)* validates items overall
-and the additional schemas validate the various groups of *[Common Metadata](common-metadata.md)*.
