@@ -23,7 +23,9 @@
     - [Formats with no registered media type](#formats-with-no-registered-media-type)
   - [Asset Roles](#asset-roles)
     - [List of Asset Roles](#list-of-asset-roles)
-    - [Thumbnails](#thumbnails)
+      - [Thumbnail](#thumbnail)
+      - [Overview](#overview)
+      - [Visual](#visual)
 - **[Catalog & Collection Best Practices](#catalog--collection-practices)**
   - [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
     - [Static Catalogs](#static-catalogs)
@@ -298,7 +300,7 @@ register the media type with IANA, so that other STAC clients can find it easily
 [acceptable to not register](https://stackoverflow.com/questions/29121241/custom-content-type-is-registering-with-iana-mandatory) 
 it. It is relatively easy to [register](https://www.iana.org/form/media-types) a `vnd` media type.
 
-## Asset Roles
+### Asset Roles
 
 [Asset roles](item-spec/item-spec.md#asset-roles) are used to describe what each asset is used for. They are particular useful 
 when several assets have the same media type, such as when an Item has a multispectral analytic asset, a 3-band full resolution 
@@ -311,7 +313,7 @@ role in the [Asset Role Types](item-spec/item-spec.md#asset-role-types) or the f
 the role. And you are encouraged to add it to the list below and/or in an extension if you think the new role will have broader 
 applicability. 
 
-### List of Asset Roles
+#### List of Asset Roles
 
 In addition to the thumbnail, data and overview [roles listed](item-spec/item-spec.md#asset-role-types) in the Item spec, there
 are a number of roles that are emerging in practice, but don't have enough widespread use to justify standardizing them. So if
@@ -342,17 +344,37 @@ actual role requirements.
 
 Some of the particular asset roles also have some best practices:
 
-### Thumbnails
+##### Thumbnail
 
 Thumbnails are typically used to give quick overview, often embedded in a list of items. So think small with these, as 
 keeping the size down helps it load fast, and the typical display of a thumbnail won't benefit from a large size. Often 256 by
-256 pixels is used as a default. Generally they should be no more than 1000 by 1000 pixels. Some implementors provide different sizes 
+256 pixels is used as a default. Generally they should be no more than 600 by 600 pixels. Some implementors provide different sizes 
 of thumbnails - using something like thumbnail-small and thumbnail-large, with a small one being 100x100 pixels or less, for truly 
 fast rendering in a small image. Be sure to name one just 'thumbnail' though, as that's the default most STAC clients will look for.
+
+Thumbnails should be png, jpeg or webp, so that they can easily display in browsers, and they should be a true color composite 
+(red, green and blue bands) if there are multiple bands.
 
 If your data for the Item does not come with a thumbnail already we do recommend generating one, which can be done quite easily. 
 [GDAL](https://gdal.org/) and [Rasterio](https://rasterio.readthedocs.io/en/latest/) both make this very easy - if you need help
 just ask on the [STAC Gitter](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby).
+
+##### Overview
+
+An overview is a high definition browse image of the dataset, giving the user more of a sense of the data than a thumbnail could.
+It's something that can be easily displayed on a map without tiling, or viewed at full screen resolution (but not zoomed in). Similar
+to a thumbnail it should be png, jpeg or webp, for easy display in browsers, and should be a true color composite 
+(red, green and blue bands) if there are multiple bands. The sizes could range from the high end of a thumbnail (600 by 600 pixels) 
+to a few thousand pixels on each side.
+
+###### Visual
+
+A visual asset is a full-resolution version of the data, but one that is optimized for display purposes. It can be in any file format, 
+but Cloud Optimized GeoTIFF's are preferred, since the inner pyramids and tiles enable faster display of the full resolution data. 
+It is typically an composite of red, blue and green bands, often with a nice color curve and sharpening for enhanced display. It should
+be possible to open up on non-specialist software and display just fine. It can complement assets where one band is per file (like landsat),
+by providing the key display bands combined, or can complement assets where many non-visible bands are included, by being a lighter weight
+file that just has the bands needed for display
 
 ## Catalog & Collection Practices
 
