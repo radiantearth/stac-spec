@@ -31,6 +31,8 @@ fields between them to create a shared community extensions. See the section bel
 for information on how to get started. And everyone is encouraged to link to the extension in the table below, so others
 can be aware of it.
 
+Each extension has at least one *owner*. You can find extension owners in each extension's README or in the [`CODEOWNERS`](.github/CODEOWNERS) file.
+
 ## General Conventions
 
 1. Additional attributes relating to an [Item](../item-spec/item-spec.md) should be added into the Item Properties object, rather than directly in the Item object.
