@@ -44,7 +44,8 @@
         },
         "id": {
           "title": "Identifier",
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "title": {
           "title": "Title",
@@ -52,7 +53,8 @@
         },
         "description": {
           "title": "Description",
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "links": {
           "title": "Links",
@@ -76,11 +78,13 @@
         "href": {
           "title": "Link reference",
           "type": "string",
-          "format": "iri-reference"
+          "format": "iri-reference",
+          "minLength": 1
         },
         "rel": {
           "title": "Link relation type",
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "type": {
           "title": "Link type",
