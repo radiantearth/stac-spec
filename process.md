@@ -15,12 +15,31 @@ examples.
 
 Any changes to the spec must be made as pull requests to the `dev` branch. Anyone is welcome and encouraged to bring ideas
 and improvements, to the issue tracker or (ideally) as pull requests. To merge a new pull request the work must be reviewed
-by at least two members of the STAC spec core team (who have write access to the main repository). It also must pass the
-Continuous Integration testing (right now it is minimal, but it will expand).
+by at least two members of the STAC spec 'core team' (who have write access to the main repository). It also must pass the
+Continuous Integration (CI) testing, which checks all markdown and example files for proper formatting, and also validates all
+examples against JSON schema. For more information about making pull requests see [CONTRIBUTING.md](CONTRIBUTING.md), 
+and there is also information on how to [run the CI checks locally](CONTRIBUTING.md#check-files).
 
-* **Note** *The development process will continue to evolve as the specification matures. 0.6.0 introduced Continuous
-Integration, and once it is full validating everything and the spec is more mature then we will aim to have `dev` branch
-always in a consistent state.*
+#### Core STAC Team
+
+The current list of people who are part of the 'core STAC team', and can approve pull requests.
+
+* [Alex Kaminsky](https://github.com/alkamin)
+* [Alexandra Kirk](https://github.com/anayeaye)
+* [Chris Holmes](http://github.com/cholmes)
+* [Emmanuel Mathot](https://github.com/emmanuelmathot)
+* [Michael Smith](https://github.com/hgs-msmith)
+* [James Banting](https://github.com/jbants)
+* [James Santucci](https://github.com/jisantuc)
+* [Josh Fix](https://github.com/joshfix)
+* [Rob Emanuele](https://github.com/lossyrob)
+* [Matthias Mohr](https://github.com/m-mohr)
+* [Matt Hanson](https://github.com/matthewhanson)
+* [Phil Varner](https://github.com/philvarner)
+
+Anyone can be nominated to the core STAC team, and that generally happens after contributing a few pull requests
+and/or helping review other PR's. Nominations are reviewed by the [PSC](#project-steering-committee), and must recieve
+3 positive votes and no negatives.
 
 ### Release Process
 
@@ -31,7 +50,7 @@ issue tracker, and before a release is done all open issues that are filed again
 need to be completed, but the core release team should all review the issues to make sure that the critical ones for the 
 release have been addressed. Issues that aren't seen as essential should be moved to future releases, so that there are no
 open issues against the milestone.
-* **Agreement from core team**: The core STAC team should meet (on phone or on gitter) and decided that the release is ready.
+* **Agreement from the Project Steering Committee**: The PSC should meet (on phone or on gitter) and decided that the release is ready.
 This should include review of the issues, as well as looking at the spec holistically, to make sure the new changes keep
 with a coherent whole.
 * **Final Spec Read Through**: There should be a final read through of the core specification to make sure it makes sense
@@ -46,8 +65,6 @@ in the release. And anything in 'unreleased' section should move to the version 
 * **Merge dev to master**: As there is no 'build' process, since the specification *is* the markdown files in the github
 repository, the key step in a release is to merge the `dev` branch into `master`, as `master` is the current stable state 
 of the spec.
-* **Check Online API Docs**: Check to make sure the online API docs reflect the release at <https://stacspec.org/STAC-api.html> 
-and <https://stacspec.org/STAC-ext-api.html> (this step may go away once we are confident this works well)
 * **Release on Github**: The final step to create the release is to add a new 'release' on 
 <https://github.com/radiantearth/stac-spec/releases>. This should use a tag like the others, with a 'v' prefix and then the 
 release number, like v0.5.2. The changelog should be copied over to be the release notes, and then also include a link to 
@@ -57,22 +74,46 @@ to post / promote it.
 
 #### Release Candidates
 
-Before any release that has *major* changes (made as a judgement call by the core contributors)  there should be a 'release 
+Before any release that has *major* changes (made as a judgement call by the core contributors) there should be a 'release 
 candidate' to ensure the wider community of implementors can try it out
 and catch any errors *before* a full release. It is only through actual implementations that we can be sure the new spec
 version is good, so this step is essential if there are major changes. The release should proceed as normal, but called
-vX.Y.Z-RC1. The core STAC community should be told and encouraged to update their implementations. At least 2 implementations
+vX.Y.Z-rc.1. The core STAC community should be told and encouraged to update their implementations. At least 2 implementations
 should be updated to the new specification before there is a real release. And ideally a client like STAC Browser is also 
 updated. This provides the core sanity check. If there are changes or fixes to the spec or 
-schemas needed from their feedback then make fixes and do RC2. If it is just fixes to the examples or tooling then no 
+schemas needed from their feedback then make fixes and do rc.2. If it is just fixes to the examples or tooling then no 
 additional RC is needed. After there is no more changes to spec or schemas then the release process should be done on master,
 with no changes to the spec - just updating the version numbers.
 
 ### Governance 
 
-The goal of STAC is to have a Project Steering Committee of core contributors, representing diverse organizations and 
-implementations. To bootstrap Chris Holmes is the Benevolent Dictator for 
-Life or until a PSC is formed, so we don't get stuck waiting for votes when there is not enough activity. 
+The vast majority of decisions on STAC are made by the [Core STAC Team](#core-stac-team) reaching consensus in
+discussions in pull requests and issues. Any change to the specification must have two positive reviews and no negative
+reviews. 
 
-The longer term goal is to contribute STAC spec to the Open Geospatial Consortium, and indeed to align as much as possible
-with their next generation spec.
+#### Project Steering Committee
+
+For the rare case where a decision cannot be reached by consensus, there is a Project Steerting Committee that has ultimate
+decision making authority. This consists of individuals who are intended to represent the various communities which have a 
+stake in the specification and surrounding ecosystem. An odd number is chosen to facilitate the voting process and help prevent ties.
+This committee also handles the allocation of any funds that are raised for the project.
+
+Turnover is allowed and expected to accommodate people only able to become active on the project in intervals. A PSC member may step down at any time.
+
+#### Current Project Steering Committee
+
+* [Matthias Mohr](https://github.com/m-mohr) - University of Muenster, [OpenEO](https://openeo.org/) and [Radiant Earth](https://www.radiant.earth/)
+* [Matt Hanson](https://github.com/matthewhanson) - [Element 84](https://www.element84.com/)
+* [James Banting](https://github.com/jbants) - [SparkGeo](https://sparkgeo.com/)
+* [Rob Emanuele](https://github.com/lossyrob) - [Microsoft](https://microsoft.com/)
+* [Chris Holmes](https://github.com/cholmes) - [Planet](https://planet.com) and [Radiant Earth](https://www.radiant.earth/)
+
+#### PSC Membership
+
+A new PSC member can be nominated at any time. Voting for a new PSC is done by current active PSC members. PSC nominations are 
+generally given in recognition to very significant contributions to the specification or the broader ecosystem. PSC members
+are not expected to be technical, and we hope to recognized contributions in documentation, outreach and evangelism. 
+
+Nominated PSC members must recieve a majority of +1 vote’s from the PSC, and no -1’s.
+
+The initial PSC was selected by Chris Holmes, who was deemed the 'Benevolent Dictator for Life' for the bootstrapping phase.
