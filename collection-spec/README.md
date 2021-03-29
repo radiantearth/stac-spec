@@ -3,8 +3,9 @@
 A STAC [Collection](collection-spec.md) object is used to describe a group of related 
 Items. It builds on fields defined for a [Catalog](../catalog-spec/catalog-spec.md) object
 by further defining and explaining logical groups of [Items](../item-spec/item-spec.md). A
-Collection can have parent Catalogs and Collections, as well as child Items, Catalogs, 
-and Collections.
+Collection can have parent Catalog and Collection objects, as well as child Item, Catalog, 
+and Collection objects. These parent-child relationships among objects of these types, as there is no 
+subtyping relationship between the Collection and Catalog types, even through they share field names.
 
 A Collection provides a flexible mechanism to provide additional metadata about a set of Items.  
 Generally, is used to describe a set of assets that 

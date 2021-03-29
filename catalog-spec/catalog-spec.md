@@ -16,14 +16,13 @@ represents a logical group of other Catalog,
 [Collection](../collection-spec/collection-spec.md), and [Item](../item-spec/item-spec.md) objects. 
 These Items can be linked to directly from a Catalog, or the Catalog can link to other Catalogs (often called 
 sub-catalogs) that contain links to Collections and Items. The division of sub-catalogs is up to the implementor,
-but is generally done to aid the ease of online browsing by people.
+but is generally done to aid the ease of online browsing by people. 
 
 A Catalog object will typically be the entry point into a STAC catalog. Their 
 purpose is discovery: to be browsed by people or be crawled
 by clients to build a searchable index.  
 
-Any JSON object 
-that contains all the required fields is a valid STAC Catalog.
+Any JSON object that contains all the required fields is a valid STAC Catalog object.
 
 - [Examples](../examples/)
   - See an example [catalog.json](../examples/catalog.json). The [collection.json](../examples/collection.json) is also a valid
