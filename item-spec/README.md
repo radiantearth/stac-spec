@@ -21,4 +21,3 @@ schemas validate additional fields defined in *[Common Metadata](common-metadata
 
 **Common Metadata:** A set of commonly-used fields for STAC Items is listed in 
 *[common-metadata.md](common-metadata.md)*.
-
