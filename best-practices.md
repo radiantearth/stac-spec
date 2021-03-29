@@ -352,7 +352,7 @@ keeping the size down helps it load fast, and the typical display of a thumbnail
 of thumbnails - using something like thumbnail-small and thumbnail-large, with a small one being 100x100 pixels or less, for truly 
 fast rendering in a small image. Be sure to name one just 'thumbnail' though, as that's the default most STAC clients will look for.
 
-Thumbnails should be png, jpeg or webp, so that they can easily display in browsers, and they should be a true color composite 
+Thumbnails should be PNG, JPEG, or WebP, so that they can easily display in browsers, and they should be a true color composite 
 (red, green and blue bands) if there are multiple bands.
 
 If your data for the Item does not come with a thumbnail already we do recommend generating one, which can be done quite easily. 
