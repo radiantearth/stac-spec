@@ -363,7 +363,7 @@ just ask on the [STAC Gitter](https://gitter.im/SpatioTemporal-Asset-Catalog/Lob
 
 An overview is a high definition browse image of the dataset, giving the user more of a sense of the data than a thumbnail could.
 It's something that can be easily displayed on a map without tiling, or viewed at full screen resolution (but not zoomed in). Similar
-to a thumbnail it should be png, jpeg or webp, for easy display in browsers, and should be a true color composite 
+to a thumbnail it should be PNG, JPEG or WebP, for easy display in browsers, and should be a true color composite 
 (red, green and blue bands) if there are multiple bands. The sizes could range from the high end of a thumbnail (600 by 600 pixels) 
 to a few thousand pixels on each side.
 
