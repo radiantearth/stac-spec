@@ -1,6 +1,6 @@
 {
   "type": "Feature",
-  "stac_version": "1.0.0-rc.1",
+  "stac_version": "1.0.0-rc.2",
   "id": "proj-example",
   "properties": {
     "datetime": "2018-10-01T01:08:32.033000Z",
