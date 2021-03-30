@@ -2,7 +2,7 @@
 
 - [Overview](#overview)
 - [General Conventions](#general-conventions)
-- [Core STAC Extensions](#core-stac-extensions)
+- [Stable STAC Extensions](#stable-stac-extensions)
 - [Community Extensions](#community-extensions)
   - [Extension Maturity](#extension-maturity)
   - [Proposed extensions](#proposed-extensions)
@@ -42,17 +42,17 @@ For example, the `eo:bands` attribute may be used in Item Properties to describe
 the Item Asset objects contained in the Item, but may also be used in an individual Item Asset to describe only the bands available in that asset.
 3. Additional attributes relating to a [Catalog](../catalog-spec/catalog-spec.md) or [Collection](../collection-spec/collection-spec.md) should be added to the root of the object.
 
-## Core STAC Extensions
+## Stable STAC Extensions
 
 These extensions are considered stable and are widely used in many production implementations. As additional extensions advance
 through the [Extension Maturity](#extension-maturity) classification they, will be added here.
 
-| Extension Title                             | Identifier | Field Name Prefix | Scope            | Description |
-|---------------------------------------------|------------|-------------------|------------------|-------------|
-| [Electro-Optical](https://github.com/stac-extensions/eo/)             | eo         | eo                | Item             | Covers electro-optical data that represents a snapshot of the Earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, gsd and more. |
-| [Projection](https://github.com/stac-extensions/projection/)          | projection | proj              | Item             | Provides a way to describe Items whose assets are in a geospatial projection. |
-| [Scientific Citation](https://github.com/stac-extensions/scientific/) | scientific | sci               | Item, Collection | Metadata that indicate from which publication data originates and how the data itself should be cited or referenced. |
-| [View Geometry](https://github.com/stac-extensions/view/)             | view       | view              | Item             | View Geometry adds metadata related to angles of sensors and other radiance angles that affect the view of resulting data |
+| Extension Title                                                       |     Description                |
+|-----------------------------------------------------------------------|--------------------------------|
+| [Electro-Optical](https://github.com/stac-extensions/eo/)             | Covers electro-optical data that represents a snapshot of the Earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, gsd and more. |
+| [Projection](https://github.com/stac-extensions/projection/)          | Provides a way to describe Items whose assets are in a geospatial projection. |
+| [Scientific Citation](https://github.com/stac-extensions/scientific/) | Metadata that indicate from which publication data originates and how the data itself should be cited or referenced.  |
+| [View Geometry](https://github.com/stac-extensions/view/)             | View Geometry adds metadata related to angles of sensors and other radiance angles that affect the view of resulting data |
 
 ## Community Extensions
 
@@ -171,17 +171,3 @@ For example, if one would like to define an extension to contain a start and a e
 3. Define two separate fields, e.g. `"date_range_start": "2018-01-01", "date_range_end": "2018-01-31"`. This is **recommended** as it avoids the conflicts above and is usually better displayed in software that only understands GeoJSON but has no clue about STAC. This is due to the fact that most legacy software can not display arrays or objects GeoJSON `properties` properly.
 
 This rules only applies to the fields defined directly for the Item's `properties`. For fields and structures defined on other levels (e.g. in the root of an Item or in an array), extension authors can freely define the structure. So an array of objects such as the `eo:bands` are fine to use, but keep in mind that the drawbacks mentioned above usually still apply.
-
-### Directory Structure
-
-A STAC extension can have references to additional schemas within the extension schema.
-These files should be kept together in order to preserve relative `$ref` links.
-
-See the [EO](https://github.com/stac-extensions/eo/) extension file structure as an example.
-* Specification examples should be stored in an `examples` directory.
-* The specification schema file(s) should be stored in a `json-schema` directory.
-
-Make sure to choose a meaningful identifier for the extension and use this value as the extension's directory name.
-The extension's identifier should be used in the `stac_extensions` field. Also, make sure to add the identifier to the
-enum defined for the `stac_extensions` field in the
-[JSON schema of the STAC catalog specification](../catalog-spec/json-schema/catalog.json).
