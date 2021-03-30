@@ -43,7 +43,8 @@ the Item Asset objects contained in the Item, but may also be used in an individ
 
 ## Core STAC Extensions
 
-These extensions are considered stable, and are included directly in this repository.
+These extensions are considered stable and are widely used in many production implementations. As additional extensions advance
+through the [Extension Maturity](#extension-maturity) classification they will be added here.
 
 | Extension Title                             | Identifier | Field Name Prefix | Scope            | Description |
 |---------------------------------------------|------------|-------------------|------------------|-------------|
@@ -54,33 +55,14 @@ These extensions are considered stable, and are included directly in this reposi
 
 ## Community Extensions
 
-There are many more extensions that the broader STAC community is working on. These aren't included directly in the
-main repository as many are still evolving through active usage. But they are listed here.
-
-### List of STAC Community Extensions
-
-This is a list of all known STAC Community extensions. It is currently more oriented to general domains, but it will include
-more data provider specific extensions in the future as well. Any extension with documentation and a published schema
-is encouraged to list here.
-
-| Extension Title                                  | Identifier        | Field Name Prefix   | Scope                     | Description |
-| ------------------------------------------------ | ----------------- | ------------------- | ------------------------- | ----------- |
-| [CARD4L](https://github.com/stac-extensions/card4l) | card4l            | card4l | Item  | How to comply to the CEOS CARD4L product family specifications (Optical and SAR) |
-| [Data Cube](https://github.com/stac-extensions/datacube)                  | datacube          | cube                | Item, Collection          | Data Cube related metadata, especially to describe their dimensions. |
-| [File Info](https://github.com/stac-extensions/file)                      | file              | file                | Item, Collection          | Provides a way to specify file details such as size, data type and checksum for assets in Items and Collections. |
-| [Item Asset Definition](https://github.com/stac-extensions/item-assets)   | item-assets       | -                   | Collection                | Provides a way to specify details about what assets may be found in Items belonging to a Collection. |
-| [Label](https://github.com/stac-extensions/label) | label | label | Item, Collection | Items that relate labeled AOIs with source imagery |
-| [Point Cloud](https://github.com/stac-extensions/pointcloud)              | pointcloud        | pc                  | Item, Collection          | Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LiDAR or coincidence-matched imagery. |
-| [Processing](https://github.com/stac-extensions/processing)               | processing        | processing          | Item, Collection          | Indicates from which processing chain data originates and how the data itself has been produced. |
-| [SAR](https://github.com/stac-extensions/sar)                             | sar               | sar                 | Item, Collection          | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. |
-| [Single File STAC](https://github.com/stac-extensions/single-file-stac)   | single-file-stac  | -                   | Catalog                   | An extension to provide a set of Collections and Items within a single file STAC. |
-| [Tiled Assets](https://github.com/stac-extensions/tiled-assets)           | tiled-assets      | tiles               | Item, Catalog, Collection | Allows to specify numerous assets using asset templates via tile matrices and dimensions. |
-| [Timestamps](https://github.com/stac-extensions/timestamps)               | timestamps        | -                   | Item, Collection          | Allows to specify numerous timestamps for assets and metadata. |
-| [Versioning Indicators](https://github.com/stac-extensions/version)       | version           | -                   | Item, Collection          | Provides fields and link relation types to provide a version and indicate deprecation. |
+There are many more extensions that are part of the broader STAC ecosystem. The center of activity for these is the
+[stac-extensions GitHub org](https://github.com/stac-extensions), which has a number of extension repositories. For 
+an overview of all extensions with their [Extension Maturity](#extension-maturity) classification see the 
+[STAC extensions overview page](https://stac-extensions.github.io/).
 
 ### Proposed extensions
 
-Beyond the list above there have been a number of extensions that people have proposed to the STAC community. These
+Beyond the community extensions there have been a number of extensions that people have proposed to the STAC community. These
 can be found in the STAC [Issue Tracker](https://github.com/radiantearth/stac-spec/issues) under the 
 [new extension](https://github.com/radiantearth/stac-spec/issues?q=is%3Aissue+is%3Aopen+label%3A%22new+extension%22) label.
 These are ideas that others would likely use and potentially collaborate on. Anyone is free to add new
