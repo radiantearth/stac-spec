@@ -147,7 +147,7 @@ to enable cross-catalog search on known fields.
 * [STAC Common Metadata](common-metadata.md#stac-common-metadata) - A list of fields commonly used
 throughout all domains. These optional fields are included for STAC Items by default.
 * [Extensions](../extensions/README.md#core-stac-extensions) - Additional fields that are more specific,
-such as [EO](../extensions/eo), [View](../extensions/view) and more.
+such as [EO](https://github.com/stac-extensions//eo), [View](https://github.com/stac-extensions/view) and more.
 * [Custom Extensions](../extensions/README.md#extending-stac) - It is generally allowed to add custom
 fields but it is recommended to add multiple fields for related values instead of a nested object,
 e.g., two fields `view:azimuth` and `view:off_nadir` instead of a field `view` with an object

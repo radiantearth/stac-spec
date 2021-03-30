@@ -245,12 +245,12 @@ providing them at at the Asset level can prove to be very useful for using the d
 - `datetime`: Provide individual timestamp on an Item, in case the Item has a `start_datetime` and `end_datetime`, but an Asset is for one specific time.
 - `gsd` ([Common Metadata](item-spec/common-metadata.md#instrument)): Specify some assets with different spatial resolution 
 than the overall best resolution.
-- `eo:bands` ([EO extension](extensions/eo/)): Provide spectral band information, and order of bands, within an individual asset.
-- `proj:epsg`/`proj:wkt2`/`proj:projjson` ([projection extension](extensions/projection/)): Specify different projection for some assets. If the projection is different
+- `eo:bands` ([EO extension](https://github.com/stac-extensions/eo/)): Provide spectral band information, and order of bands, within an individual asset.
+- `proj:epsg`/`proj:wkt2`/`proj:projjson` ([projection extension](https://github.com/stac-extensions/projection/)): Specify different projection for some assets. If the projection is different
  for all assets it should probably not be provided as an Item property. If most assets are one projection, and there is 
  a single reprojected version (such as a Web Mercator preview image), it is sensible to specify the main projection in the 
  Item and the alternate projection for the affected asset(s).
-- `proj:shape`/`proj:transform` ([projection extension](extensions/projection/)): If assets have different spatial resolutions and slightly different exact bounding boxes, specify these per asset to indicate the size of the asset in pixels and its exact GeoTransform in the native projection.
+- `proj:shape`/`proj:transform` ([projection extension](https://github.com/stac-extensions/projection/)): If assets have different spatial resolutions and slightly different exact bounding boxes, specify these per asset to indicate the size of the asset in pixels and its exact GeoTransform in the native projection.
 - `sar:polarizations` ([sar extension](https://github.com/stac-extensions/sar)): Provide the polarization content and ordering of a specific asset, similar to `eo:bands`.
 - `sar:product_type` ([sar extension](https://github.com/stac-extensions/sar)): If mixing multiple product types within a single Item, this can be used to specify the product_type for each asset.
 
@@ -336,8 +336,8 @@ actual role requirements.
 | land-water | Best Practice | Points to a file that indicates whether a pixel is assessed as being land or water. |
 | water-mask | Best Practice | Points to a file that indicates whether a pixel is assessed as being water (e.g. flooding map). | iso-19139 | Best Practice | Points to an [ISO 19139](https://www.iso.org/standard/67253.html) metadata xml file |
 | iso-19115 | Best Practice | Points to an [ISO 19115](https://www.iso.org/standard/53798.html) metadata file |
-| reflectance, temperature, saturation, cloud, cloud-shadow | [EO Extension](extensions/eo/README.md#best-practices) | See the [table](extensions/eo/README.md#best-practices) in EO for more information, and the definitive list of roles related to EO. |
-| incidence-angle, azimuth, sun-azimuth, sun-elevation, terrain-shadow, terrain-occlusion, terrain-illumination | [View Extension](extensions/view/README.md#best-practices) | See the [table](extensions/view/README.md#best-practices) in View for more information, and the definitive list of roles related to viewing angles. |
+| reflectance, temperature, saturation, cloud, cloud-shadow | [EO Extension](https://github.com/stac-extensions/eo/README.md#best-practices) | See the [table](https://github.com/stac-extensions/eo/README.md#best-practices) in EO for more information, and the definitive list of roles related to EO. |
+| incidence-angle, azimuth, sun-azimuth, sun-elevation, terrain-shadow, terrain-occlusion, terrain-illumination | [View Extension](https://github.com/stac-extensions/view/README.md#best-practices) | See the [table](https://github.com/stac-extensions/view/README.md#best-practices) in View for more information, and the definitive list of roles related to viewing angles. |
 | local-incidence-angle, noise-power, amplitude, magnitude, sigma0, beta0, gamma0, date-offset, covmat, prd | [SAR Extension](https://github.com/stac-extensions/sar/README.md#best-practices) | See the [table](https://github.com/stac-extensions/sar/README.md#best-practices) in SAR for more information. , and the definitive list of roles related to SAR. |
 
 Some of the particular asset roles also have some best practices:
@@ -467,7 +467,7 @@ Some general thinking on what to summarize is as follows:
 
 * Any field that is a range of data (like numbers or dates) is a great candidate to summarize, to give people a sense what values
 the data might be. For example in overhead imagery, a 
-[`view:off_nadir`](extensions/view/README.md#item-properties-and-item-asset-fields) with a range of 0 to 3 would tell people this 
+[`view:off_nadir`](https://github.com/stac-extensions/view/README.md#item-properties-and-item-asset-fields) with a range of 0 to 3 would tell people this 
 imagery is all pretty much straight down, while a value of 15 to 40 would tell them that it's oblique imagery, or 0 to 60 that it's 
 a Collection with lots of different look angles. 
 
@@ -484,12 +484,12 @@ to include all the different location string values in a summary.
 
 * Fields that consist of arrays are more of a judgement call. For example [`instruments`](item-spec/common-metadata.md#instrument)
 is straightforward and recommended, as the elements of the array are a discrete set of options. On the other hand 
-[`proj:transform`](extensions/projection/README.md#projtransform) makes no sense to summarize, as the union of all the values
+[`proj:transform`](https://github.com/stac-extensions/projection/README.md#projtransform) makes no sense to summarize, as the union of all the values
 in the array are meaningless, as each Item is describing its transform, so combining them would just be a bunch of random numbers.
 So if the values contained in the array are independently meaningful (not interconnected) and there aren't hundreds of potential
 values then it is likely a good candidate to summarize.
 
-We do highly recommend including an [`eo:bands`](extensions/eo/README.md#eobands) summary if your Items implement `eo:bands`, 
+We do highly recommend including an [`eo:bands`](https://github.com/stac-extensions/eo/README.md#eobands) summary if your Items implement `eo:bands`, 
 especially if it represents just one satellite or constellation. This should be a union of all the potential bands that you 
 have in assets. It is ok to only add the summary at the Collection level without putting an explicit `eo:bands` summary at the 
 `properties` level of an Item, since that is optional. This gives users of the Collection a sense of the sensor capabilities without 
@@ -518,7 +518,7 @@ cases should utilize a catalog that follows the listed principles:
 * **Only relative href's in structural `links`**: The full catalog structure of links down to sub-catalogs and Items, and their 
 links back to their parents and roots, should be done with relative URL's. The structural rel types include `root`, `parent`, 
 `child`, `item`, and `collection`. Other links can be absolute, especially if they describe a resource that makes less sense in
-the catalog, like [sci:doi](extensions/scientific/README.md#item-and-collection-fields), 
+the catalog, like [sci:doi](https://github.com/stac-extensions/scientific/README.md#item-and-collection-fields), 
 `derived_from` or even `license` (it can be nice to include the license in the catalog, but some licenses live at a canonical 
 online location which makes more sense to refer to directly). This enables the full catalog to be downloaded or
 copied to another location and to still be valid. This also implies no `self` link, as that link must be absolute.

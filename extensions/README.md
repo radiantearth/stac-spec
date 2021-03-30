@@ -31,7 +31,7 @@ fields between them to create a shared community extensions. See the section bel
 for information on how to get started. And everyone is encouraged to link to the extension in the table below, so others
 can be aware of it.
 
-Each extension has at least one *owner*. You can find extension owners in each extension's README or in the [`CODEOWNERS`](.github/CODEOWNERS) file.
+Each extension has at least one *owner*. You can find extension owners in each extension's README or in the [`CODEOWNERS`](../.github/CODEOWNERS) file.
 
 ## General Conventions
 
@@ -47,10 +47,10 @@ These extensions are considered stable, and are included directly in this reposi
 
 | Extension Title                             | Identifier | Field Name Prefix | Scope            | Description |
 |---------------------------------------------|------------|-------------------|------------------|-------------|
-| [Electro-Optical](eo/README.md)             | eo         | eo                | Item             | Covers electro-optical data that represents a snapshot of the Earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, gsd and more. |
-| [Projection](projection/README.md)          | projection | proj              | Item             | Provides a way to describe Items whose assets are in a geospatial projection. |
-| [Scientific Citation](scientific/README.md) | scientific | sci               | Item, Collection | Metadata that indicate from which publication data originates and how the data itself should be cited or referenced. |
-| [View Geometry](view/README.md)             | view       | view              | Item             | View Geometry adds metadata related to angles of sensors and other radiance angles that affect the view of resulting data |
+| [Electro-Optical](https://github.com/stac-extensions/eo/)             | eo         | eo                | Item             | Covers electro-optical data that represents a snapshot of the Earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, gsd and more. |
+| [Projection](https://github.com/stac-extensions/projection/)          | projection | proj              | Item             | Provides a way to describe Items whose assets are in a geospatial projection. |
+| [Scientific Citation](https://github.com/stac-extensions/scientific/) | scientific | sci               | Item, Collection | Metadata that indicate from which publication data originates and how the data itself should be cited or referenced. |
+| [View Geometry](https://github.com/stac-extensions/view/)             | view       | view              | Item             | View Geometry adds metadata related to angles of sensors and other radiance angles that affect the view of resulting data |
 
 ## Community Extensions
 
@@ -194,7 +194,7 @@ This rules only applies to the fields defined directly for the Item's `propertie
 A STAC extension can have references to additional schemas within the extension schema.
 These files should be kept together in order to preserve relative `$ref` links.
 
-See the [EO](eo/) extension file structure as an example.
+See the [EO](https://github.com/stac-extensions/eo/) extension file structure as an example.
 * Specification examples should be stored in an `examples` directory.
 * The specification schema file(s) should be stored in a `json-schema` directory.
 
