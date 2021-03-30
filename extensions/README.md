@@ -30,7 +30,7 @@ fields between them to create a shared community extensions. See the section bel
 for information on how to get started. And everyone is encouraged to link to the extension in the table below, so others
 can be aware of it.
 
-Each extension has at least one *owner*. You can find extension owners in each extension's README or in the [`CODEOWNERS`](../.github/CODEOWNERS) file.
+Each extension has at least one *owner*. You can find extension owners in each extension's README.
 
 ## General Conventions
 
@@ -102,7 +102,7 @@ an rough proposal, so others can potentially collaborate.
 | ----------------------- | ----------- | ----------- | --------- |
 | Proposal                | 0           | An idea put forward by a community member to gather feedback | Not stable - breaking changes almost guaranteed as implementers try out the idea. |
 | Pilot                   | 1           | Idea is fleshed out, with examples and a JSON schema, and implemented in one or more catalogs. Additional implementations encouraged to help give feedback | Approaching stability - breaking changes are not anticipated but can easily come from additional feedback |
-| Candidate               | 3           | A number of implementers are using it and are standing behind it as a solid extension. Can generally count on an extension at this maturity level | Mostly stable, breaking changes require a new version and minor changes are unlikely. The extension has a [code owner](../.github/CODEOWNERS). |
+| Candidate               | 3           | A number of implementers are using it and are standing behind it as a solid extension. Can generally count on an extension at this maturity level | Mostly stable, breaking changes require a new version and minor changes are unlikely. The extension has a code owner, designated in its README. |
 | Stable                  | 6           | Highest current level of maturity. The community of extension maintainers commits to a STAC review process for any changes, which are not made lightly. | Completely stable, all changes require a new version number and review process. |
 | Deprecated              | N/A         | A previous extension that has likely been superseded by a newer one or did not work out for some reason. | DO NOT USE, is not supported |
 
