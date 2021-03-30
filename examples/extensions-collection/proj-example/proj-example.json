@@ -271,8 +271,8 @@
     60.63437
   ],
   "stac_extensions": [
-    "eo",
-    "projection"
+    "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v1.0.0/schema.json"
   ],
   "collection": "landsat-8-l1"
 }
