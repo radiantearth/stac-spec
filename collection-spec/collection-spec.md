@@ -1,4 +1,26 @@
-# STAC Collection Specification
+# STAC Collection Specification <!-- omit in toc --> 
+
+- [Overview](#overview)
+- [Collection fields](#collection-fields)
+  - [Additional Field Information](#additional-field-information)
+    - [stac_version](#stac_version)
+    - [stac_extensions](#stac_extensions)
+    - [id](#id)
+    - [license](#license)
+    - [summaries](#summaries)
+    - [assets](#assets)
+  - [Extent Object](#extent-object)
+    - [Spatial Extent Object](#spatial-extent-object)
+    - [Temporal Extent Object](#temporal-extent-object)
+  - [Provider Object](#provider-object)
+  - [Link Object](#link-object)
+    - [Relation types](#relation-types)
+  - [Asset Object](#asset-object)
+  - [Stats Object](#stats-object)
+- [Media Type for STAC Collections](#media-type-for-stac-collections)
+- [Standalone Collections](#standalone-collections)
+
+## Overview
 
 The STAC Collection Specification defines a set of common fields to describe a group of Items that share properties and metadata. The 
 Collection Specification shares all fields with the STAC [Catalog Specification](../catalog-spec/catalog-spec.md) (with different allowed 
@@ -21,8 +43,8 @@ specified in [*OGC API - Features*](https://ogcapi.ogc.org/features/), but they 
 
 | Element         | Type                                             | Description                                                  |
 | --------------- | ------------------------------------------------ | ------------------------------------------------------------ |
-| stac_version    | string                                           | **REQUIRED.** The STAC version the Collection implements. STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind. |
 | type            | string                                           | **REQUIRED.** Must be set to `Collection` to be a valid Collection. |
+| stac_version    | string                                           | **REQUIRED.** The STAC version the Collection implements. |
 | stac_extensions | \[string]                                        | A list of extension identifiers the Collection implements.   |
 | id              | string                                           | **REQUIRED.** Identifier for the Collection that is unique across the provider. |
 | title           | string                                           | A short descriptive one-line title for the Collection.       |
@@ -37,24 +59,28 @@ specified in [*OGC API - Features*](https://ogcapi.ogc.org/features/), but they 
 
 ### Additional Field Information
 
+#### stac_version
+
+In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
+
+#### stac_extensions
+
+A list of extensions the Collection implements.  
+This list must only contain extensions that extend the Collection itself, see the the 'Scope' column in the list of 
+extensions. This does NOT declare the extensions of child Collection or Item 
+objects. The list contains URLs to the JSON Schema files it can be validated against.
+
+If an extension has influence on multiple parts 
+of the whole STAC structure, it must be listed in all affected parts (e.g. Collection and Item for the `datacube` extension). 
+If a structure, such as the summaries extension, provides fields in their JSON structure, these extensions must not be listed 
+here as they don't extend the Collection itself. For example, if a Collection includes the field `sat:platform` in the 
+summaries, the Collection should not list the `sat` extension in the `stac_extensions` field.
+
 #### id
 
 It is important that Collection identifiers are unique across the provider. And providers should strive as much as possible to make
 their Collection ids 'globally' unique, prefixing any common information with a unique string. This could be the provider's name if
 it is a fairly unique name, or their name combined with the domain they operate in.
-
-#### stac_extensions
-
-A list of extensions the Collection implements. This does NOT declare the extensions of child Catalogs or Items. The list 
-contains URLs to the JSON Schema files it can be validated against. For official 
-[extensions](../extensions/README.md#core-stac-extensions), a "shortcut" can be used. This means you can specify the folder 
-name of the extension, for example `view` for the View extension. If the versions of the extension and 
-the Collection diverge, you can specify the URL of the JSON schema file. This list must only contain extensions that extend 
-the Collection itself, see the the 'Scope' column in the list of extensions. If an extension has influence on multiple parts 
-of the whole STAC structure, it must be listed in all affected parts (e.g. Collection and Item for the `datacube` extension). 
-If a structure such as the summaries extension provide fields in their JSON structure, these extensions must not be listed 
-here as they don't extend the Collection itself. For example, if a Collection includes the field `sat:platform` in the 
-summaries, the Collection still does not list the `sat` extension in the `stac_extensions` field.
 
 #### license
 

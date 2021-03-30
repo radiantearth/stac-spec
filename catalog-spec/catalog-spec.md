@@ -1,7 +1,8 @@
-# STAC Catalog Specification
+# STAC Catalog Specification <!-- omit in toc --> 
 
 - [Catalog fields](#catalog-fields)
   - [Additional Field Information](#additional-field-information)
+    - [stac_version](#stac_version)
     - [stac_extensions](#stac_extensions)
   - [Link Object](#link-object)
     - [Relation types](#relation-types)
@@ -42,8 +43,8 @@ also a valid STAC Catalog.
 
 | Element         | Type          | Description                                                  |
 | --------------- | ------------- | ------------------------------------------------------------ |
-| stac_version    | string        | **REQUIRED.** The STAC version the Catalog implements. STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind. |
 | type            | string        | **REQUIRED.** Set to `Catalog` if this Catalog only implements the Catalog spec. |
+| stac_version    | string        | **REQUIRED.** The STAC version the Catalog implements. |
 | stac_extensions | \[string]     | A list of extension identifiers the Catalog implements.                 |
 | id              | string        | **REQUIRED.** Identifier for the Catalog.                    |
 | title           | string        | A short descriptive one-line title for the Catalog.          |
@@ -53,10 +54,16 @@ also a valid STAC Catalog.
 
 ### Additional Field Information
 
+#### stac_version
+
+In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
+
 #### stac_extensions
 
-A list of extensions the Catalog implements. This does NOT declare the extensions of children or Items. The list contains URLs to the JSON Schema files it can be validated against. For [core extensions](../extensions/README.md#core-stac-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `view` for the View extension. If the versions of the extension and the Catalog diverge, you can specify the URL of the JSON schema file.
-This list must only contain extensions that extend the Catalog itself, see the the 'Scope' column in the list of extensions.
+A list of extensions the Catalog implements.
+This list must only contain extensions that extend the Catalog itself, see the the 'Scope' column in the list of
+extensions. This does NOT declare the extensions of child Catalog, Collection, or Item
+objects. The list contains URLs to the JSON Schema files it can be validated against.
 
 ### Link Object
 
@@ -112,7 +119,7 @@ The following table lists the Media Types to use for STAC structures.
 | Media Type             | Description                                                |
 | ---------------------- | ---------------------------------------------------------- |
 | `application/geo+json` | A STAC [Item](../item-spec/item-spec.md)                   |
-| `application/json`     | A STAC [Catalog](#stac-catalog-specification)              |
+| `application/json`     | A STAC Catalog            |
 | `application/json`     | A STAC [Collection](../collection-spec/collection-spec.md) |
 
 ## Extensions

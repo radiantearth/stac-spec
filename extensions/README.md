@@ -2,16 +2,14 @@
 
 - [Overview](#overview)
 - [General Conventions](#general-conventions)
-- [Core STAC Extensions](#core-stac-extensions)
+- [Stable STAC Extensions](#stable-stac-extensions)
 - [Community Extensions](#community-extensions)
   - [Extension Maturity](#extension-maturity)
-  - [List of STAC Community Extensions](#list-of-stac-community-extensions)
   - [Proposed extensions](#proposed-extensions)
 - [Extending STAC](#extending-stac)
   - [Proposing new extensions](#proposing-new-extensions)
   - [Prefixes](#prefixes)
   - [Use of arrays and objects](#use-of-arrays-and-objects)
-    - [Directory Structure](#directory-structure)
 
 ## Overview
 
@@ -19,6 +17,8 @@ One of the most important aspects of the SpatioTemporal Asset Catalog specificat
 STAC specification defines only a minimal core, but is designed for extension. It is expected that most real-world
 implementations will use several 'extensions' to fully describe their data. This document describes how extensions
 work, and links to the 'core' extensions included in this repo, as well as to a variety of 'community' extensions.
+
+**For the complete list of available extensions see the [STAC extensions overview page](https://stac-extensions.github.io/).**
 
 Extensions to the core STAC specification provide additional JSON fields that can be used to better describe
 the data. Most tend to be about describing a particular domain or type of data, but some imply
@@ -31,6 +31,8 @@ fields between them to create a shared community extensions. See the section bel
 for information on how to get started. And everyone is encouraged to link to the extension in the table below, so others
 can be aware of it.
 
+Each extension has at least one *owner*. You can find extension owners in each extension's README.
+
 ## General Conventions
 
 1. Additional attributes relating to an [Item](../item-spec/item-spec.md) should be added into the Item Properties object, rather than directly in the Item object.
@@ -39,46 +41,28 @@ For example, the `eo:bands` attribute may be used in Item Properties to describe
 the Item Asset objects contained in the Item, but may also be used in an individual Item Asset to describe only the bands available in that asset.
 3. Additional attributes relating to a [Catalog](../catalog-spec/catalog-spec.md) or [Collection](../collection-spec/collection-spec.md) should be added to the root of the object.
 
-## Core STAC Extensions
+## Stable STAC Extensions
 
-These extensions are considered stable, and are included directly in this repository.
+These extensions are considered stable and are widely used in many production implementations. As additional extensions advance
+through the [Extension Maturity](#extension-maturity) classification they, will be added here.
 
-| Extension Title                             | Identifier | Field Name Prefix | Scope            | Description |
-|---------------------------------------------|------------|-------------------|------------------|-------------|
-| [Electro-Optical](eo/README.md)             | eo         | eo                | Item             | Covers electro-optical data that represents a snapshot of the Earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, gsd and more. |
-| [Projection](projection/README.md)          | projection | proj              | Item             | Provides a way to describe Items whose assets are in a geospatial projection. |
-| [Scientific Citation](scientific/README.md) | scientific | sci               | Item, Collection | Metadata that indicate from which publication data originates and how the data itself should be cited or referenced. |
-| [View Geometry](view/README.md)             | view       | view              | Item             | View Geometry adds metadata related to angles of sensors and other radiance angles that affect the view of resulting data |
+| Extension Title                                                       |     Description                |
+|-----------------------------------------------------------------------|--------------------------------|
+| [Electro-Optical](https://github.com/stac-extensions/eo/)             | Covers electro-optical data that represents a snapshot of the Earth for a single date and time. It could consist of multiple spectral bands, for example visible bands, infrared bands, red edge bands and panchromatic bands. The extension provides common fields like bands, cloud cover, gsd and more. |
+| [Projection](https://github.com/stac-extensions/projection/)          | Provides a way to describe Items whose assets are in a geospatial projection. |
+| [Scientific Citation](https://github.com/stac-extensions/scientific/) | Metadata that indicate from which publication data originates and how the data itself should be cited or referenced.  |
+| [View Geometry](https://github.com/stac-extensions/view/)             | View Geometry adds metadata related to angles of sensors and other radiance angles that affect the view of resulting data |
 
 ## Community Extensions
 
-There are many more extensions that the broader STAC community is working on. These aren't included directly in the
-main repository as many are still evolving through active usage. But they are listed here.
-
-### List of STAC Community Extensions
-
-This is a list of all known STAC Community extensions. It is currently more oriented to general domains, but it will include
-more data provider specific extensions in the future as well. Any extension with documentation and a published schema
-is encouraged to list here.
-
-| Extension Title                                  | Identifier        | Field Name Prefix   | Scope                     | Description |
-| ------------------------------------------------ | ----------------- | ------------------- | ------------------------- | ----------- |
-| [CARD4L](https://github.com/stac-extensions/card4l) | card4l            | card4l | Item  | How to comply to the CEOS CARD4L product family specifications (Optical and SAR) |
-| [Data Cube](https://github.com/stac-extensions/datacube)                  | datacube          | cube                | Item, Collection          | Data Cube related metadata, especially to describe their dimensions. |
-| [File Info](https://github.com/stac-extensions/file)                      | file              | file                | Item, Collection          | Provides a way to specify file details such as size, data type and checksum for assets in Items and Collections. |
-| [Item Asset Definition](https://github.com/stac-extensions/item-assets)   | item-assets       | -                   | Collection                | Provides a way to specify details about what assets may be found in Items belonging to a Collection. |
-| [Label](https://github.com/stac-extensions/label) | label | label | Item, Collection | Items that relate labeled AOIs with source imagery |
-| [Point Cloud](https://github.com/stac-extensions/pointcloud)              | pointcloud        | pc                  | Item, Collection          | Provides a way to describe point cloud datasets. The point clouds can come from either active or passive sensors, and data is frequently acquired using tools such as LiDAR or coincidence-matched imagery. |
-| [Processing](https://github.com/stac-extensions/processing)               | processing        | processing          | Item, Collection          | Indicates from which processing chain data originates and how the data itself has been produced. |
-| [SAR](https://github.com/stac-extensions/sar)                             | sar               | sar                 | Item, Collection          | Covers synthetic-aperture radar data that represents a snapshot of the earth for a single date and time. |
-| [Single File STAC](https://github.com/stac-extensions/single-file-stac)   | single-file-stac  | -                   | Catalog                   | An extension to provide a set of Collections and Items within a single file STAC. |
-| [Tiled Assets](https://github.com/stac-extensions/tiled-assets)           | tiled-assets      | tiles               | Item, Catalog, Collection | Allows to specify numerous assets using asset templates via tile matrices and dimensions. |
-| [Timestamps](https://github.com/stac-extensions/timestamps)               | timestamps        | -                   | Item, Collection          | Allows to specify numerous timestamps for assets and metadata. |
-| [Versioning Indicators](https://github.com/stac-extensions/version)       | version           | -                   | Item, Collection          | Provides fields and link relation types to provide a version and indicate deprecation. |
+There are many more extensions that are part of the broader STAC ecosystem. The center of activity for these is the
+[stac-extensions GitHub organization](https://github.com/stac-extensions), which has a number of extension repositories. For 
+an overview of all extensions with their [Extension Maturity](#extension-maturity) classification see the 
+[STAC extensions overview page](https://stac-extensions.github.io/).
 
 ### Proposed extensions
 
-Beyond the list above there have been a number of extensions that people have proposed to the STAC community. These
+Beyond the community extensions there have been a number of extensions that people have proposed to the STAC community. These
 can be found in the STAC [Issue Tracker](https://github.com/radiantearth/stac-spec/issues) under the 
 [new extension](https://github.com/radiantearth/stac-spec/issues?q=is%3Aissue+is%3Aopen+label%3A%22new+extension%22) label.
 These are ideas that others would likely use and potentially collaborate on. Anyone is free to add new
@@ -119,7 +103,7 @@ an rough proposal, so others can potentially collaborate.
 | ----------------------- | ----------- | ----------- | --------- |
 | Proposal                | 0           | An idea put forward by a community member to gather feedback | Not stable - breaking changes almost guaranteed as implementers try out the idea. |
 | Pilot                   | 1           | Idea is fleshed out, with examples and a JSON schema, and implemented in one or more catalogs. Additional implementations encouraged to help give feedback | Approaching stability - breaking changes are not anticipated but can easily come from additional feedback |
-| Candidate               | 3           | A number of implementers are using it and are standing behind it as a solid extension. Can generally count on an extension at this maturity level | Mostly stable, breaking changes require a new version and minor changes are unlikely. The extension has a [code owner](../.github/CODEOWNERS). |
+| Candidate               | 3           | A number of implementers are using it and are standing behind it as a solid extension. Can generally count on an extension at this maturity level | Mostly stable, breaking changes require a new version and minor changes are unlikely. The extension has a code owner, designated in its README. |
 | Stable                  | 6           | Highest current level of maturity. The community of extension maintainers commits to a STAC review process for any changes, which are not made lightly. | Completely stable, all changes require a new version number and review process. |
 | Deprecated              | N/A         | A previous extension that has likely been superseded by a newer one or did not work out for some reason. | DO NOT USE, is not supported |
 
@@ -186,17 +170,3 @@ For example, if one would like to define an extension to contain a start and a e
 3. Define two separate fields, e.g. `"date_range_start": "2018-01-01", "date_range_end": "2018-01-31"`. This is **recommended** as it avoids the conflicts above and is usually better displayed in software that only understands GeoJSON but has no clue about STAC. This is due to the fact that most legacy software can not display arrays or objects GeoJSON `properties` properly.
 
 This rules only applies to the fields defined directly for the Item's `properties`. For fields and structures defined on other levels (e.g. in the root of an Item or in an array), extension authors can freely define the structure. So an array of objects such as the `eo:bands` are fine to use, but keep in mind that the drawbacks mentioned above usually still apply.
-
-### Directory Structure
-
-A STAC extension can have references to additional schemas within the extension schema.
-These files should be kept together in order to preserve relative `$ref` links.
-
-See the [EO](eo/) extension file structure as an example.
-* Specification examples should be stored in an `examples` directory.
-* The specification schema file(s) should be stored in a `json-schema` directory.
-
-Make sure to choose a meaningful identifier for the extension and use this value as the extension's directory name.
-The extension's identifier should be used in the `stac_extensions` field. Also, make sure to add the identifier to the
-enum defined for the `stac_extensions` field in the
-[JSON schema of the STAC catalog specification](../catalog-spec/json-schema/catalog.json).
