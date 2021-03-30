@@ -55,7 +55,7 @@ through the [Extension Maturity](#extension-maturity) classification they, will 
 ## Community Extensions
 
 There are many more extensions that are part of the broader STAC ecosystem. The center of activity for these is the
-[stac-extensions GitHub org](https://github.com/stac-extensions), which has a number of extension repositories. For 
+[stac-extensions GitHub organization](https://github.com/stac-extensions), which has a number of extension repositories. For 
 an overview of all extensions with their [Extension Maturity](#extension-maturity) classification see the 
 [STAC extensions overview page](https://stac-extensions.github.io/).
 
