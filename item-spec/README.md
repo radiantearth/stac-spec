@@ -1,6 +1,6 @@
 # STAC Item Specification
 
-The [STAC Item spec](item-spec.md) defines the most important object in a STAC system. An
+The [STAC Item](item-spec.md) object is the most important object in a STAC system. An
 **Item** is the entity that contains metadata for a scene and links to the assets. 
 
 Item objects are the leaf nodes for a graph of [Catalog](../catalog-spec/catalog-spec.md) 
