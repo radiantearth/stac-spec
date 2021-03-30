@@ -5,7 +5,6 @@
 - [Core STAC Extensions](#core-stac-extensions)
 - [Community Extensions](#community-extensions)
   - [Extension Maturity](#extension-maturity)
-  - [List of STAC Community Extensions](#list-of-stac-community-extensions)
   - [Proposed extensions](#proposed-extensions)
 - [Extending STAC](#extending-stac)
   - [Proposing new extensions](#proposing-new-extensions)
