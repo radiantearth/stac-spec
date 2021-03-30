@@ -8,6 +8,9 @@ The [Catalog](catalog-spec/catalog-spec.md) specification provides structural el
 and [Collections](collection-spec/collection-spec.md). Collections *are* catalogs, that add more required metadata and 
 describe a group of related Items. For more on the differences see the [section below](#catalogs-vs-collections).
 
+A [UML diagram](https://en.wikipedia.org/wiki/Unified_Modeling_Language) of the [STAC model](STAC-UML.pdf) is also 
+provided to help with navigating the specification. 
+
 ## Item Overview
 
 Fundamental to any SpatioTemporal Asset Catalog, an [Item](item-spec/item-spec.md) object represents a unit of
