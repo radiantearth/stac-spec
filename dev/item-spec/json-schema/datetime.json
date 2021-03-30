@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.stacspec.org/v1.0.0-rc.1/item-spec/json-schema/datetime.json#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/datetime.json#",
   "title": "Date and Time Fields",
   "type": "object",
   "dependencies": {
