@@ -23,7 +23,7 @@ specified in [*OGC API - Features*](https://ogcapi.ogc.org/features/), but they 
 | --------------- | ------------------------------------------------ | ------------------------------------------------------------ |
 | stac_version    | string                                           | **REQUIRED.** The STAC version the Collection implements. STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind. |
 | type            | string                                           | **REQUIRED.** Must be set to `Collection` to be a valid Collection. |
-| stac_extensions | \[string]                                        | A list of extension identifiers the Collection implements. |
+| stac_extensions | \[string]                                        | A list of extension identifiers the Collection implements.   |
 | id              | string                                           | **REQUIRED.** Identifier for the Collection that is unique across the provider. |
 | title           | string                                           | A short descriptive one-line title for the Collection.       |
 | description     | string                                           | **REQUIRED.** Detailed multi-line description to fully explain the Collection. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
@@ -33,7 +33,7 @@ specified in [*OGC API - Features*](https://ogcapi.ogc.org/features/), but they 
 | extent          | [Extent Object](#extent-object)                  | **REQUIRED.** Spatial and temporal extents.                  |
 | summaries       | Map<string, \[*]\|[Stats Object](#stats-object)> | STRONGLY RECOMMENDED. A map of property summaries, either a set of values or statistics such as a range. |
 | links           | \[[Link Object](#link-object)]                   | **REQUIRED.** A list of references to other documents.       |
-| assets          | Map<string, [Asset Object](#asset-object)>       | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key. |
+| assets          | Map<string, [Asset Object](#asset-object)>       | Dictionary of asset objects that can be downloaded, each with a unique key. |
 
 ### Additional Field Information
 
