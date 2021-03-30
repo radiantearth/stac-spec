@@ -43,7 +43,7 @@ the Item Asset objects contained in the Item, but may also be used in an individ
 ## Core STAC Extensions
 
 These extensions are considered stable and are widely used in many production implementations. As additional extensions advance
-through the [Extension Maturity](#extension-maturity) classification they will be added here.
+through the [Extension Maturity](#extension-maturity) classification they, will be added here.
 
 | Extension Title                             | Identifier | Field Name Prefix | Scope            | Description |
 |---------------------------------------------|------------|-------------------|------------------|-------------|
