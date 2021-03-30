@@ -1,15 +1,14 @@
 # STAC Catalog Specification
 
-- [STAC Catalog Specification](#stac-catalog-specification)
-  - [Catalog fields](#catalog-fields)
-    - [Additional Field Information](#additional-field-information)
-      - [stac_extensions](#stac_extensions)
-    - [Link Object](#link-object)
-      - [Relation types](#relation-types)
-  - [Media Types](#media-types)
-    - [Media Type for STAC Catalogs](#media-type-for-stac-catalogs)
-    - [STAC Media Types](#stac-media-types)
-  - [Extensions](#extensions)
+- [Catalog fields](#catalog-fields)
+  - [Additional Field Information](#additional-field-information)
+    - [stac_extensions](#stac_extensions)
+  - [Link Object](#link-object)
+    - [Relation types](#relation-types)
+- [Media Types](#media-types)
+  - [Media Type for STAC Catalogs](#media-type-for-stac-catalogs)
+  - [STAC Media Types](#stac-media-types)
+- [Extensions](#extensions)
 
 This document explains the structure and content of a STAC **Catalog** object. A STAC Catalog object 
 represents a logical group of other Catalog, 

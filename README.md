@@ -22,8 +22,9 @@ and tools to access metadata, instead of needing to write new code to interact
 with each data provider's proprietary formats and APIs. 
 
 The STAC specifications define related JSON object types connected by link 
-relations to support a "browse" style of traversable interface and a RESTful/HATEOAS
-API providing additional browse and search interfaces. 
+relations to support a [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS)-style traversable
+interface and a [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) API
+providing additional browse and search interfaces.
 Typically, several STAC specifications are composed together to create an implementation. 
 The **Item**, **Catalog**, and **Collection** specifications define a minimal core 
 of the most frequently used JSON object types. Because of the hierarchical structure 
