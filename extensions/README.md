@@ -19,6 +19,8 @@ STAC specification defines only a minimal core, but is designed for extension. I
 implementations will use several 'extensions' to fully describe their data. This document describes how extensions
 work, and links to the 'core' extensions included in this repo, as well as to a variety of 'community' extensions.
 
+**For the complete list of available extensions see the [STAC extensions overview page](https://stac-extensions.github.io/).**
+
 Extensions to the core STAC specification provide additional JSON fields that can be used to better describe
 the data. Most tend to be about describing a particular domain or type of data, but some imply
 functionality.
