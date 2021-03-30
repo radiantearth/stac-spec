@@ -119,7 +119,7 @@ The following table lists the Media Types to use for STAC structures.
 | Media Type             | Description                                                |
 | ---------------------- | ---------------------------------------------------------- |
 | `application/geo+json` | A STAC [Item](../item-spec/item-spec.md)                   |
-| `application/json`     | A STAC [Catalog](#stac-catalog-specification)              |
+| `application/json`     | A STAC [Catalog](#)              |
 | `application/json`     | A STAC [Collection](../collection-spec/collection-spec.md) |
 
 ## Extensions
