@@ -15,7 +15,8 @@
         "properties": {
           "name": {
             "title": "Organization name",
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           },
           "description": {
             "title": "Organization description",
