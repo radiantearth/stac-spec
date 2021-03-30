@@ -10,7 +10,6 @@
   - [Proposing new extensions](#proposing-new-extensions)
   - [Prefixes](#prefixes)
   - [Use of arrays and objects](#use-of-arrays-and-objects)
-    - [Directory Structure](#directory-structure)
 
 ## Overview
 
