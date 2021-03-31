@@ -46,12 +46,8 @@ workflows:
       - test_examples
       - test_docs
       - publish_schemas:
-          requires:
-            - test_examples
           filters:
             tags:
-              # All (future) tags
               only: /^v.*/
             branches:
-              # Only dev branch, not PRs
-              only: dev
+              ignore: /^((?!dev).)*$/
