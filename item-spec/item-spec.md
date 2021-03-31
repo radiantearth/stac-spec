@@ -1,24 +1,25 @@
-# STAC Item Specification
+# STAC Item Specification <!-- omit in toc --> 
 
 - [Overview](#overview)
 - [Item fields](#item-fields)
   - [Additional Field Information](#additional-field-information)
     - [stac_version](#stac_version)
-    - [id](#id)
     - [stac_extensions](#stac_extensions)
+    - [id](#id)
     - [assets](#assets)
     - [bbox](#bbox)
-- [Properties Object](#properties-object)
-  - [datetime](#datetime)
-  - [Additional Fields](#additional-fields)
-- [Link Object](#link-object)
-  - [Relation types](#relation-types)
-    - [derived_from](#derived_from)
-  - [Collections](#collections)
-- [Asset Object](#asset-object)
-  - [Asset Media Type](#asset-media-type)
-  - [Asset Role Types](#asset-role-types)
-  - [Additional Fields for Assets](#additional-fields-for-assets)
+  - [Properties Object](#properties-object)
+    - [datetime](#datetime)
+    - [Additional Fields](#additional-fields)
+  - [Link Object](#link-object)
+    - [Relation types](#relation-types)
+      - [derived_from](#derived_from)
+    - [Collections](#collections)
+  - [Asset Object](#asset-object)
+    - [Asset Media Type](#asset-media-type)
+    - [Asset Roles](#asset-roles)
+      - [Asset Role Types](#asset-role-types)
+    - [Additional Fields for Assets](#additional-fields-for-assets)
 - [Media Type for STAC Item](#media-type-for-stac-item)
 - [Extensions](#extensions)
 
@@ -53,22 +54,30 @@ inherited from GeoJSON.
 
 | Field Name | Type                                                                       | Description |
 | ---------- | -------------------------------------------------------------------------- | ----------- |
+| type       | string                                                                     | **REQUIRED.** Type of the GeoJSON Object. MUST be set to `Feature`. |
 | stac_version | string                                                                   | **REQUIRED.** The STAC version the Item implements. |
 | stac_extensions | \[string]                                                             | A list of extensions the Item implements. |
 | id         | string                                                                     | **REQUIRED.** Provider identifier. The ID should be unique within the  [Collection](../collection-spec/collection-spec.md) that contains the Item. |
-| type       | string                                                                     | **REQUIRED.** Type of the GeoJSON Object. MUST be set to `Feature`. |
 | geometry   | [GeoJSON Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) \| [null](https://tools.ietf.org/html/rfc7946#section-3.2) | **REQUIRED.** Defines the full footprint of the asset represented by this item, formatted according to [RFC 7946, section 3.1](https://tools.ietf.org/html/rfc7946#section-3.1). The footprint should be the default GeoJSON geometry, though additional geometries can be included. Coordinates are specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). |
 | bbox       | \[number]                                                                  | **REQUIRED if `geometry` is not `null`.** Bounding Box of the asset represented by this Item, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5). |
 | properties | [Properties Object](#properties-object)                                    | **REQUIRED.** A dictionary of additional metadata for the Item. |
 | links      | \[[Link Object](#link-object)]                                             | **REQUIRED.** List of link objects to resources and related URLs. A link with the `rel` set to `self` is strongly recommended. |
 | assets     | Map<string, [Asset Object](#asset-object)>                                 | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key. |
-| collection | string                                                                     | The `id` of the STAC Collection this Item references to (see [`collection` relation type](#relation-types)). This field is *required* if such a relation type is present. This field provides an easy way for a user to search for any Items that belong in a specified Collection. |
+| collection | string                                                                     | The `id` of the STAC Collection this Item references to (see [`collection` relation type](#relation-types)). This field is *required* if such a relation type is present. This field provides an easy way for a user to search for any Items that belong in a specified Collection. Must be a non-empty string. |
 
 ### Additional Field Information
 
 #### stac_version
 
 In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
+
+#### stac_extensions
+
+A list of extensions the Item implements.  
+This list must only contain extensions that extend the Item itself, see the the 'Scope' column in the list of 
+extensions. The list contains URLs to the JSON Schema files it can be validated against.
+If an extension such as the `tiled-assets` extension has influence on multiple parts of the whole catalog 
+structure, it must be listed in all affected parts (e.g. Catalog, Collection and Item for the `tiled-assets` extension).
 
 #### id
 
@@ -81,16 +90,6 @@ As most geospatial assets are already uniquely defined by some
 identification scheme from the data provider it is recommended to simply use that ID. Data providers are advised to include sufficient information to make their 
 IDs globally unique, including things like unique satellite IDs. See the [id section of best practices](../best-practices.md#field-and-id-formatting) for 
 additional recommendations.
-
-#### stac_extensions
-
-A list of extensions the Item implements. The list contains URLs to the JSON Schema files it can be validated against. For 
-[official extensions](../extensions/README.md#core-stac-extensions), a "shortcut" can be used. This means you can specify the 
-folder name of the extension, for example `view` for the View extension. This does *not* apply for API extensions. If the
-versions of the extension and the Item diverge, you can specify the URL of the JSON schema file.
-This list must only contain extensions that extend the Item itself, see the the 'Scope' column in the list of extensions. 
-If an extension such as the `tiled-assets` extension has influence on multiple parts of the whole catalog structure, it 
-must be listed in all affected parts (e.g. Catalog, Collection and Item for the `tiled-assets` extension).
 
 #### assets
 
@@ -146,8 +145,8 @@ to enable cross-catalog search on known fields.
 
 * [STAC Common Metadata](common-metadata.md#stac-common-metadata) - A list of fields commonly used
 throughout all domains. These optional fields are included for STAC Items by default.
-* [Extensions](../extensions/README.md#core-stac-extensions) - Additional fields that are more specific,
-such as [EO](../extensions/eo), [View](../extensions/view) and more.
+* [Extensions](../extensions/README.md) - Additional fields that are more specific,
+such as [EO](https://github.com/stac-extensions/eo), [View](https://github.com/stac-extensions/view).
 * [Custom Extensions](../extensions/README.md#extending-stac) - It is generally allowed to add custom
 fields but it is recommended to add multiple fields for related values instead of a nested object,
 e.g., two fields `view:azimuth` and `view:off_nadir` instead of a field `view` with an object

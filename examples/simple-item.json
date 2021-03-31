@@ -1,5 +1,5 @@
 {
-  "stac_version": "1.0.0-rc.1",
+  "stac_version": "1.0.0-rc.2",
   "stac_extensions": [],
   "type": "Feature",
   "id": "20201211_223832_CS2",
@@ -37,9 +37,9 @@
     ]
   },
   "properties": {
-    "datetime": "2020-12-11T22:38:32.125000Z",
-    "collection": "simple-collection"
+    "datetime": "2020-12-11T22:38:32.125000Z"
   },
+  "collection": "simple-collection",
   "links": [
     {
       "rel": "collection",

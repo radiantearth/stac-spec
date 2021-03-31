@@ -4,26 +4,28 @@
 
 ## About
 
-The SpatioTemporal Asset Catalog (STAC) family of specifications aims to 
+The SpatioTemporal Asset Catalog (STAC) family of specifications aim to 
 standardize the way geospatial asset metadata is structured and queried. 
 A "spatiotemporal asset" is any file that represents information about 
 the Earth at a certain place and time. The original focus was on scenes 
-of satellite imagery, but now covers a broad variety of uses, including 
-sources such as aircraft and drone, and data such as hyperspectral optical, 
+of satellite imagery, but the specifications now cover a broad variety of uses, 
+including sources such as aircraft and drone and data such as hyperspectral optical, 
 synthetic aperture radar (SAR), video, point clouds, lidar, digital elevation 
 models (DEM), vector, machine learning labels, and composites like NDVI and 
 mosaics. STAC is intentionally designed with a minimal core and flexible 
-extension semantics to support a broad set of use cases.
+extension mechanism to support a broad set of use cases.
 
-The STAC specifications define JSON object types and hypermedia interface to be used 
-by providers and consumers of geospatial data.  
-This is advantageous to providers, as they can simply use a well-designed, 
-standard format without needing to design their own proprietary one. This 
-is advantageous to consumers because they can use existing libraries and 
-tools to access metadata, instead of needing to write new code to interact 
+This is advantageous to providers of geospatial data, as they can simply use a
+well-designed, standard format and API without needing to design their own proprietary one.
+This is advantageous to consumers  of geospatial data, as they can use existing libraries 
+and tools to access metadata, instead of needing to write new code to interact 
 with each data provider's proprietary formats and APIs. 
 
-Typically, several STAC specifications are composed together to create a catalog. 
+The STAC specifications define related JSON object types connected by link 
+relations to support a [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS)-style traversable
+interface and a [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) API
+providing additional browse and search interfaces.
+Typically, several STAC specifications are composed together to create an implementation. 
 The **Item**, **Catalog**, and **Collection** specifications define a minimal core 
 of the most frequently used JSON object types. Because of the hierarchical structure 
 between these objects, a STAC catalog can be implemented in a completely 'static' 
@@ -44,8 +46,9 @@ with additional web service endpoints and object attributes.
 
 This specification has matured over the past several years, and is used in 
 [numerous production deployments](https://stacindex.org/catalogs). 
-With the 1.0 release, implementors should expect that most definitions will remain stable. Our goal
-is to not change the core in any backwards-incompatible way for a long time. 
+With the 1.0.0 release, implementors should expect that most definitions will remain 
+stable. Our goal
+is to maintain backwards-compatiblity within the core for a long time. 
 The STAC specification follows [Semantic Versioning](https://semver.org/), so once 
 1.0.0 is reached, any breaking change will require the spec to go to 2.0.0. 
 
@@ -92,8 +95,8 @@ It includes things like the spatial and temporal extent of the data, the license
 It enables discovery at a higher level than individual Item objects, providing a simple way to describe sets of data.
 * **[Examples](examples/):** The *[examples/](examples/)* folder contains examples for all three specifications, linked together to form two 
 complete examples. Each spec and extension links in to highlight particular files that demonstrate key concepts.
-* **[Extensions](extensions/):** The *[extensions/](extensions/)* folder is where extensions live. Extensions can extend the 
-functionality of the core spec or add fields for specific domains. Each extension has at least one *owner*. You can find extension owners in each extension's README or in the [`CODEOWNERS`](.github/CODEOWNERS) file.
+* **[Extensions](extensions/README.md)** describe how STAC can use extensions that extend the functionality of the core spec or 
+add fields for specific domains. Extensions can be published anywhere, although the preferred location for public extensions is in the [GitHub `stac-extensions` organization](https://github.com/stac-extensions).
 * **Additional documents:** The supporting documents include a complementary [best practices](best-practices.md) 
 document, and information on contributing (links in the next section). We also maintain a [changelog](CHANGELOG.md) of
 what was modified in each version. 

@@ -1,4 +1,26 @@
-# STAC Collection Specification
+# STAC Collection Specification <!-- omit in toc --> 
+
+- [Overview](#overview)
+- [Collection fields](#collection-fields)
+  - [Additional Field Information](#additional-field-information)
+    - [stac_version](#stac_version)
+    - [stac_extensions](#stac_extensions)
+    - [id](#id)
+    - [license](#license)
+    - [summaries](#summaries)
+    - [assets](#assets)
+  - [Extent Object](#extent-object)
+    - [Spatial Extent Object](#spatial-extent-object)
+    - [Temporal Extent Object](#temporal-extent-object)
+  - [Provider Object](#provider-object)
+  - [Link Object](#link-object)
+    - [Relation types](#relation-types)
+  - [Asset Object](#asset-object)
+  - [Stats Object](#stats-object)
+- [Media Type for STAC Collections](#media-type-for-stac-collections)
+- [Standalone Collections](#standalone-collections)
+
+## Overview
 
 The STAC Collection Specification defines a set of common fields to describe a group of Items that share properties and metadata. The 
 Collection Specification shares all fields with the STAC [Catalog Specification](../catalog-spec/catalog-spec.md) (with different allowed 
@@ -21,9 +43,9 @@ specified in [*OGC API - Features*](https://ogcapi.ogc.org/features/), but they 
 
 | Element         | Type                                             | Description                                                  |
 | --------------- | ------------------------------------------------ | ------------------------------------------------------------ |
-| stac_version    | string                                           | **REQUIRED.** The STAC version the Collection implements. STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind. |
 | type            | string                                           | **REQUIRED.** Must be set to `Collection` to be a valid Collection. |
-| stac_extensions | \[string]                                        | A list of extension identifiers the Collection implements. |
+| stac_version    | string                                           | **REQUIRED.** The STAC version the Collection implements. |
+| stac_extensions | \[string]                                        | A list of extension identifiers the Collection implements.   |
 | id              | string                                           | **REQUIRED.** Identifier for the Collection that is unique across the provider. |
 | title           | string                                           | A short descriptive one-line title for the Collection.       |
 | description     | string                                           | **REQUIRED.** Detailed multi-line description to fully explain the Collection. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
@@ -33,28 +55,32 @@ specified in [*OGC API - Features*](https://ogcapi.ogc.org/features/), but they 
 | extent          | [Extent Object](#extent-object)                  | **REQUIRED.** Spatial and temporal extents.                  |
 | summaries       | Map<string, \[*]\|[Stats Object](#stats-object)> | STRONGLY RECOMMENDED. A map of property summaries, either a set of values or statistics such as a range. |
 | links           | \[[Link Object](#link-object)]                   | **REQUIRED.** A list of references to other documents.       |
-| assets          | Map<string, [Asset Object](#asset-object)>       | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key. |
+| assets          | Map<string, [Asset Object](#asset-object)>       | Dictionary of asset objects that can be downloaded, each with a unique key. |
 
 ### Additional Field Information
+
+#### stac_version
+
+In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
+
+#### stac_extensions
+
+A list of extensions the Collection implements.  
+This list must only contain extensions that extend the Collection itself, see the the 'Scope' column in the list of 
+extensions. This does NOT declare the extensions of child Collection or Item 
+objects. The list contains URLs to the JSON Schema files it can be validated against.
+
+If an extension has influence on multiple parts 
+of the whole STAC structure, it must be listed in all affected parts (e.g. Collection and Item for the `datacube` extension). 
+If a structure, such as the summaries extension, provides fields in their JSON structure, these extensions must not be listed 
+here as they don't extend the Collection itself. For example, if a Collection includes the field `sat:platform` in the 
+summaries, the Collection should not list the `sat` extension in the `stac_extensions` field.
 
 #### id
 
 It is important that Collection identifiers are unique across the provider. And providers should strive as much as possible to make
 their Collection ids 'globally' unique, prefixing any common information with a unique string. This could be the provider's name if
 it is a fairly unique name, or their name combined with the domain they operate in.
-
-#### stac_extensions
-
-A list of extensions the Collection implements. This does NOT declare the extensions of child Catalogs or Items. The list 
-contains URLs to the JSON Schema files it can be validated against. For official 
-[extensions](../extensions/README.md#core-stac-extensions), a "shortcut" can be used. This means you can specify the folder 
-name of the extension, for example `view` for the View extension. If the versions of the extension and 
-the Collection diverge, you can specify the URL of the JSON schema file. This list must only contain extensions that extend 
-the Collection itself, see the the 'Scope' column in the list of extensions. If an extension has influence on multiple parts 
-of the whole STAC structure, it must be listed in all affected parts (e.g. Collection and Item for the `datacube` extension). 
-If a structure such as the summaries extension provide fields in their JSON structure, these extensions must not be listed 
-here as they don't extend the Collection itself. For example, if a Collection includes the field `sat:platform` in the 
-summaries, the Collection still does not list the `sat` extension in the `stac_extensions` field.
 
 #### license
 
@@ -71,11 +97,13 @@ build tailored user interfaces for querying the data, by presenting the potentia
 A summary for a field can be specified in two ways:
 
 1. A set of all distinct values in an array: The set of values must contain at least one element and it is strongly recommended to list all values. If the field summarizes an array (e.g. [`instruments`](../item-spec/common-metadata.md#instrument)), the field's array elements of each Item must be merged to a single array with unique elements.
-2. Statistics in a [Stats Object](#stats-object): Statistics by default only specify the range (minimum and maximum values), but can optionally be accompanied by additional statistical values. The range specified by the minimum and maximum can specify the potential range of values, but it is recommended to be as precise as possible.
+2. Statistics in a [Stats Object](#stats-object): Statistics by default only specify the range (minimum and maximum values), but can optionally be accompanied by additional statistical values. The range specified by the `minimum` and `maximum` properties can specify the potential range of values, but it is recommended to be as precise as possible.
+
+All values must follow the schema of the property they summarize. So the values in the array or the values given for `minimum` and `maxmimum` must comply to the original data type and any further restrictions that apply for the property they summarize. For example, the `minimum` for `gsd` can't be lower than zero and the summaries for `platform` and `instruments` must each be an array of strings (or alternatively minimum and maximum values, but that's not very meaningful).
 
 It is recommended to list as many properties as reasonable so that consumers get a full overview about the properties included in the Items. Nevertheless, it is not very useful to list all potential `title` values of the Items. Also, a range for the `datetime` property may be better suited to be included in the STAC Collection's `extent` field. In general, properties that are covered by the Collection specification should not be repeated in the summaries.
 
-See the examples folder for Collections with summaries to get a sense of how to use them. 
+See the [examples folder](../examples) for Collections with summaries to get a sense of how to use them.
 
 #### assets
 

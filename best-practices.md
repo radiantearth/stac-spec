@@ -23,7 +23,9 @@
     - [Formats with no registered media type](#formats-with-no-registered-media-type)
   - [Asset Roles](#asset-roles)
     - [List of Asset Roles](#list-of-asset-roles)
-    - [Thumbnails](#thumbnails)
+      - [Thumbnail](#thumbnail)
+      - [Overview](#overview)
+      - [Visual](#visual)
 - **[Catalog & Collection Best Practices](#catalog--collection-practices)**
   - [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
     - [Static Catalogs](#static-catalogs)
@@ -245,12 +247,12 @@ providing them at at the Asset level can prove to be very useful for using the d
 - `datetime`: Provide individual timestamp on an Item, in case the Item has a `start_datetime` and `end_datetime`, but an Asset is for one specific time.
 - `gsd` ([Common Metadata](item-spec/common-metadata.md#instrument)): Specify some assets with different spatial resolution 
 than the overall best resolution.
-- `eo:bands` ([EO extension](extensions/eo/)): Provide spectral band information, and order of bands, within an individual asset.
-- `proj:epsg`/`proj:wkt2`/`proj:projjson` ([projection extension](extensions/projection/)): Specify different projection for some assets. If the projection is different
+- `eo:bands` ([EO extension](https://github.com/stac-extensions/eo/)): Provide spectral band information, and order of bands, within an individual asset.
+- `proj:epsg`/`proj:wkt2`/`proj:projjson` ([projection extension](https://github.com/stac-extensions/projection/)): Specify different projection for some assets. If the projection is different
  for all assets it should probably not be provided as an Item property. If most assets are one projection, and there is 
  a single reprojected version (such as a Web Mercator preview image), it is sensible to specify the main projection in the 
  Item and the alternate projection for the affected asset(s).
-- `proj:shape`/`proj:transform` ([projection extension](extensions/projection/)): If assets have different spatial resolutions and slightly different exact bounding boxes, specify these per asset to indicate the size of the asset in pixels and its exact GeoTransform in the native projection.
+- `proj:shape`/`proj:transform` ([projection extension](https://github.com/stac-extensions/projection/)): If assets have different spatial resolutions and slightly different exact bounding boxes, specify these per asset to indicate the size of the asset in pixels and its exact GeoTransform in the native projection.
 - `sar:polarizations` ([sar extension](https://github.com/stac-extensions/sar)): Provide the polarization content and ordering of a specific asset, similar to `eo:bands`.
 - `sar:product_type` ([sar extension](https://github.com/stac-extensions/sar)): If mixing multiple product types within a single Item, this can be used to specify the product_type for each asset.
 
@@ -298,7 +300,7 @@ register the media type with IANA, so that other STAC clients can find it easily
 [acceptable to not register](https://stackoverflow.com/questions/29121241/custom-content-type-is-registering-with-iana-mandatory) 
 it. It is relatively easy to [register](https://www.iana.org/form/media-types) a `vnd` media type.
 
-## Asset Roles
+### Asset Roles
 
 [Asset roles](item-spec/item-spec.md#asset-roles) are used to describe what each asset is used for. They are particular useful 
 when several assets have the same media type, such as when an Item has a multispectral analytic asset, a 3-band full resolution 
@@ -311,7 +313,7 @@ role in the [Asset Role Types](item-spec/item-spec.md#asset-role-types) or the f
 the role. And you are encouraged to add it to the list below and/or in an extension if you think the new role will have broader 
 applicability. 
 
-### List of Asset Roles
+#### List of Asset Roles
 
 In addition to the thumbnail, data and overview [roles listed](item-spec/item-spec.md#asset-role-types) in the Item spec, there
 are a number of roles that are emerging in practice, but don't have enough widespread use to justify standardizing them. So if
@@ -336,23 +338,43 @@ actual role requirements.
 | land-water | Best Practice | Points to a file that indicates whether a pixel is assessed as being land or water. |
 | water-mask | Best Practice | Points to a file that indicates whether a pixel is assessed as being water (e.g. flooding map). | iso-19139 | Best Practice | Points to an [ISO 19139](https://www.iso.org/standard/67253.html) metadata xml file |
 | iso-19115 | Best Practice | Points to an [ISO 19115](https://www.iso.org/standard/53798.html) metadata file |
-| reflectance, temperature, saturation, cloud, cloud-shadow | [EO Extension](extensions/eo/README.md#best-practices) | See the [table](extensions/eo/README.md#best-practices) in EO for more information, and the definitive list of roles related to EO. |
-| incidence-angle, azimuth, sun-azimuth, sun-elevation, terrain-shadow, terrain-occlusion, terrain-illumination | [View Extension](extensions/view/README.md#best-practices) | See the [table](extensions/view/README.md#best-practices) in View for more information, and the definitive list of roles related to viewing angles. |
-| local-incidence-angle, noise-power, amplitude, magnitude, sigma0, beta0, gamma0, date-offset, covmat, prd | [SAR Extension](https://github.com/stac-extensions/sar/README.md#best-practices) | See the [table](https://github.com/stac-extensions/sar/README.md#best-practices) in SAR for more information. , and the definitive list of roles related to SAR. |
+| reflectance, temperature, saturation, cloud, cloud-shadow | [EO Extension](https://github.com/stac-extensions/eo/blob/main/README.md#best-practices) | See the [table](https://github.com/stac-extensions/eo/blob/main/README.md#best-practices) in EO for more information, and the definitive list of roles related to EO. |
+| incidence-angle, azimuth, sun-azimuth, sun-elevation, terrain-shadow, terrain-occlusion, terrain-illumination | [View Extension](https://github.com/stac-extensions/view/blob/main/README.md#best-practices) | See the [table](https://github.com/stac-extensions/view/blob/main/README.md#best-practices) in View for more information, and the definitive list of roles related to viewing angles. |
+| local-incidence-angle, noise-power, amplitude, magnitude, sigma0, beta0, gamma0, date-offset, covmat, prd | [SAR Extension](https://github.com/stac-extensions/sar/blob/main/README.md#best-practices) | See the [table](https://github.com/stac-extensions/sar/blob/main/README.md#best-practices) in SAR for more information. , and the definitive list of roles related to SAR. |
 
 Some of the particular asset roles also have some best practices:
 
-### Thumbnails
+##### Thumbnail
 
 Thumbnails are typically used to give quick overview, often embedded in a list of items. So think small with these, as 
 keeping the size down helps it load fast, and the typical display of a thumbnail won't benefit from a large size. Often 256 by
-256 pixels is used as a default. Generally they should be no more than 1000 by 1000 pixels. Some implementors provide different sizes 
+256 pixels is used as a default. Generally they should be no more than 600 by 600 pixels. Some implementors provide different sizes 
 of thumbnails - using something like thumbnail-small and thumbnail-large, with a small one being 100x100 pixels or less, for truly 
 fast rendering in a small image. Be sure to name one just 'thumbnail' though, as that's the default most STAC clients will look for.
+
+Thumbnails should be PNG, JPEG, or WebP, so that they can easily display in browsers, and they should be a true color composite 
+(red, green, and blue bands) if there are multiple bands.
 
 If your data for the Item does not come with a thumbnail already we do recommend generating one, which can be done quite easily. 
 [GDAL](https://gdal.org/) and [Rasterio](https://rasterio.readthedocs.io/en/latest/) both make this very easy - if you need help
 just ask on the [STAC Gitter](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby).
+
+##### Overview
+
+An overview is a high-definition browse image of the dataset, giving the user more of a sense of the data than a thumbnail could.
+It's something that can be easily displayed on a map without tiling, or viewed at full screen resolution (but not zoomed in). Similar
+to a thumbnail it should be PNG, JPEG or WebP, for easy display in browsers, and should be a true color composite 
+(red, green, and blue bands) if there are multiple bands. The sizes could range from the high end of a thumbnail (600 by 600 pixels) 
+to a few thousand pixels on each side.
+
+###### Visual
+
+A visual asset is a full-resolution version of the data, but one that is optimized for display purposes. It can be in any file format, 
+but Cloud Optimized GeoTIFF's are preferred, since the inner pyramids and tiles enable faster display of the full resolution data. 
+It is typically an composite of red, blue and green bands, often with a nice color curve and sharpening for enhanced display. It should
+be possible to open up on non-specialist software and display just fine. It can complement assets where one band is per file (like landsat),
+by providing the key display bands combined, or can complement assets where many non-visible bands are included, by being a lighter weight
+file that just has the bands needed for display
 
 ## Catalog & Collection Practices
 
@@ -467,7 +489,7 @@ Some general thinking on what to summarize is as follows:
 
 * Any field that is a range of data (like numbers or dates) is a great candidate to summarize, to give people a sense what values
 the data might be. For example in overhead imagery, a 
-[`view:off_nadir`](extensions/view/README.md#item-properties-and-item-asset-fields) with a range of 0 to 3 would tell people this 
+[`view:off_nadir`](https://github.com/stac-extensions/view/blob/main/README.md#item-properties-and-item-asset-fields) with a range of 0 to 3 would tell people this 
 imagery is all pretty much straight down, while a value of 15 to 40 would tell them that it's oblique imagery, or 0 to 60 that it's 
 a Collection with lots of different look angles. 
 
@@ -484,12 +506,12 @@ to include all the different location string values in a summary.
 
 * Fields that consist of arrays are more of a judgement call. For example [`instruments`](item-spec/common-metadata.md#instrument)
 is straightforward and recommended, as the elements of the array are a discrete set of options. On the other hand 
-[`proj:transform`](extensions/projection/README.md#projtransform) makes no sense to summarize, as the union of all the values
+[`proj:transform`](https://github.com/stac-extensions/projection/blob/main/README.md#projtransform) makes no sense to summarize, as the union of all the values
 in the array are meaningless, as each Item is describing its transform, so combining them would just be a bunch of random numbers.
 So if the values contained in the array are independently meaningful (not interconnected) and there aren't hundreds of potential
 values then it is likely a good candidate to summarize.
 
-We do highly recommend including an [`eo:bands`](extensions/eo/README.md#eobands) summary if your Items implement `eo:bands`, 
+We do highly recommend including an [`eo:bands`](https://github.com/stac-extensions/eo/blob/main/README.md#eobands) summary if your Items implement `eo:bands`, 
 especially if it represents just one satellite or constellation. This should be a union of all the potential bands that you 
 have in assets. It is ok to only add the summary at the Collection level without putting an explicit `eo:bands` summary at the 
 `properties` level of an Item, since that is optional. This gives users of the Collection a sense of the sensor capabilities without 
@@ -518,7 +540,7 @@ cases should utilize a catalog that follows the listed principles:
 * **Only relative href's in structural `links`**: The full catalog structure of links down to sub-catalogs and Items, and their 
 links back to their parents and roots, should be done with relative URL's. The structural rel types include `root`, `parent`, 
 `child`, `item`, and `collection`. Other links can be absolute, especially if they describe a resource that makes less sense in
-the catalog, like [sci:doi](extensions/scientific/README.md#item-and-collection-fields), 
+the catalog, like [sci:doi](https://github.com/stac-extensions/scientific/blob/main/README.md#item-and-collection-fields), 
 `derived_from` or even `license` (it can be nice to include the license in the catalog, but some licenses live at a canonical 
 online location which makes more sense to refer to directly). This enables the full catalog to be downloaded or
 copied to another location and to still be valid. This also implies no `self` link, as that link must be absolute.
@@ -601,10 +623,10 @@ catalogs to preserve previous versions of the documents and link them together.
 
 In order to achieve this, the static catalog must make sure that for every record created, a copy of the record is also 
 created in a separate location and it is named with the version id adopted by the catalog. See 
-[here](https://github.com/stac-extensions/version/README.md#version-id) for recommendations on versioning schema.
+[here](https://github.com/stac-extensions/version/blob/main/README.md#version-id) for recommendations on versioning schema.
 
 The main record should also provide a link to the versioned record following the linking patterns described 
-[here](https://github.com/stac-extensions/version/README.md#relation-types). For every update to the record, the same 
+[here](https://github.com/stac-extensions/version/blob/main/README.md#relation-types). For every update to the record, the same 
 cycle is repeated:
 
 1. Add link from the updated record to the previous version

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.stacspec.org/v1.0.0-rc.1/item-spec/json-schema/item.json#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json#",
   "title": "STAC Item",
   "type": "object",
   "description": "This object represents the metadata for an item in a SpatioTemporal Asset Catalog.",
@@ -116,7 +116,8 @@
             "id": {
               "title": "Provider ID",
               "description": "Provider item ID",
-              "type": "string"
+              "type": "string",
+              "minLength": 1
             },
             "links": {
               "title": "Item links",
@@ -162,7 +163,8 @@
             "collection": {
               "title": "Collection ID",
               "description": "The ID of the STAC Collection this Item references to.",
-              "type": "string"
+              "type": "string",
+              "minLength": 1
             }
           }
         }
@@ -178,11 +180,13 @@
         "href": {
           "title": "Link reference",
           "type": "string",
-          "format": "iri-reference"
+          "format": "iri-reference",
+          "minLength": 1
         },
         "rel": {
           "title": "Link relation type",
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "type": {
           "title": "Link type",
@@ -213,7 +217,8 @@
             "href": {
               "title": "Asset reference",
               "type": "string",
-              "format": "iri-reference"
+              "format": "iri-reference",
+              "minLength": 1
             },
             "title": {
               "title": "Asset title",

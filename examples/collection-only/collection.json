@@ -1,6 +1,6 @@
 {
   "type": "Collection",
-  "stac_version": "1.0.0-rc.1",
+  "stac_version": "1.0.0-rc.2",
   "stac_extensions": [],
   "id": "sentinel-2",
   "title": "Sentinel-2 MSI: MultiSpectral Instrument, Level-1C",

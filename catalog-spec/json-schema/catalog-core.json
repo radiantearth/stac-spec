@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.stacspec.org/v1.0.0-rc.1/catalog-spec/json-schema/catalog-core.json#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-rc.2/catalog-spec/json-schema/catalog-core.json#",
   "title": "Common STAC Catalog + Collection Fields",
   "description": "This object represents the common fields shared by Catalogs and Collections",
   "allOf": [
@@ -44,7 +44,8 @@
         },
         "id": {
           "title": "Identifier",
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "title": {
           "title": "Title",
@@ -52,7 +53,8 @@
         },
         "description": {
           "title": "Description",
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "links": {
           "title": "Links",
@@ -76,11 +78,13 @@
         "href": {
           "title": "Link reference",
           "type": "string",
-          "format": "iri-reference"
+          "format": "iri-reference",
+          "minLength": 1
         },
         "rel": {
           "title": "Link relation type",
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "type": {
           "title": "Link type",

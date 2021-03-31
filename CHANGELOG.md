@@ -6,13 +6,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v1.0.0-rc.2] - 2021-03-30
+
 ### Added
 
 ### Changed
 
+- Required properties of type `string` require a minimum length of `1`. ([#1065](https://github.com/radiantearth/stac-spec/pull/1065))
+- `gsd` must be greater than 0. ([#1068](https://github.com/radiantearth/stac-spec/pull/1068))
+
 ### Removed
 
 ### Fixed
+
+- Collection Assets were specified as required (only in written text, not in JSON Schema), but that was incorrectly copied over from the former `collection-assets` extension. Collection Assets are not required.
+- Clarified that the values in summaries (both for ranges and sets of values) must follow the data type of the property they summarize. ([#1069](https://github.com/radiantearth/stac-spec/pull/1069))
 
 ## [v1.0.0-rc.1] - 2021-03-03
 
@@ -394,6 +402,7 @@ Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkam
 
 
 [Unreleased]: <https://github.com/radiantearth/stac-spec/compare/master...dev>
+[v1.0.0-rc.2]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-rc.1..v1.0.0-rc.2>
 [v1.0.0-rc.1]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-beta.2..v1.0.0-rc.1>
 [v1.0.0-beta.2]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-beta.1..v1.0.0-beta.2>
 [v1.0.0-beta.1]: <https://github.com/radiantearth/stac-spec/compare/v0.9.0...v1.0.0-beta.1>

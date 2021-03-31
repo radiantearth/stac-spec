@@ -1,8 +1,8 @@
 {
-  "stac_version": "1.0.0-rc.1",
+  "stac_version": "1.0.0-rc.2",
   "stac_extensions": [
-    "eo",
-    "view"
+    "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/view/v1.0.0/schema.json"
   ],
   "type": "Feature",
   "id": "CS3-20160503_132131_08",
