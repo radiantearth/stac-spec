@@ -88,7 +88,7 @@ Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses
 
 #### summaries
 
-Collections are are *strongly recommended* to provide summaries of the values of fields that they can expect from the `properties` 
+Collections are *strongly recommended* to provide summaries of the values of fields that they can expect from the `properties` 
 of STAC Items contained in this Collection. This enables users to get a good sense of what the ranges and potential values of 
 different fields in the Collection are, without to inspect a number of Items (or crawl them exhaustively to get a definitive answer). 
 Summaries help to fully define Collections, especially if they don't link to any Items. They also give clients enough information to 
