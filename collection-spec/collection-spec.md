@@ -65,16 +65,11 @@ In general, STAC versions can be mixed, but please keep the [recommended best pr
 
 #### stac_extensions
 
-A list of extensions the Collection implements.  
-This list must only contain extensions that extend the Collection itself, see the the 'Scope' column in the list of 
-extensions. This does NOT declare the extensions of child Collection or Item 
-objects. The list contains URLs to the JSON Schema files it can be validated against.
-
-If an extension has influence on multiple parts 
-of the whole STAC structure, it must be listed in all affected parts (e.g. Collection and Item for the `datacube` extension). 
-If a structure, such as the summaries extension, provides fields in their JSON structure, these extensions must not be listed 
-here as they don't extend the Collection itself. For example, if a Collection includes the field `sat:platform` in the 
-summaries, the Collection should not list the `sat` extension in the `stac_extensions` field.
+A list of extensions the Collection implements.
+The list consists of URLs to JSON Schema files that can be used for validation.
+This list must only contain extensions that extend the Collection specification itself,
+see the the 'Scope' for each of the extensions.
+This must **not** declare the extensions that are only implemented in child Collection or Items.
 
 #### id
 
