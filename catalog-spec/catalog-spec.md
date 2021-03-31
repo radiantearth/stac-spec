@@ -63,7 +63,7 @@ In general, STAC versions can be mixed, but please keep the [recommended best pr
 A list of extensions the Catalog implements.
 The list consists of URLs to JSON Schema files that can be used for validation.
 This list must only contain extensions that extend the Catalog specification itself,
-see the the 'Scope' for each of the extensions.
+see the 'Scope' for each of the extensions.
 This must **not** declare the extensions that are only implemented in child Collection or Items.
 
 ### Link Object
