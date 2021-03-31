@@ -8,8 +8,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [v1.0.0-rc.2] - 2021-03-30
 
-### Added
-
 ### Changed
 
 - Required properties of type `string` require a minimum length of `1`. ([#1065](https://github.com/radiantearth/stac-spec/pull/1065))
