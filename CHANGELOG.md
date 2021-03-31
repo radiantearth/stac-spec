@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 
+- The remaining extensions in the spec (EO, Projection, Scientific Citation and View) have been moved out of the core specification, into their own repos in the [stac-extensions](https://github.com/stac-extensions/) GitHub organization. They must now be referred to by their schemas directly - the name shortcuts for them are no longer valid. The concept of the 'named shortcut' also goes away entirely. ([#1070](https://github.com/radiantearth/stac-spec/pull/1070))
+
 ### Fixed
 
 - Collection Assets were specified as required (only in written text, not in JSON Schema), but that was incorrectly copied over from the former `collection-assets` extension. Collection Assets are not required.
