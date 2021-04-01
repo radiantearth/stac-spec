@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Updated examples for automatic collection creation from code and validation
+
 ## [v1.0.0-rc.2] - 2021-03-30
 
 ### Changed
