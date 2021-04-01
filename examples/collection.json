@@ -1,6 +1,9 @@
 {
   "id": "simple-collection",
   "type": "Collection",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/view/v1.0.0/schema.json"
+  ],
   "stac_version": "1.0.0-rc.2",
   "description": "A simple collection demonstrating core catalog fields with links to a couple of items",
   "title": "Simple Example Collection",
