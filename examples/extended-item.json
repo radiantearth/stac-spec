@@ -50,7 +50,7 @@
     "updated": "2020-12-15T01:48:13.725Z",
     "platform": "cool_sat2",
     "instruments": [
-      "cool_sensor_v1"
+      "cool_sensor_v2"
     ],
     "gsd": 0.66,
     "eo:cloud_cover": 1.2,
