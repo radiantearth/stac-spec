@@ -22,6 +22,12 @@
       "title": "Collection with no items (standalone)"
     },
     {
+      "rel": "item",
+      "href": "./collectionless-item.json",
+      "type": "application/json",
+      "title": "Collection with no items (standalone)"
+    },
+    {
       "rel": "self",
       "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0-rc.2/examples/catalog.json",
       "type": "application/json"

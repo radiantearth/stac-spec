@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Updated examples for automatic collection creation from code and validation
+- The first extent in a Collection is always the overall extent, followed by more specific extents. ([#1064](https://github.com/radiantearth/stac-spec/issues/1064), [opengeospatial/ogcapi-features#520](https://github.com/opengeospatial/ogcapi-features/pull/520))
 
 ## [v1.0.0-rc.2] - 2021-03-30
 
@@ -23,6 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+- Examples
 - Collection Assets were specified as required (only in written text, not in JSON Schema), but that was incorrectly copied over from the former `collection-assets` extension. Collection Assets are not required.
 - Clarified that the values in summaries (both for ranges and sets of values) must follow the data type of the property they summarize. ([#1069](https://github.com/radiantearth/stac-spec/pull/1069))
 
