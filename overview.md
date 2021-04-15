@@ -21,10 +21,10 @@ and can be easily read by any modern GIS or geospatial library, and it describes
 The STAC Item JSON specification uses the GeoJSON geometry to describe the location of the asset, and 
 then includes additional information:
 
-* the time the asset represents;
-* a thumbnail for quick browsing;
-* asset links, to enable direct download or streaming access of the asset;
-* relationship links, allowing users to traverse other related resources and STAC Items.
+- the time the asset represents;
+- a thumbnail for quick browsing;
+- asset links, to enable direct download or streaming access of the asset;
+- relationship links, allowing users to traverse other related resources and STAC Items.
 
 A STAC Item can contain additional fields and JSON structures to communicate more information about the
 asset, so it can be easily searched. STAC provides a core set of 
@@ -68,8 +68,8 @@ to break the recommendation.
 
 Catalogs in turn are used for two main things:
 
-* Split overly large collections into groups
-* Group collections into a catalog of Collections (e.g. as entry point for navigation to several Collections).
+- Split overly large collections into groups
+- Group collections into a catalog of Collections (e.g. as entry point for navigation to several Collections).
 
 The first case allows users to browse down into the Items of large collections. A collection like
 Landsat usually would start with path and row Catalogs to group by geography, and then year, 

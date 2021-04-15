@@ -27,17 +27,18 @@ Collection Specification shares all fields with the STAC [Catalog Specification]
 values for `type` and `stac_extensions`) and adds fields to describe the whole dataset and the included set of Items. Collections 
 can have both parent Catalogs and Collections and child Items, Catalogs and Collections. 
 
-A STAC Collection is represented in JSON format. Any JSON object that contains all the required fields is a valid STAC Collection and also a valid STAC Catalog.
+A STAC Collection is represented in JSON format.
+Any JSON object that contains all the required fields is a valid STAC Collection and also a valid STAC Catalog.
 
 STAC Collections are compatible with the [Collection](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html#example_4) JSON 
 specified in [*OGC API - Features*](https://ogcapi.ogc.org/features/), but they are extended with additional fields.  
 
-* [Examples](../examples/):
-  * Sentinel 2: A basic standalone example of a [Collection](../examples/collection-only/collection.json) without Items.
-  * Simple Example: A [Collection](../examples/collection.json) that links to 3 example Items.
-  * Extension Collection: An additional [Collection](../examples/extensions-collection/collection.json), which is used to highlight
+- [Examples](../examples/):
+  - Sentinel 2: A basic standalone example of a [Collection](../examples/collection-only/collection.json) without Items.
+  - Simple Example: A [Collection](../examples/collection.json) that links to 3 example Items.
+  - Extension Collection: An additional [Collection](../examples/extensions-collection/collection.json), which is used to highlight
   various [extension](../extensions) functionality, but serves as another example.
-* [JSON Schema](json-schema/collection.json)
+- [JSON Schema](json-schema/collection.json)
 
 ## Collection fields
 
@@ -79,7 +80,11 @@ it is a fairly unique name, or their name combined with the domain they operate 
 
 #### license
 
-Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/). Alternatively, use `proprietary` (see below) if the license is not on the SPDX license list or `various` if multiple licenses apply. In all cases links to the license texts SHOULD be added, see the `license` link relation type. If no link to a license is included and the `license` field is set to `proprietary`, the Collection is private, and consumers have not been granted any explicit right to use the data.
+Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/).
+Alternatively, use `proprietary` (see below) if the license is not on the SPDX license list or `various` if multiple licenses apply.
+In all cases links to the license texts SHOULD be added, see the `license` link relation type.
+If no link to a license is included and the `license` field is set to `proprietary`, the Collection is private,
+and consumers have not been granted any explicit right to use the data.
 
 #### summaries
 
@@ -87,16 +92,29 @@ Collections are *strongly recommended* to provide summaries of the values of fie
 of STAC Items contained in this Collection. This enables users to get a good sense of what the ranges and potential values of 
 different fields in the Collection are, without to inspect a number of Items (or crawl them exhaustively to get a definitive answer). 
 Summaries help to fully define Collections, especially if they don't link to any Items. They also give clients enough information to 
-build tailored user interfaces for querying the data, by presenting the potential values that are available. Summaries should summarize all values in every Item underneath the collection, including in any nested sub-Catalogs.
+build tailored user interfaces for querying the data, by presenting the potential values that are available.
+Summaries should summarize all values in every Item underneath the collection, including in any nested sub-Catalogs.
 
 A summary for a field can be specified in two ways:
 
-1. A set of all distinct values in an array: The set of values must contain at least one element and it is strongly recommended to list all values. If the field summarizes an array (e.g. [`instruments`](../item-spec/common-metadata.md#instrument)), the field's array elements of each Item must be merged to a single array with unique elements.
-2. Statistics in a [Stats Object](#stats-object): Statistics by default only specify the range (minimum and maximum values), but can optionally be accompanied by additional statistical values. The range specified by the `minimum` and `maximum` properties can specify the potential range of values, but it is recommended to be as precise as possible.
+1. A set of all distinct values in an array: The set of values must contain at least one element and it is strongly recommended to list all values.
+   If the field summarizes an array (e.g. [`instruments`](../item-spec/common-metadata.md#instrument)),
+   the field's array elements of each Item must be merged to a single array with unique elements.
+2. Statistics in a [Stats Object](#stats-object): Statistics by default only specify the range (minimum and maximum values),
+   but can optionally be accompanied by additional statistical values.
+   The range specified by the `minimum` and `maximum` properties can specify the potential range of values,
+   but it is recommended to be as precise as possible.
 
-All values must follow the schema of the property they summarize. So the values in the array or the values given for `minimum` and `maxmimum` must comply to the original data type and any further restrictions that apply for the property they summarize. For example, the `minimum` for `gsd` can't be lower than zero and the summaries for `platform` and `instruments` must each be an array of strings (or alternatively minimum and maximum values, but that's not very meaningful).
+All values must follow the schema of the property they summarize.
+So the values in the array or the values given for `minimum` and `maxmimum` must comply to the original data type
+and any further restrictions that apply for the property they summarize.
+For example, the `minimum` for `gsd` can't be lower than zero and the summaries for `platform` and `instruments`
+must each be an array of strings (or alternatively minimum and maximum values, but that's not very meaningful).
 
-It is recommended to list as many properties as reasonable so that consumers get a full overview about the properties included in the Items. Nevertheless, it is not very useful to list all potential `title` values of the Items. Also, a range for the `datetime` property may be better suited to be included in the STAC Collection's `extent` field. In general, properties that are covered by the Collection specification should not be repeated in the summaries.
+It is recommended to list as many properties as reasonable so that consumers get a full overview about the properties included in the Items.
+Nevertheless, it is not very useful to list all potential `title` values of the Items.
+Also, a range for the `datetime` property may be better suited to be included in the STAC Collection's `extent` field.
+In general, properties that are covered by the Collection specification should not be repeated in the summaries.
 
 See the [examples folder](../examples) for Collections with summaries to get a sense of how to use them.
 
@@ -113,13 +131,16 @@ The definition provided here, at the Collection level, is the same as the
 
 There are a few guidelines for using the asset construct at the Collection level:
 
-* Collection-level assets SHOULD NOT list any files also available in Items.
-* If possible, item-level assets are always the preferable way to expose assets.
+- Collection-level assets SHOULD NOT list any files also available in Items.
+- If possible, item-level assets are always the preferable way to expose assets.
 
 Collection-level assets can be useful in some scenarios, for example:
-1. Exposing additional data that applies Collection-wide and you don't want to expose it in each Item. This can be Collection-level metadata or a thumbnail for visualization purposes.
-2. Individual Items can't properly be distinguished for some data structures, e.g. [Zarr](https://zarr.readthedocs.io/) as it's a data structure not contained in single files.
-3. Exposing assets for "[Standalone Collections](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#standalone-collections)".
+1. Exposing additional data that applies Collection-wide and you don't want to expose it in each Item.
+   This can be Collection-level metadata or a thumbnail for visualization purposes.
+2. Individual Items can't properly be distinguished for some data structures,
+   e.g. [Zarr](https://zarr.readthedocs.io/) as it's a data structure not contained in single files.
+3. Exposing assets for
+   "[Standalone Collections](https://github.com/radiantearth/stac-spec/blob/master/collection-spec/collection-spec.md#standalone-collections)".
 
 Oftentimes it is possible to model data and assets with either a Collection or an Item. In those scenarios we *recommend* to use
 Items as much as is feasible, as they designed for assets. Using Collection-level assets should only be used if there is not another
@@ -142,16 +163,24 @@ The object describes the spatial extents of the Collection.
 | ------- | ------------ | -------------------------------------------------------------------- |
 | bbox    | \[\[number]] | **REQUIRED.** Potential *spatial extents* covered by the Collection. |
 
-**bbox**: Each outer array element can be a separate spatial extent describing the bounding Boxes of the assets represented by this Collection using either 2D or 3D geometries.
+**bbox**: Each outer array element can be a separate spatial extent describing the bounding boxes
+of the assets represented by this Collection using either 2D or 3D geometries.
 
 The first bounding box always describes the overall spatial extent of the data. All subsequent bounding boxes can be
 used to provide a more precise description of the extent and identify clusters of data.
 Clients only interested in the overall spatial extent will only need to access the first item in each array.
-It is recommended to only use multiple bounding boxes if a union of them would then include a large uncovered area (e.g. the union of Germany and Chile).
+It is recommended to only use multiple bounding boxes if a union of them would then include
+a large uncovered area (e.g. the union of Germany and Chile).
 
-The length of the inner array must be 2*n where n is the number of dimensions. The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). When using 3D geometries, the elevation of the southwesterly most extent is the minimum depth/height in meters and the elevation of the northeasterly most extent is the maximum.
+The length of the inner array must be 2*n where n is the number of dimensions.
+The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in
+Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84).
+When using 3D geometries, the elevation of the southwesterly most extent is the minimum depth/height in meters
+and the elevation of the northeasterly most extent is the maximum.
 
-The coordinate reference system of the values is WGS 84 longitude/latitude. Example that covers the whole Earth: `[[-180.0, -90.0, 180.0, 90.0]]`.  Example that covers the whole earth with a depth of 100 meters to a height of 150 meters: `[[-180.0, -90.0, -100.0, 180.0, 90.0, 150.0]]`.
+The coordinate reference system of the values is WGS 84 longitude/latitude.
+Example that covers the whole Earth: `[[-180.0, -90.0, 180.0, 90.0]]`.
+Example that covers the whole earth with a depth of 100 meters to a height of 150 meters: `[[-180.0, -90.0, -100.0, 180.0, 90.0, 150.0]]`.
 
 #### Temporal Extent Object
 
@@ -168,13 +197,19 @@ Clients only interested in the overall extent will only need to access the first
 It is recommended to only use multiple temporal extents if a union of them would then include a large
 uncovered time span (e.g. only having data for the years 2000, 2010 and 2020).
 
-Each inner array consists of exactly two dates and times. Each date and time MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). The temporal reference system is the Gregorian calendar.
+Each inner array consists of exactly two dates and times.
+Each date and time MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).
+The temporal reference system is the Gregorian calendar.
 
-Open date ranges are supported by setting either the start or the end time to `null`. Example for data from the beginning of 2019 until now: `[["2009-01-01T00:00:00Z", null]]`. 
+Open date ranges are supported by setting either the start or the end time to `null`.
+Example for data from the beginning of 2019 until now: `[["2009-01-01T00:00:00Z", null]]`. 
 
 ### Provider Object
 
-The object provides information about a provider. A provider is any of the organizations that captures or processes the content of the Collection and therefore influences the data offered by this Collection. May also include information about the final storage provider hosting the data.
+The object provides information about a provider.
+A provider is any of the organizations that captures or processes the content of the Collection
+and therefore influences the data offered by this Collection.
+May also include information about the final storage provider hosting the data.
 
 | Field Name  | Type      | Description                                                  |
 | ----------- | --------- | ------------------------------------------------------------ |
@@ -185,10 +220,11 @@ The object provides information about a provider. A provider is any of the organ
 
 **roles**: The provider's role(s) can be one or more of the following elements:
 
-* *licensor*: The organization that is licensing the dataset under the license specified in the Collection's `license` field.
-* *producer*: The producer of the data is the provider that initially captured and processed the source data, e.g. ESA for Sentinel-2 data.
-* *processor*: A processor is any provider who processed data to a derived product.
-* *host*: The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list.
+- *licensor*: The organization that is licensing the dataset under the license specified in the Collection's `license` field.
+- *producer*: The producer of the data is the provider that initially captured and processed the source data, e.g. ESA for Sentinel-2 data.
+- *processor*: A processor is any provider who processed data to a derived product.
+- *host*: The host is the actual provider offering the data on their storage.
+  There should be no more than one host, specified as last element of the list.
 
 ### Link Object
 
@@ -206,8 +242,10 @@ For a full discussion of the situations where relative and absolute links are re
 
 #### Relation types
 
-STAC Collections use a variety of `rel` types in the link object, to describe the exact nature of the link between this Collection and the entity it is linking to.
-It is recommended to use the official [IANA Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) where possible.
+STAC Collections use a variety of `rel` types in the link object,
+to describe the exact nature of the link between this Collection and the entity it is linking to.
+It is recommended to use the official
+[IANA Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) where possible.
 The following table explains places where custom STAC `rel` types are used for ollections.
 This is done where there is not a clear official option, or where STAC uses an official type but adds additional meaning for the STAC context.
 
@@ -221,9 +259,13 @@ This is done where there is not a clear official option, or where STAC uses an o
 | license | The license URL(s) for the Collection SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to put the license text in a separate file and link to this file. |
 | derived_from | URL to a STAC Collection that was used as input data in the creation of this Collection. See the note in [STAC Item](../item-spec/item-spec.md#derived_from) for more info. |
 
-A more complete list of possible `rel` types and their meaning in STAC can be found in the [Using Relation Types](../best-practices.md#using-relation-types) best practice. 
+A more complete list of possible `rel` types and their meaning in STAC can be found in the
+[Using Relation Types](../best-practices.md#using-relation-types) best practice. 
 
-**Note:** The STAC Catalog specification requires a link to at least one `item` or `child` Catalog. This is *not* a requirement for Collections, but *recommended*. In contrast to Catalogs, it is **REQUIRED** that Items linked from a Collection MUST refer back to its Collection with the [`collection` relation type](../item-spec/item-spec.md#relation-types).
+**Note:** The STAC Catalog specification requires a link to at least one `item` or `child` Catalog.
+This is *not* a requirement for Collections, but *recommended*. In contrast to Catalogs,
+it is **REQUIRED** that Items linked from a Collection MUST refer back to its Collection
+with the [`collection` relation type](../item-spec/item-spec.md#relation-types).
 
 ### Asset Object
 
@@ -241,8 +283,10 @@ or streamed. The definition provided here, at the Collection level, is the same 
 
 ### Stats Object
 
-For a good understanding of the summarized field, statistics can be added. By default, only ranges with a minimum and a maximum value can be specified.
-Ranges can be specified for [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values only, which means they need to have a rank order.
+For a good understanding of the summarized field, statistics can be added.
+By default, only ranges with a minimum and a maximum value can be specified.
+Ranges can be specified for [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values only,
+which means they need to have a rank order.
 Therefore, ranges can only be specified for numbers and some special types of strings. Examples: grades (A to F), dates or times.
 Implementors are free to add other derived statistical values to the object, for example `mean` or `stddev`.
 
@@ -260,6 +304,8 @@ A STAC Collection is a JSON file ([RFC 8259](https://tools.ietf.org/html/rfc8259
 ## Standalone Collections
 
 STAC Collections which don't link to any Item are called **standalone Collections**.
-To describe them with more fields than the Collection fields has to offer, it is allowed to re-use the metadata fields defined by extensions for Items in the `summaries` field.
-This makes much sense for fields such as `platform` or `proj:epsg`, which are often the same for a whole Collection, but doesn't make much sense for `eo:cloud_cover`, which usually varies heavily across a Collection.
+To describe them with more fields than the Collection fields has to offer,
+it is allowed to re-use the metadata fields defined by extensions for Items in the `summaries` field.
+This makes much sense for fields such as `platform` or `proj:epsg`, which are often the same for a whole Collection,
+but doesn't make much sense for `eo:cloud_cover`, which usually varies heavily across a Collection.
 The data provider is free to decide, which fields are reasonable to be used.
