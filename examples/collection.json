@@ -85,7 +85,8 @@
     {
       "rel": "item",
       "href": "./simple-item.json",
-      "type": "application/geo+json"
+      "type": "application/geo+json",
+      "title": "Simple Item"
     },
     {
       "rel": "item",
