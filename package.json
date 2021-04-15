@@ -1,6 +1,6 @@
 {
   "name": "stac-spec",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0-rc.2",
   "description": "STAC spec helpers to check the spec.",
   "repository": "https://github.com/radiantearth/stac-spec",
   "license": "Apache-2.0",
@@ -21,6 +21,6 @@
     "remark-preset-lint-markdown-style-guide": "^3.0.0",
     "remark-preset-lint-recommended": "^4.0.0",
     "remark-validate-links": "^10.0.0",
-    "stac-node-validator": "^0.4.6"
+    "stac-node-validator": "^1.0.1"
   }
 }

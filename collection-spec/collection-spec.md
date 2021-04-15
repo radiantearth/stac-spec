@@ -83,7 +83,7 @@ Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses
 
 #### summaries
 
-Collections are are *strongly recommended* to provide summaries of the values of fields that they can expect from the `properties` 
+Collections are *strongly recommended* to provide summaries of the values of fields that they can expect from the `properties` 
 of STAC Items contained in this Collection. This enables users to get a good sense of what the ranges and potential values of 
 different fields in the Collection are, without to inspect a number of Items (or crawl them exhaustively to get a definitive answer). 
 Summaries help to fully define Collections, especially if they don't link to any Items. They also give clients enough information to 
@@ -142,7 +142,12 @@ The object describes the spatial extents of the Collection.
 | ------- | ------------ | -------------------------------------------------------------------- |
 | bbox    | \[\[number]] | **REQUIRED.** Potential *spatial extents* covered by the Collection. |
 
-**bbox**: Bounding Boxes of the assets represented by this Collection using either 2D or 3D geometries. Each outer array element can be a separate bounding box, but it is recommended to only use multiple bounding boxes if a union of them would then include a large uncovered area (e.g. the union of Germany and Chile).
+**bbox**: Each outer array element can be a separate spatial extent describing the bounding Boxes of the assets represented by this Collection using either 2D or 3D geometries.
+
+The first bounding box always describes the overall spatial extent of the data. All subsequent bounding boxes can be
+used to provide a more precise description of the extent and identify clusters of data.
+Clients only interested in the overall spatial extent will only need to access the first item in each array.
+It is recommended to only use multiple bounding boxes if a union of them would then include a large uncovered area (e.g. the union of Germany and Chile).
 
 The length of the inner array must be 2*n where n is the number of dimensions. The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). When using 3D geometries, the elevation of the southwesterly most extent is the minimum depth/height in meters and the elevation of the northeasterly most extent is the maximum.
 
@@ -156,7 +161,12 @@ The object describes the temporal extents of the Collection.
 | -------- | ------------------ | --------------------------------------------------------------------- |
 | interval | \[\[string\|null]] | **REQUIRED.** Potential *temporal extents* covered by the Collection. |
 
-**interval**: Each outer array element can be a separate temporal extent, but it is recommended to only use multiple temporal extents if a union of them would then include a large uncovered time span (e.g. only having data for the years 2000, 2010 and 2020).
+**interval**: Each outer array element can be a separate temporal extent.
+The first time interval always describes the overall temporal extent of the data. All subsequent time intervals
+can be used to provide a more precise description of the extent and identify clusters of data.
+Clients only interested in the overall extent will only need to access the first item in each array.
+It is recommended to only use multiple temporal extents if a union of them would then include a large
+uncovered time span (e.g. only having data for the years 2000, 2010 and 2020).
 
 Each inner array consists of exactly two dates and times. Each date and time MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). The temporal reference system is the Gregorian calendar.
 
