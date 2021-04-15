@@ -44,7 +44,7 @@
     "end_datetime": "2020-12-11T22:38:32.327Z",
     "created": "2020-12-12T01:48:13.725Z",
     "updated": "2020-12-12T01:48:13.725Z",
-    "platform": "cool_sat2",
+    "platform": "cool_sat1",
     "instruments": [
       "cool_sensor_v1"
     ],

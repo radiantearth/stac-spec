@@ -45,12 +45,12 @@
   "properties": {
     "title": "Extended Item",
     "description": "A sample STAC Item that includes a variety of examples from the stable extensions",
-    "datetime": "2020-12-11T22:38:32.125Z",
-    "created": "2020-12-12T01:48:13.725Z",
-    "updated": "2020-12-12T01:48:13.725Z",
+    "datetime": "2020-12-14T18:02:31.437000Z",
+    "created": "2020-12-15T01:48:13.725Z",
+    "updated": "2020-12-15T01:48:13.725Z",
     "platform": "cool_sat2",
     "instruments": [
-      "cool_sensor_v1"
+      "cool_sensor_v2"
     ],
     "gsd": 0.66,
     "eo:cloud_cover": 1.2,
