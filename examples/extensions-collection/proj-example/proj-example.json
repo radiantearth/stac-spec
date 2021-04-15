@@ -219,6 +219,11 @@
       "rel": "parent",
       "href": "../collection.json",
       "type": "application/json"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json"
     }
   ],
   "assets": {
