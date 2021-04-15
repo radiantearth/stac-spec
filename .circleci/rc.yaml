@@ -4,17 +4,15 @@ plugins:
 # Apply some recommended defaults for consistency
   - remark-preset-lint-consistent
   - remark-preset-lint-recommended
-# No HTML for security - can't activate yet due to STAC logo in README.md
-# - lint-no-html
+  - lint-no-html
 # General formatting
-#  - - remark-lint-emphasis-marker
-#    - '*'
+  - - remark-lint-emphasis-marker
+    - '*'
   - remark-lint-hard-break-spaces
   - remark-lint-blockquote-indentation
   - remark-lint-no-consecutive-blank-lines
-# Detect overly long lines - be liberal for now and don't restrict to 80 yet
-#  - - remark-lint-maximum-line-length
-#    - 150
+  - - remark-lint-maximum-line-length
+    - 150
 # Code
   - remark-lint-fenced-code-flag
   - remark-lint-fenced-code-marker
@@ -23,24 +21,23 @@ plugins:
     - 'fenced'
 # Headings
   - remark-lint-heading-increment
-  - remark-lint-no-duplicate-headings
   - remark-lint-no-multiple-toplevel-headings
   - remark-lint-no-heading-punctuation
   - - remark-lint-maximum-heading-length
     - 70
   - - remark-lint-heading-style
     - atx
+  - - remark-lint-no-shortcut-reference-link
+    - false
 # Lists
   - remark-lint-list-item-bullet-indent
   - remark-lint-ordered-list-marker-style
   - remark-lint-ordered-list-marker-value
   - remark-lint-checkbox-character-style
-#  - - remark-lint-unordered-list-marker-style
-#    - '-'
+  - - remark-lint-unordered-list-marker-style
+    - '-'
   - - remark-lint-list-item-indent
     - space 
 # Tables
   - remark-lint-table-pipes
-#  - remark-lint-table-pipe-alignment # Wait for https://github.com/remarkjs/remark-lint/issues/226  
-# Urls
   - remark-lint-no-literal-urls

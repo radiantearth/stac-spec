@@ -61,7 +61,9 @@ While a STAC Item can have a nominal datetime describing the capture, these prop
 of capture dates and times. An example of this is the [MODIS 16 day vegetation index product.](https://lpdaac.usgs.gov/products/mod13q1v006/).
 The datetime property in a STAC Item and these fields are not mutually exclusive.
 
-**Important:** Using one of the fields REQUIRES to include the other field as well to enable a user to search STAC records by the provided times. So if you use `start_datetime` you need to add `end_datetime` and vice-versa. Both fields are also REQUIRED if the `datetime` field is set to `null`.
+**Important:** Using one of the fields REQUIRES to include the other field as well to enable a user to search STAC records by the provided times.
+So if you use `start_datetime` you need to add `end_datetime` and vice-versa.
+Both fields are also REQUIRED if the `datetime` field is set to `null`.
 
 | Field Name     | Type   | Description                                                  |
 | -------------- | ------ | ------------------------------------------------------------ |
@@ -104,7 +106,10 @@ Information about the organizations capturing, producing, processing, hosting or
 
 ### Provider Object
 
-The object provides information about a provider. A provider is any of the organizations that captures or processes the content of the assets and therefore influences the data offered by the STAC implementation. May also include information about the final storage provider hosting the data.
+The object provides information about a provider.
+A provider is any of the organizations that captures or processes the content of the assets and
+therefore influences the data offered by the STAC implementation.
+May also include information about the final storage provider hosting the data.
 
 | Field Name  | Type      | Description                                                  |
 | ----------- | --------- | ------------------------------------------------------------ |
@@ -117,10 +122,11 @@ The object provides information about a provider. A provider is any of the organ
 
 The provider's role(s) can be one or more of the following elements:
 
-* *licensor*: The organization that is licensing the dataset under the license specified in the Collection's `license` field.
-* *producer*: The producer of the data is the provider that initially captured and processed the source data, e.g. ESA for Sentinel-2 data.
-* *processor*: A processor is any provider who processed data to a derived product.
-* *host*: The host is the actual provider offering the data on their storage. There should be no more than one host, specified as last element of the list.
+- *licensor*: The organization that is licensing the dataset under the license specified in the Collection's `license` field.
+- *producer*: The producer of the data is the provider that initially captured and processed the source data, e.g. ESA for Sentinel-2 data.
+- *processor*: A processor is any provider who processed data to a derived product.
+- *host*: The host is the actual provider offering the data on their storage.
+  There should be no more than one host, specified as last element of the list.
 
 ## Instrument
 
@@ -182,5 +188,6 @@ The GSD of a sensor can vary depending on off-nadir and wavelength, so it is at 
 to decide which value most accurately represents the GSD. For example, Landsat8 optical and short-wave IR bands 
 are all 30 meters, but the panchromatic band is 15 meters. The
 `gsd` should be 30 meters in this case because that is nominal spatial resolution at the sensor. The Planet 
-PlanetScope Ortho Tile Product has an `gsd` of 3.7 (or 4 if rounding), even though the pixel size of the images is 3.125.   For example, one might choose for WorldView-2 the 
-Multispectral 20° off-nadir value of 2.07 and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.
+PlanetScope Ortho Tile Product has an `gsd` of 3.7 (or 4 if rounding), even though the pixel size of the images is 3.125.
+For example, one might choose for WorldView-2 the Multispectral 20° off-nadir value of 2.07
+and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.

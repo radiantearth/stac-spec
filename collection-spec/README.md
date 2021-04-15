@@ -28,7 +28,8 @@ document.
 
 ## In this directory
 
-**Specification:** The main STAC Collection specification is in *[collection-spec.md](collection-spec.md)*. It includes an overview and in depth explanation of the 
+**Specification:** The main STAC Collection specification is in *[collection-spec.md](collection-spec.md)*.
+It includes an overview and in depth explanation of the 
 structures and fields.
 
 **Schemas:** The schemas to validate the STAC Collection definition are found in the 
@@ -37,7 +38,9 @@ structures and fields.
 ## Collection Flexibility
 
 STAC Collections are defined for flexibility. They only require a handful of fields, and
-implementors are free to add most any JSON field or object that they want via extensions. This flexibility and extensibility is a design goal, so that it is quite easy to implement a collection and be able to adapt it to most any data model.
+implementors are free to add most any JSON field or object that they want via extensions.
+This flexibility and extensibility is a design goal, so that it is quite easy to implement
+a collection and be able to adapt it to most any data model.
 
 Implementors are encouraged to do what makes sense for them, and to check out the [examples](../examples/) and 
 [other implementations](https://stacindex.org/catalogs) for current best practices.
