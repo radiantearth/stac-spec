@@ -242,7 +242,6 @@
       "eo:bands": [
         {
           "name": "B8",
-          "common_name": "panchromatic",
           "center_wavelength": 0.59,
           "full_width_half_max": 0.18
         }
