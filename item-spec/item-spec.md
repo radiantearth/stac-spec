@@ -73,11 +73,10 @@ In general, STAC versions can be mixed, but please keep the [recommended best pr
 
 #### stac_extensions
 
-A list of extensions the Item implements.  
-This list must only contain extensions that extend the Item itself, see the the 'Scope' column in the list of 
-extensions. The list contains URLs to the JSON Schema files it can be validated against.
-If an extension such as the `tiled-assets` extension has influence on multiple parts of the whole catalog 
-structure, it must be listed in all affected parts (e.g. Catalog, Collection and Item for the `tiled-assets` extension).
+A list of extensions the Item implements.
+The list consists of URLs to JSON Schema files that can be used for validation.
+This list must only contain extensions that extend the Item specification itself,
+see the the 'Scope' for each of the extensions.
 
 #### id
 
