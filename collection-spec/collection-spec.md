@@ -168,12 +168,14 @@ The object describes the spatial extents of the Collection.
 | ------- | ------------ | -------------------------------------------------------------------- |
 | bbox    | \[\[number]] | **REQUIRED.** Potential *spatial extents* covered by the Collection. |
 
-**bbox**: Each outer array element can be a separate spatial extent describing the bounding Boxes of the assets represented by this Collection using either 2D or 3D geometries.
+**bbox**: Each outer array element can be a separate spatial extent describing the bounding boxes
+of the assets represented by this Collection using either 2D or 3D geometries.
 
 The first bounding box always describes the overall spatial extent of the data. All subsequent bounding boxes can be
 used to provide a more precise description of the extent and identify clusters of data.
 Clients only interested in the overall spatial extent will only need to access the first item in each array.
-It is recommended to only use multiple bounding boxes if a union of them would then include a large uncovered area (e.g. the union of Germany and Chile).
+It is recommended to only use multiple bounding boxes if a union of them would then include
+a large uncovered area (e.g. the union of Germany and Chile).
 
 The length of the inner array must be 2*n where n is the number of dimensions.
 The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in
