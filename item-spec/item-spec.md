@@ -183,7 +183,7 @@ This happens where there is not a clear official option, or where STAC uses an o
 | self         | STRONGLY RECOMMENDED. *Absolute* URL to the Item if it is available at a public URL. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root         | URL to the root STAC Catalog or Collection. |
 | parent       | URL to the parent STAC Catalog or Collection. |
-| collection   | STRONGLY RECOMMENDED. URL to a Collection. *Absolute* URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. |
+| collection   | STRONGLY RECOMMENDED. URL to a Collection. *Absolute* URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. A link with this `rel` type is *required* if the `collection` field in properties is present. |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
 
 A more complete list of potential `rel` types and their meaning in STAC can be found in the [Using Relation 
