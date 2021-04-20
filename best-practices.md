@@ -71,8 +71,8 @@ So to enable all the great web tools (like [stacindex.org](http://stacindex.org)
 [Google Cloud Storage](https://cloud.google.com/storage/docs/cross-origin), or [Apache Server](https://enable-cors.org/server_apache.html). 
 Many more are listed on [enable-cors.org](https://enable-cors.org/server.html). We recommend enabling CORS for all requests ('\*'),
 so that diverse online tools can access your data. If you aren't sure if your server has CORS enabled you can use 
-[test-cors.org](https://www.test-cors.org/). Enter the URL of your STAC root [Catalog](catalog-spec/catalog-spec.md) JSON 
-and make sure it gets a response.
+[test-cors.org](https://www.test-cors.org/). Enter the URL of your STAC root [Catalog](catalog-spec/catalog-spec.md) or
+[Collection](collection-spec/collection-spec.md) JSON and make sure it gets a response.
 
 ### STAC on the Web
 
@@ -81,7 +81,7 @@ surprised that there is nothing about HTML in the entire specification. This is 
 should be on web pages without ending up with very bad looking pages. But the importance of having web-accessible versions
 of every STAC Item is paramount.
 
-The main recommendation is to have an HTML page for every single STAC Item and Catalog. They should be visually pleasing, 
+The main recommendation is to have an HTML page for every single STAC Item, Catalog and Collection. They should be visually pleasing, 
 crawlable by search engines and ideally interactive. The current best practice is to use a tool in the STAC ecosystem called
 [STAC Browser](https://github.com/radiantearth/stac-browser/). It can crawl most any valid STAC implementation and generate unique web
 pages for each Item and Catalog (or Collection). While it has a default look and feel, the design can easily be 
@@ -393,6 +393,10 @@ file that just has the bands needed for display
 
 ## Catalog & Collection Practices
 
+*Note: This section uses the term 'Catalog' (with an uppercase C) to refer to the JSON entity specified in the 
+[Catalog spec](catalog-spec/catalog-spec.md), and 'catalog' (with a lowercase c) to refer to any full STAC implementation, 
+which can be any mix of Catalogs Collections and Items.*
+
 ### Static and Dynamic Catalogs
 
 As mentioned in the main [overview](overview.md), there are two main types of catalogs - static
@@ -446,7 +450,7 @@ providers, and users could browse down to both. The leaf Items should just be li
 
 ### Catalog Layout
 
-Creating a catalog involves a number of decisions as to what folder structure to use to represent sub-catalogs, items
+Creating a catalog involves a number of decisions as to what folder structure to use to represent sub-catalogs, Items
 and assets, and how to name them. The specification leaves this totally open, and you can link things as you want. But 
 it is recommended to be thoughtful about the organization of sub-catalogs, putting them into a structure that a person
 might reasonably browse (since they likely will with [STAC on the Web](#stac-on-the-web) recommendations). For example
@@ -610,7 +614,7 @@ implement it.
 This is a self-contained catalog as described above, except it includes an absolute `self` link at
 the root catalog, to identify its online location. This is designed so that a self-contained catalog (of either type, with its 
 assets or just metadata) can be 'published' online
-by just adding one field (the self link) to its root catalog. All the other links should remain the same. The resulting catalog
+by just adding one field (the self link) to its root (Catalog or Collection). All the other links should remain the same. The resulting catalog
 is no longer compliant with the self-contained catalog recommendations, but instead transforms into a 'relative published catalog'. 
 With this, a client may resolve Item and sub-catalog self links by traversing parent and root links, but requires reading 
 multiple sources to achieve this. 
@@ -632,8 +636,8 @@ a number of the common official relations that are used in production STAC imple
 | alternate | It is recommended that STAC Items are also available as HTML, and should use this rel with `"type" : "text/html"` to tell clients where they can get a version of the Item or Collection to view in a browser. See [STAC on the Web in Best Practices](#stac-on-the-web) for more information. |
 | canonical | The URL of the [canonical](https://en.wikipedia.org/wiki/Canonical_link_element) version of the Item or Collection. API responses and copies of catalogs should use this to inform users that they are direct copy of another STAC Item, using the canonical rel to refer back to the primary location. |
 | via       | The URL of the source metadata that this STAC Item or Collection is created from. Used similarly to canonical, but refers back to a non-STAC record (Landsat MTL, Sentinel tileInfo.json, etc) |
-| prev      | Indicates that the link's context is a part of a series, and that the previous in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs. |
-| next      | Indicates that the link's context is a part of a series, and that the next in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs. |
+| prev      | Indicates that the link's context is a part of a series, and that the previous in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs/Collections. |
+| next      | Indicates that the link's context is a part of a series, and that the next in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs/Collections. |
 
 ### Versioning for Catalogs
 
