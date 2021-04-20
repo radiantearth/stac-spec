@@ -93,7 +93,7 @@ linking structure that can be used recursively so that many Items can be include
 a single Catalog, organized however the implementor desires. 
 
 STAC makes no formal distinction between a "root" Catalog and the "child" Catalogs. A root Catalog
-is simply the top-most Catalog -- it has no parent. A nested catalog structure is useful (and
+is simply the top-most Catalog or Collection -- it has no parent. A nested catalog structure is useful (and
 recommended) for breaking up massive numbers of catalog Items into logical groupings. For example,
 it might make sense to organize a catalog by date (year, month, day), or geography (continent,
 country, state/prov). See the [Catalog Layout](best-practices.md#catalog-layout) best practices
