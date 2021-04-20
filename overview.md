@@ -87,6 +87,9 @@ search Collection-level data, hopefully in concert with other specifications.
 
 ## Catalog Overview
 
+*NOTE: The below examples all say Catalog, but those can all be Collections as well, as it has all the fields necessary to 
+serve as a Catalog*
+
 There are two required element types of a Catalog: Catalog and Item. A STAC Catalog
 points to [STAC Items](item-spec/README.md), or to other STAC catalogs. It provides a simple
 linking structure that can be used recursively so that many Items can be included in 
@@ -137,9 +140,6 @@ It should be noted that a Catalog does not have to link back to all the other Ca
 root catalog might be a sub-catalog of someone else's structure. The goal is for data providers to publish all the 
 information and links they want to, while also encouraging a natural web of information to arise as Catalogs and Items are
 linked to across the web.
-
-*NOTE: The above examples all say Catalog, but those can all be Collections as well, as it has all the fields necessary to 
-serve as a Catalog*
 
 ### Static and Dynamic Catalogs
 
