@@ -627,13 +627,14 @@ with the `type` field) to communicate the structure and content of related entit
 Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) as much as possible. The following table describes
 a number of the common official relations that are used in production STAC implementations.
 
-| Type         | Description                                                  |
-| ------------ | ------------------------------------------------------------ |
+| Type      | Description                                                  |
+| --------- | ------------------------------------------------------------ |
 | alternate | It is recommended that STAC Items are also available as HTML, and should use this rel with `"type" : "text/html"` to tell clients where they can get a version of the Item or Collection to view in a browser. See [STAC on the Web in Best Practices](#stac-on-the-web) for more information. |
 | canonical | The URL of the [canonical](https://en.wikipedia.org/wiki/Canonical_link_element) version of the Item or Collection. API responses and copies of catalogs should use this to inform users that they are direct copy of another STAC Item, using the canonical rel to refer back to the primary location. |
 | via       | The URL of the source metadata that this STAC Item or Collection is created from. Used similarly to canonical, but refers back to a non-STAC record (Landsat MTL, Sentinel tileInfo.json, etc) |
 | prev      | Indicates that the link's context is a part of a series, and that the previous in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs. |
 | next      | Indicates that the link's context is a part of a series, and that the next in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs. |
+| preview   | Indicates that the link's context is a part of a series, and that the next in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs. |
 
 ### Versioning for Catalogs
 
