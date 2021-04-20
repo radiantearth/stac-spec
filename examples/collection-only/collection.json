@@ -78,9 +78,11 @@
       "minimum": 6.78,
       "maximum": 89.9
     },
-    "sci:citation": [
-      "Copernicus Sentinel data [Year]"
-    ],
+    "sci:citation": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "string",
+      "pattern": "Copernicus Sentinel data \\d{4}"
+    },
     "gsd": [
       10,
       30,
