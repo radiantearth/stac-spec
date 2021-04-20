@@ -1,7 +1,8 @@
-# STAC Catalog Specification
+# STAC Catalog Specification <!-- omit in toc --> 
 
 - [Catalog fields](#catalog-fields)
   - [Additional Field Information](#additional-field-information)
+    - [stac_version](#stac_version)
     - [stac_extensions](#stac_extensions)
   - [Link Object](#link-object)
     - [Relation types](#relation-types)
@@ -10,15 +11,18 @@
   - [STAC Media Types](#stac-media-types)
 - [Extensions](#extensions)
 
-This document explains the structure and content of a STAC Catalog. A STAC Catalog is a 
-[Collection](../collection-spec/collection-spec.md) of [STAC Items](../item-spec/item-spec.md). These Items can be 
-linked to directly from a Catalog, or the Catalog can link to other Catalogs (often called sub-Catalogs) that contain 
-links to Items. The division of sub-catalogs is up to the implementor, but is generally done to aid the ease of 
-online browsing by people.
+This document explains the structure and content of a STAC **Catalog** object. A STAC Catalog object 
+represents a logical group of other Catalog, 
+[Collection](../collection-spec/collection-spec.md), and [Item](../item-spec/item-spec.md) objects. 
+These Items can be linked to directly from a Catalog, or the Catalog can link to other Catalogs (often called 
+sub-catalogs) that contain links to Collections and Items. The division of sub-catalogs is up to the implementor,
+but is generally done to aid the ease of online browsing by people. 
 
-Catalogs are not intended to be queried. Their purpose is discovery: to be browsed by people and crawled
-by machines to build a search index. A Catalog can be represented in JSON format. Any JSON object 
-that contains all the required fields is a valid STAC Catalog.
+A Catalog object will typically be the entry point into a STAC catalog. Their 
+purpose is discovery: to be browsed by people or be crawled
+by clients to build a searchable index.  
+
+Any JSON object that contains all the required fields is a valid STAC Catalog object.
 
 - [Examples](../examples/)
   - See an example [catalog.json](../examples/catalog.json). The [collection.json](../examples/collection.json) is also a valid
@@ -39,8 +43,8 @@ also a valid STAC Catalog.
 
 | Element         | Type          | Description                                                  |
 | --------------- | ------------- | ------------------------------------------------------------ |
-| stac_version    | string        | **REQUIRED.** The STAC version the Catalog implements. STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind. |
 | type            | string        | **REQUIRED.** Set to `Catalog` if this Catalog only implements the Catalog spec. |
+| stac_version    | string        | **REQUIRED.** The STAC version the Catalog implements. |
 | stac_extensions | \[string]     | A list of extension identifiers the Catalog implements.                 |
 | id              | string        | **REQUIRED.** Identifier for the Catalog.                    |
 | title           | string        | A short descriptive one-line title for the Catalog.          |
@@ -50,22 +54,29 @@ also a valid STAC Catalog.
 
 ### Additional Field Information
 
+#### stac_version
+
+In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
+
 #### stac_extensions
 
-A list of extensions the Catalog implements. This does NOT declare the extensions of children or Items. The list contains URLs to the JSON Schema files it can be validated against. For [core extensions](../extensions/README.md#core-stac-extensions), a "shortcut" can be used. This means you can specify the folder name of the extension, for example `view` for the View extension. If the versions of the extension and the Catalog diverge, you can specify the URL of the JSON schema file.
-This list must only contain extensions that extend the Catalog itself, see the the 'Scope' column in the list of extensions.
+A list of extensions the Catalog implements.
+The list consists of URLs to JSON Schema files that can be used for validation.
+This list must only contain extensions that extend the Catalog specification itself,
+see the 'Scope' for each of the extensions.
+This must **not** declare the extensions that are only implemented in child Collection objects or child Item objects.
 
 ### Link Object
 
 This object describes a relationship with another entity. Data providers are advised to be liberal
 with links.
 
-| Field Name | Type   | Description                                                                                                                         |
-| ---------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed.        |
+| Field Name | Type   | Description |
+| ---------- | ------ | ----------- |
+| href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter ["Relation types"](#relation-types) for more information. |
-| type       | string | [Media type](#media-types) of the referenced entity.                               |
-| title      | string | A human readable title to be used in rendered displays of the link.                                         |
+| type       | string | [Media type](#media-types) of the referenced entity. |
+| title      | string | A human readable title to be used in rendered displays of the link. |
 
 For a full discussion of the situations where relative and absolute links are recommended see the
 ['Use of links'](../best-practices.md#use-of-links) section of the STAC best practices.
@@ -77,8 +88,8 @@ The following types are commonly used as `rel` types in the Link Object of a STA
 | Type    | Description |
 | ------- | ----------- |
 | self    | STRONGLY RECOMMENDED. *Absolute* URL to the location that the Catalog file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root    | STRONGLY RECOMMENDED. URL to the root STAC entity (Catalog or [Collection](../collection-spec/README.md)). Catalogs should include a link to their root, even if it's the root and points to itself. |
-| parent  | URL to the parent STAC entity (Catalog or Collection). Non-root Catalogs should include a link to their parent. |
+| root    | STRONGLY RECOMMENDED. URL to the root STAC Catalog or [Collection](../collection-spec/README.md). Catalogs should include a link to their root, even if it's the root and points to itself. |
+| parent  | URL to the parent STAC Catalog or Collection. Non-root Catalogs should include a link to their parent. |
 | child   | URL to a child STAC Catalog or Collection. |
 | item    | URL to a STAC Item. |
 
@@ -106,11 +117,11 @@ A STAC Catalog is a JSON file ([RFC 8259](https://tools.ietf.org/html/rfc8259)),
 
 The following table lists the Media Types to use for STAC structures.
 
-| Media Type                     | Description                                                  |
-| ------------------------------ | ------------------------------------------------------------ |
-| `application/geo+json`	     | A STAC [Item](../item-spec/item-spec.md)                        |
-| `application/json`             | A STAC [Catalog](#stac-catalog-specification)                |
-| `application/json`             | A STAC [Collection](../collection-spec/collection-spec.md)            |
+| Media Type             | Description                                                |
+| ---------------------- | ---------------------------------------------------------- |
+| `application/geo+json` | A STAC [Item](../item-spec/item-spec.md)                   |
+| `application/json`     | A STAC Catalog            |
+| `application/json`     | A STAC [Collection](../collection-spec/collection-spec.md) |
 
 ## Extensions
 
