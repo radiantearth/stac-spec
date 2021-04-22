@@ -634,7 +634,7 @@ a number of the common official relations that are used in production STAC imple
 | via       | The URL of the source metadata that this STAC Item or Collection is created from. Used similarly to canonical, but refers back to a non-STAC record (Landsat MTL, Sentinel tileInfo.json, etc) |
 | prev      | Indicates that the link's context is a part of a series, and that the previous in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs. |
 | next      | Indicates that the link's context is a part of a series, and that the next in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs. |
-| preview   | Indicates that the link's context is a part of a series, and that the next in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs. |
+| preview   | This link relation can be used to "refer to a resource that serves as a preview of the link's context, likely with reduced quality or limited content" (from [rfc6903](https://tools.ietf.org/html/rfc6903#section-3)). For geospatial information this is generally a thumbnail, and in STAC this would usually be the same href as the [thumbnail](#thumbnail) asset, to enable more general clients to make use of it. |
 
 ### Versioning for Catalogs
 
