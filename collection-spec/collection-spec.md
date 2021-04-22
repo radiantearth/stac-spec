@@ -284,7 +284,7 @@ or streamed. The definition provided here, at the Collection level, is the same 
 
 ### Range Object
 
-For summaries with a lot of continuous values, statistics can be added.
+For summaries that would normally consist of a lot of continuous values, statistics can be added instead.
 By default, only ranges with a minimum and a maximum value can be specified.
 Ranges can be specified for [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values only,
 which means they need to have a rank order.
