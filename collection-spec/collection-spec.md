@@ -300,9 +300,10 @@ Implementors are free to add other derived statistical values to the object, for
 
 For a full understanding of the summarized field, a JSON Schema can be added for each summarized field.
 This allows very fine-grained information for each field and each value as JSON Schema is also extensible.
+Each schema must be valid against all corresponding values available for the property in the sub-Items.
 
 It is recommended to use [JSON Schema draft-07](https://json-schema.org/specification-links.html#draft-7)
-to align with the JSON Schemas provided by STAC.
+to align with the JSON Schemas provided by STAC. Empty schemas are not allowed.
 
 ## Media Type for STAC Collections
 
