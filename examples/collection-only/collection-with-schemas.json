@@ -5,9 +5,9 @@
     "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
     "https://stac-extensions.github.io/view/v1.0.0/schema.json"
   ],
-  "id": "S2",
+  "id": "sentinel-2",
   "type": "Collection",
-  "title": "Level 1C Sentinel-2 images",
+  "title": "Sentinel-2 MSI: MultiSpectral Instrument, Level-2A",
   "description": "The SENTINEL-2 mission is a land monitoring constellation of two satellites each equipped with a MSI (Multispectral Imager) instrument covering 13 spectral bands providing high resolution optical imagery (i.e., 10m, 20m, 60 m) every 10 days with one satellite and 5 days with two satellites",
   "license": "proprietary",
   "extent": {
@@ -32,14 +32,12 @@
   },
   "links": [
     {
-      "rel": "self",
-      "type": "application/json",
-      "href": "https://tamn.snapplanet.io/collections/S2"
+      "rel": "parent",
+      "href": "../catalog.json"
     },
     {
       "rel": "root",
-      "type": "application/json",
-      "href": "https://tamn.snapplanet.io"
+      "href": "../catalog.json"
     },
     {
       "rel": "license",
@@ -73,67 +71,61 @@
   ],
   "summaries": {
     "datetime": {
-      "minimum": "2017-04-12T02:57:21.459000Z",
-      "maximum": "2021-04-22T11:30:12.767000Z"
-    },
-    "collection": {
-      "type": "string",
-      "const": "sentinel-2",
-      "title": "Sentinel 2",
-      "count": 6613407
+      "minimum": "2017-04-12T02:57:21Z",
+      "maximum": "2021-04-22T11:30:12Z"
     },
     "instruments": {
       "type": "string",
       "const": "msi",
-      "title": "MSI",
+      "title": "Multispectral Intrument",
       "count": 6613431
     },
-    "landcover": {
+    "resto:landcover": {
       "type": "string",
       "oneOf": [
         {
-          "const": "landcover:cultivated",
+          "const": "cultivated",
           "title": "Cultivated",
           "count": 490750
         },
         {
-          "const": "landcover:desert",
+          "const": "desert",
           "title": "Desert",
           "count": 543120
         },
         {
-          "const": "landcover:flooded",
+          "const": "flooded",
           "title": "Flooded",
           "count": 5187
         },
         {
-          "const": "landcover:forest",
+          "const": "forest",
           "title": "Forest",
           "count": 767807
         },
         {
-          "const": "landcover:herbaceous",
+          "const": "herbaceous",
           "title": "Herbaceous",
           "count": 674281
         },
         {
-          "const": "landcover:ice",
+          "const": "ice",
           "title": "Ice",
           "count": 231285
         },
         {
-          "const": "landcover:urban",
+          "const": "urban",
           "title": "Urban",
           "count": 1219
         },
         {
-          "const": "landcover:water",
+          "const": "water",
           "title": "Water",
           "count": 2303314
         }
       ]
     },
-    "location": {
+    "resto:location": {
       "type": "string",
       "oneOf": [
         {
@@ -178,7 +170,7 @@
         }
       ]
     },
-    "season": {
+    "resto:season": {
       "type": "integer",
       "oneOf": [
         {
