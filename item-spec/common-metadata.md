@@ -43,8 +43,8 @@ Fields to provide additional temporal information such as ranges with a start an
 | Field Name | Type         | Description |
 | ---------- | ------------ | ----------- |
 | datetime   | string\|null | See the [Item Spec Fields](item-spec.md#properties-object) for more information. |
-| created    | string       | Creation date and time of the corresponding data (see below). |
-| updated    | string       | Date and time the corresponding data (see below) was updated last. |
+| created    | string       | Creation date and time of the corresponding data (see below), in UTC. |
+| updated    | string       | Date and time the corresponding data (see below) was updated last, in UTC. |
 
 All timestamps MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).
 

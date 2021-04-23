@@ -197,7 +197,7 @@ Clients only interested in the overall extent will only need to access the first
 It is recommended to only use multiple temporal extents if a union of them would then include a large
 uncovered time span (e.g. only having data for the years 2000, 2010 and 2020).
 
-Each inner array consists of exactly two dates and times.
+Each inner array consists of exactly two dates and times, each in UTC.
 Each date and time MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).
 The temporal reference system is the Gregorian calendar.
 
