@@ -12,20 +12,20 @@
     htmlString += `<li><a href="${s.path}">${s.path}</a></li>`;
   }
 
+  /* initial attempt at making nicer list
   let result = [];
-  let level = {result};
-
-  schemas.forEach(path => {
-    path.split('/').reduce((r, name, i, a) => {
+  let level = {result};=
+  schemas.forEach(schema => {
+    schema.path.split('/').reduce((r, name, i, a) => {
       if(!r[name]) {
         r[name] = {result: []};
         r.result.push({name, children: r[name].result})
       }
-      
       return r[name];
     }, level)
   })
   console.log(result)
+  */
 
   htmlString += '</ul>';
   document.getElementsByTagName('body')[0].innerHTML = htmlString;
