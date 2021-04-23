@@ -470,11 +470,11 @@ if you follow these recommendations.
 4. Sub-Catalogs or sub-Collections should be stored in subdirectories of their parent
    (and only 1 subdirectory deeper than a document's parent, e.g. `.../sample/sub1/catalog.json`).
 5. Items should be stored in subdirectories of their parent Catalog or Collection. 
-This means that each Item and its assets are contained in a unique subdirectory.
+   This means that each Item and its assets are contained in a unique subdirectory.
 6. Limit the number of Items in a Catalog or Collection, grouping / partitioning as relevant to the dataset.
 7. Use structural elements (Catalog and Collection) consistently across each 'level' of your hierarchy.
    For example, if levels 2 and 4 of the hierarchy only contain Collections, 
-don't add a Catalog at levels 2 and 4.
+   don't add a Catalog at levels 2 and 4.
 
 #### Dynamic Catalog Layout
 
