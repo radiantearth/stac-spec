@@ -80,7 +80,7 @@ The second case is used when one wants to represent diverse data in a single pla
 has an internal catalog with Landsat 8, Sentinel 2, NAIP data and several commercial imagery providers
 then they'd have a root catalog that would link to a number of different Collections. 
 
-So in conclusion it's best to use Collections for what you want user to find as starting point, and then
+So in conclusion it's best to use Collections for what you want a user to find as a starting point, and then
 catalogs are just for structuring and grouping the data. Future work includes a mechanism to actually
 search Collection-level data, hopefully in concert with other specifications.
 
