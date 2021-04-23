@@ -84,7 +84,7 @@ It is important that an Item identifier is unique within a Collection, and that 
 [Collection identifier](../collection-spec/collection-spec.md#id) in turn is unique globally. Then the two can be combined to
 give a globally unique identifier. Items are *[strongly recommended](#collections)* to have Collections, and not having one makes
 it more difficult to be used in the wider STAC ecosystem.
-If an Item does not have a Collection, then the Item identifier should be unique within its root Catalog.
+If an Item does not have a Collection, then the Item identifier should be unique within its root Catalog or root Collection.
 
 As most geospatial assets are already uniquely defined by some 
 identification scheme from the data provider it is recommended to simply use that ID.
@@ -192,8 +192,8 @@ This happens where there is not a clear official option, or where STAC uses an o
 | Type         | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
 | self         | STRONGLY RECOMMENDED. *Absolute* URL to the Item if it is available at a public URL. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root         | URL to the root STAC Catalog or Collection. |
-| parent       | URL to the parent STAC Catalog or Collection. |
+| root         | URL to the root STAC entity (Catalog or Collection). |
+| parent       | URL to the parent STAC entity (Catalog or Collection). |
 | collection   | STRONGLY RECOMMENDED. URL to a Collection. *Absolute* URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. A link with this `rel` type is *required* if the `collection` field in properties is present. |
 | derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
 

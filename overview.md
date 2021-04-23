@@ -53,10 +53,11 @@ A Catalog is a very simple construct - it just provides links to Items or to oth
 The closest analog is a folder in a file structure, it is the container for Items, but it can 
 also hold other containers (folders / catalogs). 
 
-The Collection specification shares some fields with the catalog spec but has a number of additional fields:
+The Collection entity shares most fields with the Catalog entity but has a number of additional fields:
 license, extent (spatial and temporal), providers, keywords and summaries. Every Item in a Collection links
 back to their Collection, so clients can easily find fields like the license. Thus every Item implicitly 
-shares the fields described in their parent Collection.
+shares the fields described in their parent Collection. Collection entities can be used just like Catalog 
+entities to provide structure, as they provide all the same options for linking and organizing.
 
 But what *should* go in a Collection, versus just in a Catalog?  A Collection will generally consist of
 a set of assets that are defined with the same properties and share higher level metadata. In the 
@@ -78,27 +79,30 @@ provide multiple grouping paths, serving as a sort of faceted search.
 
 The second case is used when one wants to represent diverse data in a single place. If an organization
 has an internal catalog with Landsat 8, Sentinel 2, NAIP data and several commercial imagery providers
-then they'd have a root catalog that would link to a number of different Collections. 
+then they'd have a root Catalog that would link to a number of different Collections. 
 
-So in conclusion it's best to use Collections for what you want a user to find as a starting point, and then
-catalogs are just for structuring and grouping the data. Future work includes a mechanism to actually
+So in conclusion it's best to use Collections for what you want user to find as starting point, and then
+Catalogs are just for structuring and grouping the data. Future work includes a mechanism to actually
 search Collection-level data, hopefully in concert with other specifications.
 
 ## Catalog Overview
+
+*NOTE: The below examples all say Catalog, but those can all be Collections as well, as it has all the fields necessary to 
+serve as a Catalog*
 
 There are two required element types of a Catalog: Catalog and Item. A STAC Catalog
 points to [STAC Items](item-spec/README.md), or to other STAC catalogs. It provides a simple
 linking structure that can be used recursively so that many Items can be included in 
 a single Catalog, organized however the implementor desires. 
 
-STAC makes no formal distinction between a "root" catalog and the "child" catalogs. A root catalog
-is simply the top-most catalog -- it has no parent. A nested catalog structure is useful (and
+STAC makes no formal distinction between a "root" Catalog and the "child" Catalogs. A root Catalog
+is simply the top-most Catalog or Collection -- it has no parent. A nested catalog structure is useful (and
 recommended) for breaking up massive numbers of catalog Items into logical groupings. For example,
 it might make sense to organize a catalog by date (year, month, day), or geography (continent,
 country, state/prov). See the [Catalog Layout](best-practices.md#catalog-layout) best practices
 section for more.
 
-A simple Catalog structure might look like this:
+A simple STAC structure might look like this:
 
 - catalog (root)
   - catalog
@@ -164,8 +168,8 @@ each Item and Catalog, as well as ways to achieve that.
 
 ## Collection Overview
 
-A STAC Collection extends the core fields of the Catalog construct to provide additional metadata to describe the set of Items it
-contains. The required fields are fairly 
+A STAC Collection includes the core fields of the Catalog entity and also provides additional metadata to describe 
+the set of Items it contains. The required fields are fairly 
 minimal - it includes the 4 required Catalog fields (id, description, stac_version and links), and adds license 
 and extents. But there are a number of other common fields defined in the spec, and more common fields are also 
 defined in [STAC extensions](extensions/). These serve as basic metadata, and ideally Collections also link to 

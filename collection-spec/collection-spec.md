@@ -252,9 +252,9 @@ This is done where there is not a clear official option, or where STAC uses an o
 | Type    | Description                                                  |
 | ------- | ------------------------------------------------------------ |
 | self    | STRONGLY RECOMMENDED. *Absolute* URL to the location that the Collection file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root    | URL to the root STAC Catalog or Collection. Collections should include a link to their root, even if it's the root and points to itself. |
-| parent  | URL to the parent STAC Catalog or Collection. Non-root Collections should include a link to their parent. |
-| child   | URL to a child STAC Catalog or Collection. |
+| root    | URL to the root STAC entity (Catalog or Collection). Collections should include a link to their root, even if it's the root and points to itself. |
+| parent  | URL to the parent STAC entity (Catalog or Collection). Non-root Collections should include a link to their parent. |
+| child   | URL to a child STAC entity (Catalog or Collection). |
 | item    | URL to a STAC Item. All Items linked from a Collection MUST refer back to its Collection with the [`collection` relation type](../item-spec/item-spec.md#relation-types). |
 | license | The license URL(s) for the Collection SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to put the license text in a separate file and link to this file. |
 | derived_from | URL to a STAC Collection that was used as input data in the creation of this Collection. See the note in [STAC Item](../item-spec/item-spec.md#derived_from) for more info. |
