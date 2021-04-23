@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Added `preview` relation type for interoperable thumbnails to best practices. ([#1090](https://github.com/radiantearth/stac-spec/issues/1090))
+
 ### Changed
 
 - The first extent in a Collection is always the overall extent, followed by more specific extents. ([#1064](https://github.com/radiantearth/stac-spec/issues/1064), [opengeospatial/ogcapi-features#520](https://github.com/opengeospatial/ogcapi-features/pull/520))
