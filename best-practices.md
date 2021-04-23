@@ -467,11 +467,11 @@ if you follow these recommendations.
 1. Root documents (Catalogs / Collections) should be at the root of a directory tree containing the static catalog.
 2. Catalogs should be named `catalog.json` and Collections should be named `collection.json`.
 3. Items should be named `<id>.json`.
-4. Sub-Catalogs should be stored in subdirectories of their parent
+4. Sub-Catalogs or sub-Collections should be stored in subdirectories of their parent
    (and only 1 subdirectory deeper than a document's parent, e.g. `.../sample/sub1/catalog.json`).
-5. Items should be stored in subdirectories of their parent Catalog. 
+5. Items should be stored in subdirectories of their parent Catalog or Collection. 
 This means that each Item and its assets are contained in a unique subdirectory.
-6. Limit the number of Items in a Catalog or sub-Catalog, grouping / partitioning as relevant to the dataset.
+6. Limit the number of Items in a Catalog or Collection, grouping / partitioning as relevant to the dataset.
 7. Use structural elements (Catalog and Collection) consistently across each 'level' of your hierarchy.
    For example, if levels 2 and 4 of the hierarchy only contain Collections, 
 don't add a Catalog at levels 2 and 4.
@@ -487,7 +487,7 @@ different sub-catalog organization structures. For example one catalog could div
 by providers, and users could browse down to both. The leaf Items should just be linked to in a single canonical location 
 (or at least use a rel link that indicates the location of the canonical one). It is recommended that dynamic catalogs 
 provide multiple 'views' to allow users to navigate in a way that makes sense to them, providing multiple 'sub-catalogs'
-from the root Catalog that enable different paths to browse (country/state, date/time, constellation/satellite, etc). But the 
+from the root that enable different paths to browse (country/state, date/time, constellation/satellite, etc). But the 
 canonical 'rel' link should be used to designate the primary location of the Item to search engine crawlers.
 
 #### Mixing STAC Versions
@@ -612,7 +612,7 @@ implement it.
 #### Relative Published Catalog
 
 This is a self-contained catalog as described above, except it includes an absolute `self` link at
-the root catalog, to identify its online location. This is designed so that a self-contained catalog (of either type, with its 
+the root to identify its online location. This is designed so that a self-contained catalog (of either type, with its 
 assets or just metadata) can be 'published' online
 by just adding one field (the self link) to its root (Catalog or Collection). All the other links should remain the same. The resulting catalog
 is no longer compliant with the self-contained catalog recommendations, but instead transforms into a 'relative published catalog'. 

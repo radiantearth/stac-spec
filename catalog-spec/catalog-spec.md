@@ -36,8 +36,8 @@ and fields to be compliant.
 This Catalog specification primarily defines a structure for information to be discoverable. Any use 
 that is publishing a set of related spatiotemporal assets is strongly recommended to also use the 
 STAC Collection specification to provide additional information about the set of Items 
-contained in a Catalog, in order to give contextual information to aid in discovery. Every STAC Collection is 
-also a valid STAC Catalog.
+contained in a Catalog, in order to give contextual information to aid in discovery. Every STAC Collection contains all
+the same fields as Catalog, though returns 'Collection' instead of 'Catalog' for the type field.
 
 ## Catalog fields
 
@@ -93,7 +93,7 @@ The following types are commonly used as `rel` types in the Link Object of a STA
 | child   | URL to a child STAC Catalog or Collection. |
 | item    | URL to a STAC Item. |
 
-**Note:** A link to at least one `item` or `child` Catalog is **REQUIRED**.
+**Note:** A link to at least one `item` or `child` (Catalog or Collection) is **REQUIRED**.
 
 There are additional `rel` types in the [Using Relation Types](../best-practices.md#using-relation-types) best practice, but as 
 they are more typically used in Collections, as Catalogs tend to just be used to structure STAC organization, so tend to just use
