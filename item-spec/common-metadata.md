@@ -19,8 +19,8 @@ Various *examples* are available in the folder [`examples`](../examples/).
 *JSON Schemas* can be found in the folder [`json-schema`](json-schema/).
 
 By default, these fields are only included and validated against in the core [Item schema](json-schema/item.json).
-Implementation of any of the fields is not required,
-if the specifications allowing these fields to be used don't say differently.
+
+Implementation of any of the fields is not required, unless explicitly required by a specification using the field.
 For example, `datetime` is required in STAC Items.
 
 ## Basics
@@ -49,7 +49,7 @@ Fields to provide additional temporal information such as ranges with a start an
 All timestamps MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).
 
 **created** and **updated** have different meaning depending on where they are used.
-If those fields are available in the Item `properties`, it's referencing to the creation and update times of the metadata.
+If those fields are available in the Item `properties`, they identify the creation and update times of the metadata.
 Having those fields in the Item `assets` refers to the creation and update times of the actual data linked to in the Asset Object.
 
 *NOTE: There are more date and time related fields available in the [Timestamps 
@@ -58,12 +58,12 @@ extension](https://github.com/stac-extensions/timestamps), which is not an offic
 ### Date and Time Range
 
 While a STAC Item can have a nominal datetime describing the capture, these properties allow an Item to have a range
-of capture dates and times. An example of this is the [MODIS 16 day vegetation index product.](https://lpdaac.usgs.gov/products/mod13q1v006/).
-The datetime property in a STAC Item and these fields are not mutually exclusive.
+of capture dates and times. An example of this is the [MODIS 16 day vegetation index product](https://lpdaac.usgs.gov/products/mod13q1v006/).
 
-**Important:** Using one of the fields REQUIRES to include the other field as well to enable a user to search STAC records by the provided times.
+**Important:** Using one of the fields REQUIRES inclusion of the other field as well to enable a user to search STAC records by the provided times.
 So if you use `start_datetime` you need to add `end_datetime` and vice-versa.
 Both fields are also REQUIRED if the `datetime` field is set to `null`.
+The datetime property in a STAC Item and these fields are not mutually exclusive.
 
 | Field Name     | Type   | Description                                                  |
 | -------------- | ------ | ------------------------------------------------------------ |
@@ -126,11 +126,11 @@ The provider's role(s) can be one or more of the following elements:
 - *producer*: The producer of the data is the provider that initially captured and processed the source data, e.g. ESA for Sentinel-2 data.
 - *processor*: A processor is any provider who processed data to a derived product.
 - *host*: The host is the actual provider offering the data on their storage.
-  There should be no more than one host, specified as last element of the list.
+  There should be no more than one host, specified as the last element of the provider list.
 
 ## Instrument
 
-Adds metadata specifying a platform and instrument used in a data collection mission. These fields will often be combined 
+Adds metadata specifying a platform and instrument used in a data collection mission. These fields will often be combined
 with domain-specific extensions that describe the actual data, such as the `eo` or `sar` extensions.
 
 - [JSON Schema](json-schema/instrument.json)
@@ -147,10 +147,10 @@ with domain-specific extensions that describe the actual data, such as the `eo` 
 
 #### platform
 
-The unique name of the specific platform the instrument is attached to. For satellites this would 
-be the name of the satellite, whereas for drones this would be a unique name for the drone. Examples include 
-`landsat-8` (Landsat-8), `sentinel-2a` and `sentinel-2b` (Sentinel-2), `terra` and `aqua` (part of NASA EOS, 
-carrying the MODIS instruments), `mycorp-uav-034` (hypothetical drone name), and `worldview02` 
+The unique name of the specific platform the instrument is attached to. For satellites this would
+be the name of the satellite, whereas for drones this would be a unique name for the drone. Examples include
+`landsat-8` (Landsat-8), `sentinel-2a` and `sentinel-2b` (Sentinel-2), `terra` and `aqua` (part of NASA EOS,
+carrying the MODIS instruments), `mycorp-uav-034` (hypothetical drone name), and `worldview02`
 (Maxar/DigitalGlobe WorldView-2).
 
 #### instruments
@@ -162,15 +162,15 @@ specified as `['oli', 'tirs']`. Other instrument examples include `msi` (Sentine
 
 #### constellation
 
-The name of a logical collection of one or more platforms that have similar payloads and have 
-their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and 
-radiometric characteristics. This field allows users to search for related data sets without the need to specify which 
-specific platform the data came from, for example, from either of the Sentinel-2 satellites. Examples include `landsat-8` 
+The name of a logical collection of one or more platforms that have similar payloads and have
+their orbits arranged in a way to increase the temporal resolution of acquisitions of data with similar geometric and
+radiometric characteristics. This field allows users to search for related data sets without the need to specify which
+specific platform the data came from, for example, from either of the Sentinel-2 satellites. Examples include `landsat-8`
 (Landsat-8, a constellation consisting of a single platform), `sentinel-2`
-([Sentinel-2](https://www.esa.int/Our_Activities/Observing_the_Earth/Copernicus/Sentinel-2/Satellite_constellation)), 
+([Sentinel-2](https://www.esa.int/Our_Activities/Observing_the_Earth/Copernicus/Sentinel-2/Satellite_constellation)),
 `rapideye` (operated by Planet Labs), and `modis` (NASA EOS satellites Aqua and Terra).  In the case of `modis`, this
-is technically referring to a pair of sensors on two different satellites, whose data is combined into a series of 
-related products. Additionally, the Aqua satellite is technically part of the A-Train constellation and Terra is not 
+is technically referring to a pair of sensors on two different satellites, whose data is combined into a series of
+related products. Additionally, the Aqua satellite is technically part of the A-Train constellation and Terra is not
 part of a constellation, but these are combined to form the logical collection referred to as MODIS.
 
 #### mission
@@ -184,10 +184,10 @@ data collection.
 The nominal Ground Sample Distance for the data, as measured in meters on the ground. There are many
 definitions of GSD. The value of this field should be related to the spatial resolution at the sensor, rather
 than the pixel size of images after orthorectification, pansharpening, or scaling.
-The GSD of a sensor can vary depending on off-nadir and wavelength, so it is at the discretion of the implementer
-to decide which value most accurately represents the GSD. For example, Landsat8 optical and short-wave IR bands 
-are all 30 meters, but the panchromatic band is 15 meters. The
-`gsd` should be 30 meters in this case because that is nominal spatial resolution at the sensor. The Planet 
+The GSD of a sensor can vary depending on geometry (off-nadir / grazing angle) and wavelength, so it is at the
+discretion of the implementer to decide which value most accurately represents the GSD. For example, Landsat8
+optical and short-wave IR bands are all 30 meters, but the panchromatic band is 15 meters. The
+`gsd` should be 30 meters in this case because that is the nominal spatial resolution at the sensor. The Planet
 PlanetScope Ortho Tile Product has an `gsd` of 3.7 (or 4 if rounding), even though the pixel size of the images is 3.125.
 For example, one might choose for WorldView-2 the Multispectral 20° off-nadir value of 2.07
 and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.
