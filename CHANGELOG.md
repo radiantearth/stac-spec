@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - The first extent in a Collection is always the overall extent, followed by more specific extents. ([#1064](https://github.com/radiantearth/stac-spec/issues/1064), [opengeospatial/ogcapi-features#520](https://github.com/opengeospatial/ogcapi-features/pull/520))
-- Updated examples for automatic collection creation from code and validation ([#1080](https://github.com/radiantearth/stac-spec/pull/1080)
+- Updated examples for automatic collection creation from code and validation ([#1080](https://github.com/radiantearth/stac-spec/pull/1080))
 - Clarified that stac_extensions should also list extensions that are used in Collection summaries. ([#1077](https://github.com/radiantearth/stac-spec/issues/1077))
 - `changed`, `created` (common metadata) and temporal extents (collections): Timestamps must be always in UTC ([#1095](https://github.com/radiantearth/stac-spec/issues/1095))
 - Clarified that gsd should only be used on an asset to represent the sensor, not just different processing. ([#1105](https://github.com/radiantearth/stac-spec/pull/1105))
