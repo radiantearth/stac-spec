@@ -4,7 +4,6 @@
   "stac_extensions": [
     "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
     "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
     "https://stac-extensions.github.io/view/v1.0.0/schema.json"
   ],
   "id": "sentinel-2",
@@ -82,11 +81,6 @@
     "view:sun_elevation": {
       "minimum": 6.78,
       "maximum": 89.9
-    },
-    "sci:citation": {
-      "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "string",
-      "pattern": "Copernicus Sentinel data \\d{4}"
     },
     "gsd": [
       10,
