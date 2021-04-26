@@ -153,7 +153,8 @@
                         "string",
                         "null"
                       ],
-                      "format": "date-time"
+                      "format": "date-time",
+                      "pattern": "(\\+00:00|Z)$"
                     }
                   }
                 }

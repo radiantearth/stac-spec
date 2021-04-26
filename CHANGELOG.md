@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Summaries are allowed to specify JSON Schema in addition to ranges and sets of values. ([#1045](https://github.com/radiantearth/stac-spec/issues/1045))
+- Added `preview` relation type for interoperable thumbnails to best practices. ([#1090](https://github.com/radiantearth/stac-spec/issues/1090))
 
 ### Changed
 
@@ -17,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Updated examples for automatic collection creation from code and validation ([#1080](https://github.com/radiantearth/stac-spec/pull/1080)
 - Clarified that stac_extensions should also list extensions that are used in Collection summaries. ([#1077](https://github.com/radiantearth/stac-spec/issues/1077))
 - The Stats Object for Summaries has been renamed to Range Object (no functional change).
+- `changed`, `created` (common metadata) and temporal extents (collections): Timestamps must be always in UTC ([#1095](https://github.com/radiantearth/stac-spec/issues/1095))
 
 ## [v1.0.0-rc.2] - 2021-03-30
 
