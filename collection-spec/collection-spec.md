@@ -90,10 +90,10 @@ and consumers have not been granted any explicit right to use the data.
 
 Collections are *strongly recommended* to provide summaries of the values of fields that they can expect from the `properties` 
 of STAC Items contained in this Collection. This enables users to get a good sense of what the ranges and potential values of 
-different fields in the Collection are, without to inspect a number of Items (or crawl them exhaustively to get a definitive answer). 
+different fields in the Collection are, without having to inspect a number of Items (or crawl them exhaustively to get a definitive answer). 
 Summaries help to fully define Collections, especially if they don't link to any Items. They also give clients enough information to 
 build tailored user interfaces for querying the data, by presenting the potential values that are available.
-Summaries should summarize all values in every Item underneath the collection, including in any nested sub-Catalogs.
+ Fields selected to be included in summaries should consider all the field's values in every Item underneath the collection, including in any nested sub-Catalogs.
 
 A summary for a field can be specified in two ways:
 
@@ -105,8 +105,8 @@ A summary for a field can be specified in two ways:
    The range specified by the `minimum` and `maximum` properties can specify the potential range of values,
    but it is recommended to be as precise as possible.
 
-All values must follow the schema of the property they summarize.
-So the values in the array or the values given for `minimum` and `maxmimum` must comply to the original data type
+All values must follow the schema of the property field they summarize, unless the field is an array as described in (1) above.
+So the values in the array or the values given for `minimum` and `maximum` must comply to the original data type
 and any further restrictions that apply for the property they summarize.
 For example, the `minimum` for `gsd` can't be lower than zero and the summaries for `platform` and `instruments`
 must each be an array of strings (or alternatively minimum and maximum values, but that's not very meaningful).
