@@ -2,7 +2,7 @@
   "type": "Collection",
   "stac_version": "1.0.0-rc.2",
   "stac_extensions": [
-    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+    "https://stac-extensions.github.io/scientific/v1.0.1/schema.json"
   ],
   "id": "sentinel-2",
   "title": "Sentinel-2 MSI: MultiSpectral Instrument, Level-1C",
