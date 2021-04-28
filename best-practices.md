@@ -255,8 +255,10 @@ providing them at at the Asset level can prove to be very useful for using the d
 
 - `datetime`: Provide individual timestamp on an Item, in case the Item has a `start_datetime` and `end_datetime`,
   but an Asset is for one specific time.
-- `gsd` ([Common Metadata](item-spec/common-metadata.md#instrument)): Specify some assets with different spatial resolution 
-than the overall best resolution.
+- `gsd` ([Common Metadata](item-spec/common-metadata.md#instrument)): Specify some assets that represent instruments 
+  with different spatial resolution than the overall best resolution. Note this should not be used for different 
+  spatial resolutions due to specific processing of assets - look into the [raster 
+  extension](https://github.com/stac-extensions/raster) for that use case.
 - `eo:bands` ([EO extension](https://github.com/stac-extensions/eo/)):
   Provide spectral band information, and order of bands, within an individual asset.
 - `proj:epsg`/`proj:wkt2`/`proj:projjson` ([projection extension](https://github.com/stac-extensions/projection/)):
