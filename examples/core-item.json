@@ -66,6 +66,11 @@
       "type": "application/json"
     },
     {
+      "rel": "parent",
+      "href": "./collection.json",
+      "type": "application/json"
+    },
+    {
       "rel": "alternate",
       "type": "text/html",
       "href": "http://remotedata.io/catalog/20201211_223832_CS2/index.html"
