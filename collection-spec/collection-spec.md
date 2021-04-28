@@ -105,6 +105,8 @@ A summary for a field can be specified in three ways:
    but can optionally be accompanied by additional statistical values.
    The range specified by the `minimum` and `maximum` properties can specify the potential range of values,
    but it is recommended to be as precise as possible.
+3. Extensible JSON Schema definitions for fine-grained information, see the [JSON Schema Object](#json-schema-object)
+   section for more.
 
 All values must follow the schema of the property they summarize.
 So the values in the array or the values given for `minimum` and `maxmimum` must comply to the original data type
