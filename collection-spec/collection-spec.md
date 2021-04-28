@@ -307,6 +307,8 @@ Each schema must be valid against all corresponding values available for the pro
 It is recommended to use [JSON Schema draft-07](https://json-schema.org/specification-links.html#draft-7)
 to align with the JSON Schemas provided by STAC. Empty schemas are not allowed.
 
+For an introduction to JSON Schema, see "[Learn JSON Schema](https://json-schema.org/learn/)".
+
 ## Media Type for STAC Collections
 
 A STAC Collection is a JSON file ([RFC 8259](https://tools.ietf.org/html/rfc8259)), and thus should use the 
