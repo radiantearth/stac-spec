@@ -9,7 +9,8 @@
     - [Deploying STAC Browser](#deploying-stac-browser)
   - [Requester Pays](#requester-pays)
 - **[Item Best Practices](#item-practices)**
-  - [Field and ID formatting](#field-and-id-formatting)
+  - [Field and ID formatting](#item-ids)
+  - [Searchable Identifiers](#searchable-identifiers)
   - [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
   - [Datetime selection](#datetime-selection)
   - [Unlocated Items](#unlocated-items)
@@ -147,19 +148,22 @@ For data providers using STAC with requester pays buckets, there are two main re
 
 ## Item Practices
 
-### Field and ID formatting
+### Item IDs
 
 When defining one's STAC properties and fields there are many choices to make on how to name various aspects of one's
 data. One of the key properties is the ID. The specification is quite flexible on ID's, primarily so that existing
 providers can easily use their same ID when they translate their data into STAC - they just need to be sure it is globally
-unique, so may need a prefix. But the use of URI reserved characters such as `:` or `/` is discouraged since this will 
+unique, so may need a prefix. But the use of URI or file path reserved characters such as `:` or `/` is discouraged since this will 
 result in [percented encoded](https://tools.ietf.org/html/rfc3986#section-2) [STAC API](https://github.com/radiantearth/stac-api-spec) 
-endpoints. This isn't a blocker, it just makes the ID's served through API's a bit less parsable. 
+endpoints and also the [IDs can't be used as file names](#catalog-layout).
 
-When defining unique fields for search, like constellation or platform, it is recommended that 
-the value consist of only lowercase characters, numbers, `_`, and `-`. Examples include `sentinel-1a` (Sentinel-1), 
-`landsat-8` (Landsat-8) and `envisat` (Envisat). This is to provide consistency for search across Collections, so that
-people can just search for 'landsat-8', instead of thinking through all the ways providers might have chosen to name it.
+### Searchable Identifiers
+
+When coming up with values for fields that contain searchable identifiers of some sort, like `constellation` or `platform`,
+it is recommended that the identifiers consist of only lowercase characters, numbers, `_`, and `-`.
+Examples include `sentinel-1a` (Sentinel-1), `landsat-8` (Landsat-8) and `envisat` (Envisat).
+This is to provide consistency for search across Collections, so that people can just search for `landsat-8`,
+instead of thinking through all the ways providers might have chosen to name it.
 
 ### Field selection and Metadata Linking
 
