@@ -1,5 +1,5 @@
 {
-  "stac_version": "1.0.0-rc.2",
+  "stac_version": "1.0.0-rc.3",
   "stac_extensions": [
     "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
     "https://stac-extensions.github.io/view/v1.0.0/schema.json"
@@ -71,22 +71,15 @@
     "cs:sat_id": "CS3",
     "cs:product_level": "LV1B"
   },
-  "collection": "CS3",
   "links": [
     {
-      "rel": "collection",
-      "href": "./collection.json",
-      "type": "application/json",
-      "title": "Simple Example Collection"
-    },
-    {
       "rel": "root",
-      "href": "./collection.json",
+      "href": "./catalog.json",
       "type": "application/json"
     },
     {
-      "rel": "root",
-      "href": "./collection.json",
+      "rel": "parent",
+      "href": "./catalog.json",
       "type": "application/json"
     },
     {

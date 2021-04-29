@@ -36,8 +36,9 @@ and fields to be compliant.
 This Catalog specification primarily defines a structure for information to be discoverable. Any use 
 that is publishing a set of related spatiotemporal assets is strongly recommended to also use the 
 STAC Collection specification to provide additional information about the set of Items 
-contained in a Catalog, in order to give contextual information to aid in discovery. Every STAC Collection is 
-also a valid STAC Catalog.
+contained in a Catalog, in order to give contextual information to aid in discovery.
+STAC Collections all have the same fields as STAC Catalogs, but with different allowed 
+values for `type` and `stac_extensions`.
 
 ## Catalog fields
 
@@ -49,7 +50,7 @@ also a valid STAC Catalog.
 | id              | string        | **REQUIRED.** Identifier for the Catalog.                    |
 | title           | string        | A short descriptive one-line title for the Catalog.          |
 | description     | string        | **REQUIRED.** Detailed multi-line description to fully explain the Catalog. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| summaries       | Map<string, \[*]\|[Stats Object](../collection-spec/collection-spec.md#stats-object)> | A map of property summaries, either a set of values or statistics such as a range. More info in the [Collection spec](../collection-spec/collection-spec.md#summaries). |
+| summaries       | Map<string, \[\*]\|[Range Object](../collection-spec/collection-spec.md#range-object)\|[JSON Schema Object](../collection-spec/collection-spec.md#json-schema-object)> | A map of property summaries, either a set of values, a range of values or a [JSON Schema](https://json-schema.org). More info in the [Collection spec](../collection-spec/collection-spec.md#summaries). |
 | links           | [[Link Object](#link-object)] | **REQUIRED.** A list of references to other documents.       |
 
 ### Additional Field Information
@@ -61,9 +62,10 @@ In general, STAC versions can be mixed, but please keep the [recommended best pr
 #### stac_extensions
 
 A list of extensions the Catalog implements.
-This list must only contain extensions that extend the Catalog itself, see the the 'Scope' column in the list of
-extensions. This does NOT declare the extensions of child Catalog, Collection, or Item
-objects. The list contains URLs to the JSON Schema files it can be validated against.
+The list consists of URLs to JSON Schema files that can be used for validation.
+This list must only contain extensions that extend the Catalog specification itself,
+see the 'Scope' for each of the extensions.
+This must **not** declare the extensions that are only implemented in child Collection objects or child Item objects.
 
 ### Link Object
 
@@ -88,11 +90,11 @@ The following types are commonly used as `rel` types in the Link Object of a STA
 | ------- | ----------- |
 | self    | STRONGLY RECOMMENDED. *Absolute* URL to the location that the Catalog file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
 | root    | STRONGLY RECOMMENDED. URL to the root STAC Catalog or [Collection](../collection-spec/README.md). Catalogs should include a link to their root, even if it's the root and points to itself. |
-| parent  | URL to the parent STAC Catalog or Collection. Non-root Catalogs should include a link to their parent. |
-| child   | URL to a child STAC Catalog or Collection. |
+| parent  | URL to the parent STAC entity (Catalog or Collection). Non-root Catalogs should include a link to their parent. |
+| child   | URL to a child STAC entity (Catalog or Collection). |
 | item    | URL to a STAC Item. |
 
-**Note:** A link to at least one `item` or `child` Catalog is **REQUIRED**.
+**Note:** A link to at least one `item` or `child` (Catalog or Collection) is **REQUIRED**.
 
 There are additional `rel` types in the [Using Relation Types](../best-practices.md#using-relation-types) best practice, but as 
 they are more typically used in Collections, as Catalogs tend to just be used to structure STAC organization, so tend to just use

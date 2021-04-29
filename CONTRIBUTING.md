@@ -24,12 +24,12 @@ require you to switch from the default of 'master', which we keep so it displays
 Creating a Pull Request will show our PR template, which includes checkbox reminders for a number
 of things.
 
-* Adding an entry the [CHANGELOG](CHANGELOG.md). If the change is more editorial and minor then this 
+- Adding an entry the [CHANGELOG](CHANGELOG.md). If the change is more editorial and minor then this 
 is not required, but any change to the actual specification should definitely have one.
-* Base the PR against dev, as mentioned above - even if the branch was made off of dev this reminds
+- Base the PR against dev, as mentioned above - even if the branch was made off of dev this reminds
 you to change the base in GitHub's PR creation page.
-* Make a ticket in the STAC API repo if anything here affects there.
-* Highlight if the PR makes breaking changes to the specification (in beta there can still be
+- Make a ticket in the STAC API repo if anything here affects there.
+- Highlight if the PR makes breaking changes to the specification (in beta there can still be
 select breaking changes, but after 1.0 this will change)
 
 All pull requests should submit clean markdown, which is checked by the continuous integration
@@ -37,7 +37,8 @@ system. Please use `npm run check` locally, as described in the [next section](#
 to ensure that the checks on the pull request succeed. If it does not then you can look at the
 mistakes online, which are the same as running `npm run check` locally would surface.
 
-All pull requests that modify or create JSON schema files or examples should use [JSON formatter](https://jsonformatter.org/) to keep files consistent across the repo. 
+All pull requests that modify or create JSON schema files or examples should use
+[JSON formatter](https://jsonformatter.org/) to keep files consistent across the repo. 
 
 All pull requests additionally require a review of two STAC core team members. Releases are cut
 from dev to master (and require 3 approvals), see the [process](process.md) document for more details.
@@ -45,7 +46,8 @@ from dev to master (and require 3 approvals), see the [process](process.md) docu
 ### Check files
 
 The same check-markdown and check-examples programs that runs as a check on PR's is part of the repo and can be run locally. 
-To install you'll need npm, which is a standard part of any [node.js installation](https://nodejs.org/en/download/). Alternatively, you can also use [yarn](https://yarnpkg.com/) instead of npm. In this case replace all occurrences of `npm` with `yarn` below.
+To install you'll need npm, which is a standard part of any [node.js installation](https://nodejs.org/en/download/).
+Alternatively, you can also use [yarn](https://yarnpkg.com/) instead of npm. In this case replace all occurrences of `npm` with `yarn` below.
 
 First you'll need to install everything with npm once. Just navigate to the root of the stac-spec repo and on 
 your command line run:

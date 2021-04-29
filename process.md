@@ -24,18 +24,18 @@ and there is also information on how to [run the CI checks locally](CONTRIBUTING
 
 The current list of people who are part of the 'core STAC team', and can approve pull requests.
 
-* [Alex Kaminsky](https://github.com/alkamin)
-* [Alexandra Kirk](https://github.com/anayeaye)
-* [Chris Holmes](http://github.com/cholmes)
-* [Emmanuel Mathot](https://github.com/emmanuelmathot)
-* [Michael Smith](https://github.com/hgs-msmith)
-* [James Banting](https://github.com/jbants)
-* [James Santucci](https://github.com/jisantuc)
-* [Josh Fix](https://github.com/joshfix)
-* [Rob Emanuele](https://github.com/lossyrob)
-* [Matthias Mohr](https://github.com/m-mohr)
-* [Matt Hanson](https://github.com/matthewhanson)
-* [Phil Varner](https://github.com/philvarner)
+- [Alex Kaminsky](https://github.com/alkamin)
+- [Alexandra Kirk](https://github.com/anayeaye)
+- [Chris Holmes](http://github.com/cholmes)
+- [Emmanuel Mathot](https://github.com/emmanuelmathot)
+- [Michael Smith](https://github.com/hgs-msmith)
+- [James Banting](https://github.com/jbants)
+- [James Santucci](https://github.com/jisantuc)
+- [Josh Fix](https://github.com/joshfix)
+- [Rob Emanuele](https://github.com/lossyrob)
+- [Matthias Mohr](https://github.com/m-mohr)
+- [Matt Hanson](https://github.com/matthewhanson)
+- [Phil Varner](https://github.com/philvarner)
 
 Anyone can be nominated to the core STAC team, and that generally happens after contributing a few pull requests
 and/or helping review other PR's. Nominations are reviewed by the [PSC](#project-steering-committee), and must recieve
@@ -45,31 +45,31 @@ and/or helping review other PR's. Nominations are reviewed by the [PSC](#project
 
 To release a new version of the STAC spec the following list of tasks must be done. 
 
-* **Update Issue Tracker**: Each release has a [milestone](https://github.com/radiantearth/stac-spec/milestones) in the github 
+- **Update Issue Tracker**: Each release has a [milestone](https://github.com/radiantearth/stac-spec/milestones) in the github 
 issue tracker, and before a release is done all open issues that are filed against it should be reviewed. All issues do not 
 need to be completed, but the core release team should all review the issues to make sure that the critical ones for the 
 release have been addressed. Issues that aren't seen as essential should be moved to future releases, so that there are no
 open issues against the milestone.
-* **Agreement from the Project Steering Committee**: The PSC should meet (on phone or on gitter) and decided that the release is ready.
+- **Agreement from the Project Steering Committee**: The PSC should meet (on phone or on gitter) and decided that the release is ready.
 This should include review of the issues, as well as looking at the spec holistically, to make sure the new changes keep
 with a coherent whole.
-* **Final Spec Read Through**: There should be a final read through of the core specification to make sure it makes sense
+- **Final Spec Read Through**: There should be a final read through of the core specification to make sure it makes sense
 and there are no typos, errors, etc.
-* **Update the version numbers**: There are several places in the spec that use the version number or a branch name in text
+- **Update the version numbers**: There are several places in the spec that use the version number or a branch name in text
 or a link. These include the markdown files and the JSON schemas. Right now the best thing to do is just a search & replace
 for the last version number and `https://schemas.stacspec.org/dev/` with `https://schemas.stacspec.org/<release-version>/`
 (in JSON Schemas, don't replace it here). `<release-version>` must correspond with the tag on GitHub, usually including a leading `v`.
 Hopefully in the future there will be scripts to do this. 
-* **Update the Changelog**: The [changelog](CHANGELOG.md) should be reviewed to make sure it includes all major improvements
+- **Update the Changelog**: The [changelog](CHANGELOG.md) should be reviewed to make sure it includes all major improvements
 in the release. And anything in 'unreleased' section should move to the version of the spec to be released.
-* **Merge dev to master**: As there is no 'build' process, since the specification *is* the markdown files in the github
+- **Merge dev to master**: As there is no 'build' process, since the specification *is* the markdown files in the github
 repository, the key step in a release is to merge the `dev` branch into `master`, as `master` is the current stable state 
 of the spec.
-* **Release on Github**: The final step to create the release is to add a new 'release' on 
+- **Release on Github**: The final step to create the release is to add a new 'release' on 
 <https://github.com/radiantearth/stac-spec/releases>. This should use a tag like the others, with a 'v' prefix and then the 
 release number, like v0.5.2. The changelog should be copied over to be the release notes, and then also include a link to 
 the full milestone of everything closed in the issue tracker.
-* **Promote the release**: A blog post and tweet should be composed and sent out, and then inform those in the gitter channel
+- **Promote the release**: A blog post and tweet should be composed and sent out, and then inform those in the gitter channel
 to post / promote it.
 
 #### Release Candidates
@@ -98,15 +98,16 @@ decision making authority. This consists of individuals who are intended to repr
 stake in the specification and surrounding ecosystem. An odd number is chosen to facilitate the voting process and help prevent ties.
 This committee also handles the allocation of any funds that are raised for the project.
 
-Turnover is allowed and expected to accommodate people only able to become active on the project in intervals. A PSC member may step down at any time.
+Turnover is allowed and expected to accommodate people only able to become active on the project in intervals.
+A PSC member may step down at any time.
 
 #### Current Project Steering Committee
 
-* [Matthias Mohr](https://github.com/m-mohr) - University of Muenster, [OpenEO](https://openeo.org/) and [Radiant Earth](https://www.radiant.earth/)
-* [Matt Hanson](https://github.com/matthewhanson) - [Element 84](https://www.element84.com/)
-* [James Banting](https://github.com/jbants) - [SparkGeo](https://sparkgeo.com/)
-* [Rob Emanuele](https://github.com/lossyrob) - [Microsoft](https://microsoft.com/)
-* [Chris Holmes](https://github.com/cholmes) - [Planet](https://planet.com) and [Radiant Earth](https://www.radiant.earth/)
+- [Matthias Mohr](https://github.com/m-mohr) - University of Muenster, [OpenEO](https://openeo.org/) and [Radiant Earth](https://www.radiant.earth/)
+- [Matt Hanson](https://github.com/matthewhanson) - [Element 84](https://www.element84.com/)
+- [James Banting](https://github.com/jbants) - [SparkGeo](https://sparkgeo.com/)
+- [Rob Emanuele](https://github.com/lossyrob) - [Microsoft](https://microsoft.com/)
+- [Chris Holmes](https://github.com/cholmes) - [Planet](https://planet.com) and [Radiant Earth](https://www.radiant.earth/)
 
 #### PSC Membership
 

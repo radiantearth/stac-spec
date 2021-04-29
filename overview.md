@@ -3,13 +3,36 @@
 There are three component specifications that together make up the core SpatioTemporal Asset Catalog specification.
 Each can be used alone, but they work best in concert with one another. The [STAC API specification](https://github.com/radiantearth/stac-api-spec) 
 builds on top of that core, but is out of scope for this overview. An [Item](item-spec/item-spec.md) represents a 
-single [spatiotemporal asset](#what-is-a-spatiotemporal-asset) as GeoJSON so it can be searched. 
+single [spatiotemporal asset](#what-is-a-spatiotemporal-asset) as [GeoJSON](https://geojson.org/) so it can be searched. 
 The [Catalog](catalog-spec/catalog-spec.md) specification provides structural elements, to group Items
 and [Collections](collection-spec/collection-spec.md). Collections *are* catalogs, that add more required metadata and 
 describe a group of related Items. For more on the differences see the [section below](#catalogs-vs-collections).
 
 A [UML diagram](https://en.wikipedia.org/wiki/Unified_Modeling_Language) of the [STAC model](STAC-UML.pdf) is also 
 provided to help with navigating the specification. 
+
+## Foundations
+
+STAC is built on top of many great standards and practices. Every part of STAC is 
+[JSON](https://www.json.org/json-en.html), and [GeoJSON](https://geojson.org/) provides the core geometry fields 
+and [features](https://en.wikipedia.org/wiki/Simple_Features) definition. All fields are described in the 
+specifications, and the acceptable values are defined with [JSON Schema](https://json-schema.org/). The released
+JSON Schemas provide the core testing definitions, and are used in an array of validation tools. We also rely
+on [RFC 8288 (Web Linking)](https://tools.ietf.org/rfc/rfc8288.txt) to express relationships between resources,
+and IANA [Media Types](https://en.wikipedia.org/wiki/Media_type) to describe file formats and format contents.
+The [OGC API - Features](https://ogcapi.ogc.org/features/) standard is a final core building block. The STAC
+Collection extends the [Collection](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html#_collection_)
+JSON defined in OGC API - Features (and the full API definition is the foundation for the STAC API specification).
+
+The STAC specifications are written to be understandable without needing a full background in these. But if you 
+want to get deep into STAC tool implementation and are not familiar with any of the standards mentioned above it is 
+recommended to read up on them. STAC development is guided by set of core philosophical tenets, like 
+building small reusable parts that are loosely coupled, focusing on developers, and more - see our the 
+[principles](principles.md) document to learn more.
+
+*Note: Setting a field in JSON to `null` is not equivalent to a field not appearing in STAC, as JSON Schema tools treat
+them differently. STAC defines `null` explicitly for some fields, where it has a particular meaning. So `null` should 
+not be used unless the STAC spec defines its use - instead the field should be left out entirely.* 
 
 ## Item Overview
 
@@ -21,10 +44,10 @@ and can be easily read by any modern GIS or geospatial library, and it describes
 The STAC Item JSON specification uses the GeoJSON geometry to describe the location of the asset, and 
 then includes additional information:
 
-* the time the asset represents;
-* a thumbnail for quick browsing;
-* asset links, to enable direct download or streaming access of the asset;
-* relationship links, allowing users to traverse other related resources and STAC Items.
+- the time the asset represents;
+- a thumbnail for quick browsing;
+- asset links, to enable direct download or streaming access of the asset;
+- relationship links, allowing users to traverse other related resources and STAC Items.
 
 A STAC Item can contain additional fields and JSON structures to communicate more information about the
 asset, so it can be easily searched. STAC provides a core set of 
@@ -53,10 +76,11 @@ A Catalog is a very simple construct - it just provides links to Items or to oth
 The closest analog is a folder in a file structure, it is the container for Items, but it can 
 also hold other containers (folders / catalogs). 
 
-The Collection specification shares some fields with the catalog spec but has a number of additional fields:
+The Collection entity shares most fields with the Catalog entity but has a number of additional fields:
 license, extent (spatial and temporal), providers, keywords and summaries. Every Item in a Collection links
 back to their Collection, so clients can easily find fields like the license. Thus every Item implicitly 
-shares the fields described in their parent Collection.
+shares the fields described in their parent Collection. Collection entities can be used just like Catalog 
+entities to provide structure, as they provide all the same options for linking and organizing.
 
 But what *should* go in a Collection, versus just in a Catalog?  A Collection will generally consist of
 a set of assets that are defined with the same properties and share higher level metadata. In the 
@@ -68,8 +92,8 @@ to break the recommendation.
 
 Catalogs in turn are used for two main things:
 
-* Split overly large collections into groups
-* Group collections into a catalog of Collections (e.g. as entry point for navigation to several Collections).
+- Split overly large collections into groups
+- Group collections into a catalog of Collections (e.g. as entry point for navigation to several Collections).
 
 The first case allows users to browse down into the Items of large collections. A collection like
 Landsat usually would start with path and row Catalogs to group by geography, and then year, 
@@ -78,27 +102,30 @@ provide multiple grouping paths, serving as a sort of faceted search.
 
 The second case is used when one wants to represent diverse data in a single place. If an organization
 has an internal catalog with Landsat 8, Sentinel 2, NAIP data and several commercial imagery providers
-then they'd have a root catalog that would link to a number of different Collections. 
+then they'd have a root Catalog that would link to a number of different Collections. 
 
 So in conclusion it's best to use Collections for what you want user to find as starting point, and then
-catalogs are just for structuring and grouping the data. Future work includes a mechanism to actually
+Catalogs are just for structuring and grouping the data. Future work includes a mechanism to actually
 search Collection-level data, hopefully in concert with other specifications.
 
 ## Catalog Overview
+
+*NOTE: The below examples all say Catalog, but those can all be Collections as well, as it has all the fields necessary to 
+serve as a Catalog*
 
 There are two required element types of a Catalog: Catalog and Item. A STAC Catalog
 points to [STAC Items](item-spec/README.md), or to other STAC catalogs. It provides a simple
 linking structure that can be used recursively so that many Items can be included in 
 a single Catalog, organized however the implementor desires. 
 
-STAC makes no formal distinction between a "root" catalog and the "child" catalogs. A root catalog
-is simply the top-most catalog -- it has no parent. A nested catalog structure is useful (and
+STAC makes no formal distinction between a "root" Catalog and the "child" Catalogs. A root Catalog
+is simply the top-most Catalog or Collection -- it has no parent. A nested catalog structure is useful (and
 recommended) for breaking up massive numbers of catalog Items into logical groupings. For example,
 it might make sense to organize a catalog by date (year, month, day), or geography (continent,
 country, state/prov). See the [Catalog Layout](best-practices.md#catalog-layout) best practices
 section for more.
 
-A simple Catalog structure might look like this:
+A simple STAC structure might look like this:
 
 - catalog (root)
   - catalog
@@ -164,8 +191,8 @@ each Item and Catalog, as well as ways to achieve that.
 
 ## Collection Overview
 
-A STAC Collection extends the core fields of the Catalog construct to provide additional metadata to describe the set of Items it
-contains. The required fields are fairly 
+A STAC Collection includes the core fields of the Catalog entity and also provides additional metadata to describe 
+the set of Items it contains. The required fields are fairly 
 minimal - it includes the 4 required Catalog fields (id, description, stac_version and links), and adds license 
 and extents. But there are a number of other common fields defined in the spec, and more common fields are also 
 defined in [STAC extensions](extensions/). These serve as basic metadata, and ideally Collections also link to 

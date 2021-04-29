@@ -1,7 +1,7 @@
 {
   "id": "examples",
   "type": "Catalog",
-  "stac_version": "1.0.0-rc.2",
+  "stac_version": "1.0.0-rc.3",
   "description": "This catalog is a simple demonstration of an example catalog that is used to organize a hierarchy of collections and their items.",
   "links": [
     {
@@ -22,8 +22,20 @@
       "title": "Collection with no items (standalone)"
     },
     {
+      "rel": "child",
+      "href": "./collection-only/collection-with-schemas.json",
+      "type": "application/json",
+      "title": "Collection with no items (standalone with JSON Schemas)"
+    },
+    {
+      "rel": "item",
+      "href": "./collectionless-item.json",
+      "type": "application/json",
+      "title": "Collection with no items (standalone)"
+    },
+    {
       "rel": "self",
-      "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0-rc.2/examples/catalog.json",
+      "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0-rc.3/examples/catalog.json",
       "type": "application/json"
     }
   ]

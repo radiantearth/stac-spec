@@ -9,7 +9,8 @@
     - [Deploying STAC Browser](#deploying-stac-browser)
   - [Requester Pays](#requester-pays)
 - **[Item Best Practices](#item-practices)**
-  - [Field and ID formatting](#field-and-id-formatting)
+  - [Field and ID formatting](#item-ids)
+  - [Searchable Identifiers](#searchable-identifiers)
   - [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
   - [Datetime selection](#datetime-selection)
   - [Unlocated Items](#unlocated-items)
@@ -45,6 +46,7 @@
     - [Keep catalogs in sync with cloud notification and queue services](#keep-catalogs-in-sync-with-cloud-notification-and-queue-services)
   - [How to Differentiate STAC Files](#how-to-differentiate-stac-files)
   
+
 This document makes a number of recommendations for creating real world SpatioTemporal Asset Catalogs. None of them 
 are required to meet the core specification, but following these practices will make life easier for client tooling
 and for users. They come about from practical experience of implementors and introduce a bit more 'constraint' for
@@ -61,7 +63,8 @@ STAC strives to make geospatial information more accessible, by putting it on th
 different tools will be able to load and display public-facing STAC data. But the web runs on a [Same origin 
 policy](https://en.wikipedia.org/wiki/Same-origin_policy), preventing web pages from loading information from other web locations
 to prevent malicious scripts from accessing sensitive data. This means that by default a web page would only be able to load STAC
-[Item](item-spec/item-spec.md) objects from the same server the page is on. [Cross-origin resource sharing](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing),
+[Item](item-spec/item-spec.md) objects from the same server the page is on.
+[Cross-origin resource sharing](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing),
 also known as 'CORS' is a protocol to enable safe communication across origins. But most web services turn it off by default. This
 is generally a good thing, but unfortunately if CORS is not enabled then any browser-based STAC tool will not work. 
 
@@ -70,8 +73,8 @@ So to enable all the great web tools (like [stacindex.org](http://stacindex.org)
 [Google Cloud Storage](https://cloud.google.com/storage/docs/cross-origin), or [Apache Server](https://enable-cors.org/server_apache.html). 
 Many more are listed on [enable-cors.org](https://enable-cors.org/server.html). We recommend enabling CORS for all requests ('\*'),
 so that diverse online tools can access your data. If you aren't sure if your server has CORS enabled you can use 
-[test-cors.org](https://www.test-cors.org/). Enter the URL of your STAC root [Catalog](catalog-spec/catalog-spec.md) JSON 
-and make sure it gets a response.
+[test-cors.org](https://www.test-cors.org/). Enter the URL of your STAC root [Catalog](catalog-spec/catalog-spec.md) or
+[Collection](collection-spec/collection-spec.md) JSON and make sure it gets a response.
 
 ### STAC on the Web
 
@@ -80,7 +83,7 @@ surprised that there is nothing about HTML in the entire specification. This is 
 should be on web pages without ending up with very bad looking pages. But the importance of having web-accessible versions
 of every STAC Item is paramount.
 
-The main recommendation is to have an HTML page for every single STAC Item and Catalog. They should be visually pleasing, 
+The main recommendation is to have an HTML page for every single STAC Item, Catalog and Collection. They should be visually pleasing, 
 crawlable by search engines and ideally interactive. The current best practice is to use a tool in the STAC ecosystem called
 [STAC Browser](https://github.com/radiantearth/stac-browser/). It can crawl most any valid STAC implementation and generate unique web
 pages for each Item and Catalog (or Collection). While it has a default look and feel, the design can easily be 
@@ -122,36 +125,45 @@ should have its own location and just be part of the wider web.
 It is very common that large, freely available datasets are set up with a 'requester pays' configuration. This is an option 
 [on AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html) and [on 
 Google Cloud](https://cloud.google.com/storage/docs/requester-pays), that enables data providers to make their data
-available to everyone, while the cloud platform charges access costs (such as per-request and data '[egress](https://www.hostdime.com/blog/data-egress-fees-cloud/)') to the user accessing the data.
+available to everyone, while the cloud platform charges access costs
+(such as per-request and data '[egress](https://www.hostdime.com/blog/data-egress-fees-cloud/)') to the user accessing the data.
 For popular datasets that are large in size the egress costs can be substantial, to the point where much
 less data would be available if the cost of distribution was always on the data provider.
 
 For data providers using STAC with requester pays buckets, there are two main recommendations:
 
-1) Put the STAC JSON in a separate bucket that is public for everyone and **not** requestor pays. This enables the STAC metadata
-to be far more crawlable and searchable, but the cost of the egress of STAC files should be miniscule compared to that of
-the actual data. The STAC community can help you work with cloud providers for potential free hosting if you are doing open
-data as requestor pays and aren't able to pay the costs of a completely open STAC bucket, as they are most all supportive of
-STAC (but no guarantees and it may be on an alternate cloud).
-2) For Asset href values to resources in a requestor pays bucket, use the cloud provider-specific protocol (e.g., `s3://` on AWS and `gs://` on Google Cloud) instead of an `https://` url. Most clients do not have special handling for `https://` links to cloud provider resources that require a requestor pays flag and authentication, so they simply fail. Many clients have special handling for `s3://` or `gs://` URLs that will add a requestor pays parameter and will apply appropriate authentication to the request.
-Using cloud-specific protocols will at least give users an option to register a paid account and allow the data provider to properly charge for access. 
-STAC-specific tools in turn can look for the cloud-specific protocols and know to use the requestor pays feature for that specific cloud platform.
+1. Put the STAC JSON in a separate bucket that is public for everyone and **not** requestor pays. This enables the STAC metadata
+   to be far more crawlable and searchable, but the cost of the egress of STAC files should be miniscule compared to that of
+   the actual data. The STAC community can help you work with cloud providers for potential free hosting if you are doing open
+   data as requestor pays and aren't able to pay the costs of a completely open STAC bucket, as they are most all supportive of
+   STAC (but no guarantees and it may be on an alternate cloud).
+2. For Asset href values to resources in a requestor pays bucket, use the cloud provider-specific protocol
+   (e.g., `s3://` on AWS and `gs://` on Google Cloud) instead of an `https://` url.
+   Most clients do not have special handling for `https://` links to cloud provider resources that require a requestor pays flag and authentication,
+   so they simply fail. Many clients have special handling for `s3://` or `gs://` URLs
+   that will add a requestor pays parameter and will apply appropriate authentication to the request.
+   Using cloud-specific protocols will at least give users an option to register a paid account and
+   allow the data provider to properly charge for access. 
+   STAC-specific tools in turn can look for the cloud-specific protocols and know to use the requestor pays feature for that specific cloud platform.
 
 ## Item Practices
 
-### Field and ID formatting
+### Item IDs
 
 When defining one's STAC properties and fields there are many choices to make on how to name various aspects of one's
 data. One of the key properties is the ID. The specification is quite flexible on ID's, primarily so that existing
 providers can easily use their same ID when they translate their data into STAC - they just need to be sure it is globally
-unique, so may need a prefix. But the use of URI reserved characters such as `:` or `/` is discouraged since this will 
+unique, so may need a prefix. But the use of URI or file path reserved characters such as `:` or `/` is discouraged since this will 
 result in [percented encoded](https://tools.ietf.org/html/rfc3986#section-2) [STAC API](https://github.com/radiantearth/stac-api-spec) 
-endpoints. This isn't a blocker, it just makes the ID's served through API's a bit less parsable. 
+endpoints and it prevents the use of IDs as file names as recommended in the [catalog layout](#catalog-layout) best practices.
 
-When defining unique fields for search, like constellation or platform, it is recommended that 
-the value consist of only lowercase characters, numbers, `_`, and `-`. Examples include `sentinel-1a` (Sentinel-1), 
-`landsat-8` (Landsat-8) and `envisat` (Envisat). This is to provide consistency for search across Collections, so that
-people can just search for 'landsat-8', instead of thinking through all the ways providers might have chosen to name it.
+### Searchable Identifiers
+
+When coming up with values for fields that contain searchable identifiers of some sort, like `constellation` or `platform`,
+it is recommended that the identifiers consist of only lowercase characters, numbers, `_`, and `-`.
+Examples include `sentinel-1a` (Sentinel-1), `landsat-8` (Landsat-8) and `envisat` (Envisat).
+This is to provide consistency for search across Collections, so that people can just search for `landsat-8`,
+instead of thinking through all the ways providers might have chosen to name it.
 
 ### Field selection and Metadata Linking
 
@@ -161,8 +173,9 @@ flexible enough that providers can fill it with tens or even hundreds of fields 
 providers have lots of metadata then that can be linked to in the [Asset Object](item-spec/item-spec.md#asset-object) 
 (recommended) or in a [Link Object](item-spec/item-spec.md#link-object). There is a lot of metadata that is only of relevance 
 to loading and processing data, and while STAC does not prohibit providers from putting those type of fields in their items, 
-it is not recommended. For very large catalogs (hundreds of millions of records), every additional field that is indexed will cost substantial money, so data providers are advised to just put the fields to be searched in STAC, so [STAC API](https://github.com/radiantearth/stac-api-spec)
-providers don't have bloated indices that no one actually uses.
+it is not recommended. For very large catalogs (hundreds of millions of records),
+every additional field that is indexed will cost substantial money, so data providers are advised to just put the fields to be searched in STAC and
+[STAC API](https://github.com/radiantearth/stac-api-spec) providers don't have bloated indices that no one actually uses.
 
 ### Datetime selection
 
@@ -244,17 +257,26 @@ found in Item properties at the asset level. This mechanism of overriding or pro
 makes discovery more difficult and should generally be avoided. However, there are some core and extension fields for which 
 providing them at at the Asset level can prove to be very useful for using the data.
 
-- `datetime`: Provide individual timestamp on an Item, in case the Item has a `start_datetime` and `end_datetime`, but an Asset is for one specific time.
-- `gsd` ([Common Metadata](item-spec/common-metadata.md#instrument)): Specify some assets with different spatial resolution 
-than the overall best resolution.
-- `eo:bands` ([EO extension](https://github.com/stac-extensions/eo/)): Provide spectral band information, and order of bands, within an individual asset.
-- `proj:epsg`/`proj:wkt2`/`proj:projjson` ([projection extension](https://github.com/stac-extensions/projection/)): Specify different projection for some assets. If the projection is different
- for all assets it should probably not be provided as an Item property. If most assets are one projection, and there is 
- a single reprojected version (such as a Web Mercator preview image), it is sensible to specify the main projection in the 
- Item and the alternate projection for the affected asset(s).
-- `proj:shape`/`proj:transform` ([projection extension](https://github.com/stac-extensions/projection/)): If assets have different spatial resolutions and slightly different exact bounding boxes, specify these per asset to indicate the size of the asset in pixels and its exact GeoTransform in the native projection.
-- `sar:polarizations` ([sar extension](https://github.com/stac-extensions/sar)): Provide the polarization content and ordering of a specific asset, similar to `eo:bands`.
-- `sar:product_type` ([sar extension](https://github.com/stac-extensions/sar)): If mixing multiple product types within a single Item, this can be used to specify the product_type for each asset.
+- `datetime`: Provide individual timestamp on an Item, in case the Item has a `start_datetime` and `end_datetime`,
+  but an Asset is for one specific time.
+- `gsd` ([Common Metadata](item-spec/common-metadata.md#instrument)): Specify some assets that represent instruments 
+  with different spatial resolution than the overall best resolution. Note this should not be used for different 
+  spatial resolutions due to specific processing of assets - look into the [raster 
+  extension](https://github.com/stac-extensions/raster) for that use case.
+- `eo:bands` ([EO extension](https://github.com/stac-extensions/eo/)):
+  Provide spectral band information, and order of bands, within an individual asset.
+- `proj:epsg`/`proj:wkt2`/`proj:projjson` ([projection extension](https://github.com/stac-extensions/projection/)):
+  Specify different projection for some assets. If the projection is different
+  for all assets it should probably not be provided as an Item property. If most assets are one projection, and there is 
+  a single reprojected version (such as a Web Mercator preview image), it is sensible to specify the main projection in the 
+  Item and the alternate projection for the affected asset(s).
+- `proj:shape`/`proj:transform` ([projection extension](https://github.com/stac-extensions/projection/)):
+  If assets have different spatial resolutions and slightly different exact bounding boxes,
+  specify these per asset to indicate the size of the asset in pixels and its exact GeoTransform in the native projection.
+- `sar:polarizations` ([sar extension](https://github.com/stac-extensions/sar)):
+  Provide the polarization content and ordering of a specific asset, similar to `eo:bands`.
+- `sar:product_type` ([sar extension](https://github.com/stac-extensions/sar)):
+  If mixing multiple product types within a single Item, this can be used to specify the product_type for each asset.
 
 ### Working with Media Types
 
@@ -278,7 +300,7 @@ following table lists some of the most common ones you may encounter or use.
 | `image/png`                                             | Visual PNGs (e.g. thumbnails)                                |
 | `image/jpeg`                                            | Visual JPEGs (e.g. thumbnails, oblique)                      |
 | `text/xml` or `application/xml`                         | XML metadata [RFC 7303](https://www.ietf.org/rfc/rfc7303.txt) |
-| `application/json`                                      | A JSON file (often metadata, or [labels](https://github.com/radiantearth/stac-spec/tree/master/extensions/label#labels-required)) |                   
+| `application/json`                                      | A JSON file (often metadata, or [labels](https://github.com/radiantearth/stac-spec/tree/master/extensions/label#labels-required)) |
 | `text/plain`                                            | Plain text (often metadata)                                  |
 | `application/geo+json`                                  | [GeoJSON](https://geojson.org/)                              |
 | `application/geopackage+sqlite3`                        | [GeoPackage](https://www.geopackage.org/)                    |
@@ -378,6 +400,10 @@ file that just has the bands needed for display
 
 ## Catalog & Collection Practices
 
+*Note: This section uses the term 'Catalog' (with an uppercase C) to refer to the JSON entity specified in the 
+[Catalog spec](catalog-spec/catalog-spec.md), and 'catalog' (with a lowercase c) to refer to any full STAC implementation, 
+which can be any mix of Catalogs Collections and Items.*
+
 ### Static and Dynamic Catalogs
 
 As mentioned in the main [overview](overview.md), there are two main types of catalogs - static
@@ -431,7 +457,7 @@ providers, and users could browse down to both. The leaf Items should just be li
 
 ### Catalog Layout
 
-Creating a catalog involves a number of decisions as to what folder structure to use to represent sub-catalogs, items
+Creating a catalog involves a number of decisions as to what folder structure to use to represent sub-catalogs, Items
 and assets, and how to name them. The specification leaves this totally open, and you can link things as you want. But 
 it is recommended to be thoughtful about the organization of sub-catalogs, putting them into a structure that a person
 might reasonably browse (since they likely will with [STAC on the Web](#stac-on-the-web) recommendations). For example
@@ -448,12 +474,14 @@ if you follow these recommendations.
 1. Root documents (Catalogs / Collections) should be at the root of a directory tree containing the static catalog.
 2. Catalogs should be named `catalog.json` and Collections should be named `collection.json`.
 3. Items should be named `<id>.json`.
-4. Sub-Catalogs should be stored in subdirectories of their parent (and only 1 subdirectory deeper than a document's parent) (e.g. `.../sample/sub1/catalog.json`).
-5. Items should be stored in subdirectories of their parent Catalog. 
-This means that each Item and its assets are contained in a unique subdirectory.
-6. Limit the number of Items in a Catalog or sub-Catalog, grouping / partitioning as relevant to the dataset.
-7. Use structural elements (Catalog and Collection) consistently across each 'level' of your hierarchy. For example, if levels 2 and 4 of the hierarchy only contain Collections, 
-don't add a Catalog at levels 2 and 4.
+4. Sub-Catalogs or sub-Collections should be stored in subdirectories of their parent
+   (and only 1 subdirectory deeper than a document's parent, e.g. `.../sample/sub1/catalog.json`).
+5. Items should be stored in subdirectories of their parent Catalog or Collection. 
+   This means that each Item and its assets are contained in a unique subdirectory.
+6. Limit the number of Items in a Catalog or Collection, grouping / partitioning as relevant to the dataset.
+7. Use structural elements (Catalog and Collection) consistently across each 'level' of your hierarchy.
+   For example, if levels 2 and 4 of the hierarchy only contain Collections, 
+   don't add a Catalog at levels 2 and 4.
 
 #### Dynamic Catalog Layout
 
@@ -466,7 +494,7 @@ different sub-catalog organization structures. For example one catalog could div
 by providers, and users could browse down to both. The leaf Items should just be linked to in a single canonical location 
 (or at least use a rel link that indicates the location of the canonical one). It is recommended that dynamic catalogs 
 provide multiple 'views' to allow users to navigate in a way that makes sense to them, providing multiple 'sub-catalogs'
-from the root Catalog that enable different paths to browse (country/state, date/time, constellation/satellite, etc). But the 
+from the root that enable different paths to browse (country/state, date/time, constellation/satellite, etc). But the 
 canonical 'rel' link should be used to designate the primary location of the Item to search engine crawlers.
 
 #### Mixing STAC Versions
@@ -487,31 +515,34 @@ a bit of a 'curated' view.
 
 Some general thinking on what to summarize is as follows:
 
-* Any field that is a range of data (like numbers or dates) is a great candidate to summarize, to give people a sense what values
+- Any field that is a range of data (like numbers or dates) is a great candidate to summarize, to give people a sense what values
 the data might be. For example in overhead imagery, a 
-[`view:off_nadir`](https://github.com/stac-extensions/view/blob/main/README.md#item-properties-and-item-asset-fields) with a range of 0 to 3 would tell people this 
-imagery is all pretty much straight down, while a value of 15 to 40 would tell them that it's oblique imagery, or 0 to 60 that it's 
+[`view:off_nadir`](https://github.com/stac-extensions/view/blob/main/README.md#item-properties-and-item-asset-fields)
+with a range of 0 to 3 would tell people this imagery is all pretty much straight down,
+while a value of 15 to 40 would tell them that it's oblique imagery, or 0 to 60 that it's 
 a Collection with lots of different look angles. 
 
-* Fields that have only one or a handful of values are also great to summarize. Collections with a single satellite may
+- Fields that have only one or a handful of values are also great to summarize. Collections with a single satellite may
 use a single [`gsd`](item-spec/common-metadata.md#instrument) field in the summary, and it's quite useful for users to know
 that all data is going to be the same resolution. Similarly it's useful to know the names of all the 
 [`platform` values](item-spec/common-metadata.md#instrument) that are used in the Collection. 
 
-* It is less useful to summarize fields that have numerous different discrete values that can't easily be represented
+- It is less useful to summarize fields that have numerous different discrete values that can't easily be represented
 in a range. These will mostly be string values, when there aren't just a handful of options. For example if you had a 
 'location' field that gave 3 levels of administrative region (like 'San Francisco, California, United States') to help people
 understand more intuitively where a shot was taken. If your Collection has millions of Items, or even hundreds, you don't want
 to include all the different location string values in a summary. 
 
-* Fields that consist of arrays are more of a judgement call. For example [`instruments`](item-spec/common-metadata.md#instrument)
+- Fields that consist of arrays are more of a judgement call. For example [`instruments`](item-spec/common-metadata.md#instrument)
 is straightforward and recommended, as the elements of the array are a discrete set of options. On the other hand 
-[`proj:transform`](https://github.com/stac-extensions/projection/blob/main/README.md#projtransform) makes no sense to summarize, as the union of all the values
+[`proj:transform`](https://github.com/stac-extensions/projection/blob/main/README.md#projtransform)
+makes no sense to summarize, as the union of all the values
 in the array are meaningless, as each Item is describing its transform, so combining them would just be a bunch of random numbers.
 So if the values contained in the array are independently meaningful (not interconnected) and there aren't hundreds of potential
 values then it is likely a good candidate to summarize.
 
-We do highly recommend including an [`eo:bands`](https://github.com/stac-extensions/eo/blob/main/README.md#eobands) summary if your Items implement `eo:bands`, 
+We do highly recommend including an [`eo:bands`](https://github.com/stac-extensions/eo/blob/main/README.md#eobands)
+summary if your Items implement `eo:bands`, 
 especially if it represents just one satellite or constellation. This should be a union of all the potential bands that you 
 have in assets. It is ok to only add the summary at the Collection level without putting an explicit `eo:bands` summary at the 
 `properties` level of an Item, since that is optional. This gives users of the Collection a sense of the sensor capabilities without 
@@ -537,7 +568,7 @@ able to use it on their local computer, so all links need to be relative. Or a t
 without knowing the final location that it will live at online, so it isn't possible to set absolute 'self' URL's. These use
 cases should utilize a catalog that follows the listed principles:
 
-* **Only relative href's in structural `links`**: The full catalog structure of links down to sub-catalogs and Items, and their 
+- **Only relative href's in structural `links`**: The full catalog structure of links down to sub-catalogs and Items, and their 
 links back to their parents and roots, should be done with relative URL's. The structural rel types include `root`, `parent`, 
 `child`, `item`, and `collection`. Other links can be absolute, especially if they describe a resource that makes less sense in
 the catalog, like [sci:doi](https://github.com/stac-extensions/scientific/blob/main/README.md#item-and-collection-fields), 
@@ -545,7 +576,7 @@ the catalog, like [sci:doi](https://github.com/stac-extensions/scientific/blob/m
 online location which makes more sense to refer to directly). This enables the full catalog to be downloaded or
 copied to another location and to still be valid. This also implies no `self` link, as that link must be absolute.
 
-* **Use Asset `href` links consistently**: The links to the actual assets are allowed to be either relative or absolute. There
+- **Use Asset `href` links consistently**: The links to the actual assets are allowed to be either relative or absolute. There
 are two types of 'self-contained catalogs'. 
 
 #### Self-contained Metadata Only
@@ -564,7 +595,9 @@ and used in other contexts. That catalog could be used offline, or even publishe
 
 Self-contained catalogs are not just for offline use, however - they are designed to be able to be published online and to live
 on the cloud in object storage. They just aim to ease the burden of publishing, by not requiring lots of updating of links. 
-Adding a single `self` link at the root is recommended for online catalogs, turning it into a 'relative published catalog', as detailed below. This anchors it in an online location and enables provenance tracking.
+Adding a single `self` link at the root is recommended for online catalogs,
+turning it into a 'relative published catalog', as detailed below.
+This anchors it in an online location and enables provenance tracking.
 
 #### Published Catalogs
 
@@ -586,9 +619,9 @@ implement it.
 #### Relative Published Catalog
 
 This is a self-contained catalog as described above, except it includes an absolute `self` link at
-the root catalog, to identify its online location. This is designed so that a self-contained catalog (of either type, with its 
+the root to identify its online location. This is designed so that a self-contained catalog (of either type, with its 
 assets or just metadata) can be 'published' online
-by just adding one field (the self link) to its root catalog. All the other links should remain the same. The resulting catalog
+by just adding one field (the self link) to its root (Catalog or Collection). All the other links should remain the same. The resulting catalog
 is no longer compliant with the self-contained catalog recommendations, but instead transforms into a 'relative published catalog'. 
 With this, a client may resolve Item and sub-catalog self links by traversing parent and root links, but requires reading 
 multiple sources to achieve this. 
@@ -605,17 +638,23 @@ with the `type` field) to communicate the structure and content of related entit
 Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) as much as possible. The following table describes
 a number of the common official relations that are used in production STAC implementations.
 
-| Type         | Description                                                  |
-| ------------ | ------------------------------------------------------------ |
+| Type      | Description                                                  |
+| --------- | ------------------------------------------------------------ |
 | alternate | It is recommended that STAC Items are also available as HTML, and should use this rel with `"type" : "text/html"` to tell clients where they can get a version of the Item or Collection to view in a browser. See [STAC on the Web in Best Practices](#stac-on-the-web) for more information. |
 | canonical | The URL of the [canonical](https://en.wikipedia.org/wiki/Canonical_link_element) version of the Item or Collection. API responses and copies of catalogs should use this to inform users that they are direct copy of another STAC Item, using the canonical rel to refer back to the primary location. |
 | via       | The URL of the source metadata that this STAC Item or Collection is created from. Used similarly to canonical, but refers back to a non-STAC record (Landsat MTL, Sentinel tileInfo.json, etc) |
-| prev      | Indicates that the link's context is a part of a series, and that the previous in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs. |
-| next      | Indicates that the link's context is a part of a series, and that the next in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs. |
+| prev      | Indicates that the link's context is a part of a series, and that the previous in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs/Collections. |
+| next      | Indicates that the link's context is a part of a series, and that the next in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs/Collections. |
+| preview   | Refers to a resource that serves as a preview (see [RFC 6903, sec. 3](https://tools.ietf.org/html/rfc6903#section-3)), usually a lower resolution thumbnail. In STAC this would usually be the same URL as the [thumbnail](#thumbnail) asset, but adding it as a link in addition enables OGC API clients that can't read assets to make use of it. It also adds support for thumbnails to STAC Catalogs as they can't list assets. |
+
+Being liberal with the `links` also means that it's ok to have repeated links with the same `href`. For example the
+`parent` and `root` relation types will point at the same file when the child is directly below the root, and it is
+recommended to include both. 
 
 ### Versioning for Catalogs
 
-In the Item and Collection STAC JSON, versions and deprecation can be indicated with the [Versioning Indicators Extension](https://github.com/stac-extensions/version).
+In the Item and Collection STAC JSON, versions and deprecation can be indicated with the
+[Versioning Indicators Extension](https://github.com/stac-extensions/version).
 
 The [Items and Collections API Version Extension](https://github.com/stac-extensions/version/) provides endpoints and 
 semantics for keeping and accessing previous versions of Collections and Items. The same semantics can be used in static 
@@ -634,12 +673,14 @@ cycle is repeated:
 
 #### Example
 
-When the record `my_item.json` is created, a copy of it is also created. `my_item.json` includes `permalink` to `my_item_01.json`. The version suffix of the file name is taken from the version field of the record when it is available.
+When the record `my_item.json` is created, a copy of it is also created. `my_item.json` includes `permalink` to `my_item_01.json`.
+The version suffix of the file name is taken from the version field of the record when it is available.
 
 - `root / collections / example_collection / items / my_item / my_item.json`
 - `root / collections / example_collection / items / my_item / my_item_01.json`
 
-When `my_item.json` is updated, the new `my_item.json` includes a link to `my_item_01.json` and is also copied to `my_item_02.json`. This ensures that `my_item_02.json` includes a link to `my_item_01.json`
+When `my_item.json` is updated, the new `my_item.json` includes a link to `my_item_01.json` and is also copied to `my_item_02.json`.
+This ensures that `my_item_02.json` includes a link to `my_item_01.json`
 
 - `root / collections / example_collection / items / my_item / my_item.json`
 - `root / collections / example_collection / items / my_item / my_item_01.json`
@@ -667,9 +708,11 @@ as everything but the links should be the same.
 
 #### Keep catalogs in sync with cloud notification and queue services
 
-There is a set of emerging practices to use services like Amazon's Simple Queue Service (SQS) and Simple Notification Service
-(SNS) to keep catalogs in sync. There is a great [blog post on the CBERS STAC implementation on AWS](https://aws.amazon.com/blogs/publicsector/keeping-a-spatiotemporal-asset-catalog-stac-up-to-date-with-sns-sqs/). The core 
-idea is that a static catalog should emit a notification whenever it changes. The recommendation for SNS is to use the STAC 
+There is a set of emerging practices to use services like Amazon's Simple Queue Service (SQS)
+and Simple Notification Service (SNS) to keep catalogs in sync.
+There is a great [blog post](https://aws.amazon.com/blogs/publicsector/keeping-a-spatiotemporal-asset-catalog-stac-up-to-date-with-sns-sqs/)
+on the CBERS STAC implementation on AWS.
+The core idea is that a static catalog should emit a notification whenever it changes. The recommendation for SNS is to use the STAC 
 Item JSON as the message body, with some fields such as a scene’s datetime and geographic bounding box that allows 
 basic geographic filtering from listeners. 
 

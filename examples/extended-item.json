@@ -1,5 +1,5 @@
 {
-  "stac_version": "1.0.0-rc.2",
+  "stac_version": "1.0.0-rc.3",
   "stac_extensions": [
     "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
     "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
@@ -45,12 +45,12 @@
   "properties": {
     "title": "Extended Item",
     "description": "A sample STAC Item that includes a variety of examples from the stable extensions",
-    "datetime": "2020-12-11T22:38:32.125Z",
-    "created": "2020-12-12T01:48:13.725Z",
-    "updated": "2020-12-12T01:48:13.725Z",
+    "datetime": "2020-12-14T18:02:31.437000Z",
+    "created": "2020-12-15T01:48:13.725Z",
+    "updated": "2020-12-15T01:48:13.725Z",
     "platform": "cool_sat2",
     "instruments": [
-      "cool_sensor_v1"
+      "cool_sensor_v2"
     ],
     "gsd": 0.66,
     "eo:cloud_cover": 1.2,
@@ -90,6 +90,11 @@
     },
     {
       "rel": "root",
+      "href": "./collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
       "href": "./collection.json",
       "type": "application/json"
     },

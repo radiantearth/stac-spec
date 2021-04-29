@@ -1,3 +1,4 @@
+<!--lint disable no-html-->
 <img src="https://github.com/radiantearth/stac-site/raw/master/images/logo/stac-030-long.png" alt="stac-logo" width="700"/>
 
 [![CircleCI](https://circleci.com/gh/radiantearth/stac-spec.svg?style=svg)](https://circleci.com/gh/radiantearth/stac-spec)
@@ -83,23 +84,24 @@ that enable clients to search for Item objects that match their filtering criter
 The **Item**, **Catalog**, **Collection**, and **STAC API** specifications are intended to be 
 used together, but are designed so each piece is small, self-contained, and reusable in other contexts.
 
-* **[Overview](overview.md)** describes the three core object type specifications and how they relate to one another.
-* **[Item Specification](item-spec/)** defines a STAC **Item**, which is a [GeoJSON](http://geojson.org) **Feature**
-with additional fields ("foreign members") for attributes like time and links to related entities and assets 
-(including thumbnails). This is the core entity that describes the data to be discovered.
-* **[Catalog Specification](catalog-spec/)** specifies a structure to link various STAC Items together to be crawled or browsed. It is a
-simple, flexible JSON file of links to Items, Catalogs or Collections that can be used in a variety of ways.
-* **[Collection Specification](collection-spec/)** provides additional information about a spatio-temporal collection of data.
-In the context of STAC it is most likely a related group of STAC Items that is made available by a data provider.
-It includes things like the spatial and temporal extent of the data, the license, keywords, etc.
-It enables discovery at a higher level than individual Item objects, providing a simple way to describe sets of data.
-* **[Examples](examples/):** The *[examples/](examples/)* folder contains examples for all three specifications, linked together to form two 
-complete examples. Each spec and extension links in to highlight particular files that demonstrate key concepts.
-* **[Extensions](extensions/README.md)** describe how STAC can use extensions that extend the functionality of the core spec or 
-add fields for specific domains. Extensions can be published anywhere, although the preferred location for public extensions is in the [GitHub `stac-extensions` organization](https://github.com/stac-extensions).
-* **Additional documents:** The supporting documents include a complementary [best practices](best-practices.md) 
-document, and information on contributing (links in the next section). We also maintain a [changelog](CHANGELOG.md) of
-what was modified in each version. 
+- **[Overview](overview.md)** describes the three core object type specifications and how they relate to one another.
+- **[Item Specification](item-spec/)** defines a STAC **Item**, which is a [GeoJSON](http://geojson.org) **Feature**
+  with additional fields ("foreign members") for attributes like time and links to related entities and assets 
+  (including thumbnails). This is the core entity that describes the data to be discovered.
+- **[Catalog Specification](catalog-spec/)** specifies a structure to link various STAC Items together to be crawled or browsed. It is a
+  simple, flexible JSON file of links to Items, Catalogs or Collections that can be used in a variety of ways.
+- **[Collection Specification](collection-spec/)** provides additional information about a spatio-temporal collection of data.
+  In the context of STAC it is most likely a related group of STAC Items that is made available by a data provider.
+  It includes things like the spatial and temporal extent of the data, the license, keywords, etc.
+  It enables discovery at a higher level than individual Item objects, providing a simple way to describe sets of data.
+- **[Examples](examples/):** The *[examples/](examples/)* folder contains examples for all three specifications, linked together to form two 
+  complete examples. Each spec and extension links in to highlight particular files that demonstrate key concepts.
+- **[Extensions](extensions/README.md)** describe how STAC can use extensions that extend the functionality of the core spec or 
+  add fields for specific domains. Extensions can be published anywhere,
+  although the preferred location for public extensions is in the [GitHub `stac-extensions` organization](https://github.com/stac-extensions).
+- **Additional documents:** The supporting documents include a complementary [best practices](best-practices.md) 
+  document, and information on contributing (links in the next section). We also maintain a [changelog](CHANGELOG.md) of
+  what was modified in each version. 
 
 ## Contributing
 

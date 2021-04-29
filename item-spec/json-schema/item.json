@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.stacspec.org/v1.0.0-rc.2/item-spec/json-schema/item.json#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-rc.3/item-spec/json-schema/item.json#",
   "title": "STAC Item",
   "type": "object",
   "description": "This object represents the metadata for an item in a SpatioTemporal Asset Catalog.",
@@ -93,7 +93,7 @@
             "stac_version": {
               "title": "STAC version",
               "type": "string",
-              "const": "1.0.0-rc.2"
+              "const": "1.0.0-rc.3"
             },
             "stac_extensions": {
               "title": "STAC extensions",
@@ -159,12 +159,42 @@
                   ]
                 }
               ]
-            },
-            "collection": {
-              "title": "Collection ID",
-              "description": "The ID of the STAC Collection this Item references to.",
-              "type": "string",
-              "minLength": 1
+            }
+          },
+          "if": {
+            "properties": {
+              "links": {
+                "contains": {
+                  "required": [
+                    "rel"
+                  ],
+                  "properties": {
+                    "rel": {
+                      "const": "collection"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "collection"
+            ],
+            "properties": {
+              "collection": {
+                "title": "Collection ID",
+                "description": "The ID of the STAC Collection this Item references to.",
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "collection": {
+                "not": {}
+              }
             }
           }
         }

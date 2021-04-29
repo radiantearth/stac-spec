@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.stacspec.org/v1.0.0-rc.2/collection-spec/json-schema/collection.json#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-rc.3/collection-spec/json-schema/collection.json#",
   "title": "STAC Collection Specification",
   "description": "This object represents Collections in a SpatioTemporal Asset Catalog.",
   "allOf": [
@@ -153,7 +153,8 @@
                         "string",
                         "null"
                       ],
-                      "format": "date-time"
+                      "format": "date-time",
+                      "pattern": "(\\+00:00|Z)$"
                     }
                   }
                 }

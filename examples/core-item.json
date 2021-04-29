@@ -1,5 +1,5 @@
 {
-  "stac_version": "1.0.0-rc.2",
+  "stac_version": "1.0.0-rc.3",
   "stac_extensions": [],
   "type": "Feature",
   "id": "20201211_223832_CS2",
@@ -44,7 +44,7 @@
     "end_datetime": "2020-12-11T22:38:32.327Z",
     "created": "2020-12-12T01:48:13.725Z",
     "updated": "2020-12-12T01:48:13.725Z",
-    "platform": "cool_sat2",
+    "platform": "cool_sat1",
     "instruments": [
       "cool_sensor_v1"
     ],
@@ -62,6 +62,11 @@
     },
     {
       "rel": "root",
+      "href": "./collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
       "href": "./collection.json",
       "type": "application/json"
     },
