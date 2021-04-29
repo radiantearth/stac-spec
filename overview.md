@@ -31,7 +31,8 @@ building small reusable parts that are loosely coupled, focusing on developers, 
 [principles](principles.md) document to learn more.
 
 *Note: Setting a field in JSON to `null` is not equivalent to a field not appearing in STAC, as JSON Schema tools treat
-them differently. STAC defines `null` explicitly for some fields, where it has a particular meaning. So `null` should not be used unless the STAC spec defines its use - instead the field should be left out entirely.* 
+them differently. STAC defines `null` explicitly for some fields, where it has a particular meaning. So `null` should 
+not be used unless the STAC spec defines its use - instead the field should be left out entirely.* 
 
 ## Item Overview
 
