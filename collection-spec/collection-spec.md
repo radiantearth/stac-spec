@@ -92,7 +92,8 @@ and consumers have not been granted any explicit right to use the data.
 Collections are *strongly recommended* to provide summaries of the values of fields that they can expect from the `properties` 
 of STAC Items contained in this Collection. This enables users to get a good sense of what the ranges and potential values of 
 different fields in the Collection are, without having to inspect a number of Items (or crawl them exhaustively to get a definitive answer). 
-Summaries are often used to give users a sense of the data in [Standalone Collections](#standalone-collections), describing the potential values even when it can't be accessed as Items. They also give clients enough information to 
+Summaries are often used to give users a sense of the data in [Standalone Collections](#standalone-collections),
+describing the potential values even when it can't be accessed as Items. They also give clients enough information to 
 build tailored user interfaces for querying the data, by presenting the potential values that are available.
  Fields selected to be included in summaries should capture all the potential values of the 
  field that appear in every Item underneath the collection, including in any nested sub-Catalogs.
