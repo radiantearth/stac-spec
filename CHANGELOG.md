@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Summaries are allowed to specify JSON Schema in addition to ranges and sets of values. ([#1045](https://github.com/radiantearth/stac-spec/issues/1045))
 - Added `preview` relation type for interoperable thumbnails to best practices. ([#1090](https://github.com/radiantearth/stac-spec/issues/1090))
 - Recommendation to include both `root` and `parent` relation types when they point at the same file.
-- Overview section linking to various foundational standards. 
+- Overview section linking to various foundational standards. ([#1111](https://github.com/radiantearth/stac-spec/pull/1111))
 
 ### Changed
 
@@ -23,7 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `changed`, `created` (common metadata) and temporal extents (collections): Timestamps must be always in UTC ([#1095](https://github.com/radiantearth/stac-spec/issues/1095))
 - Clarified that collection summaries do not require that all property fields are summarized. ([#1106](https://github.com/radiantearth/stac-spec/issues/1106))
 - Clarified that gsd should only be used on an asset to represent the sensor, not just different processing. ([#1105](https://github.com/radiantearth/stac-spec/pull/1105))
-- Clarified that leaving a field out is not equivalent to setting it as null. 
+- Clarified that leaving a field out is not equivalent to setting it as null. ([#1111](https://github.com/radiantearth/stac-spec/pull/1111))
 
 ## [v1.0.0-rc.2] - 2021-03-30
 
