@@ -1,0 +1,149 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-rc.3/catalog-spec/json-schema/catalog-core.json#",
+  "title": "Common STAC Catalog + Collection Fields",
+  "description": "This object represents the common fields shared by Catalogs and Collections",
+  "allOf": [
+    {
+      "$ref": "#/definitions/catalogCore"
+    }
+  ],
+  "definitions": {
+    "catalogCore": {
+      "title": "Catalog Core Fields",
+      "type": "object",
+      "required": [
+        "stac_version",
+        "id",
+        "description",
+        "links"
+      ],
+      "properties": {
+        "stac_version": {
+          "title": "STAC version",
+          "type": "string",
+          "const": "1.0.0-rc.3"
+        },
+        "stac_extensions": {
+          "title": "STAC extensions",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "anyOf": [
+              {
+                "title": "Reference to a JSON Schema",
+                "type": "string",
+                "format": "iri"
+              },
+              {
+                "title": "Reference to a core extension",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "id": {
+          "title": "Identifier",
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "minLength": 1
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/link"
+          }
+        },
+        "summaries": {
+          "$ref": "#/definitions/summaries"
+        }
+      }
+    },
+    "link": {
+      "type": "object",
+      "required": [
+        "rel",
+        "href"
+      ],
+      "properties": {
+        "href": {
+          "title": "Link reference",
+          "type": "string",
+          "format": "iri-reference",
+          "minLength": 1
+        },
+        "rel": {
+          "title": "Link relation type",
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "title": "Link type",
+          "type": "string"
+        },
+        "title": {
+          "title": "Link title",
+          "type": "string"
+        }
+      }
+    },
+    "summaries": {
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "title": "JSON Schema",
+            "type": "object",
+            "minProperties": 1,
+            "allOf": [
+              {
+                "$ref": "http://json-schema.org/draft-07/schema"
+              }
+            ]
+          },
+          {
+            "title": "Range",
+            "type": "object",
+            "required": [
+              "minimum",
+              "maximum"
+            ],
+            "properties": {
+              "minimum": {
+                "title": "Minimum value",
+                "type": [
+                  "number",
+                  "string"
+                ]
+              },
+              "maximum": {
+                "title": "Maximum value",
+                "type": [
+                  "number",
+                  "string"
+                ]
+              }
+            }
+          },
+          {
+            "title": "Set of values",
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "description": "For each field only the original data type of the property can occur (except for arrays), but we can't validate that in JSON Schema yet. See the sumamry description in the STAC specification for details."
+            }
+          }
+        ]
+      }
+    }
+  }
+}
