@@ -255,8 +255,10 @@ providing them at at the Asset level can prove to be very useful for using the d
 
 - `datetime`: Provide individual timestamp on an Item, in case the Item has a `start_datetime` and `end_datetime`,
   but an Asset is for one specific time.
-- `gsd` ([Common Metadata](item-spec/common-metadata.md#instrument)): Specify some assets with different spatial resolution 
-than the overall best resolution.
+- `gsd` ([Common Metadata](item-spec/common-metadata.md#instrument)): Specify some assets that represent instruments 
+  with different spatial resolution than the overall best resolution. Note this should not be used for different 
+  spatial resolutions due to specific processing of assets - look into the [raster 
+  extension](https://github.com/stac-extensions/raster) for that use case.
 - `eo:bands` ([EO extension](https://github.com/stac-extensions/eo/)):
   Provide spectral band information, and order of bands, within an individual asset.
 - `proj:epsg`/`proj:wkt2`/`proj:projjson` ([projection extension](https://github.com/stac-extensions/projection/)):
@@ -640,6 +642,10 @@ a number of the common official relations that are used in production STAC imple
 | prev      | Indicates that the link's context is a part of a series, and that the previous in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs/Collections. |
 | next      | Indicates that the link's context is a part of a series, and that the next in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs/Collections. |
 | preview   | Refers to a resource that serves as a preview (see [RFC 6903, sec. 3](https://tools.ietf.org/html/rfc6903#section-3)), usually a lower resolution thumbnail. In STAC this would usually be the same URL as the [thumbnail](#thumbnail) asset, but adding it as a link in addition enables OGC API clients that can't read assets to make use of it. It also adds support for thumbnails to STAC Catalogs as they can't list assets. |
+
+Being liberal with the `links` also means that it's ok to have repeated links with the same `href`. For example the
+`parent` and `root` relation types will point at the same file when the child is directly below the root, and it is
+recommended to include both. 
 
 ### Versioning for Catalogs
 
