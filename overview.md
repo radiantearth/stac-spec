@@ -21,8 +21,8 @@ JSON Schemas provide the core testing definitions, and are used in an array of v
 on [RFC 8288 (Web Linking)](https://tools.ietf.org/rfc/rfc8288.txt) to express relationships between resources,
 and IANA [Media Types](https://en.wikipedia.org/wiki/Media_type) to describe file formats and format contents.
 The [OGC API - Features](https://ogcapi.ogc.org/features/) standard is a final core building block. The STAC
-Collection extends their [Feature Collection](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html#_collection_)
-(and the full API is the foundation for the STAC API specification).
+Collection extends their [Collection](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html#_collection_)
+JSON (and the full API is the foundation for the STAC API specification).
 
 The STAC specifications are written to be understandable without needing a full background in these. But if you 
 want to get deep into STAC tool implementation and are not familiar with any of the standards mentioned above it is 
@@ -30,9 +30,8 @@ recommended to read up on them. STAC development is guided by set of core philos
 building small reusable parts that are loosely coupled, focusing on developers, and more - see our the 
 [principles](principles.md) document to learn more.
 
-*Note: Setting a field in JSON to `null` is not equivalent to a field not appearing. STAC defines `null` explicitly 
-for some fields, where it has a particular meaning. It should not be used otherwise - instead the field should be left 
-out entirely.* 
+*Note: Setting a field in JSON to `null` is not equivalent to a field not appearing in STAC, as JSON Schema tools treat
+them differently. STAC defines `null` explicitly for some fields, where it has a particular meaning. So `null` should not be used unless the STAC spec defines its use - instead the field should be left out entirely.* 
 
 ## Item Overview
 
