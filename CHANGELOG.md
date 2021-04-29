@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- Summaries are allowed to specify JSON Schema in addition to ranges and sets of values. ([#1045](https://github.com/radiantearth/stac-spec/issues/1045))
 - Added `preview` relation type for interoperable thumbnails to best practices. ([#1090](https://github.com/radiantearth/stac-spec/issues/1090))
 - Recommendation to include both `root` and `parent` relation types when they point at the same file.
 
@@ -17,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - The first extent in a Collection is always the overall extent, followed by more specific extents. ([#1064](https://github.com/radiantearth/stac-spec/issues/1064), [opengeospatial/ogcapi-features#520](https://github.com/opengeospatial/ogcapi-features/pull/520))
 - Updated examples for automatic collection creation from code and validation ([#1080](https://github.com/radiantearth/stac-spec/pull/1080))
 - Clarified that stac_extensions should also list extensions that are used in Collection summaries. ([#1077](https://github.com/radiantearth/stac-spec/issues/1077))
+- The Stats Object for Summaries has been renamed to Range Object (no functional change).
 - `changed`, `created` (common metadata) and temporal extents (collections): Timestamps must be always in UTC ([#1095](https://github.com/radiantearth/stac-spec/issues/1095))
 - Clarified that gsd should only be used on an asset to represent the sensor, not just different processing. ([#1105](https://github.com/radiantearth/stac-spec/pull/1105))
 
@@ -53,7 +55,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-- The [Stats Object](collection-spec/collection-spec.md#stats-object) for Collection `summaries` changed `min` to `minimum` and `max` to `maximum` to align with JSON Schema. ([#967](https://github.com/radiantearth/stac-spec/pull/967))
+- The [Stats Object](collection-spec/collection-spec.md#range-object) for Collection `summaries` changed `min` to `minimum` and `max` to `maximum` to align with JSON Schema. ([#967](https://github.com/radiantearth/stac-spec/pull/967))
 - URIs (usually found int properties like `href`, `url`) are now validated using the `iri-reference` format in JSON Schema (allows international characters in URIs) ([#953](https://github.com/radiantearth/stac-spec/pull/953))
 - Enhanced the way the spec talks about ID's to encourage more global uniqueness. ([#883](https://github.com/radiantearth/stac-spec/pull/883))
 - Clarified how collection-level asset object properties do not remove the need for item-level asset object properties in the `item-assets` extension ([#880](https://github.com/radiantearth/stac-spec/pull/880))

@@ -16,7 +16,8 @@
   - [Link Object](#link-object)
     - [Relation types](#relation-types)
   - [Asset Object](#asset-object)
-  - [Stats Object](#stats-object)
+  - [Range Object](#range-object)
+  - [JSON Schema Object](#json-schema-object)
 - [Media Type for STAC Collections](#media-type-for-stac-collections)
 - [Standalone Collections](#standalone-collections)
 
@@ -54,7 +55,7 @@ specified in [*OGC API - Features*](https://ogcapi.ogc.org/features/), but they 
 | license         | string                                           | **REQUIRED.** Collection's license(s), either a SPDX [License identifier](https://spdx.org/licenses/), `various` if multiple licenses apply or `proprietary` for all other cases. |
 | providers       | \[[Provider Object](#provider-object)]           | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | extent          | [Extent Object](#extent-object)                  | **REQUIRED.** Spatial and temporal extents.                  |
-| summaries       | Map<string, \[*]\|[Stats Object](#stats-object)> | STRONGLY RECOMMENDED. A map of property summaries, either a set of values or statistics such as a range. |
+| summaries       | Map<string, \[\*]\|[Range Object](#range-object)\|[JSON Schema Object](#json-schema-object)> | STRONGLY RECOMMENDED. A map of property summaries, either a set of values, a range of values or a [JSON Schema](https://json-schema.org). |
 | links           | \[[Link Object](#link-object)]                   | **REQUIRED.** A list of references to other documents.       |
 | assets          | Map<string, [Asset Object](#asset-object)>       | Dictionary of asset objects that can be downloaded, each with a unique key. |
 
@@ -95,15 +96,17 @@ Summaries help to fully define Collections, especially if they don't link to any
 build tailored user interfaces for querying the data, by presenting the potential values that are available.
 Summaries should summarize all values in every Item underneath the collection, including in any nested sub-Catalogs.
 
-A summary for a field can be specified in two ways:
+A summary for a field can be specified in three ways:
 
 1. A set of all distinct values in an array: The set of values must contain at least one element and it is strongly recommended to list all values.
    If the field summarizes an array (e.g. [`instruments`](../item-spec/common-metadata.md#instrument)),
    the field's array elements of each Item must be merged to a single array with unique elements.
-2. Statistics in a [Stats Object](#stats-object): Statistics by default only specify the range (minimum and maximum values),
+2. A Range in a [Range Object](#range-object): Statistics by default only specify the range (minimum and maximum values),
    but can optionally be accompanied by additional statistical values.
    The range specified by the `minimum` and `maximum` properties can specify the potential range of values,
    but it is recommended to be as precise as possible.
+3. Extensible JSON Schema definitions for fine-grained information, see the [JSON Schema Object](#json-schema-object)
+   section for more.
 
 All values must follow the schema of the property they summarize.
 So the values in the array or the values given for `minimum` and `maxmimum` must comply to the original data type
@@ -281,9 +284,9 @@ or streamed. The definition provided here, at the Collection level, is the same 
 | type        | string    | [Media type](../item-spec/item-spec.md#asset-media-type) of the asset. See the [common media types](../best-practices.md#common-media-types-in-stac) in the best practice doc for commonly used asset types. |
 | roles       | \[string] | The [semantic roles](../item-spec/item-spec.md#asset-role-types) of the asset, similar to the use of `rel` in links. |
 
-### Stats Object
+### Range Object
 
-For a good understanding of the summarized field, statistics can be added.
+For summaries that would normally consist of a lot of continuous values, statistics can be added instead.
 By default, only ranges with a minimum and a maximum value can be specified.
 Ranges can be specified for [ordinal](https://en.wikipedia.org/wiki/Level_of_measurement#Ordinal_scale) values only,
 which means they need to have a rank order.
@@ -294,6 +297,17 @@ Implementors are free to add other derived statistical values to the object, for
 | ---------- | -------------- | ----------- |
 | minimum    | number\|string | **REQUIRED.** Minimum value. |
 | maximum    | number\|string | **REQUIRED.** Maximum value. |
+
+### JSON Schema Object
+
+For a full understanding of the summarized field, a JSON Schema can be added for each summarized field.
+This allows very fine-grained information for each field and each value as JSON Schema is also extensible.
+Each schema must be valid against all corresponding values available for the property in the sub-Items.
+
+It is recommended to use [JSON Schema draft-07](https://json-schema.org/specification-links.html#draft-7)
+to align with the JSON Schemas provided by STAC. Empty schemas are not allowed.
+
+For an introduction to JSON Schema, see "[Learn JSON Schema](https://json-schema.org/learn/)".
 
 ## Media Type for STAC Collections
 
