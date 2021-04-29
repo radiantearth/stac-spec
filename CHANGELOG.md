@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Clarified that stac_extensions should also list extensions that are used in Collection summaries. ([#1077](https://github.com/radiantearth/stac-spec/issues/1077))
 - The Stats Object for Summaries has been renamed to Range Object (no functional change).
 - `changed`, `created` (common metadata) and temporal extents (collections): Timestamps must be always in UTC ([#1095](https://github.com/radiantearth/stac-spec/issues/1095))
+- Clarified that collection summaries do not require that all property fields are summarized. ([#1106](https://github.com/radiantearth/stac-spec/issues/1106))
 - Clarified that gsd should only be used on an asset to represent the sensor, not just different processing. ([#1105](https://github.com/radiantearth/stac-spec/pull/1105))
 
 ## [v1.0.0-rc.2] - 2021-03-30
