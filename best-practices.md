@@ -155,7 +155,7 @@ data. One of the key properties is the ID. The specification is quite flexible o
 providers can easily use their same ID when they translate their data into STAC - they just need to be sure it is globally
 unique, so may need a prefix. But the use of URI or file path reserved characters such as `:` or `/` is discouraged since this will 
 result in [percented encoded](https://tools.ietf.org/html/rfc3986#section-2) [STAC API](https://github.com/radiantearth/stac-api-spec) 
-endpoints and also the [IDs can't be used as file names](#catalog-layout).
+endpoints and it prevents the use of IDs as file names as recommended in the [catalog layout](#catalog-layout) best practices.
 
 ### Searchable Identifiers
 
