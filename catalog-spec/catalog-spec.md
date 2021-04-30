@@ -94,7 +94,7 @@ The following types are commonly used as `rel` types in the Link Object of a STA
 | child   | URL to a child STAC entity (Catalog or Collection). |
 | item    | URL to a STAC Item. |
 
-**Note:** A link to at least one `item` or `child` (Catalog or Collection) is **REQUIRED**.
+**Note:** Empty catalogs are allowed (i.e. without no `item` or `child` link).
 
 There are additional `rel` types in the [Using Relation Types](../best-practices.md#using-relation-types) best practice, but as 
 they are more typically used in Collections, as Catalogs tend to just be used to structure STAC organization, so tend to just use

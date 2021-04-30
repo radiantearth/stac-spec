@@ -27,7 +27,7 @@
           "title": "Links",
           "type": "array",
           "contains": {
-            "description": "A link to at least one `item` or `child` is REQUIRED in Catalogs.",
+            "description": "A link `item` or `child`.",
             "type": "object",
             "properties": {
               "rel": {
