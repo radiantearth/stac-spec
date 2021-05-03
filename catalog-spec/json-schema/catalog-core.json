@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.stacspec.org/v1.0.0-rc.3/catalog-spec/json-schema/catalog-core.json#",
+  "$id": "https://schemas.stacspec.org/v1.0.0-rc.4/catalog-spec/json-schema/catalog-core.json#",
   "title": "Common STAC Catalog + Collection Fields",
   "description": "This object represents the common fields shared by Catalogs and Collections",
   "allOf": [
@@ -22,7 +22,7 @@
         "stac_version": {
           "title": "STAC version",
           "type": "string",
-          "const": "1.0.0-rc.3"
+          "const": "1.0.0-rc.4"
         },
         "stac_extensions": {
           "title": "STAC extensions",
