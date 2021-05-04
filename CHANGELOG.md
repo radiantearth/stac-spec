@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - An empty Catalog is now allowed, removed the requirement that it must have a child or item link. ([#1115](https://github.com/radiantearth/stac-spec/issues/1115))
+- Catalog and Collection JSON Schemas don't have a common JSON Schema any more
+
+### Removed 
+
+- Catalogs don't support summaries any more
 
 ## [v1.0.0-rc.3] - 2021-04-29
 
