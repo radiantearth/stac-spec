@@ -50,7 +50,6 @@ values for `type` and `stac_extensions`.
 | id              | string        | **REQUIRED.** Identifier for the Catalog.                    |
 | title           | string        | A short descriptive one-line title for the Catalog.          |
 | description     | string        | **REQUIRED.** Detailed multi-line description to fully explain the Catalog. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| summaries       | Map<string, \[\*]\|[Range Object](../collection-spec/collection-spec.md#range-object)\|[JSON Schema Object](../collection-spec/collection-spec.md#json-schema-object)> | A map of property summaries, either a set of values, a range of values or a [JSON Schema](https://json-schema.org). More info in the [Collection spec](../collection-spec/collection-spec.md#summaries). |
 | links           | [[Link Object](#link-object)] | **REQUIRED.** A list of references to other documents.       |
 
 ### Additional Field Information
