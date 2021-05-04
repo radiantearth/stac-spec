@@ -10,7 +10,7 @@
   ],
   "definitions": {
     "catalog": {
-      "title": "Catalog Core Fields",
+      "title": "STAC Catalog",
       "type": "object",
       "required": [
         "stac_version",
