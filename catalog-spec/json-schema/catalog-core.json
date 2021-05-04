@@ -29,17 +29,9 @@
           "type": "array",
           "uniqueItems": true,
           "items": {
-            "anyOf": [
-              {
-                "title": "Reference to a JSON Schema",
-                "type": "string",
-                "format": "iri"
-              },
-              {
-                "title": "Reference to a core extension",
-                "type": "string"
-              }
-            ]
+            "title": "Reference to a JSON Schema",
+            "type": "string",
+            "format": "iri"
           }
         },
         "id": {

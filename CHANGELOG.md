@@ -31,6 +31,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Clarified that gsd should only be used on an asset to represent the sensor, not just different processing. ([#1105](https://github.com/radiantearth/stac-spec/pull/1105))
 - Clarified that leaving a field out is not equivalent to setting it as null. ([#1111](https://github.com/radiantearth/stac-spec/pull/1111))
 
+### Fixed
+
+- JSON Schemas don't allow "shortcuts" for core extensions any longer
+
 ## [v1.0.0-rc.2] - 2021-03-30
 
 ### Changed
