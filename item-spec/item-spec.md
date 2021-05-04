@@ -90,7 +90,7 @@ As most geospatial assets are already uniquely defined by some
 identification scheme from the data provider it is recommended to simply use that ID.
 Data providers are advised to include sufficient information to make their IDs globally unique,
 including things like unique satellite IDs.
-See the [id section of best practices](../best-practices.md#field-and-id-formatting) for additional recommendations.
+See the [id section of best practices](../best-practices.md#item-ids) for additional recommendations.
 
 #### assets
 

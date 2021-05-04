@@ -7,21 +7,29 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- An empty Catalog is now allowed, removed the requirement that it must have a child or item link. ([#1115](https://github.com/radiantearth/stac-spec/issues/1115))
+
+## [v1.0.0-rc.3] - 2021-04-29
+
 ### Added
 
 - Summaries are allowed to specify JSON Schema in addition to ranges and sets of values. ([#1045](https://github.com/radiantearth/stac-spec/issues/1045))
 - Added `preview` relation type for interoperable thumbnails to best practices. ([#1090](https://github.com/radiantearth/stac-spec/issues/1090))
-- Recommendation to include both `root` and `parent` relation types when they point at the same file.
+- Recommendation to include both `root` and `parent` relation types when they point at the same file. ([#1098](https://github.com/radiantearth/stac-spec/issues/1098))
+- Overview section linking to various foundational standards. ([#1111](https://github.com/radiantearth/stac-spec/pull/1111))
 
 ### Changed
 
 - The first extent in a Collection is always the overall extent, followed by more specific extents. ([#1064](https://github.com/radiantearth/stac-spec/issues/1064), [opengeospatial/ogcapi-features#520](https://github.com/opengeospatial/ogcapi-features/pull/520))
 - Updated examples for automatic collection creation from code and validation ([#1080](https://github.com/radiantearth/stac-spec/pull/1080))
 - Clarified that stac_extensions should also list extensions that are used in Collection summaries. ([#1077](https://github.com/radiantearth/stac-spec/issues/1077))
-- The Stats Object for Summaries has been renamed to Range Object (no functional change).
+- The Stats Object for Summaries has been renamed to Range Object (no functional change). ([#1093](https://github.com/radiantearth/stac-spec/pull/1093))
 - `changed`, `created` (common metadata) and temporal extents (collections): Timestamps must be always in UTC ([#1095](https://github.com/radiantearth/stac-spec/issues/1095))
 - Clarified that collection summaries do not require that all property fields are summarized. ([#1106](https://github.com/radiantearth/stac-spec/issues/1106))
 - Clarified that gsd should only be used on an asset to represent the sensor, not just different processing. ([#1105](https://github.com/radiantearth/stac-spec/pull/1105))
+- Clarified that leaving a field out is not equivalent to setting it as null. ([#1111](https://github.com/radiantearth/stac-spec/pull/1111))
 
 ### Fixed
 
@@ -423,6 +431,7 @@ See the [milestone 0.4.0 in the issue tracker](https://github.com/radiantearth/s
 Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkamin, @hemphillda, @jeffnaus  and @fredliporace for contributing to the spec directly, and to [everyone](https://github.com/opengeospatial/wfs3hackathon/blob/master/notes/introductions.md#participants) who participated in the [Ft Collins sprint](https://github.com/radiantearth/community-sprints/tree/master/03072018-ft-collins-co) and brought great ideas.
 
 [Unreleased]: <https://github.com/radiantearth/stac-spec/compare/master...dev>
+[v1.0.0-rc.3]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-rc.2..v1.0.0-rc.3>
 [v1.0.0-rc.2]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-rc.1..v1.0.0-rc.2>
 [v1.0.0-rc.1]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-beta.2..v1.0.0-rc.1>
 [v1.0.0-beta.2]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-beta.1..v1.0.0-beta.2>

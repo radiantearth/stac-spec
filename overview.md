@@ -3,13 +3,36 @@
 There are three component specifications that together make up the core SpatioTemporal Asset Catalog specification.
 Each can be used alone, but they work best in concert with one another. The [STAC API specification](https://github.com/radiantearth/stac-api-spec) 
 builds on top of that core, but is out of scope for this overview. An [Item](item-spec/item-spec.md) represents a 
-single [spatiotemporal asset](#what-is-a-spatiotemporal-asset) as GeoJSON so it can be searched. 
+single [spatiotemporal asset](#what-is-a-spatiotemporal-asset) as [GeoJSON](https://geojson.org/) so it can be searched. 
 The [Catalog](catalog-spec/catalog-spec.md) specification provides structural elements, to group Items
 and [Collections](collection-spec/collection-spec.md). Collections *are* catalogs, that add more required metadata and 
 describe a group of related Items. For more on the differences see the [section below](#catalogs-vs-collections).
 
 A [UML diagram](https://en.wikipedia.org/wiki/Unified_Modeling_Language) of the [STAC model](STAC-UML.pdf) is also 
 provided to help with navigating the specification. 
+
+## Foundations
+
+STAC is built on top of many great standards and practices. Every part of STAC is 
+[JSON](https://www.json.org/json-en.html), and [GeoJSON](https://geojson.org/) provides the core geometry fields 
+and [features](https://en.wikipedia.org/wiki/Simple_Features) definition. All fields are described in the 
+specifications, and the acceptable values are defined with [JSON Schema](https://json-schema.org/). The released
+JSON Schemas provide the core testing definitions, and are used in an array of validation tools. We also rely
+on [RFC 8288 (Web Linking)](https://tools.ietf.org/rfc/rfc8288.txt) to express relationships between resources,
+and IANA [Media Types](https://en.wikipedia.org/wiki/Media_type) to describe file formats and format contents.
+The [OGC API - Features](https://ogcapi.ogc.org/features/) standard is a final core building block. The STAC
+Collection extends the [Collection](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html#_collection_)
+JSON defined in OGC API - Features (and the full API definition is the foundation for the STAC API specification).
+
+The STAC specifications are written to be understandable without needing a full background in these. But if you 
+want to get deep into STAC tool implementation and are not familiar with any of the standards mentioned above it is 
+recommended to read up on them. STAC development is guided by set of core philosophical tenets, like 
+building small reusable parts that are loosely coupled, focusing on developers, and more - see our the 
+[principles](principles.md) document to learn more.
+
+*Note: Setting a field in JSON to `null` is not equivalent to a field not appearing in STAC, as JSON Schema tools treat
+them differently. STAC defines `null` explicitly for some fields, where it has a particular meaning. So `null` should 
+not be used unless the STAC spec defines its use - instead the field should be left out entirely.* 
 
 ## Item Overview
 
