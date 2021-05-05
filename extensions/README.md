@@ -5,10 +5,10 @@
 - [The `stac_extensions` property](#the-stac_extensions-property)
 - [Stable STAC Extensions](#stable-stac-extensions)
 - [Community Extensions](#community-extensions)
-  - [Extension Maturity](#extension-maturity)
   - [Proposed extensions](#proposed-extensions)
 - [Extending STAC](#extending-stac)
   - [Proposing new extensions](#proposing-new-extensions)
+  - [Extension Maturity](#extension-maturity)
   - [Prefixes](#prefixes)
   - [Use of arrays and objects](#use-of-arrays-and-objects)
 
