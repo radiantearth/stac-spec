@@ -23,7 +23,7 @@
         "stac_version": {
           "title": "STAC version",
           "type": "string",
-          "const": "1.0.0-rc.3"
+          "const": "1.0.0-rc.4"
         },
         "stac_extensions": {
           "title": "STAC extensions",
