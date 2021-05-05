@@ -2,6 +2,7 @@
 
 - [Overview](#overview)
 - [General Conventions](#general-conventions)
+- [The `stac_extensions` property](#the-stac_extensions-property)
 - [Stable STAC Extensions](#stable-stac-extensions)
 - [Community Extensions](#community-extensions)
   - [Extension Maturity](#extension-maturity)
@@ -42,6 +43,25 @@ Each extension has at least one *owner*. You can find extension owners in each e
    the Item Asset objects contained in the Item, but may also be used in an individual Item Asset to describe only the bands available in that asset.
 3. Additional attributes relating to a [Catalog](../catalog-spec/catalog-spec.md) or
    [Collection](../collection-spec/collection-spec.md) should be added to the root of the object.
+
+## The `stac_extensions` property
+
+[Catalog](../catalog-spec/catalog-spec.md#stac_extensions), [Collection](../collection-spec/collection-spec.md#stac_extensions) and
+[Item](../item-spec/item-spec.md#stac_extensions) objects have a `stac_extensions` property which contain URLs to JSON Schemas used to
+validate the implementation of an extension. These JSON Schema URLs act as identifiers for specific version of the extension that the
+object implements. The logic for when an object should list an extension JSON Schema URL (referred to as the extension ID) in it's
+`stac_extension` property is as follows:
+
+- If the object directly implements the extension, the  `stac_extensions` property of that object should contain the extension ID.
+- If an Asset implements properties of the extension, then `stac_extensions` property of the Item or Collection which holds that
+  Asset should contain the extension ID.
+- If a Collection [summary](../collection-spec/collection-spec.md#summaries) contains Item properties that implement an extension, then
+  the `stac_extensions` property of that Collection should list the extension ID. For example, if a Collection `summaries` property
+  contains a summary of `eo:bands`, then that Collection should have the EO extension JSON Schema URL in the `stac_extensions` property.
+- If an object implements an extension that results in properties from a separate extension to be referenced, then the latter extension
+  ID should be included in the `stac_extension` property for that object. For example, if a Collection implements the
+  [item_assets](https://github.com/stac-extensions/item-assets) extension, and in the `item_assets` property there is an Asset Definition
+  which includes `eo:bands`, then the EO extension ID should be listed in that Collection's `stac_extensions` property.
 
 ## Stable STAC Extensions
 
