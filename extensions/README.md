@@ -1,12 +1,13 @@
 # Extensions
 
 - [Overview](#overview)
-- [General Conventions](#general-conventions)
-- [The `stac_extensions` property](#the-stac_extensions-property)
+- [Using Extensions](#using-extensions)
+  - [Extension IDs in `stac_extensions`](#extension-ids-in-stac_extensions)
 - [Stable STAC Extensions](#stable-stac-extensions)
 - [Community Extensions](#community-extensions)
   - [Proposed extensions](#proposed-extensions)
 - [Extending STAC](#extending-stac)
+  - [General Conventions](#general-conventions)
   - [Proposing new extensions](#proposing-new-extensions)
   - [Extension Maturity](#extension-maturity)
   - [Prefixes](#prefixes)
@@ -34,34 +35,37 @@ can be aware of it.
 
 Each extension has at least one *owner*. You can find extension owners in each extension's README.
 
-## General Conventions
+## Using Extensions
 
-1. Additional attributes relating to an [Item](../item-spec/item-spec.md) should be added into the Item Properties object,
-   rather than directly in the Item object.
-2. In general, additional attributes that apply to an Item Asset should also be allowed in Item Properties and vice-versa.
-   For example, the `eo:bands` attribute may be used in Item Properties to describe the aggregation of all bands available in
-   the Item Asset objects contained in the Item, but may also be used in an individual Item Asset to describe only the bands available in that asset.
-3. Additional attributes relating to a [Catalog](../catalog-spec/catalog-spec.md) or
-   [Collection](../collection-spec/collection-spec.md) should be added to the root of the object.
+When deciding how to model data in STAC it is highly recommended to first look at the [list of 
+extensions](https://stac-extensions.github.io/) and re-use fields there instead of creating your own version. This
+increases interoperability, as users know that the meaning of your fields is the same as in other STAC 
+implementations. Many clients will also understand more mature extensions for better display and querying. 
 
-## The `stac_extensions` property
+To incorporate an extension in STAC the 'extension ID' of the extension must be added to the `stac_extensions`
+array of the STAC [Catalog](../catalog-spec/catalog-spec.md#stac_extensions), 
+[Collection](../collection-spec/collection-spec.md#stac_extensions) or [Item](../item-spec/item-spec.md#stac_extensions)
+object. This identifier is a link to the JSON Schema URL that validates the fields in the extension, so STAC validators
+can fetch the Schema to validate that the STAC object properly follows the extension. These JSON Schema URLs also act as 
+identifiers for specific version of the extension that the STAC object implements. The extension ID can be
+found listed as the 'identifier' in the second line of the README of any extension made with the [extension 
+template](https://github.com/stac-extensions/template), and new ones get published automatically with any release made 
+with the template.
 
-[Catalog](../catalog-spec/catalog-spec.md#stac_extensions), [Collection](../collection-spec/collection-spec.md#stac_extensions) and
-[Item](../item-spec/item-spec.md#stac_extensions) objects have a `stac_extensions` property which contain URLs to JSON Schemas used to
-validate the implementation of an extension. These JSON Schema URLs act as identifiers for specific version of the extension that the
-object implements. The logic for when an object should list an extension JSON Schema URL (referred to as the extension ID) in it's
-`stac_extension` property is as follows:
+### Extension IDs in `stac_extensions`
 
-- If the object directly implements the extension, the  `stac_extensions` property of that object should contain the extension ID.
-- If an Asset implements properties of the extension, then `stac_extensions` property of the Item or Collection which holds that
+The logic for when an object should list an extension ID in its `stac_extension` array is as follows:
+
+- If the object directly implements the extension, the  `stac_extensions` of that object should contain the extension ID.
+- If an Asset implements fields of the extension, then `stac_extensions` of the Item or Collection which holds that
   Asset should contain the extension ID.
-- If a Collection [summary](../collection-spec/collection-spec.md#summaries) contains Item properties that implement an extension, then
-  the `stac_extensions` property of that Collection should list the extension ID. For example, if a Collection `summaries` property
-  contains a summary of `eo:bands`, then that Collection should have the EO extension JSON Schema URL in the `stac_extensions` property.
-- If an object implements an extension that results in properties from a separate extension to be referenced, then the latter extension
-  ID should be included in the `stac_extension` property for that object. For example, if a Collection implements the
-  [item_assets](https://github.com/stac-extensions/item-assets) extension, and in the `item_assets` property there is an Asset Definition
-  which includes `eo:bands`, then the EO extension ID should be listed in that Collection's `stac_extensions` property.
+- If a Collection [summary](../collection-spec/collection-spec.md#summaries) contains Item fields that implement an extension, then
+  the `stac_extensions` array of that Collection should list the extension ID. For example, if a Collection `summaries` field
+  contains a summary of `eo:bands`, then that Collection should have the EO extension JSON Schema URL in the `stac_extensions` array.
+- If an object implements an extension that results in fields from a separate extension to be referenced, then the latter extension
+  ID should be included in the `stac_extensions` array for that object. For example, if a Collection implements the
+  [item_assets](https://github.com/stac-extensions/item-assets) extension, and in the `item_assets` field there is an Asset Definition
+  which includes `eo:bands`, then the EO extension ID should be listed in that Collection's `stac_extensions`.
 
 ## Stable STAC Extensions
 
@@ -98,6 +102,20 @@ some change the behavior of STAC and some introduce completely new functionality
 with existing extensions as well as possible and may even re-use fields and their definitions until they may get split
 into a new extension that combines commonly used fields across multiple extensions.
 Best practices for extension proposals are still emerging in this section.
+
+### General Conventions
+
+Creating a new extension involves defining a set of logically grouped fields, and specifying what the allowed values
+for those fields are. This should be done in the extension text and in JSON Schema, to provide validation. While one 
+can theoretically add fields anywhere in JSON there are some conventions as to where to add them in STAC objects.
+
+1. Additional attributes relating to an [Item](../item-spec/item-spec.md) should be added into the Item Properties object,
+   rather than directly in the Item object.
+2. In general, additional attributes that apply to an Item Asset should also be allowed in Item Properties and vice-versa.
+   For example, the `eo:bands` attribute may be used in Item Properties to describe the aggregation of all bands available in
+   the Item Asset objects contained in the Item, but may also be used in an individual Item Asset to describe only the bands available in that asset.
+3. Additional attributes relating to a [Catalog](../catalog-spec/catalog-spec.md) or
+   [Collection](../collection-spec/collection-spec.md) should be added to the root of the object.
 
 ### Proposing new extensions
 
