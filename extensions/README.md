@@ -56,7 +56,7 @@ with the template.
 
 The logic for when an object should list an extension ID in its `stac_extension` array is as follows:
 
-- If the object directly implements the extension, the  `stac_extensions` of that object should contain the extension ID.
+- If the object directly implements the extension (by including at least one of the fields of the extension, plus any additional specified requirements), the  `stac_extensions` of that object should contain the extension ID.
 - If an Asset implements fields of the extension, then `stac_extensions` of the Item or Collection which holds that
   Asset should contain the extension ID.
 - If a Collection [summary](../collection-spec/collection-spec.md#summaries) contains Item fields that implement an extension, then
