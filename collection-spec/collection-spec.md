@@ -202,12 +202,17 @@ Clients only interested in the overall extent will only need to access the first
 It is recommended to only use multiple temporal extents if a union of them would then include a large
 uncovered time span (e.g. only having data for the years 2000, 2010 and 2020).
 
-Each inner array consists of exactly two dates and times, each in UTC.
-Each date and time MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).
+Each inner array consists of exactly two elements, either a timestamp or `null`.
+
+Timestamps consist of a date and time in UTC and MUST be formatted according to
+[RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).
 The temporal reference system is the Gregorian calendar.
 
-Open date ranges are supported by setting either the start or the end time to `null`.
-Example for data from the beginning of 2019 until now: `[["2009-01-01T00:00:00Z", null]]`. 
+Open date ranges are supported by setting the start and/or the end time to `null`.
+Example for data from the beginning of 2019 until now: `[["2009-01-01T00:00:00Z", null]]`.
+It is recommended to provide at least a rough guideline on the temporal extent and thus
+it's not recommended to set both start and end time to `null`. Nevertheless, this is possible
+if there's a strong use case for an open date range to both sides.
 
 ### Provider Object
 
