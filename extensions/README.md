@@ -56,8 +56,7 @@ with the template.
 
 The logic for when an object should list an extension ID in its `stac_extension` array is as follows:
 
-- If the object directly implements the extension (by including at least one of the fields of the extension, plus any 
-  additional specified requirements), the  `stac_extensions` of that object should contain the extension ID.
+- If the object directly implements the extension (by following the specified requirements - usually by including fields, but occasionally implementing alternate behaviors), the  `stac_extensions` of that object should contain the extension ID.
 - If an Asset implements fields of the extension, then `stac_extensions` of the Item or Collection which holds that
   Asset should contain the extension ID.
 - If a Collection [summary](../collection-spec/collection-spec.md#summaries) contains Item fields that implement an extension, then
@@ -106,7 +105,7 @@ Best practices for extension proposals are still emerging in this section.
 
 ### General Conventions
 
-Creating a new extension involves defining a set of logically grouped fields, and specifying what the allowed values
+Creating a new extension usually involves defining a set of logically grouped fields, and specifying what the allowed values
 for those fields are. This should be done in the extension text and in JSON Schema, to provide validation. While one 
 can theoretically add fields anywhere in JSON there are some conventions as to where to add them in STAC objects.
 
@@ -117,6 +116,7 @@ can theoretically add fields anywhere in JSON there are some conventions as to w
    the Item Asset objects contained in the Item, but may also be used in an individual Item Asset to describe only the bands available in that asset.
 3. Additional attributes relating to a [Catalog](../catalog-spec/catalog-spec.md) or
    [Collection](../collection-spec/collection-spec.md) should be added to the root of the object.
+4. Extensions may also extend other extensions, declaring that dependency in the text and JSON Schema.
 
 ### Proposing new extensions
 
