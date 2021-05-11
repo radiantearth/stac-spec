@@ -209,7 +209,7 @@ Timestamps consist of a date and time in UTC and MUST be formatted according to
 The temporal reference system is the Gregorian calendar.
 
 Open date ranges are supported by setting the start and/or the end time to `null`.
-Example for data from the beginning of 2019 until now: `[["2009-01-01T00:00:00Z", null]]`.
+Example for data from the beginning of 2019 until now: `[["2019-01-01T00:00:00Z", null]]`.
 It is recommended to provide at least a rough guideline on the temporal extent and thus
 it's not recommended to set both start and end time to `null`. Nevertheless, this is possible
 if there's a strong use case for an open date range to both sides.
