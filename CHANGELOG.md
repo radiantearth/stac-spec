@@ -13,17 +13,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - An empty Catalog is now allowed, removed the requirement that it must have a child or item link. ([#1115](https://github.com/radiantearth/stac-spec/issues/1115))
 - An open date range to both sides is now allowed in the Collection's temporal extents. ([#1125](https://github.com/radiantearth/stac-spec/issues/1125))
-- Catalog and Collection JSON Schemas don't have a common JSON Schema any more ([#1122](https://github.com/radiantearth/stac-spec/pull/1122))
+- Catalog and Collection JSON Schemas don't have a common JSON Schema any more. ([#1122](https://github.com/radiantearth/stac-spec/pull/1122))
 
 ### Removed 
 
-- Catalogs don't support summaries any more ([#1122](https://github.com/radiantearth/stac-spec/pull/1122))
+- Catalogs don't support summaries any more. ([#1122](https://github.com/radiantearth/stac-spec/pull/1122))
 
 ### Fixed
 
-- Added clarification around when an extension should be included in `stac_extensions` ([#1123](https://github.com/radiantearth/stac-spec/pull/1123))
-- JSON Schemas don't allow "shortcuts" for core extensions any longer ([#1121](https://github.com/radiantearth/stac-spec/pull/1121))
-- Fixed examples
+- Added clarification around when an extension should be included in `stac_extensions`. ([#1123](https://github.com/radiantearth/stac-spec/pull/1123))
+- JSON Schemas don't allow "shortcuts" for core extensions any longer. ([#1121](https://github.com/radiantearth/stac-spec/pull/1121))
+- Various examples fixes.
 
 ## [v1.0.0-rc.3] - 2021-04-29
 
@@ -44,10 +44,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Clarified that collection summaries do not require that all property fields are summarized. ([#1106](https://github.com/radiantearth/stac-spec/issues/1106))
 - Clarified that gsd should only be used on an asset to represent the sensor, not just different processing. ([#1105](https://github.com/radiantearth/stac-spec/pull/1105))
 - Clarified that leaving a field out is not equivalent to setting it as null. ([#1111](https://github.com/radiantearth/stac-spec/pull/1111))
-
-### Fixed
-
-- JSON Schemas don't allow "shortcuts" for core extensions any longer
 
 ## [v1.0.0-rc.2] - 2021-03-30
 
