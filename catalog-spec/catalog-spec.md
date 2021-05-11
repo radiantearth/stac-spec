@@ -50,7 +50,6 @@ values for `type` and `stac_extensions`.
 | id              | string        | **REQUIRED.** Identifier for the Catalog.                    |
 | title           | string        | A short descriptive one-line title for the Catalog.          |
 | description     | string        | **REQUIRED.** Detailed multi-line description to fully explain the Catalog. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| summaries       | Map<string, \[\*]\|[Range Object](../collection-spec/collection-spec.md#range-object)\|[JSON Schema Object](../collection-spec/collection-spec.md#json-schema-object)> | A map of property summaries, either a set of values, a range of values or a [JSON Schema](https://json-schema.org). More info in the [Collection spec](../collection-spec/collection-spec.md#summaries). |
 | links           | [[Link Object](#link-object)] | **REQUIRED.** A list of references to other documents.       |
 
 ### Additional Field Information
@@ -94,7 +93,8 @@ The following types are commonly used as `rel` types in the Link Object of a STA
 | child   | URL to a child STAC entity (Catalog or Collection). |
 | item    | URL to a STAC Item. |
 
-**Note:** A link to at least one `item` or `child` (Catalog or Collection) is **REQUIRED**.
+**Note:** A link to at least one `item` or `child` (Catalog or Collection) is **RECOMMENDED**, but empty catalogs are
+allowed if there is an intent to populate it or its children were removed.
 
 There are additional `rel` types in the [Using Relation Types](../best-practices.md#using-relation-types) best practice, but as 
 they are more typically used in Collections, as Catalogs tend to just be used to structure STAC organization, so tend to just use
