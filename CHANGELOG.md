@@ -13,11 +13,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - An empty Catalog is now allowed, removed the requirement that it must have a child or item link. ([#1115](https://github.com/radiantearth/stac-spec/issues/1115))
 - An open date range to both sides is now allowed in the Collection's temporal extents. ([#1125](https://github.com/radiantearth/stac-spec/issues/1125))
-- Catalog and Collection JSON Schemas don't have a common JSON Schema any more
+- Catalog and Collection JSON Schemas don't have a common JSON Schema any more ([#1122](https://github.com/radiantearth/stac-spec/pull/1122))
 
 ### Removed 
 
-- Catalogs don't support summaries any more
+- Catalogs don't support summaries any more ([#1122](https://github.com/radiantearth/stac-spec/pull/1122))
+
+### Fixed
+
+- Added clarification around when an extension should be included in `stac_extensions` ([#1123](https://github.com/radiantearth/stac-spec/pull/1123))
+- JSON Schemas don't allow "shortcuts" for core extensions any longer ([#1121](https://github.com/radiantearth/stac-spec/pull/1121))
+- Fixed examples
 
 ## [v1.0.0-rc.3] - 2021-04-29
 
@@ -27,7 +33,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added `preview` relation type for interoperable thumbnails to best practices. ([#1090](https://github.com/radiantearth/stac-spec/issues/1090))
 - Recommendation to include both `root` and `parent` relation types when they point at the same file. ([#1098](https://github.com/radiantearth/stac-spec/issues/1098))
 - Overview section linking to various foundational standards. ([#1111](https://github.com/radiantearth/stac-spec/pull/1111))
-- Added clarification around when an extension should be included in `stac_extensions` ([#1123](https://github.com/radiantearth/stac-spec/pull/1123))
 
 ### Changed
 
