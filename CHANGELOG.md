@@ -7,15 +7,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v1.0.0-rc.4] - 2021-05-11
+
 ### Changed
 
 - An empty Catalog is now allowed, removed the requirement that it must have a child or item link. ([#1115](https://github.com/radiantearth/stac-spec/issues/1115))
 - An open date range to both sides is now allowed in the Collection's temporal extents. ([#1125](https://github.com/radiantearth/stac-spec/issues/1125))
-- Catalog and Collection JSON Schemas don't have a common JSON Schema any more
+- Catalog and Collection JSON Schemas don't have a common JSON Schema any more ([#1122](https://github.com/radiantearth/stac-spec/pull/1122))
 
 ### Removed 
 
-- Catalogs don't support summaries any more
+- Catalogs don't support summaries any more ([#1122](https://github.com/radiantearth/stac-spec/pull/1122))
+
+### Fixed
+
+- Added clarification around when an extension should be included in `stac_extensions` ([#1123](https://github.com/radiantearth/stac-spec/pull/1123))
+- JSON Schemas don't allow "shortcuts" for core extensions any longer ([#1121](https://github.com/radiantearth/stac-spec/pull/1121))
+- Fixed examples
 
 ## [v1.0.0-rc.3] - 2021-04-29
 
@@ -25,7 +33,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added `preview` relation type for interoperable thumbnails to best practices. ([#1090](https://github.com/radiantearth/stac-spec/issues/1090))
 - Recommendation to include both `root` and `parent` relation types when they point at the same file. ([#1098](https://github.com/radiantearth/stac-spec/issues/1098))
 - Overview section linking to various foundational standards. ([#1111](https://github.com/radiantearth/stac-spec/pull/1111))
-- Added clarification around when an extension should be included in `stac_extensions` ([#1123](https://github.com/radiantearth/stac-spec/pull/1123))
 
 ### Changed
 
@@ -438,6 +445,7 @@ See the [milestone 0.4.0 in the issue tracker](https://github.com/radiantearth/s
 Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkamin, @hemphillda, @jeffnaus  and @fredliporace for contributing to the spec directly, and to [everyone](https://github.com/opengeospatial/wfs3hackathon/blob/master/notes/introductions.md#participants) who participated in the [Ft Collins sprint](https://github.com/radiantearth/community-sprints/tree/master/03072018-ft-collins-co) and brought great ideas.
 
 [Unreleased]: <https://github.com/radiantearth/stac-spec/compare/master...dev>
+[v1.0.0-rc.4]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-rc.3..v1.0.0-rc.4>
 [v1.0.0-rc.3]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-rc.2..v1.0.0-rc.3>
 [v1.0.0-rc.2]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-rc.1..v1.0.0-rc.2>
 [v1.0.0-rc.1]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-beta.2..v1.0.0-rc.1>

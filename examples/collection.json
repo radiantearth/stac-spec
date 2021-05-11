@@ -6,7 +6,7 @@
     "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
     "https://stac-extensions.github.io/view/v1.0.0/schema.json"
   ],
-  "stac_version": "1.0.0-rc.3",
+  "stac_version": "1.0.0-rc.4",
   "description": "A simple collection demonstrating core catalog fields with links to a couple of items",
   "title": "Simple Example Collection",
   "providers": [
@@ -104,7 +104,7 @@
     },
     {
       "rel": "self",
-      "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0-rc.3/examples/collection.json",
+      "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0-rc.4/examples/collection.json",
       "type": "application/json"
     }
   ]
