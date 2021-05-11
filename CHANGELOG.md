@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added `preview` relation type for interoperable thumbnails to best practices. ([#1090](https://github.com/radiantearth/stac-spec/issues/1090))
 - Recommendation to include both `root` and `parent` relation types when they point at the same file. ([#1098](https://github.com/radiantearth/stac-spec/issues/1098))
 - Overview section linking to various foundational standards. ([#1111](https://github.com/radiantearth/stac-spec/pull/1111))
+- Added clarification around when an extension should be included in `stac_extensions` ([#1123](https://github.com/radiantearth/stac-spec/pull/1123))
 
 ### Changed
 
