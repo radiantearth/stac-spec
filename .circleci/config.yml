@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  test_examples:
+  test_examples_node:
     working_directory: ~/stac
     docker:
       - image: circleci/node:12
@@ -12,7 +12,7 @@ jobs:
       - run:
           name: validate
           command: npm run check-examples
-  test_examples_2:
+  test_examples_python:
     working_directory: ~/stac
     docker:
       - image: circleci/python:3.8
@@ -55,8 +55,8 @@ workflows:
   version: 2
   ci:
     jobs:
-      - test_examples
-      - test_examples_2      
+      - test_examples_node
+      - test_examples_python   
       - test_docs
       - publish_schemas:
           filters:
