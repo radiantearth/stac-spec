@@ -5,9 +5,16 @@
   "description": "A heterogenous collection containing deeper examples of various extensions",
   "links": [
     {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Example Catalog"
+    },
+    {
       "rel": "root",
       "href": "../catalog.json",
-      "type": "application/json"
+      "type": "application/json",
+      "title": "Example Catalog"
     },
     {
       "rel": "item",
@@ -18,11 +25,6 @@
       "rel": "license",
       "href": "https://remotedata.io/license.html",
       "title": "Remote Data License Terms"
-    },
-    {
-      "rel": "parent",
-      "href": "../catalog.json",
-      "type": "application/json"
     }
   ],
   "stac_extensions": [],

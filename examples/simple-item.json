@@ -50,12 +50,14 @@
     {
       "rel": "root",
       "href": "./collection.json",
-      "type": "application/json"
+      "type": "application/json",
+      "title": "Simple Example Collection"
     },
     {
       "rel": "parent",
       "href": "./collection.json",
-      "type": "application/json"
+      "type": "application/json",
+      "title": "Simple Example Collection"
     }
   ],
   "assets": {

@@ -483,6 +483,11 @@ if you follow these recommendations.
    For example, if levels 2 and 4 of the hierarchy only contain Collections, 
    don't add a Catalog at levels 2 and 4.
 
+One further recommendation to help tools is to always include the 'title' field when including a link, especially in the 
+`item`, `child`, `parent` and `root` links, even if it repeats several times. This should be the same as the 'title' in the 
+link destination. Having this enables clients to display a nice human readable name of the link without having  to open the 
+link destination. 
+
 #### Dynamic Catalog Layout
 
 While these recommendations were primarily written for [static catalogs](#static-catalogs), they apply
