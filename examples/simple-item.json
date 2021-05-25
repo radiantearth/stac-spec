@@ -1,5 +1,5 @@
 {
-  "stac_version": "1.0.0-rc.4",
+  "stac_version": "1.0.0",
   "stac_extensions": [],
   "type": "Feature",
   "id": "20201211_223832_CS2",
@@ -50,12 +50,14 @@
     {
       "rel": "root",
       "href": "./collection.json",
-      "type": "application/json"
+      "type": "application/json",
+      "title": "Simple Example Collection"
     },
     {
       "rel": "parent",
       "href": "./collection.json",
-      "type": "application/json"
+      "type": "application/json",
+      "title": "Simple Example Collection"
     }
   ],
   "assets": {

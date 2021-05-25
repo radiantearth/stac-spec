@@ -1,5 +1,5 @@
 {
-  "stac_version": "1.0.0-rc.4",
+  "stac_version": "1.0.0",
   "stac_extensions": [
     "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
     "https://stac-extensions.github.io/view/v1.0.0/schema.json"
@@ -75,22 +75,26 @@
     {
       "rel": "root",
       "href": "./catalog.json",
-      "type": "application/json"
+      "type": "application/json",
+      "title": "Example Catalog"
     },
     {
       "rel": "parent",
       "href": "./catalog.json",
-      "type": "application/json"
+      "type": "application/json",
+      "title": "Example Catalog"
     },
     {
       "rel": "alternate",
       "type": "text/html",
-      "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.html"
+      "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/CS3-20160503_132130_04.html",
+      "title": "HTML representation of this STAC Item"
     },
     {
       "rel": "license",
       "type": "text/html",
-      "href": "http://remotedata.io/license.html"
+      "href": "http://remotedata.io/license.html",
+      "title": "Data License for Remote Data, Inc."
     }
   ],
   "assets": {

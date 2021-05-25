@@ -1,6 +1,6 @@
 {
   "type": "Feature",
-  "stac_version": "1.0.0-rc.4",
+  "stac_version": "1.0.0",
   "id": "proj-example",
   "properties": {
     "datetime": "2018-10-01T01:08:32.033000Z",
@@ -213,17 +213,20 @@
     {
       "rel": "root",
       "href": "../../catalog.json",
-      "type": "application/json"
+      "type": "application/json",
+      "title": "Example Catalog"
     },
     {
       "rel": "parent",
       "href": "../collection.json",
-      "type": "application/json"
+      "type": "application/json",
+      "title": "Collection of Extension Items"
     },
     {
       "rel": "collection",
       "href": "../collection.json",
-      "type": "application/json"
+      "type": "application/json",
+      "title": "Collection of Extension Items"
     }
   ],
   "assets": {

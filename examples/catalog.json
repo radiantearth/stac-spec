@@ -1,7 +1,8 @@
 {
   "id": "examples",
   "type": "Catalog",
-  "stac_version": "1.0.0-rc.4",
+  "title": "Example Catalog",
+  "stac_version": "1.0.0",
   "description": "This catalog is a simple demonstration of an example catalog that is used to organize a hierarchy of collections and their items.",
   "links": [
     {
@@ -35,7 +36,7 @@
     },
     {
       "rel": "self",
-      "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0-rc.4/examples/catalog.json",
+      "href": "https://raw.githubusercontent.com/radiantearth/stac-spec/v1.0.0/examples/catalog.json",
       "type": "application/json"
     }
   ]

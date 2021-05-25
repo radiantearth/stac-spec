@@ -483,6 +483,11 @@ if you follow these recommendations.
    For example, if levels 2 and 4 of the hierarchy only contain Collections, 
    don't add a Catalog at levels 2 and 4.
 
+One further recommendation to help tools is to always include the 'title' field when including a link, especially in the 
+`item`, `child`, `parent` and `root` links, even if it repeats several times. This should be the same as the 'title' in the 
+link destination. Having this enables clients to display a nice human readable name of the link without having  to open the 
+link destination. 
+
 #### Dynamic Catalog Layout
 
 While these recommendations were primarily written for [static catalogs](#static-catalogs), they apply
@@ -723,8 +728,7 @@ database, but it could just as easily be a server-based process.
 ## How to Differentiate STAC Files
 
 Any tool that crawls a STAC implementation or encounters a STAC file in the wild needs a clear way to determine if it is an Item, 
-Collection, Catalog or [ItemCollection](https://github.com/radiantearth/stac-api-spec/tree/v1.0.0-beta.1/fragments/itemcollection) 
-(part of the [STAC API spec](https://github.com/radiantearth/stac-api-spec/tree/v1.0.0-beta.1)). As of 1.0.0 this is done primarily
+Collection or Catalog. As of 1.0.0 this is done primarily
 with the `type` field, and secondarily in Items with `stac_version`, or optionally the `rel` of the link to it.
 
 ```shell
@@ -734,8 +738,6 @@ else if type is 'Catalog'
   => Catalog
 else if type is 'Feature' and stac_version is defined
   => Item
-else if type is 'FeatureCollection' and stac_version is defined
-  => ItemCollection
 else
   => Invalid (JSON)
 ```
