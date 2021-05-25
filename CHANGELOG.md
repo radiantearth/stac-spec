@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Updated version numbers for 1.0.0 release.
 - Final UML tweaks for latest changes. ([#1134](https://github.com/radiantearth/stac-spec/pull/1134))
+- Removed ItemCollection from the STAC detection heuristic in Best Practices. It can't easily be differentiated from GeoJSON FeatureCollections any longer. ([API#141](https://github.com/radiantearth/stac-api-spec/issues/141))
 
 ## [v1.0.0-rc.4] - 2021-05-11
 
