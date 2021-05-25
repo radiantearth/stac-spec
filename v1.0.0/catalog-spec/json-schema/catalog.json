@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.0.0/catalog-spec/json-schema/catalog.json#",
+  "title": "STAC Catalog Specification",
+  "description": "This object represents Catalogs in a SpatioTemporal Asset Catalog.",
+  "allOf": [
+    {
+      "$ref": "#/definitions/catalog"
+    }
+  ],
+  "definitions": {
+    "catalog": {
+      "title": "STAC Catalog",
+      "type": "object",
+      "required": [
+        "stac_version",
+        "type",
+        "id",
+        "description",
+        "links"
+      ],
+      "properties": {
+        "stac_version": {
+          "title": "STAC version",
+          "type": "string",
+          "const": "1.0.0"
+        },
+        "stac_extensions": {
+          "title": "STAC extensions",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Reference to a JSON Schema",
+            "type": "string",
+            "format": "iri"
+          }
+        },
+        "type": {
+          "title": "Type of STAC entity",
+          "const": "Catalog"
+        },
+        "id": {
+          "title": "Identifier",
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string",
+          "minLength": 1
+        },
+        "links": {
+          "title": "Links",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/link"
+          }
+        }
+      }
+    },
+    "link": {
+      "type": "object",
+      "required": [
+        "rel",
+        "href"
+      ],
+      "properties": {
+        "href": {
+          "title": "Link reference",
+          "type": "string",
+          "format": "iri-reference",
+          "minLength": 1
+        },
+        "rel": {
+          "title": "Link relation type",
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "title": "Link type",
+          "type": "string"
+        },
+        "title": {
+          "title": "Link title",
+          "type": "string"
+        }
+      }
+    }
+  }
+}
