@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v1.0.0] - 2021-05-25
+
+### Added
+
+- Updated best practices to add a recommendation to include title in links where possible. ([#1133](https://github.com/radiantearth/stac-spec/pull/1133))
+
+### Changed
+
+- Updated version numbers for 1.0.0 release.
+- Final UML tweaks for latest changes. ([#1134](https://github.com/radiantearth/stac-spec/pull/1134))
+
 ## [v1.0.0-rc.4] - 2021-05-11
 
 ### Changed
@@ -441,6 +452,7 @@ See the [milestone 0.4.0 in the issue tracker](https://github.com/radiantearth/s
 Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkamin, @hemphillda, @jeffnaus  and @fredliporace for contributing to the spec directly, and to [everyone](https://github.com/opengeospatial/wfs3hackathon/blob/master/notes/introductions.md#participants) who participated in the [Ft Collins sprint](https://github.com/radiantearth/community-sprints/tree/master/03072018-ft-collins-co) and brought great ideas.
 
 [Unreleased]: <https://github.com/radiantearth/stac-spec/compare/master...dev>
+[v1.0.0]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-rc.4..v1.0.0>
 [v1.0.0-rc.4]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-rc.3..v1.0.0-rc.4>
 [v1.0.0-rc.3]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-rc.2..v1.0.0-rc.3>
 [v1.0.0-rc.2]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-rc.1..v1.0.0-rc.2>
