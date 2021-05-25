@@ -12,18 +12,18 @@ jobs:
       - run:
           name: validate
           command: npm run check-examples
-  test_examples_python:
-    working_directory: ~/stac
-    docker:
-      - image: circleci/python:3.8
-    steps:
-      - checkout
-      - run:
-          name: install
-          command: pip install stac-validator
-      - run:
-          name: validate
-          command: find ./examples -type f -name "*.json" | xargs -L1 stac_validator         
+  # test_examples_python:
+  #   working_directory: ~/stac
+  #   docker:
+  #     - image: circleci/python:3.8
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: install
+  #         command: pip install stac-validator
+  #     - run:
+  #         name: validate
+  #         command: find ./examples -type f -name "*.json" | xargs -L1 stac_validator         
   test_docs:
     working_directory: ~/stac
     docker:
