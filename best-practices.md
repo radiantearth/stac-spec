@@ -728,8 +728,7 @@ database, but it could just as easily be a server-based process.
 ## How to Differentiate STAC Files
 
 Any tool that crawls a STAC implementation or encounters a STAC file in the wild needs a clear way to determine if it is an Item, 
-Collection, Catalog or [ItemCollection](https://github.com/radiantearth/stac-api-spec/tree/v1.0.0-beta.1/fragments/itemcollection) 
-(part of the [STAC API spec](https://github.com/radiantearth/stac-api-spec/tree/v1.0.0-beta.1)). As of 1.0.0 this is done primarily
+Collection or Catalog. As of 1.0.0 this is done primarily
 with the `type` field, and secondarily in Items with `stac_version`, or optionally the `rel` of the link to it.
 
 ```shell
@@ -739,8 +738,6 @@ else if type is 'Catalog'
   => Catalog
 else if type is 'Feature' and stac_version is defined
   => Item
-else if type is 'FeatureCollection' and stac_version is defined
-  => ItemCollection
 else
   => Invalid (JSON)
 ```
