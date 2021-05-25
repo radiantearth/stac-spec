@@ -33,11 +33,15 @@
   "links": [
     {
       "rel": "parent",
-      "href": "../catalog.json"
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Example Catalog"
     },
     {
       "rel": "root",
-      "href": "../catalog.json"
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Example Catalog"
     },
     {
       "rel": "license",

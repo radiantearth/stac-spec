@@ -63,17 +63,20 @@
     {
       "rel": "root",
       "href": "./collection.json",
-      "type": "application/json"
+      "type": "application/json",
+      "title": "Simple Example Collection"
     },
     {
       "rel": "parent",
       "href": "./collection.json",
-      "type": "application/json"
+      "type": "application/json",
+      "title": "Simple Example Collection"
     },
     {
       "rel": "alternate",
       "type": "text/html",
-      "href": "http://remotedata.io/catalog/20201211_223832_CS2/index.html"
+      "href": "http://remotedata.io/catalog/20201211_223832_CS2/index.html",
+      "title": "HTML version of this STAC Item"
     }
   ],
   "assets": {
