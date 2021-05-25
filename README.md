@@ -14,7 +14,9 @@ including sources such as aircraft and drone and data such as hyperspectral opti
 synthetic aperture radar (SAR), video, point clouds, lidar, digital elevation 
 models (DEM), vector, machine learning labels, and composites like NDVI and 
 mosaics. STAC is intentionally designed with a minimal core and flexible 
-extension mechanism to support a broad set of use cases.
+extension mechanism to support a broad set of use cases. This specification 
+has matured over the past several years, and is used in [numerous production 
+deployments](https://stacindex.org/catalogs). 
 
 This is advantageous to providers of geospatial data, as they can simply use a
 well-designed, standard format and API without needing to design their own proprietary one.
@@ -43,22 +45,15 @@ with a well-defined set of additional attributes ("foreign members"). The **STAC
 extends the **[OGC API - Features - Part 1: Core](http://docs.opengeospatial.org/is/17-069r3/17-069r3.html)** 
 with additional web service endpoints and object attributes.
 
-## Stability Note
-
-This specification has matured over the past several years, and is used in 
-[numerous production deployments](https://stacindex.org/catalogs). 
-With the 1.0.0 release, implementors should expect that most definitions will remain 
-stable. Our goal
-is to maintain backwards-compatiblity within the core for a long time. 
-The STAC specification follows [Semantic Versioning](https://semver.org/), so once 
-1.0.0 is reached, any breaking change will require the spec to go to 2.0.0. 
-
 ## Current version and branches
 
 The [master branch](https://github.com/radiantearth/stac-spec/tree/master) is the 'stable' 
-version of the spec. It is currently version **1.0.0** of the specification. The 
-[dev](https://github.com/radiantearth/stac-spec/tree/dev) branch is where active development takes place, 
-and may have inconsistent examples. Whenever dev stabilizes, a release is cut and we 
+version of the spec. It is currently version **1.0.0** of the specification. The STAC specification 
+follows [Semantic Versioning](https://semver.org/), so any breaking change will require the spec to 
+go to 2.0.0. 
+
+The [dev](https://github.com/radiantearth/stac-spec/tree/dev) branch is where active development 
+takes place, and may have inconsistent examples. Whenever dev stabilizes, a release is cut and we 
 merge `dev` in to `master`. So `master` should be stable at any given time. 
 More information on how the STAC development process works can be found in 
 [process.md](process.md).
