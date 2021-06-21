@@ -32,7 +32,7 @@
       "rel": "item",
       "href": "./collectionless-item.json",
       "type": "application/json",
-      "title": "Collection with no items (standalone)"
+      "title": "Item that does not have a collection (not recommended, but allowed by the spec)"
     },
     {
       "rel": "self",
