@@ -256,7 +256,7 @@ STAC Collections use a variety of `rel` types in the link object,
 to describe the exact nature of the link between this Collection and the entity it is linking to.
 It is recommended to use the official
 [IANA Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) where possible.
-The following table explains places where custom STAC `rel` types are used for ollections.
+The following table explains places where custom STAC `rel` types are used for Collections.
 This is done where there is not a clear official option, or where STAC uses an official type but adds additional meaning for the STAC context.
 
 | Type    | Description                                                  |
