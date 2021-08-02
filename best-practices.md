@@ -402,7 +402,7 @@ file that just has the bands needed for display
 
 *Note: This section uses the term 'Catalog' (with an uppercase C) to refer to the JSON entity specified in the 
 [Catalog spec](catalog-spec/catalog-spec.md), and 'catalog' (with a lowercase c) to refer to any full STAC implementation, 
-which can be any mix of Catalogs Collections and Items.*
+which can be any mix of Catalogs, Collections, and Items.*
 
 ### Static and Dynamic Catalogs
 
