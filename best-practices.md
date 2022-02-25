@@ -255,7 +255,7 @@ Both are compliant with OGC API - Features, adding richer search capabilities to
 As [described in the Item spec](item-spec/item-spec.md#additional-fields-for-assets), it is possible to use fields typically
 found in Item properties at the asset level. This mechanism of overriding or providing Item Properties only in the Assets 
 makes discovery more difficult and should generally be avoided. However, there are some core and extension fields for which 
-providing them at at the Asset level can prove to be very useful for using the data.
+providing them at the Asset level can prove to be very useful for using the data.
 
 - `datetime`: Provide individual timestamp on an Item, in case the Item has a `start_datetime` and `end_datetime`,
   but an Asset is for one specific time.
@@ -283,7 +283,7 @@ providing them at at the Asset level can prove to be very useful for using the d
 [Media Types](https://en.wikipedia.org/wiki/Media_type) are a key element that enables STAC to be a rich source of information for
 clients. The best practice is to use as specific of a media type as is possible (so if a file is a GeoJSON then don't use a JSON
 media type), and to use [registered](https://www.iana.org/assignments/media-types/media-types.xhtml) IANA types as much as possible.
-The following table lists types that commonly show up in STAC assets. And the the [section](#formats-with-no-registered-media-type)
+The following table lists types that commonly show up in STAC assets. And the [section](#formats-with-no-registered-media-type)
 past that gives recommendations on what to do if you have a format in your asset that does not have an IANA registered type.
 
 #### Common Media Types in STAC
@@ -729,7 +729,7 @@ database, but it could just as easily be a server-based process.
 
 Any tool that crawls a STAC implementation or encounters a STAC file in the wild needs a clear way to determine if it is an Item, 
 Collection or Catalog. As of 1.0.0 this is done primarily
-with the `type` field, and secondarily in Items with `stac_version`, or optionally the `rel` of the link to it.
+with the `type` field, and secondarily in Items with `stac_version`, or optionally with the `rel` of the link to it.
 
 ```shell
 if type is 'Collection'
@@ -744,8 +744,8 @@ else
 
 When crawling a STAC implementation, one can also make use of the [relation type](catalog-spec/catalog-spec.md#relation-types
 ) (`rel` field) when following a link. If it is an `item` rel type then the file must be a STAC Item. If it is `child`, `parent` or
-`root` then it must be a Catalog or a Collection, though the final determination between the two requires looking at the the `type` field
-in the Catalog or Collection JSON that is linked to. Note that there is also a `type` field in STAC Link and Asset objects, but that
+`root` then it must be a Catalog or a Collection, though the final determination between the two requires looking at the `type` field
+in the Catalog or Collection JSON that it is linked to. Note that there is also a `type` field in STAC Link and Asset objects, but that
 is for the Media Type, but there are not specific media types for Catalog and Collection. See the sections on [STAC media 
 types](catalog-spec/catalog-spec.md#media-types), and [Asset media types](item-spec/item-spec.md#asset-media-type) for more information.
 
