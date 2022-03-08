@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Removed
+
+- "Strongly recommended" language around `self` links in the item spec. ([#1173](https://github.com/radiantearth/stac-spec/pull/1173))
+
 ## [v1.0.0] - 2021-05-25
 
 ### Added
