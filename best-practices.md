@@ -561,10 +561,10 @@ just meant to give users a sense of what types of values they could expect.
 
 ### Use of links
 
-The STAC specifications allow both relative and absolute links, and says that `self` links are not required, but are 
-strongly recommended. This is what the spec must say to enable the various use cases, but there is more subtlety for when it 
-is essential to use different link types. The best practice is to use one of the below catalog types, applying the link 
-recommendations consistently, instead of just haphazardly applying relative links in some places and absolute ones in other places.
+The STAC specifications allow both relative and absolute links, and it is important to choose the correct link types so that
+your STAC catalogs are easy to explore and resilient to any future changes to their layouts. The best practice is to use one
+of the below catalog types, applying the link recommendations consistently, instead of just haphazardly applying relative links
+in some places and absolute ones in other places.
 
 #### Self-contained Catalogs
 
