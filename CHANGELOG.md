@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Updated best practices to add a recommendation to include title in links where possible. ([#1133](https://github.com/radiantearth/stac-spec/pull/1133))
+- Updated best practices to add a palette asset role. ([#1181](https://github.com/radiantearth/stac-spec/pull/1181))
 
 ### Changed
 
