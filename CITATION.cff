@@ -3,7 +3,7 @@ message: "If you are referring to the STAC specification in your publications, p
 type: software
 title: "SpatioTemporal Asset Catalog (STAC) specification"
 authors:
-  - name: "STAC Project Steering Committee"
+  - name: "STAC Contributors"
 preferred-citation:
   type: standard
   title: "SpatioTemporal Asset Catalog (STAC) specification"
@@ -15,5 +15,5 @@ preferred-citation:
   url: https://stacspec.org
   repository: https://github.com/radiantearth/stac-spec
   authors:
-    - name: "STAC Project Steering Committee"
+    - name: "STAC Contributors"
     - email: stac-psc@radiant.earth
