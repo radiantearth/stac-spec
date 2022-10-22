@@ -281,7 +281,7 @@ providing them at the Asset level can prove to be very useful for using the data
 ### Working with Media Types
 
 [Media Types](https://en.wikipedia.org/wiki/Media_type) are a key element that enables STAC to be a rich source of information for
-clients. The best practice is to use as specific of a media type as is possible (so if a file is a GeoJSON then don't use a JSON
+clients. The best practice is to use as specific of a media type as possible (so if a file is a GeoJSON then don't use a JSON
 media type), and to use [registered](https://www.iana.org/assignments/media-types/media-types.xhtml) IANA types as much as possible.
 The following table lists types that commonly show up in STAC assets. And the [section](#formats-with-no-registered-media-type)
 past that gives recommendations on what to do if you have a format in your asset that does not have an IANA registered type.
@@ -341,7 +341,7 @@ In addition to the thumbnail, data and overview [roles listed](item-spec/item-sp
 are a number of roles that are emerging in practice, but don't have enough widespread use to justify standardizing them. So if
 you want to re-use other roles then try to find them on the list below, and also feel free to suggest more to include here.
 
-The 'source' field lists where the role comes from. The ones the say Item Spec are the only 'official' roles that are fully
+The 'source' field lists where the role comes from. The ones that say Item Spec are the only 'official' roles that are fully
 standardized. In time others on this list may migrate to a more 'official' list. Those that say 'best practice' are just from this 
 doc, the listing is the table below. The ones from extensions are mostly just 'best practices' in the extensions, as there are few
 actual role requirements.
