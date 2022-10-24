@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you are referring to the STAC specification in your publications, please cite it as below."
+type: software
+title: "SpatioTemporal Asset Catalog (STAC) specification"
+authors:
+  - name: "STAC Contributors"
+preferred-citation:
+  type: standard
+  title: "SpatioTemporal Asset Catalog (STAC) specification"
+  abstract: "Making geospatial assets openly searchable and crawlable."
+  version: 1.0.0
+  year: 2021
+  date-released: 2021-05-21
+  license: Apache-2.0
+  url: https://stacspec.org
+  repository: https://github.com/radiantearth/stac-spec
+  authors:
+    - name: "STAC Contributors"
+    - email: stac-psc@radiant.earth
