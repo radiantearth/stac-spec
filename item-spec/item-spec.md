@@ -76,7 +76,7 @@ In general, STAC versions can be mixed, but please keep the [recommended best pr
 A list of extensions the Item implements.
 The list consists of URLs to JSON Schema files that can be used for validation.
 This list must only contain extensions that extend the Item specification itself,
-see the the 'Scope' for each of the extensions.
+see the 'Scope' for each of the extensions.
 
 #### id
 
@@ -247,7 +247,7 @@ is recommended only in special cases. See [Additional Fields for Assets](#additi
 
 Any media type can be used in an Item's asset `type` field, and [registered](https://www.iana.org/assignments/media-types/media-types.xhtml) 
 Media Types are preferred. STAC Items that have sidecar metadata files associated with a data asset (e.g, `.tfw`, Landsat 8 MTL files)
-should use media types appropriate for the the metadata file.  For example, if it is a plain text file, then `text/plain`
+should use media types appropriate for the metadata file.  For example, if it is a plain text file, then `text/plain`
 would be appropriate; if it is an XML, then `text/xml` is appropriate. For more information on media types as well as a 
 list of [common media types](../best-practices.md#common-media-types-in-stac) used in STAC see the [best practice on 
 working with media types](../best-practices.md#working-with-media-types).

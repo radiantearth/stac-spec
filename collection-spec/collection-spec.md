@@ -70,7 +70,7 @@ In general, STAC versions can be mixed, but please keep the [recommended best pr
 A list of extensions the Collection implements.
 The list consists of URLs to JSON Schema files that can be used for validation.
 This list must only contain extensions that extend the Collection specification itself,
-see the the 'Scope' for each of the extensions.
+see the 'Scope' for each of the extensions.
 This must **not** declare the extensions that are only implemented in child Collection objects or child Item objects.
 
 #### id
