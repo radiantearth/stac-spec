@@ -48,7 +48,7 @@ specified in [*OGC API - Features*](https://ogcapi.ogc.org/features/), but they 
 | type            | string                                           | **REQUIRED.** Must be set to `Collection` to be a valid Collection. |
 | stac_version    | string                                           | **REQUIRED.** The STAC version the Collection implements. |
 | stac_extensions | \[string]                                        | A list of extension identifiers the Collection implements.   |
-| id              | string                                           | **REQUIRED.** Identifier for the Collection that is unique across the provider. |
+| id              | string                                           | **REQUIRED.** Identifier for the Collection that is unique across the providers. |
 | title           | string                                           | A short descriptive one-line title for the Collection.       |
 | description     | string                                           | **REQUIRED.** Detailed multi-line description to fully explain the Collection. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | keywords        | \[string]                                        | List of keywords describing the Collection.                  |
