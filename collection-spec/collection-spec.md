@@ -55,7 +55,7 @@ specified in [*OGC API - Features*](https://ogcapi.ogc.org/features/), but they 
 | license         | string                                           | **REQUIRED.** Collection's license(s), either a SPDX [License identifier](https://spdx.org/licenses/), `various` if multiple licenses apply or `proprietary` for all other cases. |
 | providers       | \[[Provider Object](#provider-object)]           | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | extent          | [Extent Object](#extent-object)                  | **REQUIRED.** Spatial and temporal extents.                  |
-| summaries       | Map<string, \[\*]\|[Range Object](#range-object)\|[JSON Schema Object](#json-schema-object)> | STRONGLY RECOMMENDED. A map of property summaries, either a set of values, a range of values or a [JSON Schema](https://json-schema.org). |
+| summaries       | Map<string, \[\*]>\|[Range Object](#range-object)\|[JSON Schema Object](#json-schema-object)> | STRONGLY RECOMMENDED. A map of property summaries, either a set of values, a range of values or a [JSON Schema](https://json-schema.org). |
 | links           | \[[Link Object](#link-object)]                   | **REQUIRED.** A list of references to other documents.       |
 | assets          | Map<string, [Asset Object](#asset-object)>       | Dictionary of asset objects that can be downloaded, each with a unique key. |
 
