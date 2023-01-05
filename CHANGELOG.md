@@ -7,9 +7,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Validate common metadata also in Catalogs, Collections and Links.
+- Common metadata: If a description is given, require that it is not empty
+
 ### Removed
 
 - "Strongly recommended" language around `self` links in the item spec. ([#1173](https://github.com/radiantearth/stac-spec/pull/1173))
+
+### Fixed
+
+- Several typos and minor language changes
 
 ## [v1.0.0] - 2021-05-25
 

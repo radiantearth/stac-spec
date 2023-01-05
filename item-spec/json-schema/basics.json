@@ -5,14 +5,15 @@
   "type": "object",
   "properties": {
     "title": {
-      "title": "Item Title",
-      "description": "A human-readable title describing the Item.",
+      "title": "Title",
+      "description": "A human-readable title describing the entity.",
       "type": "string"
     },
     "description": {
-      "title": "Item Description",
-      "description": "Detailed multi-line description to fully explain the Item.",
-      "type": "string"
+      "title": "Description",
+      "description": "Detailed multi-line description to fully explain the entity.",
+      "type": "string",
+      "minLength": 1
     }
   }
 }
