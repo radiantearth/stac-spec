@@ -48,7 +48,7 @@ specified in [*OGC API - Features*](https://ogcapi.ogc.org/features/), but they 
 | type            | string                                           | **REQUIRED.** Must be set to `Collection` to be a valid Collection. |
 | stac_version    | string                                           | **REQUIRED.** The STAC version the Collection implements. |
 | stac_extensions | \[string]                                        | A list of extension identifiers the Collection implements.   |
-| id              | string                                           | **REQUIRED.** Identifier for the Collection that is unique across the provider. |
+| id              | string                                           | **REQUIRED.** Identifier for the Collection that is unique across all collections in the root catalog. |
 | title           | string                                           | A short descriptive one-line title for the Collection.       |
 | description     | string                                           | **REQUIRED.** Detailed multi-line description to fully explain the Collection. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | keywords        | \[string]                                        | List of keywords describing the Collection.                  |
@@ -75,9 +75,9 @@ This must **not** declare the extensions that are only implemented in child Coll
 
 #### id
 
-It is important that Collection identifiers are unique across the provider. And providers should strive as much as possible to make
-their Collection ids 'globally' unique, prefixing any common information with a unique string. This could be the provider's name if
-it is a fairly unique name, or their name combined with the domain they operate in.
+It is important that Collection identifiers are unique across all collections in the corresponding root catalog.
+Providers should strive as much as possible to make their Collection ids 'globally' unique, prefixing any common information with a unique string.
+This could be the provider's name if it is a fairly unique name, or their name combined with the domain they operate in.
 
 #### license
 
