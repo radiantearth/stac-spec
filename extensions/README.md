@@ -57,7 +57,7 @@ the extension identifier should be added to the `stac_extension` array. The scop
 explained in the README of an extension. Implementing an extension by following the specified requirements usually means including 
 fields, but occasionally also means implementing alternate behaviors.
 
-There is no direct inheritance between childs and parents though, so if for example an Item implements an extension,
+There is no direct inheritance between children and parents though, so if for example an Item implements an extension,
 but the Collection doesn't reflect the usage of the extension, the extension identifier must only be added to the
 `stac_extension` array in the Item, but not to the Collection. If the Collection itself implements the extension though
 or 'summarizies' a field in Collection Summaries or Item Asset Definitions, the extension identifier should be added to the
