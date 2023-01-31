@@ -73,7 +73,7 @@ with links.
 
 | Field Name | Type   | Description |
 | ---------- | ------ | ----------- |
-| href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. |
+| href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. [Trailing slashes are significant.](../best-practices.md#consistent-uris) |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter ["Relation types"](#relation-types) for more information. |
 | type       | string | [Media type](#media-types) of the referenced entity. |
 | title      | string | A human readable title to be used in rendered displays of the link. |

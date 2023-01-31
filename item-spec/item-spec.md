@@ -173,7 +173,7 @@ It is allowed to add additional fields such as a `title` and `type`.
 
 | Field Name | Type   | Description |
 | ---------- | ------ | ----------- |
-| href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. |
+| href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. [Trailing slashes are significant.](../best-practices.md#consistent-uris) |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information. |
 | type       | string | [Media type](../catalog-spec/catalog-spec.md#media-types) of the referenced entity. |
 | title      | string | A human readable title to be used in rendered displays of the link. |
@@ -234,7 +234,7 @@ or streamed. It is allowed to add additional fields.
 
 | Field Name  | Type      | Description |
 | ----------- | --------- | ----------- |
-| href        | string    | **REQUIRED.** URI to the asset object. Relative and absolute URI are both allowed. |
+| href        | string    | **REQUIRED.** URI to the asset object. Relative and absolute URI are both allowed. [Trailing slashes are significant.](../best-practices.md#consistent-uris) |
 | title       | string    | The displayed title for clients and users. |
 | description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | type        | string    | [Media type](#asset-media-type) of the asset. See the [common media types](../best-practices.md#common-media-types-in-stac) in the best practice doc for commonly used asset types. |
