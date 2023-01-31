@@ -59,7 +59,7 @@ inherited from GeoJSON.
 | stac_extensions | \[string]                                                             | A list of extensions the Item implements. |
 | id         | string                                                                     | **REQUIRED.** Provider identifier. The ID should be unique within the  [Collection](../collection-spec/collection-spec.md) that contains the Item. |
 | geometry   | [GeoJSON Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) \| [null](https://tools.ietf.org/html/rfc7946#section-3.2) | **REQUIRED.** Defines the full footprint of the asset represented by this item, formatted according to [RFC 7946, section 3.1](https://tools.ietf.org/html/rfc7946#section-3.1). The footprint should be the default GeoJSON geometry, though additional geometries can be included. Coordinates are specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). |
-| bbox       | \[number]                                                                  | **REQUIRED if `geometry` is not `null`.** Bounding Box of the asset represented by this Item, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5). |
+| bbox       | \[number]                                                                  | **REQUIRED if `geometry` is not `null`, prohibited if `geometry` is `null`.** Bounding Box of the asset represented by this Item, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5). |
 | properties | [Properties Object](#properties-object)                                    | **REQUIRED.** A dictionary of additional metadata for the Item. |
 | links      | \[[Link Object](#link-object)]                                             | **REQUIRED.** List of link objects to resources and related URLs. See the [best practices](../best-practices.md#use-of-links) for details on when the use `self` links is strongly recommended. |
 | assets     | Map<string, [Asset Object](#asset-object)>                                 | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key. |
@@ -173,7 +173,7 @@ It is allowed to add additional fields such as a `title` and `type`.
 
 | Field Name | Type   | Description |
 | ---------- | ------ | ----------- |
-| href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. |
+| href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. [Trailing slashes are significant.](../best-practices.md#consistent-uris) |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information. |
 | type       | string | [Media type](../catalog-spec/catalog-spec.md#media-types) of the referenced entity. |
 | title      | string | A human readable title to be used in rendered displays of the link. |
@@ -234,7 +234,7 @@ or streamed. It is allowed to add additional fields.
 
 | Field Name  | Type      | Description |
 | ----------- | --------- | ----------- |
-| href        | string    | **REQUIRED.** URI to the asset object. Relative and absolute URI are both allowed. |
+| href        | string    | **REQUIRED.** URI to the asset object. Relative and absolute URI are both allowed. [Trailing slashes are significant.](../best-practices.md#consistent-uris) |
 | title       | string    | The displayed title for clients and users. |
 | description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
 | type        | string    | [Media type](#asset-media-type) of the asset. See the [common media types](../best-practices.md#common-media-types-in-stac) in the best practice doc for commonly used asset types. |

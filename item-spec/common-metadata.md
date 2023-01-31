@@ -47,11 +47,12 @@ Fields to provide additional temporal information such as ranges with a start an
 All timestamps MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).
 
 **created** and **updated** have different meaning depending on where they are used.
-If those fields are available in the Item `properties`, they identify the creation and update times of the metadata.
-Having those fields in the Item `assets` refers to the creation and update times of the actual data linked to in the Asset Object.
+If those fields are available in a Collection, in a Catalog (both top-level), or in a Item (in the `properties`),
+the fields refer the metadata (e.g., when the STAC metadata was created).
+Having those fields in the Assets or Links, they refer to the actual data linked to (e.g., when the asset was created).
 
-*NOTE: There are more date and time related fields available in the [Timestamps 
-extension](https://github.com/stac-extensions/timestamps), which is not an official extension*.
+***NOTE:** There are more date and time related fields available in the
+[Timestamps extension](https://github.com/stac-extensions/timestamps)*.
 
 ### Date and Time Range
 
