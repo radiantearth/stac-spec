@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Clarified that trailing slashes in URIs are significant. ([#1212](https://github.com/radiantearth/stac-spec/discussions/1212))
 
+### Fixed
+
+- Clarified that collection IDs should be unique across all collections in the corresponding root catalog.
+
 ## [v1.0.0] - 2021-05-25
 
 ### Added
