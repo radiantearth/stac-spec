@@ -8,6 +8,7 @@
     - [Schema.org, JSON-LD, DCAT, microformats, etc](#schemaorg-json-ld-dcat-microformats-etc)
     - [Deploying STAC Browser](#deploying-stac-browser)
   - [Requester Pays](#requester-pays)
+  - [Consistent URIs](#consistent-uris)
 - **[Item Best Practices](#item-practices)**
   - [Field and ID formatting](#item-ids)
   - [Searchable Identifiers](#searchable-identifiers)
@@ -145,6 +146,18 @@ For data providers using STAC with requester pays buckets, there are two main re
    Using cloud-specific protocols will at least give users an option to register a paid account and
    allow the data provider to properly charge for access. 
    STAC-specific tools in turn can look for the cloud-specific protocols and know to use the requestor pays feature for that specific cloud platform.
+
+### Consistent URIs
+
+Links in STAC can be [absolute or relative](#use-of-links).
+Relative links must be resolved against the absolute URI given in the link with the relation type `self` (or in some cases `root`).
+To resolve relative URIs the base URIs must be precise and consistent: Having or not having a trailing slash is significant.
+Without it, the last path component is considered to be a "file" name to be removed to get at the "directory" that is used as the base.
+API endpoints usually behave like directories.
+
+**Examples:**
+- <https://example.com/folder/catalog.json> is good and <https://example.com/folder/catalog.json/> is problematic as catalog.json is a specific file
+- <https://example.com/api/> is good and <https://example.com/api> is problematic as `api` should not be removed when resolving URIs.
 
 ## Item Practices
 
@@ -633,7 +646,7 @@ multiple sources to achieve this.
 
 So if you are writing a STAC client it is recommended to start with just supporting these two types of published catalogs. In 
 turn, if your data is published online publicly or for use on an intranet then following these recommendations will ensure
-that a wider range of clients will work with it. 
+that a wider range of clients will work with it.
 
 ### Using Relation Types
 
