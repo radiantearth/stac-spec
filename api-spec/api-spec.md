@@ -101,8 +101,7 @@ See the [OpenAPI specification document](openapi/STAC.yaml).
 | Endpoint      | Returns | Description |
 | ------------- | ------- | ----------- |
 | /             | Catalog | Extends `/` from OAFeat to return a full STAC catalog. |
-| /search       | [ItemCollection](../item-spec/itemcollection-spec.md) | Retrieves a group of Items matching the 
-provided search predicates, probably containing search metadata from the `search` extension |
+| /search       | [ItemCollection](../item-spec/itemcollection-spec.md) | Retrieves a group of Items matching the provided search predicates, probably containing search metadata from the `search` extension |
 
 The `/` endpoint should function as a complete `Catalog` representation of all the data contained in the API and linked 
 to in some way from root through `Collections` and `Items`.
