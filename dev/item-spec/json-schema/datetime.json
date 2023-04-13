@@ -18,21 +18,21 @@
   "properties": {
     "datetime": {
       "title": "Date and Time",
-      "description": "The searchable date/time of the assets, in UTC (Formatted in RFC 3339) ",
+      "description": "The searchable date/time of the data, in UTC (Formatted in RFC 3339) ",
       "type": ["string", "null"],
       "format": "date-time",
       "pattern": "(\\+00:00|Z)$"
     },
     "start_datetime": {
       "title": "Start Date and Time",
-      "description": "The searchable start date/time of the assets, in UTC (Formatted in RFC 3339) ",
+      "description": "The searchable start date/time of the data, in UTC (Formatted in RFC 3339) ",
       "type": "string",
       "format": "date-time",
       "pattern": "(\\+00:00|Z)$"
     }, 
     "end_datetime": {
       "title": "End Date and Time", 
-      "description": "The searchable end date/time of the assets, in UTC (Formatted in RFC 3339) ",                  
+      "description": "The searchable end date/time of the data, in UTC (Formatted in RFC 3339) ",                  
       "type": "string",
       "format": "date-time",
       "pattern": "(\\+00:00|Z)$"
