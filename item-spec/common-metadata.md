@@ -18,8 +18,6 @@ or [Collection Asset](../collection-spec/collection-spec.md#asset-object).
 Various *examples* are available in the folder [`examples`](../examples/).
 *JSON Schemas* can be found in the folder [`json-schema`](json-schema/).
 
-By default, these fields are only included and validated against in the core [Item schema](json-schema/item.json).
-
 Implementation of any of the fields is not required, unless explicitly required by a specification using the field.
 For example, `datetime` is required in STAC Items.
 

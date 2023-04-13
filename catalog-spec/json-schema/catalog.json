@@ -6,12 +6,16 @@
   "allOf": [
     {
       "$ref": "#/definitions/catalog"
+    },
+    {
+      "$ref": "../../item-spec/json-schema/common.json#"
     }
   ],
   "definitions": {
     "catalog": {
       "title": "STAC Catalog",
       "type": "object",
+      "$comment": "title and description is validated through the common metadata.",
       "required": [
         "stac_version",
         "type",
@@ -44,49 +48,8 @@
           "type": "string",
           "minLength": 1
         },
-        "title": {
-          "title": "Title",
-          "type": "string"
-        },
-        "description": {
-          "title": "Description",
-          "type": "string",
-          "minLength": 1
-        },
         "links": {
-          "title": "Links",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/link"
-          }
-        }
-      }
-    },
-    "link": {
-      "type": "object",
-      "required": [
-        "rel",
-        "href"
-      ],
-      "properties": {
-        "href": {
-          "title": "Link reference",
-          "type": "string",
-          "format": "iri-reference",
-          "minLength": 1
-        },
-        "rel": {
-          "title": "Link relation type",
-          "type": "string",
-          "minLength": 1
-        },
-        "type": {
-          "title": "Link type",
-          "type": "string"
-        },
-        "title": {
-          "title": "Link title",
-          "type": "string"
+          "$ref": "../../item-spec/json-schema/item.json#/definitions/links"
         }
       }
     }
