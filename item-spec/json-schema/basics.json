@@ -17,7 +17,7 @@
     },
     "keywords": {
       "title": "Keywords",
-      "description": "List of free keywords associated with the item.",
+      "description": "List of keywords describing the entity.",
       "type": "array",
       "items": {
         "type": "string"
