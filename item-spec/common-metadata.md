@@ -23,14 +23,14 @@ For example, `datetime` is required in STAC Items.
 
 ## Basics
 
-Descriptive fields to give a basic overview of a STAC Item.
+Descriptive fields to give a basic overview of a STAC resource (e.g. Catalog, Collection, Item, Asset).
 
 - [JSON Schema](json-schema/basics.json)
 
 | Field Name  | Type   | Description                                                  |
 | ----------- | ------ | ------------------------------------------------------------ |
-| title       | string | A human readable title describing the Item. |
-| description | string | Detailed multi-line description to fully explain the Item. [CommonMark 0.29](https://commonmark.org/) syntax MAY be used for rich text representation. |
+| title       | string | A human readable title describing the resource. |
+| description | string | Detailed multi-line description to fully explain the resource. [CommonMark 0.29](https://commonmark.org/) syntax MAY be used for rich text representation. |
 
 ## Date and Time
 
@@ -41,8 +41,8 @@ Fields to provide additional temporal information such as ranges with a start an
 | Field Name | Type         | Description |
 | ---------- | ------------ | ----------- |
 | datetime   | string\|null | See the [Item Spec Fields](item-spec.md#properties-object) for more information. |
-| created    | string       | Creation date and time of the corresponding data (see below), in UTC. |
-| updated    | string       | Date and time the corresponding data (see below) was updated last, in UTC. |
+| created    | string       | Creation date and time of the corresponding resource (see below), in UTC. |
+| updated    | string       | Date and time the corresponding resource (see below) was updated last, in UTC. |
 
 All timestamps MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).
 
@@ -56,7 +56,7 @@ Having those fields in the Assets or Links, they refer to the actual data linked
 
 ### Date and Time Range
 
-While a STAC Item can have a nominal datetime describing the capture, these properties allow an Item to have a range
+While a STAC resource (e.g. an Item) can have a nominal datetime describing the capture, these properties allow a resource to have a range
 of capture dates and times. An example of this is the [MODIS 16 day vegetation index product](https://lpdaac.usgs.gov/products/mod13q1v006/).
 
 **Important:** Using one of the fields REQUIRES inclusion of the other field as well to enable a user to search STAC records by the provided times.
@@ -66,8 +66,8 @@ The datetime property in a STAC Item and these fields are not mutually exclusive
 
 | Field Name     | Type   | Description                                                  |
 | -------------- | ------ | ------------------------------------------------------------ |
-| start_datetime | string | The first or start date and time for the Item, in UTC. It is formatted as `date-time` according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
-| end_datetime   | string | The last or end date and time for the Item, in UTC. It is formatted as `date-time` according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
+| start_datetime | string | The first or start date and time for the resource, in UTC. It is formatted as `date-time` according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
+| end_datetime   | string | The last or end date and time for the resource, in UTC. It is formatted as `date-time` according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
 
 ## Licensing
 
@@ -78,7 +78,7 @@ Information about the license(s) of the data, which is not necessarily the same 
 
 | Field Name | Type   | Description |
 | ---------- | ------ | ----------- |
-| license    | string | Item's license(s), either a SPDX [License identifier](https://spdx.org/licenses/), `various` if multiple licenses apply or `proprietary` for all other cases. Should be defined at the Collection level if possible. |
+| license    | string | Resource's license(s), either a SPDX [License identifier](https://spdx.org/licenses/), `various` if multiple licenses apply or `proprietary` for all other cases. Should be defined at the Collection level if possible. |
 
 **license**: Data license(s) as a SPDX [License identifier](https://spdx.org/licenses/). Alternatively, use
 `proprietary` (see below) if the license is not on the SPDX license list or `various` if multiple licenses apply.
@@ -90,7 +90,7 @@ and consumers have not been granted any explicit right to use the data.
 
 | Type         | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
-| license      | The license URL(s) for the Item SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC Item with the license text in a separate file and link to this file. |
+| license      | The license URL(s) for the resource SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC resource with the license text in a separate file and link to this file. |
 
 ## Provider
 

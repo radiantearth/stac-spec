@@ -9,8 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-- Validate common metadata also in Catalogs, Collections and Links.
-- Common metadata: If a description is given, require that it is not empty
+- Common Metadata:
+  - Clarify in various field descriptions that the fields do not only apply to Items
+  - Validate the fields also in Catalogs, Collections and Links
+  - If a description is given, require that it is not empty
 - Clarified that trailing slashes in URIs are significant. ([#1212](https://github.com/radiantearth/stac-spec/discussions/1212))
 
 ### Removed
