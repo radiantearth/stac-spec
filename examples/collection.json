@@ -9,6 +9,11 @@
   "stac_version": "1.0.0",
   "description": "A simple collection demonstrating core catalog fields with links to a couple of items",
   "title": "Simple Example Collection",
+  "keywords": [
+    "simple",
+    "example",
+    "collection"
+  ],
   "providers": [
     {
       "name": "Remote Data, Inc",

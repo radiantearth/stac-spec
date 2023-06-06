@@ -45,6 +45,11 @@
   "properties": {
     "title": "Extended Item",
     "description": "A sample STAC Item that includes a variety of examples from the stable extensions",
+    "keywords": [
+      "extended",
+      "example",
+      "item"
+    ],
     "datetime": "2020-12-14T18:02:31.437000Z",
     "created": "2020-12-15T01:48:13.725Z",
     "updated": "2020-12-15T01:48:13.725Z",

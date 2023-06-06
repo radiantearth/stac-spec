@@ -27,10 +27,11 @@ Descriptive fields to give a basic overview of a STAC Item.
 
 - [JSON Schema](json-schema/basics.json)
 
-| Field Name  | Type   | Description                                                  |
-| ----------- | ------ | ------------------------------------------------------------ |
-| title       | string | A human readable title describing the Item. |
-| description | string | Detailed multi-line description to fully explain the Item. [CommonMark 0.29](https://commonmark.org/) syntax MAY be used for rich text representation. |
+| Field Name  | Type      | Description |
+| ----------- | --------- | ----------- |
+| title       | string    | A human readable title describing the STAC entity. |
+| description | string    | Detailed multi-line description to fully explain the STAC entity. [CommonMark 0.29](https://commonmark.org/) syntax MAY be used for rich text representation. |
+| keywords    | \[string] | List of keywords describing the STAC entity. |
 
 ## Date and Time
 
