@@ -14,6 +14,14 @@
       "description": "Detailed multi-line description to fully explain the entity.",
       "type": "string",
       "minLength": 1
+    },
+    "keywords": {
+      "title": "Keywords",
+      "description": "List of keywords describing the entity.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   }
 }
