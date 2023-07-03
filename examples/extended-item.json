@@ -119,13 +119,13 @@
         {
           "name": "band1",
           "common_name": "blue",
-          "center_wavelength": 0.470,
+          "center_wavelength": 0.47,
           "full_width_half_max": 70
         },
         {
           "name": "band2",
           "common_name": "green",
-          "center_wavelength": 0.560,
+          "center_wavelength": 0.56,
           "full_width_half_max": 80
         },
         {
@@ -137,7 +137,7 @@
         {
           "name": "band4",
           "common_name": "nir",
-          "center_wavelength": 0.800,
+          "center_wavelength": 0.8,
           "full_width_half_max": 152
         }
       ]
@@ -167,13 +167,13 @@
         {
           "name": "band2",
           "common_name": "green",
-          "center_wavelength": 0.560,
+          "center_wavelength": 0.56,
           "full_width_half_max": 80
         },
         {
           "name": "band1",
           "common_name": "blue",
-          "center_wavelength": 0.470,
+          "center_wavelength": 0.47,
           "full_width_half_max": 70
         }
       ]
