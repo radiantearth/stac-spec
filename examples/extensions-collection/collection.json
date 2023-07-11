@@ -2,7 +2,7 @@
   "id": "extensions-collection",
   "type": "Collection",
   "stac_version": "1.0.0",
-  "description": "A heterogenous collection containing deeper examples of various extensions",
+  "description": "A heterogeneous collection containing deeper examples of various extensions",
   "links": [
     {
       "rel": "parent",

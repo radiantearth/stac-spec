@@ -81,7 +81,7 @@
     "instruments": {
       "type": "string",
       "const": "msi",
-      "title": "Multispectral Intrument",
+      "title": "Multispectral Instrument",
       "count": 6613431
     },
     "resto:landcover": {
