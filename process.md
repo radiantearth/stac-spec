@@ -10,7 +10,8 @@ The `main` branch is a place of active development,
 where a new change in one part of the spec might not yet be fully updated everywhere else. 
 Tags, such as `v1.0.0`, aim to always be stable, meaning that all the pieces of the specification
 are consistent and well-explained, and all the examples are consistent with the specification. The
-latest tag will also has a branch associated with it that is set to the default.
+latest tag will also has a branch associated with it that is set to the default, e.g.,
+`release/v1.0.0`.
 
 The team uses the 
 [stac-spec issue tracker](https://github.com/radiantearth/stac-spec/issues) to identify and track all that will be done for 
