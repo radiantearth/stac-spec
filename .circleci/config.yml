@@ -63,4 +63,4 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              ignore: /^((?!dev).)*$/
+              only: main

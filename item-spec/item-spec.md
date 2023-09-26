@@ -1,4 +1,4 @@
-# STAC Item Specification <!-- omit in toc --> 
+# STAC Item Specification <!-- omit in toc -->
 
 - [Overview](#overview)
 - [Item fields](#item-fields)

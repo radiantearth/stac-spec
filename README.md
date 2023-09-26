@@ -52,10 +52,11 @@ version of the spec. It is currently version **1.0.0** of the specification. The
 follows [Semantic Versioning](https://semver.org/), so any breaking change will require the spec to 
 go to 2.0.0. 
 
-The [dev](https://github.com/radiantearth/stac-spec/tree/dev) branch is where active development 
-takes place, and may have inconsistent examples. Whenever dev stabilizes, a release is cut and we 
-merge `dev` in to `master`. So `master` should be stable at any given time. 
-More information on how the STAC development process works can be found in 
+The [main](https://github.com/radiantearth/stac-spec/tree/main) branch is where active development 
+takes place, and may have inconsistent examples. Whenever `main` stabilizes, a release is cut and
+we tag `main` and create a new branch with the same name as the tag, e.g., `v1.0.0`, and set that branch as the
+default to represent the most stable release.
+More information on how the STAC development process works can be found in
 [process.md](process.md).
 
 ## Communication

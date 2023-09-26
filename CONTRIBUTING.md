@@ -18,15 +18,16 @@ this broader ecosystem, while keeping the core spec as stable as we can.
 ### Submitting Pull Requests
 
 Any proposed changes to the specification should be done as pull requests. Please make these
-requests against the [dev](https://github.com/radiantearth/stac-spec/tree/dev) branch (this will
-require you to switch from the default of 'master', which we keep so it displays first). 
+requests against the [main](https://github.com/radiantearth/stac-spec/tree/main) branch (this will
+require you to switch from the default of the most current version branch, which we keep so it
+displays first).
 
 Creating a Pull Request will show our PR template, which includes checkbox reminders for a number
 of things.
 
 - Adding an entry the [CHANGELOG](CHANGELOG.md). If the change is more editorial and minor then this 
 is not required, but any change to the actual specification should definitely have one.
-- Base the PR against dev, as mentioned above - even if the branch was made off of dev this reminds
+- Base the PR against main, as mentioned above - even if the branch was made off of main this reminds
 you to change the base in GitHub's PR creation page.
 - Make a ticket in the STAC API repo if anything here affects there.
 - Highlight if the PR makes breaking changes to the specification (in beta there can still be

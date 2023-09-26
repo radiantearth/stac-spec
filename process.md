@@ -2,13 +2,17 @@
 
 ### Development Process
 
-The SpatioTemporal Asset Catalog specification is under active development. The goal is to get to a small, flexible stable 
+The SpatioTemporal Asset Catalog specification is under active development. The goal is to get to a small, flexible stable
 release that can be extended in a variety of ways. The core development team aims to release early and often, which generally
-has meant a new release between two and four months since the previous one. 
+has meant a new release between two and four months since the previous one.
 
-The `master` branch aims to always be stable, meaning that all the pieces of the specification are consistent and well
-explained, and all the examples are consistent with the specification. The `dev` branch is a place of active development, 
-where a new change in one part of the spec might not yet be fully updated everywhere else. The team uses the 
+The `main` branch is a place of active development,
+where a new change in one part of the spec might not yet be fully updated everywhere else. 
+Tags, such as `v1.0.0`, aim to always be stable, meaning that all the pieces of the specification
+are consistent and well-explained, and all the examples are consistent with the specification. The
+latest tag will also has a branch associated with it that is set to the default.
+
+The team uses the 
 [stac-spec issue tracker](https://github.com/radiantearth/stac-spec/issues) to identify and track all that will be done for 
 a release. Once all the major issues are resolved the core team makes sure everything is consistent across the spec and
 examples.

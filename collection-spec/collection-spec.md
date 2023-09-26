@@ -1,4 +1,4 @@
-# STAC Collection Specification <!-- omit in toc --> 
+# STAC Collection Specification <!-- omit in toc -->
 
 - [Overview](#overview)
 - [Collection fields](#collection-fields)
