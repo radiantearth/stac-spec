@@ -1,16 +1,17 @@
 # Extensions
 
-- [Overview](#overview)
-- [Using Extensions](#using-extensions)
-  - [Extension identifiers in `stac_extensions`](#extension-identifiers-in-stac_extensions)
-- [Community Extensions](#community-extensions)
-  - [Proposed extensions](#proposed-extensions)
-- [Extension Maturity](#extension-maturity)
-- [Extending STAC](#extending-stac)
-  - [General Conventions](#general-conventions)
-  - [Proposing new extensions](#proposing-new-extensions)
-  - [Prefixes](#prefixes)
-  - [Use of arrays and objects](#use-of-arrays-and-objects)
+- [Extensions](#extensions)
+  - [Overview](#overview)
+  - [Using Extensions](#using-extensions)
+    - [Extension identifiers in `stac_extensions`](#extension-identifiers-in-stac_extensions)
+  - [Community Extensions](#community-extensions)
+    - [Proposed extensions](#proposed-extensions)
+  - [Extension Maturity](#extension-maturity)
+  - [Extending STAC](#extending-stac)
+    - [General Conventions](#general-conventions)
+    - [Proposing new extensions](#proposing-new-extensions)
+    - [Prefixes](#prefixes)
+    - [Use of arrays and objects](#use-of-arrays-and-objects)
 
 ## Overview
 
@@ -101,13 +102,13 @@ There are many extensions being built with STAC, but they have varying degrees o
 listed here included must include a maturity classification, so that STAC spec users can easily get a sense of how
 much they can count on the extension.
 
-| Maturity Classification |  Min Impl # | Description | Stability |
-| ----------------------- | ----------- | ----------- | --------- |
-| Proposal                | 0           | An idea put forward by a community member to gather feedback | Not stable - breaking changes almost guaranteed as implementers try out the idea. |
-| Pilot                   | 1           | Idea is fleshed out, with examples and a JSON schema, and implemented in one or more catalogs. Additional implementations encouraged to help give feedback | Approaching stability - breaking changes are not anticipated but can easily come from additional feedback. |
-| Candidate               | 3           | A number of implementers are using it and are standing behind it as a solid extension. User can generally count on an extension at this maturity level. | Mostly stable, breaking changes require a new version and minor changes are unlikely. The extension has a code owner, designated in its README. |
-| Stable                  | 6           | Highest current level of maturity. The community of extension maintainers commits to a STAC review process for any changes, which are not made lightly. | Completely stable, all changes require a new version number and review process. |
-| Deprecated              | N/A         | A previous extension that has likely been superseded by a newer one or did not work out for some reason. | DO NOT USE, is not supported |
+| Maturity Classification | Min Impl # | Description                                                                                                                                                | Stability                                                                                                                                       |
+| ----------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| Proposal                | 0          | An idea put forward by a community member to gather feedback                                                                                               | Not stable - breaking changes almost guaranteed as implementers try out the idea.                                                               |
+| Pilot                   | 1          | Idea is fleshed out, with examples and a JSON schema, and implemented in one or more catalogs. Additional implementations encouraged to help give feedback | Approaching stability - breaking changes are not anticipated but can easily come from additional feedback.                                      |
+| Candidate               | 3          | A number of implementers are using it and are standing behind it as a solid extension. User can generally count on an extension at this maturity level.    | Mostly stable, breaking changes require a new version and minor changes are unlikely. The extension has a code owner, designated in its README. |
+| Stable                  | 6          | Highest current level of maturity. The community of extension maintainers commits to a STAC review process for any changes, which are not made lightly.    | Completely stable, all changes require a new version number and review process.                                                                 |
+| Deprecated              | N/A        | A previous extension that has likely been superseded by a newer one or did not work out for some reason.                                                   | DO NOT USE, is not supported                                                                                                                    |
 
 Maturity mostly comes through diverse implementations, so the minimum number of implementations
 column is the main gating function for an extension to mature. But extension authors can also
