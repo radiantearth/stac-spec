@@ -7,8 +7,8 @@ Collection can have parent Catalog and Collection objects, as well as child Item
 and Collection objects. These parent-child relationships among objects of these types, as there is no 
 subtyping relationship between the Collection and Catalog types, even through they share field names.
 
-A Collection provides a flexible mechanism to provide additional metadata about a set of Items.  
-Generally, is used to describe a set of assets that 
+A Collection provides a flexible mechanism to provide additional metadata about a set of Items. 
+Generally, it is used to describe a set of assets that 
 are defined with the same properties and share higher-level metadata. There is no 
 standardized name for this sort of logical grouping, but other places it is called a "
 dataset series" (ESA, ISO 19115), "collection" (CNES, NASA), "dataset" (JAXA), or "product"

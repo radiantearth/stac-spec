@@ -45,6 +45,11 @@
   "properties": {
     "title": "Extended Item",
     "description": "A sample STAC Item that includes a variety of examples from the stable extensions",
+    "keywords": [
+      "extended",
+      "example",
+      "item"
+    ],
     "datetime": "2020-12-14T18:02:31.437000Z",
     "created": "2020-12-15T01:48:13.725Z",
     "updated": "2020-12-15T01:48:13.725Z",
@@ -181,7 +186,7 @@
     "udm": {
       "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_analytic_udm.tif",
       "title": "Unusable Data Mask",
-      "type": "image/tiff; application=geotiff;"
+      "type": "image/tiff; application=geotiff"
     },
     "json-metadata": {
       "href": "http://remotedata.io/catalog/20201211_223832_CS2/extended-metadata.json",

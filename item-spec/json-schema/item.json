@@ -10,25 +10,6 @@
     }
   ],
   "definitions": {
-    "common_metadata": {
-      "allOf": [
-        {
-          "$ref": "basics.json"
-        },
-        {
-          "$ref": "datetime.json"
-        },
-        {
-          "$ref": "instrument.json"
-        },
-        {
-          "$ref": "licensing.json"
-        },
-        {
-          "$ref": "provider.json"
-        }
-      ]
-    },
     "core": {
       "allOf": [
         {
@@ -112,12 +93,7 @@
               "minLength": 1
             },
             "links": {
-              "title": "Item links",
-              "description": "Links to item relations",
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/link"
-              }
+              "$ref": "#/definitions/links"
             },
             "assets": {
               "$ref": "#/definitions/assets"
@@ -125,7 +101,7 @@
             "properties": {
               "allOf": [
                 {
-                  "$ref": "#/definitions/common_metadata"
+                  "$ref": "common.json"
                 },
                 {
                   "anyOf": [
@@ -192,33 +168,48 @@
         }
       ]
     },
-    "link": {
-      "type": "object",
-      "required": [
-        "rel",
-        "href"
-      ],
-      "properties": {
-        "href": {
-          "title": "Link reference",
-          "type": "string",
-          "format": "iri-reference",
-          "minLength": 1
-        },
-        "rel": {
-          "title": "Link relation type",
-          "type": "string",
-          "minLength": 1
-        },
-        "type": {
-          "title": "Link type",
-          "type": "string"
-        },
-        "title": {
-          "title": "Link title",
-          "type": "string"
-        }
+    "links": {
+      "title": "Item links",
+      "description": "Links to item relations",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/link"
       }
+    },
+    "link": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "rel",
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "title": "Link reference",
+              "type": "string",
+              "format": "iri-reference",
+              "minLength": 1
+            },
+            "rel": {
+              "title": "Link relation type",
+              "type": "string",
+              "minLength": 1
+            },
+            "type": {
+              "title": "Link type",
+              "type": "string"
+            },
+            "title": {
+              "title": "Link title",
+              "type": "string"
+            }
+          }
+        },
+        {
+          "$ref": "common.json"
+        }
+      ]
     },
     "assets": {
       "title": "Asset links",
@@ -264,7 +255,7 @@
           }
         },
         {
-          "$ref": "#/definitions/common_metadata"
+          "$ref": "common.json"
         }
       ]
     }

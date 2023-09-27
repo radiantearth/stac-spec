@@ -6,13 +6,17 @@
   "allOf": [
     {
       "$ref": "#/definitions/collection"
+    },
+    {
+      "$ref": "../../item-spec/json-schema/common.json#"
     }
   ],
   "definitions": {
     "collection": {
       "title": "STAC Collection",
-      "description": "These are the fields specific to a STAC Collection. All other fields are inherited from STAC Catalog.",
+      "description": "These are the fields specific to a STAC Collection.",
       "type": "object",
+      "$comment": "title, description, keywords, providers and license is validated through the common metadata.",
       "required": [
         "stac_version",
         "type",
@@ -46,64 +50,6 @@
           "title": "Identifier",
           "type": "string",
           "minLength": 1
-        },
-        "title": {
-          "title": "Title",
-          "type": "string"
-        },
-        "description": {
-          "title": "Description",
-          "type": "string",
-          "minLength": 1
-        },
-        "keywords": {
-          "title": "Keywords",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "license": {
-          "title": "Collection License Name",
-          "type": "string",
-          "pattern": "^[\\w\\-\\.\\+]+$"
-        },
-        "providers": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "required": [
-              "name"
-            ],
-            "properties": {
-              "name": {
-                "title": "Organization name",
-                "type": "string"
-              },
-              "description": {
-                "title": "Organization description",
-                "type": "string"
-              },
-              "roles": {
-                "title": "Organization roles",
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "enum": [
-                    "producer",
-                    "licensor",
-                    "processor",
-                    "host"
-                  ]
-                }
-              },
-              "url": {
-                "title": "Organization homepage",
-                "type": "string",
-                "format": "iri"
-              }
-            }
-          }
         },
         "extent": {
           "title": "Extents",
@@ -178,42 +124,10 @@
           "$ref": "../../item-spec/json-schema/item.json#/definitions/assets"
         },
         "links": {
-          "title": "Links",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/link"
-          }
+          "$ref": "../../item-spec/json-schema/item.json#/definitions/links"
         },
         "summaries": {
           "$ref": "#/definitions/summaries"
-        }
-      }
-    },
-    "link": {
-      "type": "object",
-      "required": [
-        "rel",
-        "href"
-      ],
-      "properties": {
-        "href": {
-          "title": "Link reference",
-          "type": "string",
-          "format": "iri-reference",
-          "minLength": 1
-        },
-        "rel": {
-          "title": "Link relation type",
-          "type": "string",
-          "minLength": 1
-        },
-        "type": {
-          "title": "Link type",
-          "type": "string"
-        },
-        "title": {
-          "title": "Link title",
-          "type": "string"
         }
       }
     },

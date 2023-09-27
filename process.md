@@ -2,13 +2,18 @@
 
 ### Development Process
 
-The SpatioTemporal Asset Catalog specification is under active development. The goal is to get to a small, flexible stable 
+The SpatioTemporal Asset Catalog specification is under active development. The goal is to get to a small, flexible stable
 release that can be extended in a variety of ways. The core development team aims to release early and often, which generally
-has meant a new release between two and four months since the previous one. 
+has meant a new release between two and four months since the previous one.
 
-The `master` branch aims to always be stable, meaning that all the pieces of the specification are consistent and well
-explained, and all the examples are consistent with the specification. The `dev` branch is a place of active development, 
-where a new change in one part of the spec might not yet be fully updated everywhere else. The team uses the 
+The `main` branch is a place of active development,
+where a new change in one part of the spec might not yet be fully updated everywhere else. 
+Tags, such as `v1.0.0`, aim to always be stable, meaning that all the pieces of the specification
+are consistent and well-explained, and all the examples are consistent with the specification. The
+latest tag will also has a branch associated with it that is set to the default, e.g.,
+`release/v1.0.0`.
+
+The team uses the 
 [stac-spec issue tracker](https://github.com/radiantearth/stac-spec/issues) to identify and track all that will be done for 
 a release. Once all the major issues are resolved the core team makes sure everything is consistent across the spec and
 examples.
@@ -38,7 +43,7 @@ The current list of people who are part of the 'core STAC team', and can approve
 - [Phil Varner](https://github.com/philvarner)
 
 Anyone can be nominated to the core STAC team, and that generally happens after contributing a few pull requests
-and/or helping review other PR's. Nominations are reviewed by the [PSC](#project-steering-committee), and must recieve
+and/or helping review other PR's. Nominations are reviewed by the [PSC](#project-steering-committee), and must receive
 3 positive votes and no negatives.
 
 ### Release Process
@@ -93,7 +98,7 @@ reviews.
 
 #### Project Steering Committee
 
-For the rare case where a decision cannot be reached by consensus, there is a Project Steerting Committee that has ultimate
+For the rare case where a decision cannot be reached by consensus, there is a Project Steering Committee that has ultimate
 decision making authority. This consists of individuals who are intended to represent the various communities which have a 
 stake in the specification and surrounding ecosystem. An odd number is chosen to facilitate the voting process and help prevent ties.
 This committee also handles the allocation of any funds that are raised for the project.
@@ -115,6 +120,6 @@ A new PSC member can be nominated at any time. Voting for a new PSC is done by c
 generally given in recognition to very significant contributions to the specification or the broader ecosystem. PSC members
 are not expected to be technical, and we hope to recognized contributions in documentation, outreach and evangelism. 
 
-Nominated PSC members must recieve a majority of +1 vote’s from the PSC, and no -1’s.
+Nominated PSC members must receive a majority of +1 vote’s from the PSC, and no -1’s.
 
 The initial PSC was selected by Chris Holmes, who was deemed the 'Benevolent Dictator for Life' for the bootstrapping phase.
