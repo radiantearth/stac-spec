@@ -3,8 +3,8 @@
 - [Overview](#overview)
 - [Collection fields](#collection-fields)
   - [Additional Field Information](#additional-field-information)
-    - [stac_version](#stac_version)
-    - [stac_extensions](#stac_extensions)
+    - [stac\_version](#stac_version)
+    - [stac\_extensions](#stac_extensions)
     - [id](#id)
     - [license](#license)
     - [summaries](#summaries)
@@ -43,21 +43,21 @@ specified in [*OGC API - Features*](https://ogcapi.ogc.org/features/), but they 
 
 ## Collection fields
 
-| Element         | Type                                             | Description                                                  |
-| --------------- | ------------------------------------------------ | ------------------------------------------------------------ |
-| type            | string                                           | **REQUIRED.** Must be set to `Collection` to be a valid Collection. |
-| stac_version    | string                                           | **REQUIRED.** The STAC version the Collection implements. |
-| stac_extensions | \[string]                                        | A list of extension identifiers the Collection implements.   |
-| id              | string                                           | **REQUIRED.** Identifier for the Collection that is unique across all collections in the root catalog. |
-| title           | string                                           | A short descriptive one-line title for the Collection.       |
-| description     | string                                           | **REQUIRED.** Detailed multi-line description to fully explain the Collection. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| keywords        | \[string]                                        | List of keywords describing the Collection.                  |
-| license         | string                                           | **REQUIRED.** Collection's license(s), either a SPDX [License identifier](https://spdx.org/licenses/), `various` if multiple licenses apply or `proprietary` for all other cases. |
-| providers       | \[[Provider Object](#provider-object)]           | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
-| extent          | [Extent Object](#extent-object)                  | **REQUIRED.** Spatial and temporal extents.                  |
-| summaries       | Map<string, \[\*]\|[Range Object](#range-object)\|[JSON Schema Object](#json-schema-object)> | STRONGLY RECOMMENDED. A map of property summaries, either a set of values, a range of values or a [JSON Schema](https://json-schema.org). |
-| links           | \[[Link Object](#link-object)]                   | **REQUIRED.** A list of references to other documents.       |
-| assets          | Map<string, [Asset Object](#asset-object)>       | Dictionary of asset objects that can be downloaded, each with a unique key. |
+| Element         | Type                                                                                         | Description                                                                                                                                                                                                                            |
+| --------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type            | string                                                                                       | **REQUIRED.** Must be set to `Collection` to be a valid Collection.                                                                                                                                                                    |
+| stac_version    | string                                                                                       | **REQUIRED.** The STAC version the Collection implements.                                                                                                                                                                              |
+| stac_extensions | \[string]                                                                                    | A list of extension identifiers the Collection implements.                                                                                                                                                                             |
+| id              | string                                                                                       | **REQUIRED.** Identifier for the Collection that is unique across all collections in the root catalog.                                                                                                                                 |
+| title           | string                                                                                       | A short descriptive one-line title for the Collection.                                                                                                                                                                                 |
+| description     | string                                                                                       | **REQUIRED.** Detailed multi-line description to fully explain the Collection. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation.                                                              |
+| keywords        | \[string]                                                                                    | List of keywords describing the Collection.                                                                                                                                                                                            |
+| license         | string                                                                                       | **REQUIRED.** Collection's license(s), either a SPDX [License identifier](https://spdx.org/licenses/), `various` if multiple licenses apply or `proprietary` for all other cases.                                                      |
+| providers       | \[[Provider Object](#provider-object)]                                                       | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
+| extent          | [Extent Object](#extent-object)                                                              | **REQUIRED.** Spatial and temporal extents.                                                                                                                                                                                            |
+| summaries       | Map<string, \[\*]\|[Range Object](#range-object)\|[JSON Schema Object](#json-schema-object)> | STRONGLY RECOMMENDED. A map of property summaries, either a set of values, a range of values or a [JSON Schema](https://json-schema.org).                                                                                              |
+| links           | \[[Link Object](#link-object)]                                                               | **REQUIRED.** A list of references to other documents.                                                                                                                                                                                 |
+| assets          | Map<string, [Asset Object](#asset-object)>                                                   | Dictionary of asset objects that can be downloaded, each with a unique key.                                                                                                                                                            |
 
 ### Additional Field Information
 
@@ -221,12 +221,12 @@ A provider is any of the organizations that captures or processes the content of
 and therefore influences the data offered by this Collection.
 May also include information about the final storage provider hosting the data.
 
-| Field Name  | Type      | Description                                                  |
-| ----------- | --------- | ------------------------------------------------------------ |
-| name        | string    | **REQUIRED.** The name of the organization or the individual. |
+| Field Name  | Type      | Description                                                                                                                                                                                                                                                            |
+| ----------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name        | string    | **REQUIRED.** The name of the organization or the individual.                                                                                                                                                                                                          |
 | description | string    | Multi-line description to add further provider information such as processing details for processors and producers, hosting details for hosts or basic contact information. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| roles       | \[string] | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`. |
-| url         | string    | Homepage on which the provider describes the dataset and publishes contact information. |
+| roles       | \[string] | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`.                                                                                                                                                                                           |
+| url         | string    | Homepage on which the provider describes the dataset and publishes contact information.                                                                                                                                                                                |
 
 **roles**: The provider's role(s) can be one or more of the following elements:
 
@@ -240,8 +240,8 @@ May also include information about the final storage provider hosting the data.
 
 This object describes a relationship with another entity. Data providers are advised to be liberal with links.
 
-| Field Name | Type   | Description                                                  |
-| ---------- | ------ | ------------------------------------------------------------ |
+| Field Name | Type   | Description                                                                                                                                                                    |
+| ---------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. [Trailing slashes are significant.](../best-practices.md#consistent-uris) |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "[Relation types](#relation-types)" for more information. |
 | type       | string | [Media type](../catalog-spec/catalog-spec.md#media-types) of the referenced entity. |
@@ -262,15 +262,15 @@ It is recommended to use the official
 The following table explains places where custom STAC `rel` types are used for Collections.
 This is done where there is not a clear official option, or where STAC uses an official type but adds additional meaning for the STAC context.
 
-| Type    | Description                                                  |
-| ------- | ------------------------------------------------------------ |
-| self    | STRONGLY RECOMMENDED. *Absolute* URL to the location that the Collection file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root    | URL to the root STAC entity (Catalog or Collection). Collections should include a link to their root, even if it's the root and points to itself. |
-| parent  | URL to the parent STAC entity (Catalog or Collection). Non-root Collections should include a link to their parent. |
-| child   | URL to a child STAC entity (Catalog or Collection). |
-| item    | URL to a STAC Item. All Items linked from a Collection MUST refer back to its Collection with the [`collection` relation type](../item-spec/item-spec.md#relation-types). |
-| license | The license URL(s) for the Collection SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to put the license text in a separate file and link to this file. |
-| derived_from | URL to a STAC Collection that was used as input data in the creation of this Collection. See the note in [STAC Item](../item-spec/item-spec.md#derived_from) for more info. |
+| Type         | Description                                                                                                                                                                                                                                                        |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| self         | STRONGLY RECOMMENDED. *Absolute* URL to the location that the Collection file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
+| root         | URL to the root STAC entity (Catalog or Collection). Collections should include a link to their root, even if it's the root and points to itself.                                                                                                                  |
+| parent       | URL to the parent STAC entity (Catalog or Collection). Non-root Collections should include a link to their parent.                                                                                                                                                 |
+| child        | URL to a child STAC entity (Catalog or Collection).                                                                                                                                                                                                                |
+| item         | URL to a STAC Item. All Items linked from a Collection MUST refer back to its Collection with the [`collection` relation type](../item-spec/item-spec.md#relation-types).                                                                                          |
+| license      | The license URL(s) for the Collection SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to put the license text in a separate file and link to this file.            |
+| derived_from | URL to a STAC Collection that was used as input data in the creation of this Collection. See the note in [STAC Item](../item-spec/item-spec.md#derived_from) for more info.                                                                                        |
 
 A more complete list of possible `rel` types and their meaning in STAC can be found in the
 [Using Relation Types](../best-practices.md#using-relation-types) best practice. 
@@ -286,13 +286,13 @@ An Asset is an object that contains a URI to data associated with the Collection
 or streamed. The definition provided here, at the Collection level, is the same as the
 [Asset Object in Items](../item-spec/item-spec.md#asset-object). It is allowed to add additional fields.
 
-| Field Name  | Type      | Description |
-| ----------- | --------- | ----------- |
-| href        | string    | **REQUIRED.** URI to the asset object. Relative and absolute URI are both allowed. |
-| title       | string    | The displayed title for clients and users. |
-| description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| Field Name  | Type      | Description                                                                                                                                                                                                  |
+| ----------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| href        | string    | **REQUIRED.** URI to the asset object. Relative and absolute URI are both allowed.                                                                                                                           |
+| title       | string    | The displayed title for clients and users.                                                                                                                                                                   |
+| description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation.                 |
 | type        | string    | [Media type](../item-spec/item-spec.md#asset-media-type) of the asset. See the [common media types](../best-practices.md#common-media-types-in-stac) in the best practice doc for commonly used asset types. |
-| roles       | \[string] | The [semantic roles](../item-spec/item-spec.md#asset-role-types) of the asset, similar to the use of `rel` in links. |
+| roles       | \[string] | The [semantic roles](../item-spec/item-spec.md#asset-role-types) of the asset, similar to the use of `rel` in links.                                                                                         |
 
 ### Range Object
 
@@ -303,8 +303,8 @@ which means they need to have a rank order.
 Therefore, ranges can only be specified for numbers and some special types of strings. Examples: grades (A to F), dates or times.
 Implementors are free to add other derived statistical values to the object, for example `mean` or `stddev`.
 
-| Field Name | Type           | Description |
-| ---------- | -------------- | ----------- |
+| Field Name | Type           | Description                  |
+| ---------- | -------------- | ---------------------------- |
 | minimum    | number\|string | **REQUIRED.** Minimum value. |
 | maximum    | number\|string | **REQUIRED.** Maximum value. |
 

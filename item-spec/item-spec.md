@@ -3,8 +3,8 @@
 - [Overview](#overview)
 - [Item fields](#item-fields)
   - [Additional Field Information](#additional-field-information)
-    - [stac_version](#stac_version)
-    - [stac_extensions](#stac_extensions)
+    - [stac\_version](#stac_version)
+    - [stac\_extensions](#stac_extensions)
     - [id](#id)
     - [assets](#assets)
     - [bbox](#bbox)
@@ -13,7 +13,7 @@
     - [Additional Fields](#additional-fields)
   - [Link Object](#link-object)
     - [Relation types](#relation-types)
-      - [derived_from](#derived_from)
+      - [derived\_from](#derived_from)
     - [Collections](#collections)
   - [Asset Object](#asset-object)
     - [Asset Media Type](#asset-media-type)
@@ -52,18 +52,18 @@ required fields is a valid STAC Item.
 This object describes a STAC Item. The fields `id`, `type`, `bbox`, `geometry` and `properties` are
 inherited from GeoJSON.
 
-| Field Name | Type                                                                       | Description |
-| ---------- | -------------------------------------------------------------------------- | ----------- |
-| type       | string                                                                     | **REQUIRED.** Type of the GeoJSON Object. MUST be set to `Feature`. |
-| stac_version | string                                                                   | **REQUIRED.** The STAC version the Item implements. |
-| stac_extensions | \[string]                                                             | A list of extensions the Item implements. |
-| id         | string                                                                     | **REQUIRED.** Provider identifier. The ID should be unique within the  [Collection](../collection-spec/collection-spec.md) that contains the Item. |
-| geometry   | [GeoJSON Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) \| [null](https://tools.ietf.org/html/rfc7946#section-3.2) | **REQUIRED.** Defines the full footprint of the asset represented by this item, formatted according to [RFC 7946, section 3.1](https://tools.ietf.org/html/rfc7946#section-3.1). The footprint should be the default GeoJSON geometry, though additional geometries can be included. Coordinates are specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). |
-| bbox       | \[number]                                                                  | **REQUIRED if `geometry` is not `null`, prohibited if `geometry` is `null`.** Bounding Box of the asset represented by this Item, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5). |
-| properties | [Properties Object](#properties-object)                                    | **REQUIRED.** A dictionary of additional metadata for the Item. |
-| links      | \[[Link Object](#link-object)]                                             | **REQUIRED.** List of link objects to resources and related URLs. See the [best practices](../best-practices.md#use-of-links) for details on when the use `self` links is strongly recommended. |
-| assets     | Map<string, [Asset Object](#asset-object)>                                 | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key. |
-| collection | string                                                                     | The `id` of the STAC Collection this Item references to (see [`collection` relation type](#relation-types)). This field is *required* if such a relation type is present and is *not allowed* otherwise. This field provides an easy way for a user to search for any Items that belong in a specified Collection. Must be a non-empty string. |
+| Field Name      | Type                                                                                                                                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type            | string                                                                                                                                | **REQUIRED.** Type of the GeoJSON Object. MUST be set to `Feature`.                                                                                                                                                                                                                                                                                                                                                                   |
+| stac_version    | string                                                                                                                                | **REQUIRED.** The STAC version the Item implements.                                                                                                                                                                                                                                                                                                                                                                                   |
+| stac_extensions | \[string]                                                                                                                             | A list of extensions the Item implements.                                                                                                                                                                                                                                                                                                                                                                                             |
+| id              | string                                                                                                                                | **REQUIRED.** Provider identifier. The ID should be unique within the  [Collection](../collection-spec/collection-spec.md) that contains the Item.                                                                                                                                                                                                                                                                                    |
+| geometry        | [GeoJSON Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) \| [null](https://tools.ietf.org/html/rfc7946#section-3.2) | **REQUIRED.** Defines the full footprint of the asset represented by this item, formatted according to [RFC 7946, section 3.1](https://tools.ietf.org/html/rfc7946#section-3.1). The footprint should be the default GeoJSON geometry, though additional geometries can be included. Coordinates are specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). |
+| bbox            | \[number]                                                                                                                             | **REQUIRED if `geometry` is not `null`, prohibited if `geometry` is `null`.** Bounding Box of the asset represented by this Item, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5).                                                                                                                                                                                                        |
+| properties      | [Properties Object](#properties-object)                                                                                               | **REQUIRED.** A dictionary of additional metadata for the Item.                                                                                                                                                                                                                                                                                                                                                                       |
+| links           | \[[Link Object](#link-object)]                                                                                                        | **REQUIRED.** List of link objects to resources and related URLs. See the [best practices](../best-practices.md#use-of-links) for details on when the use `self` links is strongly recommended.                                                                                                                                                                                                                                       |
+| assets          | Map<string, [Asset Object](#asset-object)>                                                                                            | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key.                                                                                                                                                                                                                                                                                                                                             |
+| collection      | string                                                                                                                                | The `id` of the STAC Collection this Item references to (see [`collection` relation type](#relation-types)). This field is *required* if such a relation type is present and is *not allowed* otherwise. This field provides an easy way for a user to search for any Items that belong in a specified Collection. Must be a non-empty string.                                                                                        |
 
 ### Additional Field Information
 
@@ -125,8 +125,8 @@ Additional metadata fields can be added to the GeoJSON Object Properties. The on
 is `datetime` but it is recommended to add more fields, see [Additional Fields](#additional-fields)
 resources below.
 
-| Field Name | Type         | Description                                                  |
-| ---------- | ------------ | ------------------------------------------------------------ |
+| Field Name | Type         | Description                                                                                                                                                                                                                                                                                                                          |
+| ---------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | datetime   | string\|null | **REQUIRED.** The searchable date and time of the assets, which must be in UTC. It is formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). `null` is allowed, but requires `start_datetime` and `end_datetime` from [common metadata](common-metadata.md#date-and-time-range) to be set. |
 
 #### datetime
@@ -171,8 +171,8 @@ with the links section, to describe things like the Catalog an Item is in, relat
 child Items (modeled in different ways, like an 'acquisition' or derived data).
 It is allowed to add additional fields such as a `title` and `type`.
 
-| Field Name | Type   | Description |
-| ---------- | ------ | ----------- |
+| Field Name | Type   | Description                                                                                                                                                                    |
+| ---------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. [Trailing slashes are significant.](../best-practices.md#consistent-uris) |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information. |
 | type       | string | [Media type](../catalog-spec/catalog-spec.md#media-types) of the referenced entity. |
@@ -193,13 +193,13 @@ It is recommended to use the official
 The following table explains places where STAC use custom `rel` types are used with Items.
 This happens where there is not a clear official option, or where STAC uses an official type but adds additional meaning for the STAC context.
 
-| Type         | Description                                                  |
-| ------------ | ------------------------------------------------------------ |
-| self         | STRONGLY RECOMMENDED. *Absolute* URL to the Item if it is available at a public URL. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root         | URL to the root STAC entity (Catalog or Collection). |
-| parent       | URL to the parent STAC entity (Catalog or Collection). |
+| Type         | Description                                                                                                                                                                                                                                                                                  |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| self         | STRONGLY RECOMMENDED. *Absolute* URL to the Item if it is available at a public URL. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from.                                                       |
+| root         | URL to the root STAC entity (Catalog or Collection).                                                                                                                                                                                                                                         |
+| parent       | URL to the parent STAC entity (Catalog or Collection).                                                                                                                                                                                                                                       |
 | collection   | STRONGLY RECOMMENDED. URL to a Collection. *Absolute* URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. A link with this `rel` type is *required* if the `collection` field in properties is present. |
-| derived_from | URL to a STAC Item that was used as input data in the creation of this Item. |
+| derived_from | URL to a STAC Item that was used as input data in the creation of this Item.                                                                                                                                                                                                                 |
 
 A more complete list of potential `rel` types and their meaning in STAC can be found in the [Using Relation 
 Types](../best-practices.md#using-relation-types) best practice. 
@@ -235,13 +235,13 @@ Linking back must happen in two places:
 An Asset is an object that contains a URI to data associated with the Item that can be downloaded
 or streamed. It is allowed to add additional fields.
 
-| Field Name  | Type      | Description |
-| ----------- | --------- | ----------- |
-| href        | string    | **REQUIRED.** URI to the asset object. Relative and absolute URI are both allowed. [Trailing slashes are significant.](../best-practices.md#consistent-uris) |
-| title       | string    | The displayed title for clients and users. |
+| Field Name  | Type      | Description                                                                                                                                                                                  |
+| ----------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| href        | string    | **REQUIRED.** URI to the asset object. Relative and absolute URI are both allowed. [Trailing slashes are significant.](../best-practices.md#consistent-uris)                                 |
+| title       | string    | The displayed title for clients and users.                                                                                                                                                   |
 | description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| type        | string    | [Media type](#asset-media-type) of the asset. See the [common media types](../best-practices.md#common-media-types-in-stac) in the best practice doc for commonly used asset types. |
-| roles       | \[string] | The [semantic roles](#asset-roles) of the asset, similar to the use of `rel` in links. |
+| type        | string    | [Media type](#asset-media-type) of the asset. See the [common media types](../best-practices.md#common-media-types-in-stac) in the best practice doc for commonly used asset types.          |
+| roles       | \[string] | The [semantic roles](#asset-roles) of the asset, similar to the use of `rel` in links.                                                                                                       |
 
 [Additional fields](#additional-fields) *may* be added to the assets, though this
 is recommended only in special cases. See [Additional Fields for Assets](#additional-fields-for-assets)) for more information.
@@ -266,12 +266,12 @@ describe the role.
 
 Like the Link `rel` field, the `roles` field can be given any value, however here are a few standardized role names. 
 
-| Role Name | Description                                                                           |
-| --------- | ------------------------------------------------------------------------------------- |
+| Role Name | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | thumbnail | An asset that represents a thumbnail of the Item, typically a true color image (for Items with assets in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `roles` be unique tuples. For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types. |
-| overview  | An asset that represents a possibly larger view than the thumbnail of the Item, for example, a true color composite of multi-band data. |
-| data      | The data itself. This is a suggestion for a common role for data files to be used in case data providers don't come up with their own names and semantics. |
-| metadata  | A metadata sidecar file describing the data in this Item, for example the Landsat-8 MTL file. |
+| overview  | An asset that represents a possibly larger view than the thumbnail of the Item, for example, a true color composite of multi-band data.                                                                                                                                                                                                                                                                                                                                                                        |
+| data      | The data itself. This is a suggestion for a common role for data files to be used in case data providers don't come up with their own names and semantics.                                                                                                                                                                                                                                                                                                                                                     |
+| metadata  | A metadata sidecar file describing the data in this Item, for example the Landsat-8 MTL file.                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 It is STRONGLY RECOMMENDED to add to each STAC Item
 - a thumbnail with the role `thumbnail` for preview purposes

@@ -2,8 +2,8 @@
 
 - [Catalog fields](#catalog-fields)
   - [Additional Field Information](#additional-field-information)
-    - [stac_version](#stac_version)
-    - [stac_extensions](#stac_extensions)
+    - [stac\_version](#stac_version)
+    - [stac\_extensions](#stac_extensions)
   - [Link Object](#link-object)
     - [Relation types](#relation-types)
 - [Media Types](#media-types)
@@ -42,15 +42,15 @@ values for `type` and `stac_extensions`.
 
 ## Catalog fields
 
-| Element         | Type          | Description                                                  |
-| --------------- | ------------- | ------------------------------------------------------------ |
-| type            | string        | **REQUIRED.** Set to `Catalog` if this Catalog only implements the Catalog spec. |
-| stac_version    | string        | **REQUIRED.** The STAC version the Catalog implements. |
-| stac_extensions | \[string]     | A list of extension identifiers the Catalog implements.                 |
-| id              | string        | **REQUIRED.** Identifier for the Catalog.                    |
-| title           | string        | A short descriptive one-line title for the Catalog.          |
-| description     | string        | **REQUIRED.** Detailed multi-line description to fully explain the Catalog. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| links           | [[Link Object](#link-object)] | **REQUIRED.** A list of references to other documents.       |
+| Element         | Type                          | Description                                                                                                                                                            |
+| --------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type            | string                        | **REQUIRED.** Set to `Catalog` if this Catalog only implements the Catalog spec.                                                                                       |
+| stac_version    | string                        | **REQUIRED.** The STAC version the Catalog implements.                                                                                                                 |
+| stac_extensions | \[string]                     | A list of extension identifiers the Catalog implements.                                                                                                                |
+| id              | string                        | **REQUIRED.** Identifier for the Catalog.                                                                                                                              |
+| title           | string                        | A short descriptive one-line title for the Catalog.                                                                                                                    |
+| description     | string                        | **REQUIRED.** Detailed multi-line description to fully explain the Catalog. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| links           | [[Link Object](#link-object)] | **REQUIRED.** A list of references to other documents.                                                                                                                 |
 
 ### Additional Field Information
 
@@ -71,8 +71,8 @@ This must **not** declare the extensions that are only implemented in child Coll
 This object describes a relationship with another entity. Data providers are advised to be liberal
 with links.
 
-| Field Name | Type   | Description |
-| ---------- | ------ | ----------- |
+| Field Name | Type   | Description                                                                                                                                                                    |
+| ---------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. [Trailing slashes are significant.](../best-practices.md#consistent-uris) |
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter ["Relation types"](#relation-types) for more information. |
 | type       | string | [Media type](#media-types) of the referenced entity. |
@@ -88,13 +88,13 @@ For a full discussion of the situations where relative and absolute links are re
 
 The following types are commonly used as `rel` types in the Link Object of a STAC Catalog:
 
-| Type    | Description |
-| ------- | ----------- |
-| self    | STRONGLY RECOMMENDED. *Absolute* URL to the location that the Catalog file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root    | STRONGLY RECOMMENDED. URL to the root STAC Catalog or [Collection](../collection-spec/README.md). Catalogs should include a link to their root, even if it's the root and points to itself. |
-| parent  | URL to the parent STAC entity (Catalog or Collection). Non-root Catalogs should include a link to their parent. |
-| child   | URL to a child STAC entity (Catalog or Collection). |
-| item    | URL to a STAC Item. |
+| Type   | Description                                                                                                                                                                                                                                                     |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| self   | STRONGLY RECOMMENDED. *Absolute* URL to the location that the Catalog file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
+| root   | STRONGLY RECOMMENDED. URL to the root STAC Catalog or [Collection](../collection-spec/README.md). Catalogs should include a link to their root, even if it's the root and points to itself.                                                                     |
+| parent | URL to the parent STAC entity (Catalog or Collection). Non-root Catalogs should include a link to their parent.                                                                                                                                                 |
+| child  | URL to a child STAC entity (Catalog or Collection).                                                                                                                                                                                                             |
+| item   | URL to a STAC Item.                                                                                                                                                                                                                                             |
 
 **Note:** A link to at least one `item` or `child` (Catalog or Collection) is **RECOMMENDED**, but empty catalogs are
 allowed if there is an intent to populate it or its children were removed.
@@ -124,7 +124,7 @@ The following table lists the Media Types to use for STAC structures.
 | Media Type             | Description                                                |
 | ---------------------- | ---------------------------------------------------------- |
 | `application/geo+json` | A STAC [Item](../item-spec/item-spec.md)                   |
-| `application/json`     | A STAC Catalog            |
+| `application/json`     | A STAC Catalog                                             |
 | `application/json`     | A STAC [Collection](../collection-spec/collection-spec.md) |
 
 ## Extensions
