@@ -16,7 +16,7 @@
       "title": "STAC Collection",
       "description": "These are the fields specific to a STAC Collection.",
       "type": "object",
-      "$comment": "title, description, providers and license is validated through the common metadata.",
+      "$comment": "title, description, keywords, providers and license is validated through the common metadata.",
       "required": [
         "stac_version",
         "type",
@@ -50,13 +50,6 @@
           "title": "Identifier",
           "type": "string",
           "minLength": 1
-        },
-        "keywords": {
-          "title": "Keywords",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
         },
         "extent": {
           "title": "Extents",
