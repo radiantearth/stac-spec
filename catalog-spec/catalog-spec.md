@@ -77,6 +77,9 @@ with links.
 | rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter ["Relation types"](#relation-types) for more information. |
 | type       | string | [Media type](#media-types) of the referenced entity. |
 | title      | string | A human readable title to be used in rendered displays of the link. |
+| method     | string | The HTTP method required to be supported by the target resource. `GET` by default |
+| headers    | object | The HTTP headers required to be sent by the target resource. |
+| body       | object | The HTTP body required to be sent by the target resource. |
 
 For a full discussion of the situations where relative and absolute links are recommended see the
 ['Use of links'](../best-practices.md#use-of-links) section of the STAC best practices.
