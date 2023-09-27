@@ -23,7 +23,7 @@ For example, `datetime` is required in STAC Items.
 
 ## Basics
 
-Descriptive fields to give a basic overview of a STAC resource (e.g. Catalog, Collection, Item, Asset).
+Descriptive fields to give a basic overview of a STAC entity (e.g. Catalog, Collection, Item, Asset).
 
 - [JSON Schema](json-schema/basics.json)
 
