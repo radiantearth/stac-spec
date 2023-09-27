@@ -1,7 +1,7 @@
 {
   "stac_version": "1.0.0",
   "stac_extensions": [
-    "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/eo/v2.0.0/schema.json",
     "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
     "https://stac-extensions.github.io/view/v1.0.0/schema.json"
   ],
@@ -199,77 +199,77 @@
         }
       ]
     },
-    "eo:bands": [
+    "bands": [
       {
         "title": "B1",
-        "common_name": "coastal",
-        "center_wavelength": 4.439,
+        "eo:common_name": "coastal",
+        "eo:center_wavelength": 4.439,
         "gsd": 60
       },
       {
         "title": "B2",
-        "common_name": "blue",
-        "center_wavelength": 4.966,
+        "eo:common_name": "blue",
+        "eo:center_wavelength": 4.966,
         "gsd": 10
       },
       {
         "title": "B3",
-        "common_name": "green",
-        "center_wavelength": 5.6,
+        "eo:common_name": "green",
+        "eo:center_wavelength": 5.6,
         "gsd": 10
       },
       {
         "title": "B4",
-        "common_name": "red",
-        "center_wavelength": 6.645,
+        "eo:common_name": "red",
+        "eo:center_wavelength": 6.645,
         "gsd": 10
       },
       {
         "title": "B5",
-        "center_wavelength": 7.039,
+        "eo:center_wavelength": 7.039,
         "gsd": 20
       },
       {
         "title": "B6",
-        "center_wavelength": 7.402,
+        "eo:center_wavelength": 7.402,
         "gsd": 20
       },
       {
         "title": "B7",
-        "center_wavelength": 7.825,
+        "eo:center_wavelength": 7.825,
         "gsd": 20
       },
       {
         "title": "B8",
-        "common_name": "nir",
-        "center_wavelength": 8.351,
+        "eo:common_name": "nir",
+        "eo:center_wavelength": 8.351,
         "gsd": 10
       },
       {
         "title": "B8A",
-        "center_wavelength": 8.648,
+        "eo:center_wavelength": 8.648,
         "gsd": 20
       },
       {
         "title": "B9",
-        "center_wavelength": 9.45,
+        "eo:center_wavelength": 9.45,
         "gsd": 60
       },
       {
         "title": "B10",
-        "center_wavelength": 1.3735,
+        "eo:center_wavelength": 1.3735,
         "gsd": 60
       },
       {
         "title": "B11",
-        "common_name": "swir16",
-        "center_wavelength": 1.6137,
+        "eo:common_name": "swir16",
+        "eo:center_wavelength": 1.6137,
         "gsd": 20
       },
       {
         "title": "B12",
-        "common_name": "swir22",
-        "center_wavelength": 2.2024,
+        "eo:common_name": "swir22",
+        "eo:center_wavelength": 2.2024,
         "gsd": 20
       }
     ]

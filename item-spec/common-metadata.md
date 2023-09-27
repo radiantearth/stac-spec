@@ -13,14 +13,9 @@ or [Collection Asset](../collection-spec/collection-spec.md#asset-object).
     - [Relation types](#relation-types)
   - [Provider](#provider)
     - [Provider Object](#provider-object)
-      - [roles](#roles)
   - [Instrument](#instrument)
-    - [Additional Field Information](#additional-field-information)
-      - [platform](#platform)
-      - [instruments](#instruments)
-      - [constellation](#constellation)
-      - [mission](#mission)
-      - [gsd](#gsd)
+  - [Bands](#bands)
+  - [Data Values](#data-values)
 
 Various *examples* are available in the folder [`examples`](../examples/).
 *JSON Schemas* can be found in the folder [`json-schema`](json-schema/).
@@ -198,3 +193,131 @@ optical and short-wave IR bands are all 30 meters, but the panchromatic band is 
 PlanetScope Ortho Tile Product has an `gsd` of 3.7 (or 4 if rounding), even though the pixel size of the images is 3.125.
 For example, one might choose for WorldView-2 the Multispectral 20° off-nadir value of 2.07
 and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.
+
+## Bands
+
+| Field Name | Type                           | Description                                                                     |
+| ---------- | ------------------------------ | ------------------------------------------------------------------------------- |
+| bands      | \[[Band Object](#band-object)] | An array of available bands where each object is a [Band Object](#band-object). |
+
+The `bands` array is used to describe the available bands in a STAC entity or Asset.
+This fields describes the general construct of a band or layer, which doesn't necessarily need to be a spectral band.
+By adding fields from extensions you can indicate that a band, for example, is
+- a spectral band ([EO extension](https://github.com/stac-extensions/eo)),
+- a band with classification results ([classification extension](https://github.com/stac-extensions/classification)),
+- a band with quality information such as cloud cover probabilities, 
+- etc.
+
+Each Asset should specify its own Band Object.
+If the individual bands are repeated in different assets they should all use the same values and 
+include the optional `name` field to enable clients to easily combine and summarize the bands.
+
+**Note:** This property is the successor of the `eo:bands` and `raster:bands` fields, which has been present in previous versions of these extensions.
+The behavior is very similar and they can be migrated easily. Usually, you can simply merge the each object on a by-index basis.
+For some fields you need to add the extension prefix of the `eo` or `raster` extension to the property name though. Example:
+
+Before:
+```json
+{
+	"eo:bands": [{
+		"name": "B4",
+		"description": "Red band",
+		"common_name": "red",
+		"center_wavelength": 0.665,
+		"full_width_half_max": 0.038
+	}],
+	"raster:bands": [{
+		"data_type": "float32",
+		"nodata": "nan",
+		"statistics": {"minimum": 0, "maximum": 1},
+		"spatial_resolution": 10
+	}]
+}
+```
+
+After:
+```json
+{
+	"bands": [{
+		"name": "B4",
+		"description": "Red band",
+		"data_type": "float32",
+		"nodata": "nan",
+		"statistics": {"minimum": 0, "maximum": 1},
+		"eo:common_name": "red",
+		"eo:center_wavelength": 0.665,
+		"eo:full_width_half_max": 0.038,
+		"raster:spatial_resolution": 10
+	}]
+}
+```
+
+### Band Object
+
+Specifically defined for the Band Object is just a single property `name`, which serves as a unique identifier.
+You can add additional fields from the common metadata such as a [`description`](#basics) or the [value-related](#data-values) properties.
+
+| Field Name  | Type   | Description                                                                                                                                                                                     |
+| ----------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name        | string | The name of the band (e.g., "B01", "B8", "band2", "red"), which should be unique across all bands defined in the list of bands. This is typically the name the data provider uses for the band. |
+| description | string | Description to fully explain the band. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation.                                                               |
+
+A Band Object must contain at least one property, which is not necessarily one of the properties
+defined here and can be a property from an extension or common metadata.
+
+## Data Values
+
+Adds metadata about the data values or measurement values contained in the entity that is described by
+the object these fields get added to (e.g., an asset or a band).
+These fields will often be combined with extensions that group data values into a "unit" or "chunk", e.g.,
+a band or layer in a file (`raster` and `eo` extensions),
+a column in a table (`table` extension),
+or dimensions in a datacube (`datacube` extension).
+
+| Field Name | Type                                    | Description                                                                                                                                    |
+| ---------- | --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| nodata     | number\|string                          | Values used to identify values that are nodata, either by the value as a number or as one of the following strings: `nan`, `inf` or `-inf`.    |
+| data_type  | string                                  | The data type of the values. One of the [data types as described below](#data-types).                                                          |
+| statistics | [Statistics Object](#statistics-object) | Statistics of all the values.                                                                                                                  |
+| unit       | string                                  | Unit of measurement of the value, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) units (singular). |
+
+### Statistics Object
+
+| Field Name    | Type    | Description                                                                                                                            |
+| ------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| minimum       | number  | minimum value of the values in the band. If not present, the minimum value of the given data type or negative infinity can be assumed. |
+| maximum       | number  | maximum value of the values in the band. If not present, the maximum value of the given data type or positive infinity can be assumed. |
+| mean          | number  | mean value of all the values in the band                                                                                               |
+| stddev        | number  | standard deviation value of the values in the band                                                                                     |
+| count         | integer | Total number of all data values (>= 0)                                                                                                 |
+| valid_percent | number  | Percentage of valid (not `nodata`) values (0-100)                                                                                      |
+
+### Data Types
+
+The data type gives information about the values.
+This can be used to indicate the (maximum) range of numerical values expected.
+For example `uint8` indicates that the numbers are in a range between 0 and 255,
+they can never be smaller or larger. This can help to pick the optimal numerical
+data type when reading the files to keep memory consumption low.
+Nevertheless, it doesn't necessarily mean that the expected values fill the whole range.
+For example, there can be use cases for `uint8` that just use the numbers 0 to 10 for example.
+Through the [Statistics Object](#statistics-object) it is possible to specify an exact value range so
+that visualizations can be optimized.
+The allowed values for `data_type` are:
+
+- `int8`: 8-bit integer
+- `int16`: 16-bit integer
+- `int32`: 32-bit integer
+- `int64`: 64-bit integer
+- `uint8`: unsigned 8-bit integer (common for 8-bit RGB PNG's)
+- `uint16`: unsigned 16-bit integer
+- `uint32`: unsigned 32-bit integer
+- `uint64`: unsigned 64-bit integer
+- `float16`: 16-bit float
+- `float32`: 32-bit float
+- `float64`: 64-big float
+- `cint16`: 16-bit complex integer
+- `cint32`: 32-bit complex integer
+- `cfloat32`: 32-bit complex float
+- `cfloat64`: 64-bit complex float
+- `other`: Other data type than the ones listed above (e.g. boolean, string, higher precision numbers)

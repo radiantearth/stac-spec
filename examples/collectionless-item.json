@@ -1,7 +1,7 @@
 {
   "stac_version": "1.0.0",
   "stac_extensions": [
-    "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/eo/v2.0.0/schema.json",
     "https://stac-extensions.github.io/view/v1.0.0/schema.json"
   ],
   "type": "Feature",
@@ -101,18 +101,22 @@
     "analytic": {
       "href": "http://cool-sat.com/catalog/CS3-20160503_132130_04/analytic.tif",
       "title": "4-Band Analytic",
-      "eo:bands": [
+      "bands": [
         {
-          "name": "band1"
+          "name": "band1",
+          "eo:common_name": "red"
         },
         {
-          "name": "band1"
+          "name": "band2",
+          "eo:common_name": "green"
         },
         {
-          "name": "band2"
+          "name": "band3",
+          "eo:common_name": "blue"
         },
         {
-          "name": "band3"
+          "name": "band4",
+          "eo:common_name": "nir"
         }
       ]
     },

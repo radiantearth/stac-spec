@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- `bands` is a new field in common metadata to replace `eo:bands` and `raster:bands` ([#1213](https://github.com/radiantearth/stac-spec/discussions/1213))
+- The fields `data_type`, `nodata`, `statistics` and `unit` have been added to common metadata ([#1213](https://github.com/radiantearth/stac-spec/discussions/1213))
 - The `keywords` field known from Collections is available in common metadata. ([#1187](https://github.com/radiantearth/stac-spec/issues/1187))
 
 ### Changed

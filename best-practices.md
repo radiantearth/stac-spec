@@ -276,7 +276,7 @@ providing them at the Asset level can prove to be very useful for using the data
   with different spatial resolution than the overall best resolution. Note this should not be used for different 
   spatial resolutions due to specific processing of assets - look into the [raster 
   extension](https://github.com/stac-extensions/raster) for that use case.
-- `eo:bands` ([EO extension](https://github.com/stac-extensions/eo/)):
+- `bands` (e.g. in combination with the [EO extension](https://github.com/stac-extensions/eo/)):
   Provide spectral band information, and order of bands, within an individual asset.
 - `proj:epsg`/`proj:wkt2`/`proj:projjson` ([projection extension](https://github.com/stac-extensions/projection/)):
   Specify different projection for some assets. If the projection is different
@@ -287,7 +287,7 @@ providing them at the Asset level can prove to be very useful for using the data
   If assets have different spatial resolutions and slightly different exact bounding boxes,
   specify these per asset to indicate the size of the asset in pixels and its exact GeoTransform in the native projection.
 - `sar:polarizations` ([sar extension](https://github.com/stac-extensions/sar)):
-  Provide the polarization content and ordering of a specific asset, similar to `eo:bands`.
+  Provide the polarization content and ordering of a specific asset.
 - `sar:product_type` ([sar extension](https://github.com/stac-extensions/sar)):
   If mixing multiple product types within a single Item, this can be used to specify the product_type for each asset.
 
@@ -559,11 +559,11 @@ in the array are meaningless, as each Item is describing its transform, so combi
 So if the values contained in the array are independently meaningful (not interconnected) and there aren't hundreds of potential
 values then it is likely a good candidate to summarize.
 
-We do highly recommend including an [`eo:bands`](https://github.com/stac-extensions/eo/blob/main/README.md#eobands)
-summary if your Items implement `eo:bands`, 
+We do highly recommend including a [`bands`](./item-spec/common-metadata.md#bands)
+summary if your Items implement `bands`, 
 especially if it represents just one satellite or constellation. This should be a union of all the potential bands that you 
-have in assets. It is ok to only add the summary at the Collection level without putting an explicit `eo:bands` summary at the 
-`properties` level of an Item, since that is optional. This gives users of the Collection a sense of the sensor capabilities without 
+have in assets. It is ok to only add the summary at the Collection level without putting `bands` at the 
+`properties` level of an Item. This gives users of the Collection a sense of the sensor capabilities without 
 having to examine specific Items or aggregate across every Item.
 
 Note that the ranges of summaries don't have to be exact. If you are publishing a catalog that is constantly updating with

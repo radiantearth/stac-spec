@@ -1,7 +1,7 @@
 {
   "stac_version": "1.0.0",
   "stac_extensions": [
-    "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/eo/v2.0.0/schema.json",
     "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
     "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
     "https://stac-extensions.github.io/view/v1.0.0/schema.json",
@@ -120,30 +120,30 @@
       "roles": [
         "data"
       ],
-      "eo:bands": [
+      "bands": [
         {
           "name": "band1",
-          "common_name": "blue",
-          "center_wavelength": 470,
-          "full_width_half_max": 70
+          "eo:common_name": "blue",
+          "eo:center_wavelength": 470,
+          "eo:full_width_half_max": 70
         },
         {
           "name": "band2",
-          "common_name": "green",
-          "center_wavelength": 560,
-          "full_width_half_max": 80
+          "eo:common_name": "green",
+          "eo:center_wavelength": 560,
+          "eo:full_width_half_max": 80
         },
         {
           "name": "band3",
-          "common_name": "red",
-          "center_wavelength": 645,
-          "full_width_half_max": 90
+          "eo:common_name": "red",
+          "eo:center_wavelength": 645,
+          "eo:full_width_half_max": 90
         },
         {
           "name": "band4",
-          "common_name": "nir",
-          "center_wavelength": 800,
-          "full_width_half_max": 152
+          "eo:common_name": "nir",
+          "eo:center_wavelength": 800,
+          "eo:full_width_half_max": 152
         }
       ]
     },
@@ -162,24 +162,24 @@
       "roles": [
         "visual"
       ],
-      "eo:bands": [
+      "bands": [
         {
           "name": "band3",
-          "common_name": "red",
-          "center_wavelength": 645,
-          "full_width_half_max": 90
+          "eo:common_name": "red",
+          "eo:center_wavelength": 645,
+          "eo:full_width_half_max": 90
         },
         {
           "name": "band2",
-          "common_name": "green",
-          "center_wavelength": 560,
-          "full_width_half_max": 80
+          "eo:common_name": "green",
+          "eo:center_wavelength": 560,
+          "eo:full_width_half_max": 80
         },
         {
           "name": "band1",
-          "common_name": "blue",
-          "center_wavelength": 470,
-          "full_width_half_max": 70
+          "eo:common_name": "blue",
+          "eo:center_wavelength": 470,
+          "eo:full_width_half_max": 70
         }
       ]
     },
