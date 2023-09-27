@@ -42,8 +42,8 @@ Fields to provide additional temporal information such as ranges with a start an
 | Field Name | Type         | Description |
 | ---------- | ------------ | ----------- |
 | datetime   | string\|null | See the [Item Spec Fields](item-spec.md#properties-object) for more information. |
-| created    | string       | Creation date and time of the corresponding resource (see below), in UTC. |
-| updated    | string       | Date and time the corresponding resource (see below) was updated last, in UTC. |
+| created    | string       | Creation date and time of the corresponding STAC entity or Asset (see below), in UTC. |
+| updated    | string       | Date and time the corresponding STAC entity or Asset (see below) was updated last, in UTC. |
 
 All timestamps MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).
 
@@ -57,7 +57,7 @@ Having those fields in the Assets or Links, they refer to the actual data linked
 
 ### Date and Time Range
 
-While a STAC resource (e.g. an Item) can have a nominal datetime describing the capture, these properties allow a resource to have a range
+While a STAC entity (e.g. an Item) can have a nominal datetime describing the capture, these properties allow a STAC entity to have a range
 of capture dates and times. An example of this is the [MODIS 16 day vegetation index product](https://lpdaac.usgs.gov/products/mod13q1v006/).
 
 **Important:** Using one of the fields REQUIRES inclusion of the other field as well to enable a user to search STAC records by the provided times.
