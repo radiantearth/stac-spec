@@ -28,7 +28,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
-- Clarified that collection IDs should be unique across all collections in the corresponding root catalog.
+- Clarified that collection IDs should be unique across all collections in the corresponding root catalog
+- Clarified that only JSON Schema in version draft-07 is officially supported in Collection summaries, for all other versions validation may fail
 
 ## [v1.0.0] - 2021-05-25
 

@@ -310,9 +310,11 @@ Implementors are free to add other derived statistical values to the object, for
 For a full understanding of the summarized field, a JSON Schema can be added for each summarized field.
 This allows very fine-grained information for each field and each value as JSON Schema is also extensible.
 Each schema must be valid against all corresponding values available for the property in the sub-Items.
+Empty schemas are not allowed.
 
-It is recommended to use [JSON Schema draft-07](https://json-schema.org/specification-links.html#draft-7)
-to align with the JSON Schemas provided by STAC. Empty schemas are not allowed.
+JSON Schema draft-07 is the only officially supported JSON Schema version to align with the JSON Schemas provided by STAC.
+Validation uses the JSON Schema meta-schema for draft-07.
+It is allowed to use you use other versions of JSON Schema, but they may not get validated properly.
 
 For an introduction to JSON Schema, see "[Learn JSON Schema](https://json-schema.org/learn/)".
 
