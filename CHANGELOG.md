@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Common metadata: If a description is given, require that it is not empty
 - Clarified that trailing slashes in URIs are significant. ([#1212](https://github.com/radiantearth/stac-spec/discussions/1212))
 - All JSON Schema `$id` values no longer have `#` at the end.
+- Two spatial bounding boxes in a Collection don't make sense and will be reported as invalid by the schema. ([#1243](https://github.com/radiantearth/stac-spec/issues/1243))
 
 ### Removed
 
@@ -25,9 +26,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Several typos and minor language changes
-
-### Fixed
-
 - Clarified that collection IDs should be unique across all collections in the corresponding root catalog.
 
 ## [v1.0.0] - 2021-05-25
