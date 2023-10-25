@@ -17,7 +17,7 @@ so it should also be core. [JSON API](http://jsonapi.org/) should be used as bas
 
 - **Small Reusable Pieces Loosely Coupled** - Each specification should be as focused as possible,
 defining one core concept and refraining from describing lots of options. Additional options can be made
-as separate specifications that build on the core. But the core specs should be small and easily understandble,
+as separate specifications that build on the core. But the core specs should be small and easily understandable,
 with clear defaults for any choice. Handling complex cases should be possible by combining discrete pieces.
 Implementors should not be forced to implement lots of options just for basic compliance - they should be
 able to pick and choose which pieces are relevant to the problems they are trying to solve.
