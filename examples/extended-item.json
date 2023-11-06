@@ -124,25 +124,25 @@
         {
           "name": "band1",
           "eo:common_name": "blue",
-          "eo:center_wavelength": 470,
+          "eo:center_wavelength": 0.47,
           "eo:full_width_half_max": 70
         },
         {
           "name": "band2",
           "eo:common_name": "green",
-          "eo:center_wavelength": 560,
+          "eo:center_wavelength": 0.56,
           "eo:full_width_half_max": 80
         },
         {
           "name": "band3",
           "eo:common_name": "red",
-          "eo:center_wavelength": 645,
+          "eo:center_wavelength": 0.645,
           "eo:full_width_half_max": 90
         },
         {
           "name": "band4",
           "eo:common_name": "nir",
-          "eo:center_wavelength": 800,
+          "eo:center_wavelength": 0.8,
           "eo:full_width_half_max": 152
         }
       ]
@@ -166,19 +166,19 @@
         {
           "name": "band3",
           "eo:common_name": "red",
-          "eo:center_wavelength": 645,
+          "eo:center_wavelength": 0.645,
           "eo:full_width_half_max": 90
         },
         {
           "name": "band2",
           "eo:common_name": "green",
-          "eo:center_wavelength": 560,
+          "eo:center_wavelength": 0.56,
           "eo:full_width_half_max": 80
         },
         {
           "name": "band1",
           "eo:common_name": "blue",
-          "eo:center_wavelength": 470,
+          "eo:center_wavelength": 0.47,
           "eo:full_width_half_max": 70
         }
       ]

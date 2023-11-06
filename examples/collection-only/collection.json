@@ -153,47 +153,47 @@
       {
         "name": "B1",
         "eo:common_name": "coastal",
-        "eo:center_wavelength": 4.439
+        "eo:center_wavelength": 0.4439
       },
       {
         "name": "B2",
         "eo:common_name": "blue",
-        "eo:center_wavelength": 4.966
+        "eo:center_wavelength": 0.4966
       },
       {
         "name": "B3",
         "eo:common_name": "green",
-        "eo:center_wavelength": 5.6
+        "eo:center_wavelength": 0.56
       },
       {
         "name": "B4",
         "eo:common_name": "red",
-        "eo:center_wavelength": 6.645
+        "eo:center_wavelength": 0.6645
       },
       {
         "name": "B5",
-        "eo:center_wavelength": 7.039
+        "eo:center_wavelength": 0.7039
       },
       {
         "name": "B6",
-        "eo:center_wavelength": 7.402
+        "eo:center_wavelength": 0.7402
       },
       {
         "name": "B7",
-        "eo:center_wavelength": 7.825
+        "eo:center_wavelength": 0.7825
       },
       {
         "name": "B8",
         "eo:common_name": "nir",
-        "eo:center_wavelength": 8.351
+        "eo:center_wavelength": 0.8351
       },
       {
         "name": "B8A",
-        "eo:center_wavelength": 8.648
+        "eo:center_wavelength": 0.8648
       },
       {
         "name": "B9",
-        "eo:center_wavelength": 9.45
+        "eo:center_wavelength": 0.945
       },
       {
         "name": "B10",
