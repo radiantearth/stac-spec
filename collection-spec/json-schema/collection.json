@@ -69,7 +69,15 @@
                 "bbox": {
                   "title": "Spatial extents",
                   "type": "array",
-                  "minItems": 1,
+                  "oneOf": [
+                    {
+                      "minItems": 1,
+                      "maxItems": 1
+                    },
+                    {
+                      "minItems": 3
+                    }
+                  ],
                   "items": {
                     "title": "Spatial extent",
                     "type": "array",
