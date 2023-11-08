@@ -314,7 +314,7 @@ Empty schemas are not allowed.
 
 JSON Schema draft-07 is the only officially supported JSON Schema version to align with the JSON Schemas provided by STAC.
 Validation uses the JSON Schema meta-schema for draft-07.
-It is allowed to use you use other versions of JSON Schema, but they may not get validated properly.
+It is allowed to use other versions of JSON Schema, but they may not get validated properly.
 
 For an introduction to JSON Schema, see "[Learn JSON Schema](https://json-schema.org/learn/)".
 
