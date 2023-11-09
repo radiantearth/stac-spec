@@ -13,7 +13,14 @@ or [Collection Asset](../collection-spec/collection-spec.md#asset-object).
     - [Relation types](#relation-types)
   - [Provider](#provider)
     - [Provider Object](#provider-object)
+      - [roles](#roles)
   - [Instrument](#instrument)
+    - [Additional Field Information](#additional-field-information)
+      - [platform](#platform)
+      - [instruments](#instruments)
+      - [constellation](#constellation)
+      - [mission](#mission)
+      - [gsd](#gsd)
 
 Various *examples* are available in the folder [`examples`](../examples/).
 *JSON Schemas* can be found in the folder [`json-schema`](json-schema/).
@@ -27,11 +34,11 @@ Descriptive fields to give a basic overview of a STAC entity (e.g. Catalog, Coll
 
 - [JSON Schema](json-schema/basics.json)
 
-| Field Name  | Type      | Description |
-| ----------- | --------- | ----------- |
-| title       | string    | A human readable title describing the STAC entity. |
+| Field Name  | Type      | Description                                                                                                                                                   |
+| ----------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| title       | string    | A human readable title describing the STAC entity.                                                                                                            |
 | description | string    | Detailed multi-line description to fully explain the STAC entity. [CommonMark 0.29](https://commonmark.org/) syntax MAY be used for rich text representation. |
-| keywords    | \[string] | List of keywords describing the STAC entity. |
+| keywords    | \[string] | List of keywords describing the STAC entity.                                                                                                                  |
 
 ## Date and Time
 
@@ -39,11 +46,11 @@ Descriptive fields to give a basic overview of a STAC entity (e.g. Catalog, Coll
 
 Fields to provide additional temporal information such as ranges with a start and an end datetime stamp.
 
-| Field Name | Type         | Description |
-| ---------- | ------------ | ----------- |
-| datetime   | string\|null | See the [Item Spec Fields](item-spec.md#properties-object) for more information. |
+| Field Name | Type         | Description                                                                           |
+| ---------- | ------------ | ------------------------------------------------------------------------------------- |
+| datetime   | string\|null | See the [Item Spec Fields](item-spec.md#properties-object) for more information.      |
 | created    | string       | Creation date and time of the corresponding STAC entity or Asset (see below), in UTC. |
-| updated    | string       | Date and time the corresponding STAC entity or Asset (see below) was updated last, in UTC. |
+| u-----d    | s----g       | D-----------------------------------------------------------------------------------. |
 
 All timestamps MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).
 
@@ -65,10 +72,10 @@ So if you use `start_datetime` you need to add `end_datetime` and vice-versa.
 Both fields are also REQUIRED if the `datetime` field is set to `null`.
 The datetime property in a STAC Item and these fields are not mutually exclusive.
 
-| Field Name     | Type   | Description                                                  |
-| -------------- | ------ | ------------------------------------------------------------ |
+| Field Name     | Type   | Description                                                                                                                                                                      |
+| -------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | start_datetime | string | The first or start date and time for the resource, in UTC. It is formatted as `date-time` according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
-| end_datetime   | string | The last or end date and time for the resource, in UTC. It is formatted as `date-time` according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
+| end_datetime   | string | The last or end date and time for the resource, in UTC. It is formatted as `date-time` according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).    |
 
 ## Licensing
 
@@ -77,21 +84,31 @@ Information about the license(s) of the data, which is not necessarily the same 
 
 - [JSON Schema](json-schema/licensing.json)
 
-| Field Name | Type   | Description |
-| ---------- | ------ | ----------- |
-| license    | string | Resource's license(s), either a SPDX [License identifier](https://spdx.org/licenses/), `various` if multiple licenses apply or `proprietary` for all other cases. Should be defined at the Collection level if possible. |
+| Field Name | Type   | Description                                                                                         |
+| ---------- | ------ | --------------------------------------------------------------------------------------------------- |
+| license    | string | License(s) of the data as SPDX License identifier, SPDX License expression, or `other` (see below). |
 
-**license**: Data license(s) as a SPDX [License identifier](https://spdx.org/licenses/). Alternatively, use
-`proprietary` (see below) if the license is not on the SPDX license list or `various` if multiple licenses apply.
-In all cases links to the license texts SHOULD be added, see the [`license` link relation type](#relation-types).
-If no link to a license is included and the `license` field is set to `proprietary`, the Collection is private,
-and consumers have not been granted any explicit right to use the data.
+**license**: License(s) of the data that the STAC entity provides.
+
+The license(s) can be provided as:
+
+1. [SPDX License identifier](https://spdx.org/licenses/)
+2. [SPDX License expression](https://spdx.github.io/spdx-spec/v2.3/SPDX-license-expressions/)
+3. String with the value `other` if the license is not on the SPDX license list.
+   The strings `various` and `proprietary` are **deprecated**.
+
+If the license is **not** an SPDX license identifier, links to the license texts SHOULD be added.
+The links MUST use the [`license` link relation type](#relation-types).
+If there is no public license URL available,
+it is RECOMMENDED to supplement the STAC Item with the license text in a separate file and link to this file.
+If no link to a license is included and the `license` field is set to `other` (or one of the deprecated values),
+the data is private, and consumers have not been granted any explicit right to use it.
 
 ### Relation types
 
-| Type         | Description                                                  |
-| ------------ | ------------------------------------------------------------ |
-| license      | The license URL(s) for the resource SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC resource with the license text in a separate file and link to this file. |
+| Type    | Description                                                                                                          |
+| ------- | -------------------------------------------------------------------------------------------------------------------- |
+| license | The license URL(s) for the Resource SHOULD be specified if the `license` field is **not** a SPDX license identifier. |
 
 ## Provider
 
@@ -100,9 +117,9 @@ Information about the organizations capturing, producing, processing, hosting or
 
 - [JSON Schema](json-schema/provider.json)
 
-| Field Name | Type   | Description |
-| ---------- | ------ | ----------- |
-| providers  | [[Provider Object](#provider-object)] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list.  |
+| Field Name | Type                                  | Description                                                                                                                                                                                                                            |
+| ---------- | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| providers  | [[Provider Object](#provider-object)] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 
 ### Provider Object
 
@@ -111,12 +128,12 @@ A provider is any of the organizations that captures or processes the content of
 therefore influences the data offered by the STAC implementation.
 May also include information about the final storage provider hosting the data.
 
-| Field Name  | Type      | Description                                                  |
-| ----------- | --------- | ------------------------------------------------------------ |
-| name        | string    | **REQUIRED.** The name of the organization or the individual. |
+| Field Name  | Type      | Description                                                                                                                                                                                                                                                            |
+| ----------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name        | string    | **REQUIRED.** The name of the organization or the individual.                                                                                                                                                                                                          |
 | description | string    | Multi-line description to add further provider information such as processing details for processors and producers, hosting details for hosts or basic contact information. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| roles       | \[string] | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`. |
-| url         | string    | Homepage on which the provider describes the dataset and publishes contact information. |
+| roles       | \[string] | Roles of the provider. Any of `licensor`, `producer`, `processor` or `host`.                                                                                                                                                                                           |
+| url         | string    | Homepage on which the provider describes the dataset and publishes contact information.                                                                                                                                                                                |
 
 #### roles
 
@@ -135,12 +152,12 @@ with domain-specific extensions that describe the actual data, such as the `eo` 
 
 - [JSON Schema](json-schema/instrument.json)
 
-| Field Name    | Type      | Description |
-| ------------- | --------- | ----------- |
-| platform      | string    | Unique name of the specific platform to which the instrument is attached. |
-| instruments   | \[string] | Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1). |
-| constellation | string    | Name of the constellation to which the platform belongs. |
-| mission       | string    | Name of the mission for which data is collected. |
+| Field Name    | Type      | Description                                                                  |
+| ------------- | --------- | ---------------------------------------------------------------------------- |
+| platform      | string    | Unique name of the specific platform to which the instrument is attached.    |
+| instruments   | \[string] | Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1).      |
+| constellation | string    | Name of the constellation to which the platform belongs.                     |
+| mission       | string    | Name of the mission for which data is collected.                             |
 | gsd           | number    | Ground Sample Distance at the sensor, in meters (m), must be greater than 0. |
 
 ### Additional Field Information

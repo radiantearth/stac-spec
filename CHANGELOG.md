@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - The `keywords` field known from Collections is available in common metadata. ([#1187](https://github.com/radiantearth/stac-spec/issues/1187))
+- The `license` field additionally supports SPDX expressions and the value `other`.
 
 ### Changed
 
@@ -18,6 +19,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - Validate the fields also in Catalogs, Collections and Links
   - If a description is given, require that it is not empty
 - Clarified that trailing slashes in URIs are significant. ([#1212](https://github.com/radiantearth/stac-spec/discussions/1212))
+- All JSON Schema `$id` values no longer have `#` at the end.
+- Two spatial bounding boxes in a Collection don't make sense and will be reported as invalid by the schema. ([#1243](https://github.com/radiantearth/stac-spec/issues/1243))
+
+### Deprecated
+
+- `license`: The values `proprietary` and `various` are deprecated in favor of SPDX expressions and `other`.
 
 ### Removed
 
@@ -26,9 +33,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Several typos and minor language changes
-
-### Fixed
-
 - Clarified that collection IDs should be unique across all collections in the corresponding root catalog.
 
 ## [v1.0.0] - 2021-05-25

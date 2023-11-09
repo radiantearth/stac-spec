@@ -9,7 +9,7 @@
   "type": "Collection",
   "title": "Sentinel-2 MSI: MultiSpectral Instrument, Level-2A",
   "description": "The SENTINEL-2 mission is a land monitoring constellation of two satellites each equipped with a MSI (Multispectral Imager) instrument covering 13 spectral bands providing high resolution optical imagery (i.e., 10m, 20m, 60 m) every 10 days with one satellite and 5 days with two satellites",
-  "license": "proprietary",
+  "license": "other",
   "extent": {
     "spatial": {
       "bbox": [
@@ -203,56 +203,56 @@
       {
         "title": "B1",
         "common_name": "coastal",
-        "center_wavelength": 4.439,
+        "center_wavelength": 0.4439,
         "gsd": 60
       },
       {
         "title": "B2",
         "common_name": "blue",
-        "center_wavelength": 4.966,
+        "center_wavelength": 0.4966,
         "gsd": 10
       },
       {
         "title": "B3",
         "common_name": "green",
-        "center_wavelength": 5.6,
+        "center_wavelength": 0.56,
         "gsd": 10
       },
       {
         "title": "B4",
         "common_name": "red",
-        "center_wavelength": 6.645,
+        "center_wavelength": 0.6645,
         "gsd": 10
       },
       {
         "title": "B5",
-        "center_wavelength": 7.039,
+        "center_wavelength": 0.7039,
         "gsd": 20
       },
       {
         "title": "B6",
-        "center_wavelength": 7.402,
+        "center_wavelength": 0.7402,
         "gsd": 20
       },
       {
         "title": "B7",
-        "center_wavelength": 7.825,
+        "center_wavelength": 0.7825,
         "gsd": 20
       },
       {
         "title": "B8",
         "common_name": "nir",
-        "center_wavelength": 8.351,
+        "center_wavelength": 0.8351,
         "gsd": 10
       },
       {
         "title": "B8A",
-        "center_wavelength": 8.648,
+        "center_wavelength": 0.8648,
         "gsd": 20
       },
       {
         "title": "B9",
-        "center_wavelength": 9.45,
+        "center_wavelength": 0.945,
         "gsd": 60
       },
       {
