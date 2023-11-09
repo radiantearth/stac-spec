@@ -238,20 +238,7 @@ May also include information about the final storage provider hosting the data.
 
 ### Link Object
 
-This object describes a relationship with another entity. Data providers are advised to be liberal with links.
-
-| Field Name | Type   | Description                                                                                                                                                                    |
-| ---------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. [Trailing slashes are significant.](../best-practices.md#consistent-uris) |
-| rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "[Relation types](#relation-types)" for more information.                         |
-| type       | string | [Media type](../catalog-spec/catalog-spec.md#media-types) of the referenced entity.                                                                                            |
-| title      | string | A human readable title to be used in rendered displays of the link.                                                                                                            |
-| method     | string | The HTTP method required to be supported by the target resource. `GET` by default                                                                                              |
-| headers    | object | The HTTP headers required to be sent by the target resource.                                                                                                                   |
-| body       | object | The HTTP body required to be sent by the target resource.                                                                                                                      |
-
-For a full discussion of the situations where relative and absolute links are recommended see the
-['Use of links'](../best-practices.md#use-of-links) section of the STAC best practices.
+This object is described in the [STAC Common Metadata](../item-spec/common-metadata.md#link-object) section.
 
 #### Relation types
 
