@@ -152,12 +152,21 @@ For data providers using STAC with requester pays buckets, there are two main re
 Links in STAC can be [absolute or relative](#use-of-links).
 Relative links must be resolved against the absolute URI given in the link with the relation type `self` (or in some cases `root`).
 To resolve relative URIs the base URIs must be precise and consistent: Having or not having a trailing slash is significant.
-Without it, the last path component is considered to be a "file" name to be removed to get at the "directory" that is used as the base.
+Without it, the last path component is identified as a "file" name which will be removed to get to the "directory" that is used as the base.
 API endpoints usually behave like directories.
+This means that if the trailing slash is missing for a folder,
+a relative link would need to include the last path component again to resolve correctly.
 
 **Examples:**
-- <https://example.com/folder/catalog.json> is good and <https://example.com/folder/catalog.json/> is problematic as catalog.json is a specific file
-- <https://example.com/api/> is good and <https://example.com/api> is problematic as `api` should not be removed when resolving URIs.
+- We have a `self` link `https://example.com/folder/catalog.json` and a relative link `./item.json`.
+  This resolves to `https://example.com/folder/item.json` as expected as the last path component is actually a file.
+- We have a `self` link `https://example.com/collections/S2/items/123` and a relative link `./band1.tif`.
+  This resolves to `https://example.com/collections/S2/items/band1.tif`, which is likely unexpected and unintended.
+  There are two ways to solve this issue so that the URLs resolve correctly to `https://example.com/collections/S2/items/123/band1.tif`:
+  1. Add a slash at the end of the `self` link: `https://example.com/collections/S2/items/123/`, *OR*
+  2. Add the last path element to the relative link: `./123/band1.tif`
+
+To avoid these issues it is recommended to consistently add a slash at the end of the URL if it doesn't point to a file.
 
 ## Item Practices
 
@@ -660,7 +669,7 @@ a number of the common official relations that are used in production STAC imple
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | alternate | It is recommended that STAC Items are also available as HTML, and should use this rel with `"type" : "text/html"` to tell clients where they can get a version of the Item or Collection to view in a browser. See [STAC on the Web in Best Practices](#stac-on-the-web) for more information.                                                                                                                                      |
 | canonical | The URL of the [canonical](https://en.wikipedia.org/wiki/Canonical_link_element) version of the Item or Collection. API responses and copies of catalogs should use this to inform users that they are direct copy of another STAC Item, using the canonical rel to refer back to the primary location.                                                                                                                             |
-| via       | The URL of the source metadata that this STAC Item or Collection is created from. Used similarly to canonical, but refers back to a non-STAC record (Landsat MTL, Sentinel tileInfo.json, etc)                                                                                                                                                                                                                                      |
+| via       | The URL of the source metadata that this STAC Item or Collection is created from. Used similarly to canonical, but refers back to a non-STAC record (Landsat MTL, Sentinel metadata XML, etc)                                                                                                                                                                                                                                       |
 | prev      | Indicates that the link's context is a part of a series, and that the previous in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs/Collections.                                                                                                                                                                                                                        |
 | next      | Indicates that the link's context is a part of a series, and that the next in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs/Collections.                                                                                                                                                                                                                            |
 | preview   | Refers to a resource that serves as a preview (see [RFC 6903, sec. 3](https://tools.ietf.org/html/rfc6903#section-3)), usually a lower resolution thumbnail. In STAC this would usually be the same URL as the [thumbnail](#thumbnail) asset, but adding it as a link in addition enables OGC API clients that can't read assets to make use of it. It also adds support for thumbnails to STAC Catalogs as they can't list assets. |

@@ -85,21 +85,30 @@ Information about the license(s) of the data, which is not necessarily the same 
 
 - [JSON Schema](json-schema/licensing.json)
 
-| Field Name | Type   | Description                                                                                                                                                                                                          |
-| ---------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| license    | string | Item's license(s), either a SPDX [License identifier](https://spdx.org/licenses/), `various` if multiple licenses apply or `proprietary` for all other cases. Should be defined at the Collection level if possible. |
+| Field Name | Type   | Description                                                                                         |
+| ---------- | ------ | --------------------------------------------------------------------------------------------------- |
+| license    | string | License(s) of the data as SPDX License identifier, SPDX License expression, or `other` (see below). |
 
-**license**: Data license(s) as a SPDX [License identifier](https://spdx.org/licenses/). Alternatively, use
-`proprietary` (see below) if the license is not on the SPDX license list or `various` if multiple licenses apply.
-In all cases links to the license texts SHOULD be added, see the [`license` link relation type](#relation-types).
-If no link to a license is included and the `license` field is set to `proprietary`, the Collection is private,
-and consumers have not been granted any explicit right to use the data.
+**license**: License(s) of the data that the STAC entity provides.
+
+The license(s) can be provided as:
+1. [SPDX License identifier](https://spdx.org/licenses/)
+2. [SPDX License expression](https://spdx.github.io/spdx-spec/v2.3/SPDX-license-expressions/)
+3. String with the value `other` if the license is not on the SPDX license list.
+   The strings `various` and `proprietary` are **deprecated**.
+
+If the license is **not** an SPDX license identifier, links to the license texts SHOULD be added.
+The links MUST use the [`license` link relation type](#relation-types).
+If there is no public license URL available,
+it is RECOMMENDED to supplement the STAC Item with the license text in a separate file and link to this file.
+If no link to a license is included and the `license` field is set to `other` (or one of the deprecated values),
+the data is private, and consumers have not been granted any explicit right to use it.
 
 ### Relation types
 
-| Type    | Description                                                                                                                                                                                                                                                                 |
-| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| license | The license URL(s) for the Item SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC Item with the license text in a separate file and link to this file. |
+| Type    | Description                                                                                                      |
+| ------- | ---------------------------------------------------------------------------------------------------------------- |
+| license | The license URL(s) for the Item SHOULD be specified if the `license` field is **not** a SPDX license identifier. |
 
 ## Provider
 

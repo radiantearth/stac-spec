@@ -52,7 +52,7 @@ specified in [*OGC API - Features*](https://ogcapi.ogc.org/features/), but they 
 | title           | string                                                                                       | A short descriptive one-line title for the Collection.                                                                                                                                                                                 |
 | description     | string                                                                                       | **REQUIRED.** Detailed multi-line description to fully explain the Collection. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation.                                                              |
 | keywords        | \[string]                                                                                    | List of keywords describing the Collection.                                                                                                                                                                                            |
-| license         | string                                                                                       | **REQUIRED.** Collection's license(s), either a SPDX [License identifier](https://spdx.org/licenses/), `various` if multiple licenses apply or `proprietary` for all other cases.                                                      |
+| license         | string                                                                                       | **REQUIRED** License(s) of the data collection as SPDX License identifier, SPDX License expression, or `other` (see below).                                                                                                            |
 | providers       | \[[Provider Object](#provider-object)]                                                       | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 | extent          | [Extent Object](#extent-object)                                                              | **REQUIRED.** Spatial and temporal extents.                                                                                                                                                                                            |
 | summaries       | Map<string, \[\*]\|[Range Object](#range-object)\|[JSON Schema Object](#json-schema-object)> | STRONGLY RECOMMENDED. A map of property summaries, either a set of values, a range of values or a [JSON Schema](https://json-schema.org).                                                                                              |
@@ -81,11 +81,21 @@ This could be the provider's name if it is a fairly unique name, or their name c
 
 #### license
 
-Collection's license(s) as a SPDX [License identifier](https://spdx.org/licenses/).
-Alternatively, use `proprietary` (see below) if the license is not on the SPDX license list or `various` if multiple licenses apply.
-In all cases links to the license texts SHOULD be added, see the `license` link relation type.
-If no link to a license is included and the `license` field is set to `proprietary`, the Collection is private,
-and consumers have not been granted any explicit right to use the data.
+License(s) of the data that the STAC Collection and its children provides.
+If possible, license information should be defined at the Collection level.
+
+The license(s) can be provided as:
+1. [SPDX License identifier](https://spdx.org/licenses/)
+2. [SPDX License expression](https://spdx.github.io/spdx-spec/v2.3/SPDX-license-expressions/)
+3. String with the value `other` if the license is not on the SPDX license list.
+   The strings `various` and `proprietary` are **deprecated**.
+
+If the license is **not** an SPDX license identifier, links to the license texts SHOULD be added.
+The links MUST use the [`license` link relation type](#relation-types).
+If there is no public license URL available,
+it is RECOMMENDED to supplement the STAC Item with the license text in a separate file and link to this file.
+If no link to a license is included and the `license` field is set to `other` (or one of the deprecated values),
+the Collection is private, and consumers have not been granted any explicit right to use the data.
 
 #### summaries
 
@@ -176,6 +186,7 @@ used to provide a more precise description of the extent and identify clusters o
 Clients only interested in the overall spatial extent will only need to access the first item in each array.
 It is recommended to only use multiple bounding boxes if a union of them would then include
 a large uncovered area (e.g. the union of Germany and Chile).
+Thus, it doesn't make sense to provide two bounding boxes and the validation will fail in this case.
 
 The length of the inner array must be 2*n where n is the number of dimensions.
 The array contains all axes of the southwesterly most extent followed by all axes of the northeasterly most extent specified in
@@ -256,7 +267,7 @@ This is done where there is not a clear official option, or where STAC uses an o
 | parent       | URL to the parent STAC entity (Catalog or Collection). Non-root Collections should include a link to their parent.                                                                                                                                                 |
 | child        | URL to a child STAC entity (Catalog or Collection).                                                                                                                                                                                                                |
 | item         | URL to a STAC Item. All Items linked from a Collection MUST refer back to its Collection with the [`collection` relation type](../item-spec/item-spec.md#relation-types).                                                                                          |
-| license      | The license URL(s) for the Collection SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to put the license text in a separate file and link to this file.            |
+| license      | The license URL(s) for the Item SHOULD be specified if the `license` field is **not** a SPDX license identifier.                                                                                                                                                   |
 | derived_from | URL to a STAC Collection that was used as input data in the creation of this Collection. See the note in [STAC Item](../item-spec/item-spec.md#derived_from) for more info.                                                                                        |
 
 A more complete list of possible `rel` types and their meaning in STAC can be found in the
