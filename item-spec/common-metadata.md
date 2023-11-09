@@ -46,11 +46,11 @@ Descriptive fields to give a basic overview of a STAC entity (e.g. Catalog, Coll
 
 Fields to provide additional temporal information such as ranges with a start and an end datetime stamp.
 
-| Field Name | Type         | Description                                                                           |
-| ---------- | ------------ | ------------------------------------------------------------------------------------- |
-| datetime   | string\|null | See the [Item Spec Fields](item-spec.md#properties-object) for more information.      |
-| created    | string       | Creation date and time of the corresponding STAC entity or Asset (see below), in UTC. |
-| u-----d    | s----g       | D-----------------------------------------------------------------------------------. |
+| Field Name | Type         | Description                                                                                |
+| ---------- | ------------ | ------------------------------------------------------------------------------------------ |
+| datetime   | string\|null | See the [Item Spec Fields](item-spec.md#properties-object) for more information.           |
+| created    | string       | Creation date and time of the corresponding STAC entity or Asset (see below), in UTC.      |
+| updated    | string       | Date and time the corresponding STAC entity or Asset (see below) was updated last, in UTC. |
 
 All timestamps MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).
 
