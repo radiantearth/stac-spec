@@ -108,7 +108,7 @@ the data is private, and consumers have not been granted any explicit right to u
 
 | Type    | Description                                                                                                          |
 | ------- | -------------------------------------------------------------------------------------------------------------------- |
-| license | The license URL(s) for the Resource SHOULD be specified if the `license` field is **not** a SPDX license identifier. |
+| license | The license URL(s) for the resource SHOULD be specified if the `license` field is **not** a SPDX license identifier. |
 
 ## Provider
 
