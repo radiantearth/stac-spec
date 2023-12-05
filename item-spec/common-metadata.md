@@ -25,7 +25,7 @@ For example, `datetime` is required in STAC Items.
 
 ## Basics
 
-Descriptive fields to give a basic overview of a STAC Item.
+Descriptive fields to give a basic overview of a STAC entity (e.g. Catalog, Collection, Item, Asset).
 
 - [JSON Schema](json-schema/basics.json)
 
@@ -41,11 +41,11 @@ Descriptive fields to give a basic overview of a STAC Item.
 
 Fields to provide additional temporal information such as ranges with a start and an end datetime stamp.
 
-| Field Name | Type         | Description                                                                      |
-| ---------- | ------------ | -------------------------------------------------------------------------------- |
-| datetime   | string\|null | See the [Item Spec Fields](item-spec.md#properties-object) for more information. |
-| created    | string       | Creation date and time of the corresponding data (see below), in UTC.            |
-| updated    | string       | Date and time the corresponding data (see below) was updated last, in UTC.       |
+| Field Name | Type         | Description                                                                                |
+| ---------- | ------------ | ------------------------------------------------------------------------------------------ |
+| datetime   | string\|null | See the [Item Spec Fields](item-spec.md#properties-object) for more information.           |
+| created    | string       | Creation date and time of the corresponding STAC entity or Asset (see below), in UTC.      |
+| updated    | string       | Date and time the corresponding STAC entity or Asset (see below) was updated last, in UTC. |
 
 All timestamps MUST be formatted according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).
 
@@ -59,7 +59,7 @@ Having those fields in the Assets or Links, they refer to the actual data linked
 
 ### Date and Time Range
 
-While a STAC Item can have a nominal datetime describing the capture, these properties allow an Item to have a range
+While a STAC entity (e.g. an Item) can have a nominal datetime describing the capture, these properties allow a STAC entity to have a range
 of capture dates and times. An example of this is the [MODIS 16 day vegetation index product](https://lpdaac.usgs.gov/products/mod13q1v006/).
 
 **Important:** Using one of the fields REQUIRES inclusion of the other field as well to enable a user to search STAC records by the provided times.
@@ -67,10 +67,10 @@ So if you use `start_datetime` you need to add `end_datetime` and vice-versa.
 Both fields are also REQUIRED if the `datetime` field is set to `null`.
 The datetime property in a STAC Item and these fields are not mutually exclusive.
 
-| Field Name     | Type   | Description                                                                                                                                                                  |
-| -------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| start_datetime | string | The first or start date and time for the Item, in UTC. It is formatted as `date-time` according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
-| end_datetime   | string | The last or end date and time for the Item, in UTC. It is formatted as `date-time` according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).    |
+| Field Name     | Type   | Description                                                                                                                                                                      |
+| -------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| start_datetime | string | The first or start date and time for the resource, in UTC. It is formatted as `date-time` according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
+| end_datetime   | string | The last or end date and time for the resource, in UTC. It is formatted as `date-time` according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).    |
 
 ## Licensing
 
@@ -79,21 +79,31 @@ Information about the license(s) of the data, which is not necessarily the same 
 
 - [JSON Schema](json-schema/licensing.json)
 
-| Field Name | Type   | Description                                                                                                                                                                                                          |
-| ---------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| license    | string | Item's license(s), either a SPDX [License identifier](https://spdx.org/licenses/), `various` if multiple licenses apply or `proprietary` for all other cases. Should be defined at the Collection level if possible. |
+| Field Name | Type   | Description                                                                                         |
+| ---------- | ------ | --------------------------------------------------------------------------------------------------- |
+| license    | string | License(s) of the data as SPDX License identifier, SPDX License expression, or `other` (see below). |
 
-**license**: Data license(s) as a SPDX [License identifier](https://spdx.org/licenses/). Alternatively, use
-`proprietary` (see below) if the license is not on the SPDX license list or `various` if multiple licenses apply.
-In all cases links to the license texts SHOULD be added, see the [`license` link relation type](#relation-types).
-If no link to a license is included and the `license` field is set to `proprietary`, the Collection is private,
-and consumers have not been granted any explicit right to use the data.
+**license**: License(s) of the data that the STAC entity provides.
+
+The license(s) can be provided as:
+
+1. [SPDX License identifier](https://spdx.org/licenses/)
+2. [SPDX License expression](https://spdx.github.io/spdx-spec/v2.3/SPDX-license-expressions/)
+3. String with the value `other` if the license is not on the SPDX license list.
+   The strings `various` and `proprietary` are **deprecated**.
+
+If the license is **not** an SPDX license identifier, links to the license texts SHOULD be added.
+The links MUST use the [`license` link relation type](#relation-types).
+If there is no public license URL available,
+it is RECOMMENDED to supplement the STAC Item with the license text in a separate file and link to this file.
+If no link to a license is included and the `license` field is set to `other` (or one of the deprecated values),
+the data is private, and consumers have not been granted any explicit right to use it.
 
 ### Relation types
 
-| Type    | Description                                                                                                                                                                                                                                                                 |
-| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| license | The license URL(s) for the Item SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC Item with the license text in a separate file and link to this file. |
+| Type    | Description                                                                                                          |
+| ------- | -------------------------------------------------------------------------------------------------------------------- |
+| license | The license URL(s) for the resource SHOULD be specified if the `license` field is **not** a SPDX license identifier. |
 
 ## Provider
 

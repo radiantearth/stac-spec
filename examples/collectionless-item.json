@@ -1,7 +1,6 @@
 {
   "stac_version": "1.0.0",
   "stac_extensions": [
-    "https://stac-extensions.github.io/eo/v2.0.0/schema.json",
     "https://stac-extensions.github.io/view/v1.0.0/schema.json"
   ],
   "type": "Feature",
@@ -47,7 +46,7 @@
     "end_datetime": "2016-05-03T13:27:30Z",
     "created": "2016-05-04T00:00:01Z",
     "updated": "2017-01-01T00:30:55Z",
-    "license": "various",
+    "license": "other",
     "providers": [
       {
         "name": "Remote Data, Inc",
@@ -103,20 +102,16 @@
       "title": "4-Band Analytic",
       "bands": [
         {
-          "name": "band1",
-          "eo:common_name": "red"
+          "name": "band1"
         },
         {
-          "name": "band2",
-          "eo:common_name": "green"
+          "name": "band1"
         },
         {
-          "name": "band3",
-          "eo:common_name": "blue"
+          "name": "band2"
         },
         {
-          "name": "band4",
-          "eo:common_name": "nir"
+          "name": "band3"
         }
       ]
     },
