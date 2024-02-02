@@ -39,6 +39,7 @@ Descriptive fields to give a basic overview of a STAC entity (e.g. Catalog, Coll
 | title       | string    | A human readable title describing the STAC entity.                                                                                                            |
 | description | string    | Detailed multi-line description to fully explain the STAC entity. [CommonMark 0.29](https://commonmark.org/) syntax MAY be used for rich text representation. |
 | keywords    | \[string] | List of keywords describing the STAC entity.                                                                                                                  |
+| roles       | \[string] | The semantic roles of the entity, e.g. for assets, links, providers, bands, etc.                                                                              |
 
 ## Date and Time
 
