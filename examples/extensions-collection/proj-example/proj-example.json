@@ -234,12 +234,12 @@
       "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B1.TIF",
       "type": "image/tiff; application=geotiff",
       "title": "Band 1 (coastal)",
-      "eo:bands": [
+      "bands": [
         {
           "name": "B1",
-          "common_name": "coastal",
-          "center_wavelength": 0.44,
-          "full_width_half_max": 0.02
+          "eo:common_name": "coastal",
+          "eo:center_wavelength": 0.44,
+          "eo:full_width_half_max": 0.02
         }
       ]
     },
@@ -247,11 +247,11 @@
       "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B8.TIF",
       "type": "image/tiff; application=geotiff",
       "title": "Band 8 (panchromatic)",
-      "eo:bands": [
+      "bands": [
         {
           "name": "B8",
-          "center_wavelength": 0.59,
-          "full_width_half_max": 0.18
+          "eo:center_wavelength": 0.59,
+          "eo:full_width_half_max": 0.18
         }
       ],
       "proj:shape": [
@@ -278,7 +278,7 @@
     60.63437
   ],
   "stac_extensions": [
-    "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/eo/v2.0.0/schema.json",
     "https://stac-extensions.github.io/projection/v1.0.0/schema.json"
   ],
   "collection": "landsat-8-l1"

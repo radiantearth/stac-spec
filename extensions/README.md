@@ -72,11 +72,11 @@ Collection.
   Asset should contain the extension identifier.
 - If a Collection [summary](../collection-spec/collection-spec.md#summaries) contains Item fields that implement an extension, then
   the `stac_extensions` array of that Collection should list the extension identifier. For example, if a Collection `summaries` field
-  contains a summary of `eo:bands`, then that Collection should have the EO extension JSON Schema URL in the `stac_extensions` array.
+  contains a summary of `eo:cloud_cover`, then that Collection should have the EO extension JSON Schema URL in the `stac_extensions` array.
 - If an object implements an extension that results in fields from a separate extension to be referenced, then the latter extension
   identifier should be included in the `stac_extensions` array for that object. For example, if a Collection implements the
   [item_assets](https://github.com/stac-extensions/item-assets) extension, and in the `item_assets` field there is an Asset Definition
-  which includes `eo:bands`, then the EO extension identifier should be listed in that Collection's `stac_extensions`.
+  which includes `proj:wkt2`, then the Projection extension identifier should be listed in that Collection's `stac_extensions`.
 
 ## Community Extensions
 
@@ -132,8 +132,8 @@ can theoretically add fields anywhere in JSON there are some conventions as to w
 1. Additional attributes relating to an [Item](../item-spec/item-spec.md) should be added into the Item Properties object,
    rather than directly in the Item object.
 2. In general, additional attributes that apply to an Item Asset should also be allowed in Item Properties and vice-versa.
-   For example, the `eo:bands` attribute may be used in Item Properties to describe the aggregation of all bands available in
-   the Item Asset objects contained in the Item, but may also be used in an individual Item Asset to describe only the bands available in that asset.
+   For example, the `gsd` attribute may be used in Item Properties to describe the best GSD available in
+   the Item Asset objects contained in the Item, but may also be used in an individual Item Asset to describe only the specific GSD of that asset.
 3. Additional attributes relating to a [Catalog](../catalog-spec/catalog-spec.md) or
    [Collection](../collection-spec/collection-spec.md) should be added to the top-level of the object.
 4. All other objects can generally also be extended, e.g. Link Objects, Provider Objects, Band Objects, etc.
@@ -220,4 +220,4 @@ there are multiple options (tl;dr: option **3** is recommended):
 
 This rules only applies to the fields defined directly for the Item's `properties`.
 For fields and structures defined on other levels (e.g. in the root of an Item or in an array), extension authors can freely define the structure.
-So an array of objects such as the `eo:bands` are fine to use, but keep in mind that the drawbacks mentioned above usually still apply.
+So an array of objects such as the `bands` are fine to use, but keep in mind that the drawbacks mentioned above usually still apply.
