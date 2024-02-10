@@ -203,6 +203,18 @@
             "title": {
               "title": "Link title",
               "type": "string"
+            },
+            "method": {
+              "title": "Link method",
+              "type": "string"
+            },
+            "headers": {
+              "title": "Link headers",
+              "type": "object"
+            },
+            "body": {
+              "title": "Link body",
+              "type": "object"
             }
           }
         },
