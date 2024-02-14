@@ -108,6 +108,7 @@ A PSC member may step down at any time.
 - [James Banting](https://github.com/jbants) - [SparkGeo](https://sparkgeo.com/)
 - [Rob Emanuele](https://github.com/lossyrob) - [Microsoft](https://microsoft.com/)
 - [Chris Holmes](https://github.com/cholmes) - [Planet](https://planet.com) and [Radiant Earth](https://www.radiant.earth/)
+- [Francis Charette-Migneault](https://github.com/fmigneault) - [Computer Research Institute of Montréal (CRIM)](https://www.crim.ca)
 
 #### PSC Membership
 
