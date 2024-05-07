@@ -39,6 +39,7 @@
   "properties": {
     "title": "Core Item",
     "description": "A sample STAC Item that includes examples of all common metadata",
+    "attribution": "RemoteData.io",
     "datetime": null,
     "start_datetime": "2020-12-11T22:38:32.125Z",
     "end_datetime": "2020-12-11T22:38:32.327Z",

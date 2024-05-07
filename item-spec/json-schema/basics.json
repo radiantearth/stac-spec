@@ -29,6 +29,11 @@
       "items": {
         "type": "string"
       }
+    },
+    "attribution": {
+      "type": "string",
+      "title": "attribution for the entity",
+      "description": "Entity presentation to a user."
     }
   }
 }

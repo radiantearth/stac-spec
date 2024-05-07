@@ -67,3 +67,4 @@ typings/
 
 # Folder created when CI puhlishes JSON Schemas
 schemas/
+.vscode/settings.json
