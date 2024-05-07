@@ -657,6 +657,13 @@ So if you are writing a STAC client it is recommended to start with just support
 turn, if your data is published online publicly or for use on an intranet then following these recommendations will ensure
 that a wider range of clients will work with it.
 
+#### Unique Parent Link
+
+STAC catalogs do not support multiple parents. Links with `rel` of type `parent` and `collection` must be unique.
+Dynamic catalogs can implement multiple parents through a dynamic browsing interface as they could dynamically create the parent 
+link based on the desired browsing structure (though only 1 parent at a time).
+If multiple "parents" are desired the better approach is to use a different relational type (e.g., "related").
+
 ### Using Relation Types
 
 Implementors of STAC are highly recommended to be quite liberal with their `links`, and to use the `rel` field (in conjunction
