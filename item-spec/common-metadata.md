@@ -40,7 +40,7 @@ Descriptive fields to give a basic overview of a STAC entity (e.g. Catalog, Coll
 | description | string    | Detailed multi-line description to fully explain the STAC entity. [CommonMark 0.29](https://commonmark.org/) syntax MAY be used for rich text representation.                                                                                                                   |
 | keywords    | \[string] | List of keywords describing the STAC entity.                                                                                                                                                                                                                                    |
 | roles       | \[string] | The semantic roles of the entity, e.g. for assets, links, providers, bands, etc.                                                                                                                                                                                                |
-| attribution | string    | The attribution should be short and intended for presentation to a user, for example, in a corner of a map. Parts of the text can be links to other resources if additional information is needed. [CommonMark 0.29](https://commonmark.org/) syntax MAY be used for rich text. |
+| attribution | string    | The attribution should be short and intended for presentation to a user, for example, in a corner of a map. Parts of the text can be links to other resources if additional information is needed. HTML syntax MAY be used for rich text. |
 
 ## Date and Time
 
