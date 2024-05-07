@@ -32,8 +32,8 @@
     },
     "attribution": {
       "type": "string",
-      "title": "attribution for the entity",
-      "description": "Entity presentation to a user."
+      "title": "Attribution",
+      "description": "The attribution should be short and intended for presentation to a user."
     }
   }
 }
