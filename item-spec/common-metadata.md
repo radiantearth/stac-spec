@@ -78,6 +78,8 @@ The datetime property in a STAC Item and these fields are not mutually exclusive
 | start_datetime | string | The first or start date and time for the resource, in UTC. It is formatted as `date-time` according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). |
 | end_datetime   | string | The last or end date and time for the resource, in UTC. It is formatted as `date-time` according to [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6).    |
 
+`start_datetime` and `end_datetime` constitute inclusive bounds, meaning that the range covers the entire time interval between the two timestamps.
+
 ## Licensing
 
 Information about the license(s) of the data, which is not necessarily the same license that applies to the metadata.
