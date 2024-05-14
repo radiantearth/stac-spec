@@ -270,7 +270,7 @@ that is not possible then the appropriate way to handle Collection-level search 
 [OGC API - Records](https://github.com/opengeospatial/ogcapi-records) standard, which is a 'brother' specification of STAC API. 
 Both are compliant with OGC API - Features, adding richer search capabilities to enable finding of data. 
 
-## Asset (and Link) Bests Practices
+## Asset (and Link) Best Practices
 
 ### Common Use Cases of Additional Fields for Assets
 
