@@ -32,7 +32,7 @@
       "rel": "item",
       "href": "./collectionless-item.json",
       "type": "application/json",
-      "title": "Collection with no items (standalone)"
+      "title": "An Item not nested within any Collection (standalone)"
     },
     {
       "rel": "self",
