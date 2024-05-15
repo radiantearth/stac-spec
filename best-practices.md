@@ -18,7 +18,7 @@
     - [Unrectified Satellite Data](#unrectified-satellite-data)
     - [Data that is not spatial](#data-that-is-not-spatial)
   - [Representing Vector Layers in STAC](#representing-vector-layers-in-stac)
-- **[Asset Best Practices](#asset-practices)**
+- **[Asset (and Link) Best Practices](#asset-and-link-best-practices)**
   - [Common Use Cases of Additional Fields for Assets](#common-use-cases-of-additional-fields-for-assets)
   - [Working with Media Types](#working-with-media-types)
     - [Common Media Types in STAC](#common-media-types-in-stac)
@@ -270,7 +270,7 @@ that is not possible then the appropriate way to handle Collection-level search 
 [OGC API - Records](https://github.com/opengeospatial/ogcapi-records) standard, which is a 'brother' specification of STAC API. 
 Both are compliant with OGC API - Features, adding richer search capabilities to enable finding of data. 
 
-## Asset Practices
+## Asset (and Link) Best Practices
 
 ### Common Use Cases of Additional Fields for Assets
 
@@ -305,8 +305,12 @@ providing them at the Asset level can prove to be very useful for using the data
 [Media Types](https://en.wikipedia.org/wiki/Media_type) are a key element that enables STAC to be a rich source of information for
 clients. The best practice is to use as specific of a media type as possible (so if a file is a GeoJSON then don't use a JSON
 media type), and to use [registered](https://www.iana.org/assignments/media-types/media-types.xhtml) IANA types as much as possible.
-The following table lists types that commonly show up in STAC assets. And the [section](#formats-with-no-registered-media-type)
-past that gives recommendations on what to do if you have a format in your asset that does not have an IANA registered type.
+
+For hierarchical links (e.g. relation types `root`, `parent`, `child`, `item`) it is important that
+clients filter for the corresponding STAC media types
+(e.g. `application/json` for all relation types and/or `application/geo+json` for relation type `item`). 
+Hierarchical links with other media types (e.g. `text/html`) may be present for hierarchical links,
+especially in STAC implementations that are also implementing OGC API - Records.
 
 #### Common Media Types in STAC
 
@@ -331,15 +335,17 @@ following table lists some of the most common ones you may encounter or use.
 
 *Deprecation notice: GeoTiff previously used the media type `image/vnd.stac.geotiff` and
 Cloud Optimized GeoTiffs used `image/vnd.stac.geotiff; profile=cloud-optimized`.
-Both can still appear in old STAC implementations, but are deprecated and should be replaced. This will, unfortunately, likely shift in the future as
-[OGC sorts out the media types](https://github.com/opengeospatial/geotiff/issues/34).*
+Both can still appear in old STAC implementations, but are deprecated and should be replaced.
 
 #### Formats with no registered media type
 
+This section gives recommendations on what to do if you have a format in your links or assets
+that does not have an IANA registered type.
 Ideally every media type used is on the [IANA registry](https://www.iana.org/assignments/media-types/media-types.xhtml). If
-you are using a format that is not on that list we recommend you use [custom content 
-type](https://restcookbook.com/Resources/using-custom-content-types/). These typically use the `vnd.` prefix, see [RFC 6838 
-section-3.2](https://tools.ietf.org/html/rfc6838#section-3.2). Ideally the format provider will actually
+you are using a format that is not on that list we recommend you use
+[custom content type](https://restcookbook.com/Resources/using-custom-content-types/).
+These typically use the `vnd.` prefix, see [RFC 6838 section-3.2](https://tools.ietf.org/html/rfc6838#section-3.2).
+Ideally the format provider will actually
 register the media type with IANA, so that other STAC clients can find it easily. But if you are only using it internally it is 
 [acceptable to not register](https://stackoverflow.com/questions/29121241/custom-content-type-is-registering-with-iana-mandatory) 
 it. It is relatively easy to [register](https://www.iana.org/form/media-types) a `vnd` media type.
