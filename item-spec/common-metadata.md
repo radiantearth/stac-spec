@@ -52,7 +52,7 @@ All timestamps MUST be formatted according to [RFC 3339, section 5.6](https://to
 If those fields are available in the Item `properties`, they identify the creation and update times of the metadata.
 Having those fields in the Item `assets` refers to the creation and update times of the actual data linked to in the Asset Object.
 
-*NOTE: There are more date and time related fields available in the [Timestamps 
+*NOTE: There are more date and time related fields available in the [Timestamps
 extension](https://github.com/stac-extensions/timestamps), which is not an official extension*.
 
 ### Date and Time Range
@@ -86,12 +86,6 @@ Information about the license(s) of the data, which is not necessarily the same 
 In all cases links to the license texts SHOULD be added, see the [`license` link relation type](#relation-types).
 If no link to a license is included and the `license` field is set to `proprietary`, the Collection is private,
 and consumers have not been granted any explicit right to use the data.
-
-### Relation types
-
-| Type         | Description                                                  |
-| ------------ | ------------------------------------------------------------ |
-| license      | The license URL(s) for the Item SHOULD be specified if the `license` field is set to `proprietary` or `various`. If there is no public license URL available, it is RECOMMENDED to supplement the STAC Item with the license text in a separate file and link to this file. |
 
 ## Provider
 
