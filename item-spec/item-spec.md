@@ -201,7 +201,7 @@ This happens where there is not a clear official option, or where STAC uses an o
 > \[!NOTE]
 > Dynamic catalogs can implement multiple parents through a dynamic browsing interface as they could dynamically create the parent
 > link based on the desired browsing structure (though only 1 parent at a time).
-> If multiple "parents" are desired, the better approach is to use a different relational type (e.g., "related").
+> Multiple parents are allowed for other types than `application/json`.
 
 A more complete list of potential `rel` types and their meaning in STAC can be found in the [Using Relation 
 Types](../best-practices.md#using-relation-types) best practice. 
