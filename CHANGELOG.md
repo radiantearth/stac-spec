@@ -12,8 +12,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - The `keywords` field known from Collections is available in common metadata. ([#1187](https://github.com/radiantearth/stac-spec/issues/1187))
 - The `license` field additionally supports SPDX expressions and the value `other`.
 - The `roles` field known from Assets and Providers is available in common metadata. ([#1267](https://github.com/radiantearth/stac-spec/issues/1267))
-- `collection` relationship type for link in catalog and collection
-- Clarification on unique parent link requirement
 
 ### Changed
 
@@ -37,6 +35,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Several typos and minor language changes
 - Clarified that collection IDs should be unique across all collections in the corresponding root catalog.
+- Clarification on unique parent link requirement ([#1279]([https:](https://github.com/radiantearth/stac-spec/pull/1279)))
 
 ## [v1.0.0] - 2021-05-25
 
