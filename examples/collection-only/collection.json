@@ -148,68 +148,155 @@
       32658,
       32659,
       32660
-    ],
-    "eo:bands": [
-      {
-        "name": "B1",
-        "common_name": "coastal",
-        "center_wavelength": 0.4439
-      },
-      {
-        "name": "B2",
-        "common_name": "blue",
-        "center_wavelength": 0.4966
-      },
-      {
-        "name": "B3",
-        "common_name": "green",
-        "center_wavelength": 0.56
-      },
-      {
-        "name": "B4",
-        "common_name": "red",
-        "center_wavelength": 0.6645
-      },
-      {
-        "name": "B5",
-        "center_wavelength": 0.7039
-      },
-      {
-        "name": "B6",
-        "center_wavelength": 0.7402
-      },
-      {
-        "name": "B7",
-        "center_wavelength": 0.7825
-      },
-      {
-        "name": "B8",
-        "common_name": "nir",
-        "center_wavelength": 0.8351
-      },
-      {
-        "name": "B8A",
-        "center_wavelength": 0.8648
-      },
-      {
-        "name": "B9",
-        "center_wavelength": 0.945
-      },
-      {
-        "name": "B10",
-        "center_wavelength": 1.3735
-      },
-      {
-        "name": "B11",
-        "common_name": "swir16",
-        "center_wavelength": 1.6137
-      },
-      {
-        "name": "B12",
-        "common_name": "swir22",
-        "center_wavelength": 2.2024
-      }
     ]
+  },
+  "item_assets": {
+    "thumbnail": {
+      "type": "image/jpeg",
+      "title": "Thumbnail",
+      "description": "A medium sized thumbnail",
+      "roles": [
+        "thumbnail"
+      ]
+    },
+    "metadata": {
+      "type": "mtl",
+      "roles": [
+        "metadata"
+      ],
+      "title": "Original Metadata",
+      "description": "The original MTL metadata file provided for each Landsat scene"
+    },
+    "B1": {
+      "type": "image/tiff; application=geotiff",
+      "name": "B1",
+      "title": "Coastal Band (B1)",
+      "description": "Coastal Band Top Of the Atmosphere",
+      "eo:common_name": "coastal",
+      "eo:center_wavelength": 0.443,
+      "eo:full_width_half_max": 0.027,
+      "raster:spatial_resolution": 60
+    },
+    "B2": {
+      "type": "image/tiff; application=geotiff",
+      "name": "B2",
+      "title": "Blue Band (B2)",
+      "description": "Blue Band Top Of the Atmosphere",
+      "eo:common_name": "blue",
+      "eo:center_wavelength": 0.49,
+      "eo:full_width_half_max": 0.098,
+      "raster:spatial_resolution": 10
+    },
+    "B3": {
+      "type": "image/tiff; application=geotiff",
+      "name": "B3",
+      "title": "Green Band (B3)",
+      "description": "Green Band (B3) Top Of the Atmosphere",
+      "eo:common_name": "green",
+      "eo:center_wavelength": 0.56,
+      "eo:full_width_half_max": 0.045,
+      "raster:spatial_resolution": 10
+    },
+    "B4": {
+      "type": "image/tiff; application=geotiff",
+      "name": "B4",
+      "title": "Red Band (B4)",
+      "description": "Red Band (B4) Top Of the Atmosphere",
+      "eo:common_name": "red",
+      "eo:center_wavelength": 0.665,
+      "eo:full_width_half_max": 0.038,
+      "raster:spatial_resolution": 10
+    },
+    "B5": {
+      "type": "image/tiff; application=geotiff",
+      "name": "B5",
+      "title": "Red Edge 1 Band (B5)",
+      "description": "Red Edge 1 Band (B5) Top Of the Atmosphere",
+      "eo:common_name": "rededge1",
+      "eo:center_wavelength": 0.704,
+      "eo:full_width_half_max": 0.019,
+      "raster:spatial_resolution": 20
+    },
+    "B6": {
+      "type": "image/tiff; application=geotiff",
+      "name": "B6",
+      "title": "Red Edge 2 Band (B6)",
+      "description": "Red Edge 2 Band (B6) Top Of the Atmosphere",
+      "eo:common_name": "rededge2",
+      "eo:center_wavelength": 0.74,
+      "eo:full_width_half_max": 0.018,
+      "raster:spatial_resolution": 20
+    },
+    "B7": {
+      "type": "image/tiff; application=geotiff",
+      "name": "B7",
+      "title": "Red Edge 3 Band (B7)",
+      "description": "Red Edge 3 Band (B7) Top Of the Atmosphere",
+      "eo:common_name": "rededge3",
+      "eo:center_wavelength": 0.783,
+      "eo:full_width_half_max": 0.028,
+      "raster:spatial_resolution": 20
+    },
+    "B8": {
+      "type": "image/tiff; application=geotiff",
+      "name": "B8",
+      "title": "NIR Band (B8)",
+      "description": "NIR Band (B8) Top Of the Atmosphere",
+      "eo:common_name": "nir",
+      "eo:center_wavelength": 0.842,
+      "eo:full_width_half_max": 0.145,
+      "raster:spatial_resolution": 10
+    },
+    "B8A": {
+      "type": "image/tiff; application=geotiff",
+      "name": "B8A",
+      "title": "NIR08 Band (B8A)",
+      "description": "NIR08 Band (B8A) Top Of the Atmosphere",
+      "eo:common_name": "nir08",
+      "eo:center_wavelength": 0.865,
+      "eo:full_width_half_max": 0.033,
+      "raster:spatial_resolution": 20
+    },
+    "B9": {
+      "type": "image/tiff; application=geotiff",
+      "name": "B9",
+      "title": "Near-IR Band (B9)",
+      "description": "Near-IR Band at 0.945um (B9) Top Of the Atmosphere",
+      "eo:common_name": "nir09",
+      "eo:center_wavelength": 0.945,
+      "eo:full_width_half_max": 0.026,
+      "raster:spatial_resolution": 60
+    },
+    "B10": {
+      "type": "image/tiff; application=geotiff",
+      "name": "B10",
+      "title": "Cirrus Band (B10)",
+      "description": "Cirrus Band at 1.3735um (B10) Top Of the Atmosphere",
+      "eo:common_name": "cirrus",
+      "eo:center_wavelength": 1.3735,
+      "eo:full_width_half_max": 0.075,
+      "raster:spatial_resolution": 60
+    },
+    "B11": {
+      "type": "image/tiff; application=geotiff",
+      "name": "B11",
+      "title": "SWIR 1 Band (B11)",
+      "description": "SWIR 1 Band at 1.6um (B11) Top Of the Atmosphere",
+      "eo:common_name": "swir16",
+      "eo:center_wavelength": 1.61,
+      "eo:full_width_half_max": 0.143,
+      "raster:spatial_resolution": 20
+    },
+    "B12": {
+      "type": "image/tiff; application=geotiff",
+      "name": "B12",
+      "title": "SWIR 2 Band (B12)",
+      "description": "SWIR 2 Band at 2.2um (B12) Top Of the Atmosphere",
+      "eo:common_name": "swir22",
+      "eo:center_wavelength": 2.19,
+      "eo:full_width_half_max": 0.242,
+      "raster:spatial_resolution": 20
+    }
   },
   "links": [
     {

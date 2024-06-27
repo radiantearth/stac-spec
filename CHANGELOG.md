@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - The `keywords` field known from Collections is available in common metadata. ([#1187](https://github.com/radiantearth/stac-spec/issues/1187))
 - The `license` field additionally supports SPDX expressions and the value `other`.
 - The `roles` field known from Assets and Providers is available in common metadata. ([#1267](https://github.com/radiantearth/stac-spec/issues/1267))
+- The `item_assets` field in Collections are integrated from extension into the core Collection spec. ([#1275](https://github.com/radiantearth/stac-spec/issues/1275))
 
 ### Changed
 

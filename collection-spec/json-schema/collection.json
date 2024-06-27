@@ -83,12 +83,12 @@
                     "type": "array",
                     "oneOf": [
                       {
-                        "minItems":4,
-                        "maxItems":4
+                        "minItems": 4,
+                        "maxItems": 4
                       },
                       {
-                        "minItems":6,
-                        "maxItems":6
+                        "minItems": 6,
+                        "maxItems": 6
                       }
                     ],
                     "items": {
@@ -130,6 +130,45 @@
         },
         "assets": {
           "$ref": "../../item-spec/json-schema/item.json#/definitions/assets"
+        },
+        "item_assets": {
+          "allOf": [
+            {
+              "type": "object",
+              "required": [
+                "title",
+                "type"
+              ],
+              "properties": {
+                "href": {
+                  "title": "Disallow href",
+                  "not": {}
+                },
+                "title": {
+                  "title": "Asset title",
+                  "type": "string"
+                },
+                "description": {
+                  "title": "Asset description",
+                  "type": "string"
+                },
+                "type": {
+                  "title": "Asset type",
+                  "type": "string"
+                },
+                "roles": {
+                  "title": "Asset roles",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            {
+              "$ref": "../../item-spec/json-schema/common.json"
+            }
+          ]
         },
         "links": {
           "$ref": "../../item-spec/json-schema/item.json#/definitions/links"
