@@ -37,6 +37,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Several typos and minor language changes
 - Clarified that collection IDs should be unique across all collections in the corresponding root catalog.
 - Clarified which media types should be used for the hierarchical relation types
+- Best practice: Do not recommend subdirectories for Items without sidecar files ([#1195](https://github.com/radiantearth/stac-spec/pull/1195))
 
 ## [v1.0.0] - 2021-05-25
 
