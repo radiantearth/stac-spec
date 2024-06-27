@@ -11,14 +11,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - The `keywords` field known from Collections is available in common metadata. ([#1187](https://github.com/radiantearth/stac-spec/issues/1187))
 - The `license` field additionally supports SPDX expressions and the value `other`.
+- The `roles` field known from Assets and Providers is available in common metadata. ([#1267](https://github.com/radiantearth/stac-spec/issues/1267))
 
 ### Changed
 
-- Validate common metadata also in Catalogs, Collections and Links.
-- Common metadata: If a description is given, require that it is not empty
+- Common Metadata:
+  - Clarify in various field descriptions that the fields do not only apply to Items
+  - Validate the fields also in Catalogs, Collections and Links
+  - If a description is given, require that it is not empty
 - Clarified that trailing slashes in URIs are significant. ([#1212](https://github.com/radiantearth/stac-spec/discussions/1212))
 - All JSON Schema `$id` values no longer have `#` at the end.
 - Two spatial bounding boxes in a Collection don't make sense and will be reported as invalid by the schema. ([#1243](https://github.com/radiantearth/stac-spec/issues/1243))
+- Clarify in descriptions that start_datetime and end_datetime are inclusive bounds ([#1280](https://github.com/radiantearth/stac-spec/issues/1280))
 
 ### Deprecated
 
@@ -31,10 +35,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Several typos and minor language changes
-
-### Fixed
-
 - Clarified that collection IDs should be unique across all collections in the corresponding root catalog
+- Clarified which media types should be used for the hierarchical relation types
 - Clarified that JSON Schema draft-07 is the default version for Collection summaries and other versions may not be supported
 
 ## [v1.0.0] - 2021-05-25
