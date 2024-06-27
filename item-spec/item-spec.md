@@ -313,7 +313,7 @@ that talks about common use cases of additional fields for assets.
 ## Media Type for STAC Item
 
 A STAC Item is a GeoJSON file ([RFC 7946](https://tools.ietf.org/html/rfc7946)), and thus should use the 
-[`application/geo+json`](https://tools.ietf.org/html/rfc7946#section-12) as the [Media Type](https://en.wikipedia.org/wiki/Media_type) 
+[`application/geo+json`](https://tools.ietf.org/html/rfc7946#section-12) as the [Media Type](https://en.wikipedia.org/wiki/Media_type)
 (previously known as the MIME Type). 
 
 ## Extensions
@@ -322,3 +322,12 @@ There are emerging best practices, which in time will evolve in to specification
 particular domains or uses.
 
 The [extensions page](../extensions/README.md) gives an overview about relevant extensions for STAC Items.
+
+## Generic Collections of Items
+
+When a set of Items must be grouped together in unique file, the [ItemCollection](https://github.com/radiantearth/stac-api-spec/blob/main/fragments/itemcollection/README.md)
+object must be used.
+
+Similarly to the relationship between a GeoJSON Feature and a STAC Item,
+a STAC ItemCollection should be a valid GeoJSON [FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)
+to allow interoperability with existing tools that support GeoJSON.
