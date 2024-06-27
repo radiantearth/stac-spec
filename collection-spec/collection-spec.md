@@ -323,9 +323,9 @@ This allows very fine-grained information for each field and each value as JSON 
 Each schema must be valid against all corresponding values available for the property in the sub-Items.
 Empty schemas are not allowed.
 
-JSON Schema draft-07 is the only officially supported JSON Schema version to align with the JSON Schemas provided by STAC.
-Validation uses the JSON Schema meta-schema for draft-07.
-It is allowed to use other versions of JSON Schema, but they may not get validated properly.
+JSON Schema draft-07 is the default JSON Schema version, which aligns with the JSON Schemas provided by STAC.
+It is allowed to use other versions of JSON Schema if the version is explicitly expressed in the JSON Schema `$schema` keyword,
+but tooling may not support JSON Schema versions other than `draft-07`.
 
 For an introduction to JSON Schema, see "[Learn JSON Schema](https://json-schema.org/learn/)".
 
