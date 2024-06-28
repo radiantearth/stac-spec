@@ -18,7 +18,7 @@
     - [Unrectified Satellite Data](#unrectified-satellite-data)
     - [Data that is not spatial](#data-that-is-not-spatial)
   - [Representing Vector Layers in STAC](#representing-vector-layers-in-stac)
-- **[Asset (and Link) Best Practices](#asset-and-link-best-practices)**
+- **[Asset and Link Best Practices](#asset-and-link-best-practices)**
   - [Common Use Cases of Additional Fields for Assets](#common-use-cases-of-additional-fields-for-assets)
   - [Working with Media Types](#working-with-media-types)
     - [Common Media Types in STAC](#common-media-types-in-stac)
@@ -270,7 +270,7 @@ that is not possible then the appropriate way to handle Collection-level search 
 [OGC API - Records](https://github.com/opengeospatial/ogcapi-records) standard, which is a 'brother' specification of STAC API. 
 Both are compliant with OGC API - Features, adding richer search capabilities to enable finding of data. 
 
-## Asset (and Link) Best Practices
+## Asset and Link Best Practices
 
 ### Common Use Cases of Additional Fields for Assets
 
@@ -299,6 +299,19 @@ providing them at the Asset level can prove to be very useful for using the data
   Provide the polarization content and ordering of a specific asset, similar to `eo:bands`.
 - `sar:product_type` ([sar extension](https://github.com/stac-extensions/sar)):
   If mixing multiple product types within a single Item, this can be used to specify the product_type for each asset.
+
+### Titles
+
+It is recommended to always provide link titles.
+The link titles should always reflect the title of the entity it refers to.
+For example, if a STAC Item links to a STAC Collection, the value of the `title` property in the link with relation type `collection`
+should **exactly** match the value of the `title` property in the STAC Collection.
+Implementations should ensure that link titles are always synchronized so that inconsistencies don't occur.
+
+Providing titles enables users to search and navigate more easily through STAC catalogs,
+makes the links more predictable, and may prevent "flickering" in user-interfaces such as STAC Browser.
+
+If the entity that a link refers to has no title, the value of the `id` can be considered as an alternative.
 
 ### Working with Media Types
 
