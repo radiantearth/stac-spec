@@ -227,6 +227,8 @@ Linking back must happen in two places:
    ]
    ```
 
+Multiple collections can point to an Item, but an Item can only point back to a single collection.
+
 ### Asset Object
 
 An Asset is an object that contains a URI to data associated with the Item that can be downloaded
