@@ -35,7 +35,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Several typos and minor language changes
 - Clarified that collection IDs should be unique across all collections in the corresponding root catalog.
-- Clarification on unique parent link requirement ([#1279]([https:](https://github.com/radiantearth/stac-spec/pull/1279)))
+- Clarification on unique parent link requirement ([#1279](https://github.com/radiantearth/stac-spec/pull/1279))
 
 ## [v1.0.0] - 2021-05-25
 
