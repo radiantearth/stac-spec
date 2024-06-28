@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - Clarify in various field descriptions that the fields do not only apply to Items
   - Validate the fields also in Catalogs, Collections and Links
   - If a description is given, require that it is not empty
-- Clarified that trailing slashes in URIs are significant. ([#1212](https://github.com/radiantearth/stac-spec/discussions/1212))
+- Clarified URL resolving mechanics, e.g. that trailing slashes in URLs are significant ([#1212](https://github.com/radiantearth/stac-spec/discussions/1212))
 - All JSON Schema `$id` values no longer have `#` at the end.
 - Two spatial bounding boxes in a Collection don't make sense and will be reported as invalid by the schema. ([#1243](https://github.com/radiantearth/stac-spec/issues/1243))
 - Clarify in descriptions that start_datetime and end_datetime are inclusive bounds ([#1280](https://github.com/radiantearth/stac-spec/issues/1280))
