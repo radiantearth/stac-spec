@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - The `keywords` field known from Collections is available in common metadata. ([#1187](https://github.com/radiantearth/stac-spec/issues/1187))
 - The `license` field additionally supports SPDX expressions and the value `other`.
 - The `roles` field known from Assets and Providers is available in common metadata. ([#1267](https://github.com/radiantearth/stac-spec/issues/1267))
+- Best practice: Link titles should exactly reflect the title of the corresponding entity ([#1168](https://github.com/radiantearth/stac-spec/issues/1168))
 
 ### Changed
 
@@ -38,6 +39,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Clarified that collection IDs should be unique across all collections in the corresponding root catalog
 - Clarified which media types should be used for the hierarchical relation types
 - Restructured asset role types and clarified usage of the roles `thumbnail`, `overview` and `visual` ([#1272](https://github.com/radiantearth/stac-spec/pull/1272))
+- Clarified that JSON Schema draft-07 is the default version for Collection summaries and other versions may not be supported
 
 ## [v1.0.0] - 2021-05-25
 
