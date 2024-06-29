@@ -38,6 +38,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Several typos and minor language changes
 - Clarified that collection IDs should be unique across all collections in the corresponding root catalog
 - Clarified which media types should be used for the hierarchical relation types
+- Clarified that multiple collections can point to an Item, but an Item can only point back to a single collection. ([#1273](https://github.com/radiantearth/stac-spec/pull/1273))
 - Restructured asset role types and clarified usage of the roles `thumbnail`, `overview` and `visual` ([#1272](https://github.com/radiantearth/stac-spec/pull/1272))
 - Clarified that JSON Schema draft-07 is the default version for Collection summaries and other versions may not be supported
 
