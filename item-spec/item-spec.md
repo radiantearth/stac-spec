@@ -20,7 +20,6 @@
   - [Asset Object](#asset-object)
     - [Asset Media Type](#asset-media-type)
     - [Asset Roles](#asset-roles)
-      - [Asset Role Types](#asset-role-types)
     - [Additional Fields for Assets](#additional-fields-for-assets)
 - [Media Type for STAC Item](#media-type-for-stac-item)
 - [Extensions](#extensions)
@@ -250,6 +249,8 @@ Linking back must happen in two places:
    ]
    ```
 
+Multiple collections can point to an Item, but an Item can only point back to a single collection.
+
 ### Asset Object
 
 An Asset is an object that contains a URI to data associated with the Item that can be downloaded
@@ -282,26 +283,17 @@ a sense of why they might want to make use of the asset. There are some emerging
 action when they encounter particular roles, listed below. But implementors are encouraged to come up with their own terms to 
 describe the role.
 
-##### Asset Role Types
-
-Like the Link `rel` field, the `roles` field can be given any value, however here are a few standardized role names. 
-
-| Role Name | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| thumbnail | An asset that represents a thumbnail of the Item, typically a true color image (for Items with assets in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `roles` be unique tuples. For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types. |
-| overview  | An asset that represents a possibly larger view than the thumbnail of the Item, for example, a true color composite of multi-band data.                                                                                                                                                                                                                                                                                                                                                                        |
-| data      | The data itself. This is a suggestion for a common role for data files to be used in case data providers don't come up with their own names and semantics.                                                                                                                                                                                                                                                                                                                                                     |
-| metadata  | A metadata sidecar file describing the data in this Item, for example the Landsat-8 MTL file.                                                                                                                                                                                                                                                                                                                                                                                                                  |
+Like the `rel` field in Link Objects, the `roles` field can be given any value.
+However, there are a few standardized role names that can be found in the [best practices](../best-practices.md#list-of-asset-roles).
+Commonly used are `thumbnail`, `overview`, `data` and `metadata`.
 
 It is STRONGLY RECOMMENDED to add to each STAC Item
 - a thumbnail with the role `thumbnail` for preview purposes
-- one or more data file although it doesn't need to use the suggested role `data`
+- one or more data files with the role `data`
 
-Note that multiple roles per asset are encouraged: pick all the ones that apply. So many should have the 'data' role, and then
-another role to describe how the data is used. For more information on how to use roles see the [Asset 
-Roles](../best-practices.md#asset-roles) section of the Best Practices document. It includes a [list of asset 
-roles](../best-practices.md#list-of-asset-roles) that include many more ideas on roles to use. As they reach more widespread 
-adoption we will include them here.
+Note that multiple roles per asset are encouraged: pick all the ones that apply.
+So many should have the `data` role, and then another role to describe how the data is used.
+For more information on how to use roles see the [Asset Roles](../best-practices.md#asset-roles) section of the Best Practices document.
 
 #### Additional Fields for Assets
 
