@@ -155,7 +155,7 @@ Relative links must be resolved against a base URL, which is the absolute URI gi
 If a `self` link is not provided, the absolute URI of the resource can be used as the base URL.
 If neither of them is available, relative links can usually not be resolved and the behavior is undefined.
 
-To resolve relative URIs, the base URIs must be precise and consistent:
+To resolve relative URIs, the base URIs must be precise and consistent.
 Having or not having a trailing slash is significant (except if no path component is provided in a URL, see example 8).
 Without a trailing slash, the last path component is identified as a "file" and will be removed while resolving URLs.
 This means that if the trailing slash is missing for a folder,
