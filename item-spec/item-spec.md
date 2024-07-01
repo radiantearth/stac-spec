@@ -112,8 +112,6 @@ Items that are linked to, but the best practices around this are still emerging.
 
 Defines the full footprint of the asset represented by this item, formatted according to RFC 7946.
 
-The footprint should be the default GeoJSON geometry, though additional geometries can be included.
-
 If **a geometry** is provided, the value must be a Geometry Object according to
 [RFC 7946, section 3.1](https://tools.ietf.org/html/rfc7946#section-3.1)
 with the exception that the type `GeometryCollection` is not allowed in STAC.
