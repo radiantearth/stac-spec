@@ -139,7 +139,7 @@ STAC compliant APIs are required to compute intersection operations with the Ite
 The `id` of the STAC Collection this Item references to with the [`collection` relation type](#relation-types) in the `links`  array.
 
 This field provides an easy way for a user to search for any Items that belong in a specified Collection.
-Must be a non-empty string.
+If present, must be a non-empty string.
 
 ### Properties Object
 
