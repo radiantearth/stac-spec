@@ -147,23 +147,34 @@ For data providers using STAC with requester pays buckets, there are two main re
 ### Consistent URIs
 
 Links in STAC can be [absolute or relative](#use-of-links).
-Relative links must be resolved against the absolute URI given in the link with the relation type `self` (or in some cases `root`).
-To resolve relative URIs the base URIs must be precise and consistent: Having or not having a trailing slash is significant.
-Without it, the last path component is identified as a "file" name which will be removed to get to the "directory" that is used as the base.
-API endpoints usually behave like directories.
+
+Relative links must be resolved against a base URL, which is the absolute URI given in the link with the relation type `self`.
+If a `self` link is not provided, the absolute URI of the resource can be used as the base URL.
+If neither of them is available, relative links can usually not be resolved and the behavior is undefined.
+
+To resolve relative URIs, the base URIs must be precise and consistent.
+Having or not having a trailing slash is significant (except if no path component is provided in a URL, see example 8).
+Without a trailing slash, the last path component is identified as a "file" and will be removed while resolving URLs.
 This means that if the trailing slash is missing for a folder,
-a relative link would need to include the last path component again to resolve correctly.
+a relative link would need to include the last path component again to resolve correctly (see example 4).
+
+To avoid issues it is recommended to consistently add a slash at the end of the URL if it doesn't point to a file.
 
 **Examples:**
-- We have a `self` link `https://example.com/folder/catalog.json` and a relative link `./item.json`.
-  This resolves to `https://example.com/folder/item.json` as expected as the last path component is actually a file.
-- We have a `self` link `https://example.com/collections/S2/items/123` and a relative link `./band1.tif`.
-  This resolves to `https://example.com/collections/S2/items/band1.tif`, which is likely unexpected and unintended.
-  There are two ways to solve this issue so that the URLs resolve correctly to `https://example.com/collections/S2/items/123/band1.tif`:
-  1. Add a slash at the end of the `self` link: `https://example.com/collections/S2/items/123/`, *OR*
-  2. Add the last path element to the relative link: `./123/band1.tif`
 
-To avoid these issues it is recommended to consistently add a slash at the end of the URL if it doesn't point to a file.
+| # | Base URL                                  | Relative URL       | Resolved URL                                  |
+| - | ----------------------------------------- | ------------------ | --------------------------------------------- |
+| 1 | `https://example.com/folder/catalog.json` | `item.json`        | `https://example.com/folder/item.json`        |
+| 2 | `https://example.com/folder`              | `item.json`        | `https://example.com/item.json`               |
+| 3 | `https://example.com/folder/`             | `item.json`        | `https://example.com/folder/item.json`        |
+| 4 | `https://example.com/folder`              | `folder/item.json` | `https://example.com/folder/item.json`        |
+| 5 | `https://example.com/folder/`             | `folder/item.json` | `https://example.com/folder/folder/item.json` |
+| 6 | `https://example.com/another/folder`      | `../item.json`     | `https://example.com/item.json`               |
+| 7 | `https://example.com/another/folder/`     | `../item.json`     | `https://example.com/another/item.json`       |
+| 8 | `https://example.com`                     | `folder/item.json` | `https://example.com/folder/item.json`        |
+| 9 | `https://example.com/`                    | `folder/item.json` | `https://example.com/folder/item.json`        |
+
+The relative URLs `folder/item.json` and `./folder/item.json` are equivalent.
 
 ## Item Practices
 
