@@ -229,7 +229,7 @@ It is allowed to add additional fields such as a `title` and `type`.
 | title      | string         | A human readable title to be used in rendered displays of the link.                                                                                                            |
 | method     | string         | The HTTP method required to be supported by the target resource. `GET` by default                                                                                              |
 | headers    | Map<string, *> | The HTTP headers required to be sent by the target resource.                                                                                                                   |
-| body       | object         | The HTTP body required to be sent by the target resource.                                                                                                                      |
+| body       | any            | The HTTP body required to be sent by the target resource.                                                                                                                      |
 
 For a full discussion of the situations where relative and absolute links are recommended see the
 ['Use of links'](../best-practices.md#use-of-links) section of the STAC best practices.
