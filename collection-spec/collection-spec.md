@@ -170,7 +170,7 @@ This serves two purposes:
    belonging to this Collection so that the user can determine the key(s) 
    of assets they are interested in.
 2. Provide a way to programmatically determine what assets are available 
-   in any member Item. Otherwise a random Item needs to be examined to 
+   in **any** member Item. Otherwise a random Item needs to be examined to 
    determine assets available, but a random Item may not be representative of the set.
 
 An Item Asset Object defined at the Collection level is nearly the same as the 
