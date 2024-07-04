@@ -341,9 +341,3 @@ it is allowed to re-use the metadata fields defined by extensions for Items in t
 This makes much sense for fields such as `platform` or `proj:epsg`, which are often the same for a whole Collection,
 but doesn't make much sense for `eo:cloud_cover`, which usually varies heavily across a Collection.
 The data provider is free to decide, which fields are reasonable to be used.
-
-## Generic Collection of Collections
-
-When a set of Items must be grouped together in unique file
->> TBC
-https://github.com/radiantearth/stac-api-spec/blob/604ade6158de15b8ab068320ca41e25e2bf0e116/ogcapi-features/openapi-collections.yaml#L121
