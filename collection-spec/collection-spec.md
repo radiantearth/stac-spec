@@ -166,7 +166,7 @@ option.
 
 This serves two purposes:
 
-1. Provide a human-readable definition of assets available in any Items 
+1. Provide a human-readable definition of assets available in **any** Items 
    belonging to this Collection so that the user can determine the key(s) 
    of assets they are interested in.
 2. Provide a way to programmatically determine what assets are available 
