@@ -175,7 +175,7 @@ This serves two purposes:
 
 An Item Asset Object defined at the Collection level is nearly the same as the 
 [Asset Object in Items](../item-spec/item-spec.md#asset-object), except for two differences.
-The `href` field is not required, because Collections don't point to any data by themselves, but at least two other fields must be present.
+The `href` field is not required, because Item Asset Definitions don't point to any data by themselves, but at least two other fields must be present.
 
 ### Extent Object
 
