@@ -322,7 +322,8 @@ or streamed. The definition provided here, at the Collection level, is the same 
 
 An item asset is an object that contains details about the datafiles that will be included in member Items.
 Assets included at the Collection level do not imply that all assets are available from all Items.
-However, it is recommended that the Asset Definition is a complete set of all assets that may be available from any member Items.
+However, it is recommended that the Asset Definition is a complete set of **all** assets that may be available from **any** member Items.
+So this should be the union of the available assets, not just the intersection of the available assets.
 
 | Field Name  | Type      | Description                                                                                                                                                                                  |
 | ----------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
