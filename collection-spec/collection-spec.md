@@ -162,7 +162,7 @@ Oftentimes it is possible to model data and assets with either a Collection or a
 Items as much as is feasible, as they designed for assets. Using Collection-level assets should only be used if there is not another
 option.
 
-#### item assets
+#### Item Asset Defintion
 
 This serves two purposes:
 
