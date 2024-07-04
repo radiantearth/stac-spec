@@ -318,7 +318,7 @@ or streamed. The definition provided here, at the Collection level, is the same 
 | type        | string    | [Media type](../item-spec/item-spec.md#asset-media-type) of the asset. See the [common media types](../best-practices.md#common-media-types-in-stac) in the best practice doc for commonly used asset types. |
 | roles       | \[string] | The [semantic roles](../item-spec/item-spec.md#asset-role-types) of the asset, similar to the use of `rel` in links.                                                                                         |
 
-### Item Asset Object
+### Item Asset Definition Object
 
 An item asset is an object that contains details about the datafiles that will be included in member Items.
 Assets included at the Collection level do not imply that all assets are available from all Items.
