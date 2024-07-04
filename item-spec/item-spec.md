@@ -7,7 +7,9 @@
     - [stac\_extensions](#stac_extensions)
     - [id](#id)
     - [assets](#assets)
+    - [geometry](#geometry)
     - [bbox](#bbox)
+    - [collection](#collection)
   - [Properties Object](#properties-object)
     - [datetime](#datetime)
     - [Additional Fields](#additional-fields)
@@ -51,18 +53,18 @@ required fields is a valid STAC Item.
 This object describes a STAC Item. The fields `id`, `type`, `bbox`, `geometry` and `properties` are
 inherited from GeoJSON.
 
-| Field Name      | Type                                                                                                                                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| type            | string                                                                                                                                | **REQUIRED.** Type of the GeoJSON Object. MUST be set to `Feature`.                                                                                                                                                                                                                                                                                                                                                                   |
-| stac_version    | string                                                                                                                                | **REQUIRED.** The STAC version the Item implements.                                                                                                                                                                                                                                                                                                                                                                                   |
-| stac_extensions | \[string]                                                                                                                             | A list of extensions the Item implements.                                                                                                                                                                                                                                                                                                                                                                                             |
-| id              | string                                                                                                                                | **REQUIRED.** Provider identifier. The ID should be unique within the  [Collection](../collection-spec/collection-spec.md) that contains the Item.                                                                                                                                                                                                                                                                                    |
-| geometry        | [GeoJSON Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) \| [null](https://tools.ietf.org/html/rfc7946#section-3.2) | **REQUIRED.** Defines the full footprint of the asset represented by this item, formatted according to [RFC 7946, section 3.1](https://tools.ietf.org/html/rfc7946#section-3.1). The footprint should be the default GeoJSON geometry, though additional geometries can be included. Coordinates are specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84). |
-| bbox            | \[number]                                                                                                                             | **REQUIRED if `geometry` is not `null`, prohibited if `geometry` is `null`.** Bounding Box of the asset represented by this Item, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5).                                                                                                                                                                                                        |
-| properties      | [Properties Object](#properties-object)                                                                                               | **REQUIRED.** A dictionary of additional metadata for the Item.                                                                                                                                                                                                                                                                                                                                                                       |
-| links           | \[[Link Object](#link-object)]                                                                                                        | **REQUIRED.** List of link objects to resources and related URLs. See the [best practices](../best-practices.md#use-of-links) for details on when the use `self` links is strongly recommended.                                                                                                                                                                                                                                       |
-| assets          | Map<string, [Asset Object](#asset-object)>                                                                                            | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key.                                                                                                                                                                                                                                                                                                                                             |
-| collection      | string                                                                                                                                | The `id` of the STAC Collection this Item references to (see [`collection` relation type](#relation-types)). This field is *required* if such a relation type is present and is *not allowed* otherwise. This field provides an easy way for a user to search for any Items that belong in a specified Collection. Must be a non-empty string.                                                                                        |
+| Field Name      | Type                                       | Description                                                                                                                                                                                                                                                                                               |
+| --------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type            | string                                     | **REQUIRED.** Type of the GeoJSON Object. MUST be set to `Feature`.                                                                                                                                                                                                                                       |
+| stac_version    | string                                     | **REQUIRED.** The STAC version the Item implements.                                                                                                                                                                                                                                                       |
+| stac_extensions | \[string]                                  | A list of extensions the Item implements.                                                                                                                                                                                                                                                                 |
+| id              | string                                     | **REQUIRED.** Provider identifier. The ID should be unique within the  [Collection](../collection-spec/collection-spec.md) that contains the Item.                                                                                                                                                        |
+| geometry        | GeoJSON Geometry Object \| null            | **REQUIRED.** Defines the full footprint of the asset represented by this item, formatted according to RFC 7946, [section 3.1](https://tools.ietf.org/html/rfc7946#section-3.1) if a geometry is provided or [section 3.2](https://tools.ietf.org/html/rfc7946#section-3.2) if *no* geometry is provided. |
+| bbox            | \[number]                                  | **REQUIRED if `geometry` is not `null`, prohibited if `geometry` is `null`.** Bounding Box of the asset represented by this Item, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5).                                                                            |
+| properties      | [Properties Object](#properties-object)    | **REQUIRED.** A dictionary of additional metadata for the Item.                                                                                                                                                                                                                                           |
+| links           | \[[Link Object](#link-object)]             | **REQUIRED.** List of link objects to resources and related URLs. See the [best practices](../best-practices.md#use-of-links) for details on when the use `self` links is strongly recommended.                                                                                                           |
+| assets          | Map<string, [Asset Object](#asset-object)> | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key.                                                                                                                                                                                                                 |
+| collection      | string                                     | The `id` of the STAC Collection this Item references to. This field is **required** if a link with a `collection` relation type is present and is **not allowed** otherwise.                                                                                                                              |
 
 ### Additional Field Information
 
@@ -106,6 +108,18 @@ by multiple files - all should be linked to. It is generally recommended that di
 levels or formats are not exhaustively listed in an Item, but instead are represented by related
 Items that are linked to, but the best practices around this are still emerging.
 
+#### geometry
+
+Defines the full footprint of the asset represented by this item, formatted according to RFC 7946.
+
+If **a geometry** is provided, the value must be a Geometry Object according to
+[RFC 7946, section 3.1](https://tools.ietf.org/html/rfc7946#section-3.1)
+with the exception that the type `GeometryCollection` is not allowed in STAC.
+If **no geometry** is provided, the value must be `null` according to
+[RFC 7946, section 3.2](https://tools.ietf.org/html/rfc7946#section-3.2).
+
+Coordinates are specified in Longitude/Latitude or Longitude/Latitude/Elevation based on [WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84).
+
 #### bbox
 
 Bounding Box of the asset represented by this Item using either 2D or 3D geometries,
@@ -117,6 +131,13 @@ When using 3D geometries, the elevation of the southwesterly most extent is the 
 and the elevation of the northeasterly most extent is the maximum.
 This field enables more naive clients to easily index and search geospatially.
 STAC compliant APIs are required to compute intersection operations with the Item's geometry field, not its bbox.
+
+#### collection
+
+The `id` of the STAC Collection this Item references to with the [`collection` relation type](#relation-types) in the `links`  array.
+
+This field provides an easy way for a user to search for any Items that belong in a specified Collection.
+If present, must be a non-empty string.
 
 ### Properties Object
 

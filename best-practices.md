@@ -505,7 +505,8 @@ if you follow these recommendations.
 3. Items should be named `<id>.json`.
 4. Sub-Catalogs or sub-Collections should be stored in subdirectories of their parent
    (and only 1 subdirectory deeper than a document's parent, e.g. `.../sample/sub1/catalog.json`).
-5. Items should be stored in subdirectories of their parent Catalog or Collection if there are usually [sidecar files](https://en.wikipedia.org/wiki/Sidecar_file) stored alongside the Item.
+5. Items should be stored in subdirectories of their parent Catalog or Collection
+   if there are usually [sidecar files](https://en.wikipedia.org/wiki/Sidecar_file) stored alongside the Item.
    This means that each Item and its assets are contained in a unique subdirectory unless this would regularly lead to a single Item in a directory.
 6. Limit the number of Items in a Catalog or Collection, grouping / partitioning as relevant to the dataset.
 7. Use structural elements (Catalog and Collection) consistently across each 'level' of your hierarchy.
