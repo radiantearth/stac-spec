@@ -299,6 +299,8 @@ As detailed above, Items contain properties, which are the main source of metada
 extensions can add further property fields as well. Any property that can be specified for an Item can also be specified for
 a specific asset. This can be used to override a property defined in the Item, or to specify fields for which there is no
 single value for all assets. If a property is defined at the STAC entity level (Item or Collection), it is the default value for all assets.
+The values in the top level properties are considered nominal for the the Item or the Collection and thus may be adjusted for
+specific assets (see example below).
 
 **It is important to note that the STAC API does not facilitate searching across Asset properties in this way, and this
 should be used sparingly.** It is primarily used to define properties at the Asset level that may be used during use of
