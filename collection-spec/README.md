@@ -44,10 +44,7 @@ a collection and be able to adapt it to most any data model.
 
 Implementors are encouraged to do what makes sense for them, and to check out the [examples](../examples/) and 
 [other implementations](https://stacindex.org/catalogs) for current best practices.
-
-## Generic Collection of Collections
-
-In some cases, a set of Collections must be grouped together in a unique file such as in the response
-of the [collections search in a catalog](https://github.com/radiantearth/stac-api-spec/tree/release/v1.0.0/ogcapi-features#collections-collections).
-When a set of Items must be grouped together in unique file, the [CollectionCollection](https://github.com/radiantearth/stac-api-spec/blob/604ade6158de15b8ab068320ca41e25e2bf0e116/ogcapi-features/openapi-collections.yaml#L121)
-structure as defined in STAC API must be used.
+> \[!NOTE]
+> In cases where a set of Collections is grouped together (e.g. for providing search results),
+> the [CollectionCollection](https://github.com/radiantearth/stac-api-spec/blob/main/fragments/collectioncollection/README.md)
+> object has been defined in the STAC API specification.
