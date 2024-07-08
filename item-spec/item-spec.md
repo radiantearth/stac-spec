@@ -302,6 +302,7 @@ single value for all assets.
 If a property is defined in the Item Properties, it is the default value for all assets in the Item.
 If a property is defined in a Collection on the top-level, it is the default value for all assets in the Collection.
 Assets may override the properties inherited for specific assets (see example below).
+Inheritance does not apply across multiple files, i.e. is restricted to a single Item or Collection.
 Note that in some cases the inheritance may not lead to the expected results if other semantics have been defined for the property.
 See the examples for `gsd` and `eo:bands` below.
 It also applies to some other fields such as `created` or `updated`.
