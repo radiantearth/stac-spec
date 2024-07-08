@@ -204,6 +204,21 @@
               "title": "Link title",
               "type": "string"
             }
+          },
+          "$comment": "Link with relationship `self` must be absolute URI",
+          "if": {
+            "properties": {
+              "rel": {
+                "const": "self"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "href": {
+                "format": "iri"
+              }
+            }
           }
         },
         {
