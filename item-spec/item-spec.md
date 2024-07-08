@@ -305,7 +305,7 @@ Assets may override the properties inherited for specific assets (see example be
 Note that in some cases the inheritance may not lead to the expected results if other semantics have been defined for the property.
 See the examples for `gsd` and `eo:bands` below.
 It also applies to some other fields such as `created` or `updated`
-(metadata-related timestamps get inherited and data-related timestamps are defined in assets).
+(metadata-related timestamps would get inherited and mixed with data-related timestamps that are defined in assets).
 
 **It is important to note that the STAC API does not facilitate searching across Asset properties in this way, and this
 should be used sparingly.** It is primarily used to define properties at the Asset level that may be used during use of
