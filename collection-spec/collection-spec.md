@@ -270,15 +270,15 @@ It is recommended to use the official
 The following table explains places where custom STAC `rel` types are used for Collections.
 This is done where there is not a clear official option, or where STAC uses an official type but adds additional meaning for the STAC context.
 
-| Type         | Description                                                                                                                                                                                                                                                        |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| self         | STRONGLY RECOMMENDED. *Absolute* URL to the location that the Collection file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. |
-| root         | URL to the root STAC entity (Catalog or Collection). Collections should include a link to their root, even if it's the root and points to itself.                                                                                                                  |
-| parent       | URL to the parent STAC entity (Catalog or Collection). Non-root Collections should include a link to their parent.                                                                                                                                                 |
-| child        | URL to a child STAC entity (Catalog or Collection).                                                                                                                                                                                                                |
-| item         | URL to a STAC Item. All Items linked from a Collection MUST refer back to its Collection with the [`collection` relation type](../item-spec/item-spec.md#relation-types).                                                                                          |
-| license      | The license URL(s) for the Item SHOULD be specified if the `license` field is **not** a SPDX license identifier.                                                                                                                                                   |
-| derived_from | URL to a STAC Collection that was used as input data in the creation of this Collection. See the note in [STAC Item](../item-spec/item-spec.md#derived_from) for more info.                                                                                        |
+| Type         | Description                                                                                                                                                                                                                                                        | Media Type                                           |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------- |
+| self         | STRONGLY RECOMMENDED. *Absolute* URL to the location that the Collection file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. | application/json                                     |
+| root         | URL to the root STAC entity (Catalog or Collection). Collections should include a link to their root, even if it's the root and points to itself.                                                                                                                  | application/json                                     |
+| parent       | URL to the parent STAC entity (Catalog or Collection). Non-root Collections should include a link to their parent.                                                                                                                                                 | application/json                                     |
+| child        | URL to a child STAC entity (Catalog or Collection).                                                                                                                                                                                                                | application/json                                     |
+| item         | URL to a STAC Item. All Items linked from a Collection MUST refer back to its Collection with the [`collection` relation type](../item-spec/item-spec.md#relation-types).                                                                                          | application/geo+json (preferred) or application/json |
+| license      | The license URL(s) for the Item SHOULD be specified if the `license` field is **not** a SPDX license identifier.                                                                                                                                                   | Any                                                  |
+| derived_from | URL to a STAC Collection that was used as input data in the creation of this Collection. See the note in [STAC Item](../item-spec/item-spec.md#derived_from) for more info.                                                                                        | application/json                                     |
 
 A more complete list of possible `rel` types and their meaning in STAC can be found in the
 [Using Relation Types](../best-practices.md#using-relation-types) best practice. 
@@ -300,7 +300,21 @@ or streamed. The definition provided here, at the Collection level, is the same 
 | title       | string    | The displayed title for clients and users.                                                                                                                                                                   |
 | description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation.                 |
 | type        | string    | [Media type](../item-spec/item-spec.md#asset-media-type) of the asset. See the [common media types](../best-practices.md#common-media-types-in-stac) in the best practice doc for commonly used asset types. |
-| roles       | \[string] | The [semantic roles](../item-spec/item-spec.md#asset-role-types) of the asset, similar to the use of `rel` in links.                                                                                         |
+| roles       | \[string] | The [semantic roles](../item-spec/item-spec.md#asset-roles) of the asset, similar to the use of `rel` in links.                                                                                              |
+
+#### Asset Roles
+
+The `roles` field is used to describe the purpose of each asset. It is recommended to include one for every asset, to give users
+a sense of why they might want to make use of the asset. There are some emerging standards that enable clients to take particular
+action when they encounter particular roles, listed below. But implementors are encouraged to come up with their own terms to 
+describe the role.
+
+Like the `rel` field in Link Objects, the `roles` field can be given any value.
+However, there are a few standardized role names that can be found in the [best practices](../best-practices.md#list-of-asset-roles).
+Commonly used are `thumbnail` and `overview`.
+
+Note that multiple roles per asset are encouraged: pick all the ones that apply.
+For more information on how to use roles see the [Asset Roles](../best-practices.md#asset-roles) section of the Best Practices document.
 
 ### Range Object
 
@@ -321,9 +335,11 @@ Implementors are free to add other derived statistical values to the object, for
 For a full understanding of the summarized field, a JSON Schema can be added for each summarized field.
 This allows very fine-grained information for each field and each value as JSON Schema is also extensible.
 Each schema must be valid against all corresponding values available for the property in the sub-Items.
+Empty schemas are not allowed.
 
-It is recommended to use [JSON Schema draft-07](https://json-schema.org/specification-links.html#draft-7)
-to align with the JSON Schemas provided by STAC. Empty schemas are not allowed.
+JSON Schema draft-07 is the default JSON Schema version, which aligns with the JSON Schemas provided by STAC.
+It is allowed to use other versions of JSON Schema if the version is explicitly expressed in the JSON Schema `$schema` keyword,
+but tooling may not support JSON Schema versions other than `draft-07`.
 
 For an introduction to JSON Schema, see "[Learn JSON Schema](https://json-schema.org/learn/)".
 

@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - The fields `data_type`, `nodata`, `statistics` and `unit` have been added to common metadata ([#1213](https://github.com/radiantearth/stac-spec/discussions/1213))
 - The `keywords` field known from Collections is available in common metadata. ([#1187](https://github.com/radiantearth/stac-spec/issues/1187))
 - The `license` field additionally supports SPDX expressions and the value `other`.
+- The `roles` field known from Assets and Providers is available in common metadata. ([#1267](https://github.com/radiantearth/stac-spec/issues/1267))
+- Validation for absolute self link in item schema. ([#1281](https://github.com/radiantearth/stac-spec/issues/1281))
+- Best practice: Link titles should exactly reflect the title of the corresponding entity ([#1168](https://github.com/radiantearth/stac-spec/issues/1168))
 
 ### Changed
 
@@ -20,9 +23,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - Clarify in various field descriptions that the fields do not only apply to Items
   - Validate the fields also in Catalogs, Collections and Links
   - If a description is given, require that it is not empty
-- Clarified that trailing slashes in URIs are significant. ([#1212](https://github.com/radiantearth/stac-spec/discussions/1212))
+- Clarified URL resolving mechanics, e.g. that trailing slashes in URLs are significant ([#1212](https://github.com/radiantearth/stac-spec/discussions/1212))
 - All JSON Schema `$id` values no longer have `#` at the end.
 - Two spatial bounding boxes in a Collection don't make sense and will be reported as invalid by the schema. ([#1243](https://github.com/radiantearth/stac-spec/issues/1243))
+- Clarify in descriptions that start_datetime and end_datetime are inclusive bounds ([#1280](https://github.com/radiantearth/stac-spec/issues/1280))
 
 ### Deprecated
 
@@ -35,7 +39,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 - Several typos and minor language changes
-- Clarified that collection IDs should be unique across all collections in the corresponding root catalog.
+- Clarified that collection IDs should be unique across all collections in the corresponding root catalog
+- Clarified which media types should be used for the hierarchical relation types
+- Clarified in the Markdown specification that GeometryCollections are not allowed as Item Geometry ([#1160](https://github.com/radiantearth/stac-spec/pull/1160))
+- Best practice: Do not recommend subdirectories for Items without sidecar files ([#1195](https://github.com/radiantearth/stac-spec/pull/1195))
+- Clarified that multiple collections can point to an Item, but an Item can only point back to a single collection. ([#1273](https://github.com/radiantearth/stac-spec/pull/1273))
+- Restructured asset role types and clarified usage of the roles `thumbnail`, `overview` and `visual` ([#1272](https://github.com/radiantearth/stac-spec/pull/1272))
+- Clarified that JSON Schema draft-07 is the default version for Collection summaries and other versions may not be supported
 
 ## [v1.0.0] - 2021-05-25
 
