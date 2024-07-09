@@ -34,7 +34,6 @@
     - [Published Catalogs](#published-catalogs)
   - [Using Relation Types](#using-relation-types)
   - [Versioning for Catalogs](#versioning-for-catalogs)
-    - [Example](#example)
   - [Static to Dynamic best practices](#static-to-dynamic-best-practices)
     - [Ingestion and links](#ingestion-and-links)
     - [Keep catalogs in sync with cloud notification and queue services](#keep-catalogs-in-sync-with-cloud-notification-and-queue-services)
