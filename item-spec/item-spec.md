@@ -203,35 +203,13 @@ For a full discussion of the situations where relative and absolute links are re
 
 #### Relation types
 
-STAC Items use a variety of `rel` types in the link object,
-to describe the exact nature of the link between this Item and the entity it is linking to.
-It is recommended to use the official
-[IANA Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) where possible.
-The following table explains places where STAC use custom `rel` types are used with Items.
-This happens where there is not a clear official option, or where STAC uses an official type but adds additional meaning for the STAC context.
-
-| Type         | Description                                                                                                                                                                                                                                                                                                                              | Media Type                                           |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| self         | STRONGLY RECOMMENDED. *Absolute* URL to the Item if it is available at a public URL. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from.                                                                                                   | application/geo+json (preferred) or application/json |
-| root         | URL to the root STAC entity (Catalog or Collection). `type` field must be `application/json`. ONLY ONE link with `root` relationship and `application/json` type is allowed. Other version of the root link can be added with different `type` field as long as they point the same conceptual entity (e.g. identified by the ID).       | application/json                                     |
-| parent       | URL to the parent STAC entity (Catalog or Collection). `type` field must be `application/json`. ONLY ONE link with `parent` relationship and `application/json` type is allowed. Other versions of the parent link can be added with different `type` field as long as they point the same conceptual entity (e.g. identified by the ID). | application/json                                     |
-| collection   | STRONGLY RECOMMENDED. URL to a Collection. *Absolute* URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. A link with this `rel` type is *required* if the `collection` field in properties is present.                                             | application/json                                     |
-| derived_from | URL to a STAC Item that was used as input data in the creation of this Item.                                                                                                                                                                                                                                                             | application/geo+json (preferred) or application/json |
+All the [common relation types](../item-spec/common-metadata.md#relation-types) can be used in Item.
+A `self` and `collection` links are STRONGLY RECOMMENDED.
 
 > \[!NOTE]
 > Dynamic catalogs can implement multiple parents through a dynamic browsing interface as they could dynamically create the parent
 > link based on the desired browsing structure (though only 1 parent at a time).
 > Multiple parents are allowed for other types than `application/json`.
-
-A more complete list of potential `rel` types and their meaning in STAC can be found in the [Using Relation 
-Types](../best-practices.md#using-relation-types) best practice. 
-
-##### derived_from
-
-*Note regarding the type `derived_from`: A full provenance model is far beyond the scope of STAC,
-and the goal is to align with any good independent spec that comes along for that.
-But the derived_from field is seen as a way to encourage fuller specs and at least start a linking
-structure that can be used as a jumping off point for more experiments in provenance tracking*
 
 #### Collections
 

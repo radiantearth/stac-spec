@@ -10,7 +10,6 @@ or [Collection Asset](../collection-spec/collection-spec.md#asset-object).
   - [Date and Time](#date-and-time)
     - [Date and Time Range](#date-and-time-range)
   - [Licensing](#licensing)
-    - [Relation types](#relation-types)
   - [Provider](#provider)
     - [Provider Object](#provider-object)
       - [roles](#roles)
@@ -21,6 +20,12 @@ or [Collection Asset](../collection-spec/collection-spec.md#asset-object).
       - [constellation](#constellation)
       - [mission](#mission)
       - [gsd](#gsd)
+  - [Relation types](#relation-types)
+    - [STAC Relation Types](#stac-relation-types)
+      - [Self relation](#self-relation)
+      - [Root and parent relation](#root-and-parent-relation)
+      - [Collection relation](#collection-relation)
+    - [Additional relations](#additional-relations)
 
 Various *examples* are available in the folder [`examples`](../examples/).
 *JSON Schemas* can be found in the folder [`json-schema`](json-schema/).
@@ -108,11 +113,7 @@ it is RECOMMENDED to supplement the STAC Item with the license text in a separat
 If no link to a license is included and the `license` field is set to `other` (or one of the deprecated values),
 the data is private, and consumers have not been granted any explicit right to use it.
 
-### Relation types
-
-| Type    | Description                                                                                                          |
-| ------- | -------------------------------------------------------------------------------------------------------------------- |
-| license | The license URL(s) for the resource SHOULD be specified if the `license` field is **not** a SPDX license identifier. |
+The [license](#additional-relations) URL(s) for the resource SHOULD be specified if the `license` field is **not** a SPDX license identifier.
 
 ## Provider
 
@@ -212,3 +213,61 @@ optical and short-wave IR bands are all 30 meters, but the panchromatic band is 
 PlanetScope Ortho Tile Product has an `gsd` of 3.7 (or 4 if rounding), even though the pixel size of the images is 3.125.
 For example, one might choose for WorldView-2 the Multispectral 20° off-nadir value of 2.07
 and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.
+
+## Relation types
+
+STAC Entities use a variety of `rel` types in the link object,
+to describe the exact nature of the link between the STAC object and the entity it is linking to.
+It is recommended to use the official
+[IANA Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) where possible.
+
+### STAC Relation Types
+
+The following table lists the STAC-specific `rel` types that are used in the `links` object of a STAC entity
+to link with other STAC entities in the same catalog.
+
+| Type       | Description                                                                                                         | Media Type                                           |
+| ---------- | ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| self       | *Absolute* URL to the location that the STAC file can be found online, if available.                                | application/json                                     |
+| root       | URL to the root STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)).   | application/json                                     |
+| parent     | URL to the parent STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)). | application/json                                     |
+| collection | URL to the parent Collection. *Absolute* URLs should be used whenever possible.                                     | application/json                                     |
+| child      | URL to a child STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)).    | application/json                                     |
+| item       | URL to a STAC Item.                                                                                                 | application/geo+json (preferred) or application/json |
+
+#### Self relation
+
+The `self` relation is used to link to the STAC entity itself.
+This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from.
+
+#### Root and parent relation
+
+The `root` and `parent` relations are used to link to the root and parent STAC entity, which is either a [Catalog](../catalog-spec/README.md) or a [Collection](../collection-spec/README.md).
+**ONLY ONE** link with `root` or `parent` relationship and `application/json` type is allowed.
+Other version of the `root` or `parent` link can be added with different `type` field as long as they point the same conceptual entity (e.g. identified by the ID).
+
+#### Collection relation
+
+The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Collection.
+A link with this `rel` type is *required* for STAC item if the `collection` field in properties is present.
+
+#### Item relation
+
+All Items linked from a Collection MUST refer back to its Collection with the [`collection` relation type](#collection-relation).
+
+### Additional relations
+
+| Type         | Description                                                                                                      | Media Type       |
+| ------------ | ---------------------------------------------------------------------------------------------------------------- | ---------------- |
+| license      | The license URL(s) for the Item SHOULD be specified if the `license` field is **not** a SPDX license identifier. | Any              |
+| derived_from | URL to a STAC Entity that was used as input data in the creation of this Entity.                                 | application/json |
+
+A more complete list of possible `rel` types and their meaning in STAC can be found in the
+[Using Relation Types](../best-practices.md#using-relation-types) best practice.
+
+#### Derived from relation (`derived_from`)
+
+A full provenance model is far beyond the scope of STAC,
+and the goal is to align with any good independent spec that comes along for that.
+But the derived_from field is seen as a way to encourage fuller specs and at least start a linking
+structure that can be used as a jumping off point for more experiments in provenance tracking*
