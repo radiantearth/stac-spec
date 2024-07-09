@@ -15,19 +15,12 @@
   - [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
   - [Datetime selection](#datetime-selection)
   - [Unlocated Items](#unlocated-items)
-    - [Unrectified Satellite Data](#unrectified-satellite-data)
-    - [Data that is not spatial](#data-that-is-not-spatial)
   - [Representing Vector Layers in STAC](#representing-vector-layers-in-stac)
 - **[Asset Best Practices](#asset-practices)**
   - [Common Use Cases of Additional Fields for Assets](#common-use-cases-of-additional-fields-for-assets)
   - [Working with Media Types](#working-with-media-types)
-    - [Common Media Types in STAC](#common-media-types-in-stac)
-    - [Formats with no registered media type](#formats-with-no-registered-media-type)
   - [Asset Roles](#asset-roles)
-    - [List of Asset Roles](#list-of-asset-roles)
-      - [Thumbnail](#thumbnail)
-      - [Overview](#overview)
-      - [Visual](#visual)
+  - [Bands](#bands)
 - **[Catalog & Collection Best Practices](#catalog--collection-practices)**
   - [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
     - [Static Catalogs](#static-catalogs)
@@ -47,7 +40,6 @@
     - [Keep catalogs in sync with cloud notification and queue services](#keep-catalogs-in-sync-with-cloud-notification-and-queue-services)
   - [How to Differentiate STAC Files](#how-to-differentiate-stac-files)
   
-
 This document makes a number of recommendations for creating real world SpatioTemporal Asset Catalogs. None of them 
 are required to meet the core specification, but following these practices will make life easier for client tooling
 and for users. They come about from practical experience of implementors and introduce a bit more 'constraint' for
@@ -419,6 +411,235 @@ It is typically an composite of red, blue and green bands, often with a nice col
 be possible to open up on non-specialist software and display just fine. It can complement assets where one band is per file (like landsat),
 by providing the key display bands combined, or can complement assets where many non-visible bands are included, by being a lighter weight
 file that just has the bands needed for display
+
+### Bands
+
+The new `bands` array in combination with the property inheritance introduced in STAC 1.1 provides users with more flexibility.
+The following best practices should be considered, especially when migrating from `eo:bands` and `raster:bands`.
+
+#### Single band
+
+Single band assets can be defined in two ways.
+Properties can be defined in the `bands` array or in the assets directly.
+
+Example using the `bands` array:
+
+```json
+{
+  "assets": {
+    "example": {
+      "href": "example.tif",
+      "bands": [
+        {
+          "data_type": "uint16",
+          "eo:common_name": "red",
+          "raster:spatial_resoltion": 10
+        }
+      ]
+    }
+  }
+}
+```
+
+Example without bands:
+
+```json
+{
+  "assets": {
+    "example": {
+      "href": "example.tif",
+      "data_type": "uint16",
+      "eo:common_name": "red",
+      "raster:spatial_resoltion": 10
+    }
+  }
+}
+```
+
+STAC recommands that single band assets should only use the `bands` array in the following cases:
+
+1. **It's important in to convey that a band is present in the asset.**
+   - This is the case if the data access mechanism requires you to specify the name of index of the band to retrieve the data,
+     then the band should be specified as such.
+   - This is also the case if the band has a specific name.
+     The `name` property is only available in bands and as such can't be specified for the Asset.
+2. **It is important that the (often spectral) band is part of a set of bands.**
+   - For example, if the `bands` array is exposed in the Collection Summaries,
+     there should be bands defined in the Items or Item Assets as otherwise there's nothing to summarize.
+3. **Individual bands are repeated in different assets.**
+   - This may happen if you provide assets with different resolutions or file formats.
+     The `name` property with the same value should be used so that users can identify that the bands are the same.
+     It also enables clients to easily combine and summarize the bands.
+
+#### Multiple bands
+
+Generally, all properties that have the same value across all bands should not be listed in bands but in assets directly.
+
+For example, if your bands in an asset is defined as follows:
+
+```json
+{
+  "assets": {
+    "example": {
+      "href": "example.tif",
+      "bands": [
+        {
+          "name": "r",
+          "eo:common_name": "red",
+          "data_type": "uint16",
+          "raster:spatial_resolution": 10
+        },
+        {
+          "name": "g",
+          "eo:common_name": "green",
+          "data_type": "uint16",
+          "raster:spatial_resolution": 10
+        },
+        {
+          "name": "b",
+          "eo:common_name": "blue",
+          "data_type": "uint16",
+          "raster:spatial_resolution": 10
+        }
+      ]
+    }
+  }
+}
+```
+
+The `data_type` and `raster:spatial_resolution` has the same value for all bands.
+As such you can deduplicate those properties and list them in the asset directly:
+
+```json
+{
+  "assets": {
+    "example": {
+      "href": "example.tif",
+      "data_type": "uint16",
+      "raster:spatial_resolution": 10,
+      "bands": [
+        {
+          "name": "r",
+          "eo:common_name": "red"
+        },
+        {
+          "name": "g",
+          "eo:common_name": "green"
+        },
+        {
+          "name": "b",
+          "eo:common_name": "blue"
+        }
+      ]
+    }
+  }
+}
+```
+
+#### Band migration
+
+It should be relatively simple to migrate from STAC 1.0 (i.e. `eo:bands` and/or `raster:bands`) to the new `bands` array.
+
+Usually, you can simply merge the each object on a by-index basis.
+Nevertheless, you should consider deduplicating properties with the same values across all bands to the Asset.
+For some fields you need to add the extension prefix of the `eo` or `raster` extension to the property name.
+
+STAC 1.0 example:
+
+```json
+{
+  "assets": {
+    "example": {
+      "href": "example.tif",
+      "eo:bands": [
+        {
+          "name": "r",
+          "common_name": "red"
+        },
+        {
+          "name": "g",
+          "common_name": "green"
+        },
+        {
+          "name": "b",
+          "common_name": "blue"
+        },
+        {
+          "name": "nir",
+          "common_name": "nir"
+        }
+      ],
+      "raster:bands": [
+        {
+          "data_type": "uint16",
+          "spatial_resolution": 10,
+          "sampling": "area"
+        },
+        {
+          "data_type": "uint16",
+          "spatial_resolution": 10,
+          "sampling": "area"
+        },
+        {
+          "data_type": "uint16",
+          "spatial_resolution": 10,
+          "sampling": "area"
+        },
+        {
+          "data_type": "uint16",
+          "spatial_resolution": 30,
+          "sampling": "area"
+        }
+      ]
+    }
+  }
+}
+```
+
+After migrating to STAC 1.1 this is ideally provided as follows:
+
+```json
+{
+  "assets": {
+    "example": {
+      "href": "example.tif",
+      "data_type": "uint16",
+      "raster:sampling": "area",
+      "bands": [
+        {
+          "name": "r",
+          "eo:common_name": "red",
+          "raster:spatial_resolution": 10
+        },
+        {
+          "name": "g",
+          "eo:common_name": "green",
+          "raster:spatial_resolution": 10
+        },
+        {
+          "name": "b",
+          "eo:common_name": "blue",
+          "raster:spatial_resolution": 10
+        },
+        {
+          "name": "nir",
+          "eo:common_name": "nir",
+          "raster:spatial_resolution": 30
+        }
+      ]
+    }
+  }
+}
+```
+
+The following was done:
+
+- The arrays have been merged into a single property `bands`.
+- The properties `common_name` and `spatial_resolution` were renamed to include the extension prefixes.
+- The properties `data_type` and `raster:sampling` (renamed from `sampling`) were deduplicated to the Asset
+  as the values were the same across all bands.
+
+As a result, the new `bands` array is more lightweight and easier to handle.
 
 ## Catalog & Collection Practices
 

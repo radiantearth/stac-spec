@@ -213,54 +213,22 @@ and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.
 The `bands` array is used to describe the available bands in a STAC entity or Asset.
 This fields describes the general construct of a band or layer, which doesn't necessarily need to be a spectral band.
 By adding fields from extensions you can indicate that a band, for example, is
+
 - a spectral band ([EO extension](https://github.com/stac-extensions/eo)),
 - a band with classification results ([classification extension](https://github.com/stac-extensions/classification)),
-- a band with quality information such as cloud cover probabilities, 
+- a band with quality information such as cloud cover probabilities,
 - etc.
 
-Each Asset should specify its own Band Object.
-If the individual bands are repeated in different assets they should all use the same values and 
-include the optional `name` field to enable clients to easily combine and summarize the bands.
+Please refer to the [Bands best practices](../best-practices.md#bands) for more details.
 
-**Note:** This property is the successor of the `eo:bands` and `raster:bands` fields, which has been present in previous versions of these extensions.
-The behavior is very similar and they can be migrated easily. Usually, you can simply merge the each object on a by-index basis.
-For some fields you need to add the extension prefix of the `eo` or `raster` extension to the property name though. Example:
-
-Before:
-```json
-{
-	"eo:bands": [{
-		"name": "B4",
-		"description": "Red band",
-		"common_name": "red",
-		"center_wavelength": 0.665,
-		"full_width_half_max": 0.038
-	}],
-	"raster:bands": [{
-		"data_type": "float32",
-		"nodata": "nan",
-		"statistics": {"minimum": 0, "maximum": 1},
-		"spatial_resolution": 10
-	}]
-}
-```
-
-After:
-```json
-{
-	"bands": [{
-		"name": "B4",
-		"description": "Red band",
-		"data_type": "float32",
-		"nodata": "nan",
-		"statistics": {"minimum": 0, "maximum": 1},
-		"eo:common_name": "red",
-		"eo:center_wavelength": 0.665,
-		"eo:full_width_half_max": 0.038,
-		"raster:spatial_resolution": 10
-	}]
-}
-```
+> \[!NOTE]
+> This property is the successor of the `eo:bands` and `raster:bands` fields, which has been present in previous versions of these extensions.
+> The behavior is very similar and they can be migrated easily.
+> Usually, you can simply merge the each object on a by-index basis.
+> Nevertheless, you should consider deduplicating properties with the same values across all bands to the asset level
+> (see the [best practices](../best-practices.md#multiple-bands)).
+> For some fields you need to add the extension prefix of the `eo` or `raster` extension to the property name though.
+> See the [Band migration best practice](../best-practices.md#band-migration) for details.
 
 ### Band Object
 
