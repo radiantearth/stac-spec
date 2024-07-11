@@ -15,7 +15,6 @@
     - [Additional Fields](#additional-fields)
   - [Link Object](#link-object)
     - [Relation types](#relation-types)
-      - [derived\_from](#derived_from)
     - [Collections](#collections)
   - [Asset Object](#asset-object)
     - [Asset Media Type](#asset-media-type)

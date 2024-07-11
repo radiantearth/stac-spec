@@ -162,17 +162,17 @@ To avoid issues it is recommended to consistently add a slash at the end of the 
 
 **Examples:**
 
-| # | Base URL                                  | Relative URL       | Resolved URL                                  |
-| - | ----------------------------------------- | ------------------ | --------------------------------------------- |
-| 1 | `https://example.com/folder/catalog.json` | `item.json`        | `https://example.com/folder/item.json`        |
-| 2 | `https://example.com/folder`              | `item.json`        | `https://example.com/item.json`               |
-| 3 | `https://example.com/folder/`             | `item.json`        | `https://example.com/folder/item.json`        |
-| 4 | `https://example.com/folder`              | `folder/item.json` | `https://example.com/folder/item.json`        |
-| 5 | `https://example.com/folder/`             | `folder/item.json` | `https://example.com/folder/folder/item.json` |
-| 6 | `https://example.com/another/folder`      | `../item.json`     | `https://example.com/item.json`               |
-| 7 | `https://example.com/another/folder/`     | `../item.json`     | `https://example.com/another/item.json`       |
-| 8 | `https://example.com`                     | `folder/item.json` | `https://example.com/folder/item.json`        |
-| 9 | `https://example.com/`                    | `folder/item.json` | `https://example.com/folder/item.json`        |
+| #   | Base URL                                  | Relative URL       | Resolved URL                                  |
+| --- | ----------------------------------------- | ------------------ | --------------------------------------------- |
+| 1   | `https://example.com/folder/catalog.json` | `item.json`        | `https://example.com/folder/item.json`        |
+| 2   | `https://example.com/folder`              | `item.json`        | `https://example.com/item.json`               |
+| 3   | `https://example.com/folder/`             | `item.json`        | `https://example.com/folder/item.json`        |
+| 4   | `https://example.com/folder`              | `folder/item.json` | `https://example.com/folder/item.json`        |
+| 5   | `https://example.com/folder/`             | `folder/item.json` | `https://example.com/folder/folder/item.json` |
+| 6   | `https://example.com/another/folder`      | `../item.json`     | `https://example.com/item.json`               |
+| 7   | `https://example.com/another/folder/`     | `../item.json`     | `https://example.com/another/item.json`       |
+| 8   | `https://example.com`                     | `folder/item.json` | `https://example.com/folder/item.json`        |
+| 9   | `https://example.com/`                    | `folder/item.json` | `https://example.com/folder/item.json`        |
 
 The relative URLs `folder/item.json` and `./folder/item.json` are equivalent.
 
@@ -673,18 +673,26 @@ with the `type` field) to communicate the structure and content of related entit
 Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) as much as possible. The following table describes
 a number of the common official relations that are used in production STAC implementations.
 
-| Type      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| alternate | It is recommended that STAC Items are also available as HTML, and should use this rel with `"type" : "text/html"` to tell clients where they can get a version of the Item or Collection to view in a browser. See [STAC on the Web in Best Practices](#stac-on-the-web) for more information.                                                                                                                                                |
-| canonical | The URL of the [canonical](https://en.wikipedia.org/wiki/Canonical_link_element) version of the Item or Collection. API responses and copies of catalogs should use this to inform users that they are direct copy of another STAC Item, using the canonical rel to refer back to the primary location.                                                                                                                                       |
-| via       | The URL of the source metadata that this STAC Item or Collection is created from. Used similarly to canonical, but refers back to a non-STAC record (Landsat MTL, Sentinel metadata XML, etc)                                                                                                                                                                                                                                                 |
-| prev      | Indicates that the link's context is a part of a series, and that the previous in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs/Collections.                                                                                                                                                                                                                                  |
-| next      | Indicates that the link's context is a part of a series, and that the next in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs/Collections.                                                                                                                                                                                                                                      |
-| preview   | Refers to a resource that serves as a preview (see [RFC 6903, sec. 3](https://tools.ietf.org/html/rfc6903#section-3)), usually a lower resolution thumbnail. In STAC this would usually be the same URL as the [thumbnail](#list-of-asset-roles) asset, but adding it as a link in addition enables OGC API clients that can't read assets to make use of it. It also adds support for thumbnails to STAC Catalogs as they can't list assets. |
+| Type         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| alternate    | It is recommended that STAC Items are also available as HTML, and should use this rel with `"type" : "text/html"` to tell clients where they can get a version of the Item or Collection to view in a browser. See [STAC on the Web in Best Practices](#stac-on-the-web) for more information.                                                                                                                                                |
+| canonical    | The URL of the [canonical](https://en.wikipedia.org/wiki/Canonical_link_element) version of the Item or Collection. API responses and copies of catalogs should use this to inform users that they are direct copy of another STAC Item, using the canonical rel to refer back to the primary location.                                                                                                                                       |
+| via          | The URL of the source metadata that this STAC Item or Collection is created from. Used similarly to canonical, but refers back to a non-STAC record (Landsat MTL, Sentinel metadata XML, etc)                                                                                                                                                                                                                                                 |
+| prev         | Indicates that the link's context is a part of a series, and that the previous in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs/Collections.                                                                                                                                                                                                                                  |
+| next         | Indicates that the link's context is a part of a series, and that the next in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs/Collections.                                                                                                                                                                                                                                      |
+| preview      | Refers to a resource that serves as a preview (see [RFC 6903, sec. 3](https://tools.ietf.org/html/rfc6903#section-3)), usually a lower resolution thumbnail. In STAC this would usually be the same URL as the [thumbnail](#list-of-asset-roles) asset, but adding it as a link in addition enables OGC API clients that can't read assets to make use of it. It also adds support for thumbnails to STAC Catalogs as they can't list assets. |
+| derived_from | URL to a STAC Entity that was used as input data in the creation of this Entity.                                                                                                                                                                                                                                                                                                                                                              |
 
 Being liberal with the `links` also means that it's ok to have repeated links with the same `href`. For example the
 `parent` and `root` relation types will point at the same file when the child is directly below the root, and it is
 recommended to include both. 
+
+#### Derived from relation (`derived_from`)
+
+A full provenance model is far beyond the scope of STAC,
+and the goal is to align with any good independent spec that comes along for that.
+But the derived_from field is seen as a way to encourage fuller specs and at least start a linking
+structure that can be used as a jumping off point for more experiments in provenance tracking*
 
 ### Versioning for Catalogs
 

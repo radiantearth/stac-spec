@@ -21,11 +21,11 @@ or [Collection Asset](../collection-spec/collection-spec.md#asset-object).
       - [mission](#mission)
       - [gsd](#gsd)
   - [Relation types](#relation-types)
-    - [STAC Relation Types](#stac-relation-types)
+    - [STAC Structure relation](#stac-structure-relation)
       - [Self relation](#self-relation)
       - [Root and parent relation](#root-and-parent-relation)
-      - [Collection relation](#collection-relation)
-    - [Additional relations](#additional-relations)
+      - [Child relation](#child-relation)
+      - [Collection and item relation](#collection-and-item-relation)
 
 Various *examples* are available in the folder [`examples`](../examples/).
 *JSON Schemas* can be found in the folder [`json-schema`](json-schema/).
@@ -113,7 +113,11 @@ it is RECOMMENDED to supplement the STAC Item with the license text in a separat
 If no link to a license is included and the `license` field is set to `other` (or one of the deprecated values),
 the data is private, and consumers have not been granted any explicit right to use it.
 
-The [license](#additional-relations) URL(s) for the resource SHOULD be specified if the `license` field is **not** a SPDX license identifier.
+### License relation
+
+| Type    | Description                                                                                                          |
+| ------- | -------------------------------------------------------------------------------------------------------------------- |
+| license | The license URL(s) for the resource SHOULD be specified if the `license` field is **not** a SPDX license identifier. |
 
 ## Provider
 
@@ -221,7 +225,7 @@ to describe the exact nature of the link between the STAC object and the entity 
 It is recommended to use the official
 [IANA Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) where possible.
 
-### STAC Relation Types
+### STAC Structure relation
 
 The following table lists the STAC-specific `rel` types that are used in the `links` object of a STAC entity
 to link with other STAC entities in the same catalog.
@@ -231,8 +235,8 @@ to link with other STAC entities in the same catalog.
 | self       | *Absolute* URL to the location that the STAC file can be found online, if available.                                | application/json                                     |
 | root       | URL to the root STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)).   | application/json                                     |
 | parent     | URL to the parent STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)). | application/json                                     |
-| collection | URL to the parent Collection. *Absolute* URLs should be used whenever possible.                                     | application/json                                     |
 | child      | URL to a child STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)).    | application/json                                     |
+| collection | URL to the parent Collection. *Absolute* URLs should be used whenever possible.                                     | application/json                                     |
 | item       | URL to a STAC Item.                                                                                                 | application/geo+json (preferred) or application/json |
 
 #### Self relation
@@ -253,27 +257,13 @@ Different variations could be:
 - a different encoding (see the `type` property), e.g. a HTML version in addition to JSON
 - a different language (see the `hreflang` property). e.g. a German version in addition to English
 
-#### Collection relation
+#### Child relation
 
+The `child` relation is **ONLY** used to link a catalog or collection to a child catalog or collection.
+
+#### Collection and item relation
+
+The `collection` and `item` relations are used to link to the parent collection and a child Item, respectively.
+It is RECOMMENDED to link an `item` from a collection and not directly from a catalog.
+All Items linked from a Collection MUST refer back to its Collection with the `collection` relation type
 The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Collection.
-
-#### Item relation
-
-All Items linked from a Collection MUST refer back to its Collection with the [`collection` relation type](#collection-relation).
-
-### Additional relations
-
-| Type         | Description                                                                                                      | Media Type       |
-| ------------ | ---------------------------------------------------------------------------------------------------------------- | ---------------- |
-| license      | The license URL(s) for the Item SHOULD be specified if the `license` field is **not** a SPDX license identifier. | Any              |
-| derived_from | URL to a STAC Entity that was used as input data in the creation of this Entity.                                 | application/json |
-
-A more complete list of possible `rel` types and their meaning in STAC can be found in the
-[Using Relation Types](../best-practices.md#using-relation-types) best practice.
-
-#### Derived from relation (`derived_from`)
-
-A full provenance model is far beyond the scope of STAC,
-and the goal is to align with any good independent spec that comes along for that.
-But the derived_from field is seen as a way to encourage fuller specs and at least start a linking
-structure that can be used as a jumping off point for more experiments in provenance tracking*
