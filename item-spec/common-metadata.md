@@ -249,7 +249,6 @@ Other version of the `root` or `parent` link can be added with different `type` 
 #### Collection relation
 
 The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Collection.
-A link with this `rel` type is *required* for STAC item if the `collection` field in properties is present.
 
 #### Item relation
 

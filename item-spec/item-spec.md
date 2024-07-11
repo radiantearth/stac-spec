@@ -205,6 +205,7 @@ For a full discussion of the situations where relative and absolute links are re
 
 All the [common relation types](../item-spec/common-metadata.md#relation-types) can be used in Item.
 A `self` and `collection` links are STRONGLY RECOMMENDED.
+A link with this `rel` type is *required* for STAC item if the `collection` field in properties is present.
 
 > \[!NOTE]
 > Dynamic catalogs can implement multiple parents through a dynamic browsing interface as they could dynamically create the parent
