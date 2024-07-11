@@ -8,11 +8,8 @@ or [Collection Asset](../collection-spec/collection-spec.md#asset-object).
 - [STAC Common Metadata](#stac-common-metadata)
   - [Basics](#basics)
   - [Date and Time](#date-and-time)
-    - [Date and Time Range](#date-and-time-range)
   - [Licensing](#licensing)
-    - [Relation types](#relation-types)
   - [Provider](#provider)
-    - [Provider Object](#provider-object)
   - [Instrument](#instrument)
   - [Bands](#bands)
   - [Data Values](#data-values)
@@ -256,12 +253,29 @@ a band or layer in a file (`raster` and `eo` extensions),
 a column in a table (`table` extension),
 or dimensions in a datacube (`datacube` extension).
 
-| Field Name | Type                                    | Description                                                                                                                                    |
-| ---------- | --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| nodata     | number\|string                          | Values used to identify values that are nodata, either by the value as a number or as one of the following strings: `nan`, `inf` or `-inf`.    |
-| data_type  | string                                  | The data type of the values. One of the [data types as described below](#data-types).                                                          |
-| statistics | [Statistics Object](#statistics-object) | Statistics of all the values.                                                                                                                  |
-| unit       | string                                  | Unit of measurement of the value, preferably compliant to [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/) units (singular). |
+| Field Name | Type                                    | Description                                            |
+| ---------- | --------------------------------------- | ------------------------------------------------------ |
+| nodata     | number\|string                          | Value used to identify no-data, see [below](#no-data). |
+| data_type  | string                                  | The data type of the values, see [below](#data-types). |
+| statistics | [Statistics Object](#statistics-object) | Statistics of all the values.                          |
+| unit       | string                                  | Unit of measurement of the value, see [below](#units). |
+
+### No-data
+
+The no-data value must be provided either as:
+
+- a number
+- a string:
+  - `nan` - [NaN](https://de.wikipedia.org/wiki/NaN) (not a number) as defined in IEEE-754
+  - `inf` - Positive Infinity
+  - `-inf` - Negative Infinity
+
+### Units
+
+It is STRONGLY RECOMMENDED to provide units in one of the following two formats:
+
+- [UCUM](https://ucum.org/): The unit code that is compliant to the UCUM specification.
+- [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/): The unit symbol if available, otherwise the singular unit name.
 
 ### Statistics Object
 
