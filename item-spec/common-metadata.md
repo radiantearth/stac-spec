@@ -242,9 +242,16 @@ This is particularly useful when in a download package that includes metadata, s
 
 #### Root and parent relation
 
-The `root` and `parent` relations are used to link to the root and parent STAC entity, which is either a [Catalog](../catalog-spec/README.md) or a [Collection](../collection-spec/README.md).
-**ONLY ONE** link with `root` or `parent` relationship and `application/json` type is allowed.
-Other version of the `root` or `parent` link can be added with different `type` field as long as they point the same conceptual entity (e.g. identified by the ID).
+The `root` and `parent` relations are used to link to the root and parent STAC entity,
+which is either a [Catalog](../catalog-spec/README.md) or a [Collection](../collection-spec/README.md).
+Conceptually, STAC entities SHALL have no more than one parent entity.
+As such, STAC entities also can have no more than one root entity.
+Therefore, there's usually just one link with `root` or `parent` relationship
+unless different variations of the same conceptual entity exist (identified by the ID).
+Different variations could be:
+
+- a different encoding (see the `type` property), e.g. a HTML version in addition to JSON
+- a different language (see the `hreflang` property). e.g. a German version in addition to English
 
 #### Collection relation
 
