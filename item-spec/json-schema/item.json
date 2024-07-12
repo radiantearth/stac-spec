@@ -206,7 +206,9 @@
             },
             "method": {
               "title": "Link method",
-              "type": "string"
+              "type": "string",
+              "pattern": "^[A-Z]+$",
+              "default": "GET"
             },
             "headers": {
               "title": "Link headers",
