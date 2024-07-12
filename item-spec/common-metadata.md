@@ -21,7 +21,7 @@ or [Collection Asset](../collection-spec/collection-spec.md#asset-object).
       - [mission](#mission)
       - [gsd](#gsd)
   - [Relation types](#relation-types)
-    - [STAC Structure relation](#stac-structure-relation)
+    - [Hierarchical relations](#hierarchical-relations)
       - [Self relation](#self-relation)
       - [Root and parent relation](#root-and-parent-relation)
       - [Child relation](#child-relation)
