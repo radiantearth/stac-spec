@@ -228,7 +228,7 @@ It is allowed to add additional fields such as a `title` and `type`.
 | type       | string                           | [Media type](../catalog-spec/catalog-spec.md#media-types) of the referenced entity.                                                                                            |
 | title      | string                           | A human readable title to be used in rendered displays of the link.                                                                                                            |
 | method     | string                           | The HTTP method required to be supported by the target resource. `GET` by default                                                                                              |
-| headers    | Map<string, string \| \[string]> | The HTTP headers required to be sent by the target resource.                                                                                                                   |
+| headers    | Map<string, string \| \[string]> | The HTTP headers to be sent for the request to the target resource.                                                                                                                    |
 | body       | any                              | The HTTP body to be sent to the target resource.                                                                                                                      |
 
 #### HTTP headers
