@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - All JSON Schema `$id` values no longer have `#` at the end.
 - Two spatial bounding boxes in a Collection don't make sense and will be reported as invalid by the schema. ([#1243](https://github.com/radiantearth/stac-spec/issues/1243))
 - Clarify in descriptions that start_datetime and end_datetime are inclusive bounds ([#1280](https://github.com/radiantearth/stac-spec/issues/1280))
+- Moved the STAC structural relations in common metadata spec
 
 ### Deprecated
 
