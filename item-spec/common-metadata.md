@@ -239,7 +239,7 @@ to link with other STAC entities in the same catalog.
 | collection | URL to the parent Collection. *Absolute* URLs should be used whenever possible.                                     | application/json                                     |
 | item       | URL to a STAC Item.                                                                                                 | application/geo+json (preferred) or application/json |
 
-#### Self relation
+#### `self` relation
 
 The `self` relation is used to link to the STAC entity itself.
 This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from.
