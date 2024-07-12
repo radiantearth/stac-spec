@@ -202,7 +202,7 @@ For a full discussion of the situations where relative and absolute links are re
 
 #### Relation types
 
-All the [common relation types](../item-spec/common-metadata.md#relation-types) can be used in Item.
+All [common relation types](../item-spec/common-metadata.md#relation-types) except for `item` can be used in Items.
 A `self` and `collection` links are STRONGLY RECOMMENDED.
 A link with this `rel` type is *required* for STAC item if the `collection` field in properties is present.
 
