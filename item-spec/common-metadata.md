@@ -225,7 +225,7 @@ to describe the exact nature of the link between the STAC object and the entity 
 It is recommended to use the official
 [IANA Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) where possible.
 
-### STAC Structure relation
+### Hierarchical relations
 
 The following table lists the STAC-specific `rel` types that are used in the `links` object of a STAC entity
 to link with other STAC entities in the same catalog.
