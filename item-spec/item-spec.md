@@ -282,6 +282,15 @@ As detailed above, Items contain properties, which are the main source of metada
 extensions can add further property fields as well. Any property that can be specified for an Item can also be specified for
 a specific asset. This can be used to override a property defined in the Item, or to specify fields for which there is no
 single value for all assets.
+If a property is defined in the Item Properties, it is the default value for all assets in the Item.
+If a property is defined in a Collection on the top-level, it is the default value for all assets in the Collection.
+Assets may override the properties inherited for specific assets (see example below).
+Inheritance does not apply across multiple files, i.e. is restricted to a single Item or Collection.
+Note that in some cases the inheritance may not lead to the expected results if other semantics have been defined for the property.
+See the examples for `gsd` and `eo:bands` below.
+It also applies to some other fields such as `created` or `updated`.
+Inheritance may be undesirable in these cases, e.g. the `created` attribute of an item would describe when the metadata
+was generated, whereas on an asset the `created` attribute would describe when the data file itself was created.
 
 **It is important to note that the STAC API does not facilitate searching across Asset properties in this way, and this
 should be used sparingly.** It is primarily used to define properties at the Asset level that may be used during use of
