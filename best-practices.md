@@ -691,8 +691,8 @@ recommended to include both.
 
 A full provenance model is far beyond the scope of STAC,
 and the goal is to align with any good independent spec that comes along for that.
-But the derived_from field is seen as a way to encourage fuller specs and at least start a linking
-structure that can be used as a jumping off point for more experiments in provenance tracking*
+But the `derived_from` field is seen as a way to encourage fuller specs and at least start a linking
+structure that can be used as a jumping off point for more experiments in provenance tracking.
 
 ### Versioning for Catalogs
 
