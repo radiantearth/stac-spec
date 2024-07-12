@@ -261,7 +261,7 @@ Different variations could be:
 
 The `child` relation is **ONLY** used to link a catalog or collection to a child catalog or collection.
 
-#### Collection and item relation
+#### `collection` and `item` relation
 
 The `collection` and `item` relations are used to link to the parent collection and a child Item, respectively.
 It is RECOMMENDED to link an `item` from a collection and not directly from a catalog.
