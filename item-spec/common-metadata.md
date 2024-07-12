@@ -219,23 +219,22 @@ and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.
 This object describes a relationship with another entity. Data providers are advised to be liberal
 with the links section, to describe things like the Catalog an Item is in, related Items, parent or
 child Items (modeled in different ways, like an 'acquisition' or derived data).
-It is allowed to add additional fields such as a `title` and `type`.
 
 | Field Name | Type                             | Description                                                                                                                                                                    |
 | ---------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | href       | string                           | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. [Trailing slashes are significant.](../best-practices.md#consistent-uris) |
 | rel        | string                           | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information.                                            |
-| type       | string                           | Media type of the referenced entity.                                                                                            |
+| type       | string                           | Media type of the referenced entity.                                                                                                                                           |
 | title      | string                           | A human readable title to be used in rendered displays of the link.                                                                                                            |
-| method     | string                           | The HTTP method that shall be used for the request to the target resource. `GET` by default                                                                                              |
-| headers    | Map<string, string \| \[string]> | The HTTP headers to be sent for the request to the target resource.                                                                                                                    |
-| body       | any                              | The HTTP body to be sent to the target resource.                                                                                                                      |
+| method     | string                           | The HTTP method that shall be used for the request to the target resource. `GET` by default                                                                                    |
+| headers    | Map<string, string \| \[string]> | The HTTP headers to be sent for the request to the target resource.                                                                                                            |
+| body       | any                              | The HTTP body to be sent to the target resource.                                                                                                                               |
+
+For a full discussion of the situations where relative and absolute links are recommended see the
+['Use of links'](../best-practices.md#use-of-links) section of the STAC best practices.                                                                                                            |
 
 #### HTTP headers
 
 The field `headers` allows to describe a dictionary of HTTP headers that are required to be sent by the client.
 The keys of the dictionary are the header names, and the values are either a single string or an array of strings.
 In case of an array, the header is expected to be sent multiple times with the different values.
-
-For a full discussion of the situations where relative and absolute links are recommended see the
-['Use of links'](../best-practices.md#use-of-links) section of the STAC best practices.
