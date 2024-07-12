@@ -257,7 +257,7 @@ Different variations could be:
 - a different encoding (see the `type` property), e.g. a HTML version in addition to JSON
 - a different language (see the `hreflang` property). e.g. a German version in addition to English
 
-#### Child relation
+#### `child` relation
 
 The `child` relation is **ONLY** used to link a catalog or collection to a child catalog or collection.
 
