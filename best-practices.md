@@ -162,17 +162,17 @@ To avoid issues it is recommended to consistently add a slash at the end of the 
 
 **Examples:**
 
-| #   | Base URL                                  | Relative URL       | Resolved URL                                  |
-| --- | ----------------------------------------- | ------------------ | --------------------------------------------- |
-| 1   | `https://example.com/folder/catalog.json` | `item.json`        | `https://example.com/folder/item.json`        |
-| 2   | `https://example.com/folder`              | `item.json`        | `https://example.com/item.json`               |
-| 3   | `https://example.com/folder/`             | `item.json`        | `https://example.com/folder/item.json`        |
-| 4   | `https://example.com/folder`              | `folder/item.json` | `https://example.com/folder/item.json`        |
-| 5   | `https://example.com/folder/`             | `folder/item.json` | `https://example.com/folder/folder/item.json` |
-| 6   | `https://example.com/another/folder`      | `../item.json`     | `https://example.com/item.json`               |
-| 7   | `https://example.com/another/folder/`     | `../item.json`     | `https://example.com/another/item.json`       |
-| 8   | `https://example.com`                     | `folder/item.json` | `https://example.com/folder/item.json`        |
-| 9   | `https://example.com/`                    | `folder/item.json` | `https://example.com/folder/item.json`        |
+| # | Base URL                                  | Relative URL       | Resolved URL                                  |
+| - | ----------------------------------------- | ------------------ | --------------------------------------------- |
+| 1 | `https://example.com/folder/catalog.json` | `item.json`        | `https://example.com/folder/item.json`        |
+| 2 | `https://example.com/folder`              | `item.json`        | `https://example.com/item.json`               |
+| 3 | `https://example.com/folder/`             | `item.json`        | `https://example.com/folder/item.json`        |
+| 4 | `https://example.com/folder`              | `folder/item.json` | `https://example.com/folder/item.json`        |
+| 5 | `https://example.com/folder/`             | `folder/item.json` | `https://example.com/folder/folder/item.json` |
+| 6 | `https://example.com/another/folder`      | `../item.json`     | `https://example.com/item.json`               |
+| 7 | `https://example.com/another/folder/`     | `../item.json`     | `https://example.com/another/item.json`       |
+| 8 | `https://example.com`                     | `folder/item.json` | `https://example.com/folder/item.json`        |
+| 9 | `https://example.com/`                    | `folder/item.json` | `https://example.com/folder/item.json`        |
 
 The relative URLs `folder/item.json` and `./folder/item.json` are equivalent.
 
