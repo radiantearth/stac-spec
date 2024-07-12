@@ -214,7 +214,7 @@
             },
             "body": {
               "title": "Link body",
-              "type": "object"
+              "$comment": "Any type is allowed."
             }
           }
         },
