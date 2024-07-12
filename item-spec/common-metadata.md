@@ -244,7 +244,7 @@ to link with other STAC entities in the same catalog.
 The `self` relation is used to link to the STAC entity itself.
 This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from.
 
-#### Root and parent relation
+#### `root` and `parent` relation
 
 The `root` and `parent` relations are used to link to the root and parent STAC entity,
 which is either a [Catalog](../catalog-spec/README.md) or a [Collection](../collection-spec/README.md).
