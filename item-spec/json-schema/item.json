@@ -210,7 +210,20 @@
             },
             "headers": {
               "title": "Link headers",
-              "type": "object"
+              "type": "object",
+              "additionalProperties": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              }
             },
             "body": {
               "title": "Link body",

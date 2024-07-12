@@ -231,7 +231,7 @@ child Items (modeled in different ways, like an 'acquisition' or derived data).
 | body       | any                              | The HTTP body to be sent to the target resource.                                                                                                                               |
 
 For a full discussion of the situations where relative and absolute links are recommended see the
-['Use of links'](../best-practices.md#use-of-links) section of the STAC best practices.                                                                                                            |
+['Use of links'](../best-practices.md#use-of-links) section of the STAC best practices.
 
 #### HTTP headers
 
