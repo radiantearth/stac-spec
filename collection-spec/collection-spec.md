@@ -270,7 +270,7 @@ Non-root Collections SHOULD include a `parent` link to their parent.
 > \[!NOTE] The STAC Catalog specification requires a link to at least one `item` or `child` Catalog.
 > This is *not* a requirement for Collections, but *recommended*. In contrast to Catalogs,
 > it is **REQUIRED** that Items linked from a Collection MUST refer back to its Collection
-> with the [`collection` relation type](../item-spec/item-spec.md#relation-types).
+> with a link with the [`collection` relation type](../item-spec/item-spec.md#relation-types).
 
 ### Asset Object
 
