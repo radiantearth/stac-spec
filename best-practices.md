@@ -442,7 +442,7 @@ Example using the `bands` array:
         {
           "data_type": "uint16",
           "eo:common_name": "red",
-          "raster:spatial_resoltion": 10
+          "raster:spatial_resolution": 10
         }
       ]
     }
@@ -459,7 +459,7 @@ Example without bands:
       "href": "example.tif",
       "data_type": "uint16",
       "eo:common_name": "red",
-      "raster:spatial_resoltion": 10
+      "raster:spatial_resolution": 10
     }
   }
 }
@@ -614,21 +614,19 @@ After migrating to STAC 1.1 this is ideally provided as follows:
       "href": "example.tif",
       "data_type": "uint16",
       "raster:sampling": "area",
+      "raster:spatial_resolution": 10,
       "bands": [
         {
           "name": "r",
           "eo:common_name": "red",
-          "raster:spatial_resolution": 10
         },
         {
           "name": "g",
-          "eo:common_name": "green",
-          "raster:spatial_resolution": 10
+          "eo:common_name": "green"
         },
         {
           "name": "b",
-          "eo:common_name": "blue",
-          "raster:spatial_resolution": 10
+          "eo:common_name": "blue"
         },
         {
           "name": "nir",
@@ -647,6 +645,9 @@ The following was done:
 - The properties `common_name` and `spatial_resolution` were renamed to include the extension prefixes.
 - The properties `data_type` and `raster:sampling` (renamed from `sampling`) were deduplicated to the Asset
   as the values were the same across all bands.
+- The `spatial_resolution` was also deduplicated, i.e. `10` is provided on the asset level,
+  which is inherited by the bands unless explicitly overridden.
+  Therefore, the `nir` band overrides the value `10` with a value of `30`.
 
 As a result, the new `bands` array is more lightweight and easier to handle.
 
