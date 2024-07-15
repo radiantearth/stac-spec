@@ -135,10 +135,7 @@
           "allOf": [
             {
               "type": "object",
-              "required": [
-                "title",
-                "type"
-              ],
+              "minProperties": 2,
               "properties": {
                 "href": {
                   "title": "Disallow href",
