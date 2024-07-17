@@ -58,6 +58,7 @@ specified in [*OGC API - Features*](https://ogcapi.ogc.org/features/), but they 
 | summaries       | Map<string, \[\*]\|[Range Object](#range-object)\|[JSON Schema Object](#json-schema-object)> | STRONGLY RECOMMENDED. A map of property summaries, either a set of values, a range of values or a [JSON Schema](https://json-schema.org).                                                                                              |
 | links           | \[[Link Object](#link-object)]                                                               | **REQUIRED.** A list of references to other documents.                                                                                                                                                                                 |
 | assets          | Map<string, [Asset Object](#asset-object)>                                                   | Dictionary of asset objects that can be downloaded, each with a unique key.                                                                                                                                                            |
+| item_assets     | Map<string, [Item Asset Definition Object](#item-asset-definition-object)>                   | **REQUIRED.** A dictionary of assets that can be found in member Items.                                                                                                                                                                |
 
 ### Additional Field Information
 
@@ -160,6 +161,21 @@ Collection-level assets can be useful in some scenarios, for example:
 Oftentimes it is possible to model data and assets with either a Collection or an Item. In those scenarios we *recommend* to use
 Items as much as is feasible, as they designed for assets. Using Collection-level assets should only be used if there is not another
 option.
+
+#### Item Asset Defintion
+
+This serves two purposes:
+
+1. Provide a human-readable definition of assets available in **any** Items 
+   belonging to this Collection so that the user can determine the key(s) 
+   of assets they are interested in.
+2. Provide a way to programmatically determine what assets are available 
+   in **any** member Item. Otherwise a random Item needs to be examined to 
+   determine assets available, but a random Item may not be representative of the set.
+
+An Item Asset Object defined at the Collection level is nearly the same as the 
+[Asset Object in Items](../item-spec/item-spec.md#asset-object), except for two differences.
+The `href` field is not required, because Item Asset Definitions don't point to any data by themselves, but at least two other fields must be present.
 
 ### Extent Object
 
@@ -305,6 +321,33 @@ Commonly used are `thumbnail` and `overview`.
 
 Note that multiple roles per asset are encouraged: pick all the ones that apply.
 For more information on how to use roles see the [Asset Roles](../best-practices.md#asset-roles) section of the Best Practices document.
+
+### Item Asset Definition Object
+
+An item asset is an object that contains details about the datafiles that will be included in member Items.
+Assets included at the Collection level do not imply that all assets are available from all Items.
+However, it is recommended that the Asset Definition is a complete set of **all** assets that may be available from **any** member Items.
+So this should be the union of the available assets, not just the intersection of the available assets.
+
+| Field Name  | Type      | Description                                                                                                                                                                                  |
+| ----------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| title       | string    | The displayed title for clients and users.                                                                                                                                                   |
+| description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
+| type        | string    | [Media type](../catalog-spec/catalog-spec.md#media-types) of the asset.                                                                                                                      |
+| roles       | \[string] | The [semantic roles](../item-spec/item-spec.md#asset-roles) of the asset, similar to the use of `rel` in links.                                                                              |
+
+Other custom fields, or fields from other extensions may also be included in the Asset object.
+
+Any property that exists for a Collection-level asset object must also exist in the corresponding assets object in 
+each Item. If a collection's asset object contains properties that are not explicitly stated in the Item's asset 
+object then that property does not apply to the item's asset. Item asset objects at the Collection-level can 
+describe any of the properties of an asset, but those assets properties and values must also reside in the item's 
+asset object. To consolidate item-level asset object properties in an API setting, consider storing the STAC Item 
+objects without the larger properties internally as 'invalid' STAC items, and merge in the desired properties at 
+serving time from the Collection-level.
+
+At least two fields (e.g. `title` and `type`) are required to be provided, in order for it to adequately describe Item assets.
+The two fields must not necessarily be taken from the list above and may include any custom field.
 
 ### Range Object
 
