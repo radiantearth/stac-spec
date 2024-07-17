@@ -15,7 +15,6 @@
     - [Additional Fields](#additional-fields)
   - [Link Object](#link-object)
     - [Relation types](#relation-types)
-      - [derived\_from](#derived_from)
     - [Collections](#collections)
   - [Asset Object](#asset-object)
     - [Asset Media Type](#asset-media-type)
@@ -190,30 +189,14 @@ This object is described in the [STAC Common Metadata](common-metadata.md#link-o
 
 #### Relation types
 
-STAC Items use a variety of `rel` types in the link object,
-to describe the exact nature of the link between this Item and the entity it is linking to.
-It is recommended to use the official
-[IANA Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) where possible.
-The following table explains places where STAC use custom `rel` types are used with Items.
-This happens where there is not a clear official option, or where STAC uses an official type but adds additional meaning for the STAC context.
+All [common relation types](../item-spec/common-metadata.md#relation-types) except for `item` can be used in Items.
+A `self` and `collection` links are STRONGLY RECOMMENDED.
+A link with this `rel` type is *required* for STAC item if the `collection` field in properties is present.
 
-| Type         | Description                                                                                                                                                                                                                                                                                  | Media Type                                           |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| self         | STRONGLY RECOMMENDED. *Absolute* URL to the Item if it is available at a public URL. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from.                                                       | application/geo+json (preferred) or application/json |
-| root         | URL to the root STAC entity (Catalog or Collection).                                                                                                                                                                                                                                         | application/json                                     |
-| parent       | URL to the parent STAC entity (Catalog or Collection).                                                                                                                                                                                                                                       | application/json                                     |
-| collection   | STRONGLY RECOMMENDED. URL to a Collection. *Absolute* URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. A link with this `rel` type is *required* if the `collection` field in properties is present. | application/json                                     |
-| derived_from | URL to a STAC Item that was used as input data in the creation of this Item.                                                                                                                                                                                                                 | application/geo+json (preferred) or application/json |
-
-A more complete list of potential `rel` types and their meaning in STAC can be found in the [Using Relation 
-Types](../best-practices.md#using-relation-types) best practice. 
-
-##### derived_from
-
-*Note regarding the type `derived_from`: A full provenance model is far beyond the scope of STAC,
-and the goal is to align with any good independent spec that comes along for that.
-But the derived_from field is seen as a way to encourage fuller specs and at least start a linking
-structure that can be used as a jumping off point for more experiments in provenance tracking*
+> \[!NOTE]
+> Dynamic catalogs can implement multiple parents through a dynamic browsing interface as they could dynamically create the parent
+> link based on the desired browsing structure (though only 1 parent at a time).
+> Multiple parents are allowed for other types than `application/json`.
 
 #### Collections
 

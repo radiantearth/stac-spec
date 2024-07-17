@@ -72,22 +72,12 @@ This object is described in the [STAC Common Metadata](../item-spec/common-metad
 
 #### Relation types
 
-The following types are commonly used as `rel` types in the Link Object of a STAC Catalog:
+All the [common relation types](../item-spec/common-metadata.md#relation-types) can be used in catalog.
+A `self` and a `root` links are STRONGLY RECOMMENDED.
+Non-root Catalogs SHOULD include a `parent` link to their parent.
 
-| Type   | Description                                                                                                                                                                                                                                                     | Media Type                                           |
-| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| self   | STRONGLY RECOMMENDED. *Absolute* URL to the location that the Catalog file can be found online, if available. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from. | application/json                                     |
-| root   | STRONGLY RECOMMENDED. URL to the root STAC Catalog or [Collection](../collection-spec/README.md). Catalogs should include a link to their root, even if it's the root and points to itself.                                                                     | application/json                                     |
-| parent | URL to the parent STAC entity (Catalog or Collection). Non-root Catalogs should include a link to their parent.                                                                                                                                                 | application/json                                     |
-| child  | URL to a child STAC entity (Catalog or Collection).                                                                                                                                                                                                             | application/json                                     |
-| item   | URL to a STAC Item.                                                                                                                                                                                                                                             | application/geo+json (preferred) or application/json |
-
-**Note:** A link to at least one `item` or `child` (Catalog or Collection) is **RECOMMENDED**, but empty catalogs are
-allowed if there is an intent to populate it or its children were removed.
-
-There are additional `rel` types in the [Using Relation Types](../best-practices.md#using-relation-types) best practice, but as 
-they are more typically used in Collections, as Catalogs tend to just be used to structure STAC organization, so tend to just use
-the ones above.
+> \[!NOTE] A link to at least one `item` or `child` (Catalog or Collection) is **RECOMMENDED**, but empty catalogs are
+> allowed if there is an intent to populate it or its children were removed.
 
 ## Media Types
 
