@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - The `keywords` field known from Collections is available in common metadata. ([#1187](https://github.com/radiantearth/stac-spec/issues/1187))
+- New fields `method`, `headers` and `body` in the Link Object. ([#1198](https://github.com/radiantearth/stac-spec/issues/1198))
 - The `license` field additionally supports SPDX expressions and the value `other`.
 - The `roles` field known from Assets and Providers is available in common metadata. ([#1267](https://github.com/radiantearth/stac-spec/issues/1267))
 - Validation for absolute self link in item schema. ([#1281](https://github.com/radiantearth/stac-spec/issues/1281))

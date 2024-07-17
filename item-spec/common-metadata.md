@@ -21,6 +21,7 @@ or [Collection Asset](../collection-spec/collection-spec.md#asset-object).
       - [constellation](#constellation)
       - [mission](#mission)
       - [gsd](#gsd)
+  - [Link](#link-object)
 
 Various *examples* are available in the folder [`examples`](../examples/).
 *JSON Schemas* can be found in the folder [`json-schema`](json-schema/).
@@ -212,3 +213,28 @@ optical and short-wave IR bands are all 30 meters, but the panchromatic band is 
 PlanetScope Ortho Tile Product has an `gsd` of 3.7 (or 4 if rounding), even though the pixel size of the images is 3.125.
 For example, one might choose for WorldView-2 the Multispectral 20° off-nadir value of 2.07
 and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.
+
+### Link Object
+
+This object describes a relationship with another entity. Data providers are advised to be liberal
+with the links section, to describe things like the Catalog an Item is in, related Items, parent or
+child Items (modeled in different ways, like an 'acquisition' or derived data).
+
+| Field Name | Type                             | Description                                                                                                                                                                    |
+| ---------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| href       | string                           | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. [Trailing slashes are significant.](../best-practices.md#consistent-uris) |
+| rel        | string                           | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information.                                            |
+| type       | string                           | Media type of the referenced entity.                                                                                                                                           |
+| title      | string                           | A human readable title to be used in rendered displays of the link.                                                                                                            |
+| method     | string                           | The HTTP method that shall be used for the request to the target resource, in uppercase. `GET` by default                                                                      |
+| headers    | Map<string, string \| \[string]> | The HTTP headers to be sent for the request to the target resource.                                                                                                            |
+| body       | any                              | The HTTP body to be sent to the target resource.                                                                                                                               |
+
+For a full discussion of the situations where relative and absolute links are recommended see the
+['Use of links'](../best-practices.md#use-of-links) section of the STAC best practices.
+
+#### HTTP headers
+
+The field `headers` allows to describe a dictionary of HTTP headers that are required to be sent by the client.
+The keys of the dictionary are the header names, and the values are either a single string or an array of strings.
+In case of an array, the header is expected to be sent multiple times with the different values.
