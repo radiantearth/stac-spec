@@ -21,3 +21,12 @@ schemas validate additional fields defined in *[Common Metadata](common-metadata
 
 **Common Metadata:** A set of commonly-used fields for STAC Items is listed in 
 *[common-metadata.md](common-metadata.md)*.
+
+> \[!NOTE]
+> In cases where a set of Items is grouped together (e.g. for providing search results),
+> the [ItemCollection](https://github.com/radiantearth/stac-api-spec/blob/main/fragments/itemcollection/README.md)
+> object has been defined in the STAC API specification.
+> 
+> Similarly to the relationship between a GeoJSON Feature and a STAC Item,
+> a STAC ItemCollection should be a valid GeoJSON [FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3)
+> to allow interoperability with existing tools that support GeoJSON.

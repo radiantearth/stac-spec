@@ -203,6 +203,33 @@
             "title": {
               "title": "Link title",
               "type": "string"
+            },
+            "method": {
+              "title": "Link method",
+              "type": "string",
+              "pattern": "^[A-Z]+$",
+              "default": "GET"
+            },
+            "headers": {
+              "title": "Link headers",
+              "type": "object",
+              "additionalProperties": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              }
+            },
+            "body": {
+              "title": "Link body",
+              "$comment": "Any type is allowed."
             }
           },
           "$comment": "Link with relationship `self` must be absolute URI",

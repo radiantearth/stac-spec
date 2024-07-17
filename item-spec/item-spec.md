@@ -57,7 +57,7 @@ inherited from GeoJSON.
 | type            | string                                     | **REQUIRED.** Type of the GeoJSON Object. MUST be set to `Feature`.                                                                                                                                                                                                                                       |
 | stac_version    | string                                     | **REQUIRED.** The STAC version the Item implements.                                                                                                                                                                                                                                                       |
 | stac_extensions | \[string]                                  | A list of extensions the Item implements.                                                                                                                                                                                                                                                                 |
-| id              | string                                     | **REQUIRED.** Provider identifier. The ID should be unique within the  [Collection](../collection-spec/collection-spec.md) that contains the Item.                                                                                                                                                        |
+| id              | string                                     | **REQUIRED.** Provider identifier. The ID should be unique within the [Collection](../collection-spec/collection-spec.md) that contains the Item.                                                                                                                                                         |
 | geometry        | GeoJSON Geometry Object \| null            | **REQUIRED.** Defines the full footprint of the asset represented by this item, formatted according to RFC 7946, [section 3.1](https://tools.ietf.org/html/rfc7946#section-3.1) if a geometry is provided or [section 3.2](https://tools.ietf.org/html/rfc7946#section-3.2) if *no* geometry is provided. |
 | bbox            | \[number]                                  | **REQUIRED if `geometry` is not `null`, prohibited if `geometry` is `null`.** Bounding Box of the asset represented by this Item, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5).                                                                            |
 | properties      | [Properties Object](#properties-object)    | **REQUIRED.** A dictionary of additional metadata for the Item.                                                                                                                                                                                                                                           |
@@ -185,20 +185,7 @@ only be used when the data itself is nested, as with `eo:bands`.
 
 ### Link Object
 
-This object describes a relationship with another entity. Data providers are advised to be liberal
-with the links section, to describe things like the Catalog an Item is in, related Items, parent or
-child Items (modeled in different ways, like an 'acquisition' or derived data).
-It is allowed to add additional fields such as a `title` and `type`.
-
-| Field Name | Type   | Description                                                                                                                                                                    |
-| ---------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. [Trailing slashes are significant.](../best-practices.md#consistent-uris) |
-| rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information.                                            |
-| type       | string | [Media type](../catalog-spec/catalog-spec.md#media-types) of the referenced entity.                                                                                            |
-| title      | string | A human readable title to be used in rendered displays of the link.                                                                                                            |
-
-For a full discussion of the situations where relative and absolute links are recommended see the
-['Use of links'](../best-practices.md#use-of-links) section of the STAC best practices.
+This object is described in the [STAC Common Metadata](common-metadata.md#link-object) section.
 
 #### Relation types
 
@@ -318,7 +305,7 @@ that talks about common use cases of additional fields for assets.
 ## Media Type for STAC Item
 
 A STAC Item is a GeoJSON file ([RFC 7946](https://tools.ietf.org/html/rfc7946)), and thus should use the 
-[`application/geo+json`](https://tools.ietf.org/html/rfc7946#section-12) as the [Media Type](https://en.wikipedia.org/wiki/Media_type) 
+[`application/geo+json`](https://tools.ietf.org/html/rfc7946#section-12) as the [Media Type](https://en.wikipedia.org/wiki/Media_type)
 (previously known as the MIME Type). 
 
 ## Extensions

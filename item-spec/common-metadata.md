@@ -26,6 +26,7 @@ or [Collection Asset](../collection-spec/collection-spec.md#asset-object).
       - [Root and parent relation](#root-and-parent-relation)
       - [Child relation](#child-relation)
       - [Collection and item relation](#collection-and-item-relation)
+  - [Link](#link-object)
 
 Various *examples* are available in the folder [`examples`](../examples/).
 *JSON Schemas* can be found in the folder [`json-schema`](json-schema/).
@@ -267,3 +268,28 @@ The `collection` and `item` relations are used to link to the parent collection 
 It is RECOMMENDED to link an `item` from a collection and not directly from a catalog.
 All Items linked from a Collection MUST refer back to its Collection with the `collection` relation type
 The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Collection.
+
+## Link Object
+
+This object describes a relationship with another entity. Data providers are advised to be liberal
+with the links section, to describe things like the Catalog an Item is in, related Items, parent or
+child Items (modeled in different ways, like an 'acquisition' or derived data).
+
+| Field Name | Type                             | Description                                                                                                                                                                    |
+| ---------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| href       | string                           | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. [Trailing slashes are significant.](../best-practices.md#consistent-uris) |
+| rel        | string                           | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information.                                            |
+| type       | string                           | Media type of the referenced entity.                                                                                                                                           |
+| title      | string                           | A human readable title to be used in rendered displays of the link.                                                                                                            |
+| method     | string                           | The HTTP method that shall be used for the request to the target resource, in uppercase. `GET` by default                                                                      |
+| headers    | Map<string, string \| \[string]> | The HTTP headers to be sent for the request to the target resource.                                                                                                            |
+| body       | any                              | The HTTP body to be sent to the target resource.                                                                                                                               |
+
+For a full discussion of the situations where relative and absolute links are recommended see the
+['Use of links'](../best-practices.md#use-of-links) section of the STAC best practices.
+
+### HTTP headers
+
+The field `headers` allows to describe a dictionary of HTTP headers that are required to be sent by the client.
+The keys of the dictionary are the header names, and the values are either a single string or an array of strings.
+In case of an array, the header is expected to be sent multiple times with the different values.

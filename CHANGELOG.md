@@ -10,9 +10,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - The `keywords` field known from Collections is available in common metadata. ([#1187](https://github.com/radiantearth/stac-spec/issues/1187))
+- New fields `method`, `headers` and `body` in the Link Object. ([#1198](https://github.com/radiantearth/stac-spec/issues/1198))
 - The `license` field additionally supports SPDX expressions and the value `other`.
 - The `roles` field known from Assets and Providers is available in common metadata. ([#1267](https://github.com/radiantearth/stac-spec/issues/1267))
 - The `collection` relation type is added to the list of known relation types. ([#1236](https://github.com/radiantearth/stac-spec/issues/1236))
+- The `item_assets` field in Collections are integrated from extension into the core Collection spec. ([#1275](https://github.com/radiantearth/stac-spec/issues/1275))
+- Validation for absolute self link in item schema. ([#1281](https://github.com/radiantearth/stac-spec/issues/1281))
 - Best practice: Link titles should exactly reflect the title of the corresponding entity ([#1168](https://github.com/radiantearth/stac-spec/issues/1168))
 
 ### Changed
@@ -40,6 +43,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Several typos and minor language changes
 - Clarification on unique parent link requirement ([#1279](https://github.com/radiantearth/stac-spec/pull/1279))
 - Clarified that collection IDs should be unique across all collections in the corresponding root catalog
+- Clarified that item IDs should be unique per collection
 - Clarified which media types should be used for the hierarchical relation types
 - Clarified in the Markdown specification that GeometryCollections are not allowed as Item Geometry ([#1160](https://github.com/radiantearth/stac-spec/pull/1160))
 - Best practice: Do not recommend subdirectories for Items without sidecar files ([#1195](https://github.com/radiantearth/stac-spec/pull/1195))
