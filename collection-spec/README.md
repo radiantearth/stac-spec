@@ -44,3 +44,7 @@ a collection and be able to adapt it to most any data model.
 
 Implementors are encouraged to do what makes sense for them, and to check out the [examples](../examples/) and 
 [other implementations](https://stacindex.org/catalogs) for current best practices.
+> \[!NOTE]
+> In cases where a set of Collections is grouped together (e.g. for providing search results),
+> the [CollectionCollection](https://github.com/radiantearth/stac-api-spec/blob/main/fragments/collectioncollection/README.md)
+> object has been defined in the STAC API specification.

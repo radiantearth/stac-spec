@@ -273,5 +273,39 @@
         "gsd": 20
       }
     ]
+  },
+  "item_assets": {
+    "B1": {
+      "title": "Band 1 (coastal)",
+      "type": "image/tiff; application=geotiff",
+      "roles": [
+        "data",
+        "visual"
+      ]
+    },
+    "B2": {
+      "title": "Band 2 (blue)",
+      "type": "image/tiff; application=geotiff",
+      "roles": [
+        "data",
+        "visual"
+      ]
+    },
+    "B3": {
+      "title": "Band 3 (green)",
+      "type": "image/tiff; application=geotiff",
+      "roles": [
+        "data",
+        "visual"
+      ]
+    },
+    "B4": {
+      "title": "Band 4 (red)",
+      "type": "image/tiff; application=geotiff",
+      "roles": [
+        "data",
+        "visual"
+      ]
+    }
   }
 }

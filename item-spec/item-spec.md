@@ -15,7 +15,6 @@
     - [Additional Fields](#additional-fields)
   - [Link Object](#link-object)
     - [Relation types](#relation-types)
-      - [derived\_from](#derived_from)
     - [Collections](#collections)
   - [Asset Object](#asset-object)
     - [Asset Media Type](#asset-media-type)
@@ -58,7 +57,7 @@ inherited from GeoJSON.
 | type            | string                                     | **REQUIRED.** Type of the GeoJSON Object. MUST be set to `Feature`.                                                                                                                                                                                                                                       |
 | stac_version    | string                                     | **REQUIRED.** The STAC version the Item implements.                                                                                                                                                                                                                                                       |
 | stac_extensions | \[string]                                  | A list of extensions the Item implements.                                                                                                                                                                                                                                                                 |
-| id              | string                                     | **REQUIRED.** Provider identifier. The ID should be unique within the  [Collection](../collection-spec/collection-spec.md) that contains the Item.                                                                                                                                                        |
+| id              | string                                     | **REQUIRED.** Provider identifier. The ID should be unique within the [Collection](../collection-spec/collection-spec.md) that contains the Item.                                                                                                                                                         |
 | geometry        | GeoJSON Geometry Object \| null            | **REQUIRED.** Defines the full footprint of the asset represented by this item, formatted according to RFC 7946, [section 3.1](https://tools.ietf.org/html/rfc7946#section-3.1) if a geometry is provided or [section 3.2](https://tools.ietf.org/html/rfc7946#section-3.2) if *no* geometry is provided. |
 | bbox            | \[number]                                  | **REQUIRED if `geometry` is not `null`, prohibited if `geometry` is `null`.** Bounding Box of the asset represented by this Item, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5).                                                                            |
 | properties      | [Properties Object](#properties-object)    | **REQUIRED.** A dictionary of additional metadata for the Item.                                                                                                                                                                                                                                           |
@@ -186,47 +185,18 @@ only be used when the data itself is nested, as with `bands`.
 
 ### Link Object
 
-This object describes a relationship with another entity. Data providers are advised to be liberal
-with the links section, to describe things like the Catalog an Item is in, related Items, parent or
-child Items (modeled in different ways, like an 'acquisition' or derived data).
-It is allowed to add additional fields such as a `title` and `type`.
-
-| Field Name | Type   | Description                                                                                                                                                                    |
-| ---------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| href       | string | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. [Trailing slashes are significant.](../best-practices.md#consistent-uris) |
-| rel        | string | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information.                                            |
-| type       | string | [Media type](../catalog-spec/catalog-spec.md#media-types) of the referenced entity.                                                                                            |
-| title      | string | A human readable title to be used in rendered displays of the link.                                                                                                            |
-
-For a full discussion of the situations where relative and absolute links are recommended see the
-['Use of links'](../best-practices.md#use-of-links) section of the STAC best practices.
+This object is described in the [STAC Common Metadata](common-metadata.md#link-object) section.
 
 #### Relation types
 
-STAC Items use a variety of `rel` types in the link object,
-to describe the exact nature of the link between this Item and the entity it is linking to.
-It is recommended to use the official
-[IANA Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) where possible.
-The following table explains places where STAC use custom `rel` types are used with Items.
-This happens where there is not a clear official option, or where STAC uses an official type but adds additional meaning for the STAC context.
+All [common relation types](../item-spec/common-metadata.md#relation-types) except for `item` can be used in Items.
+A `self` and `collection` links are STRONGLY RECOMMENDED.
+A link with this `rel` type is *required* for STAC item if the `collection` field in properties is present.
 
-| Type         | Description                                                                                                                                                                                                                                                                                  | Media Type                                           |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| self         | STRONGLY RECOMMENDED. *Absolute* URL to the Item if it is available at a public URL. This is particularly useful when in a download package that includes metadata, so that the downstream user can know where the data has come from.                                                       | application/geo+json (preferred) or application/json |
-| root         | URL to the root STAC entity (Catalog or Collection).                                                                                                                                                                                                                                         | application/json                                     |
-| parent       | URL to the parent STAC entity (Catalog or Collection).                                                                                                                                                                                                                                       | application/json                                     |
-| collection   | STRONGLY RECOMMENDED. URL to a Collection. *Absolute* URLs should be used whenever possible. The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Item. A link with this `rel` type is *required* if the `collection` field in properties is present. | application/json                                     |
-| derived_from | URL to a STAC Item that was used as input data in the creation of this Item.                                                                                                                                                                                                                 | application/geo+json (preferred) or application/json |
-
-A more complete list of potential `rel` types and their meaning in STAC can be found in the [Using Relation 
-Types](../best-practices.md#using-relation-types) best practice. 
-
-##### derived_from
-
-*Note regarding the type `derived_from`: A full provenance model is far beyond the scope of STAC,
-and the goal is to align with any good independent spec that comes along for that.
-But the derived_from field is seen as a way to encourage fuller specs and at least start a linking
-structure that can be used as a jumping off point for more experiments in provenance tracking*
+> \[!NOTE]
+> Dynamic catalogs can implement multiple parents through a dynamic browsing interface as they could dynamically create the parent
+> link based on the desired browsing structure (though only 1 parent at a time).
+> Multiple parents are allowed for other types than `application/json`.
 
 #### Collections
 
@@ -335,7 +305,7 @@ that talks about common use cases of additional fields for assets.
 ## Media Type for STAC Item
 
 A STAC Item is a GeoJSON file ([RFC 7946](https://tools.ietf.org/html/rfc7946)), and thus should use the 
-[`application/geo+json`](https://tools.ietf.org/html/rfc7946#section-12) as the [Media Type](https://en.wikipedia.org/wiki/Media_type) 
+[`application/geo+json`](https://tools.ietf.org/html/rfc7946#section-12) as the [Media Type](https://en.wikipedia.org/wiki/Media_type)
 (previously known as the MIME Type). 
 
 ## Extensions
