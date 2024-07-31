@@ -1,6 +1,6 @@
 {
   "type": "Feature",
-  "stac_version": "1.0.0",
+  "stac_version": "1.1.0",
   "id": "proj-example",
   "properties": {
     "datetime": "2018-10-01T01:08:32.033000Z",
@@ -279,7 +279,7 @@
   ],
   "stac_extensions": [
     "https://stac-extensions.github.io/eo/v2.0.0-beta.1/schema.json",
-    "https://stac-extensions.github.io/projection/v1.0.0/schema.json"
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json"
   ],
   "collection": "landsat-8-l1"
 }

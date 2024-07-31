@@ -48,7 +48,7 @@ with additional web service endpoints and object attributes.
 ## Current version and branches
 
 The [master branch](https://github.com/radiantearth/stac-spec/tree/master) is the 'stable' 
-version of the spec. It is currently version **1.0.0** of the specification. The STAC specification 
+version of the spec. It is currently version **1.1.0** of the specification. The STAC specification 
 follows [Semantic Versioning](https://semver.org/), so any breaking change will require the spec to 
 go to 2.0.0. 
 
