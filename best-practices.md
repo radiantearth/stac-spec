@@ -424,7 +424,7 @@ If your data for the Item does not come with a thumbnail already we do recommend
 
 ### Bands
 
-The new `bands` array in combination with the property inheritance introduced in STAC 1.1 provides users with more flexibility.
+As of STAC 1.1, the `bands` array can be used in combination with property inheritance to provide users with more flexibility.
 The following best practices should be considered, especially when migrating from `eo:bands` and `raster:bands`.
 
 #### Single band
