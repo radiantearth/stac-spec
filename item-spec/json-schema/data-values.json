@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/data-values.json#",
+  "$id": "https://schemas.stacspec.org/v1.1.0-beta.1/item-spec/json-schema/data-values.json#",
   "title": "Fields related to data values",
   "type": "object",
   "properties": {
