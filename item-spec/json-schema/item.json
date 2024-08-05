@@ -129,42 +129,90 @@
               ]
             }
           },
-          "if": {
-            "properties": {
-              "links": {
-                "contains": {
-                  "required": [
-                    "rel"
-                  ],
+          "$comment": "Rules enforcement for STAC Item",
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "links": {
+                    "contains": {
+                      "required": [
+                        "rel"
+                      ],
+                      "properties": {
+                        "rel": {
+                          "const": "collection"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "collection"
+                ],
+                "properties": {
+                  "collection": {
+                    "title": "Collection ID",
+                    "description": "The ID of the STAC Collection this Item references to.",
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "collection": {
+                    "not": {}
+                  }
+                }
+              }
+            },
+            {
+              "$comment": "The if-then-else below checks whether the bands field is given in assets or not. If not, allows bands in properties (then), otherwise, disallows bands in properties (else).",
+              "if": {
+                "required": [
+                  "assets"
+                ],
+                "properties": {
+                  "assets": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "properties": {
+                        "bands": false
+                      }
+                    }
+                  }
+                }
+              },
+              "then": {
+                "properties": {
                   "properties": {
-                    "rel": {
-                      "const": "collection"
+                    "anyOf": [
+                      {
+                        "$ref": "bands.json"
+                      },
+                      {
+                        "properties": {
+                          "bands": false
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "properties": {
+                    "properties": {
+                      "bands": false
                     }
                   }
                 }
               }
             }
-          },
-          "then": {
-            "required": [
-              "collection"
-            ],
-            "properties": {
-              "collection": {
-                "title": "Collection ID",
-                "description": "The ID of the STAC Collection this Item references to.",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          },
-          "else": {
-            "properties": {
-              "collection": {
-                "not": {}
-              }
-            }
-          }
+          ]
         }
       ]
     },

@@ -9,7 +9,13 @@
       "$ref": "basics.json"
     },
     {
+      "$ref": "bands.json"
+    },
+    {
       "$ref": "datetime.json"
+    },
+    {
+      "$ref": "data-values.json"
     },
     {
       "$ref": "instrument.json"

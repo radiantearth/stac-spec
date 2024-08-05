@@ -181,7 +181,7 @@ fields but it is recommended to add multiple fields for related values instead o
 e.g., two fields `view:azimuth` and `view:off_nadir` instead of a field `view` with an object
 value containing the two fields. The convention (as used within Extensions) is for related fields 
 to use a common prefix on the field names to group them, e.g. `view`. A nested data structure should
-only be used when the data itself is nested, as with `eo:bands`.
+only be used when the data itself is nested, as with `bands`.
 
 ### Link Object
 
@@ -284,7 +284,7 @@ should be used sparingly.** It is primarily used to define properties at the Ass
 the data instead of for searching.
 
 For example, `gsd` defined for an Item represents the best Ground Sample Distance (resolution) for the data within the Item.
-However, some assets may be lower resolution and thus have a higher `gsd`. The `eo:bands` field from the EO extension defines
+However, some assets may be lower resolution and thus have a higher `gsd`. The `bands` field in combination with the EO extension defines
 an array of spectral bands. However, it may be useful instead to specify the bands that are used in a particular asset.
 
 For an example see the [sentinel2-sample](https://github.com/stac-utils/stac-examples/blob/main/sentinel2/sentinel2-sample.json).
@@ -294,7 +294,7 @@ Band 5 and others have a `gsd` of 20m, so that asset specifies the `gsd` as well
 one asset. The example also includes reduced resolution versions of files included as assets, using `gsd` to represent
 the proper resolution.
 
-For `eo:bands`, it could be put in Item properties as an array of all the bands, but in this case it's not. Instead,
+For `bands`, it could be put in Item properties as an array of all the bands, but in this case it's not. Instead,
 the assets each define an array containing the spectral band information for that asset (in the order the bands appear
 in the file).
 

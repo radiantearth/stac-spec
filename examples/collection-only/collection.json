@@ -2,7 +2,7 @@
   "type": "Collection",
   "stac_version": "1.0.0",
   "stac_extensions": [
-    "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/eo/v2.0.0-beta.1/schema.json",
     "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
     "https://stac-extensions.github.io/view/v1.0.0/schema.json"
   ],
@@ -149,65 +149,65 @@
       32659,
       32660
     ],
-    "eo:bands": [
+    "bands": [
       {
         "name": "B1",
-        "common_name": "coastal",
-        "center_wavelength": 0.4439
+        "eo:common_name": "coastal",
+        "eo:center_wavelength": 0.4439
       },
       {
         "name": "B2",
-        "common_name": "blue",
-        "center_wavelength": 0.4966
+        "eo:common_name": "blue",
+        "eo:center_wavelength": 0.4966
       },
       {
         "name": "B3",
-        "common_name": "green",
-        "center_wavelength": 0.56
+        "eo:common_name": "green",
+        "eo:center_wavelength": 0.56
       },
       {
         "name": "B4",
-        "common_name": "red",
-        "center_wavelength": 0.6645
+        "eo:common_name": "red",
+        "eo:center_wavelength": 0.6645
       },
       {
         "name": "B5",
-        "center_wavelength": 0.7039
+        "eo:center_wavelength": 0.7039
       },
       {
         "name": "B6",
-        "center_wavelength": 0.7402
+        "eo:center_wavelength": 0.7402
       },
       {
         "name": "B7",
-        "center_wavelength": 0.7825
+        "eo:center_wavelength": 0.7825
       },
       {
         "name": "B8",
-        "common_name": "nir",
-        "center_wavelength": 0.8351
+        "eo:common_name": "nir",
+        "eo:center_wavelength": 0.8351
       },
       {
         "name": "B8A",
-        "center_wavelength": 0.8648
+        "eo:center_wavelength": 0.8648
       },
       {
         "name": "B9",
-        "center_wavelength": 0.945
+        "eo:center_wavelength": 0.945
       },
       {
         "name": "B10",
-        "center_wavelength": 1.3735
+        "eo:center_wavelength": 1.3735
       },
       {
         "name": "B11",
-        "common_name": "swir16",
-        "center_wavelength": 1.6137
+        "eo:common_name": "swir16",
+        "eo:center_wavelength": 1.6137
       },
       {
         "name": "B12",
-        "common_name": "swir22",
-        "center_wavelength": 2.2024
+        "eo:common_name": "swir22",
+        "eo:center_wavelength": 2.2024
       }
     ]
   },
