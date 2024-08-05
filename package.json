@@ -5,7 +5,7 @@
   "repository": "https://github.com/radiantearth/stac-spec",
   "license": "Apache-2.0",
   "scripts": {
-    "check": "npm run check-markdown && npm run check-examples",
+    "test": "npm run check-markdown && npm run check-examples",
     "check-markdown": "remark . --frail",
     "check-examples": "stac-node-validator . --lint --verbose --schemas .",
     "format-examples": "stac-node-validator . --format --schemas .",
