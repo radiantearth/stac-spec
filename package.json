@@ -7,8 +7,8 @@
   "scripts": {
     "test": "npm run check-markdown && npm run check-examples",
     "check-markdown": "remark . --frail",
-    "check-examples": "stac-node-validator . --lint --verbose --schemas .",
-    "format-examples": "stac-node-validator . --format --schemas .",
+    "check-examples": "stac-node-validator examples --lint --verbose --schemas .",
+    "format-examples": "stac-node-validator examples --format --schemas .",
     "publish-schemas": "node .circleci/publish-schemas.js"
   },
   "dependencies": {
@@ -22,7 +22,7 @@
     "remark-preset-lint-markdown-style-guide": "^5.1.3",
     "remark-preset-lint-recommended": "^6.1.3",
     "remark-validate-links": "^13.0.0",
-    "stac-node-validator": "^1.3.0"
+    "stac-node-validator": "^2.0.0-beta.11"
   },
   "remarkConfig": {
     "plugins": [
