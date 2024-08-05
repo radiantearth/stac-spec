@@ -1,14 +1,14 @@
 {
   "name": "stac-spec",
-  "version": "1.0.0",
+  "version": "1.1.0-beta.1",
   "description": "STAC spec helpers to check the spec.",
   "repository": "https://github.com/radiantearth/stac-spec",
   "license": "Apache-2.0",
   "scripts": {
-    "check": "npm run check-markdown && npm run check-examples",
+    "test": "npm run check-markdown && npm run check-examples",
     "check-markdown": "remark . --frail",
-    "check-examples": "stac-node-validator . --lint --verbose --schemas .",
-    "format-examples": "stac-node-validator . --format --schemas .",
+    "check-examples": "stac-node-validator examples --lint --verbose --schemas .",
+    "format-examples": "stac-node-validator examples --format --schemas .",
     "publish-schemas": "node .circleci/publish-schemas.js"
   },
   "dependencies": {
@@ -22,7 +22,7 @@
     "remark-preset-lint-markdown-style-guide": "^5.1.3",
     "remark-preset-lint-recommended": "^6.1.3",
     "remark-validate-links": "^13.0.0",
-    "stac-node-validator": "^1.3.0"
+    "stac-node-validator": "^2.0.0-beta.11"
   },
   "remarkConfig": {
     "plugins": [

@@ -162,7 +162,7 @@ Oftentimes it is possible to model data and assets with either a Collection or a
 Items as much as is feasible, as they designed for assets. Using Collection-level assets should only be used if there is not another
 option.
 
-#### Item Asset Defintion
+#### Item Asset Definition
 
 This serves two purposes:
 
@@ -371,6 +371,6 @@ A STAC Collection is a JSON file ([RFC 8259](https://tools.ietf.org/html/rfc8259
 STAC Collections which don't link to any Item are called **standalone Collections**.
 To describe them with more fields than the Collection fields has to offer,
 it is allowed to re-use the metadata fields defined by extensions for Items in the `summaries` field.
-This makes much sense for fields such as `platform` or `proj:epsg`, which are often the same for a whole Collection,
+This makes much sense for fields such as `platform` or `proj:code`, which are often the same for a whole Collection,
 but doesn't make much sense for `eo:cloud_cover`, which usually varies heavily across a Collection.
 The data provider is free to decide, which fields are reasonable to be used.

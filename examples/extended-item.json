@@ -1,7 +1,8 @@
 {
-  "stac_version": "1.0.0",
+  "stac_version": "1.1.0-beta.1",
   "stac_extensions": [
-    "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/eo/v2.0.0-beta.1/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
     "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
     "https://stac-extensions.github.io/view/v1.0.0/schema.json",
     "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json"
@@ -58,7 +59,7 @@
     ],
     "gsd": 0.66,
     "eo:cloud_cover": 1.2,
-    "proj:epsg": 32659,
+    "proj:code": "EPSG:32659",
     "proj:shape": [
       5558,
       9559

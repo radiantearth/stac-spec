@@ -290,7 +290,7 @@ providing them at the Asset level can prove to be very useful for using the data
   extension](https://github.com/stac-extensions/raster) for that use case.
 - `bands` (e.g. in combination with the [EO extension](https://github.com/stac-extensions/eo/)):
   Provide spectral band information, and order of bands, within an individual asset.
-- `proj:epsg`/`proj:wkt2`/`proj:projjson` ([projection extension](https://github.com/stac-extensions/projection/)):
+- `proj:code`/`proj:wkt2`/`proj:projjson` ([projection extension](https://github.com/stac-extensions/projection/)):
   Specify different projection for some assets. If the projection is different
   for all assets it should probably not be provided as an Item property. If most assets are one projection, and there is 
   a single reprojected version (such as a Web Mercator preview image), it is sensible to specify the main projection in the 
