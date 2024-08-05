@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/commonjson",
+  "$id": "https://schemas.stacspec.org/v1.1.0-beta.1/item-spec/json-schema/commonjson",
   "title": "STAC Common Metadata",
   "type": "object",
   "description": "This schema includes all common metadata fields.",
