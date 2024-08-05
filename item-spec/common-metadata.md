@@ -333,7 +333,7 @@ The allowed values for `data_type` are:
 
 ## Relation types
 
-STAC Entities use a variety of `rel` types in the link object,
+STAC Entities use a variety of `rel` types in the Link Object,
 to describe the exact nature of the link between the STAC object and the entity it is linking to.
 It is recommended to use the official
 [IANA Link Relation Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) where possible.
