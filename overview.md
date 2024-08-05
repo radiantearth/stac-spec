@@ -51,7 +51,7 @@ then includes additional information:
 
 A STAC Item can contain additional fields and JSON structures to communicate more information about the
 asset, so it can be easily searched. STAC provides a core set of 
-[Common Metadata](item-spec/common-metadata.md)
+[Common Metadata](commons/common-metadata.md)
 and there is a wider community working on a variety of [STAC Extensions](extensions/) that provide shared metadata for 
 more specific domains. Both aim to describe data with well known, well
 defined terms to enable consistent publishing and better search. For more recommendations on selecting fields

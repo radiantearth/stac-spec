@@ -195,8 +195,8 @@ instead of thinking through all the ways providers might have chosen to name it.
 In general STAC aims to be oriented around **search**, centered on the core fields that users will want to search on to find 
 imagery. The core is space and time, but there are often other metadata fields that are useful. While the specification is 
 flexible enough that providers can fill it with tens or even hundreds of fields of metadata, that is not recommended. If 
-providers have lots of metadata then that can be linked to in the [Asset Object](item-spec/item-spec.md#asset-object) 
-(recommended) or in a [Link Object](item-spec/item-spec.md#link-object). There is a lot of metadata that is only of relevance 
+providers have lots of metadata then that can be linked to in the [Asset Object](commons/assets.md#asset-object) 
+(recommended) or in a [Link Object](commons/links.md#link-object). There is a lot of metadata that is only of relevance 
 to loading and processing data, and while STAC does not prohibit providers from putting those type of fields in their items, 
 it is not recommended. For very large catalogs (hundreds of millions of records),
 every additional field that is indexed will cost substantial money, so data providers are advised to just put the fields to be searched in STAC and
@@ -209,7 +209,7 @@ STAC. And it can also be one of the most confusing, especially for data that cov
 is straightforward - it is the capture or acquisition time. But often data is processed from a range of captures - drones usually
 gather a set of images over an hour and put them into a single image, mosaics combine data from several months, and data cubes
 represent slices of data over a range of time. For all these cases the recommended path is to use `start_datetime` and 
-`end_datetime` fields from [common metadata](item-spec/common-metadata.md#date-and-time-range). The specification does allow one to set the 
+`end_datetime` fields from [common metadata](commons/common-metadata.md#date-and-time-range). The specification does allow one to set the 
 `datetime` field to `null`, but it is strongly recommended to populate the single `datetime` field, as that is what many clients 
 will search on. If it is at all possible to pick a nominal or representative datetime then that should be used. But sometimes that 
 is not possible, like a data cube that covers a time range from 1900 to 2000. Setting the datetime as 1950 would lead to it not
@@ -258,7 +258,7 @@ not spatial. This use case is not currently supported by STAC, as we are focused
 in nature. The [OGC API - Records](https://github.com/opengeospatial/ogcapi-records) is an emerging standard that likely
 will be able to handle a wider range of data than STAC. It builds on [OGC API - 
 Features](https://github.com/opengeospatial/ogcapi-features) just like [STAC API](https://github.com/radiantearth/stac-api-spec/)
-does. Using [Collection Assets](collection-spec/collection-spec.md#asset-object) may also provide an option for some 
+does. Using [Collection Assets](collection-spec/collection-spec.md#assets) may also provide an option for some 
 use cases.
 
 ### Representing Vector Layers in STAC
@@ -277,14 +277,14 @@ Both are compliant with OGC API - Features, adding richer search capabilities to
 
 ### Common Use Cases of Additional Fields for Assets
 
-As [described in the Item spec](item-spec/item-spec.md#additional-fields-for-assets), it is possible to use fields typically
+As [described in the Item spec](commons/assets.md#additional-fields), it is possible to use fields typically
 found in Item properties at the asset level. This mechanism of overriding or providing Item Properties only in the Assets 
 makes discovery more difficult and should generally be avoided. However, there are some core and extension fields for which 
 providing them at the Asset level can prove to be very useful for using the data.
 
 - `datetime`: Provide individual timestamp on an Item, in case the Item has a `start_datetime` and `end_datetime`,
   but an Asset is for one specific time.
-- `gsd` ([Common Metadata](item-spec/common-metadata.md#instrument)): Specify some assets that represent instruments 
+- `gsd` ([Common Metadata](commons/common-metadata.md#instrument)): Specify some assets that represent instruments 
   with different spatial resolution than the overall best resolution. Note this should not be used for different 
   spatial resolutions due to specific processing of assets - look into the [raster 
   extension](https://github.com/stac-extensions/raster) for that use case.
@@ -368,7 +368,7 @@ it. It is relatively easy to [register](https://www.iana.org/form/media-types) a
 
 ### Asset Roles
 
-[Asset roles](item-spec/item-spec.md#asset-roles) are used to describe what each asset is used for. They are particular useful 
+[Asset roles](commons/assets.md#roles) are used to describe what each asset is used for. They are particular useful 
 when several assets have the same media type, such as when an Item has a multispectral analytic asset, a 3-band full resolution 
 visual asset, a down-sampled preview asset, and a cloud mask asset, all stored as Cloud Optimized GeoTIFF (COG) images. It is 
 recommended to use at least one role for every asset available, and using multiple roles often makes sense. For example you'd use
@@ -783,9 +783,9 @@ while a value of 15 to 40 would tell them that it's oblique imagery, or 0 to 60 
 a Collection with lots of different look angles. 
 
 - Fields that have only one or a handful of values are also great to summarize. Collections with a single satellite may
-use a single [`gsd`](item-spec/common-metadata.md#instrument) field in the summary, and it's quite useful for users to know
+use a single [`gsd`](commons/common-metadata.md#instrument) field in the summary, and it's quite useful for users to know
 that all data is going to be the same resolution. Similarly it's useful to know the names of all the 
-[`platform` values](item-spec/common-metadata.md#instrument) that are used in the Collection. 
+[`platform` values](commons/common-metadata.md#instrument) that are used in the Collection. 
 
 - It is less useful to summarize fields that have numerous different discrete values that can't easily be represented
 in a range. These will mostly be string values, when there aren't just a handful of options. For example if you had a 
@@ -793,7 +793,7 @@ in a range. These will mostly be string values, when there aren't just a handful
 understand more intuitively where a shot was taken. If your Collection has millions of Items, or even hundreds, you don't want
 to include all the different location string values in a summary. 
 
-- Fields that consist of arrays are more of a judgement call. For example [`instruments`](item-spec/common-metadata.md#instrument)
+- Fields that consist of arrays are more of a judgement call. For example [`instruments`](commons/common-metadata.md#instrument)
 is straightforward and recommended, as the elements of the array are a discrete set of options. On the other hand 
 [`proj:transform`](https://github.com/stac-extensions/projection/blob/main/README.md#projtransform)
 makes no sense to summarize, as the union of all the values
@@ -801,7 +801,7 @@ in the array are meaningless, as each Item is describing its transform, so combi
 So if the values contained in the array are independently meaningful (not interconnected) and there aren't hundreds of potential
 values then it is likely a good candidate to summarize.
 
-We do highly recommend including a [`bands`](./item-spec/common-metadata.md#bands)
+We do highly recommend including a [`bands`](./commons/common-metadata.md#bands)
 summary if your Items implement `bands`, 
 especially if it represents just one satellite or constellation. This should be a union of all the potential bands that you 
 have in assets. It is ok to only add the summary at the Collection level without putting `bands` at the 
@@ -1009,8 +1009,9 @@ When crawling a STAC implementation, one can also make use of the [relation type
 ) (`rel` field) when following a link. If it is an `item` rel type then the file must be a STAC Item. If it is `child`, `parent` or
 `root` then it must be a Catalog or a Collection, though the final determination between the two requires looking at the `type` field
 in the Catalog or Collection JSON that it is linked to. Note that there is also a `type` field in STAC Link and Asset objects, but that
-is for the Media Type, but there are not specific media types for Catalog and Collection. See the sections on [STAC media 
-types](catalog-spec/catalog-spec.md#media-types), and [Asset media types](item-spec/item-spec.md#asset-media-type) for more information.
+is for the Media Type, but there are not specific media types for Catalog and Collection.
+See the sections on [STAC media types](commons/links.md#stac-media-types),
+and [Asset media types](commons/assets.md#media-types) for more information.
 
 In versions of STAC prior to 1.0 the process was a bit more complicated, as there was no `type` field for catalogs and collections.
 See [this issue comment](https://github.com/radiantearth/stac-spec/issues/889#issuecomment-684529444) for a heuristic that works
