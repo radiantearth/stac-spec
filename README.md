@@ -89,6 +89,9 @@ used together, but are designed so each piece is small, self-contained, and reus
   In the context of STAC it is most likely a related group of STAC Items that is made available by a data provider.
   It includes things like the spatial and temporal extent of the data, the license, keywords, etc.
   It enables discovery at a higher level than individual Item objects, providing a simple way to describe sets of data.
+- **[Commons](commons/)** describes parts of the specification that are shared across the specifications listed above.
+  This includes [assets](commons/assets.md), [links](commons/links.md)
+  and [common metadata](commons/common-metadata.md).
 - **[Examples](examples/):** The *[examples/](examples/)* folder contains examples for all three specifications, linked together to form two 
   complete examples. Each spec and extension links in to highlight particular files that demonstrate key concepts.
 - **[Extensions](extensions/README.md)** describe how STAC can use extensions that extend the functionality of the core spec or 
