@@ -28,7 +28,7 @@ required.
 
 **[core-item.json](core-item.json)** is a more realistic example, for a hypothetical analytic image 
 acquisition from a satellite company called 'Remote Data'. It includes additional fields covering the [common 
-metadata](../item-spec/common-metadata.md). It also links to a variety of assets that is typical for
+metadata](../commons/common-metadata.md). It also links to a variety of assets that is typical for
 satellite imagery, as most providers include a number of complementary files.
 
 **[extended-item.json](extended-item.json)** is arguably an even more realistic example, as it includes a number of the
