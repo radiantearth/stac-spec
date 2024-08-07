@@ -51,7 +51,7 @@ then includes additional information:
 
 A STAC Item can contain additional fields and JSON structures to communicate more information about the
 asset, so it can be easily searched. STAC provides a core set of 
-[Common Metadata](item-spec/common-metadata.md)
+[Common Metadata](commons/common-metadata.md)
 and there is a wider community working on a variety of [STAC Extensions](extensions/) that provide shared metadata for 
 more specific domains. Both aim to describe data with well known, well
 defined terms to enable consistent publishing and better search. For more recommendations on selecting fields
@@ -104,7 +104,7 @@ The second case is used when one wants to represent diverse data in a single pla
 has an internal catalog with Landsat 8, Sentinel 2, NAIP data and several commercial imagery providers
 then they'd have a root Catalog that would link to a number of different Collections. 
 
-So in conclusion it's best to use Collections for what you want user to find as starting point, and then
+So in conclusion it's best to use Collections for what you want users to find as the starting point, and then
 Catalogs are just for structuring and grouping the data. Future work includes a mechanism to actually
 search Collection-level data, hopefully in concert with other specifications.
 
@@ -166,7 +166,7 @@ linked to across the web.
 
 ### Static and Dynamic Catalogs
 
-The Catalog specification is designed so it can be implemented as easily as possibly. This can be as simple as
+The Catalog specification is designed so it can be implemented as easily as possible. This can be as simple as
 simply putting linked json files on a file server or an object storage service (like [AWS S3](https://aws.amazon.com/s3/)),
 or it can be generated on the fly by a live server. The first type of implementation is often called a 'static catalog',
 and any catalog that is not just files is called a 'dynamic catalog'. You can read more about the two types along with
@@ -177,7 +177,7 @@ along with how to keep a [dynamic catalog in sync](best-practices.md#static-to-d
 
 In addition to information about different catalog types, the [best practices document](best-practices.md) has
 a number of suggestions on how to organize and implement good catalogs. The [catalog specification](catalog-spec/catalog-spec.md)
-is designed for maximum flexbility, so none of these are required, but they provide guidance for implementors who
+is designed for maximum flexibility, so none of these are required, but they provide guidance for implementors who
 want to follow what most of the STAC community is doing.
 
 - [Catalog Layout](best-practices.md#catalog-layout) is likely the most important section, as following its 
@@ -209,5 +209,5 @@ and doesn't require links down to sub-catalogs and Items. This is most often use
 does operations at the layer / coverage level, letting users manipulate a whole collection of assets at once. They often
 have an optimized internal format that doesn't make sense to expose as Items. [OpenEO](https://openeo.org/) and 
 [Google Earth Engine](https://earthengine.google.com/) are two examples that only use STAC collections, and
-both would be hardpressed to expose individual Items due to their architectures. For others implementing STAC
+both would be hard-pressed to expose individual Items due to their architectures. For others implementing STAC
 Collections can also be a nice way to start and achieve some level of interoperability. 

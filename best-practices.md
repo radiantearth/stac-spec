@@ -8,25 +8,19 @@
     - [Schema.org, JSON-LD, DCAT, microformats, etc](#schemaorg-json-ld-dcat-microformats-etc)
     - [Deploying STAC Browser](#deploying-stac-browser)
   - [Requester Pays](#requester-pays)
+  - [Consistent URIs](#consistent-uris)
 - **[Item Best Practices](#item-practices)**
   - [Field and ID formatting](#item-ids)
   - [Searchable Identifiers](#searchable-identifiers)
   - [Field selection and Metadata Linking](#field-selection-and-metadata-linking)
   - [Datetime selection](#datetime-selection)
   - [Unlocated Items](#unlocated-items)
-    - [Unrectified Satellite Data](#unrectified-satellite-data)
-    - [Data that is not spatial](#data-that-is-not-spatial)
   - [Representing Vector Layers in STAC](#representing-vector-layers-in-stac)
-- **[Asset Best Practices](#asset-practices)**
+- **[Asset and Link Best Practices](#asset-and-link-best-practices)**
   - [Common Use Cases of Additional Fields for Assets](#common-use-cases-of-additional-fields-for-assets)
   - [Working with Media Types](#working-with-media-types)
-    - [Common Media Types in STAC](#common-media-types-in-stac)
-    - [Formats with no registered media type](#formats-with-no-registered-media-type)
   - [Asset Roles](#asset-roles)
-    - [List of Asset Roles](#list-of-asset-roles)
-      - [Thumbnail](#thumbnail)
-      - [Overview](#overview)
-      - [Visual](#visual)
+  - [Bands](#bands)
 - **[Catalog & Collection Best Practices](#catalog--collection-practices)**
   - [Static and Dynamic Catalogs](#static-and-dynamic-catalogs)
     - [Static Catalogs](#static-catalogs)
@@ -40,13 +34,11 @@
     - [Published Catalogs](#published-catalogs)
   - [Using Relation Types](#using-relation-types)
   - [Versioning for Catalogs](#versioning-for-catalogs)
-    - [Example](#example)
   - [Static to Dynamic best practices](#static-to-dynamic-best-practices)
     - [Ingestion and links](#ingestion-and-links)
     - [Keep catalogs in sync with cloud notification and queue services](#keep-catalogs-in-sync-with-cloud-notification-and-queue-services)
   - [How to Differentiate STAC Files](#how-to-differentiate-stac-files)
   
-
 This document makes a number of recommendations for creating real world SpatioTemporal Asset Catalogs. None of them 
 are required to meet the core specification, but following these practices will make life easier for client tooling
 and for users. They come about from practical experience of implementors and introduce a bit more 'constraint' for
@@ -146,15 +138,48 @@ For data providers using STAC with requester pays buckets, there are two main re
    allow the data provider to properly charge for access. 
    STAC-specific tools in turn can look for the cloud-specific protocols and know to use the requestor pays feature for that specific cloud platform.
 
+### Consistent URIs
+
+Links in STAC can be [absolute or relative](#use-of-links).
+
+Relative links must be resolved against a base URL, which is the absolute URI given in the link with the relation type `self`.
+If a `self` link is not provided, the absolute URI of the resource can be used as the base URL.
+If neither of them is available, relative links can usually not be resolved and the behavior is undefined.
+
+To resolve relative URIs, the base URIs must be precise and consistent.
+Having or not having a trailing slash is significant (except if no path component is provided in a URL, see example 8).
+Without a trailing slash, the last path component is identified as a "file" and will be removed while resolving URLs.
+This means that if the trailing slash is missing for a folder,
+a relative link would need to include the last path component again to resolve correctly (see example 4).
+
+To avoid issues it is recommended to consistently add a slash at the end of the URL if it doesn't point to a file.
+
+**Examples:**
+
+| # | Base URL                                  | Relative URL       | Resolved URL                                  |
+| - | ----------------------------------------- | ------------------ | --------------------------------------------- |
+| 1 | `https://example.com/folder/catalog.json` | `item.json`        | `https://example.com/folder/item.json`        |
+| 2 | `https://example.com/folder`              | `item.json`        | `https://example.com/item.json`               |
+| 3 | `https://example.com/folder/`             | `item.json`        | `https://example.com/folder/item.json`        |
+| 4 | `https://example.com/folder`              | `folder/item.json` | `https://example.com/folder/item.json`        |
+| 5 | `https://example.com/folder/`             | `folder/item.json` | `https://example.com/folder/folder/item.json` |
+| 6 | `https://example.com/another/folder`      | `../item.json`     | `https://example.com/item.json`               |
+| 7 | `https://example.com/another/folder/`     | `../item.json`     | `https://example.com/another/item.json`       |
+| 8 | `https://example.com`                     | `folder/item.json` | `https://example.com/folder/item.json`        |
+| 9 | `https://example.com/`                    | `folder/item.json` | `https://example.com/folder/item.json`        |
+
+The relative URLs `folder/item.json` and `./folder/item.json` are equivalent.
+
 ## Item Practices
 
 ### Item IDs
 
 When defining one's STAC properties and fields there are many choices to make on how to name various aspects of one's
 data. One of the key properties is the ID. The specification is quite flexible on ID's, primarily so that existing
-providers can easily use their same ID when they translate their data into STAC - they just need to be sure it is globally
-unique, so may need a prefix. But the use of URI or file path reserved characters such as `:` or `/` is discouraged since this will 
-result in [percented encoded](https://tools.ietf.org/html/rfc3986#section-2) [STAC API](https://github.com/radiantearth/stac-api-spec) 
+providers can easily use their same ID when they translate their data into STAC.
+It is STRONGLY RECOMMENDED that an item ID is unique per collection.
+The use of URI or file path reserved characters such as `:` or `/` is discouraged since this will
+result in [percented encoded](https://tools.ietf.org/html/rfc3986#section-2) [STAC API](https://github.com/radiantearth/stac-api-spec)
 endpoints and it prevents the use of IDs as file names as recommended in the [catalog layout](#catalog-layout) best practices.
 
 ### Searchable Identifiers
@@ -170,8 +195,8 @@ instead of thinking through all the ways providers might have chosen to name it.
 In general STAC aims to be oriented around **search**, centered on the core fields that users will want to search on to find 
 imagery. The core is space and time, but there are often other metadata fields that are useful. While the specification is 
 flexible enough that providers can fill it with tens or even hundreds of fields of metadata, that is not recommended. If 
-providers have lots of metadata then that can be linked to in the [Asset Object](item-spec/item-spec.md#asset-object) 
-(recommended) or in a [Link Object](item-spec/item-spec.md#link-object). There is a lot of metadata that is only of relevance 
+providers have lots of metadata then that can be linked to in the [Asset Object](commons/assets.md#asset-object) 
+(recommended) or in a [Link Object](commons/links.md#link-object). There is a lot of metadata that is only of relevance 
 to loading and processing data, and while STAC does not prohibit providers from putting those type of fields in their items, 
 it is not recommended. For very large catalogs (hundreds of millions of records),
 every additional field that is indexed will cost substantial money, so data providers are advised to just put the fields to be searched in STAC and
@@ -184,7 +209,7 @@ STAC. And it can also be one of the most confusing, especially for data that cov
 is straightforward - it is the capture or acquisition time. But often data is processed from a range of captures - drones usually
 gather a set of images over an hour and put them into a single image, mosaics combine data from several months, and data cubes
 represent slices of data over a range of time. For all these cases the recommended path is to use `start_datetime` and 
-`end_datetime` fields from [common metadata](item-spec/common-metadata.md#date-and-time-range). The specification does allow one to set the 
+`end_datetime` fields from [common metadata](commons/common-metadata.md#date-and-time-range). The specification does allow one to set the 
 `datetime` field to `null`, but it is strongly recommended to populate the single `datetime` field, as that is what many clients 
 will search on. If it is at all possible to pick a nominal or representative datetime then that should be used. But sometimes that 
 is not possible, like a data cube that covers a time range from 1900 to 2000. Setting the datetime as 1950 would lead to it not
@@ -233,7 +258,7 @@ not spatial. This use case is not currently supported by STAC, as we are focused
 in nature. The [OGC API - Records](https://github.com/opengeospatial/ogcapi-records) is an emerging standard that likely
 will be able to handle a wider range of data than STAC. It builds on [OGC API - 
 Features](https://github.com/opengeospatial/ogcapi-features) just like [STAC API](https://github.com/radiantearth/stac-api-spec/)
-does. Using [Collection Assets](collection-spec/collection-spec.md#asset-object) may also provide an option for some 
+does. Using [Collection Assets](collection-spec/collection-spec.md#assets) may also provide an option for some 
 use cases.
 
 ### Representing Vector Layers in STAC
@@ -248,24 +273,24 @@ that is not possible then the appropriate way to handle Collection-level search 
 [OGC API - Records](https://github.com/opengeospatial/ogcapi-records) standard, which is a 'brother' specification of STAC API. 
 Both are compliant with OGC API - Features, adding richer search capabilities to enable finding of data. 
 
-## Asset Practices
+## Asset and Link Best Practices
 
 ### Common Use Cases of Additional Fields for Assets
 
-As [described in the Item spec](item-spec/item-spec.md#additional-fields-for-assets), it is possible to use fields typically
+As [described in the Item spec](commons/assets.md#additional-fields), it is possible to use fields typically
 found in Item properties at the asset level. This mechanism of overriding or providing Item Properties only in the Assets 
 makes discovery more difficult and should generally be avoided. However, there are some core and extension fields for which 
-providing them at at the Asset level can prove to be very useful for using the data.
+providing them at the Asset level can prove to be very useful for using the data.
 
 - `datetime`: Provide individual timestamp on an Item, in case the Item has a `start_datetime` and `end_datetime`,
   but an Asset is for one specific time.
-- `gsd` ([Common Metadata](item-spec/common-metadata.md#instrument)): Specify some assets that represent instruments 
+- `gsd` ([Common Metadata](commons/common-metadata.md#instrument)): Specify some assets that represent instruments 
   with different spatial resolution than the overall best resolution. Note this should not be used for different 
   spatial resolutions due to specific processing of assets - look into the [raster 
   extension](https://github.com/stac-extensions/raster) for that use case.
-- `eo:bands` ([EO extension](https://github.com/stac-extensions/eo/)):
+- `bands` (e.g. in combination with the [EO extension](https://github.com/stac-extensions/eo/)):
   Provide spectral band information, and order of bands, within an individual asset.
-- `proj:epsg`/`proj:wkt2`/`proj:projjson` ([projection extension](https://github.com/stac-extensions/projection/)):
+- `proj:code`/`proj:wkt2`/`proj:projjson` ([projection extension](https://github.com/stac-extensions/projection/)):
   Specify different projection for some assets. If the projection is different
   for all assets it should probably not be provided as an Item property. If most assets are one projection, and there is 
   a single reprojected version (such as a Web Mercator preview image), it is sensible to specify the main projection in the 
@@ -274,17 +299,34 @@ providing them at at the Asset level can prove to be very useful for using the d
   If assets have different spatial resolutions and slightly different exact bounding boxes,
   specify these per asset to indicate the size of the asset in pixels and its exact GeoTransform in the native projection.
 - `sar:polarizations` ([sar extension](https://github.com/stac-extensions/sar)):
-  Provide the polarization content and ordering of a specific asset, similar to `eo:bands`.
+  Provide the polarization content and ordering of a specific asset.
 - `sar:product_type` ([sar extension](https://github.com/stac-extensions/sar)):
   If mixing multiple product types within a single Item, this can be used to specify the product_type for each asset.
+
+### Titles
+
+It is recommended to always provide link titles.
+The link titles should always reflect the title of the entity it refers to.
+For example, if a STAC Item links to a STAC Collection, the value of the `title` property in the link with relation type `collection`
+should **exactly** match the value of the `title` property in the STAC Collection.
+Implementations should ensure that link titles are always synchronized so that inconsistencies don't occur.
+
+Providing titles enables users to search and navigate more easily through STAC catalogs,
+makes the links more predictable, and may prevent "flickering" in user-interfaces such as STAC Browser.
+
+If the entity that a link refers to has no title, the value of the `id` can be considered as an alternative.
 
 ### Working with Media Types
 
 [Media Types](https://en.wikipedia.org/wiki/Media_type) are a key element that enables STAC to be a rich source of information for
-clients. The best practice is to use as specific of a media type as is possible (so if a file is a GeoJSON then don't use a JSON
+clients. The best practice is to use as specific of a media type as possible (so if a file is a GeoJSON then don't use a JSON
 media type), and to use [registered](https://www.iana.org/assignments/media-types/media-types.xhtml) IANA types as much as possible.
-The following table lists types that commonly show up in STAC assets. And the the [section](#formats-with-no-registered-media-type)
-past that gives recommendations on what to do if you have a format in your asset that does not have an IANA registered type.
+
+For hierarchical links (e.g. relation types `root`, `parent`, `child`, `item`) it is important that
+clients filter for the corresponding STAC media types
+(e.g. `application/json` for all relation types and/or `application/geo+json` for relation type `item`). 
+Hierarchical links with other media types (e.g. `text/html`) may be present for hierarchical links,
+especially in STAC implementations that are also implementing OGC API - Records.
 
 #### Common Media Types in STAC
 
@@ -292,117 +334,329 @@ The following table lists a number of commonly used media types in STAC. The fir
 yet, but reflect the community consensus direction. There are many IANA registered types that commonly show up in STAC. The 
 following table lists some of the most common ones you may encounter or use.
 
-| Media Type                                              | Description                                                  |
-| ------------------------------------------------------- | ------------------------------------------------------------ |
-| `image/tiff; application=geotiff`                       | GeoTIFF with standardized georeferencing metadata            |
+| Media Type                                                 | Description                                                                                                                                                                                                                               |
+| ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `image/tiff; application=geotiff`                          | GeoTIFF with standardized georeferencing metadata                                                                                                                                                                                         |
 | `image/tiff; application=geotiff; profile=cloud-optimized` | [Cloud Optimized GeoTIFF](https://www.cogeo.org/) (unofficial). Once there is an [official media type](http://osgeo-org.1560.x6.nabble.com/Media-type-tc5411498.html) it will be added and the custom media type here will be deprecated. |
-| `image/jp2`                                             | JPEG 2000                                                    |
-| `image/png`                                             | Visual PNGs (e.g. thumbnails)                                |
-| `image/jpeg`                                            | Visual JPEGs (e.g. thumbnails, oblique)                      |
-| `text/xml` or `application/xml`                         | XML metadata [RFC 7303](https://www.ietf.org/rfc/rfc7303.txt) |
-| `application/json`                                      | A JSON file (often metadata, or [labels](https://github.com/radiantearth/stac-spec/tree/master/extensions/label#labels-required)) |
-| `text/plain`                                            | Plain text (often metadata)                                  |
-| `application/geo+json`                                  | [GeoJSON](https://geojson.org/)                              |
-| `application/geopackage+sqlite3`                        | [GeoPackage](https://www.geopackage.org/)                    |
-| `application/x-hdf5`                                    | Hierarchical Data Format version 5                           |
-| `application/x-hdf`                                     | Hierarchical Data Format versions 4 and earlier.             |
+| `image/jp2`                                                | JPEG 2000                                                                                                                                                                                                                                 |
+| `image/png`                                                | Visual PNGs (e.g. thumbnails)                                                                                                                                                                                                             |
+| `image/jpeg`                                               | Visual JPEGs (e.g. thumbnails, oblique)                                                                                                                                                                                                   |
+| `text/xml` or `application/xml`                            | XML metadata [RFC 7303](https://www.ietf.org/rfc/rfc7303.txt)                                                                                                                                                                             |
+| `application/json`                                         | A JSON file (often metadata, or [labels](https://github.com/radiantearth/stac-spec/tree/master/extensions/label#labels-required))                                                                                                         |
+| `text/plain`                                               | Plain text (often metadata)                                                                                                                                                                                                               |
+| `application/geo+json`                                     | [GeoJSON](https://geojson.org/)                                                                                                                                                                                                           |
+| `application/geopackage+sqlite3`                           | [GeoPackage](https://www.geopackage.org/)                                                                                                                                                                                                 |
+| `application/x-hdf5`                                       | Hierarchical Data Format version 5                                                                                                                                                                                                        |
+| `application/x-hdf`                                        | Hierarchical Data Format versions 4 and earlier.                                                                                                                                                                                          |
 
 *Deprecation notice: GeoTiff previously used the media type `image/vnd.stac.geotiff` and
 Cloud Optimized GeoTiffs used `image/vnd.stac.geotiff; profile=cloud-optimized`.
-Both can still appear in old STAC implementations, but are deprecated and should be replaced. This will, unfortunately, likely shift in the future as
-[OGC sorts out the media types](https://github.com/opengeospatial/geotiff/issues/34).*
+Both can still appear in old STAC implementations, but are deprecated and should be replaced.
 
 #### Formats with no registered media type
 
+This section gives recommendations on what to do if you have a format in your links or assets
+that does not have an IANA registered type.
 Ideally every media type used is on the [IANA registry](https://www.iana.org/assignments/media-types/media-types.xhtml). If
-you are using a format that is not on that list we recommend you use [custom content 
-type](https://restcookbook.com/Resources/using-custom-content-types/). These typically use the `vnd.` prefix, see [RFC 6838 
-section-3.2](https://tools.ietf.org/html/rfc6838#section-3.2). Ideally the format provider will actually
+you are using a format that is not on that list we recommend you use
+[custom content type](https://restcookbook.com/Resources/using-custom-content-types/).
+These typically use the `vnd.` prefix, see [RFC 6838 section-3.2](https://tools.ietf.org/html/rfc6838#section-3.2).
+Ideally the format provider will actually
 register the media type with IANA, so that other STAC clients can find it easily. But if you are only using it internally it is 
 [acceptable to not register](https://stackoverflow.com/questions/29121241/custom-content-type-is-registering-with-iana-mandatory) 
 it. It is relatively easy to [register](https://www.iana.org/form/media-types) a `vnd` media type.
 
 ### Asset Roles
 
-[Asset roles](item-spec/item-spec.md#asset-roles) are used to describe what each asset is used for. They are particular useful 
+[Asset roles](commons/assets.md#roles) are used to describe what each asset is used for. They are particular useful 
 when several assets have the same media type, such as when an Item has a multispectral analytic asset, a 3-band full resolution 
 visual asset, a down-sampled preview asset, and a cloud mask asset, all stored as Cloud Optimized GeoTIFF (COG) images. It is 
 recommended to use at least one role for every asset available, and using multiple roles often makes sense. For example you'd use
 both `data` and `reflectance` if your main data asset is processed to reflectance, or `metadata` and `cloud` for an asset that 
 is a cloud mask, since a mask is considered a form of metadata (it's information about the data). Or if a single asset represents
 several types of 'unusable data' it might include `metadata`, `cloud`, `cloud-shadow` and `snow-ice`. If there is not a clear
-role in the [Asset Role Types](item-spec/item-spec.md#asset-role-types) or the following list then just pick a sensible name for 
-the role. And you are encouraged to add it to the list below and/or in an extension if you think the new role will have broader 
-applicability. 
+role then just pick a sensible name for the role. You are encouraged to add it to the list below and/or
+in an extension if you think the new role will have broader applicability. 
 
 #### List of Asset Roles
 
-In addition to the thumbnail, data and overview [roles listed](item-spec/item-spec.md#asset-role-types) in the Item spec, there
-are a number of roles that are emerging in practice, but don't have enough widespread use to justify standardizing them. So if
-you want to re-use other roles then try to find them on the list below, and also feel free to suggest more to include here.
+There are a number of roles that are commonly used in practice, which we recommend to reuse as much as possible.
+If you can't find suitable roles, feel free to suggest more.
 
-The 'source' field lists where the role comes from. The ones the say Item Spec are the only 'official' roles that are fully
-standardized. In time others on this list may migrate to a more 'official' list. Those that say 'best practice' are just from this 
-doc, the listing is the table below. The ones from extensions are mostly just 'best practices' in the extensions, as there are few
-actual role requirements.
+| Role Name  | Description                                                                                                                                                                                                                                                                                     |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| data       | The data itself, excluding the metadata.                                                                                                                                                                                                                                                        |
+| metadata   | Metadata sidecar files describing the data, for example a Landsat-8 MTL file.                                                                                                                                                                                                                   |
+| thumbnail  | An asset that represents a thumbnail of the Item or Collection, typically a RGB or grayscale image primarily for human consumption, low resolution, restricted spatial extent, and displayable in a web browser without scripts or extensions.                                                  |
+| overview   | An asset that represents a more detailed overview of the Item or Collection, typically a RGB or grayscale image primarily for human consumption, medium resolution, full spatial extent, in a file format that's can be visualized easily (e.g., Cloud-Optimized GeoTiff).                      |
+| visual     | An asset that represents a detailed overview of the Item or Collection, typically a RGB or grayscale image primarily for human consumption, high or native resolution (often sharpened), full spatial extent, in a file format that's can be visualized easily (e.g., Cloud-Optimized GeoTiff). |
+| date       | An asset that provides per-pixel acquisition timestamps, typically serving as metadata to another asset                                                                                                                                                                                         |
+| graphic    | Supporting plot, illustration, or graph associated with the Item                                                                                                                                                                                                                                |
+| data-mask  | File indicating if corresponding pixels have Valid data and various types of invalid data                                                                                                                                                                                                       |
+| snow-ice   | Points to a file that indicates whether a pixel is assessed as being snow/ice or not.                                                                                                                                                                                                           |
+| land-water | Points to a file that indicates whether a pixel is assessed as being land or water.                                                                                                                                                                                                             |
+| water-mask | Points to a file that indicates whether a pixel is assessed as being water (e.g. flooding map).                                                                                                                                                                                                 |
+| iso-19115  | Points to an [ISO 19115](https://www.iso.org/standard/53798.html) metadata file                                                                                                                                                                                                                 |
 
-| Role Name | Source | Description                                                            |
-| --------- | -------------|----------------------------------------------------------------------- |
-| thumbnail | [Item Spec](item-spec/item-spec.md#asset-role-types) | An asset that represents a thumbnail of the item, typically a true color image (for items with assets in the visible wavelengths), lower-resolution (typically smaller 600x600 pixels), and typically a JPEG or PNG (suitable for display in a web browser). Multiple assets may have this purpose, but it recommended that the `type` and `roles` be unique tuples. For example, Sentinel-2 L2A provides thumbnail images in both JPEG and JPEG2000 formats, and would be distinguished by their media types. |
-| data      | [Item Spec](item-spec/item-spec.md#asset-role-types) |  The data itself. This is a suggestion for a common role for data files to be used in case data providers don't come up with their own names and semantics. |
-| metadata  | [Item Spec](item-spec/item-spec.md#asset-role-types) |  A metadata sidecar file describing the data in this item, for example the Landsat-8 MTL file. |
-| overview  | Best Practice | An asset that represents a possibly larger view than the thumbnail of the Item, for example, a true color composite of multi-band data. |
-| visual    | Best Practice |  An asset that is a full resolution version of the data, processed for visual use (RGB only, often sharpened ([pan-sharpened](https://en.wikipedia.org/wiki/Pansharpened_image) and/or using an [unsharp mask](https://en.wikipedia.org/wiki/Unsharp_masking))). |
-| date | Best Practice | An asset that provides per-pixel acquisition timestamps, typically serving as metadata to another asset |
-| graphic | Best Practice | Supporting plot, illustration, or graph associated with the Item |
-| data-mask | Best Practice | File indicating if corresponding pixels have Valid data and various types of invalid data |
-| snow-ice | Best Practice | Points to a file that indicates whether a pixel is assessed as being snow/ice or not. |
-| land-water | Best Practice | Points to a file that indicates whether a pixel is assessed as being land or water. |
-| water-mask | Best Practice | Points to a file that indicates whether a pixel is assessed as being water (e.g. flooding map). | iso-19139 | Best Practice | Points to an [ISO 19139](https://www.iso.org/standard/67253.html) metadata xml file |
-| iso-19115 | Best Practice | Points to an [ISO 19115](https://www.iso.org/standard/53798.html) metadata file |
-| reflectance, temperature, saturation, cloud, cloud-shadow | [EO Extension](https://github.com/stac-extensions/eo/blob/main/README.md#best-practices) | See the [table](https://github.com/stac-extensions/eo/blob/main/README.md#best-practices) in EO for more information, and the definitive list of roles related to EO. |
-| incidence-angle, azimuth, sun-azimuth, sun-elevation, terrain-shadow, terrain-occlusion, terrain-illumination | [View Extension](https://github.com/stac-extensions/view/blob/main/README.md#best-practices) | See the [table](https://github.com/stac-extensions/view/blob/main/README.md#best-practices) in View for more information, and the definitive list of roles related to viewing angles. |
-| local-incidence-angle, noise-power, amplitude, magnitude, sigma0, beta0, gamma0, date-offset, covmat, prd | [SAR Extension](https://github.com/stac-extensions/sar/blob/main/README.md#best-practices) | See the [table](https://github.com/stac-extensions/sar/blob/main/README.md#best-practices) in SAR for more information. , and the definitive list of roles related to SAR. |
+Additional roles are defined in the various extensions, for example:
 
-Some of the particular asset roles also have some best practices:
+- [EO Extension](https://github.com/stac-extensions/eo/blob/main/README.md#best-practices)
+- [View Extension](https://github.com/stac-extensions/view/blob/main/README.md#best-practices)
+- [SAR Extension](https://github.com/stac-extensions/sar/blob/main/README.md#best-practices)
 
-##### Thumbnail
+The roles `thumbnail`, `overview` and `visual` are very similar. To make choosing the right role easier, please consult the table below.
 
-Thumbnails are typically used to give quick overview, often embedded in a list of items. So think small with these, as 
-keeping the size down helps it load fast, and the typical display of a thumbnail won't benefit from a large size. Often 256 by
-256 pixels is used as a default. Generally they should be no more than 600 by 600 pixels. Some implementors provide different sizes 
-of thumbnails - using something like thumbnail-small and thumbnail-large, with a small one being 100x100 pixels or less, for truly 
-fast rendering in a small image. Be sure to name one just 'thumbnail' though, as that's the default most STAC clients will look for.
+They should usually be a RGB or grayscale image, which are primarily intended for human consumption, e.g., through a web browser.
+It can complement assets where one band is per file (like Landsat), by providing the key display bands combined,
+or can complement assets where many non-visible bands are included, by being a lighter weight file that just has the bands needed for display.
 
-Thumbnails should be PNG, JPEG, or WebP, so that they can easily display in browsers, and they should be a true color composite 
-(red, green, and blue bands) if there are multiple bands.
+Roles should also be combined, e.g., `thumbnail` and `overview` if the recommendations are all met.
 
-If your data for the Item does not come with a thumbnail already we do recommend generating one, which can be done quite easily. 
-[GDAL](https://gdal.org/) and [Rasterio](https://rasterio.readthedocs.io/en/latest/) both make this very easy - if you need help
-just ask on the [STAC Gitter](https://gitter.im/SpatioTemporal-Asset-Catalog/Lobby).
+If your data for the Item does not come with a thumbnail already we do recommend generating one, which can be done quite easily with [GDAL](https://gdal.org/) or [Rasterio](https://rasterio.readthedocs.io/en/latest/).
 
-##### Overview
+| Role                           | thumbnail                                           | overview                                                           | visual                                                                                       |
+| ------------------------------ | --------------------------------------------------- | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| Resolution                     | Low                                                 | Medium                                                             | Native / High                                                                                |
+| *Recommended* Image dimensions | < 600x600 px                                        | < 5000x500 px                                                      | any size                                                                                     |
+| *Recommended* File Formats     | PNG, JPEG, GIF, WebP                                | PNG, JPEG, WebP, COG                                               | COG, other cloud-native and/or tiled file formats with pyramids, ...                         |
+| Spatial extent                 | Limited                                             | Full                                                               | Full                                                                                         |
+| Use case                       | Quick overview, often in lists of items/collections | Display for a single Item/Collection, sometimes shown on a web map | Display for a single Item/Collection, often shown on a map, may be displayed in GIS software |
 
-An overview is a high-definition browse image of the dataset, giving the user more of a sense of the data than a thumbnail could.
-It's something that can be easily displayed on a map without tiling, or viewed at full screen resolution (but not zoomed in). Similar
-to a thumbnail it should be PNG, JPEG or WebP, for easy display in browsers, and should be a true color composite 
-(red, green, and blue bands) if there are multiple bands. The sizes could range from the high end of a thumbnail (600 by 600 pixels) 
-to a few thousand pixels on each side.
+### Bands
 
-###### Visual
+As of STAC 1.1, the `bands` array can be used in combination with property inheritance to provide users with more flexibility.
+The following best practices should be considered, especially when migrating from `eo:bands` and `raster:bands`.
 
-A visual asset is a full-resolution version of the data, but one that is optimized for display purposes. It can be in any file format, 
-but Cloud Optimized GeoTIFF's are preferred, since the inner pyramids and tiles enable faster display of the full resolution data. 
-It is typically an composite of red, blue and green bands, often with a nice color curve and sharpening for enhanced display. It should
-be possible to open up on non-specialist software and display just fine. It can complement assets where one band is per file (like landsat),
-by providing the key display bands combined, or can complement assets where many non-visible bands are included, by being a lighter weight
-file that just has the bands needed for display
+#### Single band
+
+Single band assets can be defined in two ways.
+Properties can be defined in the `bands` array or in the assets directly.
+
+Example using the `bands` array:
+
+```json
+{
+  "assets": {
+    "example": {
+      "href": "example.tif",
+      "bands": [
+        {
+          "data_type": "uint16",
+          "eo:common_name": "red",
+          "raster:spatial_resolution": 10
+        }
+      ]
+    }
+  }
+}
+```
+
+Example without bands:
+
+```json
+{
+  "assets": {
+    "example": {
+      "href": "example.tif",
+      "data_type": "uint16",
+      "eo:common_name": "red",
+      "raster:spatial_resolution": 10
+    }
+  }
+}
+```
+
+STAC recommands that single band assets should only use the `bands` array in the following cases:
+
+1. **It's important in to convey that a band is present in the asset.**
+   - This is the case if the data access mechanism requires you to specify the name of index of the band to retrieve the data,
+     then the band should be specified as such.
+   - This is also the case if the band has a specific name.
+     The `name` property is only available in bands and as such can't be specified for the Asset.
+2. **It is important that the (often spectral) band is part of a set of bands.**
+   - For example, if the `bands` array is exposed in the Collection Summaries,
+     there should be bands defined in the Items or Item Assets as otherwise there's nothing to summarize.
+3. **Individual bands are repeated in different assets.**
+   - This may happen if you provide assets with different resolutions or file formats.
+     The `name` property with the same value should be used so that users can identify that the bands are the same.
+     It also enables clients to easily combine and summarize the bands.
+
+#### Multiple bands
+
+Generally, all properties that have the same value across all bands should not be listed in bands but in assets directly.
+
+For example, if your bands in an asset is defined as follows:
+
+```json
+{
+  "assets": {
+    "example": {
+      "href": "example.tif",
+      "bands": [
+        {
+          "name": "r",
+          "eo:common_name": "red",
+          "data_type": "uint16",
+          "raster:spatial_resolution": 10
+        },
+        {
+          "name": "g",
+          "eo:common_name": "green",
+          "data_type": "uint16",
+          "raster:spatial_resolution": 10
+        },
+        {
+          "name": "b",
+          "eo:common_name": "blue",
+          "data_type": "uint16",
+          "raster:spatial_resolution": 10
+        }
+      ]
+    }
+  }
+}
+```
+
+The `data_type` and `raster:spatial_resolution` has the same value for all bands.
+As such you can deduplicate those properties and list them in the asset directly:
+
+```json
+{
+  "assets": {
+    "example": {
+      "href": "example.tif",
+      "data_type": "uint16",
+      "raster:spatial_resolution": 10,
+      "bands": [
+        {
+          "name": "r",
+          "eo:common_name": "red"
+        },
+        {
+          "name": "g",
+          "eo:common_name": "green"
+        },
+        {
+          "name": "b",
+          "eo:common_name": "blue"
+        }
+      ]
+    }
+  }
+}
+```
+
+#### Band migration
+
+It should be relatively simple to migrate from STAC 1.0 (i.e. `eo:bands` and/or `raster:bands`) to the new `bands` array.
+
+Usually, you can simply merge the each object on a by-index basis.
+Nevertheless, you should consider deduplicating properties with the same values across all bands to the Asset.
+For some fields you need to add the extension prefix of the `eo` or `raster` extension to the property name.
+
+STAC 1.0 example:
+
+```json
+{
+  "assets": {
+    "example": {
+      "href": "example.tif",
+      "eo:bands": [
+        {
+          "name": "r",
+          "common_name": "red"
+        },
+        {
+          "name": "g",
+          "common_name": "green"
+        },
+        {
+          "name": "b",
+          "common_name": "blue"
+        },
+        {
+          "name": "nir",
+          "common_name": "nir"
+        }
+      ],
+      "raster:bands": [
+        {
+          "data_type": "uint16",
+          "spatial_resolution": 10,
+          "sampling": "area"
+        },
+        {
+          "data_type": "uint16",
+          "spatial_resolution": 10,
+          "sampling": "area"
+        },
+        {
+          "data_type": "uint16",
+          "spatial_resolution": 10,
+          "sampling": "area"
+        },
+        {
+          "data_type": "uint16",
+          "spatial_resolution": 30,
+          "sampling": "area"
+        }
+      ]
+    }
+  }
+}
+```
+
+After migrating to STAC 1.1 this is ideally provided as follows:
+
+```json
+{
+  "assets": {
+    "example": {
+      "href": "example.tif",
+      "data_type": "uint16",
+      "raster:sampling": "area",
+      "raster:spatial_resolution": 10,
+      "bands": [
+        {
+          "name": "r",
+          "eo:common_name": "red",
+        },
+        {
+          "name": "g",
+          "eo:common_name": "green"
+        },
+        {
+          "name": "b",
+          "eo:common_name": "blue"
+        },
+        {
+          "name": "nir",
+          "eo:common_name": "nir",
+          "raster:spatial_resolution": 30
+        }
+      ]
+    }
+  }
+}
+```
+
+The following was done:
+
+- The arrays have been merged into a single property `bands`.
+- The properties `common_name` and `spatial_resolution` were renamed to include the extension prefixes.
+- The properties `data_type` and `raster:sampling` (renamed from `sampling`) were deduplicated to the Asset
+  as the values were the same across all bands.
+- The `spatial_resolution` was also deduplicated, i.e. `10` is provided on the asset level,
+  which is inherited by the bands unless explicitly overridden.
+  Therefore, the `nir` band overrides the value `10` with a value of `30`.
+
+As a result, the new `bands` array is more lightweight and easier to handle.
 
 ## Catalog & Collection Practices
 
 *Note: This section uses the term 'Catalog' (with an uppercase C) to refer to the JSON entity specified in the 
 [Catalog spec](catalog-spec/catalog-spec.md), and 'catalog' (with a lowercase c) to refer to any full STAC implementation, 
-which can be any mix of Catalogs Collections and Items.*
+which can be any mix of Catalogs, Collections, and Items.*
 
 ### Static and Dynamic Catalogs
 
@@ -476,11 +730,12 @@ if you follow these recommendations.
 3. Items should be named `<id>.json`.
 4. Sub-Catalogs or sub-Collections should be stored in subdirectories of their parent
    (and only 1 subdirectory deeper than a document's parent, e.g. `.../sample/sub1/catalog.json`).
-5. Items should be stored in subdirectories of their parent Catalog or Collection. 
-   This means that each Item and its assets are contained in a unique subdirectory.
+5. Items should be stored in subdirectories of their parent Catalog or Collection
+   if there are usually [sidecar files](https://en.wikipedia.org/wiki/Sidecar_file) stored alongside the Item.
+   This means that each Item and its assets are contained in a unique subdirectory unless this would regularly lead to a single Item in a directory.
 6. Limit the number of Items in a Catalog or Collection, grouping / partitioning as relevant to the dataset.
 7. Use structural elements (Catalog and Collection) consistently across each 'level' of your hierarchy.
-   For example, if levels 2 and 4 of the hierarchy only contain Collections, 
+   For example, if levels 2 and 4 of the hierarchy only contain Collections,
    don't add a Catalog at levels 2 and 4.
 
 One further recommendation to help tools is to always include the 'title' field when including a link, especially in the 
@@ -528,9 +783,9 @@ while a value of 15 to 40 would tell them that it's oblique imagery, or 0 to 60 
 a Collection with lots of different look angles. 
 
 - Fields that have only one or a handful of values are also great to summarize. Collections with a single satellite may
-use a single [`gsd`](item-spec/common-metadata.md#instrument) field in the summary, and it's quite useful for users to know
+use a single [`gsd`](commons/common-metadata.md#instrument) field in the summary, and it's quite useful for users to know
 that all data is going to be the same resolution. Similarly it's useful to know the names of all the 
-[`platform` values](item-spec/common-metadata.md#instrument) that are used in the Collection. 
+[`platform` values](commons/common-metadata.md#instrument) that are used in the Collection. 
 
 - It is less useful to summarize fields that have numerous different discrete values that can't easily be represented
 in a range. These will mostly be string values, when there aren't just a handful of options. For example if you had a 
@@ -538,7 +793,7 @@ in a range. These will mostly be string values, when there aren't just a handful
 understand more intuitively where a shot was taken. If your Collection has millions of Items, or even hundreds, you don't want
 to include all the different location string values in a summary. 
 
-- Fields that consist of arrays are more of a judgement call. For example [`instruments`](item-spec/common-metadata.md#instrument)
+- Fields that consist of arrays are more of a judgement call. For example [`instruments`](commons/common-metadata.md#instrument)
 is straightforward and recommended, as the elements of the array are a discrete set of options. On the other hand 
 [`proj:transform`](https://github.com/stac-extensions/projection/blob/main/README.md#projtransform)
 makes no sense to summarize, as the union of all the values
@@ -546,11 +801,11 @@ in the array are meaningless, as each Item is describing its transform, so combi
 So if the values contained in the array are independently meaningful (not interconnected) and there aren't hundreds of potential
 values then it is likely a good candidate to summarize.
 
-We do highly recommend including an [`eo:bands`](https://github.com/stac-extensions/eo/blob/main/README.md#eobands)
-summary if your Items implement `eo:bands`, 
+We do highly recommend including a [`bands`](./commons/common-metadata.md#bands)
+summary if your Items implement `bands`, 
 especially if it represents just one satellite or constellation. This should be a union of all the potential bands that you 
-have in assets. It is ok to only add the summary at the Collection level without putting an explicit `eo:bands` summary at the 
-`properties` level of an Item, since that is optional. This gives users of the Collection a sense of the sensor capabilities without 
+have in assets. It is ok to only add the summary at the Collection level without putting `bands` at the 
+`properties` level of an Item. This gives users of the Collection a sense of the sensor capabilities without 
 having to examine specific Items or aggregate across every Item.
 
 Note that the ranges of summaries don't have to be exact. If you are publishing a catalog that is constantly updating with
@@ -561,10 +816,10 @@ just meant to give users a sense of what types of values they could expect.
 
 ### Use of links
 
-The STAC specifications allow both relative and absolute links, and says that `self` links are not required, but are 
-strongly recommended. This is what the spec must say to enable the various use cases, but there is more subtlety for when it 
-is essential to use different link types. The best practice is to use one of the below catalog types, applying the link 
-recommendations consistently, instead of just haphazardly applying relative links in some places and absolute ones in other places.
+The STAC specifications allow both relative and absolute links, and it is important to choose the correct link types so that
+your STAC catalogs are easy to explore and resilient to any future changes to their layouts. The best practice is to use one
+of the below catalog types, applying the link recommendations consistently, instead of just haphazardly applying relative links
+in some places and absolute ones in other places.
 
 #### Self-contained Catalogs
 
@@ -633,7 +888,7 @@ multiple sources to achieve this.
 
 So if you are writing a STAC client it is recommended to start with just supporting these two types of published catalogs. In 
 turn, if your data is published online publicly or for use on an intranet then following these recommendations will ensure
-that a wider range of clients will work with it. 
+that a wider range of clients will work with it.
 
 ### Using Relation Types
 
@@ -643,18 +898,26 @@ with the `type` field) to communicate the structure and content of related entit
 Types](https://www.iana.org/assignments/link-relations/link-relations.xhtml) as much as possible. The following table describes
 a number of the common official relations that are used in production STAC implementations.
 
-| Type      | Description                                                  |
-| --------- | ------------------------------------------------------------ |
-| alternate | It is recommended that STAC Items are also available as HTML, and should use this rel with `"type" : "text/html"` to tell clients where they can get a version of the Item or Collection to view in a browser. See [STAC on the Web in Best Practices](#stac-on-the-web) for more information. |
-| canonical | The URL of the [canonical](https://en.wikipedia.org/wiki/Canonical_link_element) version of the Item or Collection. API responses and copies of catalogs should use this to inform users that they are direct copy of another STAC Item, using the canonical rel to refer back to the primary location. |
-| via       | The URL of the source metadata that this STAC Item or Collection is created from. Used similarly to canonical, but refers back to a non-STAC record (Landsat MTL, Sentinel tileInfo.json, etc) |
-| prev      | Indicates that the link's context is a part of a series, and that the previous in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs/Collections. |
-| next      | Indicates that the link's context is a part of a series, and that the next in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs/Collections. |
-| preview   | Refers to a resource that serves as a preview (see [RFC 6903, sec. 3](https://tools.ietf.org/html/rfc6903#section-3)), usually a lower resolution thumbnail. In STAC this would usually be the same URL as the [thumbnail](#thumbnail) asset, but adding it as a link in addition enables OGC API clients that can't read assets to make use of it. It also adds support for thumbnails to STAC Catalogs as they can't list assets. |
+| Type         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| alternate    | It is recommended that STAC Items are also available as HTML, and should use this rel with `"type" : "text/html"` to tell clients where they can get a version of the Item or Collection to view in a browser. See [STAC on the Web in Best Practices](#stac-on-the-web) for more information.                                                                                                                                                |
+| canonical    | The URL of the [canonical](https://en.wikipedia.org/wiki/Canonical_link_element) version of the Item or Collection. API responses and copies of catalogs should use this to inform users that they are direct copy of another STAC Item, using the canonical rel to refer back to the primary location.                                                                                                                                       |
+| via          | The URL of the source metadata that this STAC Item or Collection is created from. Used similarly to canonical, but refers back to a non-STAC record (Landsat MTL, Sentinel metadata XML, etc)                                                                                                                                                                                                                                                 |
+| prev         | Indicates that the link's context is a part of a series, and that the previous in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs/Collections.                                                                                                                                                                                                                                  |
+| next         | Indicates that the link's context is a part of a series, and that the next in the series is the link target. Typically used in STAC by API's, to return smaller groups of Items or Catalogs/Collections.                                                                                                                                                                                                                                      |
+| preview      | Refers to a resource that serves as a preview (see [RFC 6903, sec. 3](https://tools.ietf.org/html/rfc6903#section-3)), usually a lower resolution thumbnail. In STAC this would usually be the same URL as the [thumbnail](#list-of-asset-roles) asset, but adding it as a link in addition enables OGC API clients that can't read assets to make use of it. It also adds support for thumbnails to STAC Catalogs as they can't list assets. |
+| derived_from | URL to a STAC Entity that was used as input data in the creation of this Entity.                                                                                                                                                                                                                                                                                                                                                              |
 
 Being liberal with the `links` also means that it's ok to have repeated links with the same `href`. For example the
 `parent` and `root` relation types will point at the same file when the child is directly below the root, and it is
 recommended to include both. 
+
+#### Derived from relation (`derived_from`)
+
+A full provenance model is far beyond the scope of STAC,
+and the goal is to align with any good independent spec that comes along for that.
+But the `derived_from` field is seen as a way to encourage fuller specs and at least start a linking
+structure that can be used as a jumping off point for more experiments in provenance tracking.
 
 ### Versioning for Catalogs
 
@@ -729,7 +992,7 @@ database, but it could just as easily be a server-based process.
 
 Any tool that crawls a STAC implementation or encounters a STAC file in the wild needs a clear way to determine if it is an Item, 
 Collection or Catalog. As of 1.0.0 this is done primarily
-with the `type` field, and secondarily in Items with `stac_version`, or optionally the `rel` of the link to it.
+with the `type` field, and secondarily in Items with `stac_version`, or optionally with the `rel` of the link to it.
 
 ```shell
 if type is 'Collection'
@@ -744,10 +1007,11 @@ else
 
 When crawling a STAC implementation, one can also make use of the [relation type](catalog-spec/catalog-spec.md#relation-types
 ) (`rel` field) when following a link. If it is an `item` rel type then the file must be a STAC Item. If it is `child`, `parent` or
-`root` then it must be a Catalog or a Collection, though the final determination between the two requires looking at the the `type` field
-in the Catalog or Collection JSON that is linked to. Note that there is also a `type` field in STAC Link and Asset objects, but that
-is for the Media Type, but there are not specific media types for Catalog and Collection. See the sections on [STAC media 
-types](catalog-spec/catalog-spec.md#media-types), and [Asset media types](item-spec/item-spec.md#asset-media-type) for more information.
+`root` then it must be a Catalog or a Collection, though the final determination between the two requires looking at the `type` field
+in the Catalog or Collection JSON that it is linked to. Note that there is also a `type` field in STAC Link and Asset objects, but that
+is for the Media Type, but there are not specific media types for Catalog and Collection.
+See the sections on [STAC media types](commons/links.md#stac-media-types),
+and [Asset media types](commons/assets.md#media-types) for more information.
 
 In versions of STAC prior to 1.0 the process was a bit more complicated, as there was no `type` field for catalogs and collections.
 See [this issue comment](https://github.com/radiantearth/stac-spec/issues/889#issuecomment-684529444) for a heuristic that works

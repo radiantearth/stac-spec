@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.stacspec.org/v1.0.0/item-spec/json-schema/item.json#",
+  "$id": "https://schemas.stacspec.org/v1.1.0-beta.1/item-spec/json-schema/item.json",
   "title": "STAC Item",
   "type": "object",
   "description": "This object represents the metadata for an item in a SpatioTemporal Asset Catalog.",
@@ -10,25 +10,6 @@
     }
   ],
   "definitions": {
-    "common_metadata": {
-      "allOf": [
-        {
-          "$ref": "basics.json"
-        },
-        {
-          "$ref": "datetime.json"
-        },
-        {
-          "$ref": "instrument.json"
-        },
-        {
-          "$ref": "licensing.json"
-        },
-        {
-          "$ref": "provider.json"
-        }
-      ]
-    },
     "core": {
       "allOf": [
         {
@@ -93,7 +74,7 @@
             "stac_version": {
               "title": "STAC version",
               "type": "string",
-              "const": "1.0.0"
+              "const": "1.1.0-beta.1"
             },
             "stac_extensions": {
               "title": "STAC extensions",
@@ -112,12 +93,7 @@
               "minLength": 1
             },
             "links": {
-              "title": "Item links",
-              "description": "Links to item relations",
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/link"
-              }
+              "$ref": "#/definitions/links"
             },
             "assets": {
               "$ref": "#/definitions/assets"
@@ -125,7 +101,7 @@
             "properties": {
               "allOf": [
                 {
-                  "$ref": "#/definitions/common_metadata"
+                  "$ref": "common.json"
                 },
                 {
                   "anyOf": [
@@ -153,72 +129,177 @@
               ]
             }
           },
-          "if": {
-            "properties": {
-              "links": {
-                "contains": {
-                  "required": [
-                    "rel"
-                  ],
+          "$comment": "Rules enforcement for STAC Item",
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "links": {
+                    "contains": {
+                      "required": [
+                        "rel"
+                      ],
+                      "properties": {
+                        "rel": {
+                          "const": "collection"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "collection"
+                ],
+                "properties": {
+                  "collection": {
+                    "title": "Collection ID",
+                    "description": "The ID of the STAC Collection this Item references to.",
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "collection": {
+                    "not": {}
+                  }
+                }
+              }
+            },
+            {
+              "$comment": "The if-then-else below checks whether the bands field is given in assets or not. If not, allows bands in properties (then), otherwise, disallows bands in properties (else).",
+              "if": {
+                "required": [
+                  "assets"
+                ],
+                "properties": {
+                  "assets": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "properties": {
+                        "bands": false
+                      }
+                    }
+                  }
+                }
+              },
+              "then": {
+                "properties": {
                   "properties": {
-                    "rel": {
-                      "const": "collection"
+                    "anyOf": [
+                      {
+                        "$ref": "bands.json"
+                      },
+                      {
+                        "properties": {
+                          "bands": false
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "properties": {
+                    "properties": {
+                      "bands": false
                     }
                   }
                 }
               }
             }
-          },
-          "then": {
-            "required": [
-              "collection"
-            ],
-            "properties": {
-              "collection": {
-                "title": "Collection ID",
-                "description": "The ID of the STAC Collection this Item references to.",
-                "type": "string",
-                "minLength": 1
-              }
-            }
-          },
-          "else": {
-            "properties": {
-              "collection": {
-                "not": {}
-              }
-            }
-          }
+          ]
         }
       ]
     },
-    "link": {
-      "type": "object",
-      "required": [
-        "rel",
-        "href"
-      ],
-      "properties": {
-        "href": {
-          "title": "Link reference",
-          "type": "string",
-          "format": "iri-reference",
-          "minLength": 1
-        },
-        "rel": {
-          "title": "Link relation type",
-          "type": "string",
-          "minLength": 1
-        },
-        "type": {
-          "title": "Link type",
-          "type": "string"
-        },
-        "title": {
-          "title": "Link title",
-          "type": "string"
-        }
+    "links": {
+      "title": "Item links",
+      "description": "Links to item relations",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/link"
       }
+    },
+    "link": {
+      "allOf": [
+        {
+          "type": "object",
+          "required": [
+            "rel",
+            "href"
+          ],
+          "properties": {
+            "href": {
+              "title": "Link reference",
+              "type": "string",
+              "format": "iri-reference",
+              "minLength": 1
+            },
+            "rel": {
+              "title": "Link relation type",
+              "type": "string",
+              "minLength": 1
+            },
+            "type": {
+              "title": "Link type",
+              "type": "string"
+            },
+            "title": {
+              "title": "Link title",
+              "type": "string"
+            },
+            "method": {
+              "title": "Link method",
+              "type": "string",
+              "pattern": "^[A-Z]+$",
+              "default": "GET"
+            },
+            "headers": {
+              "title": "Link headers",
+              "type": "object",
+              "additionalProperties": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              }
+            },
+            "body": {
+              "title": "Link body",
+              "$comment": "Any type is allowed."
+            }
+          },
+          "$comment": "Link with relationship `self` must be absolute URI",
+          "if": {
+            "properties": {
+              "rel": {
+                "const": "self"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "href": {
+                "format": "iri"
+              }
+            }
+          }
+        },
+        {
+          "$ref": "common.json"
+        }
+      ]
     },
     "assets": {
       "title": "Asset links",
@@ -264,7 +345,7 @@
           }
         },
         {
-          "$ref": "#/definitions/common_metadata"
+          "$ref": "common.json"
         }
       ]
     }

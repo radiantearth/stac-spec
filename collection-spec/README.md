@@ -7,8 +7,8 @@ Collection can have parent Catalog and Collection objects, as well as child Item
 and Collection objects. These parent-child relationships among objects of these types, as there is no 
 subtyping relationship between the Collection and Catalog types, even through they share field names.
 
-A Collection provides a flexible mechanism to provide additional metadata about a set of Items.  
-Generally, is used to describe a set of assets that 
+A Collection provides a flexible mechanism to provide additional metadata about a set of Items. 
+Generally, it is used to describe a set of assets that 
 are defined with the same properties and share higher-level metadata. There is no 
 standardized name for this sort of logical grouping, but other places it is called a "
 dataset series" (ESA, ISO 19115), "collection" (CNES, NASA), "dataset" (JAXA), or "product"
@@ -44,3 +44,7 @@ a collection and be able to adapt it to most any data model.
 
 Implementors are encouraged to do what makes sense for them, and to check out the [examples](../examples/) and 
 [other implementations](https://stacindex.org/catalogs) for current best practices.
+> \[!NOTE]
+> In cases where a set of Collections is grouped together (e.g. for providing search results),
+> the [CollectionCollection](https://github.com/radiantearth/stac-api-spec/blob/main/fragments/collectioncollection/README.md)
+> object has been defined in the STAC API specification.

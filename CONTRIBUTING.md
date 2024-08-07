@@ -33,9 +33,9 @@ you to change the base in GitHub's PR creation page.
 select breaking changes, but after 1.0 this will change)
 
 All pull requests should submit clean markdown, which is checked by the continuous integration
-system. Please use `npm run check` locally, as described in the [next section](#check-files), 
+system. Please use `npm test` locally, as described in the [next section](#check-files), 
 to ensure that the checks on the pull request succeed. If it does not then you can look at the
-mistakes online, which are the same as running `npm run check` locally would surface.
+mistakes online, which are the same as running `npm test` locally would surface.
 
 All pull requests that modify or create JSON schema files or examples should use
 [JSON formatter](https://jsonformatter.org/) to keep files consistent across the repo. 
@@ -59,7 +59,7 @@ npm install
 Then to do the check for markdown and examples you run:
 
 ```bash
-npm run check
+npm test
 ```
 
 This will spit out the same texts that you see online, and you can then go and fix your markdown or examples.

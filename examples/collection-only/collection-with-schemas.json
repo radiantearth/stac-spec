@@ -1,7 +1,7 @@
 {
-  "stac_version": "1.0.0",
+  "stac_version": "1.1.0-beta.1",
   "stac_extensions": [
-    "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/eo/v2.0.0-beta.1/schema.json",
     "https://stac-extensions.github.io/sat/v1.0.0/schema.json",
     "https://stac-extensions.github.io/view/v1.0.0/schema.json"
   ],
@@ -9,7 +9,7 @@
   "type": "Collection",
   "title": "Sentinel-2 MSI: MultiSpectral Instrument, Level-2A",
   "description": "The SENTINEL-2 mission is a land monitoring constellation of two satellites each equipped with a MSI (Multispectral Imager) instrument covering 13 spectral bands providing high resolution optical imagery (i.e., 10m, 20m, 60 m) every 10 days with one satellite and 5 days with two satellites",
-  "license": "proprietary",
+  "license": "other",
   "extent": {
     "spatial": {
       "bbox": [
@@ -81,7 +81,7 @@
     "instruments": {
       "type": "string",
       "const": "msi",
-      "title": "Multispectral Intrument",
+      "title": "Multispectral Instrument",
       "count": 6613431
     },
     "resto:landcover": {
@@ -199,79 +199,113 @@
         }
       ]
     },
-    "eo:bands": [
+    "bands": [
       {
         "title": "B1",
-        "common_name": "coastal",
-        "center_wavelength": 4.439,
+        "eo:common_name": "coastal",
+        "eo:center_wavelength": 0.4439,
         "gsd": 60
       },
       {
         "title": "B2",
-        "common_name": "blue",
-        "center_wavelength": 4.966,
+        "eo:common_name": "blue",
+        "eo:center_wavelength": 0.4966,
         "gsd": 10
       },
       {
         "title": "B3",
-        "common_name": "green",
-        "center_wavelength": 5.6,
+        "eo:common_name": "green",
+        "eo:center_wavelength": 0.56,
         "gsd": 10
       },
       {
         "title": "B4",
-        "common_name": "red",
-        "center_wavelength": 6.645,
+        "eo:common_name": "red",
+        "eo:center_wavelength": 0.6645,
         "gsd": 10
       },
       {
         "title": "B5",
-        "center_wavelength": 7.039,
+        "eo:center_wavelength": 0.7039,
         "gsd": 20
       },
       {
         "title": "B6",
-        "center_wavelength": 7.402,
+        "eo:center_wavelength": 0.7402,
         "gsd": 20
       },
       {
         "title": "B7",
-        "center_wavelength": 7.825,
+        "eo:center_wavelength": 0.7825,
         "gsd": 20
       },
       {
         "title": "B8",
-        "common_name": "nir",
-        "center_wavelength": 8.351,
+        "eo:common_name": "nir",
+        "eo:center_wavelength": 0.8351,
         "gsd": 10
       },
       {
         "title": "B8A",
-        "center_wavelength": 8.648,
+        "eo:center_wavelength": 0.8648,
         "gsd": 20
       },
       {
         "title": "B9",
-        "center_wavelength": 9.45,
+        "eo:center_wavelength": 0.945,
         "gsd": 60
       },
       {
         "title": "B10",
-        "center_wavelength": 1.3735,
+        "eo:center_wavelength": 0.13735,
         "gsd": 60
       },
       {
         "title": "B11",
-        "common_name": "swir16",
-        "center_wavelength": 1.6137,
+        "eo:common_name": "swir16",
+        "eo:center_wavelength": 0.16137,
         "gsd": 20
       },
       {
         "title": "B12",
-        "common_name": "swir22",
-        "center_wavelength": 2.2024,
+        "eo:common_name": "swir22",
+        "eo:center_wavelength": 0.22024,
         "gsd": 20
       }
     ]
+  },
+  "item_assets": {
+    "B1": {
+      "title": "Band 1 (coastal)",
+      "type": "image/tiff; application=geotiff",
+      "roles": [
+        "data",
+        "visual"
+      ]
+    },
+    "B2": {
+      "title": "Band 2 (blue)",
+      "type": "image/tiff; application=geotiff",
+      "roles": [
+        "data",
+        "visual"
+      ]
+    },
+    "B3": {
+      "title": "Band 3 (green)",
+      "type": "image/tiff; application=geotiff",
+      "roles": [
+        "data",
+        "visual"
+      ]
+    },
+    "B4": {
+      "title": "Band 4 (red)",
+      "type": "image/tiff; application=geotiff",
+      "roles": [
+        "data",
+        "visual"
+      ]
+    }
   }
 }

@@ -1,8 +1,8 @@
 {
-  "stac_version": "1.0.0",
+  "stac_version": "1.1.0-beta.1",
   "stac_extensions": [
-    "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/eo/v2.0.0-beta.1/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
     "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
     "https://stac-extensions.github.io/view/v1.0.0/schema.json",
     "https://stac-extensions.github.io/remote-data/v1.0.0/schema.json"
@@ -45,6 +45,11 @@
   "properties": {
     "title": "Extended Item",
     "description": "A sample STAC Item that includes a variety of examples from the stable extensions",
+    "keywords": [
+      "extended",
+      "example",
+      "item"
+    ],
     "datetime": "2020-12-14T18:02:31.437000Z",
     "created": "2020-12-15T01:48:13.725Z",
     "updated": "2020-12-15T01:48:13.725Z",
@@ -54,7 +59,7 @@
     ],
     "gsd": 0.66,
     "eo:cloud_cover": 1.2,
-    "proj:epsg": 32659,
+    "proj:code": "EPSG:32659",
     "proj:shape": [
       5558,
       9559
@@ -115,30 +120,30 @@
       "roles": [
         "data"
       ],
-      "eo:bands": [
+      "bands": [
         {
           "name": "band1",
-          "common_name": "blue",
-          "center_wavelength": 470,
-          "full_width_half_max": 70
+          "eo:common_name": "blue",
+          "eo:center_wavelength": 0.47,
+          "eo:full_width_half_max": 70
         },
         {
           "name": "band2",
-          "common_name": "green",
-          "center_wavelength": 560,
-          "full_width_half_max": 80
+          "eo:common_name": "green",
+          "eo:center_wavelength": 0.56,
+          "eo:full_width_half_max": 80
         },
         {
           "name": "band3",
-          "common_name": "red",
-          "center_wavelength": 645,
-          "full_width_half_max": 90
+          "eo:common_name": "red",
+          "eo:center_wavelength": 0.645,
+          "eo:full_width_half_max": 90
         },
         {
           "name": "band4",
-          "common_name": "nir",
-          "center_wavelength": 800,
-          "full_width_half_max": 152
+          "eo:common_name": "nir",
+          "eo:center_wavelength": 0.8,
+          "eo:full_width_half_max": 152
         }
       ]
     },
@@ -157,31 +162,31 @@
       "roles": [
         "visual"
       ],
-      "eo:bands": [
+      "bands": [
         {
           "name": "band3",
-          "common_name": "red",
-          "center_wavelength": 645,
-          "full_width_half_max": 90
+          "eo:common_name": "red",
+          "eo:center_wavelength": 0.645,
+          "eo:full_width_half_max": 90
         },
         {
           "name": "band2",
-          "common_name": "green",
-          "center_wavelength": 560,
-          "full_width_half_max": 80
+          "eo:common_name": "green",
+          "eo:center_wavelength": 0.56,
+          "eo:full_width_half_max": 80
         },
         {
           "name": "band1",
-          "common_name": "blue",
-          "center_wavelength": 470,
-          "full_width_half_max": 70
+          "eo:common_name": "blue",
+          "eo:center_wavelength": 0.47,
+          "eo:full_width_half_max": 70
         }
       ]
     },
     "udm": {
       "href": "https://storage.googleapis.com/open-cogs/stac-examples/20201211_223832_CS2_analytic_udm.tif",
       "title": "Unusable Data Mask",
-      "type": "image/tiff; application=geotiff;"
+      "type": "image/tiff; application=geotiff"
     },
     "json-metadata": {
       "href": "http://remotedata.io/catalog/20201211_223832_CS2/extended-metadata.json",

@@ -1,15 +1,15 @@
 {
   "type": "Collection",
-  "stac_version": "1.0.0",
+  "stac_version": "1.1.0-beta.1",
   "stac_extensions": [
-    "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/projection/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/eo/v2.0.0-beta.1/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
     "https://stac-extensions.github.io/view/v1.0.0/schema.json"
   ],
   "id": "sentinel-2",
   "title": "Sentinel-2 MSI: MultiSpectral Instrument, Level-1C",
   "description": "Sentinel-2 is a wide-swath, high-resolution, multi-spectral\nimaging mission supporting Copernicus Land Monitoring studies,\nincluding the monitoring of vegetation, soil and water cover,\nas well as observation of inland waterways and coastal areas.\n\nThe Sentinel-2 data contain 13 UINT16 spectral bands representing\nTOA reflectance scaled by 10000. See the [Sentinel-2 User Handbook](https://sentinel.esa.int/documents/247904/685211/Sentinel-2_User_Handbook)\nfor details. In addition, three QA bands are present where one\n(QA60) is a bitmask band with cloud mask information. For more\ndetails, [see the full explanation of how cloud masks are computed.](https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-2-msi/level-1c/cloud-masks)\n\nEach Sentinel-2 product (zip archive) may contain multiple\ngranules. Each granule becomes a separate Earth Engine asset.\nEE asset ids for Sentinel-2 assets have the following format:\nCOPERNICUS/S2/20151128T002653_20151128T102149_T56MNN. Here the\nfirst numeric part represents the sensing date and time, the\nsecond numeric part represents the product generation date and\ntime, and the final 6-character string is a unique granule identifier\nindicating its UTM grid reference (see [MGRS](https://en.wikipedia.org/wiki/Military_Grid_Reference_System)).\n\nFor more details on Sentinel-2 radiometric resoltuon, [see this page](https://earth.esa.int/web/sentinel/user-guides/sentinel-2-msi/resolutions/radiometric).\n",
-  "license": "proprietary",
+  "license": "other",
   "keywords": [
     "copernicus",
     "esa",
@@ -87,127 +87,127 @@
       30,
       60
     ],
-    "proj:epsg": [
-      32601,
-      32602,
-      32603,
-      32604,
-      32605,
-      32606,
-      32607,
-      32608,
-      32609,
-      32610,
-      32611,
-      32612,
-      32613,
-      32614,
-      32615,
-      32616,
-      32617,
-      32618,
-      32619,
-      32620,
-      32621,
-      32622,
-      32623,
-      32624,
-      32625,
-      32626,
-      32627,
-      32628,
-      32629,
-      32630,
-      32631,
-      32632,
-      32633,
-      32634,
-      32635,
-      32636,
-      32637,
-      32638,
-      32639,
-      32640,
-      32641,
-      32642,
-      32643,
-      32644,
-      32645,
-      32646,
-      32647,
-      32648,
-      32649,
-      32650,
-      32651,
-      32652,
-      32653,
-      32654,
-      32655,
-      32656,
-      32657,
-      32658,
-      32659,
-      32660
+    "proj:code": [
+      "EPSG:32601",
+      "EPSG:32602",
+      "EPSG:32603",
+      "EPSG:32604",
+      "EPSG:32605",
+      "EPSG:32606",
+      "EPSG:32607",
+      "EPSG:32608",
+      "EPSG:32609",
+      "EPSG:32610",
+      "EPSG:32611",
+      "EPSG:32612",
+      "EPSG:32613",
+      "EPSG:32614",
+      "EPSG:32615",
+      "EPSG:32616",
+      "EPSG:32617",
+      "EPSG:32618",
+      "EPSG:32619",
+      "EPSG:32620",
+      "EPSG:32621",
+      "EPSG:32622",
+      "EPSG:32623",
+      "EPSG:32624",
+      "EPSG:32625",
+      "EPSG:32626",
+      "EPSG:32627",
+      "EPSG:32628",
+      "EPSG:32629",
+      "EPSG:32630",
+      "EPSG:32631",
+      "EPSG:32632",
+      "EPSG:32633",
+      "EPSG:32634",
+      "EPSG:32635",
+      "EPSG:32636",
+      "EPSG:32637",
+      "EPSG:32638",
+      "EPSG:32639",
+      "EPSG:32640",
+      "EPSG:32641",
+      "EPSG:32642",
+      "EPSG:32643",
+      "EPSG:32644",
+      "EPSG:32645",
+      "EPSG:32646",
+      "EPSG:32647",
+      "EPSG:32648",
+      "EPSG:32649",
+      "EPSG:32650",
+      "EPSG:32651",
+      "EPSG:32652",
+      "EPSG:32653",
+      "EPSG:32654",
+      "EPSG:32655",
+      "EPSG:32656",
+      "EPSG:32657",
+      "EPSG:32658",
+      "EPSG:32659",
+      "EPSG:32660"
     ],
-    "eo:bands": [
+    "bands": [
       {
         "name": "B1",
-        "common_name": "coastal",
-        "center_wavelength": 4.439
+        "eo:common_name": "coastal",
+        "eo:center_wavelength": 0.4439
       },
       {
         "name": "B2",
-        "common_name": "blue",
-        "center_wavelength": 4.966
+        "eo:common_name": "blue",
+        "eo:center_wavelength": 0.4966
       },
       {
         "name": "B3",
-        "common_name": "green",
-        "center_wavelength": 5.6
+        "eo:common_name": "green",
+        "eo:center_wavelength": 0.56
       },
       {
         "name": "B4",
-        "common_name": "red",
-        "center_wavelength": 6.645
+        "eo:common_name": "red",
+        "eo:center_wavelength": 0.6645
       },
       {
         "name": "B5",
-        "center_wavelength": 7.039
+        "eo:center_wavelength": 0.7039
       },
       {
         "name": "B6",
-        "center_wavelength": 7.402
+        "eo:center_wavelength": 0.7402
       },
       {
         "name": "B7",
-        "center_wavelength": 7.825
+        "eo:center_wavelength": 0.7825
       },
       {
         "name": "B8",
-        "common_name": "nir",
-        "center_wavelength": 8.351
+        "eo:common_name": "nir",
+        "eo:center_wavelength": 0.8351
       },
       {
         "name": "B8A",
-        "center_wavelength": 8.648
+        "eo:center_wavelength": 0.8648
       },
       {
         "name": "B9",
-        "center_wavelength": 9.45
+        "eo:center_wavelength": 0.945
       },
       {
         "name": "B10",
-        "center_wavelength": 1.3735
+        "eo:center_wavelength": 1.3735
       },
       {
         "name": "B11",
-        "common_name": "swir16",
-        "center_wavelength": 1.6137
+        "eo:common_name": "swir16",
+        "eo:center_wavelength": 1.6137
       },
       {
         "name": "B12",
-        "common_name": "swir22",
-        "center_wavelength": 2.2024
+        "eo:common_name": "swir22",
+        "eo:center_wavelength": 2.2024
       }
     ]
   },

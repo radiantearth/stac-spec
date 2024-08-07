@@ -1,10 +1,10 @@
 {
   "type": "Feature",
-  "stac_version": "1.0.0",
+  "stac_version": "1.1.0-beta.1",
   "id": "proj-example",
   "properties": {
     "datetime": "2018-10-01T01:08:32.033000Z",
-    "proj:epsg": 32614,
+    "proj:code": "EPSG:32614",
     "proj:wkt2": "PROJCS[\"WGS 84 / UTM zone 14N\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.01745329251994328,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",-99],PARAMETER[\"scale_factor\",0.9996],PARAMETER[\"false_easting\",500000],PARAMETER[\"false_northing\",0],AUTHORITY[\"EPSG\",\"32614\"],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
     "proj:projjson": {
       "$schema": "https://proj.org/schemas/v0.2/projjson.schema.json",
@@ -234,12 +234,12 @@
       "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B1.TIF",
       "type": "image/tiff; application=geotiff",
       "title": "Band 1 (coastal)",
-      "eo:bands": [
+      "bands": [
         {
           "name": "B1",
-          "common_name": "coastal",
-          "center_wavelength": 0.44,
-          "full_width_half_max": 0.02
+          "eo:common_name": "coastal",
+          "eo:center_wavelength": 0.44,
+          "eo:full_width_half_max": 0.02
         }
       ]
     },
@@ -247,11 +247,11 @@
       "href": "https://landsat-pds.s3.amazonaws.com/c1/L8/107/018/LC08_L1TP_107018_20181001_20181001_01_RT/LC08_L1TP_107018_20181001_20181001_01_RT_B8.TIF",
       "type": "image/tiff; application=geotiff",
       "title": "Band 8 (panchromatic)",
-      "eo:bands": [
+      "bands": [
         {
           "name": "B8",
-          "center_wavelength": 0.59,
-          "full_width_half_max": 0.18
+          "eo:center_wavelength": 0.59,
+          "eo:full_width_half_max": 0.18
         }
       ],
       "proj:shape": [
@@ -278,8 +278,8 @@
     60.63437
   ],
   "stac_extensions": [
-    "https://stac-extensions.github.io/eo/v1.0.0/schema.json",
-    "https://stac-extensions.github.io/projection/v1.0.0/schema.json"
+    "https://stac-extensions.github.io/eo/v2.0.0-beta.1/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json"
   ],
   "collection": "landsat-8-l1"
 }

@@ -1,11 +1,62 @@
 <!--lint disable maximum-line-length-->
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [v1.1.0-beta.1] - 2024-08-08
+
+### Added
+
+- `bands` is a new field in common metadata to replace `eo:bands` and `raster:bands` ([#1213](https://github.com/radiantearth/stac-spec/discussions/1213))
+- The fields `data_type`, `nodata`, `statistics` and `unit` have been added to common metadata ([#1213](https://github.com/radiantearth/stac-spec/discussions/1213))
+- The `keywords` field known from Collections is available in common metadata. ([#1187](https://github.com/radiantearth/stac-spec/issues/1187))
+- New fields `method`, `headers` and `body` in the Link Object. ([#1198](https://github.com/radiantearth/stac-spec/issues/1198))
+- The `license` field additionally supports SPDX expressions and the value `other`.
+- The `roles` field known from Assets and Providers is available in common metadata. ([#1267](https://github.com/radiantearth/stac-spec/issues/1267))
+- The `collection` relation type is added to the list of known relation types. ([#1236](https://github.com/radiantearth/stac-spec/issues/1236))
+- The `item_assets` field in Collections are integrated from extension into the core Collection spec. ([#1275](https://github.com/radiantearth/stac-spec/issues/1275))
+- Validation for absolute self link in item schema. ([#1281](https://github.com/radiantearth/stac-spec/issues/1281))
+- Best practice: Link titles should exactly reflect the title of the corresponding entity ([#1168](https://github.com/radiantearth/stac-spec/issues/1168))
+
+### Changed
+
+- Common Metadata:
+  - Clarify in various field descriptions that the fields do not only apply to Items
+  - Validate the fields also in Catalogs, Collections and Links
+  - If a description is given, require that it is not empty
+- Clarified URL resolving mechanics, e.g. that trailing slashes in URLs are significant ([#1212](https://github.com/radiantearth/stac-spec/discussions/1212))
+- All JSON Schema `$id` values no longer have `#` at the end.
+- Two spatial bounding boxes in a Collection don't make sense and will be reported as invalid by the schema. ([#1243](https://github.com/radiantearth/stac-spec/issues/1243))
+- Clarify in descriptions that start_datetime and end_datetime are inclusive bounds ([#1280](https://github.com/radiantearth/stac-spec/issues/1280))
+- Moved the STAC structural relations into commons
+- Moved general descriptions about Assets and Links into commons
+- Moved common metadata from the item-spec into commons, but kept the JSON schemas in the item-spec for backward compatibility
+
+### Deprecated
+
+- `license`: The values `proprietary` and `various` are deprecated in favor of SPDX expressions and `other`.
+
+### Removed
+
+- "Strongly recommended" language around `self` links in the item spec. ([#1173](https://github.com/radiantearth/stac-spec/pull/1173))
+
+### Fixed
+
+- Several typos and minor language changes
+- Clarification on unique parent link requirement ([#1279](https://github.com/radiantearth/stac-spec/pull/1279))
+- Clarified that collection IDs should be unique across all collections in the corresponding root catalog
+- Clarified that item IDs should be unique per collection
+- Clarified which media types should be used for the hierarchical relation types
+- Clarified in the Markdown specification that GeometryCollections are not allowed as Item Geometry ([#1160](https://github.com/radiantearth/stac-spec/pull/1160))
+- Best practice: Do not recommend subdirectories for Items without sidecar files ([#1195](https://github.com/radiantearth/stac-spec/pull/1195))
+- Clarified that multiple collections can point to an Item, but an Item can only point back to a single collection. ([#1273](https://github.com/radiantearth/stac-spec/pull/1273))
+- Restructured asset role types and clarified usage of the roles `thumbnail`, `overview` and `visual` ([#1272](https://github.com/radiantearth/stac-spec/pull/1272))
+- Clarified that JSON Schema draft-07 is the default version for Collection summaries and other versions may not be supported
 
 ## [v1.0.0] - 2021-05-25
 
@@ -169,7 +220,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - ItemCollection requires `stac_version` field, `stac_extensions` has also been added
 - A `description` field has been added to Item assets (also Asset definitions extension)
-- Field `mission` to [Common Metadata fields](item-spec/common-metadata.md)
+- Field `mission` to [Common Metadata fields](commons/common-metadata.md)
 - Extensions:
   - [Version Indicators extension](https://github.com/stac-extensions/version/blob/main/README.md), new `version` and `deprecated` fields in STAC Items and Collections
   - Data Cube extension can be used in Collections, added new field `description`
@@ -179,7 +230,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - STAC API:
   - Added the [Item and Collection API Version extension](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/version/README.md) to support versioning in the API specification
   - Run `npm run serve` or `npm run serve-ext` to quickly render development versions of the OpenAPI spec in the browser
-- [Basics](item-spec/common-metadata.md#basics) added to Common Metadata definitions with new `description` field for
+- [Basics](commons/common-metadata.md#basics) added to Common Metadata definitions with new `description` field for
 Item properties
 - New fields to the `link` object to facilitate [pagination support for POST requests](https://github.com/radiantearth/stac-api-spec/tree/master/api-spec.md#paging-extension)
 - `data` role, as a suggestion for a common role for data files to be used in case data providers don't come up with their own names and semantics
@@ -191,7 +242,7 @@ Item properties
 - Added field `roles` to Item assets (also Asset definitions extension), to be used similarly to Link `rel`
 - Updated API yaml to clarify bbox filter should be implemented without brackets. Example: `bbox=160.6,-55.95,-170,-25.89`
 - Collection `summaries` merge array fields now
-- Several fields have been moved from extensions or item fields to the [Common Metadata fields](item-spec/common-metadata.md):
+- Several fields have been moved from extensions or item fields to the [Common Metadata fields](commons/common-metadata.md):
   - `eo:platform` / `sar:platform` => `platform`
   - `eo:instrument` / `sar:instrument` => `instruments`, also changed from string to array of strings
   - `eo:constellation` / `sar:constellation` => `constellation`
@@ -215,7 +266,7 @@ Item properties
   - `search` extension renamed to `context` extension. JSON object renamed from `search:metadata` to `context`
   - Removed "next" from the search metadata and query parameter, added POST body and headers to the links for paging support
   - Query Extension - type restrictions on query predicates are more accurate, which may require additional implementation support
-- Item `title` definition moved from core Item fields to [Common Metadata Basics](item-spec/common-metadata.md#basics)
+- Item `title` definition moved from core Item fields to [Common Metadata Basics](commons/common-metadata.md#basics)
 fields. No change is required for STAC Items.
 - `putFeature` can return a `PreconditionFailed` to provide more explicit information when the resource has changed in the server
 - [Sort extension](https://github.com/radiantearth/stac-api-spec/tree/master/extensions/sort) now uses "+" and "-" prefixes for GET requests to denote sort order.
@@ -232,7 +283,7 @@ fields. No change is required for STAC Items.
   - `gsd` and `accuracy` from `eo:bands` in the [EO extension](https://github.com/stac-extensions/eo/blob/main/README.md)
   - `sar:absolute_orbit` and `sar:center_wavelength` fields from the [SAR extension](https://github.com/stac-extensions/sar/blob/main/README.md)
   - `data_type` and `unit` from the `sar:bands` object in the [SAR extension](https://github.com/stac-extensions/sar/blob/main/README.md)
-  - Datetime Range (`dtr`) extension. Use the [Common Metadata fields](item-spec/common-metadata.md) instead
+  - Datetime Range (`dtr`) extension. Use the [Common Metadata fields](commons/common-metadata.md) instead
 - STAC API:
   - `next` from the search metadata and query parameter
 - In API, removed any mention of using media type `multipart/form-data` and `x-www-form-urlencoded`
@@ -453,6 +504,7 @@ See the [milestone 0.4.0 in the issue tracker](https://github.com/radiantearth/s
 Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkamin, @hemphillda, @jeffnaus  and @fredliporace for contributing to the spec directly, and to [everyone](https://github.com/opengeospatial/wfs3hackathon/blob/master/notes/introductions.md#participants) who participated in the [Ft Collins sprint](https://github.com/radiantearth/community-sprints/tree/master/03072018-ft-collins-co) and brought great ideas.
 
 [Unreleased]: <https://github.com/radiantearth/stac-spec/compare/master...dev>
+[v1.1.0-beta.1]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0..v1.1.0-beta.1>
 [v1.0.0]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-rc.4..v1.0.0>
 [v1.0.0-rc.4]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-rc.3..v1.0.0-rc.4>
 [v1.0.0-rc.3]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-rc.2..v1.0.0-rc.3>

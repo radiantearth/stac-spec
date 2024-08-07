@@ -1,8 +1,8 @@
 {
   "id": "extensions-collection",
   "type": "Collection",
-  "stac_version": "1.0.0",
-  "description": "A heterogenous collection containing deeper examples of various extensions",
+  "stac_version": "1.1.0-beta.1",
+  "description": "A heterogeneous collection containing deeper examples of various extensions",
   "links": [
     {
       "rel": "parent",
@@ -64,5 +64,5 @@
       ]
     }
   },
-  "license": "PDDL-1.0"
+  "license": "other"
 }
