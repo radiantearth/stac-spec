@@ -182,6 +182,16 @@ The use of URI or file path reserved characters such as `:` or `/` is discourage
 result in [percented encoded](https://tools.ietf.org/html/rfc3986#section-2) [STAC API](https://github.com/radiantearth/stac-api-spec)
 endpoints and it prevents the use of IDs as file names as recommended in the [catalog layout](#catalog-layout) best practices.
 
+In general, we recommend that item IDs *not* include any kind of processing timestamp. If, for example, an item's assets
+require re-processing (e.g. to incorporate changes due to a new processing baseline), the re-processed items would have
+new IDs. This might result in "duplicate" items: multiple items with the same spatio-temporal footprint, which might
+not be desirable for end users.
+
+Instead, we recommend cataloging processing information with the [Processing extension](https://github.com/stac-extensions/processing)
+and handling updates to existing items with the [Versioning extension](https://github.com/stac-extensions/version). With
+these extensions the reprocessed item would have the same item ID, updated `processing` fields, and links between the old
+and new items.
+
 ### Searchable Identifiers
 
 When coming up with values for fields that contain searchable identifiers of some sort, like `constellation` or `platform`,
