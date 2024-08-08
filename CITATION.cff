@@ -10,7 +10,7 @@ preferred-citation:
   abstract: "Making geospatial assets openly searchable and crawlable."
   version: 1.1.0-beta.1
   year: 2024
-  date-released: 2024-08-08
+  date-released: 2024-08-09
   license: Apache-2.0
   url: https://stacspec.org
   repository: https://github.com/radiantearth/stac-spec
