@@ -172,6 +172,7 @@
             {
               "$comment": "The if-then-else below checks whether the bands field is given in assets or not. If not, allows bands in properties (then), otherwise, disallows bands in properties (else).",
               "if": {
+                "$comment": "If there is no asset with bands...",
                 "required": [
                   "assets"
                 ],
@@ -187,27 +188,20 @@
                 }
               },
               "then": {
-                "properties": {
-                  "properties": {
-                    "anyOf": [
-                      {
-                        "$ref": "bands.json"
-                      },
-                      {
-                        "properties": {
-                          "bands": false
-                        }
-                      }
-                    ]
-                  }
-                }
-              },
-              "else": {
+                "$comment": "... then bands are not allowed in properties...",
                 "properties": {
                   "properties": {
                     "properties": {
                       "bands": false
                     }
+                  }
+                }
+              },
+              "else": {
+                "$comment": "... otherwise bands are allowed in properties.",
+                "properties": {
+                  "properties": {
+                    "$ref": "bands.json"
                   }
                 }
               }
