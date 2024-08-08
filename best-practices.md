@@ -550,9 +550,9 @@ As such you can deduplicate those properties and list them in the asset directly
 
 It should be relatively simple to migrate from STAC 1.0 (i.e. `eo:bands` and/or `raster:bands`) to the new `bands` array.
 
-Usually, you can simply merge the each object on a by-index basis.
+Usually, you can simply merge each object on a by-index basis.
 Nevertheless, you should consider deduplicating properties with the same values across all bands to the Asset.
-For some fields you need to add the extension prefix of the `eo` or `raster` extension to the property name.
+For some fields, you need to add the extension prefix of the `eo` or `raster` extension to the property name.
 
 STAC 1.0 example:
 
