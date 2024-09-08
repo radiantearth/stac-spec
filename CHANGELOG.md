@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [v1.1.0] - 2024-09-08
 
+### Added
+
+- Add to best-practices mime types for COPC, Geoparquet, 3dTiles, pmtiles ([#1321](https://github.com/radiantearth/stac-spec/issues/1321))
+
 ### Fixed
 
 - `item_assets` is not required
