@@ -8,11 +8,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v1.1.0] - 2024-09-10
+
+### Added
+
+- Add to best-practices mime types for COPC, Geoparquet, 3dTiles, pmtiles ([#1321](https://github.com/radiantearth/stac-spec/issues/1321))
+
 ### Fixed
 
 - `item_assets` is not required
 - Better describe the Statistics Object ([#1318](https://github.com/radiantearth/stac-spec/issues/1318))
 - bands as entity in UML model
+- Editorial edits
 
 ## [v1.1.0-beta.1] - 2024-08-08
 
@@ -510,6 +517,7 @@ See the [milestone 0.4.0 in the issue tracker](https://github.com/radiantearth/s
 Thanks @hgs-msmith, @matthewhanson, @hgs-trutherford, @rouault, @joshfix, @alkamin, @hemphillda, @jeffnaus  and @fredliporace for contributing to the spec directly, and to [everyone](https://github.com/opengeospatial/wfs3hackathon/blob/master/notes/introductions.md#participants) who participated in the [Ft Collins sprint](https://github.com/radiantearth/community-sprints/tree/master/03072018-ft-collins-co) and brought great ideas.
 
 [Unreleased]: <https://github.com/radiantearth/stac-spec/compare/master...dev>
+[v1.1.0]: <https://github.com/radiantearth/stac-spec/compare/v1.1.0-beta.1...v1.1.0>
 [v1.1.0-beta.1]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0..v1.1.0-beta.1>
 [v1.0.0]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-rc.4..v1.0.0>
 [v1.0.0-rc.4]: <https://github.com/radiantearth/stac-spec/compare/v1.0.0-rc.3..v1.0.0-rc.4>
