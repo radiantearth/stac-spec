@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.1.0/item-spec/json-schema/bands.json",
+  "title": "Bands Field",
+  "type": "object",
+  "properties": {
+    "bands": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        },
+        "allOf": [
+          {
+            "$ref": "common.json"
+          }
+        ]
+      }
+    }
+  }
+}

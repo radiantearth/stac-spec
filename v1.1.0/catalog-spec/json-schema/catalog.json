@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.stacspec.org/v1.1.0/catalog-spec/json-schema/catalog.json",
+  "title": "STAC Catalog Specification",
+  "description": "This object represents Catalogs in a SpatioTemporal Asset Catalog.",
+  "allOf": [
+    {
+      "$ref": "#/definitions/catalog"
+    },
+    {
+      "$ref": "../../item-spec/json-schema/common.json"
+    }
+  ],
+  "definitions": {
+    "catalog": {
+      "title": "STAC Catalog",
+      "type": "object",
+      "$comment": "title and description is validated through the common metadata.",
+      "required": [
+        "stac_version",
+        "type",
+        "id",
+        "description",
+        "links"
+      ],
+      "properties": {
+        "stac_version": {
+          "title": "STAC version",
+          "type": "string",
+          "const": "1.1.0"
+        },
+        "stac_extensions": {
+          "title": "STAC extensions",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "title": "Reference to a JSON Schema",
+            "type": "string",
+            "format": "iri"
+          }
+        },
+        "type": {
+          "title": "Type of STAC entity",
+          "const": "Catalog"
+        },
+        "id": {
+          "title": "Identifier",
+          "type": "string",
+          "minLength": 1
+        },
+        "links": {
+          "$ref": "../../item-spec/json-schema/item.json#/definitions/links"
+        }
+      }
+    }
+  }
+}
