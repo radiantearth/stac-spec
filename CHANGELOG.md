@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Recommend that thumbnails and similar assets use HTTP(S) as access mechanism
+
 ## [v1.1.0] - 2024-09-10
 
 ### Added
