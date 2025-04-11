@@ -9,7 +9,7 @@ The property `assets` is a dictionary of [Asset Objects](#asset-object), each wi
 Each asset refers to data associated with the Item or Collection that can be downloaded or streamed.
 In general, the keys don't have any meaning and are considered to be non-descriptive unique identifiers.
 The asset keys used by Items in a Collection should be a static and consistent set across all Items.
-This allows for effective usage of the [STAC Collection `item_assets` field](../collection-spec.md#item_assets).
+This allows for effective usage of the [STAC Collection `item_assets` field](../collection-spec/collection-spec.md#item_assets).
 Providers may assign any meaning to the keys for their respective use cases, but must not expect that clients understand them.
 To communicate the purpose of an asset better use the [`roles` field](#roles)
 in the [Asset Object](#asset-object).
