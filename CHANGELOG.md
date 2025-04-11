@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Clarify that keys to `item.assets` should be a finite (and preferably consistent) static set of values within a Collection.
+
 ## [v1.1.0] - 2024-09-10
 
 ### Added
