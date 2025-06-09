@@ -65,7 +65,7 @@ If a property is defined in a Collection on the top-level, it is the default val
 Assets may override the properties inherited for specific assets (see example below).
 Inheritance does not apply across multiple files, i.e. is restricted to a single Item or Collection.
 Note that in some cases the inheritance may not lead to the expected results if other semantics have been defined for the property.
-See the examples for `gsd` and `eo:bands` below.
+See the example for `gsd` below.
 It also applies to some other fields such as `created` or `updated`.
 Inheritance may be undesirable in these cases, e.g. the `created` attribute of an item would describe when the metadata
 was generated, whereas on an asset the `created` attribute would describe when the data file itself was created.
@@ -74,20 +74,10 @@ was generated, whereas on an asset the `created` attribute would describe when t
 should be used sparingly.** It is primarily used to define properties at the Asset level that may be used during use of
 the data instead of for searching.
 
-For example, `gsd` defined for an Item represents the best Ground Sample Distance (resolution) for the data within the Item.
-However, some assets may be lower resolution and thus have a higher `gsd`. The `bands` field in combination with the EO extension defines
-an array of spectral bands. However, it may be useful instead to specify the bands that are used in a particular asset.
-
-For an example see the [sentinel2-sample](https://github.com/stac-utils/stac-examples/blob/main/sentinel2/sentinel2-sample.json).
-The Sentinel-2 overall `gsd` is 10m, because this is
-the best spatial resolution among all the bands and is defined in Item properties so it can be searched on. In the example
-Band 5 and others have a `gsd` of 20m, so that asset specifies the `gsd` as well, which overrides the Item `gsd` for this
-one asset. The example also includes reduced resolution versions of files included as assets, using `gsd` to represent
-the proper resolution.
-
-For `bands`, it could be put in Item properties as an array of all the bands, but in this case it's not. Instead,
-the assets each define an array containing the spectral band information for that asset (in the order the bands appear
-in the file).
+For example, `gsd` defined for an Item represents the best Ground Sample Distance (resolution) across all the bands 
+within the Item. This best spatial resolution (for instance: 10m) is defined in Item properties so it can be 
+searched on. However any particular band may have a different resolution (for instance: 20m) which is specified on the
+asset and overrides the Item `gsd` for this one asset.
 
 For examples of fields that this construct is recommended for,
 see the [section of STAC Best Practices](../best-practices.md#common-use-cases-of-additional-fields-for-assets)
