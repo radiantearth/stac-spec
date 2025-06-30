@@ -470,7 +470,7 @@ Example without bands:
 }
 ```
 
-STAC recommands that single band assets should only use the `bands` array in the following cases:
+STAC recommends that single band assets should only use the `bands` array in the following cases:
 
 1. **It's important in to convey that a band is present in the asset.**
    - This is the case if the data access mechanism requires you to specify the name of index of the band to retrieve the data,
