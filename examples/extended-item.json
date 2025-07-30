@@ -53,7 +53,9 @@
     "datetime": "2020-12-14T18:02:31.437000Z",
     "created": "2020-12-15T01:48:13.725Z",
     "updated": "2020-12-15T01:48:13.725Z",
-    "platform": "cool_sat2",
+    "platform": [
+      "cool_sat2"
+    ],
     "instruments": [
       "cool_sensor_v2"
     ],
