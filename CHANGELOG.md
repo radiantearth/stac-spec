@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Clarify that keys to `item.assets` should be a finite (and preferably consistent) static set of values within a Collection.
+
 ### Changed
 
 - Recommend that thumbnails and similar assets use HTTP(S) as access mechanism
@@ -24,6 +28,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Better describe the Statistics Object ([#1318](https://github.com/radiantearth/stac-spec/issues/1318))
 - bands as entity in UML model
 - Editorial edits
+- Clarified `bands` array references in "STAC Best Practices" document.
 
 ## [v1.1.0-beta.1] - 2024-08-08
 

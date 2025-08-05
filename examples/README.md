@@ -6,9 +6,7 @@ should successfully load in various tools. They do not follow *all* the [best pr
 due to the fact that they contrive examples to show the spec and we are hosting in GitHub. But we note below where they differ from an ideal catalog.
 
 The various fields are mostly fictional, to be able to demonstrate the various aspects of the spec as tersely as possible. To get a sense
-of real world STAC implementations we recommend exploring the [stac-examples](http://github.com/stac-utils/stac-examples) repo, which 
-gathers in one place copies of STAC [Items](../item-spec/item-spec.md) and [Collection](../collection-spec/collection-spec.md) 
-from a number of different production catalogs that all follow good STAC practices. And you should also explore the various catalogs
+of real world STAC implementations we recommend exploring the various catalogs
 listed on [STAC Index](http://stacindex.org), to see full catalogs in production.
 
 ## Organization
