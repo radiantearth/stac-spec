@@ -428,7 +428,7 @@ If your data for the Item does not come with a thumbnail already we do recommend
 
 The files offered for the roles `thumbnail`, `overview` and `visual` should be accessible via HTTP(S).
 If the [Alternate Asset Extension](https://github.com/stac-extensions/alternate-assets) is used,
-the default access mechanism for should be HTTP(S).
+the default access mechanism should be HTTP(S).
 
 ### Bands
 
