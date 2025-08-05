@@ -426,6 +426,10 @@ If your data for the Item does not come with a thumbnail already we do recommend
 | Spatial extent                 | Limited                                             | Full                                                               | Full                                                                                         |
 | Use case                       | Quick overview, often in lists of items/collections | Display for a single Item/Collection, sometimes shown on a web map | Display for a single Item/Collection, often shown on a map, may be displayed in GIS software |
 
+The files offered for the roles `thumbnail`, `overview` and `visual` should be accessible via HTTP(S).
+If the [Alternate Asset Extension](https://github.com/stac-extensions/alternate-assets) is used,
+the default access mechanism should be HTTP(S).
+
 ### Bands
 
 As of STAC 1.1, the `bands` array can be used in combination with property inheritance to provide users with more flexibility.
