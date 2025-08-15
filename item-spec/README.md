@@ -13,7 +13,7 @@ to each other.
 **Specification:** The STAC Item specification is in 
 *[item-spec.md](item-spec.md)*. It includes an overview and an in-depth explanation of the fields.
 
-**Schemas:** The OpenAPI specification in *[item.json](json-schema/item.json)* 
+**Schemas:** The JSON Sschema in *[item.json](json-schema/item.json)* 
 defines an **Item** object. The [basics](json-schema/basics.json), 
 [datetime](json-schema/datetime.json), [instrument](json-schema/instrument.json), 
 [licensing](json-schema/licensing.json), and [provider](json-schema/provider.json)
