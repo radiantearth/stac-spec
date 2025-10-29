@@ -1,0 +1,1 @@
+../../../catalog-spec/catalog-spec.md

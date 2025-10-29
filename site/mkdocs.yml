@@ -1,0 +1,51 @@
+site_name: STAC
+site_description: SpatioTemporal Asset Catalog specification - making geospatial assets openly searchable and crawlable
+site_url: https://radiantearth.github.io/stac-spec/
+repo_url: https://github.com/radiantearth/stac-spec
+theme:
+  name: material
+  logo: img/STAC-04.png
+  favicon: img/STAC-04.png
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    primary: custom
+
+extra:
+  social:
+    - icon: fontawesome/brands/bluesky
+      link: https://bsky.app/profile/stacspec.bsky.social
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/showcase/stacspec
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Specifications:
+      - Item:
+          - Specification: item-spec/item-spec.md
+          - About: item-spec/README.md
+          - Common metadata: item-spec/common-metadata.md
+      - Collection:
+          - Specification: collection-spec/collection-spec.md
+          - About: collection-spec/README.md
+      - Catalog:
+          - Specification: catalog-spec/catalog-spec.md
+          - About: catalog-spec/README.md
+      - Commons:
+          - Assets: commons/assets.md
+          - Links: commons/links.md
+          - Common metadata: commons/common-metadata.md
+  - Additional information:
+      - Overview: overview.md
+      - Principles: principles.md
+      - Extensions: extensions/README.md
+      - Examples: examples/README.md
+      - Best practices: best-practices.md
+
+plugins:
+  - search
+  - stac-spec:
+      spec_version: 1.1.0

@@ -1,0 +1,16 @@
+[project]
+name = "stac-spec-site"
+version = "0.0.0"  # not intended for release
+description = "The STAC specification website, built from the spec documents themselves"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "mkdocs-material>=9.6.22",
+]
+
+[project.entry-points."mkdocs.plugins"]
+stac-spec = "stac_spec_site.plugin:StacSpecPlugin"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
