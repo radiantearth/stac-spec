@@ -426,6 +426,10 @@ If your data for the Item does not come with a thumbnail already we do recommend
 | Spatial extent                 | Limited                                             | Full                                                               | Full                                                                                         |
 | Use case                       | Quick overview, often in lists of items/collections | Display for a single Item/Collection, sometimes shown on a web map | Display for a single Item/Collection, often shown on a map, may be displayed in GIS software |
 
+The files offered for the roles `thumbnail`, `overview` and `visual` should be accessible via HTTP(S).
+If the [Alternate Asset Extension](https://github.com/stac-extensions/alternate-assets) is used,
+the default access mechanism should be HTTP(S).
+
 ### Bands
 
 As of STAC 1.1, the `bands` array can be used in combination with property inheritance to provide users with more flexibility.
@@ -498,16 +502,16 @@ Example without bands:
 }
 ```
 
-STAC recommands that single band assets should only use the `bands` array in the following cases:
+STAC recommends that single band assets should only use the `bands` array in the following cases:
 
 1. **It's important in to convey that a band is present in the asset.**
    - This is the case if the data access mechanism requires you to specify the name of index of the band to retrieve the data,
      then the band should be specified as such.
    - This is also the case if the band has a specific name.
-     The `name` property is only available in bands and as such can't be specified for the Asset.
+     The `name` property is only available under the `bands` array and as such can't be specified for the Asset.
 2. **It is important that the (often spectral) band is part of a set of bands.**
    - For example, if the `bands` array is exposed in the Collection Summaries,
-     there should be bands defined in the Items or Item Assets as otherwise there's nothing to summarize.
+     then a `bands` array should be defined in the Items or Item Assets as otherwise there's nothing to summarize.
 3. **Individual bands are repeated in different assets.**
    - This may happen if you provide assets with different resolutions or file formats.
      The `name` property with the same value should be used so that users can identify that the bands are the same.
@@ -515,9 +519,9 @@ STAC recommands that single band assets should only use the `bands` array in the
 
 #### Multiple bands
 
-Generally, all properties that have the same value across all bands should not be listed in bands but in assets directly.
+Generally, all properties that have the same value across all bands should not be listed in the `bands` array but in the assets directly.
 
-For example, if your bands in an asset is defined as follows:
+For example, if your `bands` array in an asset is defined as follows:
 
 ```json
 {
