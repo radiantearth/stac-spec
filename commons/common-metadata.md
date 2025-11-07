@@ -223,7 +223,16 @@ and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.
 | bands      | \[[Band Object](#band-object)] | An array of available bands where each object is a [Band Object](#band-object). |
 
 The `bands` array is used to describe the available bands in a STAC entity or Asset.
-This field describes the general construct of a band or layer, which doesn't necessarily need to be a spectral band.
+This field is a general construct for describing **components of an asset** - the constituent parts, sub-datasets, or layers that make up the asset.
+While the term "bands" originates from spectral bands in Earth Observation imagery, this construct doesn't necessarily need to be limited to spectral bands.
+The `bands` array can describe various types of components depending on the domain, such as:
+
+- Spectral bands in multispectral imagery
+- Layers in a multi-layer dataset
+- Variables in a data cube
+- Arrays in a multidimensional data group
+- Quality layers or classification results
+- Any other logical subdivision of data within an asset
 By adding fields from extensions you can indicate that a band, for example, is
 
 - a spectral band ([EO extension](https://github.com/stac-extensions/eo)),

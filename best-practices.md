@@ -431,6 +431,34 @@ If your data for the Item does not come with a thumbnail already we do recommend
 As of STAC 1.1, the `bands` array can be used in combination with property inheritance to provide users with more flexibility.
 The following best practices should be considered, especially when migrating from `eo:bands` and `raster:bands`.
 
+#### Bands as Components of an Asset
+
+The `bands` field is a general construct for describing **components of an asset** - the constituent parts, sub-datasets, or layers that make up the asset. This is a fundamental concept in STAC that enables a unified approach to describing diverse types of data structures.
+
+**Historical Context and Terminology**
+
+While the term "bands" originates from spectral bands in Earth Observation (EO) imagery, the STAC specification intentionally uses it as a broader abstraction. During the original STAC design discussions, alternative names like "groups", "layers", or "subdatasets" were considered to emphasize this generality. However, "bands" was chosen as the established term in the geospatial community, with the understanding that its semantic meaning extends beyond spectral data.
+
+**Cross-Domain Applications**
+
+The `bands` array can describe various types of asset components across different domains:
+
+- **Earth Observation**: Spectral bands in multispectral or hyperspectral imagery
+- **Data Cubes**: Variables or arrays in multidimensional datasets (e.g., temperature, precipitation in climate data)
+- **Zarr Stores**: Individual arrays within a  multidimensional data group
+- **Raster Data**: Quality layers, classification results, or data masks
+- **Point Clouds**: Different attributes or returns in LiDAR data
+- **Any other logical subdivision** of data within an asset
+
+**Domain-Specific Semantics**
+
+Extensions provide domain-specific semantics for bands:
+- The [EO Extension](https://github.com/stac-extensions/eo) adds spectral properties (wavelength, common names)
+- The [Datacube Extension](https://github.com/stac-extensions/datacube) connects bands to dimensions and provides variable-specific metadata
+- The [Raster Extension](https://github.com/stac-extensions/raster) adds sampling and scaling information
+
+This approach allows STAC to maintain a consistent structure while accommodating the specific needs of different data types. The key principle is that "bands" represent the **components of an asset** - a concept that remains consistent regardless of the domain.
+
 #### Single band
 
 Single band assets can be defined in two ways.
