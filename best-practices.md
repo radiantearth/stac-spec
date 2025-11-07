@@ -437,13 +437,20 @@ The following best practices should be considered, especially when migrating fro
 
 #### Bands as Components of an Asset
 
-The `bands` field is a general construct for describing **components of an asset** - the constituent parts, sub-datasets, or layers that make up the asset. This is a fundamental concept in STAC that enables a unified approach to describing diverse types of data structures.
+The `bands` field is a general construct for describing **components of an asset** - the constituent parts, sub-datasets,
+or layers that make up the asset. 
+This is a fundamental concept in STAC that enables a unified approach to describing diverse types of data structures.
 
-**Historical Context and Terminology**
+##### Historical Context and Terminology
 
-While the term "bands" originates from spectral bands in Earth Observation (EO) imagery, the STAC specification intentionally uses it as a broader abstraction. During the original STAC design discussions, alternative names like "groups", "layers", or "subdatasets" were considered to emphasize this generality. However, "bands" was chosen as the established term in the geospatial community, with the understanding that its semantic meaning extends beyond spectral data.
+While the term "bands" originates from spectral bands in Earth Observation (EO) imagery,
+the STAC specification intentionally uses it as a broader abstraction.
+During the original STAC design discussions, alternative names like "groups", "layers",
+or "subdatasets" were considered to emphasize this generality
+However, "bands" was chosen as the established term in the geospatial community,
+with the understanding that its semantic meaning extends beyond spectral data.
 
-**Cross-Domain Applications**
+##### Cross-Domain Applications
 
 The `bands` array can describe various types of asset components across different domains:
 
@@ -454,14 +461,16 @@ The `bands` array can describe various types of asset components across differen
 - **Point Clouds**: Different attributes or returns in LiDAR data
 - **Any other logical subdivision** of data within an asset
 
-**Domain-Specific Semantics**
+##### Domain-Specific Semantics
 
 Extensions provide domain-specific semantics for bands:
+
 - The [EO Extension](https://github.com/stac-extensions/eo) adds spectral properties (wavelength, common names)
 - The [Datacube Extension](https://github.com/stac-extensions/datacube) connects bands to dimensions and provides variable-specific metadata
 - The [Raster Extension](https://github.com/stac-extensions/raster) adds sampling and scaling information
 
-This approach allows STAC to maintain a consistent structure while accommodating the specific needs of different data types. The key principle is that "bands" represent the **components of an asset** - a concept that remains consistent regardless of the domain.
+This approach allows STAC to maintain a consistent structure while accommodating the specific needs of different data types.
+The key principle is that "bands" represent the **components of an asset**, a concept that remains consistent regardless of the domain.
 
 #### Single band
 
