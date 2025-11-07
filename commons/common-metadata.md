@@ -224,7 +224,8 @@ and for WorldView-3 the Multispectral 20° off-nadir value of 1.38.
 
 The `bands` array is used to describe the available bands in a STAC entity or Asset.
 This field is a general construct for describing **components of an asset** - the constituent parts, sub-datasets, or layers that make up the asset.
-While the term "bands" originates from spectral bands in Earth Observation imagery, this construct doesn't necessarily need to be limited to spectral bands.
+While the term "bands" originates from spectral bands in Earth Observation imagery,
+this construct doesn't necessarily need to be limited to spectral bands.
 The `bands` array can describe various types of components depending on the domain, such as:
 
 - Spectral bands in multispectral imagery
