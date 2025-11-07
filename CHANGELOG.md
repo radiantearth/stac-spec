@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Enhanced the `bands` field definition in Common Metadata to clarify that it represents **components of an asset** - the constituent parts, sub-datasets, or layers that make up an asset, with examples across different domains (spectral bands, data cube variables, Zarr arrays, etc.) ([#1369](https://github.com/radiantearth/stac-spec/issues/1369))
+
+### Added
+
+- Added new "Bands as Components of an Asset" subsection in Best Practices that provides historical context, cross-domain applications, and domain-specific semantics for the bands construct ([#1369](https://github.com/radiantearth/stac-spec/issues/1369))
+
 ## [v1.1.0] - 2024-09-10
 
 ### Added
