@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Clarify that keys to `item.assets` should be a finite (and preferably consistent) static set of values within a Collection.
+- Add ``cfloat16`` for 16-bit complex float as an allowed `data_type` value.
 
 ### Changed
 
