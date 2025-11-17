@@ -336,6 +336,7 @@ The allowed values for `data_type` are:
 - `float64`: 64-big float
 - `cint16`: 16-bit complex integer
 - `cint32`: 32-bit complex integer
+- `cfloat16`: 16-bit complex float
 - `cfloat32`: 32-bit complex float
 - `cfloat64`: 64-bit complex float
 - `other`: Other data type than the ones listed above (e.g. boolean, string, higher precision numbers)
