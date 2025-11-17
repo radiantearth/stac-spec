@@ -21,6 +21,7 @@
         "float64",
         "cint16",
         "cint32",
+        "cfloat16",
         "cfloat32",
         "cfloat64",
         "other"
