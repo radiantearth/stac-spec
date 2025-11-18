@@ -288,6 +288,10 @@ It is STRONGLY RECOMMENDED to provide units in one of the following two formats:
 - [UCUM](https://ucum.org/): The unit code that is compliant to the UCUM specification.
 - [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/): The unit symbol if available, otherwise the singular unit name.
 
+To specify that a value is unitless (dimensionless), provide an empty string (`""`).
+If unit information is not available or not applicable, the `unit` field SHOULD be omitted entirely.
+The value `null` is not valid for this field.
+
 ### Statistics Object
 
 Statistics usually specify the range of values by providing the `minimum` and `maximum` values,
