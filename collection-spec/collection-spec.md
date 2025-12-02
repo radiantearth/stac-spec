@@ -65,7 +65,7 @@ specified in [*OGC API - Features*](https://ogcapi.ogc.org/features/), but they 
 
 ### stac_version
 
-In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
+In general, STAC versions can be mixed, but please keep the [recommended best practices](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#mixing-stac-versions) in mind.
 
 ### stac_extensions
 

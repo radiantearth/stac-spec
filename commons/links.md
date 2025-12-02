@@ -19,7 +19,7 @@ child Items (modeled in different ways, like an 'acquisition' or derived data).
 
 | Field Name | Type                             | Description                                                                                                                                                                    |
 | ---------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| href       | string                           | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. [Trailing slashes are significant.](../best-practices.md#consistent-uris) |
+| href       | string                           | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. [Trailing slashes are significant.](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-web.md#consistent-uris) |
 | rel        | string                           | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information.                                            |
 | type       | string                           | Media type of the referenced entity.                                                                                                                                           |
 | title      | string                           | A human readable title to be used in rendered displays of the link.                                                                                                            |
@@ -28,7 +28,7 @@ child Items (modeled in different ways, like an 'acquisition' or derived data).
 | body       | any                              | The HTTP body to be sent to the target resource.                                                                                                                               |
 
 For a full discussion of the situations where relative and absolute links are recommended see the
-['Use of links'](../best-practices.md#use-of-links) section of the STAC best practices.
+['Use of links'](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#use-of-links) section of the STAC best practices.
 
 ### HTTP headers
 

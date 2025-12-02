@@ -57,13 +57,13 @@ inherited from GeoJSON.
 | geometry        | GeoJSON Geometry Object \| null         | **REQUIRED.** Defines the full footprint of the asset represented by this item, formatted according to RFC 7946, [section 3.1](https://tools.ietf.org/html/rfc7946#section-3.1) if a geometry is provided or [section 3.2](https://tools.ietf.org/html/rfc7946#section-3.2) if *no* geometry is provided. |
 | bbox            | \[number]                               | **REQUIRED if `geometry` is not `null`, prohibited if `geometry` is `null`.** Bounding Box of the asset represented by this Item, formatted according to [RFC 7946, section 5](https://tools.ietf.org/html/rfc7946#section-5).                                                                            |
 | properties      | [Properties Object](#properties-object) | **REQUIRED.** A dictionary of additional metadata for the Item.                                                                                                                                                                                                                                           |
-| links           | \[[Link Object](#links)]                | **REQUIRED.** List of link objects to resources and related URLs. See the [best practices](../best-practices.md#use-of-links) for details on when the use `self` links is strongly recommended.                                                                                                           |
+| links           | \[[Link Object](#links)]                | **REQUIRED.** List of link objects to resources and related URLs. See the [best practices](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#use-of-links) for details on when the use `self` links is strongly recommended.                                                                                                           |
 | assets          | Map<string, [Asset Object](#assets)>    | **REQUIRED.** Dictionary of asset objects that can be downloaded, each with a unique key.                                                                                                                                                                                                                 |
 | collection      | string                                  | The `id` of the STAC Collection this Item references to. This field is **required** if a link with a `collection` relation type is present and is **not allowed** otherwise.                                                                                                                              |
 
 ### stac_version
 
-In general, STAC versions can be mixed, but please keep the [recommended best practices](../best-practices.md#mixing-stac-versions) in mind.
+In general, STAC versions can be mixed, but please keep the [recommended best practices](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#mixing-stac-versions) in mind.
 
 ### stac_extensions
 
@@ -84,7 +84,7 @@ As most geospatial assets are already uniquely defined by some
 identification scheme from the data provider it is recommended to simply use that ID.
 Data providers are advised to include sufficient information to make their IDs globally unique,
 including things like unique satellite IDs.
-See the [id section of best practices](../best-practices.md#item-ids) for additional recommendations.
+See the [id section of best practices](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-item.md#item-ids) for additional recommendations.
 
 ### geometry
 
@@ -143,13 +143,13 @@ In this case it is **required** to specify a temporal interval with the fields `
 and `end_datetime` from [common metadata](../commons/common-metadata.md#date-and-time-range). For example, if
 your data is a time-series that covers 100 years, it's not very meaningful to set the datetime to a
 single timestamp as it would not be found in most searches that searches for a decade of data in that
-period although the Item actually covers the decade. See [datetime selection](../best-practices.md#datetime-selection)
+period although the Item actually covers the decade. See [datetime selection](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-item.md#datetime-selection)
 in the best practices document for more information.
 
 #### Additional Fields
 
 Providers should include metadata fields that are relevant for users of STAC, but it is recommended
-to [select only those necessary for search](../best-practices.md#field-selection-and-metadata-linking).
+to [select only those necessary for search](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-item.md#field-selection-and-metadata-linking).
 Where possible metadata fields should be mapped to the STAC Common Metadata and widely used extensions,
 to enable cross-catalog search on known fields.
 

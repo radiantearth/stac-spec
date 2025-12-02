@@ -97,7 +97,7 @@ used together, but are designed so each piece is small, self-contained, and reus
 - **[Extensions](extensions/README.md)** describe how STAC can use extensions that extend the functionality of the core spec or 
   add fields for specific domains. Extensions can be published anywhere,
   although the preferred location for public extensions is in the [GitHub `stac-extensions` organization](https://github.com/stac-extensions).
-- **Additional documents:** The supporting documents include a complementary [best practices](best-practices.md) 
+- **Additional documents:** The supporting documents include a complementary [best practices](https://github.com/radiantearth/stac-best-practices)
   document, and information on contributing (links in the next section). We also maintain a [changelog](CHANGELOG.md) of
   what was modified in each version. 
 
