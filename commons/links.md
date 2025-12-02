@@ -17,18 +17,19 @@ This object describes a relationship with another entity. Data providers are adv
 with the links section, to describe things like the Catalog an Item is in, related Items, parent or
 child Items (modeled in different ways, like an 'acquisition' or derived data).
 
-| Field Name | Type                             | Description                                                                                                                                                                    |
-| ---------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Field Name | Type                             | Description                                                                                                                                                                                                                                   |
+| ---------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | href       | string                           | **REQUIRED.** The actual link in the format of an URL. Relative and absolute links are both allowed. [Trailing slashes are significant.](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-web.md#consistent-uris) |
-| rel        | string                           | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information.                                            |
-| type       | string                           | Media type of the referenced entity.                                                                                                                                           |
-| title      | string                           | A human readable title to be used in rendered displays of the link.                                                                                                            |
-| method     | string                           | The HTTP method that shall be used for the request to the target resource, in uppercase. `GET` by default                                                                      |
-| headers    | Map<string, string \| \[string]> | The HTTP headers to be sent for the request to the target resource.                                                                                                            |
-| body       | any                              | The HTTP body to be sent to the target resource.                                                                                                                               |
+| rel        | string                           | **REQUIRED.** Relationship between the current document and the linked document. See chapter "Relation types" for more information.                                                                                                           |
+| type       | string                           | Media type of the referenced entity.                                                                                                                                                                                                          |
+| title      | string                           | A human readable title to be used in rendered displays of the link.                                                                                                                                                                           |
+| method     | string                           | The HTTP method that shall be used for the request to the target resource, in uppercase. `GET` by default                                                                                                                                     |
+| headers    | Map<string, string \| \[string]> | The HTTP headers to be sent for the request to the target resource.                                                                                                                                                                           |
+| body       | any                              | The HTTP body to be sent to the target resource.                                                                                                                                                                                              |
 
-For a full discussion of the situations where relative and absolute links are recommended see the
-['Use of links'](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#use-of-links) section of the STAC best practices.
+For a full discussion of the situations where relative and absolute links are recommended see the ['Use of links'
+](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#use-of-links)
+section of the STAC best practices.
 
 ### HTTP headers
 

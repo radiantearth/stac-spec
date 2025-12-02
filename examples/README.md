@@ -2,7 +2,8 @@
 
 This directory contains various examples for all parts of the STAC specification.
 It is structured to be two valid STACs, meaning both [catalog.json](catalog.json) and [collection.json](collection.json)
-should successfully load in various tools. They do not follow *all* the [best practices](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md) for STAC, mostly
+should successfully load in various tools. They do not follow *all* the [best practices
+](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md) for STAC, mostly
 due to the fact that they contrive examples to show the spec and we are hosting in GitHub. But we note below where they differ from an ideal catalog.
 
 The various fields are mostly fictional, to be able to demonstrate the various aspects of the spec as tersely as possible. To get a sense
@@ -51,7 +52,8 @@ but should be taken as just an example.
 
 **[extensions-collection/collection.json](extensions-collection/collection.json)** contains a small number of items, that demonstrate
 more functionality available in STAC [extensions](../extensions/). These are linked to directly from the individual extensions. These
-items follow the recommendations for [Catalog Layout Best Practices](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#catalog-layout).
+items follow the recommendations for [Catalog Layout Best Practices
+](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#catalog-layout).
 
 ## In Depth
 
@@ -65,10 +67,13 @@ their custom fields (we will work to add an example schema for the `rd:` fields 
 
 ### Catalog Type
 
-One of the most important STAC Best Practices is to [use links consistently](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#use-of-links), following one of the
-described 'catalog types'. The catalogs described here are [Relative Published Catalogs](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#relative-published-catalog),
+One of the most important STAC Best Practices is to [use links consistently
+](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#use-of-links), following one of the
+described 'catalog types'. The catalogs described here are [Relative Published Catalogs
+](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#relative-published-catalog),
 that use absolute URL's to refer to their assets (so would be an example of a [Self-contained Metadata 
-Only](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#self-contained-metadata-only) catalog that is published).
+Only](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#self-contained-metadata-only)
+catalog that is published).
 
 ### Differences with STAC Best Practices
 
@@ -82,7 +87,8 @@ highlight where things here differ from the actual best practices.
 
 #### Catalog Layout
 
-Another important recommendations concerns the [layout of STAC catalogs](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#catalog-layout). This is important
+Another important recommendations concerns the [layout of STAC catalogs
+](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#catalog-layout). This is important
 for tools to be able to expect a certain layout, and most tools will follow the described layout. The simple collection that consists
 of the collection.json and its 3 linked items violates this. This is done to be able to show item examples directly in the root of
 the 'examples' folder, so people don't have to dig deep into folders to get a quick example. But a proper catalog layout would
