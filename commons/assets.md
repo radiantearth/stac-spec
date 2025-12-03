@@ -19,13 +19,13 @@ in the [Asset Object](#asset-object).
 An Asset is an object that contains a URI to data associated with the Item that can be downloaded
 or streamed. It is allowed to add additional fields.
 
-| Field Name  | Type      | Description                                                                                                                                                                                  |
-| ----------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| href        | string    | **REQUIRED.** URI to the asset object. Relative and absolute URI are both allowed. [Trailing slashes are significant.](../best-practices.md#consistent-uris)                                 |
-| title       | string    | The displayed title for clients and users.                                                                                                                                                   |
-| description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation. |
-| type        | string    | [Media type](#media-types) of the asset. See the [common media types](../best-practices.md#common-media-types-in-stac) in the best practice doc for commonly used asset types.               |
-| roles       | \[string] | The [semantic roles](#roles) of the asset, similar to the use of `rel` in links.                                                                                                             |
+| Field Name  | Type      | Description                                                                                                                                                                                                                                              |
+| ----------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| href        | string    | **REQUIRED.** URI to the asset object. Relative and absolute URI are both allowed. [Trailing slashes are significant.](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-web.md#consistent-uris)                              |
+| title       | string    | The displayed title for clients and users.                                                                                                                                                                                                               |
+| description | string    | A description of the Asset providing additional details, such as how it was processed or created. [CommonMark 0.29](http://commonmark.org/) syntax MAY be used for rich text representation.                                                             |
+| type        | string    | [Media type](#media-types) of the asset. See the [common media types](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-asset-and-link.md#common-media-types-in-stac) in the best practice doc for commonly used asset types. |
+| roles       | \[string] | The [semantic roles](#roles) of the asset, similar to the use of `rel` in links.                                                                                                                                                                         |
 
 [Additional fields](#additional-fields) *may* be added to the assets, though this
 is recommended only in special cases.
@@ -36,8 +36,10 @@ Any media type can be used in an Item's asset `type` field, and [registered](htt
 Media Types are preferred. STAC Items that have sidecar metadata files associated with a data asset (e.g, `.tfw`, Landsat 8 MTL files)
 should use media types appropriate for the metadata file.  For example, if it is a plain text file, then `text/plain`
 would be appropriate; if it is an XML, then `text/xml` is appropriate. For more information on media types as well as a
-list of [common media types](../best-practices.md#common-media-types-in-stac) used in STAC see the [best practice on
-working with media types](../best-practices.md#working-with-media-types).
+list of [common media types
+](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-asset-and-link.md#common-media-types-in-stac)
+used in STAC see the [best practice on working with media types
+](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-asset-and-link.md#working-with-media-types).
 
 ## Roles
 
@@ -47,12 +49,15 @@ action when they encounter particular roles, listed below. But implementors are 
 describe the role.
 
 Like the `rel` field in Link Objects, the `roles` field can be given any value.
-However, there are a few standardized role names that can be found in the [best practices](../best-practices.md#list-of-asset-roles).
+However, there are a few standardized role names that can be found in the [best practices
+](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-asset-and-link.md#list-of-asset-roles).
 Commonly used are `thumbnail`, `overview`, `data` and `metadata`.
 
 Note that multiple roles per asset are encouraged: pick all the ones that apply.
 So many should have the `data` role, and then another role to describe how the data is used.
-For more information on how to use roles see the [Asset Roles](../best-practices.md#asset-roles) section of the Best Practices document.
+For more information on how to use roles see the [Asset Roles
+](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-asset-and-link.md#asset-roles)
+section of the Best Practices document.
 
 ## Additional Fields
 
@@ -79,6 +84,6 @@ within the Item. This best spatial resolution (for instance: 10m) is defined in 
 searched on. However any particular band may have a different resolution (for instance: 20m) which is specified on the
 asset and overrides the Item `gsd` for this one asset.
 
-For examples of fields that this construct is recommended for,
-see the [section of STAC Best Practices](../best-practices.md#common-use-cases-of-additional-fields-for-assets)
+For examples of fields that this construct is recommended for, see the [section of STAC Best Practices
+](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-asset-and-link.md#common-use-cases-of-additional-fields-for-assets)
 that talks about common use cases of additional fields for assets.

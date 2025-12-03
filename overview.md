@@ -55,7 +55,9 @@ asset, so it can be easily searched. STAC provides a core set of
 and there is a wider community working on a variety of [STAC Extensions](extensions/) that provide shared metadata for 
 more specific domains. Both aim to describe data with well known, well
 defined terms to enable consistent publishing and better search. For more recommendations on selecting fields
-for an Item see [this section](best-practices.md#field-selection-and-metadata-linking) of the best practices document.
+for an Item see [this section
+](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-item.md#field-selection-and-metadata-linking)
+of the best practices document.
 
 ### What is a SpatioTemporal Asset
 
@@ -63,7 +65,8 @@ A 'spatiotemporal asset' is any file that represents information about the earth
 space and time. Examples include Imagery (from satellites, planes and drones), SAR, Point Clouds (from
 LiDAR, Structure from Motion, etc), Data Cubes, Full Motion Video, and data derived from any of those.
 The key is that the GeoJSON is not the actual 'thing', but instead references files and serves as an
-index to the 'assets'. It is [not recommended](best-practices.md#representing-vector-layers-in-stac) 
+index to the 'assets'. It is [not recommended
+](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-item.md#representing-vector-layers-in-stac) 
 to use STAC to refer to traditional vector data layers (shapefile, geopackage) as assets, as they
 don't quite fit conceptually. 
 
@@ -97,7 +100,8 @@ Catalogs in turn are used for two main things:
 
 The first case allows users to browse down into the Items of large collections. A collection like
 Landsat usually would start with path and row Catalogs to group by geography, and then year, 
-month and day groups to enable deeper grouping. [Dynamic catalogs](best-practices.md#dynamic-catalogs) can
+month and day groups to enable deeper grouping. [Dynamic catalogs
+](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#dynamic-catalogs) can
 provide multiple grouping paths, serving as a sort of faceted search.
 
 The second case is used when one wants to represent diverse data in a single place. If an organization
@@ -122,7 +126,8 @@ STAC makes no formal distinction between a "root" Catalog and the "child" Catalo
 is simply the top-most Catalog or Collection -- it has no parent. A nested catalog structure is useful (and
 recommended) for breaking up massive numbers of catalog Items into logical groupings. For example,
 it might make sense to organize a catalog by date (year, month, day), or geography (continent,
-country, state/prov). See the [Catalog Layout](best-practices.md#catalog-layout) best practices
+country, state/prov). See the [Catalog Layout
+](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#catalog-layout) best practices
 section for more.
 
 A simple STAC structure might look like this:
@@ -170,24 +175,32 @@ The Catalog specification is designed so it can be implemented as easily as poss
 simply putting linked json files on a file server or an object storage service (like [AWS S3](https://aws.amazon.com/s3/)),
 or it can be generated on the fly by a live server. The first type of implementation is often called a 'static catalog',
 and any catalog that is not just files is called a 'dynamic catalog'. You can read more about the two types along with
-recommendations in [this section](best-practices.md#static-and-dynamic-catalogs) of the best practices document, 
-along with how to keep a [dynamic catalog in sync](best-practices.md#static-to-dynamic-best-practices) with a static one.
+recommendations in [this section
+](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#static-and-dynamic-catalogs)
+of the best practices document, along with how to keep a [dynamic catalog in sync
+](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#static-to-dynamic-best-practices)
+with a static one.
 
 ### Catalog Best Practices
 
-In addition to information about different catalog types, the [best practices document](best-practices.md) has
+In addition to information about different catalog types, the [best practices document
+](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md) has
 a number of suggestions on how to organize and implement good catalogs. The [catalog specification](catalog-spec/catalog-spec.md)
 is designed for maximum flexibility, so none of these are required, but they provide guidance for implementors who
 want to follow what most of the STAC community is doing.
 
-- [Catalog Layout](best-practices.md#catalog-layout) is likely the most important section, as following its 
-recommendations will enable catalogs to work better with client tooling that optimizes for known layouts.
-- [Use of Links](best-practices.md#use-of-links) articulates practices for making catalogs that are portable (with
-relative links through out) and ones that are published in stable locations (with absolute self links).
-- [Versioning for Catalogs](best-practices.md#versioning-for-catalogs) explains how to use STAC's structure to
+- [Catalog Layout](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#catalog-layout)
+  is likely the most important section, as following its 
+  recommendations will enable catalogs to work better with client tooling that optimizes for known layouts.
+- [Use of Links](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#use-of-links)
+  articulates practices for making catalogs that are portable (with
+  relative links through out) and ones that are published in stable locations (with absolute self links).
+- [Versioning for Catalogs
+  ](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-catalog-and-collection.md#versioning-for-catalogs)
+  explains how to use STAC's structure to
 keep a history of changes made to Items and catalogs.
-- [STAC on the Web](best-practices.md#stac-on-the-web) explains how catalogs should have html versions for 
-each Item and Catalog, as well as ways to achieve that.
+- [STAC on the Web](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-web.md#stac-on-the-web)
+  explains how catalogs should have html versions for each Item and Catalog, as well as ways to achieve that.
 
 ## Collection Overview
 
