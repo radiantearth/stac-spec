@@ -18,6 +18,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Recommend that thumbnails and similar assets use HTTP(S) as access mechanism
 - Remove best practices content and reference new best practices repo ([#1370](https://github.com/radiantearth/stac-spec/pull/1370))
 
+### Fixed
+
+- Typo fix in `common.json` schema `$id` ([#1381](https://github.com/radiantearth/stac-spec/pull/1381))
+
 ## [v1.1.0] - 2024-09-10
 
 ### Added
