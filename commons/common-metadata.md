@@ -231,16 +231,18 @@ By adding fields from extensions you can indicate that a band, for example, is
 - a band with quality information such as cloud cover probabilities,
 - etc.
 
-Please refer to the [Bands best practices](../best-practices.md#bands) for more details.
+Please refer to the [Bands best practices
+](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-asset-and-link.md#bands) for more details.
 
 > \[!NOTE]
 > This property is the successor of the `eo:bands` and `raster:bands` fields, which has been present in previous versions of these extensions.
 > The behavior is very similar and they can be migrated easily.
 > Usually, you can simply merge each object on a by-index basis.
-> Nevertheless, you should consider deduplicating properties with the same values across all bands to the asset level
-> (see the [best practices](../best-practices.md#multiple-bands)).
+> Nevertheless, you should consider deduplicating properties with the same values across all bands to the asset level (see the [best practices
+> ](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-asset-and-link.md#multiple-bands)).
 > For some fields, you need to add the extension prefix of the `eo` or `raster` extension to the property name though.
-> See the [Band migration best practice](../best-practices.md#band-migration) for details.
+> See the [Band migration best practice
+> ](https://github.com/radiantearth/stac-best-practices/blob/main/best-practices-asset-and-link.md#band-migration) for details.
 
 ### Band Object
 
@@ -287,6 +289,10 @@ It is STRONGLY RECOMMENDED to provide units in one of the following two formats:
 
 - [UCUM](https://ucum.org/): The unit code that is compliant to the UCUM specification.
 - [UDUNITS-2](https://ncics.org/portfolio/other-resources/udunits2/): The unit symbol if available, otherwise the singular unit name.
+
+To specify that a value is unitless (dimensionless), provide an empty string (`""`).
+If unit information is not available or not applicable, the `unit` field SHOULD be omitted entirely.
+The value `null` is not valid for this field.
 
 ### Statistics Object
 
@@ -336,6 +342,7 @@ The allowed values for `data_type` are:
 - `float64`: 64-big float
 - `cint16`: 16-bit complex integer
 - `cint32`: 32-bit complex integer
+- `cfloat16`: 16-bit complex float
 - `cfloat32`: 32-bit complex float
 - `cfloat64`: 64-bit complex float
 - `other`: Other data type than the ones listed above (e.g. boolean, string, higher precision numbers)
