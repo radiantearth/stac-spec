@@ -134,6 +134,13 @@ expected), the `child` relationships SHOULD be used to link to the immediate chi
 The `descendant` relationship MAY be used to link to "deeper" `child` that are not immediately under the `parent`
 entity, but that are strongly related under the same hierarchy.
 The "immediate" `descendant` links MAY also be provided as alias to `child` entities for completeness.
-The relation type is provided mostly to complement the `ancestor` relation in a similar terminology.
+The relation type is provided mostly to complement the `ancestor` relation in a similar terminology,
+but also offers a natuaral alignment with other standards such as
+[*OGC API - Common - Part 4: Discovery within many collections - Hierarchical Collections*][ogc-common-hc]
+that leverages a similar `parent` and `descendants` queries.
+
+[ogc-common-hc]: https://docs.ogc.org/DRAFTS/25-046.html#rc-hierarchical-collections-section
+
 The specific relationship semenatics between the STAC entities are not enforced by the specification,
 but should aim to communicate a logical parents/children reationship between the linked entities.
+
