@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## Added
+
+- Add explicit references to `ancestor`/`descendant` links and best-practices for multi-`parent` references.
+
 ## [v1.1.0] - 2024-09-10
 
 ### Added
@@ -91,7 +95,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - An open date range to both sides is now allowed in the Collection's temporal extents. ([#1125](https://github.com/radiantearth/stac-spec/issues/1125))
 - Catalog and Collection JSON Schemas don't have a common JSON Schema any more. ([#1122](https://github.com/radiantearth/stac-spec/pull/1122))
 
-### Removed 
+### Removed
 
 - Catalogs don't support summaries any more. ([#1122](https://github.com/radiantearth/stac-spec/pull/1122))
 
