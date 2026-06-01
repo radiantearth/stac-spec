@@ -67,15 +67,15 @@ It is recommended to use the official
 The following table lists the STAC-specific `rel` types that are used in the `links` object of a STAC entity
 to link with other STAC entities in a Catalog.
 
-| Type                                              | Description                                                                                                         | Media Type                                           |
-|---------------------------------------------------| ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| [`self`](#self-relation)                          | *Absolute* URL to the location that the STAC file can be found online, if available.                                | application/json                                     |
-| [`root`](#root-and-parent-relation)               | URL to the root STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)).   | application/json                                     |
-| [`parent`](#root-and-parent-relation)             | URL to the parent STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)). | application/json                                     |
-| [`child`](#child-relation)                        | URL to a child STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)).    | application/json                                     |
-| [`collection`](#collection-and-item-relation)     | URL to the parent Collection. *Absolute* URLs should be used whenever possible.                                     | application/json                                     |
-| [`item`](#collection-and-item-relation)           | URL to a STAC Item.                                                                                                 | application/geo+json (preferred) or application/json |
-| [`ancestor`](#ancestor-and-descendant-relation)   | URL to an ancestor STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)).   | application/json                                     |
+| Type                                              | Description                                                                                                           | Media Type                                           |
+|---------------------------------------------------| --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| [`self`](#self-relation)                          | *Absolute* URL to the location that the STAC file can be found online, if available.                                  | application/json                                     |
+| [`root`](#root-and-parent-relation)               | URL to the root STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)).     | application/json                                     |
+| [`parent`](#root-and-parent-relation)             | URL to the parent STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)).   | application/json                                     |
+| [`child`](#child-relation)                        | URL to a child STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)).      | application/json                                     |
+| [`collection`](#collection-and-item-relation)     | URL to the parent Collection. *Absolute* URLs should be used whenever possible.                                       | application/json                                     |
+| [`item`](#collection-and-item-relation)           | URL to a STAC Item.                                                                                                   | application/geo+json (preferred) or application/json |
+| [`ancestor`](#ancestor-and-descendant-relation)   | URL to an ancestor STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)).  | application/json                                     |
 | [`descendant`](#ancestor-and-descendant-relation) | URL to a descendant STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)). | application/json                                     |
 
 #### `self` relation
