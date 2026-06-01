@@ -64,16 +64,18 @@ It is recommended to use the official
 ### Hierarchical relations
 
 The following table lists the STAC-specific `rel` types that are used in the `links` object of a STAC entity
-to link with other STAC entities in the same catalog.
+to link with other STAC entities in a Catalog.
 
-| Type       | Description                                                                                                         | Media Type                                           |
-| ---------- | ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| self       | *Absolute* URL to the location that the STAC file can be found online, if available.                                | application/json                                     |
-| root       | URL to the root STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)).   | application/json                                     |
-| parent     | URL to the parent STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)). | application/json                                     |
-| child      | URL to a child STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)).    | application/json                                     |
-| collection | URL to the parent Collection. *Absolute* URLs should be used whenever possible.                                     | application/json                                     |
-| item       | URL to a STAC Item.                                                                                                 | application/geo+json (preferred) or application/json |
+| Type                                              | Description                                                                                                         | Media Type                                           |
+|---------------------------------------------------| ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| [`self`](#self-relation)                          | *Absolute* URL to the location that the STAC file can be found online, if available.                                | application/json                                     |
+| [`root`](#root-and-parent-relation)               | URL to the root STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)).   | application/json                                     |
+| [`parent`](#root-and-parent-relation)             | URL to the parent STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)). | application/json                                     |
+| [`child`](#child-relation)                        | URL to a child STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)).    | application/json                                     |
+| [`collection`](#collection-and-item-relation)     | URL to the parent Collection. *Absolute* URLs should be used whenever possible.                                     | application/json                                     |
+| [`item`](#collection-and-item-relation)           | URL to a STAC Item.                                                                                                 | application/geo+json (preferred) or application/json |
+| [`ancestor`](#ancestor-and-descendant-relation)   | URL to an ancestor STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)).   | application/json                                     |
+| [`descendant`](#ancestor-and-descendant-relation) | URL to a descendant STAC entity ([Catalog](../catalog-spec/README.md) or [Collection](../collection-spec/README.md)). | application/json                                     |
 
 #### `self` relation
 
@@ -103,3 +105,34 @@ The `collection` and `item` relations are used to link to the parent collection 
 It is RECOMMENDED to link an `item` from a collection and not directly from a catalog.
 All Items linked from a Collection MUST refer back to its Collection with the `collection` relation type
 The referenced Collection is STRONGLY RECOMMENDED to implement the same STAC version as the Collection.
+
+### `ancestor` and `descendant` relation
+
+The `ancestor` and `descendant` optional relations are used to link to hierarchical STAC entities,
+in a similar fashion to the `child` and `parent` relations. The main difference is that the `parent` imposes a
+direct and unique relationship between the two entities (see [`parent` relationship](#root-and-parent-relation)),
+leading to a strict tree-like hierarchical structure of the data, while the `ancestor` and `descendant` relations
+allow for multiple links and indirect relationships.
+This can be employed to represent more complex relationships between entities, such as to provinde multiple
+cataloguig references of a similar concept, to support a directed acyclic graph represention of STAC entities,
+and to indicate multiple paths leading to the same entity in a hierarchy.
+
+For example, a STAC Item representing a scene acquired by a satellite could be simultaneously linked under a parent
+Collection grouping all data acquisitions by that satellite, while also be linked within another parent Catalog
+representing specific acquisition campaigns or semantic grouping of scenes over certain areas and time periods.
+
+It is REQUIRED that, even if multiple "*parents*" exist and are indicated by `ancestor` relationships, one of
+them is indicated as the `parent` relation, for example, by refering to the most generic or preferred cataloguing
+entity. This is to preserve compatibility with clients that only understand the `parent` relation and that expect only
+a single `parent` entity. Clients that support other relationships can then use the `ancestor` and `descendant`
+relations to discover additional linking mechamisms in a complex hierarchy without impacting the core `parent`/`child`
+hierarchical structure of the data.
+
+Because `child` relationships do not impose a similar constrain as `parent` does (multiple links are allowed and
+expected), the `child` relationships SHOULD be used to link to the immediate children of a `parent` entity.
+The `descendant` relationship MAY be used to link to "deeper" `child` that are not immediately under the `parent`
+entity, but that are strongly related under the same hierarchy.
+The "immediate" `descendant` links MAY also be provided as alias to `child` entities for completeness.
+The relation type is provided mostly to complement the `ancestor` relation in a similar terminology.
+The specific relationship semenatics between the STAC entities are not enforced by the specification,
+but should aim to communicate a logical parents/children reationship between the linked entities.
