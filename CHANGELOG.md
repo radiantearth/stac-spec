@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- Add explicit references to `ancestor`/`descendant` links and best-practices for multi-`parent` references.
 - Clarify that keys to `item.assets` should be a finite (and preferably consistent) static set of values within a Collection.
 - Add ``cfloat16`` for 16-bit complex float as an allowed `data_type` value.
 
@@ -102,7 +103,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - An open date range to both sides is now allowed in the Collection's temporal extents. ([#1125](https://github.com/radiantearth/stac-spec/issues/1125))
 - Catalog and Collection JSON Schemas don't have a common JSON Schema any more. ([#1122](https://github.com/radiantearth/stac-spec/pull/1122))
 
-### Removed 
+### Removed
 
 - Catalogs don't support summaries any more. ([#1122](https://github.com/radiantearth/stac-spec/pull/1122))
 
