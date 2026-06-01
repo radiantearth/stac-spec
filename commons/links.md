@@ -137,7 +137,7 @@ The "immediate" `descendant` links MAY also be provided as alias to `child` enti
 The relation type is provided mostly to complement the `ancestor` relation in a similar terminology,
 but also offers a natuaral alignment with other standards such as
 [*OGC API - Common - Part 4: Discovery within many collections - Hierarchical Collections*][ogc-common-hc]
-that leverages a similar `parent` and `descendants` queries.
+that leverages similar `parent` and `descendants` query parameters.
 
 The specific relationship semenatics between the STAC entities are not enforced by the specification,
 but should aim to communicate a logical parents/children reationship between the linked entities.
