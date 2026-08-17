@@ -452,7 +452,8 @@ or can complement assets where many non-visible bands are included, by being a l
 
 Roles should also be combined, e.g., `thumbnail` and `overview` if the recommendations are all met.
 
-If your data for the Item does not come with a thumbnail already we do recommend generating one, which can be done quite easily with [GDAL](https://gdal.org/) or [Rasterio](https://rasterio.readthedocs.io/en/latest/).
+If your data for the Item does not come with a thumbnail already we do recommend generating one,
+which can be done quite easily with [GDAL](https://gdal.org/) or [Rasterio](https://rasterio.readthedocs.io/en/latest/).
 
 | Role                           | thumbnail                                           | overview                                                           | visual                                                                                       |
 | ------------------------------ | --------------------------------------------------- | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |

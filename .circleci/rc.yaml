@@ -1,4 +1,6 @@
 plugins:
+# GitHub Flavored Markdown
+  - remark-gfm
 # Check links
   - validate-links
 # Apply some recommended defaults for consistency
@@ -39,7 +41,7 @@ plugins:
   - - remark-lint-unordered-list-marker-style
     - '-'
   - - remark-lint-list-item-indent
-    - space 
+    - one
 # Tables
   - remark-lint-table-pipes
   - remark-lint-no-literal-urls

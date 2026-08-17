@@ -126,9 +126,9 @@ Information about the organizations capturing, producing, processing, hosting or
 
 - [JSON Schema](../item-spec/json-schema/provider.json)
 
-| Field Name | Type                                  | Description                                                                                                                                                                                                                            |
-| ---------- | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| providers  | [[Provider Object](#provider-object)] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
+| Field Name | Type                                   | Description                                                                                                                                                                                                                            |
+| ---------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| providers  | \[[Provider Object](#provider-object)] | A list of providers, which may include all organizations capturing or processing the data or the hosting provider. Providers should be listed in chronological order with the most recent provider being the last element of the list. |
 
 ### Provider Object
 
