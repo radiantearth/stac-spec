@@ -1,5 +1,14 @@
 # STAC Best Practices
 
+> [!IMPORTANT]  
+>
+> This best practice document reflects the version published for STAC v1.1.0.
+> The STAC community has recently decided to maintain the best practices more
+> agile, independently of STAC releases.
+>
+> We therefore **recommend following <https://github.com/radiantearth/stac-best-practices>**,
+> which reflects the latest best practices agreed upon by the STAC community.
+
 ## Table of Contents
 
 - **[Web Best Practices](#web-practices)**
@@ -48,6 +57,15 @@ While the current goal of the core is to remain quite flexible and simple to mee
 in time some of these may evolve to become part of the core specification.
 
 ## Web Practices
+
+> [!IMPORTANT]  
+>
+> This best practice document reflects the version published for STAC v1.1.0.
+> The STAC community has recently decided to maintain the best practices more
+> agile, independently of STAC releases.
+>
+> We therefore **recommend following <https://github.com/radiantearth/stac-best-practices>**,
+> which reflects the latest best practices agreed upon by the STAC community.
 
 ### Enable Cross-origin resource sharing (CORS)
 
@@ -172,6 +190,15 @@ The relative URLs `folder/item.json` and `./folder/item.json` are equivalent.
 
 ## Item Practices
 
+> [!IMPORTANT]  
+>
+> This best practice document reflects the version published for STAC v1.1.0.
+> The STAC community has recently decided to maintain the best practices more
+> agile, independently of STAC releases.
+>
+> We therefore **recommend following <https://github.com/radiantearth/stac-best-practices>**,
+> which reflects the latest best practices agreed upon by the STAC community.
+
 ### Item IDs
 
 When defining one's STAC properties and fields there are many choices to make on how to name various aspects of one's
@@ -274,6 +301,15 @@ that is not possible then the appropriate way to handle Collection-level search 
 Both are compliant with OGC API - Features, adding richer search capabilities to enable finding of data. 
 
 ## Asset and Link Best Practices
+
+> [!IMPORTANT]  
+>
+> This best practice document reflects the version published for STAC v1.1.0.
+> The STAC community has recently decided to maintain the best practices more
+> agile, independently of STAC releases.
+>
+> We therefore **recommend following <https://github.com/radiantearth/stac-best-practices>**,
+> which reflects the latest best practices agreed upon by the STAC community.
 
 ### Common Use Cases of Additional Fields for Assets
 
@@ -657,6 +693,15 @@ The following was done:
 As a result, the new `bands` array is more lightweight and easier to handle.
 
 ## Catalog & Collection Practices
+
+> [!IMPORTANT]  
+>
+> This best practice document reflects the version published for STAC v1.1.0.
+> The STAC community has recently decided to maintain the best practices more
+> agile, independently of STAC releases.
+>
+> We therefore **recommend following <https://github.com/radiantearth/stac-best-practices>**,
+> which reflects the latest best practices agreed upon by the STAC community.
 
 *Note: This section uses the term 'Catalog' (with an uppercase C) to refer to the JSON entity specified in the 
 [Catalog spec](catalog-spec/catalog-spec.md), and 'catalog' (with a lowercase c) to refer to any full STAC implementation, 
