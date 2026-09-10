@@ -305,20 +305,25 @@ This serves two purposes:
 1. Provide a human-readable definition of assets available in **any** Items
    belonging to this Collection so that the user can determine the key(s)
    of assets they are interested in.
-2. Provide a way to programmatically determine what assets are available
+2. Provide a way to programmatically determine what kind of assets are available
    in **any** member Item. Otherwise a random Item needs to be examined to
    determine assets available, but a random Item may not be representative of the set.
+
+Note that the correspondence between Collection-level Item Asset objects and Item-level Asset objects is established by the Asset key, both for human-readable purposes and for programmatic access.
+As such, it is recommended to adopt a consistent asset key naming scheme at minimum, and ideally a descriptive one.
 
 An Item Asset Object defined at the Collection level is nearly the same as the
 [Asset Object in Items](../commons/assets.md#asset-object), except for two differences.
 The `href` field is not required, because Item Asset Definitions don't point to any data by themselves, but at least two other fields must be present.
 
-#### Item Asset Definition Object
+The Item Asset objects provide an overview of the Assets that can be expected in the member Items of the Collection.
+- The assets in this summary should be a *union* view:
+  while member Items do not need to include each and every kind of asset in the Collection,
+  it is recommended that the Item Asset Definition is a complete set of **all** kinds of assets that may be available from **any** member Items.
+- Conversely, the Item Asset objects should only list the *intersection* of properties
+  that are common to all corresponding assets in the member Items.
 
-An item asset is an object that contains details about the datafiles that will be included in member Items.
-Assets included at the Collection level do not imply that all assets are available from all Items.
-However, it is recommended that the Asset Definition is a complete set of **all** assets that may be available from **any** member Items.
-So this should be the union of the available assets, not just the intersection of the available assets.
+#### Item Asset Definition Object
 
 | Field Name  | Type      | Description                                                                                                                                                                                  |
 | ----------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -329,13 +334,7 @@ So this should be the union of the available assets, not just the intersection o
 
 Other custom fields, or fields from other extensions may also be included in the Asset object.
 
-Any property that exists for a Collection-level asset object must also exist in the corresponding assets object in
-each Item. If a collection's asset object contains properties that are not explicitly stated in the Item's asset
-object then that property does not apply to the item's asset. Item asset objects at the Collection-level can
-describe any of the properties of an asset, but those assets properties and values must also reside in the item's
-asset object. To consolidate item-level asset object properties in an API setting, consider storing the STAC Item
-objects without the larger properties internally as 'invalid' STAC items, and merge in the desired properties at
-serving time from the Collection-level.
+Any property that exists for a Collection-level asset object must also exist in the corresponding assets object in each Item.
 
 At least two fields (e.g. `title` and `type`) are required to be provided, in order for it to adequately describe Item assets.
 The two fields must not necessarily be taken from the list above and may include any custom field.
