@@ -5,8 +5,8 @@
   "type": "object",
   "properties": {
     "license": {
-      "type": "string",
-      "pattern": "^[\\w\\-\\.\\+]+$"
+      "type": "string",      
+      "pattern": "^[\\w\\-\\.\\+\\s]+$"
     }
   }
 }
