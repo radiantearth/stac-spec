@@ -334,7 +334,7 @@ The Item Asset objects provide an overview of the Assets that can be expected in
 
 Other custom fields, or fields from other extensions may also be included in the Asset object.
 
-Any property that exists for a Collection-level asset object must also exist in the corresponding assets object in each Item.
+Any property that exists for a Collection-level Item Asset Definition Object must also exist in the corresponding Assets Object in each Item.
 
 At least two fields (e.g. `title` and `type`) are required to be provided, in order for it to adequately describe Item assets.
 The two fields must not necessarily be taken from the list above and may include any custom field.
