@@ -4,9 +4,9 @@
   - [Overview](#overview)
   - [Using Extensions](#using-extensions)
     - [Extension identifiers in `stac_extensions`](#extension-identifiers-in-stac_extensions)
-  - [Community Extensions](#community-extensions)
-    - [Proposed extensions](#proposed-extensions)
+  - [Extension Governance](#extension-governance)
   - [Extension Maturity](#extension-maturity)
+  - [Extension Ownership](#extension-ownership)
   - [Extending STAC](#extending-stac)
     - [General Conventions](#general-conventions)
     - [Proposing new extensions](#proposing-new-extensions)
@@ -21,7 +21,7 @@ implementations will use several 'extensions' to fully describe their data. This
 work.
 
 **For a list of most available extensions see the [STAC extensions overview page](https://stac-extensions.github.io/).**
-Please note the [extension maturity](#extension-maturity) for each extension.
+Please note the [governance class](#extension-governance) and [maturity](#extension-maturity) of each extension.
 
 Extensions to the core STAC specification provide additional fields that can be used to better describe
 the data. Most tend to be about describing a particular domain or type of data, but some imply
@@ -35,6 +35,7 @@ for information on how to get started. Everyone is encouraged to add their exten
 [STAC extensions overview page](https://stac-extensions.github.io/), so others can be aware of it.
 
 Each extension should have at least one *owner*. You can find extension owners in each extension's README.
+See the section on [extension ownership](#extension-ownership) for details.
 
 ## Using Extensions
 
@@ -78,42 +79,76 @@ Collection.
   [item_assets](https://github.com/stac-extensions/item-assets) extension, and in the `item_assets` field there is an Asset Definition
   which includes `proj:wkt2`, then the Projection extension identifier should be listed in that Collection's `stac_extensions`.
 
-## Community Extensions
+## Extension Governance
 
 Everyone is welcome to contribute extensions to the STAC ecosystem. The center of activity for these is the
 [stac-extensions GitHub organization](https://github.com/stac-extensions), which has a number of extension repositories.
-Some of these, especially the [stable extensions](#extension-maturity), are observed by the STAC PSC.
-The community can also host STAC extensions in other places, but we encourage the community to
-at least list them in the [STAC extensions overview page](https://stac-extensions.github.io/) so that
+The community can also host STAC extensions in other places.
+All extensions can be listed in the [STAC extensions overview page](https://stac-extensions.github.io/),
+regardless of where they are hosted, and we encourage the community to do so, so that
 everyone can be aware of all extensions at any time and a high level of interoperability is possible.
 
-### Proposed extensions
+Each extension is assigned one of the following governance classes, which describe who governs the extension:
 
-Beyond the community extensions there have been a number of extensions that people have proposed to the STAC community. These
-can be found in the STAC [Issue Tracker](https://github.com/radiantearth/stac-spec/issues) under the 
-[new extension](https://github.com/radiantearth/stac-spec/issues?q=is%3Aissue+is%3Aopen+label%3A%22new+extension%22) label.
-These are ideas that others would likely use and potentially collaborate on. Anyone is free to add new
-ideas there, and see the section below on [proposing new extensions](#proposing-new-extensions) for the
-workflow to advance ideas into full-fledged community extensions.
+| Governance Class | Description                                                                                                                                                                                                                                                                                                                                      |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Core             | An extension that the STAC PSC considers critical for the STAC ecosystem, e.g. because it is recommended in the [STAC Best Practices](https://github.com/radiantearth/stac-best-practices). Core extensions are governed by the STAC PSC and are always hosted in the [stac-extensions GitHub organization](https://github.com/stac-extensions). |
+| Community        | An extension that is maintained by the STAC community. This is the default for all extensions.                                                                                                                                                                                                                                                   |
+| Unmaintained     | An extension that has no active owner anymore. It can still be used, but issues and pull requests may not be addressed. Extensions with the maturity [Deprecated](#extension-maturity) are always unmaintained, but not the other way around.                                                                                                    |
+
+The STAC PSC decides which extensions are classified as Core.
+See the section on [extension ownership](#extension-ownership) for what the governance class means for
+contributing to an extension.
 
 ## Extension Maturity
 
-There are many extensions being built with STAC, but they have varying degrees of maturity. All community extensions
-listed here included must include a maturity classification, so that STAC spec users can easily get a sense of how
-much they can count on the extension.
+There are many extensions being built with STAC, but they have varying degrees of maturity. All extensions
+must include a maturity classification, so that STAC users can easily get a sense of how
+much they can count on the extension. The maturity is independent of the [governance class](#extension-governance)
+and is decided by the [owners](#extension-ownership) of the extension.
 
-| Maturity Classification | Min Impl # | Description                                                                                                                                                | Stability                                                                                                                                       |
-| ----------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| Proposal                | 0          | An idea put forward by a community member to gather feedback                                                                                               | Not stable - breaking changes almost guaranteed as implementers try out the idea.                                                               |
-| Pilot                   | 1          | Idea is fleshed out, with examples and a JSON schema, and implemented in one or more catalogs. Additional implementations encouraged to help give feedback | Approaching stability - breaking changes are not anticipated but can easily come from additional feedback.                                      |
-| Candidate               | 3          | A number of implementers are using it and are standing behind it as a solid extension. User can generally count on an extension at this maturity level.    | Mostly stable, breaking changes require a new version and minor changes are unlikely. The extension has a code owner, designated in its README. |
-| Stable                  | 6          | Highest current level of maturity. The community of extension maintainers commits to a STAC review process for any changes, which are not made lightly.    | Completely stable, all changes require a new version number and review process.                                                                 |
-| Deprecated              | N/A        | A previous extension that has likely been superseded by a newer one or did not work out for some reason.                                                   | DO NOT USE, is not supported                                                                                                                    |
+| Maturity Classification | Description                                                                                                                                                  | Stability                                                                                                 |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- |
+| Proposal                | An early version of an extension or an extension that is still evolving. It may not be widely implemented yet and is looking for feedback from implementers. | Not stable - breaking changes can be expected as implementers try out the extension and provide feedback. |
+| Stable                  | The extension is widely implemented and has proven to work in practice. Users can generally count on an extension at this maturity level.                    | Stable - breaking changes are not expected, are not made lightly and require a new major version.         |
+| Deprecated              | A previous extension that has likely been superseded by a newer one or did not work out for some reason.                                                     | DO NOT USE, is not supported.                                                                             |
 
-Maturity mostly comes through diverse implementations, so the minimum number of implementations
-column is the main gating function for an extension to mature. But extension authors can also
-choose to hold back the maturity advancement if they don't feel they are yet ready to commit to
-the less breaking changes of the next level.
+Stable extensions should have a low cadence of changes, especially of breaking changes.
+The owners of an extension should only classify it as Stable if
+
+- it has multiple independent implementations, and
+- no breaking changes are expected anytime soon, e.g. there are no open issues or pull requests in the issue tracker
+  of the extension that would require breaking changes.
+
+Deprecated extensions are always also [Unmaintained](#extension-governance),
+but unmaintained extensions are not necessarily deprecated:
+an unmaintained extension may still be the best option for its use case, while a deprecated extension should not be
+used anymore.
+
+Previous versions of this document also defined the maturity classifications *Pilot* and *Candidate*.
+Extensions that still use these classifications should be considered as Proposal until their owners reclassify them.
+
+## Extension Ownership
+
+Each extension should have at least one owner, who is listed in the README of the extension.
+The owners maintain the extension, review and merge pull requests, release new versions, and decide
+on the [maturity](#extension-maturity) of the extension.
+
+Who governs an extension depends on its [governance class](#extension-governance) and where it is hosted:
+
+- **Core extensions** are hosted in the [stac-extensions GitHub organization](https://github.com/stac-extensions)
+  and are governed by the STAC PSC.
+  The owners listed in the README maintain the extension on behalf of the STAC PSC.
+- **Other extensions in the stac-extensions GitHub organization** are governed by their owners.
+  The STAC PSC can take over the ownership or governance of these extensions,
+  e.g. if the extension has no active owners anymore or if it becomes a Core extension.
+- **Extensions outside of the stac-extensions GitHub organization** are not governed by the STAC PSC.
+  All changes need to go through the owners of the extension.
+
+If issues or pull requests of an extension in the stac-extensions GitHub organization are stuck,
+the owners don't respond, or help is needed otherwise, please open an issue in the
+[stac-psc repository](https://github.com/radiantearth/stac-psc) to involve the STAC PSC.
+This is also the place to ask for taking over the ownership of an unmaintained extension.
 
 ## Extending STAC
 
@@ -155,6 +190,11 @@ For new extensions that require community discussion, we recommend the following
   Also post it in the Gitter chat for broader recognition.
 - Discussion should take place as issues/pull requests on the extension repository directly, but can als occur on the issue created before.
 - Once the extension has an initial release, the issue on stac-spec will be closed.
+
+Ideas for new extensions that others have proposed can be found in the STAC
+[Issue Tracker](https://github.com/radiantearth/stac-spec/issues) under the
+[new extension](https://github.com/radiantearth/stac-spec/issues?q=is%3Aissue+is%3Aopen+label%3A%22new+extension%22) label.
+Anyone is free to add new ideas there and to collaborate on existing ones.
 
 ### Prefixes
 
