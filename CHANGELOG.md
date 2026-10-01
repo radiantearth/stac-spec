@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Clarify that keys to `item.assets` should be a finite (and preferably consistent) static set of values within a Collection.
 - Add ``cfloat16`` for 16-bit complex float as an allowed `data_type` value.
+- Recommend that extension JSON Schemas don't require fields that the core specification already requires, such as `assets` ([#1397](https://github.com/radiantearth/stac-spec/issues/1397))
 
 ### Changed
 

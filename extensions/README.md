@@ -201,6 +201,16 @@ can theoretically add fields anywhere in JSON there are some conventions as to w
 4. All other objects can generally also be extended, e.g. Link Objects, Provider Objects, Band Objects, etc.
 5. Extensions may also extend other extensions, declaring that dependency in the text and JSON Schema.
 
+The JSON Schema of an extension should only validate the fields of the extension.
+It should not require fields that the STAC specification already requires, such as `assets` in Items,
+so that the schema can also be used with other GeoJSON-based formats that use STAC extensions,
+e.g. [OGC API - Records](https://github.com/opengeospatial/ogcapi-records).
+If the extension depends on other fields, e.g. from the core specification, common metadata or other extensions,
+the schema may check for their presence, as long as this requirement is also documented in the README of the extension.
+Where applicable, the schema should also validate the fields in all other places where they can be used,
+e.g. in Link Objects and Link Templates.
+The [extension template](https://github.com/stac-extensions/template) provides a JSON Schema that follows these rules.
+
 ### Proposing new extensions
 
 Extensions can be hosted anywhere, but should use the
