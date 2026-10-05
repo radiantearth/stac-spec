@@ -84,7 +84,8 @@ Below you can find a couple of practical examples:
 - If an object implements an extension that results in fields from a separate extension to be referenced, then the latter extension
   identifier should be included in the `stac_extensions` array for that object. For example, if a Collection implements the
   [Datacube](https://github.com/stac-extensions/datacube) extension, and in the `cube:variables` field there is a Variable Object
-  which includes `cf:standard_name` from the CF Extension, then the CF Extension identifier should be listed in that Collection's `stac_extensions`.
+  which includes `cf:standard_name` from the [CF Extension](https://github.com/stac-extensions/cf),
+  then the CF Extension identifier should be listed in that Collection's `stac_extensions`.
 
 ## Extension Governance
 
