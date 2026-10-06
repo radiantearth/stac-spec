@@ -29,7 +29,7 @@ Extensions to the core STAC specification provide additional fields that can be 
 the data. Most tend to be about describing a particular domain or type of data, but some imply
 functionality.
 
-Extensions include a JSON Schema describing the structure, a natural language description of the fields, and thorough examples.
+Extensions include a [JSON Schema](https://json-schema.org/) describing the structure, a natural language description of the fields, and thorough examples.
 
 Anybody can create an extension for their data, and data providers often work together to share
 fields between them to create a shared community extension. See the section below on [Extending STAC](#extending-stac)
@@ -72,7 +72,7 @@ Extensions can be added to the following STAC entities and each entity describes
 - [Collection](../collection-spec/collection-spec.md#stac_extensions)
 - [Item](../item-spec/item-spec.md#stac_extensions)
 
-Below you can find a couple of practical examples:
+Below you can find a few practical examples:
 
 - If the Catalog, Collection or Item object directly implements the extension,
   the `stac_extensions` of that object should contain the extension Identifier.
@@ -92,7 +92,7 @@ Below you can find a couple of practical examples:
 Everyone is welcome to contribute extensions to the STAC ecosystem. The center of activity for these is the
 [stac-extensions GitHub organization](https://github.com/stac-extensions), which has a number of extension repositories.
 The community can also host STAC extensions in other places.
-All extensions can be listed in the [STAC extensions overview page](https://stac-extensions.github.io/),
+Any extension can be listed in the [STAC extensions overview page](https://stac-extensions.github.io/),
 regardless of where they are hosted, and we encourage the community to do so, so that
 everyone can be aware of all extensions at any time and a high level of interoperability is possible.
 
@@ -102,7 +102,7 @@ everyone can be aware of all extensions at any time and a high level of interope
 > - **Core**: An extension that the STAC Project Steering Committee (PSC) considers critical for the STAC ecosystem,
 >   e.g. because it is recommended in the [STAC Best Practices](https://github.com/radiantearth/stac-best-practices).
 >   Core extensions are governed by the STAC PSC and are always hosted in the [stac-extensions GitHub organization](https://github.com/stac-extensions).
-> - **Community**: An extension that is maintained by the STAC community. This is the default for all extensions.
+> - **Community**: An extension that is maintained by the STAC community. This is the default for all extensions. Community extensions may be hosted in the stac-extensions Github organization, or they can be hosted elsewhere.
 > - **Unmaintained**: An extension that has no active owner anymore. It can still be used, but issues and pull requests may not be addressed.
 
 The STAC PSC decides which extensions are classified as Core.
@@ -149,7 +149,7 @@ Extensions that still use these classifications should be considered as Proposal
 
 ## Extension Ownership
 
-Each extension should have at least one owner, who is listed in the README of the extension.
+Each extension should have at least one owner, who is listed in the README of the extension by their Github handle.
 The owners maintain the extension, review and merge pull requests, release new versions, and decide
 on the [maturity](#extension-maturity) of the extension.
 
