@@ -128,6 +128,7 @@ The maturity is independent of the [governance class](#extension-governance) and
 >   Breaking changes should be avoided, occur at a low cadence and ideally only come after a deprecation phase.
 >   Breaking changes require a new major version.
 > - **Deprecated**: An extension that has likely been superseded by a newer one or did not work out for some reason.
+>   The GitHub repository should be archived.
 >   ***Transition the extension out of usage, do not use it in new projects.***
 
 The owners of an extension should only move an extension from *Proposal* to *Stable* if
@@ -169,7 +170,7 @@ If issues or pull requests of an extension in the stac-extensions GitHub organiz
 the owners don't respond, or help is needed otherwise, please open an issue in the
 [stac-psc repository](https://github.com/radiantearth/stac-psc) to involve the STAC PSC.
 An issue or pull request can be considered stuck if it has not received a response for about a month.
-This is also the place to ask for taking over the ownership of an unmaintained extension.
+This is also the place to ask for taking over the ownership of an unmaintained extension or promotion to "Core".
 
 Please allow enough time for reviews in general, we recommend at least one month.
 Extensions are maintained by volunteers, and neither the owners nor the STAC PSC and the wider community
@@ -177,6 +178,7 @@ may follow all extension repositories closely.
 Likewise, owners should give everyone a fair chance to review proposed changes before merging them,
 especially breaking changes and changes to Stable extensions.
 This ensures that extensions are based on consensus and work for a broad range of data and use cases.
+Specification development usually moves much slower than e.g. software development, which is intended and usually a good thing.
 
 ## Extending STAC
 
@@ -209,7 +211,7 @@ e.g. [OGC API - Records](https://github.com/opengeospatial/ogcapi-records).
 If the extension depends on other fields, e.g. from the core specification, common metadata or other extensions,
 the schema may check for their presence, as long as this requirement is also documented in the README of the extension.
 Where applicable, the schema should also validate the fields in all other places where they can be used,
-e.g. in Link Objects and Link Templates.
+e.g. in Bands, Link Objects, and Link Templates
 The [extension template](https://github.com/stac-extensions/template) provides a JSON Schema that follows these rules.
 
 ### Proposing new extensions
@@ -226,8 +228,10 @@ For new extensions that require community discussion, we recommend the following
 
 - Use the stac-extensions template to sketch out your proposed extension
 - Open an issue on this repository with the prefix "New Extension: " and describe the extension. Include a link to the extension repository.
-  Also post it in the `#stac` channel of the [CNG Slack](https://cloudnativegeo.slack.com) for broader recognition
-  and potentially on social media (e.g. LinkedIn or BlueSky).
+  It is also a good idea to participate in the [STAC community meetings](https://stacspec.org/en/get-involved/)
+  and present your ideas there to gather some feedback.
+  Additionally, you can post it in the `#stac` channel of the [CNG Slack](https://cloudnativegeo.slack.com)
+  for broader recognition and potentially on social media (e.g. LinkedIn or BlueSky).
 - Discussion should take place as issues/pull requests on the extension repository directly, but can also occur on the issue created before.
 - Once the extension has an initial release, the issue on stac-spec will be closed.
 
