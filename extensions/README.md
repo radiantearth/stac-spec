@@ -154,6 +154,10 @@ Each extension should have at least one owner, who is listed in the README of th
 The owners maintain the extension, review and merge pull requests, release new versions, and decide
 on the [maturity](#extension-maturity) of the extension.
 
+Any contributor can be added as an owner at the discretion of the existing owners.
+Open an issue or pull request on the repository to ask to be added to owners.
+All owners will be granted write permissions to the GitHub repository.
+
 Who governs an extension depends on its [governance class](#extension-governance) and where it is hosted:
 
 - **Core extensions** are hosted in the [stac-extensions GitHub organization](https://github.com/stac-extensions)
