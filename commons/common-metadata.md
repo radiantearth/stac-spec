@@ -273,8 +273,8 @@ or dimensions in a datacube (`datacube` extension).
 | statistics | [Statistics Object](#statistics-object) | Statistics of all the values.                          |
 | unit       | string                                  | Unit of measurement of the value, see [below](#units). |
 
-`nodata` and `statistics` refer to the values as stored, i.e. before applying a scale and offset (e.g. `raster:scale` and `raster:offset`).
-`unit` refers to the values after applying a scale and offset.
+If a scale and/or offset is provided (e.g. `raster:scale` and `raster:offset`),
+`nodata` and `statistics` refer to the values before applying them, and `unit` to the values after applying them.
 
 ### No-data
 
