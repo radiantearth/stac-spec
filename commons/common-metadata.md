@@ -161,17 +161,17 @@ with domain-specific extensions that describe the actual data, such as the `eo` 
 
 - [JSON Schema](../item-spec/json-schema/instrument.json)
 
-| Field Name    | Type      | Description                                                                  |
-| ------------- | --------- | ---------------------------------------------------------------------------- |
-| platform      | string    | Unique name of the specific platform to which the instrument is attached.    |
-| instruments   | \[string] | Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1).      |
-| constellation | string    | Name of the constellation to which the platform belongs.                     |
-| mission       | string    | Name of the mission for which data is collected.                             |
-| gsd           | number    | Ground Sample Distance at the sensor, in meters (m), must be greater than 0. |
+| Field Name    | Type      | Description                                                                            |
+| ------------- | --------- | -------------------------------------------------------------------------------------- |
+| platform      | \[string] | Unique name(s) of the specific platform(s) to which the instrument(s) is/are attached. |
+| instruments   | \[string] | Name of instrument or sensor used (e.g., MODIS, ASTER, OLI, Canon F-1).                |
+| constellation | string    | Name of the constellation to which the platform belongs.                               |
+| mission       | string.   | Name of the mission for which data is collected.                                       |
+| gsd           | number    | Ground Sample Distance at the sensor, in meters (m), must be greater than 0.           |
 
 ### platform
 
-The unique name of the specific platform the instrument is attached to. For satellites this would
+The unique name(s) of the specific platform(s) the instrument(s) is/are attached to. For satellites this would
 be the name of the satellite, whereas for drones this would be a unique name for the drone. Examples include
 `landsat-8` (Landsat-8), `sentinel-2a` and `sentinel-2b` (Sentinel-2), `terra` and `aqua` (part of NASA EOS,
 carrying the MODIS instruments), `mycorp-uav-034` (hypothetical drone name), and `worldview02`

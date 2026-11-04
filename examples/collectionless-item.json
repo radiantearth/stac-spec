@@ -58,7 +58,9 @@
         "url": "http://remotedata.it"
       }
     ],
-    "platform": "cool_sat2",
+    "platform": [
+      "cool_sat2"
+    ],
     "instruments": [
       "cool_sensor_v1"
     ],
