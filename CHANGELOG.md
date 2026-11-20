@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Remove best practices content and reference new best practices repo ([#1370](https://github.com/radiantearth/stac-spec/pull/1370))
 - Clarify that `nodata` and `statistics` refer to the values before applying a scale and offset, and `unit` to the values after applying them
 
+### Fixed
+
+- Typo fix in `common.json` schema `$id` ([#1381](https://github.com/radiantearth/stac-spec/pull/1381))
+
 ## [v1.1.0] - 2024-09-10
 
 ### Added
