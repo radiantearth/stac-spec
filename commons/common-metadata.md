@@ -310,13 +310,16 @@ to better describe the sizes ([example](../examples/collection.json)).
 Please note that some statistical sizes such as cloud cover have explicit fields in other extensions such as the EO extension.
 It is recommended to use the fields standardized in extensions in favor of providing them in the Statistics Object.
 
+Unless stated otherwise, statistical values are computed from the valid values only, i.e. values equal to `nodata` are excluded.
+The exceptions are `count`, which includes the no-data values, and `valid_percent`, which gives the share of valid values.
+
 | Field Name    | Type    | Description                                                                                                                            |
 | ------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | minimum       | number  | minimum value of the values in the band. If not present, the minimum value of the given data type or negative infinity can be assumed. |
 | maximum       | number  | maximum value of the values in the band. If not present, the maximum value of the given data type or positive infinity can be assumed. |
 | mean          | number  | mean value of all the values in the band                                                                                               |
 | stddev        | number  | standard deviation value of the values in the band                                                                                     |
-| count         | integer | Total number of all data values (>= 0)                                                                                                 |
+| count         | integer | Total number of all data values, including `nodata` values (>= 0)                                                                      |
 | valid_percent | number  | Percentage of valid (not `nodata`) values (0-100)                                                                                      |
 
 ### Data Types

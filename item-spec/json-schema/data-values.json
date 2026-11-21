@@ -49,23 +49,23 @@
       "minProperties": 1,
       "properties": {
         "minimum": {
-          "title": "Minimum value of all the data values",
+          "title": "Minimum value of all valid (not nodata) data values",
           "type": "number"
         },
         "maximum": {
-          "title": "Maximum value of all the data values",
+          "title": "Maximum value of all valid (not nodata) data values",
           "type": "number"
         },
         "mean": {
-          "title": "Mean value of all the data values",
+          "title": "Mean value of all valid (not nodata) data values",
           "type": "number"
         },
         "stddev": {
-          "title": "Standard deviation value of all the data values",
+          "title": "Standard deviation value of all valid (not nodata) data values",
           "type": "number"
         },
         "count": {
-          "title": "Total number of all data values",
+          "title": "Total number of all data values, including nodata values",
           "type": "integer",
           "minimum": 0
         },
