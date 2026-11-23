@@ -23,6 +23,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Typo fix in `common.json` schema `$id` ([#1381](https://github.com/radiantearth/stac-spec/pull/1381))
 
+### Changed
+
+- Update Instrument common metadata Platform type to array of strings ([#1348](https://github.com/radiantearth/stac-spec/issues/1348))
+
 ## [v1.1.0] - 2024-09-10
 
 ### Added

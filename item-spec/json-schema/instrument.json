@@ -6,7 +6,10 @@
   "properties": {
     "platform": {
       "title": "Platform",
-      "type": "string"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "instruments": {
       "title": "Instruments",
